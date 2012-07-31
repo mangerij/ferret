@@ -22,12 +22,24 @@ ferret_objects += $(patsubst %.f90, %.$(obj-suffix), $(ferret_f90srcfiles))
 
 ferret_app_objects := $(patsubst %.C, %.$(obj-suffix), $(FERRET_DIR)/src/main.C)
 
+# plugin files
+ferret_plugfiles   := $(shell find $(FERRET_DIR)/plugins/ -name *.C 2>/dev/null)
+ferret_cplugfiles  := $(shell find $(FERRET_DIR)/plugins/ -name *.c 2>/dev/null)
+ferret_fplugfiles  := $(shell find $(FERRET_DIR)/plugins/ -name *.f 2>/dev/null)
+ferret_f90plugfiles:= $(shell find $(FERRET_DIR)/plugins/ -name *.f90 2>/dev/null)
+
+# plugins
+ferret_plugins     := $(patsubst %.C, %-$(METHOD).plugin, $(ferret_plugfiles))
+ferret_plugins     += $(patsubst %.c, %-$(METHOD).plugin, $(ferret_cplugfiles))
+ferret_plugins     += $(patsubst %.f, %-$(METHOD).plugin, $(ferret_fplugfiles))
+ferret_plugins     += $(patsubst %.f90, %-$(METHOD).plugin, $(ferret_f90plugfiles))
+
 all:: $(ferret_LIB)
 
 # build rule for lib FERRET
 ifeq ($(enable-shared),yes)
 # Build dynamic library
-$(ferret_LIB): $(ferret_objects)
+$(ferret_LIB): $(ferret_objects) $(ferret_plugins)
 	@echo "Linking "$@"..."
 	@$(libmesh_CC) $(libmesh_CXXSHAREDFLAG) -o $@ $(ferret_objects) $(libmesh_LDFLAGS)
 else
