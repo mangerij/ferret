@@ -180,42 +180,42 @@
   active = 'anchor_up_Z anchor_dn_Z anchor_up_X anchor_dn_X anchor_up_Y anchor_dn_Y'
 
   [./anchor_up_X]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_x
     boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Y]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_y
     boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Z]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_z
     boundary = '1'
     value = 2e-6
   [../]
  
   [./anchor_dn_X]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_x
     boundary = '2'
     value = 0.0
   [../]
 
   [./anchor_dn_Y]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_y
     boundary = '2'
     value = 0.0
   [../]
 
   [./anchor_dn_Z]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_z
     boundary = '2'
     value = -2e-6
@@ -259,9 +259,9 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes -ksp_monitor -ksp_view -snes_view -pc_svd_monitor'
+  petsc_options = '-snes -snes_monitor -ksp_monitor -pc_svd_monitor'
   petsc_options_iname = '-ksp_type -pc_type'
-  petsc_options_value = '    gmres      svd'
+  petsc_options_value = '    gmres      ilu'
 
   nl_abs_tol = 1e-10
 #  l_abs_tol  = 1e-10
