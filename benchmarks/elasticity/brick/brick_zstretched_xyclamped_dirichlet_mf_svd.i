@@ -252,10 +252,10 @@
 
 [] # Materials
 
-[Preconditioning]
-   type = SMP
-   full = true
-[]
+#[Preconditioning]
+#   type = SMP
+#   full = true
+#[]
 [Executioner]
 
   type = Steady
@@ -269,7 +269,7 @@
 [] # Executioner
 
 [Output]
-  file_base = brick_zstretched_xyclamped
+  file_base = brick_zstretched_xyclamped_dirichlet_mf_svd
   interval = 1
   output_initial = true
   elemental_as_nodal = true

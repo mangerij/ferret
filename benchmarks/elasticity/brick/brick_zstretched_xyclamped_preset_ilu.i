@@ -180,42 +180,42 @@
   active = 'anchor_up_Z anchor_dn_Z anchor_up_X anchor_dn_X anchor_up_Y anchor_dn_Y'
 
   [./anchor_up_X]
-    type = DirichletBC
+    type = PresetBC
     variable = disp_x
     boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Y]
-    type = DirichletBC
+    type = PresetBC
     variable = disp_y
     boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Z]
-    type = DirichletBC
+    type = PresetBC
     variable = disp_z
     boundary = '1'
     value = 2e-6
   [../]
  
   [./anchor_dn_X]
-    type = DirichletBC
+    type = PresetBC
     variable = disp_x
     boundary = '2'
     value = 0.0
   [../]
 
   [./anchor_dn_Y]
-    type = DirichletBC
+    type = PresetBC
     variable = disp_y
     boundary = '2'
     value = 0.0
   [../]
 
   [./anchor_dn_Z]
-    type = DirichletBC
+    type = PresetBC
     variable = disp_z
     boundary = '2'
     value = -2e-6
@@ -259,9 +259,9 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes_mf_operator -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
+  petsc_options = '-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
   petsc_options_iname = '-ksp_type -pc_type'
-  petsc_options_value = '    gmres      lu'
+  petsc_options_value = '    gmres      ilu'
 
   nl_abs_tol = 1e-10
 #  l_abs_tol  = 1e-10
@@ -269,7 +269,7 @@
 [] # Executioner
 
 [Output]
-  file_base = brick_zstretched_xyclamped_dirichlet_mf_lu
+  file_base = brick_zstretched_xyclamped_preset_ilu
   interval = 1
   output_initial = true
   elemental_as_nodal = true

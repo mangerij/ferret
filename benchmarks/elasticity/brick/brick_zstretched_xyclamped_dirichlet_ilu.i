@@ -252,14 +252,14 @@
 
 [] # Materials
 
-[Preconditioning]
-   type = SMP
-   full = true
-[]
+#[Preconditioning]
+#   type = SMP
+#   full = true
+#[]
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes -snes_monitor -ksp_monitor -pc_svd_monitor'
+  petsc_options = '-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
   petsc_options_iname = '-ksp_type -pc_type'
   petsc_options_value = '    gmres      ilu'
 
@@ -269,7 +269,7 @@
 [] # Executioner
 
 [Output]
-  file_base = brick_zstretched_xyclamped
+  file_base = brick_zstretched_xyclamped_dirichlet_ilu
   interval = 1
   output_initial = true
   elemental_as_nodal = true
