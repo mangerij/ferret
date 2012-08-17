@@ -259,9 +259,9 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes_mf_operator -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -pc_svd_monitor'
+  petsc_options = '-snes_mf_operator -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
   petsc_options_iname = '-ksp_type -pc_type'
-  petsc_options_value = '    gmres      svd'
+  petsc_options_value = '    gmres     none'
 
   nl_abs_tol = 1e-10
 #  l_abs_tol  = 1e-10
@@ -269,7 +269,7 @@
 [] # Executioner
 
 [Output]
-  file_base = brick_zstretched_xyclamped_dirichlet_mf_svd
+  file_base = brick_zstretched_xyclamped_dirichlet_mf
   interval = 1
   output_initial = true
   elemental_as_nodal = true
