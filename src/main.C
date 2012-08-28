@@ -1,9 +1,7 @@
 #include "FerretApp.h"
 //Moose Includes
+#include "Moose.h"
 #include "MooseInit.h"
-
-// libMesh includes
-#include "perf_log.h"
 
 PerfLog Moose::perf_log("Ferret");
 
