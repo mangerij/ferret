@@ -1,9 +1,7 @@
-# This test stretches a cube vertically. The top and bottom surfaces 
-# are forced to maintain their shape by prescribing zero X and Y displacements,
-# hence, clamped in XY, or laterally.
-[Mesh]#Comment
-  file = brick.e
+[Mesh]
+  file = ../../mesh/sbrick.e
   displacements = 'disp_x disp_y disp_z'
+  uniform_refine = 2
 [] # Mesh
 
 [Variables]
@@ -180,42 +178,42 @@
   active = 'anchor_up_Z anchor_dn_Z anchor_up_X anchor_dn_X anchor_up_Y anchor_dn_Y'
 
   [./anchor_up_X]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_x
     boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Y]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_y
     boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Z]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_z
     boundary = '1'
     value = 2e-6
   [../]
  
   [./anchor_dn_X]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_x
     boundary = '2'
     value = 0.0
   [../]
 
   [./anchor_dn_Y]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_y
     boundary = '2'
     value = 0.0
   [../]
 
   [./anchor_dn_Z]
-    type = PresetBC
+    type = DirichletBC
     variable = disp_z
     boundary = '2'
     value = -2e-6
@@ -259,17 +257,20 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes -ksp_monitor -ksp_view -snes_view -pc_svd_monitor'
-  petsc_options_iname = '-ksp_type -pc_type'
-  petsc_options_value = '    gmres      svd'
+  petsc_options = '-snes_mf  -snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -options_table'
+  petsc_options_iname = '-snes_max_funcs -ksp_type  -pc_type'
+  petsc_options_value = '                     1000000 gmres               none'
 
   nl_abs_tol = 1e-10
-#  l_abs_tol  = 1e-10
-  l_max_its = 30
+  nl_rel_tol = 1e-5
+  nl_max_its = 1000
+  l_abs_tol  = 1e-10
+  l_rel_tol  = 1e-5
+  l_max_its = 100
 [] # Executioner
 
 [Output]
-  file_base = brick_zstretched_xyclamped
+  file_base = brick_mf
   interval = 1
   output_initial = true
   elemental_as_nodal = true

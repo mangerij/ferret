@@ -1,0 +1,9 @@
+#sbrick:
+# This test stretches a cube vertically. The top and bottom surfaces are forced to maintain 
+# their shape by prescribing zero X and Y displacements, hence, it is clamped in XY, or laterally.
+# The mesh here is small, facilitating direct examination of the resulting vectors and matrices.
+# Whenever a matrix is formed, we use -pc_type svd.  For a matrix-free  matrix -pc_type none is used, 
+# where appropriate.
+#brick: 
+#Same as sbrick on the same mesh, except uniformly refined 2 times.
+#This tests whether the findings of sbrick test are mesh-size dependent. 

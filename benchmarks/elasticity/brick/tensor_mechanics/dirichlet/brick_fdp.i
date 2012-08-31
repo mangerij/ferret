@@ -1,8 +1,6 @@
-# This test stretches a cube vertically. The top and bottom surfaces 
-# are forced to maintain their shape by prescribing zero X and Y displacements,
-# hence, clamped in XY, or laterally.
-[Mesh]#Comment
-  file = brick.e
+[Mesh]
+  file = ../../mesh/sbrick.e
+  uniform_refine = 2
   displacements = 'disp_x disp_y disp_z'
 [] # Mesh
 
@@ -252,24 +250,25 @@
 
 [] # Materials
 
-#[Preconditioning]
-#   type = SMP
-#   full = true
-#[]
+[Preconditioning]
+   type = FDP
+[]
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes_fd -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -pc_svd_monitor'
+  petsc_options = '-snes_monitor -snes_view -snes_converged_reason -ksp_monitor -ksp_converged_reason -pc_svd_monitor -options_table'
   petsc_options_iname = '-ksp_type -pc_type'
-  petsc_options_value = '    gmres      svd'
+  petsc_options_value = '         gmres            svd'
 
-  nl_abs_tol = 1e-10
-#  l_abs_tol  = 1e-10
+  nl_abs_tol = 1e-12
+  nl_rel_tol = 1e-8
+  l_abs_tol  = 1e-12
+  l_rel_tol  = 1e-8
   l_max_its = 30
 [] # Executioner
 
 [Output]
-  file_base = brick_zstretched_xyclamped_dirichlet_fd_svd
+  file_base = brick_fdp
   interval = 1
   output_initial = true
   elemental_as_nodal = true
