@@ -1,5 +1,5 @@
 [Mesh]
-  file =  ../../mesh/sbrick.e
+  file =  ../../../mesh/sbrick.e
   displacements = 'disp_x disp_y disp_z'
 [] # Mesh
 
