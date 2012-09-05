@@ -1,5 +1,5 @@
 [Mesh]
-  file = ../../mesh/sbrick.e
+  file = ../../../mesh/sbrick.e
   displacements = 'disp_x disp_y disp_z'
 [] # Mesh
 
@@ -249,26 +249,28 @@
 
 [] # Materials
 
-#[Preconditioning]
-# type = SMP
-#   full   = true
-#[]
+[Preconditioning]
+  [./smp]
+     type = SMP
+     full = true
+  [../]
+[]
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes_fd -snes_monitor -snes_view -snes_converged_reason -ksp_monitor -ksp_converged_reason -pc_svd_monitor -options_table'
+  petsc_options = '-snes_monitor -snes_view -snes_converged_reason -ksp_monitor -ksp_converged_reason -pc_svd_monitor -options_table -options_left'
   petsc_options_iname = '-ksp_type -pc_type'
   petsc_options_value = '         gmres            svd'
 
   nl_abs_tol = 1e-12
   nl_rel_tol = 1e-8
-  l_abs_tol  = 1e-12
-  l_rel_tol  = 1e-8
+ # l_abs_tol  = 1e-12
+  #l_rel_tol  = 1e-8
   l_max_its = 30
 [] # Executioner
 
 [Output]
-  file_base = sbrick_fd
+  file_base = sbrick
   interval = 1
   output_initial = true
   elemental_as_nodal = true

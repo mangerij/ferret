@@ -12,6 +12,7 @@ int main (int argc, char** argv)
 
   MooseInit init (argc, argv);
   FerretApp app(argc, argv);
+  app.setCheckUnusedFlag(true);
   app.run();
 
   Moose::perf_log.pop("main()","Ferret");
