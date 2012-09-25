@@ -22,11 +22,11 @@ protected:
 
   //virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-
 private:
-  const unsigned int _component;
-  const std::string  _parameter;
-  Real _a_x, _a_y, _c;
+  const unsigned int _i;
+  const std::string  _p;
+  Real _a_x, _a_y, _c, _R,_L;
   VariableValue& _P_1, _P_2;
+  bool _debug;
 };
 #endif //POLARIZATIONVORTEX_H

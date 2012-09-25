@@ -1,7 +1,6 @@
 #include "FerretApp.h"
 #include "Ferret.h"
 #include "Moose.h"
-#include "Elk.h"
 
 FerretApp::FerretApp(int argc, char * argv[]) :
     MooseApp(argc, argv)
@@ -10,10 +9,8 @@ FerretApp::FerretApp(int argc, char * argv[]) :
 
   init();
 
-  Elk::registerObjects();
-  Elk::associateSyntax(_syntax);
-
   Ferret::registerObjects();
+  Ferret::associateSyntax(_syntax);
 }
 
 FerretApp::~FerretApp()

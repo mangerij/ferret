@@ -13,8 +13,9 @@ private:
   const NonlinearVariableName _P_x;
   const NonlinearVariableName _P_y;
   const NonlinearVariableName _P_z;
-  std::string _parameter;
-
+  Real _a_x, _a_y, _c, _R, _L;
+  std::string _p;
+  bool _debug;
 };
 
 template<>
