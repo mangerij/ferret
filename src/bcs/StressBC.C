@@ -12,9 +12,9 @@
 /****************************************************************/
 
 
-#include "TractionBC.h" 
+#include "StressBC.h" 
 template<>
-InputParameters validParams<TractionBC>()
+InputParameters validParams<StressBC>()
 {
     InputParameters params = validParams<IntegratedBC>();
   // Here we are adding a parameter that will be extracted from the input file by the Parser
@@ -30,7 +30,7 @@ InputParameters validParams<TractionBC>()
   return params;
 }
 
-TractionBC::TractionBC(const std::string & name, InputParameters parameters) :
+StressBC::StressBC(const std::string & name, InputParameters parameters) :
   IntegratedBC(name, parameters),
   _component(getParam<int>("component")),
   _stress_xx(getParam<Real>("stress_xx")),
@@ -43,7 +43,7 @@ TractionBC::TractionBC(const std::string & name, InputParameters parameters) :
 {}
 
 Real
-TractionBC::computeQpResidual()
+StressBC::computeQpResidual()
 {
   Real _values[3][3];
   Real _traction[3];

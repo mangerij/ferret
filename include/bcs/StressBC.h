@@ -1,5 +1,5 @@
 /****************************************************************/
-/* Traction BC:                                                  */
+/* Stress BC:                                                  */
 /*     This BC is intended only for testing purpose.            */
 /*                                                              */
 /*     Anyway, it reads six values on designated boundary:      */
@@ -11,20 +11,20 @@
 /*                                                              */
 /****************************************************************/
 
-#ifndef TRACTIONBC_H
-#define TRACTIONBC_H
+#ifndef STRESSBC_H
+#define STRESSBC_H
 
 #include "IntegratedBC.h"
 //LibMesh includes
 //#include "vector_value.h"
 
 //Forward Declarations
-class TractionBC;
+class StressBC;
 
 template<>
-InputParameters validParams<TractionBC>();
+InputParameters validParams<StressBC>();
 
-class TractionBC : public IntegratedBC
+class StressBC : public IntegratedBC
 {
 public:
 
@@ -32,7 +32,7 @@ public:
    * Factory constructor, takes parameters so that all derived classes can be built using the same
    * constructor.
    */
-  TractionBC(const std::string & name, InputParameters parameters);
+  StressBC(const std::string & name, InputParameters parameters);
 
 protected:
   virtual Real computeQpResidual();
