@@ -20,7 +20,7 @@
 
 
 [Mesh]#Comment
-  file = sheet_with_hole.e
+  file = sheet_with_hole_thick.e
 #  uniform_refine = 1
   displacements = 'disp_x disp_y disp_z'
 [] # Mesh
@@ -45,8 +45,7 @@
 [] # Variables
 
 [AuxVariables]
-
-  [./stress_xx]
+ [./stress_xx]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -70,9 +69,6 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-
-
-#hacks here
   [./strain_xx]
     order = CONSTANT
     family = MONOMIAL
@@ -109,72 +105,70 @@
 []
 
 [Functions]   
-#  active='f_disp_x f_disp_y f_disp_z f_stress_xx f_stress_yy f_stress_zz f_stress_xy f_stress_yz f_stress_zx'
   [./f_disp_x]      
       type=SolutionFunction       
       file_type=exodusII       
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=disp_x       
-      timestep=1   
+      timestep=2   
   [../]   
   [./f_disp_y]       
       type=SolutionFunction       
       file_type=exodusII        
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=disp_y       
-      timestep=1   
+      timestep=2   
   [../]   
   [./f_disp_z]       
       type=SolutionFunction       
       file_type=exodusII        
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=disp_z       
-      timestep=1   
+      timestep=2   
   [../]   
   [./f_stress_xx]       
       type=SolutionFunction       
       file_type=exodusII       
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=stress_xx       
-      timestep=1   
+      timestep=2   
   [../]   
   [./f_stress_xy]       
       type=SolutionFunction       
       file_type=exodusII       
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=stress_xy       
-      timestep=1   
+      timestep=2   
   [../]  
   [./f_stress_yy]       
       type=SolutionFunction       
       file_type=exodusII       
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=stress_yy       
-      timestep=1   
+      timestep=2   
   [../]   
   [./f_stress_yz]       
       type=SolutionFunction       
       file_type=exodusII       
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=stress_yz       
-      timestep=1   
+      timestep=2   
   [../]   
   [./f_stress_zx]       
       type=SolutionFunction       
       file_type=exodusII       
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=stress_zx       
-      timestep=1   
+      timestep=2   
   [../]   
   [./f_stress_zz]       
       type=SolutionFunction       
       file_type=exodusII       
-      mesh=in_sheet_with_hole_TM.e       
+      mesh=in.e       
       variable=stress_zz       
-      timestep=1   
+      timestep=2   
   [../]
 []
-
 [AuxKernels]
 
   [./stress_xx]
@@ -271,7 +265,7 @@
 [BCs]
 
   [./anchor_up_X_pos]
-    type = StressBC
+    type = StressFunctionBC
     variable = disp_x
     boundary = '2'
     component=0
@@ -284,7 +278,7 @@
   [../]
 
   [./anchor_up_Y_pos]
-    type = StressBC
+    type = StressFunctionBC
     variable = disp_y
     boundary = '2'
     component=1
@@ -297,7 +291,7 @@
   [../]
 
   [./anchor_up_Z_pos]
-    type = StressBC
+    type = StressFunctionBC
     variable = disp_z
     boundary = '2'
     component=2
@@ -312,14 +306,14 @@
   [./anchor_up_X_neg]
     type = DirichletBC
     variable = disp_x
-    boundary = '3'
+    boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Z_neg]
     type = DirichletBC
     variable = disp_z
-    boundary = '3'
+    boundary = '1'
     value = 0.0
   [../]
 
@@ -327,7 +321,7 @@
   [./anchor_up_Y_neg]
     type = DirichletBC
     variable = disp_y
-    boundary = '3'
+    boundary = '1'
     value = 1.e-6
   [../]
 
@@ -369,8 +363,8 @@
 
    type = Steady
 #  petsc_options = '-ksp_monitor'
-#  petsc_options_iname = '-ksp_type -pc_type'
-#  petsc_options_value = 'gmres lu'
+   petsc_options_iname = '-ksp_type -pc_type'
+   petsc_options_value = 'gmres lu'
 #  petsc_options = `snes snes_view -ksp_view -snes_monitor -ksp_monitor -pc_asm_print_subdomains'
 #  petsc_options_iname = `-ksp_type -pc_type -pc_asm_decomposition -pc_asm_sub_pc_sype`
 #  petsc_options_value = `gmres asm block lu'
@@ -379,19 +373,19 @@
 #  petsc_options_iname = '-ksp_type -pc_type '
 #  petsc_options_value = '    gmres      svd'
 #  petsc_options = '-ksp_monitor -ksp_view -snes_view'
-#  petsc_options_iname = '-ksp_type -pc_type -sub_pc_type -pc_hypre_type'
-#  petsc_options_value = 'gmres hypre hypre boomeramg'
+#  petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type'
+#  petsc_options_value = 'gmres asm 10 lu'
 #  petsc_options_iname = 'ksp_type -pc_type'
 #  petsc_options_value = 'gmres asm'
 #  petsc_options_value = 'gmres ilu'
-  petsc_options_iname = '-ksp_type -pc_type'
-  petsc_options_value = 'gmres lu'
+#  petsc_options_iname = '-ksp_type -pc_type'
+#  petsc_options_value = 'gmres lu'
 
   nl_abs_tol = 1e-10
 #  l_rel_tol = 1e-8
 #  l_abs_tol  = 1e-10
 
-  l_max_its = 70
+  l_max_its = 50
 
 #  start_time = 0.0
 #  dt = 1.0
@@ -400,11 +394,11 @@
 [] # Executioner
 
 [Output]
-  file_base = out_sheet_with_hole_traction_lu
+  file_base = out2
   interval = 1
   output_initial = true
   elemental_as_nodal = true
-#  exodus = true
-  tecplot = true
+  exodus = true
+  #tecplot = true
   perf_log = true
 [] # Output
