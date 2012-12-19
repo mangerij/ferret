@@ -9,6 +9,7 @@
 #include "PolarizationVortexAction.h"
 #include "StressBC.h"
 #include "StressFunctionBC.h"
+#include "HydrostaticDirichletBC.h"
 //#include "VortexSurfaceEnergy.h"
 
 namespace Ferret
@@ -18,6 +19,7 @@ namespace Ferret
     Elk::registerObjects();
     registerBoundaryCondition(StressBC);
     registerBoundaryCondition(StressFunctionBC);
+    registerBoundaryCondition(HydrostaticDirichletBC);
     registerKernel(PolarizationVortex);
     //registerPostprocessor(VortexSurfaceEnergy);
   }

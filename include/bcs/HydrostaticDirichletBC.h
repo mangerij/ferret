@@ -31,11 +31,11 @@ protected:
   virtual Real computeQpResidual();
 
   //private:
-  const int  _component;
-  const Real _displacement; 
   const Real _center_x;
   const Real _center_y;
   const Real _center_z;
+  const Real _displacement;
+  const int  _component; 
 };
 
 #endif
