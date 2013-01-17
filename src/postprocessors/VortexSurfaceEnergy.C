@@ -3,14 +3,14 @@
 template<>
 InputParameters validParams<VortexSurfaceEnergy>()
 {
-  InputParameters params = validParams<SideIntegral>();
+  InputParameters params = validParams<SideIntegralVariablePostprocessor>();
   params.addParam<Real>("a", 1.0, "The location of the vortex along the x-axis.");
   params.addParam<Real>("verticality", 1e-8, "'Verticality' tolerance: if the z-component of the normal is > than verticality, it is not horizontal.");
   return params;
 }
 
 VortexSurfaceEnergy::VortexSurfaceEnergy(const std::string & name, InputParameters parameters) :
-    SideIntegral(name, parameters),
+    SideIntegralVariablePostprocessor(name, parameters),
     _a(parameters.get<Real>("a")),
     _verticality(parameters.get<Real>("verticality"))
 {}

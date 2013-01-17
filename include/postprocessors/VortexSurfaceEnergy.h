@@ -1,7 +1,7 @@
 #ifndef VORTEX_SURFACE_ENERGY_H
 #define VORTEX_SURFACE_ENERGY_H
 
-#include "SideIntegral.h"
+#include "SideIntegralVariablePostprocessor.h"
 
 //Forward Declarations
 class VortexSurfaceEnergy;
@@ -13,7 +13,7 @@ InputParameters validParams<VortexSurfaceEnergy>();
  * This postprocessor computes a surface integral of the product of the potential against 
  * a vortex charge.
  */
-class VortexSurfaceEnergy : public SideIntegral
+class VortexSurfaceEnergy : public SideIntegralVariablePostprocessor
 {
 public:
   VortexSurfaceEnergy(const std::string & name, InputParameters parameters);
