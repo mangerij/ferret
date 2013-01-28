@@ -1,0 +1,27 @@
+These are test cases for the stretched brick problem (sbrick).
+sbrick0.2|4.asm|gamg[0].left|right
+
+We apply only Z-displacements at the top and the bottom, resulting
+in a singular problem with a three-dimensional nullspace: Z-rotation
+as well as X- and Y-displacements. The '0' in 'sbrick0' significes
+the presence of this nullspace.
+
+The initial mesh is refined uniformly 2 or 4 times, hence
+the choice 2|4 in the file name.
+
+We use ASM (with overlap 1 and lu on the blocks) or the GAMG preconditioner.
+Hence, the choice asm|gamg.  We can remove or not the nullspace.  The 
+runs with the nullspace (i.e., without removal) are designated as asm0 or gamg0.
+(Note that in order to remove the nullspace we declare it in the input file,
+so the files WITH the nullspace declaration (not to be confused with GAMG's NEARnullspace)
+are actually the runs WITHOUT the nullspace in the problem (as it is removed)).
+
+We use either left or right preconditioning, as the convergence behavior can change 
+substantially.  Hence the choice left|right in the file name.
+Switching from left to right preconditioning is done in 
+petsc options: -ksp_pc_side left or -ksp_pc_side right.
+Right preconditioning generally results in identical
+linear and nonlinear residuals, while for left preconditioning
+they can vary substantially.
+
+
