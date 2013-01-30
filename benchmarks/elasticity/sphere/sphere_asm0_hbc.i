@@ -13,6 +13,23 @@
   displacements = 'disp_x disp_y disp_z'
 [] # Mesh
 
+[Problem]
+  dimNullSpace     = 6
+[]
+
+[UserObjects]
+  [./RigidModes3DNullSpace]
+     type=RigidBodyModes3D
+     variable = disp_x
+     subspace_name = NullSpace
+     subspace_indices = '0 1 2 3 4 5 '
+     modes = 'trans_x trans_y trans_z rot_x rot_y rot_z'
+     disp_x = disp_x
+     disp_y = disp_y
+     disp_z = disp_z
+  [../]
+[]
+
 [Variables]
 
   [./disp_x]
@@ -515,8 +532,8 @@
 #  petsc_options_value = `gmres asm block lu'
 #  type = Transient
   petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_view -ksp_converged_reason'
-  petsc_options_iname = '-ksp_type -pc_type -snes_linesearch_type'
-  petsc_options_value = ' gmres      lu     basic'
+  petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -ksp_max_it -snes_max_it'
+  petsc_options_value = '    gmres     asm  16              1000        3'
 #  petsc_options = '-ksp_monitor -ksp_view -snes_view'
 #  petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type'
 #  petsc_options_value = 'gmres asm 16 lu'
@@ -538,8 +555,18 @@
 #  end_time = 2.0
 [] # Executioner
 
+[Postprocessors]
+  [./volume]
+    type = VolumePostprocessor
+  [../]
+  [./displaced_volume]
+    type=VolumePostprocessor
+    use_displaced_mesh=true
+  [../]
+[]
+
 [Output]
-  file_base = out_sphere
+  #file_base = out_sphere
   interval = 1
   output_initial = true
   elemental_as_nodal = true

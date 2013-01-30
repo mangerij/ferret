@@ -8,9 +8,15 @@
 #
 
 [Mesh]#Comment
-  file = sphere_2.e
-#  uniform_refine = 1
-  displacements = 'disp_x disp_y disp_z'
+ type = GeneratedMesh
+ dim = 3
+ nx = 10
+ ny = 10
+ nz = 10
+ xmax = 1
+ ymax = 1
+ zmax = 1
+ elem_type = TET4
 [] # Mesh
 
 [Variables]
@@ -246,7 +252,7 @@
 
   [./Goo1]
     type = LinearElasticMaterial
-    block = '1'
+    block = '0'
     disp_x = disp_x
     disp_y = disp_y
     disp_z = disp_z

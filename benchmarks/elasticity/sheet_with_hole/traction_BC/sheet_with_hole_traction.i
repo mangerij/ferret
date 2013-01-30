@@ -7,8 +7,20 @@
 
 #
 
+# With Young's modulus at 1e6 and Poisson's ratio at 0, the shear
+#  modulus is 5e5 (G=E/2/(1+nu)).  Therefore,
+#
+#  stress xx = 1e6 * 1e-6 = 1
+#  stress yy = 1e6 * 2e-6 = 2
+#  stress zz = 1e6 * 3e-6 = 3
+#  stress xy = 2 * 5e5 * 1e-6 / 2 = 0.5
+#             (2 * G   * gamma_xy / 2 = 2 * G * epsilon_xy)
+#  stress yz = 2 * 5e5 * 2e-6 / 2 = 1
+#  stress zx = 2 * 5e5 * 3e-6 / 2 = 1.5
+
+
 [Mesh]#Comment
-  file = sphere_2.e
+  file = sheet_with_hole_thick.e
 #  uniform_refine = 1
   displacements = 'disp_x disp_y disp_z'
 [] # Mesh
@@ -33,8 +45,7 @@
 [] # Variables
 
 [AuxVariables]
-
-  [./stress_xx]
+ [./stress_xx]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -58,13 +69,6 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./elastic_energy]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-
-#hacks here
   [./strain_xx]
     order = CONSTANT
     family = MONOMIAL
@@ -100,6 +104,71 @@
   [../]
 []
 
+[Functions]   
+  [./f_disp_x]      
+      type=SolutionFunction       
+      file_type=exodusII       
+      mesh=in.e       
+      variable=disp_x       
+      timestep=2   
+  [../]   
+  [./f_disp_y]       
+      type=SolutionFunction       
+      file_type=exodusII        
+      mesh=in.e       
+      variable=disp_y       
+      timestep=2   
+  [../]   
+  [./f_disp_z]       
+      type=SolutionFunction       
+      file_type=exodusII        
+      mesh=in.e       
+      variable=disp_z       
+      timestep=2   
+  [../]   
+  [./f_stress_xx]       
+      type=SolutionFunction       
+      file_type=exodusII       
+      mesh=in.e       
+      variable=stress_xx       
+      timestep=2   
+  [../]   
+  [./f_stress_xy]       
+      type=SolutionFunction       
+      file_type=exodusII       
+      mesh=in.e       
+      variable=stress_xy       
+      timestep=2   
+  [../]  
+  [./f_stress_yy]       
+      type=SolutionFunction       
+      file_type=exodusII       
+      mesh=in.e       
+      variable=stress_yy       
+      timestep=2   
+  [../]   
+  [./f_stress_yz]       
+      type=SolutionFunction       
+      file_type=exodusII       
+      mesh=in.e       
+      variable=stress_yz       
+      timestep=2   
+  [../]   
+  [./f_stress_zx]       
+      type=SolutionFunction       
+      file_type=exodusII       
+      mesh=in.e       
+      variable=stress_zx       
+      timestep=2   
+  [../]   
+  [./f_stress_zz]       
+      type=SolutionFunction       
+      file_type=exodusII       
+      mesh=in.e       
+      variable=stress_zz       
+      timestep=2   
+  [../]
+[]
 [AuxKernels]
 
   [./stress_xx]
@@ -125,7 +194,7 @@
   [../]
   [./stress_xy]
     type = RankTwoAux
-    rank_two_tensor = stress
+   rank_two_tensor = stress
     variable = stress_xy
     index_i = 1
     index_j = 2
@@ -145,6 +214,7 @@
     index_j = 1
   [../]
 
+#hacks
   [./strain_xx]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
@@ -187,56 +257,72 @@
     index_i = 3
     index_j = 1
   [../]
-  [./elastic_energy]
-    type=TensorElasticEnergyAux
-    variable = elastic_energy
-  [../]
+# End hack
+
 
 [] # AuxKernels
 
 [BCs]
 
-  [./anchor_up_Y_pos]
-    type = DirichletBC
-    variable = disp_y
-    boundary = '1'
-    value = 0.0
+  [./anchor_up_X_pos]
+    type = StressFunctionBC
+    variable = disp_x
+    boundary = '2'
+    component=0
+    stress_xx=f_stress_xx    
+    stress_xy=f_stress_xy    
+    stress_yy=f_stress_yy    
+    stress_yz=f_stress_yz    
+    stress_zx=f_stress_zx    
+    stress_zz=f_stress_zz
   [../]
 
-  [./anchor_up_X_pos]
-    type = DirichletBC
-    variable = disp_x
-    boundary = '1'
-    value = 0.0
+  [./anchor_up_Y_pos]
+    type = StressFunctionBC
+    variable = disp_y
+    boundary = '2'
+    component=1
+    stress_xx=f_stress_xx    
+    stress_xy=f_stress_xy    
+    stress_yy=f_stress_yy    
+    stress_yz=f_stress_yz    
+    stress_zx=f_stress_zx    
+    stress_zz=f_stress_zz
   [../]
 
   [./anchor_up_Z_pos]
-    type = DirichletBC
+    type = StressFunctionBC
     variable = disp_z
-    boundary = '1'
-    value = 5.e-06
+    boundary = '2'
+    component=2
+    stress_xx=f_stress_xx    
+    stress_xy=f_stress_xy    
+    stress_yy=f_stress_yy    
+    stress_yz=f_stress_yz    
+    stress_zx=f_stress_zx    
+    stress_zz=f_stress_zz
   [../]
 
   [./anchor_up_X_neg]
     type = DirichletBC
     variable = disp_x
-    boundary = '2'
+    boundary = '1'
     value = 0.0
   [../]
 
   [./anchor_up_Z_neg]
     type = DirichletBC
     variable = disp_z
-    boundary = '2'
-    value = -5.e-06
+    boundary = '1'
+    value = 0.0
   [../]
 
 
   [./anchor_up_Y_neg]
     type = DirichletBC
     variable = disp_y
-    boundary = '2'
-    value = 0.0
+    boundary = '1'
+    value = 1.e-6
   [../]
 
   
@@ -265,18 +351,6 @@
 
 [] # Materials
 
-[Postprocessors]
-  [./integrated_elastic_energy]
-    type = ElementIntegral
-    variable = elastic_energy
-  [../]
-  [./volume]
-    type = VolumePostprocessor
-    variable = disp_x
-  [../]
-[]
-
-
 [Preconditioning]
   active = 'smp'
   [./smp]
@@ -289,8 +363,8 @@
 
    type = Steady
 #  petsc_options = '-ksp_monitor'
-#  petsc_options_iname = '-ksp_type -pc_type'
-#  petsc_options_value = 'gmres lu'
+   petsc_options_iname = '-ksp_type -pc_type'
+   petsc_options_value = 'gmres lu'
 #  petsc_options = `snes snes_view -ksp_view -snes_monitor -ksp_monitor -pc_asm_print_subdomains'
 #  petsc_options_iname = `-ksp_type -pc_type -pc_asm_decomposition -pc_asm_sub_pc_sype`
 #  petsc_options_value = `gmres asm block lu'
@@ -299,8 +373,8 @@
 #  petsc_options_iname = '-ksp_type -pc_type '
 #  petsc_options_value = '    gmres      svd'
 #  petsc_options = '-ksp_monitor -ksp_view -snes_view'
-  petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type'
-  petsc_options_value = 'gmres asm 16 lu'
+#  petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type'
+#  petsc_options_value = 'gmres asm 10 lu'
 #  petsc_options_iname = 'ksp_type -pc_type'
 #  petsc_options_value = 'gmres asm'
 #  petsc_options_value = 'gmres ilu'
@@ -320,11 +394,11 @@
 [] # Executioner
 
 [Output]
-  file_base = out_sphere_2
+  file_base = out2
   interval = 1
   output_initial = true
   elemental_as_nodal = true
   exodus = true
-#  tecplot = true
+  #tecplot = true
   perf_log = true
 [] # Output
