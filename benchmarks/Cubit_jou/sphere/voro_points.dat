@@ -1,0 +1,15 @@
+ID=6, pos=(-0.0959711,-0.652908,-4.95626), vertices=6, edges=10, faces=6
+ID=14, pos=(0.620136,2.57319,-4.24195), vertices=5, edges=8, faces=5
+ID=7, pos=(0.375194,-3.81095,-3.21494), vertices=10, edges=16, faces=8
+ID=5, pos=(3.26009,-2.55263,-2.80284), vertices=6, edges=10, faces=6
+ID=2, pos=(3.94585,0.817142,-2.96016), vertices=8, edges=14, faces=8
+ID=3, pos=(-2.89246,1.78993,-3.66467), vertices=10, edges=17, faces=9
+ID=8, pos=(1.18423,3.60026,-3.26124), vertices=5, edges=8, faces=5
+ID=11, pos=(1.69071,3.99857,-2.48051), vertices=6, edges=10, faces=6
+ID=1, pos=(-3.88443,0.167123,3.14376), vertices=11, edges=18, faces=9
+ID=10, pos=(2.85512,1.89103,3.64312), vertices=6, edges=10, faces=6
+ID=9, pos=(-1.95951,3.55152,2.92353), vertices=6, edges=10, faces=6
+ID=4, pos=(0.410508,-2.95729,4.01072), vertices=8, edges=13, faces=7
+ID=13, pos=(0.531648,-2.33084,4.39142), vertices=5, edges=8, faces=5
+ID=12, pos=(1.7734,-0.590922,4.63744), vertices=6, edges=10, faces=6
+ID=0, pos=(2.41122,-0.441349,4.35789), vertices=7, edges=12, faces=7

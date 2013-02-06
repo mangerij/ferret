@@ -1,0 +1,227 @@
+#!python
+#!/usr/bin/env python2.5
+
+import os, sys, math
+# MAC Path
+sys.path.append('/Applications/Cubit-12.2/Cubit.app/Contents/MacOS')
+if os.environ.has_key('CUBIT_HOME'):
+  cubit_home = os.environ['CUBIT_HOME']
+  sys.path.append(cubit_home + '/bin')
+import cubit
+
+ 
+
+os.chdir('/Users/nakhmanson/Work/Projects/Current/Models/Mesoscale/Calculations/Sphere')
+
+def stringlist(start, end, skip_list=[]):
+  #Generates a list including the end item!
+  return ' '.join([str(i) for i in xrange(start, end+1) if i not in skip_list])
+
+cubit.cmd('reset')
+
+number_of_cell = 16
+inner_radius = 3.5
+outer_radius = 6.5
+
+f3 = open('voro_edge_number_of_face.dat', 'r')
+f7 = open('voro_coordinate_of_vertex_in_each_cell.dat', 'r')
+f6 = open('voro_number_of_vertex_in_each_cell.dat', 'r')
+f5 = open('voro_number_of_faces.dat','r')
+f4 = open('voro_vertex_id_of_face.dat','r')
+
+f = open('./spherical_shell_grainy.out', 'w')
+
+Dataxyzline = []
+Data = []
+for line in f7:
+    Dataxyzline = line.split(' ')
+    for i in range(0,len(Dataxyzline)):
+        Dataxyzline[i] = eval(Dataxyzline[i])
+    Data.append(Dataxyzline)
+        
+number_of_vertex = []        
+for line in f6:
+    Dataxyzline = line
+    Dataxyzline = eval(Dataxyzline)
+    number_of_vertex.append(Dataxyzline)
+
+number_of_edges_on_face = []
+for line in f3:
+    Dataxyzline = line.split(' ')
+    for i in range(0,len(Dataxyzline)):
+        Dataxyzline[i] = eval(Dataxyzline[i])
+    number_of_edges_on_face.append(Dataxyzline)
+        
+        
+number_of_faces = []        
+for line in f5:
+    Dataxyzline = line
+    Dataxyzline = eval(Dataxyzline)
+    number_of_faces.append(Dataxyzline)
+
+
+vertex_id_on_face = []
+for line in f4:
+    Dataxyzline = line.split(' ')
+    for i in range(0,len(Dataxyzline)):
+        Dataxyzline[i] = eval(Dataxyzline[i])
+    vertex_id_on_face.append(Dataxyzline)
+
+
+curve_id = 0
+curve_id_start = 0
+
+surface_id = 0
+surface_id_start = 0
+
+volume_id = 0
+
+
+for cell in range(0,number_of_cell):
+    surface_id_start = surface_id + 1
+    for face in range(0,number_of_faces[cell]):
+        curve_id_start = curve_id + 1
+        for vertex in range(0, len(vertex_id_on_face[cell][face])):
+            if vertex < len(vertex_id_on_face[cell][face])-1:
+                id1 = vertex_id_on_face[cell][face][vertex]
+                id2 = vertex_id_on_face[cell][face][vertex+1]
+                cubit.cmd( 'create curve location  ' + str(Data[cell][id1][0]) + '  ' + str(Data[cell][id1][1]) + '  ' + str(Data[cell][id1][2]) + ' location ' + str(Data[cell][id2][0]) + '  ' + str(Data[cell][id2][1]) + '  ' + str(Data[cell][id2][2]) )
+                curve_id = curve_id + 1
+            else:
+                id1 = vertex_id_on_face[cell][face][vertex]
+                id2 = vertex_id_on_face[cell][face][0]
+                cubit.cmd( 'create curve location ' + str(Data[cell][id1][0]) + '  ' + str(Data[cell][id1][1]) + '  ' + str(Data[cell][id1][2]) + ' location ' + str(Data[cell][id2][0]) + '  ' + str(Data[cell][id2][1]) + '  ' + str(Data[cell][id2][2]) )
+                curve_id = curve_id + 1              
+        curve_id_end = curve_id
+        cubit.cmd( 'create surface curve ' + stringlist(curve_id_start, curve_id_end) )
+        surface_id = surface_id + 1
+    surface_id_end = surface_id
+    cubit.cmd( 'create volume surface ' + stringlist(surface_id_start, surface_id_end) )
+    volume_id = volume_id + 1 
+
+cubit.cmd( 'merge vertex all with vertex all')
+cubit.cmd( 'merge curve all with curve all')
+cubit.cmd( 'merge surface all with surface all')
+cubit.cmd( 'compress all')
+
+
+volume_id_list = cubit.get_entities( "volume" )
+cubit.cmd('create sphere radius ' + str(inner_radius))
+cubit.cmd('subtract volume ' + str(volume_id  + 1) + ' from volume 1 to ' + str(volume_id) )
+cubit.cmd('create sphere radius ' + str(outer_radius))
+cubit.cmd('intersect volume ' + str(volume_id  + 2) + ' with volume 1 to ' + str(volume_id) )
+
+cubit.cmd( 'merge vertex all with vertex all')
+cubit.cmd( 'merge curve all with curve all')
+cubit.cmd( 'merge surface all with surface all')
+cubit.cmd( 'compress all')
+
+cubit.cmd('volume all size 0.5')
+#cubit.cmd('volume all scheme Tetmesh')
+cubit.cmd('mesh volume all')
+
+
+# Number of surfaces that need BC setup (could be active or inactive in MOOSE input)
+
+surface_id_list = cubit.get_entities( "surface" )
+internal_surf_list = []
+surf_list_out = []
+surf_list_in = []
+
+count = 0
+for id in surface_id_list:
+    count = count + 1
+    cubit.cmd('Sideset ' + str(count) + '  surface  ' + str(id))
+
+for id in surface_id_list:
+    surf_cent = cubit.get_surface_centroid(id)
+    r = sqrt(surf_cent[0]*surf_cent[0] + surf_cent[1]*surf_cent[1] + surf_cent[2]*surf_cent[2])
+    v = cubit.get_relatives("surface", id, "volume")
+    s = 'Surface ' + str(id) +  ': Centroid - ' + str(surf_cent) + ' R = ' + str(r) + ' Owner volume(s): ' + str(v) + '\n'
+    f.write(s)
+    if len(v) > 1:
+        internal_surf_list.append(id)
+        f.write('Surface ' + str(id) + ' seems to be internal. Skipping.\n')
+        continue
+    else:
+        f.write('Processing external surface ' + str(id) + ' ... ')
+        if math.fabs(r - inner_radius) < 0.001:
+            surf_list_in.append(id)
+            f.write('Adding to the list of inner surfaces.\n')
+        elif math.fabs(r - outer_radius) < 0.001:
+            surf_list_out.append(id)
+            f.write('Adding to the list of outer surfaces.\n')
+
+for id in range(0,len(surf_list_norm)):
+    s = ''
+    count = count + 1
+    s1 = 'Surfaces with ' + str(norm_direct_list[id]) + ' normal: '
+    for i in range(0,len(surf_list_norm[id])):
+        s = s + str(surf_list_norm[id][i]) + '  '
+    s1 = s1 + s + '\n'
+    f.write(s1)
+    s1 = 'Sideset ' + str(count) + ' surface  ' + s
+    skin = skin + s
+    cubit.cmd(s1)
+
+count = count + 1
+f.write('Skin of the box: ' + skin + '\n')
+s7 = 'Sideset ' + str(count) + ' surface  ' + skin
+cubit.cmd(s7)
+
+s = ''
+s8 = 'Internal surfaces: '
+for i in range(0,len(internal_surf_list)):
+    s = s + str(internal_surf_list[i]) + '  '
+s8 = s8 + s + '\n'
+f.write(s8)
+
+
+
+volume_id_list = cubit.get_entities( "volume" )
+
+count = 0
+for id in volume_id_list:
+    count = count + 1
+    cubit.cmd('block ' + str(count) + '  volume  ' + str(id))
+
+
+#cubit.cmd('block all element type tetra4')
+
+
+f.close()
+
+
+#cubit.cmd('set large exodus file off')
+#cubit.cmd('export Genesis  "./spherical_shell_grainy_exodus.e" dimension 3 block all overwrite')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

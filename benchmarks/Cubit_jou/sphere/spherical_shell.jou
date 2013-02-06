@@ -1,0 +1,89 @@
+#!python
+#!/usr/bin/env python2.5
+
+import os, sys, math
+# MAC Path
+sys.path.append('/Applications/Cubit-12.2/Cubit.app/Contents/MacOS')
+if os.environ.has_key('CUBIT_HOME'):
+  cubit_home = os.environ['CUBIT_HOME']
+  sys.path.append(cubit_home + '/bin')
+import cubit
+
+ 
+
+os.chdir('/Users/nakhmanson/Work/Projects/Current/Models/Mesoscale/Calculations/Sphere')
+
+cubit.cmd('reset')
+
+f = open('./spherical_shell.out', 'w')
+
+cubit.cmd('create sphere radius 6.5')
+cubit.cmd('create sphere radius 3.5')
+cubit.cmd('subtract volume 2 from volume 1')
+
+cubit.cmd( 'merge surface all with surface all')
+cubit.cmd( 'compress all')
+
+cubit.cmd('volume 1 size 1')
+cubit.cmd('volume 1 scheme Tetmesh')
+cubit.cmd('mesh volume 1')
+
+
+# Number of surfaces that need BC setup (could be active or inactive in MOOSE input)
+
+surface_id_list = cubit.get_entities( "surface" )
+
+count = 0
+for id in surface_id_list:
+    count = count + 1
+    cubit.cmd('Sideset ' + str(count) + '  surface  ' + str(id))
+
+
+for id in surface_id_list:
+    norm = cubit.get_surface_normal(id)
+    v = cubit.get_relatives("surface", id, "volume")
+    s = 'Surface ' + str(id) + ': Normal - ' + str(norm) + ' Owner volume(s): ' + str(v) + '\n'
+    f.write(s)
+
+volume_id_list = cubit.get_entities( "volume" )
+
+count = 0
+for id in volume_id_list:
+    count = count + 1
+    cubit.cmd('block ' + str(count) + '  volume  ' + str(id))
+
+
+cubit.cmd('block all element type tetra4')
+
+
+
+f.close()
+
+
+cubit.cmd('set large exodus file off')
+cubit.cmd('export Genesis  "./spherical_shell_exodus.e" dimension 3 block all overwrite')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
