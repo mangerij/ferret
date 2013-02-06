@@ -95,7 +95,7 @@ PolarizationVortexAction::act()
     subdomainnames.push_back(sname);
   }
 
-  InputParameters polarization_vortex_params = Factory::instance()->getValidParams("PolarizationVortex");
+  InputParameters polarization_vortex_params = _factory.getValidParams("PolarizationVortex");
   polarization_vortex_params.set<Real>("a_x") = _a_x;
   polarization_vortex_params.set<Real>("a_y") = _a_y;
   polarization_vortex_params.set<Real>("c") = _c;

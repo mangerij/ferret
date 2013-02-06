@@ -15,9 +15,8 @@
 
 namespace Ferret
 {
-  void registerObjects()
+  void registerObjects(Factory & factory)
   {
-    Elk::registerObjects();
     registerBoundaryCondition(StressBC);
     registerBoundaryCondition(StressFunctionBC);
     registerBoundaryCondition(HydrostaticBC);
@@ -26,9 +25,8 @@ namespace Ferret
     //registerPostprocessor(VortexSurfaceEnergy);
   }
   
-  void associateSyntax(Syntax& syntax)
+  void associateSyntax(Syntax& syntax, ActionFactory & action_factory)
   {
-    Elk::associateSyntax(syntax);
     syntax.registerActionSyntax("PolarizationVortexAction","PolarizationVortex");
     registerAction(PolarizationVortexAction, "add_kernel");
   }

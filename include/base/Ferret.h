@@ -6,12 +6,12 @@ namespace Ferret
   /**
    * Registers all Kernels and BCs
    */
-  void registerObjects();
+  void registerObjects(Factory & factory);
 
   /**
    * Associate actions to sections of input file.
    */
-  void associateSyntax(Syntax&);
+  void associateSyntax(Syntax&, ActionFactory & action_factory);
 }
 
 #endif //FERRET_H
