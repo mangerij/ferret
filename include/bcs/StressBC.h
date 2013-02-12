@@ -16,7 +16,7 @@
 
 #include "IntegratedBC.h"
 //LibMesh includes
-//#include "vector_value.h"
+//#include "libmesh/vector_value.h"
 
 //Forward Declarations
 class StressBC;
