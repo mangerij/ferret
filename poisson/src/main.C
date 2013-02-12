@@ -27,8 +27,6 @@
 #include "Magnetizing.h"
 #include "PolarMaterial.h"
 #include "ExampleMaterial.h"
-// libMesh includes
-#include "perf_log.h"
 
 // Create a performance log
 PerfLog Moose::perf_log("Poisson with DirichletBC and PeriodicBC");
