@@ -1,21 +1,30 @@
-#include "FerretApp.h"
+#include "Ferret.h"
 //Moose Includes
-#include "Moose.h"
 #include "MooseInit.h"
+#include "Moose.h"
+#include "MooseApp.h"
+#include "AppFactory.h"
 
+// Create a performance log
 PerfLog Moose::perf_log("Ferret");
 
  // Begin the main program.
-int main (int argc, char** argv)
+int main(int argc, char *argv[])
 {
-  Moose::perf_log.push("main()","Ferret");
+  // Initialize MPI, solvers and MOOSE
+  MooseInit init(argc, argv);
 
-  MooseInit init (argc, argv);
-  FerretApp app(argc, argv);
-  app.setCheckUnusedFlag(true);
-  app.run();
+  // Register this application's MooseApp and any it depends on
+  Ferret::registerApps();
 
-  Moose::perf_log.pop("main()","Ferret");
+  // This creates dynamic memory that we're responsible for deleting
+  MooseApp * app = AppFactory::createApp("FerretApp", argc, argv);
+
+  // Execute the application
+  app->run();
+
+  // Free up the memory we created earlier
+  delete app;
 
   return 0;
 }

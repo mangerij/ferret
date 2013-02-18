@@ -1,5 +1,9 @@
+#include "Ferret.h"
+#include "FerretApp.h"
+
 #include "Moose.h"
 #include "Factory.h"
+#include "AppFactory.h"
 #include "ActionFactory.h"
 #include "Parser.h"
 
@@ -15,6 +19,11 @@
 
 namespace Ferret
 {
+  void registerApps()
+  {
+    registerApp(FerretApp);
+  }
+
   void registerObjects(Factory & factory)
   {
     registerBoundaryCondition(StressBC);

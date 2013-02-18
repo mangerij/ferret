@@ -1,8 +1,17 @@
 #ifndef FERRET_H
 #define FERRET_H
-#include "Parser.h"
+
+class Factory;
+class ActionFactory;
+class Syntax;
+
 namespace Ferret
 {
+  /**
+   * Register this application and any it depends on.
+   */
+  void registerApps();
+
   /**
    * Registers all Kernels and BCs
    */

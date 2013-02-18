@@ -3,8 +3,15 @@
 #include "Moose.h"
 #include "Elk.h"
 
-FerretApp::FerretApp(int argc, char * argv[]) :
-    MooseApp(argc, argv)
+template<>
+InputParameters validParams<FerretApp>()
+{
+  InputParameters params = validParams<MooseApp>();
+  return params;
+}
+
+FerretApp::FerretApp(const std::string & name, InputParameters parameters) :
+    MooseApp(name, parameters)
 {
   srand(libMesh::processor_id());
   

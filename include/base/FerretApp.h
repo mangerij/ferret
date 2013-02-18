@@ -3,10 +3,15 @@
 
 #include "MooseApp.h"
 
+class FerretApp;
+
+template<>
+InputParameters validParams<FerretApp>();
+
 class FerretApp : public MooseApp
 {
 public:
-  FerretApp(int argc, char * argv[]);
+  FerretApp(const std::string & name, InputParameters parameters);
   virtual ~FerretApp();
 };
 
