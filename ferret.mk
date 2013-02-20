@@ -10,10 +10,10 @@ ferret_LIB := $(FERRET_DIR)/libferret-$(METHOD).la
 ferret_APP := $(FERRET_DIR)/ferret-$(METHOD)
 
 # source files
-ferret_srcfiles    := $(shell find $(ferret_SRC_DIRS) -name *.C)
-ferret_csrcfiles   := $(shell find $(ferret_SRC_DIRS) -name *.c)
-ferret_fsrcfiles   := $(shell find $(ferret_SRC_DIRS) -name *.f)
-ferret_f90srcfiles := $(shell find $(ferret_SRC_DIRS) -name *.f90)
+ferret_srcfiles    := $(shell find $(ferret_SRC_DIRS) -name "*.C")
+ferret_csrcfiles   := $(shell find $(ferret_SRC_DIRS) -name "*.c")
+ferret_fsrcfiles   := $(shell find $(ferret_SRC_DIRS) -name "*.f")
+ferret_f90srcfiles := $(shell find $(ferret_SRC_DIRS) -name "*.f90")
 # object files
 ferret_objects := $(patsubst %.C, %.$(obj-suffix), $(ferret_srcfiles))
 ferret_objects += $(patsubst %.c, %.$(obj-suffix), $(ferret_csrcfiles))
@@ -21,10 +21,10 @@ ferret_objects += $(patsubst %.f, %.$(obj-suffix), $(ferret_fsrcfiles))
 ferret_objects += $(patsubst %.f90, %.$(obj-suffix), $(ferret_f90srcfiles))
 
 # plugin files
-ferret_plugfiles   := $(shell find $(FERRET_DIR)/plugins/ -name *.C 2>/dev/null)
-ferret_cplugfiles  := $(shell find $(FERRET_DIR)/plugins/ -name *.c 2>/dev/null)
-ferret_fplugfiles  := $(shell find $(FERRET_DIR)/plugins/ -name *.f 2>/dev/null)
-ferret_f90plugfiles:= $(shell find $(FERRET_DIR)/plugins/ -name *.f90 2>/dev/null)
+ferret_plugfiles   := $(shell find $(FERRET_DIR)/plugins/ -name "*.C" 2>/dev/null)
+ferret_cplugfiles  := $(shell find $(FERRET_DIR)/plugins/ -name "*.c" 2>/dev/null)
+ferret_fplugfiles  := $(shell find $(FERRET_DIR)/plugins/ -name "*.f" 2>/dev/null)
+ferret_f90plugfiles:= $(shell find $(FERRET_DIR)/plugins/ -name "*.f90" 2>/dev/null)
 
 # plugins
 ferret_plugins     := $(patsubst %.C, %-$(METHOD).plugin, $(ferret_plugfiles))
