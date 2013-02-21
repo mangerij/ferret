@@ -1,3 +1,5 @@
+ferret_SRC_DIRS := $(FERRET_DIR)/src/*/*
+
 ferret_INC_DIRS := $(shell find $(FERRET_DIR)/include -type d -not -path "*/.svn*")
 ferret_INCLUDE  := $(foreach i, $(ferret_INC_DIRS), -I$(i))
 
@@ -8,10 +10,10 @@ ferret_LIB := $(FERRET_DIR)/libferret-$(METHOD).la
 ferret_APP := $(FERRET_DIR)/ferret-$(METHOD)
 
 # source files
-ferret_srcfiles    := $(shell find $(FERRET_DIR)/src -name "*.C")
-ferret_csrcfiles   := $(shell find $(FERRET_DIR)/src -name "*.c")
-ferret_fsrcfiles   := $(shell find $(FERRET_DIR)/src -name "*.f")
-ferret_f90srcfiles := $(shell find $(FERRET_DIR)/src -name "*.f90")
+ferret_srcfiles    := $(shell find $(ferret_SRC_DIRS) -name "*.C")
+ferret_csrcfiles   := $(shell find $(ferret_SRC_DIRS) -name "*.c")
+ferret_fsrcfiles   := $(shell find $(ferret_SRC_DIRS) -name "*.f")
+ferret_f90srcfiles := $(shell find $(ferret_SRC_DIRS) -name "*.f90")
 # object files
 ferret_objects := $(patsubst %.C, %.$(obj-suffix), $(ferret_srcfiles))
 ferret_objects += $(patsubst %.c, %.$(obj-suffix), $(ferret_csrcfiles))
