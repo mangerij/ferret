@@ -16,11 +16,12 @@ FerretApp::FerretApp(const std::string & name, InputParameters parameters) :
   srand(libMesh::processor_id());
   
   Moose::registerObjects(_factory);
+  Moose::associateSyntax(_syntax, _action_factory);
+  
   Elk::registerObjects(_factory);
   Elk::associateSyntax(_syntax, _action_factory);
+  
   Ferret::registerObjects(_factory);
-
-  Moose::associateSyntax(_syntax, _action_factory);
   Ferret::associateSyntax(_syntax, _action_factory);
 }
 
