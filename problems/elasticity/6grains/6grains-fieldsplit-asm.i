@@ -288,37 +288,19 @@
     euler_angle_1 = 0.0
     euler_angle_2 = 83.0
     euler_angle_3 = 0.0
-  [../]
-  
-
+  [../]  
 [] # Materials
 
-#[Preconditioning]
-#   type = FDP
-#[]
 [Executioner]
-
   type = Steady
-#  petsc_options = '-ksp_monitor'
-#  petsc_options_iname = '-ksp_type -pc_type'
-#  petsc_options_value = 'gmres lu'
-
-#  type = Transient
 petsc_options = '-snes -snes_view -snes_monitor -dm_view -ksp_monitor -fieldsplit_disp_x_disp_y_ksp_monitor -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_ksp_monitor -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_ksp_monitor -fieldsplit_disp_z_ksp_monitor'
 petsc_options_iname = '-ksp_max_it -pc_type    -pc_fieldsplit_decomposition -pc_fieldsplit_type -fieldsplit_disp_x_disp_y_pc_type  -fieldsplit_disp_x_disp_y_pc_fieldsplit_type    -fieldsplit_disp_x_disp_y_pc_fieldsplit_decomposition -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_pc_asm_blocks -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_sub_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_pc_asm_blocks -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_sub_pc_type -fieldsplit_disp_z_pc_type -fieldsplit_disp_z_pc_asm_blocks -fieldsplit_disp_z_sub_pc_type'
 
 petsc_options_value = '         1 fieldsplit     var:disp_x,disp_y;disp_z;            schur                     fieldsplit                                     schur                                                 var                                                   asm                                                               10                                                  lu                                                      asm                                                      10                                                       lu                          asm                              10                             lu'
 
   nl_rel_tol = 1e-8
-  #l_abs_tol  = 1e-9
   l_max_its = 30
-
-#  start_time = 0.0
-#  dt = 1.0
-#  num_steps = 2
-#  end_time = 2.0
 [] # Executioner
-
 [Output]
   file_base = 6grains-fieldsplit-asm-out
   interval = 1
