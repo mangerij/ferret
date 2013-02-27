@@ -1,0 +1,299 @@
+visitor096-048 {510} > mpirun -np 4 ../../../Programs/INL_FEM_Solvers/INL_svn_herd_repo/ferret-opt -i in2.i 
+Framework Information:
+SVN Revision:            17026
+PETSc Version:           3.3.0
+Current Time:            Wed Feb 27 11:19:12 2013
+Executable Timestamp:    Mon Feb 25 10:39:04 2013
+
+ Mesh Information:
+  mesh_dimension()=3
+  spatial_dimension()=3
+  n_nodes()=52858
+    n_local_nodes()=14258
+  n_elem()=97536
+    n_local_elem()=24386
+    n_active_elem()=97536
+  n_subdomains()=16
+  n_partitions()=4
+  n_processors()=4
+  n_threads()=1
+  processor_id()=0
+
+ Mesh Information:
+  mesh_dimension()=3
+  spatial_dimension()=3
+  n_nodes()=52858
+    n_local_nodes()=14258
+  n_elem()=97536
+    n_local_elem()=24386
+    n_active_elem()=97536
+  n_subdomains()=16
+  n_partitions()=4
+  n_processors()=4
+  n_threads()=1
+  processor_id()=0
+
+WARNING: Second derivatives are not currently correctly calculated on non-affine elements!
+WARNING: Second derivatives are not currently correctly calculated on non-affine elements!
+WARNING: Second derivatives are not currently correctly calculated on non-affine elements!
+WARNING: Second derivatives are not currently correctly calculated on non-affine elements!
+ EquationSystems
+  n_systems()=2
+   System #1, "aux0_displaced"
+    Type "TransientExplicit"
+    Variables={ "stress_xx" "stress_yy" "stress_zz" "stress_xy" "stress_yz" "stress_zx" "strain_xx" "strain_yy" "strain_zz" "strain_xy" "strain_yz" "strain_zx" "elastic_energy" } 
+    Finite Element Types="MONOMIAL" 
+    Approximation Orders="CONSTANT" 
+    n_dofs()=1267968
+    n_local_dofs()=317018
+    n_constrained_dofs()=0
+    n_local_constrained_dofs()=0
+    n_vectors()=3
+    n_matrices()=0
+    DofMap Sparsity
+      Average  On-Processor Bandwidth <= 0
+      Average Off-Processor Bandwidth <= 0
+      Maximum  On-Processor Bandwidth <= 0
+      Maximum Off-Processor Bandwidth <= 0
+    DofMap Constraints
+      Number of DoF Constraints = 0
+   System #0, "nl0_displaced"
+    Type "TransientExplicit"
+    Variables={ "disp_x" "disp_y" "disp_z" } 
+    Finite Element Types="LAGRANGE" 
+    Approximation Orders="FIRST" 
+    n_dofs()=158574
+    n_local_dofs()=42774
+    n_constrained_dofs()=0
+        n_vectors()=3
+    n_matrices()=0
+    DofMap Sparsity
+      Average  On-Processor Bandwidth <= 0
+      Average Off-Processor Bandwidth <= 0
+      Maximum  On-Processor Bandwidth <= 0
+      Maximum Off-Processor Bandwidth <= 0
+    DofMap Constraints
+      Number of DoF Constraints = 0
+   System #0, "nl0_displaced"
+    Type "TransientExplicit"
+    Variables={ "disp_x" "disp_y" "disp_z" } 
+    Finite Element Types="LAGRANGE" 
+    Approximation Orders="FIRST" 
+    n_dofs()=158574
+    n_local_dofs()=42774
+    n_constrained_dofs()=0
+    n_local_constrained_dofs()=0
+    n_vectors()=3
+    n_matrices()=0
+    DofMap Sparsity
+      Average  On-Processor Bandwidth <= 0
+      Average Off-Processor Bandwidth <= 0
+      Maximum  On-Processor Bandwidth <= 0
+      Maximum Off-Processor Bandwidth <= 0
+    DofMap Constraints
+      Number of DoF Constraints = 0
+
+ EquationSystems
+  n_systems()=2
+   System #1, "aux0"
+    Type "TransientExplicit"
+    Variables={ "stress_xx" "stress_yy" "stress_zz" "stress_xy" "stress_yz" "stress_zx" "strain_xx" "strain_yy" "strain_zz" "strain_xy" "strain_yz" "strain_zx" "elastic_energy" } 
+    Finite Element Types="MONOMIAL" 
+    Approximation Orders="CONSTANT" 
+    n_dofs()=1267968
+    n_local_dofs()=317018
+    n_constrained_dofs()=0
+    n_local_constrained_dofs()=0
+    n_vectors()=3
+    n_matrices()=0
+        DofMap Sparsity
+      Average  On-Processor Bandwidth <= 0
+      Average Off-Processor Bandwidth <= 0
+      Maximum  On-Processor Bandwidth <= 0
+      Maximum Off-Processor Bandwidth <= 0
+    DofMap Constraints
+      Number of DoF Constraints = 0
+
+ EquationSystems
+  n_systems()=2
+   System #1, "aux0"
+    Type "TransientExplicit"
+    Variables={ "stress_xx" "stress_yy" "stress_zz" "stress_xy" "stress_yz" "stress_zx" "strain_xx" "strain_yy" "strain_zz" "strain_xy" "strain_yz" "strain_zx" "elastic_energy" } 
+    Finite Element Types="MONOMIAL" 
+    Approximation Orders="CONSTANT" 
+    n_dofs()=1267968
+    n_local_dofs()=317018
+    n_constrained_dofs()=0
+    n_local_constrained_dofs()=0
+    n_vectors()=3
+    n_matrices()=0
+    DofMap Sparsity
+      Average  On-Processor Bandwidth <= 0
+      Average Off-Processor Bandwidth <= 0
+      Maximum  On-Processor Bandwidth <= 0
+      Maximum Off-Processor Bandwidth <= 0
+    DofMap Constraints
+      Number of DoF Constraints = 0
+   System #0, "nl0"
+    Type "TransientNonlinearImplicit"
+    Variables={ "disp_x" "disp_y" "disp_z" } 
+    Finite Element Types="LAGRANGE" 
+    Approximation Orders="FIRST" 
+    n_dofs()=158574
+    n_local_dofs()=42774
+    n_constrained_dofs()=0
+    n_local_constrained_dofs()=0
+    n_vectors()=14
+    n_matrices()=1
+    DofMap Sparsity
+      Average  On-Processor Bandwidth <= 75.6564
+      Average Off-Processor Bandwidth <= 3.18536
+      Maximum  On-Processor Bandwidth <= 126
+      Maximum Off-Processor Bandwidth <= 75
+    DofMap Constraints
+      Number of DoF Constraints = 0
+
+
+Postprocessor Values:
++----------------+---------------------------+----------------+
+| time           | integrated_elastic_energy | volume         |
++----------------+---------------------------+----------------+
+|              0 |                         0 |        968.627 |
++----------------+---------------------------+----------------+
+
+Time: 0
+  Initial |residual|_2 = 9.278643e-08
+  NL step  0, |residual|_2 = 9.278643e-08
+  0 SNES Function norm 9.278642604455e-08 
+    0 KSP Residual norm 9.278642604455e-08 
+    1 KSP Residual norm 7.250508092862e-08 
+        2 KSP Residual norm 6.805293684911e-08 
+    3 KSP Residual norm 5.514906951210e-08 
+    4 KSP Residual norm 4.725706811912e-08 
+    5 KSP Residual norm 4.215820004962e-08 
+    6 KSP Residual norm 3.614788839079e-08 
+    7 KSP Residual norm 3.054025959857e-08 
+    8 KSP Residual norm 2.583298249416e-08 
+    9 KSP Residual norm 2.402114049372e-08 
+   10 KSP Residual norm 2.300725963840e-08 
+   11 KSP Residual norm 2.154811688715e-08 
+   12 KSP Residual norm 2.088142337345e-08 
+   13 KSP Residual norm 2.052570320076e-08 
+   14 KSP Residual norm 2.017075116470e-08 
+   15 KSP Residual norm 1.980720042035e-08 
+   16 KSP Residual norm 1.950287186440e-08 
+   17 KSP Residual norm 1.919413997910e-08 
+   18 KSP Residual norm 1.887461861205e-08 
+   19 KSP Residual norm 1.857376467603e-08 
+   20 KSP Residual norm 1.815710957075e-08 
+   21 KSP Residual norm 1.795524185230e-08 
+   22 KSP Residual norm 1.759649145532e-08 
+   23 KSP Residual norm 1.742610020333e-08 
+   24 KSP Residual norm 1.730779836561e-08 
+   25 KSP Residual norm 1.715788704607e-08 
+   26 KSP Residual norm 1.698804682235e-08 
+   27 KSP Residual norm 1.673692591000e-08 
+   28 KSP Residual norm 1.658914580000e-08 
+   29 KSP Residual norm 1.645869818534e-08 
+   30 KSP Residual norm 1.624865412500e-08 
+   31 KSP Residual norm 1.624098043405e-08 
+   32 KSP Residual norm 1.623915633544e-08 
+   33 KSP Residual norm 1.622608140565e-08 
+   34 KSP Residual norm 1.621049677378e-08 
+   35 KSP Residual norm 1.619978112292e-08 
+   36 KSP Residual norm 1.618562784780e-08 
+   37 KSP Residual norm 1.617083589183e-08 
+   38 KSP Residual norm 1.613565531821e-08 
+   39 KSP Residual norm 1.604700386656e-08 
+   40 KSP Residual norm 1.586657334104e-08 
+   41 KSP Residual norm 1.564218760687e-08 
+   42 KSP Residual norm 1.546167462509e-08 
+   43 KSP Residual norm 1.538519930329e-08 
+   44 KSP Residual norm 1.518497535489e-08 
+   45 KSP Residual norm 1.491616836725e-08 
+   46 KSP Residual norm 1.462411530619e-08 
+   47 KSP Residual norm 1.438232156753e-08 
+   48 KSP Residual norm 1.387295354108e-08 
+   49 KSP Residual norm 1.347792796921e-08 
+   50 KSP Residual norm 1.311248719609e-08 
+   51 KSP Residual norm 1.276005273445e-08 
+   52 KSP Residual norm 1.219964461938e-08 
+   53 KSP Residual norm 1.164279419060e-08 
+   54 KSP Residual norm 1.108371501556e-08 
+   55 KSP Residual norm 1.062566124061e-08 
+   56 KSP Residual norm 9.902677724362e-09 
+   57 KSP Residual norm 9.010557352821e-09 
+   58 KSP Residual norm 8.313644561565e-09 
+   59 KSP Residual norm 7.607054531595e-09 
+   60 KSP Residual norm 6.956982797326e-09 
+   61 KSP Residual norm 6.817948614292e-09 
+   62 KSP Residual norm 6.810082243509e-09 
+   63 KSP Residual norm 6.635712568045e-09 
+   64 KSP Residual norm 6.508893708846e-09 
+   65 KSP Residual norm 6.426086026718e-09 
+   66 KSP Residual norm 6.316123403265e-09 
+   67 KSP Residual norm 6.172784698254e-09 
+   68 KSP Residual norm 6.028443014616e-09 
+   69 KSP Residual norm 5.798911229801e-09 
+   70 KSP Residual norm 5.569624459367e-09 
+   71 KSP Residual norm 5.299325194560e-09 
+   72 KSP Residual norm 5.080984180969e-09 
+   73 KSP Residual norm 4.968187435158e-09 
+   74 KSP Residual norm 4.834159951506e-09 
+   75 KSP Residual norm 4.686923014012e-09 
+   76 KSP Residual norm 4.588684720744e-09 
+   77 KSP Residual norm 4.478332623930e-09 
+   78 KSP Residual norm 4.420924097510e-09 
+   79 KSP Residual norm 4.337559352315e-09 
+   80 KSP Residual norm 4.282122948783e-09 
+   81 KSP Residual norm 4.232057168055e-09 
+   82 KSP Residual norm 4.194259946428e-09 
+   83 KSP Residual norm 4.144379645926e-09 
+   84 KSP Residual norm 4.100300013540e-09 
+   85 KSP Residual norm 4.070766422192e-09 
+   86 KSP Residual norm 4.021462801322e-09 
+   87 KSP Residual norm 3.979780399439e-09 
+   88 KSP Residual norm 3.929737554872e-09 
+   89 KSP Residual norm 3.863636224914e-09 
+   90 KSP Residual norm 3.805447120630e-09 
+   91 KSP Residual norm 3.802178274477e-09 
+   92 KSP Residual norm 3.797367499476e-09 
+   93 KSP Residual norm 3.786013151562e-09 
+   94 KSP Residual norm 3.774152583395e-09 
+   95 KSP Residual norm 3.764973355837e-09 
+   96 KSP Residual norm 3.756839958679e-09 
+   97 KSP Residual norm 3.746139030827e-09 
+   98 KSP Residual norm 3.737891341681e-09 
+   99 KSP Residual norm 3.709434511397e-09 
+  100 KSP Residual norm 3.675246327064e-09 
+  Linear solve converged due to CONVERGED_ITS iterations 100
+ERROR: negative Jacobian: -3.542e-05 in element 30468
+[1] ../src/fe/fe_map.C, line 634, compiled Feb 19 2013 at 13:01:04
+ERROR: negative Jacobian: -4.15885e-05 in element 24337
+[0] ../src/fe/fe_map.C, line 634, compiled Feb 19 2013 at 13:01:04
+ERROR: negative Jacobian: -2.03687e-09 in element 43103
+[2] ../src/fe/fe_map.C, line 634, compiled Feb 19 2013 at 13:01:04
+terminate called after throwing an instance of 'libMesh::LogicError'
+terminate called after throwing an instance of 'libMesh::LogicError'
+terminate called after throwing an instance of 'libMesh::LogicError'
+  what():  Error in libMesh internal logic
+  what():  Error in libMesh internal logic
+  what():  Error in libMesh internal logic
+[visitor096-048:05968] *** Process received signal ***
+[visitor096-048:05968] Signal: Abort trap: 6 (6)
+[visitor096-048:05968] Signal code:  (0)
+[visitor096-048:05969] *** Process received signal ***
+[visitor096-048:05969] Signal: Abort trap: 6 (6)
+[visitor096-048:05969] Signal code:  (0)
+[visitor096-048:05970] *** Process received signal ***
+[visitor096-048:05970] Signal: Abort trap: 6 (6)
+[visitor096-048:05970] Signal code:  (0)
+[visitor096-048:05969] *** End of error message ***
+[visitor096-048:05970] *** End of error message ***
+[visitor096-048:05968] *** End of error message ***
+
+--------------------------------------------------------------------------
+mpirun noticed that process rank 2 with PID 5970 on node visitor096-048.wl.anl-external.org exited on signal 6 (Abort trap: 6).
+--------------------------------------------------------------------------
+[1]+  Done                    /Applications/Emacs.app/Contents/MacOS/Emacs in2.i
+visitor096-048 {511} > 
