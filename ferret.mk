@@ -76,5 +76,8 @@ endif
 #
 delete_list := $(ferret_APP) $(ferret_LIB) $(FERRET_DIR)/libferret-$(METHOD).*
 
+cleanall::
+	make -C $(FERRET_DIR) clean
+
 ###############################################################################
 # Additional special case targets should be added here
