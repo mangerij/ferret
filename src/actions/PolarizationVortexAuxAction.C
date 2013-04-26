@@ -1,12 +1,14 @@
-#include "PolarizationVortexAction.h"
+#include "PolarizationVortexAuxAction.h"
+#include "FerretBase.h"
 #include "Factory.h"
 #include "Parser.h"
 #include "FEProblem.h"
 
 template<>
-InputParameters validParams<PolarizationVortexAction>()
+InputParameters validParams<PolarizationVortexAuxAction>()
 {
-  InputParameters params = validParams<Action>();
+  InputParameters params = validParams<Action>(); params += validParams<FerretBase>();
+  params.addParam<std::string>("class", "PolarizationVortexAuxAction", "Class name");
   params.addParam<std::vector<SubdomainName> >("block", "The list of ids of the blocks (subdomain) that these kernels will be applied to");
   params.addParam<Real>("R", 1, "Magnetic dot radius");
   params.addParam<Real>("L", 1, "Magnetic dot thickness");
@@ -17,13 +19,11 @@ InputParameters validParams<PolarizationVortexAction>()
   params.addParam<Real>("a_y", 0, "Vortex location along y");
   params.addParam<Real>("c", 1, "Vortex size");
   params.addParam<std::string>("p", "a_x", "Vortex evolution parameter: a_x, a_y or c.");
-  params.addParam<bool>("debug", false, "Debugging flag");
-  params.addParam<bool>("kernel_debug", false, "Debugging flag passed to PolarizationVortex kernels");
   return params;
 }
 
-PolarizationVortexAction::PolarizationVortexAction(const std::string & name, InputParameters params) :
-  Action(name, params),
+PolarizationVortexAuxAction::PolarizationVortexAuxAction(const std::string & name, InputParameters params) :
+  FerretBase(params), Action(name, params),
   _P_x(getParam<NonlinearVariableName>("P_x")),
   _P_y(getParam<NonlinearVariableName>("P_y")),
   _P_z(getParam<NonlinearVariableName>("P_z")),
@@ -32,11 +32,10 @@ PolarizationVortexAction::PolarizationVortexAction(const std::string & name, Inp
   _c(getParam<Real>("c")),
   _R(getParam<Real>("R")),
   _L(getParam<Real>("L")),
-  _p(getParam<std::string>("p")),
-  _debug(getParam<bool>("debug"))
+  _p(getParam<std::string>("p"))
 {
-  if(_debug){
-    libMesh::out << "PolarizationVortexAction: debug = " << _debug << "\n";
+  if(debug("PolarizationVortexAuxAction")){
+    libMesh::out << "PolarizationVortexAuxAction:\n";
     libMesh::out << "_P_x = " << _P_x << ", _P_y = " << _P_y << ", _P_z = " << _P_z << ", _a_x = " << _a_x << ", _a_y = " << _a_y << ", _c = " << _c << ", R = " << _R << ", L = " << _L << ", _p = " << _p << "\n";
   }
   // Do some error checking
@@ -63,7 +62,7 @@ PolarizationVortexAction::PolarizationVortexAction(const std::string & name, Inp
 }
 
 void
-PolarizationVortexAction::act()
+PolarizationVortexAuxAction::act()
 {
 
   /*
@@ -77,7 +76,7 @@ PolarizationVortexAction::act()
   // Set up PolarizationVortex kernel, one per each component of polarization and one per mesh block.
   if(isParamValid("block")) // Should it be restricted to certain blocks?
     {
-      std::cout<<"Restricting to blocks!"<<std::endl;
+      libMesh::out<<"Restricting to blocks!"<<std::endl;
       std::vector<SubdomainName> block = getParam<std::vector<SubdomainName> >("block");
       for(unsigned int i=0; i < block.size(); i++)
 	subdomains.insert(_problem->mesh().getSubdomainID(block[i]));
@@ -85,8 +84,7 @@ PolarizationVortexAction::act()
   else // Put it everywhere
     subdomains = _problem->mesh().meshSubdomains();
 
- for (std::set<SubdomainID>::const_iterator it = subdomains.begin(); it != subdomains.end(); ++it)
-  {
+  for (std::set<SubdomainID>::const_iterator it = subdomains.begin(); it != subdomains.end(); ++it) {
     SubdomainID sid = *it;
       // Convert the SubdomainID into SubdomainName since kernel params take SubdomainNames (this is retarded...)
     std::stringstream ss;
@@ -95,13 +93,13 @@ PolarizationVortexAction::act()
     subdomainnames.push_back(sname);
   }
 
-  InputParameters polarization_vortex_params = _factory.getValidParams("PolarizationVortex");
+  InputParameters polarization_vortex_params = _factory.getValidParams("PolarizationVortexAux");
   polarization_vortex_params.set<Real>("a_x") = _a_x;
   polarization_vortex_params.set<Real>("a_y") = _a_y;
   polarization_vortex_params.set<Real>("c") = _c;
   polarization_vortex_params.set<std::string>("p") = _p;
-  NonlinearVariableName P;
-  std::vector<NonlinearVariableName> Pnormal;
+  AuxVariableName P;
+  std::vector<AuxVariableName> Pnormal;
   for(unsigned int i = 0; i < 3; ++i) {
     switch(i) {
     case 0:
@@ -123,13 +121,13 @@ PolarizationVortexAction::act()
     polarization_vortex_params.set<Real>("R") = _R;
     polarization_vortex_params.set<Real>("L") = _L;
     polarization_vortex_params.set<unsigned int>("i") = i;
-    polarization_vortex_params.set<NonlinearVariableName>("variable") = P;
-    polarization_vortex_params.set<std::vector<NonlinearVariableName> >("Pnormal") = Pnormal;
+    polarization_vortex_params.set<AuxVariableName>("variable") = P;
+    polarization_vortex_params.set<std::vector<AuxVariableName> >("Pnormal") = Pnormal;
     polarization_vortex_params.set<std::vector<SubdomainName> >("block") = subdomainnames;
-    polarization_vortex_params.set<bool>("debug") = getParam<bool>("kernel_debug");
+    polarization_vortex_params.set<std::vector<std::string> >("Debug") = _debug_vec;
     std::stringstream name;
     name << "polarization_" << i;    
-    _problem->addKernel("PolarizationVortex", name.str(), polarization_vortex_params);
+    _problem->addAuxKernel("PolarizationVortexAux", name.str(), polarization_vortex_params);
   }
 }
 

@@ -9,12 +9,13 @@
 
 #include "Elk.h"
 
-#include "PolarizationVortex.h"
-#include "PolarizationVortexAction.h"
+#include "PolarizationVortexAux.h"
+#include "PolarizationVortexAuxAction.h"
 #include "StressBC.h"
 #include "StressFunctionBC.h"
 #include "HydrostaticBC.h"
 #include "HydrostaticDirichletBC.h"
+#include "PolarizationSurfaceCharge.h"
 //#include "VortexSurfaceEnergy.h"
 
 namespace Ferret
@@ -30,13 +31,15 @@ namespace Ferret
     registerBoundaryCondition(StressFunctionBC);
     registerBoundaryCondition(HydrostaticBC);
     registerBoundaryCondition(HydrostaticDirichletBC);
-    registerKernel(PolarizationVortex);
+    registerBoundaryCondition(PolarizationSurfaceCharge);
+
+    registerAux(PolarizationVortexAux);
     //registerPostprocessor(VortexSurfaceEnergy);
   }
   
   void associateSyntax(Syntax& syntax, ActionFactory & action_factory)
   {
-    syntax.registerActionSyntax("PolarizationVortexAction","PolarizationVortex");
-    registerAction(PolarizationVortexAction, "add_kernel");
+    syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
+    registerAction(PolarizationVortexAuxAction, "add_kernel");
   }
 }
