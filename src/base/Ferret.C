@@ -18,6 +18,13 @@
 #include "PolarizationSurfaceCharge.h"
 //#include "VortexSurfaceEnergy.h"
 
+#include "BulkEnergyDerivative.h"
+#include "WallEnergyDerivative.h"
+#include "PolarElectricP.h"
+#include "PolarElectricE.h"
+#include "BulkEnergy.h"
+#include "PolarMaterial.h"
+#include "ElectricStatics.h"
 namespace Ferret
 {
   void registerApps()
@@ -35,6 +42,13 @@ namespace Ferret
 
     registerAux(PolarizationVortexAux);
     //registerPostprocessor(VortexSurfaceEnergy);
+    registerKernel(BulkEnergyDerivative);
+    registerKernel(WallEnergyDerivative);
+    registerKernel(PolarElectricE);
+    registerKernel(PolarElectricP);
+    registerKernel(ElectricStatics);
+    registerPostprocessor(BulkEnergy);
+    registerMaterial(PolarMaterial);
   }
   
   void associateSyntax(Syntax& syntax, ActionFactory & action_factory)
