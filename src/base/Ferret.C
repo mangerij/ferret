@@ -25,6 +25,7 @@
 #include "BulkEnergy.h"
 #include "PolarMaterial.h"
 #include "ElectricStatics.h"
+#include "PerturbedIC.h"
 namespace Ferret
 {
   void registerApps()
@@ -49,8 +50,9 @@ namespace Ferret
     registerKernel(ElectricStatics);
     registerPostprocessor(BulkEnergy);
     registerMaterial(PolarMaterial);
+    registerInitialCondition(PerturbedIC);
   }
-  
+
   void associateSyntax(Syntax& syntax, ActionFactory & action_factory)
   {
     syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");

@@ -66,7 +66,7 @@ BulkEnergyDerivative::computeQpResidual()
 	  2*_alpha12*_polar_i[_qp]*(pow(_polar_j[_qp],2)+pow(_polar_k[_qp],2))+
 	  6*_alpha111*pow(_polar_i[_qp],5)+
 	  4*_alpha112*pow(_polar_i[_qp],3)*(_polar_j[_qp]*_polar_j[_qp]+_polar_k[_qp]*_polar_k[_qp])+
-	  2*_alpha112*_polar_i[_qp]*(pow(_polar_j[_qp],4)+pow(_polar_k[_qp],3))+
+	  2*_alpha112*_polar_i[_qp]*(pow(_polar_j[_qp],4)+pow(_polar_k[_qp],4))+
 	  2*_alpha123*_polar_i[_qp]*pow(_polar_j[_qp],2)*pow(_polar_k[_qp],2))*_test[_i][_qp];
   
 }
@@ -77,7 +77,7 @@ BulkEnergyDerivative::computeQpJacobian()
   const VariableValue& _polar_i= (_component==0)? _polar_x : (_component==1)? _polar_y: _polar_z;
   const VariableValue& _polar_j= (_component==0)? _polar_y : (_component==1)? _polar_z: _polar_x;
   const VariableValue& _polar_k= (_component==0)? _polar_z : (_component==1)? _polar_x: _polar_y;
-  return (2*_alpha1+12*_alpha11*pow(_polar_i[_qp],2)+
+   return (2*_alpha1+12*_alpha11*pow(_polar_i[_qp],2)+
 	  2*_alpha12*(pow(_polar_j[_qp],2)+pow(_polar_k[_qp],2))+30*_alpha111*pow(_polar_i[_qp],4)+
 	  12*_alpha112*pow(_polar_i[_qp],2)*(pow(_polar_j[_qp],2)+pow(_polar_k[_qp],2))+2*_alpha112*(pow(_polar_j[_qp],4)+pow(_polar_k[_qp],4))+
 	  2*_alpha123*pow(_polar_j[_qp],2)*pow(_polar_k[_qp],2)
@@ -87,15 +87,16 @@ BulkEnergyDerivative::computeQpJacobian()
 Real
 BulkEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
+  Real r;
   mooseAssert(jvar!=variable().index(),"Something wrong: OffDiag coupled to itself.");
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var){
     const VariableValue& _polar_i= (_component==0)? _polar_x : (_component==1)? _polar_y: _polar_z;
     const VariableValue& _polar_j= (jvar==_polar_x_var)? _polar_x : (jvar==_polar_y_var)? _polar_y: _polar_z;
-    const VariableValue& _polar_k= ((_component==0 && jvar==_polar_y_var) || (_component==1 && jvar==_polar_x_var) )? _polar_z : ( (_component==0 && jvar==_polar_z_var) || (_component==2 && jvar==_polar_x_var))? _polar_y: _polar_z;
-    return (4*_alpha12*_polar_i[_qp]*_polar_j[_qp]
+    const VariableValue& _polar_k= ((_component==0 && jvar==_polar_y_var) || (_component==1 && jvar==_polar_x_var) )? _polar_z : ( (_component==0 && jvar==_polar_z_var) || (_component==2 && jvar==_polar_x_var))? _polar_y: _polar_x;
+    r=(4*_alpha12*_polar_i[_qp]*_polar_j[_qp]
 	  +8*_alpha112*pow(_polar_i[_qp],3)*_polar_j[_qp]+8*_alpha112*_polar_i[_qp]*pow(_polar_j[_qp],3)
-	  +4*_alpha123*_polar_i[_qp]*_polar_j[_qp]*pow(_polar_k[_qp],2)
-	  )*_test[_i][_qp]*_phi[_j][_qp];
+	  +4*_alpha123*_polar_i[_qp]*_polar_j[_qp]*pow(_polar_k[_qp],2));
+    return r*_test[_i][_qp]*_phi[_j][_qp];
   }else
     return 0.0;
 }
