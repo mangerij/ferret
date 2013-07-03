@@ -1,14 +1,14 @@
 [Mesh]
   file = poissonstripe_coarse.e
-  uniform_refine=1
+  uniform_refine=0
 []
 # [Mesh]
 #   #file = mug.e
 #   type=GeneratedMesh
 #   dim=3
-#   nx=16
-#   ny=16
-#   nz=16
+#   nx=5
+#   ny=5
+#   nz=5
 #   xmin=0.0
 #   xmax=1.0
 #   ymin=0.0
@@ -18,17 +18,21 @@
 #   #uniform_refine=1
 # []
 [Variables]
+#active='polar_x polar_y polar_z'
   [./polar_x]
+    #scaling=1e-3
     order = FIRST
     family = LAGRANGE
     block='interior'
   [../]
   [./polar_y]
+    #scaling=1e-3
     order = FIRST
     family = LAGRANGE
     block='interior'
   [../]
   [./polar_z]
+    #scaling=1e-3
     order = FIRST
     family = LAGRANGE
     block='interior'
@@ -55,6 +59,7 @@
 []
 
 [Kernels]
+#  active='bed_x bed_y bed_z walled_x walled_y walled_z'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -182,7 +187,7 @@
      component=1
      potential=potential
   [../]
-  [./polar_electric_px]
+  [./polar_electric_pz]
      type=PolarElectricP
      variable=polar_z
      component=2
@@ -197,7 +202,8 @@
     type=PerturbedIC
     variable=polar_x
     mean=0.0
-    factor=0.1
+    factor=0.5
+    #value=0.0
   [../]
   [./polar_y]
     #type=ConstantIC
@@ -205,19 +211,22 @@
     type=PerturbedIC
     variable=polar_y
     mean=0.0
-    factor=0.1
+    factor=0.5
+    #value=0.0
   [../]
   [./polar_z]
     #type=ConstantIC
     #type=RandomIC
     type=PerturbedIC
     variable=polar_z
-    mean=1.0
-    factor=0.1
+    mean=0.0
+    factor=0.5
+    #value=1.0
   [../]
 []
 
 [BCs]
+  #active ='Periodic'
   [./potential_upz]
     type = DirichletBC
     variable = potential
@@ -231,6 +240,7 @@
     value = -1.0
   [../]
   [./Periodic]
+   # active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
     [./potential_x]
        variable = potential
        primary = 'downx'
@@ -313,15 +323,16 @@
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
   petsc_options='-snes_monitor -snes_view -snes_converged_reason'
-  #petsc_options_iname='-snes_linearsearch_type -snes_rtol'
-  #petsc_options_value='basic                   1e-16'
+  petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs'
+  petsc_options_value='10000000         1e-7      100000000'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []
 
 [Output]
   file_base = out
+  output_initial=1
   #interval = 1
   exodus = true
-  perf_log = true
+  #perf_log = true
 []

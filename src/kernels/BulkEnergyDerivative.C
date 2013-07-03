@@ -2,10 +2,10 @@
  * @file   BulkEnergyDerivative.C
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 11:59:56 2013
- * 
- * @brief  
- * 
- * 
+ *
+ * @brief
+ *
+ *
  */
 
 #include "BulkEnergyDerivative.h"
@@ -47,10 +47,15 @@ BulkEnergyDerivative::BulkEnergyDerivative(const std::string & name, InputParame
    _alpha111(getParam<Real>("alpha111")),
    _alpha112(getParam<Real>("alpha112")),
    _alpha123(getParam<Real>("alpha123"))
-   
+
 {
-  
-} 
+  std::cout<<"_alpha1="<<_alpha1<<"\n";
+  std::cout<<"_alpha11="<<_alpha11<<"\n";
+  std::cout<<"_alpha12="<<_alpha12<<"\n";
+  std::cout<<"_alpha111="<<_alpha111<<"\n";
+  std::cout<<"_alpha112="<<_alpha112<<"\n";
+  std::cout<<"_alpha123="<<_alpha123<<"\n";
+}
 
 
 //TODO:Overload functions
@@ -68,7 +73,7 @@ BulkEnergyDerivative::computeQpResidual()
 	  4*_alpha112*pow(_polar_i[_qp],3)*(_polar_j[_qp]*_polar_j[_qp]+_polar_k[_qp]*_polar_k[_qp])+
 	  2*_alpha112*_polar_i[_qp]*(pow(_polar_j[_qp],4)+pow(_polar_k[_qp],4))+
 	  2*_alpha123*_polar_i[_qp]*pow(_polar_j[_qp],2)*pow(_polar_k[_qp],2))*_test[_i][_qp];
-  
+
 }
 
 Real

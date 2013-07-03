@@ -2,10 +2,10 @@
  * @file   WallEnergyDerivative.C
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 11:59:56 2013
- * 
- * @brief  
- * 
- * 
+ *
+ * @brief
+ *
+ *
  */
 
 #include "WallEnergyDerivative.h"
@@ -19,7 +19,7 @@ InputParameters validParams<WallEnergyDerivative>()
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addRequiredParam<Real>("G110"," "); //FIXME: Give me an explanation
-  params.addRequiredParam<Real>("G11/G110"," "); 
+  params.addRequiredParam<Real>("G11/G110"," ");
   params.addRequiredParam<Real>("G12/G110"," ");
   params.addRequiredParam<Real>("G44/G110"," ");
   params.addRequiredParam<Real>("G44P/G110"," ");
@@ -46,7 +46,14 @@ WallEnergyDerivative::WallEnergyDerivative(const std::string & name, InputParame
    _G12(getParam<Real>("G12/G110")*_G110),
    _G44(getParam<Real>("G44/G110")*_G110),
   _G44P(getParam<Real>("G44P/G110")*_G110)
-{}
+{
+  //only for debug purpose
+  std::cout<<"_G110="<<_G110<<"\n";
+  std::cout<<"_G11="<<_G11<<"\n";
+  std::cout<<"_G12="<<_G12<<"\n";
+  std::cout<<"_G44="<<_G44<<"\n";
+  std::cout<<"_G44P="<<_G44P<<"\n";
+}
 
 
 //TODO:Overload functions
@@ -58,7 +65,7 @@ WallEnergyDerivative::computeQpResidual()
     _G12*(_polar_j_grad[_qp](_jj)+_polar_k_grad[_qp](_kk))*_grad_test[_i][_qp](_ii)+
     _G44*(_polar_i_grad[_qp](_jj)+_polar_j_grad[_qp](_ii))*_grad_test[_i][_qp](_jj)+ _G44*(_polar_i_grad[_qp](_kk)+_polar_k_grad[_qp](_ii))*_grad_test[_i][_qp](_kk)+
    _G44P*(_polar_i_grad[_qp](_jj)-_polar_j_grad[_qp](_ii))*_grad_test[_i][_qp](_jj)+_G44P*(_polar_i_grad[_qp](_kk)-_polar_k_grad[_qp](_ii))*_grad_test[_i][_qp](_kk);
- 
+
 }
 
 Real
