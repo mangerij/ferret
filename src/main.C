@@ -1,4 +1,4 @@
-#include "Ferret.h"
+#include "FerretApp.h"
 //Moose Includes
 #include "MooseInit.h"
 #include "Moose.h"
@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
   MooseInit init(argc, argv);
 
   // Register this application's MooseApp and any it depends on
-  Ferret::registerApps();
+  FerretApp::registerApps();
 
   // This creates dynamic memory that we're responsible for deleting
   MooseApp * app = AppFactory::createApp("FerretApp", argc, argv);

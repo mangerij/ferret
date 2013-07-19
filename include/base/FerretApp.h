@@ -13,6 +13,10 @@ class FerretApp : public MooseApp
 public:
   FerretApp(const std::string & name, InputParameters parameters);
   virtual ~FerretApp();
+
+  static void registerApps();
+  static void registerObjects(Factory & factory);
+  static void associateSyntax(Syntax& syntax, ActionFactory & action_factory);
 };
 
 #endif /* FERRETAPP_H */
