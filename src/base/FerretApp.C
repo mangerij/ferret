@@ -22,7 +22,12 @@
 #include "PolarMaterial.h"
 #include "ElectricStatics.h"
 #include "PerturbedIC.h"
-
+#include "SinIC.h"
+#include "AdhocConstIC.h"
+#include "SinFunc.h"
+#include "RandomFunc.h"
+#include "SphereIC.h"
+#include "SphereToCartFunc.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -75,6 +80,12 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(BulkEnergy);
   registerMaterial(PolarMaterial);
   registerInitialCondition(PerturbedIC);
+  registerInitialCondition(SinIC);
+  registerInitialCondition(AdhocConstIC);
+  registerFunction(SinFunc);
+  registerFunction(RandomFunc);
+  registerFunction(SphereIC);
+  registerFunction(SphereToCartFunc);
 }
 
 void
