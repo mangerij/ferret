@@ -302,7 +302,11 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes_mf_operator -snes_view -ksp_view -snes_monitor -ksp_monitor -pc_gasm_print_subdomains -dm_view'
+
+  #Preconditioned JFNK (default)
+  solve_type = 'PJFNK'
+
+  petsc_options = '-snes_view -ksp_view -snes_monitor -ksp_monitor -pc_gasm_print_subdomains -dm_view'
   petsc_options_iname = '-ksp_type  -pc_type    -pc_gasm_decomposition -pc_gasm_sub_pc_type'
   petsc_options_value = '  gmres     gasm                block                 lu'
 

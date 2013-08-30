@@ -406,7 +406,11 @@
 #  petsc_options_value = 'gmres lu'
 
 #  type = Transient
-  petsc_options = '-snes_mf_operator -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -ksp_view -snes_view'
+
+  #Preconditioned JFNK (default)
+  solve_type = 'PJFNK'
+
+  petsc_options = '-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -ksp_view -snes_view'
   petsc_options_iname = '-ksp_type -pc_type -sub_pc_type'
   petsc_options_value = 'gmres asm lu'
 

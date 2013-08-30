@@ -32,7 +32,11 @@
 
 [Executioner]
   type = Steady
-  petsc_options = '-snes_mf_operator -snes_monitor -ksp_monitor -pc_svd_monitor'
+
+  #Preconditioned JFNK (default)
+  solve_type = 'PJFNK'
+
+  petsc_options = '-snes_monitor -ksp_monitor -pc_svd_monitor'
   petsc_options_iname = '-pc_type'
   petsc_options_value = '     svd'
 []

@@ -286,7 +286,11 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes_mf_operator -snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -options_table -options_left -log_summary'
+
+  #Preconditioned JFNK (default)
+  solve_type = 'PJFNK'
+
+  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -options_table -options_left -log_summary'
   petsc_options_iname = '-ksp_type -ksp_pc_side -pc_type -pc_gamg_type  -mg_levels_ksp_max_it -mg_levels_ksp_type -mg_levels_pc_type  -pc_gamg_agg_nsmooths -pc_gamg_threshold -pc_gamg_coarse_eq_limit -mg_coarse_ksp_type -mg_coarse_pc_type -mg_coarse_redundant_pc_type'
   petsc_options_value = '    gmres         left     gamg           agg                      1           chebyshev             jacobi                      1               0.01                      10              preonly          redundant                           lu'
 

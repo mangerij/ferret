@@ -275,7 +275,11 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes_mf_operator -snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -options_table -options_left -log_summary'
+
+  #Preconditioned JFNK (default)
+  solve_type = 'PJFNK'
+
+  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -options_table -options_left -log_summary'
   petsc_options_iname = '-ksp_type -ksp_pc_side -pc_type -pc_asm_overlap  -sub_pc_type'
   petsc_options_value = '    gmres         left      asm               1            lu'
 
