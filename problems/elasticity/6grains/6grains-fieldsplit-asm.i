@@ -293,7 +293,9 @@
 
 [Executioner]
   type = Steady
-petsc_options = '-snes -snes_view -snes_monitor -dm_view -ksp_monitor -fieldsplit_disp_x_disp_y_ksp_monitor -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_ksp_monitor -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_ksp_monitor -fieldsplit_disp_z_ksp_monitor'
+
+solve_type = 'NEWTON'
+petsc_options = '-snes_view -snes_monitor -dm_view -ksp_monitor -fieldsplit_disp_x_disp_y_ksp_monitor -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_ksp_monitor -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_ksp_monitor -fieldsplit_disp_z_ksp_monitor'
 petsc_options_iname = '-ksp_max_it -pc_type    -pc_fieldsplit_decomposition -pc_fieldsplit_type -fieldsplit_disp_x_disp_y_pc_type  -fieldsplit_disp_x_disp_y_pc_fieldsplit_type    -fieldsplit_disp_x_disp_y_pc_fieldsplit_decomposition -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_pc_asm_blocks -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_sub_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_pc_asm_blocks -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_sub_pc_type -fieldsplit_disp_z_pc_type -fieldsplit_disp_z_pc_asm_blocks -fieldsplit_disp_z_sub_pc_type'
 
 petsc_options_value = '         1 fieldsplit     var:disp_x,disp_y;disp_z;            schur                     fieldsplit                                     schur                                                 var                                                   asm                                                               10                                                  lu                                                      asm                                                      10                                                       lu                          asm                              10                             lu'

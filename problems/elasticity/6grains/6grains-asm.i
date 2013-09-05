@@ -299,7 +299,9 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-snes -snes_view -ksp_view -snes_monitor -ksp_monitor -pc_asm_print_subdomains -dm_view'
+
+  solve_type = 'NEWTON'
+  petsc_options = '-snes_view -ksp_view -snes_monitor -ksp_monitor -pc_asm_print_subdomains -dm_view'
   petsc_options_iname = '-ksp_type  -pc_type    -pc_asm_decomposition -pc_asm_sub_pc_type'
   petsc_options_value = '  gmres     asm                block                 lu'
 
