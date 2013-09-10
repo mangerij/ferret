@@ -271,7 +271,9 @@
 [Executioner]
 
   type = Steady
-  petsc_options = '-ksp_monitor'
+
+  print_linear_residuals = true
+
   petsc_options_iname = '-ksp_type -pc_type'
   petsc_options_value = 'gmres lu'
 

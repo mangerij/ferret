@@ -549,7 +549,9 @@
   #Preconditioned JFNK (default)
   solve_type = 'PJFNK'
 
-  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -options_table -options_left -log_summary'
+
+  print_linear_residuals = true
+  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_converged_reason -options_table -options_left -log_summary'
   petsc_options_iname = '-ksp_type -ksp_gmres_restart -pc_type -pc_gamg_type  -mg_levels_ksp_max_it -mg_levels_ksp_type -mg_levels_pc_type  -pc_gamg_agg_nsmooths -pc_gamg_threshold -pc_gamg_coarse_eq_limit -mg_coarse_ksp_type -mg_coarse_pc_type -mg_coarse_redundant_pc_type'
   petsc_options_value = '    gmres               1000     gamg           agg                      1       chebyshev             jacobi                      1               0.01             10              preonly          redundant                           lu'
 

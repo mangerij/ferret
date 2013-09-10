@@ -36,7 +36,9 @@
   #Preconditioned JFNK (default)
   solve_type = 'PJFNK'
 
-  petsc_options = '-snes_monitor -ksp_monitor -pc_svd_monitor'
+
+  print_linear_residuals = true
+  petsc_options = '-snes_monitor -pc_svd_monitor'
   petsc_options_iname = '-pc_type'
   petsc_options_value = '     svd'
 []

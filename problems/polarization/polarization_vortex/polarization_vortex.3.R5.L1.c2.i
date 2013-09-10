@@ -57,7 +57,9 @@
   dt = 0.02
   start_time = -0.02
   end_time =  1.0
-  petsc_options = '-snes_monitor -ksp_monitor -pc_svd_monitor -options_monitor'
+
+  print_linear_residuals = true
+  petsc_options = '-snes_monitor -pc_svd_monitor -options_monitor'
   petsc_options_iname = '-ksp_type   -pc_type'
   petsc_options_value = '    gmres        ilu'
 []

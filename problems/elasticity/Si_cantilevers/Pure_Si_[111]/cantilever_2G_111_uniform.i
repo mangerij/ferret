@@ -271,7 +271,9 @@
   #Preconditioned JFNK (default)
   solve_type = 'PJFNK'
 
-  petsc_options = '-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason -ksp_view -snes_view'
+
+  print_linear_residuals = true
+  petsc_options = '-snes_monitor -snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
   petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type'
   petsc_options_value = 'gmres asm 20 lu'
 ##  petsc_options_iname = '-ksp_type -pc_type -sub_pc_type -pc_hypre_type'

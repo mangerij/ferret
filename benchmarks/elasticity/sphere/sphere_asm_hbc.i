@@ -514,7 +514,9 @@
 #  petsc_options_iname = `-ksp_type -pc_type -pc_asm_decomposition -pc_asm_sub_pc_sype`
 #  petsc_options_value = `gmres asm block lu'
 #  type = Transient
-  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_monitor -ksp_view -ksp_converged_reason'
+
+  print_linear_residuals = true
+  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_view -ksp_converged_reason'
   petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -ksp_max_it -snes_max_it'
   petsc_options_value = '    gmres     asm  16              1000        3'
 #  petsc_options = '-ksp_monitor -ksp_view -snes_view'
