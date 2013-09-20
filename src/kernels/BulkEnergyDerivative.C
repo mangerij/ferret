@@ -63,6 +63,7 @@ BulkEnergyDerivative::BulkEnergyDerivative(const std::string & name, InputParame
 Real
 BulkEnergyDerivative::computeQpResidual()
 {
+  //std::cout<<"==In BulkEnergyDerivative::computeQpResidual t:"<<_t<<" =====\n";
   const VariableValue& _polar_i= (_component==0)? _polar_x : (_component==1)? _polar_y: _polar_z;
   const VariableValue& _polar_j= (_component==0)? _polar_y : (_component==1)? _polar_z: _polar_x;
   const VariableValue& _polar_k= (_component==0)? _polar_z : (_component==1)? _polar_x: _polar_y;
@@ -79,6 +80,7 @@ BulkEnergyDerivative::computeQpResidual()
 Real
 BulkEnergyDerivative::computeQpJacobian()
 {
+  //std::cout<<"==========In BulkEnergyDerivative::computeQpJacobian==================\n";
   const VariableValue& _polar_i= (_component==0)? _polar_x : (_component==1)? _polar_y: _polar_z;
   const VariableValue& _polar_j= (_component==0)? _polar_y : (_component==1)? _polar_z: _polar_x;
   const VariableValue& _polar_k= (_component==0)? _polar_z : (_component==1)? _polar_x: _polar_y;
@@ -94,6 +96,7 @@ BulkEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real r;
   mooseAssert(jvar!=variable().index(),"Something wrong: OffDiag coupled to itself.");
+  //std::cout<<"==========In BulkEnergyDerivative::computeQpOffDiagJacobian==================\n";
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var){
     const VariableValue& _polar_i= (_component==0)? _polar_x : (_component==1)? _polar_y: _polar_z;
     const VariableValue& _polar_j= (jvar==_polar_x_var)? _polar_x : (jvar==_polar_y_var)? _polar_y: _polar_z;

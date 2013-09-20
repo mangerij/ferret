@@ -1,6 +1,6 @@
 [Mesh]
   file = poissonstripe_coarse.e
-  uniform_refine=1
+  uniform_refine=2
 []
 [Variables]
 #active='polar_x polar_y polar_z'
@@ -8,19 +8,19 @@
     #scaling=1e-3
     order = FIRST
     family = LAGRANGE
-    #block='interior'
+    block='interior'
   [../]
   [./polar_y]
     #scaling=1e-3
     order = FIRST
     family = LAGRANGE
-    #block='interior'
+    block='interior'
   [../]
   [./polar_z]
     #scaling=1e-3
     order = FIRST
     family = LAGRANGE
-    #block='interior'
+    block='interior'
   [../]
   [./potential]
     order=FIRST
@@ -42,141 +42,113 @@
   #   #block='interior'
   # [../]
 []
+[GlobalParams]
+   alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha11=-7.3e7
+   alpha111=2.6e8
+   alpha12=7.5e8
+   alpha112=6.1e8
+   alpha123=-3.7e9
+   G110=1.73e7
+   G11/G110=0.6
+   G12/G110=0.0
+   G44/G110=0.3
+   G44P/G110=0.3
+   permittivity=8.85e-12
+   polar_x=polar_x
+   polar_y=polar_y
+   polar_z=polar_z
+   potential=potential
+[]
 
 [Kernels]
- active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E'
+ #active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E polar_x_time polar_y_time polar_z_time potential_time'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
     component=0
-    polar_x = polar_x
-    polar_y = polar_y
-    polar_z = polar_z
-    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
-    alpha11=-7.3e7
-    alpha111=2.6e8
-    alpha12=7.5e8
-    alpha112=6.1e8
-    alpha123=-3.7e9
-    #alpha12=0.0
-    #alpha112=0.0
-    #alpha123=0.0
-    #block='interior'
-   # alpha112=0.0
-   # alpha123=0.0
+    implicit=false
   [../]
   [./bed_y]
     type = BulkEnergyDerivative
     variable = polar_y
     component=1
-    polar_x = polar_x
-    polar_y = polar_y
-    polar_z = polar_z
-    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
-    alpha11=-7.3e7
-    alpha111=2.6e8
-    alpha12=7.5e8
-    alpha112=6.1e8
-    alpha123=-3.7e9
-    #alpha12=0.0
-    #alpha112=0.0
-    #alpha123=0.0
-    #block='interior'
-   # alpha112=0.0
-   # alpha123=0.0
-
+    implicit=false
   [../]
   [./bed_z]
     type = BulkEnergyDerivative
     variable = polar_z
     component=2
-    polar_x = polar_x
-    polar_y = polar_y
-    polar_z = polar_z
-    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
-    alpha11=-7.3e7
-    alpha111=2.6e8
-    alpha12=7.5e8
-    alpha112=6.1e8
-    alpha123=-3.7e9
-    #alpha12=0.0
-    #alpha112=0.0
-    #alpha123=0.0
-    #block='interior'
-   # alpha112=0.0
-   # alpha123=0.0
+    implicit=false
   [../]
   [./walled_x]
      type=WallEnergyDerivative
      variable=polar_x
      component=0
-     polar_x=polar_x
-     polar_y=polar_y
-     polar_z=polar_z
-     G110=1.73e7
-     G11/G110=0.6
-     G12/G110=0.0
-     G44/G110=0.3
-     G44P/G110=0.3
+     implicit=false
   [../]
   [./walled_y]
      type=WallEnergyDerivative
      variable=polar_y
      component=1
-     polar_x=polar_x
-     polar_y=polar_y
-     polar_z=polar_z
-     G110=1.73e7
-     G11/G110=0.6
-     G12/G110=0.0
-     G44/G110=0.3
-     G44P/G110=0.3
+     implicit=false
   [../]
   [./walled_z]
      type=WallEnergyDerivative
      variable=polar_z
      component=2
-     polar_x=polar_x
-     polar_y=polar_y
-     polar_z=polar_z
-     G110=1.73e7
-     G11/G110=0.6
-     G12/G110=0.0
-     G44/G110=0.3
-     G44P/G110=0.3
+     implicit=false
   [../]
   [./polar_electric_E]
      type=PolarElectricE
      variable=potential
-     polar_x = polar_x
-     polar_y = polar_y
-     polar_z = polar_z
-     permittivity=8.85e-12
      block='interior'
+     implicit=false
   [../]
   [./diffusion_E]
      type=ElectricStatics
      variable=potential
      permittivity=8.85e-12
      block='exterior interior'
+     implicit=false
   [../]
   [./polar_electric_px]
      type=PolarElectricP
      variable=polar_x
      component=0
-     potential=potential
+     implicit=false
   [../]
   [./polar_electric_py]
      type=PolarElectricP
      variable=polar_y
      component=1
-     potential=potential
+     implicit=false
   [../]
   [./polar_electric_pz]
      type=PolarElectricP
      variable=polar_z
      component=2
-     potential=potential
+     implicit=false
+  [../]
+  [./polar_x_time]
+     type=TimeDerivative
+     variable=polar_x
+     implicit=true
+  [../]
+  [./polar_y_time]
+     type=TimeDerivative
+     variable=polar_y
+     implicit=true
+  [../]
+  [./polar_z_time]
+     type=TimeDerivative
+     variable=polar_z
+     implicit=true
+  [../]
+  [./potential_time]
+     type=TimeDerivative
+     variable=potential
+     implicit=true
   [../]
 []
 
@@ -184,8 +156,9 @@
   #active='polar_x_function_ic polar_y_function_ic polar_z_function_ic'
   #active='polar_x_constic polar_y_constic polar_z_constic'
   #active='polar_x_function_ic_k2 polar_y_function_ic_k2 polar_z_function_ic_k2'
-  active='polar_x_adhoc polar_y_adhoc polar_z_adhoc'
+  #active='polar_x_adhoc polar_y_adhoc polar_z_adhoc'
   #active='polar_x polar_y polar_z'
+  active='polar_x_cont polar_y_cont polar_z_cont potential_cont'
   [./polar_x]
      type=SphereIC
      variable=polar_x
@@ -273,6 +246,26 @@
     value0=1
     value1=0
   [../]
+  [./potential_cont]
+    type=FunctionIC
+    variable=potential
+    function=potential_cont
+  [../]
+  [./polar_x_cont]
+    type=FunctionIC
+    variable=polar_x
+    function=polar_x_cont
+  [../]
+  [./polar_y_cont]
+    type=FunctionIC
+    variable=polar_y
+    function=polar_y_cont
+  [../]
+  [./polar_z_cont]
+    type=FunctionIC
+    variable=polar_z
+    function=polar_z_cont
+  [../]
 []
 
 [BCs]
@@ -282,12 +275,14 @@
     variable = potential
     boundary = 'upz'
     value = 1.0
+    #implicit=false
   [../]
   [./potential_downz]
     type = DirichletBC
     variable = potential
     boundary = 'downz'
     value = -1.0
+    #implicit=false
   [../]
   [./Periodic]
     #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
@@ -296,48 +291,56 @@
        primary = 'downx'
        secondary = 'upx'
        translation = '1 0 0'
+       #implicit=false
     [../]
     [./polar_x_x]
        variable = polar_x
        primary = 'downx'
        secondary = 'upx'
        translation = '1 0 0'
+       #implicit=false
     [../]
     [./polar_y_x]
        variable = polar_y
        primary = 'downx'
        secondary = 'upx'
        translation = '1 0 0'
+       #implicit=false
     [../]
     [./polar_z_x]
        variable = polar_z
        primary = 'downx'
        secondary = 'upx'
        translation = '1 0 0'
+       #implicit=false
     [../]
     [./potential_y]
        variable = potential
        primary = 'downy'
        secondary ='upy'
        translation = '0 1 0'
+       #implicit=false
     [../]
     [./polar_x_y]
        variable = polar_x
        primary = 'downy'
        secondary ='upy'
        translation = '0 1 0'
+       #implicit=false
     [../]
     [./polar_y_y]
        variable = polar_y
        primary = 'downy'
        secondary ='upy'
        translation = '0 1 0'
+       #implicit=false
     [../]
     [./polar_z_y]
        variable = polar_z
        primary = 'downy'
        secondary ='upy'
        translation = '0 1 0'
+       #implicit=false
     [../]
   [../]
 []
@@ -355,113 +358,115 @@
 []
 
 [Executioner]
-  type = Steady
+  #type = Steady
+  type=Transient
+  scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  dt=1e-12
   nl_max_its=1000
+  num_steps=400
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
   petsc_options='-snes_monitor -snes_view -snes_converged_reason -ksp_monitor_singular_value -ksp_monitor_short'
   petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type'
-  petsc_options_value='10000000         1e-12      100000000       preonly    1000            lu'
+  petsc_options_value='10000000         1e-8      100000000       preonly    1000            lu'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []
 [Functions]
   [./radial]
-      type=SolutionFunction
-      file_type=exodusII
-      mesh=initvalues_radial_1.e       #file name like: in.e
-      variable=radial   #the variable in the file to be read in
-      timestep=1   #the timestep to be read in.
+  type=SolutionFunction
+  solution=random
+  from_variable=radial
   [../]
   [./azimuthal]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1.e       #file name like: in.e
-     variable=azimuthal_angle   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  type=SolutionFunction
+  solution=random
+  from_variable=azimuthal_angle   #the variable in the file to be read in
   [../]
   [./polar]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1.e       #file name like: in.e
-     variable=polar_angle   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  type=SolutionFunction
+  solution=random
+  from_variable=polar_angle   #the variable in the file to be read in
   [../]
   [./polar_x]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1.e       #file name like: in.e
-     variable=polar_x   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  type=SphereToCartFunc
+  radial_function=radial
+  polar_function=polar
+  azimuthal_function=azimuthal
+  index=0
   [../]
   [./polar_y]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1.e       #file name like: in.e
-     variable=polar_y   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  type=SphereToCartFunc
+  radial_function=radial
+  polar_function=polar
+  azimuthal_function=azimuthal
+  index=1
   [../]
   [./polar_z]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1.e       #file name like: in.e
-     variable=polar_z   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  type=SphereToCartFunc
+  radial_function=radial
+  polar_function=polar
+  azimuthal_function=azimuthal
+  index=2
   [../]
-  [./polar_x_k2]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1_level2.e       #file name like: in.e
-     variable=polar_x   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  [./polar_x_cont]
+  type=SolutionFunction
+  solution=continuation
+  from_variable=polar_x
   [../]
-  [./polar_y_k2]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1_level2.e       #file name like: in.e
-     variable=polar_y   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  [./polar_y_cont]
+  type=SolutionFunction
+  solution=continuation
+  from_variable=polar_y
   [../]
-  [./polar_z_k2]
-     type=SolutionFunction
-     file_type=exodusII
-     mesh=initvalues_radial_1_level2.e       #file name like: in.e
-     variable=polar_z   #the variable in the file to be read in
-     timestep=1   #the timestep to be read in.
+  [./polar_z_cont]
+  type=SolutionFunction
+  solution=continuation
+  from_variable=polar_z
+  [../]
+  [./potential_cont]
+  type=SolutionFunction
+  solution=continuation
+  from_variable=potential
+  [../]
+[]
+
+[UserObjects]
+  [./level_1]
+    type=SolutionUserObject
+    mesh=initvalues_radial_1.e
+    variables='radial azimuthal_angle polar_angle polar_x polar_y polar_z'
+    timestep=1
+  [../]
+  [./level_2]
+    type=SolutionUserObject
+    mesh=initvalues_radial_1_level2.e
+    variables='radial azimuthal_angle polar_angle polar_x polar_y polar_z'
+    timestep=1
+  [../]
+  [./random]
+    type=SolutionUserObject
+    mesh=initvalues_random.e
+    variables='radial azimuthal_angle polar_angle'
+    timestep=1
+  [../]
+  [./continuation]
+    type=SolutionUserObject
+    mesh=ex_all_random_varG_time_out.e
+    variables='potential polar_x polar_y polar_z'
+    timestep=400
   [../]
 []
 
 [Postprocessors]
   [./bulk_energy]
     type=BulkEnergy
-    polar_x = polar_x
-    polar_y = polar_y
-    polar_z = polar_z
-    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
-    alpha11=-7.3e7
-    alpha111=2.6e8
-    alpha12=7.5e8
-    alpha112=6.1e8
-    alpha123=-3.7e9
    [../]
    [./wall_energy]
     type=WallEnergy
-    polar_x = polar_x
-    polar_y = polar_y
-    polar_z = polar_z
-    G110=1.73e7
-    G11/G110=0.6
-    G12/G110=0.0
-    G44/G110=0.3
-    G44P/G110=0.3
    [../]
    [./electric_energy]
     type=ElectricEnergy
-    polar_x = polar_x
-    polar_y = polar_y
-    polar_z = polar_z
-    potential=potential
-    permittivity=8.85e-12
     [../]
     [./total_energy]
     type=TotalEnergy

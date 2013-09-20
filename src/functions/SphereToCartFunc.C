@@ -9,7 +9,7 @@
  */
 
 #include "SphereToCartFunc.h"
-
+#include<cmath>
 template<>
 InputParameters validParams<SphereToCartFunc>()
 {

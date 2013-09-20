@@ -1,23 +1,34 @@
 [Mesh]
   file = poissonstripe_coarse.e
-  uniform_refine=0
+  #uniform_refine=1
 []
+# [Mesh]
+#   #file = mug.e
+#   type=GeneratedMesh
+#   dim=3
+#   nx=16
+#   ny=16
+#   nz=16
+#   xmin=0.0
+#   xmax=1.0
+#   ymin=0.0
+#   ymax=1.0
+#   zmin=0.0
+#   zmax=1.0
+#   #uniform_refine=1
+# []
 [Variables]
-#active='polar_x polar_y polar_z'
   [./polar_x]
-    #scaling=1e-3
     order = FIRST
     family = LAGRANGE
     block='interior'
   [../]
   [./polar_y]
-    #scaling=1e-3
     order = FIRST
     family = LAGRANGE
     block='interior'
   [../]
   [./polar_z]
-    #scaling=1e-3
     order = FIRST
     family = LAGRANGE
     block='interior'
@@ -44,7 +55,6 @@
 []
 
 [Kernels]
- active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -172,7 +182,7 @@
      component=1
      potential=potential
   [../]
-  [./polar_electric_pz]
+  [./polar_electric_px]
      type=PolarElectricP
      variable=polar_z
      component=2
@@ -181,89 +191,46 @@
 []
 
 [ICs]
-  active='polar_x_sic polar_y_sic polar_z_sic'
-  [./polar_x_sic]
-     type=SinIC
-     variable=polar_x
-     amplitude=1
-     wave_length_x=1.0
-     wave_length_y=1.0
-     wave_length_z=8
-     phrase_x=0
-     phrase_y=0
-     phrase_z=2
-     vertical_shift=0
-  [../]
-  [./polar_y_sic]
-     type=SinIC
-     variable=polar_y
-     amplitude=1
-     wave_length_x=1.0
-     wave_length_y=1.0
-     wave_length_z=8
-     phrase_x=0
-     phrase_y=0
-     phrase_z=2
-     vertical_shift=0
-  [../]
-  [./polar_z_sic]
-     type=SinIC
-     variable=polar_z
-     amplitude=1
-     wave_length_x=1.0
-     wave_length_y=1.0
-     wave_length_z=8
-     phrase_x=0
-     phrase_y=0
-     phrase_z=2
-     vertical_shift=0
-  [../]
-
-  [./polar_x_pic]
-    #type=RandomIC
+  [./polar_x]
+    type=RandomIC
     #type=ConstantIC
-    type=PerturbedIC
+    #type=PerturbedIC
     variable=polar_x
-    mean=1.0
-    factor=0.1
-    #value=0.0
+    #mean=0.0
+    #factor=0.1
   [../]
-  [./polar_y_pic]
+  [./polar_y]
     #type=ConstantIC
-    #type=RandomIC
-    type=PerturbedIC
+    type=RandomIC
+    #type=PerturbedIC
     variable=polar_y
-    mean=1.0
-    factor=0.1
-    #value=0.0
+    #mean=0.0
+    #factor=0.1
   [../]
-  [./polar_z_pic]
+  [./polar_z]
     #type=ConstantIC
-    #type=RandomIC
-    type=PerturbedIC
+    type=RandomIC
+    #type=PerturbedIC
     variable=polar_z
-    mean=1.0
-    factor=0.1
-    #value=1.0
+    #mean=1.0
+    #factor=0.1
   [../]
 []
 
 [BCs]
- # active ='Periodic'
   [./potential_upz]
     type = DirichletBC
     variable = potential
     boundary = 'upz'
-    value = 1.0
+    value = 1e7.0
   [../]
   [./potential_downz]
     type = DirichletBC
     variable = potential
     boundary = 'downz'
-    value = -1.0
+    value = -1e7.0
   [../]
   [./Periodic]
-    #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
     [./potential_x]
        variable = potential
        primary = 'downx'
@@ -320,42 +287,41 @@
      #off_diag_row='var_name'
      #off_diag_column='var_name'
      full=true   #to use every off diagonal block
-     #petsc_options='snes_mf_operator'
+     #petsc_options='snes_mf'
      #petsc_options_iname = '-pc_type -mat_fd_coloring_err -mat_fd_type'
      #petsc_options_value = 'lu       1e-6                 ds'
    [../]
 []
-# [Postprocessors]
-#   [./BulkEnergy]
-#    type=BulkEnergy
-#    polar_x = polar_x
-#    polar_y = polar_y
-#    polar_z = polar_z
-#    alpha1=3.8e5  # 3.8(T-479)*10^5 C^{-2}m^2
-#    alpha11=-7.3e7
-#    alpha12=7.5e8
-#    alpha111=2.6e8
-#    alpha112=6.1e8
-#    alpha123=-3.7e9
-#   [../]
-# []
+[Postprocessors]
+  [./BulkEnergy]
+   type=BulkEnergy
+   polar_x = polar_x
+   polar_y = polar_y
+   polar_z = polar_z
+   alpha1=3.8e5  # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha11=-7.3e7
+   alpha12=7.5e8
+   alpha111=2.6e8
+   alpha112=6.1e8
+   alpha123=-3.7e9
+  [../]
+[]
 
 [Executioner]
   type = Steady
   nl_max_its=1000
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
-  petsc_options='-snes_monitor -snes_view -snes_converged_reason -ksp_monitor_singular_value -ksp_monitor_short'
-  petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart'
-  petsc_options_value='10000000         1e-7      100000000       gmres    1000'
+  petsc_options='-snes_monitor -snes_view -snes_converged_reason'
+  #petsc_options_iname='-snes_linearsearch_type -snes_rtol'
+  #petsc_options_value='basic                   1e-16'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []
 
 [Output]
-  file_base = out
-  output_initial=1
+  #file_base =
   #interval = 1
   exodus = true
-  #perf_log = true
+  perf_log = true
 []

@@ -2,10 +2,10 @@
  * @file   BulkEnergy.h
  * @author S. Gu <sgu@anl.gov>
  * @date   Tue Jun  4 15:05:42 2013
- * 
- * @brief  
- * 
- * 
+ *
+ * @brief
+ *
+ *
  */
 
 
@@ -22,17 +22,17 @@ template<>
 InputParameters validParams<BulkEnergy>();
 
 //TODO: change the base class!
-class BulkEnergy : public ElementIntegralPostprocessor  
+class BulkEnergy : public ElementIntegralPostprocessor
 {
 public:
   BulkEnergy(const std::string & name, InputParameters parameters);
-  const VariableValue& _polar_x;
-  const VariableValue& _polar_y;
-  const VariableValue& _polar_z;
-  const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112,_alpha123; 
 
 protected:
   virtual Real computeQpIntegral();
+  const VariableValue& _polar_x;
+  const VariableValue& _polar_y;
+  const VariableValue& _polar_z;
+  const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112,_alpha123;
 };
 
 #endif

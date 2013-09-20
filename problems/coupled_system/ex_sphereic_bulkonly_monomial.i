@@ -1,50 +1,50 @@
 [Mesh]
   file = poissonstripe_coarse.e
-  uniform_refine=0
+  uniform_refine=1
 []
 [Variables]
 #active='polar_x polar_y polar_z'
-  [./polar_x]
-    #scaling=1e-3
-    order = FIRST
-    family = LAGRANGE
-    block='interior'
-  [../]
-  [./polar_y]
-    #scaling=1e-3
-    order = FIRST
-    family = LAGRANGE
-    block='interior'
-  [../]
-  [./polar_z]
-    #scaling=1e-3
-    order = FIRST
-    family = LAGRANGE
-    block='interior'
-  [../]
+  # [./polar_x]
+  #   #scaling=1e-3
+  #   order = FIRST
+  #   family = LAGRANGE
+  #   block='interior'
+  # [../]
+  # [./polar_y]
+  #   #scaling=1e-3
+  #   order = FIRST
+  #   family = LAGRANGE
+  #   block='interior'
+  # [../]
+  # [./polar_z]
+  #   #scaling=1e-3
+  #   order = FIRST
+  #   family = LAGRANGE
+  #   block='interior'
+  # [../]
   [./potential]
     order=FIRST
     family = LAGRANGE
   [../]
-  # [./polar_x]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  #   #block='interior'
-  # [../]
-  # [./polar_y]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  #   #block='interior'
-  # [../]
-  # [./polar_z]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  #   #block='interior'
-  # [../]
+  [./polar_x]
+    order = CONSTANT
+    family = MONOMIAL
+    #block='interior'
+  [../]
+  [./polar_y]
+    order = CONSTANT
+    family = MONOMIAL
+    #block='interior'
+  [../]
+  [./polar_z]
+    order = CONSTANT
+    family = MONOMIAL
+    #block='interior'
+  [../]
 []
 
 [Kernels]
- active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E'
+ active='bed_x bed_y bed_z diffusion_E'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -181,75 +181,50 @@
 []
 
 [ICs]
-  active='polar_x_sic polar_y_sic polar_z_sic'
-  [./polar_x_sic]
-     type=SinIC
+  active='polar_x_constic polar_y_constic polar_z_constic'
+  [./polar_x]
+     type=SphereIC
      variable=polar_x
-     amplitude=1
-     wave_length_x=1.0
-     wave_length_y=1.0
-     wave_length_z=8
-     phrase_x=0
-     phrase_y=0
-     phrase_z=2
-     vertical_shift=0
+     radial_function=radial
+     polar_function=polar
+     azimuthal_function=azimuthal
+     index=0
   [../]
-  [./polar_y_sic]
-     type=SinIC
+  [./polar_y]
+     type=SphereIC
      variable=polar_y
-     amplitude=1
-     wave_length_x=1.0
-     wave_length_y=1.0
-     wave_length_z=8
-     phrase_x=0
-     phrase_y=0
-     phrase_z=2
-     vertical_shift=0
+     radial_function=radial
+     polar_function=polar
+     azimuthal_function=azimuthal
+     index=1
   [../]
-  [./polar_z_sic]
-     type=SinIC
+  [./polar_z]
+     type=SphereIC
      variable=polar_z
-     amplitude=1
-     wave_length_x=1.0
-     wave_length_y=1.0
-     wave_length_z=8
-     phrase_x=0
-     phrase_y=0
-     phrase_z=2
-     vertical_shift=0
+     radial_function=radial
+     polar_function=polar
+     azimuthal_function=azimuthal
+     index=2
   [../]
-
-  [./polar_x_pic]
-    #type=RandomIC
-    #type=ConstantIC
-    type=PerturbedIC
-    variable=polar_x
-    mean=1.0
-    factor=0.1
-    #value=0.0
+  [./polar_x_constic]
+     type=ConstantIC
+     variable=polar_x
+     value=1.0
   [../]
-  [./polar_y_pic]
-    #type=ConstantIC
-    #type=RandomIC
-    type=PerturbedIC
-    variable=polar_y
-    mean=1.0
-    factor=0.1
-    #value=0.0
+  [./polar_y_constic]
+     type=ConstantIC
+     variable=polar_y
+     value=0.0
   [../]
-  [./polar_z_pic]
-    #type=ConstantIC
-    #type=RandomIC
-    type=PerturbedIC
-    variable=polar_z
-    mean=1.0
-    factor=0.1
-    #value=1.0
+  [./polar_z_constic]
+     type=ConstantIC
+     variable=polar_z
+     value=0.0
   [../]
 []
 
 [BCs]
- # active ='Periodic'
+ active ='potential_upz potential_downz'
   [./potential_upz]
     type = DirichletBC
     variable = potential
@@ -320,25 +295,12 @@
      #off_diag_row='var_name'
      #off_diag_column='var_name'
      full=true   #to use every off diagonal block
+     pc_side=left
      #petsc_options='snes_mf_operator'
      #petsc_options_iname = '-pc_type -mat_fd_coloring_err -mat_fd_type'
      #petsc_options_value = 'lu       1e-6                 ds'
    [../]
 []
-# [Postprocessors]
-#   [./BulkEnergy]
-#    type=BulkEnergy
-#    polar_x = polar_x
-#    polar_y = polar_y
-#    polar_z = polar_z
-#    alpha1=3.8e5  # 3.8(T-479)*10^5 C^{-2}m^2
-#    alpha11=-7.3e7
-#    alpha12=7.5e8
-#    alpha111=2.6e8
-#    alpha112=6.1e8
-#    alpha123=-3.7e9
-#   [../]
-# []
 
 [Executioner]
   type = Steady
@@ -346,16 +308,38 @@
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
   petsc_options='-snes_monitor -snes_view -snes_converged_reason -ksp_monitor_singular_value -ksp_monitor_short'
-  petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart'
-  petsc_options_value='10000000         1e-7      100000000       gmres    1000'
+  petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type'
+  petsc_options_value='10000000         1e-10      100000000       preonly    1000            lu'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []
-
+[Functions]
+  [./radial]
+      type=SolutionFunction
+      file_type=exodusII
+      mesh=initvalues.e       #file name like: in.e
+      variable=radial   #the variable in the file to be read in
+      timestep=1   #the timestep to be read in.
+  [../]
+  [./azimuthal]
+     type=SolutionFunction
+     file_type=exodusII
+     mesh=initvalues.e       #file name like: in.e
+     variable=azimuthal_angle   #the variable in the file to be read in
+     timestep=1   #the timestep to be read in.
+  [../]
+  [./polar]
+     type=SolutionFunction
+     file_type=exodusII
+     mesh=initvalues.e       #file name like: in.e
+     variable=polar_angle   #the variable in the file to be read in
+     timestep=1   #the timestep to be read in.
+  [../]
+[]
 [Output]
-  file_base = out
+  #file_base = out
   output_initial=1
   #interval = 1
   exodus = true
-  #perf_log = true
+  perf_log = true
 []

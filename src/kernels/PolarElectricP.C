@@ -2,10 +2,10 @@
  * @file   PolarElectricP.C
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 11:59:56 2013
- * 
+ *
  * @brief  PolarElectric interaction term-- Polar part;
- * 
- * 
+ *
+ *
  */
 
 #include "PolarElectricP.h"
@@ -35,7 +35,7 @@ PolarElectricP::PolarElectricP(const std::string & name, InputParameters paramet
 Real
 PolarElectricP::computeQpResidual()
 {
-  return -0.5*_potential_grad[_qp](_component)*_test[_i][_qp];
+  return 0.5*_potential_grad[_qp](_component)*_test[_i][_qp];
 }
 
 Real
@@ -47,7 +47,7 @@ PolarElectricP::computeQpJacobian()
 Real
 PolarElectricP::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if( jvar == coupled("potential") ) 
-     return -0.5*_grad_phi[_j][_qp](_component)*_test[_i][_qp];
+  if( jvar == coupled("potential") )
+     return 0.5*_grad_phi[_j][_qp](_component)*_test[_i][_qp];
   else return 0.0;
 }

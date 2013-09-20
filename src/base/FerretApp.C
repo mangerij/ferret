@@ -19,6 +19,9 @@
 #include "PolarElectricP.h"
 #include "PolarElectricE.h"
 #include "BulkEnergy.h"
+#include "WallEnergy.h"
+#include "ElectricEnergy.h"
+#include "TotalEnergy.h"
 #include "PolarMaterial.h"
 #include "ElectricStatics.h"
 #include "PerturbedIC.h"
@@ -40,13 +43,13 @@ FerretApp::FerretApp(const std::string & name, InputParameters parameters) :
     MooseApp(name, parameters)
 {
   srand(libMesh::processor_id());
-  
+
   Moose::registerObjects(_factory);
   Moose::associateSyntax(_syntax, _action_factory);
-  
+
   ElkApp::registerObjects(_factory);
   ElkApp::associateSyntax(_syntax, _action_factory);
-  
+
   FerretApp::registerObjects(_factory);
   FerretApp::associateSyntax(_syntax, _action_factory);
 }
@@ -78,6 +81,9 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricP);
   registerKernel(ElectricStatics);
   registerPostprocessor(BulkEnergy);
+  registerPostprocessor(WallEnergy);
+  registerPostprocessor(ElectricEnergy);
+  registerPostprocessor(TotalEnergy);
   registerMaterial(PolarMaterial);
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);

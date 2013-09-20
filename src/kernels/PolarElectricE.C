@@ -2,10 +2,10 @@
  * @file   PolarElectricE.C
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 11:59:56 2013
- * 
- * @brief  
- * 
- * 
+ *
+ * @brief
+ *
+ *
  */
 
 #include "PolarElectricE.h"
@@ -42,19 +42,19 @@ PolarElectricE::PolarElectricE(const std::string & name, InputParameters paramet
 Real
 PolarElectricE::computeQpResidual()
 {
-  return -0.5*(_polar_x[_qp]*_grad_test[_i][_qp](0)+_polar_y[_qp]*_grad_test[_i][_qp](1)+_polar_z[_qp]*_grad_test[_i][_qp](2));
+  return 0.5*(_polar_x[_qp]*_grad_test[_i][_qp](0)+_polar_y[_qp]*_grad_test[_i][_qp](1)+_polar_z[_qp]*_grad_test[_i][_qp](2));
 }
 
 Real
 PolarElectricE::computeQpJacobian()
 {
-  return 0.0; 
+  return 0.0;
 }
 
 Real
 PolarElectricE::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  unsigned int component; 
+  unsigned int component;
   if (jvar == _polar_x_var)
     component = 0;
   else if (jvar == _polar_y_var)
@@ -62,9 +62,6 @@ PolarElectricE::computeQpOffDiagJacobian(unsigned int jvar)
   else if (jvar == _polar_z_var)
     component = 2;
   else
-    return 0.0; 
-  
-  return -0.5*_grad_test[_i][_qp](component)*_phi[_j][_qp];
+    return 0.0;
+  return 0.5*_grad_test[_i][_qp](component)*_phi[_j][_qp];
 }
-
-
