@@ -11,7 +11,8 @@
 #ifndef TOTALENERGY_H
 #define TOTALENERGY_H
 
-#include "GeneralPostprocessor.h"
+//TODO: include the base header
+#include "ElementIntegralPostprocessor.h"
 
 //Forward Declarations
 class TotalEnergy;
