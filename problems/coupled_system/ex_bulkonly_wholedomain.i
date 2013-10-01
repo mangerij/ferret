@@ -205,7 +205,7 @@
   nl_max_its=1000
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
-  petsc_options='-snes_monitor -snes_view -snes_converged_reason -ksp_monitor_singular_value -ksp_monitor_short'
+  petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor_singular_value -ksp_monitor_short'
   petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type'
   petsc_options_value='10000000         1e-8      100000000       preonly    1000            lu'
   #petsc_options_iname='-snes_rtol'
