@@ -1,36 +1,47 @@
 [Mesh]
-  #file = mug.e
-  type=GeneratedMesh
-  dim=3
-  nx=1
-  ny=1
-  nz=1
-  xmin=0.0
-  xmax=1.0
-  ymin=0.0
-  ymax=1.0
-  zmin=0.0
-  zmax=1.0
-  #uniform_refine=1
+  file = poissonstripe_coarse.e
+  #uniform_refine=2
 []
 
 [Variables]
 #active='polar_x polar_y polar_z'
-   [./polar_x]
-     order = CONSTANT
-     family = MONOMIAL
-     #block='interior'
-   [../]
-   [./polar_y]
-     order = CONSTANT
-     family = MONOMIAL
-     #block='interior'
-   [../]
-   [./polar_z]
-     order = CONSTANT
-     family = MONOMIAL
-     #block='interior'
-   [../]
+  [./polar_x]
+    #scaling=1e-3
+    order = FIRST
+    family = LAGRANGE
+  #  block='interior'
+  [../]
+  [./polar_y]
+    #scaling=1e-3
+    order = FIRST
+    family = LAGRANGE
+   # block='interior'
+  [../]
+  [./polar_z]
+    #scaling=1e-3
+    order = FIRST
+    family = LAGRANGE
+   # block='interior'
+  [../]
+  # [./potential]
+  #   order=FIRST
+  #   family = LAGRANGE
+  # [../]
+  # [./polar_x]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  #   #block='interior'
+  # [../]
+  # [./polar_y]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  #   #block='interior'
+  # [../]
+  # [./polar_z]
+  #   order = CONSTANT
+  #   family = MONOMIAL
+  #   #block='interior'
+  # [../]
 []
 
 [GlobalParams]
@@ -104,20 +115,113 @@
   #active='polar_x_function_ic_k2 polar_y_function_ic_k2 polar_z_function_ic_k2'
   #active='polar_x_adhoc polar_y_adhoc polar_z_adhoc'
   #active='polar_x polar_y polar_z'
+  #active='polar_x_cont polar_y_cont polar_z_cont potential_cont'
+  [./polar_x]
+     type=SphereIC
+     variable=polar_x
+     radial_function=radial
+     polar_function=polar
+     azimuthal_function=azimuthal
+     index=0
+  [../]
+  [./polar_y]
+     type=SphereIC
+     variable=polar_y
+     radial_function=radial
+     polar_function=polar
+     azimuthal_function=azimuthal
+     index=1
+  [../]
+  [./polar_z]
+     type=SphereIC
+     variable=polar_z
+     radial_function=radial
+     polar_function=polar
+     azimuthal_function=azimuthal
+     index=2
+  [../]
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value=0.0
+     value=0.1
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value=0.0
+     value=0.1
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
-     value=1.0
+     value=0.8
+  [../]
+  [./polar_x_function_ic]
+    type=FunctionIC
+    variable=polar_x
+    function=polar_x
+  [../]
+  [./polar_y_function_ic]
+    type=FunctionIC
+    variable=polar_y
+    function=polar_y
+  [../]
+  [./polar_z_function_ic]
+    type=FunctionIC
+    variable=polar_z
+    function=polar_z
+  [../]
+   [./polar_x_function_ic_k2]
+    type=FunctionIC
+    variable=polar_x
+    function=polar_x_k2
+  [../]
+  [./polar_y_function_ic_k2]
+    type=FunctionIC
+    variable=polar_y
+    function=polar_y_k2
+  [../]
+  [./polar_z_function_ic_k2]
+    type=FunctionIC
+    variable=polar_z
+    function=polar_z_k2
+  [../]
+  [./polar_x_adhoc]
+    type=AdhocConstIC
+    variable=polar_x
+    value0=0
+    value1=1
+  [../]
+  [./polar_y_adhoc]
+    type=AdhocConstIC
+    variable=polar_y
+    value0=0
+    value1=0
+  [../]
+  [./polar_z_adhoc]
+    type=AdhocConstIC
+    variable=polar_z
+    value0=1
+    value1=0
+  [../]
+  [./potential_cont]
+    type=FunctionIC
+    variable=potential
+    function=potential_cont
+  [../]
+  [./polar_x_cont]
+    type=FunctionIC
+    variable=polar_x
+    function=polar_x_cont
+  [../]
+  [./polar_y_cont]
+    type=FunctionIC
+    variable=polar_y
+    function=polar_y_cont
+  [../]
+  [./polar_z_cont]
+    type=FunctionIC
+    variable=polar_z
+    function=polar_z_cont
   [../]
 []
 

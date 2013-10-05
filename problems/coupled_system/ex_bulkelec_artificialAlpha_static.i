@@ -2,6 +2,29 @@
   file = poissonstripe_coarse.e
   uniform_refine=2
 []
+# [Mesh]
+#   #file = mug.e
+#   type=GeneratedMesh
+#   dim=3
+#   nx=1
+#   ny=1
+#   nz=1
+#   xmin=0.0
+#   xmax=1.0
+#   ymin=0.0
+#   ymax=1.0
+#   #uniform_refine=1
+
+# []
+
+# [MeshModifiers]
+#  [./scale]
+#     type=Transform
+#     transform=SCALE
+#     vector_value='1e-7 1e-7 1e-7'
+#  [../]
+# []
+
 [Variables]
 #active='polar_x polar_y polar_z'
   [./polar_x]
@@ -43,13 +66,22 @@
   # [../]
 []
 [GlobalParams]
-   alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
-   alpha11=-7.3e7
-   alpha111=2.6e8
-   alpha12=7.5e8
-   alpha112=6.1e8
-   alpha123=-3.7e9
-   G110=1.73e4
+   #len_scale=1e-7
+   #alpha1=-3.4e8 # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha1=-2.0
+   #alpha1=0 # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha11=1.0
+   #alpha11=-7.3e7
+   #alpha111=2.6e8
+   alpha111=0
+   #alpha12=7.5e8
+   alpha12=2.0
+   #alpha112=6.1e8
+   alpha112=0
+   #alpha123=-3.7e9
+   alpha123=0
+   #G110=1.73e4
+   G110=0
    G11/G110=0.6
    G12/G110=0.0
    G44/G110=0.3
@@ -63,7 +95,8 @@
 
 [Kernels]
  #active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E polar_x_time polar_y_time polar_z_time potential_time'
-  active='diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time'
+ #active='bed_x bed_y bed_z diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz'
+ active='bed_x bed_y bed_z  diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -122,19 +155,23 @@
   [./polar_x_time]
      type=TimeDerivative
      variable=polar_x
+     implicit=true
   [../]
   [./polar_y_time]
      type=TimeDerivative
      variable=polar_y
+     implicit=true
   [../]
   [./polar_z_time]
      type=TimeDerivative
      variable=polar_z
+     implicit=true
   [../]
-  # [./potential_time]
-  #    type=TimeDerivative
-  #    variable=potential
-  # [../]
+  [./potential_time]
+     type=TimeDerivative
+     variable=potential
+     implicit=true
+  [../]
 []
 
 [ICs]
@@ -171,17 +208,17 @@
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value=0.0
+     value=0.1
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value=0.0
+     value=0.1
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
-     value=1.0
+     value=0.8
   [../]
   [./polar_x_function_ic]
     type=FunctionIC
@@ -242,7 +279,7 @@
     function=polar_x_cont
   [../]
   [./polar_y_cont]
-,    type=FunctionIC
+    type=FunctionIC
     variable=polar_y
     function=polar_y_cont
   [../]
@@ -255,11 +292,12 @@
 
 [BCs]
  # active ='Periodic'
+ #active='potential_upz potential_downz'
   [./potential_upz]
     type = DirichletBC
     variable = potential
     boundary = 'upz'
-    value = 0
+    value = 1.0
     #implicit=false
   [../]
   [./potential_downz]
@@ -343,19 +381,26 @@
 []
 
 [Executioner]
-  #type = Steady
-  type=Transient
-  scheme=implicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e-11
-  nl_max_its=1000
-  num_steps=100
+  type = Steady
+  #type=Transient
+  #scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  #nl_max_its=1000
+  #num_steps=12000
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
-  petsc_options='-snes_monitor -snes_view -snes_converged_reason  -ksp_monitor -ksp_monitor_true_residual'
+  petsc_options='-snes_monitor -snes_view -snes_converged_reason -ksp_monitor_true_residual'
   petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type -snes_linesearch_type'
-  petsc_options_value='10000000         1e-7     100000000      gmres    1000                 lu       basic'
+  petsc_options_value='10000000         1e-8      100000000     preonly    1000            lu          basic'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
+  #dtmax = 0.25
+  #dt=1e-11
+  # [./TimeStepper]
+  #   type = DT2
+  #   dt = 1e-10
+  #   e_max = 3e-1
+  #   e_tol = 1e-1
+  # [../]
 []
 [Functions]
   [./radial]

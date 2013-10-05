@@ -15,6 +15,7 @@
 //#include "VortexSurfaceEnergy.h"
 
 #include "BulkEnergyDerivative.h"
+#include "BulkEnergyDensity.h"
 #include "WallEnergyDerivative.h"
 #include "PolarElectricP.h"
 #include "PolarElectricE.h"
@@ -31,6 +32,9 @@
 #include "RandomFunc.h"
 #include "SphereIC.h"
 #include "SphereToCartFunc.h"
+#include "ElectrostaticEnergyDensityE.h"
+#include "ElectrostaticEnergyDensityCross.h"
+#include "ElectrostaticEnergyDensityTotal.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -74,6 +78,10 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(PolarizationSurfaceCharge);
 
   registerAux(PolarizationVortexAux);
+  registerAux(ElectrostaticEnergyDensityE);
+  registerAux(ElectrostaticEnergyDensityCross);
+  registerAux(ElectrostaticEnergyDensityTotal);
+  registerAux(BulkEnergyDensity);
   //registerPostprocessor(VortexSurfaceEnergy);
   registerKernel(BulkEnergyDerivative);
   registerKernel(WallEnergyDerivative);

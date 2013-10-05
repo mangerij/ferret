@@ -23,6 +23,7 @@
     block='interior'
   [../]
   [./potential]
+    scaling=1e7
     order=FIRST
     family = LAGRANGE
   [../]
@@ -42,14 +43,42 @@
   #   #block='interior'
   # [../]
 []
+
+[AuxVariables]
+  [./auxv_es_energy_density_e] #es for electrostatic
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_es_energy_density_cross]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_es_energy_density_total]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_bulk_energy_density]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+[]
+
 [GlobalParams]
-   alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
-   alpha11=-7.3e7
-   alpha111=2.6e8
-   alpha12=7.5e8
-   alpha112=6.1e8
-   alpha123=-3.7e9
-   G110=1.73e4
+   #alpha1=-3.4e8 # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha1=-2e8
+   #alpha1=0 # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha11=1e8
+   #alpha11=-7.3e7
+   #alpha111=2.6e8
+   alpha111=0
+   #alpha12=7.5e8
+   alpha12=2e8
+   #alpha112=6.1e8
+   alpha112=0
+   #alpha123=-3.7e9
+   alpha123=0
+   #G110=1.73e4
+   G110=0
    G11/G110=0.6
    G12/G110=0.0
    G44/G110=0.3
@@ -61,9 +90,29 @@
    potential=potential
 []
 
+[AuxKernels]
+  #active='diff'
+  [./auxk_electrostatic_energy_density_e]
+    type =ElectrostaticEnergyDensityE
+    variable =auxv_es_energy_density_e
+  [../]
+  [./auxk_electrostatic_energy_density_cross]
+    type =ElectrostaticEnergyDensityCross
+    variable =auxv_es_energy_density_cross
+  [../]
+  [./auxk_electrostatic_energy_density_total]
+    type =ElectrostaticEnergyDensityTotal
+    variable =auxv_es_energy_density_total
+  [../]
+  [./auxk_bulk_energy_density]
+    type =BulkEnergyDensity
+    variable =auxv_bulk_energy_density
+  [../]
+[]
+
 [Kernels]
  #active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E polar_x_time polar_y_time polar_z_time potential_time'
-  active='diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time'
+  active='bed_x bed_y bed_z diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -171,12 +220,12 @@
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value=0.0
+     value=0
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value=0.0
+     value=0
   [../]
   [./polar_z_constic]
      type=ConstantIC
@@ -351,7 +400,7 @@
   num_steps=100
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
-  petsc_options='-snes_monitor -snes_view -snes_converged_reason  -ksp_monitor -ksp_monitor_true_residual'
+  petsc_options='-snes_monitor -snes_view -snes_converged_reason  -ksp_monitor -ksp_monitor_true_residual -snes_linesearch_monitor'
   petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type -snes_linesearch_type'
   petsc_options_value='10000000         1e-7     100000000      gmres    1000                 lu       basic'
   #petsc_options_iname='-snes_rtol'

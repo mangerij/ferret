@@ -23,6 +23,7 @@
     block='interior'
   [../]
   [./potential]
+    scaling=1e7
     order=FIRST
     family = LAGRANGE
   [../]
@@ -42,6 +43,26 @@
   #   #block='interior'
   # [../]
 []
+
+[AuxVariables]
+  [./auxv_es_energy_density_e] #es for electrostatic
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_es_energy_density_cross]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_es_energy_density_total]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_bulk_energy_density]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+[]
+
 [GlobalParams]
    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
    alpha11=-7.3e7
@@ -59,6 +80,26 @@
    polar_y=polar_y
    polar_z=polar_z
    potential=potential
+[]
+
+[AuxKernels]
+  #active='diff'
+  [./auxk_electrostatic_energy_density_e]
+    type =ElectrostaticEnergyDensityE
+    variable =auxv_es_energy_density_e
+  [../]
+  [./auxk_electrostatic_energy_density_cross]
+    type =ElectrostaticEnergyDensityCross
+    variable =auxv_es_energy_density_cross
+  [../]
+  [./auxk_electrostatic_energy_density_total]
+    type =ElectrostaticEnergyDensityTotal
+    variable =auxv_es_energy_density_total
+  [../]
+  [./auxk_bulk_energy_density]
+    type =BulkEnergyDensity
+    variable =auxv_bulk_energy_density
+  [../]
 []
 
 [Kernels]
@@ -171,17 +212,17 @@
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value=0.0
+     value=0.1
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value=0.0
+     value=0.1
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
-     value=1.0
+     value=0.8
   [../]
   [./polar_x_function_ic]
     type=FunctionIC
@@ -351,9 +392,9 @@
   num_steps=100
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
-  petsc_options='-snes_monitor -snes_view -snes_converged_reason  -ksp_monitor -ksp_monitor_true_residual'
-  petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type -snes_linesearch_type'
-  petsc_options_value='10000000         1e-7     100000000      gmres    1000                 lu       basic'
+  petsc_options='-snes_monitor -snes_view -snes_converged_reason  -ksp_monitor -ksp_monitor_true_residual -snes_linesearch_monitor'
+  petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type'
+  petsc_options_value='10000000         1e-7     100000000      gmres    1000                 lu'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []

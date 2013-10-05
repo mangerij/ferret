@@ -53,13 +53,13 @@
 []
 [GlobalParams]
    #len_scale=1e-7
-   alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
-   alpha11=1.7252e8
+   alpha1=-2.0 # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha11=1.0
    #alpha11=-7.3e7
    #alpha111=2.6e8
    alpha111=0
    #alpha12=7.5e8
-   alpha12=0
+   alpha12=2.0
    #alpha112=6.1e8
    alpha112=0
    #alpha123=-3.7e9
@@ -70,7 +70,8 @@
    G12/G110=0.0
    G44/G110=0.3
    G44P/G110=0.3
-   permittivity=8.85e-12
+   #permittivity=8.85e-12
+   permittivity=1.0
    polar_x=polar_x
    polar_y=polar_y
    polar_z=polar_z
@@ -79,7 +80,8 @@
 
 [Kernels]
  #active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E polar_x_time polar_y_time polar_z_time potential_time'
- active='bed_x bed_y bed_z diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz  polar_x_time polar_y_time polar_z_time potential_time'
+ #active='bed_x bed_y bed_z diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz  polar_x_time polar_y_time polar_z_time'
+ active='bed_x bed_y bed_z diffusion_E  polar_x_time polar_y_time polar_z_time potential_time'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -169,8 +171,8 @@
 []
 
 [ICs]
-  active='polar_x_function_ic polar_y_function_ic polar_z_function_ic'
-  #active='polar_x_constic polar_y_constic polar_z_constic'
+  #active='polar_x_function_ic polar_y_function_ic polar_z_function_ic'
+  active='polar_x_constic polar_y_constic polar_z_constic'
   #active='polar_x_function_ic_k2 polar_y_function_ic_k2 polar_z_function_ic_k2'
   #active='polar_x_adhoc polar_y_adhoc polar_z_adhoc'
   #active='polar_x polar_y polar_z'
@@ -202,17 +204,17 @@
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value=0.0
+     value=0.1
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value=1.0
+     value=0.1
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
-     value=0.0
+     value=0.8
   [../]
   [./polar_x_function_ic]
     type=FunctionIC
@@ -290,7 +292,7 @@
     type = DirichletBC
     variable = potential
     boundary = 'upz'
-    value = 0
+    value = 1.0
     #implicit=false
   [../]
   [./potential_downz]

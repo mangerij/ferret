@@ -2,8 +2,10 @@
   file = poissonstripe_coarse.e
   uniform_refine=2
 []
+
 [Variables]
 #active='polar_x polar_y polar_z'
+active='potential'
   [./polar_x]
     #scaling=1e-3
     order = FIRST
@@ -23,6 +25,7 @@
     block='interior'
   [../]
   [./potential]
+    scaling=1e7
     order=FIRST
     family = LAGRANGE
   [../]
@@ -42,6 +45,44 @@
   #   #block='interior'
   # [../]
 []
+
+[AuxVariables]
+  [./polar_x]
+    #scaling=1e-3
+    order = FIRST
+    family = LAGRANGE
+    block='interior'
+  [../]
+  [./polar_y]
+    #scaling=1e-3
+    order = FIRST
+    family = LAGRANGE
+    block='interior'
+  [../]
+  [./polar_z]
+    #scaling=1e-3
+    order = FIRST
+    family = LAGRANGE
+    block='interior'
+  [../]
+  [./auxv_es_energy_density_e] #es for electrostatic
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_es_energy_density_cross]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_es_energy_density_total]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+  [./auxv_bulk_energy_density]
+     order=CONSTANT
+     family=MONOMIAL
+  [../]
+[]
+
 [GlobalParams]
    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
    alpha11=-7.3e7
@@ -61,9 +102,30 @@
    potential=potential
 []
 
+[AuxKernels]
+  #active='diff'
+  [./auxk_electrostatic_energy_density_e]
+    type =ElectrostaticEnergyDensityE
+    variable =auxv_es_energy_density_e
+  [../]
+  [./auxk_electrostatic_energy_density_cross]
+    type =ElectrostaticEnergyDensityCross
+    variable =auxv_es_energy_density_cross
+  [../]
+  [./auxk_electrostatic_energy_density_total]
+    type =ElectrostaticEnergyDensityTotal
+    variable =auxv_es_energy_density_total
+  [../]
+  [./auxk_bulk_energy_density]
+    type =BulkEnergyDensity
+    variable =auxv_bulk_energy_density
+  [../]
+[]
+
+
 [Kernels]
  #active='bed_x bed_y bed_z walled_x walled_y walled_z diffusion_E polar_x_time polar_y_time polar_z_time potential_time'
-  active='diffusion_E polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time'
+  active='diffusion_E polar_electric_E'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -102,6 +164,7 @@
   [./diffusion_E]
      type=ElectricStatics
      variable=potential
+     permittivity=8.85e-12
      block='exterior interior'
   [../]
   [./polar_electric_px]
@@ -270,6 +333,7 @@
     #implicit=false
   [../]
   [./Periodic]
+     active='potential_x potential_y'
     #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
     [./potential_x]
        variable = potential
@@ -343,17 +407,17 @@
 []
 
 [Executioner]
-  #type = Steady
-  type=Transient
-  scheme=implicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e-11
-  nl_max_its=1000
-  num_steps=100
+  type = Steady
+  #type=Transient
+  #scheme=implicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  #dt=1e-11
+  #nl_max_its=1000
+  #num_steps=100
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
-  petsc_options='-snes_monitor -snes_view -snes_converged_reason  -ksp_monitor -ksp_monitor_true_residual'
+  petsc_options='-snes_monitor -snes_view -snes_converged_reason -ksp_monitor_singular_value -ksp_monitor_short -snes_linesearch_monitor'
   petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_gmres_restart -pc_type -snes_linesearch_type'
-  petsc_options_value='10000000         1e-7     100000000      gmres    1000                 lu       basic'
+  petsc_options_value='10000000         1e-8      100000000       gmres    1000               none        basic'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []
