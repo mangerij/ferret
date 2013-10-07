@@ -27,21 +27,6 @@
     order=FIRST
     family = LAGRANGE
   [../]
-  # [./polar_x]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  #   #block='interior'
-  # [../]
-  # [./polar_y]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  #   #block='interior'
-  # [../]
-  # [./polar_z]
-  #   order = CONSTANT
-  #   family = MONOMIAL
-  #   #block='interior'
-  # [../]
 []
 
 [AuxVariables]
@@ -188,36 +173,7 @@
 []
 
 [ICs]
-  #active='polar_x_function_ic polar_y_function_ic polar_z_function_ic'
   active='polar_x_constic polar_y_constic polar_z_constic'
-  #active='polar_x_function_ic_k2 polar_y_function_ic_k2 polar_z_function_ic_k2'
-  #active='polar_x_adhoc polar_y_adhoc polar_z_adhoc'
-  #active='polar_x polar_y polar_z'
-  #active='polar_x_cont polar_y_cont polar_z_cont potential_cont'
-  [./polar_x]
-     type=SphereIC
-     variable=polar_x
-     radial_function=radial
-     polar_function=polar
-     azimuthal_function=azimuthal
-     index=0
-  [../]
-  [./polar_y]
-     type=SphereIC
-     variable=polar_y
-     radial_function=radial
-     polar_function=polar
-     azimuthal_function=azimuthal
-     index=1
-  [../]
-  [./polar_z]
-     type=SphereIC
-     variable=polar_z
-     radial_function=radial
-     polar_function=polar
-     azimuthal_function=azimuthal
-     index=2
-  [../]
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
@@ -232,74 +188,6 @@
      type=ConstantIC
      variable=polar_z
      value=1.0
-  [../]
-  [./polar_x_function_ic]
-    type=FunctionIC
-    variable=polar_x
-    function=polar_x
-  [../]
-  [./polar_y_function_ic]
-    type=FunctionIC
-    variable=polar_y
-    function=polar_y
-  [../]
-  [./polar_z_function_ic]
-    type=FunctionIC
-    variable=polar_z
-    function=polar_z
-  [../]
-   [./polar_x_function_ic_k2]
-    type=FunctionIC
-    variable=polar_x
-    function=polar_x_k2
-  [../]
-  [./polar_y_function_ic_k2]
-    type=FunctionIC
-    variable=polar_y
-    function=polar_y_k2
-  [../]
-  [./polar_z_function_ic_k2]
-    type=FunctionIC
-    variable=polar_z
-    function=polar_z_k2
-  [../]
-  [./polar_x_adhoc]
-    type=AdhocConstIC
-    variable=polar_x
-    value0=0
-    value1=1
-  [../]
-  [./polar_y_adhoc]
-    type=AdhocConstIC
-    variable=polar_y
-    value0=0
-    value1=0
-  [../]
-  [./polar_z_adhoc]
-    type=AdhocConstIC
-    variable=polar_z
-    value0=1
-    value1=0
-  [../]
-  [./potential_cont]
-    type=FunctionIC
-    variable=potential
-    function=potential_cont
-  [../]
-  [./polar_x_cont]
-    type=FunctionIC
-    variable=polar_x
-    function=polar_x_cont
-  [../]
-  [./polar_y_cont]
-,    type=FunctionIC
-    variable=polar_y
-    function=polar_y_cont
-  [../]
-  [./polar_z_cont]
-    type=FunctionIC
-    variable=polar_z
-    function=polar_z_cont
   [../]
 []
 
@@ -406,91 +294,6 @@
   petsc_options_value='10000000         1e-7     100000000      gmres       1e-8       1000                 asm       basic'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
-[]
-[Functions]
-  [./radial]
-  type=SolutionFunction
-  solution=random
-  from_variable=radial
-  [../]
-  [./azimuthal]
-  type=SolutionFunction
-  solution=random
-  from_variable=azimuthal_angle   #the variable in the file to be read in
-  [../]
-  [./polar]
-  type=SolutionFunction
-  solution=random
-  from_variable=polar_angle   #the variable in the file to be read in
-  [../]
-  [./polar_x]
-  type=SphereToCartFunc
-  radial_function=radial
-  polar_function=polar
-  azimuthal_function=azimuthal
-  index=0
-  [../]
-  [./polar_y]
-  type=SphereToCartFunc
-  radial_function=radial
-  polar_function=polar
-  azimuthal_function=azimuthal
-  index=1
-  [../]
-  [./polar_z]
-  type=SphereToCartFunc
-  radial_function=radial
-  polar_function=polar
-  azimuthal_function=azimuthal
-  index=2
-  [../]
-  [./polar_x_cont]
-  type=SolutionFunction
-  solution=continuation
-  from_variable=polar_x
-  [../]
-  [./polar_y_cont]
-  type=SolutionFunction
-  solution=continuation
-  from_variable=polar_y
-  [../]
-  [./polar_z_cont]
-  type=SolutionFunction
-  solution=continuation
-  from_variable=polar_z
-  [../]
-  [./potential_cont]
-  type=SolutionFunction
-  solution=continuation
-  from_variable=potential
-  [../]
-[]
-
-[UserObjects]
-  [./level_1]
-    type=SolutionUserObject
-    mesh=initvalues_radial_1.e
-    variables='radial azimuthal_angle polar_angle polar_x polar_y polar_z'
-    timestep=1
-  [../]
-  [./level_2]
-    type=SolutionUserObject
-    mesh=initvalues_radial_1_level2.e
-    variables='radial azimuthal_angle polar_angle polar_x polar_y polar_z'
-    timestep=1
-  [../]
-  [./random]
-    type=SolutionUserObject
-    mesh=initvalues_random.e
-    variables='radial azimuthal_angle polar_angle'
-    timestep=1
-  [../]
-  [./continuation]
-    type=SolutionUserObject
-    mesh=ex_all_random_varG_time_out.e
-    variables='potential polar_x polar_y polar_z'
-    timestep=400
-  [../]
 []
 
 [Postprocessors]

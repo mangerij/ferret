@@ -1,0 +1,27 @@
+For all experiment:
+The domain should be considered to rescaled to 1e-7.  Due to the rescaling of the domain, the bulk and electrostatic energy should be multiplied by 1e-21 from the output value to obtain the physical value. The electric potential should be multiplied by 1e7 from the output value to obtain the physical values
+
+
+Experiment 1: only electrostatic free energy, P is fixed, minimize \phi
+    ex_electric_nonrandom_scale_static_bls.i: basic line search (converge in one SNES iteration)
+    ex_electric_nonrandom_scale_static_dls.i: default line search (More than one iterations)
+    
+Experiment 2: only electrostatic free energy, implicit euler time stepping, evolve both \phi and P
+    ex_electric_nonrandom_scale_ie_bls_1.i: basic line search, initial P=(0,0,1.0), \phi=0 on top and bottom
+    ex_electric_nonrandom_scale_ie_bls_2.i: basic line search, initial P=(0.1,0.1,0.8), \phi=0 on top and bottom
+    ex_electric_nonrandom_scale_ie_dls_1.i: default line search, initial P=(0,0,1.0), \phi=0 on top and bottom
+    ex_electric_nonrandom_scale_ie_dls_2.i: default line search, initial P=(0.1,0.1,0.8), \phi=0 on top and bottom
+
+Experiment 3: same as experiment2, but switch on bulk energy (the order of the coefficient is real, but the actual number is artificial so that we know the exact minimizer) too.
+    ex_bulkelec_nonrandom_artificialAlpha_ie_bls_1.i: basic line search, initial P=(0,0,1.0), \phi=0 on top and bottom
+    ex_bulkelec_nonrandom_artificialAlpha_ie_bls_2.i: basic line search, initial P=(0.1,0.1,0.8), \phi=0 on top and bottom
+    ex_bulkelec_nonrandom_artificialAlpha_ie_dls_1.i: default line search, initial P=(0,0,1.0), \phi=0 on top and bottom
+    ex_bulkelec_nonrandom_artificialAlpha_ie_dls_2.i: default line search, initial P=(0.1,0.1,0.8), \phi=0 on top and bottom
+
+Experiment4: electrostatic energy and bulk energy  with 6 order terms P^2*(P^2-2)*(P^2-1)*1e8,
+    ex_bulkelec_nonrandom_artificialAlpha_6order_static.i: direct SNES minimization, basic line search, initial P=(0.1,0.1,0.8) \phi=0 on top and bottom
+    ex_bulkelec_nonrandom_artificialAlpha_6order_ie_bls_1.i: implicit euler, basic line search, initial P=(0,0,1.0), \phi=0 on top and bottom
+    ex_bulkelec_nonrandom_artificialAlpha_6order_ie_bls_2.i: implicit euler, basic line search, initial P=(0.1,0.1,0.8), \phi=0 on top and bottom   
+
+Experiment5: electrostatic energy and bulk energy  with 4 order terms P^2*(P^2-2)*1e8,
+     ex_bulkelec_nonrandom_artificialAlpha_4order_static.i: direct SNES minimization, basic line search, initial P=(0.1,0.1,0.8) \phi=0 on the bottom and \phi=10 on the top 
