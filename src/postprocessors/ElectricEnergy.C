@@ -40,7 +40,5 @@ ElectricEnergy::computeQpIntegral()
 {
   RealVectorValue E, D, P;
   P(0)=_polar_x[_qp];P(1)=_polar_y[_qp];P(2)=_polar_z[_qp];
-  E=_potential_grad[_qp]*(-1.0);
-  D=E*_permittivity+P;
-  return 0.5*D*E*pow(_len_scale,3.0);
+  return 0.5*_permittivity*_potential_grad[_qp].size_sq()*_len_scale-0.5*(P*_potential_grad[_qp])*pow(_len_scale,2.0);
 }

@@ -36,5 +36,5 @@ ElectrostaticEnergyDensityCross::ElectrostaticEnergyDensityCross(const std::stri
 Real
 ElectrostaticEnergyDensityCross::computeValue()
 {
-  return (_potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp])*pow(_len_scale,3.0);
+  return (_potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp])*pow(_len_scale,2.0);
 }

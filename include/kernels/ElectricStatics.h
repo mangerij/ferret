@@ -2,10 +2,10 @@
  * @file   ElectricStatics.h
  * @author S. Gu <sgu@anl.gov>
  * @date   Tue Jun 11 10:07:53 2013
- * 
+ *
  * @brief  Laplacian operator with permittivity.
- * 
- * 
+ *
+ *
  */
 
 #ifndef ELECTRICSTATICS_H
@@ -26,12 +26,11 @@ public:
 
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
 
 private:
-  
   const Real _permittivity;
-  
+  const Real _len_scale;
+
 };
 #endif //ELECTRICDTSTATICS_H

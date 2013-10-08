@@ -2,10 +2,10 @@
  * @file   ElectricStatics.C
  * @author S. Gu <sgu@anl.gov>
  * @date   Tue Jun 11 10:08:26 2013
- * 
+ *
  * @brief  Laplacian operator with permittivity
- * 
- * 
+ *
+ *
  */
 
 #include "ElectricStatics.h"
@@ -15,6 +15,7 @@ InputParameters validParams<ElectricStatics>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<Real>("permittivity", "permittivity");
+  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -23,7 +24,8 @@ InputParameters validParams<ElectricStatics>()
 //Constructor
 ElectricStatics::ElectricStatics(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
-   _permittivity(getParam<Real>("permittivity"))
+   _permittivity(getParam<Real>("permittivity")),
+   _len_scale(getParam<Real>("len_scale"))
 {
 }
 
@@ -31,11 +33,11 @@ ElectricStatics::ElectricStatics(const std::string & name, InputParameters param
 Real
 ElectricStatics::computeQpResidual()
 {
-  return _permittivity*_grad_u[_qp]*_grad_test[_i][_qp];
+  return _permittivity*_grad_u[_qp]*_grad_test[_i][_qp]*_len_scale;
 }
 
 Real
 ElectricStatics::computeQpJacobian()
 {
-   return _permittivity*_grad_phi[_j][_qp]*_grad_test[_i][_qp]; 
+   return _permittivity*_grad_phi[_j][_qp]*_grad_test[_i][_qp]*_len_scale;
 }

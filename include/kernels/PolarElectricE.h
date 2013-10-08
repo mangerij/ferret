@@ -2,10 +2,10 @@
  * @file   KernelTemplate.h
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 12:00:20 2013
- * 
- * @brief  
- * 
- * 
+ *
+ * @brief
+ *
+ *
  */
 
 #ifndef POLARELECTRICE_H
@@ -26,7 +26,7 @@ public:
 
 protected:
   virtual Real computeQpResidual();
-  
+
   virtual Real computeQpJacobian();
 
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
@@ -39,6 +39,7 @@ private:
    const VariableValue& _polar_x;
    const VariableValue& _polar_y;
    const VariableValue& _polar_z;
-  
+   const Real _len_scale;
+
 };
 #endif //POLARELECTRICE_H

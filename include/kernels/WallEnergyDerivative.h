@@ -2,10 +2,10 @@
  * @file   WallEnergyDerivative.h
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 12:00:20 2013
- * 
- * @brief  
- * 
- * 
+ *
+ * @brief
+ *
+ *
  */
 
 #ifndef WALLENERGYDERIVATIVE_H
@@ -40,6 +40,7 @@ protected:
   const VariableGradient& _polar_k_grad;
   const unsigned int _ii, _jj, _kk;
   const Real _G110,_G11, _G12, _G44, _G44P;
-  
+  const Real _len_scale;
+
 };
 #endif //WALLENERGYDERIVATIVE_H

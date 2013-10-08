@@ -23,7 +23,7 @@
     block='interior'
   [../]
   [./potential]
-    scaling=1e7
+    #scaling=1e7
     order=FIRST
     family = LAGRANGE
   [../]
