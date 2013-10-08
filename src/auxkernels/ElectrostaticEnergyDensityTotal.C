@@ -14,6 +14,7 @@ InputParameters validParams<ElectrostaticEnergyDensityTotal>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -23,11 +24,12 @@ ElectrostaticEnergyDensityTotal::ElectrostaticEnergyDensityTotal(const std::stri
   _potential_grad(coupledGradient("potential")),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
-  _polar_z(coupledValue("polar_z"))
+  _polar_z(coupledValue("polar_z")),
+  _len_scale(getParam<Real>("len_scale"))
 {}
 
 Real
 ElectrostaticEnergyDensityTotal::computeValue()
 {
-  return _permittivity*_potential_grad[_qp].size_sq()+_potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp];
+  return _permittivity*_potential_grad[_qp].size_sq()-_potential_grad[_qp](0)*_polar_x[_qp]- _potential_grad[_qp](1)*_polar_y[_qp]- _potential_grad[_qp](2)*_polar_z[_qp];
 }

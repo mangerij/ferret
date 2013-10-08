@@ -49,6 +49,7 @@
 []
 
 [GlobalParams]
+   len_scale=1e-7
    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
    alpha11=-7.3e7
    alpha111=2.6e8

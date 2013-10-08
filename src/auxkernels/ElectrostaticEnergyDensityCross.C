@@ -19,6 +19,7 @@ InputParameters validParams<ElectrostaticEnergyDensityCross>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -27,21 +28,13 @@ ElectrostaticEnergyDensityCross::ElectrostaticEnergyDensityCross(const std::stri
   _potential_grad(coupledGradient("potential")),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
-  _polar_z(coupledValue("polar_z"))
+  _polar_z(coupledValue("polar_z")),
+  _len_scale(getParam<Real>("len_scale"))
 {}
 
 
 Real
 ElectrostaticEnergyDensityCross::computeValue()
 {
-  // Real r;
-  // Real a[3],b[3];
-  // r=_potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp];
-  // std::cout<<"r="<<r<<"    ("<<_potential_grad[_qp](0)<<","<<_potential_grad[_qp](1)<<","<<_potential_grad[_qp](2)<<")   "<<"("<<_polar_x[_qp]<<","<<_polar_y[_qp]<<","<<_polar_z[_qp]<<")\n";
-  // a[0]=_potential_grad[_qp](0);a[1]=_potential_grad[_qp](1);a[2]=_potential_grad[_qp](2);
-  // b[0]=_polar_x[_qp];b[1]=_polar_y[_qp];b[2]=_polar_z[_qp];
-
-  // r=a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
-  // std::cout<<"r="<<r<<"    ("<<a[0]<<","<<a[1]<<","<<a[2]<<")   "<<"("<<b[0]<<","<<b[1]<<","<<b[2]<<")\n\n";
-  return _potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp];
+  return (_potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp])*pow(_len_scale,3.0);
 }

@@ -33,6 +33,7 @@ protected:
   const VariableValue& _polar_z;
   const VariableGradient& _potential_grad;
   const Real _permittivity;
+  const Real _len_scale;
 };
 
 #endif

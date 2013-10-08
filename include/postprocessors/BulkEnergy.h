@@ -33,6 +33,7 @@ protected:
   const VariableValue& _polar_y;
   const VariableValue& _polar_z;
   const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112,_alpha123;
+  const Real _len_scale;
 };
 
 #endif

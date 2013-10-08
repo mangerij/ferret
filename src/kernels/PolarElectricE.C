@@ -63,5 +63,5 @@ PolarElectricE::computeQpOffDiagJacobian(unsigned int jvar)
     component = 2;
   else
     return 0.0;
-  return 0.5*_grad_test[_i][_qp](component)*_phi[_j][_qp];
+  return -0.5*_grad_test[_i][_qp](component)*_phi[_j][_qp];
 }

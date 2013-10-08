@@ -12,16 +12,18 @@ InputParameters validParams<ElectrostaticEnergyDensityE>()
 {
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("potential", "The electrostatic potential");
+  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
 ElectrostaticEnergyDensityE::ElectrostaticEnergyDensityE(const std::string & name, InputParameters parameters) :
   AuxKernel(name, parameters),
-  _potential_grad(coupledGradient("potential"))
+  _potential_grad(coupledGradient("potential")),
+  _len_scale(getParam<Real>("len_scale"))
 {}
 
 Real
 ElectrostaticEnergyDensityE::computeValue()
 {
-  return _potential_grad[_qp].size_sq();
+  return (_potential_grad[_qp].size_sq())*pow(_len_scale,3.0);
 }

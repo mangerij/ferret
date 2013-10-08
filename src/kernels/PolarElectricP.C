@@ -48,6 +48,6 @@ Real
 PolarElectricP::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if( jvar == coupled("potential") )
-     return 0.5*_grad_phi[_j][_qp](_component)*_test[_i][_qp];
+     return -0.5*_grad_phi[_j][_qp](_component)*_test[_i][_qp];
   else return 0.0;
 }

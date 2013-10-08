@@ -22,6 +22,7 @@ InputParameters validParams<BulkEnergyDensity>()
   params.addRequiredParam<Real>("alpha111"," ");
   params.addRequiredParam<Real>("alpha112"," ");
   params.addRequiredParam<Real>("alpha123"," ");
+  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -35,13 +36,14 @@ BulkEnergyDensity::BulkEnergyDensity(const std::string & name, InputParameters p
   _alpha12(getParam<Real>("alpha12")),
   _alpha111(getParam<Real>("alpha111")),
   _alpha112(getParam<Real>("alpha112")),
-  _alpha123(getParam<Real>("alpha123"))
+  _alpha123(getParam<Real>("alpha123")),
+  _len_scale(getParam<Real>("len_scale"))
 {}
 
 Real
 BulkEnergyDensity::computeValue()
 {
-  return _alpha1*(pow(_polar_x[_qp],2)+pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))+
+  return (_alpha1*(pow(_polar_x[_qp],2)+pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))+
     _alpha12*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)+
 	      pow(_polar_y[_qp],2)*pow(_polar_z[_qp],2)+
 	      pow(_polar_x[_qp],2)*pow(_polar_z[_qp],2))+
@@ -49,5 +51,5 @@ BulkEnergyDensity::computeValue()
     _alpha112*(pow(_polar_x[_qp],4)*(pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))
 	      +pow(_polar_y[_qp],4)*(pow(_polar_z[_qp],2)+pow(_polar_x[_qp],2))
 	      +pow(_polar_z[_qp],4)*(pow(_polar_x[_qp],2)+pow(_polar_y[_qp],2)))+
-    _alpha123*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)*pow(_polar_z[_qp],2));
+	  _alpha123*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)*pow(_polar_z[_qp],2)))*pow(_len_scale,3.0);
 }

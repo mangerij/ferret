@@ -37,6 +37,7 @@ protected:
   const VariableValue& _polar_y;
   const VariableValue& _polar_z;
   virtual Real computeValue();
+  const Real _len_scale;
 
 };
 

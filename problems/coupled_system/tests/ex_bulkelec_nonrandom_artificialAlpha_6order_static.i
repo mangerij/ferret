@@ -50,7 +50,7 @@
 []
 
 [GlobalParams]
-   #len_scale=1e-7
+   len_scale=1e-7
    #alpha1=-3.4e8 # 3.8(T-479)*10^5 C^{-2}m^2
    alpha1=2.0e8
    #alpha1=0 # 3.8(T-479)*10^5 C^{-2}m^2

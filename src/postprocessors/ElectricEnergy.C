@@ -20,6 +20,7 @@ InputParameters validParams<ElectricEnergy>()
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addRequiredCoupledVar("potential", "The electric potential");
   params.addRequiredParam<Real>("permittivity", "permittivity");
+  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -29,7 +30,8 @@ ElectricEnergy::ElectricEnergy(const std::string & name, InputParameters paramet
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
   _potential_grad(coupledGradient("potential")),
-  _permittivity(getParam<Real>("permittivity"))
+  _permittivity(getParam<Real>("permittivity")),
+  _len_scale(getParam<Real>("len_scale"))
 {
 }
 
@@ -39,6 +41,6 @@ ElectricEnergy::computeQpIntegral()
   RealVectorValue E, D, P;
   P(0)=_polar_x[_qp];P(1)=_polar_y[_qp];P(2)=_polar_z[_qp];
   E=_potential_grad[_qp]*(-1.0);
-  D=E*_permittivity-P;
-  return 0.5*D*E;
+  D=E*_permittivity+P;
+  return 0.5*D*E*pow(_len_scale,3.0);
 }

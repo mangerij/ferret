@@ -41,6 +41,7 @@ public:
 protected:
   virtual Real computeValue();
   const VariableGradient & _potential_grad;
+  const Real _len_scale;
   //Real _value;
 };
 
