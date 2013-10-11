@@ -254,6 +254,7 @@ active='potential'
 
 [Executioner]
   type = Steady
+  solve_type=newton
   #type=Transient
   #scheme=implicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt=1e-11

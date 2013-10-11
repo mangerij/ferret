@@ -293,6 +293,7 @@ active='potential'
 
 [Executioner]
   type = Steady
+  solve_type=newton
   #type=Transient
   #scheme=implicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt=1e-11
@@ -300,6 +301,7 @@ active='potential'
   #num_steps=100
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
+  solve_type=newton
   petsc_options='-snes_monitor -snes_view -snes_converged_reason -ksp_monitor_singular_value -ksp_monitor_short -snes_linesearch_monitor'
   petsc_options_iname='-snes_max_it -snes_rtol -snes_max_funcs -ksp_type  -ksp_rtol -ksp_gmres_restart -pc_type -snes_linesearch_type'
   petsc_options_value='10000000         1e-8      100000000       gmres    1e-8     1000               asm        basic'

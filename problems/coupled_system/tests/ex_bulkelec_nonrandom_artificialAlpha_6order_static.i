@@ -287,6 +287,7 @@
 
 [Executioner]
   type = Steady
+  solve_type=newton
   #type=Transient
   #scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #nl_max_its=1000
