@@ -1,5 +1,5 @@
 /**
- * @file   PolarElectricP.C
+ * @file   PolarElectricPStrong.C
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 11:59:56 2013
  *
@@ -8,12 +8,12 @@
  *
  */
 
-#include "PolarElectricP.h"
+#include "PolarElectricPStrong.h"
 
-class PolarElectricP;
+class PolarElectricPStrong;
 
 template<>
-InputParameters validParams<PolarElectricP>()
+InputParameters validParams<PolarElectricPStrong>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
@@ -25,7 +25,7 @@ InputParameters validParams<PolarElectricP>()
 
 
 //Constructor
-PolarElectricP::PolarElectricP(const std::string & name, InputParameters parameters)
+PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
    _component(getParam<unsigned int>("component")),
    _potential_grad(coupledGradient("potential")),
@@ -35,21 +35,21 @@ PolarElectricP::PolarElectricP(const std::string & name, InputParameters paramet
 
 
 Real
-PolarElectricP::computeQpResidual()
+PolarElectricPStrong::computeQpResidual()
 {
   return _potential_grad[_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0);
 }
 
 Real
-PolarElectricP::computeQpJacobian()
+PolarElectricPStrong::computeQpJacobian()
 {
-  mooseError("PolarElectricP: Cannot evaluate Jacobian.\n");
   return 0.0;
 }
 
 Real
-PolarElectricP::computeQpOffDiagJacobian(unsigned int jvar)
+PolarElectricPStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  mooseError("PolarElectricP: Cannot evaluate Jacobian.\n");
-  return 0.0;
+  if( jvar == coupled("potential") )
+    return _grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0);
+  else return 0.0;
 }

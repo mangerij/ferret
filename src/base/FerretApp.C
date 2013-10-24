@@ -18,10 +18,13 @@
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDerivative.h"
 #include "PolarElectricP.h"
+#include "PolarElectricPStrong.h"
 #include "PolarElectricE.h"
+#include "PolarElectricEStrong.h"
 #include "BulkEnergy.h"
 #include "WallEnergy.h"
 #include "ElectricEnergy.h"
+#include "ElectrostaticEnergy.h"
 #include "TotalEnergy.h"
 #include "PolarMaterial.h"
 #include "ElectricStatics.h"
@@ -33,6 +36,7 @@
 #include "SphereIC.h"
 #include "SphereToCartFunc.h"
 #include "ElectrostaticEnergyDensityE.h"
+#include "ElectrostaticEnergyDensity.h"
 #include "ElectrostaticEnergyDensityCross.h"
 #include "ElectrostaticEnergyDensityTotal.h"
 
@@ -78,6 +82,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(PolarizationSurfaceCharge);
 
   registerAux(PolarizationVortexAux);
+  registerAux(ElectrostaticEnergyDensity);
   registerAux(ElectrostaticEnergyDensityE);
   registerAux(ElectrostaticEnergyDensityCross);
   registerAux(ElectrostaticEnergyDensityTotal);
@@ -86,11 +91,14 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkEnergyDerivative);
   registerKernel(WallEnergyDerivative);
   registerKernel(PolarElectricE);
+  registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricP);
+  registerKernel(PolarElectricPStrong);
   registerKernel(ElectricStatics);
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
   registerPostprocessor(ElectricEnergy);
+  registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
   registerMaterial(PolarMaterial);
   registerInitialCondition(PerturbedIC);
