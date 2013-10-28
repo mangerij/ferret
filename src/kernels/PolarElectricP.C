@@ -17,7 +17,8 @@ InputParameters validParams<PolarElectricP>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("potential", "The electric potential variable");
+  params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
+  params.addRequiredCoupledVar("potential_ext", "The external electric potential variable");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
@@ -28,7 +29,8 @@ InputParameters validParams<PolarElectricP>()
 PolarElectricP::PolarElectricP(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
    _component(getParam<unsigned int>("component")),
-   _potential_grad(coupledGradient("potential")),
+   _potential_int_grad(coupledGradient("potential_int")),
+   _potential_ext_grad(coupledGradient("potential_ext")),
    _len_scale(getParam<Real>("len_scale"))
 {}
 
@@ -37,7 +39,7 @@ PolarElectricP::PolarElectricP(const std::string & name, InputParameters paramet
 Real
 PolarElectricP::computeQpResidual()
 {
-  return _potential_grad[_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0);
+  return (_potential_int_grad[_qp](_component)+_potential_ext_grad[_qp](_component)) *_test[_i][_qp]*pow(_len_scale,2.0);
 }
 
 Real

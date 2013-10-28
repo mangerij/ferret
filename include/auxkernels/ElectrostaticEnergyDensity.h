@@ -1,7 +1,7 @@
 /**
  * @file   ElectrostaticEnergyDensity.h  
  * @author S. Gu <sgu@anl.gov>
- * @date   Wed Oct  2 17:13:46 2013 
+ * @date   Wed Oct  2 17:13:46 2013
  * @brief  ElectroEnergyDensity
  */
 
@@ -23,7 +23,7 @@ public:
 
 protected:
   virtual Real computeValue();
-  const VariableGradient& _potential_grad;
+  const VariableGradient& _potential_int_grad;
   const VariableGradient& _potential_ext_grad;
   const VariableValue& _polar_x;
   const VariableValue& _polar_y;
