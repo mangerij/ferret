@@ -1,9 +1,10 @@
 [Mesh]
   file = poissonstripe_coarse.e
-  uniform_refine=2
+  uniform_refine=0
 []
 [Variables]
 #active='polar_x polar_y polar_z'
+#active='potential_int potential_ext'
   [./polar_x]
     #scaling=1e-3
     order = FIRST
@@ -51,6 +52,7 @@
 
 [GlobalParams]
    len_scale=1e-7
+   #len_scale=1.0
    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
    alpha11=-7.3e7
    alpha111=2.6e8
@@ -64,6 +66,7 @@
    G44/G110=0.3
    G44P/G110=0.3
    permittivity=8.85e-12
+   #permittivity=1.0
    polar_x=polar_x
    polar_y=polar_y
    polar_z=polar_z
@@ -89,7 +92,7 @@
 []
 
 [Kernels]
-  active='bed_x bed_y bed_z diffusion_E diffusion_E_Ext polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time'
+  active='diffusion_E diffusion_E_Ext  polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time bed_x bed_y bed_z'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -131,11 +134,13 @@
   [../]
   [./diffusion_E]
      type=ElectricStatics
+     #type=Diffusion
      variable=potential_int
      block='exterior interior'
   [../]
   [./diffusion_E_Ext]
      type=ElectricStatics
+     #type=Diffusion
      variable=potential_ext
      block='exterior interior'
   [../]
@@ -169,10 +174,6 @@
      type=TimeDerivative
      variable=polar_z
   [../]
-  # [./potential_time]
-  #    type=TimeDerivative
-  #    variable=potential
-  # [../]
 []
 
 [ICs]
@@ -196,14 +197,14 @@
 
 [BCs]
  # active ='Periodic'
-  [./potential_upz]
+  [./potential_int_upz]
     type = DirichletBC
     variable = potential_int
     boundary = 'upz'
-    value =0.0
+    value = 0.0
     #implicit=false
   [../]
-  [./potential_downz]
+  [./potential_int_downz]
     type = DirichletBC
     variable = potential_int
     boundary = 'downz'
@@ -214,89 +215,90 @@
     type = DirichletBC
     variable = potential_ext
     boundary = 'upz'
-    value = 0.0
+    value = 1000.0
     #implicit=false
   [../]
   [./potential_ext_downz]
     type = DirichletBC
     variable = potential_ext
     boundary = 'downz'
-    value = 0
+    value = 0.0
     #implicit=false
   [../]
-  [./Periodic]
-    #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
-    [./potential_int_x]
-       variable = potential_int
-       primary = 'downx'
-       secondary = 'upx'
-       translation = '1 0 0'
-       #implicit=false
-    [../]
-    [./potential_ext_x]
-       variable = potential_ext
-       primary = 'downx'
-       secondary = 'upx'
-       translation = '1 0 0'
-       #implicit=false
-    [../]
-    [./polar_x_x]
-       variable = polar_x
-       primary = 'downx'
-       secondary = 'upx'
-       translation = '1 0 0'
-       #implicit=false
-    [../]
-    [./polar_y_x]
-       variable = polar_y
-       primary = 'downx'
-       secondary = 'upx'
-       translation = '1 0 0'
-       #implicit=false
-    [../]
-    [./polar_z_x]
-       variable = polar_z
-       primary = 'downx'
-       secondary = 'upx'
-       translation = '1 0 0'
-       #implicit=false
-    [../]
-    [./potential_int_y]
-       variable = potential_int
-       primary = 'downy'
-       secondary ='upy'
-       translation = '0 1 0'
-       #implicit=false
-    [../]
-    [./potential_ext_y]
-       variable = potential_ext
-       primary = 'downy'
-       secondary ='upy'
-       translation = '0 1 0'
-       #implicit=false
-    [../]
-    [./polar_x_y]
-       variable = polar_x
-       primary = 'downy'
-       secondary ='upy'
-       translation = '0 1 0'
-       #implicit=false
-    [../]
-    [./polar_y_y]
-       variable = polar_y
-       primary = 'downy'
-       secondary ='upy'
-       translation = '0 1 0'
-       #implicit=false
-    [../]
-    [./polar_z_y]
-       variable = polar_z
-       primary = 'downy'
-       secondary ='upy'
-       translation = '0 1 0'
-       #implicit=false
-    [../]
-  [../]
+  # [./Periodic]
+  #   #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
+  #   #active='potential_int_x potential_ext_x potential_int_y potential_ext_y'
+  #   [./potential_int_x]
+  #      variable = potential_int
+  #      primary = 'downx'
+  #      secondary = 'upx'
+  #      translation = '1 0 0'
+  #      #implicit=false
+  #   [../]
+  #   [./potential_ext_x]
+  #      variable = potential_ext
+  #      primary = 'downx'
+  #      secondary = 'upx'
+  #      translation = '1 0 0'
+  #      #implicit=false
+  #   [../]
+  #   [./polar_x_x]
+  #      variable = polar_x
+  #      primary = 'downx'
+  #      secondary = 'upx'
+  #      translation = '1 0 0'
+  #      #implicit=false
+  #   [../]
+  #   [./polar_y_x]
+  #      variable = polar_y
+  #      primary = 'downx'
+  #      secondary = 'upx'
+  #      translation = '1 0 0'
+  #      #implicit=false
+  #   [../]
+  #   [./polar_z_x]
+  #      variable = polar_z
+  #      primary = 'downx'
+  #      secondary = 'upx'
+  #      translation = '1 0 0'
+  #      #implicit=false
+  #   [../]
+  #   [./potential_int_y]
+  #      variable = potential_int
+  #      primary = 'downy'
+  #      secondary ='upy'
+  #      translation = '0 1 0'
+  #      #implicit=false
+  #   [../]
+  #   [./potential_ext_y]
+  #      variable = potential_ext
+  #      primary = 'downy'
+  #      secondary ='upy'
+  #      translation = '0 1 0'
+  #      #implicit=false
+  #   [../]
+  #   [./polar_x_y]
+  #      variable = polar_x
+  #      primary = 'downy'
+  #      secondary ='upy'
+  #      translation = '0 1 0'
+  #      #implicit=false
+  #   [../]
+  #   [./polar_y_y]
+  #      variable = polar_y
+  #      primary = 'downy'
+  #      secondary ='upy'
+  #      translation = '0 1 0'
+  #      #implicit=false
+  #   [../]
+  #   [./polar_z_y]
+  #      variable = polar_z
+  #      primary = 'downy'
+  #      secondary ='upy'
+  #      translation = '0 1 0'
+  #      #implicit=false
+  #   [../]
+  # [../]
 []
 [Preconditioning]
    [./smp]
@@ -318,12 +320,12 @@
   scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dt=1e9
   nl_max_its=100
-  num_steps=400
+  num_steps=800
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
-  petsc_options='-snes_monitor -snes_view -snes_converged_reason  -ksp_monitor_true_residual -snes_linesearch_monitor -options_left'
-  petsc_options_iname='-ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value='gmres       1e-8      jacobi       basic                1e-50'
+  petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
+  petsc_options_iname='-gmres_restart -snes_rtol -ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
+  petsc_options_value='1000            1e-5        gmres       1e-8      jacobi       basic                1e-50'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []
