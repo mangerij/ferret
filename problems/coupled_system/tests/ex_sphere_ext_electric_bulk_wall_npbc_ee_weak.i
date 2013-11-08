@@ -207,7 +207,7 @@
     value = 0.0
     #implicit=false
   [../]
-  
+
    [./potential_ext_upz]
     type = DirichletBC
     variable = potential_ext
@@ -308,7 +308,7 @@
   type=Transient
   solve_type=newton
   scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e9
+  dt=1e3
   nl_max_its=100
   num_steps=800
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"

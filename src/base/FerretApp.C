@@ -16,6 +16,7 @@
 
 #include "BulkEnergyDerivative.h"
 #include "BulkEnergyDensity.h"
+#include "WallEnergyDensity.h"
 #include "WallEnergyDerivative.h"
 #include "PolarElectricP.h"
 #include "PolarElectricPStrong.h"
@@ -87,6 +88,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ElectrostaticEnergyDensityCross);
   registerAux(ElectrostaticEnergyDensityTotal);
   registerAux(BulkEnergyDensity);
+  registerAux(WallEnergyDensity);
   //registerPostprocessor(VortexSurfaceEnergy);
   registerKernel(BulkEnergyDerivative);
   registerKernel(WallEnergyDerivative);
