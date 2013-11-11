@@ -308,7 +308,6 @@
 
   type = Steady
 
-  print_linear_residuals = true
 
   petsc_options_iname = '-ksp_type -pc_type'
   petsc_options_value = 'gmres lu'
@@ -332,6 +331,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
 #  file_base = out_cantilever_2D_uniform_meshref1
   file_base = out_cantilever_2D_uniform
   interval = 1

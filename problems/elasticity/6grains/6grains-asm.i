@@ -302,7 +302,6 @@
 
   solve_type = 'NEWTON'
 
-  print_linear_residuals = true
   petsc_options = '-snes_view -ksp_view -snes_monitor -pc_asm_print_subdomains -dm_view'
   petsc_options_iname = '-ksp_type  -pc_type    -pc_asm_decomposition -pc_asm_sub_pc_type'
   petsc_options_value = '  gmres     asm                block                 lu'
@@ -319,6 +318,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = 6grain-asm-out
   interval = 1
   output_initial = true

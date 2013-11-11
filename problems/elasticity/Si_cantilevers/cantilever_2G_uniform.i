@@ -272,7 +272,6 @@
 
   type = Steady
 
-  print_linear_residuals = true
 
   petsc_options_iname = '-ksp_type -pc_type'
   petsc_options_value = 'gmres lu'
@@ -300,6 +299,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
 #  file_base = out_cantilever_2G_uniform_asm_overlap16_meshref1
 #  file_base = out_cantilever_2G_uniform_asm_overlap10_meshref2
   file_base = out_cantilever_2G_uniform_lu_meshref1

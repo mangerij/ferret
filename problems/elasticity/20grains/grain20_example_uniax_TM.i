@@ -562,7 +562,6 @@
   solve_type = 'PJFNK'
 
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
   petsc_options_iname = '-ksp_type -pc_type -sub_pc_type'
   petsc_options_value = 'gmres asm lu'
@@ -579,6 +578,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = out_grain20_example_uniax_TM
 #  file_base = out_grain20_example_uniax_TM_mesh_ref1
   interval = 1

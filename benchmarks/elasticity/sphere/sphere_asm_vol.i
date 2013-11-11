@@ -296,7 +296,6 @@
 #  petsc_options_value = `gmres asm block lu'
 #  type = Transient
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -snes_converged_reason -ksp_converged_reason'
 #  petsc_options_iname = '-ksp_type -pc_type '
 #  petsc_options_value = '    gmres      svd'
@@ -322,6 +321,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = out_sphere_2
   interval = 1
   output_initial = true

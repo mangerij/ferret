@@ -269,7 +269,6 @@
   solve_type = 'PJFNK'
 
 
-  print_linear_residuals = true
   petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_converged_reason -options_table -options_left -log_summary'
   petsc_options_iname = '-ksp_type -ksp_pc_side -pc_type -pc_asm_overlap  -sub_pc_type'
   petsc_options_value = '    gmres        right      asm               1            lu'
@@ -283,6 +282,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = sbrick0.4.asm0.right.out
   interval = 1
   output_initial = true

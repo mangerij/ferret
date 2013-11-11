@@ -625,7 +625,6 @@
 #  petsc_options_value = `gmres asm block lu'
 #  type = Transient
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -snes_converged_reason -ksp_view -ksp_converged_reason'
   petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -ksp_max_it -snes_max_it'
   petsc_options_value = '    gmres     asm  16              1000        3'
@@ -658,6 +657,7 @@ nl_rel_tol = 1.e-10
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = out_sphere_amorphous_1
   interval = 1
   output_initial = true

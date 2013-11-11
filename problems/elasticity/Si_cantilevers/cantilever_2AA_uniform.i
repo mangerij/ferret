@@ -317,7 +317,6 @@
   solve_type = 'PJFNK'
 
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
   petsc_options_iname = '-ksp_type -pc_type -sub_pc_type'
   petsc_options_value = 'gmres asm lu'
@@ -340,6 +339,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
 #  file_base = out_cantilever_2AA_uniform_meshref1
   file_base = out_cantilever_2AA_uniform_asm
   interval = 1

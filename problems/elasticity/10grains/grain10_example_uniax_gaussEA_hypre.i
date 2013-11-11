@@ -411,7 +411,6 @@
   solve_type = 'PJFNK'
 
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
   petsc_options_iname = '-ksp_type -pc_type -sub_pc_type -pc_hypre_type'
   petsc_options_value = 'gmres hypre hypre boomeramg'
@@ -428,6 +427,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = out_grain10_example_uniax_gaussEA
 #  file_base = out_grain10_example_uniax_gaussEA_mesh_ref1
   interval = 1

@@ -290,7 +290,6 @@
   solve_type = 'PJFNK'
 
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
   petsc_options_iname = '-ksp_type -pc_type -pc_asm_overlap -sub_pc_type'
   petsc_options_value = 'gmres asm 20 lu'
@@ -309,6 +308,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = out_cantilever_2F_111_damaged_asm_meshref1
 #  file_base = out_cantilever_2F_111_damaged
   interval = 1

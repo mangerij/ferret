@@ -307,7 +307,6 @@
   solve_type = 'PJFNK'
 
 
-  print_linear_residuals = true
   petsc_options = '-snes_view -ksp_view -snes_monitor -pc_gasm_print_subdomains -dm_view'
   petsc_options_iname = '-ksp_type  -pc_type    -pc_gasm_decomposition -pc_gasm_sub_pc_type'
   petsc_options_value = '  gmres     gasm                block                 lu'
@@ -324,6 +323,7 @@
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = out_6grain_example_fine_uniax_BC_mc
   interval = 1
   output_initial = true

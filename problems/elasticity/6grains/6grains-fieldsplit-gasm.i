@@ -312,7 +312,6 @@
   solve_type = 'PJFNK'
 
 
-print_linear_residuals = true
 petsc_options = '-snes_view -snes_monitor -dm_view -fieldsplit_disp_x_ksp_monitor -fieldsplit_disp_y_disp_z_fieldsplit_y_ksp_monitor'
 petsc_options_iname = '-pc_type    -pc_fieldsplit_decomposition -pc_fieldsplit_type -fieldsplit_disp_x_disp_y_pc_type  -fieldsplit_disp_x_disp_y_fieldsplit_type    -fieldsplit_disp_x_disp_y_pc_fieldsplit_decomposition -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_pc_asm_blocks -fieldsplit_disp_x_disp_y_fieldsplit_disp_x_sub_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_pc_type -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_pc_asm_blocks -fieldsplit_disp_x_disp_y_fieldsplit_disp_y_sub_pc_type -fieldsplit_disp_z_pc_type -fieldsplit_disp_z_pc_asm_blocks -fieldsplit_disp_z_sub_pc_type'
 
@@ -330,6 +329,7 @@ petsc_options_value = 'fieldsplit     var:disp_x,disp_y;disp_z;            schur
 [] # Executioner
 
 [Output]
+  linear_residuals = true
   file_base = out_6grain_example_fine_uniax_BC_mc
   interval = 1
   output_initial = true

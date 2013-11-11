@@ -58,13 +58,13 @@
   start_time = -0.02
   end_time =  1.0
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -pc_svd_monitor -options_monitor'
   petsc_options_iname = '-ksp_type   -pc_type'
   petsc_options_value = '    gmres        ilu'
 []
 
 [Output]
+  linear_residuals = true
   file_base = polarization_vortex.3.R5.L1.c2.out
   interval = 1
   exodus = true

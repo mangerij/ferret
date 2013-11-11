@@ -37,13 +37,13 @@
   solve_type = 'PJFNK'
 
 
-  print_linear_residuals = true
   petsc_options = '-snes_monitor -pc_svd_monitor'
   petsc_options_iname = '-pc_type'
   petsc_options_value = '     svd'
 []
 
 [Output]
+  linear_residuals = true
   file_base = vortex_potential
   interval = 1
   exodus = true
