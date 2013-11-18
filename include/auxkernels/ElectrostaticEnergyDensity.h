@@ -1,5 +1,5 @@
 /**
- * @file   ElectrostaticEnergyDensity.h  
+ * @file   ElectrostaticEnergyDensity.h
  * @author S. Gu <sgu@anl.gov>
  * @date   Wed Oct  2 17:13:46 2013
  * @brief  ElectroEnergyDensity
@@ -29,6 +29,7 @@ protected:
   const VariableValue& _polar_y;
   const VariableValue& _polar_z;
   const Real _len_scale;
+  const Real _energy_scale;
 };
 
 #endif // ELECTROSTATICENERGYDENSITY_H

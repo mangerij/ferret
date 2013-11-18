@@ -20,7 +20,9 @@ InputParameters validParams<PolarElectricE>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addRequiredParam<Real>("polar_electric_scale","polar_electric scale");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+
   return params;
 }
 
@@ -36,7 +38,8 @@ PolarElectricE::PolarElectricE(const std::string & name, InputParameters paramet
    _polar_x(coupledValueOld("polar_x")),
    _polar_y(coupledValueOld("polar_y")),
    _polar_z(coupledValueOld("polar_z")),
-   _len_scale(getParam<Real>("len_scale"))
+   _len_scale(getParam<Real>("len_scale")),
+   _polar_electric_scale(getParam<Real>("polar_electric_scale"))
 {}
 
 
@@ -44,7 +47,7 @@ PolarElectricE::PolarElectricE(const std::string & name, InputParameters paramet
 Real
 PolarElectricE::computeQpResidual()
 {
-  return -(_polar_x[_qp]*_grad_test[_i][_qp](0)+_polar_y[_qp]*_grad_test[_i][_qp](1)+_polar_z[_qp]*_grad_test[_i][_qp](2))*pow(_len_scale,2.0);
+  return -((_polar_x[_qp]*_grad_test[_i][_qp](0)+_polar_y[_qp]*_grad_test[_i][_qp](1)+_polar_z[_qp]*_grad_test[_i][_qp](2))*pow(_len_scale,2.0))*_polar_electric_scale;
 }
 
 Real

@@ -31,6 +31,7 @@ protected:
 private:
   const Real _permittivity;
   const Real _len_scale;
+  const Real _polar_electric_scale;
 
 };
 #endif //ELECTRICDTSTATICS_H

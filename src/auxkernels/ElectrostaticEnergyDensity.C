@@ -21,6 +21,7 @@ InputParameters validParams<ElectrostaticEnergyDensity>()
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addParam<Real>("energy_scale",1.0,"energy scale");
   return params;
 }
 
@@ -31,7 +32,8 @@ ElectrostaticEnergyDensity::ElectrostaticEnergyDensity(const std::string & name,
   _polar_x(coupledValueOld("polar_x")),
   _polar_y(coupledValueOld("polar_y")),
   _polar_z(coupledValueOld("polar_z")),
-  _len_scale(getParam<Real>("len_scale"))
+  _len_scale(getParam<Real>("len_scale")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {}
 
 
@@ -40,5 +42,5 @@ ElectrostaticEnergyDensity::computeValue()
 {
   RealVectorValue P;
   P(0)=_polar_x[_qp];P(1)=_polar_y[_qp];P(2)=_polar_z[_qp];
-  return 0.5*(P*_potential_int_grad[_qp])*pow(_len_scale,2.0)+(P*_potential_ext_grad[_qp])*pow(_len_scale,2.0);
+  return 0.5*(P*_potential_int_grad[_qp])*pow(_len_scale,2.0)+(P*_potential_ext_grad[_qp])*pow(_len_scale,2.0)*_energy_scale;
 }

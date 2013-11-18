@@ -40,6 +40,7 @@
 #include "ElectrostaticEnergyDensity.h"
 #include "ElectrostaticEnergyDensityCross.h"
 #include "ElectrostaticEnergyDensityTotal.h"
+#include "PostprocessorAdaptiveDT.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -110,6 +111,7 @@ FerretApp::registerObjects(Factory & factory)
   registerFunction(RandomFunc);
   registerFunction(SphereIC);
   registerFunction(SphereToCartFunc);
+  registerTimeStepper(PostprocessorAdaptiveDT);
 }
 
 void

@@ -49,8 +49,8 @@
      family=MONOMIAL
   [../]
   [./auxv_wall_energy_density]
-      order=CONSTANT
-      family=MONOMIAL
+     order=CONSTANT
+     family=MONOMIAL
   [../]
 []
 
@@ -64,7 +64,6 @@
    alpha112=6.1e8
    alpha123=-3.7e9
    G110=1.73e4
-   #G110=0.0
    G11/G110=0.6
    G12/G110=0.0
    G44/G110=0.3
@@ -94,14 +93,13 @@
     variable =auxv_bulk_energy_density
   [../]
   [./auxk_wall_energy_density]
-     type=WallEnergyDensity
-     variable=auxv_wall_energy_density
+    type =WallEnergyDensity
+    variable =auxv_wall_energy_density
   [../]
 []
 
 [Kernels]
-es
-active='diffusion_E diffusion_E_Ext  polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time bed_x bed_y bed_z'
+  active='diffusion_E diffusion_E_Ext  polar_electric_E polar_electric_px polar_electric_py polar_electric_pz polar_x_time polar_y_time polar_z_time bed_x bed_y bed_z walled_x walled_y walled_z'
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -124,16 +122,19 @@ active='diffusion_E diffusion_E_Ext  polar_electric_E polar_electric_px polar_el
      type=WallEnergyDerivative
      variable=polar_x
      component=0
+     implicit=false
   [../]
   [./walled_y]
      type=WallEnergyDerivative
      variable=polar_y
      component=1
+     implicit=false
   [../]
   [./walled_z]
      type=WallEnergyDerivative
      variable=polar_z
      component=2
+     implicit=false
   [../]
   [./polar_electric_E]
      type=PolarElectricE
@@ -205,8 +206,7 @@ active='diffusion_E diffusion_E_Ext  polar_electric_E polar_electric_px polar_el
 []
 
 [BCs]
- # active ='Periodic'
-  [./potential_int_upz]
+   [./potential_int_upz]
     type = DirichletBC
     variable = potential_int
     boundary = 'upz'
@@ -327,7 +327,7 @@ active='diffusion_E diffusion_E_Ext  polar_electric_E polar_electric_px polar_el
   type=Transient
   solve_type=newton
   scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e9
+  dt=1e2
   nl_max_its=100
   num_steps=800
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"

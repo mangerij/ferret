@@ -48,6 +48,10 @@
      order=CONSTANT
      family=MONOMIAL
   [../]
+  [./auxv_wall_energy_density]
+      order=CONSTANT
+      family=MONOMIAL
+  [../]
 []
 
 [GlobalParams]
@@ -88,6 +92,10 @@
   [./auxk_bulk_energy_density]
     type =BulkEnergyDensity
     variable =auxv_bulk_energy_density
+  [../]
+  [./auxk_wall_energy_density]
+     type=WallEnergyDensity
+     variable=auxv_wall_energy_density
   [../]
 []
 
@@ -308,7 +316,7 @@
   type=Transient
   solve_type=newton
   scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e3
+  dt=1
   nl_max_its=100
   num_steps=800
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"

@@ -20,6 +20,7 @@ InputParameters validParams<PolarElectricPStrong>()
   params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
   params.addRequiredCoupledVar("potential_ext", "The external electric potential variable");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addParam<Real>("energy_scale",1.0,"energy scale");
   return params;
 }
 
@@ -31,7 +32,8 @@ PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParame
    _component(getParam<unsigned int>("component")),
    _potential_int_grad(coupledGradient("potential_int")),
    _potential_ext_grad(coupledGradient("potential_ext")),
-   _len_scale(getParam<Real>("len_scale"))
+   _len_scale(getParam<Real>("len_scale")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {}
 
 
@@ -39,7 +41,7 @@ PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParame
 Real
 PolarElectricPStrong::computeQpResidual()
 {
-  return (_potential_int_grad[_qp](_component)+_potential_ext_grad[_qp](_component))*_test[_i][_qp]*pow(_len_scale,2.0);
+  return (_potential_int_grad[_qp](_component)+_potential_ext_grad[_qp](_component))*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
 }
 
 Real
@@ -52,6 +54,6 @@ Real
 PolarElectricPStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if( jvar == coupled("potential_int") || jvar == coupled("potential_ext"))
-    return _grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0);
+    return _grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
   else return 0.0;
 }

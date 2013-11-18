@@ -28,6 +28,7 @@ protected:
   const VariableValue& _polar_y;
   const VariableValue& _polar_z;
   const Real _len_scale;
+  const Real _energy_scale;
 };
 
 #endif // ELECTROSTATICENERGYDENSITYCROSS_H

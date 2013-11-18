@@ -20,6 +20,7 @@ InputParameters validParams<ElectrostaticEnergyDensityCross>()
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addParam<Real>("energy_scale",1.0,"energy scale");
   return params;
 }
 
@@ -29,12 +30,13 @@ ElectrostaticEnergyDensityCross::ElectrostaticEnergyDensityCross(const std::stri
   _polar_x(coupledValueOld("polar_x")),
   _polar_y(coupledValueOld("polar_y")),
   _polar_z(coupledValueOld("polar_z")),
-  _len_scale(getParam<Real>("len_scale"))
+  _len_scale(getParam<Real>("len_scale")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {}
 
 
 Real
 ElectrostaticEnergyDensityCross::computeValue()
 {
-  return -0.5*(_potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp])*pow(_len_scale,2.0);
+  return -0.5*(_potential_grad[_qp](0)*_polar_x[_qp]+ _potential_grad[_qp](1)*_polar_y[_qp]+ _potential_grad[_qp](2)*_polar_z[_qp])*pow(_len_scale,2.0)*_energy_scale;
 }

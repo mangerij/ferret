@@ -40,6 +40,7 @@ private:
    const VariableValue& _polar_y;
    const VariableValue& _polar_z;
    const Real _len_scale;
+   const Real _polar_electric_scale;
 
 };
 #endif //POLARELECTRICE_H
