@@ -11,6 +11,7 @@
 #define PostprocessorAdaptiveDT_H_
 
 #include "TimeStepper.h"
+#include "PostprocessorInterface.h"
 #include "libmesh/numeric_vector.h"
 
 #include<deque>
