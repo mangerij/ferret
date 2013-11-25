@@ -1,0 +1,35 @@
+#!/usr/bin/python2.5
+from cubit import init, cmd
+init('['']')
+cmd('reset')
+out_radius=4
+in_radius=1
+mesh_size=0.1
+
+cmd('brick x 1 y 1 z 0.4')
+cmd('move volume 1 x 0.5 y 0.5 z 0.2')
+cmd('brick x 1 y 1 z 0.2')
+cmd('move volume 2 x 0.5 y 0.5 z 0.5')
+cmd('brick x 1 y 1 z 0.4')
+cmd('move volume 3 x 0.5 y 0.5 z 0.8')
+
+cmd('merge vertex all with vertex all')
+cmd('merge surface all with surface all')
+
+cmd('volume all size 0.2')
+cmd('volume all scheme auto')
+cmd('mesh volume all')
+cmd('sideset 1 surface 1')
+cmd('sideset 1 name "downz_inner" ')
+cmd('sideset 2 surface 7')
+cmd('sideset 2 name "upz_inner" ')
+cmd('sideset 3 surface 2')
+cmd('sideset 3 name "downz_outter" ')
+cmd('sideset 4 surface 13')
+cmd('sideset 4 name "upz_outter" ')
+cmd('block 1 volume 1 3') 
+cmd('block 1 name "exterior" ')
+cmd('block 2 volume 2')
+cmd('block 2 name "interior" ')
+
+cmd('export genesis "slab.e" overwrite')
