@@ -194,27 +194,28 @@ PostprocessorAdaptiveDT::postSolve(){
      Moose::out<<"In postSolve, _t_step="<<_t_step<<":"<<_pps_value<<"\n";
     PostprocessorValue diff=_pps_value-_pps_record.back();
     if(diff>0.0)
-      _pps_good=false;
+     _pps_good=false; //Change me back
+    //pps_good=true
     else{
       //_pps_good=true;
       if(!_on_trial) _pps_good=true;
       else{
-	//_pps_good=true;
+	_pps_good=false;
 	//PostprocessorValue max_diff=-1.0*std::numeric_limits<PostprocessorValue>::max();
-	PostprocessorValue max_diff=-1e7;
-      	 size_t n=_pps_diff_record.size();
-      	 if(n>0){
-      	   for(size_t i=0;i<n;i++) {
-	     Moose::out<<_pps_diff_record[i]<<" ";
-	     max_diff=std::max(max_diff,_pps_diff_record[i]);
-	   }
-	   Moose::out<<std::endl;
-	   Moose::out<<"PostprocessorAdaptiveDT: diff="<<diff<<" "<<"history max="<<max_diff<<std::endl;
-      	   if(diff<max_diff) _pps_good=true;
-      	   else {
-	     _pps_good=false;
-	   }
-      	 }else _pps_good=true;
+	// PostprocessorValue max_diff=-1e7;
+      	//  size_t n=_pps_diff_record.size();
+      	//  if(n>0){
+      	//    for(size_t i=0;i<n;i++) {
+	//      Moose::out<<_pps_diff_record[i]<<" ";
+	//      max_diff=std::max(max_diff,_pps_diff_record[i]);
+	//    }
+	//    Moose::out<<std::endl;
+	//    Moose::out<<"PostprocessorAdaptiveDT: diff="<<diff<<" "<<"history max="<<max_diff<<std::endl;
+      	//    if(diff<max_diff) _pps_good=true;
+      	//    else {
+	//      _pps_good=false;
+	//    }
+      	//  }else _pps_good=true;
       }
     }
   }

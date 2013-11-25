@@ -21,7 +21,7 @@ InputParameters validParams<PolarElectricEStrong>()
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
-  params.addRequiredParam<Real>("polar_electric_scale","polar_electric scale");
+  params.addParam<Real>("polar_electric_scale",1.0,"polar_electric scale");
   return params;
 }
 

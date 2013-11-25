@@ -20,7 +20,7 @@ InputParameters validParams<PolarElectricE>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
-  params.addRequiredParam<Real>("polar_electric_scale","polar_electric scale");
+  params.addParam<Real>("polar_electric_scale",1.0,"polar_electric scale");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
 
   return params;
@@ -57,7 +57,7 @@ PolarElectricE::computeQpJacobian()
 }
 
 Real
-PolarElectricE::computeQpOffDiagJacobian(unsigned int jvar)
+PolarElectricE::computeQpOffDiagJacobian(unsigned int /*jvar*/)
 {
   return 0.0;
 }

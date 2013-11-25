@@ -56,8 +56,8 @@
 
 [GlobalParams]
    len_scale=1e-7
-   energy_scale=1.0
-   polar_electric_scale=1.0
+   energy_scale=1e12
+   polar_electric_scale=1e15
    #len_scale=1.0
    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
    alpha11=-7.3e7
@@ -149,8 +149,8 @@
      block='exterior interior'
   [../]
   [./diffusion_E_Ext]
+     #type=ElectricStatics
      type=Diffusion
-     #type=Diffusion
      variable=potential_ext
      block='exterior interior'
   [../]
@@ -266,8 +266,8 @@
   [./TimeStepper]
      type=PostprocessorAdaptiveDT
      #type=ConstantDT
-     dt=1e9
-     increase_rate=2.0
+     dt=1e-5
+     increase_rate=1.01
      decrease_rate=0.5
      update_step=2
      max_record_size=4

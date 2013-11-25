@@ -54,21 +54,4 @@ protected:
   Real _old_dt;
 };
 
-// #include "TimeStepper.h"
-
-// class PostprocessorAdaptiveDT;
-
-// template<>
-// InputParameters validParams<PostprocessorAdaptiveDT>();
-
-// class PostprocessorAdaptiveDT : public TimeStepper
-// {
-// public:
-//   PostprocessorAdaptiveDT(const std::string & name, InputParameters parameters);
-
-// protected:
-//   virtual Real computeInitialDT();
-//   virtual Real computeDT();
-// };
-
 #endif /* PostprocessorAdaptiveDT_H_ */
