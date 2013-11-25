@@ -2,7 +2,6 @@
  * @file   WallEnergyDensity.C
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu Nov  7 11:59:42 2013
- *
  * @brief  Calculate wall energy density
  */
 
