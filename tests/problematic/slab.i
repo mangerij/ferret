@@ -7,11 +7,6 @@
 # The above numerics might suggests the following possible causes.
 # (1) The cubit line search has a bug. (2) A terrible conditioning of the Jacobians causes numerical instability which leads to the failure of the linear search. This terrible scaling might due to the fact that MOOSE handles the boundary conditions in a naive way: they simply set the Dirichlet BC nodes to be one which theorectically might lead to a very worse conditioning of the system even if the discrete differential operator is not ill-condition. This might be what we see in this example.
 ###########################
-[Mesh]
-  file=slab.e
-  #uniform_refine=1
-[]
-
 [Variables]
 
   [./disp_x]
