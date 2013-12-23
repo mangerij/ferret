@@ -40,6 +40,9 @@ ferret_deps := $(patsubst %.C, %.$(obj-suffix).d, $(ferret_srcfiles)) \
                $(patsubst %.c, %.$(obj-suffix).d, $(ferret_csrcfiles)) \
                $(patsubst %.C, %.$(obj-suffix).d, $(ferret_main_src))
 
+# clang static analyzer files
+ferret_analyzer := $(patsubst %.C, %.plist.$(obj-suffix), $(ferret_srcfiles))
+
 # If building shared libs, make the plugins a dependency, otherwise don't.
 ifeq ($(libmesh_shared),yes)
   ferret_plugin_deps := $(ferret_plugins)
@@ -54,6 +57,9 @@ $(ferret_LIB): $(ferret_objects) $(ferret_plugin_deps)
 	@$(libmesh_LIBTOOL) --tag=CXX $(LIBTOOLFLAGS) --mode=link --quiet \
 	  $(libmesh_CXX) $(libmesh_CXXFLAGS) -o $@ $(ferret_objects) $(libmesh_LIBS) $(libmesh_LDFLAGS) $(EXTERNAL_FLAGS) -rpath $(FERRET_DIR)
 	@$(libmesh_LIBTOOL) --mode=install --quiet install -c $(ferret_LIB) $(FERRET_DIR)
+
+# Clang static analyzer
+sa:: $(ferret_analyzer)
 
 # include FERRET dep files
 -include $(ferret_deps)
