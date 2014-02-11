@@ -6,11 +6,13 @@
 #include "ElkApp.h"
 
 #include "PolarizationVortexAux.h"
+#include "TensorPressureAux.h"
 #include "PolarizationVortexAuxAction.h"
 #include "StressBC.h"
 #include "StressFunctionBC.h"
 #include "HydrostaticBC.h"
 #include "HydrostaticDirichletBC.h"
+#include "SurfaceMechanicsBC.h"
 #include "PolarizationSurfaceCharge.h"
 //#include "VortexSurfaceEnergy.h"
 
@@ -80,11 +82,13 @@ FerretApp::registerObjects(Factory & factory)
 {
   registerBoundaryCondition(StressBC);
   registerBoundaryCondition(StressFunctionBC);
+  registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
   registerBoundaryCondition(HydrostaticDirichletBC);
   registerBoundaryCondition(PolarizationSurfaceCharge);
 
   registerAux(PolarizationVortexAux);
+  registerAux(TensorPressureAux);
   registerAux(ElectrostaticEnergyDensity);
   registerAux(ElectrostaticEnergyDensityE);
   registerAux(ElectrostaticEnergyDensityCross);
