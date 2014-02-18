@@ -16,6 +16,7 @@
 # Note: Make sure that there is no whitespace after the word 'yes' if enabling
 # an application
 ###############################################################################
+CURR_DIR        ?= $(shell pwd)
 ROOT_DIR        ?= $(shell dirname `pwd`)
 
 ifeq ($(MOOSE_DEV),true)
@@ -24,24 +25,23 @@ else
 	MOOSE_DIR ?= $(ROOT_DIR)/moose
 endif
 
+ELK_DIR         ?= $(ROOT_DIR)/elk
+FERRET_DIR     ?= $(ROOT_DIR)/ferret
+
+APPLICATION_NAME := ferret
+
+DEP_APPS    ?= $(shell $(MOOSE_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
+
 ################################## ELK MODULES ################################
 ALL_ELK_MODULES := yes
 ###############################################################################
 
-# framework
+
 include $(MOOSE_DIR)/build.mk
+
 include $(MOOSE_DIR)/moose.mk
-
-# modules
-ELK_DIR ?= $(ROOT_DIR)/elk
 include $(ELK_DIR)/elk.mk
-
-# dep apps
-APPLICATION_DIR    := $(ROOT_DIR)/ferret
-APPLICATION_NAME   := ferret
-BUILD_EXEC         := yes
-DEP_APPS           := $(shell $(MOOSE_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
-include            $(MOOSE_DIR)/app.mk
+include $(FERRET_DIR)/ferret.mk
 
 ###############################################################################
 # Additional special case targets should be added here
