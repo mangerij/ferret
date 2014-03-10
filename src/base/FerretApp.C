@@ -3,7 +3,7 @@
 #include "Factory.h"
 #include "AppFactory.h"
 
-#include "ElkApp.h"
+#include "ModulesApp.h"
 
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
@@ -60,8 +60,8 @@ FerretApp::FerretApp(const std::string & name, InputParameters parameters) :
   Moose::registerObjects(_factory);
   Moose::associateSyntax(_syntax, _action_factory);
 
-  ElkApp::registerObjects(_factory);
-  ElkApp::associateSyntax(_syntax, _action_factory);
+  ModulesApp::registerObjects(_factory);
+  ModulesApp::associateSyntax(_syntax, _action_factory);
 
   FerretApp::registerObjects(_factory);
   FerretApp::associateSyntax(_syntax, _action_factory);

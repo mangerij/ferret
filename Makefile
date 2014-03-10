@@ -13,17 +13,14 @@ HERD_TRUNK_DIR     ?= $(shell dirname `pwd`)
 FRAMEWORK_DIR      ?= $(MOOSE_DIR)/framework
 ###############################################################################
 
-################################## ELK MODULES ################################
-ALL_ELK_MODULES := yes
-###############################################################################
-
 # framework
 include $(FRAMEWORK_DIR)/build.mk
 include $(FRAMEWORK_DIR)/moose.mk
 
-# modules
-ELK_DIR ?= $(HERD_TRUNK_DIR)/elk
-include $(ELK_DIR)/elk.mk
+################################## MODULES ####################################
+ALL_MODULES := yes
+include           $(MOOSE_DIR)/modules/modules.mk
+###############################################################################
 
 # dep apps
 APPLICATION_DIR    := $(HERD_TRUNK_DIR)/ferret
