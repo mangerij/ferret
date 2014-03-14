@@ -125,4 +125,9 @@ FerretApp::associateSyntax(Syntax& syntax, ActionFactory & action_factory)
 {
   syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
   registerAction(PolarizationVortexAuxAction, "add_kernel");
+
+  syntax.registerActionSyntax("RecoverBaseAction", "Output");
+  syntax.registerActionSyntax("SetupOutputAction", "Output");
+  syntax.registerActionSyntax("SetupOutputNameAction", "Output");
+  syntax.registerActionSyntax("SetupOverSamplingAction", "Output/OverSampling");
 }
