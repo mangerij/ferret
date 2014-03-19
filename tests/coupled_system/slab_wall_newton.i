@@ -100,7 +100,7 @@
 [Preconditioning]
    [./smp]
      type=SMP   #or SMP
-     full=true   
+     full=true
      pc_side=left
    [../]
 []
@@ -119,7 +119,11 @@
     [../]
 []
 
-[Output]
-  output_initial=1
+[Outputs]
+  output_initial = true
   exodus = true
+  [./console]
+    type = Console
+    perf_log = true
+  [../]
 []

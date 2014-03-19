@@ -112,7 +112,11 @@
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
 []
 
-[Output]
-  output_initial=1
+[Outputs]
+  output_initial = true
   exodus = true
+  [./console]
+    type = Console
+    perf_log = true
+  [../]
 []

@@ -346,10 +346,10 @@
     [../]
 []
 
-[Output]
-  #file_base = out
-  output_initial=1
-  #interval = 1
+[Outputs]
   exodus = true
-  perf_log = true
+  [./console]
+    type = Console
+    perf_log = true
+  [../]
 []

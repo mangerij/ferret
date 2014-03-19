@@ -1,7 +1,7 @@
 #######################
 #In this case, we only consider the electrostatic energy:
 # we can compute the exactly analytic solution and we can show the minimizer is px=py=0 component and pz=-1.1e-4 inside the material domain. And we indeed obtain this solution by 800 step wich step size 1e-3.
-# However, the interesting fact is that, the electrostatic energy is almost unchanged after 250, however, at 250 steps, px and py is still quite large. This indicates the energy surface actually is quite very flat on x and y-direction and it demonstrate a need of adaptive time step. It's also a sign of ill-conditioning. 
+# However, the interesting fact is that, the electrostatic energy is almost unchanged after 250, however, at 250 steps, px and py is still quite large. This indicates the energy surface actually is quite very flat on x and y-direction and it demonstrate a need of adaptive time step. It's also a sign of ill-conditioning.
 [Mesh]
   file=slab.e
   #uniform_refine=1
@@ -226,7 +226,7 @@
 [Preconditioning]
    [./smp]
      type=SMP   #or SMP
-     full=true   
+     full=true
      pc_side=left
    [../]
 []
@@ -250,10 +250,11 @@
     [../]
 []
 
-[Output]
-  #file_base = out
-  output_initial=1
-  #interval = 1
+[Outputs]
+  output_initial = true
   exodus = true
-  perf_log = true
-[]
+  [./console]
+    type = Console
+    perf_log = true
+  [../]
+[][]

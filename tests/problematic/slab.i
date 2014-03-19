@@ -111,7 +111,11 @@
   petsc_options_value='jacobi'
 []
 
-[Output]
-  output_initial=1
+[Outputs]
+  output_initial = true
   exodus = true
+  [./console]
+    type = Console
+    perf_log = true
+  [../]
 []

@@ -204,7 +204,7 @@
     value = 0.0
     #implicit=false
   [../]
-  
+
    [./potential_ext_upz]
     type = DirichletBC
     variable = potential_ext
@@ -334,10 +334,11 @@
     [../]
 []
 
-[Output]
-  #file_base = out
-  output_initial=1
-  #interval = 1
+[Outputs]
+  output_initial = true
   exodus = true
-  perf_log = true
+  [./console]
+    type = Console
+    perf_log = true
+  [../]
 []
