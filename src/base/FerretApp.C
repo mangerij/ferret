@@ -55,7 +55,7 @@ InputParameters validParams<FerretApp>()
 FerretApp::FerretApp(const std::string & name, InputParameters parameters) :
     MooseApp(name, parameters)
 {
-  srand(libMesh::processor_id());
+  srand(processor_id());
 
   Moose::registerObjects(_factory);
   Moose::associateSyntax(_syntax, _action_factory);
