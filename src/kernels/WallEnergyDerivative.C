@@ -83,7 +83,7 @@ WallEnergyDerivative::computeQpJacobian()
 Real
 WallEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  mooseAssert(jvar!=variable().index(),"Something wrong: OffDiag coupled to itself.");
+  mooseAssert(jvar!=variable().number(),"Something wrong: OffDiag coupled to itself.");
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
   {
     const unsigned int _jj = (jvar==_polar_x_var)? 0: (jvar==_polar_y_var)? 1 : 2;
