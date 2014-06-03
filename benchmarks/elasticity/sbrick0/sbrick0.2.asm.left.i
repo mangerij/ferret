@@ -280,7 +280,7 @@
   solve_type = 'PJFNK'
 
 
-  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_converged_reason -options_table -options_left -log_summary'
+  petsc_options = '-snes_view -snes_monitor -snes_converged_reason -ksp_converged_reason -options_table -options_left'
   petsc_options_iname = '-ksp_type -ksp_pc_side -pc_type -pc_asm_overlap  -sub_pc_type'
   petsc_options_value = '    gmres         left      asm               1            lu'
 
@@ -292,12 +292,17 @@
   l_max_its = 30
 [] # Executioner
 
-[Output]
-  linear_residuals = true
-  file_base = sbrick0.2.asm.left.out
+[Outputs]
   interval = 1
   output_initial = true
-  elemental_as_nodal = true
-  exodus = true
-  perf_log = true
+  [./console]
+    type = Console
+    perf_log = true
+    linear_residuals = true
+  [../]
+  [./exodus]
+    type = Exodus
+    elemental_as_nodal = true
+    exodus = true
+  [../]
 [] # Output
