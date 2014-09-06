@@ -90,13 +90,13 @@ SurfaceMechanicsBC::computeQpProjection()
     {
             if (i == j)
 	{
-          _projection.setValue(1 - _normals[_qp](i-1)*_normals[_qp](i-1), i, i);
-	  //          _projection.setValue(1 - _normals[_qp](i-1)*_normals[_qp](j-1), j, i);
+          _projection(i, i) = 1 - _normals[_qp](i-1)*_normals[_qp](i-1);
+	  //          _projection(j, i) = 1 - _normals[_qp](i-1)*_normals[_qp](j-1);
 	}
           else
           {
-       	    _projection.setValue(-_normals[_qp](i-1)*_normals[_qp](j-1), i, j);
-       	    _projection.setValue(-_normals[_qp](i-1)*_normals[_qp](j-1), j, i);
+       	    _projection(j, i) = -_normals[_qp](i-1)*_normals[_qp](j-1);
+       	    _projection(i, j) = -_normals[_qp](i-1)*_normals[_qp](j-1);
            }
     }
 }
@@ -126,19 +126,19 @@ for (unsigned int i=0; i<3;i++)
   {
     for (unsigned int j=0;j<3;j++)
      {
-       _tp11.setValue(_tangent_1(i)*_tangent_1(j), i+1,j+1);
-       _tp22.setValue(_tangent_2(i)*_tangent_2(j), i+1,j+1);
+       _tp11(i+1,j+1) = _tangent_1(i)*_tangent_1(j);
+       _tp22(i+1,j+1) = _tangent_2(i)*_tangent_2(j);
       for (unsigned int k=0;k<3;k++)
 	{
           for (unsigned int l=0;l<3;l++)
 	    {
-	    _t11.setValue(_tangent_1(i)*_tangent_1(j)*_tangent_1(k)*_tangent_1(l),i+1,j+1,k+1,l+1);
-	    _t22.setValue(_tangent_2(i)*_tangent_2(j)*_tangent_2(k)*_tangent_2(l),i+1,j+1,k+1,l+1);
-_t12.setValue(_tangent_1(i)*_tangent_1(j)*_tangent_2(k)*_tangent_2(l)+ _tangent_2(i)*_tangent_2(j)*_tangent_1(k)*_tangent_1(l),i+1,j+1,k+1,l+1);
-_t33.setValue(_tangent_1(i)*_tangent_2(j)*_tangent_1(k)*_tangent_2(l)
-             +_tangent_2(i)*_tangent_1(j)*_tangent_2(k)*_tangent_1(l)
-             +_tangent_1(i)*_tangent_2(j)*_tangent_2(k)*_tangent_1(l)
-	     +_tangent_2(i)*_tangent_1(j)*_tangent_1(k)*_tangent_2(l),i+1,j+1,k+1,l+1);
+	    _t11(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_1(j)*_tangent_1(k)*_tangent_1(l);
+	    _t22(i+1,j+1,k+1,l+1) = _tangent_2(i)*_tangent_2(j)*_tangent_2(k)*_tangent_2(l);
+	    _t12(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_1(j)*_tangent_2(k)*_tangent_2(l)+ _tangent_2(i)*_tangent_2(j)*_tangent_1(k)*_tangent_1(l);
+	    _t33(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_2(j)*_tangent_1(k)*_tangent_2(l)
+	      +_tangent_2(i)*_tangent_1(j)*_tangent_2(k)*_tangent_1(l)
+	      +_tangent_1(i)*_tangent_2(j)*_tangent_2(k)*_tangent_1(l)
+	      +_tangent_2(i)*_tangent_1(j)*_tangent_1(k)*_tangent_2(l);
             }
         }
      }
@@ -152,10 +152,10 @@ SurfaceMechanicsBC::computeQpResidual()
   RankTwoTensor temp2;
   RankTwoTensor temp4;
   RankFourTensor temp_surface;
-  C0000=_Csijkl.getValue(1,1,1,1)-_taus;
-  C1111=_Csijkl.getValue(2,2,2,2)-_taus;
-  C0011=_Csijkl.getValue(1,1,2,2)+_taus;
-  C0101=_Csijkl.getValue(1,2,1,2)-_taus;
+  C0000=_Csijkl(1,1,1,1)-_taus;
+  C1111=_Csijkl(2,2,2,2)-_taus;
+  C0011=_Csijkl(1,1,2,2)+_taus;
+  C0101=_Csijkl(1,2,1,2)-_taus;
   //_surface_strain=(grad_tensor_1+grad_tensor_1.transpose())/2.0;
   temp2=(grad_tensor_1+grad_tensor_1.transpose())/2.0;
   //Project onto surface
@@ -184,10 +184,10 @@ SurfaceMechanicsBC::computeQpResidual()
 	{
 	  jp=j+1;
 	  //temp+=_surface_tau(_component,i)*temp4(_component,i)+_projection(i,_component)*_grad_test[_i][_qp](j)*temp4(i,j);
-	  //temp+=_surface_tau.getValue(cp,ip)*temp2.getValue(cp,ip)+_projection.getValue(ip,cp)*_grad_test[_i][_qp](j)*temp4.getValue(ip,jp);
-	  //temp+=_taus*((_tp11.getValue(cp,ip)+_tp22.getValue(cp,ip))*temp2.getValue(cp,ip))+_projection.getValue(ip,cp)*_grad_test[_i][_qp](j)*temp4.getValue(ip,jp);
-	  temp+=_taus*temp_tau.getValue(ip,jp)*_grad_test[_i][_qp](j)*_projection.getValue(ip,cp)
-+_projection.getValue(ip,cp)*_grad_test[_i][_qp](j)*temp4.getValue(ip,jp);
+	  //temp+=_surface_tau.(cp,ip)*temp2.(cp,ip)+_projection.(ip,cp)*_grad_test[_i][_qp](j)*temp4.(ip,jp);
+	  //temp+=_taus*((_tp11.(cp,ip)+_tp22.(cp,ip))*temp2.(cp,ip))+_projection.(ip,cp)*_grad_test[_i][_qp](j)*temp4.(ip,jp);
+	  temp+=_taus*temp_tau(ip,jp)*_grad_test[_i][_qp](j)*_projection(ip,cp)
++_projection(ip,cp)*_grad_test[_i][_qp](j)*temp4(ip,jp);
         }
     }
    	return temp;
