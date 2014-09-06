@@ -90,13 +90,13 @@ SurfaceMechanicsBC::computeQpProjection()
     {
             if (i == j)
 	{
-          _projection(1 - _normals[_qp](i-1)*_normals[_qp](i-1),i, i);
-	  //          _projection(1 - _normals[_qp](i-1)*_normals[_qp](j-1), j, i);
+          _projection(i, i) = 1 - _normals[_qp](i-1)*_normals[_qp](i-1);
+	  //          _projection(j, i) = 1 - _normals[_qp](i-1)*_normals[_qp](j-1);
 	}
           else
           {
-       	    _projection(-_normals[_qp](i-1)*_normals[_qp](j-1),j, i);
-       	    _projection(-_normals[_qp](i-1)*_normals[_qp](j-1),i, j);
+       	    _projection(j, i) = -_normals[_qp](i-1)*_normals[_qp](j-1);
+       	    _projection(i, j) = -_normals[_qp](i-1)*_normals[_qp](j-1);
            }
     }
 }
@@ -126,19 +126,19 @@ for (unsigned int i=0; i<3;i++)
   {
     for (unsigned int j=0;j<3;j++)
      {
-       _tp11(_tangent_1(i)*_tangent_1(j), i+1,j+1);
-       _tp22(_tangent_2(i)*_tangent_2(j), i+1,j+1);
+       _tp11(i+1,j+1) = _tangent_1(i)*_tangent_1(j);
+       _tp22(i+1,j+1) = _tangent_2(i)*_tangent_2(j);
       for (unsigned int k=0;k<3;k++)
 	{
           for (unsigned int l=0;l<3;l++)
 	    {
-	    _t11(_tangent_1(i)*_tangent_1(j)*_tangent_1(k)*_tangent_1(l),i+1,j+1,k+1,l+1);
-	    _t22(_tangent_2(i)*_tangent_2(j)*_tangent_2(k)*_tangent_2(l),i+1,j+1,k+1,l+1);
-_t12(_tangent_1(i)*_tangent_1(j)*_tangent_2(k)*_tangent_2(l)+ _tangent_2(i)*_tangent_2(j)*_tangent_1(k)*_tangent_1(l),i+1,j+1,k+1,l+1);
-_t33(_tangent_1(i)*_tangent_2(j)*_tangent_1(k)*_tangent_2(l)
-             +_tangent_2(i)*_tangent_1(j)*_tangent_2(k)*_tangent_1(l)
-             +_tangent_1(i)*_tangent_2(j)*_tangent_2(k)*_tangent_1(l)
-	     +_tangent_2(i)*_tangent_1(j)*_tangent_1(k)*_tangent_2(l),i+1,j+1,k+1,l+1);
+	    _t11(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_1(j)*_tangent_1(k)*_tangent_1(l);
+	    _t22(i+1,j+1,k+1,l+1) = _tangent_2(i)*_tangent_2(j)*_tangent_2(k)*_tangent_2(l);
+	    _t12(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_1(j)*_tangent_2(k)*_tangent_2(l)+ _tangent_2(i)*_tangent_2(j)*_tangent_1(k)*_tangent_1(l);
+	    _t33(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_2(j)*_tangent_1(k)*_tangent_2(l)
+	      +_tangent_2(i)*_tangent_1(j)*_tangent_2(k)*_tangent_1(l)
+	      +_tangent_1(i)*_tangent_2(j)*_tangent_2(k)*_tangent_1(l)
+	      +_tangent_2(i)*_tangent_1(j)*_tangent_1(k)*_tangent_2(l);
             }
         }
      }
