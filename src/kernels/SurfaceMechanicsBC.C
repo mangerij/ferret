@@ -85,18 +85,18 @@ void
 SurfaceMechanicsBC::computeQpProjection()
 {
   //Need to compute the projection operator
-  for (int i=1; i<4; i++)
-    for (int j=i; j<4; j++)
+  for (int i=0; i<3; i++)
+    for (int j=i; j<3; j++)
     {
             if (i == j)
 	{
-          _projection(i, i) = 1 - _normals[_qp](i-1)*_normals[_qp](i-1);
+          _projection(i, i) = 1 - _normals[_qp](i)*_normals[_qp](i);
 	  //          _projection(j, i) = 1 - _normals[_qp](i-1)*_normals[_qp](j-1);
 	}
           else
           {
-       	    _projection(j, i) = -_normals[_qp](i-1)*_normals[_qp](j-1);
-       	    _projection(i, j) = -_normals[_qp](i-1)*_normals[_qp](j-1);
+       	    _projection(j, i) = -_normals[_qp](i)*_normals[_qp](j);
+       	    _projection(i, j) = -_normals[_qp](i)*_normals[_qp](j);
            }
     }
 }
@@ -126,16 +126,16 @@ for (unsigned int i=0; i<3;i++)
   {
     for (unsigned int j=0;j<3;j++)
      {
-       _tp11(i+1,j+1) = _tangent_1(i)*_tangent_1(j);
-       _tp22(i+1,j+1) = _tangent_2(i)*_tangent_2(j);
+       _tp11(i,j) = _tangent_1(i)*_tangent_1(j);
+       _tp22(i,j) = _tangent_2(i)*_tangent_2(j);
       for (unsigned int k=0;k<3;k++)
 	{
           for (unsigned int l=0;l<3;l++)
 	    {
-	    _t11(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_1(j)*_tangent_1(k)*_tangent_1(l);
-	    _t22(i+1,j+1,k+1,l+1) = _tangent_2(i)*_tangent_2(j)*_tangent_2(k)*_tangent_2(l);
-	    _t12(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_1(j)*_tangent_2(k)*_tangent_2(l)+ _tangent_2(i)*_tangent_2(j)*_tangent_1(k)*_tangent_1(l);
-	    _t33(i+1,j+1,k+1,l+1) = _tangent_1(i)*_tangent_2(j)*_tangent_1(k)*_tangent_2(l)
+	    _t11(i,j,k,l) = _tangent_1(i)*_tangent_1(j)*_tangent_1(k)*_tangent_1(l);
+	    _t22(i,j,k,l) = _tangent_2(i)*_tangent_2(j)*_tangent_2(k)*_tangent_2(l);
+	    _t12(i,j,k,l) = _tangent_1(i)*_tangent_1(j)*_tangent_2(k)*_tangent_2(l)+ _tangent_2(i)*_tangent_2(j)*_tangent_1(k)*_tangent_1(l);
+	    _t33(i,j,k,l) = _tangent_1(i)*_tangent_2(j)*_tangent_1(k)*_tangent_2(l)
 	      +_tangent_2(i)*_tangent_1(j)*_tangent_2(k)*_tangent_1(l)
 	      +_tangent_1(i)*_tangent_2(j)*_tangent_2(k)*_tangent_1(l)
 	      +_tangent_2(i)*_tangent_1(j)*_tangent_1(k)*_tangent_2(l);
@@ -176,13 +176,13 @@ SurfaceMechanicsBC::computeQpResidual()
    unsigned int cp;
    unsigned int ip;
    unsigned int jp;
-   cp=_component+1;
+   cp=_component;
    for (unsigned int i=0;i<3;i++)
     {
-      ip=i+1;
+      ip=i;
       for (unsigned int j=0;j<3;j++)
 	{
-	  jp=j+1;
+	  jp=j;
 	  //temp+=_surface_tau(_component,i)*temp4(_component,i)+_projection(i,_component)*_grad_test[_i][_qp](j)*temp4(i,j);
 	  //temp+=_surface_tau.(cp,ip)*temp2.(cp,ip)+_projection.(ip,cp)*_grad_test[_i][_qp](j)*temp4.(ip,jp);
 	  //temp+=_taus*((_tp11.(cp,ip)+_tp22.(cp,ip))*temp2.(cp,ip))+_projection.(ip,cp)*_grad_test[_i][_qp](j)*temp4.(ip,jp);
