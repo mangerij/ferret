@@ -85,8 +85,8 @@ void
 SurfaceMechanicsBC::computeQpProjection()
 {
   //Need to compute the projection operator
-  for (int i=0; i<3; i++)
-    for (int j=i; j<3; j++)
+  for (unsigned int i=0; i<3; i++)
+    for (unsigned int j=i; j<3; j++)
     {
             if (i == j)
 	{
