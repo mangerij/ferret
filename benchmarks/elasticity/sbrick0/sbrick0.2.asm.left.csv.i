@@ -309,9 +309,9 @@
 
 [Outputs]
   interval = 1
-  output_initial = true
+  output_on = 'initial timestep_end'
   [./table]
-     type = CSV
+    type = CSV
   [../]
   [./console]
     type = Console
