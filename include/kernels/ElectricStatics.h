@@ -1,5 +1,5 @@
 /**
- * @file   ElectricStatics.h
+ * @file   Electrostatics.h
  * @author S. Gu <sgu@anl.gov>
  * @date   Tue Jun 11 10:07:53 2013
  *
@@ -8,21 +8,21 @@
  *
  */
 
-#ifndef ELECTRICSTATICS_H
-#define ELECTRICSTATICS_H
+#ifndef ELECTROSTATICS_H
+#define ELECTROSTATICS_H
 
 #include "Kernel.h"
 
-class ElectricStatics;
+class Electrostatics;
 
 template<>
-InputParameters validParams<ElectricStatics>();
+InputParameters validParams<Electrostatics>();
 
-class ElectricStatics: public Kernel
+class Electrostatics: public Kernel
 {
 public:
 
-  ElectricStatics(const std::string & name, InputParameters parameters);
+  Electrostatics(const std::string & name, InputParameters parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -34,4 +34,4 @@ private:
   const Real _polar_electric_scale;
 
 };
-#endif //ELECTRICDTSTATICS_H
+#endif
