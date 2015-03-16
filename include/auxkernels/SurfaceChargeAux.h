@@ -19,6 +19,7 @@ public:
 
 protected:
   virtual Real computeValue();
+  const MooseArray<Point> & _normals;
 
 private:
   const VariableValue& _polar_x;

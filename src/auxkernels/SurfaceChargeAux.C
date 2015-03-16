@@ -15,6 +15,7 @@ InputParameters validParams<SurfaceChargeAux>()
 
 SurfaceChargeAux::SurfaceChargeAux( const std::string & name, InputParameters parameters ) :
   AuxKernel( name, parameters ),
+  _normals(_var.normals()),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z"))
