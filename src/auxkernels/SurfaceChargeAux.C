@@ -24,9 +24,10 @@ SurfaceChargeAux::SurfaceChargeAux( const std::string & name, InputParameters pa
 
 Real
 SurfaceChargeAux::computeValue()
-
 {
-    return _normals[_qp](0)*_polar_x[_qp] + _normals[_qp](1)*_polar_y[_qp] + _normals[_qp](2)*_polar_z[_qp];
+  RealVectorValue P(_polar_x[_qp],_polar_y[_qp],_polar_z[_qp]);
+  RealVectorValue n(_normals[_qp]);
+    return P*n;
 }
 
 
