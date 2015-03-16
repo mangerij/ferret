@@ -8,10 +8,10 @@
  *
  */
 
-#include "ElectricStatics.h"
+#include "Electrostatics.h"
 
 template<>
-InputParameters validParams<ElectricStatics>()
+InputParameters validParams<Electrostatics>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<Real>("permittivity", "permittivity");
@@ -23,7 +23,7 @@ InputParameters validParams<ElectricStatics>()
 
 
 //Constructor
-ElectricStatics::ElectricStatics(const std::string & name, InputParameters parameters)
+Electrostatics::Electrostatics(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
    _permittivity(getParam<Real>("permittivity")),
    _len_scale(getParam<Real>("len_scale")),
@@ -33,13 +33,13 @@ ElectricStatics::ElectricStatics(const std::string & name, InputParameters param
 
 
 Real
-ElectricStatics::computeQpResidual()
+Electrostatics::computeQpResidual()
 {
   return _permittivity*_grad_u[_qp]*_grad_test[_i][_qp]*_len_scale*_polar_electric_scale;
 }
 
 Real
-ElectricStatics::computeQpJacobian()
+Electrostatics::computeQpJacobian()
 {
    return _permittivity*_grad_phi[_j][_qp]*_grad_test[_i][_qp]*_len_scale*_polar_electric_scale;
 }
