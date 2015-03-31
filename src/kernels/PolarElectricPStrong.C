@@ -17,6 +17,8 @@ InputParameters validParams<PolarElectricPStrong>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addRequiredParam<Real>("permittivity_ext", "external permittivity");
+  params.addRequiredParam<Real>("permittivity_int", "internal permittivity");
   params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
   params.addRequiredCoupledVar("potential_ext", "The external electric potential variable");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
@@ -30,6 +32,8 @@ InputParameters validParams<PolarElectricPStrong>()
 PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
    _component(getParam<unsigned int>("component")),
+   _permittivity_int(getParam<Real>("permittivity_int")),
+   _permittivity_ext(getParam<Real>("permittivity_ext")),
    _potential_int_grad(coupledGradient("potential_int")),
    _potential_ext_grad(coupledGradient("potential_ext")),
    _len_scale(getParam<Real>("len_scale")),
@@ -41,7 +45,7 @@ PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParame
 Real
 PolarElectricPStrong::computeQpResidual()
 {
-  return (_potential_int_grad[_qp](_component)+_potential_ext_grad[_qp](_component))*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
+    return (0.5*_permittivity_int*_potential_int_grad[_qp](_component)+_permittivity_ext*_potential_ext_grad[_qp](_component))*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
 }
 
 Real
@@ -53,7 +57,11 @@ PolarElectricPStrong::computeQpJacobian()
 Real
 PolarElectricPStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if( jvar == coupled("potential_int") || jvar == coupled("potential_ext"))
-    return _grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
-  else return 0.0;
+  if( jvar == coupled("potential_int") )
+    return _permittivity_int*0.5*_grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
+  else if( jvar == coupled("potential_ext"))
+    return _permittivity_ext*_grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
+  else{
+    return 0.0;
+  }
 }

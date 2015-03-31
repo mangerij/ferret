@@ -47,13 +47,13 @@ PolarElectricP::computeQpResidual()
 Real
 PolarElectricP::computeQpJacobian()
 {
-  mooseError("PolarElectricP: Cannot evaluate Jacobian.\n");
+  //mooseError("PolarElectricP: Cannot evaluate Jacobian.\n");
   return 0.0;
 }
 
 Real
 PolarElectricP::computeQpOffDiagJacobian(unsigned int /*jvar*/)
 {
-  mooseError("PolarElectricP: Cannot evaluate Jacobian.\n");
+  //mooseError("PolarElectricP: Cannot evaluate Jacobian.\n");
   return 0.0;
 }

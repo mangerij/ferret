@@ -31,6 +31,8 @@ protected:
 
 private:
   const unsigned int _component;
+  const Real _permittivity_int;
+  const Real _permittivity_ext;
   const VariableGradient&  _potential_int_grad;
   const VariableGradient&  _potential_ext_grad;
   const Real _len_scale;

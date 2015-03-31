@@ -1,7 +1,7 @@
 
 [Mesh]
-  file = cube_sphere.e
- # uniform_refine=1
+  file = sphere_150_25_coarse.e
+  #uniform_refine=1
 []
 [Variables]
   [./polar_x]
@@ -32,7 +32,7 @@
 [AuxVariables]
   [./SurfCharge]
     order = FIRST
-    famiy = LAGRANGE
+    family = LAGRANGE
   [../]
   [./Ex]
     order = CONSTANT
@@ -46,55 +46,94 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
+  [./depol_Ex]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./depol_Ey]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./depol_Ez]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 [Kernels]
-  [./polar_electric_E]
-     type=PolarElectricE
+ [./polar_electric_E]
+     type=PolarElectricEStrong
      variable=potential_int
      block='2'
-     permittivity = 8.85*e-12
+     permittivity = 1  # permittivity = 8.85*e-12
      polar_x = polar_x
      polar_y = polar_y
      polar_z = polar_z
-     implicit=false
+     #implicit=false
   [../]
-  [./diffusion_E]
-     type=Electrostatics
-     permittivity = 8.85*e-12
+
+  [./diffusion_E_int_block2]
+    type=Electrostatics
+     permittivity = 4 #permittivity = 4*8.85*e-12
      variable=potential_int
-     block='1 2'
+     block='2'
   [../]
-  [./diffusion_E_Ext]
+  [./diffusion_E_int_block1]
+    type=Electrostatics
+     permittivity = 1 #permittivity = 4*8.85*e-12
+     variable=potential_int
+     block='1'
+  [../]
+
+
+  [./diffusion_E_Ext_block2]
      type=Electrostatics
-     #type=Diffusion
-     permittivity = 8.85*e-12
+     permittivity = 4 #permittivity = 8.85*e-12
      variable=potential_ext
-     block='1 2'
+     block='2'
   [../]
+
+  [./diffusion_E_Ext_block1]
+     type=Electrostatics
+     permittivity = 1 #permittivity = 8.85*e-12
+     variable=potential_ext
+     block='1'
+  [../]
+  
+
   [./polar_electric_px]
-     type=PolarElectricP
+     type=PolarElectricPStrong
      variable=polar_x
+     permittivity_ext = 1
+     permittivity_int = 4
+     block = '2'
      potential_ext = potential_ext
      potential_int = potential_int
      component=0
-     implicit=false
+     #implicit=false
   [../]
+
   [./polar_electric_py]
-     type=PolarElectricP
+     type=PolarElectricPStrong
      variable=polar_y
+     permittivity_ext = 1
+     permittivity_int = 4
+     block = '2'
      potential_ext = potential_ext
      potential_int = potential_int
      component=1
-     implicit=false
+     #implicit=false
   [../]
   [./polar_electric_pz]
-     type=PolarElectricP
+     type=PolarElectricPStrong
      variable=polar_z
+     block = '2'
+     permittivity_ext = 1
+     permittivity_int = 4
      potential_ext = potential_ext
      potential_int = potential_int
      component=2
-     implicit=false
+     #implicit=false
   [../]
   [./polar_x_time]
      type=TimeDerivative
@@ -111,7 +150,7 @@
 []
 
 [AuxKernels]
-  [./surfacechargeaux
+   [./surfacechargeaux]
     type = SurfaceChargeAux
     variable = SurfCharge
     boundary = '7'
@@ -137,20 +176,39 @@
     potential_int = potential_int
     potential_ext = potential_ext
   [../]
+
+  [./Depol_x_fieldAux]
+    type = Depol_x_fieldAux
+    variable = depol_Ex
+    block = '2'
+    potential_int = potential_int
+  [../]
+  [./Depol_y_fieldAux]
+    type = Depol_y_fieldAux
+    variable = depol_Ey
+    block = '2'
+    potential_int = potential_int
+  [../]
+  [./Depol_z_fieldAux]
+    type = Depol_z_fieldAux
+    variable = depol_Ez
+    block = '2'
+    potential_int = potential_int
+  [../]
 []
 
 [BCs]
   [./potential_ext_1]
-    type = NeumannBC
+    type = NeumannBC  
     variable = potential_ext
     boundary = '1'
-    value = -1.0e5
+    value = 1.0
   [../]
   [./potential_ext_2]
     type = NeumannBC
     variable = potential_ext
     boundary = '2'
-    value = 1.0e5
+    value = -1.0
   [../]
   [./potential_ext_3]
     type = NeumannBC
@@ -176,6 +234,43 @@
     boundary = '6'
     value = 0.0
   [../]
+
+  [./potential_int_1]
+    type = DirichletBC
+    variable = potential_int
+    boundary = '1'
+    value = 0
+  [../]
+  [./potential_int_2]
+    type = DirichletBC
+    variable = potential_int
+    boundary = '2'
+    value = 0
+  [../]
+  [./potential_int_3]
+    type = DirichletBC
+    variable = potential_int
+    boundary = '3'
+    value = 0
+  [../]
+  [./potential_int_4]
+    type = DirichletBC
+    variable = potential_int
+    boundary = '4'
+    value = 0
+  [../]
+  [./potential_int_5]
+    type = DirichletBC
+    variable = potential_int
+    boundary = '5'
+    value = 0
+  [../]
+  [./potential_int_6]
+    type = DirichletBC
+    variable = potential_int
+    boundary = '6'
+    value = 0
+  [../]
 []
 
 [ICs]
@@ -184,32 +279,27 @@
      type=ConstantIC
      variable=polar_x
      block = '2'
-     value=1.0
+     value = -0.3
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
      block = '2'
-     value=1.0
+     value = -0.3
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
      block = '2'
-     value=1.0
+     value = -0.3
   [../]
 []
 
 [Preconditioning]
    [./smp]
-     type=SMP   #or SMP
-     #off_diag_row='var_name'
-     #off_diag_column='var_name'
+     type=SMP
      full=true   #to use every off diagonal block
      pc_side=left
-     #petsc_options='snes_mf_operator'
-     #petsc_options_iname = '-pc_type -mat_fd_coloring_err -mat_fd_type'
-     #petsc_options_value = 'lu       1e-6                 ds'
    [../]
 []
 
@@ -217,31 +307,26 @@
   #type = Steady
   type=Transient
   solve_type=newton
-  scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e-1
-  nl_max_its=500
-  num_steps=200
-  #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
- # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
+  scheme=implicit-euler
+  #l_max_its=1500
+  dt=1e0
+  num_steps=15 #converges about 15 iterations for strong coupling
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
-  petsc_options_iname='-gmres_restart -snes_rtol -ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value='1000            1e-8        gmres       1e-8      jacobi       basic                1e-50'
-  #petsc_options_iname='-snes_rtol'
-  #petsc_options_value='1e-16'
+  petsc_options_iname='-gmres_restart -ksp_type  -pc_type -snes_linesearch_type -pc_factor_zeropivot'
+  petsc_options_value='1000             gmres     jacobi       basic                1e-50'
 []
 
-[Debug]
-  show_parser = true
-[]
+#[Debug]
+#  show_parser = true
+#[]
 
 [Outputs]
-  file_base = out_cube_die_sphere_explicit
+  file_base = outlin_die_sph_strong_implic_dt0_n15_er4_E0-1_size25_150
   output_initial = true
   print_linear_residuals = true
   print_perf_log = true
   [./out]
     type = Exodus
     elemental_as_nodal = true
-    output_nodal = true
   [../]
 []
