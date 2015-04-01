@@ -24,10 +24,13 @@
 #include "PolarElectricPStrong.h"
 #include "PolarElectricE.h"
 #include "PolarElectricEStrong.h"
+#include "SurfaceChargeAux.h"
 #include "BulkEnergy.h"
 #include "Ex_fieldAux.h"
 #include "Ey_fieldAux.h"
 #include "Ez_fieldAux.h"
+
+
 #include "WallEnergy.h"
 #include "ElectricEnergy.h"
 #include "ElectrostaticEnergy.h"
@@ -101,6 +104,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Ex_fieldAux);
   registerAux(Ey_fieldAux);
   registerAux(Ez_fieldAux);
+
+  registerAux(SurfaceChargeAux);
   //registerPostprocessor(VortexSurfaceEnergy);
   registerKernel(BulkEnergyDerivative);
   registerKernel(WallEnergyDerivative);
