@@ -49,13 +49,13 @@ BulkEnergy::BulkEnergy(const std::string & name, InputParameters parameters) :
 Real
 BulkEnergy::computeQpIntegral()
 {
-  return (_alpha1*(pow(_polar_x[_qp],2)+pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))+
-    _alpha12*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)+
+  return ((pow(_polar_x[_qp],2)+pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))+
+    _alpha12*(1/_alpha1)*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)+
 	      pow(_polar_y[_qp],2)*pow(_polar_z[_qp],2)+
 	      pow(_polar_x[_qp],2)*pow(_polar_z[_qp],2))+
-    _alpha111*(pow(_polar_x[_qp],6)+pow(_polar_y[_qp],6)+pow(_polar_z[_qp],6))+
-    _alpha112*(pow(_polar_x[_qp],4)*(pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))
+    _alpha111*(1/_alpha1)*(pow(_polar_x[_qp],6)+pow(_polar_y[_qp],6)+pow(_polar_z[_qp],6))+
+    _alpha112*(1/_alpha1)*(pow(_polar_x[_qp],4)*(pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))
 	      +pow(_polar_y[_qp],4)*(pow(_polar_z[_qp],2)+pow(_polar_x[_qp],2))
 	      +pow(_polar_z[_qp],4)*(pow(_polar_x[_qp],2)+pow(_polar_y[_qp],2)))+
-	  _alpha123*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)*pow(_polar_z[_qp],2)))*pow(_len_scale,3)*_energy_scale;
+	  _alpha123*(1/_alpha1)*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)*pow(_polar_z[_qp],2)))*pow(_len_scale,3)*_alpha1*_energy_scale;
 }

@@ -17,6 +17,7 @@
 //#include "VortexSurfaceEnergy.h"
 
 #include "BulkEnergyDerivative.h"
+#include "BulkEnergyDerivative_scaled.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "WallEnergyDerivative.h"
@@ -30,8 +31,11 @@
 #include "Ey_fieldAux.h"
 #include "Ez_fieldAux.h"
 
+#include "BandGapAuxZnO.h"
+#include "BandGapAuxTiO2.h"
 
 #include "WallEnergy.h"
+#include "WallEnergyDerivative_scaled.h"
 #include "ElectricEnergy.h"
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergy.h"
@@ -105,10 +109,16 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Ey_fieldAux);
   registerAux(Ez_fieldAux);
 
+  registerAux(BandGapAuxZnO);
+  registerAux(BandGapAuxTiO2);
+
   registerAux(SurfaceChargeAux);
   //registerPostprocessor(VortexSurfaceEnergy);
   registerKernel(BulkEnergyDerivative);
   registerKernel(WallEnergyDerivative);
+  registerKernel(BulkEnergyDerivative_scaled);
+  registerKernel(WallEnergyDerivative_scaled);
+
   registerKernel(PolarElectricE);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricP);
