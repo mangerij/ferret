@@ -67,7 +67,7 @@ WallEnergyDerivative_scaled::WallEnergyDerivative_scaled(const std::string & nam
 Real
 WallEnergyDerivative_scaled::computeQpResidual()
 {
-  return pow(_len_scale,2)*(_G11*_polar_i_grad[_qp](_ii)*_grad_test[_i][_qp](_ii)+
+  return pow(_len_scale,1)*(_G11*_polar_i_grad[_qp](_ii)*_grad_test[_i][_qp](_ii)+
     _G12*(_polar_j_grad[_qp](_jj)+_polar_k_grad[_qp](_kk))*_grad_test[_i][_qp](_ii)+
     _G44*(_polar_i_grad[_qp](_jj)+_polar_j_grad[_qp](_ii))*_grad_test[_i][_qp](_jj)+ 
     _G44*(_polar_i_grad[_qp](_kk)+_polar_k_grad[_qp](_ii))*_grad_test[_i][_qp](_kk)+
@@ -79,7 +79,7 @@ WallEnergyDerivative_scaled::computeQpResidual()
 Real
 WallEnergyDerivative_scaled::computeQpJacobian()
 {
-  return pow(_len_scale,2)*(_G11*_grad_phi[_j][_qp](_ii)*_grad_test[_i][_qp](_ii)+
+  return pow(_len_scale,1)*(_G11*_grad_phi[_j][_qp](_ii)*_grad_test[_i][_qp](_ii)+
           (_G44+_G44P)*_grad_phi[_j][_qp](_jj)*_grad_test[_i][_qp](_jj)+
 	  (_G44+_G44P)*_grad_phi[_j][_qp](_kk)*_grad_test[_i][_qp](_kk));
 }
@@ -91,7 +91,7 @@ WallEnergyDerivative_scaled::computeQpOffDiagJacobian(unsigned int jvar)
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
   {
     const unsigned int _jj = (jvar==_polar_x_var)? 0: (jvar==_polar_y_var)? 1 : 2;
-    return pow(_len_scale,2)*(_G12*_grad_phi[_j][_qp](_jj)*_grad_test[_i][_qp](_ii)+(_G44-_G44P)*_grad_phi[_j][_qp](_ii)*_grad_test[_i][_qp](_jj));
+    return pow(_len_scale,1)*(_G12*_grad_phi[_j][_qp](_jj)*_grad_test[_i][_qp](_ii)+(_G44-_G44P)*_grad_phi[_j][_qp](_ii)*_grad_test[_i][_qp](_jj));
   }else{
     return 0.0;
   }

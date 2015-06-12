@@ -1,22 +1,22 @@
 [Mesh]
-  file = slab_exodus.e
+  file = slab_exodus_coarse.e
   #uniform_refine=0
 []
 [Variables]
   [./polar_x]
-    #scaling=1e-3
+    #scaling=1e14
     order = FIRST
     family = LAGRANGE
     block='2'
   [../]
   [./polar_y]
-    #scaling=1e-3
+    #scaling=1e14
     order = FIRST
     family = LAGRANGE
     block='2'
   [../]
   [./polar_z]
-    #scaling=1e-3
+    #scaling=1e14
     order = FIRST
     family = LAGRANGE
     block='2'
@@ -49,7 +49,7 @@
 []
 
 [GlobalParams]
-   len_scale=1e-7
+   len_scale=8e-8
    #len_scale=1.0
    alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
    alpha11=-7.3e7
@@ -57,7 +57,7 @@
    alpha12=7.5e8
    alpha112=6.1e8
    alpha123=-3.7e9
-   G110=1.73e4
+   G110=4e-10  #not sure what the 10^{4} term was, since Chen's paper points to this value as being correct
    #G110=0.0
    G11/G110=0.6
    G12/G110=0.0
@@ -179,17 +179,17 @@
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value=0.1e-4
+     value=0.6
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value=0.1e-4
+     value=0.3
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
-     value=0.4e-4
+     value=0.3
   [../]
 []
 
@@ -213,7 +213,7 @@
     type = DirichletBC
     variable = potential_ext
     boundary = '1'
-    value = 1e-14
+    value = 0.0
     #implicit=false
   [../]
   [./potential_ext_downz]
@@ -224,32 +224,19 @@
     #implicit=false
   [../]
 []
-[Preconditioning]
-   [./smp]
-     type=SMP   #or SMP
-     #off_diag_row='var_name'
-     #off_diag_column='var_name'
-     full=true   #to use every off diagonal block
-     pc_side=left
-     #petsc_options='snes_mf_operator'
-     #petsc_options_iname = '-pc_type -mat_fd_coloring_err -mat_fd_type'
-     #petsc_options_value = 'lu       1e-6                 ds'
-   [../]
-[]
 
 [Executioner]
-  #type = Steady
-  type=Transient
+  type=Transient            #Transient, Steady
   solve_type=newton
   scheme=explicit-euler     #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e9
-  nl_max_its=100
-  num_steps=2500
+  dt=5e8
+  nl_max_its=30
+  num_steps=350
   #petsc_options="-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason"
  # petsc_options='-snes_monitor -snes_converged_reason -ksp_monitor -ksp_converged_reason'
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
   petsc_options_iname='-gmres_restart -snes_rtol -ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value='1000            1e-8       gmres       1e-12      jacobi       basic                1e-50'
+  petsc_options_value='10          1e-8      gmres       1e-10    jacobi      basic                1e-50'
   #petsc_options_iname='-snes_rtol'
   #petsc_options_value='1e-16'
 []
@@ -267,18 +254,23 @@
     type=TotalEnergy
     bulk_energy=bulk_energy
     wall_energy=wall_energy
+
     electric_energy=electric_energy
     [../]
 []
 
 [Outputs]
-  file_base = out_PbTiO3_slab_L1W1H0.1_explic_dt9_n2500_E0const
+  file_base = out_PbTiO3_slab_len(8e-8)_dimL10W10H1_dt5e8_n6000_E0const_G110+10_coarse_scaled
   output_initial = true
   print_linear_residuals = true
   print_perf_log = true
   [./out]
     type = Exodus
     elemental_as_nodal = true
-    interval = 10
+    interval = 1
   [../]
+  [./debug]
+    type = VariableResidualNormsDebugOutput
+  [../]
+
 []

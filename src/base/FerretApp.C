@@ -17,10 +17,12 @@
 //#include "VortexSurfaceEnergy.h"
 
 #include "BulkEnergyDerivative.h"
+#include "BulkEnergyDerivative_nosixth.h"
 #include "BulkEnergyDerivative_scaled.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "WallEnergyDerivative.h"
+#include "TimeDerivative_scaled.h"
 #include "PolarElectricP.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricE.h"
@@ -31,6 +33,10 @@
 #include "Ey_fieldAux.h"
 #include "Ez_fieldAux.h"
 
+#include "Px_fieldAux.h"
+#include "Py_fieldAux.h"
+#include "Pz_fieldAux.h"
+
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h"
 
@@ -39,6 +45,10 @@
 #include "ElectricEnergy.h"
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergy.h"
+
+#include "TotalEnergyGradient.h" 
+#include "TotalEnergyGradientL2.h"
+
 #include "PolarMaterial.h"
 #include "Electrostatics.h"
 #include "PerturbedIC.h"
@@ -54,6 +64,7 @@
 #include "ElectrostaticEnergyDensityTotal.h"
 #include "PostprocessorAdaptiveDT.h"
 #include "CustomDT.h"
+#include "TransientHalf.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -109,15 +120,23 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Ey_fieldAux);
   registerAux(Ez_fieldAux);
 
+  registerAux(Px_fieldAux);
+  registerAux(Py_fieldAux);
+  registerAux(Pz_fieldAux);
+
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
 
   registerAux(SurfaceChargeAux);
   //registerPostprocessor(VortexSurfaceEnergy);
   registerKernel(BulkEnergyDerivative);
+  registerKernel(BulkEnergyDerivative_nosixth);
   registerKernel(WallEnergyDerivative);
+
   registerKernel(BulkEnergyDerivative_scaled);
   registerKernel(WallEnergyDerivative_scaled);
+  registerKernel(TimeDerivative_scaled);
+
 
   registerKernel(PolarElectricE);
   registerKernel(PolarElectricEStrong);
@@ -129,6 +148,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ElectricEnergy);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
+  registerPostprocessor(TotalEnergyGradient);
+  registerPostprocessor(TotalEnergyGradientL2);
   registerMaterial(PolarMaterial);
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
@@ -139,6 +160,7 @@ FerretApp::registerObjects(Factory & factory)
   registerFunction(SphereToCartFunc);
   registerTimeStepper(PostprocessorAdaptiveDT);
   registerTimeStepper(CustomDT);
+  registerTimeStepper(TransientHalf);
 }
 
 void
