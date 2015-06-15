@@ -37,6 +37,8 @@
 #include "Py_fieldAux.h"
 #include "Pz_fieldAux.h"
 
+#include "BoundCharge.h"
+
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h"
 
@@ -46,10 +48,18 @@
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergy.h"
 
-#include "TotalEnergyGradient.h" 
+#include "LinearFerroelectricMaterial.h"
+#include "PolarMaterial.h"
+
+#include "FerroelectricCouplingP.h"
+#include "FerroelectricCouplingU.h"
+#include "StressDivergenceTensorsScaled.h"
+
+#include "TotalEnergyGradient.h"
 #include "TotalEnergyGradientL2.h"
 
-#include "PolarMaterial.h"
+#include "TensorMechanicsAction_scaled.h"
+
 #include "Electrostatics.h"
 #include "PerturbedIC.h"
 #include "SinIC.h"
@@ -124,6 +134,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Py_fieldAux);
   registerAux(Pz_fieldAux);
 
+  registerAux(BoundCharge);
+
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
 
@@ -136,6 +148,9 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkEnergyDerivative_scaled);
   registerKernel(WallEnergyDerivative_scaled);
   registerKernel(TimeDerivative_scaled);
+  registerKernel(FerroelectricCouplingP);
+  registerKernel(FerroelectricCouplingU);
+  registerKernel(StressDivergenceTensorsScaled);
 
 
   registerKernel(PolarElectricE);
@@ -151,6 +166,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyGradient);
   registerPostprocessor(TotalEnergyGradientL2);
   registerMaterial(PolarMaterial);
+  registerMaterial(LinearFerroelectricMaterial);
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
   registerInitialCondition(AdhocConstIC);
@@ -168,4 +184,8 @@ FerretApp::associateSyntax(Syntax& syntax, ActionFactory & action_factory)
 {
   syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
   registerAction(PolarizationVortexAuxAction, "add_kernel");
+
+  syntax.registerActionSyntax("TensorMechanicsAction_scaled", "Kernels/TensorMechanicsScaled");
+  registerAction(TensorMechanicsAction_scaled, "add_kernel");
+
 }

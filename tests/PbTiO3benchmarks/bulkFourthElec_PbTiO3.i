@@ -1,4 +1,4 @@
-# This input file tests the BulkEnergyDerivative Kernel for fourth order and time dependent kernel. The solution will be polarized domains in preferred directions 
+# This input file tests the BulkEnergyDerivative Kernel for fourth order and time dependent kernel. The solution will be polarized domains in preferred directions
 # for PbTiO3 at 20 K. We won't be able to use ExoDiff because the solution will be different everytime it is ran due to the nonlinearity of the problem
 # Electrostatics is turned off.
 
@@ -80,17 +80,17 @@
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value = 0.38
+     value = 0.6
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value = 0.15
+     value = 0.6
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
-     value = 0.38
+     value = 0.6
   [../]
 []
 

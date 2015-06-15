@@ -58,13 +58,13 @@
 [GlobalParams]
    len_scale=1e-9
    #len_scale=1.0
-   alpha1=-1.7252e8 # 3.8(T-479)*10^5 C^{-2}m^2
+   alpha1=-1.8202e8 # 3.8(T-479)*10^5 C^{-2}m^2 (T=0 K)
    alpha11=-7.3e7
    alpha111=2.6e8
    alpha12=7.5e8
    alpha112=6.1e8
    alpha123=-3.7e9
-   G110=0.8e-10
+   G110=1.0e-10
 #   #G110=0.0
    G11/G110=0.6
    G12/G110=0.0
@@ -282,7 +282,7 @@
   #l_max_its=1200
 #NOTE: First time step calculates the depolarization field due to the unphysical initial condition. Energy may increase, which is allowed.
   #nl_max_its=5
-  num_steps=3000
+  num_steps=3500
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
   petsc_options_iname='-snes_rtol -ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
   petsc_options_value='1e-6        gmres       1e-8      hypre       basic                1e-50       '
@@ -345,7 +345,7 @@ print_perf_log = true
 
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_bulk_len-9_icConst111_n3000_0field_0.8wall_20
+    file_base = out_PbTiO3_T0_len-9_icConst111_n3000_0field_1wall_20
     output_initial = true
     elemental_as_nodal = false
     interval = 1

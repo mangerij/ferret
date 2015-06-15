@@ -1,4 +1,4 @@
-# This input file tests the BulkEnergyDerivative Kernel for fourth order and time dependent kernel. The solution will be polarized domains in preferred directions 
+# This input file tests the BulkEnergyDerivative Kernel for fourth order and time dependent kernel. The solution will be polarized domains in preferred directions
 # for PbTiO3 at 20 K. We won't be able to use ExoDiff because the solution will be different everytime it is ran due to the nonlinearity of the problem
 # Electrostatics is turned off.
 
@@ -43,10 +43,13 @@
 #   G11/G110=0.6
 #   G12/G110=0.0
 #   G44/G110=0.3
-   G44P/G110=0.3 #is this a problem?
+#   G44P/G110=0.3 #is this a problem?
    polar_x=polar_x
    polar_y=polar_y
    polar_z=polar_z
+   permittivity=8.85e-12
+   potential_ext = potential_ext
+   potential_int = potential_int
 []
 
 [Kernels]
@@ -68,6 +71,52 @@
     component=2
     implicit=false
   [../]
+  [./polar_electric_E]
+     type=PolarElectricEStrong
+     variable=potential_int
+     permittivity=8.85e-12
+     implicit=false
+  [../]
+  [./FE_E_int]
+     type=Electrostatics
+     variable=potential_int
+     permittivity=8.85e-12
+  [../]
+  [./E_int]
+     type=Electrostatics
+     variable=potential_int
+     permittivity=8.85e-12
+  [../]
+  [./E_ext]
+     type=Electrostatics
+     variable=potential_ext
+     permittivity=8.85e-12
+  [../]
+  [./FE_E_ext]
+     type=Electrostatics
+     #type=Diffusion
+     variable=potential_ext
+     permittivity=8.85e-12
+  [../]
+  [./polar_electric_px]
+     type=PolarElectricPStrong
+     variable=polar_x
+     component=0
+     implicit=false
+  [../]
+  [./polar_electric_py]
+     type=PolarElectricPStrong
+     variable=polar_y
+     component=1
+     implicit=false
+  [../]
+  [./polar_electric_pz]
+     type=PolarElectricPStrong
+     variable=polar_z
+     component=2
+     implicit=false
+  [../]
+
   [./polar_x_time]
      type=TimeDerivative
      variable=polar_x
@@ -87,31 +136,31 @@
   [./polar_x_constic]
      type=ConstantIC
      variable=polar_x
-     value = 0.38
+     value = 0.6
   [../]
   [./polar_y_constic]
      type=ConstantIC
      variable=polar_y
-     value = 0.15
+     value = 0.6
   [../]
   [./polar_z_constic]
      type=ConstantIC
      variable=polar_z
-     value = 0.38
+     value = 0.6
   [../]
 []
 
 [BCs]
 
   [./potential_int_upz]
-    type = DirichletBC 
+    type = DirichletBC
     variable = potential_int
     boundary = '1'
     value = 0.0
   [../]
 
   [./potential_int_downz]
-    type = DirichletBC 
+    type = DirichletBC
     variable = potential_int
     boundary = '2'
     value = 0.0
@@ -119,16 +168,18 @@
 
 
    [./potential_ext_upz]
-    type = NeumannBC 
+    type = NeumannBC
     variable = potential_ext
     boundary = '1'
-    value = 1.0e-13 #1e-12 gives a field of ~1e7 V/m ~ 100 kV/cm for size 1?, what about size 100?
+  #  value = 1.0e-13 #1e-12 gives a field of ~1e7 V/m ~ 100 kV/cm for size 1?, what about size 100?
+    value = 0.0
   [../]
   [./potential_ext_downz]
     type = NeumannBC
     variable = potential_ext
     boundary = '2'
-    value = -1.0e-13
+  #    value = -1.0e-13
+    value = 0.0
   [../]
 []
 
