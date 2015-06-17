@@ -223,14 +223,14 @@
   [./polar_x_constic_rand]
      type=RandomIC
      variable=polar_x
-     min = 0.002
-     max = 0.00725
+     min = 0.6
+     max = 0.75
   [../]
   [./polar_y_constic_rand]
      type=RandomIC
      variable=polar_y
-     min = 0.002
-     max = 0.00725
+     min = 0.6
+     max = 0.75
   [../]
   [./polar_z_constic_rand]
      type=RandomIC
@@ -243,13 +243,13 @@
 
 [BCs]
   [./potential_int_upz]
-    type = PresetBC
+    type = DirichletBC
     variable = potential_int
     boundary = '1'
     value = 0.0
   [../]
   [./potential_int_downz]
-    type = PresetBC
+    type = DirichletBC
     variable = potential_int
     boundary = '2'
     value = 0.0
@@ -257,7 +257,7 @@
   # Applied field: for zero field use NeumannBC on the external potential = 0. A
   # Note that \nabla^2 \Phi_{ext} = 0 is satisfied if \Phi_{ext} = 0, ie Dirichlet and Neumann BC classes are equivalent
   [./potential_ext_upz]
-    type = PresetBC
+    type = DirichletBC
     variable = potential_ext
     boundary = '1'
     #value = 5.0e-11 #1e-12 gives a field of ~1e8 V/m ~ 1000 kV/cm for size 1, what about size 100?
@@ -267,7 +267,7 @@
     #implicit=false
   [../]
   [./potential_ext_downz]
-    type = PresetBC
+    type = DirichletBC
     variable = potential_ext
     boundary = '2'
     #value = -5.0e-11
@@ -319,7 +319,7 @@
   type=Transient
   solve_type=newton
   scheme = 'explicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=1e-16 #adjustable within a few orders of magnitude. It seems that we need small dt steps but large num_steps.
+  dt=5e-16 #adjustable within a few orders of magnitude. It seems that we need small dt steps but large num_steps.
             #also, seems that 1e-16 is largest time step to be able to be done
   dtmin=1e-25
   #NOTE: First time step calculates the depolarization field due to the unphysical initial condition. Energy may increase, which is allowed.
@@ -327,38 +327,44 @@
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
   petsc_options_iname='-snes_rtol -ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
   petsc_options_value='1e-6        gmres       1e-8      hypre       basic                1e-50      '
+  #[./TimeStepper]
+  #  type = TransientHalf
+  #  ratio = 0.5
+  #  min_dt = 1e-25
+  #  dt = 5e-16
+  #[../]
 []
 
 
-[./Adaptivity]
-    marker = 'marker_x marker_y'
-#    cycles_per_step = 2
-#    max_h_level = 2
-    [./Indicators]
-      [./indicator_x]
-        type = GradientJumpIndicator
-        variable = polar_x
-      [../]
-      [./indicator_y]
-        type = GradientJumpIndicator
-        variable = polar_y
-      [../]
-    [../]
-    [./Markers]
-      [./marker_x]
-        type = ErrorFractionMarker
-        indicator = indicator_x
-        coarsen = 0.01
-        refine = 0.01
-      [../]
-      [./marker_y]
-        type = ErrorFractionMarker
-        indicator = indicator_y
-        coarsen = 0.01
-        refine = 0.01
-      [../]
-    [../]
-[../]
+#[./Adaptivity]
+#    marker = 'marker_x marker_y'
+##    cycles_per_step = 2
+##    max_h_level = 2
+#    [./Indicators]
+#      [./indicator_x]
+#        type = GradientJumpIndicator
+#        variable = polar_x
+#      [../]
+#      [./indicator_y]
+#        type = GradientJumpIndicator
+#        variable = polar_y
+#      [../]
+#    [../]
+#    [./Markers]
+#      [./marker_x]
+#        type = ErrorFractionMarker
+#        indicator = indicator_x
+#        coarsen = 0.01
+#        refine = 0.01
+#      [../]
+#      [./marker_y]
+#        type = ErrorFractionMarker
+#        indicator = indicator_y
+#        coarsen = 0.01
+#        refine = 0.01
+#      [../]
+#    [../]
+#[../]
 
 [Outputs]
 
