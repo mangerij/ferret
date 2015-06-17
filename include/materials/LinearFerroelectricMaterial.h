@@ -11,6 +11,7 @@
 
 #include "LinearElasticMaterial.h"
 #include "ElectrostrictiveTensorR4.h"
+//#include "RotationTensor.h"
 
 //Forward Declarations
 class LinearFerroelectricMaterial;
@@ -36,6 +37,8 @@ protected:
 
   // vectors to get the input values
   std::vector<Real> _Qmnkl_vector;
+
+//  RealVectorValue _Electrostrictive_Euler_angles;
 
   /// Individual material information
   ElasticityTensorR4 _Qmnkl; //electrostrictive coefficients will set them as elasticity components right now

@@ -319,22 +319,16 @@
   type=Transient
   solve_type=newton
   scheme = 'explicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt=5e-16 #adjustable within a few orders of magnitude. It seems that we need small dt steps but large num_steps.
+  dt=8e-16 #adjustable within a few orders of magnitude. It seems that we need small dt steps but large num_steps.
             #also, seems that 1e-16 is largest time step to be able to be done
   dtmin=1e-25
   #NOTE: First time step calculates the depolarization field due to the unphysical initial condition. Energy may increase, which is allowed.
   num_steps=10000
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
-  petsc_options_iname='-snes_rtol -ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value='1e-6        gmres       1e-8      hypre       basic                1e-50      '
-  #[./TimeStepper]
-  #  type = TransientHalf
-  #  ratio = 0.5
-  #  min_dt = 1e-25
-  #  dt = 5e-16
-  #[../]
+  petsc_options_iname='-ksp_type  -ksp_rtol -pc_type -snes_linesearch_type -pc_factor_zeropivot'
+  petsc_options_value=' gmres       1e-6      hypre       basic                1e-50      '
 []
-
+#maybe need snes_tol = 1e-6 too?
 
 #[./Adaptivity]
 #    marker = 'marker_x marker_y'

@@ -44,113 +44,119 @@
 []
 
 [AuxVariables]
- #[./auxv_es_energy_density_e] #es for electrostatic
- #    order=CONSTANT
- #    family=MONOMIAL
- # [../]
- # [./auxv_es_energy_density]
- #    order=CONSTANT
- #    family=MONOMIAL
- # [../]
- # [./auxv_bulk_energy_density]
- #    order=CONSTANT
- #    family=MONOMIAL
- # [../]
+  #[./auxv_es_energy_density_e] #es for electrostatic
+  #    order=CONSTANT
+  #    family=MONOMIAL
+  # [../]
+  # [./auxv_es_energy_density]
+  #    order=CONSTANT
+  #    family=MONOMIAL
+  # [../]
+  # [./auxv_bulk_energy_density]
+  #    order=CONSTANT
+  #    family=MONOMIAL
+  # [../]
 
-  #[./Ez]
-  #   order=CONSTANT
-  #   family=MONOMIAL
-  #[../]
-  #[./Ex]
-  #   order=CONSTANT
-  #   family=MONOMIAL
-  #[../]
-  #[./Ey]
-  #   order=CONSTANT
-  #   family=MONOMIAL
-  #[../]
+    [./rho_b]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
 
-  [./stress_xx]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress_yy]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress_zz]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress_xy]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress_yz]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./stress_zx]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_xx]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_yy]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_zz]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_xy]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_yz]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_zx]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
 
+   #[./Ez]
+   #   order=CONSTANT
+   #   family=MONOMIAL
+   #[../]
+   #[./Ex]
+   #   order=CONSTANT
+   #   family=MONOMIAL
+   #[../]
+   #[./Ey]
+   #   order=CONSTANT
+   #   family=MONOMIAL
+   #[../]
+
+   [./stress_xx]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./stress_yy]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./stress_zz]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./stress_xy]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./stress_yz]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./stress_zx]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./strain_xx]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./strain_yy]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./strain_zz]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./strain_xy]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./strain_yz]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
+   [./strain_zx]
+     order = CONSTANT
+     family = MONOMIAL
+   [../]
 []
 
 [GlobalParams]
    len_scale=1e-9
-   #len_scale=1.0
-   alpha1=-1.8202e8 # 3.8(T-479)*10^5 C^{-2}m^2 (T=0 K)
-   alpha11=-7.3e7
-   alpha111=2.6e8
-   alpha12=7.5e8
-   alpha112=6.1e8
-   alpha123=-3.7e9
-   G110=1.0e-10
-#   #G110=0.0
+   #BulkEnergy coefficients
+   alpha1 = -1.8202e8 # 3.8(T-479)*10^5 C^{-2}m^2 (T=0 K)
+   alpha11 = -7.3e7
+   alpha111 = 2.6e8
+   alpha12 = 7.5e8
+   alpha112 = 6.1e8
+   alpha123 = -3.7e9
+   #WallEnergy coefficients
+   G110 = 1.0e-10
    G11/G110=0.6
    G12/G110=0.0
    G44/G110=0.3
    G44P/G110=0.3
+   #Electrostatics
    permittivity=8.85e-12
    polar_x=polar_x
    polar_y=polar_y
    polar_z=polar_z
    potential_int=potential_int
    potential_ext=potential_ext
-   time_scale = 1.0e-31
-   polar_scale = 1.0
+
    disp_x = disp_x
    disp_y = disp_y
    disp_z = disp_z
-
-# this ostensibly defines dt = 1e-14. Note if time_scale=1 then dt=1e17 to see domain relaxation
-# Olle suggests that the dynamics should occur on the 10 ps time scale. This parameter allows the time scale to be
-# user-input and most likely depends on material and problem in question, maybe even temperature.
+   time_scale = 1.0e-31
+   # time_scale ostensibly defines dt = 1e-16. Note if time_scale = 1.0 then dt=1e17 to see domain relaxation
+   # Olle suggests that the dynamics should occur on the 10 ps time scale. This parameter allows the time scale to be
+   # user-input and most likely depends on material and problem in question, maybe even temperature.
+   # can just scale to experimentally relevant scale
 []
 
 [AuxKernels]
@@ -167,6 +173,11 @@
   #  type = BulkEnergyDensity
   #  variable =auxv_bulk_energy_density
   #[../]
+
+   [./bound_charge]
+     type = BoundCharge
+     variable = rho_b
+   [../]
   #[./Ez_fieldaux]
   #  type = Ez_fieldAux
   #  variable = Ez
@@ -409,35 +420,20 @@
 []
 
 [Materials]
-#  [./slab_elastic]
-#    type=LinearElasticMaterial
-#    block = '2'
-#    disp_x = disp_x
-#    disp_y = disp_y
-#    disp_z = disp_z
-#in GPA. from N. Pandech et al. Ceramics International,
-# just multiply by 1e9 to convert to N/m^2
-# C11 C12 C13 C22 C23 C33 C44 C55 C66
-#    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
-#    euler_angle_1 = 0.0
-#    euler_angle_2 = 0.0
-#    euler_angle_3 = 0.0
-#  [../]
-
   [./slab_ferroelectric]
     type=LinearFerroelectricMaterial
     block = '2'
     disp_x = disp_x
     disp_y = disp_y
     disp_z = disp_z
-#in GPA. from N. Pandech et al. Ceramics International,
-# just multiply by 1e9 to convert to N/m^2
-# C11 C12 C13 C22 C23 C33 C44 C55 C66
+    #in GPA. from N. Pandech et al. Ceramics International,
+    # just multiply by 1e9 to convert to N/m^2
+    # C11 C12 C13 C22 C23 C33 C44 C55 C66
     C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
-#in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
-# Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
+    #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
+    # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
     Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.034 0.034 0.034'
-    euler_angle_1 = 0.0
+    euler_angle_1 = 0.0 #currently will only rotate C_ijkl
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
   [../]

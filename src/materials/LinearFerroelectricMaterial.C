@@ -16,19 +16,25 @@ InputParameters validParams<LinearFerroelectricMaterial>()
   InputParameters params = validParams<LinearElasticMaterial>();
   params.addRequiredParam<std::vector<Real> >("Q_mnkl", "electrostrictive coefficients(vector)");
   params.addParam<MooseEnum>("fill_method", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");
+  // params.addParam<Real>("electrostrictive_euler_angle_1", 0.0, "Euler angle in direction 1 for electrostrictive tensor");
+  // params.addParam<Real>("electrostrictive_euler_angle_2", 0.0, "Euler angle in direction 2 for electrostrictive tensor");
+  // params.addParam<Real>("electrostrictive_euler_angle_3", 0.0, "Euler angle in direction 3 for electrostrictive tensor");
   return params;
 }
 
 LinearFerroelectricMaterial::LinearFerroelectricMaterial(const std::string & name,
                                  InputParameters parameters) :
 
-    LinearElasticMaterial(name, parameters),
-    _electrostrictivecoefficients(declareProperty<ElasticityTensorR4>("electrostrictivecoefficients")),
-    _electrostrictive_tensor(declareProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
-    _fill_method((RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
-    _Qmnkl_vector(getParam<std::vector<Real> >("Q_mnkl")),
-    _Qmnkl(),
-    _qijkl()
+  LinearElasticMaterial(name, parameters),
+  _electrostrictivecoefficients(declareProperty<ElasticityTensorR4>("electrostrictivecoefficients")),
+  _electrostrictive_tensor(declareProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
+  _fill_method((RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
+  _Qmnkl_vector(getParam<std::vector<Real> >("Q_mnkl")),
+//  _Electrostrictive_Euler_angles(getParam<Real>("electrostrictive_euler_angle_1"),
+//                                 getParam<Real>("electrostrictive_euler_angle_2"),
+//                                 getParam<Real>("electrostrictive_euler_angle_3")),
+  _Qmnkl(),
+  _qijkl()
 {
   _Qmnkl.fillFromInputVector(_Qmnkl_vector,_fill_method);
 //_qijkl.computeValue(_Cijkl,_Qmnkl);
@@ -37,7 +43,12 @@ LinearFerroelectricMaterial::LinearFerroelectricMaterial(const std::string & nam
 void
 LinearFerroelectricMaterial::computeQpElectrostrictiveCoefficients()
 {
+  // eR type: RealTensorValue
+//  RotationTensor eR(_Electrostrictive_Euler_angles);
+
   _electrostrictivecoefficients[_qp] = _Qmnkl;
+//  _electrostrictivecoefficients[_qp].rotate(eR) //construct rotated Q_mnkl
+
 }
 
 void
