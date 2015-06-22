@@ -41,12 +41,17 @@
 
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h"
+//error: invalid initialization of reference of type 'MaterialProperty<RankTwoTensor>&'
+//from expression of type 'const MaterialProperty<RankTwoTensor>' not sure why
+
 
 #include "WallEnergy.h"
 #include "WallEnergyDerivative_scaled.h"
 #include "ElectricEnergy.h"
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergy.h"
+
+#include "PercentChangePostprocessor.h"
 
 #include "LinearFerroelectricMaterial.h"
 #include "PolarMaterial.h"
@@ -165,6 +170,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyGradient);
   registerPostprocessor(TotalEnergyGradientL2);
+  registerPostprocessor(PercentChangePostprocessor);
   registerMaterial(PolarMaterial);
   registerMaterial(LinearFerroelectricMaterial);
   registerInitialCondition(PerturbedIC);

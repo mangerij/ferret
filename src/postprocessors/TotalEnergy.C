@@ -17,7 +17,7 @@ InputParameters validParams<TotalEnergy>()
   InputParameters params = validParams<GeneralPostprocessor>();
   params.addRequiredParam<PostprocessorName>("bulk_energy","name of bulk_energy postprocessor");
   params.addRequiredParam<PostprocessorName>("wall_energy","name of wall_energy postprocessor");
-  params.addRequiredParam<PostprocessorName>("electric_energy","name of electric_energy postprocessor");
+  params.addRequiredParam<PostprocessorName>("electrostatic_energy","name of electrostatic_energy postprocessor");
   return params;
 }
 
@@ -25,7 +25,7 @@ TotalEnergy::TotalEnergy(const std::string & name, InputParameters parameters) :
   GeneralPostprocessor(name, parameters),
   _bulk_energy(getPostprocessorValue(getParam<PostprocessorName>("bulk_energy"))),
   _wall_energy(getPostprocessorValue(getParam<PostprocessorName>("wall_energy"))),
-  _electric_energy(getPostprocessorValue(getParam<PostprocessorName>("electric_energy")))
+  _electrostatic_energy(getPostprocessorValue(getParam<PostprocessorName>("electrostatic_energy")))
 {
 }
 
@@ -43,5 +43,5 @@ TotalEnergy::execute(){
 Real
 TotalEnergy::getValue()
 {
-  return _bulk_energy+_wall_energy+_electric_energy;
+  return _bulk_energy+_wall_energy+_electrostatic_energy;
 }

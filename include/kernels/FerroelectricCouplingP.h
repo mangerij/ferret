@@ -31,8 +31,9 @@ protected:
 
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-  MaterialProperty<ElectrostrictiveTensorR4>& _electrostrictive_tensor;
+
 private:
+  const MaterialProperty<ElectrostrictiveTensorR4> & _electrostrictive_tensor;
   const unsigned int _component;
   const unsigned int _disp_x_var;
   const unsigned int _disp_y_var;

@@ -23,22 +23,9 @@ protected:
   virtual Real computeValue();
 
 private:
-  MaterialProperty<RankTwoTensor> & _stress;
-
-private:
-
-  Real _ba;
-
-private:
-
-  Real _bc;
-
-private:
-
-  Real _E0;
+  const MaterialProperty<RankTwoTensor> & _stress;
+  const Real _ba, _bc, _E0;
 
 };
 
 #endif // BANDGAP_H
-
-
