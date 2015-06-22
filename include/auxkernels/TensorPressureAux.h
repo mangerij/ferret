@@ -23,7 +23,7 @@ protected:
   virtual Real computeValue();
 
 private:
-  MaterialProperty<RankTwoTensor> & _stress;
+  const MaterialProperty<RankTwoTensor> & _stress;
 
 };
 

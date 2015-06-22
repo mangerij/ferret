@@ -17,10 +17,12 @@
 //#include "VortexSurfaceEnergy.h"
 
 #include "BulkEnergyDerivative.h"
+#include "BulkEnergyDerivative_nosixth.h"
 #include "BulkEnergyDerivative_scaled.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "WallEnergyDerivative.h"
+#include "TimeDerivative_scaled.h"
 #include "PolarElectricP.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricE.h"
@@ -31,15 +33,38 @@
 #include "Ey_fieldAux.h"
 #include "Ez_fieldAux.h"
 
+#include "Px_fieldAux.h"
+#include "Py_fieldAux.h"
+#include "Pz_fieldAux.h"
+
+#include "BoundCharge.h"
+
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h"
+//error: invalid initialization of reference of type 'MaterialProperty<RankTwoTensor>&'
+//from expression of type 'const MaterialProperty<RankTwoTensor>' not sure why
+
 
 #include "WallEnergy.h"
 #include "WallEnergyDerivative_scaled.h"
 #include "ElectricEnergy.h"
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergy.h"
+
+#include "PercentChangePostprocessor.h"
+
+#include "LinearFerroelectricMaterial.h"
 #include "PolarMaterial.h"
+
+#include "FerroelectricCouplingP.h"
+#include "FerroelectricCouplingU.h"
+#include "StressDivergenceTensorsScaled.h"
+
+#include "TotalEnergyGradient.h"
+#include "TotalEnergyGradientL2.h"
+
+#include "TensorMechanicsAction_scaled.h"
+
 #include "Electrostatics.h"
 #include "PerturbedIC.h"
 #include "SinIC.h"
@@ -54,6 +79,7 @@
 #include "ElectrostaticEnergyDensityTotal.h"
 #include "PostprocessorAdaptiveDT.h"
 #include "CustomDT.h"
+#include "TransientHalf.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -109,15 +135,28 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Ey_fieldAux);
   registerAux(Ez_fieldAux);
 
+  registerAux(Px_fieldAux);
+  registerAux(Py_fieldAux);
+  registerAux(Pz_fieldAux);
+
+  registerAux(BoundCharge);
+
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
 
   registerAux(SurfaceChargeAux);
   //registerPostprocessor(VortexSurfaceEnergy);
   registerKernel(BulkEnergyDerivative);
+  registerKernel(BulkEnergyDerivative_nosixth);
   registerKernel(WallEnergyDerivative);
+
   registerKernel(BulkEnergyDerivative_scaled);
   registerKernel(WallEnergyDerivative_scaled);
+  registerKernel(TimeDerivative_scaled);
+  registerKernel(FerroelectricCouplingP);
+  registerKernel(FerroelectricCouplingU);
+  registerKernel(StressDivergenceTensorsScaled);
+
 
   registerKernel(PolarElectricE);
   registerKernel(PolarElectricEStrong);
@@ -129,7 +168,11 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ElectricEnergy);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
+  registerPostprocessor(TotalEnergyGradient);
+  registerPostprocessor(TotalEnergyGradientL2);
+  registerPostprocessor(PercentChangePostprocessor);
   registerMaterial(PolarMaterial);
+  registerMaterial(LinearFerroelectricMaterial);
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
   registerInitialCondition(AdhocConstIC);
@@ -139,6 +182,7 @@ FerretApp::registerObjects(Factory & factory)
   registerFunction(SphereToCartFunc);
   registerTimeStepper(PostprocessorAdaptiveDT);
   registerTimeStepper(CustomDT);
+  registerTimeStepper(TransientHalf);
 }
 
 void
@@ -146,4 +190,8 @@ FerretApp::associateSyntax(Syntax& syntax, ActionFactory & action_factory)
 {
   syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
   registerAction(PolarizationVortexAuxAction, "add_kernel");
+
+  syntax.registerActionSyntax("TensorMechanicsAction_scaled", "Kernels/TensorMechanicsScaled");
+  registerAction(TensorMechanicsAction_scaled, "add_kernel");
+
 }
