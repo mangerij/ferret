@@ -4,20 +4,20 @@
 /* @contact J. Mangeri <mangerij@anl.gov>                       */
 /****************************************************************/
 
-#ifndef TENSORMECHANICSACTION_SCALED_H
-#define TENSORMECHANICSACTION_SCALED_H
+#ifndef TENSORMECHANICSACTIONSCALED_H
+#define TENSORMECHANICSACTIONSCALED_H
 
 #include "Action.h"
 
-class TensorMechanicsAction_scaled;
+class TensorMechanicsActionScaled;
 
 template<>
-InputParameters validParams<TensorMechanicsAction_scaled>();
+InputParameters validParams<TensorMechanicsActionScaled>();
 
-class TensorMechanicsAction_scaled : public Action
+class TensorMechanicsActionScaled : public Action
 {
 public:
-  TensorMechanicsAction_scaled(const std::string & name, InputParameters params);
+  TensorMechanicsActionScaled(const std::string & name, InputParameters params);
 
   virtual void act();
 
@@ -25,4 +25,4 @@ private:
 
 };
 
-#endif //TENSORMECHANICSACTION_H
+#endif //TENSORMECHANICSACTIONSCALED_H

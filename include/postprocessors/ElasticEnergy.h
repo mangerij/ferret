@@ -7,7 +7,7 @@
 #ifndef ELASTICENERGY_H
 #define ELASTICENERGY_H
 
-//#include "AuxKernel.h"
+#include "AuxKernel.h"
 #include "RankTwoTensor.h"
 #include "ElementIntegralPostprocessor.h"
 
@@ -27,8 +27,8 @@ protected:
   virtual Real computeQpIntegral();
 
 private:
-  const MaterialProperty<RankTwoTensor> & _stress;
   const MaterialProperty<RankTwoTensor> & _elastic_strain;
+  const MaterialProperty<RankTwoTensor> & _stress;
 
 };
 

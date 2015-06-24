@@ -4,14 +4,14 @@
 /* @contact J. Mangeri <mangerij@anl.gov>                       */
 /****************************************************************/
 
-#include "TensorMechanicsAction_scaled.h"
+#include "TensorMechanicsActionScaled.h"
 
 #include "Factory.h"
 #include "FEProblem.h"
 #include "Parser.h"
 
 template<>
-InputParameters validParams<TensorMechanicsAction_scaled>()
+InputParameters validParams<TensorMechanicsActionScaled>()
 {
   InputParameters params = validParams<Action>();
   params.addRequiredParam<NonlinearVariableName>("disp_x", "The x displacement");
@@ -28,13 +28,13 @@ InputParameters validParams<TensorMechanicsAction_scaled>()
   return params;
 }
 
-TensorMechanicsAction_scaled::TensorMechanicsAction_scaled(const std::string & name, InputParameters params) :
+TensorMechanicsActionScaled::TensorMechanicsActionScaled(const std::string & name, InputParameters params) :
     Action(name, params)
 {
 }
 
 void
-TensorMechanicsAction_scaled::act()
+TensorMechanicsActionScaled::act()
 {
   unsigned int dim = 1;
   std::vector<std::string> keys;

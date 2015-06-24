@@ -6,7 +6,7 @@
 #include "ModulesApp.h"
 
 //Actions
-#include "TensorMechanicsAction_scaled.h"
+#include "TensorMechanicsActionScaled.h"
 #include "PolarizationVortexAuxAction.h"
 
 //AuxKernels
@@ -201,7 +201,7 @@ FerretApp::associateSyntax(Syntax& syntax, ActionFactory & action_factory)
   syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
   registerAction(PolarizationVortexAuxAction, "add_kernel");
 
-  syntax.registerActionSyntax("TensorMechanicsAction_scaled", "Kernels/TensorMechanicsScaled");
-  registerAction(TensorMechanicsAction_scaled, "add_kernel");
+  syntax.registerActionSyntax("TensorMechanicsActionScaled", "Kernels/TensorMechanicsScaled");
+  registerAction(TensorMechanicsActionScaled, "add_kernel");
 
 }

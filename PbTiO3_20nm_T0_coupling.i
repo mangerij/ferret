@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_20.e
+  file = slab_exodus_coarse_150_cheap.e
   uniform_refine=0
 []
 
@@ -31,17 +31,14 @@
   [./disp_x]
     order = FIRST
     family = LAGRANGE
-    block = '2'
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
-    block = '2'
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
-    block = '2'
   [../]
 
 []
@@ -82,50 +79,62 @@
    [./stress_xx]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./stress_yy]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./stress_zz]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./stress_xy]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./stress_yz]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./stress_zx]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./strain_xx]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./strain_yy]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./strain_zz]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./strain_xy]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./strain_yz]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
    [./strain_zx]
      order = CONSTANT
      family = MONOMIAL
+     block = '2'
    [../]
 []
 
@@ -176,11 +185,10 @@
   #  type = BulkEnergyDensity
   #  variable =auxv_bulk_energy_density
   #[../]
-
-   [./bound_charge]
-     type = BoundCharge
-     variable = rho_b
-   [../]
+  [./bound_charge]
+    type = BoundCharge
+    variable = rho_b
+  [../]
   #[./Ez_fieldaux]
   #  type = Ez_fieldAux
   #  variable = Ez
@@ -199,6 +207,7 @@
     variable = stress_xx
     index_i = 0
     index_j = 0
+    block = '2'
   [../]
   [./stress_yy]
     type = RankTwoAux
@@ -206,6 +215,7 @@
     variable = stress_yy
     index_i = 1
     index_j = 1
+    block = '2'
   [../]
   [./stress_zz]
     type = RankTwoAux
@@ -213,6 +223,7 @@
     variable = stress_zz
     index_i = 2
     index_j = 2
+    block = '2'
   [../]
   [./stress_xy]
     type = RankTwoAux
@@ -220,6 +231,7 @@
     variable = stress_xy
     index_i = 0
     index_j = 1
+    block = '2'
   [../]
   [./stress_yz]
     type = RankTwoAux
@@ -227,6 +239,7 @@
     variable = stress_yz
     index_i = 1
     index_j = 2
+    block = '2'
   [../]
   [./stress_zx]
     type = RankTwoAux
@@ -234,6 +247,7 @@
     variable = stress_zx
     index_i = 2
     index_j = 0
+    block = '2'
   [../]
   [./strain_xx]
     type = RankTwoAux
@@ -241,6 +255,7 @@
     variable = strain_xx
     index_i = 0
     index_j = 0
+    block = '2'
   [../]
   [./strain_yy]
     type = RankTwoAux
@@ -248,6 +263,7 @@
     variable = strain_yy
     index_i = 1
     index_j = 1
+    block = '2'
   [../]
   [./strain_zz]
     type = RankTwoAux
@@ -255,6 +271,7 @@
     variable = strain_zz
     index_i = 2
     index_j = 2
+    block = '2'
   [../]
   [./strain_xy]
     type = RankTwoAux
@@ -262,6 +279,7 @@
     variable = strain_xy
     index_i = 0
     index_j = 1
+    block = '2'
   [../]
   [./strain_yz]
     type = RankTwoAux
@@ -269,6 +287,7 @@
     variable = strain_yz
     index_i = 1
     index_j = 2
+    block = '2'
   [../]
   [./strain_zx]
     type = RankTwoAux
@@ -276,14 +295,12 @@
     variable = strain_zx
     index_i = 2
     index_j = 0
+    block = '2'
   [../]
 []
 
-
-
-
 [Kernels]
-#Bulk energy density
+  #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -303,7 +320,7 @@
     implicit=false
   [../]
 
-#Wall energy penalty
+  #Wall energy penalty
   [./walled_x]
      type=WallEnergyDerivative
      variable=polar_x
@@ -319,7 +336,7 @@
      variable=polar_z
      component=2
   [../]
-#Ferroelectric-strain coupling
+  #Ferroelectric-strain coupling
   [./ferroelectriccouplingu_x]
      type = FerroelectricCouplingU
      variable=polar_x
@@ -356,14 +373,15 @@
   [../]
 
 
-#Tensor mechanics--Hooke's law
+  #Tensor mechanics--Hooke's law
   [./TensorMechanicsScaled]
      disp_x = disp_x
      disp_y = disp_y
      disp_z = disp_z
+     block = '2'
   [../]
 
-#Electrostatics
+  #Electrostatics
   [./polar_electric_E]
      type=PolarElectricEStrong
      variable=potential_int
@@ -421,20 +439,23 @@
      variable=polar_z
   [../]
 
-  [./polar_x_time]
+  [./disp_x_time]
      type=TimeDerivativeScaled
-     variable=polar_x
-     time_scale = 1e-9
+     variable=disp_x
+     time_scale = 1.0e-22
+     block = '2'
   [../]
-  [./polar_y_time]
+  [./disp_y_time]
      type=TimeDerivativeScaled
-     variable=polar_y
-     time_scale = 1e-9
+     variable=disp_y
+     time_scale = 1.0e-22
+     block = '2'
   [../]
-  [./polar_z_time]
+  [./disp_z_time]
      type=TimeDerivativeScaled
-     variable=polar_z
-     time_scale = 1e-9
+     variable=disp_z
+     time_scale = 1.0e-22
+     block = '2'
   [../]
 []
 
@@ -456,19 +477,25 @@
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
   [../]
+  [./slab_ferroelastic]
+    type=LinearElasticMaterial
+    block = '2'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+    #in GPA. from N. Pandech et al. Ceramics International,
+    # just multiply by 1e9 to convert to N/m^2
+    # C11 C12 C13 C22 C23 C33 C44 C55 C66
+    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
+    euler_angle_1 = 0.0 #currently will only rotate C_ijkl
+    euler_angle_2 = 0.0
+    euler_angle_3 = 0.0
+  [../]
 
-#  [./vacuum]
-#    type=LinearElasticMaterial
-#    block = '1'
-#    disp_x = disp_x
-#    disp_y = disp_y
-#    disp_z = disp_z
-##vacuum elasticity
-#    C_ijkl = '0 0 0 0 0 0 0 0 0'
-#    euler_angle_1 = 0.0
-#    euler_angle_2 = 0.0
-#    euler_angle_3 = 0.0
-#  [../]
+  [./vacuum]
+    type=GenericFunctionMaterial
+    block = '1'
+  [../]
 []
 
 
@@ -494,24 +521,24 @@
   [../]
 
   #IC for displacement in material
-  [./disp_x_randic_mat]
-     type=RandomIC
-     variable=disp_x
-     min = -0.001
-     max = 0.001
-  [../]
-  [./disp_y_randic_mat]
-     type=RandomIC
-     variable=disp_y
-     min = -0.001
-     max = 0.001
-  [../]
-  [./disp_z_randic_mat]
-     type=RandomIC
-     variable=disp_z
-     min = -0.001
-     max = 0.001
-  [../]
+  #[./disp_x_randic_mat]
+  #   type=RandomIC
+  #   variable=disp_x
+  #   min = -0.0001
+  #   max = 0.0001
+  #[../]
+  #[./disp_y_randic_mat]
+  #   type=RandomIC
+  #   variable=disp_y
+  #   min = -0.0001
+  #   max = 0.0001
+  #[../]
+  #[./disp_z_randic_mat]
+  #   type=RandomIC
+  #   variable=disp_z
+  #   min = -0.0001
+  #   max = 0.001
+  #[../]
 []
 
 [BCs]
@@ -540,6 +567,19 @@
      variable = disp_y
      boundary = '7'
      value = -1.0
+   [../]
+
+   [./disp_x_slab5]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '6'
+     value = -1.0
+   [../]
+   [./disp_x_slab7]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '8'
+     value = 1.0
    [../]
 
      # Applied field: for zero field use NeumannBC on the external potential = 0. A
@@ -574,11 +614,13 @@
   [../]
   [./elastic_energy]
     type = ElasticEnergy
+    block = '2'
   [../]
   [./total_energy]
    type=TotalEnergy
    bulk_energy = bulk_energy
    wall_energy = wall_energy
+   elastic_energy = elastic_energy
    elastic_energy = elastic_energy
    electrostatic_energy=electrostatic_energy
   [../]
@@ -624,7 +666,7 @@
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.1e-18
+    dt = 1.1e-25
     optimal_iterations = 3
     growth_factor = 1.001
     cutback_factor =  0.999
@@ -632,19 +674,19 @@
 
   scheme = 'explicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
 
-  dtmin=1.0e-25
-  dtmax=1.81e-18
+  dtmin=1.0e-29
+  dtmax=1.81e-11
 
   num_steps=35000
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
-  petsc_options_iname='-ksp_type -snes_type  -snes_rtol -ksp_rtol -pc_type -pc_asm_overlap -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value=' gmres     newtonls       1e-6     1e-6     asm         20                         basic         1e-50  '
+  petsc_options_iname='-ksp_type -snes_type  -snes_rtol -ksp_rtol -pc_type  -snes_linesearch_type -pc_factor_zeropivot'
+  petsc_options_value=' gmres     newtonls       1e-6    1e-6       hypre             basic            1e-50  '
 []
 
 [Outputs]
 
-print_linear_residuals = true
-print_perf_log = true
+  print_linear_residuals = true
+  print_perf_log = true
 
   [./out]
     type = Exodus
