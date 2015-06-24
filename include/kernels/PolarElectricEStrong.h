@@ -36,11 +36,10 @@ private:
    const unsigned int _polar_x_var;
    const unsigned int _polar_y_var;
    const unsigned int _polar_z_var;
-   const VariableValue& _polar_x;
-   const VariableValue& _polar_y;
-   const VariableValue& _polar_z;
+   const VariableValue & _polar_x;
+   const VariableValue & _polar_y;
+   const VariableValue & _polar_z;
    const Real _len_scale;
-   const Real _polar_electric_scale;
 
 };
 #endif //POLARELECTRICESTRONG_H

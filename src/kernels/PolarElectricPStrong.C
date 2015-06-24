@@ -1,8 +1,8 @@
 /**
  * @file   PolarElectricPStrong.C
  * @author S. Gu <sgu@anl.gov>
- * @date   Thu May 30 11:59:56 2013
- *
+ * @date   Tu Jun 23 2015
+ * @modified J. Mangeri <mangerij@anl.gov>
  * @brief  PolarElectric interaction term,weak coupling-- Polar part;
  *
  *
@@ -20,7 +20,6 @@ InputParameters validParams<PolarElectricPStrong>()
   params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
   params.addRequiredCoupledVar("potential_ext", "The external electric potential variable");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
-  params.addParam<Real>("energy_scale",1.0,"energy scale");
   return params;
 }
 
@@ -32,16 +31,16 @@ PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParame
    _component(getParam<unsigned int>("component")),
    _potential_int_grad(coupledGradient("potential_int")),
    _potential_ext_grad(coupledGradient("potential_ext")),
-   _len_scale(getParam<Real>("len_scale")),
-   _energy_scale(getParam<Real>("energy_scale"))
-{}
+   _len_scale(getParam<Real>("len_scale"))
+{
+}
 
 
 
 Real
 PolarElectricPStrong::computeQpResidual()
 {
-    return (0.5*_potential_int_grad[_qp](_component)+_potential_ext_grad[_qp](_component))*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
+    return (0.5*_potential_int_grad[_qp](_component)+_potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
 }
 
 Real
@@ -54,10 +53,11 @@ Real
 PolarElectricPStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if( jvar == coupled("potential_int") )
-    return 0.5*_grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
+    return 0.5 * _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
   else if( jvar == coupled("potential_ext"))
-    return _grad_phi[_j][_qp](_component)*_test[_i][_qp]*pow(_len_scale,2.0)*_energy_scale;
-  else{
+    return _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+  else
+  {
     return 0.0;
   }
 }

@@ -31,9 +31,8 @@ protected:
 
 private:
   const unsigned int _component;
-  const VariableGradient&  _potential_int_grad;
-  const VariableGradient&  _potential_ext_grad;
+  const VariableGradient &  _potential_int_grad;
+  const VariableGradient &  _potential_ext_grad;
   const Real _len_scale;
-  const Real _energy_scale;
 };
 #endif //POLARELECTRICPSTRONG_H

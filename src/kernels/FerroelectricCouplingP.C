@@ -25,7 +25,6 @@ InputParameters validParams<FerroelectricCouplingP>()
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
-
   return params;
 }
 
@@ -49,7 +48,9 @@ FerroelectricCouplingP::FerroelectricCouplingP(const std::string & name, InputPa
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
    _len_scale(getParam<Real>("len_scale"))
-{}
+{
+
+}
 
 Real
 FerroelectricCouplingP::computeQpResidual()
@@ -82,13 +83,20 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
   Real sum=0.0;
   if( jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var){
     if (jvar == _polar_x_var)
-     {coupled_component=0;}
+     {
+       coupled_component=0;
+     }
     else if (jvar == _polar_y_var)
-     {coupled_component=1;}
+     {
+       coupled_component=1;
+       }
     else if (jvar == _polar_z_var)
-     {coupled_component=2;}
+     {
+       coupled_component=2;
+     }
 //    coupled_component=( jvar == _polar_x_var)? 0: (jvar == _polar_y_var)? 1: (jvar == _polar_z_var)? 2;
-    else{
+    else
+    {
 //    switch(jvar){
 //    case _polar_x_var:
 //      coupled_component=0;
@@ -113,9 +121,13 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
     {if (jvar == _disp_x_var)
      {coupled_component=0;}
     else if (jvar == _disp_y_var)
-     {coupled_component=1;}
+     {
+       coupled_component=1;
+       }
     else if (jvar == _disp_z_var)
-     {coupled_component=2;}
+     {
+       coupled_component=2;
+     }
 //    {
 //      switch(jvar){
 //      case _disp_x_var:

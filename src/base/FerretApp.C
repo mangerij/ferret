@@ -22,7 +22,7 @@
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "WallEnergyDerivative.h"
-#include "TimeDerivative_scaled.h"
+#include "TimeDerivativeScaled.h"
 #include "PolarElectricP.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricE.h"
@@ -152,7 +152,7 @@ FerretApp::registerObjects(Factory & factory)
 
   registerKernel(BulkEnergyDerivative_scaled);
   registerKernel(WallEnergyDerivative_scaled);
-  registerKernel(TimeDerivative_scaled);
+  registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FerroelectricCouplingU);
   registerKernel(StressDivergenceTensorsScaled);
@@ -163,6 +163,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricP);
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
+
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
   registerPostprocessor(ElectricEnergy);

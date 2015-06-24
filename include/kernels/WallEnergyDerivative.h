@@ -35,13 +35,12 @@ protected:
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;
-  const VariableGradient& _polar_i_grad;
-  const VariableGradient& _polar_j_grad;
-  const VariableGradient& _polar_k_grad;
+  const VariableGradient & _polar_i_grad;
+  const VariableGradient & _polar_j_grad;
+  const VariableGradient & _polar_k_grad;
   const unsigned int _ii, _jj, _kk;
-  const Real _G110,_G11, _G12, _G44, _G44P;
+  const Real _G110, _G11, _G12, _G44, _G44P;
   const Real _len_scale;
-  const Real _energy_scale;
 
 };
 #endif //WALLENERGYDERIVATIVE_H
