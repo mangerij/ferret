@@ -30,23 +30,25 @@
 []
 
 [AuxVariables]
-#[./auxv_es_energy_density_e]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
-#  [./auxv_es_energy_density]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
-#  [./auxv_bulk_energy_density]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
-#  [./Ez]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
+  #[./auxv_es_energy_density_e]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
+  #  [./auxv_es_energy_density]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
+  #  [./auxv_bulk_energy_density]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
+  #  [./Ez]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
 []
+
+
 
 [GlobalParams]
    len_scale=1e-9

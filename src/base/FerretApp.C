@@ -1,85 +1,93 @@
+//Base Classes
 #include "FerretApp.h"
 #include "Moose.h"
 #include "Factory.h"
 #include "AppFactory.h"
-
 #include "ModulesApp.h"
 
+//Actions
+#include "TensorMechanicsAction_scaled.h"
+#include "PolarizationVortexAuxAction.h"
+
+//AuxKernels
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
-#include "PolarizationVortexAuxAction.h"
+#include "BandGapAuxZnO.h"
+#include "BandGapAuxTiO2.h"
+#include "Ex_fieldAux.h"
+#include "Ey_fieldAux.h"
+#include "Ez_fieldAux.h"
+#include "Px_fieldAux.h"
+#include "Py_fieldAux.h"
+#include "Pz_fieldAux.h"
+#include "BoundCharge.h"
+#include "BulkEnergyDensity.h"
+#include "WallEnergyDensity.h"
+#include "SurfaceChargeAux.h"
+#include "PolarizationSurfaceCharge.h" //?
+
+//not sure what these are
+#include "ElectrostaticEnergyDensityE.h"
+#include "ElectrostaticEnergyDensity.h"
+#include "ElectrostaticEnergyDensityCross.h"
+#include "ElectrostaticEnergyDensityTotal.h"
+
+//#include "VortexSurfaceEnergy.h"
+
+//Boundary Conditions
 #include "StressBC.h"
 #include "StressFunctionBC.h"
 #include "HydrostaticBC.h"
 #include "HydrostaticDirichletBC.h"
-#include "SurfaceMechanicsBC.h"
-#include "PolarizationSurfaceCharge.h"
-//#include "VortexSurfaceEnergy.h"
 
+//Initial Conditions
+#include "PerturbedIC.h"
+#include "SinIC.h"
+#include "AdhocConstIC.h"
+
+//Kernels
+#include "SurfaceMechanicsBC.h" //not sure why this is called a BC
+#include "Electrostatics.h"
+#include "WallEnergyDerivative.h"
+#include "WallEnergyDerivative_scaled.h" //deprecated
 #include "BulkEnergyDerivative.h"
 #include "BulkEnergyDerivative_nosixth.h"
-#include "BulkEnergyDerivative_scaled.h"
-#include "BulkEnergyDensity.h"
-#include "WallEnergyDensity.h"
-#include "WallEnergyDerivative.h"
+#include "BulkEnergyDerivative_scaled.h" //deprecated
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricP.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricE.h"
 #include "PolarElectricEStrong.h"
-#include "SurfaceChargeAux.h"
-#include "BulkEnergy.h"
-#include "Ex_fieldAux.h"
-#include "Ey_fieldAux.h"
-#include "Ez_fieldAux.h"
-
-#include "Px_fieldAux.h"
-#include "Py_fieldAux.h"
-#include "Pz_fieldAux.h"
-
-#include "BoundCharge.h"
-
-#include "BandGapAuxZnO.h"
-#include "BandGapAuxTiO2.h"
-//error: invalid initialization of reference of type 'MaterialProperty<RankTwoTensor>&'
-//from expression of type 'const MaterialProperty<RankTwoTensor>' not sure why
-
-
-#include "WallEnergy.h"
-#include "WallEnergyDerivative_scaled.h"
-#include "ElectricEnergy.h"
-#include "ElectrostaticEnergy.h"
-#include "TotalEnergy.h"
-
-#include "PercentChangePostprocessor.h"
-
-#include "LinearFerroelectricMaterial.h"
-#include "PolarMaterial.h"
-
 #include "FerroelectricCouplingP.h"
 #include "FerroelectricCouplingU.h"
 #include "StressDivergenceTensorsScaled.h"
 
-#include "TotalEnergyGradient.h"
+//Materials
+#include "LinearFerroelectricMaterial.h"
+#include "PolarMaterial.h"
+
+//Postprocessors
+#include "WallEnergy.h"
+#include "TotalEnergy.h"
+#include "BulkEnergy.h"
+#include "ElectricEnergy.h" //deprecated
+#include "ElectrostaticEnergy.h"
+#include "TotalEnergyGradient.h" //deprecated
 #include "TotalEnergyGradientL2.h"
+#include "PercentChangePostprocessor.h"//added to MOOSE 6/23, so deprecated here
+#include "ElasticEnergy.h"
 
-#include "TensorMechanicsAction_scaled.h"
+//Time steppers
+#include "PostprocessorAdaptiveDT.h"
+#include "CustomDT.h"
+#include "TransientHalf.h" //these are all junk
 
-#include "Electrostatics.h"
-#include "PerturbedIC.h"
-#include "SinIC.h"
-#include "AdhocConstIC.h"
+//custom functions
 #include "SinFunc.h"
 #include "RandomFunc.h"
 #include "SphereIC.h"
 #include "SphereToCartFunc.h"
-#include "ElectrostaticEnergyDensityE.h"
-#include "ElectrostaticEnergyDensity.h"
-#include "ElectrostaticEnergyDensityCross.h"
-#include "ElectrostaticEnergyDensityTotal.h"
-#include "PostprocessorAdaptiveDT.h"
-#include "CustomDT.h"
-#include "TransientHalf.h"
+
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -134,13 +142,10 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Ex_fieldAux);
   registerAux(Ey_fieldAux);
   registerAux(Ez_fieldAux);
-
   registerAux(Px_fieldAux);
   registerAux(Py_fieldAux);
   registerAux(Pz_fieldAux);
-
   registerAux(BoundCharge);
-
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
 
@@ -157,7 +162,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FerroelectricCouplingU);
   registerKernel(StressDivergenceTensorsScaled);
 
-
   registerKernel(PolarElectricE);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricP);
@@ -172,15 +176,20 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyGradient);
   registerPostprocessor(TotalEnergyGradientL2);
   registerPostprocessor(PercentChangePostprocessor);
+  registerPostprocessor(ElasticEnergy);
+
   registerMaterial(PolarMaterial);
   registerMaterial(LinearFerroelectricMaterial);
+
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
   registerInitialCondition(AdhocConstIC);
+
   registerFunction(SinFunc);
   registerFunction(RandomFunc);
   registerFunction(SphereIC);
   registerFunction(SphereToCartFunc);
+
   registerTimeStepper(PostprocessorAdaptiveDT);
   registerTimeStepper(CustomDT);
   registerTimeStepper(TransientHalf);
