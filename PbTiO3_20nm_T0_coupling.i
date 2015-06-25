@@ -31,14 +31,17 @@
   [./disp_x]
     order = FIRST
     family = LAGRANGE
+    block = '2'
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
+    block = '2'
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
+    block = '2'
   [../]
 
 []
@@ -360,16 +363,19 @@
      type = FerroelectricCouplingP
      variable=polar_x
      component=0
+     block = '2'
   [../]
   [./ferroelectriccouplingp_y]
      type = FerroelectricCouplingP
      variable=polar_y
      component=1
+     block = '2'
   [../]
   [./ferroelectriccouplingp_z]
      type = FerroelectricCouplingP
      variable=polar_z
      component=2
+     block = '2'
   [../]
 
 
@@ -477,23 +483,10 @@
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
   [../]
-  [./slab_ferroelastic]
-    type=LinearElasticMaterial
-    block = '2'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-    #in GPA. from N. Pandech et al. Ceramics International,
-    # just multiply by 1e9 to convert to N/m^2
-    # C11 C12 C13 C22 C23 C33 C44 C55 C66
-    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
-    euler_angle_1 = 0.0 #currently will only rotate C_ijkl
-    euler_angle_2 = 0.0
-    euler_angle_3 = 0.0
-  [../]
+
 
   [./vacuum]
-    type=GenericFunctionMaterial
+    type=GenericConstantMaterial
     block = '1'
   [../]
 []
@@ -520,25 +513,6 @@
      max = 0.7
   [../]
 
-  #IC for displacement in material
-  #[./disp_x_randic_mat]
-  #   type=RandomIC
-  #   variable=disp_x
-  #   min = -0.0001
-  #   max = 0.0001
-  #[../]
-  #[./disp_y_randic_mat]
-  #   type=RandomIC
-  #   variable=disp_y
-  #   min = -0.0001
-  #   max = 0.0001
-  #[../]
-  #[./disp_z_randic_mat]
-  #   type=RandomIC
-  #   variable=disp_z
-  #   min = -0.0001
-  #   max = 0.001
-  #[../]
 []
 
 [BCs]
@@ -560,26 +534,26 @@
      type = DirichletBC
      variable = disp_y
      boundary = '5'
-     value = 1.0
+     value = 1e-9
    [../]
    [./disp_y_slab7]
      type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = -1.0
+     value = -1e-9
    [../]
 
    [./disp_x_slab5]
      type = DirichletBC
      variable = disp_x
      boundary = '6'
-     value = -1.0
+     value = -1e-9
    [../]
    [./disp_x_slab7]
      type = DirichletBC
      variable = disp_x
      boundary = '8'
-     value = 1.0
+     value = 1e-9
    [../]
 
      # Applied field: for zero field use NeumannBC on the external potential = 0. A
@@ -666,7 +640,7 @@
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.1e-25
+    dt = 1.1e-18
     optimal_iterations = 3
     growth_factor = 1.001
     cutback_factor =  0.999
@@ -680,7 +654,7 @@
   num_steps=35000
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
   petsc_options_iname='-ksp_type -snes_type  -snes_rtol -ksp_rtol -pc_type  -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value=' gmres     newtonls       1e-6    1e-6       hypre             basic            1e-50  '
+  petsc_options_value=' gmres     newtonls       1e-6   1e-6       hypre             basic            1e-50  '
 []
 
 [Outputs]

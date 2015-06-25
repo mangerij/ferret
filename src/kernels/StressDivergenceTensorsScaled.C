@@ -24,17 +24,17 @@ StressDivergenceTensorsScaled::StressDivergenceTensorsScaled(const std::string& 
 Real
 StressDivergenceTensorsScaled::computeQpResidual()
 {
-  return _len_scale*StressDivergenceTensors::computeQpResidual();
+  return _len_scale*_len_scale*StressDivergenceTensors::computeQpResidual();
 }
 
 Real
 StressDivergenceTensorsScaled::computeQpJacobian()
 {
-  return  _len_scale*StressDivergenceTensors::computeQpJacobian();
+  return  _len_scale*_len_scale*StressDivergenceTensors::computeQpJacobian();
 }
 
 Real
 StressDivergenceTensorsScaled::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  return  _len_scale*StressDivergenceTensors::computeQpOffDiagJacobian(jvar);
+  return  _len_scale*_len_scale*StressDivergenceTensors::computeQpOffDiagJacobian(jvar);
 }
