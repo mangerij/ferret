@@ -14,9 +14,9 @@
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h"
-#include "Ex_fieldAux.h"
-#include "Ey_fieldAux.h"
-#include "Ez_fieldAux.h"
+#include "ExFieldAux.h"
+#include "EyFieldAux.h"
+#include "EzFieldAux.h"
 #include "Px_fieldAux.h"
 #include "Py_fieldAux.h"
 #include "Pz_fieldAux.h"
@@ -139,9 +139,9 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ElectrostaticEnergyDensityTotal);
   registerAux(BulkEnergyDensity);
   registerAux(WallEnergyDensity);
-  registerAux(Ex_fieldAux);
-  registerAux(Ey_fieldAux);
-  registerAux(Ez_fieldAux);
+  registerAux(ExFieldAux);
+  registerAux(EyFieldAux);
+  registerAux(EzFieldAux);
   registerAux(Px_fieldAux);
   registerAux(Py_fieldAux);
   registerAux(Pz_fieldAux);
@@ -151,17 +151,16 @@ FerretApp::registerObjects(Factory & factory)
 
   registerAux(SurfaceChargeAux);
   //registerPostprocessor(VortexSurfaceEnergy);
+
   registerKernel(BulkEnergyDerivative);
   registerKernel(BulkEnergyDerivative_nosixth);
   registerKernel(WallEnergyDerivative);
-
   registerKernel(BulkEnergyDerivative_scaled);
   registerKernel(WallEnergyDerivative_scaled);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FerroelectricCouplingU);
   registerKernel(StressDivergenceTensorsScaled);
-
   registerKernel(PolarElectricE);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricP);

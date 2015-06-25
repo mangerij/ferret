@@ -1,10 +1,7 @@
 /**
  * @file   Electrostatics.h
  * @author S. Gu <sgu@anl.gov>
- * @date   Tue Jun 23 10:07:53 2015
  * @modified J. Mangeri <mangerij@anl.gov>
- * @brief  Laplacian operator with permittivity.
- *
  *
  */
 
@@ -19,8 +16,6 @@ InputParameters validParams<Electrostatics>()
   return params;
 }
 
-
-
 //Constructor
 Electrostatics::Electrostatics(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
@@ -28,7 +23,6 @@ Electrostatics::Electrostatics(const std::string & name, InputParameters paramet
    _len_scale(getParam<Real>("len_scale"))
 {
 }
-
 
 Real
 Electrostatics::computeQpResidual()

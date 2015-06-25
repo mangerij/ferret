@@ -1,8 +1,8 @@
-#include "Ex_fieldAux.h"
+#include "EzFieldAux.h"
 
 template<>
 
-InputParameters validParams<Ex_fieldAux>()
+InputParameters validParams<EzFieldAux>()
 
 {
   InputParameters params = validParams<AuxKernel>();
@@ -12,7 +12,7 @@ InputParameters validParams<Ex_fieldAux>()
 }
 
 
-Ex_fieldAux::Ex_fieldAux( const std::string & name, InputParameters parameters ) :
+EzFieldAux::EzFieldAux( const std::string & name, InputParameters parameters ) :
   AuxKernel( name, parameters ),
    _potential_int_grad(coupledGradient("potential_int")),
    _potential_ext_grad(coupledGradient("potential_ext"))
@@ -20,10 +20,8 @@ Ex_fieldAux::Ex_fieldAux( const std::string & name, InputParameters parameters )
 }
 
 Real
-Ex_fieldAux::computeValue()
+EzFieldAux::computeValue()
 
 {
-    return -_potential_int_grad[_qp](0)-_potential_ext_grad[_qp](0);
+    return - _potential_int_grad[_qp](2) - _potential_ext_grad[_qp](2);
 }
-
-

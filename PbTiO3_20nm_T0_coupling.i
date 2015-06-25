@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_150_cheap.e
+  file = slab_exodus_coarse_80.e
   uniform_refine=0
 []
 
@@ -47,37 +47,11 @@
 []
 
 [AuxVariables]
-  #[./auxv_es_energy_density_e] #es for electrostatic
-  #    order=CONSTANT
-  #    family=MONOMIAL
-  # [../]
-  # [./auxv_es_energy_density]
-  #    order=CONSTANT
-  #    family=MONOMIAL
-  # [../]
-  # [./auxv_bulk_energy_density]
-  #    order=CONSTANT
-  #    family=MONOMIAL
-  # [../]
-
-    [./rho_b]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-
-
-   #[./Ez]
-   #   order=CONSTANT
-   #   family=MONOMIAL
-   #[../]
-   #[./Ex]
-   #   order=CONSTANT
-   #   family=MONOMIAL
-   #[../]
-   #[./Ey]
-   #   order=CONSTANT
-   #   family=MONOMIAL
-   #[../]
+    #[./rho_b]
+    #  order = CONSTANT
+    #  family = MONOMIAL
+    #  block = '2'
+    #[../]
 
    [./stress_xx]
      order = CONSTANT
@@ -158,9 +132,9 @@
    G44P/G110=0.3
    #Electrostatics
    permittivity=8.85e-12
-   polar_x=polar_x
-   polar_y=polar_y
-   polar_z=polar_z
+   polar_x = polar_x
+   polar_y = polar_y
+   polar_z = polar_z
    potential_int=potential_int
    potential_ext=potential_ext
 
@@ -188,10 +162,11 @@
   #  type = BulkEnergyDensity
   #  variable =auxv_bulk_energy_density
   #[../]
-  [./bound_charge]
-    type = BoundCharge
-    variable = rho_b
-  [../]
+  #[./bound_charge]
+  #  type = BoundCharge
+  #  variable = rho_b
+  #  block = '2'
+  #[../]
   #[./Ez_fieldaux]
   #  type = Ez_fieldAux
   #  variable = Ez
@@ -303,24 +278,42 @@
 []
 
 [Kernels]
+  #Elastic problem
+  [./stressdiv_0]
+    type = StressDivergenceTensorsScaled
+    variable = disp_x
+    component = 0
+    block = '2'
+  [../]
+  [./stressdiv_1]
+    type = StressDivergenceTensorsScaled
+    variable = disp_y
+    component = 1
+    block = '2'
+  [../]
+  [./stressdiv_2]
+    type = StressDivergenceTensorsScaled
+    variable = disp_z
+    component = 2
+    block = '2'
+  [../]
+
+
   #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
     component=0
-    implicit=false
   [../]
   [./bed_y]
     type = BulkEnergyDerivative
     variable = polar_y
     component=1
-    implicit=false
   [../]
   [./bed_z]
     type = BulkEnergyDerivative
     variable = polar_z
     component=2
-    implicit=false
   [../]
 
   #Wall energy penalty
@@ -378,21 +371,11 @@
      block = '2'
   [../]
 
-
-  #Tensor mechanics--Hooke's law
-  [./TensorMechanicsScaled]
-     disp_x = disp_x
-     disp_y = disp_y
-     disp_z = disp_z
-     block = '2'
-  [../]
-
   #Electrostatics
   [./polar_electric_E]
      type=PolarElectricEStrong
      variable=potential_int
      block='2'
-     implicit=false
   [../]
   [./E_int]
      type=Electrostatics
@@ -418,19 +401,16 @@
      type=PolarElectricPStrong
      variable=polar_x
      component=0
-     implicit=false
   [../]
   [./polar_electric_py]
      type=PolarElectricPStrong
      variable=polar_y
      component=1
-     implicit=false
   [../]
   [./polar_electric_pz]
      type=PolarElectricPStrong
      variable=polar_z
      component=2
-     implicit=false
   [../]
   [./polar_x_time]
      type=TimeDerivativeScaled
@@ -448,71 +428,43 @@
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable=disp_x
-     time_scale = 1.0e-22
+     time_scale = 1e-34
      block = '2'
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable=disp_y
-     time_scale = 1.0e-22
+     time_scale = 1e-34
      block = '2'
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable=disp_z
-     time_scale = 1.0e-22
+     time_scale = 1e-34
      block = '2'
   [../]
 []
-
-[Materials]
-  [./slab_ferroelectric]
-    type=LinearFerroelectricMaterial
-    block = '2'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-    #in GPA. from N. Pandech et al. Ceramics International,
-    # just multiply by 1e9 to convert to N/m^2
-    # C11 C12 C13 C22 C23 C33 C44 C55 C66
-    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
-    #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
-    # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
-    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.034 0.034 0.034'
-    euler_angle_1 = 0.0 #currently will only rotate C_ijkl
-    euler_angle_2 = 0.0
-    euler_angle_3 = 0.0
-  [../]
-
-
-  [./vacuum]
-    type=GenericConstantMaterial
-    block = '1'
-  [../]
-[]
-
 
 [ICs]
   #IC for Polarization
   [./polar_x_randic]
      type=RandomIC
      variable=polar_x
-     min = 0.4
-     max = 0.7
+     min = 0.25
+     max = 0.3
   [../]
   [./polar_y_randic]
      type=RandomIC
      variable=polar_y
-     min = 0.4
-     max = 0.7
+     min = 0.25
+     max = 0.3
   [../]
   [./polar_z_randic]
      type=RandomIC
      variable=polar_z
-     min = 0.4
-     max = 0.7
+     min = 0.25
+     max = 0.3
   [../]
-
 []
 
 [BCs]
@@ -531,29 +483,29 @@
    [../]
 
    [./disp_y_slab5]
-     type = DirichletBC
+     type = PresetBC
      variable = disp_y
      boundary = '5'
-     value = 1e-9
+     value = 1.0
    [../]
    [./disp_y_slab7]
-     type = DirichletBC
+     type = PresetBC
      variable = disp_y
      boundary = '7'
-     value = -1e-9
+     value = -1.0
    [../]
 
    [./disp_x_slab5]
-     type = DirichletBC
+     type = PresetBC
      variable = disp_x
      boundary = '6'
-     value = -1e-9
+     value = 1.0
    [../]
    [./disp_x_slab7]
-     type = DirichletBC
+     type = PresetBC
      variable = disp_x
      boundary = '8'
-     value = 1e-9
+     value = -1.0
    [../]
 
      # Applied field: for zero field use NeumannBC on the external potential = 0. A
@@ -576,6 +528,34 @@
   [../]
 []
 
+[Materials]
+  [./slab_ferroelectric]
+    type=LinearFerroelectricMaterial
+    block = '2'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+    #in GPA. from N. Pandech et al. Ceramic. Internat., times 1e9 to convert to N/m^2
+    # C11 C12 C13 C22 C23 C33 C44 C55 C66
+    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
+    #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
+    # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
+    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.034 0.034 0.034'
+    euler_angle_1 = 0.0 #currently will only rotate C_ijkl
+    euler_angle_2 = 0.0
+    euler_angle_3 = 0.0
+  [../]
+
+
+  [./vacuum]
+    type=GenericConstantMaterial
+    block = '1'
+  [../]
+[]
+
+
+
+
 [Postprocessors]
   [./bulk_energy]
    type=BulkEnergy
@@ -594,7 +574,6 @@
    type=TotalEnergy
    bulk_energy = bulk_energy
    wall_energy = wall_energy
-   elastic_energy = elastic_energy
    elastic_energy = elastic_energy
    electrostatic_energy=electrostatic_energy
   [../]
@@ -640,21 +619,22 @@
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.1e-18
+    dt = 1.1e-25
     optimal_iterations = 3
     growth_factor = 1.001
     cutback_factor =  0.999
   [../]
 
-  scheme = 'explicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  scheme = 'rk-2'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
 
-  dtmin=1.0e-29
+  dtmin=1.0e-26
   dtmax=1.81e-11
-
+  l_max_its =20
+  nl_max_its= 5
   num_steps=35000
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
   petsc_options_iname='-ksp_type -snes_type  -snes_rtol -ksp_rtol -pc_type  -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value=' gmres     newtonls       1e-6   1e-6       hypre             basic            1e-50  '
+  petsc_options_value=' gmres     newtonls       1e-8  1e-8        hypre            basic            1e-50  '
 []
 
 [Outputs]
@@ -664,7 +644,7 @@
 
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_T0_20nm_0field_G110-6e-1_coupling_squeeze
+    file_base = out_PbTiO3_T0_80nm_0field_G110-6e-1_coupling_squeeze
     output_initial = true
     elemental_as_nodal = false
     interval = 1

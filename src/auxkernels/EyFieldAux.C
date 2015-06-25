@@ -1,8 +1,8 @@
-#include "Ey_fieldAux.h"
+#include "EyFieldAux.h"
 
 template<>
 
-InputParameters validParams<Ey_fieldAux>()
+InputParameters validParams<EyFieldAux>()
 
 {
   InputParameters params = validParams<AuxKernel>();
@@ -12,7 +12,7 @@ InputParameters validParams<Ey_fieldAux>()
 }
 
 
-Ey_fieldAux::Ey_fieldAux( const std::string & name, InputParameters parameters ) :
+EyFieldAux::EyFieldAux( const std::string & name, InputParameters parameters ) :
   AuxKernel( name, parameters ),
    _potential_int_grad(coupledGradient("potential_int")),
    _potential_ext_grad(coupledGradient("potential_ext"))
@@ -20,10 +20,8 @@ Ey_fieldAux::Ey_fieldAux( const std::string & name, InputParameters parameters )
 }
 
 Real
-Ey_fieldAux::computeValue()
+EyFieldAux::computeValue()
 
 {
     return -_potential_int_grad[_qp](1)-_potential_ext_grad[_qp](1);
 }
-
-

@@ -1,10 +1,7 @@
 /**
  * @file   PolarElectricEStrong.C
  * @author S. Gu <sgu@anl.gov>
- * @date   Thu May 30 11:59:56 2013
- *
- * @brief
- *
+ * @modified J. Mangeri <mangerij@anl.gov>
  *
  */
 
@@ -39,8 +36,6 @@ PolarElectricEStrong::PolarElectricEStrong(const std::string & name, InputParame
    _len_scale(getParam<Real>("len_scale"))
 {
 }
-
-
 
 Real
 PolarElectricEStrong::computeQpResidual()
