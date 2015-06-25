@@ -1,5 +1,0 @@
-For all experiment, .out files are the screen output of the .i files with the same name.
-Experiment 1: electrostatic free energy, P is fixed, minimize \phi
-    ex_electric_nonrandom_scale_static_bls.i: basic line search (converge in one SNES iteration)
-    ex_electric_nonrandom_scale_static_dls.i: default line search (More than one iterations)
-    
