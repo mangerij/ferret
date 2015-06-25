@@ -652,7 +652,7 @@
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.1e-25
+    dt = 1.1e-23
     optimal_iterations = 3
     growth_factor = 1.001
     cutback_factor =  0.999
