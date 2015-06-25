@@ -10,21 +10,22 @@ template<>
 InputParameters validParams<ElasticEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
-//  params.addRequiredParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
 ElasticEnergy::ElasticEnergy(const std::string & name, InputParameters parameters) :
   ElementIntegralPostprocessor(name, parameters),
   _elastic_strain(getMaterialProperty<RankTwoTensor>("elastic_strain")),
-  _stress(getMaterialProperty<RankTwoTensor>("stress"))
+  _stress(getMaterialProperty<RankTwoTensor>("stress")),
+  _len_scale(getParam<Real>("len_scale"))
 {
 }
 
 Real
 ElasticEnergy::computeQpIntegral()
 {
-  return -0.5 * (
+  return -0.5 * std::pow(_len_scale, 3.0) * (
       _elastic_strain[_qp](0, 0) * _stress[_qp](0, 0)
     + _elastic_strain[_qp](0, 1) * _stress[_qp](0, 0)
     + _elastic_strain[_qp](0, 2) * _stress[_qp](0, 0)

@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_80.e
+  file = slab_exodus_coarse_40.e
   uniform_refine=0
 []
 
@@ -47,11 +47,11 @@
 []
 
 [AuxVariables]
-    #[./rho_b]
-    #  order = CONSTANT
-    #  family = MONOMIAL
-    #  block = '2'
-    #[../]
+    [./rho_b]
+      order = CONSTANT
+      family = MONOMIAL
+      block = '2'
+    [../]
 
    [./stress_xx]
      order = CONSTANT
@@ -137,7 +137,7 @@
    polar_z = polar_z
    potential_int=potential_int
    potential_ext=potential_ext
-
+   #
    disp_x = disp_x
    disp_y = disp_y
    disp_z = disp_z
@@ -162,11 +162,11 @@
   #  type = BulkEnergyDensity
   #  variable =auxv_bulk_energy_density
   #[../]
-  #[./bound_charge]
-  #  type = BoundCharge
-  #  variable = rho_b
-  #  block = '2'
-  #[../]
+  [./bound_charge]
+    type = BoundCharge
+    variable = rho_b
+    block = '2'
+  [../]
   #[./Ez_fieldaux]
   #  type = Ez_fieldAux
   #  variable = Ez
@@ -333,24 +333,24 @@
      component=2
   [../]
   #Ferroelectric-strain coupling
-  [./ferroelectriccouplingu_x]
-     type = FerroelectricCouplingU
-     variable=polar_x
-     component=0
-     block = '2'
-  [../]
-  [./ferroelectriccouplingu_y]
-     type = FerroelectricCouplingU
-     variable=polar_y
-     component=1
-     block = '2'
-  [../]
-  [./ferroelectriccouplingu_z]
-     type = FerroelectricCouplingU
-     variable=polar_z
-     component=2
-     block = '2'
-  [../]
+  #[./ferroelectriccouplingu_x]
+  #   type = FerroelectricCouplingU
+  #   variable=polar_x
+  #   component=0
+  #   block = '2'
+  #[../]
+  #[./ferroelectriccouplingu_y]
+  #   type = FerroelectricCouplingU
+  #   variable=polar_y
+  #   component=1
+  #   block = '2'
+  #[../]
+  #[./ferroelectriccouplingu_z]
+  #   type = FerroelectricCouplingU
+  #   variable=polar_z
+  #   component=2
+  #   block = '2'
+  #[../]
 
   [./ferroelectriccouplingp_x]
      type = FerroelectricCouplingP
@@ -415,32 +415,35 @@
   [./polar_x_time]
      type=TimeDerivativeScaled
      variable=polar_x
+     time_scale = 1.0e-31
   [../]
   [./polar_y_time]
      type=TimeDerivativeScaled
      variable=polar_y
+     time_scale = 1.0e-31
   [../]
   [./polar_z_time]
      type=TimeDerivativeScaled
      variable=polar_z
+     time_scale = 1.0e-31
   [../]
 
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable=disp_x
-     time_scale = 1e-34
+     time_scale = 1e-35
      block = '2'
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable=disp_y
-     time_scale = 1e-34
+     time_scale = 1e-35
      block = '2'
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable=disp_z
-     time_scale = 1e-34
+     time_scale = 1e-35
      block = '2'
   [../]
 []
@@ -450,19 +453,37 @@
   [./polar_x_randic]
      type=RandomIC
      variable=polar_x
-     min = 0.25
+     min = -0.25
      max = 0.3
   [../]
   [./polar_y_randic]
      type=RandomIC
      variable=polar_y
-     min = 0.25
+     min = -0.25
      max = 0.3
   [../]
   [./polar_z_randic]
      type=RandomIC
      variable=polar_z
-     min = 0.25
+     min = -0.25
+     max = 0.3
+  [../]
+  [./disp_x_randic]
+     type=RandomIC
+     variable=disp_x
+     min = -0.25
+     max = 0.3
+  [../]
+  [./disp_y_randic]
+     type=RandomIC
+     variable=disp_y
+     min = -0.25
+     max = 0.3
+  [../]
+  [./disp_z_randic]
+     type=RandomIC
+     variable=disp_z
+     min = -0.25
      max = 0.3
   [../]
 []
@@ -482,31 +503,31 @@
      value = 0.0
    [../]
 
-   [./disp_y_slab5]
-     type = PresetBC
-     variable = disp_y
-     boundary = '5'
-     value = 1.0
-   [../]
-   [./disp_y_slab7]
-     type = PresetBC
-     variable = disp_y
-     boundary = '7'
-     value = -1.0
-   [../]
-
-   [./disp_x_slab5]
-     type = PresetBC
-     variable = disp_x
-     boundary = '6'
-     value = 1.0
-   [../]
-   [./disp_x_slab7]
-     type = PresetBC
-     variable = disp_x
-     boundary = '8'
-     value = -1.0
-   [../]
+  # [./disp_y_slab5]
+  #   type = DirichletBC
+  #   variable = disp_y
+  #   boundary = '5'
+  #   value = 1.0
+  # [../]
+  # [./disp_y_slab7]
+  #   type = DirichletBC
+  #   variable = disp_y
+  #   boundary = '7'
+  #   value = -1.0
+  # [../]
+   #
+  # [./disp_x_slab5]
+  #   type = DirichletBC
+  #   variable = disp_x
+  #   boundary = '6'
+  #   value = 1.0
+  # [../]
+  # [./disp_x_slab7]
+  #   type = DirichletBC
+  #   variable = disp_x
+  #   boundary = '8'
+  #   value = -1.0
+  # [../]
 
      # Applied field: for zero field use NeumannBC on the external potential = 0. A
      # Note that \nabla^2 \Phi_{ext} = 0 is satisfied if \Phi_{ext} = 0, ie Dirichlet and Neumann BC classes are equivalent
@@ -527,7 +548,7 @@
     value = 0.0
   [../]
 []
-
+#
 [Materials]
   [./slab_ferroelectric]
     type=LinearFerroelectricMaterial
@@ -545,7 +566,19 @@
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
   [../]
-
+  [./slab_elastic]
+    type=LinearElasticMaterial
+    block = '2'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+    #in GPA. from N. Pandech et al. Ceramic. Internat., times 1e9 to convert to N/m^2
+    # C11 C12 C13 C22 C23 C33 C44 C55 C66
+    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
+    euler_angle_1 = 0.0 #currently will only rotate C_ijkl
+    euler_angle_2 = 0.0
+    euler_angle_3 = 0.0
+  [../]
 
   [./vacuum]
     type=GenericConstantMaterial
@@ -567,8 +600,8 @@
    type=ElectrostaticEnergy
   [../]
   [./elastic_energy]
-    type = ElasticEnergy
-    block = '2'
+   type = ElasticEnergy
+   block = '2'
   [../]
   [./total_energy]
    type=TotalEnergy
@@ -607,12 +640,12 @@
   [../]
 []
 
-#[UserObjects]
-#  [./kill]
-#    type = Terminator
-#    expression = '_pps_percent <= 4.0e-7'
-#  [../]
-#[]
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = '_pps_percent <= 4.0e-7'
+  [../]
+[]
 
 [Executioner]
   type=Transient
@@ -625,16 +658,14 @@
     cutback_factor =  0.999
   [../]
 
-  scheme = 'rk-2'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
 
   dtmin=1.0e-26
   dtmax=1.81e-11
-  l_max_its =20
-  nl_max_its= 5
-  num_steps=35000
-  petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
-  petsc_options_iname='-ksp_type -snes_type  -snes_rtol -ksp_rtol -pc_type  -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value=' gmres     newtonls       1e-8  1e-8        hypre            basic            1e-50  '
+  num_steps=1500
+  petsc_options='-options_left -snes_converged_reason -ksp_converged_reason -snes_monitor -ksp_monitor_true_residual -snes_ls_monitor -info'
+  petsc_options_iname='-ksp_type  -snes_rtol -ksp_rtol -snes_type  -pc_type -sub_pc_type -pc_asm_overlap'
+  petsc_options_value = 'gmres     1e-4      1e-4     newtonls        asm        ilu          2'
 []
 
 [Outputs]
@@ -644,13 +675,10 @@
 
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_T0_80nm_0field_G110-6e-1_coupling_squeeze
+    file_base = out_PbTiO3_T0_40nm_0field_G110-6e-1_coupling
     output_initial = true
     elemental_as_nodal = false
     interval = 1
   [../]
 
-  [./debug]
-    type = VariableResidualNormsDebugOutput
-  [../]
 []

@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_20.e
+  file = slab_exodus_coarse_160.e
   uniform_refine=0
 []
 
@@ -30,28 +30,25 @@
 []
 
 [AuxVariables]
-  [./rho_b]
-    order=CONSTANT
-    family=MONOMIAL
-    block = '2'
-  [../]
-#[./auxv_es_energy_density_e]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
-#  [./auxv_es_energy_density]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
-#  [./auxv_bulk_energy_density]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
-#  [./Ez]
-#     order=CONSTANT
-#     family=MONOMIAL
-#  [../]
+  #[./auxv_es_energy_density_e]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
+  #  [./auxv_es_energy_density]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
+  #  [./auxv_bulk_energy_density]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
+  #  [./Ez]
+  #     order=CONSTANT
+  #     family=MONOMIAL
+  #  [../]
 []
+
+
 
 [GlobalParams]
    len_scale=1e-9
@@ -82,10 +79,38 @@
 []
 
 [AuxKernels]
-  [./bound_charge]
-    type = BoundCharge
-    variable = rho_b
-  [../]
+  ##active='diff'
+  #[./auxk_electrostatic_energy_density_e]
+  #  type = ElectrostaticEnergyDensityE
+  #  variable =auxv_es_energy_density_e
+  #  potential=potential_int
+  #[../]
+  #[./auxk_electrostatic_energy_density]
+  #  type = ElectrostaticEnergyDensity
+  #  variable =auxv_es_energy_density
+  #[../]
+  #[./auxk_bulk_energy_density]
+  #  type = BulkEnergyDensity
+  #  variable =auxv_bulk_energy_density
+  #[../]
+  #[./Ez_fieldaux]
+  #  type = Ez_fieldAux
+  #  variable = Ez
+  #  potential_ext = potential_ext
+  #  potential_int = potential_int
+  #[../]
+#  [./Ex_fieldaux]
+#    type = Ex_fieldAux
+#    variable = Ex
+#    potential_ext = potential_ext
+#    potential_int = potential_int
+#  [../]
+#  [./Ey_fieldaux]
+#    type = Ey_fieldAux
+#    variable = Ey
+#    potential_ext = potential_ext
+#    potential_int = potential_int
+#  [../]
 []
 
 [Kernels]
@@ -93,29 +118,32 @@
     type = BulkEnergyDerivative
     variable = polar_x
     component=0
+    implicit=false
   [../]
   [./bed_y]
     type = BulkEnergyDerivative
     variable = polar_y
     component=1
+    implicit=false
   [../]
   [./bed_z]
     type = BulkEnergyDerivative
     variable = polar_z
     component=2
+    implicit=false
   [../]
   [./walled_x]
-     type=WallEnergyDerivative
+     type=WallEnergyDerivative_scaled
      variable=polar_x
      component=0
   [../]
   [./walled_y]
-     type=WallEnergyDerivative
+     type=WallEnergyDerivative_scaled
      variable=polar_y
      component=1
   [../]
   [./walled_z]
-     type=WallEnergyDerivative
+     type=WallEnergyDerivative_scaled
      variable=polar_z
      component=2
   [../]
@@ -123,6 +151,7 @@
      type=PolarElectricEStrong
      variable=potential_int
      block='2'
+     implicit=false
   [../]
   [./FE_E_int]
      type=Electrostatics
@@ -149,11 +178,13 @@
      type=PolarElectricPStrong
      variable=polar_x
      component=0
+     implicit=false
   [../]
   [./polar_electric_py]
      type=PolarElectricPStrong
      variable=polar_y
      component=1
+     implicit=false
   [../]
   [./polar_electric_pz]
      type=PolarElectricPStrong
@@ -194,8 +225,8 @@
   [./polar_z_constic_rand]
      type=RandomIC
      variable=polar_z
-     min = 0.2
-     max = 0.22
+     min = 0.0
+     max = 0.0
   [../]
 []
 
@@ -240,9 +271,6 @@
    [./wall_energy]
     type=WallEnergy
    [../]
-  # [./elastic_energy]
-  #  type=WallEnergy
-  # [../]
    [./electrostatic_energy]
     type=ElectrostaticEnergy
    [../]
@@ -250,7 +278,6 @@
     type=TotalEnergy
     bulk_energy=bulk_energy
     wall_energy=wall_energy
-    elastic_energy = elastic_energy
     electrostatic_energy=electrostatic_energy
    [../]
   # [./_dt]
@@ -286,7 +313,7 @@
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = '_pps_percent <= 8.0e-7'
+    expression = '_pps_percent <= 4.0e-7'
   [../]
 []
 
@@ -295,36 +322,38 @@
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.1e-22
+    dt = 1.1e-15
     optimal_iterations = 3
     growth_factor = 1.001
     cutback_factor =  0.999
   [../]
 
   scheme = 'explicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+
   dtmin=1.0e-25
-  dtmax=1.70e-15
+  dtmax=1.81e-15
+
   num_steps=35000
   petsc_options='-ksp_monitor_true_residual -snes_monitor -snes_view -snes_converged_reason -snes_linesearch_monitor -options_left'
   petsc_options_iname='-ksp_type -snes_type  -snes_rtol -ksp_rtol -pc_type -pc_hypre_boomeramg_strong_threshold -snes_linesearch_type -pc_factor_zeropivot'
-  petsc_options_value=' gmres     newtonls       1e-7     1e-7     hypre              0.5                          basic         1e-50  '
+  petsc_options_value=' gmres     newtonls       1e-6     1e-6     hypre              0.5                          basic         1e-50  '
 []
 
 
 [Outputs]
 
-  print_linear_residuals = true
-  print_perf_log = true
+print_linear_residuals = true
+print_perf_log = true
 
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_T_0_E_0_G110_6e-1_size_20
+    file_base = out_PbTiO3_T_0_E_0_G110_6e-1_size_160
     output_initial = true
     elemental_as_nodal = false
-    interval = 400
+    interval = 50
   [../]
 
-  #[./debug]
-  #  type = VariableResidualNormsDebugOutput
-  #[../]
+  [./debug]
+    type = VariableResidualNormsDebugOutput
+  [../]
 []
