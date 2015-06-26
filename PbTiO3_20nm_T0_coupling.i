@@ -162,11 +162,11 @@
   #  type = BulkEnergyDensity
   #  variable =auxv_bulk_energy_density
   #[../]
-  [./bound_charge]
-    type = BoundCharge
-    variable = rho_b
-    block = '2'
-  [../]
+  #[./bound_charge]
+  #  type = BoundCharge
+  #  variable = rho_b
+  #  block = '2'
+  #[../]
   #[./Ez_fieldaux]
   #  type = Ez_fieldAux
   #  variable = Ez
@@ -452,38 +452,38 @@
   [./polar_x_randic]
      type=RandomIC
      variable=polar_x
-     min = -0.25
-     max = 0.3
+     min = -0.00025
+     max = 0.0003
   [../]
   [./polar_y_randic]
      type=RandomIC
      variable=polar_y
-     min = -0.25
-     max = 0.3
+     min = -0.00025
+     max = 0.0003
   [../]
   [./polar_z_randic]
      type=RandomIC
      variable=polar_z
-     min = -0.25
-     max = 0.3
+     min = -0.00025
+     max = 0.0003
   [../]
   [./disp_x_randic]
      type=RandomIC
      variable=disp_x
-     min = -0.25
-     max = 0.3
+     min = -0.0025
+     max = 0.003
   [../]
   [./disp_y_randic]
      type=RandomIC
      variable=disp_y
-     min = -0.25
-     max = 0.3
+     min = -0.0025
+     max = 0.003
   [../]
   [./disp_z_randic]
      type=RandomIC
      variable=disp_z
-     min = -0.25
-     max = 0.3
+     min = -0.0025
+     max = 0.003
   [../]
 []
 
@@ -658,31 +658,31 @@
   num_steps=1500
   petsc_options='-options_left -snes_converged_reason -ksp_converged_reason -snes_monitor -ksp_monitor_true_residual -snes_ls_monitor -snes_view'
   petsc_options_iname='-ksp_type  -snes_rtol -ksp_rtol -snes_type  -pc_type -sub_pc_type -pc_asm_overlap'
-  petsc_options_value = 'gmres     1e-8      1e-6     newtonls        asm        ilu          2'
-  splitting = 'ferretsplit'
+  petsc_options_value = 'gmres     1e-8      1e-6     newtonls        asm        ilu          3'
+#  splitting = 'ferretsplit'
 []
-
-[Splits]
-  [./ferretsplit]
-    splitting = 'ferroelectric' #split to two subproblems
-    splitting_type = schur
-    schur_type = full
-    schur_pre = A11
-    petsc_options ='-pc_fieldsplit_detect_coupling'
-  [../]
-
-  [./ferroelectric]
-    vars = 'polar_x polar_y polar_z potential_int potential_ext'
-    petsc_options='-dm_view'
-    petsc_options_iname='-ksp_type   -ksp_rtol -pc_type -pc_hypre_boomeramg_strong_threshold -snes_linesearch_type -pc_factor_zeropivot'
-    petsc_options_value=' gmres        1e-8     hypre              0.5                          basic         1e-50  '
-  [../]
-  [./elastic]
-    vars = 'disp_x disp_y disp_z'
-    petsc_options='-dm_view'
-    petsc_options_iname='-ksp_type   -ksp_rtol   -pc_type -sub_pc_type -pc_asm_overlap'
-    petsc_options_value = 'gmres       1e-6        asm        lu          2'
-[]
+#
+#[Splits]
+#  [./ferretsplit]
+#    splitting = 'ferroelectric elastic' #split to two subproblems
+#    splitting_type = schur
+#    schur_type = full
+#    schur_pre = A11
+#  #  petsc_options ='-pc_fieldsplit_detect_coupling'
+#  [../]
+#
+#  [./ferroelectric]
+#    vars = 'polar_x polar_y polar_z potential_int potential_ext'
+#    petsc_options='-dm_view'
+#    petsc_options_iname='-ksp_type   -ksp_rtol -pc_type -pc_hypre_boomeramg_strong_threshold -snes_linesearch_type -pc_factor_zeropivot'
+#    petsc_options_value=' gmres        1e-8     hypre              0.5                          basic         1e-50  '
+#  [../]
+#  [./elastic]
+#    vars = 'disp_x disp_y disp_z'
+#    petsc_options='-dm_view'
+#    petsc_options_iname='-ksp_type   -ksp_rtol   -pc_type -sub_pc_type -pc_asm_overlap'
+#    petsc_options_value = 'gmres       1e-6        asm        lu          2'
+#[]
 
 
 
