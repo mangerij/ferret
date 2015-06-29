@@ -6,7 +6,7 @@
 #include "ModulesApp.h"
 
 //Actions
-#include "TensorMechanicsActionScaled.h"
+#include "TensorMechanicsActionScaled.h" //not sure the tensormechanics action works right now
 #include "PolarizationVortexAuxAction.h"
 
 //AuxKernels
@@ -17,9 +17,9 @@
 #include "ExFieldAux.h"
 #include "EyFieldAux.h"
 #include "EzFieldAux.h"
-#include "Px_fieldAux.h"
-#include "Py_fieldAux.h"
-#include "Pz_fieldAux.h"
+#include "PxFieldAux.h"
+#include "PyFieldAux.h"
+#include "PzFieldAux.h"
 #include "BoundCharge.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
@@ -49,10 +49,8 @@
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
-#include "WallEnergyDerivative_scaled.h" //deprecated
 #include "BulkEnergyDerivative.h"
 #include "BulkEnergyDerivative_nosixth.h"
-#include "BulkEnergyDerivative_scaled.h" //deprecated
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricP.h"
 #include "PolarElectricPStrong.h"
@@ -142,9 +140,9 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ExFieldAux);
   registerAux(EyFieldAux);
   registerAux(EzFieldAux);
-  registerAux(Px_fieldAux);
-  registerAux(Py_fieldAux);
-  registerAux(Pz_fieldAux);
+  registerAux(PxFieldAux);
+  registerAux(PyFieldAux);
+  registerAux(PzFieldAux);
   registerAux(BoundCharge);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
@@ -155,8 +153,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkEnergyDerivative);
   registerKernel(BulkEnergyDerivative_nosixth);
   registerKernel(WallEnergyDerivative);
-  registerKernel(BulkEnergyDerivative_scaled);
-  registerKernel(WallEnergyDerivative_scaled);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FerroelectricCouplingU);

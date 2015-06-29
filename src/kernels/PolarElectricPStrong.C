@@ -1,10 +1,8 @@
 /**
  * @file   PolarElectricPStrong.C
  * @author S. Gu <sgu@anl.gov>
- * @date   Tu Jun 23 2015
  * @modified J. Mangeri <mangerij@anl.gov>
- * @brief  PolarElectric interaction term,weak coupling-- Polar part;
- *
+ * @brief  PolarElectric interaction term;
  *
  */
 
@@ -19,7 +17,7 @@ InputParameters validParams<PolarElectricPStrong>()
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
   params.addRequiredCoupledVar("potential_ext", "The external electric potential variable");
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
 
@@ -40,7 +38,7 @@ PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParame
 Real
 PolarElectricPStrong::computeQpResidual()
 {
-    return (0.5*_potential_int_grad[_qp](_component)+_potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    return (0.5 * _potential_int_grad[_qp](_component) + _potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
 }
 
 Real

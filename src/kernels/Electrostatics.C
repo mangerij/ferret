@@ -12,7 +12,7 @@ InputParameters validParams<Electrostatics>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<Real>("permittivity", "permittivity");
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
 

@@ -260,7 +260,7 @@
     type = PresetBC
     variable = potential_ext
     boundary = '1'
-    value = 1 #note that this value depends on distance between plates... 2 V / 160 nm = 125 kV/cm
+    value = 1e8 #note that this value depends on distance between plates... 2 V / 160 nm = 125 kV/cm
     #value = 0.0
     #implicit=false
   [../]
@@ -268,7 +268,7 @@
     type = PresetBC
     variable = potential_ext
     boundary = '2'
-    value = -1
+    value = -1e-8
     #value = 0.0
   [../]
 []

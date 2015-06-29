@@ -58,16 +58,7 @@ LinearFerroelectricMaterial::computeProperties()
   for(_qp=0; _qp < _qrule->n_points(); ++_qp)
   _electrostrictive_tensor[_qp].computeProduct(_Cijkl,_Qmnkl);
   }
-  // {
-  //   LinearElasticMaterial::computeProperties();
-  // }
 }
 
-//  for(_qp=0; _qp < _qrule->n_points(); ++_qp) used to find a solution?
-
-// void
-// LinearFerroelectricMaterial::computeProperties()
-//   {
-//  for(_qp=0; _qp < _qrule->n_points(); ++_qp)
- // {
-//    _electrostrictive_tensor[_qp]=_qijkl;
+// note that the elasticity properties are loaded into the input file with
+// a different materials block

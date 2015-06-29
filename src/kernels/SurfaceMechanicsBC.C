@@ -55,43 +55,35 @@ SurfaceMechanicsBC::SurfaceMechanicsBC(const std::string & name, InputParameters
   _surface_euler_angle_2(getParam<Real>("surface_euler_angle_2")),
   _surface_euler_angle_3(getParam<Real>("surface_euler_angle_3")),
   _Csijkl_vector(getParam<std::vector<Real> >("Cs_ijkl")),
-//added this line
   _taus(getParam<Real>("taus")),
-    //  _component(getParam<unsigned int>("component")),
   _Csijkl(),
   _surface_euler_angles(_surface_euler_angle_1, _surface_euler_angle_2, _surface_euler_angle_3),
   _grad_disp_x(coupledGradient("disp_x")),
   _grad_disp_y(coupledGradient("disp_y")),
   _grad_disp_z(_dim == 3 ? coupledGradient("disp_z") : _grad_zero)
 {
-  // fill in the local tensors from the input vector information
-
   _Csijkl.surfaceFillFromInputVector (_Csijkl_vector);
-
-  //rotate the _Csijkl tensor
   RotationTensor R(_surface_euler_angles);
   _Csijkl.rotate(R);
-
 }
 
 void
 SurfaceMechanicsBC::computeQpProjection()
 {
-  //Need to compute the projection operator
+  //Compute the projection operator at a given quadrature point:
   for (unsigned int i=0; i<3; i++)
     for (unsigned int j=i; j<3; j++)
-  {
-            if (i == j)
-	  {
-          _projection(i, i) = 1 - _normals[_qp](i)*_normals[_qp](i);
-	  //          _projection(j, i) = 1 - _normals[_qp](i-1)*_normals[_qp](j-1);
-    }
-          else
-      {
-       	    _projection(j, i) = -_normals[_qp](i)*_normals[_qp](j);
-       	    _projection(i, j) = -_normals[_qp](i)*_normals[_qp](j);
+    {
+      if (i == j)
+	    {
+        _projection(i, i) = 1 - _normals[_qp](i) * _normals[_qp](i);
       }
-  }
+      else
+      {
+       	_projection(j, i) = -_normals[_qp](i) * _normals[_qp](j);
+       	_projection(i, j) = -_normals[_qp](i) * _normals[_qp](j);
+      }
+    }
 }
 
 void
@@ -99,39 +91,36 @@ SurfaceMechanicsBC :: computeQpRotation()
 // compute rank-4 tensors used to write surface elastic constants in local representation
 // First form a vector perpendicular to the surface normal by taking cross-product of (1,1,1) with _normals[_qp]
 {
-  _tangent_1(0)=_normals[_qp](2)-_normals[_qp](1);
-  _tangent_1(1)=_normals[_qp](0)-_normals[_qp](2);
-  _tangent_1(2)=_normals[_qp](1)-_normals[_qp](0);
+  _tangent_1(0) = _normals[_qp](2) - _normals[_qp](1);
+  _tangent_1(1) = _normals[_qp](0) - _normals[_qp](2);
+  _tangent_1(2) = _normals[_qp](1) - _normals[_qp](0);
 // need to check that the norm of _tangent_1 is not zero
-  if (_tangent_1*_tangent_1 < 1.e-12)
+  if (_tangent_1 * _tangent_1 < 1.e-12)
     {
     //_normal[_qp] is parallel to (1,1,1) so choose a tangent vector orthogonal to (1,1,1)
-    _tangent_1(0)=-1.;
-    _tangent_1(1)=0.;
-    _tangent_1(2)=1.;
+    _tangent_1(0) = -1.;
+    _tangent_1(1) = 0.;
+    _tangent_1(2) = 1.;
     }
-    _tangent_1 = _tangent_1/sqrt(_tangent_1*_tangent_1);
-    _tangent_2(0)=_normals[_qp](1)*_tangent_1(2)-_normals[_qp](2)*_tangent_1(1);
-    _tangent_2(1)=_normals[_qp](2)*_tangent_1(0)-_normals[_qp](0)*_tangent_1(2);
-    _tangent_2(2)=_normals[_qp](0)*_tangent_1(1)-_normals[_qp](1)*_tangent_1(0);
+    _tangent_1 = _tangent_1/sqrt(_tangent_1 * _tangent_1);
+    _tangent_2(0) = _normals[_qp](1) * _tangent_1(2) - _normals[_qp](2) * _tangent_1(1);
+    _tangent_2(1) = _normals[_qp](2) * _tangent_1(0) - _normals[_qp](0) * _tangent_1(2);
+    _tangent_2(2) = _normals[_qp](0) * _tangent_1(1) - _normals[_qp](1) * _tangent_1(0);
 //compute rank-two and rank-four tensors
-    for (unsigned int i=0; i<3;i++)
+    for (unsigned int i=0; i<3; i++)
       {
-      for (unsigned int j=0;j<3;j++)
+      for (unsigned int j=0; j<3; j++)
         {
-         _tp11(i,j) = _tangent_1(i)*_tangent_1(j);
-         _tp22(i,j) = _tangent_2(i)*_tangent_2(j);
-        for (unsigned int k=0;k<3;k++)
+         _tp11(i,j) = _tangent_1(i) * _tangent_1(j);
+         _tp22(i,j) = _tangent_2(i) * _tangent_2(j);
+        for (unsigned int k=0; k<3; k++)
 	        {
-          for (unsigned int l=0;l<3;l++)
+          for (unsigned int l=0; l<3; l++)
 	          {
 	          _t11(i, j, k, l) = _tangent_1(i) * _tangent_1(j) * _tangent_1(k) * _tangent_1(l);
 	          _t22(i, j, k, l) = _tangent_2(i) * _tangent_2(j) * _tangent_2(k) * _tangent_2(l);
 	          _t12(i, j, k, l) = _tangent_1(i) * _tangent_1(j) * _tangent_2(k) * _tangent_2(l) + _tangent_2(i) * _tangent_2(j) * _tangent_1(k) * _tangent_1(l);
-	          _t33(i, j, k, l) = _tangent_1(i) * _tangent_2(j) * _tangent_1(k) * _tangent_2(l)
-	       + _tangent_2(i) * _tangent_1(j) * _tangent_2(k) * _tangent_1(l)
-	      + _tangent_1(i) * _tangent_2(j) * _tangent_2(k) * _tangent_1(l)
-	      + _tangent_2(i) * _tangent_1(j) * _tangent_1(k) * _tangent_2(l);
+	          _t33(i, j, k, l) = _tangent_1(i) * _tangent_2(j) * _tangent_1(k) * _tangent_2(l) + _tangent_2(i) * _tangent_1(j) * _tangent_2(k) * _tangent_1(l) + _tangent_1(i) * _tangent_2(j) * _tangent_2(k) * _tangent_1(l) + _tangent_2(i) * _tangent_1(j) * _tangent_1(k) * _tangent_2(l);
             }
         }
      }
@@ -155,7 +144,7 @@ SurfaceMechanicsBC::computeQpResidual()
   computeQpProjection();
   computeQpRotation();
   //  temp2=_projection*(_surface_strain*_projection); // this is the surface strain in global representation
-  _surface_strain = _projection*(temp2*_projection); // this is the surface strain in global representation
+  _surface_strain = _projection * (temp2 * _projection); // this is the surface strain in global representation
   temp_surface = _t11 * C0000 + _t22 * C1111 + _t12 * C0011 + _t33*C0101; //surface elastic constants in global representation
   //_surface_stress=temp_surface*temp2; //this is now surface stress (projected onto tangent plane) using global representation
   _surface_stress = temp_surface * _surface_strain; //this is now surface stress (projected onto tangent plane) using global representation

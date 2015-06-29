@@ -28,8 +28,6 @@ InputParameters validParams<WallEnergyDerivative>()
   return params;
 }
 
-
-//Constructor
 WallEnergyDerivative::WallEnergyDerivative(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
   _component(getParam<unsigned int>("component")),
@@ -56,9 +54,6 @@ WallEnergyDerivative::WallEnergyDerivative(const std::string & name, InputParame
   std::cout<<"_G44="<<_G44<<"\n";
   std::cout<<"_G44P="<<_G44P<<"\n";
 }
-
-
-//TODO:Overload functions
 
 Real
 WallEnergyDerivative::computeQpResidual()
