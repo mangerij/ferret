@@ -328,44 +328,44 @@
      variable=polar_z
      component=2
   [../]
-  ##Ferroelectric-strain coupling
-  #[./ferroelectriccouplingu_x]
-  #   type = FerroelectricCouplingU
-  #   variable=polar_x
-  #   component=0
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingu_y]
-  #   type = FerroelectricCouplingU
-  #   variable=polar_y
-  #   component=1
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingu_z]
-  #   type = FerroelectricCouplingU
-  #   variable=polar_z
-  #   component=2
-  #   block = '2'
-  #[../]
-  #
-  #[./ferroelectriccouplingp_x]
-  #   type = FerroelectricCouplingP
-  #   variable=polar_x
-  #   component=0
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingp_y]
-  #   type = FerroelectricCouplingP
-  #   variable=polar_y
-  #   component=1
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingp_z]
-  #   type = FerroelectricCouplingP
-  #   variable=polar_z
-  #   component=2
-  #   block = '2'
-  #[../]
+  #Ferroelectric-strain coupling
+  [./ferroelectriccouplingu_x]
+     type = FerroelectricCouplingU
+     variable=polar_x
+     component=0
+     block = '2'
+  [../]
+  [./ferroelectriccouplingu_y]
+     type = FerroelectricCouplingU
+     variable=polar_y
+     component=1
+     block = '2'
+  [../]
+  [./ferroelectriccouplingu_z]
+     type = FerroelectricCouplingU
+     variable=polar_z
+     component=2
+     block = '2'
+  [../]
+
+  [./ferroelectriccouplingp_x]
+     type = FerroelectricCouplingP
+     variable=polar_x
+     component=0
+     block = '2'
+  [../]
+  [./ferroelectriccouplingp_y]
+     type = FerroelectricCouplingP
+     variable=polar_y
+     component=1
+     block = '2'
+  [../]
+  [./ferroelectriccouplingp_z]
+     type = FerroelectricCouplingP
+     variable=polar_z
+     component=2
+     block = '2'
+  [../]
 
   #Electrostatics
   [./polar_electric_E]
@@ -628,16 +628,13 @@
 #  [../]
 #[]
 
-[Preconditioning]
-  [./PBP]
-    type = PBP
-    solve_order = 'disp_x disp_y disp_z polar_x polar_y polar_z potential_int potential_ext '
-    preconditioner = 'AMG AMG AMG AMG AMG AMG AMG AMG'
-
-    #off_diag_row    = 'polar_x polar_y polar_z potential_int potential_ext'
-    #off_diag_column = ' disp_x disp_y disp_z'
-  [../]
-[]
+#[Preconditioning]
+#  [./PBP]
+#    type = PBP
+#    solve_order = 'disp_x disp_y disp_z polar_x polar_y polar_z potential_int potential_ext'
+#    preconditioner = 'AMG AMG AMG AMG AMG AMG AMG AMG'
+#  [../]
+#[]
 
 
 [Executioner]
@@ -645,7 +642,7 @@
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.1e-15
+    dt = 1.1e-16
     optimal_iterations = 3
     growth_factor = 1.001
     cutback_factor =  0.999
@@ -656,7 +653,7 @@
   dtmin=1.0e-26
   dtmax=1.81e-11
   num_steps=1500
-#  petsc_options='-options_left -snes_converged_reason -ksp_converged_reason -snes_monitor -ksp_monitor_true_residual -snes_ls_monitor -snes_view'
+  petsc_options='-options_left -snes_converged_reason -ksp_converged_reason -snes_monitor -ksp_monitor_true_residual -snes_ls_monitor -snes_view'
 #  petsc_options_iname='-ksp_type -ksp_gmres_restart -snes_rtol -ksp_rtol -snes_type  -pc_type -sub_pc_type -pc_asm_overlap'
 #  petsc_options_value = 'gmres          500           1e-4      1e-2     newtonls       asm       ilu          3'
 ##  splitting = 'ferretsplit'
