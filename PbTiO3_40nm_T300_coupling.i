@@ -3,6 +3,23 @@
   uniform_refine=0
 []
 
+#[Problem]
+#  dimNullSpace     = 6
+#[]
+#
+#[UserObjects]
+#  [./RigidModes3DNullSpace]
+#     type=RigidBodyModes3D
+#     variable = disp_x
+#     subspace_name = NullSpace
+#     subspace_indices = '0 1 2 3 4 5 '
+#     modes = 'trans_x trans_y trans_z rot_x rot_y rot_z'
+#     disp_x = disp_x
+#     disp_y = disp_y
+#     disp_z = disp_z
+#  [../]
+#[]
+
 [GlobalParams]
    len_scale=1e-9
    #BulkEnergy coefficients
@@ -80,8 +97,6 @@
 []
 
 [AuxVariables]
-
-
    [./stress_xx]
      order = CONSTANT
      family = MONOMIAL
@@ -145,36 +160,6 @@
 []
 
 [AuxKernels]
-  #[./auxk_electrostatic_energy_density_e]
-  #  type = ElectrostaticEnergyDensityE
-  #  variable =auxv_es_energy_density_e
-  #  potential=potential_int
-  #[../]
-  #[./auxk_electrostatic_energy_density]
-  #  type = ElectrostaticEnergyDensity
-  #  variable =auxv_es_energy_density
-  #[../]
-  #[./auxk_bulk_energy_density]
-  #  type = BulkEnergyDensity
-  #  variable =auxv_bulk_energy_density
-  #[../]
-  #[./bound_charge]
-  #  type = BoundCharge
-  #  variable = rho_b
-  #  block = '2'
-  #[../]
-  #[./Ez_fieldaux]
-  #  type = Ez_fieldAux
-  #  variable = Ez
-  #[../]
-  #[./Ex_fieldaux]
-  #  type = Ex_fieldAux
-  #  variable = Ex
-  #[../]
-  #[./Ey_fieldaux]
-  #  type = Ey_fieldAux
-  #  variable = Ey
-  #[../]
   [./stress_xx]
     type = RankTwoAux
     rank_two_tensor = stress
@@ -299,16 +284,19 @@
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
+  #  implicit = false
     component=0
   [../]
   [./bed_y]
     type = BulkEnergyDerivative
     variable = polar_y
+  #  implicit = false
     component=1
   [../]
   [./bed_z]
     type = BulkEnergyDerivative
     variable = polar_z
+  #  implicit = false
     component=2
   [../]
 
@@ -316,35 +304,41 @@
   [./walled_x]
      type=WallEnergyDerivative
      variable=polar_x
+  #   implicit = false
      component=0
   [../]
   [./walled_y]
      type=WallEnergyDerivative
      variable=polar_y
+  #   implicit = false
      component=1
   [../]
   [./walled_z]
      type=WallEnergyDerivative
      variable=polar_z
+  #   implicit = false
      component=2
   [../]
   #Ferroelectric-strain coupling
   [./ferroelectriccouplingu_x]
      type = FerroelectricCouplingU
-     variable=polar_x
+     variable=disp_x
      component=0
+    # implicit = false
      block = '2'
   [../]
   [./ferroelectriccouplingu_y]
      type = FerroelectricCouplingU
-     variable=polar_y
+     variable=disp_y
      component=1
+    # implicit = false
      block = '2'
   [../]
   [./ferroelectriccouplingu_z]
      type = FerroelectricCouplingU
-     variable=polar_z
+     variable=disp_z
      component=2
+    # implicit = false
      block = '2'
   [../]
 
@@ -352,18 +346,21 @@
      type = FerroelectricCouplingP
      variable=polar_x
      component=0
+  #   implicit = false
      block = '2'
   [../]
   [./ferroelectriccouplingp_y]
      type = FerroelectricCouplingP
      variable=polar_y
      component=1
+  #   implicit = false
      block = '2'
   [../]
   [./ferroelectriccouplingp_z]
      type = FerroelectricCouplingP
      variable=polar_z
      component=2
+  #   implicit = false
      block = '2'
   [../]
 
@@ -371,6 +368,7 @@
   [./polar_electric_E]
      type=PolarElectricEStrong
      variable=potential_int
+  #   implicit = false
      block='2'
   [../]
   [./E_int]
@@ -396,16 +394,19 @@
   [./polar_electric_px]
      type=PolarElectricPStrong
      variable=polar_x
+  #   implicit = false
      component=0
   [../]
   [./polar_electric_py]
      type=PolarElectricPStrong
      variable=polar_y
+  #   implicit = false
      component=1
   [../]
   [./polar_electric_pz]
      type=PolarElectricPStrong
      variable=polar_z
+  #   implicit = false
      component=2
   [../]
   [./polar_x_time]
@@ -424,24 +425,24 @@
      time_scale = 1.0e-31
   [../]
   #
-  [./disp_x_time]
-     type=TimeDerivativeScaled
-     variable=disp_x
-     time_scale = 1e-50
-     block = '2'
-  [../]
-  [./disp_y_time]
-     type=TimeDerivativeScaled
-     variable=disp_y
-     time_scale = 1e-50
-     block = '2'
-  [../]
-  [./disp_z_time]
-     type=TimeDerivativeScaled
-     variable=disp_z
-     time_scale = 1e-50
-     block = '2'
-  [../]
+  #[./disp_x_time]
+  #   type=TimeDerivativeScaled
+  #   variable=disp_x
+  #   time_scale = 1e-50
+  #   block = '2'
+  #[../]
+  #[./disp_y_time]
+  #   type=TimeDerivativeScaled
+  #   variable=disp_y
+  #   time_scale = 1e-50
+  #   block = '2'
+  #[../]
+  #[./disp_z_time]
+  #   type=TimeDerivativeScaled
+  #   variable=disp_z
+  #   time_scale = 1e-50
+  #   block = '2'
+  #[../]
 []
 
 [ICs]
@@ -467,13 +468,13 @@
 
 [BCs]
    [./potential_int_upz]
-     type = PresetBC
+     type = DirichletBC
      variable = potential_int
      boundary = '1'
      value = 0.0
    [../]
    [./potential_int_downz]
-     type = PresetBC
+     type = DirichletBC
      variable = potential_int
      boundary = '2'
      value = 0.0
@@ -481,36 +482,57 @@
 
 
    [./disp_x_slab4]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_x
      boundary = '4'
      value = 0
    [../]
    [./disp_y_slab4]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_y
      boundary = '4'
      value = 0
    [../]
    [./disp_z_slab4]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_z
      boundary = '4'
      value = 0
    [../]
 
 
+  # [./disp_x_slab3]
+  #   type = PresetBC
+  #   variable = disp_x
+  #   boundary = '3'
+  #   value = 0
+  # [../]
+  # [./disp_y_slab3]
+  #   type = PresetBC
+  #   variable = disp_y
+  #   boundary = '3'
+  #   value = 0
+  # [../]
+  # [./disp_z_slab3]
+  #   type = PresetBC
+  #   variable = disp_z
+  #   boundary = '3'
+  #   value = 0
+  # [../]
+
+
+
    [./disp_y_slab7]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = -1.5
+     value = -0.2
    [../]
    [./disp_y_slab5]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_y
      boundary = '5'
-     value = 1.5
+     value = 0.2
    [../]
    #
   # [./disp_x_slab5]
@@ -529,20 +551,20 @@
      # Applied field: for zero field use NeumannBC on the external potential = 0. A
      # Note that \nabla^2 \Phi_{ext} = 0 is satisfied if \Phi_{ext} = 0, ie Dirichlet and Neumann BC classes are equivalent
    [./potential_ext_upz]
-    type = PresetBC
+    type = DirichletBC
     variable = potential_ext
     boundary = '1'
     #value = 5.0e-11 #1e-12 gives a field of ~1e8 V/m ~ 1000 kV/cm for size 1, what about size 100?
                     # seems that this doesn't matter here? dt needs to change for the size however...
                     # lowering this value, to about 1e-16 is the limit here. 5e-11 gives 5.6e9 V/m for 100 size
-    value = 0.0
+    value = 1.0e2
   [../]
   [./potential_ext_downz]
-    type = PresetBC
+    type = DirichletBC
     variable = potential_ext
     boundary = '2'
     #value = -5.0e-11
-    value = 0.0
+    value = -1.0e2
   [../]
 []
 #
@@ -559,8 +581,8 @@
     #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
     # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
     #
-    #Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.034 0.034 0.034e-6'
-    Q_mnkl = '0.089e-10 -0.026e-10 -0.026e-10 0.089e-10 -0.026e-10 0.089e-10 0.034e-10 0.034e-10 0.034e-10'
+    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.034 0.034 0.034'
+    #Q_mnkl = '0.089e-10 -0.026e-10 -0.026e-10 0.089e-10 -0.026e-10 0.089e-10 0.034e-10 0.034e-10 0.034e-10'
     euler_angle_1 = 0.0 #currently will only rotate C_ijkl
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
@@ -584,9 +606,6 @@
     block = '1'
   [../]
 []
-
-
-
 
 [Postprocessors]
   [./bulk_energy]
@@ -628,57 +647,53 @@
 #  [../]
 #[]
 
-#[Preconditioning]
-#  [./PBP]
-#    type = PBP
-#    solve_order = 'disp_x disp_y disp_z polar_x polar_y polar_z potential_int potential_ext'
-#    preconditioner = 'AMG AMG AMG AMG AMG AMG AMG AMG'
-#  [../]
-#[]
-
-
 [Executioner]
   type=Transient
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.1e-16
+    dt = 5.25e-30
     optimal_iterations = 3
     growth_factor = 1.001
     cutback_factor =  0.999
   [../]
 
-  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  scheme = 'explicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
 
-  dtmin=1.0e-26
+  dtmin=1.0e-31
   dtmax=1.81e-11
   num_steps=1500
-  petsc_options='-options_left -snes_converged_reason -ksp_converged_reason -snes_monitor -ksp_monitor_true_residual -snes_ls_monitor -snes_view'
-#  petsc_options_iname='-ksp_type -ksp_gmres_restart -snes_rtol -ksp_rtol -snes_type  -pc_type -sub_pc_type -pc_asm_overlap'
-#  petsc_options_value = 'gmres          500           1e-4      1e-2     newtonls       asm       ilu          3'
-##  splitting = 'ferretsplit'
+  petsc_options='-options_left -snes_converged_reason -ksp_converged_reason -snes_monitor -ksp_monitor_true_residual -snes_view -ksp_view'
+  petsc_options_iname='-ksp_type -ksp_gmres_restart -pc_type  -pc_factor_zeropivot -ksp_rtol'
+  petsc_options_value = 'gmres        500              lu       1e-50              1e-12'
+#   splitting = 'ferretsplit'
 []
-#
+
+
 #[Splits]
 #  [./ferretsplit]
-#    splitting = 'ferroelectric elastic' #split to two subproblems
+#    type = Split
+#    splitting = 'elastic ferroelectric ' #split to two subproblems
 #    splitting_type = schur #schur split somewhat bugged right now
 #    schur_type = full
 #    schur_pre = A11
-#  #  petsc_options ='-pc_fieldsplit_detect_coupling'
+#   #petsc_options ='-pc_fieldsplit_detect_coupling'
+#   petsc_options_iname ='-pc_type -pc_factor_zeropivot'
+#   petsc_options_value = 'lu          1e-50 '
 #  [../]
 #
 #  [./ferroelectric]
 #    vars = 'polar_x polar_y polar_z potential_int potential_ext'
-#    petsc_options='-dm_view'
-#    petsc_options_iname='-ksp_type   -ksp_rtol -pc_type -pc_hypre_boomeramg_strong_threshold -snes_linesearch_type -pc_factor_zeropivot'
-#    petsc_options_value=' gmres        1e-8     hypre              0.5                          basic         1e-50  '
+#    petsc_options='-dm_view -ksp_monitor -inner_ksp_monitor'
+#    petsc_options_iname='-ksp_type   -ksp_gmres_restart  -ksp_rtol -inner_pc_type -pc_type  -inner_pc_factor_zeropivot  -pc_factor_zeropivot'
+#    petsc_options_value=' gmres            350              1e-10     lu          lu                     1e-50                1e-50  '
 #  [../]
 #  [./elastic]
 #    vars = 'disp_x disp_y disp_z'
-#    petsc_options='-dm_view'
-#    petsc_options_iname='-ksp_type   -ksp_rtol   -pc_type -sub_pc_type -pc_asm_overlap'
-#    petsc_options_value = 'gmres       1e-6        asm        lu          2'
+#    petsc_options='-dm_view -ksp_monitor'
+#    petsc_options_iname='-ksp_type  -ksp_gmres_restart -inner_pc_type -ksp_rtol -pc_type   -inner_pc_factor_zeropivot -pc_factor_zeropivot'
+#    petsc_options_value = 'gmres       350                  lu          1e-10     lu               1e-50                        1e-50'
+#  [../]
 #[]
 
 
