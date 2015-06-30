@@ -18,6 +18,10 @@
 #     disp_y = disp_y
 #     disp_z = disp_z
 #  [../]
+#  [./kill]
+#    type = Terminator
+#    expression = '_pps_percent <= 4.0e-7'
+#  [../]
 #[]
 
 [GlobalParams]
@@ -640,12 +644,14 @@
   [../]
 []
 
-#[UserObjects]
-#  [./kill]
-#    type = Terminator
-#    expression = '_pps_percent <= 4.0e-7'
-#  [../]
+
+
+#[Preconditioner]
+# [./PBP]
+#   type = PBP
+#   solve_order = 'polar_x polar_y polar_z disp_x disp_y disp_z potential_int potential_ext'
 #[]
+
 
 [Executioner]
   type=Transient
