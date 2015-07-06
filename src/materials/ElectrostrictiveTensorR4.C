@@ -10,42 +10,43 @@
 #include "ElectrostrictiveTensorR4.h"
 
 void
-ElectrostrictiveTensorR4::computeProduct(const ElasticityTensorR4& Cijkl, const ElasticityTensorR4& Qmnkl)
+ElectrostrictiveTensorR4::computeProduct(const ElasticityTensorR4 & Cijkl, const ElasticityTensorR4 & Qmnkl)
 {
-  for(unsigned int i=0;i<3;++i)
-    for(unsigned int j=0;j<3;++j)
-      for(unsigned int k=0;k<3;++k)
-        for(unsigned int l=0;l<3;++l)
+  for(unsigned int i = 0; i < 3; ++i)
+    for(unsigned int j = 0; j < 3; ++j)
+      for(unsigned int k = 0; k < 3; ++k)
+        for(unsigned int l = 0; l < 3; ++l)
         {
-	         Real sum=0.0;
+	         Real sum = 0.0;
 	         for(unsigned int m=0;m<3;++m)
 	           for(unsigned int n=0;n<3;++n)
            {
-	             sum += Cijkl(i,j,m,n)*Qmnkl(m,n,k,l);
+	             sum += Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
 	         }
 
-        _vals[i][j][k][l] = 2*sum;
+        _vals[i][j][k][l] = 2 * sum;
     }
 }
 
-
-Real ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const RealVectorValue& v,unsigned int k, const unsigned int l)const
+Real ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w) const
 {
-  //Sum over j q_ijkl*v(j)
-  Real sum=0.0;
-  for(unsigned int j=0;j<3;++j)
-  {
-    sum+=(*this)(i,j,k,l)*v(j);
-  }
+  //Sum over (j,l) q_ijkl * v(j) * w(l) with k = _component
+  Real sum = 0.0;
+  for(unsigned int j = 0; j < 3; ++j)
+    for(unsigned int l = 0; l < 3; ++l)
+    {
+      sum += (*this)(i, j, k, l) * v(j) * w(l);
+    }
   return sum;
 }
-Real ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i,const RealVectorValue& v,unsigned int k, const RealVectorValue& w)const
+
+Real ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const unsigned int l) const
 {
-  //Sum over (j,l) q_ijkl*v(j)*w(l)
-  Real sum=0.0;
-  for(unsigned int j=0;j<3; ++j)
-    for(unsigned int l=0;l<3;++l){
-      sum+=(*this)(i,j,k,l)*v(j)*w(l);
-    }
+  //Sum over j q_ijkl * v(j) where k and l = _component (used for DiagJacobian)
+  Real sum = 0.0;
+  for(unsigned int j = 0; j < 3; ++j)
+  {
+    sum += (*this)(i,j,k,l) * v(j);
+  }
   return sum;
 }

@@ -28,9 +28,9 @@ public:
 protected:
   virtual Real computeQpResidual();
 
-  virtual Real computeQpJacobian();
-
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  // virtual Real computeQpJacobian();
+  //
+  // virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 
 
@@ -40,9 +40,12 @@ private:
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;
-  const VariableValue& _polar_x;
-  const VariableValue& _polar_y;
-  const VariableValue& _polar_z;
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
+  const VariableGradient & _polar_x_grad;
+  const VariableGradient & _polar_y_grad;
+  const VariableGradient & _polar_z_grad;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };
