@@ -125,6 +125,7 @@ FerretApp::registerApps()
 void
 FerretApp::registerObjects(Factory & factory)
 {
+  //BoundaryConditions
   registerBoundaryCondition(StressBC);
   registerBoundaryCondition(StressFunctionBC);
   registerBoundaryCondition(SurfaceMechanicsBC);
@@ -132,6 +133,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(HydrostaticDirichletBC);
   registerBoundaryCondition(PolarizationSurfaceCharge);
 
+  //AuxKernels:
   registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
   registerAux(ElectrostaticEnergyDensity);
@@ -149,10 +151,10 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(BoundCharge);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
-
   registerAux(SurfaceChargeAux);
   //registerPostprocessor(VortexSurfaceEnergy);
 
+  //Kernels
   registerKernel(BulkEnergyDerivative);
   registerKernel(BulkEnergyDerivative_nosixth);
   registerKernel(WallEnergyDerivative);
@@ -168,6 +170,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
 
+  //Postprocessors
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
   registerPostprocessor(ElectricEnergy);
@@ -175,29 +178,33 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyGradient);
   registerPostprocessor(TotalEnergyGradientL2);
-   registerPostprocessor(PercentChangePostprocessor); //added to MOOSE (deprecated)
+  registerPostprocessor(PercentChangePostprocessor); //added to MOOSE (deprecated)
   registerPostprocessor(ElasticEnergy);
   //registerPostprocess(CoupledEnergy); to be added
 
+  //Materials
   registerMaterial(PolarMaterial);
   registerMaterial(LinearFerroelectricMaterial);
 
+  //InitialConditions
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
   registerInitialCondition(AdhocConstIC);
 
+  //Functions
   registerFunction(SinFunc);
   registerFunction(RandomFunc);
   registerFunction(SphereIC);
   registerFunction(SphereToCartFunc);
 
+  //TimeStepper
   registerTimeStepper(PostprocessorAdaptiveDT);
   registerTimeStepper(CustomDT);
   registerTimeStepper(TransientHalf);
 }
 
 void
-FerretApp::associateSyntax(Syntax& syntax, ActionFactory & action_factory)
+FerretApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 {
   syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
   registerAction(PolarizationVortexAuxAction, "add_kernel");

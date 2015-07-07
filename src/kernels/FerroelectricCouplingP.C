@@ -5,7 +5,7 @@
  * @date   Jun. 15. 2015
  *
  * @brief  Implement the kernel for polar variables corresponding to ferroelectic coupling energy.
- *         Assume the energy has the form -0.5*q_ijkl* ui_j * Pk*Pl where u is the displacement and P is the polarization.
+ *         Assume the energy has the form -0.5*q_{ijkl}* ui_j * P_k*P_l where u is the displacement and P is the polarization.
  */
 
 #include "FerroelectricCouplingP.h"
@@ -71,14 +71,14 @@ FerroelectricCouplingP::computeQpJacobian()
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, _component);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, _component);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, _component);
-  return - 0.5 * std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
+  return - 0.5 * std::pow(_len_scale, 3.0) * sum * _test[_i][_qp]; //should _phi[_j][_qp] be here?
 }
 
 Real
 FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
 {
   unsigned int coupled_component;
-  Real sum=0.0;
+  Real sum = 0.0;
 
   if( jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)
   {

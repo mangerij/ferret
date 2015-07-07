@@ -41,7 +41,7 @@
    G44/G110 = 0.3
    G44P/G110 = 0.3
    #Electrostatics
-   permittivity=8.85e-12
+   permittivity = 8.85e-12
    polar_x = polar_x
    polar_y = polar_y
    polar_z = polar_z
@@ -431,17 +431,17 @@
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable=disp_x
-     time_scale = 1.0e-32
+     time_scale = 1.0e-24
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable=disp_y
-     time_scale = 1.0e-32
+     time_scale = 1.0e-24
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable=disp_z
-     time_scale = 1.0e-32
+     time_scale = 1.0e-24
   [../]
 []
 
@@ -449,20 +449,20 @@
   [./polar_x_randic]
      type=RandomIC
      variable=polar_x
-     min = 0.6
-     max = 0.75
+     min = 0.06
+     max = 0.075
   [../]
   [./polar_y_randic]
      type=RandomIC
      variable=polar_y
-     min = 0.6
-     max = 0.75
+     min = 0.06
+     max = 0.075
   [../]
   [./polar_z_randic]
      type=RandomIC
      variable=polar_z
-     min = 0.1
-     max = 0.15
+     min = 0.01
+     max = 0.015
   [../]
 []
 
@@ -480,72 +480,133 @@
      value = 0.0
    [../]
 
-
-   [./disp_x_slab4]
-     type = PresetBC
-     variable = disp_x
-     boundary = '4'
-     value = 0
-   [../]
-   [./disp_y_slab4]
-     type = PresetBC
-     variable = disp_y
-     boundary = '4'
-     value = 0
-   [../]
-   [./disp_z_slab4]
-     type = PresetBC
-     variable = disp_z
-     boundary = '4'
-     value = 0
-   [../]
-
+   #Displacements [5 6 7 8] [x y -x -y] boundaries, [3 4] [top bottom]
    [./disp_x_slab3]
      type = PresetBC
      variable = disp_x
      boundary = '3'
-     value = 0
+     value = 0.0
    [../]
    [./disp_y_slab3]
      type = PresetBC
      variable = disp_y
      boundary = '3'
-     value = 0
+     value = 0.0
    [../]
    [./disp_z_slab3]
      type = PresetBC
      variable = disp_z
      boundary = '3'
-     value = 0
+     value = 0.0
    [../]
 
+  # [./disp_x_slab4]
+  #   type = PresetBC
+  #   variable = disp_x
+  #   boundary = '4'
+  #   value = 0.0
+  # [../]
+  # [./disp_y_slab4]
+  #   type = PresetBC
+  #   variable = disp_y
+  #   boundary = '4'
+  #   value = 0.0
+  # [../]
+  # [./disp_z_slab4]
+  #   type = PresetBC
+  #   variable = disp_z
+  #   boundary = '4'
+  #   value = 0.0
+  # [../]
 
-   [./disp_y_slab7]
+   [./disp_x_slab5]
      type = PresetBC
-     variable = disp_y
-     boundary = '7'
-     value = -1.0e-1
-   [../]
-   [./disp_y_slab5]
-     type = PresetBC
-     variable = disp_y
+     variable = disp_x
      boundary = '5'
-     value = 1.0e-1
+    # value = 1.0e-1
+     value = 1.0e-2
    [../]
-   [./disp_x_slab6]
-     type = PresetBC
-     variable = disp_x
-     boundary = '6'
-     value = 1.0e-1
-   [../]
-   [./disp_x_slab8]
-     type = PresetBC
-     variable = disp_x
-     boundary = '8'
-     value = -1.0e-1
-   [../]
+  # [./disp_y_slab5]
+  #   type = PresetBC
+  #   variable = disp_y
+  #   boundary = '5'
+  #  # value = 1.0e-1
+  #   value = 0.0
+  # [../]
+  # [./disp_z_slab5]
+  #   type = PresetBC
+  #   variable = disp_z
+  #   boundary = '5'
+  #  # value = 1.0e-1
+  #   value = 0.0
+  # [../]
 
-   [./potential_ext_upz]
+  # [./disp_x_slab6]
+  #   type = PresetBC
+  #   variable = disp_x
+  #   boundary = '6'
+  #  # value = 1.0e-1
+  #  value = 0.0
+  # [../]
+  # [./disp_y_slab6]
+  #   type = PresetBC
+  #   variable = disp_y
+  #   boundary = '6'
+  #  # value = 1.0e-1
+  #  value = 0.0
+  # [../]
+  # [./disp_z_slab6]
+  #   type = PresetBC
+  #   variable = disp_z
+  #   boundary = '6'
+  #  # value = 1.0e-1
+  #  value = 0.0
+  # [../]
+
+   [./disp_x_slab7]
+     type = PresetBC
+     variable = disp_x
+     boundary = '7'
+    # value = -1.0e-1
+     value = -1.0e-2
+   [../]
+  # [./disp_y_slab7]
+  #   type = PresetBC
+  #   variable = disp_y
+  #   boundary = '7'
+  #  # value = -1.0e-1
+  #   value = 0.0
+  # [../]
+  # [./disp_z_slab7]
+  #   type = PresetBC
+  #   variable = disp_z
+  #   boundary = '7'
+  #  # value = -1.0e-1
+  #   value = 0.0
+  # [../]
+
+ #  [./disp_x_slab8]
+ #    type = PresetBC
+ #    variable = disp_x
+ #    boundary = '8'
+ #   # value = -1.0e-1
+ #   value = 0.0
+ #  [../]
+ #  [./disp_y_slab8]
+ #    type = PresetBC
+ #    variable = disp_y
+ #    boundary = '8'
+ #   # value = -1.0e-1
+ #   value = 0.0
+ #  [../]
+ #  [./disp_z_slab8]
+ #    type = PresetBC
+ #    variable = disp_z
+ #    boundary = '8'
+ #   # value = -1.0e-1
+ #   value = 0.0
+ #[../]
+  [./potential_ext_upz]
     type = DirichletBC
     variable = potential_ext
     boundary = '1'
@@ -558,7 +619,7 @@
     value = 0.0
   [../]
 []
-#
+
 [Materials]
   [./slab_ferroelectric]
     type=LinearFerroelectricMaterial
@@ -634,23 +695,23 @@
 
 [Executioner]
   type=Transient
-  nl_max_its = 100
+  nl_max_its = 350
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.15e-18
+    dt = 1.15e-15
     optimal_iterations = 35
-    growth_factor = 1.001
-    cutback_factor =  0.999
+    growth_factor = 1.5
+    cutback_factor =  0.75
   [../]
   solve_type = 'newton'
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dtmin=1.0e-25
-  dtmax=1.81e15
-  num_steps=15000
+  dtmin = 1.0e-25
+  dtmax = 1.81e15
+  num_steps = 15000
   #splitting = 'ferretsplit'
   petsc_options ='-snes_linesearch_monitor -options_left'
   petsc_options_iname = '-snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_asm_overlap -sub_pc_factor_zeropivot -pc_factor_zeropivot'
-  petsc_options_value = '  1e-8       5e-15      asm         lu            3               1e-50                    1e-50'
+  petsc_options_value = '  1e-8       1e-12      asm         lu            2               1e-50                    1e-50'
 []
 
 #
