@@ -25,7 +25,7 @@ ElasticEnergy::ElasticEnergy(const std::string & name, InputParameters parameter
 Real
 ElasticEnergy::computeQpIntegral()
 {
-  return -0.5 * std::pow(_len_scale, 3.0) * (
+  return 0.5 * std::pow(_len_scale, 3.0) * (
       _elastic_strain[_qp](0, 0) * _stress[_qp](0, 0)
     + _elastic_strain[_qp](0, 1) * _stress[_qp](0, 0)
     + _elastic_strain[_qp](0, 2) * _stress[_qp](0, 0)
