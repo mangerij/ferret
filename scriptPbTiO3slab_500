@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#SBATCH -p Serge
+#SBATCH -n 176
+
+mpirun -n 176 ./ferret-opt -i ferret_PbTiO3_field_100electrostatics_T0_random-adapt.i
