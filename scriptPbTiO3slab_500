@@ -1,6 +1,0 @@
-#!/bin/bash
-
-#SBATCH -p Serge
-#SBATCH -n 32
-
-mpirun -n 32 ./ferret-opt -i ferret_PbTiO3_field_160electrostatics_T0.i

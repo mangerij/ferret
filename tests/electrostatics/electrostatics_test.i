@@ -21,7 +21,6 @@
 
 [GlobalParams]
    permittivity=8.85e-12
-   len_scale = 1e10
    potential_int=potential_int
 []
 
@@ -49,8 +48,7 @@
 
 [Executioner]
   type = Steady
-  solve_type = 'newton'
-  petsc_options = '-snes_converged_reason -snes_check_jacobian'
+  petsc_options = '-snes_converged_reason'
   petsc_options_iname = '-ksp_type -snes_type  -snes_rtol -ksp_rtol -pc_type -pc_hypre_boomeramg_strong_threshold -snes_linesearch_type -pc_factor_zeropivot '
   petsc_options_value = ' gmres     newtonls       1e-8     1e-12      hypre     0.5                                 basic         1e-50  '
 []
