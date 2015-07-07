@@ -1,0 +1,17 @@
+[Tests]
+  [./test_surf]
+    type = 'Exodiff'
+    input = 'surface_mech_test.i'
+    exodiff = 'out_surf_mech_test.e'
+  [../]
+  [./test_TensMech]
+    type = 'Exodiff'
+    input = 'elasticity.i'
+    exodiff = 'out_elasticity_notscaled.e'
+  [../]
+  [./test_TensMech_scaled]
+    type = 'Exodiff'
+    input = 'elasticity_scaled.i'
+    exodiff = 'out_elasticity_scaled.e'
+  [../]
+[]

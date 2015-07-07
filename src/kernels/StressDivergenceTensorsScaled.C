@@ -20,22 +20,22 @@ StressDivergenceTensorsScaled::StressDivergenceTensorsScaled(const std::string& 
   :StressDivergenceTensors(name, parameters),
    _len_scale(getParam<Real>("len_scale"))
 {
-
 }
+
 Real
 StressDivergenceTensorsScaled::computeQpResidual()
 {
-  return std::pow(_len_scale,2.0) * StressDivergenceTensors::computeQpResidual();
+  return std::pow(_len_scale, 2.0) * StressDivergenceTensors::computeQpResidual();
 }
 
 Real
 StressDivergenceTensorsScaled::computeQpJacobian()
 {
-  return  std::pow(_len_scale,2.0) * StressDivergenceTensors::computeQpJacobian();
+  return  std::pow(_len_scale, 2.0) * StressDivergenceTensors::computeQpJacobian();
 }
 
 Real
 StressDivergenceTensorsScaled::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  return  std::pow(_len_scale,2.0) * StressDivergenceTensors::computeQpOffDiagJacobian(jvar);
+  return  std::pow(_len_scale, 2.0) * StressDivergenceTensors::computeQpOffDiagJacobian(jvar);
 }

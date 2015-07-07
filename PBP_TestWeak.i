@@ -269,24 +269,24 @@
   #  disp_y = disp_y
   #  disp_z = disp_z
   #[../]
-  [./stressdiv_0]
-    type = StressDivergenceTensorsScaled
-    variable = disp_x
-    component = 0
-    block = '2'
-  [../]
-  [./stressdiv_1]
-    type = StressDivergenceTensorsScaled
-    variable = disp_y
-    component = 1
-    block = '2'
-  [../]
-  [./stressdiv_2]
-    type = StressDivergenceTensorsScaled
-    variable = disp_z
-    component = 2
-    block = '2'
-  [../]
+  #[./stressdiv_0]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_x
+  #  component = 0
+  #  block = '2'
+  #[../]
+  #[./stressdiv_1]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_y
+  #  component = 1
+  #  block = '2'
+  #[../]
+  #[./stressdiv_2]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_z
+  #  component = 2
+  #  block = '2'
+  #[../]
 
   #Bulk energy density
   [./bed_x]
@@ -431,17 +431,17 @@
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable=disp_x
-     time_scale = 1.0e-24
+     time_scale = 1.0e-29
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable=disp_y
-     time_scale = 1.0e-24
+     time_scale = 1.0e-29
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable=disp_z
-     time_scale = 1.0e-24
+     time_scale = 1.0e-29
   [../]
 []
 
@@ -449,21 +449,39 @@
   [./polar_x_randic]
      type=RandomIC
      variable=polar_x
-     min = 0.06
-     max = 0.075
+     min = 0.00006
+     max = 0.000075
   [../]
   [./polar_y_randic]
      type=RandomIC
      variable=polar_y
-     min = 0.06
-     max = 0.075
+     min = 0.00006
+     max = 0.000075
   [../]
   [./polar_z_randic]
      type=RandomIC
      variable=polar_z
-     min = 0.01
-     max = 0.015
+     min = 0.00001
+     max = 0.000015
   [../]
+  #[./disp_x_randic]
+  #   type=RandomIC
+  #   variable=disp_x
+  #   min = 6e-10
+  #   max = 7.5e-10
+  #[../]
+  #[./disp_y_randic]
+  #   type=RandomIC
+  #   variable=disp_y
+  #   min = 6e-10
+  #   max = 7.5e-10
+  #[../]
+  #[./disp_z_randic]
+  #   type=RandomIC
+  #   variable=disp_z
+  #   min = 1e-10
+  #   max = 1.5e-10
+  #[../]
 []
 
 [BCs]
@@ -499,7 +517,7 @@
   #   boundary = '3'
   #   value = 0.0
   # [../]
-
+   #
   # [./disp_x_slab4]
   #   type = PresetBC
   #   variable = disp_x
@@ -520,11 +538,11 @@
   # [../]
 
    [./disp_x_slab5]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_x
      boundary = '5'
     # value = 1.0e-1
-     value = 1.0e-2
+     value = 0.5e-9
    [../]
   # [./disp_y_slab5]
   #   type = PresetBC
@@ -564,11 +582,11 @@
   # [../]
 
    [./disp_x_slab7]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_x
      boundary = '7'
     # value = -1.0e-1
-     value = -1.0e-2
+     value = -0.5e-9
    [../]
   # [./disp_y_slab7]
   #   type = PresetBC
@@ -699,9 +717,9 @@
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 1.15e-15
-    optimal_iterations = 35
-    growth_factor = 1.5
-    cutback_factor =  0.75
+    optimal_iterations = 10
+    growth_factor = 1.01
+    cutback_factor =  0.99
   [../]
   solve_type = 'newton'
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
@@ -711,7 +729,7 @@
   #splitting = 'ferretsplit'
   petsc_options ='-snes_linesearch_monitor -options_left'
   petsc_options_iname = '-snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_asm_overlap -sub_pc_factor_zeropivot -pc_factor_zeropivot'
-  petsc_options_value = '  1e-8       1e-14      asm         lu            3               1e-50                    1e-50'
+  petsc_options_value = '  1e-8       1e-14      asm         lu            2               1e-50                    1e-50'
 []
 
 #
