@@ -1,9 +1,9 @@
 [Mesh]
   type=GeneratedMesh
   dim=3
-  nx=3
-  ny=3
-  nz=3
+  nx=5
+  ny=5
+  nz=5
   xmin=0.0
   xmax=1.0
   ymin=0.0
@@ -28,29 +28,29 @@
 []
 
 [Kernels]
-  #[./TensorMechanics]
-  #  disp_x = disp_x
-  #  disp_y = disp_y
-  #  disp_z = disp_z
+  [./TensorMechanics]
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+  [../]
+  #[./stressdiv_0]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_x
+  #  component = 0
+  #  len_scale = 1
   #[../]
-  [./stressdiv_0]
-    type = StressDivergenceTensorsScaled
-    variable = disp_x
-    component = 0
-    len_scale = 1
-  [../]
-  [./stressdiv_1]
-    type = StressDivergenceTensorsScaled
-    variable = disp_y
-    component = 1
-    len_scale = 1
-  [../]
-  [./stressdiv_2]
-    type = StressDivergenceTensorsScaled
-    variable = disp_z
-    component = 2
-    len_scale = 1
-  [../]
+  #[./stressdiv_1]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_y
+  #  component = 1
+  #  len_scale = 1
+  #[../]
+  #[./stressdiv_2]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_z
+  #  component = 2
+  #  len_scale = 1
+  #[../]
 []
 
 [BCs]
@@ -112,8 +112,9 @@
 
 [Executioner]
   type = Steady
-  solve_type = 'NEWTON'
-  petsc_options = '-snes_check_jacobian'
+  petsc_options = '-snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
+  petsc_options_iname = '-ksp_type -snes_type   -pc_type '
+  petsc_options_value = 'gmres      newtonls      hypre'
 []
 
 [Outputs]
@@ -121,6 +122,6 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_elasticity_scaled
+    file_base = out_elasticity_notscaled
   [../]
 []
