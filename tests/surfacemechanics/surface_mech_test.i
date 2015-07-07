@@ -1,9 +1,9 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 3
-  ny = 3
-  nz = 3
+  nx = 2
+  ny = 2
+  nz = 2
   ymax = 2
   ymin = -2
   xmin = -2
@@ -175,6 +175,12 @@
 
 
 [BCs]
+  [./rightside]
+    type = DirichletBC
+    variable = disp_x
+    value = 0.0
+    boundary = 'right'
+  [../]
  [./surface_elasticity_X_surf1]
     type = SurfaceMechanicsBC
     disp_x = disp_x
@@ -223,7 +229,7 @@
     taus = '-1.7e-09'
     component = 2
   [../]
-  [./surface_elasticity_X_surf1]
+  [./surface_elasticity_X_surf2]
      type = SurfaceMechanicsBC
      disp_x = disp_x
      disp_y = disp_y
@@ -239,7 +245,7 @@
      taus = '-1.7e-09'
      component = 0
    [../]
-   [./surface_elasticity_Y_surf1]
+   [./surface_elasticity_Y_surf2]
      type = SurfaceMechanicsBC
      disp_x = disp_x
      disp_y = disp_y
@@ -255,7 +261,7 @@
      taus = '-1.7e-09'
      component = 1
    [../]
-   [./surface_elasticity_Z_surf1]
+   [./surface_elasticity_Z_surf2]
      type = SurfaceMechanicsBC
      disp_x = disp_x
      disp_y = disp_y
@@ -290,9 +296,11 @@
 
 [Executioner]
   type = Steady
+  nl_max_its = 110
+  solve_type = 'NEWTON'
   petsc_options = '-snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
-  petsc_options_iname = '-ksp_type -snes_type   -pc_type '
-  petsc_options_value = 'gmres      newtonls      hypre'
+  petsc_options_iname = '-ksp_type -ksp_rtol -pc_type -sub_pc_type -sub_pc_factor_zeropivot -pc_asm_overlap'
+  petsc_options_value = 'gmres      1e-14     asm        lu           1e-50                     3'
 []
 
 [Outputs]
@@ -300,6 +308,6 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_ZnO_NW_NotScaled
+    file_base = out_surf_mech_test
   [../]
 []

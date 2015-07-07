@@ -481,24 +481,24 @@
    [../]
 
    #Displacements [5 6 7 8] [x y -x -y] boundaries, [3 4] [top bottom]
-   [./disp_x_slab3]
-     type = PresetBC
-     variable = disp_x
-     boundary = '3'
-     value = 0.0
-   [../]
-   [./disp_y_slab3]
-     type = PresetBC
-     variable = disp_y
-     boundary = '3'
-     value = 0.0
-   [../]
-   [./disp_z_slab3]
-     type = PresetBC
-     variable = disp_z
-     boundary = '3'
-     value = 0.0
-   [../]
+  # [./disp_x_slab3]
+  #   type = PresetBC
+  #   variable = disp_x
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./disp_y_slab3]
+  #   type = PresetBC
+  #   variable = disp_y
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./disp_z_slab3]
+  #   type = PresetBC
+  #   variable = disp_z
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
 
   # [./disp_x_slab4]
   #   type = PresetBC
@@ -711,7 +711,7 @@
   #splitting = 'ferretsplit'
   petsc_options ='-snes_linesearch_monitor -options_left'
   petsc_options_iname = '-snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_asm_overlap -sub_pc_factor_zeropivot -pc_factor_zeropivot'
-  petsc_options_value = '  1e-8       1e-12      asm         lu            2               1e-50                    1e-50'
+  petsc_options_value = '  1e-8       1e-14      asm         lu            3               1e-50                    1e-50'
 []
 
 #
