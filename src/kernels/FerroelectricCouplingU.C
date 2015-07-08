@@ -49,53 +49,45 @@ FerroelectricCouplingU::computeQpResidual()
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_x_grad[_qp], 0, p);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_y_grad[_qp], 1, p);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_z_grad[_qp], 2, p);
-  return std::pow(_len_scale, 2.0) * _test[_i][_qp] * sum;
+  return std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
 }
 
-// Real
-// FerroelectricCouplingU::computeQpJacobian()
-// {
-//   return 0.0;
-// }
-//
-// Real
-// FerroelectricCouplingU::computeQpOffDiagJacobian(unsigned int jvar)
-// {
-//   unsigned int coupled_component;
-//   Real sum=0.0;
-// //  RealVectorType w(_phi[_j][_qp]*_polar_x[_qp],_phi[_j][_qp]*_polar_y[_qp],_phi[_j][_qp]*_polar_z[_qp]);
-//   RealVectorValue w(_phi[_j][_qp] * _polar_x[_qp],_phi[_j][_qp] * _polar_y[_qp],_phi[_j][_qp] * _polar_z[_qp]);
-//   if( jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)
-//   {
-//     {
-// //    switch(jvar){
-// //    case _polar_x_var:
-// //      coupled_component=0;
-// //      break;
-// //    case _polar_y_var:
-// //      coupled_component=1;
-// //      break;
-// //    case _polar_z_var:
-// //      coupled_component=2;
-// //      break;
-//     if (jvar == _polar_x_var)
-//      {
-//        coupled_component = 0;
-//      }
-//     else if (jvar == _polar_y_var)
-//      {
-//        coupled_component = 1;
-//     }
-//     else if (jvar == _polar_z_var)
-//      {
-//        coupled_component = 2;
-//      }
-// //    default:
-//     else
-//       mooseError("Something wrong with FerroelectricCoupling");
-//     }
-//     w(coupled_component) = w(coupled_component) * 2.0;
-//     sum = _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _grad_test[_i][_qp], coupled_component, w);
-//   }
-//   return  -0.5 * std::pow(_len_scale, 3.0) * sum;
-// }
+Real
+FerroelectricCouplingU::computeQpJacobian()
+{
+  return 0.0;
+}
+
+Real
+FerroelectricCouplingU::computeQpOffDiagJacobian(unsigned int jvar)
+{
+  unsigned int coupled_component;
+  Real sum = 0.0;
+
+  if (jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)
+  {
+    if (jvar == _polar_x_var)
+    {
+      coupled_component = 0;
+    }
+    else if (jvar == _polar_y_var)
+    {
+      coupled_component = 1;
+    }
+    else if (jvar == _polar_z_var)
+    {
+      coupled_component = 2;
+    }
+  }
+  sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _grad_phi[_j][_qp], _coupled_component, p);
+  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_x_grad[_qp] , 0, _coupled_component);
+  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_y_grad[_qp] , 1, _coupled_component);
+  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_z_grad[_qp] , 2, _coupled_component);
+
+  return std::pow(_len_scale, 3.0) * (sum1 - sum2) * _phi[_j][_qp] * _test[_i][_qp];
+
+  if (jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
+  {
+  return 0.0;
+  }
+}
