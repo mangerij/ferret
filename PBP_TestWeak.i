@@ -1,6 +1,7 @@
 [Mesh]
   file = slab_exodus_coarse_40.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
   uniform_refine = 0
+  use_displaced_mesh = false
 []
 
 #[Problem]
@@ -100,69 +101,69 @@
 
 []
 
-#[AuxVariables]
-#   [./stress_xx]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./stress_yy]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./stress_zz]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./stress_xy]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./stress_yz]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./stress_zx]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./strain_xx]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./strain_yy]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./strain_zz]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./strain_xy]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./strain_yz]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#   [./strain_zx]
-#     order = CONSTANT
-#     family = MONOMIAL
-#     block = '2'
-#   [../]
-#[]
-#
+[AuxVariables]
+   [./stress_xx]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./stress_yy]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./stress_zz]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./stress_xy]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./stress_yz]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./stress_zx]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./strain_xx]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./strain_yy]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./strain_zz]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./strain_xy]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./strain_yz]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+   [./strain_zx]
+     order = CONSTANT
+     family = MONOMIAL
+     block = '2'
+   [../]
+[]
+
 #[AuxKernels]
 #  [./stress_xx]
 #    type = RankTwoAux
@@ -366,49 +367,41 @@
   [./polar_electric_E]
      type=PolarElectricEStrong
      variable=potential_int
-    # implict = false
      block='2'
   [../]
   [./E_int]
      type=Electrostatics
      variable=potential_int
-    # implicit = false
      block='1'
   [../]
   [./FE_E_int]
      type=Electrostatics
      variable=potential_int
-    # implicit = false
      block='2'
   [../]
   [./E_ext]
      type=Electrostatics
      variable=potential_ext
-    # implicit = false
      block='1'
   [../]
   [./FE_E_ext]
      type=Electrostatics
      variable=potential_ext
-    # implicit = false
      block='2'
   [../]
   [./polar_electric_px]
      type=PolarElectricPStrong
      variable = polar_x
-    # implict = false
      component = 0
   [../]
   [./polar_electric_py]
      type=PolarElectricPStrong
      variable=polar_y
-    # implict = false
      component = 1
   [../]
   [./polar_electric_pz]
      type=PolarElectricPStrong
      variable=polar_z
-    # implict = false
      component = 2
   [../]
 
@@ -449,20 +442,20 @@
   [./polar_x_randic]
      type=RandomIC
      variable=polar_x
-     min = 0.00006
-     max = 0.000075
+     min = 0.000006
+     max = 0.0000075
   [../]
   [./polar_y_randic]
      type=RandomIC
      variable=polar_y
-     min = 0.00006
-     max = 0.000075
+     min = 0.000006
+     max = 0.0000075
   [../]
   [./polar_z_randic]
      type=RandomIC
      variable=polar_z
-     min = 0.00001
-     max = 0.000015
+     min = 0.000001
+     max = 0.0000015
   [../]
   #[./disp_x_randic]
   #   type=RandomIC
@@ -500,128 +493,119 @@
 
    #Displacements [5 6 7 8] [x y -x -y] boundaries, [3 4] [top bottom]
   # [./disp_x_slab3]
-  #   type = PresetBC
+  #   type = DirichletBC
   #   variable = disp_x
   #   boundary = '3'
   #   value = 0.0
   # [../]
   # [./disp_y_slab3]
-  #   type = PresetBC
+  #   type = DirichletBC
   #   variable = disp_y
   #   boundary = '3'
   #   value = 0.0
   # [../]
   # [./disp_z_slab3]
-  #   type = PresetBC
+  #   type = DirichletBC
   #   variable = disp_z
   #   boundary = '3'
   #   value = 0.0
   # [../]
-   #
+
   # [./disp_x_slab4]
-  #   type = PresetBC
+  #   type = DirichletBC
   #   variable = disp_x
   #   boundary = '4'
   #   value = 0.0
   # [../]
   # [./disp_y_slab4]
-  #   type = PresetBC
+  #   type = DirichletBC
   #   variable = disp_y
   #   boundary = '4'
   #   value = 0.0
   # [../]
   # [./disp_z_slab4]
-  #   type = PresetBC
+  #   type = DirichletBC
   #   variable = disp_z
   #   boundary = '4'
   #   value = 0.0
   # [../]
 
-  # [./disp_x_slab5]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '5'
-  #  # value = 1.0e-1
-  #   value = 0.5
-  # [../]
+   [./disp_x_slab5]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '5'
+     value = 0.0
+   [../]
    [./disp_y_slab5]
      type = DirichletBC
      variable = disp_y
      boundary = '5'
-     value = 0.5
+     value = 0.2
    [../]
-  # [./disp_z_slab5]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '5'
-  #  # value = 1.0e-1
-  #   value = 0.0
-  # [../]
+   [./disp_z_slab5]
+     type = PresetBC
+     variable = disp_z
+     boundary = '5'
+     value = 0.0
+   [../]
 
-  # [./disp_x_slab6]
-  #   type = PresetBC
-  #   variable = disp_x
-  #   boundary = '6'
-  #  # value = 1.0e-1
-  #  value = 0.0
-  # [../]
-  # [./disp_y_slab6]
-  #   type = PresetBC
-  #   variable = disp_y
-  #   boundary = '6'
-  #  # value = 1.0e-1
-  #  value = 0.0
-  # [../]
-  # [./disp_z_slab6]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '6'
-  #  # value = 1.0e-1
-  #  value = 0.0
-  # [../]
+   [./disp_x_slab6]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '6'
+    value = 0.0
+   [../]
+   [./disp_y_slab6]
+     type = DirichletBC
+     variable = disp_y
+     boundary = '6'
+    value = 0.0
+   [../]
+   [./disp_z_slab6]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '6'
+    value = 0.0
+   [../]
 
-  # [./disp_x_slab7]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '7'
-  #  # value = -1.0e-1
-  #   value = -0.5
-  # [../]
+   [./disp_x_slab7]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '7'
+     value = 0.0
+   [../]
    [./disp_y_slab7]
      type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = -0.5
+     value = -0.2
    [../]
-  # [./disp_z_slab7]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '7'
-  #  # value = -1.0e-1
-  #   value = 0.0
-  # [../]
+   [./disp_z_slab7]
+     type = PresetBC
+     variable = disp_z
+     boundary = '7'
+     value = 0.0
+   [../]
 
- #  [./disp_x_slab8]
- #    type = PresetBC
- #    variable = disp_x
- #    boundary = '8'
- #   # value = -1.0e-1
- #   value = 0.0
- #  [../]
- #  [./disp_y_slab8]
- #    type = PresetBC
- #    variable = disp_y
- #    boundary = '8'
- #   # value = -1.0e-1
- #   value = 0.0
- #  [../]
- #  [./disp_z_slab8]
- #    type = PresetBC
- #    variable = disp_z
- #    boundary = '8'
- #   # value = -1.0e-1
- #   value = 0.0
- #[../]
+   [./disp_x_slab8]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '8'
+    value = 0.0
+   [../]
+   [./disp_y_slab8]
+     type = DirichletBC
+     variable = disp_y
+     boundary = '8'
+    value = 0.0
+   [../]
+   [./disp_z_slab8]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '8'
+    value = 0.0
+   [../]
+
   [./potential_ext_upz]
     type = DirichletBC
     variable = potential_ext
@@ -672,6 +656,17 @@
     C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
     fill_method = symmetric9
   [../]
+  [./linear_elastic_stress]
+    type = ComputeLinearElasticStress
+    block = '2'
+  [../]
+  [./small_strain]
+    type = ComputeSmallStrain
+    block = '2'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+  [../]
 
   [./vacuum]
     type=GenericConstantMaterial
@@ -717,7 +712,7 @@
 
 [Executioner]
   type=Transient
-  nl_max_its = 350
+  nl_max_its = 550
   #[./TimeStepper]
   #  type = IterationAdaptiveDT
   #  dt = 1.15e-15
@@ -725,7 +720,6 @@
   #  growth_factor = 1.01
   #  cutback_factor =  0.99
   #[../]
-  full = 'true'
   solve_type = 'newton'
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-25
@@ -736,7 +730,7 @@
   #petsc_options = '-snes_check_jacobian'
   petsc_options ='-snes_linesearch_monitor -options_left'
   petsc_options_iname = '-snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_asm_overlap -sub_pc_factor_zeropivot -pc_factor_zeropivot'
-  petsc_options_value = '  1e-8       1e-14      asm         lu            2               1e-50                    1e-50'
+  petsc_options_value = '  1e-8       1e-8      asm         lu            2               1e-50                    1e-50'
 []
 
 #
@@ -770,10 +764,11 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PBP_test
+    file_base = out_PbTiO3_coupled
     output_initial = true
     elemental_as_nodal = false
     interval = 1
+    use_displaced_mesh = false
   [../]
   #[./debug]
   #  type = VariableResidualNormsDebugOutput

@@ -74,7 +74,7 @@
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergyGradient.h" //deprecated
 #include "TotalEnergyGradientL2.h"
-#include "PercentChangePostprocessor.h"//added to MOOSE 6/23, so deprecated here
+//#include "PercentChangePostprocessor.h"//added to MOOSE 6/23, so deprecated here
 #include "ElasticEnergy.h"
 //#include "CoupledEnergy.h" to be added
 
@@ -178,7 +178,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyGradient);
   registerPostprocessor(TotalEnergyGradientL2);
-  registerPostprocessor(PercentChangePostprocessor); //added to MOOSE (deprecated)
+ // registerPostprocessor(PercentChangePostprocessor); //added to MOOSE (deprecated)
   registerPostprocessor(ElasticEnergy);
   //registerPostprocess(CoupledEnergy); to be added
 
