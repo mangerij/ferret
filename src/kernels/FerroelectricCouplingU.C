@@ -16,6 +16,9 @@ InputParameters validParams<FerroelectricCouplingU>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addRequiredCoupledVar("disp_x", "The x component of the elasticity displacement");
+  params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
+  params.addRequiredCoupledVar("disp_z", "The z component of the elasticity displacement");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
@@ -27,6 +30,9 @@ FerroelectricCouplingU::FerroelectricCouplingU(const std::string & name, InputPa
   :Kernel(name, parameters),
    _electrostrictive_tensor(getMaterialProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
    _component(getParam<unsigned int>("component")),
+   _disp_x_var(coupled("disp_x")),
+   _disp_y_var(coupled("disp_y")),
+   _disp_z_var(coupled("disp_z")),
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),
    _polar_z_var(coupled("polar_z")),
@@ -63,6 +69,9 @@ FerroelectricCouplingU::computeQpOffDiagJacobian(unsigned int jvar)
 {
   unsigned int coupled_component;
   Real sum = 0.0;
+  Real sum1 = 0.0;
+  Real sum2 = 0.0;
+  RealVectorValue p(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
   if (jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)
   {
@@ -79,10 +88,10 @@ FerroelectricCouplingU::computeQpOffDiagJacobian(unsigned int jvar)
       coupled_component = 2;
     }
   }
-  sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _grad_phi[_j][_qp], _coupled_component, p);
-  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_x_grad[_qp] , 0, _coupled_component);
-  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_y_grad[_qp] , 1, _coupled_component);
-  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_z_grad[_qp] , 2, _coupled_component);
+  sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _grad_phi[_j][_qp], coupled_component, p);
+  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_x_grad[_qp] , 0, coupled_component);
+  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_y_grad[_qp] , 1, coupled_component);
+  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_z_grad[_qp] , 2, coupled_component);
 
   return std::pow(_len_scale, 3.0) * (sum1 - sum2) * _phi[_j][_qp] * _test[_i][_qp];
 

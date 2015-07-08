@@ -37,6 +37,9 @@ protected:
 private:
   const MaterialProperty<ElectrostrictiveTensorR4> & _electrostrictive_tensor;
   const unsigned int _component;
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;

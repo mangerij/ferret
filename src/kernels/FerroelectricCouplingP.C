@@ -79,6 +79,9 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
 {
   unsigned int coupled_component;
   Real sum = 0.0;
+  Real sum1 = 0.0;
+  Real sum2 = 0.0;
+  RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
   if( jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)
   {
