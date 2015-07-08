@@ -52,14 +52,12 @@ PolarElectricEStrong::computeQpJacobian()
 Real
 PolarElectricEStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if (jvar == coupled("polar_x"))
+  if (jvar == _polar_x_var)
     return - _phi[_j][_qp] * _grad_test[_i][_qp](0) * std::pow(_len_scale, 2.0);
-  else if (jvar == coupled("polar_y"))
+  else if (jvar == _polar_y_var)
     return - _phi[_j][_qp] * _grad_test[_i][_qp](1) * std::pow(_len_scale, 2.0);
-  else if (jvar == coupled("polar_z"))
+  else if (jvar == _polar_z_var)
     return - _phi[_j][_qp] * _grad_test[_i][_qp](2) * std::pow(_len_scale, 2.0);
   else
-  {
     return 0.0;
-  }
 }

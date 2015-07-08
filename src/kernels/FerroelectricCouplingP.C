@@ -97,14 +97,13 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
     {
       coupled_component = 2;
     }
+    sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, coupled_component);
+    sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, coupled_component);
+    sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, coupled_component);
+    return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
   }
-  sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, coupled_component);
-  sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, coupled_component);
-  sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, coupled_component);
 
-  return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
-
-  if( jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
+  else if(jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
   {
     if (jvar == _disp_x_var)
     {
@@ -118,9 +117,12 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
     {
       coupled_component = 2;
     }
+    sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, w);
+    sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, _component) * w(_component);
+    return - 0.5 * std::pow(_len_scale, 3.0) * (2 * sum1 - sum2) * _test[_i][_qp];
   }
-  sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, w);
-  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, _component) * w(_component);
-
-  return - 0.5 * std::pow(_len_scale, 3.0) * (2 * sum1 - sum2) * _test[_i][_qp];
+  else
+  {
+    return 0.0;
+  }
 }

@@ -33,8 +33,6 @@ PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParame
 {
 }
 
-
-
 Real
 PolarElectricPStrong::computeQpResidual()
 {
