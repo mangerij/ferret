@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_150_cheap.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
+  file = slab_exodus_coarse_40.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
   uniform_refine = 0
   use_displaced_mesh = false
 []
@@ -375,7 +375,7 @@
      type = DirichletBC
      variable = disp_y
      boundary = '5'
-     value = -1.0e-2
+     value = -1.0e-1
    [../]
   # [./disp_z_slab5]
   #   type = PresetBC
@@ -418,7 +418,7 @@
      type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = 1.0e-2
+     value = 1.0e-1
    [../]
   # [./disp_z_slab7]
   #   type = PresetBC
@@ -561,7 +561,7 @@
   #dt = 1.15e-16
   #splitting = 'ferretsplit'
 
-  petsc_options ='-snes_linesearch_monitor -options_left -snes_check_jacobian'
+  petsc_options ='-snes_linesearch_monitor -options_left'
   petsc_options_iname = '-snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_asm_overlap -sub_pc_factor_zeropivot -pc_factor_zeropivot'
   petsc_options_value = '  1e-10       1e-14      asm         lu            2               1e-50                    1e-50'
 []

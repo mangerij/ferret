@@ -52,14 +52,10 @@
 #include "BulkEnergyDerivative.h"
 #include "BulkEnergyDerivative_nosixth.h"
 #include "TimeDerivativeScaled.h"
-#include "PolarElectricP.h"
 #include "PolarElectricPStrong.h"
-#include "PolarElectricE.h"
 #include "PolarElectricEStrong.h"
 #include "FerroelectricCouplingP.h"
 #include "FerroelectricCouplingU.h"
-#include "FerroelectricCouplingPWeak.h"
-#include "FerroelectricCouplingUWeak.h"
 #include "StressDivergenceTensorsScaled.h"
 
 //Materials
@@ -74,7 +70,6 @@
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergyGradient.h" //deprecated
 #include "TotalEnergyGradientL2.h"
-//#include "PercentChangePostprocessor.h"//added to MOOSE 6/23, so deprecated here
 #include "ElasticEnergy.h"
 //#include "CoupledEnergy.h" to be added
 
@@ -161,12 +156,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FerroelectricCouplingU);
-  registerKernel(FerroelectricCouplingPWeak);
-  registerKernel(FerroelectricCouplingUWeak);
   registerKernel(StressDivergenceTensorsScaled);
-  registerKernel(PolarElectricE);
   registerKernel(PolarElectricEStrong);
-  registerKernel(PolarElectricP);
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
 
