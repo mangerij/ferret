@@ -68,7 +68,6 @@ Real
 FerroelectricCouplingU::computeQpOffDiagJacobian(unsigned int jvar)
 {
   unsigned int coupled_component;
-  Real sum = 0.0;
   Real sum1 = 0.0;
   Real sum2 = 0.0;
   RealVectorValue p(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
