@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_40.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
+  file = slab_exodus_coarse_150_cheap.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
   uniform_refine = 0
   use_displaced_mesh = false
 []
@@ -276,38 +276,38 @@
   [./polar_x_randic]
      type=RandomIC
      variable=polar_x
-     min = 0.00000006
-     max = 0.000000075
+     min = -7.5e-10
+     max = 7.5e-10
   [../]
   [./polar_y_randic]
      type=RandomIC
      variable=polar_y
-     min = 0.00000006
-     max = 0.000000075
+     min = -7.5e-10
+     max = 7.5e-10
   [../]
   [./polar_z_randic]
      type=RandomIC
      variable=polar_z
-     min = 0.00000006
-     max = 0.000000075
+     min = -7.5e-10
+     max = 7.5e-10
   [../]
   [./disp_x_randic]
      type=RandomIC
      variable=disp_x
-     min = 0.00000006
-     max = 0.000000075
+     min = -7.5e-10
+     max = 7.5e-10
   [../]
   [./disp_y_randic]
      type=RandomIC
      variable=disp_y
-     min = 0.00000006
-     max = 0.000000075
+     min = -7.5e-10
+     max = 7.5e-10
   [../]
   [./disp_z_randic]
      type=RandomIC
      variable=disp_z
-     min = 0.00000006
-     max = 0.000000075
+     min = -7.5e-10
+     max = 7.5e-10
   [../]
 []
 
@@ -375,7 +375,7 @@
      type = DirichletBC
      variable = disp_y
      boundary = '5'
-     value = 0.0
+     value = -1.0e-2
    [../]
   # [./disp_z_slab5]
   #   type = PresetBC
@@ -397,7 +397,7 @@
   #   variable = disp_y
   #   boundary = '6'
   #  # value = 1.0e-1
-  #  value = 0.0
+  #  value = 1.0e-5
   # [../]
   # [./disp_z_slab6]
   #   type = PresetBC
@@ -418,7 +418,7 @@
      type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = 0.0
+     value = 1.0e-2
    [../]
   # [./disp_z_slab7]
   #   type = PresetBC
@@ -545,32 +545,32 @@
 [Executioner]
   type=Transient
   nl_max_its = 350
-  #[./TimeStepper]
-  #  type = IterationAdaptiveDT
-  #  dt = 1.15e-15
-  #  optimal_iterations = 10
-  #  growth_factor = 1.01
-  #  cutback_factor =  0.99
-  #[../]
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1.15e-14
+    optimal_iterations = 12
+    growth_factor = 1.0001
+    cutback_factor =  0.9999
+  [../]
   full = 'true'
   solve_type = 'newton'
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-25
   dtmax = 1.81e15
   num_steps = 15000
-  dt = 1.15e-15
+  #dt = 1.15e-16
   #splitting = 'ferretsplit'
 
-  petsc_options ='-snes_linesearch_monitor -options_left '
+  petsc_options ='-snes_linesearch_monitor -options_left -snes_check_jacobian'
   petsc_options_iname = '-snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_asm_overlap -sub_pc_factor_zeropivot -pc_factor_zeropivot'
-  petsc_options_value = '  1e-8       1e-14      asm         lu            2               1e-50                    1e-50'
+  petsc_options_value = '  1e-10       1e-14      asm         lu            2               1e-50                    1e-50'
 []
 
 #
 #[Splits]
 #  [./ferretsplit]
 #    type = Split
-#    splitting = 'ferroelectric elastic' #split to two subproblems
+#    splitting = 'elastic ferroelectric' #split to two subproblems
 #    splitting_type = schur #schur split somewhat bugged right now (only serial)
 #    schur_type = full
 #    schur_pre = A11
@@ -581,13 +581,13 @@
 #    vars = 'polar_x polar_y polar_z potential_int potential_ext'
 #    petsc_options='-dm_view ' #'-ksp_monitor -inner_ksp_monitor'
 #    petsc_options_iname='-ksp_type   -ksp_gmres_restart  -ksp_rtol -inner_pc_type -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot  -pc_factor_zeropivot'
-#    petsc_options_value=' gmres            350              1e-14     hypre         hypre         5         1e-50                1e-50  '
+#    petsc_options_value=' gmres            350              1e-14     lu         lu         5                         1e-50                1e-50  '
 #  [../]
 #  [./elastic]
 #    vars = 'disp_x disp_y disp_z'
 #    petsc_options='-dm_view'  # ''-ksp_monitor'
 #    petsc_options_iname='-ksp_type  -ksp_gmres_restart -inner_pc_type -ksp_rtol -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot -pc_factor_zeropivot'
-#    petsc_options_value = 'gmres       350                 hypre         1e-14     hypre          5           1e-50                        1e-50'
+#    petsc_options_value = 'gmres       350                 lu         1e-14     lu         5           1e-50                        1e-50'
 #  [../]
 #[]
 
