@@ -93,16 +93,16 @@ Real
 BulkEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real r;
-  mooseAssert(jvar!=variable().number(),"Something wrong: OffDiag coupled to itself.");
+  mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
   {
     const VariableValue & _polar_i = (_component==0)? _polar_x : (_component==1)? _polar_y: _polar_z;
     const VariableValue & _polar_j = (jvar==_polar_x_var)? _polar_x : (jvar==_polar_y_var)? _polar_y: _polar_z;
-    const VariableValue & _polar_k = ((_component==0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component==0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
-    r = (4 * _alpha12 * _polar_i[_qp] * _polar_j[_qp]
-	  + 8 * _alpha112 * std::pow(_polar_i[_qp], 3) * _polar_j[_qp] + 8 *_alpha112 * _polar_i[_qp] * std::pow(_polar_j[_qp], 3)
-	  + 4 * _alpha123 * _polar_i[_qp] * _polar_j[_qp] * std::pow(_polar_k[_qp], 2));
-    return r * _test[_i][_qp]*_phi[_j][_qp] * std::pow(_len_scale, 3.0);
+    const VariableValue & _polar_k = ((_component==0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component == 0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
+
+    r = (4 * _alpha12 * _polar_i[_qp] * _polar_j[_qp] + 8 * _alpha112 * std::pow(_polar_i[_qp], 3) * _polar_j[_qp]
+    + 8 *_alpha112 * _polar_i[_qp] * std::pow(_polar_j[_qp], 3) + 4 * _alpha123 * _polar_i[_qp] * _polar_j[_qp] * std::pow(_polar_k[_qp], 2));
+    return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
   }
   else
     return 0.0;

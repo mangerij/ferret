@@ -42,7 +42,7 @@ protected:
 
   /// Individual material information
   ElasticityTensorR4 _Qmnkl; //electrostrictive coefficients will set them as elasticity components right now
-  ElectrostrictiveTensorR4 _qijkl; // q_ijkl=2*C_ijmn * Q_mnkl
+  ElectrostrictiveTensorR4 _qijkl; // q_ijkl = 2 * C_ijmn * Q_mnkl
 
 };
 

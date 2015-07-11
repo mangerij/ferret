@@ -40,7 +40,7 @@ PolarElectricEStrong::PolarElectricEStrong(const std::string & name, InputParame
 Real
 PolarElectricEStrong::computeQpResidual()
 {
-  return - (_polar_x[_qp] * _grad_test[_i][_qp](0) + _polar_y[_qp] * _grad_test[_i][_qp](1) + _polar_z[_qp] * _grad_test[_i][_qp](2)) * std::pow(_len_scale, 2.0);
+  return (_polar_x[_qp] * _grad_test[_i][_qp](0) + _polar_y[_qp] * _grad_test[_i][_qp](1) + _polar_z[_qp] * _grad_test[_i][_qp](2)) * std::pow(_len_scale, 2.0);
 }
 
 Real
@@ -53,11 +53,11 @@ Real
 PolarElectricEStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _polar_x_var)
-    return - _phi[_j][_qp] * _grad_test[_i][_qp](0) * std::pow(_len_scale, 2.0);
+    return _phi[_j][_qp] * _grad_test[_i][_qp](0) * std::pow(_len_scale, 2.0);
   else if (jvar == _polar_y_var)
-    return - _phi[_j][_qp] * _grad_test[_i][_qp](1) * std::pow(_len_scale, 2.0);
+    return _phi[_j][_qp] * _grad_test[_i][_qp](1) * std::pow(_len_scale, 2.0);
   else if (jvar == _polar_z_var)
-    return - _phi[_j][_qp] * _grad_test[_i][_qp](2) * std::pow(_len_scale, 2.0);
+    return _phi[_j][_qp] * _grad_test[_i][_qp](2) * std::pow(_len_scale, 2.0);
   else
     return 0.0;
 }

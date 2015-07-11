@@ -55,7 +55,8 @@ void
 LinearFerroelectricMaterial::computeProperties()
 {
   {
-  for(_qp=0; _qp < _qrule->n_points(); ++_qp)
+  // Moose::out << "\n Performing C_ijmn Q_mnkl contraction on all the quadrature points?";
+  for(_qp = 0; _qp < _qrule->n_points(); ++_qp)
   _electrostrictive_tensor[_qp].computeProduct(_Cijkl,_Qmnkl);
   }
 }

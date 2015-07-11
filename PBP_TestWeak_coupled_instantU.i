@@ -151,6 +151,10 @@
       #  value = 0.0
       #[../]
 
+
+
+
+
    [./potential_ext_upz]
     type = DirichletBC
     variable = potential_ext
@@ -169,17 +173,17 @@
   [./polar_x_randic]
      type = ConstantIC
      variable=polar_x
-     value = 6.5e-6
+     value = 6.5e-1
   [../]
   [./polar_y_randic]
      type = ConstantIC
      variable=polar_y
-     value = 6.5e-6
+     value = 6.5e-1
   [../]
   [./polar_z_randic]
      type = ConstantIC
      variable=polar_z
-     value = 6.5e-6
+     value = 6.5e-1
   [../]
 []
 
@@ -307,24 +311,24 @@
      component = 2
   [../]
   ##Polarization-strain coupling
-  [./ferroelectriccouplingu_x]
-     type = FerroelectricCouplingU
-     variable = disp_x
-     component = 0
-     block = '2'
-  [../]
-  [./ferroelectriccouplingu_y]
-     type = FerroelectricCouplingU
-     variable = disp_y
-     component = 1
-     block = '2'
-  [../]
-  [./ferroelectriccouplingu_z]
-     type = FerroelectricCouplingU
-     variable=disp_z
-     component = 2
-     block = '2'
-  [../]
+  #[./ferroelectriccouplingu_x]
+  #   type = FerroelectricCouplingU
+  #   variable = disp_x
+  #   component = 0
+  #   block = '2'
+  #[../]
+  #[./ferroelectriccouplingu_y]
+  #   type = FerroelectricCouplingU
+  #   variable = disp_y
+  #   component = 1
+  #   block = '2'
+  #[../]
+  #[./ferroelectriccouplingu_z]
+  #   type = FerroelectricCouplingU
+  #   variable=disp_z
+  #   component = 2
+  #   block = '2'
+  #[../]
   [./ferroelectriccouplingp_xx]
      type = FerroelectricCouplingP
      variable=polar_x
@@ -400,21 +404,21 @@
      variable=polar_z
      time_scale = 1.0e-29
   [../]
-  [./disp_x_time]
-     type=TimeDerivativeScaled
-     variable=disp_x
-     time_scale = 1.0e-32
-  [../]
-  [./disp_y_time]
-     type=TimeDerivativeScaled
-     variable=disp_y
-     time_scale = 1.0e-32
-  [../]
-  [./disp_z_time]
-     type=TimeDerivativeScaled
-     variable=disp_z
-     time_scale = 1.0e-32
-  [../]
+  #[./disp_x_time]
+  #   type=TimeDerivativeScaled
+  #   variable=disp_x
+  #   time_scale = 1.0e-26
+  #[../]
+  #[./disp_y_time]
+  #   type=TimeDerivativeScaled
+  #   variable=disp_y
+  #   time_scale = 1.0e-26
+  #[../]
+  #[./disp_z_time]
+  #   type=TimeDerivativeScaled
+  #   variable=disp_z
+  #   time_scale = 1.0e-26
+  #[../]
 []
 [Materials]
   [./slab_ferroelectric]
@@ -480,9 +484,9 @@
   dtmax = 1.61e-16
   num_steps = 15000
 
-  petsc_options = '-snes_linesearch_monitor'
+
   petsc_options_iname = '-snes_rtol -ksp_rtol -pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot'
-  petsc_options_value = '  1e-4      1e-12     hypre         1e-50                    1e-50'
+  petsc_options_value = '  1e-10      1e-12     hypre         1e-50                    1e-50'
 []
 #[Splits]
 #  [./ferretsplit]
