@@ -1,43 +1,43 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 2
-  ny = 2
-  nz = 2
+  nx = 4
+  ny = 4
+  nz = 4
   xmin = 0
-  xmax = 10
+  xmax = 20
   ymin = 0
-  ymax = 10
+  ymax = 20
   zmin = 0
-  zmax = 10
+  zmax = 20
 []
 
 [BCs]
-  # [./potential_int_upz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = 'top'
-  #   value = 0.1
-  # [../]
-  # [./potential_int_downz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = 'bottom'
-  #   value = 0.0
-  # [../]
-   #
-  # [./potential_ext_upz]
-  #  type = DirichletBC
-  #  variable = potential_ext
-  #  boundary = 'top'
-  #  value = 0.0
-  # [../]
-  # [./potential_ext_downz]
-  #  type = DirichletBC
-  #  variable = potential_ext
-  #  boundary = 'bottom'
-  #  value = 0.0
-  # [../]
+   [./potential_int_upz]
+     type = DirichletBC
+     variable = potential_int
+     boundary = 'top'
+     value = 0.1
+   [../]
+   [./potential_int_downz]
+     type = DirichletBC
+     variable = potential_int
+     boundary = 'bottom'
+     value = 0.0
+   [../]
+
+   [./potential_ext_upz]
+    type = DirichletBC
+    variable = potential_ext
+    boundary = 'top'
+    value = 0.0
+   [../]
+   [./potential_ext_downz]
+    type = DirichletBC
+    variable = potential_ext
+    boundary = 'bottom'
+    value = 0.0
+   [../]
 
    [./disp_x_top]
       type = DirichletBC
@@ -77,8 +77,6 @@
    [../]
 []
 
-
-
 [ICs]
   [./polar_x_randic]
      type = ConstantIC
@@ -114,9 +112,12 @@
    G44/G110 = 0.3
    G44P/G110 = 0.3
    #Electrostatics
+   permittivity = 8.854187e-12
    polar_x = polar_x
    polar_y = polar_y
    polar_z = polar_z
+   potential_int = potential_int
+   potential_ext = potential_ext
    #elastic variables
    disp_x = disp_x
    disp_y = disp_y
@@ -140,14 +141,14 @@
     family = LAGRANGE
     block='0'
   [../]
-  #[./potential_int]
-  #  order=FIRST
-  #  family = LAGRANGE
-  #[../]
-  #[./potential_ext]
-  #  order=FIRST
-  #  family = LAGRANGE
-  #[../]
+  [./potential_int]
+    order=FIRST
+    family = LAGRANGE
+  [../]
+  [./potential_ext]
+    order=FIRST
+    family = LAGRANGE
+  [../]
 
   [./disp_x]
     order = FIRST
@@ -165,6 +166,47 @@
     block = '0'
   [../]
 []
+
+[AuxVariables]
+  [./stress_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./matl_e11]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+    variable = stress_xx
+  [../]
+  [./matl_e22]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+    variable = stress_yy
+  [../]
+  [./matl_e33]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+    variable = stress_zz
+  [../]
+[]
+
+
 
 [Kernels]
   #Elastic problem
@@ -258,36 +300,36 @@
      block = '0'
   [../]
 #Electrostatics
-  #[./polar_electric_E]
-  #   type=PolarElectricEStrong
-  #   variable=potential_int
-  #   block='0'
-  #[../]
-  #[./E_int]
-  #   type=Electrostatics
-  #   variable=potential_int
-  #   block='0'
-  #[../]
-  #[./E_ext]
-  #   type=Electrostatics
-  #   variable=potential_ext
-  #   block='0'
-  #[../]
-  #[./polar_electric_px]
-  #   type=PolarElectricPStrong
-  #   variable = polar_x
-  #   component = 0
-  #[../]
-  #[./polar_electric_py]
-  #   type=PolarElectricPStrong
-  #   variable = polar_y
-  #   component = 1
-  #[../]
-  #[./polar_electric_pz]
-  #   type=PolarElectricPStrong
-  #   variable = polar_z
-  #   component = 2
-  #[../]
+  [./polar_electric_E]
+     type=PolarElectricEStrong
+     variable=potential_int
+     block='0'
+  [../]
+  [./E_int]
+     type=Electrostatics
+     variable=potential_int
+     block='0'
+  [../]
+  [./E_ext]
+     type=Electrostatics
+     variable=potential_ext
+     block='0'
+  [../]
+  [./polar_electric_px]
+     type=PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type=PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type=PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
   #Time dependence
   [./polar_x_time]
      type=TimeDerivativeScaled

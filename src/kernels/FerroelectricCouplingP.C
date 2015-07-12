@@ -56,18 +56,13 @@ FerroelectricCouplingP::computeQpResidual()
   // vector and not its transpose as well.
 
   Real sum = 0.0;
-  Real Rp = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, w);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, w);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, w);
 
-  Rp = - 0.5 * std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
-  //Print statement to show the residual:
-  // Moose::out << "\n Component = "; std::cout << _component; Moose::out << " _qp = "; std::cout << _qp; Moose::out << " Rp = "; std::cout << Rp;
-
-  return Rp;
+  return - 0.5 * std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
 }
 
 Real
@@ -77,9 +72,6 @@ FerroelectricCouplingP::computeQpJacobian()
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, _component);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, _component);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, _component);
-
-  //Print statement to show the diagonal Jacobian:
-  // Moose::out << "\n Diag Fpp "; std::cout << _component << _component; Moose::out << "="; std::cout << - 0.5 * std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
 
   return - 0.5 * std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
 }
@@ -92,59 +84,50 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
   Real sum1 = 0.0;
   Real sum2 = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-
+  w(_component) = w(_component);
   if( jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)
   {
     if (jvar == _polar_x_var)
-    {
-      coupled_component = 0;
-    }
+      {
+        coupled_component = 0;
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, coupled_component);
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, coupled_component);
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, coupled_component);
+      }
     else if (jvar == _polar_y_var)
-    {
-      coupled_component = 1;
-    }
+      {
+        coupled_component = 1;
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, coupled_component);
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, coupled_component);
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, coupled_component);
+      }
     else if (jvar == _polar_z_var)
-    {
-      coupled_component = 2;
-    }
-    sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, coupled_component);
-    sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, coupled_component);
-    sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, coupled_component);
-
-    //Print statement to show the off diagonal Jacobian:
-    // Moose::out << "\n Off Diag Fpp "; std::cout << _component << coupled_component; Moose::out << "="; std::cout << - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
-
-    return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
+      {
+        coupled_component = 2;
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, coupled_component);
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, coupled_component);
+        sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, coupled_component);
+      }
+    return - 0.5 * std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
   }
-
   else if(jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
   {
     if (jvar == _disp_x_var)
-    {
-      coupled_component = 0;
-    }
+      {
+        coupled_component = 0;
+        sum = _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component,_grad_phi[_j][_qp], _component, w);
+      }
     else if (jvar == _disp_y_var)
-    {
-      coupled_component = 1;
-    }
+      {
+        coupled_component = 1;
+        sum = _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component,_grad_phi[_j][_qp], _component, w);
+      }
     else if (jvar == _disp_z_var)
-    {
-      coupled_component = 2;
-    }
-    // sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, 0) * w(0);
-    // sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, 1) * w(1);
-    // sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, 2) * w(2);
-    RealVectorValue w(_test[_i][_qp] * _polar_x[_qp],_test[_i][_qp] * _polar_y[_qp],_test[_i][_qp] * _polar_z[_qp]);
-
-    w(_component) = w(_component);
-    sum = _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component,_grad_phi[_j][_qp], _component, w);
-    sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, _component) ;
-
-    //Print statement to show the off diagonal Jacobian:
-    // Moose::out << "\n Off Diag Fpu "; std::cout << _component << coupled_component; Moose::out << "="; std::cout << -0.5 * pow(_len_scale, 2.0) * (sum - sum2 * w(_component));
-
-    return -0.5 * pow(_len_scale, 3.0) * (sum - sum2 * w(_component));
-
+      {
+        coupled_component = 2;
+        sum = _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component,_grad_phi[_j][_qp], _component, w);
+      }
+    return -0.5 * pow(_len_scale, 3.0) * sum * _test[_i][_qp];
   }
   else
   {

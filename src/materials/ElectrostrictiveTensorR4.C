@@ -38,9 +38,14 @@ ElectrostrictiveTensorR4::computeProduct(const ElasticityTensorR4 & Cijkl, const
 	         Real sum = 0.0;
 	         for(unsigned int m = 0; m < 3; ++m)
 	           for(unsigned int n = 0; n < 3; ++n)
-             {
-	             sum += Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
-	           }
+               if( n != m)
+               {
+                 sum += 0.5 * Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
+               }
+               else
+               {
+	               sum += Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
+	             }
          _vals[i][j][k][l] = 2 * sum;
         //  Moose::out << "\n  q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = " << _vals[i][j][k][l] << ";";
         }

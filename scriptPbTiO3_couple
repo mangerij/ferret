@@ -1,6 +1,9 @@
 #!/bin/bash
 
 #SBATCH -p Serge
-#SBATCH -n 176
+#SBATCH --ntasks-per-node=16
+#SBATCH -N 6
+#SBATCH -o slurm-%j.out
+#SBATCH -e slurm-%j.out
 
-mpirun -n 176 ./ferret-opt -i ferret_PbTiO3_field_100electrostatics_T0_random-adapt.i
+mpirun -v ./ferret-opt -i PBP_TestWeak.i
