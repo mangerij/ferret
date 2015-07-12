@@ -40,7 +40,7 @@
     block='2'
     [./InitialCondition]
       type = ConstantIC
-      value = 6.5e-1
+      value = 6.5e-2
     [../]
   [../]
   [./polar_y]
@@ -49,7 +49,7 @@
     block='2'
     [./InitialCondition]
       type = ConstantIC
-      value = 6.5e-1
+      value = 6.5e-2
     [../]
   [../]
   [./polar_z]
@@ -58,7 +58,7 @@
     block='2'
     [./InitialCondition]
       type = ConstantIC
-      value = 6.5e-1
+      value = 6.5e-2
     [../]
   [../]
   [./potential_int]
@@ -270,22 +270,22 @@
   [../]
   [./polar_z_time]
      type=TimeDerivativeScaled
-     variable=polar_z
+     variable = polar_z
      time_scale = 1.0e-29
   [../]
   [./disp_x_time]
      type=TimeDerivativeScaled
-     variable=disp_x
+     variable = disp_x
      time_scale = 1.0e-32
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
-     variable=disp_y
+     variable = disp_y
      time_scale = 1.0e-32
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
-     variable=disp_z
+     variable = disp_z
      time_scale = 1.0e-32
   [../]
 []
@@ -332,6 +332,26 @@
      boundary = '2'
      value = 0.0
    [../]
+
+   [./disp_x_slab3]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./disp_y_slab3]
+     type = DirichletBC
+     variable = disp_y
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./disp_z_slab3]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '3'
+     value = 0.0
+   [../]
+
    [./disp_y_slab5]
      type = DirichletBC
      variable = disp_y
@@ -384,8 +404,8 @@
     type = SMP
     full = true
     petsc_options = '-info -snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -pc_asm_overlap -sub_pc_type  -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type'
-    petsc_options_value = '    101              1e-8      1e-13      hypre          2              lu             1e-50                    1e-50     boomeramg'
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -pc_asm_overlap -sub_pc_type  -sub_pc_factor_zeropivot -pc_factor_zeropivot '
+    petsc_options_value = '    101              1e-8      1e-13      asm          2              lu             1e-50                    1e-50    '
   [../]
 []
 
@@ -394,16 +414,16 @@
   nl_max_its = 350
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.61e-16
+    dt = 1.15e-15
     optimal_iterations = 5
-    growth_factor = 1.001
-    cutback_factor =  0.999
+    growth_factor = 1.01
+    cutback_factor =  0.85
   [../]
   solve_type = 'PJFNK'
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-38
-  dtmax = 1.61e-16
-  num_steps = 15000
+  dtmax = 1.15e-15
+  num_steps = 10
   #splitting = 'ferretsplit'
 []
 
