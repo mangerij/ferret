@@ -1,0 +1,13 @@
+LIST OF THINGS TO DO:
+
+1.) petsc 3.6 for cluster (install super-LU dist, parmetis, metis USE git clone)
+
+2.) Why is Jacobian wrong for displacement time dependence? -- all kernels on except FerroelectricCouplingU
+
+3.) Fix FE problem -- turn off full = true, does it reproduce results?
+
+4.) Why do we have zero pivot for no displacement time dependent/FerroelectricCouplingU
+
+5.) tensor_mechanics -- add in-plane constant strain for entire block. -- rewrite the elastic energy post processor
+
+6.) Why is ferroelectricU jacobian off?

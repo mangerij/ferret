@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_20.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
+  file = slab_exodus_coarse_40.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
   uniform_refine = 0
 []
 
@@ -40,8 +40,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = 0.5e-1
-      max = 3.2e-1
+      min = 0.1e-1
+      max = 1.5e-1
     [../]
   [../]
   [./polar_y]
@@ -50,8 +50,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = 0.5e-1
-      max = 3.2e-1
+      min = 0.1e-1
+      max = 1.5e-1
     [../]
   [../]
   [./polar_z]
@@ -60,8 +60,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = 1.5e-4
-      max = 2.2e-4
+      min = 0.1e-1
+      max = 1.5e-1
     [../]
   [../]
   [./potential_int]
@@ -90,44 +90,6 @@
   #[../]
 []
 
-#[AuxVariables]
-#  [./stress_xx]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
-#  [./stress_yy]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
-#  [./stress_zz]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
-#[]
-#
-#[AuxKernels]
-#  [./matl_e11]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 0
-#    index_j = 0
-#    variable = stress_xx
-#  [../]
-#  [./matl_e22]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 1
-#    index_j = 1
-#    variable = stress_yy
-#  [../]
-#  [./matl_e33]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 2
-#    index_j = 2
-#    variable = stress_zz
-#  [../]
-#[]
 
 [Kernels]
   #Elastic problem
@@ -149,8 +111,7 @@
   #  component = 2
   #  block = '2'
   #[../]
-
-  ##Bulk energy density
+  ###Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -274,23 +235,23 @@
   [../]
   [./polar_z_time]
      type=TimeDerivativeScaled
-     variable=polar_z
+     variable = polar_z
      time_scale = 1.0e-29
   [../]
   #[./disp_x_time]
   #   type=TimeDerivativeScaled
-  #   variable=disp_x
-  #   time_scale = 1.0e-32
+  #   variable = disp_x
+  #   time_scale = 1.0e-29
   #[../]
   #[./disp_y_time]
   #   type=TimeDerivativeScaled
-  #   variable=disp_y
-  #   time_scale = 1.0e-32
+  #   variable = disp_y
+  #   time_scale = 1.0e-29
   #[../]
   #[./disp_z_time]
   #   type=TimeDerivativeScaled
-  #   variable=disp_z
-  #   time_scale = 1.0e-32
+  #   variable = disp_z
+  #   time_scale = 1.0e-29
   #[../]
 []
 
@@ -317,6 +278,14 @@
   #  C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
   #  fill_method = symmetric9
   #[../]
+  #[./strain]
+  #  type = ComputeSmallStrain
+  #  block = '2'
+  #[../]
+  #[./stress]
+  #  type = ComputeLinearElasticStress
+  #  block = '2'
+  #[../]
   #[./vacuum]
   #  type=GenericConstantMaterial
   #  block = '1'
@@ -336,14 +305,34 @@
      boundary = '2'
      value = 0.0
    [../]
-  # [./disp_y_slab5]
+
+  # [./disp_x_slab3]
   #   type = DirichletBC
+  #   variable = disp_x
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./disp_y_slab3]
+  #   type = DirichletBC
+  #   variable = disp_y
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./disp_z_slab3]
+  #   type = DirichletBC
+  #   variable = disp_z
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # #
+  # [./disp_y_slab5]
+  #   type = PresetBC
   #   variable = disp_y
   #   boundary = '5'
   #   value = -1.0
   # [../]
   # [./disp_y_slab7]
-  #   type = DirichletBC
+  #   type = PresetBC
   #   variable = disp_y
   #   boundary = '7'
   #   value = 1.0
@@ -364,22 +353,26 @@
 
 [Postprocessors]
   [./bulk_energy]
-   type=BulkEnergy
+   type = BulkEnergy
    block = '2'
   [../]
   [./wall_energy]
-   type=WallEnergy
+   type = WallEnergy
    block = '2'
   [../]
+  #[./elastic_energy]
+  # type = ElasticEnergy
+  # block = '2'
+  #[../]
   [./electrostatic_energy]
-   type=ElectrostaticEnergy
+   type = ElectrostaticEnergy
   [../]
   [./total_energy]
-   type=TotalEnergy
+   type = TotalEnergy
    bulk_energy = bulk_energy
    wall_energy = wall_energy
    elastic_energy = elastic_energy
-   electrostatic_energy=electrostatic_energy
+   electrostatic_energy = electrostatic_energy
   [../]
 []
 
@@ -389,7 +382,7 @@
     full = true
     petsc_options = '-info -snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -pc_asm_overlap -sub_pc_type  -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type'
-    petsc_options_value = '    101              1e-8      1e-13      hypre          2              lu             1e-50                    1e-50     boomeramg'
+    petsc_options_value = '    121              1e-8      1e-14      hypre          2              lu             1e-50                    1e-50    boomeramg'
   [../]
 []
 
@@ -398,16 +391,16 @@
   nl_max_its = 350
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.61e-16
+    dt = 1.15e-15
     optimal_iterations = 5
-    growth_factor = 1.001
-    cutback_factor =  0.999
+    growth_factor = 1.01
+    cutback_factor =  0.85
   [../]
   solve_type = 'PJFNK'
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-38
-  dtmax = 1.61e-16
-  num_steps = 15000
+  dtmax = 1.15e-15
+  num_steps = 100000
   #splitting = 'ferretsplit'
 []
 
@@ -438,7 +431,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PBP_test
+    file_base = out_40nm_PbTiO3_FE
     output_initial = true
     elemental_as_nodal = false
     interval = 1
