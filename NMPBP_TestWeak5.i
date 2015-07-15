@@ -594,16 +594,16 @@
   dt = 0.01
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.01 #1.0e6 too high
+    dt = 0.015 #1.0e6 too high
     optimal_iterations = 10
-    growth_factor = 1.01
-    cutback_factor =  0.999
+    growth_factor = 1.0001
+    cutback_factor =  0.9999
   [../]
   solve_type = 'PJFNK'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-10
-  dtmax = 0.1
-  num_steps = 1500000
+  dtmax = 0.015
+  num_steps = 3
   #splitting = 'ferretsplit'
 []
 

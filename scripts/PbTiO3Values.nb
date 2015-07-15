@@ -1,0 +1,3060 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    127174,       3051]
+NotebookOptionsPosition[    123646,       2921]
+NotebookOutlinePosition[    123980,       2936]
+CellTagsIndexPosition[    123937,       2933]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"LengthScale", " ", "=", " ", "\"\<Nanometers\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ChargeScale", " ", "=", "\"\<Attocoulombs\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ForceScale", "=", "\"\<Nanonewtons\>\""}], ";"}]}], "Input",
+ CellChangeTimes->{{3.641925504470903*^9, 3.6419255382495832`*^9}, {
+   3.641925587176302*^9, 3.641925587658746*^9}, {3.641926076049045*^9, 
+   3.641926076676371*^9}, {3.6419267292210817`*^9, 3.641926729887389*^9}, {
+   3.642005170759675*^9, 3.642005176950589*^9}, 3.642526576405581*^9, {
+   3.64581283736172*^9, 3.6458128390445557`*^9}, {3.645813426020691*^9, 
+   3.6458134333666286`*^9}, {3.645813726983904*^9, 3.6458138101485786`*^9}, {
+   3.6458139741577263`*^9, 3.645813974612834*^9}, {3.645814292919153*^9, 
+   3.645814331810335*^9}, {3.6458145529723597`*^9, 3.645814553367672*^9}, {
+   3.645814591042378*^9, 3.645814609939919*^9}, {3.645814641726556*^9, 
+   3.645814655746777*^9}, {3.645888195554905*^9, 3.645888255535824*^9}, {
+   3.645888301953526*^9, 3.645888302430909*^9}, {3.645888333243414*^9, 
+   3.645888333951043*^9}, {3.645888364085718*^9, 3.6458883744841833`*^9}, {
+   3.645888420804379*^9, 3.6458884381810923`*^9}, {3.6458885042755833`*^9, 
+   3.645888504945491*^9}, {3.645888655275466*^9, 3.6458887470310287`*^9}, {
+   3.6458896102178173`*^9, 3.645889624577198*^9}, {3.6458898802319937`*^9, 
+   3.645889891329599*^9}, {3.6458903517767143`*^9, 3.645890374646653*^9}}],
+
+Cell[TextData[{
+ "Seems that these unit systems give the most numerical robustness. We don\
+\[CloseCurlyQuote]t want residual combinations of ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SuperscriptBox["10", 
+     RowBox[{"-", "29"}]], "+", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "15"}]]}], TraditionalForm]]],
+ " for example. There is significant floating point precision loss here. \
+Polarization is on order of ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["10", 
+    RowBox[{"-", "1"}]], TraditionalForm]]],
+ " and the coefficients are on order ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["10", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "\[Rule]", 
+      RowBox[{"-", "3"}]}], ")"}]], TraditionalForm]]],
+ ". The elastic coefficients are on order ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["10", 
+    RowBox[{"-", "7"}]], TraditionalForm]]],
+ " but this still within the range of floating point arithmetic."
+}], "Text",
+ CellChangeTimes->{{3.6458896931675663`*^9, 3.645889841244892*^9}, {
+  3.6459815746325808`*^9, 3.645981593731413*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Misc(applied field BC from Hong et al):", "Subsection",
+ CellChangeTimes->{{3.64588848914292*^9, 3.645888489716597*^9}, {
+  3.645981533415352*^9, 3.64598156638021*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     FractionBox["10", 
+      RowBox[{"160.", "*", 
+       SuperscriptBox["10", 
+        RowBox[{"-", "9"}]]}]], ",", 
+     FractionBox["\"\<Volts\>\"", "LengthScale"]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox["\"\<Kilovolts\>\"", "\"\<Centimeters\>\""], ")"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.644336335067608*^9, 3.644336416528685*^9}, {
+  3.644345945402266*^9, 3.64434596533733*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "6.25`*^11",
+   RowBox[{"\"kV\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     "\"cm\""}],"kilovolts per centimeter",FractionBox[
+   "\"Kilovolts\"", "\"Centimeters\""]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.64433637444003*^9, 3.644336417270481*^9, {3.6443459467470207`*^9, 
+   3.644345965649728*^9}, 3.6458137312542553`*^9, 3.645888367181913*^9, 
+   3.645888422829485*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"20", ",", " ", 
+     RowBox[{"(", 
+      FractionBox["\"\<Kilovolts\>\"", "\"\<Centimeters\>\""], ")"}]}], "]"}],
+    ",", 
+   FractionBox["\"\<Volts\>\"", "LengthScale"]}], "]"}]], "Input",
+ CellChangeTimes->{{3.64459630542962*^9, 3.6445963228568993`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  FractionBox["1", "500"],
+   RowBox[{"\"V\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     "\"nm\""}],"volts per nanometer",FractionBox[
+   "\"Volts\"", "\"Nanometers\""]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{3.644596324927422*^9, 3.6458137324487*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", 
+   RowBox[{"160", "*", 
+    SuperscriptBox["10", 
+     RowBox[{"-", "9"}]]}]], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"from", " ", 
+     RowBox[{"Hong", "'"}], "s", " ", "book", " ", "on", " ", "FE", " ", 
+     "HDD"}], ",", " ", 
+    RowBox[{
+     RowBox[{"head", "-", 
+      RowBox[{"media", " ", 
+       RowBox[{"distance", " ", "~", "8"}], "nm", " ", "and"}], " ", "+", 
+      RowBox[{"10", " ", "V", " ", 
+       RowBox[{"pulse", "?"}]}]}], " ", "\[Rule]", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"large", " ", "field"}], "..."}], "?"}]}]}], "*)"}]}]], "Input",\
+
+ CellChangeTimes->{{3.6443368577643147`*^9, 3.644336912843358*^9}, 
+   3.6443371157709103`*^9, {3.644589813003234*^9, 3.644589847900161*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"6.25", "*", 
+      SuperscriptBox["10", "5"]}], ",", 
+     FractionBox["\"\<Volts\>\"", "LengthScale"]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox["\"\<Kilovolts\>\"", "\"\<Centimeters\>\""], ")"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.644336872968947*^9, {3.64458983911411*^9, 3.644589880450964*^9}, 
+   3.644596293244018*^9, {3.645275212944623*^9, 3.645275215808958*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "6.25`",RowBox[{
+    "\"kV\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", "\"cm\""}],
+   "kilovolts per centimeter",FractionBox["\"Kilovolts\"", "\"Centimeters\""]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.644336874374056*^9, 3.6443368771775007`*^9}, {
+   3.644589842697001*^9, 3.644589880754787*^9}, 3.6445962937119226`*^9, 
+   3.6452752208040113`*^9}]
+}, Open  ]],
+
+Cell[BoxData["1"], "Input",
+ CellChangeTimes->{3.645981529228806*^9}]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Electrostatics:", "Subsection",
+ CellChangeTimes->{{3.6386229553503113`*^9, 3.6386229608944807`*^9}}],
+
+Cell["Permittivity of the vacuum:", "Text",
+ CellChangeTimes->{{3.6386225257244167`*^9, 3.63862252961657*^9}, {
+  3.645981520648142*^9, 3.645981522354979*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"8.854187", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "12"}]]}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       SuperscriptBox["\"\<Coulombs\>\"", "2"], 
+       RowBox[{"\"\<Newtons\>\"", " ", 
+        SuperscriptBox["\"\<Meters\>\"", "2"]}]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     SuperscriptBox["ChargeScale", "2"], 
+     RowBox[{"ForceScale", " ", 
+      SuperscriptBox["LengthScale", "2"]}]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6386226203024473`*^9, 3.63862264776912*^9}, {
+   3.638622682343355*^9, 3.638622720868375*^9}, 3.64192553317845*^9, {
+   3.6458134462624063`*^9, 3.645813455072275*^9}, {3.645813767885036*^9, 
+   3.645813768952443*^9}, {3.645814168093934*^9, 3.645814169083228*^9}, {
+   3.645814787935088*^9, 3.645814791341935*^9}, 3.645888202143186*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"0.008854186999999998`",RowBox[{
+     SuperscriptBox["\"aC\"", "2"], "\[NegativeMediumSpace]", "\"/(\"", 
+     "\[InvisibleSpace]", 
+     SuperscriptBox["\"nm\"", "2"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\")\""}],
+   "attocoulombs squared per nanometer squared nanonewton",FractionBox[
+    SuperscriptBox["\"Attocoulombs\"", "2"], 
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "2"], " ", "\"Nanonewtons\""}]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.6386227218234987`*^9, 3.641924643505858*^9, 3.641925541907586*^9, 
+   3.6419255911907063`*^9, 3.641925715481496*^9, 3.641926088754118*^9, 
+   3.641926733964869*^9, 3.6420003938377657`*^9, 3.642005179951981*^9, 
+   3.645813091370055*^9, {3.645813448673479*^9, 3.645813462598565*^9}, 
+   3.645813734814746*^9, {3.645813769774262*^9, 3.645813811601377*^9}, 
+   3.645813977434985*^9, 3.645814169645507*^9, {3.6458142959232273`*^9, 
+   3.645814303875648*^9}, 3.645814334303618*^9, 3.645814556644683*^9, {
+   3.645814593543933*^9, 3.6458146124269457`*^9}, {3.645814644245509*^9, 
+   3.6458146574937963`*^9}, 3.645814706832892*^9, 3.645814791815938*^9, {
+   3.6458882029208403`*^9, 3.645888257232441*^9}, 3.6458883043302927`*^9, 
+   3.645888335930236*^9, {3.64588836901715*^9, 3.64588837656791*^9}, {
+   3.645888423944743*^9, 3.64588844008287*^9}, {3.645888496854518*^9, 
+   3.645888507326166*^9}, {3.645888668071682*^9, 3.6458887486202793`*^9}, {
+   3.6458896051987877`*^9, 3.645889626078426*^9}, {3.645889882513233*^9, 
+   3.645889893553122*^9}, {3.645890369308084*^9, 3.645890376157276*^9}, 
+   3.64590923298913*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "LGD functional coefficients for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["PbTiO", "3"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " from LQ Chen Appendix, :"
+}], "Subsection",
+ CellChangeTimes->{{3.638622946682205*^9, 3.638622963200932*^9}, {
+  3.642002346555999*^9, 3.642002349902912*^9}, {3.645981503466729*^9, 
+  3.645981513230628*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{"Quantity", "[", 
+     RowBox[{
+      RowBox[{"3.8", 
+       RowBox[{"(", 
+        RowBox[{"0", "-", "752"}], ")"}], 
+       SuperscriptBox["10", "5"]}], ",", 
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["\"\<Meters\>\"", "2"], "\"\<Newtons\>\""}], 
+        SuperscriptBox["\"\<Coulombs\>\"", "2"]], ")"}]}], "]"}], ",", 
+    RowBox[{"(", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["LengthScale", "2"], "ForceScale"}], 
+      SuperscriptBox["ChargeScale", "2"]], ")"}]}], "]"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"T", "=", 
+    RowBox[{"300", "K"}]}], "*)"}]}]], "Input",
+ CellChangeTimes->{{3.638622275516794*^9, 3.638622354604745*^9}, {
+   3.6386224182201138`*^9, 3.638622420833922*^9}, {3.638623075833446*^9, 
+   3.638623140351536*^9}, 3.641925549158242*^9, {3.6458128518055763`*^9, 
+   3.645812871744788*^9}, {3.64581296084937*^9, 3.645812961044237*^9}, 
+   3.645813477921348*^9, 3.645813822216885*^9, {3.6458144357325563`*^9, 
+   3.645814439651595*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{RowBox[{"-", "0.28576`"}],RowBox[{
+     SuperscriptBox["\"nm\"", "2"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "2"]}],
+   "nanometer squared nanonewtons per attocoulomb squared",FractionBox[
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "2"], " ", "\"Nanonewtons\""}], 
+    SuperscriptBox["\"Attocoulombs\"", "2"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.6386223450283213`*^9, 3.638622355145915*^9}, 
+   3.638622425251001*^9, {3.6386230780710993`*^9, 3.638623084325129*^9}, {
+   3.638623126917371*^9, 3.6386231409039927`*^9}, 3.6419246455017033`*^9, 
+   3.641925594983501*^9, 3.641926088798689*^9, 3.6419267339903507`*^9, 
+   3.6420003938873787`*^9, 3.642005179998451*^9, {3.645812847049465*^9, 
+   3.645812872149061*^9}, 3.645812961536611*^9, 3.6458134787642393`*^9, 
+   3.64581373796793*^9, 3.6458138237817993`*^9, 3.645813979275221*^9, 
+   3.64581433685137*^9, {3.6458144366416273`*^9, 3.645814440119486*^9}, 
+   3.645814559292894*^9, 3.645814613848878*^9, {3.645814647629786*^9, 
+   3.645814660465721*^9}, 3.645814708000792*^9, 3.645814767993039*^9, 
+   3.645817706912156*^9, {3.645888204515724*^9, 3.645888258911763*^9}, 
+   3.64588830567417*^9, 3.645888343249468*^9, 3.64588837848715*^9, 
+   3.645888513062944*^9, {3.645888666729212*^9, 3.645888751011114*^9}, {
+   3.6458896034082527`*^9, 3.645889626798088*^9}, {3.6458898845636263`*^9, 
+   3.645889894474362*^9}, {3.6458903677854977`*^9, 3.645890377262197*^9}, 
+   3.6459092347621593`*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "0.73"}], "*", 
+      SuperscriptBox["10", "8"]}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\"\<Meters\>\"", "6"], "\"\<Newtons\>\""}], 
+       SuperscriptBox["\"\<Coulombs\>\"", "4"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["LengthScale", "6"], "ForceScale"}], 
+     SuperscriptBox["ChargeScale", "4"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.638622384347131*^9, 3.638622436366816*^9}, 
+   3.64192555179036*^9, 3.645813488583877*^9, 3.6458138300071917`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{RowBox[{"-", "0.073`"}],RowBox[{
+     SuperscriptBox["\"nm\"", "6"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "4"]}],
+   "nanometer to the 6 nanonewtons per attocoulomb to the fourth",FractionBox[
+   
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "6"], " ", "\"Nanonewtons\""}], 
+    SuperscriptBox["\"Attocoulombs\"", "4"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.6386224368483143`*^9, 3.641924647343828*^9, 3.641925596748973*^9, 
+   3.6419260888555813`*^9, 3.641926734015909*^9, 3.642000393989586*^9, 
+   3.642005180044639*^9, 3.645812980532462*^9, 3.645813489649911*^9, 
+   3.645813831025116*^9, 3.645813980629915*^9, 3.6458143382915707`*^9, 
+   3.645814425563888*^9, 3.645814563200551*^9, 3.6458146150722847`*^9, 
+   3.645814649581704*^9, {3.645814710562063*^9, 3.6458147294396677`*^9}, 
+   3.645814769734847*^9, 3.6458882615734673`*^9, 3.64588830681584*^9, 
+   3.6458883425277987`*^9, 3.645888380188837*^9, 3.645888514152377*^9, {
+   3.645888687415822*^9, 3.645888722071548*^9}, 3.645888752099773*^9, {
+   3.6458896016629877`*^9, 3.645889627838183*^9}, {3.645889885569838*^9, 
+   3.645889895969342*^9}, {3.645890360462277*^9, 3.6458903782276487`*^9}, 
+   3.645909236865155*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"7.5", "*", 
+      SuperscriptBox["10", "8"]}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\"\<Meters\>\"", "6"], "\"\<Newtons\>\""}], 
+       SuperscriptBox["\"\<Coulombs\>\"", "4"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["LengthScale", "6"], "ForceScale"}], 
+     SuperscriptBox["ChargeScale", "4"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.638622494984034*^9, 3.638622541717853*^9}, 
+   3.641925555772106*^9, 3.645813494155697*^9, 3.6458138400950108`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"0.75`",RowBox[{
+     SuperscriptBox["\"nm\"", "6"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "4"]}],
+   "nanometer to the 6 nanonewtons per attocoulomb to the fourth",FractionBox[
+   
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "6"], " ", "\"Nanonewtons\""}], 
+    SuperscriptBox["\"Attocoulombs\"", "4"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.6386225431160507`*^9, 3.641924649089375*^9, {3.6419255800229397`*^9, 
+   3.641925598372669*^9}, 3.641926088883626*^9, 3.64192673404148*^9, 
+   3.642000394017008*^9, 3.642005180069903*^9, 3.6458129938144703`*^9, 
+   3.6458134949167*^9, 3.645813840984538*^9, 3.645813981867749*^9, 
+   3.645814265528879*^9, 3.645814341168583*^9, 3.645814426196858*^9, 
+   3.6458145645742693`*^9, 3.645814616654705*^9, 3.645888263016501*^9, 
+   3.645888307931072*^9, 3.64588834395577*^9, 3.645888382158729*^9, 
+   3.645888514916102*^9, {3.645888688303344*^9, 3.645888753000535*^9}, {
+   3.64588960038334*^9, 3.645889628986854*^9}, {3.645889886575536*^9, 
+   3.645889896642654*^9}, {3.6458903619008827`*^9, 3.6458903794148827`*^9}, 
+   3.645909238164466*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"2.6", "*", 
+      SuperscriptBox["10", "8"]}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\"\<Meters\>\"", "10"], "\"\<Newtons\>\""}], 
+       SuperscriptBox["\"\<Coulombs\>\"", "6"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["LengthScale", "10"], "ForceScale"}], 
+     SuperscriptBox["ChargeScale", "6"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.638622558244766*^9, 3.6386225999469433`*^9}, 
+   3.641925558398156*^9, 3.645813498614277*^9, 3.645813844354705*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"0.26`",RowBox[{
+     SuperscriptBox["\"nm\"", "10"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "6"]}],
+   "nanometer to the 10 nanonewtons per attocoulomb to the 6",FractionBox[
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "10"], " ", "\"Nanonewtons\""}], 
+    SuperscriptBox["\"Attocoulombs\"", "6"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.63862260050432*^9, 3.6419246501788683`*^9, 3.64192560051021*^9, 
+   3.6419256920512447`*^9, 3.6419260889303827`*^9, 3.6419267340661793`*^9, 
+   3.642000394065761*^9, 3.642005180116724*^9, 3.645812994786618*^9, 
+   3.645813499566633*^9, 3.645813845119453*^9, 3.6458139832834997`*^9, 
+   3.6458142628380337`*^9, 3.645814342629682*^9, 3.64581442693478*^9, 
+   3.645814617822982*^9, 3.64581477109439*^9, 3.6458882646984873`*^9, 
+   3.645888309446969*^9, 3.6458883452443743`*^9, 3.645888383540893*^9, 
+   3.6458885160262547`*^9, {3.645888689303657*^9, 3.645888754289155*^9}, 
+   3.645889598844438*^9, 3.64588963025987*^9, {3.645889887764455*^9, 
+   3.645889897528742*^9}, {3.645890363063148*^9, 3.645890380115056*^9}, 
+   3.645909239879415*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"6.1", "*", 
+      SuperscriptBox["10", "8"]}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\"\<Meters\>\"", "10"], "\"\<Newtons\>\""}], 
+       SuperscriptBox["\"\<Coulombs\>\"", "6"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["LengthScale", "10"], "ForceScale"}], 
+     SuperscriptBox["ChargeScale", "6"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.63862286265315*^9, 3.638622863134856*^9}, 
+   3.641925561566379*^9, 3.645813501373691*^9, 3.6458138479891148`*^9}],
+
+Cell[BoxData[
+ TemplateBox[{"0.61`",RowBox[{
+     SuperscriptBox["\"nm\"", "10"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "6"]}],
+   "nanometer to the 10 nanonewtons per attocoulomb to the 6",FractionBox[
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "10"], " ", "\"Nanonewtons\""}], 
+    SuperscriptBox["\"Attocoulombs\"", "6"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.638622863801341*^9, 3.64192465148455*^9, 3.64192560121677*^9, 
+   3.641925690113433*^9, 3.641926088952676*^9, 3.64192673408936*^9, 
+   3.64200039409295*^9, 3.642005180143285*^9, 3.645813010160302*^9, 
+   3.6458135021386423`*^9, 3.645813848695024*^9, 3.6458142735089293`*^9, 
+   3.645814343700523*^9, 3.645814427789996*^9, 3.645814618640478*^9, 
+   3.6458147726603527`*^9, 3.64588826610709*^9, 3.645888310243505*^9, 
+   3.645888346405095*^9, 3.645888385485175*^9, 3.64588851752229*^9, {
+   3.645888690880368*^9, 3.6458887553158207`*^9}, 3.6458895976925488`*^9, 
+   3.6458896315930233`*^9, 3.645889898836512*^9, {3.645890363974373*^9, 
+   3.6458903811483803`*^9}, 3.645909240688816*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "3.7"}], "*", 
+      SuperscriptBox["10", "9"]}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\"\<Meters\>\"", "10"], "\"\<Newtons\>\""}], 
+       SuperscriptBox["\"\<Coulombs\>\"", "6"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["LengthScale", "10"], "ForceScale"}], 
+     SuperscriptBox[
+      StyleBox["ChargeScale",
+       FontWeight->"Plain"], "6"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.638622869841936*^9, 3.638622892991351*^9}, 
+   3.64192556563957*^9, {3.64581350581971*^9, 3.6458135154016314`*^9}, 
+   3.645813851464561*^9}],
+
+Cell[BoxData[
+ TemplateBox[{RowBox[{"-", "3.6999999999999997`"}],RowBox[{
+     SuperscriptBox["\"nm\"", "10"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "6"]}],
+   "nanometer to the 10 nanonewtons per attocoulomb to the 6",FractionBox[
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "10"], " ", "\"Nanonewtons\""}], 
+    SuperscriptBox["\"Attocoulombs\"", "6"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.6386228755140467`*^9, 3.6386228935614443`*^9}, 
+   3.641924652623404*^9, 3.6419256025194397`*^9, 3.64192568895914*^9, 
+   3.6419260889745283`*^9, 3.6419267341155233`*^9, 3.642000394120811*^9, 
+   3.642005180177615*^9, 3.645813019420025*^9, 3.6458135161368217`*^9, 
+   3.645813852206115*^9, 3.6458139846010303`*^9, 3.645814275064391*^9, 
+   3.6458144290633497`*^9, 3.645814619634605*^9, 3.645814773673523*^9, 
+   3.645888277508835*^9, 3.6458883116408463`*^9, 3.645888347202291*^9, 
+   3.645888388080861*^9, 3.6458885194884243`*^9, {3.645888694444911*^9, 
+   3.645888756242318*^9}, 3.645889596534779*^9, 3.645889633367403*^9, 
+   3.645889900060788*^9, {3.64589036545452*^9, 3.6458903820721607`*^9}, 
+   3.6459092414916983`*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Initial conditon for the polarization. Use a energy minima of the LGD \
+functional \
+\>", "Subsection",
+ CellChangeTimes->{{3.63862322550393*^9, 3.638623228510343*^9}, {
+  3.64598147838488*^9, 3.645981496534114*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"0.65", ",", 
+     RowBox[{"(", 
+      FractionBox["\"\<Coulombs\>\"", 
+       SuperscriptBox["\"\<Meters\>\"", "2"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox["ChargeScale", 
+     SuperscriptBox["LengthScale", "2"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6386232308109207`*^9, 3.638623270664175*^9}, 
+   3.641925568946842*^9, {3.6458136448219833`*^9, 3.6458136569496603`*^9}, {
+   3.645814153842534*^9, 3.645814154025488*^9}, {3.6458142045764923`*^9, 
+   3.645814206787162*^9}, {3.645820347222972*^9, 3.645820347378971*^9}, 
+   3.645820569613586*^9}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "0.65`",RowBox[{"\"aC\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"nm\"", "2"]}],"attocoulombs per nanometer squared",
+   FractionBox["\"Attocoulombs\"", 
+    SuperscriptBox["\"Nanometers\"", "2"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.6386232712003937`*^9, 3.6419246536461487`*^9, 3.6419256036287127`*^9, 
+   3.641926089013096*^9, 3.641926734143606*^9, 3.642000394163424*^9, 
+   3.642005180228488*^9, 3.645813033493557*^9, {3.645813647920583*^9, 
+   3.6458136573966637`*^9}, {3.64581396450668*^9, 3.645813991980034*^9}, 
+   3.645814154470058*^9, 3.645814207572999*^9, 3.6458142766976557`*^9, 
+   3.64581449994991*^9, 3.645814620801111*^9, 3.645814775318327*^9, 
+   3.6458203480511312`*^9, 3.645820570164962*^9, 3.645887953240993*^9, 
+   3.645888279724884*^9, 3.645888313096983*^9, 3.645888348298944*^9, 
+   3.645888397939477*^9, 3.645888577967226*^9, 3.64588875737881*^9, 
+   3.645889634648801*^9, 3.6458903838671303`*^9, 3.645909242684042*^9},
+ Background->RGBColor[0.87, 0.94, 1]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["len_scale scaling term.", "Subsection",
+ CellChangeTimes->{{3.641925109460524*^9, 3.641925110517194*^9}, {
+  3.645981474541665*^9, 3.645981476284951*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"1", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "9"}]]}], ",", "\"\<Meters\>\""}], "]"}], ",", 
+   "LengthScale"}], "]"}]], "Input",
+ CellChangeTimes->{{3.641925112988842*^9, 3.641925134535829*^9}, 
+   3.641925571921969*^9, 3.641925607827972*^9, {3.641925781816019*^9, 
+   3.6419257820262747`*^9}, 3.6419273828118477`*^9, {3.641927448715733*^9, 
+   3.641927458705476*^9}, {3.642003505892962*^9, 3.642003517737443*^9}, {
+   3.642005159900835*^9, 3.642005186754064*^9}, {3.6420105195552673`*^9, 
+   3.642010520307247*^9}, {3.645813661319201*^9, 3.6458136631284227`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"1","\"nm\"","nanometers","\"Nanometers\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.641925134984665*^9, {3.641925605362563*^9, 3.641925608512517*^9}, 
+   3.641925665524857*^9, 3.6419257831556797`*^9, 3.641926089040805*^9, 
+   3.641926734168874*^9, 3.641927383730979*^9, {3.641927451142918*^9, 
+   3.641927459334878*^9}, 3.6420003941931257`*^9, {3.642003507343495*^9, 
+   3.642003518220613*^9}, {3.642005163699353*^9, 3.6420051871379843`*^9}, 
+   3.642010522033978*^9, 3.6458136634715757`*^9, 3.6458139940608187`*^9, 
+   3.6458882817456913`*^9, 3.645888316581738*^9, 3.6458883497785597`*^9, 
+   3.645888403358431*^9, 3.6458887612174587`*^9, 3.645890386143887*^9, 
+   3.645909244476405*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Domain ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["G", "110"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " term:"
+}], "Subsection",
+ CellChangeTimes->{{3.6419252487750177`*^9, 3.6419252496287622`*^9}, {
+  3.645981463715456*^9, 3.6459814680190077`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"1.0", "*", 
+      SuperscriptBox["10", 
+       RowBox[{"-", "10"}]]}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{
+        SuperscriptBox["\"\<Meters\>\"", "4"], "\"\<Newtons\>\""}], 
+       SuperscriptBox["\"\<Coulombs\>\"", "2"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["LengthScale", "4"], "ForceScale"}], 
+     SuperscriptBox["ChargeScale", "2"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.641925273964636*^9, 3.641925334344948*^9}, 
+   3.6419255749902477`*^9, {3.642000397921472*^9, 3.642000403721854*^9}, {
+   3.642003523748447*^9, 3.6420035251624393`*^9}, 3.6420059854075937`*^9, 
+   3.645275260322386*^9, 3.645813073546007*^9, {3.6458136715571117`*^9, 
+   3.6458136750809526`*^9}, 3.645813858304452*^9, {3.645820283619578*^9, 
+   3.645820288697501*^9}, {3.645909353512176*^9, 3.645909353977696*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"0.1`",RowBox[{
+     SuperscriptBox["\"nm\"", "4"], "\[InvisibleSpace]", "\"nN\"", 
+     "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "2"]}],
+   "nanometer to the fourth nanonewtons per attocoulomb squared",FractionBox[
+    RowBox[{
+      SuperscriptBox["\"Nanometers\"", "4"], " ", "\"Nanonewtons\""}], 
+    SuperscriptBox["\"Attocoulombs\"", "2"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{3.645820289681185*^9, 3.645888282639059*^9, 
+  3.645888315370541*^9, 3.645888350377973*^9, 3.645888401948254*^9, 
+  3.6458887601653748`*^9, 3.645889636950378*^9, 3.6458903855467443`*^9, 
+  3.645909245462224*^9, 3.645909354451082*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "Electrostrictive coefficients for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["PbTiO", "3"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " (tetragonal)"
+}], "Section",
+ CellChangeTimes->{{3.645813137001663*^9, 3.645813139034935*^9}, {
+  3.645981391266828*^9, 3.6459813948118677`*^9}, {3.645981426165428*^9, 
+  3.6459814408491488`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["Q", "11"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ":"
+}], "Subsubsection",
+ CellChangeTimes->{{3.6459814007334757`*^9, 3.645981404980371*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"0.089", ",", 
+     RowBox[{"(", 
+      FractionBox[
+       SuperscriptBox["\"\<Meters\>\"", "4"], 
+       SuperscriptBox["\"\<Coulombs\>\"", "2"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     SuperscriptBox["LengthScale", "4"], 
+     SuperscriptBox["ChargeScale", "2"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.645813145993455*^9, 3.645813174739794*^9}, {
+  3.6458134029570417`*^9, 3.645813413568203*^9}, {3.645813694435899*^9, 
+  3.645813697430554*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"0.089`",RowBox[{
+     SuperscriptBox["\"nm\"", "4"], "\[NegativeMediumSpace]", "\"/\"", 
+     "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "2"]}],
+   "nanometers to the fourth per attocoulomb squared",FractionBox[
+    SuperscriptBox["\"Nanometers\"", "4"], 
+    SuperscriptBox["\"Attocoulombs\"", "2"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.645813176644104*^9, {3.6458134050318747`*^9, 3.645813413926639*^9}, 
+   3.645813697793009*^9, 3.6458139565757227`*^9, 3.645814000907395*^9, 
+   3.6458142825787354`*^9, 3.645814966039695*^9, 3.645888285429895*^9, 
+   3.645888317848278*^9, 3.645888351339534*^9, 3.645888406112691*^9, 
+   3.645888762729026*^9, 3.645890387554687*^9, 3.645909246495257*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  SubscriptBox["Q", "12"], TraditionalForm]],
+ FormatType->"TraditionalForm"]], "Subsubsection",
+ CellChangeTimes->{{3.645981409837826*^9, 3.6459814110224333`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{
+     RowBox[{"-", "0.026"}], ",", 
+     RowBox[{"(", 
+      FractionBox[
+       SuperscriptBox["\"\<Meters\>\"", "4"], 
+       SuperscriptBox["\"\<Coulombs\>\"", "2"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     SuperscriptBox["LengthScale", "4"], 
+     SuperscriptBox["ChargeScale", "2"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.645813183968814*^9, 3.645813184975614*^9}, {
+  3.645813702639141*^9, 3.6458137049670963`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{RowBox[{"-", "0.026`"}],RowBox[{
+     SuperscriptBox["\"nm\"", "4"], "\[NegativeMediumSpace]", "\"/\"", 
+     "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "2"]}],
+   "nanometers to the fourth per attocoulomb squared",FractionBox[
+    SuperscriptBox["\"Nanometers\"", "4"], 
+    SuperscriptBox["\"Attocoulombs\"", "2"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{3.645813185469892*^9, 3.645813705372035*^9, 
+  3.6458139574600763`*^9, 3.645814001940007*^9, 3.645814967026431*^9, 
+  3.645888286158072*^9, 3.6458883185187063`*^9, 3.645888352769277*^9, 
+  3.645888406873681*^9, 3.645888763705099*^9, 3.645890388161195*^9, 
+  3.6459092476526012`*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ FormBox[
+  SubscriptBox["Q", "33"], TraditionalForm]],
+ FormatType->"TraditionalForm"]], "Subsubsection",
+ CellChangeTimes->{{3.6459814176746063`*^9, 3.645981421860709*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"0.034", ",", 
+     RowBox[{"(", 
+      FractionBox[
+       SuperscriptBox["\"\<Meters\>\"", "4"], 
+       SuperscriptBox["\"\<Coulombs\>\"", "2"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox[
+     SuperscriptBox["LengthScale", "4"], 
+     SuperscriptBox["ChargeScale", "2"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.645813191371532*^9, 3.645813193119738*^9}, {
+  3.6458137094813147`*^9, 3.645813711377667*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{"0.034`",RowBox[{
+     SuperscriptBox["\"nm\"", "4"], "\[NegativeMediumSpace]", "\"/\"", 
+     "\[InvisibleSpace]", 
+     SuperscriptBox["\"aC\"", "2"]}],
+   "nanometers to the fourth per attocoulomb squared",FractionBox[
+    SuperscriptBox["\"Nanometers\"", "4"], 
+    SuperscriptBox["\"Attocoulombs\"", "2"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{3.645813193677825*^9, 3.645813711713871*^9, 
+  3.645813958286584*^9, 3.645814003058926*^9, 3.645814967672449*^9, 
+  3.6458882877703943`*^9, 3.645888319048073*^9, 3.645888354457058*^9, 
+  3.6458884074206448`*^9, 3.645888764649157*^9, 3.645890388834671*^9, 
+  3.6459092490070553`*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Elastic coefficients", "Section",
+ CellChangeTimes->{{3.645813879680373*^9, 3.6458138802461967`*^9}, {
+  3.645981444521826*^9, 3.645981447440694*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"UnitConvert", "[", 
+  RowBox[{
+   RowBox[{"Quantity", "[", 
+    RowBox[{"380.0", ",", 
+     RowBox[{"(", 
+      FractionBox["\"\<Newtons\>\"", 
+       SuperscriptBox["\"\<Meters\>\"", "2"]], ")"}]}], "]"}], ",", 
+   RowBox[{"(", 
+    FractionBox["ForceScale", 
+     SuperscriptBox["LengthScale", "2"]], ")"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6458140167479563`*^9, 3.6458140655224867`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "3.8`*^-7",
+   RowBox[{"\"nN\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+     SuperscriptBox["\"nm\"", "2"]}],"nanonewtons per nanometer squared",
+   FractionBox["\"Nanonewtons\"", 
+    SuperscriptBox["\"Nanometers\"", "2"]]},
+  "Quantity"]], "Output",
+ CellChangeTimes->{
+  3.645814004092966*^9, {3.645814048305455*^9, 3.645814066198387*^9}, 
+   3.645814968956061*^9, 3.645888289779318*^9, 3.64588832022668*^9, 
+   3.6458883553970137`*^9, 3.645888408631502*^9, 3.645888765894527*^9, 
+   3.645890355537195*^9, 3.645890389940071*^9, 3.645909250188663*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["misc 2:", "Subsection",
+ CellChangeTimes->{{3.645891186538123*^9, 3.645891188260244*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ta", "=", 
+   RowBox[{"1.958591030", "-", 
+    RowBox[{"0.011278560", "I"}]}]}], ";", 
+  RowBox[{"tb", "=", "2"}], ";", 
+  RowBox[{"tab", "=", 
+   RowBox[{"0.5", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"ta", " ", "tb"}], "-", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ta", "^", "2"}], 
+         RowBox[{"tb", "^", "2"}]}], "-", 
+        RowBox[{"4", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"ta", "^", "2"}], "+", 
+           RowBox[{"tb", "^", "2"}]}], ")"}]}]}], "]"}]}], ")"}]}]}], ";", 
+  RowBox[{"z0", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"tab", "-", "2"}], ")"}], 
+    RowBox[{"tb", "/", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"tb", " ", "tab"}], "-", 
+       RowBox[{"2", "ta"}], "+", 
+       RowBox[{"2", "I", " ", "tab"}]}], ")"}]}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"a", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ta", "/", "2"}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"ta", " ", "tab"}], "-", 
+           RowBox[{"2", "tb"}], "+", 
+           RowBox[{"4", "I"}]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", "tab"}], "+", "4"}], ")"}]}], "/", "z0"}]}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"ta", " ", "tab"}], "-", 
+          RowBox[{"2", " ", "tb"}], "-", 
+          RowBox[{"4", "I"}]}], ")"}], 
+        RowBox[{"z0", "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"2", "tab"}], "-", "4"}], ")"}]}]}], ",", 
+       RowBox[{"ta", "/", "2"}]}], "}"}]}], "}"}]}], ";", 
+  RowBox[{"A", "=", 
+   RowBox[{"Inverse", "[", "a", "]"}]}], ";", 
+  RowBox[{"b", "=", 
+   RowBox[{"0.5", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"tb", "-", 
+         RowBox[{"2", "I"}]}], ",", "tb"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"tb", ",", 
+        RowBox[{"tb", "+", 
+         RowBox[{"2", "I"}]}]}], "}"}]}], "}"}]}]}], ";", 
+  RowBox[{"B", "=", 
+   RowBox[{"Inverse", "[", "b", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ToMatrix", "[", 
+    RowBox[{"{", 
+     RowBox[{"z_", ",", "r_"}], "}"}], "]"}], ":=", 
+   RowBox[{"I", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"z", ",", 
+         RowBox[{
+          RowBox[{"r", "^", "2"}], "-", 
+          RowBox[{"z", " ", 
+           RowBox[{"Conjugate", "[", "z", "]"}]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"-", 
+          RowBox[{"Conjugate", "[", "z", "]"}]}]}], "}"}]}], "}"}], "/", 
+     "r"}]}]}], ";", 
+  RowBox[{
+   RowBox[{"Fix", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a_", ",", "b_"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"c_", ",", "d_"}], "}"}]}], "}"}], "]"}], ":=", 
+   RowBox[{"0.5", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", "-", "d", "-", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{
+         RowBox[{"4", " ", "b", " ", "c"}], "+", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"a", "-", "d"}], ")"}], "^", "2"}]}], "]"}]}], ")"}], "/", 
+     "c"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"a1", "=", 
+   RowBox[{
+   "a", ".", "a", ".", "a", ".", "a", ".", "a", ".", "a", ".", "a", ".", "a", 
+    ".", "a", ".", "a", ".", "a", ".", "a", ".", "a", ".", "a", ".", "a", ".",
+     "B"}]}], ";", 
+  RowBox[{"a2", "=", 
+   RowBox[{"a", ".", "b", ".", "A", ".", "B"}]}], ";", 
+  RowBox[{"c1", "=", 
+   RowBox[{"ToMatrix", "[", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", 
+      RowBox[{"-", "1"}]}], "}"}], "]"}]}], ";", 
+  RowBox[{"c2", "=", 
+   RowBox[{"ToMatrix", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"x", "+", 
+        RowBox[{"I", " ", "y"}]}], ",", "r"}], "}"}], "/.", 
+     RowBox[{
+      RowBox[{"NSolve", "[", 
+       RowBox[{
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"Re", "[", "#", "]"}], "-", "x"}], ")"}], "^", "2"}], 
+             "+", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"Im", "[", "#", "]"}], "-", "y"}], ")"}], "^", 
+              "2"}]}], "\[Equal]", 
+            RowBox[{"r", "^", "2"}]}], "&"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Fix", "[", "a1", "]"}], ",", 
+            RowBox[{"Fix", "[", "a2", "]"}], ",", 
+            RowBox[{"Fix", "[", 
+             RowBox[{"a1", ".", "a2"}], "]"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "y", ",", "r"}], "}"}]}], "]"}], "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Reflect", "[", 
+    RowBox[{"c_", ",", "a_"}], "]"}], ":=", 
+   RowBox[{"a", ".", "c", ".", 
+    RowBox[{"Inverse", "[", 
+     RowBox[{"Conjugate", "[", "a", "]"}], "]"}]}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"orbits", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"Reverse", "[", 
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Reflect", "[", 
+          RowBox[{"#", ",", "a"}], "]"}], "&"}], ",", "c1", ",", 
+        RowBox[{
+         RowBox[{"3", "*", "15"}], "+", "8"}]}], "]"}], "]"}], ",", 
+     RowBox[{"Drop", "[", 
+      RowBox[{
+       RowBox[{"NestList", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Reflect", "[", 
+           RowBox[{"#", ",", "A"}], "]"}], "&"}], ",", "c1", ",", 
+         RowBox[{
+          RowBox[{"3", "*", "15"}], "+", "6"}]}], "]"}], ",", "1"}], "]"}], 
+     ",", 
+     RowBox[{"Reverse", "[", 
+      RowBox[{"NestList", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Reflect", "[", 
+          RowBox[{"#", ",", "a"}], "]"}], "&"}], ",", "c2", ",", 
+        RowBox[{
+         RowBox[{"3", "*", "15"}], "-", "7"}]}], "]"}], "]"}], ",", 
+     RowBox[{"Drop", "[", 
+      RowBox[{
+       RowBox[{"NestList", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Reflect", "[", 
+           RowBox[{"#", ",", "A"}], "]"}], "&"}], ",", "c2", ",", 
+         RowBox[{
+          RowBox[{"3", "*", "15"}], "+", "7"}]}], "]"}], ",", "1"}], "]"}]}], 
+    "]"}]}], ";"}], "\n", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"a", ",", "b"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"c", ",", "d"}], "}"}]}], "}"}], "=", 
+        RowBox[{"orbits", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}], ";", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Hue", "[", 
+          RowBox[{"i", "/", "15"}], "]"}], ",", 
+         RowBox[{"Disk", "[", 
+          RowBox[{
+           RowBox[{"-", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Re", "[", 
+               RowBox[{"a", "/", "c"}], "]"}], ",", 
+              RowBox[{"Im", "[", 
+               RowBox[{"a", "/", "c"}], "]"}]}], "}"}]}], ",", 
+           RowBox[{"Re", "[", 
+            RowBox[{"I", "/", "c"}], "]"}]}], "]"}]}], "}"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", 
+        RowBox[{"Length", "[", "orbits", "]"}]}], "}"}]}], "]"}], "]"}], ",", 
+   
+   RowBox[{"AspectRatio", "\[Rule]", "Automatic"}], ",", 
+   RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.645891180352318*^9, 3.645891180352643*^9}, {
+  3.645891287089333*^9, 3.645891356741795*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Hue[
+     NCache[
+      Rational[1, 15], 0.06666666666666667]], 
+    DiskBox[{-0.09239665877051347, -0.0144399322194396}, 
+     0.002115566789455276]}, 
+   {Hue[
+     NCache[
+      Rational[2, 15], 0.13333333333333333`]], 
+    DiskBox[{-0.09278357815066625, -0.018797913599019132`}, 
+     0.0022595570158215153`]}, 
+   {Hue[
+     NCache[
+      Rational[1, 5], 0.2]], 
+    DiskBox[{-0.09487473632350917, -0.023023825610916402`}, 
+     0.0024554482690265756`]}, 
+   {Hue[
+     NCache[
+      Rational[4, 15], 0.26666666666666666`]], 
+    DiskBox[{-0.09871665732879605, -0.026476701863640147`}, 
+     0.0027100828195922946`]}, 
+   {Hue[
+     NCache[
+      Rational[1, 3], 0.3333333333333333]], 
+    DiskBox[{-0.10412639164277333`, -0.028377885218488434`}, 
+     0.003024001544678552]}, 
+   {Hue[
+     NCache[
+      Rational[2, 5], 0.4]], 
+    DiskBox[{-0.11051589551252948`, -0.027883552622023574`}, 
+     0.0033845961504148227`]}, 
+   {Hue[
+     NCache[
+      Rational[7, 15], 0.4666666666666667]], 
+    DiskBox[{-0.1167251390884845, -0.024352739014407886`}, 
+     0.0037583269569175398`]}, 
+   {Hue[
+     NCache[
+      Rational[8, 15], 0.5333333333333333]], 
+    DiskBox[{-0.12109230711791258`, -0.017832041061378635`}, 
+     0.004089708363587722]}, 
+   {Hue[
+     NCache[
+      Rational[3, 5], 0.6]], 
+    DiskBox[{-0.12201426300149414`, -0.00947527363066994}, 
+     0.004317762394150514]}, 
+   {Hue[
+     NCache[
+      Rational[2, 3], 0.6666666666666666]], 
+    DiskBox[{-0.118828106442197, -0.0013520943076073472`}, 
+     0.004407925884431448]}, 
+   {Hue[
+     NCache[
+      Rational[11, 15], 0.7333333333333333]], 
+    DiskBox[{-0.11225811049111079`, 0.004475449968023318}, 
+     0.004374164930501158]}, 
+   {Hue[
+     NCache[
+      Rational[4, 5], 0.8]], 
+    DiskBox[{-0.10394963026734383`, 0.006859256640483413}, 
+     0.004269525131063421]}, 
+   {Hue[
+     NCache[
+      Rational[13, 15], 0.8666666666666667]], 
+    DiskBox[{-0.09559880590341492, 0.005727654565470886}, 
+     0.0041576209346791335`]}, 
+   {Hue[
+     NCache[
+      Rational[14, 15], 0.9333333333333333]], 
+    DiskBox[{-0.08842476324299099, 0.001654699294544265}, 
+     0.004091976190790079]}, 
+   {Hue[1], 
+    DiskBox[{-0.08313466371389291, -0.0046163294603208645`}, 
+     0.0041123491728280665`]}, 
+   {Hue[
+     NCache[
+      Rational[16, 15], 1.0666666666666667`]], 
+    DiskBox[{-0.08012772103550027, -0.012420767060436986`}, 
+     0.004251319312068057]}, 
+   {Hue[
+     NCache[
+      Rational[17, 15], 1.1333333333333333`]], 
+    DiskBox[{-0.07971883978529219, -0.02120612372321324}, 
+     0.00454354712062768]}, 
+   {Hue[
+     NCache[
+      Rational[6, 5], 1.2]], 
+    DiskBox[{-0.08230335755496455, -0.03042865918187962}, 
+     0.005034286266318985]}, 
+   {Hue[
+     NCache[
+      Rational[19, 15], 1.2666666666666666`]], 
+    DiskBox[{-0.08844136206424934, -0.039338347388160354`}, 
+     0.0057850317939442345`]}, 
+   {Hue[
+     NCache[
+      Rational[4, 3], 1.3333333333333333`]], 
+    DiskBox[{-0.09878938439823459, -0.04662237222754149}, 
+     0.006869555678011516]}, 
+   {Hue[
+     NCache[
+      Rational[7, 5], 1.4]], 
+    DiskBox[{-0.11363601505364031`, -0.04992170506646648}, 
+     0.008339258838578579]}, 
+   {Hue[
+     NCache[
+      Rational[22, 15], 1.4666666666666666`]], 
+    DiskBox[{-0.13159144345269508`, -0.04565329489045889}, 
+     0.010116546059182656`]}, 
+   {Hue[
+     NCache[
+      Rational[23, 15], 1.5333333333333334`]], 
+    DiskBox[{-0.14758254420002756`, -0.030642859553701825`}, 
+     0.011815815238915202`]}, 
+   {Hue[
+     NCache[
+      Rational[8, 5], 1.6]], 
+    DiskBox[{-0.15334758642233362`, -0.006767665887668769}, 
+     0.012745548412469221`]}, 
+   {Hue[
+     NCache[
+      Rational[5, 3], 1.6666666666666667`]], 
+    DiskBox[{-0.14436773039149522`, 0.01678614597521056}, 
+     0.012461987516424886`]}, 
+   {Hue[
+     NCache[
+      Rational[26, 15], 1.7333333333333334`]], 
+    DiskBox[{-0.12530800502082975`, 0.030945143148765696`}, 
+     0.011281439619646233`]}, 
+   {Hue[
+     NCache[
+      Rational[9, 5], 1.8]], 
+    DiskBox[{-0.10436754431132049`, 0.03396366106112028}, 
+     0.00987545866705202]}, 
+   {Hue[
+     NCache[
+      Rational[28, 15], 1.8666666666666667`]], 
+    DiskBox[{-0.08648541296986052, 0.028971257729945018`}, 
+     0.008690497067419293]}, 
+   {Hue[
+     NCache[
+      Rational[29, 15], 1.9333333333333333`]], 
+    DiskBox[{-0.07297910458177782, 0.019369096750022345`}, 
+     0.00788122166535968]}, 
+   {Hue[2], 
+    DiskBox[{-0.06356742236741979, 0.007244642482464293}, 
+     0.007467464056556951]}, 
+   {Hue[
+     NCache[
+      Rational[31, 15], 2.066666666666667]], 
+    DiskBox[{-0.05769457539559184, -0.006469002884128628}, 
+     0.007450793240968852]}, 
+   {Hue[
+     NCache[
+      Rational[32, 15], 2.1333333333333333`]], 
+    DiskBox[{-0.05506609230736653, -0.021566217234234273`}, 
+     0.007873527444729456]}, 
+   {Hue[
+     NCache[
+      Rational[11, 5], 2.2]], 
+    DiskBox[{-0.055895082502490284`, -0.038282958251912955`}, 
+     0.008863755936863608]}, 
+   {Hue[
+     NCache[
+      Rational[34, 15], 2.2666666666666666`]], 
+    DiskBox[{-0.061209565926817026`, -0.057120514610031405`}, 
+     0.010709114665394337`]}, 
+   {Hue[
+     NCache[
+      Rational[7, 3], 2.3333333333333335`]], 
+    DiskBox[{-0.07353474903359844, -0.07855738352318525}, 
+     0.014018390008863351`]}, 
+   {Hue[
+     NCache[
+      Rational[12, 5], 2.4]], 
+    DiskBox[{-0.0984107496528493, -0.10187269855603336`}, 
+     0.020075881091864565`]}, 
+   {Hue[
+     NCache[
+      Rational[37, 15], 2.466666666666667]], 
+    DiskBox[{-0.1465701649593444, -0.11995696883143286`}, 
+     0.03136700096247994]}, 
+   {Hue[
+     NCache[
+      Rational[38, 15], 2.533333333333333]], 
+    DiskBox[{-0.22587816801411073`, -0.10238370229351691`}, 
+     0.04986463724177838]}, 
+   {Hue[
+     NCache[
+      Rational[13, 5], 2.6]], 
+    DiskBox[{-0.27954048905023954`, -0.0030287863237079366`}, 
+     0.06305588359634157]}, 
+   {Hue[
+     NCache[
+      Rational[8, 3], 2.6666666666666665`]], 
+    DiskBox[{-0.22151577223040442`, 0.09524283781403511}, 
+     0.0510676454092566]}, 
+   {Hue[
+     NCache[
+      Rational[41, 15], 2.7333333333333334`]], 
+    DiskBox[{-0.1389774987978361, 0.11166819527657357`}, 
+     0.033089106839160186`]}, 
+   {Hue[
+     NCache[
+      Rational[14, 5], 2.8]], 
+    DiskBox[{-0.08731899781528756, 0.09280874527077682}, 
+     0.02190434348253765]}, 
+   {Hue[
+     NCache[
+      Rational[43, 15], 2.8666666666666667`]], 
+    DiskBox[{-0.05838250869401479, 0.06851596159167682}, 
+     0.015877394719205556`]}, 
+   {Hue[
+     NCache[
+      Rational[44, 15], 2.933333333333333]], 
+    DiskBox[{-0.04138319161738733, 0.04560209569115609}, 
+     0.01265367661677398]}, 
+   {Hue[3], 
+    DiskBox[{-0.03062729073743624, 0.024527469618142162`}, 
+     0.011007034865695977`]}, 
+   {Hue[
+     NCache[
+      Rational[46, 15], 3.066666666666667]], 
+    DiskBox[{-0.023319402213973023`, 0.004416673369542248}, 
+     0.010390379941332992`]}, 
+   {Hue[
+     NCache[
+      Rational[47, 15], 3.1333333333333333`]], 
+    DiskBox[{-0.018029907623278735`, -0.01592465416693227}, 
+     0.010627430576680504`]}, 
+   {Hue[
+     NCache[
+      Rational[16, 5], 3.2]], 
+    DiskBox[{-0.01398051089695521, -0.038006066248085994`}, 
+     0.011822210252180878`]}, 
+   {Hue[
+     NCache[
+      Rational[49, 15], 3.2666666666666666`]], 
+    DiskBox[{-0.010718217770218662`, -0.06408764867127438}, 
+     0.014462604720390649`]}, 
+   {Hue[
+     NCache[
+      Rational[10, 3], 3.3333333333333335`]], 
+    DiskBox[{-0.007957993372810163, -0.09835462018108895}, 
+     0.019915355881984988`]}, 
+   {Hue[
+     NCache[
+      Rational[17, 5], 3.4]], 
+    DiskBox[{-0.005494940363161566, -0.15063352712588587`}, 
+     0.0324215406774316]}, 
+   {Hue[
+     NCache[
+      Rational[52, 15], 3.466666666666667]], 
+    DiskBox[{-0.003114412537594818, -0.25352097596804296`}, 
+     0.07049344385823157]}, 
+   {Hue[
+     NCache[
+      Rational[53, 15], 3.533333333333333]], 
+    DiskBox[{-9.867980561019204*^-19, -0.662001273626521}, 
+     0.33799872637347933`]}, 
+   {Hue[
+     NCache[
+      Rational[18, 5], 3.6]], DiskBox[{0, 0}, -1]}, 
+   {Hue[
+     NCache[
+      Rational[11, 3], 3.6666666666666665`]], 
+    DiskBox[{1.3585392458594234`*^-18, 0.6620012736265211}, 
+     0.33799872637347933`]}, 
+   {Hue[
+     NCache[
+      Rational[56, 15], 3.7333333333333334`]], 
+    DiskBox[{0.0031144125375948185`, 0.2535209759680431}, 
+     0.07049344385823157]}, 
+   {Hue[
+     NCache[
+      Rational[19, 5], 3.8]], 
+    DiskBox[{0.0054949403631615636`, 0.15063352712588604`}, 
+     0.03242154067743158]}, 
+   {Hue[
+     NCache[
+      Rational[58, 15], 3.8666666666666667`]], 
+    DiskBox[{0.007957993372810161, 0.09835462018108918}, 
+     0.01991535588198497]}, 
+   {Hue[
+     NCache[
+      Rational[59, 15], 3.933333333333333]], 
+    DiskBox[{0.010718217770218651`, 0.06408764867127466}, 
+     0.014462604720390628`]}, 
+   {Hue[4], 
+    DiskBox[{0.013980510896955189`, 0.03800606624808632}, 
+     0.011822210252180849`]}, 
+   {Hue[
+     NCache[
+      Rational[61, 15], 4.066666666666666]], 
+    DiskBox[{0.018029907623278694`, 0.015924654166932665`}, 
+     0.010627430576680462`]}, 
+   {Hue[
+     NCache[
+      Rational[62, 15], 4.133333333333334]], 
+    DiskBox[{0.023319402213972953`, -0.004416673369541757}, 
+     0.010390379941332937`]}, 
+   {Hue[
+     NCache[
+      Rational[21, 5], 4.2]], 
+    DiskBox[{0.030627290737436096`, -0.02452746961814154}, 
+     0.011007034865695894`]}, 
+   {Hue[
+     NCache[
+      Rational[64, 15], 4.266666666666667]], 
+    DiskBox[{0.04138319161738704, -0.045602095691155274`}, 
+     0.012653676616773848`]}, 
+   {Hue[
+     NCache[
+      Rational[13, 3], 4.333333333333333]], 
+    DiskBox[{0.05838250869401421, -0.06851596159167575}, 
+     0.01587739471920533]}, 
+   {Hue[
+     NCache[
+      Rational[22, 5], 4.4]], 
+    DiskBox[{0.08731899781528632, -0.09280874527077546}, 
+     0.02190434348253723]}, 
+   {Hue[
+     NCache[
+      Rational[67, 15], 4.466666666666667]], 
+    DiskBox[{0.13897749879783344`, -0.11166819527657226`}, 
+     0.03308910683915935]}, 
+   {Hue[
+     NCache[
+      Rational[68, 15], 4.533333333333333]], 
+    DiskBox[{0.22151577223039984`, -0.09524283781403596}, 
+     0.051067645409255194`]}, 
+   {Hue[
+     NCache[
+      Rational[23, 5], 4.6]], 
+    DiskBox[{0.27954048905023715`, 0.0030287863237027936`}, 
+     0.06305588359634054]}, 
+   {Hue[
+     NCache[
+      Rational[14, 3], 4.666666666666667]], 
+    DiskBox[{0.22587816801411317`, 0.1023837022935133}, 0.04986463724177848]}, 
+   {Hue[
+     NCache[
+      Rational[71, 15], 4.733333333333333]], 
+    DiskBox[{0.14657016495934705`, 0.11995696883143225`}, 
+     0.03136700096248025]}, 
+   {Hue[
+     NCache[
+      Rational[24, 5], 4.8]], 
+    DiskBox[{0.09841074965285099, 0.10187269855603381`}, 
+     0.020075881091864756`]}, 
+   {Hue[
+     NCache[
+      Rational[73, 15], 4.866666666666666]], 
+    DiskBox[{0.07353474903359943, 0.07855738352318603}, 0.01401839000886345]}, 
+   {Hue[
+     NCache[
+      Rational[74, 15], 4.933333333333334]], 
+    DiskBox[{0.06120956592681757, 0.05712051461003225}, 
+     0.010709114665394377`]}, 
+   {Hue[5], 
+    DiskBox[{0.05589508250249054, 0.038282958251913836`}, 
+     0.008863755936863612]}, 
+   {Hue[
+     NCache[
+      Rational[76, 15], 5.066666666666666]], 
+    DiskBox[{0.05506609230736657, 0.021566217234235206`}, 
+     0.007873527444729432]}, 
+   {Hue[
+     NCache[
+      Rational[77, 15], 5.133333333333334]], 
+    DiskBox[{0.05769457539559166, 0.006469002884129603}, 0.0074507932409688]}, 
+   {Hue[
+     NCache[
+      Rational[26, 5], 5.2]], 
+    DiskBox[{0.06356742236741937, -0.00724464248246327}, 
+     0.007467464056556869]}, 
+   {Hue[
+     NCache[
+      Rational[79, 15], 5.266666666666667]], 
+    DiskBox[{0.07297910458177713, -0.019369096750021308`}, 
+     0.007881221665359562]}, 
+   {Hue[
+     NCache[
+      Rational[16, 3], 5.333333333333333]], 
+    DiskBox[{0.08648541296985937, -0.028971257729944057`}, 
+     0.008690497067419124]}, 
+   {Hue[
+     NCache[
+      Rational[27, 5], 5.4]], 
+    DiskBox[{0.10436754431131887`, -0.03396366106111962}, 
+     0.009875458667051796]}, 
+   {Hue[
+     NCache[
+      Rational[82, 15], 5.466666666666667]], 
+    DiskBox[{0.1253080050208277, -0.030945143148765716`}, 
+     0.011281439619645957`]}, 
+   {Hue[
+     NCache[
+      Rational[83, 15], 5.533333333333333]], 
+    DiskBox[{0.14436773039149325`, -0.016786145975211605`}, 
+     0.012461987516424609`]}, 
+   {Hue[
+     NCache[
+      Rational[28, 5], 5.6]], 
+    DiskBox[{0.15334758642233248`, 0.006767665887666878}, 
+     0.012745548412469011`]}, 
+   {Hue[
+     NCache[
+      Rational[17, 3], 5.666666666666667]], 
+    DiskBox[{0.14758254420002767`, 0.030642859553699876`}, 
+     0.0118158152389151]}, 
+   {Hue[
+     NCache[
+      Rational[86, 15], 5.733333333333333]], 
+    DiskBox[{0.131591443452696, 0.04565329489045761}, 0.01011654605918263]}, 
+   {Hue[
+     NCache[
+      Rational[29, 5], 5.8]], 
+    DiskBox[{0.11363601505364143`, 0.04992170506646601}, 
+     0.008339258838578585]}, 
+   {Hue[
+     NCache[
+      Rational[88, 15], 5.866666666666666]], 
+    DiskBox[{0.0987893843982356, 0.04662237222754163}, 0.006869555678011528]}, 
+   {Hue[
+     NCache[
+      Rational[89, 15], 5.933333333333334]], 
+    DiskBox[{0.08844136206425005, 0.039338347388160846`}, 
+     0.005785031793944236]}, 
+   {Hue[6], 
+    DiskBox[{0.082303357554965, 0.03042865918188034}, 
+     0.0050342862663189745`]}, 
+   {Hue[
+     NCache[
+      Rational[91, 15], 6.066666666666666]], 
+    DiskBox[{0.0797188397852924, 0.021206123723214086`}, 
+     0.004543547120627657]}, 
+   {Hue[
+     NCache[
+      Rational[92, 15], 6.133333333333334]], 
+    DiskBox[{0.08012772103550017, 0.012420767060437887`}, 
+     0.00425131931206802]}, 
+   {Hue[
+     NCache[
+      Rational[31, 5], 6.2]], 
+    DiskBox[{0.08313466371389253, 0.004616329460321751}, 
+     0.004112349172828015]}, 
+   {Hue[
+     NCache[
+      Rational[94, 15], 6.266666666666667]], 
+    DiskBox[{0.0884247632429903, -0.0016546992945434644`}, 
+     0.004091976190790014]}, 
+   {Hue[
+     NCache[
+      Rational[19, 3], 6.333333333333333]], 
+    DiskBox[{0.09559880590341395, -0.0057276545654702795`}, 
+     0.004157620934679055]}, 
+   {Hue[
+     NCache[
+      Rational[32, 5], 6.4]], 
+    DiskBox[{0.10394963026734266`, -0.006859256640483127}, 
+     0.0042695251310633335`]}, 
+   {Hue[
+     NCache[
+      Rational[97, 15], 6.466666666666667]], 
+    DiskBox[{0.11225811049110954`, -0.004475449968023463}, 
+     0.004374164930501066]}, 
+   {Hue[
+     NCache[
+      Rational[98, 15], 6.533333333333333]], 
+    DiskBox[{0.1188281064421959, 0.0013520943076067433`}, 
+     0.0044079258844313615`]}, 
+   {Hue[
+     NCache[
+      Rational[33, 5], 6.6]], 
+    DiskBox[{0.12201426300149344`, 0.00947527363066901}, 
+     0.004317762394150442]}, 
+   {Hue[
+     NCache[
+      Rational[20, 3], 6.666666666666667]], 
+    DiskBox[{0.12109230711791237`, 0.01783204106137763}, 
+     0.00408970836358767]}, 
+   {Hue[
+     NCache[
+      Rational[101, 15], 6.733333333333333]], 
+    DiskBox[{0.1167251390884847, 0.02435273901440706}, 0.003758326956917505]}, 
+   {Hue[
+     NCache[
+      Rational[34, 5], 6.8]], 
+    DiskBox[{0.11051589551252995`, 0.02788355262202308}, 
+     0.0033845961504148005`]}, 
+   {Hue[
+     NCache[
+      Rational[103, 15], 6.866666666666666]], 
+    DiskBox[{0.10412639164277392`, 0.028377885218488295`}, 
+     0.003024001544678536]}, 
+   {Hue[
+     NCache[
+      Rational[104, 15], 6.933333333333334]], 
+    DiskBox[{0.09871665732879657, 0.026476701863640328`}, 
+     0.0027100828195922803`]}, 
+   {Hue[7], 
+    DiskBox[{0.09487473632350953, 0.02302382561091682}, 
+     0.0024554482690265604`]}, 
+   {Hue[
+     NCache[
+      Rational[106, 15], 7.066666666666666]], 
+    DiskBox[{-0.08728960368000876, -0.01376742415814849}, 
+     0.00303607070824376]}, 
+   {Hue[
+     NCache[
+      Rational[107, 15], 7.133333333333334]], 
+    DiskBox[{-0.08742204014632377, -0.020047762771069767`}, 
+     0.00324626042260228]}, 
+   {Hue[
+     NCache[
+      Rational[36, 5], 7.2]], 
+    DiskBox[{-0.08988999545389921, -0.026390337742873582`}, 
+     0.0035601957736665917`]}, 
+   {Hue[
+     NCache[
+      Rational[109, 15], 7.266666666666667]], 
+    DiskBox[{-0.09493573840023214, -0.03201929421620059}, 
+     0.003999929739530394]}, 
+   {Hue[
+     NCache[
+      Rational[22, 3], 7.333333333333333]], 
+    DiskBox[{-0.10262236348133569`, -0.03583216708124345}, 
+     0.004581220183631963]}, 
+   {Hue[
+     NCache[
+      Rational[37, 5], 7.4]], 
+    DiskBox[{-0.112484832446221, -0.03633608488694577}, 
+     0.005295047671519857]}, 
+   {Hue[
+     NCache[
+      Rational[112, 15], 7.466666666666667]], 
+    DiskBox[{-0.12297242619384563`, -0.03194590101186946}, 
+     0.0060754312459185165`]}, 
+   {Hue[
+     NCache[
+      Rational[113, 15], 7.533333333333333]], 
+    DiskBox[{-0.13111873391338444`, -0.02201080589384165}, 
+     0.006773682609881296]}, 
+   {Hue[
+     NCache[
+      Rational[38, 5], 7.6]], 
+    DiskBox[{-0.13346049460134712`, -0.008240160413080313}, 
+     0.007195983535636137]}, 
+   {Hue[
+     NCache[
+      Rational[23, 3], 7.666666666666667]], 
+    DiskBox[{-0.12839850723503005`, 0.005265926728558777}, 
+     0.007228913283173624]}, 
+   {Hue[
+     NCache[
+      Rational[116, 15], 7.733333333333333]], 
+    DiskBox[{-0.11760766587172641`, 0.014437189575333501`}, 
+     0.006934152169484414]}, 
+   {Hue[
+     NCache[
+      Rational[39, 5], 7.8]], 
+    DiskBox[{-0.10456314064283655`, 0.01759981275897885}, 
+     0.006489559322122547]}, 
+   {Hue[
+     NCache[
+      Rational[118, 15], 7.866666666666666]], 
+    DiskBox[{-0.09220911097382015, 0.015370999195947298`}, 
+     0.006065104284915824]}, 
+   {Hue[
+     NCache[
+      Rational[119, 15], 7.933333333333334]], 
+    DiskBox[{-0.08210334861121713, 0.009219116940126578}, 
+     0.005766999343271395]}, 
+   {Hue[8], 
+    DiskBox[{-0.0747903369372035, 0.00045143739503270155`}, 
+     0.005651280662472265]}, 
+   {Hue[
+     NCache[
+      Rational[121, 15], 8.066666666666666]], 
+    DiskBox[{-0.07039957226065545, -0.01007616752173817}, 
+     0.005756348710678971]}, 
+   {Hue[
+     NCache[
+      Rational[122, 15], 8.133333333333333]], 
+    DiskBox[{-0.06906701629888704, -0.021887540072798643`}, 
+     0.006131083921419948]}, 
+   {Hue[
+     NCache[
+      Rational[41, 5], 8.2]], 
+    DiskBox[{-0.07120433512843696, -0.034699613966945826`}, 
+     0.006859271620598322]}, 
+   {Hue[
+     NCache[
+      Rational[124, 15], 8.266666666666667]], 
+    DiskBox[{-0.07772601023151264, -0.04814706609900794}, 
+     0.008087580360682363]}, 
+   {Hue[
+     NCache[
+      Rational[25, 3], 8.333333333333334]], 
+    DiskBox[{-0.09027548321378001, -0.061252265242647395`}, 
+     0.01005897184276623]}, 
+   {Hue[
+     NCache[
+      Rational[42, 5], 8.4]], 
+    DiskBox[{-0.11118906559638547`, -0.07123695677655481}, 
+     0.013118005903244273`]}, 
+   {Hue[
+     NCache[
+      Rational[127, 15], 8.466666666666667]], 
+    DiskBox[{-0.14181174159996962`, -0.07131454242087902}, 
+     0.01750761873749779]}, 
+   {Hue[
+     NCache[
+      Rational[128, 15], 8.533333333333333]], 
+    DiskBox[{-0.17577005168039234`, -0.050189586089870564`}, 
+     0.022489004818204813`]}, 
+   {Hue[
+     NCache[
+      Rational[43, 5], 8.6]], 
+    DiskBox[{-0.19127994585705152`, -0.005068133359060931}, 
+     0.025228220475976]}, 
+   {Hue[
+     NCache[
+      Rational[26, 3], 8.666666666666666]], 
+    DiskBox[{-0.17204250593724027`, 0.03958656548007974}, 
+     0.023398623374660622`]}, 
+   {Hue[
+     NCache[
+      Rational[131, 15], 8.733333333333333]], 
+    DiskBox[{-0.13472604096424481`, 0.05973771174450204}, 
+     0.019015118087010976`]}, 
+   {Hue[
+     NCache[
+      Rational[44, 5], 8.8]], 
+    DiskBox[{-0.10079630455411726`, 0.05851812935089472}, 
+     0.014939709806142986`]}, 
+   {Hue[
+     NCache[
+      Rational[133, 15], 8.866666666666667]], 
+    DiskBox[{-0.07632406260587607, 0.04707985736652454}, 
+     0.012076245378998395`]}, 
+   {Hue[
+     NCache[
+      Rational[134, 15], 8.933333333333334]], 
+    DiskBox[{-0.059838633611959936`, 0.03194209050534325}, 
+     0.010307140680656086`]}, 
+   {Hue[9], 
+    DiskBox[{-0.04892981444727062, 0.015565853032616766`}, 
+     0.009371703701253216]}, 
+   {Hue[
+     NCache[
+      Rational[136, 15], 9.066666666666666]], 
+    DiskBox[{-0.04189290565949036, -0.0015209051607842348`}, 
+     0.009109104805272201]}, 
+   {Hue[
+     NCache[
+      Rational[137, 15], 9.133333333333333]], 
+    DiskBox[{-0.037802056425851625`, -0.01966903170171566}, 
+     0.009496144407427118]}, 
+   {Hue[
+     NCache[
+      Rational[46, 5], 9.2]], 
+    DiskBox[{-0.03641166323288899, -0.03979550224649487}, 
+     0.010680205724503546`]}, 
+   {Hue[
+     NCache[
+      Rational[139, 15], 9.266666666666667]], 
+    DiskBox[{-0.03827399973766401, -0.06349987353841055}, 
+     0.013099446585384186`]}, 
+   {Hue[
+     NCache[
+      Rational[28, 3], 9.333333333333334]], 
+    DiskBox[{-0.04543876655913191, -0.09361936019517135}, 
+     0.01786335746782118]}, 
+   {Hue[
+     NCache[
+      Rational[47, 5], 9.4]], 
+    DiskBox[{-0.0640662040643676, -0.1355826077072573}, 0.02805261459651831]}, 
+   {Hue[
+     NCache[
+      Rational[142, 15], 9.466666666666667]], 
+    DiskBox[{-0.11556932807308981`, -0.19968494166628592`}, 
+     0.05418385192544066]}, 
+   {Hue[
+     NCache[
+      Rational[143, 15], 9.533333333333333]], 
+    DiskBox[{-0.2939545064727299, -0.28211242850119744`}, 
+     0.14233949300717605`]}, 
+   {Hue[
+     NCache[
+      Rational[48, 5], 9.6]], 
+    DiskBox[{-0.6712825801122102, -0.00018577592577417604`}, 
+     0.32871748818586727`]}, 
+   {Hue[
+     NCache[
+      Rational[29, 3], 9.666666666666666]], 
+    DiskBox[{-0.28947629759578813`, 0.27739979294444017`}, 
+     0.14336895473702976`]}, 
+   {Hue[
+     NCache[
+      Rational[146, 15], 9.733333333333333]], 
+    DiskBox[{-0.10847823177041073`, 0.19489749184986951`}, 
+     0.055560642380826405`]}, 
+   {Hue[
+     NCache[
+      Rational[49, 5], 9.8]], 
+    DiskBox[{-0.052936063234987965`, 0.13074670914408426`}, 
+     0.029300967985641798`]}, 
+   {Hue[
+     NCache[
+      Rational[148, 15], 9.866666666666667]], 
+    DiskBox[{-0.029686756662255454`, 0.08838265085661151}, 
+     0.019027776027280546`]}, 
+   {Hue[
+     NCache[
+      Rational[149, 15], 9.933333333333334]], 
+    DiskBox[{-0.017244309560787156`, 0.05750690756770026}, 
+     0.01426384941883661]}, 
+   {Hue[10], 
+    DiskBox[{-0.009151615841896221, 0.032591771530884404`}, 
+     0.01193510291493592]}, 
+   {Hue[
+     NCache[
+      Rational[151, 15], 10.066666666666666`]], 
+    DiskBox[{-0.0028819385536700483`, 0.010576817064922934`}, 
+     0.010957395503398061`]}, 
+   {Hue[
+     NCache[
+      Rational[152, 15], 10.133333333333333`]], 
+    DiskBox[{0.00287656855810964, -0.010565452957736192`}, 
+     0.010957148768484647`]}, 
+   {Hue[
+     NCache[
+      Rational[51, 5], 10.2]], 
+    DiskBox[{0.00914547678611193, -0.032579509999952155`}, 
+     0.011934275807065502`]}, 
+   {Hue[
+     NCache[
+      Rational[154, 15], 10.266666666666667`]], 
+    DiskBox[{0.017236226148203256`, -0.05749258078656148}, 
+     0.014262111435272833`]}, 
+   {Hue[
+     NCache[
+      Rational[31, 3], 10.333333333333334`]], 
+    DiskBox[{0.029674271011548726`, -0.08836440908279726}, 
+     0.019024236970608222`]}, 
+   {Hue[
+     NCache[
+      Rational[52, 5], 10.4]], 
+    DiskBox[{0.05291259223123363, -0.13072138388315305`}, 
+     0.029293011508897144`]}, 
+   {Hue[
+     NCache[
+      Rational[157, 15], 10.466666666666667`]], 
+    DiskBox[{0.10842100404783196`, -0.19486198875471947`}, 
+     0.05553880834712065]}, 
+   {Hue[
+     NCache[
+      Rational[158, 15], 10.533333333333333`]], 
+    DiskBox[{0.2892967263490171, -0.2774052650602855}, 0.14329647280978372`]}, 
+   {Hue[
+     NCache[
+      Rational[53, 5], 10.6]], 
+    DiskBox[{0.6713886136951622, -0.00018659138695206753`}, 
+     0.3288054431530682]}, 
+   {Hue[
+     NCache[
+      Rational[32, 3], 10.666666666666666`]], 
+    DiskBox[{0.29414033566315906`, 0.2821716333105381}, 0.142446117524183]}, 
+   {Hue[
+     NCache[
+      Rational[161, 15], 10.733333333333333`]], 
+    DiskBox[{0.11561100231895981`, 0.19973824399541124`}, 
+     0.05421057946044716]}, 
+   {Hue[
+     NCache[
+      Rational[54, 5], 10.8]], 
+    DiskBox[{0.06407765975277277, 0.13561406322439581`}, 
+     0.02806184806176592]}, 
+   {Hue[
+     NCache[
+      Rational[163, 15], 10.866666666666667`]], 
+    DiskBox[{0.04544171420273934, 0.09364004045754334}, 
+     0.017867425683596116`]}, 
+   {Hue[
+     NCache[
+      Rational[164, 15], 10.933333333333334`]], 
+    DiskBox[{0.03827365850480959, 0.0635150351416079}, 
+     0.013101508929303347`]}, 
+   {Hue[11], 
+    DiskBox[{0.036409573590466815`, 0.03980762277549718}, 
+     0.010681312387908341`]}, 
+   {Hue[
+     NCache[
+      Rational[166, 15], 11.066666666666666`]], 
+    DiskBox[{0.03779864169738661, 0.019679388941243523`}, 
+     0.009496705722485179]}, 
+   {Hue[
+     NCache[
+      Rational[167, 15], 11.133333333333333`]], 
+    DiskBox[{0.04188810928590446, 0.0015301879251796197`}, 
+     0.00910928798268136]}, 
+   {Hue[
+     NCache[
+      Rational[56, 5], 11.2]], 
+    DiskBox[{0.04892325103875142, -0.015557340512632096`}, 
+     0.009371559944639117]}, 
+   {Hue[
+     NCache[
+      Rational[169, 15], 11.266666666666667`]], 
+    DiskBox[{0.05982958161853138, -0.03193447268749356}, 
+     0.010306649507426621`]}, 
+   {Hue[
+     NCache[
+      Rational[34, 3], 11.333333333333334`]], 
+    DiskBox[{0.07631146231824158, -0.0470740386237822}, 0.01207533997910121]}, 
+   {Hue[
+     NCache[
+      Rational[57, 5], 11.4]], 
+    DiskBox[{0.10077918229039194`, -0.05851664134657488}, 
+     0.014938352800172772`]}, 
+   {Hue[
+     NCache[
+      Rational[172, 15], 11.466666666666667`]], 
+    DiskBox[{0.134705695646615, -0.059745707442663616`}, 
+     0.019013595866387494`]}, 
+   {Hue[
+     NCache[
+      Rational[173, 15], 11.533333333333333`]], 
+    DiskBox[{0.17202764432382112`, -0.03960891424205214}, 
+     0.02339815333741657]}, 
+   {Hue[
+     NCache[
+      Rational[58, 5], 11.6]], 
+    DiskBox[{0.19128421709613078`, 0.005039430462756904}, 
+     0.02523042910002358]}, 
+   {Hue[
+     NCache[
+      Rational[35, 3], 11.666666666666666`]], 
+    DiskBox[{0.17579024936403567`, 0.05017302622067721}, 
+     0.02249310696363353]}, 
+   {Hue[
+     NCache[
+      Rational[176, 15], 11.733333333333333`]], 
+    DiskBox[{0.14183213356908678`, 0.07131322096232123}, 
+     0.017511403703513267`]}, 
+   {Hue[
+     NCache[
+      Rational[59, 5], 11.8]], 
+    DiskBox[{0.11120298110598867`, 0.0712432730346652}, 
+     0.013120679577509032`]}, 
+   {Hue[
+     NCache[
+      Rational[178, 15], 11.866666666666667`]], 
+    DiskBox[{0.09028345487741778, 0.06126078554603342}, 
+     0.010060713310729327`]}, 
+   {Hue[
+     NCache[
+      Rational[179, 15], 11.933333333333334`]], 
+    DiskBox[{0.07772983864010018, 0.04815558949478097}, 
+     0.008088702757309666]}, 
+   {Hue[12], 
+    DiskBox[{0.07120534151897832, 0.03470745029785649}, 
+     0.006859999193874391]}, 
+   {Hue[
+     NCache[
+      Rational[181, 15], 12.066666666666666`]], 
+    DiskBox[{0.06906595835673443, 0.021894507683741474`}, 
+     0.00613155315544323]}, 
+   {Hue[
+     NCache[
+      Rational[182, 15], 12.133333333333333`]], 
+    DiskBox[{0.07039682941366178, 0.010082179803679743`}, 
+     0.005756640095807465]}, 
+   {Hue[
+     NCache[
+      Rational[61, 5], 12.2]], 
+    DiskBox[{0.07478607741536553, -0.0004465495223475248}, 
+     0.005651443415101558]}, 
+   {Hue[
+     NCache[
+      Rational[184, 15], 12.266666666666667`]], 
+    DiskBox[{0.0820976821009448, -0.009215705033359438}, 
+     0.005767069027733288]}, 
+   {Hue[
+     NCache[
+      Rational[37, 3], 12.333333333333334`]], 
+    DiskBox[{0.09220228739657937, -0.015369648805679469`}, 
+     0.006065118452445423]}, 
+   {Hue[
+     NCache[
+      Rational[62, 5], 12.4]], 
+    DiskBox[{0.10455584070603037`, -0.01760126357649411}, 
+     0.006489574029517787]}, 
+   {Hue[
+     NCache[
+      Rational[187, 15], 12.466666666666667`]], 
+    DiskBox[{0.1176012829921186, -0.01444193440885053}, 
+     0.0069342530017404685`]}, 
+   {Hue[
+     NCache[
+      Rational[188, 15], 12.533333333333333`]], 
+    DiskBox[{0.1283949771179997, -0.005273433829221352}, 
+     0.0072291978948342585`]}, 
+   {Hue[
+     NCache[
+      Rational[63, 5], 12.6]], 
+    DiskBox[{0.1334611960707105, 0.008231920979289514}, 
+     0.007196498955882486]}, 
+   {Hue[
+     NCache[
+      Rational[38, 3], 12.666666666666666`]], 
+    DiskBox[{0.13112322718869637`, 0.022004430960629248`}, 
+     0.0067743703168586245`]}, 
+   {Hue[
+     NCache[
+      Rational[191, 15], 12.733333333333333`]], 
+    DiskBox[{0.12297873276022357`, 0.03194284836944927}, 
+     0.006076163502705267]}, 
+   {Hue[
+     NCache[
+      Rational[64, 5], 12.8]], 
+    DiskBox[{0.11249094137968958`, 0.03633618549903983}, 
+     0.0052957158032345885`]}, 
+   {Hue[
+     NCache[
+      Rational[193, 15], 12.866666666666667`]], 
+    DiskBox[{0.10262713764442458`, 0.03583443067571604}, 
+     0.004581775077524549]}, 
+   {Hue[
+     NCache[
+      Rational[194, 15], 12.933333333333334`]], 
+    DiskBox[{0.09493883356972095, 0.03202270866012672}, 
+     0.0040003678287406615`]}, 
+   {Hue[13], 
+    DiskBox[{0.08989147515188145, 0.026394158455097363`}, 
+     0.0035605336742540812`]}, 
+   {Hue[
+     NCache[
+      Rational[196, 15], 13.066666666666666`]], 
+    DiskBox[{0.08742210372353336, 0.02005149440493569}, 
+     0.003246519235577241]}},
+  AspectRatio->Automatic,
+  ImageSize->{864., Automatic},
+  PlotRange->All]], "Output",
+ CellChangeTimes->{
+  3.645891189494205*^9, {3.645891288985804*^9, 3.645891357458209*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"n", "=", "40"}], ";", 
+  RowBox[{"tmax", "=", "25"}], ";", 
+  RowBox[{"dt", "=", "0.1"}], ";", 
+  RowBox[{"h", "=", "0.25"}], ";", 
+  RowBox[{"g", "=", "0.2"}], ";", 
+  RowBox[{"mu", "=", "0.07"}], ";", 
+  RowBox[{"zlist", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Sqrt", "[", "3", "]"}], "+", "I"}], ",", 
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"Sqrt", "[", "3", "]"}]}], "+", "I"}], ",", 
+     RowBox[{
+      RowBox[{"-", "2"}], "I"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"image", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"z", "=", 
+       RowBox[{"x", "+", 
+        RowBox[{"I", " ", "y"}]}]}], ";", 
+      RowBox[{"v", "=", 
+       RowBox[{"a", "=", 
+        RowBox[{"a1", "=", "0"}]}]}], ";", 
+      RowBox[{"Do", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"z", "+=", 
+          RowBox[{
+           RowBox[{"v", " ", "dt"}], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"4", "a"}], "-", "a1"}], ")"}], 
+            RowBox[{
+             RowBox[{"dt", "^", "2"}], "/", "6"}]}]}]}], ";", 
+         RowBox[{"vpredict", "=", 
+          RowBox[{"v", "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"3", "a"}], "-", "a1"}], ")"}], 
+            RowBox[{"dt", "/", "2"}]}]}]}], ";", 
+         RowBox[{"a2", "=", 
+          RowBox[{
+           RowBox[{"Plus", "@@", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"zlist", "-", "z"}], ")"}], "/", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"h", "^", "2"}], "+", 
+                 RowBox[{
+                  RowBox[{"Abs", "[", 
+                   RowBox[{"zlist", "-", "z"}], "]"}], "^", "2"}]}], ")"}], 
+               "^", "1.5"}]}], ")"}]}], "-", 
+           RowBox[{"g", " ", "z"}], "-", 
+           RowBox[{"mu", " ", "vpredict"}]}]}], ";", 
+         RowBox[{"v", "+=", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"2", "a2"}], "+", 
+             RowBox[{"5", "a"}], "-", "a1"}], ")"}], 
+           RowBox[{"dt", "/", "6"}]}]}], ";", 
+         RowBox[{"a1", "=", "a"}], ";", 
+         RowBox[{"a", "=", "a2"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "tmax", ",", "dt"}], "}"}]}], "]"}], ";", 
+      RowBox[{"r", "=", 
+       RowBox[{"Abs", "[", 
+        RowBox[{"z", "-", "zlist"}], "]"}]}], ";", 
+      RowBox[{"Hue", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Position", "[", 
+          RowBox[{"r", ",", 
+           RowBox[{"Min", "[", "r", "]"}]}], "]"}], "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "1"}], "]"}], "]"}], "/", "3"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "5.0"}], ",", "5.0", ",", 
+       RowBox[{"10.0", "/", "n"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "5.0"}], ",", "5.0", ",", 
+       RowBox[{"10.0", "/", "n"}]}], "}"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{"Show", "[", 
+  RowBox[{
+   RowBox[{"Graphics", "[", 
+    RowBox[{"RasterArray", "[", "image", "]"}], "]"}], ",", 
+   RowBox[{"AspectRatio", "\[Rule]", "1"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.6458916939944563`*^9, 3.645891693994937*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"RasterArray", "::", "obs"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"RasterArray is obsolete. Translating to Raster. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/RasterArray\\\", ButtonNote -> \
+\\\"RasterArray::obs\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.64589170648636*^9}],
+
+Cell[BoxData[
+ GraphicsBox[
+  RasterBox[
+   NCache[{{Rational[1, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 
+      Rational[2, 3], 1, Rational[1, 3], 1, 1, 1, Rational[1, 3], 1, Rational[
+      1, 3], 1, 1, 1, Rational[2, 3], 1, Rational[2, 3], 1, 1, 1, Rational[
+      2, 3], 1, Rational[1, 3], 1, Rational[1, 3], Rational[1, 3], Rational[
+      1, 3], 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[
+      2, 3], Rational[2, 3]}, {
+     Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[1, 3], 1, 1, Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[2, 3], 1, Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[1, 3], Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 1, Rational[2, 3], 
+      Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3]}, {
+     Rational[1, 3], Rational[2, 3], 1, Rational[1, 3], 1, Rational[2, 3], 1, 
+      1, 1, Rational[1, 3], 1, Rational[1, 3], 1, Rational[2, 3], Rational[
+      1, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      1, 1, 1, Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3],
+       Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], 1, Rational[2, 3], 
+      1, 1, 1, Rational[1, 3], 1, Rational[2, 3], 1, Rational[1, 3], Rational[
+      2, 3]}, {Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3],
+       Rational[2, 3], 1, Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], 1, 
+      Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], 1, Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3]}, {
+     Rational[2, 3], Rational[2, 3], 1, 1, Rational[2, 3], 1, 1, Rational[
+      1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], Rational[1, 3], 
+      1, 1, Rational[2, 3], 1, 1, Rational[1, 3], Rational[1, 3], 1, 1, 1, 
+      Rational[2, 3], Rational[2, 3], 1, 1, Rational[1, 3], 1, 1, Rational[
+      2, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      1, 1, Rational[1, 3], 1, 1, Rational[1, 3], Rational[1, 3]}, {
+     Rational[1, 3], 1, 1, 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      1, 1, Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], 1, Rational[
+      2, 3], Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], Rational[
+      1, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 1, Rational[
+      2, 3], Rational[1, 3], Rational[1, 3], 1, Rational[1, 3], 1, Rational[
+      1, 3], Rational[2, 3], 1, 1, Rational[1, 3], Rational[1, 3], Rational[
+      1, 3], 1, 1, 1, Rational[2, 3]}, {
+     Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[
+      2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], 1, Rational[2, 3], 1, Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], 1, Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[1, 3]}, {
+     Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[
+      1, 3], 1, Rational[1, 3], 1, Rational[1, 3], Rational[2, 3], Rational[
+      1, 3], Rational[2, 3], 1, 1, Rational[2, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[1, 3], 1, 1, 1, Rational[2, 3], Rational[1, 3],
+       1, Rational[2, 3], Rational[1, 3], 1, 1, Rational[1, 3], Rational[
+      2, 3], Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], 1, Rational[
+      2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[
+      1, 3]}, {1, 1, Rational[2, 3], 1, Rational[2, 3], Rational[2, 3], 1, 
+      Rational[1, 3], Rational[1, 3], 1, Rational[1, 3], Rational[2, 3], 1, 
+      Rational[2, 3], 1, 1, 1, Rational[1, 3], Rational[2, 3], Rational[1, 3],
+       1, Rational[2, 3], Rational[1, 3], Rational[2, 3], 1, 1, 1, Rational[
+      1, 3], 1, Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], Rational[
+      2, 3], 1, Rational[1, 3], Rational[1, 3], 1, Rational[1, 3], 1, 1}, {
+     1, 1, 1, Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[1, 3], 1, 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], 1,
+       1, Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], 1, 1, Rational[2, 3], Rational[2, 3], 
+      Rational[1, 3], 1, 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], 1, 1, 1}, {
+     Rational[2, 3], Rational[2, 3], 1, 1, Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], 1, 1, 1, 1, 1, Rational[
+      2, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 1, 1, 
+      Rational[1, 3], Rational[1, 3]}, {
+     Rational[2, 3], Rational[2, 3], 1, 1, Rational[2, 3], Rational[1, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 
+      Rational[1, 3], 1, Rational[2, 3], 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+      Rational[1, 3], 1, Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[2, 3], Rational[1, 3], 1, 1,
+       Rational[1, 3], Rational[1, 3]}, {
+     Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[
+      1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[
+      1, 3], 1, 1, 1, Rational[1, 3], Rational[2, 3], 1, 1, 1, 1, 1, 1, 1, 1, 
+      1, 1, 1, Rational[1, 3], Rational[2, 3], 1, 1, 1, Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3]}, {
+     Rational[2, 3], 1, 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 1, 1, 1,
+       Rational[2, 3], Rational[1, 3], 1, 1, 1, 1, 1, 1, 1, 1, 1, Rational[
+      2, 3], Rational[1, 3], 1, 1, 1, Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], 
+      Rational[1, 3], 1, 1, Rational[1, 3]}, {
+     1, 1, Rational[1, 3], 1, 1, Rational[1, 3], Rational[2, 3], 1, 1, 
+      Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], 1, 1, Rational[1, 3],
+       1, 1, 1, 1, 1, 1, 1, 1, 1, Rational[2, 3], 1, 1, Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], 1, 1, Rational[1, 3], Rational[2, 3],
+       1, 1, Rational[2, 3], 1, 1}, {
+     Rational[1, 3], Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, 1, 1, Rational[2, 3],
+       1, Rational[1, 3], Rational[1, 3], 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+      Rational[2, 3], Rational[2, 3], 1, Rational[1, 3], 1, 1, 1, Rational[
+      2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, Rational[
+      2, 3], Rational[2, 3], Rational[2, 3]}, {
+     Rational[2, 3], Rational[2, 3], 1, 1, Rational[1, 3], Rational[2, 3], 1, 
+      1, Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, 1, 1, 1, 1, 1, 1, 1, 
+      1, Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], 1, 1, Rational[1, 3],
+       Rational[2, 3], 1, 1, Rational[1, 3], Rational[1, 3]}, {
+     Rational[2, 3], 1, Rational[2, 3], 1, 1, 1, Rational[1, 3], 1, Rational[
+      2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 1, 1, 1,
+       1, 1, 1, 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[
+      2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], 1, Rational[2, 3], 1, 1, 1, Rational[1, 3], 1, Rational[
+      1, 3]}, {Rational[2, 3], 1, 1, Rational[1, 3], Rational[1, 3], 1, 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 1, 
+      Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], 1, 1, 1, 1, 1, Rational[2, 3], Rational[
+      2, 3], Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], Rational[
+      2, 3], 1, Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[
+      2, 3], 1, Rational[2, 3], Rational[2, 3], 1, 1, Rational[1, 3]}, {
+     Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[
+      1, 3], Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], Rational[
+      1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[1, 3], 1, 1, 1, Rational[2, 3], Rational[1, 3], Rational[1, 3],
+       Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[1, 3]}, {
+     Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[
+      2, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3]}, {
+     Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[
+      1, 3], 1, 1, 1, Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], 1, 1, 1, Rational[2, 3], Rational[2, 3], Rational[2, 3],
+       Rational[2, 3], Rational[2, 3]}, {
+     1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], 1, Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], 1, Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], 1}, {
+     Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 1, 
+      Rational[1, 3], Rational[1, 3], Rational[2, 3], 1, 1, Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], 1, 1, Rational[1, 3], 
+      Rational[2, 3], Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3]}, {
+     1, 1, 1, Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], 1, 1, 1}, {
+     1, Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 
+      1, 1, Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], Rational[2, 3],
+       Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], Rational[1, 3], 1, 1,
+       1, Rational[1, 3], Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 
+      1}, {Rational[1, 3], Rational[2, 3], Rational[2, 3], 1, 1, Rational[
+      1, 3], Rational[2, 3], 1, 1, Rational[2, 3], 1, Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], 1, Rational[1, 3], 1, 1, Rational[1, 3], Rational[2, 3],
+       1, 1, Rational[1, 3], Rational[1, 3], Rational[2, 3]}, {
+     Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[1, 3], 1, 1, 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, Rational[1, 3], 1, 
+      Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 1, 1, Rational[1, 3],
+       Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], 1, Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], 1, 1, Rational[2, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3]}, {
+     Rational[1, 3], Rational[1, 3], Rational[2, 3], 1, Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 1, Rational[2, 3], 1,
+       Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 1, 
+      Rational[1, 3], 1, 1, 1, Rational[2, 3], 1, 1, Rational[1, 3], Rational[
+      1, 3], Rational[1, 3], Rational[2, 3], 1, Rational[1, 3], 1, Rational[
+      1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, Rational[
+      1, 3], Rational[2, 3], Rational[2, 3]}, {
+     Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 1, 1, 
+      Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 1, Rational[1, 3], 
+      Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], 1, 1, 1, 1, 1, 1, 1, 
+      Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], 1, 
+      Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], 1, 1, 1, Rational[
+      1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3]}, {
+     1, 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 1, 1, 1, 
+      Rational[2, 3], 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], 1, 1, 1, Rational[1, 3], Rational[1, 3], Rational[2, 3],
+       Rational[2, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], 1, Rational[1, 3], 1, 1, 1, 1, Rational[1, 3], Rational[
+      1, 3], Rational[1, 3], 1, 1}, {
+     Rational[2, 3], 1, Rational[1, 3], 1, 1, Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[2, 3], 1, Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[2, 3], Rational[1, 3], 1, 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 1, 
+      Rational[1, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 1, 1, 
+      Rational[2, 3], 1, Rational[1, 3]}, {
+     1, 1, Rational[1, 3], Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], 
+      1, 1, Rational[2, 3], Rational[1, 3], 1, 1, 1, Rational[2, 3], 1, 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 1, 
+      Rational[1, 3], Rational[1, 3], Rational[2, 3], Rational[1, 3], 1, 
+      Rational[1, 3], 1, 1, 1, Rational[2, 3], Rational[1, 3], 1, 1, Rational[
+      2, 3], Rational[1, 3], 1, Rational[1, 3], Rational[2, 3], 1, 1}, {
+     Rational[2, 3], 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, 1, 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[1, 3], 1, 1, 1, 1, 1, Rational[1, 3], Rational[2, 3], Rational[
+      2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      1, 1, 1, 1, 1, Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[
+      1, 3], Rational[2, 3], 1, 1, Rational[2, 3], Rational[2, 3], Rational[
+      1, 3], 1, Rational[1, 3]}, {
+     1, 1, Rational[2, 3], 1, Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], 1, Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], 1, Rational[1, 3], 1, Rational[2, 3], 1, Rational[2, 3],
+       Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 
+      Rational[1, 3], Rational[2, 3], Rational[2, 3], 1, Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], 1, Rational[1, 3], 1, 
+      1}, {1, Rational[2, 3], Rational[2, 3], 1, Rational[1, 3], 1, Rational[
+      1, 3], Rational[2, 3], Rational[2, 3], 1, 1, Rational[2, 3], Rational[
+      2, 3], 1, Rational[1, 3], Rational[1, 3], Rational[2, 3], 1, 1, 1, 1, 1,
+       1, 1, Rational[1, 3], Rational[2, 3], Rational[2, 3], 1, Rational[
+      1, 3], Rational[1, 3], 1, 1, Rational[1, 3], Rational[1, 3], Rational[
+      2, 3], 1, Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], 1}, {
+     1, 1, Rational[1, 3], 1, 1, Rational[2, 3], Rational[2, 3], Rational[
+      2, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3], 1, Rational[
+      1, 3], Rational[2, 3], Rational[1, 3], 1, 1, Rational[1, 3], Rational[
+      1, 3], Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[
+      2, 3], 1, 1, Rational[2, 3], Rational[1, 3], Rational[2, 3], 1, 
+      Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], 1, 1, Rational[2, 3], 1, 1}, {
+     1, 1, Rational[2, 3], Rational[2, 3], Rational[1, 3], 1, 1, 1, 1, 1, 
+      Rational[1, 3], 1, 1, 1, Rational[1, 3], Rational[1, 3], Rational[1, 3],
+       1, Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[2, 3], 1, 1,
+       1, Rational[2, 3], 1, 1, 1, 1, 1, Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], 1, 1}, {
+     1, Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], Rational[1, 3], 1, 
+      Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], 1, 
+      Rational[1, 3], 1, 1, Rational[2, 3], 1, Rational[2, 3], Rational[1, 3],
+       1, Rational[2, 3], Rational[1, 3], 1, Rational[1, 3], 1, 1, Rational[
+      2, 3], 1, Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], Rational[
+      1, 3], 1, Rational[2, 3], Rational[1, 3], 1, Rational[2, 3], Rational[
+      1, 3], 1}, {
+     Rational[1, 3], Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[
+      2, 3], Rational[1, 3], 1, Rational[2, 3], Rational[2, 3], Rational[
+      1, 3], Rational[2, 3], 1, Rational[1, 3], Rational[1, 3], Rational[
+      1, 3], Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[2, 3], 
+      Rational[2, 3], 1, Rational[1, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], 1, Rational[2, 3], Rational[1, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3]}, {
+     Rational[1, 3], Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[
+      1, 3], 1, 1, 1, 1, 1, Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[1, 3], Rational[1, 3], Rational[1, 3], 1, Rational[2, 3], 
+      Rational[2, 3], Rational[2, 3], Rational[2, 3], Rational[1, 3], 
+      Rational[2, 3], Rational[1, 3], Rational[1, 3], Rational[2, 3], 
+      Rational[2, 3], 1, 1, 1, 1, 1, Rational[2, 3], Rational[1, 3], Rational[
+      1, 3], Rational[1, 3], Rational[2, 3]}}, {{
+     0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.6666666666666666, 1, 
+      0.3333333333333333, 1, 1, 1, 0.3333333333333333, 1, 0.3333333333333333, 
+      1, 1, 1, 0.6666666666666666, 1, 0.6666666666666666, 1, 1, 1, 
+      0.6666666666666666, 1, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666}, {
+     0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 1, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333}, {
+     0.3333333333333333, 0.6666666666666666, 1, 0.3333333333333333, 1, 
+      0.6666666666666666, 1, 1, 1, 0.3333333333333333, 1, 0.3333333333333333, 
+      1, 0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 1, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 1, 0.6666666666666666, 1, 1, 1, 0.3333333333333333, 
+      1, 0.6666666666666666, 1, 0.3333333333333333, 0.6666666666666666}, {
+     0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.3333333333333333, 1, 0.6666666666666666, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333}, {
+     0.6666666666666666, 0.6666666666666666, 1, 1, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 1, 1, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 1, 1, 1, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 0.3333333333333333, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 0.3333333333333333, 1, 1, 0.3333333333333333, 
+      0.3333333333333333}, {
+     0.3333333333333333, 1, 1, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 0.3333333333333333, 0.6666666666666666, 1, 
+      0.6666666666666666, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.3333333333333333, 1, 0.3333333333333333, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 1, 1, 
+      0.6666666666666666}, {
+     0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 1, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333}, {
+     0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 1, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.3333333333333333, 1, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 1, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.6666666666666666, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333}, {
+     1, 1, 0.6666666666666666, 1, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.6666666666666666, 1, 1, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 1, 1, 1, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.6666666666666666, 1, 0.6666666666666666, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.3333333333333333, 1, 1}, {
+     1, 1, 1, 0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 1, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 1, 1, 1}, {
+     0.6666666666666666, 0.6666666666666666, 1, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 1, 1, 1, 1, 
+      1, 0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 1, 1, 0.3333333333333333, 0.3333333333333333}, {
+     0.6666666666666666, 0.6666666666666666, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.3333333333333333,
+       1, 0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 1, 1, 0.3333333333333333, 0.3333333333333333}, {
+     0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 1, 1, 
+      0.3333333333333333, 0.6666666666666666, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       0.3333333333333333, 0.6666666666666666, 1, 1, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666}, {
+     0.6666666666666666, 1, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 1, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 1, 1, 1, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 1, 1, 0.3333333333333333}, {
+     1, 1, 0.3333333333333333, 1, 1, 0.3333333333333333, 0.6666666666666666, 
+      1, 1, 0.6666666666666666, 1, 0.3333333333333333, 0.3333333333333333, 1, 
+      1, 0.3333333333333333, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.6666666666666666, 1,
+       1, 0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 1, 1,
+       0.3333333333333333, 0.6666666666666666, 1, 1, 0.6666666666666666, 1, 
+      1}, {0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 1, 1, 1, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.6666666666666666,
+       0.6666666666666666, 1, 0.3333333333333333, 1, 1, 1, 0.6666666666666666,
+       0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666}, {
+     0.6666666666666666, 0.6666666666666666, 1, 1, 0.3333333333333333, 
+      0.6666666666666666, 1, 1, 0.6666666666666666, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.3333333333333333, 1, 1, 0.3333333333333333, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 0.3333333333333333}, {
+     0.6666666666666666, 1, 0.6666666666666666, 1, 1, 1, 0.3333333333333333, 
+      1, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 1, 1, 1, 
+      1, 1, 1, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 1, 1, 1, 0.3333333333333333, 1, 
+      0.3333333333333333}, {
+     0.6666666666666666, 1, 1, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 1, 1, 1, 1, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.6666666666666666, 1, 1, 0.3333333333333333}, {
+     0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 1, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333}, CompressedData["
+1:eJxTTMoPSmVkYGDQBOJQMHhqj52+ioOPLo5LHyF1xNLo5pFLE2suqeFw1R4A
+Hl6A9g==
+     "], {
+     0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 1, 1, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 1, 1, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666}, {
+     1, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 1}, {
+     0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 1, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666}, {
+     1, 1, 1, 0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 1, 1, 1}, {
+     1, 0.3333333333333333, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 1, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 1, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 1}, {
+     0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 0.6666666666666666, 1, 1, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.3333333333333333, 1, 1, 0.3333333333333333, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666}, {
+     0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 1, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333}, {
+     0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 1, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 1, 1, 1, 0.6666666666666666, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.3333333333333333, 1, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666}, {
+     0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 1, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 1, 1, 1, 1, 1, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 1, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 1, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666}, {
+     1, 1, 0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 1, 1, 
+      1, 1, 0.6666666666666666, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 1, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.3333333333333333, 1, 1, 1, 
+      1, 0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 1}, {
+     0.6666666666666666, 1, 0.3333333333333333, 1, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 0.6666666666666666, 1, 0.3333333333333333}, {
+     1, 1, 0.3333333333333333, 0.6666666666666666, 1, 0.6666666666666666, 
+      0.3333333333333333, 1, 1, 0.6666666666666666, 0.3333333333333333, 1, 1, 
+      1, 0.6666666666666666, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.3333333333333333, 1, 1, 1, 0.6666666666666666, 0.3333333333333333, 1, 
+      1, 0.6666666666666666, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.6666666666666666, 1, 1}, {
+     0.6666666666666666, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 1, 1, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 1, 1, 1, 1, 
+      1, 0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 1, 1, 1, 1, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.3333333333333333}, {
+     1, 1, 0.6666666666666666, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.3333333333333333, 1, 0.6666666666666666, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.3333333333333333, 1, 1}, {
+     1, 0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 1, 1, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 1, 1, 1, 1, 1, 1, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.3333333333333333, 1, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 1, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.3333333333333333, 1}, {
+     1, 1, 0.3333333333333333, 1, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 1, 1, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 1, 1, 0.6666666666666666, 1, 1}, {
+     1, 1, 0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 1, 
+      1, 1, 1, 0.3333333333333333, 1, 1, 1, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 1, 1, 1, 0.6666666666666666, 1, 1, 1, 1, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 1}, {
+     1, 0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 1, 1, 
+      0.6666666666666666, 1, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.3333333333333333, 1, 1, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.3333333333333333, 1, 0.6666666666666666, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.3333333333333333, 1}, {
+     0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 1, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666, 0.3333333333333333, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 1, 
+      0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 1, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 0.6666666666666666}, {
+     0.3333333333333333, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 1, 1, 1, 1, 1, 
+      0.3333333333333333, 0.3333333333333333, 0.6666666666666666, 
+      0.6666666666666666, 0.3333333333333333, 0.6666666666666666, 
+      0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 1, 0.6666666666666666, 0.6666666666666666, 
+      0.6666666666666666, 0.6666666666666666, 0.3333333333333333, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.6666666666666666, 0.6666666666666666, 1, 1, 1, 1, 1, 
+      0.6666666666666666, 0.3333333333333333, 0.3333333333333333, 
+      0.3333333333333333, 0.6666666666666666}}],
+   ColorFunction->Hue],
+  AspectRatio->1]], "Output",
+ CellChangeTimes->{3.645891706497159*^9}]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+},
+WindowSize->{927, 997},
+WindowMargins->{{Automatic, -7}, {Automatic, 0}},
+FrontEndVersion->"10.1 for Linux x86 (64-bit) (March 23, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1496, 24, 77, "Input"],
+Cell[2057, 46, 1073, 32, 78, "Text"],
+Cell[CellGroupData[{
+Cell[3155, 82, 174, 2, 47, "Subsection"],
+Cell[CellGroupData[{
+Cell[3354, 88, 501, 14, 58, "Input"],
+Cell[3858, 104, 467, 11, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4362, 120, 354, 9, 58, "Input"],
+Cell[4719, 131, 302, 7, 57, "Output"]
+}, Open  ]],
+Cell[5036, 141, 767, 22, 83, "Input"],
+Cell[CellGroupData[{
+Cell[5828, 167, 498, 13, 58, "Input"],
+Cell[6329, 182, 400, 8, 38, "Output"]
+}, Open  ]],
+Cell[6744, 193, 69, 1, 32, "Input"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[6850, 199, 107, 1, 39, "Subsection"],
+Cell[6960, 202, 159, 2, 31, "Text"],
+Cell[CellGroupData[{
+Cell[7144, 208, 929, 22, 63, "Input"],
+Cell[8076, 232, 1670, 28, 58, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9795, 266, 373, 10, 47, "Subsection"],
+Cell[CellGroupData[{
+Cell[10193, 280, 1087, 28, 88, "Input"],
+Cell[11283, 310, 1607, 26, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12927, 341, 692, 19, 63, "Input"],
+Cell[13622, 362, 1344, 24, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15003, 391, 670, 18, 63, "Input"],
+Cell[15676, 411, 1248, 23, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16961, 439, 672, 18, 63, "Input"],
+Cell[17636, 459, 1244, 22, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18917, 486, 671, 18, 63, "Input"],
+Cell[19591, 506, 1189, 21, 57, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20817, 532, 765, 22, 63, "Input"],
+Cell[21585, 556, 1257, 21, 57, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22891, 583, 226, 5, 47, "Subsection"],
+Cell[CellGroupData[{
+Cell[23142, 592, 671, 15, 59, "Input"],
+Cell[23816, 609, 1062, 18, 57, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24927, 633, 160, 2, 47, "Subsection"],
+Cell[CellGroupData[{
+Cell[25112, 639, 689, 14, 37, "Input"],
+Cell[25804, 655, 727, 12, 34, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26580, 673, 284, 9, 47, "Subsection"],
+Cell[CellGroupData[{
+Cell[26889, 686, 992, 23, 63, "Input"],
+Cell[27884, 711, 695, 13, 41, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28628, 730, 364, 10, 67, "Section"],
+Cell[CellGroupData[{
+Cell[29017, 744, 216, 7, 37, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[29258, 755, 576, 15, 63, "Input"],
+Cell[29837, 772, 743, 14, 41, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30629, 792, 202, 4, 37, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[30856, 800, 548, 15, 63, "Input"],
+Cell[31407, 817, 683, 13, 41, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32139, 836, 202, 4, 37, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[32366, 844, 527, 14, 63, "Input"],
+Cell[32896, 860, 668, 13, 41, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33625, 880, 156, 2, 67, "Section"],
+Cell[CellGroupData[{
+Cell[33806, 886, 422, 11, 59, "Input"],
+Cell[34231, 899, 597, 12, 41, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34865, 916, 95, 1, 47, "Subsection"],
+Cell[CellGroupData[{
+Cell[34985, 921, 7766, 249, 583, "Input"],
+Cell[42754, 1172, 29620, 948, 878, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72411, 2125, 3390, 100, 407, "Input"],
+Cell[75804, 2227, 423, 9, 23, "Message"],
+Cell[76230, 2238, 47376, 678, 375, "Output"]
+}, Open  ]]
+}, Closed]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

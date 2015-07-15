@@ -280,27 +280,60 @@
 []
 
 [Materials]
-  [./cube]
-    type = LinearElasticMaterial
-    block = '0'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-# C11 C12 C13 C22 C23 C33 C44 C55 C66
+  #active = 'cube'
+  #[./cube]
+  #  type = LinearElasticMaterial
+  #  block = '1'
+  #  disp_x = disp_x
+  #  disp_y = disp_y
+  #  disp_z = disp_z
+  ## C11 C12 C13 C22 C23 C33 C44 C55 C66
+  #  C_ijkl = '209.7e-09 121.1e-09 105.1e-09 209.7e-09 105.1e-09 210.9e-09 42.47e-09 42.47e-09 44.29e-09'
+  #  euler_angle_1 = 0.0
+  #  euler_angle_2 = 0.0
+  #  euler_angle_3 = 0.0
+  #[../]
+  [./elasticity_tensor]
+    type = ComputeElasticityTensor
     C_ijkl = '209.7e-09 121.1e-09 105.1e-09 209.7e-09 105.1e-09 210.9e-09 42.47e-09 42.47e-09 44.29e-09'
+    fill_method = symmetric9
     euler_angle_1 = 0.0
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+    block = '1'
+  [../]
+  [./strain]
+    type = ComputeSmallStrain
+    block = '1'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+  [../]
+  [./stress]
+    type = ComputeLinearElasticStress
+    block = '1'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = '-info -snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type'
+    petsc_options_value = '    675              1e-8      1e-12      hypre       lu            1e-50                    1e-50     boomeramg'
   [../]
 []
 
 [Executioner]
   type = Steady
-  nl_max_its = 110
-  solve_type = 'NEWTON'
-  petsc_options = '-snes_converged_reason -ksp_converged_reason -ksp_view -snes_view'
-  petsc_options_iname = '-ksp_type -ksp_rtol -pc_type -sub_pc_type -sub_pc_factor_zeropivot -pc_asm_overlap'
-  petsc_options_value = 'gmres      1e-14     asm        lu           1e-50                     3'
+  solve_type = 'PJFNK'       #"PJNK, JFNK, NEWTON"
 []
 
 [Outputs]
