@@ -171,6 +171,7 @@
     index_j = 0
     block = '2'
     variable = stress_xx
+    execute_on = 'timestep_end'
   [../]
   [./matl_s12]
     type = RankTwoAux
@@ -179,6 +180,7 @@
     index_j = 1
     block = '2'
     variable = stress_xy
+    execute_on = 'timestep_end'
   [../]
   [./matl_s13]
     type = RankTwoAux
@@ -187,6 +189,7 @@
     index_j = 2
     block = '2'
     variable = stress_xz
+    execute_on = 'timestep_end'
   [../]
   [./matl_s22]
     type = RankTwoAux
@@ -195,6 +198,7 @@
     index_j = 1
     block = '2'
     variable = stress_yy
+    execute_on = 'timestep_end'
   [../]
   [./matl_s23]
     type = RankTwoAux
@@ -203,6 +207,7 @@
     index_j = 2
     block = '2'
     variable = stress_yz
+    execute_on = 'timestep_end'
   [../]
   [./matl_s33]
     type = RankTwoAux
@@ -211,6 +216,7 @@
     index_j = 2
     block = '2'
     variable = stress_zz
+    execute_on = 'timestep_end'
   [../]
   [./matl_e11]
     type = RankTwoAux
@@ -219,6 +225,7 @@
     index_j = 0
     block = '2'
     variable = strain_xx
+    execute_on = 'timestep_end'
   [../]
   [./matl_e12]
     type = RankTwoAux
@@ -227,6 +234,7 @@
     index_j = 1
     block = '2'
     variable = strain_xy
+    execute_on = 'timestep_end'
   [../]
   [./matl_e13]
     type = RankTwoAux
@@ -235,6 +243,7 @@
     index_j = 2
     block = '2'
     variable = strain_xz
+    execute_on = 'timestep_end'
   [../]
   [./matl_e22]
     type = RankTwoAux
@@ -243,6 +252,7 @@
     index_j = 1
     block = '2'
     variable = strain_yy
+    execute_on = 'timestep_end'
   [../]
   [./matl_e23]
     type = RankTwoAux
@@ -251,6 +261,7 @@
     index_j = 2
     block = '2'
     variable = strain_yz
+    execute_on = 'timestep_end'
   [../]
   [./matl_e33]
     type = RankTwoAux
@@ -259,6 +270,7 @@
     index_j = 2
     block = '2'
     variable = strain_zz
+    execute_on = 'timestep_end'
   [../]
 []
 
@@ -557,18 +569,22 @@
 [Postprocessors]
   [./bulk_energy]
    type = BulkEnergy
+   execute_on = 'timestep_end'
    block = '2'
   [../]
   [./wall_energy]
    type = WallEnergy
+   execute_on = 'timestep_end'
    block = '2'
   [../]
   [./elastic_energy]
    type = ElasticEnergy
+   execute_on = 'timestep_end'
    block = '2'
   [../]
   [./electrostatic_energy]
    type = ElectrostaticEnergy
+   execute_on = 'timestep_end'
   [../]
   [./total_energy]
    type = TotalEnergy
@@ -576,6 +592,7 @@
    wall_energy = wall_energy
    elastic_energy = elastic_energy
    electrostatic_energy = electrostatic_energy
+   execute_on = 'timestep_end'
   [../]
 []
 
