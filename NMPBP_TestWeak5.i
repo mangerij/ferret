@@ -1,39 +1,39 @@
 [Mesh]
-  file = slab_exodus_coarse_60.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
+  file = slab_exodus_coarse_40.e
   uniform_refine = 0
 []
 
 [GlobalParams]
-   #Can use a unit system where the differences between the coefficients
-   # in this table are minimized: [nm], [aC], [nN]
-
-   #length scale
+  # #Can use a unit system where the differences between the coefficients
+  # # in this table are minimized: [nm], [aC], [nN]
+   #
+  # #length scale
    len_scale = 1.0
-   #BulkEnergy coefficients
+  # #BulkEnergy coefficients
    alpha1 = -0.28576 # (3.8 * (T-785) * 10^5) C^{-2} nm^2 (T = 0 K)
    alpha11 = -0.073
    alpha111 = 0.26
    alpha12 = 0.75
    alpha112 = 0.61
    alpha123 = -3.7
-   #WallEnergy coefficients
+  # #WallEnergy coefficients
    G110 = 0.1
    G11/G110 = 0.6
    G12/G110 = 0.0
    G44/G110 = 0.3
    G44P/G110 = 0.3
-   #Electrostatics
+  # #Electrostatics
    permittivity = 0.008854187
    polar_x = polar_x
    polar_y = polar_y
    polar_z = polar_z
    potential_int = potential_int
    potential_ext = potential_ext
-   #elastic variables
+  # #elastic variables
    disp_x = disp_x
    disp_y = disp_y
    disp_z = disp_z
-   use_displaced_mesh = false
+  # use_displaced_mesh = false
 []
 
 [Variables]
@@ -76,7 +76,7 @@
     order=FIRST
     family = LAGRANGE
   [../]
-  #
+  ##
   [./disp_x]
     order = FIRST
     family = LAGRANGE
@@ -264,24 +264,29 @@
 
 [Kernels]
   #Elastic problem
-  [./stressdiv_0]
-    type = StressDivergenceTensorsScaled
-    variable = disp_x
-    component = 0
-    block = '2'
+  [./TensorMechanics]
+     disp_x = disp_x
+     disp_y = disp_y
+     disp_z = disp_z
   [../]
-  [./stressdiv_1]
-    type = StressDivergenceTensorsScaled
-    variable = disp_y
-    component = 1
-    block = '2'
-  [../]
-  [./stressdiv_2]
-    type = StressDivergenceTensorsScaled
-    variable = disp_z
-    component = 2
-    block = '2'
-  [../]
+  #[./stressdiv_0]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_x
+  #  component = 0
+  #  block = '2'
+  #[../]
+  #[./stressdiv_1]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_y
+  #  component = 1
+  #  block = '2'
+  #[../]
+  #[./stressdiv_2]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_z
+  #  component = 2
+  #  block = '2'
+  #[../]
   ###Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivative
@@ -298,8 +303,8 @@
     variable = polar_z
     component = 2
   [../]
-  #
-  ###Wall energy penalty
+  ##
+  ####Wall energy penalty
   [./walled_x]
      type=WallEnergyDerivative
      variable = polar_x
@@ -315,7 +320,7 @@
      variable = polar_z
      component = 2
   [../]
-  ##Polarization-strain coupling
+  ###Polarization-strain coupling
   [./ferroelectriccouplingu_x]
      type = FerroelectricCouplingU
      variable = disp_x
@@ -352,7 +357,7 @@
      component = 2
      block = '2'
   [../]
-  #Electrostatics
+  ##Electrostatics
   [./polar_x_electric_E]
      type=PolarElectricEStrong
      variable=potential_int
@@ -393,7 +398,7 @@
      variable = polar_z
      component = 2
   [../]
-  #Time dependence
+  ##Time dependence
   [./polar_x_time]
      type=TimeDerivativeScaled
      variable=polar_x
@@ -412,17 +417,17 @@
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable = disp_x
-     time_scale = 0.1
+     time_scale = 0.5e-11
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable = disp_y
-     time_scale = 0.1
+     time_scale = 0.5e-11
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable = disp_z
-     time_scale = 0.1
+     time_scale = 0.5e-11
   [../]
 []
 
@@ -495,31 +500,58 @@
   #   boundary = '3'
   #   value = 0.0
   # [../]
-  # #
-   [./disp_y_slab5]
+  #
+  [./disp_x_slab5]
+    type = DirichletBC
+    variable = disp_x
+    boundary = '5'
+    value = 0.0
+  [../]
+  [./disp_y_slab5]
+    type = DirichletBC
+    variable = disp_y
+    boundary = '5'
+    value = -1.0 #~5% strain for 40nm; fixed condition gives a strain gradient
+  [../]
+  [./disp_z_slab5]
+    type = DirichletBC
+    variable = disp_z
+    boundary = '5'
+    value = 0.0
+  [../]
+
+
+
+   [./disp_x_slab7]
      type = DirichletBC
-     variable = disp_y
-     boundary = '5'
-     value = -1.0 #probably ~5% strain
+     variable = disp_x
+     boundary = '7'
+     value = 0.0
    [../]
    [./disp_y_slab7]
      type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = 1.0
+     value = 1.0  #probably ~5% strain for 40nm; fixed condition gives a strain gradient
    [../]
-   [./potential_ext_upz]
-    type = DirichletBC
-    variable = potential_ext
-    boundary = '1'
-    value = 0.0 #this is near-zero
+   [./disp_z_slab7]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '7'
+     value = 0.0
    [../]
-   [./potential_ext_downz]
-    type = DirichletBC
-    variable = potential_ext
-    boundary = '2'
-    value = 0.0
-   [../]
+  # [./potential_ext_upz]
+  #  type = DirichletBC
+  #  variable = potential_ext
+  #  boundary = '1'
+  #  value = 0.0 #this is near-zero
+  # [../]
+  # [./potential_ext_downz]
+  #  type = DirichletBC
+  #  variable = potential_ext
+  #  boundary = '2'
+  #  value = 0.0
+  # [../]
 []
 
 [Postprocessors]
@@ -553,14 +585,13 @@
     full = true
     petsc_options = '-info -snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type'
-    petsc_options_value = '    675              1e-8      1e-10      hypre        5               lu              1e-50                    1e-50     boomeramg'
+    petsc_options_value = '    675              1e-8      1e-12      hypre        5               lu              1e-50                    1e-50     boomeramg'
   [../]
 []
 
 [Executioner]
-  type=Transient
-  #nl_max_its = 5
-  #nl_abs_tol = 6.90e-22
+  type = Transient
+  dt = 0.01
   [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 0.01 #1.0e6 too high
@@ -598,36 +629,36 @@
 #  [../]
 #[]
 
-[./Adaptivity]
-    [./Indicators]
-      [./indicator_x]
-        type = GradientJumpIndicator
-        variable = polar_x
-      [../]
-      [./indicator_y]
-        type = GradientJumpIndicator
-        variable = polar_y
-      [../]
-      [./indicator_z]
-        type = GradientJumpIndicator
-        variable = polar_z
-      [../]
-    [../]
-    #[./Markers]
-    #  [./marker_x]
-    #    type = ErrorFractionMarker
-    #    indicator = indicator_x
-    #    coarsen = 0.01
-    #    refine = 0.01
-    #  [../]
-    #  [./marker_y]
-    #    type = ErrorFractionMarker
-    #    indicator = indicator_y
-    #    coarsen = 0.01
-    #    refine = 0.01
-    #  [../]
-    #[../]
-[../]
+#[./Adaptivity]
+#    [./Indicators]
+#      [./indicator_x]
+#        type = GradientJumpIndicator
+#        variable = polar_x
+#      [../]
+#      [./indicator_y]
+#        type = GradientJumpIndicator
+#        variable = polar_y
+#      [../]
+#      [./indicator_z]
+#        type = GradientJumpIndicator
+#        variable = polar_z
+#      [../]
+#    [../]
+#    #[./Markers]
+#    #  [./marker_x]
+#    #    type = ErrorFractionMarker
+#    #    indicator = indicator_x
+#    #    coarsen = 0.01
+#    #    refine = 0.01
+#    #  [../]
+#    #  [./marker_y]
+#    #    type = ErrorFractionMarker
+#    #    indicator = indicator_y
+#    #    coarsen = 0.01
+#    #    refine = 0.01
+#    #  [../]
+#    #[../]
+#[../]
 
 
 [Outputs]
@@ -635,7 +666,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PBP_test_coupled
+    file_base = out_PbTiO3_test_coupled_sc
     output_initial = true
     elemental_as_nodal = false
     interval = 1

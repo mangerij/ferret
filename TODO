@@ -17,3 +17,5 @@ This is fine now. Need the ComputeSmallStrain block and the AuxKernel blocks fro
 6.) Why is ferroelectricU jacobian off?
 
 7.) Redo the JUST fe problem in the new hecto/femto/nano HFT units.
+
+8.) make sure that the Elastic problem solves right -- epitaxial problem is boundary 3 strain (Neumann?)
