@@ -1,26 +1,29 @@
 [Mesh]
-  file = slab_exodus_coarse_150_cheap.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
+  file = slab_exodus_coarse_60.e  #if smaller mesh desired, use slab_exodus_coarse_150_cheap.e in /problems/coupled_system
   uniform_refine = 0
 []
 
 [GlobalParams]
+   #Can use a unit system where the differences between the coefficients
+   # in this table are minimized: [nm], [aC], [nN]
+
    #length scale
-   len_scale = 1.0e-9
+   len_scale = 1.0
    #BulkEnergy coefficients
-   alpha1 = -1.8202e8 # 3.8(T-479)*10^5 C^{-2}m^2 (T = 0 K)
-   alpha11 = -7.3e7
-   alpha111 = 2.6e8
-   alpha12 = 7.5e8
-   alpha112 = 6.1e8
-   alpha123 = -3.7e9
+   alpha1 = -0.28576 # (3.8 * (T-785) * 10^5) C^{-2} nm^2 (T = 0 K)
+   alpha11 = -0.073
+   alpha111 = 0.26
+   alpha12 = 0.75
+   alpha112 = 0.61
+   alpha123 = -3.7
    #WallEnergy coefficients
-   G110 = 0.6e-10
+   G110 = 0.1
    G11/G110 = 0.6
    G12/G110 = 0.0
    G44/G110 = 0.3
    G44P/G110 = 0.3
    #Electrostatics
-   permittivity = 8.854187e-12
+   permittivity = 0.008854187
    polar_x = polar_x
    polar_y = polar_y
    polar_z = polar_z
@@ -40,8 +43,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = 0.1e-6
-      max = 1.5e-6
+      min = 0.30
+      max = 0.50
     [../]
   [../]
   [./polar_y]
@@ -50,8 +53,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = 0.1e-6
-      max = 1.5e-6
+      min = 0.30
+      max = 0.50
     [../]
   [../]
   [./polar_z]
@@ -61,8 +64,8 @@
     #scaling = 1e5
     [./InitialCondition]
       type = RandomIC
-      min = 0.1e-6
-      max = 1.5e-6
+      min = 0.0030
+      max = 0.0050
     [../]
   [../]
   [./potential_int]
@@ -78,33 +81,36 @@
     order = FIRST
     family = LAGRANGE
     block = '2'
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.1e-1
-      max = 1.5e-1
-    [../]
+    #[./InitialCondition] #Thought this was needed to get around the zero pivot
+    #  type = RandomIC
+    #  min = 0.1e-1
+    #  max = 1.5e-1
+    #[../]
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
     block = '2'
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.1e-1
-      max = 1.5e-1
-    [../]
+    #[./InitialCondition]
+    #  type = RandomIC
+    #  min = 0.1e-1
+    #  max = 1.5e-1
+    #[../]
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
     block = '2'
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.1e-1
-      max = 1.5e-1
-    [../]
+    #[./InitialCondition]
+    #  type = RandomIC
+    #  min = 0.1e-1
+    #  max = 1.5e-1
+    #[../]
   [../]
 []
+
+#NOTE: AuxSystem causes a 20% slowdown in computation. Only use AuxVariables
+#      if they are needed!
 
 [AuxVariables]
   [./stress_xx]
@@ -258,24 +264,24 @@
 
 [Kernels]
   #Elastic problem
-  #[./stressdiv_0]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_x
-  #  component = 0
-  #  block = '2'
-  #[../]
-  #[./stressdiv_1]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_y
-  #  component = 1
-  #  block = '2'
-  #[../]
-  #[./stressdiv_2]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_z
-  #  component = 2
-  #  block = '2'
-  #[../]
+  [./stressdiv_0]
+    type = StressDivergenceTensorsScaled
+    variable = disp_x
+    component = 0
+    block = '2'
+  [../]
+  [./stressdiv_1]
+    type = StressDivergenceTensorsScaled
+    variable = disp_y
+    component = 1
+    block = '2'
+  [../]
+  [./stressdiv_2]
+    type = StressDivergenceTensorsScaled
+    variable = disp_z
+    component = 2
+    block = '2'
+  [../]
   ###Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivative
@@ -406,17 +412,17 @@
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable = disp_x
-     time_scale = 1.0
+     time_scale = 0.1
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable = disp_y
-     time_scale = 1.0
+     time_scale = 0.1
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable = disp_z
-     time_scale = 1.0
+     time_scale = 0.1
   [../]
 []
 
@@ -429,10 +435,10 @@
     disp_z = disp_z
     #in GPA. from N. Pandech et al. Ceramic. Internat., times 1e9 to convert to N/m^2
     # C11 C12 C13 C22 C23 C33 C44 C55 C66
-    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
+    C_ijkl = '3.80e-7 1.5e-7 1.50e-7 3.80e-7 1.50e-7 3.80e-7 1.1e-7 1.1e-7 1.1e-7'
     #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
     # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
-    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.034 0.034 0.034'
+    Q_mnkl = '8.9e-2 -2.6e-2 -2.6e-2 8.9e-2 -2.6e-2 8.9e-2 3.4e-2 3.4e-2 3.4e-2'
     euler_angle_1 = 0.0 #currently will only rotate C_ijkl
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
@@ -440,7 +446,7 @@
   [./elasticity_tensor]
     type = ComputeElasticityTensor
     block = '2'
-    C_ijkl = '380.0e9 150.0e9 150.0e9 380.0e9 150.0e9 380.0e9 110.0e9 110.0e9 110.0e9'
+    C_ijkl = '3.80e-7 1.5e-7 1.50e-7 3.80e-7 1.50e-7 3.80e-7 1.1e-7 1.1e-7 1.1e-7'
     fill_method = symmetric9
   [../]
   [./strain]
@@ -471,36 +477,36 @@
      value = 0.0
    [../]
 
-   [./disp_x_slab3]
-     type = PresetBC
-     variable = disp_x
-     boundary = '3'
-     value = 0.0
-   [../]
-   [./disp_y_slab3]
-     type = PresetBC
-     variable = disp_y
-     boundary = '3'
-     value = 0.0
-   [../]
-   [./disp_z_slab3]
-     type = PresetBC
-     variable = disp_z
-     boundary = '3'
-     value = 0.0
-   [../]
+  # [./disp_x_slab3]
+  #   type = PresetBC
+  #   variable = disp_x
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./disp_y_slab3]
+  #   type = PresetBC
+  #   variable = disp_y
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./disp_z_slab3]
+  #   type = PresetBC
+  #   variable = disp_z
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
   # #
    [./disp_y_slab5]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_y
      boundary = '5'
-     value = -0.5 #probably ~2% strain
+     value = -1.0 #probably ~5% strain
    [../]
    [./disp_y_slab7]
-     type = PresetBC
+     type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = 0.5
+     value = 1.0
    [../]
    [./potential_ext_upz]
     type = DirichletBC
@@ -546,8 +552,8 @@
     type = SMP
     full = true
     petsc_options = '-info -snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -pc_asm_overlap -sub_pc_type  -sub_pc_factor_zeropivot -pc_factor_zeropivot '
-    petsc_options_value = '    121              1e-8      1e-10      asm          2             lu             1e-50                    1e-50      '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type'
+    petsc_options_value = '    675              1e-8      1e-10      hypre        5               lu              1e-50                    1e-50     boomeramg'
   [../]
 []
 
@@ -557,16 +563,16 @@
   #nl_abs_tol = 6.90e-22
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.15e15
-    optimal_iterations = 5
+    dt = 0.01 #1.0e6 too high
+    optimal_iterations = 10
     growth_factor = 1.01
-    cutback_factor =  0.85
+    cutback_factor =  0.999
   [../]
-  solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
+  solve_type = 'PJFNK'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dtmin = 1.0e-38
-  dtmax = 1.15e15
-  num_steps = 1
+  dtmin = 1.0e-10
+  dtmax = 0.1
+  num_steps = 1500000
   #splitting = 'ferretsplit'
 []
 
@@ -581,16 +587,48 @@
 #  [./ferroelectric]
 #    vars = 'polar_x polar_y polar_z potential_int potential_ext'
 #    petsc_options='-dm_view ' #'-ksp_monitor -inner_ksp_monitor'
-#    petsc_options_iname=' -ksp_type   -ksp_gmres_restart  -ksp_rtol -inner_pc_type -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot  -pc_factor_zeropivot'
-#    petsc_options_value='    gmres            350              1e-14   asm        asm        5                         1e-50                1e-50  '
+#    petsc_options_iname=' -ksp_type   -ksp_gmres_restart  -ksp_rtol -inner_pc_type -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot  -pc_factor_zeropivot -pc_hypre_type -inner_pc_hypre_type'
+#    petsc_options_value='    gmres            350              1e-10   hypre        hypre        2                         1e-50                1e-50  boomeramg boomeramg'
 #  [../]
 #  [./elastic]
 #    vars = 'disp_x disp_y disp_z'
 #    petsc_options='-dm_view'  # ''-ksp_monitor'
-#    petsc_options_iname=' -ksp_type  -ksp_gmres_restart -inner_pc_type -ksp_rtol -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot -pc_factor_zeropivot'
-#    petsc_options_value = ' gmres       350                 asm         1e-14       asm           5           1e-50                        1e-50'
+#    petsc_options_iname=' -ksp_type  -ksp_gmres_restart -inner_pc_type -ksp_rtol -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type -inner_pc_hypre_type'
+#    petsc_options_value = ' gmres       350                hypre         1e-10       hypre           2           1e-50                        1e-50 boomeramg boomeramg'
 #  [../]
 #[]
+
+[./Adaptivity]
+    [./Indicators]
+      [./indicator_x]
+        type = GradientJumpIndicator
+        variable = polar_x
+      [../]
+      [./indicator_y]
+        type = GradientJumpIndicator
+        variable = polar_y
+      [../]
+      [./indicator_z]
+        type = GradientJumpIndicator
+        variable = polar_z
+      [../]
+    [../]
+    #[./Markers]
+    #  [./marker_x]
+    #    type = ErrorFractionMarker
+    #    indicator = indicator_x
+    #    coarsen = 0.01
+    #    refine = 0.01
+    #  [../]
+    #  [./marker_y]
+    #    type = ErrorFractionMarker
+    #    indicator = indicator_y
+    #    coarsen = 0.01
+    #    refine = 0.01
+    #  [../]
+    #[../]
+[../]
+
 
 [Outputs]
   print_linear_residuals = true

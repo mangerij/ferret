@@ -27,6 +27,8 @@ InputParameters validParams<PolarElectricPStrong>()
 PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParameters parameters)
   :Kernel(name, parameters),
    _component(getParam<unsigned int>("component")),
+   _potential_int_var(coupled("potential_int")),
+   _potential_ext_var(coupled("potential_ext")),
    _potential_int_grad(coupledGradient("potential_int")),
    _potential_ext_grad(coupledGradient("potential_ext")),
    _len_scale(getParam<Real>("len_scale"))
@@ -48,12 +50,12 @@ PolarElectricPStrong::computeQpJacobian()
 Real
 PolarElectricPStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if( jvar == coupled("potential_int") )
-    return 0.5 * _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
-  else if( jvar == coupled("potential_ext"))
-    return _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
-  else
-  {
-    return 0.0;
-  }
+    if( jvar == _potential_int_var )
+      return 0.5 * _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    else if( jvar == _potential_ext_var)
+      return _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    else
+    {
+      return 0.0;
+    }
 }

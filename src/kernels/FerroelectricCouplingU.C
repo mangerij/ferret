@@ -56,7 +56,7 @@ FerroelectricCouplingU::computeQpResidual()
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _polar_y_grad[_qp], _component, p);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _polar_z_grad[_qp], _component, p);
 
-  return std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
+  return std::pow(_len_scale, 2.0) * _test[_i][_qp] * sum;
 }
 
 
@@ -93,7 +93,7 @@ FerroelectricCouplingU::computeQpOffDiagJacobian(unsigned int jvar)
     sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_y_grad[_qp], 1, coupled_component) * _phi[_j][_qp];
     sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(_component, _polar_z_grad[_qp], 2, coupled_component) * _phi[_j][_qp];
 
-    return std::pow(_len_scale, 3.0) * (sum1 + sum2 ) * _test[_i][_qp];
+    return std::pow(_len_scale, 2.0) * (sum1 + sum2 ) * _test[_i][_qp];
   }
   else
   {
