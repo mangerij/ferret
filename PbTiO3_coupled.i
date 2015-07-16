@@ -162,9 +162,19 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
+  [./rho_b]
+    order = CONSTANT
+    family = MONOMIAL
+  []
 []
 
 [AuxKernels]
+  [./boundcharge]
+    type = BoundCharge
+    variable = rho_b
+    execute_on = 'timestep_end'
+    block = '2'
+  [../]
   [./matl_s11]
     type = RankTwoAux
     rank_two_tensor = stress
@@ -396,32 +406,32 @@
   [./polar_x_time]
      type=TimeDerivativeScaled
      variable=polar_x
-     time_scale = 1.0
+     time_scale = 1.0e2
   [../]
   [./polar_y_time]
      type=TimeDerivativeScaled
      variable=polar_y
-     time_scale = 1.0
+     time_scale = 10.0e2
   [../]
   [./polar_z_time]
      type=TimeDerivativeScaled
      variable = polar_z
-     time_scale = 1.0
+     time_scale = 10.0e2
   [../]
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable = disp_x
-     time_scale = 0.5e-11
+     time_scale = 0.5e-9
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable = disp_y
-     time_scale = 0.5e-11
+     time_scale = 0.5e-9
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable = disp_z
-     time_scale = 0.5e-11
+     time_scale = 0.5e-9
   [../]
 []
 
@@ -582,27 +592,26 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-info -snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type'
-    petsc_options_value = '    675              1e-8      1e-12      hypre        5               lu              1e-50                    1e-50     boomeramg'
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left -pc_side_left'
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot '
+    petsc_options_value = '    675              1e-8      1e-10       gamg        1e-50  '
   [../]
 []
 
 [Executioner]
   type = Transient
-  dt = 0.01
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.015 #1.0e6 too high
+    dt = 1.8 #1.0e6 too high
     optimal_iterations = 10
     growth_factor = 1.0001
     cutback_factor =  0.9999
   [../]
-  solve_type = 'PJFNK'       #"PJNK, JFNK, NEWTON"
+  solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-10
-  dtmax = 0.015
-  num_steps = 1
+  dtmax = 1.8
+  num_steps = 4
   #splitting = 'ferretsplit'
 []
 
@@ -628,36 +637,35 @@
 #  [../]
 #[]
 
-#[./Adaptivity]
-#    [./Indicators]
-#      [./indicator_x]
-#        type = GradientJumpIndicator
-#        variable = polar_x
-#      [../]
-#      [./indicator_y]
-#        type = GradientJumpIndicator
-#        variable = polar_y
-#      [../]
-#      [./indicator_z]
-#        type = GradientJumpIndicator
-#        variable = polar_z
-#      [../]
-#    [../]
-#    #[./Markers]
-#    #  [./marker_x]
-#    #    type = ErrorFractionMarker
-#    #    indicator = indicator_x
-#    #    coarsen = 0.01
-#    #    refine = 0.01
-#    #  [../]
-#    #  [./marker_y]
-#    #    type = ErrorFractionMarker
-#    #    indicator = indicator_y
-#    #    coarsen = 0.01
-#    #    refine = 0.01
-#    #  [../]
-#    #[../]
-#[../]
+[./Adaptivity]
+    [./Indicators]
+      [./indicator_x]
+        type = GradientJumpIndicator
+        variable = polar_x
+        execute_on = 'timestep_end'
+      [../]
+      [./indicator_y]
+        type = GradientJumpIndicator
+        variable = polar_y
+        execute_on = 'timestep_end'
+      [../]
+      [./indicator_z]
+        type = GradientJumpIndicator
+        variable = polar_z
+        execute_on = 'timestep_end'
+      [../]
+    [../]
+    #[./Markers]
+    #  [./marker_j]
+    #    type = ErrorFractionMarker
+    #    indicator = indicator_j
+    #    coarsen = 0.01
+    #    refine = 0.01
+    #  [../]
+    #[../]
+[../]
+
+
 
 
 [Outputs]
