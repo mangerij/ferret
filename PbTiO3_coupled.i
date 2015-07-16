@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_40.e
+  file = slab_exodus_coarse_300.e
   uniform_refine = 0
 []
 
@@ -44,8 +44,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = 0.30
-      max = 0.50
+      min = 0.30e-3
+      max = 0.50e-3
     [../]
   [../]
   [./polar_y]
@@ -54,8 +54,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = 0.30
-      max = 0.50
+      min = 0.30e-3
+      max = 0.50e-3
     [../]
   [../]
   [./polar_z]
@@ -65,8 +65,8 @@
     #scaling = 1e5
     [./InitialCondition]
       type = RandomIC
-      min = 0.0030
-      max = 0.0050
+      min = 0.0030e-3
+      max = 0.0050e-3
     [../]
   [../]
   [./potential_int]
@@ -288,9 +288,6 @@
 [Kernels]
   #Elastic problem
   [./TensorMechanics]
-     disp_x = disp_x
-     disp_y = disp_y
-     disp_z = disp_z
   [../]
   #Bulk energy density
   [./bed_x]
@@ -515,7 +512,7 @@
     type = DirichletBC
     variable = disp_y
     boundary = '5'
-    value = -1.0 #~5% strain for 40nm; fixed condition gives a strain gradient
+    value = -8.0 #~5% strain for 40nm; fixed condition gives a strain gradient
   [../]
   [./disp_z_slab5]
     type = DirichletBC
@@ -536,7 +533,7 @@
      type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = 1.0  #probably ~5% strain for 40nm; fixed condition gives a strain gradient
+     value = 8.0  #probably ~5% strain for 40nm; fixed condition gives a strain gradient
    [../]
    [./disp_z_slab7]
      type = DirichletBC
@@ -592,9 +589,9 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left -pc_side_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot '
-    petsc_options_value = '    675              1e-8      1e-10       gamg        1e-50  '
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot -pc_side'
+    petsc_options_value = '    675              1e-8      1e-10      hypre        1e-50              left'
   [../]
 []
 
@@ -602,7 +599,7 @@
   type = Transient
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.8 #1.0e6 too high
+    dt = 12 #1.0e6 too high
     optimal_iterations = 10
     growth_factor = 1.0001
     cutback_factor =  0.9999
@@ -610,8 +607,8 @@
   solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-10
-  dtmax = 1.8
-  num_steps = 4
+  dtmax = 12
+  num_steps = 1
   #splitting = 'ferretsplit'
 []
 
@@ -642,17 +639,14 @@
       [./indicator_x]
         type = GradientJumpIndicator
         variable = polar_x
-        execute_on = 'timestep_end'
       [../]
       [./indicator_y]
         type = GradientJumpIndicator
         variable = polar_y
-        execute_on = 'timestep_end'
       [../]
       [./indicator_z]
         type = GradientJumpIndicator
         variable = polar_z
-        execute_on = 'timestep_end'
       [../]
     [../]
     #[./Markers]
@@ -673,9 +667,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_test_coupled_sc
+    file_base = out_PbTiO3_300_coupled_sc
     output_initial = true
-    elemental_as_nodal = false
+    elemental_as_nodal = true
     interval = 1
   [../]
   #[./debug]
