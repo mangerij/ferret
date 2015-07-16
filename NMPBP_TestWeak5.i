@@ -33,6 +33,7 @@
    disp_x = disp_x
    disp_y = disp_y
    disp_z = disp_z
+   displacements = 'disp_x disp_y disp_z'
   # use_displaced_mesh = false
 []
 
@@ -281,25 +282,7 @@
      disp_y = disp_y
      disp_z = disp_z
   [../]
-  #[./stressdiv_0]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_x
-  #  component = 0
-  #  block = '2'
-  #[../]
-  #[./stressdiv_1]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_y
-  #  component = 1
-  #  block = '2'
-  #[../]
-  #[./stressdiv_2]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_z
-  #  component = 2
-  #  block = '2'
-  #[../]
-  ###Bulk energy density
+  #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivative
     variable = polar_x
@@ -315,8 +298,7 @@
     variable = polar_z
     component = 2
   [../]
-  ##
-  ####Wall energy penalty
+  #Wall energy penalty
   [./walled_x]
      type=WallEnergyDerivative
      variable = polar_x
@@ -332,7 +314,7 @@
      variable = polar_z
      component = 2
   [../]
-  ###Polarization-strain coupling
+  #Polarization-strain coupling
   [./ferroelectriccouplingu_x]
      type = FerroelectricCouplingU
      variable = disp_x
@@ -369,7 +351,7 @@
      component = 2
      block = '2'
   [../]
-  ##Electrostatics
+  #Electrostatics
   [./polar_x_electric_E]
      type=PolarElectricEStrong
      variable=potential_int
@@ -410,7 +392,7 @@
      variable = polar_z
      component = 2
   [../]
-  ##Time dependence
+  #Time dependence
   [./polar_x_time]
      type=TimeDerivativeScaled
      variable=polar_x
@@ -620,7 +602,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1.0e-10
   dtmax = 0.015
-  num_steps = 3
+  num_steps = 1
   #splitting = 'ferretsplit'
 []
 

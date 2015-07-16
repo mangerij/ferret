@@ -1,17 +1,17 @@
 [Tests]
   [./test_surf]
     type = 'Exodiff'
-    input = 'surface_mech_test.i'
-    exodiff = 'out_surf_mech_test.e'
+    input = 'surf_mech.i'
+    exodiff = 'out_test_surf_mech.e'
   [../]
-  [./test_TensMech]
+  [./test_tens]
     type = 'Exodiff'
-    input = 'elasticity.i'
-    exodiff = 'out_elasticity_notscaled.e'
+    input = 'tens_mech.i'
+    exodiff = 'out_test_tens_mech.e'
   [../]
-  [./test_TensMech_scaled]
+  [./test_tens_aux]
     type = 'Exodiff'
-    input = 'elasticity_scaled.i'
-    exodiff = 'out_elasticity_scaled.e'
+    input = 'tens_mech_aux.i'
+    exodiff = 'out_test_tens_mech_aux.e'
   [../]
 []
