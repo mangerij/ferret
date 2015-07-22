@@ -8,85 +8,84 @@
 [GlobalParams]
   # #Can use a unit system where the differences between the coefficients
   # # in this table are minimized: [nm], [aC], [nN]
-   #
+
   # #length scale
    len_scale = 1.0
   # #BulkEnergy coefficients
-  # alpha1 = -0.03876 # (3.8 * (T-785) * 10^5) C^{-2} nm^2 (T = 650 K)
-  # alpha11 = -0.073  #
-  # alpha111 = 0.26
-  # alpha12 = 0.75
-  # alpha112 = 0.61
-  # alpha123 = -3.7
+   alpha1 = -0.03876 # (3.8 * (T-785) * 10^5) C^{-2} nm^2 (T = 650 K)
+   alpha11 = -0.073  #
+   alpha111 = 0.26
+   alpha12 = 0.75
+   alpha112 = 0.61
+   alpha123 = -3.7
   # #WallEnergy coefficients
-  # G110 = 0.1
-  # G11/G110 = 0.6
-  # G12/G110 = 0.0
-  # G44/G110 = 0.3
-  # G44P/G110 = 0.3
+   G110 = 0.1
+   G11/G110 = 0.6
+   G12/G110 = 0.0
+   G44/G110 = 0.3
+   G44P/G110 = 0.3
   # #Electrostatics
    permittivity = 0.008854187
-  # polar_x = polar_x
-  # polar_y = polar_y
-  # polar_z = polar_z
-  # potential_int = potential_int
-  # potential_ext = potential_ext
+   polar_x = polar_x
+   polar_y = polar_y
+   polar_z = polar_z
+   potential_int = potential_int
+   potential_ext = potential_ext
   # #elastic variables
    disp_x = disp_x
    disp_y = disp_y
    disp_z = disp_z
    displacements = 'disp_x disp_y disp_z'
    use_displaced_mesh = false
-
   # restart system
   # initial_from_file_timestep = 120
 []
 
 [Variables]
-  #[./polar_x]
-  #  order = FIRST
-  #  family = LAGRANGE
-  #  block='2'
-  #  [./InitialCondition]
-  #    type = RandomIC
-  #    min = -0.50
-  #    max = 0.50
-  #  [../]
-  #  # initial_from_file_var = polar_x
-  #[../]
-  #[./polar_y]
-  #  order = FIRST
-  #  family = LAGRANGE
-  #  block='2'
-  #  [./InitialCondition]
-  #    type = RandomIC
-  #    min = -0.50
-  #    max = 0.50
-  #  [../]
-  #  #initial_from_file_var = polar_y
-  #[../]
-  #[./polar_z]
-  #  order = FIRST
-  #  family = LAGRANGE
-  #  block='2'
-  #  #scaling = 1e5
-  #  [./InitialCondition]
-  #    type = RandomIC
-  #    min = -0.50
-  #    max = 0.50
-  #  [../]
-  #  #initial_from_file_var = polar_z
-  #[../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    block='2'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.50
+      max = 0.50
+    [../]
+    # initial_from_file_var = polar_x
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    block='2'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.50
+      max = 0.50
+    [../]
+    #initial_from_file_var = polar_y
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    block='2'
+    #scaling = 1e5
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.50
+      max = 0.50
+    [../]
+    #initial_from_file_var = polar_z
+  [../]
   [./potential_int]
     order=FIRST
     family = LAGRANGE
     #initial_from_file_var = potential_int
   [../]
-  #[./potential_ext]
-  #  order=FIRST
-  #  family = LAGRANGE
-  #  #initial_from_file_var = potential_ext
-  #[../]
+  [./potential_ext]
+    order=FIRST
+    family = LAGRANGE
+    #initial_from_file_var = potential_ext
+  [../]
   [./disp_x]
     order = FIRST
     family = LAGRANGE
@@ -186,20 +185,20 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
-  #[./rho_b]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #  initial_from_file_var = rho_b
-  #[]
+  [./rho_b]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = rho_b
+  []
 []
 
 [AuxKernels]
-  #[./boundcharge]
-  #  type = BoundCharge
-  #  variable = rho_b
-  #  execute_on = 'timestep_end'
-  #  block = '2'
-  #[../]
+  [./boundcharge]
+    type = BoundCharge
+    variable = rho_b
+    block = '2'
+    execute_on = 'timestep_end'
+  [../]
   [./matl_s11]
     type = RankTwoAux
     rank_two_tensor = stress
@@ -207,7 +206,7 @@
     index_j = 0
     block = '2'
     variable = stress_xx
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_s12]
     type = RankTwoAux
@@ -216,7 +215,7 @@
     index_j = 1
     block = '2'
     variable = stress_xy
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_s13]
     type = RankTwoAux
@@ -225,7 +224,7 @@
     index_j = 2
     block = '2'
     variable = stress_xz
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_s22]
     type = RankTwoAux
@@ -234,7 +233,7 @@
     index_j = 1
     block = '2'
     variable = stress_yy
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_s23]
     type = RankTwoAux
@@ -243,7 +242,7 @@
     index_j = 2
     block = '2'
     variable = stress_yz
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_s33]
     type = RankTwoAux
@@ -252,7 +251,7 @@
     index_j = 2
     block = '2'
     variable = stress_zz
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_e11]
     type = RankTwoAux
@@ -261,7 +260,7 @@
     index_j = 0
     block = '2'
     variable = elastic_strain_xx
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_e12]
     type = RankTwoAux
@@ -270,7 +269,7 @@
     index_j = 1
     block = '2'
     variable = elastic_strain_xy
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_e13]
     type = RankTwoAux
@@ -279,7 +278,7 @@
     index_j = 2
     block = '2'
     variable = elastic_strain_xz
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_e22]
     type = RankTwoAux
@@ -288,7 +287,7 @@
     index_j = 1
     block = '2'
     variable = elastic_strain_yy
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_e23]
     type = RankTwoAux
@@ -297,7 +296,7 @@
     index_j = 2
     block = '2'
     variable = elastic_strain_yz
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
   [./matl_e33]
     type = RankTwoAux
@@ -306,7 +305,7 @@
     index_j = 2
     block = '2'
     variable = elastic_strain_zz
-    #execute_on = 'timestep_end'
+    execute_on = 'timestep_end'
   [../]
 []
 
@@ -315,145 +314,145 @@
   [./TensorMechanics] #This is an action block
   [../]
   #Bulk energy density
-  #[./bed_x]
-  #  type = BulkEnergyDerivative
-  #  variable = polar_x
-  #  component = 0
-  #[../]
-  #[./bed_y]
-  #  type = BulkEnergyDerivative
-  #  variable = polar_y
-  #  component = 1
-  #[../]
-  #[./bed_z]
-  #  type = BulkEnergyDerivative
-  #  variable = polar_z
-  #  component = 2
-  #[../]
+  [./bed_x]
+    type = BulkEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivative
+    variable = polar_z
+    component = 2
+  [../]
   ##Wall energy penalty
-  #[./walled_x]
-  #   type=WallEnergyDerivative
-  #   variable = polar_x
-  #   component = 0
-  #[../]
-  #[./walled_y]
-  #   type=WallEnergyDerivative
-  #   variable = polar_y
-  #   component = 1
-  #[../]
-  #[./walled_z]
-  #   type=WallEnergyDerivative
-  #   variable = polar_z
-  #   component = 2
-  #[../]
+  [./walled_x]
+     type=WallEnergyDerivative
+     variable = polar_x
+     component = 0
+  [../]
+  [./walled_y]
+     type=WallEnergyDerivative
+     variable = polar_y
+     component = 1
+  [../]
+  [./walled_z]
+     type=WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
   ##Polarization-strain coupling
-  #[./ferroelectriccouplingu_x]
-  #   type = FerroelectricCouplingU
-  #   variable = disp_x
-  #   component = 0
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingu_y]
-  #   type = FerroelectricCouplingU
-  #   variable = disp_y
-  #   component = 1
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingu_z]
-  #   type = FerroelectricCouplingU
-  #   variable=disp_z
-  #   component = 2
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingp_xx]
-  #   type = FerroelectricCouplingP
-  #   variable=polar_x
-  #   component = 0
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingp_yy]
-  #   type = FerroelectricCouplingP
-  #   variable=polar_y
-  #   component = 1
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingp_zz]
-  #   type = FerroelectricCouplingP
-  #   variable=polar_z
-  #   component = 2
-  #   block = '2'
-  #[../]
+  [./ferroelectriccouplingu_x]
+     type = FerroelectricCouplingU
+     variable = disp_x
+     component = 0
+     block = '2'
+  [../]
+  [./ferroelectriccouplingu_y]
+     type = FerroelectricCouplingU
+     variable = disp_y
+     component = 1
+     block = '2'
+  [../]
+  [./ferroelectriccouplingu_z]
+     type = FerroelectricCouplingU
+     variable=disp_z
+     component = 2
+     block = '2'
+  [../]
+  [./ferroelectriccouplingp_xx]
+     type = FerroelectricCouplingP
+     variable=polar_x
+     component = 0
+     block = '2'
+  [../]
+  [./ferroelectriccouplingp_yy]
+     type = FerroelectricCouplingP
+     variable = polar_y
+     component = 1
+     block = '2'
+  [../]
+  [./ferroelectriccouplingp_zz]
+     type = FerroelectricCouplingP
+     variable = polar_z
+     component = 2
+     block = '2'
+  [../]
   ##Electrostatics
-  #[./polar_x_electric_E]
-  #   type=PolarElectricEStrong
-  #   variable=potential_int
-  #   block='2'
-  #[../]
+  [./polar_x_electric_E]
+     type=PolarElectricEStrong
+     variable = potential_int
+     block='2'
+  [../]
   [./E_int]
      type=Electrostatics
-     variable=potential_int
+     variable = potential_int
      block='1 3'
   [../]
-  #[./FE_E_int]
-  #   type=Electrostatics
-  #   variable=potential_int
-  #   block='2'
-  #[../]
-  #[./E_ext]
-  #   type=Electrostatics
-  #   variable=potential_ext
-  #   block='1'
-  #[../]
-  #[./FE_E_ext]
-  #   type=Electrostatics
-  #   variable=potential_ext
-  #   block='2'
-  #[../]
-  #[./polar_electric_px]
-  #   type=PolarElectricPStrong
-  #   variable = polar_x
-  #   component = 0
-  #[../]
-  #[./polar_electric_py]
-  #   type=PolarElectricPStrong
-  #   variable = polar_y
-  #   component = 1
-  #[../]
-  #[./polar_electric_pz]
-  #   type=PolarElectricPStrong
-  #   variable = polar_z
-  #   component = 2
-  #[../]
+  [./FE_E_int]
+     type=Electrostatics
+     variable = potential_int
+     block='2'
+  [../]
+  [./E_ext]
+     type=Electrostatics
+     variable = potential_ext
+     block='1 3'
+  [../]
+  [./FE_E_ext]
+     type=Electrostatics
+     variable = potential_ext
+     block='2'
+  [../]
+  [./polar_electric_px]
+     type=PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type=PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type=PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
   ##Time dependence
-  #[./polar_x_time]
-  #   type=TimeDerivativeScaled #CoupledTimeDerivative?
-  #   variable=polar_x
-  #   time_scale = 1.0e2
-  #[../]
-  #[./polar_y_time]
-  #   type=TimeDerivativeScaled
-  #   variable=polar_y
-  #   time_scale = 1.0e2
-  #[../]
-  #[./polar_z_time]
-  #   type=TimeDerivativeScaled
-  #   variable = polar_z
-  #   time_scale = 1.0e2
-  #[../]
+  [./polar_x_time]
+     type=TimeDerivativeScaled
+     variable=polar_x
+     time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type=TimeDerivativeScaled
+     variable=polar_y
+     time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type=TimeDerivativeScaled
+     variable = polar_z
+     time_scale = 1.0
+  [../]
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable = disp_x
-     time_scale = 0.5e-9
+     time_scale = 1.0e-9 #this is chosen so that the elastic problem is solved in ~10 timesteps.
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable = disp_y
-     time_scale = 0.5e-9
+     time_scale = 1.0e-9
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable = disp_z
-     time_scale = 0.5e-9
+     time_scale = 1.0e-9
   [../]
 []
 
@@ -581,37 +580,37 @@
      boundary = '8'
      value = 0.0
   [../]
-  #[./potential_ext_upz]
-  #  type = DirichletBC
-  #  variable = potential_ext
-  #  boundary = '1'
-  #  value = 0.0
-  #[../]
-  #[./potential_ext_downz]
-  #  type = DirichletBC
-  #  variable = potential_ext
-  #  boundary = '2'
-  #  value = 0.0
-  #[../]
+  [./potential_ext_upz]
+    type = DirichletBC
+    variable = potential_ext
+    boundary = '1'
+    value = 0.0
+  [../]
+  [./potential_ext_downz]
+    type = DirichletBC
+    variable = potential_ext
+    boundary = '2'
+    value = 0.0
+  [../]
 []
 
 [Materials]
-  #[./slab_ferroelectric]
-  #  type=LinearFerroelectricMaterial
-  #  block = '2'
-  #  disp_x = disp_x
-  #  disp_y = disp_y
-  #  disp_z = disp_z
-  #  #in GPA. from N. Pandech et al. Ceramic. Internat., times 1e9 to convert to N/m^2
-  #  # C11 C12 C13 C22 C23 C33 C44 C55 C66
-  #  C_ijkl = '3.80e-7 1.5e-7 1.50e-7 3.80e-7 1.50e-7 3.80e-7 1.1e-7 1.1e-7 1.1e-7'
-  #  #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
-  #  # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
-  #  Q_mnkl = '8.9e-2 -2.6e-2 -2.6e-2 8.9e-2 -2.6e-2 8.9e-2 3.4e-2 3.4e-2 3.4e-2'
-  #  euler_angle_1 = 0.0 #currently will only rotate C_ijkl
-  #  euler_angle_2 = 0.0
-  #  euler_angle_3 = 0.0
-  #[../]
+  [./slab_ferroelectric]
+    type=LinearFerroelectricMaterial
+    block = '2'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+    #in GPA. from N. Pandech et al. Ceramic. Internat., times 1e9 to convert to N/m^2
+    # C11 C12 C13 C22 C23 C33 C44 C55 C66
+    C_ijkl = '3.80e-7 1.5e-7 1.50e-7 3.80e-7 1.50e-7 3.80e-7 1.1e-7 1.1e-7 1.1e-7'
+    #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
+    # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
+    Q_mnkl = '8.9e-2 -2.6e-2 -2.6e-2 8.9e-2 -2.6e-2 8.9e-2 3.4e-2 3.4e-2 3.4e-2'
+    euler_angle_1 = 0.0 #currently will only rotate C_ijkl
+    euler_angle_2 = 0.0
+    euler_angle_3 = 0.0
+  [../]
   [./elasticity_tensor]
     type = ComputeElasticityTensor
     block = '2'
@@ -642,38 +641,52 @@
 []
 
 [Postprocessors]
-  #[./bulk_energy]
-  # type = BulkEnergy
-  # execute_on = 'timestep_end'
-  ## initial_from_file_var = bulk_energy
-  # block = '2'
-  #[../]
-  #[./wall_energy]
-  # type = WallEnergy
-  # execute_on = 'timestep_end'
-  ## initial_from_file_var = wall_energy
-  # block = '2'
-  #[../]
+  [./bulk_energy]
+   type = BulkEnergy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = bulk_energy
+   block = '2'
+  [../]
+  [./wall_energy]
+   type = WallEnergy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = wall_energy
+   block = '2'
+  [../]
   [./elastic_energy]
    type = ElasticEnergy
-  # execute_on = 'timestep_end'
+   execute_on = 'timestep_end'
   # initial_from_file_var = elastic_energy
    block = '2'
   [../]
-  #[./electrostatic_energy]
-  # type = ElectrostaticEnergy
-  # execute_on = 'timestep_end'
-  ## initial_from_file_var = electrostatic_energy
-  #[../]
-  #[./total_energy]
-  # type = TotalEnergy
-  # bulk_energy = bulk_energy
-  # wall_energy = wall_energy
-  # elastic_energy = elastic_energy
-  # electrostatic_energy = electrostatic_energy
-  # execute_on = 'timestep_end'
-  ## initial_from_file_var = total_energy
-  #[../]
+  [./electrostatic_energy]
+   type = ElectrostaticEnergy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = electrostatic_energy
+  [../]
+  [./total_energy]
+   type = TotalEnergy
+   bulk_energy = bulk_energy
+   wall_energy = wall_energy
+   elastic_energy = elastic_energy
+   electrostatic_energy = electrostatic_energy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = total_energy
+  [../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = total_energy
+  [../]
+  [./|R(i)|]
+    type = Residual
+  [../]
+[]
+
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = 'perc_change <= 1.0e-6'
+  [../]
 []
 
 [Preconditioning]
@@ -682,16 +695,15 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot -pc_side'
-    petsc_options_value = '    675              1e-8      1e-14      hypre        1e-50              left'
+    petsc_options_value = '    675              1e-8      1e-10      hypre        1e-50              left'
   [../]
 []
 
 [Executioner]
-  type = Steady
   type = Transient
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 6
+    dt = 0.01
     optimal_iterations = 10
     growth_factor = 1.0001
     cutback_factor =  0.9999
@@ -699,8 +711,8 @@
   solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dtmin = 1.0e-10
-  dtmax = 6
-  num_steps = 6
+  dtmax = 0.01
+  num_steps = 15
   #splitting = 'ferretsplit'
 []
 
@@ -726,22 +738,22 @@
 #  [../]
 #[]
 
-#[./Adaptivity]
-#    [./Indicators]
-#      [./indicator_x]
-#        type = GradientJumpIndicator
-#        variable = polar_x
-#      [../]
-#      [./indicator_y]
-#        type = GradientJumpIndicator
-#        variable = polar_y
-#      [../]
-#      [./indicator_z]
-#        type = GradientJumpIndicator
-#        variable = polar_z
-#      [../]
-#    [../]
-#[../]
+[./Adaptivity]
+    [./Indicators]
+      [./indicator_x]
+        type = GradientJumpIndicator
+        variable = polar_x
+      [../]
+      [./indicator_y]
+        type = GradientJumpIndicator
+        variable = polar_y
+      [../]
+      [./indicator_z]
+        type = GradientJumpIndicator
+        variable = polar_z
+      [../]
+    [../]
+[../]
 
 
 [Outputs]

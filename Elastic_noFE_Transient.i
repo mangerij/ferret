@@ -443,17 +443,17 @@
   [./disp_x_time]
      type=TimeDerivativeScaled
      variable = disp_x
-     time_scale = 0.5e-3
+     time_scale = 1.0e-9 #this is chosen so that the elastic problem is solved in ~8 timesteps.
   [../]
   [./disp_y_time]
      type=TimeDerivativeScaled
      variable = disp_y
-     time_scale = 0.5e-3
+     time_scale = 1.0e-9
   [../]
   [./disp_z_time]
      type=TimeDerivativeScaled
      variable = disp_z
-     time_scale = 0.5e-3
+     time_scale = 1.0e-9
   [../]
 []
 
@@ -687,11 +687,11 @@
 []
 
 [Executioner]
-  type = Steady
+  #type = Steady
   type = Transient
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 6
+    dt = 0.1
     optimal_iterations = 10
     growth_factor = 1.0001
     cutback_factor =  0.9999
@@ -699,8 +699,8 @@
   solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dtmin = 1.0e-10
-  dtmax = 6
-  num_steps = 6
+  dtmax = 0.1
+  num_steps = 10
   #splitting = 'ferretsplit'
 []
 
