@@ -24,6 +24,6 @@ solComp2pcAll[j_, k_] := ParallelTable[Table[Table[NSolve[{
      150*10^5, \[Omega]*10^5}], {Ey, 0, 150*10^5, \[Omega]*10^5}];
 Do[
  a = solComp2pcAll[n + 1, n];
- Export["/home/john/projects/solComp2pc-" <> ToString[n] <> ".csv", a,
+ Export["/scatch/solComp2pc-" <> ToString[n] <> ".csv", a,
    "CSV"], {n, 1, 400, 1}
  ]

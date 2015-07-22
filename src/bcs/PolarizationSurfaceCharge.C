@@ -12,9 +12,9 @@ InputParameters validParams<PolarizationSurfaceCharge>()
 
 PolarizationSurfaceCharge::PolarizationSurfaceCharge(const std::string & name, InputParameters parameters) :
   FerretBase(parameters), IntegratedBC(name, parameters),
-  _P_x(coupledValue("P",0)),
-  _P_y(coupledValue("P",1)),
-  _P_z(coupledValue("P",2)),
+  _P_x(coupledValue("P", 0)),
+  _P_y(coupledValue("P", 1)),
+  _P_z(coupledValue("P", 2)),
   _J_polarization(getParam<bool>("J_polarization"))
 {
 }
@@ -22,15 +22,15 @@ PolarizationSurfaceCharge::PolarizationSurfaceCharge(const std::string & name, I
 Real
 PolarizationSurfaceCharge::computeQpResidual()
 {
-  RealVectorValue P(_P_x[_qp],_P_y[_qp],_P_z[_qp]);
+  RealVectorValue P(_P_x[_qp], _P_y[_qp], _P_z[_qp]);
   RealVectorValue n(_normals[_qp]);
 
   Real charge = n*P;
   Real res = _test[_i][_qp]*charge;
-  if (debug("computeQpResidual")) {
+  if (debug("computeQpResidual"))
+  {
     libMesh::out << "PolarizationSurfaceCharge::computeQpResidual:\n";
     libMesh::out << "_qp = " << _qp << ", _qpoint[_qp] = " << _q_point[_qp] << ", n = " << n << ", P = " << P << ", charge = " << charge << ", res = " << res  << "\n";
   }
   return res;
 }
-
