@@ -24,6 +24,7 @@
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
+#include "ScreenAux.h"
 #include "PolarizationSurfaceCharge.h" //?
 
 //not sure what these are
@@ -71,7 +72,7 @@
 #include "TotalEnergyGradient.h" //deprecated
 #include "TotalEnergyGradientL2.h"
 #include "ElasticEnergy.h"
-//#include "CoupledEnergy.h" to be added
+#include "CoupledEnergy.h"
 
 //Time steppers
 #include "PostprocessorAdaptiveDT.h"
@@ -147,6 +148,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
   registerAux(SurfaceChargeAux);
+  registerAux(ScreenAux);
   //registerPostprocessor(VortexSurfaceEnergy);
 
   //Kernels
@@ -171,7 +173,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyGradientL2);
  // registerPostprocessor(PercentChangePostprocessor); //added to MOOSE (deprecated)
   registerPostprocessor(ElasticEnergy);
-  //registerPostprocess(CoupledEnergy); to be added
+  registerPostprocessor(CoupledEnergy);
 
   //Materials
   registerMaterial(PolarMaterial);

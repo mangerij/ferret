@@ -15,10 +15,11 @@ InputParameters validParams<TotalEnergy>()
 {
   //TODO: inherit from an appropriate postprocessor
   InputParameters params = validParams<GeneralPostprocessor>();
-  params.addRequiredParam<PostprocessorName>("bulk_energy","name of bulk_energy postprocessor");
-  params.addRequiredParam<PostprocessorName>("wall_energy","name of wall_energy postprocessor");
-  params.addRequiredParam<PostprocessorName>("electrostatic_energy","name of electrostatic_energy postprocessor");
-  params.addParam<PostprocessorName>("elastic_energy",0.0,"name of elastic_energy postprocessor");
+  params.addRequiredParam<PostprocessorName>("bulk_energy", "name of bulk energy postprocessor");
+  params.addRequiredParam<PostprocessorName>("wall_energy", "name of wall energy postprocessor");
+  params.addRequiredParam<PostprocessorName>("electrostatic_energy", "name of electrostatic energy postprocessor");
+  params.addParam<PostprocessorName>("elastic_energy", 0.0, "name of elastic energy postprocessor");
+  params.addParam<PostprocessorName>("coupled_energy", 0.0, "name of the coupled energy postprocessor");
   return params;
 }
 
@@ -27,7 +28,8 @@ TotalEnergy::TotalEnergy(const std::string & name, InputParameters parameters) :
   _bulk_energy(getPostprocessorValue(getParam<PostprocessorName>("bulk_energy"))),
   _wall_energy(getPostprocessorValue(getParam<PostprocessorName>("wall_energy"))),
   _electrostatic_energy(getPostprocessorValue(getParam<PostprocessorName>("electrostatic_energy"))),
-  _elastic_energy(getPostprocessorValue(getParam<PostprocessorName>("elastic_energy")))
+  _elastic_energy(getPostprocessorValue(getParam<PostprocessorName>("elastic_energy"))),
+  _coupled_energy(getPostprocessorValue(getParam<PostprocessorName>("coupled_energy")))
 {
 }
 
@@ -46,5 +48,5 @@ Real
 TotalEnergy::getValue()
 {
   //  return _bulk_energy + _wall_energy + _electrostatic_energy;
-  return _bulk_energy + _wall_energy + _electrostatic_energy + _elastic_energy;
+  return _bulk_energy + _wall_energy + _electrostatic_energy + _elastic_energy + _coupled_energy;
 }

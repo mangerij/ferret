@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = slab_exodus_coarse_200.e
+  file = slab_exodus_coarse_30.e
   uniform_refine = 0
   #distribution = serial
 []
@@ -48,8 +48,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = -0.50
-      max = 0.50
+      min = -0.00050
+      max = 0.00050
     [../]
     # initial_from_file_var = polar_x
   [../]
@@ -59,8 +59,8 @@
     block='2'
     [./InitialCondition]
       type = RandomIC
-      min = -0.50
-      max = 0.50
+      min = -0.00050
+      max = 0.00050
     [../]
     #initial_from_file_var = polar_y
   [../]
@@ -71,8 +71,8 @@
     #scaling = 1e5
     [./InitialCondition]
       type = RandomIC
-      min = -0.50
-      max = 0.50
+      min = -0.00050
+      max = 0.00050
     [../]
     #initial_from_file_var = polar_z
   [../]
@@ -189,10 +189,19 @@
     order = CONSTANT
     family = MONOMIAL
     #initial_from_file_var = rho_b
-  []
+  [../]
+  [./screenfield]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 [AuxKernels]
+  [./surfacescreenfield]
+    type = ScreenAux
+    variable = screenfield
+    boundary = '3 4'
+  [../]
   [./boundcharge]
     type = BoundCharge
     variable = rho_b
@@ -457,6 +466,7 @@
 []
 
 [BCs]
+   #"infinity condition"
    [./potential_int_upz]
      type = DirichletBC
      variable = potential_int
@@ -467,6 +477,20 @@
      type = DirichletBC
      variable = potential_int
      boundary = '2'
+     value = 0.0
+   [../]
+   #screening?
+   [./potential_int_top]
+     type = NeumannBC
+     variable = potential_int
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./potential_int_bottom
+   ]
+     type = NeumannBC
+     variable = potential_int
+     boundary = '4'
      value = 0.0
    [../]
    #Top and bottom {3, 4}:
@@ -659,6 +683,11 @@
   # initial_from_file_var = elastic_energy
    block = '2'
   [../]
+  [./coupled_energy]
+    type = CoupledEnergy
+    execute_on = 'timestep_end'
+    block = '2'
+  [../]
   [./electrostatic_energy]
    type = ElectrostaticEnergy
    execute_on = 'timestep_end'
@@ -668,26 +697,27 @@
    type = TotalEnergy
    bulk_energy = bulk_energy
    wall_energy = wall_energy
+   coupled_energy = coupled_energy
    elastic_energy = elastic_energy
    electrostatic_energy = electrostatic_energy
    execute_on = 'timestep_end'
   # initial_from_file_var = total_energy
   [../]
-  [./perc_change]
-    type = PercentChangePostprocessor
-    postprocessor = total_energy
-  [../]
-  [./|R(i)|]
-    type = Residual
-  [../]
+  #[./perc_change]
+  #  type = PercentChangePostprocessor
+  #  postprocessor = total_energy
+  #[../]
+  #[./|R(i)|]
+  #  type = Residual
+  #[../]
 []
 
-[UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-6'
-  [../]
-[]
+#[UserObjects]
+#  [./kill]
+#    type = Terminator
+#    expression = 'perc_change <= 1.0e-6'
+#  [../]
+#[]
 
 [Preconditioning]
   [./smp]
@@ -712,7 +742,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dtmin = 1.0e-10
   dtmax = 0.01
-  num_steps = 15
+  num_steps = 1500000000
   #splitting = 'ferretsplit'
 []
 
@@ -761,10 +791,10 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_60nm_T650_Steady_noFE
+    file_base = out_PbTiO3_30nm_T650K_compressed2_screen34
     output_initial = true
     elemental_as_nodal = true
-    interval = 1
+    interval = 50
   [../]
   #[./debug]
   #  type = VariableResidualNormsDebugOutput
