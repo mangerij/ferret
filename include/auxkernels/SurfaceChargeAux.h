@@ -22,11 +22,9 @@ protected:
   const MooseArray<Point> & _normals;
 
 private:
-  const VariableValue& _polar_x;
-  const VariableValue& _polar_y;
-  const VariableValue& _polar_z;
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
 };
 
-#endif 
-
-
+#endif

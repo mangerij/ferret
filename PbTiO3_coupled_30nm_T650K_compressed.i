@@ -1,18 +1,20 @@
-
 [Mesh]
   file = slab_exodus_coarse_30.e
   uniform_refine = 0
   #distribution = serial
 []
 
+[NodalNormals]
+  boundary = '3 4'
+[]
+
 [GlobalParams]
   # #Can use a unit system where the differences between the coefficients
   # # in this table are minimized: [nm], [aC], [nN]
-
   # #length scale
    len_scale = 1.0
   # #BulkEnergy coefficients
-   alpha1 = -0.03876 # (3.8 * (T-785) * 10^5) C^{-2} nm^2 (T = 650 K)
+   alpha1 = -0.09576 # (3.8 * (T - 785) * 10^5) C^{-2} nm^2 (T = 500 K)
    alpha11 = -0.073  #
    alpha111 = 0.26
    alpha12 = 0.75
@@ -46,40 +48,48 @@
     order = FIRST
     family = LAGRANGE
     block='2'
+   # scaling = 1e2
+   # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
-      min = -0.00050
-      max = 0.00050
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
-    # initial_from_file_var = polar_x
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     block='2'
+  # scaling = 1e2
+  # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
-      min = -0.00050
-      max = 0.00050
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
-    #initial_from_file_var = polar_y
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     block='2'
-    #scaling = 1e5
+   # scaling = 1e2
+   # initial_from_file_var = polar_z
     [./InitialCondition]
       type = RandomIC
-      min = -0.00050
-      max = 0.00050
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
-    #initial_from_file_var = polar_z
   [../]
   [./potential_int]
     order=FIRST
     family = LAGRANGE
-    #initial_from_file_var = potential_int
+   # scaling = 1e5
+   # initial_from_file_var = potential_int
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
   [../]
   [./potential_ext]
     order=FIRST
@@ -90,113 +100,122 @@
     order = FIRST
     family = LAGRANGE
     block = '2'
-    #initial_from_file_var = disp_x
-    #[./InitialCondition] #Thought this was needed to get around the zero pivot
-    #  type = RandomIC
-    #  min = 0.1e-1
-    #  max = 1.5e-1
-    #[../]
+   # scaling = 1e8
+   # initial_from_file_var = disp_x
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
     block = '2'
-    #initial_from_file_var = disp_y
-    #[./InitialCondition]
-    #  type = RandomIC
-    #  min = 0.1e-1
-    #  max = 1.5e-1
-    #[../]
+   # scaling = 1e8
+   # initial_from_file_var = disp_y
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
     block = '2'
-    #initial_from_file_var = disp_z
-    #[./InitialCondition]
-    #  type = RandomIC
-    #  min = 0.1e-1
-    #  max = 1.5e-1
-    #[../]
+   # scaling = 1e8
+   # initial_from_file_var = disp_z
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
   [../]
 []
-
-#NOTE: AuxSystem causes a 20% slowdown in computation. Only use AuxVariables
-#      if they are needed!
 
 [AuxVariables]
   [./stress_xx]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_xx
+   # initial_from_file_var = stress_xx
   [../]
   [./stress_yy]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_yy
+   # initial_from_file_var = stress_yy
   [../]
   [./stress_xy]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_xy
+   # initial_from_file_var = stress_xy
   [../]
   [./stress_xz]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_xz
+   # initial_from_file_var = stress_xz
   [../]
   [./stress_zz]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_zz
+   # initial_from_file_var = stress_zz
   [../]
   [./stress_yz]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_yz
+   # initial_from_file_var = stress_yz
   [../]
   [./elastic_strain_xx]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_xx
+   # initial_from_file_var = strain_xx
   [../]
   [./elastic_strain_yy]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_yy
+   # initial_from_file_var = strain_yy
   [../]
   [./elastic_strain_xy]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_xy
+   # initial_from_file_var = strain_xy
   [../]
   [./elastic_strain_xz]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_xz
+   # initial_from_file_var = strain_xz
   [../]
   [./elastic_strain_zz]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_zz
+   # initial_from_file_var = strain_zz
   [../]
   [./elastic_strain_yz]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_yz
+   # initial_from_file_var = strain_yz
   [../]
   [./rho_b]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = rho_b
+   # initial_from_file_var = rho_b
   [../]
   [./screenfield]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./surf_charge]
     order = CONSTANT
     family = MONOMIAL
   [../]
 []
 
 [AuxKernels]
+  [./surfacecharge]
+    type = SurfaceChargeAux
+    variable = surf_charge
+    boundary = '3 4'
+  [../]
   [./surfacescreenfield]
     type = ScreenAux
     variable = screenfield
@@ -479,20 +498,20 @@
      boundary = '2'
      value = 0.0
    [../]
-   #screening?
-   [./potential_int_top]
-     type = NeumannBC
-     variable = potential_int
-     boundary = '3'
-     value = 0.0
-   [../]
-   [./potential_int_bottom
-   ]
-     type = NeumannBC
-     variable = potential_int
-     boundary = '4'
-     value = 0.0
-   [../]
+   #screening? can implement P dot n to be zero as well...(NodalNormalBC)
+  # [./potential_int_top]
+  #   type = NeumannBC
+  #   variable = potential_int
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./potential_int_bottom
+  # ]
+  #   type = NeumannBC
+  #   variable = potential_int
+  #   boundary = '4'
+  #   value = 0.0
+  # [../]
    #Top and bottom {3, 4}:
    [./disp_x_slab3]
      type = DirichletBC
@@ -697,27 +716,27 @@
    type = TotalEnergy
    bulk_energy = bulk_energy
    wall_energy = wall_energy
-   coupled_energy = coupled_energy
    elastic_energy = elastic_energy
+   coupled_energy = coupled_energy
    electrostatic_energy = electrostatic_energy
    execute_on = 'timestep_end'
   # initial_from_file_var = total_energy
   [../]
-  #[./perc_change]
-  #  type = PercentChangePostprocessor
-  #  postprocessor = total_energy
-  #[../]
-  #[./|R(i)|]
-  #  type = Residual
-  #[../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = total_energy
+  [../]
+  [./|R(i)|]
+    type = Residual
+  [../]
 []
 
-#[UserObjects]
-#  [./kill]
-#    type = Terminator
-#    expression = 'perc_change <= 1.0e-6'
-#  [../]
-#[]
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = 'perc_change <= 1.0e-6'
+  [../]
+[]
 
 [Preconditioning]
   [./smp]
@@ -796,7 +815,7 @@
     elemental_as_nodal = true
     interval = 50
   [../]
-  #[./debug]
-  #  type = VariableResidualNormsDebugOutput
-  #[../]
+  [./debug]
+    type = VariableResidualNormsDebugOutput
+  [../]
 []
