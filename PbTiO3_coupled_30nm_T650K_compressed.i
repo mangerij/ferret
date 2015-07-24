@@ -1,12 +1,12 @@
 [Mesh]
-  file = slab_exodus_coarse_30.e
+  file = slab_exodus_coarse_100.e
   uniform_refine = 0
   #distribution = serial
 []
 
-[NodalNormals]
-  boundary = '3 4'
-[]
+#[NodalNormals]
+#  boundary = '3 4'
+#[]
 
 [GlobalParams]
   # #Can use a unit system where the differences between the coefficients
@@ -48,7 +48,7 @@
     order = FIRST
     family = LAGRANGE
     block='2'
-   # scaling = 1e2
+    #scaling = 1e
    # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
@@ -60,36 +60,37 @@
     order = FIRST
     family = LAGRANGE
     block='2'
-  # scaling = 1e2
+    #scaling = 1e11
   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
     [../]
+    #initial_from_file_var = polar_y
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     block='2'
-   # scaling = 1e2
-   # initial_from_file_var = polar_z
+    #scaling = 1e11
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
     [../]
+    #initial_from_file_var = polar_z
   [../]
   [./potential_int]
     order=FIRST
     family = LAGRANGE
-   # scaling = 1e5
-   # initial_from_file_var = potential_int
+    #scaling = 1e11
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
     [../]
+    #initial_from_file_var = potential_int
   [../]
   [./potential_ext]
     order=FIRST
@@ -100,37 +101,37 @@
     order = FIRST
     family = LAGRANGE
     block = '2'
-   # scaling = 1e8
-   # initial_from_file_var = disp_x
+    scaling = 1e6 #tonks suggests 1e6 for disp only
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
     [../]
+    #initial_from_file_var = disp_x
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
     block = '2'
-   # scaling = 1e8
-   # initial_from_file_var = disp_y
+    scaling = 1e6
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
     [../]
+    #initial_from_file_var = disp_y
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
     block = '2'
-   # scaling = 1e8
-   # initial_from_file_var = disp_z
+    scaling = 1e6
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
     [../]
+    #initial_from_file_var = disp_z
   [../]
 []
 
@@ -138,67 +139,67 @@
   [./stress_xx]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = stress_xx
+    #initial_from_file_var = stress_xx
   [../]
   [./stress_yy]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = stress_yy
+    #initial_from_file_var = stress_yy
   [../]
   [./stress_xy]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = stress_xy
+    #initial_from_file_var = stress_xy
   [../]
   [./stress_xz]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = stress_xz
+    #initial_from_file_var = stress_xz
   [../]
   [./stress_zz]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = stress_zz
+    #initial_from_file_var = stress_zz
   [../]
   [./stress_yz]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = stress_yz
+    #initial_from_file_var = stress_yz
   [../]
   [./elastic_strain_xx]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = strain_xx
+    #initial_from_file_var = strain_xx
   [../]
   [./elastic_strain_yy]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = strain_yy
+    #initial_from_file_var = strain_yy
   [../]
   [./elastic_strain_xy]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = strain_xy
+    #initial_from_file_var = strain_xy
   [../]
   [./elastic_strain_xz]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = strain_xz
+    #initial_from_file_var = strain_xz
   [../]
   [./elastic_strain_zz]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = strain_zz
+    #initial_from_file_var = strain_zz
   [../]
   [./elastic_strain_yz]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = strain_yz
+    #initial_from_file_var = strain_yz
   [../]
   [./rho_b]
     order = CONSTANT
     family = MONOMIAL
-   # initial_from_file_var = rho_b
+    #initial_from_file_var = rho_b
   [../]
   [./screenfield]
     order = CONSTANT
@@ -214,7 +215,7 @@
   [./surfacecharge]
     type = SurfaceChargeAux
     variable = surf_charge
-    boundary = '3 4'
+    boundary = '3'
   [../]
   [./surfacescreenfield]
     type = ScreenAux
@@ -486,32 +487,31 @@
 
 [BCs]
    #"infinity condition"
-   [./potential_int_upz]
-     type = DirichletBC
-     variable = potential_int
-     boundary = '1'
-     value = 0.0
-   [../]
-   [./potential_int_downz]
-     type = DirichletBC
-     variable = potential_int
-     boundary = '2'
-     value = 0.0
-   [../]
-   #screening? can implement P dot n to be zero as well...(NodalNormalBC)
-  # [./potential_int_top]
-  #   type = NeumannBC
+  # [./potential_int_upz]
+  #   type = DirichletBC
   #   variable = potential_int
-  #   boundary = '3'
+  #   boundary = '1'
   #   value = 0.0
   # [../]
-  # [./potential_int_bottom
-  # ]
-  #   type = NeumannBC
+  # [./potential_int_downz]
+  #   type = DirichletBC
   #   variable = potential_int
-  #   boundary = '4'
+  #   boundary = '2'
   #   value = 0.0
   # [../]
+   #screening?
+   [./potential_int_top]
+     type = NeumannBC
+     variable = potential_int
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./potential_int_bottom]
+     type = NeumannBC
+     variable = potential_int
+     boundary = '4'
+     value = 0.0
+   [../]
    #Top and bottom {3, 4}:
    [./disp_x_slab3]
      type = DirichletBC
@@ -734,7 +734,7 @@
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = 'perc_change <= 1.0e-6'
+    expression = 'perc_change <= 5.0e-7'
   [../]
 []
 
@@ -743,8 +743,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot -pc_side'
-    petsc_options_value = '    675              1e-8      1e-10      hypre        1e-50              left'
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot -pc_side -sub_pc_type -sub_pc_factor_zeropivot'
+    petsc_options_value = '    501              1e-8      1e-8      bjacobi       1e-50             left     ilu                1e-50'
   [../]
 []
 
@@ -752,15 +752,15 @@
   type = Transient
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.01
+    dt = 1.0
     optimal_iterations = 10
     growth_factor = 1.0001
     cutback_factor =  0.9999
   [../]
-  solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
+  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dtmin = 1.0e-10
-  dtmax = 0.01
+  dtmax = 1.0
   num_steps = 1500000000
   #splitting = 'ferretsplit'
 []
@@ -813,7 +813,7 @@
     file_base = out_PbTiO3_30nm_T650K_compressed2_screen34
     output_initial = true
     elemental_as_nodal = true
-    interval = 50
+    interval = 1
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
