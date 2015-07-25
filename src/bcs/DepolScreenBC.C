@@ -1,35 +1,30 @@
-/****************************************************************/
-/*               DO NOT MODIFY THIS HEADER                      */
-/* MOOSE - Multiphysics Object Oriented Simulation Environment  */
-/*                                                              */
-/*           (c) 2010 Battelle Energy Alliance, LLC             */
-/*                   ALL RIGHTS RESERVED                        */
-/*                                                              */
-/*          Prepared by Battelle Energy Alliance, LLC           */
-/*            Under Contract No. DE-AC07-05ID14517              */
-/*            With the U. S. Department of Energy               */
-/*                                                              */
-/*            See COPYRIGHT for full restrictions               */
-/****************************************************************/
+/* Implement a simple screening of the depolarizing field.
+/* More complicated methods will come later. */
 
-#include "DirichletBC.h"
+#include "DepolScreenBC.h"
 
 template<>
-InputParameters validParams<DirichletBC>()
+InputParameters validParams<DepolScreenBC>()
 {
-  InputParameters p = validParams<NodalBC>();
+  InputParameters p = validParams<NodalNormalBC>();
   p.addRequiredParam<Real>("value", "Value of the BC");
+  p.addRequiredCoupledVar("polar_x", "The x component of the polarization");
+  p.addRequiredCoupledVar("polar_y", "The y component of the polarization");
+  p.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return p;
 }
 
-
-DirichletBC::DirichletBC(const std::string & name, InputParameters parameters) :
-  NodalBC(name, parameters),
+DepolScreenBC::DepolScreenBC(const std::string & name, InputParameters parameters) :
+  NodalNormalBC(name, parameters),
+  _polar_x(coupledValue("polar_x")),
+  _polar_y(coupledValue("polar_y")),
+  _polar_z(coupledValue("polar_z")),
   _value(getParam<Real>("value"))
-{}
+{
+}
 
 Real
-DirichletBC::computeQpResidual()
+DepolScreenBC::computeQpResidual()
 {
-  return _u[_qp] - _value;
+  return _polar_x[_qp] * _normal(0) + _polar_y[_qp] * _normal(1) + _polar_z[_qp] * _normal(2) - _value * (_polar_x[_qp] * _normal(0) + _polar_y[_qp] * _normal(1) + _polar_z[_qp] * _normal(2));
 }

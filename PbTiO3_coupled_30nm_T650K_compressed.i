@@ -1,12 +1,12 @@
 [Mesh]
-  file = slab_exodus_coarse_100.e
+  file = slab_exodus_coarse_30.e
   uniform_refine = 0
   #distribution = serial
 []
 
-#[NodalNormals]
-#  boundary = '3 4'
-#[]
+[NodalNormals]
+  boundary = '3 4'
+[]
 
 [GlobalParams]
   # #Can use a unit system where the differences between the coefficients
@@ -73,7 +73,7 @@
     order = FIRST
     family = LAGRANGE
     block='2'
-    #scaling = 1e11
+    #scaling = 1e5
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -84,7 +84,6 @@
   [./potential_int]
     order=FIRST
     family = LAGRANGE
-    #scaling = 1e11
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -101,7 +100,6 @@
     order = FIRST
     family = LAGRANGE
     block = '2'
-    scaling = 1e6 #tonks suggests 1e6 for disp only
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -113,7 +111,6 @@
     order = FIRST
     family = LAGRANGE
     block = '2'
-    scaling = 1e6
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -125,7 +122,6 @@
     order = FIRST
     family = LAGRANGE
     block = '2'
-    scaling = 1e6
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -500,18 +496,27 @@
   #   value = 0.0
   # [../]
    #screening?
-   [./potential_int_top]
-     type = NeumannBC
-     variable = potential_int
-     boundary = '3'
-     value = 0.0
-   [../]
-   [./potential_int_bottom]
-     type = NeumannBC
+  # [./potential_int_top]
+  #   type = NeumannBC
+  #   variable = potential_int
+  #   boundary = '3'
+  #   value = 0.0
+  # [../]
+  # [./potential_int_bottom]
+  #  type = NeumannBC
+  #   variable = potential_int
+  #   boundary = '4'
+  #   value = 0.0
+  # [../]
+
+
+   [./screen_int_bottom]
+    type = DepolScreenBC
      variable = potential_int
      boundary = '4'
-     value = 0.0
+     value = 1.0
    [../]
+
    #Top and bottom {3, 4}:
    [./disp_x_slab3]
      type = DirichletBC
@@ -734,7 +739,7 @@
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = 'perc_change <= 5.0e-7'
+    expression = 'perc_change <= 1.0e-6'
   [../]
 []
 
@@ -743,8 +748,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot -pc_side -sub_pc_type -sub_pc_factor_zeropivot'
-    petsc_options_value = '    501              1e-8      1e-8      bjacobi       1e-50             left     ilu                1e-50'
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot -pc_side'
+    petsc_options_value = '    675              1e-8      1e-10      bjacobi        1e-50              left'
   [../]
 []
 
@@ -757,7 +762,7 @@
     growth_factor = 1.0001
     cutback_factor =  0.9999
   [../]
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dtmin = 1.0e-10
   dtmax = 1.0
@@ -810,10 +815,10 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_30nm_T650K_compressed2_screen34
+    file_base = out_PbTiO3_30nm_T650K_compressed2_Dscreen34
     output_initial = true
     elemental_as_nodal = true
-    interval = 1
+    interval = 50
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
