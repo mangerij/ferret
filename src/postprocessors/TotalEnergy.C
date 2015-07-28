@@ -15,9 +15,9 @@ InputParameters validParams<TotalEnergy>()
 {
   //TODO: inherit from an appropriate postprocessor
   InputParameters params = validParams<GeneralPostprocessor>();
-  params.addRequiredParam<PostprocessorName>("bulk_energy", "name of bulk energy postprocessor");
-  params.addRequiredParam<PostprocessorName>("wall_energy", "name of wall energy postprocessor");
-  params.addRequiredParam<PostprocessorName>("electrostatic_energy", "name of electrostatic energy postprocessor");
+  params.addParam<PostprocessorName>("bulk_energy", 0.0, "name of bulk energy postprocessor");
+  params.addParam<PostprocessorName>("wall_energy", 0.0, "name of wall energy postprocessor");
+  params.addParam<PostprocessorName>("electrostatic_energy", 0.0, "name of electrostatic energy postprocessor");
   params.addParam<PostprocessorName>("elastic_energy", 0.0, "name of elastic energy postprocessor");
   params.addParam<PostprocessorName>("coupled_energy", 0.0, "name of the coupled energy postprocessor");
   return params;

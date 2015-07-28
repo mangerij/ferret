@@ -1,5 +1,5 @@
 [Mesh]
-  file = slab_exodus_coarse_50.e
+  file = out_PbTiO3_50nm_T673K_notimedepu_comp2.e
   uniform_refine = 0
   #distribution = serial
 []
@@ -21,11 +21,11 @@
    alpha112 = 0.61
    alpha123 = -3.7
    # #WallEnergy coefficients
-  # G110 = 0.25
-  # G11/G110 = 0.6
-  # G12/G110 = 0.0
-  # G44/G110 = 0.3
-  # G44P/G110 = 0.3
+   G110 = 0.25
+   G11/G110 = 0.6
+   G12/G110 = 0.0
+   G44/G110 = 0.3
+   G44P/G110 = 0.3
    # #Electrostatics
    permittivity = 0.008854187
    polar_x = polar_x
@@ -40,7 +40,7 @@
    displacements = 'disp_x disp_y disp_z'
    use_displaced_mesh = false
    # restart system
-   # initial_from_file_timestep = 120
+   initial_from_file_timestep = 166
 []
 
 [Variables]
@@ -49,12 +49,12 @@
     family = LAGRANGE
     block='2'
     #scaling = 1e
-   # initial_from_file_var = polar_x
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5
-      max = 0.5
-    [../]
+    initial_from_file_var = polar_x
+    #[./InitialCondition]
+    #  type = RandomIC
+    #  min = -0.5e-6
+    #  max = 0.5e-6
+    #[../]
   [../]
   [./polar_y]
     order = FIRST
@@ -62,75 +62,74 @@
     block='2'
     #scaling = 1e11
   # initial_from_file_var = polar_y
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5
-      max = 0.5
-    [../]
-    #initial_from_file_var = polar_y
+  #  [./InitialCondition]
+  #    type = RandomIC
+  #    min = -0.5e-6
+  #    max = 0.5e-6
+  #  [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     block='2'
     #scaling = 1e5
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5
-      max = 0.5
-    [../]
-    #initial_from_file_var = polar_z
+    #[./InitialCondition]
+    #  type = RandomIC
+    #  min = -0.5e-6
+    #  max = 0.5e-6
+    #[../]
+    initial_from_file_var = polar_z
   [../]
   [./potential_int]
     order=FIRST
     family = LAGRANGE
     #[./InitialCondition]
     #  type = RandomIC
-    #  min = -0.5
-    #  max = 0.5
+    #  min = -0.5e-6
+    #  max = 0.5e-6
     #[../]
-    #initial_from_file_var = potential_int
+    initial_from_file_var = potential_int
   [../]
   [./potential_ext]
     order=FIRST
     family = LAGRANGE
-    #initial_from_file_var = potential_ext
+    initial_from_file_var = potential_ext
   [../]
   [./disp_x]
     order = FIRST
     family = LAGRANGE
     block = '2'
-    scaling = 1e6
+    scaling = 1e5
     #[./InitialCondition]
     #  type = RandomIC
     #  min = -0.5e-6
     #  max = 0.5e-6
     #[../]
-    #initial_from_file_var = disp_x
+    initial_from_file_var = disp_x
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
     block = '2'
-    scaling = 1e6
+    scaling = 1e5
     #[./InitialCondition]
     #  type = RandomIC
     #  min = -0.5e-6
     #  max = 0.5e-6
     #[../]
-    #initial_from_file_var = disp_y
+    initial_from_file_var = disp_y
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
     block = '2'
-    scaling = 1e6
+    scaling = 1e5
     #[./InitialCondition]
     #  type = RandomIC
     #  min = -0.5e-6
     #  max = 0.5e-6
     #[../]
-    #initial_from_file_var = disp_z
+    initial_from_file_var = disp_z
   [../]
 []
 
@@ -358,21 +357,21 @@
     component = 2
   [../]
   ##Wall energy penalty
-  #[./walled_x]
-  #   type=WallEnergyDerivative
-  #   variable = polar_x
-  #   component = 0
-  #[../]
-  #[./walled_y]
-  #   type=WallEnergyDerivative
-  #   variable = polar_y
-  #   component = 1
-  #[../]
-  #[./walled_z]
-  #   type=WallEnergyDerivative
-  #   variable = polar_z
-  #   component = 2
-  #[../]
+  [./walled_x]
+     type=WallEnergyDerivative
+     variable = polar_x
+     component = 0
+  [../]
+  [./walled_y]
+     type=WallEnergyDerivative
+     variable = polar_y
+     component = 1
+  [../]
+  [./walled_z]
+     type=WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
   ##Polarization-strain coupling
   [./ferroelectriccouplingu_x]
      type = FerroelectricCouplingU
@@ -467,26 +466,21 @@
      variable = polar_z
      time_scale = 1.0
   [../]
-  #[./potential_int_time]
+  #[./disp_x_time]
   #   type=TimeDerivativeScaled
-  #   variable = potential_int
-  #   time_scale = 1.0
+  #   variable = disp_x
+  #   time_scale = 1.0e-9 #this is chosen so that the elastic problem is solved in ~10 timesteps.
   #[../]
-  [./disp_x_time]
-     type=TimeDerivativeScaled
-     variable = disp_x
-     time_scale = 1.0e-8 #this is chosen so that the elastic problem is solved in ~10 timesteps.
-  [../]
-  [./disp_y_time]
-     type=TimeDerivativeScaled
-     variable = disp_y
-     time_scale = 1.0e-8
-  [../]
-  [./disp_z_time]
-     type=TimeDerivativeScaled
-     variable = disp_z
-     time_scale = 1.0e-8
-  [../]
+  #[./disp_y_time]
+  #   type=TimeDerivativeScaled
+  #   variable = disp_y
+  #   time_scale = 1.0e-9
+  #[../]
+  #[./disp_z_time]
+  #   type=TimeDerivativeScaled
+  #   variable = disp_z
+  #   time_scale = 1.0e-9
+  #[../]
 []
 
 [BCs]
@@ -494,40 +488,28 @@
    [./potential_int_upz]
      type = DirichletBC
      variable = potential_int
-     boundary = '1'
-     value = 0.0
+     boundary = '3'
+     value = 0.2
    [../]
    [./potential_int_downz]
      type = DirichletBC
      variable = potential_int
-     boundary = '2'
-     value = 0.0
+     boundary = '4'
+     value = 0.2
    [../]
    #screening?
-  # [./potential_int_upz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '3'
-  #   value = 0.001
-  # [../]
-  # [./potential_int_downz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '4'
-  #   value = 0.001
-  # [../]
-  # [./potential_int_top]
-  #   type = NeumannBC
-  #   variable = potential_int
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./potential_int_bottom]
-  #   type = NeumannBC
-  #   variable = potential_int
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
+   [./potential_int_top]
+     type = NeumannBC
+     variable = potential_int
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./potential_int_bottom]
+     type = NeumannBC
+     variable = potential_int
+     boundary = '4'
+     value = 0.0
+   [../]
   # [./potential_int_right]
   #   type = DirichletBC
   #   variable = potential_int
@@ -561,116 +543,116 @@
   # [../]
 
    #Top and bottom {3, 4}:
-  # [./disp_x_slab3]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./disp_y_slab3]
-  #   type = DirichletBC
-  #   variable = disp_y
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./disp_z_slab3]
-  #   type = DirichletBC
-  #   variable = disp_z
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./disp_x_slab4]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
-  # [./disp_y_slab4]
-  #   type = DirichletBC
-  #   variable = disp_y
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
-  # [./disp_z_slab4]
-  #   type = DirichletBC
-  #   variable = disp_z
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
+   [./disp_x_slab3]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./disp_y_slab3]
+     type = DirichletBC
+     variable = disp_y
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./disp_z_slab3]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '3'
+     value = 0.0
+   [../]
+   [./disp_x_slab4]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '4'
+     value = 0.0
+   [../]
+   [./disp_y_slab4]
+     type = DirichletBC
+     variable = disp_y
+     boundary = '4'
+     value = 0.0
+   [../]
+   [./disp_z_slab4]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '4'
+     value = 0.0
+   [../]
 
-  #Sides {5+/-y, 6+/-x, 7-/+y, 8-/+x}:
+  #Sides {5, 6, 7, 8}:
+  [./disp_x_slab5]
+    type = DirichletBC
+    variable = disp_x
+    boundary = '5'
+    value = 0.0
+  [../]
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = '5'
-    value = 0.4
+    value = 0.0
   [../]
-  #[./disp_y_slab5]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = '5'
-  #  value = 0.0
-  #[../]
-  #[./disp_z_slab5]
-  #  type = DirichletBC
-  #  variable = disp_z
-  #  boundary = '5'
-  #  value = 0.0
-  #[../]
-  #[./disp_x_slab6]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '6'
-  #   value = 0.0
-  #[../]
+  [./disp_z_slab5]
+    type = DirichletBC
+    variable = disp_z
+    boundary = '5'
+    value = 0.0
+  [../]
   [./disp_x_slab6]
      type = DirichletBC
      variable = disp_x
      boundary = '6'
-     value = 0.4
+     value = 0.0
   [../]
-  #[./disp_z_slab6]
-  #   type = DirichletBC
-  #   variable = disp_z
-  #   boundary = '6'
-  #   value = 0.0
-  #[../]
-  #[./disp_x_slab7]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '7'
-  #   value = 0.0
-  #[../]
+  [./disp_y_slab6]
+     type = DirichletBC
+     variable = disp_y
+     boundary = '6'
+     value = 0.0
+  [../]
+  [./disp_z_slab6]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '6'
+     value = 0.0
+  [../]
+  [./disp_x_slab7]
+     type = DirichletBC
+     variable = disp_x
+     boundary = '7'
+     value = 0.0
+  [../]
   [./disp_y_slab7]
      type = DirichletBC
      variable = disp_y
      boundary = '7'
-     value = -0.4
+     value = 0.0
   [../]
-  #[./disp_z_slab7]
-  #   type = DirichletBC
-  #   variable = disp_z
-  #   boundary = '7'
-  #   value = 0.0
-  #[../]
-  #[./disp_x_slab8]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '8'
-  #   value = 0.0
-  #[../]
+  [./disp_z_slab7]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '7'
+     value = 0.0
+  [../]
   [./disp_x_slab8]
      type = DirichletBC
      variable = disp_x
      boundary = '8'
-     value = -0.4
+     value = 0.0
   [../]
-  #[./disp_z_slab8]
-  #   type = DirichletBC
-  #   variable = disp_z
-  #   boundary = '8'
-  #   value = 0.0
-  #[../]
+  [./disp_y_slab8]
+     type = DirichletBC
+     variable = disp_y
+     boundary = '8'
+     value = 0.0
+  [../]
+  [./disp_z_slab8]
+     type = DirichletBC
+     variable = disp_z
+     boundary = '8'
+     value = 0.0
+  [../]
   [./potential_ext_upz]
     type = DirichletBC
     variable = potential_ext
@@ -722,13 +704,13 @@
   [../]
   ##This seems to be what we want for a simple epitaxial test
   ## (note that most epitaxial conditions are a strain gradient from the interface)
-  #[./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-  #  type = ComputeEigenstrain
-  #  block = '2'
-  #  prefactor = -0.02
-  #  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-  #  eigen_base = '1 0 0 0 1 0 0 0 0'
-  #[../]
+  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
+    block = '2'
+    prefactor = -0.02
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+  [../]
 []
 
 [Postprocessors]
@@ -738,12 +720,12 @@
   # initial_from_file_var = bulk_energy
    block = '2'
   [../]
-  #[./wall_energy]
-  # type = WallEnergy
-  # execute_on = 'timestep_end'
-  ## initial_from_file_var = wall_energy
-  # block = '2'
-  #[../]
+  [./wall_energy]
+   type = WallEnergy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = wall_energy
+   block = '2'
+  [../]
   [./elastic_energy]
    type = ElasticEnergy
    execute_on = 'timestep_end'
@@ -779,12 +761,12 @@
   [../]
 []
 
-[UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-9'
-  [../]
-[]
+#[UserObjects]
+#  [./kill]
+#    type = Terminator
+#    expression = 'perc_change <= 1.0e-7'
+#  [../]
+#[]
 
 [Preconditioning]
   [./smp]
@@ -792,7 +774,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type -pc_factor_zeropivot -pc_side'
-    petsc_options_value = '    101             1e-8     1e-8      bjacobi        1e-50              left'
+    petsc_options_value = '    301              1e-11     1e-19      bjacobi        1e-50              left'
   [../]
 []
 
@@ -801,20 +783,19 @@
 [Executioner]
   type = Transient
   #[./TimeStepper]
-    #type = IterationAdaptiveDT
-    #dt = 2.0 #max seems to be about 1.0 but could depend on refinement...
-    #optimal_iterations = 1
-    #growth_factor = 1.0001
-    #linear_iteration_ratio = 1000
-    #cutback_factor =  0.5
+  #  type = IterationAdaptiveDT
+  #  dt = 3.0 #max seems to be about 1.0 but could depend on refinement...
+  #  optimal_iterations = 1
+  #  growth_factor = 1.0001
+  #  cutback_factor =  0.9999
   #[../]
   l_max_its = 8000
   solve_type = 'NEWTON'       #"PJNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dtmin = 1.0e-10
-  dt = 1.0
-  dtmax = 1.0
-  num_steps = 15000
+  dt = 5.0e-1
+  dtmax = 5.0e-1
+  num_steps = 860
   #splitting = 'ferretsplit'
 []
 
@@ -863,10 +844,10 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_50nm_T673K_nowall
+    file_base = out_PbTiO3_50nm_T673K_notimedepu_comp2-rest
     output_initial = true
     elemental_as_nodal = true
-    interval = 1
+    interval = 2
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
