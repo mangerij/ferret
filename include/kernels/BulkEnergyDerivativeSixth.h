@@ -1,5 +1,5 @@
 /**
- * @file   BulkEnergyDerivative.h
+ * @file   BulkEnergyDerivativeSixth.h
  * @author S. Gu <sgu@anl.gov>
  * @date   Thu May 30 12:00:20 2013
  *
@@ -8,21 +8,21 @@
  *
  */
 
-#ifndef BULKENERGYDERIVATIVE_H
-#define BULKENERGYDERIVATIVE_H
+#ifndef BULKENERGYDERIVATIVESIXTH_H
+#define BULKENERGYDERIVATIVESIXTH_H
 
 #include "Kernel.h"
 
-class BulkEnergyDerivative;
+class BulkEnergyDerivativeSixth;
 
 template<>
-InputParameters validParams<BulkEnergyDerivative>();
+InputParameters validParams<BulkEnergyDerivativeSixth>();
 
-class BulkEnergyDerivative: public Kernel
+class BulkEnergyDerivativeSixth: public Kernel
 {
 public:
 
-  BulkEnergyDerivative(const std::string & name, InputParameters parameters);
+  BulkEnergyDerivativeSixth(const std::string & name, InputParameters parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -40,6 +40,5 @@ protected:
   const VariableValue & _polar_z;
   const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112,_alpha123;
   const Real _len_scale;
-  const Real _energy_scale;
 };
-#endif //BULKENERGYDERIVATIVE_H
+#endif //BULKENERGYDERIVATIVESIXTH_H

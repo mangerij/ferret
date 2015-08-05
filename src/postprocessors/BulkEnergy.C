@@ -17,8 +17,8 @@ InputParameters validParams<BulkEnergy>()
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("alpha1"," "); //FIXME: Give me an explanation
   params.addRequiredParam<Real>("alpha11"," ");
   params.addRequiredParam<Real>("alpha12"," ");

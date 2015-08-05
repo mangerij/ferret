@@ -51,8 +51,8 @@
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
-#include "BulkEnergyDerivative.h"
-#include "BulkEnergyDerivative_nosixth.h"
+#include "BulkEnergyDerivativeSixth.h"
+#include "BulkEnergyDerivativeFourth.h"
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
@@ -66,8 +66,10 @@
 
 //Postprocessors
 #include "WallEnergy.h"
+//#include "WallEnergyFourth.h"
 #include "TotalEnergy.h"
 #include "BulkEnergy.h"
+#include "BulkEnergyFourth.h"
 #include "ElectricEnergy.h" //deprecated
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergyGradient.h" //deprecated
@@ -154,8 +156,8 @@ FerretApp::registerObjects(Factory & factory)
   //registerPostprocessor(VortexSurfaceEnergy);
 
   //Kernels
-  registerKernel(BulkEnergyDerivative);
-  registerKernel(BulkEnergyDerivative_nosixth);
+  registerKernel(BulkEnergyDerivativeSixth);
+  registerKernel(BulkEnergyDerivativeFourth);
   registerKernel(WallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
@@ -168,6 +170,8 @@ FerretApp::registerObjects(Factory & factory)
   //Postprocessors
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
+  registerPostprocessor(BulkEnergyFourth);
+ // registerPostprocessor(WallEnergyFourth);
   registerPostprocessor(ElectricEnergy);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);

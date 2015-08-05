@@ -30,7 +30,7 @@ public:
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _bulk_energy, & _wall_energy, & _electrostatic_energy, & _elastic_energy, & _coupled_energy;
+  const PostprocessorValue & _bulk_energy, & _wall_energy,& _bulk_energy_fourth, & _electrostatic_energy, & _elastic_energy, & _coupled_energy;
 };
 
 #endif

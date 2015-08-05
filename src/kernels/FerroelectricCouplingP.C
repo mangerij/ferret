@@ -20,8 +20,8 @@ InputParameters validParams<FerroelectricCouplingP>()
   params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
   params.addRequiredCoupledVar("disp_z", "The z component of the elasticity displacement");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
@@ -65,6 +65,92 @@ FerroelectricCouplingP::computeQpResidual()
   return - 0.5 * std::pow(_len_scale, 2.0) * _test[_i][_qp] * sum;
 }
 
+
+// Real
+//
+// FerroelectricCouplingP::computeQpJacobian()
+//
+// {
+//   Real sum=0.0;
+//
+//   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0,_disp_x_grad[_qp],_component,_component);
+//   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1,_disp_y_grad[_qp],_component,_component);
+//   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2,_disp_z_grad[_qp],_component,_component);
+//
+//   return -1.0 * std::pow(_len_scale, 2.0) * _phi[_j][_qp] * _test[_i][_qp];
+//
+// }
+//
+//
+//
+// Real
+//
+// FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
+//
+// {
+//
+//   unsigned int coupled_component;
+//
+//   Real sum=0.0;
+//
+//   if( jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var){
+//     if (jvar == _polar_x_var)
+//      {
+//        coupled_component = 0;
+//      }
+//     else if (jvar == _polar_y_var)
+//      {
+//        coupled_component = 1;
+//      }
+//     else if (jvar == _polar_z_var)
+//      {
+//        coupled_component = 2;
+//      }
+//     else
+//     {
+//      mooseError("Something wrong with FerroelectricCoupling");
+//
+//     }
+//
+//     if(coupled_component==_component)//FIXME: should delete for performance.
+//       mooseError("Something wrong with FerroelectricCoupling");
+//     sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0,_disp_x_grad[_qp],_component,coupled_component);
+//     sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1,_disp_y_grad[_qp],_component,coupled_component);
+//     sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2,_disp_z_grad[_qp],_component,coupled_component);
+//
+//   return -0.5 * std::pow(_len_scale,2.0) * _phi[_j][_qp] * _test[_i][_qp];
+//
+//   }
+//
+//   else if(jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
+//     {if (jvar == _disp_x_var)
+//      {coupled_component = 0;}
+//     else if (jvar == _disp_y_var)
+//      {coupled_component = 1;}
+//     else if (jvar == _disp_z_var)
+//
+//      {coupled_component = 2;}
+//
+//         else{
+//
+// 	mooseError("Something wrong with FerroelectricCoupling");
+//
+//       }
+//
+// //      RealVectorType w(_test[_i][_qp]*_polar_x[_qp],_test[_i][_qp]*_polar_y[_qp],_test[_i][_qp]*_polar_z[_qp]);
+//       RealVectorValue w(_test[_i][_qp] * _polar_x[_qp], _test[_i][_qp] * _polar_y[_qp], _test[_i][_qp] * _polar_z[_qp]);
+//
+//       w(_component)=w(_component) * 2.0;
+//       sum = _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component,w);
+//       return -0.5 * std::pow(_len_scale,2.0) * sum;
+//     }
+//
+//     else return 0.0;
+//
+// }
+
+
+
 Real
 FerroelectricCouplingP::computeQpJacobian()
 {
@@ -73,7 +159,7 @@ FerroelectricCouplingP::computeQpJacobian()
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, _component);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, _component);
 
-  return - 0.5 * std::pow(_len_scale, 2.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
+  return 0.5 * std::pow(_len_scale, 2.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
 }
 
 Real
@@ -108,7 +194,7 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
         sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, coupled_component);
         sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, coupled_component);
       }
-    return - 0.5 * std::pow(_len_scale, 2.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
+    return 0.5 * std::pow(_len_scale, 2.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
   }
   else if(jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
   {
@@ -127,7 +213,7 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
         coupled_component = 2;
         sum = _electrostrictive_tensor[_qp].electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, w);
       }
-    return - 0.5 * pow(_len_scale, 2.0) * sum * _test[_i][_qp];
+    return 0.5 * pow(_len_scale, 2.0) * sum * _test[_i][_qp];
   }
   else
   {

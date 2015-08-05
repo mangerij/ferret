@@ -20,8 +20,8 @@ InputParameters validParams<FerroelectricCouplingU>()
   params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
   params.addRequiredCoupledVar("disp_z", "The z component of the elasticity displacement");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }

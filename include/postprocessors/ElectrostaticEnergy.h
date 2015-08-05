@@ -28,14 +28,13 @@ public:
 
 protected:
   virtual Real computeQpIntegral();
-  const VariableValue& _polar_x;
-  const VariableValue& _polar_y;
-  const VariableValue& _polar_z;
-  const VariableGradient& _potential_int_grad;   //for internal potential
-  const VariableGradient& _potential_ext_grad;   //for external potential
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
+  const VariableGradient & _potential_int_grad;   //for internal potential
+  // const VariableGradient & _potential_ext_grad;   //for external potential
   const Real _permittivity;
   const Real _len_scale;
-  const Real _energy_scale;
 };
 
 #endif
