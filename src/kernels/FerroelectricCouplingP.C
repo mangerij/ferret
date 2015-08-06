@@ -18,11 +18,12 @@ InputParameters validParams<FerroelectricCouplingP>()
   InputParameters params = validParams<Kernel>();
   params.addRequiredCoupledVar("disp_x", "The x component of the elasticity displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
-  params.addRequiredCoupledVar("disp_z", "The z component of the elasticity displacement");
+  params.addCoupledVar("disp_z", 0.0,  "The z component of the elasticity displacement");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addParam<Real>("strain_scale", 1.0, "the strain_scale");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -43,6 +44,7 @@ FerroelectricCouplingP::FerroelectricCouplingP(const std::string & name, InputPa
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
+   _strain_scale(getParam<Real>("strain_scale")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -62,7 +64,7 @@ FerroelectricCouplingP::computeQpResidual()
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, w);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, w);
 
-  return - 0.5 * std::pow(_len_scale, 2.0) * _test[_i][_qp] * sum;
+  return - std::pow(_len_scale, 3.0) * _strain_scale * _test[_i][_qp] * sum;
 }
 
 

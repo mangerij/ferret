@@ -29,12 +29,13 @@ protected:
 
 private:
   const MaterialProperty<ElectrostrictiveTensorR4> & _electrostrictive_tensor;
-  const VariableGradient& _disp_x_grad;
-  const VariableGradient& _disp_y_grad;
-  const VariableGradient& _disp_z_grad;
-  const VariableValue& _polar_x;
-  const VariableValue& _polar_y;
-  const VariableValue& _polar_z;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
+  const Real _strain_scale;
   const Real _len_scale;
 };
 

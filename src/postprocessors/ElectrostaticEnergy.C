@@ -17,7 +17,7 @@ InputParameters validParams<ElectrostaticEnergy>()
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredCoupledVar("potential_int", "The internal electric potential");
   // params.addRequiredCoupledVar("potential_ext", "The external electric potential");
   params.addRequiredParam<Real>("permittivity", "permittivity");

@@ -16,7 +16,7 @@ InputParameters validParams<PolarElectricPStrong>()
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
-  params.addRequiredCoupledVar("potential_ext", "The external electric potential variable");
+  params.addCoupledVar("potential_ext", 0.0, "The external electric potential variable");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
