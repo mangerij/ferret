@@ -36,6 +36,7 @@ private:
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
   const Real _strain_scale;
+  const Real _artificial;
   const Real _len_scale;
 };
 

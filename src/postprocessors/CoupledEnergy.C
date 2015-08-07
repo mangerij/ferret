@@ -17,6 +17,7 @@ InputParameters validParams<CoupledEnergy>()
   params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
   params.addCoupledVar("disp_z", 0.0, "The z component of the elasticity displacement");
   params.addParam<Real>("strain_scale", 1.0, "the strain_scale");
+  params.addParam<Real>("artificial", 1.0, "artificial scaling");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -31,6 +32,7 @@ CoupledEnergy::CoupledEnergy(const std::string & name, InputParameters parameter
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
   _strain_scale(getParam<Real>("strain_scale")),
+  _artificial(getParam<Real>("artificial")),
   _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -55,5 +57,5 @@ CoupledEnergy::computeQpIntegral()
   sum3 += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], 2, w);
   sum3 += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], 2, w);
 
-  return - 0.5 * _strain_scale * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
+  return - 0.5 * _artificial * _strain_scale * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
 }

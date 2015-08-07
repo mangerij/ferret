@@ -70,7 +70,6 @@
 #include "TotalEnergy.h"
 #include "BulkEnergy.h"
 #include "BulkEnergyFourth.h"
-#include "ElectricEnergy.h" //deprecated
 #include "ElectrostaticEnergy.h"
 #include "TotalEnergyGradient.h" //deprecated
 #include "TotalEnergyGradientL2.h"
@@ -171,8 +170,6 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
   registerPostprocessor(BulkEnergyFourth);
- // registerPostprocessor(WallEnergyFourth);
-  registerPostprocessor(ElectricEnergy);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyGradient);

@@ -13,7 +13,7 @@
 template<>
 InputParameters validParams<TotalEnergy>()
 {
-  //TODO: inherit from an appropriate postprocessor
+
   InputParameters params = validParams<GeneralPostprocessor>();
   params.addParam<PostprocessorName>("bulk_energy", 0.0, "name of bulk energy postprocessor");
   params.addParam<PostprocessorName>("wall_energy", 0.0,  "name of wall energy postprocessor");
