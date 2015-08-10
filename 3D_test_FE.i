@@ -7,13 +7,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 26
-  ny = 26
-  nz = 9
-  xmin = -12
-  xmax = 12
-  ymin = -12
-  ymax = 12
+  nx = 22
+  ny = 22
+  nz = 8
+  xmin = -11
+  xmax = 11
+  ymin = -11
+  ymax = 11
   zmin = -4
   zmax = 4
 []
@@ -27,7 +27,7 @@
 
 [GlobalParams]
   len_scale = 1
-  alpha1 = -0.05289509310834001 # (3.766(T-765.1)*10^5) C^{-2} nm^2
+  alpha1 = -0.06800181084634001 # (3.766(T-765.1)*10^5) C^{-2} nm^2
   alpha11 = -0.023817775393764534
   alpha111 = 0.04892700422751353
   alpha12 = 0.24628886730075003
@@ -38,7 +38,7 @@
   G12/G110 = 0
   G44/G110 = 0.3
   G44P/G110 = 0.3
-  Q_mnkl = '1 -0.29213483146067415 -0.29213483146067415 1 -0.29213483146067415 1 0.7584269662921349 0.7584269662921349 0.7584269662921349'
+  Q_mnkl = '1. -0.29213483146067415 -0.29213483146067415 1. -0.29213483146067415 1. 0.3820224719101124 0.3820224719101124 0.3820224719101124'
   permittivity = 0.584376342
   polar_x = polar_x
   polar_y = polar_y
@@ -52,7 +52,7 @@
   C_ijkl = '1 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1 0.2894736842105263 0.2894736842105263 0.2894736842105263'
   #initial_from_file_timestep = 120
   polar_scale = 0.757
-  #artificial = 0.051
+  artificial = 2.0
   strain_scale = 0.051
 []
 
@@ -670,12 +670,12 @@
     value = 0.0
     variable = disp_x
   [../]
-  #[./disp_x_cube4]
-  #  type = DirichletBC
-  #  boundary = 'back'
-  #  value = 0.0
-  #  variable = disp_x
-  #[../]
+  [./disp_x_cube4]
+    type = DirichletBC
+    boundary = 'back'
+    value = 0.0
+    variable = disp_x
+  [../]
   #[./disp_x_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
@@ -707,12 +707,12 @@
     value = 0.0
     variable = disp_y
   [../]
-  #[./disp_y_cube4]
-  #  type = DirichletBC
-  #  boundary = 'back'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
+  [./disp_y_cube4]
+    type = DirichletBC
+    boundary = 'back'
+    value = 0.0
+    variable = disp_y
+  [../]
   #[./disp_y_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
@@ -744,12 +744,12 @@
     value = 0.0
     variable = disp_z
   [../]
-  #[./disp_z_cube4]
-  #  type = DirichletBC
-  #  boundary = 'back'
-  #  value = 0.0
-  #  variable = disp_z
-  #[../]
+  [./disp_z_cube4]
+    type = DirichletBC
+    boundary = 'back'
+    value = 0.0
+    variable = disp_z
+  [../]
   #[./disp_z_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
@@ -1002,7 +1002,7 @@
     type = ComputeEigenstrain
     block = '0'
   #  block = '2'
-    prefactor = -0.03
+    prefactor = 0.02
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -1086,7 +1086,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8     1e-12       bjacobi          1e-50  left        '
+    petsc_options_value = '    501             1e-8     1e-8       bjacobi          1e-50  left        '
   [../]
 []
 
@@ -1105,9 +1105,9 @@
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 1.0
+  dt = 3.0
   dtmin = 1e-30
-  dtmax = 1.0
+  dtmax = 3.0
   num_steps = 1500000
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
@@ -1159,7 +1159,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_50nm_T673K_comp025
+    file_base = out_PbTiO3_50nm_T673K_tens02_art
     output_initial = true
     elemental_as_nodal = true
     interval = 1
