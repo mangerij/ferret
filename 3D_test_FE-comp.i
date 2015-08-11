@@ -26,35 +26,34 @@
 
 
 [GlobalParams]
-  len_scale = 1
-  alpha1 = -0.06800181084634001 # (3.766(T-765.1)*10^5) C^{-2} nm^2
-  alpha11 = -0.023817775393764534
-  alpha111 = 0.04892700422751353
-  alpha12 = 0.24628886730075003
-  alpha112 = 0.11479027914916638
-  alpha123 = -0.6962689063146157
-  G110 = 0.3438294
-  G11/G110 = 0.6
-  G12/G110 = 0
-  G44/G110 = 0.3
-  G44P/G110 = 0.3
-  Q_mnkl = '1. -0.29213483146067415 -0.29213483146067415 1. -0.29213483146067415 1. 0.3820224719101124 0.3820224719101124 0.3820224719101124'
-  permittivity = 0.584376342
-  polar_x = polar_x
-  polar_y = polar_y
-  polar_z = polar_z
-  potential_int = potential_int
-  #potential_ext = potential_ext
-  disp_x=disp_x
-  disp_y=disp_y
-  disp_z=disp_z
-  displacements='disp_x disp_y disp_z'
-  C_ijkl = '1 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1 0.2894736842105263 0.2894736842105263 0.2894736842105263'
-  #initial_from_file_timestep = 120
-  polar_scale = 0.757
-  artificial = 2.0
-  strain_scale = 0.051
+len_scale = 0.9864291406437613
+alpha1 = -0.6674433382757889 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha11 = -0.23377341457919062
+alpha111 = 0.48022255035584666
+alpha12 = 2.417345387210712
+alpha112 = 1.1266759835271787
+alpha123 = -6.83393629352551
+G110 = 0.173
+G11/G110 = 0.6
+G12/G110 = 0
+G44/G110 = 0.3
+G44P/G110 = 0.3
+Q_mnkl = '0.051001361 -0.014899274 -0.014899274 0.051001361 -0.014899274 0.051001361 0.019340403750000002 0.019340403750000002 0.019340403750000002'
+permittivity = 0.0015742112297048201
+polar_x = polar_x
+polar_y = polar_y
+polar_z = polar_z
+potential_int = potential_int
+#potential_ext = potential_ext
+disp_x = disp_x
+disp_y = disp_y
+disp_z = disp_z
+displacements='disp_x disp_y disp_z'
+#use_displaced_mesh = false
+C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.079659001673311e-6 1.079659001673311e-6 1.079659001673311e-6'
+#initial_from_file_timestep = 120
 []
+
 
 
 #[GlobalParams]
@@ -93,7 +92,6 @@
     order = FIRST
     family = LAGRANGE
     block = '0'
-    #scaling = 1e10
    # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
@@ -106,7 +104,6 @@
     order = FIRST
     family = LAGRANGE
     block = '0'
-    #scaling = 1e10
   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
@@ -120,7 +117,6 @@
     order = FIRST
     family = LAGRANGE
     block = '0'
-    #scaling = 1e10
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-6
@@ -132,7 +128,6 @@
   [./potential_int]
     order = FIRST
     family = LAGRANGE
-    #scaling = 1e20
     #initial_from_file_var = potential_int
   [../]
   #[./potential_ext]
@@ -149,7 +144,6 @@
     #  max = 0.5e-5
     #  seed = 1
     #[../]
-    #scaling = 1e20
     block = '0'
     #scaling = 1e6
     #[./InitialCondition]
@@ -168,7 +162,6 @@
     #  max = 0.5e-5
     #  seed = 1
     #[../]
-    #scaling = 1e20
     block = '0'
     #scaling = 1e6
     #[./InitialCondition]
@@ -182,7 +175,6 @@
     order = FIRST
     family = LAGRANGE
     block = '0'
-    #scaling = 1e6
     #[./InitialCondition]
     #  type = RandomIC
     #  min = -0.5e-5
@@ -1002,7 +994,7 @@
     type = ComputeEigenstrain
     block = '0'
   #  block = '2'
-    prefactor = 0.02
+    prefactor = -0.02
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -1058,12 +1050,12 @@
   [../]
 []
 
-#[UserObjects]
-#  [./kill]
-#    type = Terminator
-#    expression = 'perc_change <= 1.0e-11'
-#  [../]
-#[]
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = 'perc_change <= 1.0e-5'
+  [../]
+[]
 
 
 #[Preconditioning]
@@ -1086,7 +1078,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8     1e-8       bjacobi          1e-50  left        '
+    petsc_options_value = '    501             1e-8     1e-8       bjacobi          1e-50          left        '
   [../]
 []
 
@@ -1103,11 +1095,11 @@
     #cutback_factor =  0.5
   #[../]
   #l_max_its = 8000
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'PJFNK'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 3.0
+  dt = 0.6
   dtmin = 1e-30
-  dtmax = 3.0
+  dtmax = 0.6
   num_steps = 1500000
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
@@ -1159,7 +1151,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_50nm_T673K_tens02_art
+    file_base = out_PbTiO3_50nm_T673K_comp02_art1
     output_initial = true
     elemental_as_nodal = true
     interval = 1
