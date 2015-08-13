@@ -7,15 +7,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 40
-  ny = 40
-  nz = 5
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
-  zmin = -4
-  zmax = 4
+  nx = 31
+  ny = 31
+  nz = 10
+  xmin = -15
+  xmax = 15
+  ymin = -15
+  ymax = 15
+  zmin = -5
+  zmax = 5
 []
 
 #[NodalNormals]
@@ -48,7 +48,7 @@ potential_int = potential_int
 disp_x = disp_x
 disp_y = disp_y
 disp_z = disp_z
-artificial = 1.0e8
+artificial = 7.0e8
 displacements='disp_x disp_y disp_z'
 #use_displaced_mesh = false
 C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.079659001673311e-6 1.079659001673311e-6 1.079659001673311e-6'
@@ -141,6 +141,7 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   #  #initial_from_file_var = potential_ext
   #[../]
   [./disp_x]
+    scaling = 1e6
     order = FIRST
     family = LAGRANGE
     block = '0'
@@ -153,6 +154,7 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
     #initial_from_file_var = disp_x
   [../]
   [./disp_y]
+    scaling = 1e6
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -167,6 +169,7 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
     #initial_from_file_var = disp_y
   [../]
   [./disp_z]
+    scaling = 1e6
     order = FIRST
     family = LAGRANGE
     block = '0'
@@ -480,7 +483,7 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   [./polar_x_electric_E]
      type=PolarElectricEStrong
      variable = potential_int
-     block='0'
+     block = '0'
     # implicit = false
   [../]
   #[./E_int]
@@ -491,7 +494,7 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   [./FE_E_int]
      type=Electrostatics
      variable = potential_int
-     block='0'
+     block = '0'
   [../]
   #[./E_ext]
   #   type=Electrostatics
@@ -646,18 +649,18 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   #  value = 0.0
   #  variable = disp_x
   #[../]
-  [./disp_x_cube3]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_x
-  [../]
-  [./disp_x_cube4]
-    type = DirichletBC
-    boundary = 'back'
-    value = 0.0
-    variable = disp_x
-  [../]
+  #[./disp_x_cube3]
+  #  type = DirichletBC
+  #  boundary = 'front'
+  #  value = 0.0
+  #  variable = disp_x
+  #[../]
+  #[./disp_x_cube4]
+  #  type = DirichletBC
+  #  boundary = 'back'
+  #  value = 0.0
+  #  variable = disp_x
+  #[../]
   #[./disp_x_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
@@ -683,18 +686,18 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   #  value = 0.0
   #  variable = disp_y
   #[../]
-  [./disp_y_cube3]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_y
-  [../]
-  [./disp_y_cube4]
-    type = DirichletBC
-    boundary = 'back'
-    value = 0.0
-    variable = disp_y
-  [../]
+  #[./disp_y_cube3]
+  #  type = DirichletBC
+  #  boundary = 'front'
+  #  value = 0.0
+  #  variable = disp_y
+  #[../]
+  #[./disp_y_cube4]
+  #  type = DirichletBC
+  #  boundary = 'back'
+  #  value = 0.0
+  #  variable = disp_y
+  #[../]
   #[./disp_y_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
@@ -720,18 +723,18 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   #  value = 0.0
   #  variable = disp_z
   #[../]
-  [./disp_z_cube3]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_z
-  [../]
-  [./disp_z_cube4]
-    type = DirichletBC
-    boundary = 'back'
-    value = 0.0
-    variable = disp_z
-  [../]
+  #[./disp_z_cube3]
+  #  type = DirichletBC
+  #  boundary = 'front'
+  #  value = 0.0
+  #  variable = disp_z
+  #[../]
+  #[./disp_z_cube4]
+  #  type = DirichletBC
+  #  boundary = 'back'
+  #  value = 0.0
+  #  variable = disp_z
+  #[../]
   #[./disp_z_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
@@ -821,12 +824,32 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   # [../]
 
   #Sides {5+/-y, 6+/-x, 7-/+y, 8-/+x}:
-  #[./disp_y_slab5]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = '5'
-  #  value = 0.4
-  #[../]
+  #Sides {top-/+y, left+/-x, botoom-/+y, right-/+x}->compression:
+  [./disp_x_slab5]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'left'
+    value = -0.08
+  [../]
+  [./disp_x_slab7]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'right'
+    value = 0.08
+  [../]
+
+  [./disp_y_slab5]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'top'
+    value = 0.08
+  [../]
+  [./disp_y_slab7]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'bottom'
+    value = -0.08
+  [../]
   #[./disp_y_slab5]
   #  type = DirichletBC
   #  variable = disp_y
@@ -980,14 +1003,14 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   ##This seems to be what we want for a simple epitaxial test
   ## (note that most epitaxial conditions are a strain gradient from the interface)
   # Is this not seen by the simulation !!!!?!?!
-  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-    type = ComputeEigenstrain
-    block = '0'
-  #  block = '2'
-    prefactor = 0.02
-    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-    eigen_base = '1 0 0 0 1 0 0 0 0'
-  [../]
+  #[./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+  #  type = ComputeEigenstrain
+  #  block = '0'
+  ##  block = '2'
+  #  prefactor = 0.02
+  #  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+  #  eigen_base = '1 0 0 0 1 0 0 0 0'
+  #[../]
 []
 
 [Postprocessors]
@@ -1040,12 +1063,12 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   [../]
 []
 
-[UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-5'
-  [../]
-[]
+#[UserObjects]
+#  [./kill]
+#    type = Terminator
+#    expression = 'perc_change <= 1.0e-5'
+#  [../]
+#[]
 
 
 #[Preconditioning]
@@ -1068,7 +1091,7 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121            1e-8    1e-14       bjacobi          1e-50          left        '
+    petsc_options_value = '    121            1e-10  1e-14      bjacobi          1e-50          left        '
   [../]
 []
 
@@ -1088,10 +1111,10 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   #nl_abs_tol = 8.0e-20
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 8.0e-2
+  dt = 0.09
   dtmin = 1e-30
-  dtmax = 8.0e-2
-  num_steps = 1500000
+  dtmax = 0.09
+  num_steps = 500
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -1142,7 +1165,7 @@ C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.72
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_50nm_T673K_tens02_art1
+    file_base = out_PbTiO3_50nm_T673K_tens005_weighted
     output_initial = true
     elemental_as_nodal = true
     interval = 1
