@@ -63,9 +63,15 @@ BulkEnergyDerivativeSixth::computeQpResidual()
   const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
   const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
 
-  return ((2 * _alpha1 * _polar_i[_qp] + 4 * _alpha11 * std::pow(_polar_i[_qp], 3) + 2 * _alpha12 * _polar_i[_qp]*(std::pow(_polar_j[_qp],2) + std::pow(_polar_k[_qp],2)) +
+  Real Rbulk = 0.0;
+
+  Rbulk += ((2 * _alpha1 * _polar_i[_qp] + 4 * _alpha11 * std::pow(_polar_i[_qp], 3) + 2 * _alpha12 * _polar_i[_qp]*(std::pow(_polar_j[_qp],2) + std::pow(_polar_k[_qp],2)) +
 	  6 * _alpha111 * std::pow(_polar_i[_qp], 5) + 4 * _alpha112 * std::pow(_polar_i[_qp], 3) * (_polar_j[_qp] * _polar_j[_qp]+_polar_k[_qp] * _polar_k[_qp]) +
 	  2 * _alpha112 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 4) + std::pow(_polar_k[_qp], 4)) + 2 * _alpha123 * _polar_i[_qp]*std::pow(_polar_j[_qp], 2) * std::pow(_polar_k[_qp], 2)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
+
+  //  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
+
+  return Rbulk;
 }
 
 Real

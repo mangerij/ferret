@@ -58,10 +58,15 @@ WallEnergyDerivative::WallEnergyDerivative(const std::string & name, InputParame
 Real
 WallEnergyDerivative::computeQpResidual()
 {
-  return (_G11 * _polar_i_grad[_qp](_ii) * _grad_test[_i][_qp](_ii) +
+  Real Rwall = 0.0;
+
+  Rwall += (_G11 * _polar_i_grad[_qp](_ii) * _grad_test[_i][_qp](_ii) +
     _G12 * (_polar_j_grad[_qp](_jj) + _polar_k_grad[_qp](_kk)) * _grad_test[_i][_qp](_ii) +
     _G44 * (_polar_i_grad[_qp](_jj) + _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44 * (_polar_i_grad[_qp](_kk)+_polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk) +
 	   _G44P * (_polar_i_grad[_qp](_jj) - _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44P * (_polar_i_grad[_qp](_kk) - _polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk)) * _len_scale;
+
+  //  Moose::out << "\n R_wall-"; std::cout << _component << " = " << Rwall;
+  return Rwall;
 
 }
 

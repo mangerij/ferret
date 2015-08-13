@@ -42,9 +42,14 @@ PolarElectricEStrong::PolarElectricEStrong(const std::string & name, InputParame
 Real
 PolarElectricEStrong::computeQpResidual()
 {
-  return - _polar_scale * (_polar_x[_qp] * _grad_test[_i][_qp](0) + _polar_y[_qp] * _grad_test[_i][_qp](1) + _polar_z[_qp] * _grad_test[_i][_qp](2)) * std::pow(_len_scale, 2.0);
-}
+  Real RpolarE = 0.0;
 
+  RpolarE += - _polar_scale * (_polar_x[_qp] * _grad_test[_i][_qp](0) + _polar_y[_qp] * _grad_test[_i][_qp](1) + _polar_z[_qp] * _grad_test[_i][_qp](2)) * std::pow(_len_scale, 2.0);
+
+  //  Moose::out << "\n R_polarE-"; std::cout << " = " << RpolarE;
+
+  return RpolarE;
+}
 Real
 PolarElectricEStrong::computeQpJacobian()
 {

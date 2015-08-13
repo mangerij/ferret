@@ -60,13 +60,18 @@ FerroelectricCouplingP::computeQpResidual()
   // vector and not its transpose as well.
 
   Real sum = 0.0;
+  Real RpCoupled = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], _component, w);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], _component, w);
   sum += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], _component, w);
 
-  return - _artificial * std::pow(_len_scale, 2.0) * _strain_scale * _test[_i][_qp] * sum;
+  RpCoupled += - _artificial * std::pow(_len_scale, 3.0) * _strain_scale * _test[_i][_qp] * sum;
+
+  //  Moose::out << "\n R_pCoupled-"; std::cout << _component << " = " << RpCoupled;
+
+  return RpCoupled;
 }
 
 

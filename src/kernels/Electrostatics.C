@@ -27,7 +27,13 @@ Electrostatics::Electrostatics(const std::string & name, InputParameters paramet
 Real
 Electrostatics::computeQpResidual()
 {
-  return _permittivity * _grad_u[_qp] * _grad_test[_i][_qp] * _len_scale;
+  Real Relec = 0.0;
+
+  Relec += _permittivity * _grad_u[_qp] * _grad_test[_i][_qp] * _len_scale;
+
+  //  Moose::out << "\n R_elec-"; std::cout << " = " << Relec;
+
+  return Relec;
 }
 
 Real
