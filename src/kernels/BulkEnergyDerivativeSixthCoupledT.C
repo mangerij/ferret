@@ -50,7 +50,7 @@ BulkEnergyDerivativeSixthCoupledT::BulkEnergyDerivativeSixthCoupledT(const std::
    _len_scale(getParam<Real>("len_scale"))
 
 {
-  std::cout<<"_alpha0 = "<<_alpha1<<"\n";
+  std::cout<<"_alpha0 = "<<_alpha0<<"\n";
   std::cout<<"_alpha11 = "<<_alpha11<<"\n";
   std::cout<<"_alpha12 = "<<_alpha12<<"\n";
   std::cout<<"_alpha111 = "<<_alpha111<<"\n";
@@ -59,7 +59,7 @@ BulkEnergyDerivativeSixthCoupledT::BulkEnergyDerivativeSixthCoupledT(const std::
 }
 
 Real
-BulkEnergyDerivativeSixth::computeQpResidual()
+BulkEnergyDerivativeSixthCoupledT::computeQpResidual()
 {
   const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1) ? _polar_y: _polar_z;
   const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
@@ -77,7 +77,7 @@ BulkEnergyDerivativeSixth::computeQpResidual()
 }
 
 Real
-BulkEnergyDerivativeSixth::computeQpJacobian()
+BulkEnergyDerivativeSixthCoupledT::computeQpJacobian()
 {
   const VariableValue & _polar_i = (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;
   const VariableValue & _polar_j = (_component == 0)? _polar_y : (_component == 1)? _polar_z: _polar_x;
@@ -90,7 +90,7 @@ BulkEnergyDerivativeSixth::computeQpJacobian()
 }
 
 Real
-BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
+BulkEnergyDerivativeSixthCoupledT::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real r;
   mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
