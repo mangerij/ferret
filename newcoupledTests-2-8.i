@@ -27,7 +27,7 @@
 
 [GlobalParams]
 len_scale = 1
-alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha1 = -0.220349 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
@@ -753,26 +753,26 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 0.8
+    value = 0.622222222222
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = -0.8
+    value = -0.622222222222
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = -0.8
+    value = -0.622222222222
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 0.8
+    value = 0.622222222222
   [../]
   #[./disp_z_cube5]
   #  type = DirichletBC
@@ -1183,7 +1183,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_30nm_T1_comp004_scale-cnorm
+    file_base = out_PbTiO3_30nm_scale-cnorm_T-2_strain-8
     output_initial = true
     elemental_as_nodal = true
     interval = 50

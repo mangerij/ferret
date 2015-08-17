@@ -27,7 +27,7 @@
 
 [GlobalParams]
 len_scale = 1
-alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha1 = -0.0602937 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
@@ -1183,7 +1183,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_30nm_T1_comp004_scale-cnorm
+    file_base = out_PbTiO3_30nm_scale-cnorm_T-7_strain-9
     output_initial = true
     elemental_as_nodal = true
     interval = 50
