@@ -7,13 +7,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 40
-  ny = 40
+  nx = 30
+  ny = 30
   nz = 8
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
+  xmin = -15
+  xmax = 15
+  ymin = -15
+  ymax = 15
   zmin = -4
   zmax = 4
 []
@@ -27,7 +27,7 @@
 
 [GlobalParams]
 len_scale = 1
-alpha1 = 0.00372834 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
@@ -753,26 +753,26 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = -0.133333333333
+    value = 0.4
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 0.133333333333
+    value = -0.4
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 0.133333333333
+    value = -0.4
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = -0.133333333333
+    value = 0.4
   [../]
   #[./disp_z_cube5]
   #  type = DirichletBC
@@ -867,7 +867,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #  type = DirichletBC
   #  variable = disp_y
   #  boundary = '5'
-  #  value = -0.133333333333
+  #  value = 0.4
   #[../]
   #[./disp_y_slab5]
   #  type = DirichletBC
@@ -1130,7 +1130,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dt = 0.5
-  dtmin = 1e-12
+  dtmin = 1e-14
   dtmax = 0.5
   num_steps = 1000
   #splitting = 'ferretsplit'
@@ -1183,7 +1183,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_30nm_scale-cnorm_T-9_strain-3
+    file_base = out_PbTiO3_30nm_T1_comp004_scale-cnorm
     output_initial = true
     elemental_as_nodal = true
     interval = 50

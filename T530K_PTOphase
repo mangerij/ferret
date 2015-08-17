@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH -p Serge
+#SBATCH --ntasks-per-node=16
+#SBATCH -N 3
+#SBATCH -o slurm-%j.out
+#SBATCH -e slurm-%j.out
+
+
+mpirun -v ./ferret-opt -i newcoupledTests-8-0.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-1.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-2.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-3.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-4.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-5.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-6.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-7.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-8.i
+mpirun -v ./ferret-opt -i newcoupledTests-8-9.i

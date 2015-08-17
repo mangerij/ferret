@@ -753,7 +753,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 0.4
+    value = -0.4
   [../]
   [./disp_x_slab7]
     type = DirichletBC
@@ -772,7 +772,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 0.4
+    value = -0.4
   [../]
   #[./disp_z_cube5]
   #  type = DirichletBC
@@ -1130,7 +1130,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dt = 0.5
-  dtmin = 1e-30
+  dtmin = 1e-12
   dtmax = 0.5
   num_steps = 1000
   #splitting = 'ferretsplit'
