@@ -7,15 +7,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 80
-  ny = 80
-  nz = 10
-  xmin = -40
-  xmax = 40
-  ymin = -40
-  ymax = 40
-  zmin = -5
-  zmax = 5
+  nx = 60
+  ny = 60
+  nz = 12
+  xmin = -30
+  xmax = 30
+  ymin = -30
+  ymax = 30
+  zmin = -6
+  zmax = 6
 []
 
 #[NodalNormals]
