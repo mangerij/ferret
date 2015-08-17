@@ -48,14 +48,14 @@ Real
 BulkEnergy::computeQpIntegral()
 {
   return (
-    _alpha1 * (std::pow(_polar_x[_qp],2)+std::pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))
+    _alpha1 * (std::pow(_polar_x[_qp], 2) + std::pow(_polar_y[_qp], 2) + std::pow(_polar_z[_qp] ,2))
   + _alpha11 * (std::pow(_polar_x[_qp], 4) + std::pow(_polar_y[_qp], 4) + std::pow(_polar_z[_qp], 4))
-    + _alpha12*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)+
-	      pow(_polar_y[_qp],2)*std::pow(_polar_z[_qp],2)+
-	      pow(_polar_x[_qp],2)*std::pow(_polar_z[_qp],2))+
-    _alpha111*(std::pow(_polar_x[_qp],6)+std::pow(_polar_y[_qp],6)+pow(_polar_z[_qp],6))+
-    _alpha112*(pow(_polar_x[_qp],4)*(pow(_polar_y[_qp],2)+pow(_polar_z[_qp],2))
-	      +pow(_polar_y[_qp],4)*(pow(_polar_z[_qp],2)+pow(_polar_x[_qp],2))
-	      +pow(_polar_z[_qp],4)*(pow(_polar_x[_qp],2)+pow(_polar_y[_qp],2)))+
-	  _alpha123*(pow(_polar_x[_qp],2)*pow(_polar_y[_qp],2)*pow(_polar_z[_qp],2)))*pow(_len_scale,3);
+    + _alpha12 * (std::pow(_polar_x[_qp], 2) * std::pow(_polar_y[_qp], 2)+
+	      std::pow(_polar_y[_qp], 2) * std::pow(_polar_z[_qp], 2)+
+	      std::pow(_polar_x[_qp], 2) * std::pow(_polar_z[_qp], 2))+
+    _alpha111 * (std::pow(_polar_x[_qp], 6) + std::pow(_polar_y[_qp], 6) + std::pow(_polar_z[_qp], 6))+
+    _alpha112 * (std::pow(_polar_x[_qp], 4) * (std::pow(_polar_y[_qp], 2) + std::pow(_polar_z[_qp], 2))
+	      + std::pow(_polar_y[_qp], 4) * (std::pow(_polar_z[_qp], 2) + std::pow(_polar_x[_qp], 2))
+	      + std::pow(_polar_z[_qp], 4) * (std::pow(_polar_x[_qp], 2) + std::pow(_polar_y[_qp], 2)))+
+	  _alpha123 * (pow(_polar_x[_qp], 2) * std::pow(_polar_y[_qp], 2) * std::pow(_polar_z[_qp], 2))) * std::pow(_len_scale,3);
 }

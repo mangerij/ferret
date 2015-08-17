@@ -53,8 +53,8 @@
 #include "WallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
 #include "BulkEnergyDerivativeFourth.h"
-//#include "BulkEnergyDerivativeSixthCoupledT.h"
-//#include "BulkEnergyDerivativeFourthCoupledT.h"
+#include "BulkEnergyDerivativeSixthCoupledT.h"
+#include "BulkEnergyDerivativeFourthCoupledT.h"
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
@@ -159,8 +159,8 @@ FerretApp::registerObjects(Factory & factory)
   //Kernels
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeFourth);
-  //registerKernel(BulkEnergyDerivativeSixthCoupledT);
-  //registerKernel(BulkEnergyDerivativeFourthCoupledT);
+  registerKernel(BulkEnergyDerivativeSixthCoupledT);
+  registerKernel(BulkEnergyDerivativeFourthCoupledT);
   registerKernel(WallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);

@@ -7,13 +7,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 24
-  ny = 24
-  nz = 8
-  xmin = -12
-  xmax = 12
-  ymin = -12
-  ymax = 12
+  nx = 40
+  ny = 40
+  nz = 16
+  xmin = -20
+  xmax = 20
+  ymin = -20
+  ymax = 20
   zmin = -8
   zmax = 8
 []
@@ -24,9 +24,10 @@
 
 #perhaps need to use unitless P??
 
+
 [GlobalParams]
 len_scale = 1
-alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 573 K)
+alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
@@ -38,7 +39,7 @@ G12/G110 = 0
 G44/G110 = 0.3
 G44P/G110 = 0.3
  Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.0675 0.0675 0.0675'
-permittivity = 0.5843763419999999
+permittivity = 38.568838572
 polar_x = polar_x
 polar_y = polar_y
 polar_z = polar_z
@@ -47,28 +48,64 @@ potential_int = potential_int
 disp_x=disp_x
 disp_y=disp_y
 disp_z=disp_z
-#artificial = 5e2
 displacements='disp_x disp_y disp_z'
-C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999999999999999e-7 1.0999999999999999e-7'
+#artificial = 1e6
+#use_displaced_mesh = false
+C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0.2894736842105263 0.2894736842105263 0.2894736842105263'
 #initial_from_file_timestep = 120
 []
 
-#
+
+
+##use this one:
 #[GlobalParams]
-#len_scale = 1.e-9
-#alpha1 = -1.187e8 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
-#alpha11 = -7.253e7
-#alpha111 = 2.6e8
-#alpha12 = 7.5e8
-#alpha112 = 6.1e8
-#alpha123 = -3.7e9
-#G110 = 2.50e-10
+#len_scale = 0.9864291406437613
+#alpha1 = -0.6674433382757889 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+#alpha11 = -0.23377341457919062
+#alpha111 = 0.48022255035584666
+#alpha12 = 2.417345387210712
+#alpha112 = 1.1266759835271787
+#alpha123 = -6.83393629352551
+#G110 = 0.173
 #G11/G110 = 0.6
 #G12/G110 = 0
 #G44/G110 = 0.3
 #G44P/G110 = 0.3
-# Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.0675 0.0675 0.0675'
-#permittivity = 8.854187e-12
+#Q_mnkl = '0.051001361 -0.014899274 -0.014899274 0.051001361 -0.014899274 0.051001361 0.019340403750000002 0.019340403750000002 0.019340403750000002'
+#permittivity = 0.0015742112297048201
+#polar_x = polar_x
+#polar_y = polar_y
+#polar_z = polar_z
+#potential_int = potential_int
+##potential_ext = potential_ext
+#disp_x = disp_x
+#disp_y = disp_y
+#disp_z = disp_z
+#displacements='disp_x disp_y disp_z'
+##use_displaced_mesh = false
+#artificial = 5e8
+#seed = 1
+#C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.079659001673311e-6 1.079659001673311e-6 1.079659001673311e-6'
+##initial_from_file_timestep = 120
+#[]
+
+
+
+#[GlobalParams]
+#len_scale = 1.0
+#alpha1 = -0.13749666 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 300 K)
+#alpha11 = -0.07253
+#alpha111 = 0.26
+#alpha12 = 0.75
+#alpha112 = 0.61
+#alpha123 = -3.7
+#G110 = 0.25
+#G11/G110 = 0.6
+#G12/G110 = 0
+#G44/G110 = 0.3
+#G44P/G110 = 0.3
+#Q_mnkl = '0.089e0 -0.026e0 -0.026e0 0.089e0 -0.026e0 0.089e0 0.0675e0 0.0675e0 0.0675e0'
+#permittivity = 0.584376
 #polar_x = polar_x
 #polar_y = polar_y
 #polar_z = polar_z
@@ -77,9 +114,11 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
 #disp_x=disp_x
 #disp_y=disp_y
 #disp_z=disp_z
+##artificial = 1.0e6
 #displacements='disp_x disp_y disp_z'
 ##use_displaced_mesh = false
-#C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+#C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.1e-7 1.1e-7 1.1e-7'
+##initial_from_file_timestep = 120
 #[]
 
 
@@ -93,7 +132,6 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
       type = RandomIC
       min = -0.5e-6
       max = 0.5e-6
-      seed = 3
     [../]
   [../]
   [./polar_y]
@@ -105,7 +143,6 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
       type = RandomIC
       min = -0.5e-6
       max = 0.5e-6
-      seed = 3
     [../]
     #initial_from_file_var = polar_y
   [../]
@@ -117,7 +154,6 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
       type = RandomIC
       min = -0.5e-6
       max = 0.5e-6
-      seed = 3
     [../]
     #initial_from_file_var = polar_z
   [../]
@@ -126,9 +162,8 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-      seed = 3
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     #initial_from_file_var = potential_int
   [../]
@@ -138,43 +173,37 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   #  #initial_from_file_var = potential_ext
   #[../]
   [./disp_x]
-    #scaling = 1e4
-    order = FIRST
-    family = LAGRANGE
-    block = '0'
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-      seed = 3
-    [../]
-    #initial_from_file_var = disp_x
-  [../]
-  [./disp_y]
-    #scaling = 1e4
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-      seed = 3
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     block = '0'
     #scaling = 1e6
-
+    #initial_from_file_var = disp_x
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+    block = '0'
+    #scaling = 1e6
     #initial_from_file_var = disp_y
   [../]
   [./disp_z]
-    #scaling = 1e4
     order = FIRST
     family = LAGRANGE
     block = '0'
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-      seed = 3
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     #initial_from_file_var = disp_z
   [../]
@@ -392,19 +421,19 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   #  type = StressDivergenceTensorsScaled
   #  variable = disp_x
   #  component = 0
-  #  block = '0'
+  #  block = '2'
   #[../]
   #[./stressdiv_1]
   #  type = StressDivergenceTensorsScaled
   #  variable = disp_y
   #  component = 1
-  #  block = '0'
+  #  block = '2'
   #[../]
   #[./stressdiv_2]
   #  type = StressDivergenceTensorsScaled
   #  variable = disp_z
   #  component = 2
-  #  block = '0'
+  #  block = '2'
   #[../]
 
   #Bulk energy density
@@ -423,7 +452,7 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
     variable = polar_z
     component = 2
   [../]
-  ###Wall energy penalty
+  ##Wall energy penalty
   [./walled_x]
      type=WallEnergyDerivative
      variable = polar_x
@@ -661,13 +690,13 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   #[./disp_x_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
-  #  value = 0.1
+  #  value = 0.5
   #  variable = disp_x
   #[../]
   #[./disp_x_cube6]
   #  type = DirichletBC
   #  boundary = 'right'
-  #  value = -0.1
+  #  value = -0.5
   #  variable = disp_x
   #[../]
   #
@@ -720,18 +749,31 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   #  value = 0.0
   #  variable = disp_z
   #[../]
-  #[./disp_z_cube3]
-  #  type = DirichletBC
-  #  boundary = 'front'
-  #  value = 0.0
-  #  variable = disp_z
-  #[../]
-  #[./disp_z_cube4]
-  #  type = DirichletBC
-  #  boundary = 'back'
-  #  value = 0.0
-  #  variable = disp_z
-  #[../]
+  [./disp_x_slab5]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'left'
+    value = 0.1
+  [../]
+  [./disp_x_slab7]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'right'
+    value = -0.1
+  [../]
+
+  [./disp_y_slab5]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'top'
+    value = -0.1
+  [../]
+  [./disp_y_slab7]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'bottom'
+    value = 0.1
+  [../]
   #[./disp_z_cube5]
   #  type = DirichletBC
   #  boundary = 'left'
@@ -745,7 +787,7 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   #  variable = disp_z
   #[../]
 
-  #
+
   #[./polar_y_cube1]
   #  type = DirichletBC
   #  boundary = 'top'
@@ -821,32 +863,12 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   # [../]
 
   #Sides {5+/-y, 6+/-x, 7-/+y, 8-/+x}:
-  #Sides {top-/+y, left+/-x, botoom-/+y, right-/+x}->compression:
-  [./disp_x_slab5]
-    type = DirichletBC
-    variable = disp_x
-    boundary = 'left'
-    value = -0.2
-  [../]
-  [./disp_x_slab7]
-    type = DirichletBC
-    variable = disp_x
-    boundary = 'right'
-    value = 0.2
-  [../]
-
-  [./disp_y_slab5]
-    type = DirichletBC
-    variable = disp_y
-    boundary = 'top'
-    value = 0.2
-  [../]
-  [./disp_y_slab7]
-    type = DirichletBC
-    variable = disp_y
-    boundary = 'bottom'
-    value = -0.2
-  [../]
+  #[./disp_y_slab5]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = '5'
+  #  value = 0.4
+  #[../]
   #[./disp_y_slab5]
   #  type = DirichletBC
   #  variable = disp_y
@@ -1004,7 +1026,7 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   #  type = ComputeEigenstrain
   #  block = '0'
   ##  block = '2'
-  #  prefactor = 0.02
+  #  prefactor = -0.02
   #  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
   #  eigen_base = '1 0 0 0 1 0 0 0 0'
   #[../]
@@ -1063,7 +1085,7 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
 #[UserObjects]
 #  [./kill]
 #    type = Terminator
-#    expression = 'perc_change <= 1.0e-5'
+#    expression = 'perc_change <= 1.0e-15'
 #  [../]
 #[]
 
@@ -1087,8 +1109,8 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side -snes_linesearch_type'
-    petsc_options_value = '    121            1e-8        1e-18   bjacobi          1e-50          left        bt'
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    501             1e-8     1e-10       bjacobi          1e-50          left        '
   [../]
 []
 
@@ -1097,22 +1119,20 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
 [Executioner]
   type = Transient
   #[./TimeStepper]
-  #  type = IterationAdaptiveDT
-  #  dt = 0.04
-  #  optimal_iterations = 3
-  #  growth_factor = 1.2
-  #  #linear_iteration_ratio = 1000
-  #  cutback_factor =  0.5
+    #type = IterationAdaptiveDT
+    #dt = 2.0 #max seems to be about 1.0 but could depend on refinement...
+    #optimal_iterations = 1
+    #growth_factor = 1.0001
+    #linear_iteration_ratio = 1000
+    #cutback_factor =  0.5
   #[../]
   #l_max_its = 8000
-#  nl_abs_tol = 5.0e-19
-  #nl_abs_tol = 1.0e-17
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
-  scheme = 'rk-2'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.1
+  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  dt = 0.5
   dtmin = 1e-30
-  dtmax = 0.1
-  num_steps = 8000
+  dtmax = 0.5
+  num_steps = 400
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -1163,7 +1183,7 @@ C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.0999999999999999e-7 1.0999
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_50nm_T573K_tens012pc_rk2_newton
+    file_base = out_PbTiO3_40nm_T673K_comp01_scale-cnorm
     output_initial = true
     elemental_as_nodal = true
     interval = 1
