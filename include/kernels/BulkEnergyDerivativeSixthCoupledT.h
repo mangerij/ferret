@@ -35,11 +35,11 @@ protected:
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;
-  const unsigned int _temperature_var;
-  const VariableValue & _temperature;
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
+  const unsigned int _temperature_var;
+  const VariableValue & _temperature;
   const Real _alpha0, _alpha11, _alpha12, _alpha111, _alpha112, _alpha123, _Tc;
   const Real _len_scale;
 };

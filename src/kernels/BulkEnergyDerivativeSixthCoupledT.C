@@ -16,7 +16,7 @@ InputParameters validParams<BulkEnergyDerivativeSixthCoupledT>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredCoupledVar("temperature", "The temperature at the grid point")
+  params.addRequiredCoupledVar("temperature", "The temperature at the grid point");
   params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha12", "The coefficients of the Landau expansion");
@@ -35,10 +35,10 @@ BulkEnergyDerivativeSixthCoupledT::BulkEnergyDerivativeSixthCoupledT(const std::
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),
    _polar_z_var(coupled("polar_z")),
-   _temperature_var(coupled("temperature")),
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
+   _temperature_var(coupled("temperature")),
    _temperature(coupledValue("temperature")),
    _alpha0(getParam<Real>("alpha0")),
    _alpha11(getParam<Real>("alpha11")),
