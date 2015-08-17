@@ -753,26 +753,26 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 0.8
+    value = 0.4
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = -0.8
+    value = -0.4
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = -0.8
+    value = -0.4
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 0.8
+    value = 0.4
   [../]
   #[./disp_z_cube5]
   #  type = DirichletBC
