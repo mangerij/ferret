@@ -2,18 +2,18 @@
 
 #SBATCH -p Serge
 #SBATCH --ntasks-per-node=16
-#SBATCH -N 3
+#SBATCH -N 7
 #SBATCH -o slurm-%j.out
 #SBATCH -e slurm-%j.out
 
 
-mpirun -v ./ferret-opt -i newcoupledTests-7-0.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-1.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-2.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-3.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-4.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-5.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-6.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-7.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-8.i
-mpirun -v ./ferret-opt -i newcoupledTests-7-9.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-0.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-1.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-2.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-3.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-4.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-5.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-6.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-7.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-8.i
+mpirun -v ./ferret-opt -i newcoupledTests-6-9.i

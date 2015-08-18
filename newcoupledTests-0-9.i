@@ -7,13 +7,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 100
-  ny = 100
+  nx = 70
+  ny = 70
   nz = 20
-  xmin = -50
-  xmax = 50
-  ymin = -50
-  ymax = 50
+  xmin = -35
+  xmax = 35
+  ymin = -35
+  ymax = 35
   zmin = -10
   zmax = 10
 []
@@ -130,8 +130,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
    # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
   [../]
   [./polar_y]
@@ -141,8 +141,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     #initial_from_file_var = polar_y
   [../]
@@ -152,8 +152,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     block = '0'
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     #initial_from_file_var = polar_z
   [../]
@@ -162,8 +162,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     #initial_from_file_var = potential_int
   [../]
@@ -177,8 +177,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     block = '0'
     #scaling = 1e6
@@ -189,8 +189,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     block = '0'
     #scaling = 1e6
@@ -202,8 +202,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     block = '0'
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
+      min = -0.5e-5
+      max = 0.5e-5
     [../]
     #initial_from_file_var = disp_z
   [../]
@@ -1129,10 +1129,10 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.8
+  dt = 1.25
   dtmin = 1e-11
-  dtmax = 0.8
-  num_steps = 3000
+  dtmax = 1.25
+  num_steps = 1200
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -1183,10 +1183,10 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_100nm_scale-cnorm_T-0_strain-9
+    file_base = out_PbTiO3_70nm_T1_comp02_scale-cnorm
     output_initial = true
     elemental_as_nodal = true
-    interval = 50
+    interval = 10
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
