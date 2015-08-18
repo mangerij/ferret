@@ -7,15 +7,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 40
-  ny = 40
-  nz = 8
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
-  zmin = -4
-  zmax = 4
+  nx = 100
+  ny = 100
+  nz = 20
+  xmin = -50
+  xmax = 50
+  ymin = -50
+  ymax = 50
+  zmin = -10
+  zmax = 10
 []
 
 #[NodalNormals]
@@ -162,8 +162,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
     #initial_from_file_var = potential_int
   [../]
@@ -177,8 +177,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
     block = '0'
     #scaling = 1e6
@@ -189,8 +189,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
     block = '0'
     #scaling = 1e6
@@ -202,8 +202,8 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     block = '0'
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
     #initial_from_file_var = disp_z
   [../]
@@ -220,61 +220,61 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #  family = MONOMIAL
   #  #initial_from_file_var = stress_yy
   #[../]
-#  [./stress_xy]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = stress_xy
-#  [../]
-#  [./stress_xz]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = stress_xz
-#  [../]
-#  [./stress_zz]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = stress_zz
-#  [../]
-#  [./stress_yz]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = stress_yz
-#  [../]
-  [./elastic_strain_xx]
-    order = CONSTANT
-    family = MONOMIAL
-    #initial_from_file_var = strain_xx
-  [../]
+  #[./stress_xy]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_xy
+  #[../]
+  #[./stress_xz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_xz
+  #[../]
+  #[./stress_zz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_zz
+  #[../]
+  #[./stress_yz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_yz
+  #[../]
+  #[./elastic_strain_xx]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_xx
+  #[../]
   [./elastic_strain_yy]
     order = CONSTANT
     family = MONOMIAL
     #initial_from_file_var = strain_yy
   [../]
-#  [./elastic_strain_xy]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = strain_xy
-#  [../]
-#  [./elastic_strain_xz]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = strain_xz
-#  [../]
-#  [./elastic_strain_zz]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = strain_zz
-#  [../]
-#  [./elastic_strain_yz]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = strain_yz
-#  [../]
-#  [./rho_b]
-#    order = CONSTANT
-#    family = MONOMIAL
-#    #initial_from_file_var = rho_b
-#  [../]
+  #[./elastic_strain_xy]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_xy
+  #[../]
+  #[./elastic_strain_xz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_xz
+  #[../]
+  #[./elastic_strain_zz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_zz
+  #[../]
+  #[./elastic_strain_yz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_yz
+  #[../]
+  #[./rho_b]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = rho_b
+  #[../]
 #  [./screenfield]
 #    order = CONSTANT
 #    family = MONOMIAL
@@ -307,64 +307,64 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #  rank_two_tensor = stress
   #  index_i = 0
   #  index_j = 0
-  #  block = '2'
+  #  block = '0'
   #  variable = stress_xx
   #  execute_on = 'timestep_end'
   #[../]
-#  [./matl_s12]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 0
-#    index_j = 1
-#    block = '2'
-#    variable = stress_xy
-#    execute_on = 'timestep_end'
-#  [../]
-#  [./matl_s13]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 0
-#    index_j = 2
-#    block = '2'
-#    variable = stress_xz
-#    execute_on = 'timestep_end'
-#  [../]
-#  [./matl_s22]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 1
-#    index_j = 1
-#    block = '2'
-#    variable = stress_yy
-#    execute_on = 'timestep_end'
-#  [../]
-#  [./matl_s23]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 1
-#    index_j = 2
-#    block = '2'
-#    variable = stress_yz
-#    execute_on = 'timestep_end'
-#  [../]
-#  [./matl_s33]
-#    type = RankTwoAux
-#    rank_two_tensor = stress
-#    index_i = 2
-#    index_j = 2
-#    block = '2'
-#    variable = stress_zz
-#    execute_on = 'timestep_end'
-#  [../]
-  [./matl_e11]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    index_i = 0
-    index_j = 0
-    block = '0'
-    variable = elastic_strain_xx
-    execute_on = 'timestep_end'
-  [../]
+  #[./matl_s12]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 0
+  #  index_j = 1
+  #  block = '0'
+  #  variable = stress_xy
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s13]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 0
+  #  index_j = 2
+  #  block = '0'
+  #  variable = stress_xz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s22]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 1
+  #  index_j = 1
+  #  block = '0'
+  #  variable = stress_yy
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s23]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 1
+  #  index_j = 2
+  #  block = '0'
+  #  variable = stress_yz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s33]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 2
+  #  index_j = 2
+  #  block = '0'
+  #  variable = stress_zz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_e11]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 0
+  #  index_j = 0
+  #  block = '0'
+  #  variable = elastic_strain_xx
+  #  execute_on = 'timestep_end'
+  #[../]
   #[./matl_e12]
   #  type = RankTwoAux
   #  rank_two_tensor = elastic_strain
@@ -374,15 +374,15 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #  variable = elastic_strain_xy
   #  execute_on = 'timestep_end'
   #[../]
-#  [./matl_e13]
-#    type = RankTwoAux
-#    rank_two_tensor = elastic_strain
-#    index_i = 0
-#    index_j = 2
-#    block = '2'
-#    variable = elastic_strain_xz
-#    execute_on = 'timestep_end'
-#  [../]
+  #[./matl_e13]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 0
+  #  index_j = 2
+  #  block = '0'
+  #  variable = elastic_strain_xz
+  #  execute_on = 'timestep_end'
+  #[../]
   [./matl_e22]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
@@ -392,24 +392,24 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     variable = elastic_strain_yy
     execute_on = 'timestep_end'
   [../]
-#  [./matl_e23]
-#    type = RankTwoAux
-#    rank_two_tensor = elastic_strain
-#    index_i = 1
-#    index_j = 2
-#    block = '2'
-#    variable = elastic_strain_yz
-#    execute_on = 'timestep_end'
-#  [../]
-#  [./matl_e33]
-#    type = RankTwoAux
-#    rank_two_tensor = elastic_strain
-#    index_i = 2
-#    index_j = 2
-#    block = '2'
-#    variable = elastic_strain_zz
-#    execute_on = 'timestep_end'
-#  [../]
+  #[./matl_e23]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 1
+  #  index_j = 2
+  #  block = '0'
+  #  variable = elastic_strain_yz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_e33]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 2
+  #  index_j = 2
+  #  block = '0'
+  #  variable = elastic_strain_zz
+  #  execute_on = 'timestep_end'
+  #[../]
 []
 
 [Kernels]
@@ -753,26 +753,26 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 0.222222222222
+    value = -0.555555555556
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = -0.222222222222
+    value = 0.555555555556
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = -0.222222222222
+    value = 0.555555555556
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 0.222222222222
+    value = -0.555555555556
   [../]
   #[./disp_z_cube5]
   #  type = DirichletBC
@@ -815,13 +815,13 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   [./potential_cube5]
     type = DirichletBC
     boundary = 'front'
-    value = 0.00002
+    value = 0.000002
     variable = potential_int
   [../]
   [./potential_cube6]
     type = DirichletBC
     boundary = 'back'
-    value = 0.00002
+    value = 0.000002
     variable = potential_int
   [../]
    #Top and bottom {3, 4}:
@@ -867,7 +867,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #  type = DirichletBC
   #  variable = disp_y
   #  boundary = '5'
-  #  value = 0.222222222222
+  #  value = 0.4
   #[../]
   #[./disp_y_slab5]
   #  type = DirichletBC
@@ -1110,7 +1110,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8     1e-9       bjacobi          1e-50          left        '
+    petsc_options_value = '    501             1e-8   1e-9       bjacobi          1e-50          left        '
   [../]
 []
 
@@ -1129,10 +1129,10 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.5
-  dtmin = 1e-12
-  dtmax = 0.5
-  num_steps = 1000
+  dt = 0.2
+  dtmin = 1e-11
+  dtmax = 0.2
+  num_steps = 7500
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -1183,7 +1183,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_30nm_scale-cnorm_T-5_strain-7
+    file_base = out_PbTiO3_100nm_scale-cnorm_T-5_strain-7
     output_initial = true
     elemental_as_nodal = true
     interval = 50
