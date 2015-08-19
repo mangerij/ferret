@@ -1,126 +1,45 @@
-#[Mesh]
-#  file = slab_exodus_coarse_10.e
-#  uniform_refine = 0
-#  #distribution = serial
-#[]
-
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 70
-  ny = 70
-  nz = 20
-  xmin = -35
-  xmax = 35
-  ymin = -35
-  ymax = 35
-  zmin = -10
-  zmax = 10
+  nx = 20
+  ny = 20
+  nz = 8
+  xmin = -10
+  xmax = 10
+  ymin = -10
+  ymax = 10
+  zmin = -4
+  zmax = 4
 []
 
-#[NodalNormals]
-#  boundary = '3 4'
-#[]
-
-#perhaps need to use unitless P??
 
 
 [GlobalParams]
-len_scale = 1
-alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
-alpha11 = -0.07253
-alpha111 = 0.26
-alpha12 = 0.75
-alpha112 = 0.61
-alpha123 = -3.6999999999999997
-G110 = 0.25000000000000006
+ len_scale = 1.0e-9
+alpha1 = -7.228837000000001e7 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T \
+alpha11 = -7.253e7
+alpha111 = 2.6e8
+alpha12 = 7.5e8
+alpha112 = 6.1e8
+alpha123 = -3.7e9
+G110 = 2.5000000000000007e-10
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
 G44P/G110 = 0.3
  Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.0675 0.0675 0.0675'
-permittivity = 38.568838572
+permittivity = 3.8568838572e-8
 polar_x = polar_x
 polar_y = polar_y
 polar_z = polar_z
 potential_int = potential_int
-#potential_ext = potential_ext
 disp_x=disp_x
 disp_y=disp_y
 disp_z=disp_z
 displacements='disp_x disp_y disp_z'
-#artificial = 1e6
-#use_displaced_mesh = false
-C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0.2894736842105263 0.2894736842105263 0.2894736842105263'
+C_ijkl = '380e9 150e9 150e9 380e9 150e9 380e9 110e9 110e9 110e9'
 #initial_from_file_timestep = 120
 []
-
-
-
-##use this one:
-#[GlobalParams]
-#len_scale = 0.9864291406437613
-#alpha1 = -0.6674433382757889 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
-#alpha11 = -0.23377341457919062
-#alpha111 = 0.48022255035584666
-#alpha12 = 2.417345387210712
-#alpha112 = 1.1266759835271787
-#alpha123 = -6.83393629352551
-#G110 = 0.173
-#G11/G110 = 0.6
-#G12/G110 = 0
-#G44/G110 = 0.3
-#G44P/G110 = 0.3
-#Q_mnkl = '0.051001361 -0.014899274 -0.014899274 0.051001361 -0.014899274 0.051001361 0.019340403750000002 0.019340403750000002 0.019340403750000002'
-#permittivity = 0.0015742112297048201
-#polar_x = polar_x
-#polar_y = polar_y
-#polar_z = polar_z
-#potential_int = potential_int
-##potential_ext = potential_ext
-#disp_x = disp_x
-#disp_y = disp_y
-#disp_z = disp_z
-#displacements='disp_x disp_y disp_z'
-##use_displaced_mesh = false
-#artificial = 5e8
-#seed = 1
-#C_ijkl = '3.7297310966896197e-6 1.4722622750090604e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.4722622750090604e-6 3.7297310966896197e-6 1.079659001673311e-6 1.079659001673311e-6 1.079659001673311e-6'
-##initial_from_file_timestep = 120
-#[]
-
-
-
-#[GlobalParams]
-#len_scale = 1.0
-#alpha1 = -0.13749666 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 300 K)
-#alpha11 = -0.07253
-#alpha111 = 0.26
-#alpha12 = 0.75
-#alpha112 = 0.61
-#alpha123 = -3.7
-#G110 = 0.25
-#G11/G110 = 0.6
-#G12/G110 = 0
-#G44/G110 = 0.3
-#G44P/G110 = 0.3
-#Q_mnkl = '0.089e0 -0.026e0 -0.026e0 0.089e0 -0.026e0 0.089e0 0.0675e0 0.0675e0 0.0675e0'
-#permittivity = 0.584376
-#polar_x = polar_x
-#polar_y = polar_y
-#polar_z = polar_z
-#potential_int = potential_int
-##potential_ext = potential_ext
-#disp_x=disp_x
-#disp_y=disp_y
-#disp_z=disp_z
-##artificial = 1.0e6
-#displacements='disp_x disp_y disp_z'
-##use_displaced_mesh = false
-#C_ijkl = '3.8e-7 1.5e-7 1.5e-7 3.8e-7 1.5e-7 3.8e-7 1.1e-7 1.1e-7 1.1e-7'
-##initial_from_file_timestep = 120
-#[]
-
 
 [Variables]
   [./polar_x]
@@ -414,27 +333,27 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
 
 [Kernels]
   #Elastic problem
-  [./TensorMechanics] #This is an action block
-  [../]
+  #[./TensorMechanics] #This is an action block
+  #[../]
 
-  #[./stressdiv_0]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_x
-  #  component = 0
-  #  block = '2'
-  #[../]
-  #[./stressdiv_1]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_y
-  #  component = 1
-  #  block = '2'
-  #[../]
-  #[./stressdiv_2]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_z
-  #  component = 2
-  #  block = '2'
-  #[../]
+  [./stressdiv_0]
+    type = StressDivergenceTensorsScaled
+    variable = disp_x
+    component = 0
+    block = '0'
+  [../]
+  [./stressdiv_1]
+    type = StressDivergenceTensorsScaled
+    variable = disp_y
+    component = 1
+    block = '0'
+  [../]
+  [./stressdiv_2]
+    type = StressDivergenceTensorsScaled
+    variable = disp_z
+    component = 2
+    block = '0'
+  [../]
 
   #Bulk energy density
   [./bed_x]
@@ -592,226 +511,34 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
 []
 
 [BCs]
-  # "infinity condition"
-  # [./potential_int_upz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '3'
-  #   value = 0.0001
-  # [../]
-  # [./potential_int_downz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '4'
-  #   value = 0.0001
-  # [../]
-   #screening?
-  # [./potential_int_upz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '3'
-  #   value = 0.00001
-  # [../]
-  # [./potential_int_downz]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '4'
-  #   value = -0.00001
-  # [../]
-  # [./potential_int_top]
-  #   type = NeumannBC
-  #   variable = potential_int
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./potential_int_bottom]
-  #   type = NeumannBC
-  #   variable = potential_int
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
-  # [./potential_int_right]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '5'
-  #   value = 0.0
-  # [../]
-  # [./potential_int_front]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '6'
-  #   value = 0.0
-  # [../]
-  # [./potential_int_left]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '7'
-  #   value = 0.0
-  # [../]
-  # [./potential_int_back]
-  #   type = DirichletBC
-  #   variable = potential_int
-  #   boundary = '8'
-  #   value = 0.0
-  # [../]
 
-  # [./depol_bottom]
-  #   type = DepolScreenBC
-  #   variable = potential_int
-  #   boundary = '4'
-  #   value = 0.99
-  # [../]
-
-
-  #[./disp_x_cube1]
-  #  type = DirichletBC
-  #  boundary = 'top'
-  #  value = 0.0
-  #  variable = disp_x
-  #[../]
-  #[./disp_x_cube2]
-  #  type = DirichletBC
-  #  boundary = 'bottom'
-  #  value = 0.0
-  #  variable = disp_x
-  #[../]
-  #[./disp_x_cube3]
-  #  type = DirichletBC
-  #  boundary = 'front'
-  #  value = 0.0
-  #  variable = disp_x
-  #[../]
-  #[./disp_x_cube4]
-  #  type = DirichletBC
-  #  boundary = 'back'
-  #  value = 0.0
-  #  variable = disp_x
-  #[../]
-  #[./disp_x_cube5]
-  #  type = DirichletBC
-  #  boundary = 'left'
-  #  value = 0.5
-  #  variable = disp_x
-  #[../]
-  #[./disp_x_cube6]
-  #  type = DirichletBC
-  #  boundary = 'right'
-  #  value = -0.5
-  #  variable = disp_x
-  #[../]
-  #
-  #[./disp_y_cube1]
-  #  type = DirichletBC
-  #  boundary = 'top'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
-  #[./disp_y_cube2]
-  #  type = DirichletBC
-  #  boundary = 'bottom'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
-  #[./disp_y_cube3]
-  #  type = DirichletBC
-  #  boundary = 'front'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
-  #[./disp_y_cube4]
-  #  type = DirichletBC
-  #  boundary = 'back'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
-  #[./disp_y_cube5]
-  #  type = DirichletBC
-  #  boundary = 'left'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
-  #[./disp_y_cube6]
-  #  type = DirichletBC
-  #  boundary = 'right'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
-  #
-  #[./disp_z_cube1]
-  #  type = DirichletBC
-  #  boundary = 'top'
-  #  value = 0.0
-  #  variable = disp_z
-  #[../]
-  #[./disp_z_cube2]
-  #  type = DirichletBC
-  #  boundary = 'bottom'
-  #  value = 0.0
-  #  variable = disp_z
-  #[../]
   [./disp_x_slab5]
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 1.0
+    value = -0.05
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = -1.0
+    value = 0.05
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = -1.0
+    value = 0.05
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 1.0
+    value = -0.05
   [../]
-  #[./disp_z_cube5]
-  #  type = DirichletBC
-  #  boundary = 'left'
-  #  value = 0.0
-  #  variable = disp_z
-  #[../]
-  #[./disp_z_cube6]
-  #  type = DirichletBC
-  #  boundary = 'right'
-  #  value = 0.0
-  #  variable = disp_z
-  #[../]
 
 
-  #[./polar_y_cube1]
-  #  type = DirichletBC
-  #  boundary = 'top'
-  #  value = 0.1
-  #  variable = polar_y
-  #[../]
-  #[./polar_y_cube2]
-  #  type = DirichletBC
-  #  boundary = 'bottom'
-  #  value = -0.1
-  #  variable = polar_y
-  #[../]
-  #[./disp_y_cube3]
-  #  type = DirichletBC
-  #  boundary = 'front'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
-  #[./disp_y_cube4]
-  #  type = DirichletBC
-  #  boundary = 'back'
-  #  value = 0.0
-  #  variable = disp_y
-  #[../]
   [./potential_cube5]
     type = DirichletBC
     boundary = 'front'
@@ -824,162 +551,6 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     value = 0.000002
     variable = potential_int
   [../]
-   #Top and bottom {3, 4}:
-  # [./disp_x_slab3]
-  #   type = PresetBC
-  #   variable = disp_x
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./disp_y_slab3]
-  #   type = PresetBC
-  #   variable = disp_y
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./disp_z_slab3]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '3'
-  #   value = 0.0
-  # [../]
-  # [./disp_x_slab4]
-  #   type = DirichletBC
-  #   variable = disp_x
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
-  # [./disp_y_slab4]
-  #   type = DirichletBC
-  #   variable = disp_y
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
-  # [./disp_z_slab4]
-  #   type = DirichletBC
-  #   variable = disp_z
-  #   boundary = '4'
-  #   value = 0.0
-  # [../]
-
-  #Sides {5+/-y, 6+/-x, 7-/+y, 8-/+x}:
-  #[./disp_y_slab5]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = '5'
-  #  value = 0.4
-  #[../]
-  #[./disp_y_slab5]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = '5'
-  #  value = 0.0
-  #[../]
-  #[./disp_z_slab5]
-  #  type = DirichletBC
-  #  variable = disp_z
-  #  boundary = '5'
-  #  value = 0.0
-  #[../]
-  #[./disp_x_slab5]
-  #   type = PresetBC
-  #   variable = disp_x
-  #   boundary = '5'
-  #   value = 0.0
-  #[../]
-  #[./disp_y_slab5]
-  #   type = PresetBC
-  #   variable = disp_y
-  #   boundary = '5'
-  #   value = 0.0
-  #[../]
-  #[./disp_z_slab5]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '5'
-  #   value = 0.0
-  #[../]
-  #
-  #
-  #
-  #[./disp_x_slab6]
-  #   type = PresetBC
-  #   variable = disp_x
-  #   boundary = '6'
-  #   value = 0.1
-  #[../]
-  #[./disp_y_slab6]
-  #   type = PresetBC
-  #   variable = disp_y
-  #   boundary = '6'
-  #   value = 0.0
-  #[../]
-  #[./disp_z_slab6]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '6'
-  #   value = 0.0
-  #[../]
-  #[./disp_x_slab7]
-  #   type = PresetBC
-  #   variable = disp_x
-  #   boundary = '7'
-  #   value = 0.0
-  #[../]
-  #[./disp_y_slab7]
-  #   type = PresetBC
-  #   variable = disp_y
-  #   boundary = '7'
-  #   value = 0.0
-  #[../]
-  #[./disp_z_slab7]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '7'
-  #   value = 0.0
-  #[../]
-  #[./disp_x_slab8]
-  #   type = PresetBC
-  #   variable = disp_x
-  #   boundary = '8'
-  #   value = -0.1
-  #[../]
-  #[./disp_y_slab8]
-  #   type = PresetBC
-  #   variable = disp_y
-  #   boundary = '8'
-  #   value = 0.0
-  #[../]
-  #[./disp_z_slab8]
-  #   type = PresetBC
-  #   variable = disp_z
-  #   boundary = '8'
-  #   value = 0.0
-  ##[../]
-  #[./potential_int_upz]
-  #  type = DirichletBC
-  #  variable = potential_int
-  #  boundary = '1'
-  #  value = 0.0
-  #[../]
-  #[./potential_int_downz]
-  #  type = DirichletBC
-  #  variable = potential_int
-  #  boundary = '2'
-  #  value = 0.0
-  #[../]
-  #[./potential_ext_upz]
-  #  type = DirichletBC
-  #  variable = potential_ext
-  #  boundary = '1'
-  #  value = 0.0
-  #[../]
-  #[./potential_ext_downz]
-  #  type = DirichletBC
-  #  variable = potential_ext
-  #  boundary = '2'
-  #  value = 0.0
-  #[../]
 
 []
 
@@ -1110,7 +681,7 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8   1e-9       bjacobi          1e-50          left        '
+    petsc_options_value = '    501             1e-8   1e-9      bjacobi          1e-50          left        '
   [../]
 []
 
@@ -1129,10 +700,10 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 1.25
+  dt = 0.08
   dtmin = 1e-11
-  dtmax = 1.25
-  num_steps = 1200
+  dtmax = 0.08
+  num_steps = 1500
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -1183,10 +754,10 @@ C_ijkl = '1. 0.39473684210526316 0.39473684210526316 1. 0.39473684210526316 1. 0
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_70nm_T1_comp02_scale-cnorm
+    file_base = out_PbTiO3_40nm_test_tens05
     output_initial = true
     elemental_as_nodal = true
-    interval = 10
+    interval = 1
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
