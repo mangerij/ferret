@@ -683,7 +683,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8   1e-11      bjacobi          1e-50          left        '
+    petsc_options_value = '    501             1e-8   1e-14      bjacobi          1e-50          left        '
   [../]
 []
 
@@ -702,9 +702,9 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.4
+  dt = 0.15
   dtmin = 1e-11
-  dtmax = 0.4
+  dtmax = 0.15
   num_steps = 250
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
