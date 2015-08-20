@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 0.32
+    value = -0.194444444444
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = -0.32
+    value = 0.194444444444
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = -0.32
+    value = 0.194444444444
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 0.32
+    value = -0.194444444444
   [../]
 
 
@@ -705,7 +705,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   dt = 0.1
   dtmin = 1e-11
   dtmax = 0.1
-  num_steps = 500
+  num_steps = 400
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -759,7 +759,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_50nm_scale-cnorm_T-3_strain-8
     output_initial = true
     elemental_as_nodal = true
-    interval = 20
+    interval = 10
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
