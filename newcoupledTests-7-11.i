@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 100
-  ny = 100
-  nz = 20
-  xmin = -50
-  xmax = 50
-  ymin = -50
-  ymax = 50
-  zmin = -10
-  zmax = 10
+  nx = 70
+  ny = 70
+  nz = 18
+  xmin = -70
+  xmax = 70
+  ymin = -70
+  ymax = 70
+  zmin = -9
+  zmax = 9
 []
 
 [GlobalParams]
@@ -518,7 +518,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = -1.0
+    value = 1.0
   [../]
   [./disp_x_slab7]
     type = DirichletBC
@@ -537,7 +537,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = -1.0
+    value = 1.0
   [../]
 
 
