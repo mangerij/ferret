@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 50
-  ny = 50
-  nz = 18
-  xmin = -25
-  xmax = 25
-  ymin = -25
-  ymax = 25
-  zmin = -9
-  zmax = 9
+  nx = 40
+  ny = 40
+  nz = 14
+  xmin = -20
+  xmax = 20
+  ymin = -20
+  ymax = 20
+  zmin = -7
+  zmax = 7
 []
 
 [GlobalParams]
