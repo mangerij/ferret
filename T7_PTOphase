@@ -16,3 +16,5 @@ mpirun -v ./ferret-opt -i newcoupledTests-7-6.i
 mpirun -v ./ferret-opt -i newcoupledTests-7-7.i
 mpirun -v ./ferret-opt -i newcoupledTests-7-8.i
 mpirun -v ./ferret-opt -i newcoupledTests-7-9.i
+mpirun -v ./ferret-opt -i newcoupledTests-7-10.i
+mpirun -v ./ferret-opt -i newcoupledTests-7-11.i
