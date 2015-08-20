@@ -1,45 +1,47 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 20
-  ny = 20
-  nz = 8
-  xmin = -10
-  xmax = 10
-  ymin = -10
-  ymax = 10
-  zmin = -4
-  zmax = 4
+  nx = 60
+  ny = 60
+  nz = 12
+  xmin = -60
+  xmax = 60
+  ymin = -60
+  ymax = 60
+  zmin = -6
+  zmax = 6
 []
 
-
-
 [GlobalParams]
- len_scale = 1.0e-9
-alpha1 = -7.228837000000001e7 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T \
-alpha11 = -7.253e7
-alpha111 = 2.6e8
-alpha12 = 7.5e8
-alpha112 = 6.1e8
-alpha123 = -3.7e9
-G110 = 2.5000000000000007e-10
+len_scale = 1
+alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha11 = -0.07253
+alpha111 = 0.26
+alpha12 = 0.75
+alpha112 = 0.61
+alpha123 = -3.6999999999999997
+G110 = 0.25000000000000006
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
 G44P/G110 = 0.3
- Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.0675 0.0675 0.0675'
-permittivity = 3.8568838572e-8
+Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.0675 0.0675 0.0675'
+permittivity = 38.568838572
 polar_x = polar_x
 polar_y = polar_y
 polar_z = polar_z
 potential_int = potential_int
+#potential_ext = potential_ext
 disp_x=disp_x
 disp_y=disp_y
 disp_z=disp_z
 displacements='disp_x disp_y disp_z'
-C_ijkl = '380e9 150e9 150e9 380e9 150e9 380e9 110e9 110e9 110e9'
+#use_displaced_mesh = false
+C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 #initial_from_file_timestep = 120
 []
+
+
 
 [Variables]
   [./polar_x]
@@ -516,26 +518,26 @@ C_ijkl = '380e9 150e9 150e9 380e9 150e9 380e9 110e9 110e9 110e9'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = -0.05
+    value = -0.4
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 0.05
+    value = 0.4
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 0.05
+    value = 0.4
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = -0.05
+    value = -0.4
   [../]
 
 
@@ -700,10 +702,10 @@ C_ijkl = '380e9 150e9 150e9 380e9 150e9 380e9 110e9 110e9 110e9'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.08
+  dt = 0.5
   dtmin = 1e-11
-  dtmax = 0.08
-  num_steps = 1500
+  dtmax = 0.5
+  num_steps = 50
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -754,7 +756,7 @@ C_ijkl = '380e9 150e9 150e9 380e9 150e9 380e9 110e9 110e9 110e9'
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_40nm_test_tens05
+    file_base = out_PbTiO3_40nm_test_tens02
     output_initial = true
     elemental_as_nodal = true
     interval = 1
