@@ -1,13 +1,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 50
-  ny = 50
-  nz = 14
-  xmin = -25
-  xmax = 25
-  ymin = -25
-  ymax = 25
+  nx = 35
+  ny = 35
+  nz = 16
+  xmin = -15
+  xmax = 15
+  ymin = -15
+  ymax = 15
   zmin = -7
   zmax = 7
 []
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 1.0
+    value = 0.32
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = -1.0
+    value = -0.32
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = -1.0
+    value = -0.32
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 1.0
+    value = 0.32
   [../]
 
 
@@ -702,9 +702,9 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.05
+  dt = 0.5
   dtmin = 1e-11
-  dtmax = 0.05
+  dtmax = 0.5
   num_steps = 1200
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
