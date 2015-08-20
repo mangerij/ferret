@@ -1,26 +1,26 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 50
-  ny = 50
+  nx = 40
+  ny = 40
   nz = 14
-  xmin = -25
-  xmax = 25
-  ymin = -25
-  ymax = 25
+  xmin = -20
+  xmax = 20
+  ymin = -20
+  ymax = 20
   zmin = -7
   zmax = 7
 []
 
 [GlobalParams]
 len_scale = 1
-alpha1 = -0.0923047 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.1
+G110 = 0.09
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = -0.277777777778
+    value = 1.0
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 0.277777777778
+    value = -1.0
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 0.277777777778
+    value = -1.0
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = -0.277777777778
+    value = 1.0
   [../]
 
 
@@ -683,7 +683,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8   1e-12      bjacobi          1e-50          left        '
+    petsc_options_value = '    501             1e-8   1e-14      bjacobi          1e-50          left        '
   [../]
 []
 
@@ -702,10 +702,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.1
+  dt = 0.08
   dtmin = 1e-11
-  dtmax = 0.1
-  num_steps = 1000
+  dtmax = 0.08
+  num_steps = 1550
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -756,10 +756,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_50nm_scale-cnorm_T-6_strain-7
+    file_base = out_PbTiO3_40nm_test_comp02
     output_initial = true
     elemental_as_nodal = true
-    interval = 20
+    interval = 15
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput

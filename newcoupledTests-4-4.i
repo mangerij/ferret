@@ -1,13 +1,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 40
-  ny = 40
+  nx = 50
+  ny = 50
   nz = 14
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
+  xmin = -25
+  xmax = 25
+  ymin = -25
+  ymax = 25
   zmin = -7
   zmax = 7
 []
@@ -20,7 +20,7 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.09
+G110 = 0.1
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 0.04
+    value = 0.0555555555556
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = -0.04
+    value = -0.0555555555556
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = -0.04
+    value = -0.0555555555556
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 0.04
+    value = 0.0555555555556
   [../]
 
 
@@ -683,7 +683,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8   1e-14      bjacobi          1e-50          left        '
+    petsc_options_value = '    501             1e-8   1e-12      bjacobi          1e-50          left        '
   [../]
 []
 
@@ -702,10 +702,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.08
+  dt = 0.1
   dtmin = 1e-11
-  dtmax = 0.08
-  num_steps = 1550
+  dtmax = 0.1
+  num_steps = 1000
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -759,7 +759,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_50nm_scale-cnorm_T-4_strain-4
     output_initial = true
     elemental_as_nodal = true
-    interval = 15
+    interval = 20
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
