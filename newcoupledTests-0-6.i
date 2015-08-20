@@ -705,7 +705,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   dt = 0.15
   dtmin = 1e-11
   dtmax = 0.15
-  num_steps = 250
+  num_steps = 550
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -759,7 +759,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_100nm_scale-cnorm_T-0_strain-6
     output_initial = true
     elemental_as_nodal = true
-    interval = 5
+    interval = 15
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
