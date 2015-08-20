@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 50
-  ny = 50
-  nz = 18
-  xmin = -25
-  xmax = 25
-  ymin = -25
-  ymax = 25
-  zmin = -9
-  zmax = 9
+  nx = 40
+  ny = 40
+  nz = 12
+  xmin = -20
+  xmax = 20
+  ymin = -20
+  ymax = 20
+  zmin = -6
+  zmax = 6
 []
 
 [GlobalParams]
@@ -702,10 +702,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.25
+  dt = 0.1
   dtmin = 1e-11
-  dtmax = 0.25
-  num_steps = 240
+  dtmax = 0.1
+  num_steps = 500
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
