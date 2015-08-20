@@ -1,13 +1,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 70
-  ny = 70
+  nx = 50
+  ny = 50
   nz = 18
-  xmin = -70
-  xmax = 70
-  ymin = -70
-  ymax = 70
+  xmin = -25
+  xmax = 25
+  ymin = -25
+  ymax = 25
   zmin = -9
   zmax = 9
 []
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 1.0
+    value = -0.5
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 1.0
+    value = 0.5
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 1.0
+    value = 0.5
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 1.0
+    value = -0.5
   [../]
 
 
@@ -702,10 +702,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.15
+  dt = 0.08
   dtmin = 1e-11
-  dtmax = 0.15
-  num_steps = 550
+  dtmax = 0.08
+  num_steps = 1550
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -756,7 +756,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_100nm_scale-cnorm_T-4_strain-11
+    file_base = out_PbTiO3_50nm_scale-cnorm_T-4_strain-11
     output_initial = true
     elemental_as_nodal = true
     interval = 15
