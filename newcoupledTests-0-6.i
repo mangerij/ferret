@@ -1,26 +1,26 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 90
-  ny = 90
+  nx = 100
+  ny = 100
   nz = 24
-  xmin = -45
-  xmax = 45
-  ymin = -45
-  ymax = 45
+  xmin = -50
+  xmax = 50
+  ymin = -50
+  ymax = 50
   zmin = -8
   zmax = 8
 []
 
 [GlobalParams]
-len_scale = 1
+len_scale = 0.71
 alpha1 = -0.284371 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.065
+G110 = 0.09
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = -0.46
+    value = -0.51
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 0.46
+    value = 0.51
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 0.46
+    value = 0.51
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = -0.46
+    value = -0.51
   [../]
 
 
