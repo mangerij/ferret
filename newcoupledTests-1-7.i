@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 40
-  ny = 40
-  nz = 12
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
-  zmin = -6
-  zmax = 6
+  nx = 60
+  ny = 60
+  nz = 16
+  xmin = -60
+  xmax = 60
+  ymin = -60
+  ymax = 60
+  zmin = -8
+  zmax = 8
 []
 
 [GlobalParams]
@@ -20,13 +20,13 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.06
+G110 = 0.065
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
 G44P/G110 = 0.3
-Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.0675 0.0675 0.0675'
-permittivity = 38.568838572
+Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+permittivity = 0.5843763
 polar_x = polar_x
 polar_y = polar_y
 polar_z = polar_z
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = -0.166666666667
+    value = -0.163636363636
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 0.166666666667
+    value = 0.163636363636
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 0.166666666667
+    value = 0.163636363636
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = -0.166666666667
+    value = -0.163636363636
   [../]
 
 
