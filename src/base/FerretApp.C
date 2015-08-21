@@ -80,7 +80,6 @@
 
 //Time steppers
 #include "PostprocessorAdaptiveDT.h"
-#include "CustomDT.h"
 #include "TransientHalf.h" //these are all junk
 
 //custom functions
@@ -199,7 +198,6 @@ FerretApp::registerObjects(Factory & factory)
 
   //TimeStepper
   registerTimeStepper(PostprocessorAdaptiveDT);
-  registerTimeStepper(CustomDT);
   registerTimeStepper(TransientHalf);
 }
 

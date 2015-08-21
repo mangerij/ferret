@@ -335,27 +335,27 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 
 [Kernels]
   #Elastic problem
-  [./TensorMechanics] #This is an action block
-  [../]
+  #[./TensorMechanics] #This is an action block
+  #[../]
 
-  #[./stressdiv_0]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_x
-  #  component = 0
-  #  block = '0'
-  #[../]
-  #[./stressdiv_1]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_y
-  #  component = 1
-  #  block = '0'
-  #[../]
-  #[./stressdiv_2]
-  #  type = StressDivergenceTensorsScaled
-  #  variable = disp_z
-  #  component = 2
-  #  block = '0'
-  #[../]
+  [./stressdiv_0]
+    type = StressDivergenceTensorsScaled
+    variable = disp_x
+    component = 0
+    block = '0'
+  [../]
+  [./stressdiv_1]
+    type = StressDivergenceTensorsScaled
+    variable = disp_y
+    component = 1
+    block = '0'
+  [../]
+  [./stressdiv_2]
+    type = StressDivergenceTensorsScaled
+    variable = disp_z
+    component = 2
+    block = '0'
+  [../]
 
   #Bulk energy density
   [./bed_x]
@@ -702,10 +702,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.02
+  dt = 0.03
   dtmin = 1e-11
-  dtmax = 0.02
-  num_steps = 4000
+  dtmax = 0.03
+  num_steps = 3000
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
