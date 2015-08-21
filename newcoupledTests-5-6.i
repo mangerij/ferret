@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 40
-  ny = 40
-  nz = 14
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
-  zmin = -7
-  zmax = 7
+  nx = 100
+  ny = 100
+  nz = 36
+  xmin = -50
+  xmax = 50
+  ymin = -50
+  ymax = 50
+  zmin = -9
+  zmax = 9
 []
 
 [GlobalParams]
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = -0.106666666667
+    value = -0.51
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 0.106666666667
+    value = 0.51
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 0.106666666667
+    value = 0.51
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = -0.106666666667
+    value = -0.51
   [../]
 
 
@@ -702,10 +702,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.11
+  dt = 0.01
   dtmin = 1e-11
-  dtmax = 0.11
-  num_steps = 900
+  dtmax = 0.01
+  num_steps = 4000
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -759,7 +759,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_50nm_scale-cnorm_T-5_strain-6
     output_initial = true
     elemental_as_nodal = true
-    interval = 20
+    interval = 50
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
