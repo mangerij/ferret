@@ -702,10 +702,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.1
+  dt = 0.11
   dtmin = 1e-11
-  dtmax = 0.1
-  num_steps = 400
+  dtmax = 0.11
+  num_steps = 900
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
   #petsc_options_value = 'lu          1e-50 '
@@ -759,7 +759,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_40nm_test_comp02
     output_initial = true
     elemental_as_nodal = true
-    interval = 10
+    interval = 20
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
