@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 100
-  ny = 100
-  nz = 36
-  xmin = -50
-  xmax = 50
-  ymin = -50
-  ymax = 50
-  zmin = -9
-  zmax = 9
+  nx = 90
+  ny = 90
+  nz = 24
+  xmin = -45
+  xmax = 45
+  ymin = -45
+  ymax = 45
+  zmin = -8
+  zmax = 8
 []
 
 [GlobalParams]
@@ -20,7 +20,7 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.06
+G110 = 0.065
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -518,26 +518,26 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = DirichletBC
     variable = disp_x
     boundary = 'left'
-    value = 0.0
+    value = 5.55111512313e-17
   [../]
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
     boundary = 'right'
-    value = 0.0
+    value = 5.55111512313e-17
   [../]
 
   [./disp_y_slab5]
     type = DirichletBC
     variable = disp_y
     boundary = 'top'
-    value = 0.0
+    value = 5.55111512313e-17
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
     boundary = 'bottom'
-    value = 0.0
+    value = 5.55111512313e-17
   [../]
 
 
@@ -683,7 +683,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    501             1e-8   1e-14      bjacobi          1e-50          left        '
+    petsc_options_value = '    201             1e-8   1e-15      bjacobi          1e-50          left        '
   [../]
 []
 
@@ -702,9 +702,9 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.01
+  dt = 0.02
   dtmin = 1e-11
-  dtmax = 0.01
+  dtmax = 0.02
   num_steps = 4000
   #splitting = 'ferretsplit'
   #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
