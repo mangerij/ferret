@@ -48,6 +48,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
+    scaling = 1e6
    # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
@@ -59,6 +60,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
+    scaling = 1e6
   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
@@ -71,6 +73,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
+    scaling = 1e6
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
