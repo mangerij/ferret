@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 100
-  ny = 100
-  nz = 24
-  xmin = -50
-  xmax = 50
-  ymin = -50
-  ymax = 50
-  zmin = -8
-  zmax = 8
+  nx = 128
+  ny = 128
+  nz = 36
+  xmin = -64
+  xmax = 64
+  ymin = -64
+  ymax = 64
+  zmin = -9
+  zmax = 9
 []
 
 [GlobalParams]
@@ -20,7 +20,7 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.09
+G110 = 0.145
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -514,30 +514,24 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 
 [BCs]
 
-  [./disp_x_slab5]
-    type = DirichletBC
-    variable = disp_x
-    boundary = 'left'
-    value = -0.17
-  [../]
+
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
-    boundary = 'right'
-    value = 0.17
-  [../]
-
-  [./disp_y_slab5]
-    type = DirichletBC
-    variable = disp_y
-    boundary = 'top'
-    value = 0.17
+    boundary = 'back'
+    value = 0.0
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
-    boundary = 'bottom'
-    value = -0.17
+    boundary = 'back'
+    value = 0.0
+  [../]
+  [./disp_z_slab7]
+    type = DirichletBC
+    variable = disp_z
+    boundary = 'back'
+    value = 0.0
   [../]
 
 
@@ -595,14 +589,14 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   ##This seems to be what we want for a simple epitaxial test
   ## (note that most epitaxial conditions are a strain gradient from the interface)
   # Is this not seen by the simulation !!!!?!?!
-  #[./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-  #  type = ComputeEigenstrain
-  #  block = '0'
-  ##  block = '2'
-  #  prefactor = -0.02
-  #  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-  #  eigen_base = '1 0 0 0 1 0 0 0 0'
-  #[../]
+  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
+    block = '0'
+  #  block = '2'
+    prefactor = 0.004
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+  [../]
 []
 
 [Postprocessors]
@@ -662,28 +656,13 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 #  [../]
 #[]
 
-
-#[Preconditioning]
-#  [./pbp]
-#    type = PBP
-#    #full = true
-#    solve_order = 'potential_int disp_x disp_y disp_z polar_x polar_y polar_z '
-#    preconditioner = 'ASM ASM ASM LU ASM ASM ASM'
-#    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-#    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side'
-#    petsc_options_value = '    501             1e-8     1e-8        bjacobi       lu                   1e-50                 1e-50         left'
-#  [../]
-#[]
-
-
-
 [Preconditioning]
   [./smp]
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    201             1e-8   1e-15      bjacobi          1e-50          left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    201             1e-8   1e-12      bjacobi        ilu             1e-50           1e-50          left        '
   [../]
 []
 
@@ -699,57 +678,13 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     #linear_iteration_ratio = 1000
     #cutback_factor =  0.5
   #[../]
-  #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.03
+  dt = 0.8
   dtmin = 1e-11
-  dtmax = 0.03
-  num_steps = 3000
-  #splitting = 'ferretsplit'
-  #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
-  #petsc_options_value = 'lu          1e-50 '
+  dtmax = 0.8
+  num_steps = 300
 []
-#
-#[Splits]
-#  [./ferretsplit]
-#    type = Split
-#    splitting = 'elastic ferroelectric' #split to two subproblems
-#    splitting_type = schur #schur split somewhat bugged right now (only serial)
-#    schur_type = full
-#    schur_pre = A11
-#  [../]
-#  [./ferroelectric]
-#    vars = 'polar_x polar_y polar_z potential_int'
-#    petsc_options='-dm_view -ksp_monitor -inner_ksp_monitor' #'-ksp_monitor -inner_ksp_monitor'
-#    petsc_options_iname=' -ksp_type   -ksp_gmres_restart  -ksp_rtol -inner_pc_type -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot  -pc_factor_zeropivot -pc_hypre_type -inner_pc_hypre_type'
-#    petsc_options_value='    gmres            350              1e-8  lu        lu        2                         1e-50                1e-50  boomeramg boomeramg'
-#  [../]
-#  [./elastic]
-#    vars = 'disp_x disp_y disp_z'
-#    petsc_options='-dm_view -ksp_monitor -inner_ksp_monitor'  # ''-ksp_monitor'
-#    petsc_options_iname=' -ksp_type  -ksp_gmres_restart -inner_pc_type -ksp_rtol -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type -inner_pc_hypre_type'
-#    petsc_options_value = ' gmres       350                lu        1e-8       lu          2           1e-50                        1e-50 boomeramg boomeramg'
-#  [../]
-#[]
-
-#[./Adaptivity]
-#    [./Indicators]
-#      [./indicator_x]
-#        type = GradientJumpIndicator
-#        variable = polar_x
-#      [../]
-#      [./indicator_y]
-#        type = GradientJumpIndicator
-#        variable = polar_y
-#      [../]
-#      [./indicator_z]
-#        type = GradientJumpIndicator
-#        variable = polar_z
-#      [../]
-#    [../]
-#[../]
-
 
 [Outputs]
   print_linear_residuals = true
@@ -759,7 +694,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_50nm_scale-cnorm_T-3_strain-4
     output_initial = true
     elemental_as_nodal = true
-    interval = 50
+    interval = 10
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput

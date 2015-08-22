@@ -79,7 +79,6 @@
 #include "CoupledEnergy.h"
 
 //Time steppers
-#include "PostprocessorAdaptiveDT.h"
 #include "TransientHalf.h" //these are all junk
 
 //custom functions
@@ -197,7 +196,6 @@ FerretApp::registerObjects(Factory & factory)
   registerFunction(SphereToCartFunc);
 
   //TimeStepper
-  registerTimeStepper(PostprocessorAdaptiveDT);
   registerTimeStepper(TransientHalf);
 }
 
