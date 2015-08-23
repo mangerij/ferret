@@ -686,7 +686,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   dt = 0.8
   dtmin = 1e-11
   dtmax = 0.8
-  num_steps = 800
+  num_steps = 500
 []
 
 [Outputs]

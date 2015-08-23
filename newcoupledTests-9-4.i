@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 100
-  ny = 100
-  nz = 32
-  xmin = -50
-  xmax = 50
-  ymin = -50
-  ymax = 50
-  zmin = -8
-  zmax = 8
+  nx = 90
+  ny = 90
+  nz = 28
+  xmin = -45
+  xmax = 45
+  ymin = -45
+  ymax = 45
+  zmin = -7
+  zmax = 7
 []
 
 [GlobalParams]
@@ -686,7 +686,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   dt = 0.8
   dtmin = 1e-11
   dtmax = 0.8
-  num_steps = 800
+  num_steps = 500
 []
 
 [Outputs]
