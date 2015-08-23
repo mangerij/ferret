@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 128
-  ny = 128
-  nz = 36
-  xmin = -64
-  xmax = 64
-  ymin = -64
-  ymax = 64
-  zmin = -9
-  zmax = 9
+  nx = 110
+  ny = 110
+  nz = 32
+  xmin = -55
+  xmax = 55
+  ymin = -55
+  ymax = 55
+  zmin = -8
+  zmax = 8
 []
 
 [GlobalParams]
@@ -20,7 +20,7 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.145
+G110 = 0.141
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -665,7 +665,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    201             1e-8   1e-14      bjacobi        ilu             1e-50           1e-50          left        '
+    petsc_options_value = '    201             1e-8   1e-15     bjacobi        ilu             1e-50           1e-50          left        '
   [../]
 []
 
