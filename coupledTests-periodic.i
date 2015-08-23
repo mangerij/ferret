@@ -1,15 +1,17 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 100
-  ny = 100
-  nz = 24
-  xmin = -50
-  xmax = 50
-  ymin = -50
-  ymax = 50
-  zmin = -8
-  zmax = 8
+  nx = 30
+  ny = 30
+  nz = 10
+  xmin = -15
+  xmax = 15
+  ymin = -15
+  ymax = 15
+  zmin = -5
+  zmax = 5
+  elem_type = HEX8
+  distribution = serial
 []
 
 [GlobalParams]
@@ -20,7 +22,7 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.09
+G110 = 0.141
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -48,6 +50,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
+    scaling = 1e6
    # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
@@ -59,6 +62,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
+    scaling = 1e6
   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
@@ -71,6 +75,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
+    scaling = 1e6
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -514,32 +519,207 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 
 [BCs]
 
-  [./disp_x_slab5]
-    type = DirichletBC
-    variable = disp_x
-    boundary = 'left'
-    value = 0.25
+#periodic BCs HOW DO THIS????
+
+ [./Periodic]
+   #active='disp_x_x disp_y_x polar_z_x disp_x_y disp_y_y disp_z_y'
+   #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
+   #active='potential_int_x potential_ext_x potential_int_y potential_ext_y'
+
+   [./potential_int_x]
+      variable = potential_int
+      auto_direction = 'x y'
+   [../]
+
+   [./polar_x]
+      variable = polar_x
+      auto_direction = 'x y'
+   [../]
+   [./polar_y]
+      variable = polar_y
+      auto_direction = 'x y'
+   [../]
+   [./polar_z]
+      variable = polar_z
+      auto_direction = 'x y'
+   [../]
+
+   [./disp_x]
+      variable = disp_x
+      auto_direction = 'x y'
+   [../]
+   [./disp_y]
+      variable = disp_y
+      auto_direction = 'x y'
+   [../]
+   [./disp_z]
+      variable = disp_z
+      auto_direction = 'x y'
+   [../]
   [../]
+  #
+  # [./potential_int_x]
+  #    variable = potential_int
+  #    primary = 'left'
+  #    secondary = 'right'
+  #    translation = '15 0 0'
+  # [../]
+   #
+   #
+  # [./polar_x]
+  #    variable = polar_x
+  #    primary = 'left'
+  #    secondary = 'right'
+  #    translation = '15 0 0'
+  # [../]
+  # [./polar_y_x]
+  #    variable = polar_y
+  #    primary = 'left'
+  #    secondary = 'upx'
+  #    translation = '15 0 0'
+  # [../]
+  # [./polar_z_x]
+  #    variable = polar_z
+  #    primary = 'left'
+  #    secondary = 'right'
+  #    translation = '15 0 0'
+  # [../]
+   #
+   #
+  # [./disp_x_x]
+  #    variable = disp_x
+  #    primary = 'left'
+  #    secondary = 'right'
+  #    translation = '15 0 0'
+  # [../]
+  # [./disp_y_x]
+  #    variable = disp_y
+  #    primary = 'left'
+  #    secondary = 'right'
+  #    translation = '15 0 0'
+  # [../]
+  # [./disp_z_x]
+  #    variable = disp_z
+  #    primary = 'left'
+  #    secondary = 'right'
+  #    translation = '15 0 0'
+  # [../]
+   #
+   #
+   #
+  # [./potential_int_y]
+  #    variable = potential_int
+  #    primary = 'top'
+  #    secondary ='bottom'
+  #    translation = '0 15 0'
+  # [../]
+   #
+   #
+  # [./polar_x_y]
+  #    variable = polar_x
+  #    primary = 'top'
+  #    secondary ='bottom'
+  #    translation = '0 15 0'
+  # [../]
+  # [./polar_y_y]
+  #    variable = polar_y
+  #    primary = 'top'
+  #    secondary ='bottom'
+  #    translation = '0 15 0'
+  # [../]
+  # [./polar_z_y]
+  #    variable = polar_z
+  #    primary = 'top'
+  #    secondary ='bottom'
+  #    translation = '0 15 0'
+  # [../]
+   #
+  # [./disp_x_y]
+  #    variable = disp_x
+  #    primary = 'top'
+  #    secondary ='bottom'
+  #    translation = '0 15 0'
+  # [../]
+  # [./disp_y_y]
+  #    variable = disp_y
+  #    primary = 'top'
+  #    secondary ='bottom'
+  #    translation = '0 15 0'
+  # [../]
+  # [./disp_z_y]
+  #    variable = disp_z
+  #    primary = 'top'
+  #    secondary ='bottom'
+  #    translation = '0 15 0'
+  # [../]
+   #
+  # [./polar_x_z]
+  #      variable = disp_x
+  #      primary = 'front'
+  #      secondary ='back'
+  #      translation = '0 0 5'
+  #  [../]
+  #  [./polar_y_z]
+  #      variable = polar_y
+  #      primary = 'front'
+  #      secondary ='back'
+  #      translation = '0 0 5'
+  #   [../]
+  #   [./polar_z_z]
+  #      variable = polar_z
+  #      primary = 'front'
+  #      secondary ='back'
+  #      translation = '0 0 5'
+  #   [../]
+   #
+   #
+  #   [./disp_x_z]
+  #        variable = disp_x
+  #        primary = 'front'
+  #        secondary ='back'
+  #        translation = '0 0 5'
+  #    [../]
+  #    [./disp_y_z]
+  #        variable = disp_y
+  #        primary = 'front'
+  #        secondary ='back'
+  #        translation = '0 0 5'
+  #     [../]
+  #     [./disp_z_z]
+  #        variable = disp_z
+  #        primary = 'front'
+  #        secondary ='back'
+  #        translation = '0 0 5'
+  #     [../]
+   #
+  #     [./potential_int_z]
+  #        variable = potential_int
+  #        primary = 'front'
+  #        secondary = 'back'
+  #        translation = '0 0 5'
+  #     [../]
+ #
+ #[../]
+
+
   [./disp_x_slab7]
     type = DirichletBC
     variable = disp_x
-    boundary = 'right'
-    value = -0.25
-  [../]
-
-  [./disp_y_slab5]
-    type = DirichletBC
-    variable = disp_y
-    boundary = 'top'
-    value = -0.25
+    boundary = 'back'
+    value = 0.0
   [../]
   [./disp_y_slab7]
     type = DirichletBC
     variable = disp_y
-    boundary = 'bottom'
-    value = 0.25
+    boundary = 'back'
+    value = 0.0
   [../]
-
+  [./disp_z_slab7]
+    type = DirichletBC
+    variable = disp_z
+    boundary = 'back'
+    value = 0.0
+  [../]
 
   [./potential_cube5]
     type = DirichletBC
@@ -595,14 +775,14 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   ##This seems to be what we want for a simple epitaxial test
   ## (note that most epitaxial conditions are a strain gradient from the interface)
   # Is this not seen by the simulation !!!!?!?!
-  #[./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-  #  type = ComputeEigenstrain
-  #  block = '0'
-  ##  block = '2'
-  #  prefactor = -0.02
-  #  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-  #  eigen_base = '1 0 0 0 1 0 0 0 0'
-  #[../]
+  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
+    block = '0'
+  #  block = '2'
+    prefactor = -0.012
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+  [../]
 []
 
 [Postprocessors]
@@ -662,28 +842,13 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 #  [../]
 #[]
 
-
-#[Preconditioning]
-#  [./pbp]
-#    type = PBP
-#    #full = true
-#    solve_order = 'potential_int disp_x disp_y disp_z polar_x polar_y polar_z '
-#    preconditioner = 'ASM ASM ASM LU ASM ASM ASM'
-#    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-#    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side'
-#    petsc_options_value = '    501             1e-8     1e-8        bjacobi       lu                   1e-50                 1e-50         left'
-#  [../]
-#[]
-
-
-
 [Preconditioning]
   [./smp]
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    201             1e-8   1e-15      bjacobi          1e-50          left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    201             1e-8   1e-15     bjacobi        ilu             1e-50           1e-50          left        '
   [../]
 []
 
@@ -699,57 +864,13 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     #linear_iteration_ratio = 1000
     #cutback_factor =  0.5
   #[../]
-  #l_max_its = 8000
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.03
+  dt = 0.8
   dtmin = 1e-11
-  dtmax = 0.03
-  num_steps = 3000
-  #splitting = 'ferretsplit'
-  #petsc_options_iname ='-pc_type -pc_factor_zeropivot'
-  #petsc_options_value = 'lu          1e-50 '
+  dtmax = 0.8
+  num_steps = 500
 []
-#
-#[Splits]
-#  [./ferretsplit]
-#    type = Split
-#    splitting = 'elastic ferroelectric' #split to two subproblems
-#    splitting_type = schur #schur split somewhat bugged right now (only serial)
-#    schur_type = full
-#    schur_pre = A11
-#  [../]
-#  [./ferroelectric]
-#    vars = 'polar_x polar_y polar_z potential_int'
-#    petsc_options='-dm_view -ksp_monitor -inner_ksp_monitor' #'-ksp_monitor -inner_ksp_monitor'
-#    petsc_options_iname=' -ksp_type   -ksp_gmres_restart  -ksp_rtol -inner_pc_type -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot  -pc_factor_zeropivot -pc_hypre_type -inner_pc_hypre_type'
-#    petsc_options_value='    gmres            350              1e-8  lu        lu        2                         1e-50                1e-50  boomeramg boomeramg'
-#  [../]
-#  [./elastic]
-#    vars = 'disp_x disp_y disp_z'
-#    petsc_options='-dm_view -ksp_monitor -inner_ksp_monitor'  # ''-ksp_monitor'
-#    petsc_options_iname=' -ksp_type  -ksp_gmres_restart -inner_pc_type -ksp_rtol -pc_type   -pc_asm_overlap -inner_pc_factor_zeropivot -pc_factor_zeropivot -pc_hypre_type -inner_pc_hypre_type'
-#    petsc_options_value = ' gmres       350                lu        1e-8       lu          2           1e-50                        1e-50 boomeramg boomeramg'
-#  [../]
-#[]
-
-#[./Adaptivity]
-#    [./Indicators]
-#      [./indicator_x]
-#        type = GradientJumpIndicator
-#        variable = polar_x
-#      [../]
-#      [./indicator_y]
-#        type = GradientJumpIndicator
-#        variable = polar_y
-#      [../]
-#      [./indicator_z]
-#        type = GradientJumpIndicator
-#        variable = polar_z
-#      [../]
-#    [../]
-#[../]
-
 
 [Outputs]
   print_linear_residuals = true
@@ -759,7 +880,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_40nm_test_comp02
     output_initial = true
     elemental_as_nodal = true
-    interval = 50
+    interval = 15
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
