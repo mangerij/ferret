@@ -665,7 +665,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    201             1e-8   1e-12      bjacobi        ilu             1e-50           1e-50          left        '
+    petsc_options_value = '    201             1e-8   1e-14      bjacobi        ilu             1e-50           1e-50          left        '
   [../]
 []
 
@@ -686,7 +686,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   dt = 0.8
   dtmin = 1e-11
   dtmax = 0.8
-  num_steps = 300
+  num_steps = 800
 []
 
 [Outputs]
@@ -697,7 +697,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_50nm_scale-cnorm_T-7_strain-2
     output_initial = true
     elemental_as_nodal = true
-    interval = 10
+    interval = 15
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
