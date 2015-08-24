@@ -20,7 +20,7 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.11
+G110 = 0.1
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -683,10 +683,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.52
+  dt = 0.4
   dtmin = 1e-11
-  dtmax = 0.52
-  num_steps = 2200
+  dtmax = 0.4
+  num_steps = 2500
 []
 
 [Outputs]
