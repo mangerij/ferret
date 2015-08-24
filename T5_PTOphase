@@ -2,7 +2,7 @@
 
 #SBATCH -p Serge
 #SBATCH --ntasks-per-node=16
-#SBATCH -N 13
+#SBATCH -N 10
 #SBATCH --mail-user=john.mangeri@uconn.edu
 #SBATCH --mail-type=ALL
 #SBATCH -o slurm-%j.out
@@ -15,3 +15,11 @@ mpirun -v ./ferret-opt -i newcoupledTests-5-3.i
 mpirun -v ./ferret-opt -i newcoupledTests-5-4.i
 mpirun -v ./ferret-opt -i newcoupledTests-5-5.i
 mpirun -v ./ferret-opt -i newcoupledTests-5-6.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-7.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-8.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-9.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-10.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-11.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-12.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-13.i
+mpirun -v ./ferret-opt -i newcoupledTests-5-14.i
