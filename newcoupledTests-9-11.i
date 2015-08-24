@@ -683,10 +683,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.1
+  dt = 0.4
   dtmin = 1e-11
-  dtmax = 0.1
-  num_steps = 1200
+  dtmax = 0.4
+  num_steps = 2500
 []
 
 [Outputs]
@@ -697,7 +697,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_50nm_scale-cnorm_T-9_strain-11
     output_initial = true
     elemental_as_nodal = true
-    interval = 25
+    interval = 50
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
