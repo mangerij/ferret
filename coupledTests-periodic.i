@@ -11,7 +11,6 @@
   zmin = -5
   zmax = 5
   elem_type = HEX8
-  distribution = serial
 []
 
 [GlobalParams]
@@ -702,24 +701,24 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
  #[../]
 
 
-  [./disp_x_slab7]
-    type = DirichletBC
-    variable = disp_x
-    boundary = 'back'
-    value = 0.0
-  [../]
-  [./disp_y_slab7]
-    type = DirichletBC
-    variable = disp_y
-    boundary = 'back'
-    value = 0.0
-  [../]
-  [./disp_z_slab7]
-    type = DirichletBC
-    variable = disp_z
-    boundary = 'back'
-    value = 0.0
-  [../]
+  #[./disp_x_slab7]
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'back'
+  #  value = 0.0
+  #[../]
+  #[./disp_y_slab7]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'back'
+  #  value = 0.0
+  #[../]
+  #[./disp_z_slab7]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'back'
+  #  value = 0.0
+  #[../]
 
   [./potential_cube5]
     type = DirichletBC
@@ -866,9 +865,9 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.8
+  dt = 1.0
   dtmin = 1e-11
-  dtmax = 0.8
+  dtmax = 1.0
   num_steps = 500
 []
 
@@ -877,10 +876,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_40nm_test_comp02
+    file_base = out_PbTiO3_30nm_test_tens012
     output_initial = true
     elemental_as_nodal = true
-    interval = 15
+    interval = 1
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput

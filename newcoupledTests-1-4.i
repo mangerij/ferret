@@ -1,26 +1,26 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 90
-  ny = 90
-  nz = 28
-  xmin = -45
-  xmax = 45
-  ymin = -45
-  ymax = 45
-  zmin = -7
-  zmax = 7
+  nx = 60
+  ny = 60
+  nz = 24
+  xmin = -30
+  xmax = 30
+  ymin = -30
+  ymax = 30
+  zmin = -6
+  zmax = 6
 []
 
 [GlobalParams]
 len_scale = 0.71
-alpha1 = -0.25236 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha1 = -0.17590986 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.141
+G110 = 0.25
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -596,7 +596,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = ComputeEigenstrain
     block = '0'
   #  block = '2'
-    prefactor = 0.004
+    prefactor = -0.00942857142857
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -686,7 +686,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   dt = 0.8
   dtmin = 1e-11
   dtmax = 0.8
-  num_steps = 500
+  num_steps = 1200
 []
 
 [Outputs]
@@ -697,7 +697,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     file_base = out_PbTiO3_50nm_scale-cnorm_T-1_strain-4
     output_initial = true
     elemental_as_nodal = true
-    interval = 15
+    interval = 25
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
