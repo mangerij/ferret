@@ -3,7 +3,7 @@
   dim = 3
   nx = 50
   ny = 50
-  nz = 24
+  nz = 22
   xmin = -25
   xmax = 25
   ymin = -25
@@ -20,7 +20,7 @@ alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
 alpha123 = -3.6999999999999997
-G110 = 0.12
+G110 = 0.11
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -596,7 +596,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = ComputeEigenstrain
     block = '0'
   #  block = '2'
-    prefactor = -0.0157142857143
+    prefactor = -0.00733333333333
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -683,10 +683,10 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.4
+  dt = 0.52
   dtmin = 1e-11
-  dtmax = 0.4
-  num_steps = 2500
+  dtmax = 0.52
+  num_steps = 2200
 []
 
 [Outputs]
