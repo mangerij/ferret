@@ -1,27 +1,27 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 30
-  ny = 30
-  nz = 10
-  xmin = -15
-  xmax = 15
-  ymin = -15
-  ymax = 15
-  zmin = -5
-  zmax = 5
+  nx = 41
+  ny = 41
+  nz = 20
+  xmin = -20
+  xmax = 20
+  ymin = -20
+  ymax = 20
+  zmin = -9
+  zmax = 9
   elem_type = HEX8
 []
 
 [GlobalParams]
 len_scale = 0.71
-alpha1 = -0.07228837000000002 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
 alpha11 = -0.07253
 alpha111 = 0.26
 alpha12 = 0.75
 alpha112 = 0.61
-alpha123 = -3.6999999999999997
-G110 = 0.141
+alpha123 = -3.67
+G110 = 0.13
 G11/G110 = 0.6
 G12/G110 = 0
 G44/G110 = 0.3
@@ -49,7 +49,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
-    scaling = 1e6
+    scaling = 1e5
    # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
@@ -61,7 +61,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
-    scaling = 1e6
+    scaling = 1e5
   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
@@ -74,7 +74,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
-    scaling = 1e6
+    scaling = 1e5
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -776,9 +776,9 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   # Is this not seen by the simulation !!!!?!?!
   [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
     type = ComputeEigenstrain
+    #boundary = 'back'
     block = '0'
-  #  block = '2'
-    prefactor = -0.012
+    prefactor = 0.013
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -846,8 +846,8 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    201             1e-8   1e-15     bjacobi        ilu             1e-50           1e-50          left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    121             1e-8   1e-8    bjacobi            ilu            1e-50           1e-50          left        '
   [../]
 []
 
@@ -855,20 +855,20 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 
 [Executioner]
   type = Transient
-  #[./TimeStepper]
-    #type = IterationAdaptiveDT
-    #dt = 2.0 #max seems to be about 1.0 but could depend on refinement...
-    #optimal_iterations = 1
-    #growth_factor = 1.0001
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 8.5 #max seems to be about 1.0 but could depend on refinement...
+    optimal_iterations = 3 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration?
+    growth_factor = 1.2
     #linear_iteration_ratio = 1000
-    #cutback_factor =  0.5
-  #[../]
+    cutback_factor =  0.75
+  [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 1.0
+  #dt = 0.4
   dtmin = 1e-11
-  dtmax = 1.0
-  num_steps = 500
+  dtmax = 10.5
+  num_steps = 2500
 []
 
 [Outputs]
@@ -876,7 +876,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_30nm_test_tens012
+    file_base = out_PbTiO3_40nm_test_comp012_periodic
     output_initial = true
     elemental_as_nodal = true
     interval = 1

@@ -1,44 +1,44 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 50
-  ny = 50
-  nz = 22
-  xmin = -25
-  xmax = 25
-  ymin = -25
-  ymax = 25
-  zmin = -6
-  zmax = 6
+  nx = 90
+  ny = 90
+  nz = 24
+  xmin = -45
+  xmax = 45
+  ymin = -45
+  ymax = 45
+  zmin = -9
+  zmax = 9
 []
 
 [GlobalParams]
-len_scale = 0.71
-alpha1 = -0.17590986 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
-alpha11 = -0.07253
-alpha111 = 0.26
-alpha12 = 0.75
-alpha112 = 0.61
-alpha123 = -3.6999999999999997
-G110 = 0.95
-G11/G110 = 0.6
-G12/G110 = 0
-G44/G110 = 0.3
-G44P/G110 = 0.3
-Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
-permittivity = 0.5843763
-polar_x = polar_x
-polar_y = polar_y
-polar_z = polar_z
-potential_int = potential_int
-#potential_ext = potential_ext
-disp_x=disp_x
-disp_y=disp_y
-disp_z=disp_z
-displacements='disp_x disp_y disp_z'
-#use_displaced_mesh = false
-C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-#initial_from_file_timestep = 120
+  len_scale = 0.71
+  alpha1 = -0.17590986 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 300 K)
+  alpha11 = -0.07253
+  alpha111 = 0.26
+  alpha12 = 0.75
+  alpha112 = 0.61
+  alpha123 = -3.67
+  G110 = 0.12
+  G11/G110 = 0.6
+  G12/G110 = 0
+  G44/G110 = 0.3
+  G44P/G110 = 0.3
+  Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+  permittivity = 0.5843763
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_int = potential_int
+  #potential_ext = potential_ext
+  disp_x = disp_x
+  disp_y = disp_y
+  disp_z = disp_z
+  displacements='disp_x disp_y disp_z'
+  #use_displaced_mesh = false
+  C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+  #initial_from_file_timestep = 120
 []
 
 
@@ -49,7 +49,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     family = LAGRANGE
     block = '0'
     scaling = 1e6
-   # initial_from_file_var = polar_x
+  # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -61,13 +61,12 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     family = LAGRANGE
     block = '0'
     scaling = 1e6
-  # initial_from_file_var = polar_y
+   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
     [../]
-    #initial_from_file_var = polar_y
   [../]
   [./polar_z]
     order = FIRST
@@ -105,7 +104,6 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
       max = 0.5e-5
     [../]
     block = '0'
-    #scaling = 1e6
     #initial_from_file_var = disp_x
   [../]
   [./disp_y]
@@ -117,7 +115,6 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
       max = 0.5e-5
     [../]
     block = '0'
-    #scaling = 1e6
     #initial_from_file_var = disp_y
   [../]
   [./disp_z]
@@ -194,38 +191,9 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #  family = MONOMIAL
   #  #initial_from_file_var = strain_yz
   #[../]
-  #[./rho_b]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #  #initial_from_file_var = rho_b
-  #[../]
-#  [./screenfield]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
-#  [./surf_charge]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
 []
-#
+
 [AuxKernels]
-#  [./surfacecharge]
-#    type = SurfaceChargeAux
-#    variable = surf_charge
-#    boundary = '3'
-#  [../]
-#  [./surfacescreenfield]
-#    type = ScreenAux
-#    variable = screenfield
-#    boundary = '3 4'
-#  [../]
-#  [./boundcharge]
-#    type = BoundCharge
-#    variable = rho_b
-#    block = '2'
-#    execute_on = 'timestep_end'
-#  [../]
   #[./matl_s11]
   #  type = RankTwoAux
   #  rank_two_tensor = stress
@@ -393,6 +361,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
      component = 2
   [../]
   ##Polarization-strain coupling
+  # only need CouplingU if time kernel on displacement
   #[./ferroelectriccouplingu_x]
   #   type = FerroelectricCouplingU
   #   variable = disp_x
@@ -436,26 +405,11 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
      block = '0'
     # implicit = false
   [../]
-  #[./E_int]
-  #   type=Electrostatics
-  #   variable = potential_int
-  #   block='1 3'
-  #[../]
   [./FE_E_int]
      type=Electrostatics
      variable = potential_int
      block = '0'
   [../]
-  #[./E_ext]
-  #   type=Electrostatics
-  #   variable = potential_ext
-  #   block='1 3'
-  #[../]
-  #[./FE_E_ext]
-  #   type=Electrostatics
-  #   variable = potential_ext
-  #   block='2'
-  #[../]
   [./polar_electric_px]
      type=PolarElectricPStrong
      variable = polar_x
@@ -493,11 +447,6 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     # time_scale = 1.8e-7
     time_scale = 1.0
   [../]
-  #[./potential_int_time]
-  #   type=TimeDerivativeScaled
-  #   variable = potential_int
-  #   time_scale = 1.0
-  #[../]
   #[./disp_x_time]
   #   type=TimeDerivativeScaled
   #   variable = disp_x
@@ -572,23 +521,16 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [./elasticity_tensor]
     type = ComputeElasticityTensor
     block = '0'
-  #  block = '2'
     fill_method = symmetric9
   [../]
   [./strain]
     type = ComputeSmallStrain
     block = '0'
-  #  block = '2'
   [../]
   [./stress]
     type = ComputeLinearElasticStress
     block = '0'
-  #  block = '2'
   [../]
-  #[./vacuum]
-  #  type=GenericConstantMaterial
-  #  block = '1 3'
-  #[../]
   ##This seems to be what we want for a simple epitaxial test
   ## (note that most epitaxial conditions are a strain gradient from the interface)
   # Is this not seen by the simulation !!!!?!?!
@@ -596,7 +538,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = ComputeEigenstrain
     block = '0'
   #  block = '2'
-    prefactor = 0.00733333333333
+    prefactor = 0.009
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -664,8 +606,8 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    201             1e-8   1e-15     bjacobi        ilu             1e-50           1e-50          left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_factor_zeropivot '
+    petsc_options_value = '    201             1e-8       1e-14       bjacobi    ilu   1e-50    '
   [../]
 []
 
@@ -676,17 +618,17 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   #[./TimeStepper]
     #type = IterationAdaptiveDT
     #dt = 2.0 #max seems to be about 1.0 but could depend on refinement...
-    #optimal_iterations = 1
+    #optimal_iterations = 1 #i think this is 2 or more then cut? less than 2 grow, does it count the 0th iteration?
     #growth_factor = 1.0001
     #linear_iteration_ratio = 1000
     #cutback_factor =  0.5
   #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.4
+  dt = 0.6
   dtmin = 1e-11
-  dtmax = 0.4
-  num_steps = 1500
+  dtmax = 0.6
+  num_steps = 1050
 []
 
 [Outputs]
@@ -694,7 +636,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_50nm_scale-cnorm_T-2_strain-4
+    file_base = out_PbTiO3_90nm_T-2_strain-4
     output_initial = true
     elemental_as_nodal = true
     interval = 50

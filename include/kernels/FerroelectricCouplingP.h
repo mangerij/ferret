@@ -11,6 +11,8 @@
 
 #include "Kernel.h"
 #include "ElectrostrictiveTensorR4.h"
+// #include "Material.h"
+// #include "DerivativeMaterialInterface.h"
 
 //Forward Declarations
 class FerroelectricCouplingP;
@@ -47,6 +49,7 @@ private:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
+  // const MaterialProperty<RankTwoTensor> & _stress_free_strain;
   const Real _strain_scale;
   const Real _artificial;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
