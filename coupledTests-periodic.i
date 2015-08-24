@@ -857,7 +857,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   type = Transient
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 8.5 #max seems to be about 1.0 but could depend on refinement...
+    dt = 1.0 #max seems to be about 1.0 but could depend on refinement...
     optimal_iterations = 3 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration?
     growth_factor = 1.2
     #linear_iteration_ratio = 1000
@@ -867,7 +867,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.4
   dtmin = 1e-11
-  dtmax = 10.5
+  dtmax = 1.5
   num_steps = 2500
 []
 
