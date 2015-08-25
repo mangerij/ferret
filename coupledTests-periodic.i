@@ -1,45 +1,68 @@
+#[Mesh]
+#  type = GeneratedMesh
+#  dim = 3
+#  nx = 30
+#  ny = 30
+#  nz = 10
+#  xmin = -15
+#  xmax = 15
+#  ymin = -15
+#  ymax = 15
+#  zmin = -5
+#  zmax = 5
+#  elem_type = HEX8
+#[]
+
+
+
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 41
-  ny = 41
-  nz = 20
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
-  zmin = -9
-  zmax = 9
+  nx = 30
+  ny = 30
+  nz = 11
+  xmin = -15
+  xmax = 15
+  ymin = -15
+  ymax = 15
+  zmin = -5
+  zmax = 5
   elem_type = HEX8
 []
 
+#scaling = 1.0?
+#len_scale = 1.0?
+#what about 66.0 permittivity? could that be it?
+
 [GlobalParams]
-len_scale = 0.71
-alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
-alpha11 = -0.07253
-alpha111 = 0.26
-alpha12 = 0.75
-alpha112 = 0.61
-alpha123 = -3.67
-G110 = 0.13
-G11/G110 = 0.6
-G12/G110 = 0
-G44/G110 = 0.3
-G44P/G110 = 0.3
-Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
-permittivity = 0.5843763
-polar_x = polar_x
-polar_y = polar_y
-polar_z = polar_z
-potential_int = potential_int
-#potential_ext = potential_ext
-disp_x=disp_x
-disp_y=disp_y
-disp_z=disp_z
-displacements='disp_x disp_y disp_z'
-#use_displaced_mesh = false
-C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-#initial_from_file_timestep = 120
+  len_scale = 1.0
+  alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+  alpha11 = -0.07253
+  alpha111 = 0.26
+  alpha12 = 0.75
+  alpha112 = 0.61
+  alpha123 = -3.67
+  G110 = 0.13
+  G11/G110 = 0.6
+  G12/G110 = 0
+  G44/G110 = 0.3
+  G44P/G110 = 0.3
+  Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+  permittivity = 0.5843763
+  #permittivity = 38.5688358
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_int = potential_int
+  #potential_ext = potential_ext
+  disp_x=disp_x
+  disp_y=disp_y
+  disp_z=disp_z
+  prefactor = 0.001
+  displacements='disp_x disp_y disp_z'
+  #use_displaced_mesh = false
+  C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+  #initial_from_file_timestep = 120
 []
 
 
@@ -49,7 +72,6 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
-    scaling = 1e5
    # initial_from_file_var = polar_x
     [./InitialCondition]
       type = RandomIC
@@ -61,7 +83,6 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
-    scaling = 1e5
   # initial_from_file_var = polar_y
     [./InitialCondition]
       type = RandomIC
@@ -74,7 +95,6 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     order = FIRST
     family = LAGRANGE
     block = '0'
-    scaling = 1e5
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -339,27 +359,27 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 
 [Kernels]
   #Elastic problem
-  #[./TensorMechanics] #This is an action block
+  [./TensorMechanics] #This is an action block
+  [../]
+  ##
+  #[./stressdiv_0]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_x
+  #  component = 0
+  #  block = '0'
   #[../]
-
-  [./stressdiv_0]
-    type = StressDivergenceTensorsScaled
-    variable = disp_x
-    component = 0
-    block = '0'
-  [../]
-  [./stressdiv_1]
-    type = StressDivergenceTensorsScaled
-    variable = disp_y
-    component = 1
-    block = '0'
-  [../]
-  [./stressdiv_2]
-    type = StressDivergenceTensorsScaled
-    variable = disp_z
-    component = 2
-    block = '0'
-  [../]
+  #[./stressdiv_1]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_y
+  #  component = 1
+  #  block = '0'
+  #[../]
+  #[./stressdiv_2]
+  #  type = StressDivergenceTensorsScaled
+  #  variable = disp_z
+  #  component = 2
+  #  block = '0'
+  #[../]
 
   #Bulk energy density
   [./bed_x]
@@ -394,41 +414,38 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
      component = 2
   [../]
   ##Polarization-strain coupling
-  #[./ferroelectriccouplingu_x]
-  #   type = FerroelectricCouplingU
-  #   variable = disp_x
-  #   component = 0
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingu_y]
-  #   type = FerroelectricCouplingU
-  #   variable = disp_y
-  #   component = 1
-  #   block = '2'
-  #[../]
-  #[./ferroelectriccouplingu_z]
-  #   type = FerroelectricCouplingU
-  #   variable=disp_z
-  #   component = 2
-  #   block = '2'
-  #[../]
+  [./ferroelectriccouplingu_x]
+     type = FerroelectricCouplingX
+     variable = disp_x
+     component = 0
+     block = '0'
+  [../]
+  [./ferroelectriccouplingu_y]
+     type = FerroelectricCouplingX
+     variable = disp_y
+     component = 1
+     block = '0'
+  [../]
+  [./ferroelectriccouplingu_z]
+     type = FerroelectricCouplingX
+     variable = disp_z
+     component = 2
+     block = '0'
+  [../]
   [./ferroelectriccouplingp_xx]
      type = FerroelectricCouplingP
-     variable=polar_x
+     variable = polar_x
      component = 0
-    # block = '2'
   [../]
   [./ferroelectriccouplingp_yy]
      type = FerroelectricCouplingP
      variable = polar_y
      component = 1
-    # block = '2'
   [../]
   [./ferroelectriccouplingp_zz]
      type = FerroelectricCouplingP
      variable = polar_z
      component = 2
-    # block = '2'
   [../]
   ##Electrostatics
   [./polar_x_electric_E]
@@ -518,8 +535,6 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 
 [BCs]
 
-#periodic BCs HOW DO THIS????
-
  [./Periodic]
    #active='disp_x_x disp_y_x polar_z_x disp_x_y disp_y_y disp_z_y'
    #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
@@ -550,175 +565,62 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
    [./disp_y]
       variable = disp_y
       auto_direction = 'x y'
+
    [../]
    [./disp_z]
       variable = disp_z
       auto_direction = 'x y'
    [../]
   [../]
-  #
-  # [./potential_int_x]
-  #    variable = potential_int
-  #    primary = 'left'
-  #    secondary = 'right'
-  #    translation = '15 0 0'
-  # [../]
-   #
-   #
-  # [./polar_x]
-  #    variable = polar_x
-  #    primary = 'left'
-  #    secondary = 'right'
-  #    translation = '15 0 0'
-  # [../]
-  # [./polar_y_x]
-  #    variable = polar_y
-  #    primary = 'left'
-  #    secondary = 'upx'
-  #    translation = '15 0 0'
-  # [../]
-  # [./polar_z_x]
-  #    variable = polar_z
-  #    primary = 'left'
-  #    secondary = 'right'
-  #    translation = '15 0 0'
-  # [../]
-   #
-   #
-  # [./disp_x_x]
-  #    variable = disp_x
-  #    primary = 'left'
-  #    secondary = 'right'
-  #    translation = '15 0 0'
-  # [../]
-  # [./disp_y_x]
-  #    variable = disp_y
-  #    primary = 'left'
-  #    secondary = 'right'
-  #    translation = '15 0 0'
-  # [../]
-  # [./disp_z_x]
-  #    variable = disp_z
-  #    primary = 'left'
-  #    secondary = 'right'
-  #    translation = '15 0 0'
-  # [../]
-   #
-   #
-   #
-  # [./potential_int_y]
-  #    variable = potential_int
-  #    primary = 'top'
-  #    secondary ='bottom'
-  #    translation = '0 15 0'
-  # [../]
-   #
-   #
-  # [./polar_x_y]
-  #    variable = polar_x
-  #    primary = 'top'
-  #    secondary ='bottom'
-  #    translation = '0 15 0'
-  # [../]
-  # [./polar_y_y]
-  #    variable = polar_y
-  #    primary = 'top'
-  #    secondary ='bottom'
-  #    translation = '0 15 0'
-  # [../]
-  # [./polar_z_y]
-  #    variable = polar_z
-  #    primary = 'top'
-  #    secondary ='bottom'
-  #    translation = '0 15 0'
-  # [../]
-   #
-  # [./disp_x_y]
-  #    variable = disp_x
-  #    primary = 'top'
-  #    secondary ='bottom'
-  #    translation = '0 15 0'
-  # [../]
-  # [./disp_y_y]
-  #    variable = disp_y
-  #    primary = 'top'
-  #    secondary ='bottom'
-  #    translation = '0 15 0'
-  # [../]
-  # [./disp_z_y]
-  #    variable = disp_z
-  #    primary = 'top'
-  #    secondary ='bottom'
-  #    translation = '0 15 0'
-  # [../]
-   #
-  # [./polar_x_z]
-  #      variable = disp_x
-  #      primary = 'front'
-  #      secondary ='back'
-  #      translation = '0 0 5'
-  #  [../]
-  #  [./polar_y_z]
-  #      variable = polar_y
-  #      primary = 'front'
-  #      secondary ='back'
-  #      translation = '0 0 5'
-  #   [../]
-  #   [./polar_z_z]
-  #      variable = polar_z
-  #      primary = 'front'
-  #      secondary ='back'
-  #      translation = '0 0 5'
-  #   [../]
-   #
-   #
-  #   [./disp_x_z]
-  #        variable = disp_x
-  #        primary = 'front'
-  #        secondary ='back'
-  #        translation = '0 0 5'
-  #    [../]
-  #    [./disp_y_z]
-  #        variable = disp_y
-  #        primary = 'front'
-  #        secondary ='back'
-  #        translation = '0 0 5'
-  #     [../]
-  #     [./disp_z_z]
-  #        variable = disp_z
-  #        primary = 'front'
-  #        secondary ='back'
-  #        translation = '0 0 5'
-  #     [../]
-   #
-  #     [./potential_int_z]
-  #        variable = potential_int
-  #        primary = 'front'
-  #        secondary = 'back'
-  #        translation = '0 0 5'
-  #     [../]
- #
- #[../]
 
 
-  #[./disp_x_slab7]
+  #[./disp_x_slab7] #compression
   #  type = DirichletBC
   #  variable = disp_x
-  #  boundary = 'back'
-  #  value = 0.0
+  #  boundary = 'left'
+  #  value = 0.3
   #[../]
+  #
+  #[./disp_x_slab8]
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'right'
+  #  value = -0.3
+  #[../]
+  #
   #[./disp_y_slab7]
   #  type = DirichletBC
   #  variable = disp_y
-  #  boundary = 'back'
-  #  value = 0.0
+  #  boundary = 'top'
+  #  value = 0.3
   #[../]
-  #[./disp_z_slab7]
+  #
+  #[./disp_y_slab8]
   #  type = DirichletBC
-  #  variable = disp_z
-  #  boundary = 'back'
-  #  value = 0.0
+  #  variable = disp_y
+  #  boundary = 'bottom'
+  #  value = -0.3
   #[../]
+
+
+  [./disp_x_slab7]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'back'
+    value = 0.0
+  [../]
+  [./disp_y_slab7]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'back'
+    value = 0.0
+  [../]
+  [./disp_z_slab7]
+    type = DirichletBC
+    variable = disp_z
+    boundary = 'back'
+    value = 0.0
+  [../]
 
   [./potential_cube5]
     type = DirichletBC
@@ -778,7 +680,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = ComputeEigenstrain
     #boundary = 'back'
     block = '0'
-    prefactor = 0.013
+    #prefactor = -0.0015 #inglobal params now
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -837,7 +739,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 #[UserObjects]
 #  [./kill]
 #    type = Terminator
-#    expression = 'perc_change <= 1.0e-15'
+#    expression = 'perc_change <= 1.0e-5'
 #  [../]
 #[]
 
@@ -846,8 +748,8 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -sub_pc_type  -sub_pc_factor -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121             1e-8   1e-8    bjacobi            ilu            1e-50           1e-50          left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    121             1e-8      1e-12    bjacobi         5                 ilu    1e-50    1e-50      left        '
   [../]
 []
 
@@ -855,20 +757,20 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
 
 [Executioner]
   type = Transient
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 1.0 #max seems to be about 1.0 but could depend on refinement...
-    optimal_iterations = 3 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration?
-    growth_factor = 1.2
-    #linear_iteration_ratio = 1000
-    cutback_factor =  0.75
-  [../]
+  #[./TimeStepper]
+  #  type = IterationAdaptiveDT
+  #  dt = 0.02 #max seems to be about 1.0 but could depend on refinement...
+  #  optimal_iterations = 3 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration?
+  #  growth_factor = 1.2
+  #  #linear_iteration_ratio = 1000
+  #  cutback_factor =  0.5
+  #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  #dt = 0.4
-  dtmin = 1e-11
-  dtmax = 1.5
-  num_steps = 2500
+  dt = 0.05
+  dtmin = 1e-13
+  dtmax = 0.05
+  num_steps = 100000
 []
 
 [Outputs]
@@ -876,7 +778,7 @@ C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_40nm_test_comp012_periodic
+    file_base = out_PbTiO3_32nm_test_comp004_periodic
     output_initial = true
     elemental_as_nodal = true
     interval = 1

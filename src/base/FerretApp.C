@@ -60,6 +60,7 @@
 #include "PolarElectricEStrong.h"
 #include "FerroelectricCouplingP.h"
 #include "FerroelectricCouplingU.h"
+#include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 
 //Materials
@@ -163,6 +164,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FerroelectricCouplingU);
+  registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);

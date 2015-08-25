@@ -20,7 +20,7 @@
   alpha12 = 0.75
   alpha112 = 0.61
   alpha123 = -3.67
-  G110 = 0.95
+  G110 = 0.11
   G11/G110 = 0.6
   G12/G110 = 0
   G44/G110 = 0.3
@@ -607,7 +607,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -sub_pc_type -pc_factor_zeropivot '
-    petsc_options_value = '    201             1e-8       1e-14       bjacobi    ilu   1e-50    '
+    petsc_options_value = '    201             1e-8       1e-15       bjacobi    ilu   1e-50    '
   [../]
 []
 
@@ -625,10 +625,10 @@
   #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.1
+  dt = 0.35
   dtmin = 1e-11
-  dtmax = 0.1
-  num_steps = 1050
+  dtmax = 0.35
+  num_steps = 450
 []
 
 [Outputs]
