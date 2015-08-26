@@ -18,15 +18,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 30
-  ny = 30
-  nz = 11
-  xmin = -15
-  xmax = 15
-  ymin = -15
-  ymax = 15
-  zmin = -5
-  zmax = 5
+  nx = 100
+  ny = 100
+  nz = 36
+  xmin = -50
+  xmax = 50
+  ymin = -50
+  ymax = 50
+  zmin = -9
+  zmax = 9
   elem_type = HEX8
 []
 
@@ -58,7 +58,7 @@
   disp_x=disp_x
   disp_y=disp_y
   disp_z=disp_z
-  prefactor = 0.001
+  #prefactor = 0.001
   displacements='disp_x disp_y disp_z'
   #use_displaced_mesh = false
   C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
@@ -535,87 +535,87 @@
 
 [BCs]
 
- [./Periodic]
-   #active='disp_x_x disp_y_x polar_z_x disp_x_y disp_y_y disp_z_y'
-   #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
-   #active='potential_int_x potential_ext_x potential_int_y potential_ext_y'
+ #[./Periodic]
+ #  #active='disp_x_x disp_y_x polar_z_x disp_x_y disp_y_y disp_z_y'
+ #  #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
+ #  #active='potential_int_x potential_ext_x potential_int_y potential_ext_y'
+ #
+ #  [./potential_int_x]
+ #     variable = potential_int
+ #     auto_direction = 'x y'
+ #  [../]
+ #
+ #  [./polar_x]
+ #     variable = polar_x
+ #     auto_direction = 'x y'
+ #  [../]
+ #  [./polar_y]
+ #     variable = polar_y
+ #     auto_direction = 'x y'
+ #  [../]
+ #  [./polar_z]
+ #     variable = polar_z
+ #     auto_direction = 'x y'
+ #  [../]
+ #
+ #  [./disp_x]
+ #     variable = disp_x
+ #     auto_direction = 'x y'
+ #  [../]
+ #  [./disp_y]
+ #     variable = disp_y
+ #     auto_direction = 'x y'
+ #
+ #  [../]
+ #  [./disp_z]
+ #     variable = disp_z
+ #     auto_direction = 'x y'
+ #  [../]
+ # [../]
 
-   [./potential_int_x]
-      variable = potential_int
-      auto_direction = 'x y'
-   [../]
 
-   [./polar_x]
-      variable = polar_x
-      auto_direction = 'x y'
-   [../]
-   [./polar_y]
-      variable = polar_y
-      auto_direction = 'x y'
-   [../]
-   [./polar_z]
-      variable = polar_z
-      auto_direction = 'x y'
-   [../]
+  [./disp_x_slab7] #compression
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'left'
+    value = 0.04
+  [../]
 
-   [./disp_x]
-      variable = disp_x
-      auto_direction = 'x y'
-   [../]
-   [./disp_y]
-      variable = disp_y
-      auto_direction = 'x y'
+  [./disp_x_slab8]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'right'
+    value = -0.04
+  [../]
 
-   [../]
-   [./disp_z]
-      variable = disp_z
-      auto_direction = 'x y'
-   [../]
+  [./disp_y_slab7]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'top'
+    value = -0.04
+  [../]
+
+  [./disp_y_slab8]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'bottom'
+    value = 0.04
   [../]
 
 
-  #[./disp_x_slab7] #compression
-  #  type = DirichletBC
-  #  variable = disp_x
-  #  boundary = 'left'
-  #  value = 0.3
-  #[../]
-  #
-  #[./disp_x_slab8]
-  #  type = DirichletBC
-  #  variable = disp_x
-  #  boundary = 'right'
-  #  value = -0.3
-  #[../]
-  #
-  #[./disp_y_slab7]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = 'top'
-  #  value = 0.3
-  #[../]
-  #
-  #[./disp_y_slab8]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = 'bottom'
-  #  value = -0.3
-  #[../]
-
-
-  [./disp_x_slab7]
+  [./disp_x_slab]
     type = DirichletBC
     variable = disp_x
     boundary = 'back'
     value = 0.0
   [../]
-  [./disp_y_slab7]
+  [./disp_y_slab]
     type = DirichletBC
     variable = disp_y
     boundary = 'back'
     value = 0.0
   [../]
-  [./disp_z_slab7]
+  [./disp_z_slab]
     type = DirichletBC
     variable = disp_z
     boundary = 'back'
@@ -676,14 +676,14 @@
   ##This seems to be what we want for a simple epitaxial test
   ## (note that most epitaxial conditions are a strain gradient from the interface)
   # Is this not seen by the simulation !!!!?!?!
-  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-    type = ComputeEigenstrain
-    #boundary = 'back'
-    block = '0'
-    #prefactor = -0.0015 #inglobal params now
-    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-    eigen_base = '1 0 0 0 1 0 0 0 0'
-  [../]
+  #[./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+  #  type = ComputeEigenstrain
+  #  #boundary = 'back'
+  #  block = '0'
+  #  #prefactor = -0.0015 #inglobal params now
+  #  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+  #  eigen_base = '1 0 0 0 1 0 0 0 0'
+  #[../]
 []
 
 [Postprocessors]
@@ -748,8 +748,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type  -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121             1e-8      1e-12    bjacobi         5                 ilu    1e-50    1e-50      left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    121             1e-8      1e-14     bjacobi         5                 ilu    1e-50    1e-50      left        '
   [../]
 []
 
@@ -767,10 +767,10 @@
   #[../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.05
+  dt = 0.02
   dtmin = 1e-13
-  dtmax = 0.05
-  num_steps = 100000
+  dtmax = 0.02
+  num_steps = 500000
 []
 
 [Outputs]
@@ -778,7 +778,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_32nm_test_comp004_periodic
+    file_base = out_PbTiO3_40nm_test_comp004_periodic
     output_initial = true
     elemental_as_nodal = true
     interval = 1
