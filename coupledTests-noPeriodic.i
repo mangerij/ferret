@@ -16,15 +16,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 22
-  ny = 22
-  nz = 13
-  xmin = -11
-  xmax = 11
-  ymin = -11
-  ymax = 11
-  zmin = -6
-  zmax = 6
+  nx = 40
+  ny = 40
+  nz = 18
+  xmin = -20
+  xmax = 20
+  ymin = -20
+  ymax = 20
+  zmin = -7
+  zmax = 7
   elem_type = HEX8
 []
 
@@ -56,7 +56,7 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
-  prefactor = 0.004
+  prefactor = -0.003
   displacements = 'disp_x disp_y disp_z'
   #use_displaced_mesh = false
   C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
@@ -359,7 +359,6 @@
   #Elastic problem
   [./TensorMechanics]
      #This is an action block
-     implicit = 'false'
   [../]
   ##
   #[./stressdiv_0]
@@ -419,21 +418,18 @@
      variable = disp_x
      component = 0
      block = '0'
-     implict = 'false'
   [../]
   [./ferroelectriccouplingu_y]
      type = FerroelectricCouplingX
      variable = disp_y
      component = 1
      block = '0'
-     implict = 'false'
   [../]
   [./ferroelectriccouplingu_z]
      type = FerroelectricCouplingX
      variable = disp_z
      component = 2
      block = '0'
-     implict = 'false'
   [../]
   [./ferroelectriccouplingp_xx]
      type = FerroelectricCouplingP
@@ -455,7 +451,6 @@
      type=PolarElectricEStrong
      variable = potential_int
      block = '0'
-     implict = 'false'
   [../]
   #[./E_int]
   #   type=Electrostatics
@@ -466,7 +461,6 @@
      type=Electrostatics
      variable = potential_int
      block = '0'
-     implict = 'false'
   [../]
   #[./E_ext]
   #   type=Electrostatics
@@ -536,95 +530,155 @@
 
 [BCs]
 
- #[./Periodic]
+ [./Periodic]
  #  #active='disp_x_x disp_y_x polar_z_x disp_x_y disp_y_y disp_z_y'
  #  #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
  #  #active='potential_int_x potential_ext_x potential_int_y potential_ext_y'
  #
- #  [./potential_int_x]
- #     variable = potential_int
- #     auto_direction = 'x y'
- #  [../]
- #
- #  [./polar_x]
- #     variable = polar_x
- #     auto_direction = 'x y'
- #  [../]
- #  [./polar_y]
- #     variable = polar_y
- #     auto_direction = 'x y'
- #  [../]
- #  [./polar_z]
- #     variable = polar_z
- #     auto_direction = 'x y'
- #  [../]
- #
- #  [./disp_x]
- #     variable = disp_x
- #     auto_direction = 'x y'
- #  [../]
- #  [./disp_y]
- #     variable = disp_y
- #     auto_direction = 'x y'
- #
- #  [../]
- #  [./disp_z]
- #     variable = disp_z
- #     auto_direction = 'x y'
- #  [../]
- # [../]
+   [./potential_int_x]
+      variable = potential_int
+      auto_direction = 'x y'
+   [../]
+
+   [./polar_x]
+      variable = polar_x
+      auto_direction = 'x y'
+   [../]
+   [./polar_y]
+      variable = polar_y
+      auto_direction = 'x y'
+   [../]
+   [./polar_z]
+      variable = polar_z
+      auto_direction = 'x y'
+   [../]
+
+   [./disp_x]
+      variable = disp_x
+      auto_direction = 'x y'
+   [../]
+   [./disp_y]
+      variable = disp_y
+      auto_direction = 'x y'
+
+   [../]
+   [./disp_z]
+      variable = disp_z
+      auto_direction = 'x y'
+   [../]
+  [../]
 
 
   #[./disp_x_slab7] #compression
   #  #type = DirichletBC
-  #  type = PresetBC
+  #  type = DirichletBC
   #  variable = disp_x
   #  boundary = 'left'
   #  value = 0.06
   #[../]
+  #[./disp_y_slab7]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'left'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab7]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'left'
+  #  value = 0
+  #[../]
+  #
   #
   #[./disp_x_slab8]
   #  #type = DirichletBC
-  #  type = PresetBC
+  #  type = DirichletBC
   #  variable = disp_x
   #  boundary = 'right'
   #  value = -0.06
   #[../]
+  #[./disp_y_slab8]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'right'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab8]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'right'
+  #  value = 0
+  #[../]
+
+
+
+
+
+
   #
-  #[./disp_y_slab7]
+  #[./disp_y_sla98]
   #  #type = DirichletBC
-  #  type = PresetBC
+  #  type = DirichletBC
   #  variable = disp_y
   #  boundary = 'top'
   #  value = -0.06
   #[../]
+  #[./disp_x_slab9]
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'top'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab9]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'top'
+  #  value = 0
+  #[../]
   #
-  #[./disp_y_slab8]
+  #
+  #[./disp_y_slab10]
   #  type = DirichletBC
   #  variable = disp_y
   #  boundary = 'bottom'
   #  value = 0.06
   #[../]
+  #[./disp_x_slab10]
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'bottom'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab10]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'bottom'
+  #  value = 0
+  #[../]
+
+
+
+
   #
   #
-  [./disp_x_slab_f]
-    type = DirichletBC
-    variable = disp_x
-    boundary = 'front'
-    value = 0.0
-  [../]
-  [./disp_y_slab_f]
-    type = DirichletBC
-    variable = disp_y
-    boundary = 'front'
-    value = 0.0
-  [../]
-  [./disp_z_slab_f]
-    type = DirichletBC
-    variable = disp_z
-    boundary = 'front'
-    value = 0.0
-  [../]
+  #[./disp_x_slab_f]
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'front'
+  #  value = 0.0
+  #[../]
+  #[./disp_y_slab_f]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'front'
+  #  value = 0.0
+  #[../]
+  #[./disp_z_slab_f]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'front'
+  #  value = 0.0
+  #[../]
 
 
 
@@ -776,9 +830,9 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left '
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121             1e-8      1e-18       bjacobi         5                 ilu    1e-50    1e-50      left        '
+    petsc_options_value = '    121             1e-8      1e-8    bjacobi         5                 ilu    1e-50    1e-50      left        '
   [../]
 []
 
@@ -788,21 +842,21 @@
   type = Transient
   [./TimeStepper] #iterative DT halfs the time it takes to find a solution? oh well, our time is fake in this simulation anyway...
     type = IterationAdaptiveDT
-    dt = 1.0 #max seems to be about 1.0 but could depend on refinement...
+    dt = 0.8 #max seems to be about 1.0 but could depend on refinement...
     #there is also a cutback on this for 0.2*optimal and yes i think it does count the 0th one.
     #iteration_window = 10
     optimal_iterations = 4 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration? no the cutting has to do with the iteration ratio
     growth_factor = 1.4
     linear_iteration_ratio = 100
     #linear_iteration_ratio = 1000
-    cutback_factor =  0.5
+    cutback_factor =  0.55
   [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 2.0
   dtmin = 1e-13
-  dtmax = 1.0
-  num_steps = 1550000
+  dtmax = 0.8
+  num_steps = 1500
 []
 
 [Outputs]
@@ -813,7 +867,7 @@
     file_base = out_PbTiO3_40nm_test_comp004_periodic_idea
     output_initial = true
     elemental_as_nodal = true
-    interval = 5
+    interval = 1
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput
