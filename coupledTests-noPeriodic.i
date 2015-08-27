@@ -16,13 +16,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 25
-  ny = 25
+  nx = 22
+  ny = 22
   nz = 13
-  xmin = -12
-  xmax = 12
-  ymin = -12
-  ymax = 12
+  xmin = -11
+  xmax = 11
+  ymin = -11
+  ymax = 11
   zmin = -6
   zmax = 6
   elem_type = HEX8
@@ -357,7 +357,9 @@
 
 [Kernels]
   #Elastic problem
-  [./TensorMechanics] #This is an action block
+  [./TensorMechanics]
+     #This is an action block
+     implicit = 'false'
   [../]
   ##
   #[./stressdiv_0]
@@ -417,18 +419,21 @@
      variable = disp_x
      component = 0
      block = '0'
+     implict = 'false'
   [../]
   [./ferroelectriccouplingu_y]
      type = FerroelectricCouplingX
      variable = disp_y
      component = 1
      block = '0'
+     implict = 'false'
   [../]
   [./ferroelectriccouplingu_z]
      type = FerroelectricCouplingX
      variable = disp_z
      component = 2
      block = '0'
+     implict = 'false'
   [../]
   [./ferroelectriccouplingp_xx]
      type = FerroelectricCouplingP
@@ -450,7 +455,7 @@
      type=PolarElectricEStrong
      variable = potential_int
      block = '0'
-    # implicit = false
+     implict = 'false'
   [../]
   #[./E_int]
   #   type=Electrostatics
@@ -461,6 +466,7 @@
      type=Electrostatics
      variable = potential_int
      block = '0'
+     implict = 'false'
   [../]
   #[./E_ext]
   #   type=Electrostatics
@@ -476,19 +482,16 @@
      type=PolarElectricPStrong
      variable = polar_x
      component = 0
-    # implicit = false
   [../]
   [./polar_electric_py]
      type=PolarElectricPStrong
      variable = polar_y
      component = 1
-    # implicit = false
   [../]
   [./polar_electric_pz]
      type=PolarElectricPStrong
      variable = polar_z
      component = 2
-    # implicit = false
   [../]
   ##Time dependence
   [./polar_x_time]
@@ -604,19 +607,41 @@
   #[../]
   #
   #
-  [./disp_x_slab]
+  [./disp_x_slab_f]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'front'
+    value = 0.0
+  [../]
+  [./disp_y_slab_f]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'front'
+    value = 0.0
+  [../]
+  [./disp_z_slab_f]
+    type = DirichletBC
+    variable = disp_z
+    boundary = 'front'
+    value = 0.0
+  [../]
+
+
+
+
+  [./disp_x_slab_b]
     type = DirichletBC
     variable = disp_x
     boundary = 'back'
     value = 0.0
   [../]
-  [./disp_y_slab]
+  [./disp_y_slab_b]
     type = DirichletBC
     variable = disp_y
     boundary = 'back'
     value = 0.0
   [../]
-  [./disp_z_slab]
+  [./disp_z_slab_b]
     type = DirichletBC
     variable = disp_z
     boundary = 'back'
@@ -735,6 +760,9 @@
   [./|R(i)|]
     type = Residual
   [../]
+  [./dt]
+    type = TimestepSize
+  [../]
 []
 
 #[UserObjects]
@@ -750,7 +778,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121             1e-8      1e-15    bjacobi         5                 ilu    1e-50    1e-50      left        '
+    petsc_options_value = '    121             1e-8      1e-18       bjacobi         5                 ilu    1e-50    1e-50      left        '
   [../]
 []
 
@@ -758,19 +786,22 @@
 
 [Executioner]
   type = Transient
-  #[./TimeStepper]
-  #  type = IterationAdaptiveDT
-  #  dt = 0.02 #max seems to be about 1.0 but could depend on refinement...
-  #  optimal_iterations = 3 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration?
-  #  growth_factor = 1.2
-  #  #linear_iteration_ratio = 1000
-  #  cutback_factor =  0.5
-  #[../]
+  [./TimeStepper] #iterative DT halfs the time it takes to find a solution? oh well, our time is fake in this simulation anyway...
+    type = IterationAdaptiveDT
+    dt = 1.0 #max seems to be about 1.0 but could depend on refinement...
+    #there is also a cutback on this for 0.2*optimal and yes i think it does count the 0th one.
+    #iteration_window = 10
+    optimal_iterations = 4 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration? no the cutting has to do with the iteration ratio
+    growth_factor = 1.4
+    linear_iteration_ratio = 100
+    #linear_iteration_ratio = 1000
+    cutback_factor =  0.5
+  [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dt = 0.08
+  #dt = 2.0
   dtmin = 1e-13
-  dtmax = 0.08
+  dtmax = 1.0
   num_steps = 1550000
 []
 
@@ -779,7 +810,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_40nm_test_comp004_periodic
+    file_base = out_PbTiO3_40nm_test_comp004_periodic_idea
     output_initial = true
     elemental_as_nodal = true
     interval = 5
