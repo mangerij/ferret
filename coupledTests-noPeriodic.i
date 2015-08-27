@@ -16,15 +16,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 40
-  ny = 40
-  nz = 18
-  xmin = -20
-  xmax = 20
-  ymin = -20
-  ymax = 20
-  zmin = -7
-  zmax = 7
+  nx = 100
+  ny = 100
+  nz = 28
+  xmin = -50
+  xmax = 50
+  ymin = -50
+  ymax = 50
+  zmin = -9
+  zmax = 9
   elem_type = HEX8
 []
 
@@ -40,7 +40,7 @@
   alpha12 = 0.75
   alpha112 = 0.61
   alpha123 = -3.67
-  G110 = 0.13
+  G110 = 0.38
   G11/G110 = 0.6
   G12/G110 = 0
   G44/G110 = 0.3
@@ -56,7 +56,7 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
-  prefactor = -0.003
+  prefactor = 0.002
   displacements = 'disp_x disp_y disp_z'
   #use_displaced_mesh = false
   C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
@@ -807,6 +807,16 @@
    execute_on = 'timestep_end'
   # initial_from_file_var = total_energy
   [../]
+  [./total_energy_noelastic]
+   type = TotalEnergyFlow
+   bulk_energy = bulk_energy
+   wall_energy = wall_energy
+   bulk_energy_fourth = bulk_energy_fourth
+   coupled_energy = coupled_energy
+   electrostatic_energy = electrostatic_energy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = total_energy
+  [../]
   [./perc_change]
     type = PercentChangePostprocessor
     postprocessor = total_energy
@@ -814,9 +824,9 @@
   [./|R(i)|]
     type = Residual
   [../]
-  [./dt]
-    type = TimestepSize
-  [../]
+  #[./dt]
+  #  type = TimestepSize
+  #[../]
 []
 
 #[UserObjects]
@@ -832,7 +842,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left '
     petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121             1e-8      1e-8    bjacobi         5                 ilu    1e-50    1e-50      left        '
+    petsc_options_value = '    121             1e-8      1e-10    bjacobi         5                 ilu    1e-50    1e-50      left        '
   [../]
 []
 
@@ -856,7 +866,7 @@
   #dt = 2.0
   dtmin = 1e-13
   dtmax = 0.8
-  num_steps = 1500
+  num_steps = 800
 []
 
 [Outputs]
@@ -864,10 +874,10 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_40nm_test_comp004_periodic_idea
+    file_base = out_PbTiO3_100nm_test_comp004_periodic_idea
     output_initial = true
     elemental_as_nodal = true
-    interval = 1
+    interval = 20
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput

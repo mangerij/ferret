@@ -71,6 +71,7 @@
 #include "WallEnergy.h"
 //#include "WallEnergyFourth.h"
 #include "TotalEnergy.h"
+#include "TotalEnergyFlow.h"
 #include "BulkEnergy.h"
 #include "BulkEnergyFourth.h"
 #include "ElectrostaticEnergy.h"
@@ -176,6 +177,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(BulkEnergyFourth);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
+  registerPostprocessor(TotalEnergyFlow);
   registerPostprocessor(TotalEnergyGradient);
   registerPostprocessor(TotalEnergyGradientL2);
  // registerPostprocessor(PercentChangePostprocessor); //added to MOOSE (deprecated)
