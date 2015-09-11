@@ -107,15 +107,15 @@ SurfaceMechanicsBC :: computeQpRotation()
     _tangent_2(1) = _normals[_qp](2) * _tangent_1(0) - _normals[_qp](0) * _tangent_1(2);
     _tangent_2(2) = _normals[_qp](0) * _tangent_1(1) - _normals[_qp](1) * _tangent_1(0);
 //compute rank-two and rank-four tensors
-    for (unsigned int i=0; i<3; i++)
+    for (unsigned int i = 0; i < 3; i++)
       {
-      for (unsigned int j=0; j<3; j++)
+      for (unsigned int j = 0; j < 3; j++)
         {
          _tp11(i,j) = _tangent_1(i) * _tangent_1(j);
          _tp22(i,j) = _tangent_2(i) * _tangent_2(j);
-        for (unsigned int k=0; k<3; k++)
+        for (unsigned int k = 0; k < 3; k++)
 	        {
-          for (unsigned int l=0; l<3; l++)
+          for (unsigned int l = 0; l < 3; l++)
 	          {
 	          _t11(i, j, k, l) = _tangent_1(i) * _tangent_1(j) * _tangent_1(k) * _tangent_1(l);
 	          _t22(i, j, k, l) = _tangent_2(i) * _tangent_2(j) * _tangent_2(k) * _tangent_2(l);
@@ -159,17 +159,18 @@ SurfaceMechanicsBC::computeQpResidual()
    unsigned int ip;
    unsigned int jp;
    cp = _component;
-   for (unsigned int i=0; i<3; i++)
+   for (unsigned int i = 0; i < 3; i++)
     {
       ip=i;
-      for (unsigned int j=0; j<3; j++)
+      for (unsigned int j = 0; j < 3; j++)
 	{
 	  jp=j;
 	  //temp+=_surface_tau(_component,i)*temp4(_component,i)+_projection(i,_component)*_grad_test[_i][_qp](j)*temp4(i,j);
 	  //temp+=_surface_tau.(cp,ip)*temp2.(cp,ip)+_projection.(ip,cp)*_grad_test[_i][_qp](j)*temp4.(ip,jp);
 	  //temp+=_taus*((_tp11.(cp,ip)+_tp22.(cp,ip))*temp2.(cp,ip))+_projection.(ip,cp)*_grad_test[_i][_qp](j)*temp4.(ip,jp);
-	  temp += _taus * temp_tau(ip, jp) * _grad_test[_i][_qp](j) * _projection(ip, cp) + _projection(ip,cp) * _grad_test[_i][_qp](j)*temp4(ip,jp);
+	  temp += _taus * temp_tau(ip, jp) * _grad_test[_i][_qp](j) * _projection(ip, cp) + _projection(ip,cp) * _grad_test[_i][_qp](j) * temp4(ip,jp);
         }
     }
    	return temp;
+     //Why no computeQpOffDiagJacobian() or computeQpJacobian() ?
 }

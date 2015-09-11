@@ -68,19 +68,10 @@ protected:
   VariableGradient & _grad_disp_y;
   VariableGradient & _grad_disp_z;
 
-  RankTwoTensor _projection;
-  RankTwoTensor _surface_strain;
-  RankTwoTensor _surface_stress;
-  RankTwoTensor _tp11;
-  RankTwoTensor _tp22;
-  RankFourTensor _t11;
-  RankFourTensor _t22;
-  RankFourTensor _t12;
-  RankFourTensor _t33;
-  Real C0000;
-  Real C1111;
-  Real C0011;
-  Real C0101;
+  RankTwoTensor _projection, _surface_strain, _surface_stress;
+  RankTwoTensor _tp11, _tp22;
+  RankFourTensor _t11, _t22, _t12, _t33;
+  Real C0000, C1111, C0011, C0101;
   //  RankTwoTensor grad_tensor;
 };
 

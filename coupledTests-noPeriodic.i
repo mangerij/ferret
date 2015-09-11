@@ -16,13 +16,13 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 100
-  ny = 100
-  nz = 28
-  xmin = -50
-  xmax = 50
-  ymin = -50
-  ymax = 50
+  nx = 50
+  ny = 50
+  nz = 20
+  xmin = -25
+  xmax = 25
+  ymin = -25
+  ymax = 25
   zmin = -9
   zmax = 9
   elem_type = HEX8
@@ -852,7 +852,7 @@
   type = Transient
   [./TimeStepper] #iterative DT halfs the time it takes to find a solution? oh well, our time is fake in this simulation anyway...
     type = IterationAdaptiveDT
-    dt = 0.8 #max seems to be about 1.0 but could depend on refinement...
+    dt = 1.2 #max seems to be about 1.0 but could depend on refinement...
     #there is also a cutback on this for 0.2*optimal and yes i think it does count the 0th one.
     #iteration_window = 10
     optimal_iterations = 4 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration? no the cutting has to do with the iteration ratio
@@ -865,7 +865,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 2.0
   dtmin = 1e-13
-  dtmax = 0.8
+  dtmax = 1.2
   num_steps = 800
 []
 
