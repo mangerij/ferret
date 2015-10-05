@@ -16,15 +16,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 50
-  ny = 50
-  nz = 20
-  xmin = -25
-  xmax = 25
-  ymin = -25
-  ymax = 25
-  zmin = -9
-  zmax = 9
+  nx = 8
+  ny = 8
+  nz = 3
+  xmin = -4
+  xmax = 4
+  ymin = -4
+  ymax = 4
+  zmin = -1
+  zmax = 1
   elem_type = HEX8
 []
 
@@ -40,7 +40,7 @@
   alpha12 = 0.75
   alpha112 = 0.61
   alpha123 = -3.67
-  G110 = 0.38
+  G110 = 0.15
   G11/G110 = 0.6
   G12/G110 = 0
   G44/G110 = 0.3
@@ -530,43 +530,43 @@
 
 [BCs]
 
- [./Periodic]
+ #[./Periodic]
  #  #active='disp_x_x disp_y_x polar_z_x disp_x_y disp_y_y disp_z_y'
  #  #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
  #  #active='potential_int_x potential_ext_x potential_int_y potential_ext_y'
  #
-   [./potential_int_x]
-      variable = potential_int
-      auto_direction = 'x y'
-   [../]
-
-   [./polar_x]
-      variable = polar_x
-      auto_direction = 'x y'
-   [../]
-   [./polar_y]
-      variable = polar_y
-      auto_direction = 'x y'
-   [../]
-   [./polar_z]
-      variable = polar_z
-      auto_direction = 'x y'
-   [../]
-
-   [./disp_x]
-      variable = disp_x
-      auto_direction = 'x y'
-   [../]
-   [./disp_y]
-      variable = disp_y
-      auto_direction = 'x y'
-
-   [../]
-   [./disp_z]
-      variable = disp_z
-      auto_direction = 'x y'
-   [../]
-  [../]
+  # [./potential_int_x]
+  #    variable = potential_int
+  #    auto_direction = 'x y'
+  # [../]
+  #
+  # [./polar_x]
+  #    variable = polar_x
+  #    auto_direction = 'x y'
+  # [../]
+  # [./polar_y]
+  #    variable = polar_y
+  #    auto_direction = 'x y'
+  # [../]
+  # [./polar_z]
+  #    variable = polar_z
+  #    auto_direction = 'x y'
+  # [../]
+  #
+  # [./disp_x]
+  #    variable = disp_x
+  #    auto_direction = 'x y'
+  # [../]
+  # [./disp_y]
+  #    variable = disp_y
+  #    auto_direction = 'x y'
+  #
+  # [../]
+  # [./disp_z]
+  #    variable = disp_z
+  #    auto_direction = 'x y'
+  # [../]
+  #[../]
 
 
   #[./disp_x_slab7] #compression
@@ -661,24 +661,24 @@
 
   #
   #
-  #[./disp_x_slab_f]
-  #  type = DirichletBC
-  #  variable = disp_x
-  #  boundary = 'front'
-  #  value = 0.0
-  #[../]
-  #[./disp_y_slab_f]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = 'front'
-  #  value = 0.0
-  #[../]
-  #[./disp_z_slab_f]
-  #  type = DirichletBC
-  #  variable = disp_z
-  #  boundary = 'front'
-  #  value = 0.0
-  #[../]
+  [./disp_x_slab_f]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'front'
+    value = 0.0
+  [../]
+  [./disp_y_slab_f]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'front'
+    value = 0.0
+  [../]
+  [./disp_z_slab_f]
+    type = DirichletBC
+    variable = disp_z
+    boundary = 'front'
+    value = 0.0
+  [../]
 
 
 
@@ -705,13 +705,13 @@
   [./potential_cube5]
     type = DirichletBC
     boundary = 'front'
-    value = 0.000002
+    value = 0.0002
     variable = potential_int
   [../]
   [./potential_cube6]
     type = DirichletBC
     boundary = 'back'
-    value = 0.000002
+    value = 0.0002
     variable = potential_int
   [../]
 
@@ -756,11 +756,10 @@
   ##This seems to be what we want for a simple epitaxial test
   ## (note that most epitaxial conditions are a strain gradient from the interface)
   # Is this not seen by the simulation !!!!?!?!
+
   [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
     type = ComputeEigenstrain
-    #boundary = 'back'
     block = '0'
-    #prefactor = -0.0015 #inglobal params now
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
   [../]
@@ -796,17 +795,17 @@
    block = '0'
   # initial_from_file_var = electrostatic_energy
   [../]
-  [./total_energy]
-   type = TotalEnergy
-   bulk_energy = bulk_energy
-   wall_energy = wall_energy
-   bulk_energy_fourth = bulk_energy_fourth
-   elastic_energy = elastic_energy
-   coupled_energy = coupled_energy
-   electrostatic_energy = electrostatic_energy
-   execute_on = 'timestep_end'
-  # initial_from_file_var = total_energy
-  [../]
+  #[./total_energy]
+  # type = TotalEnergy
+  # bulk_energy = bulk_energy
+  # wall_energy = wall_energy
+  # bulk_energy_fourth = bulk_energy_fourth
+  # elastic_energy = elastic_energy
+  # coupled_energy = coupled_energy
+  # electrostatic_energy = electrostatic_energy
+  # execute_on = 'timestep_end'
+  ## initial_from_file_var = total_energy
+  #[../]
   [./total_energy_noelastic]
    type = TotalEnergyFlow
    bulk_energy = bulk_energy
@@ -819,7 +818,7 @@
   [../]
   [./perc_change]
     type = PercentChangePostprocessor
-    postprocessor = total_energy
+    postprocessor = total_energy_noelastic
   [../]
   [./|R(i)|]
     type = Residual
@@ -829,20 +828,20 @@
   #[../]
 []
 
-#[UserObjects]
-#  [./kill]
-#    type = Terminator
-#    expression = 'perc_change <= 1.0e-5'
-#  [../]
-#[]
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = 'perc_change <= 1.0e-5'
+  [../]
+[]
 
 [Preconditioning]
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left '
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121             1e-8      1e-10    bjacobi         5                 ilu    1e-50    1e-50      left        '
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left -snes_check_jacobian'
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    121            1e-10      1e-16    gamg         7                ilu    1e-50    1e-50      left        '
   [../]
 []
 
@@ -852,7 +851,7 @@
   type = Transient
   [./TimeStepper] #iterative DT halfs the time it takes to find a solution? oh well, our time is fake in this simulation anyway...
     type = IterationAdaptiveDT
-    dt = 1.2 #max seems to be about 1.0 but could depend on refinement...
+    dt = 0.25 #max seems to be about 1.0 but could depend on refinement...
     #there is also a cutback on this for 0.2*optimal and yes i think it does count the 0th one.
     #iteration_window = 10
     optimal_iterations = 4 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration? no the cutting has to do with the iteration ratio
@@ -865,8 +864,8 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 2.0
   dtmin = 1e-13
-  dtmax = 1.2
-  num_steps = 800
+  dtmax = 0.25
+  num_steps = 100000
 []
 
 [Outputs]
@@ -874,10 +873,10 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PbTiO3_100nm_test_comp004_periodic_idea
+    file_base = out_PbTiO3_test
     output_initial = true
     elemental_as_nodal = true
-    interval = 20
+    interval = 1
   [../]
   [./debug]
     type = VariableResidualNormsDebugOutput

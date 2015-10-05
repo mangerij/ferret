@@ -42,5 +42,5 @@ ElectrostaticEnergy::computeQpIntegral()
 {
   RealVectorValue P;
   P(0) = _polar_x[_qp]; P(1) = _polar_y[_qp]; P(2) = _polar_z[_qp];
-  return (0.5 * P * _potential_int_grad[_qp]) * std::pow(_len_scale, 2.0) + (P * _potential_ext_grad[_qp]) * std::pow(_len_scale, 2.0) + 0.5 * std::pow(_len_scale, 2.0) * _permittivity * (_potential_int_grad[_qp](0) * _potential_int_grad[_qp](0) + _potential_int_grad[_qp](1) * _potential_int_grad[_qp](1) + _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2));
+  return (0.5 * P * _potential_int_grad[_qp]) * std::pow(_len_scale, 2.0) + (P * _potential_ext_grad[_qp]) * std::pow(_len_scale, 2.0);
 }
