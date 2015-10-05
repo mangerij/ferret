@@ -3,23 +3,23 @@
 /****************************************************************/
 
 
-#include "HydrostaticDirichletBC.h" 
+#include "HydrostaticDirichletBC.h"
 template<>
 InputParameters validParams<HydrostaticDirichletBC>()
 {
     InputParameters params = validParams<NodalBC>();
   // Here we are adding a parameter that will be extracted from the input file by the Parser
-  params.addRequiredParam<Real>("center_x", "x coordinate of center of sphere"); 
-  params.addRequiredParam<Real>("center_y", "y coordinate of center of sphere"); 
-  params.addRequiredParam<Real>("center_z", "z coordinate of center of sphere"); 
+  params.addRequiredParam<Real>("center_x", "x coordinate of center of sphere");
+  params.addRequiredParam<Real>("center_y", "y coordinate of center of sphere");
+  params.addRequiredParam<Real>("center_z", "z coordinate of center of sphere");
   params.addRequiredParam<Real>("displacement","total inward displacement");
   params.addRequiredParam<int>("component","component of the displacement");
-	
+
 return params;
 }
 
-HydrostaticDirichletBC::HydrostaticDirichletBC(const std::string & name, InputParameters parameters) :
-  NodalBC(name, parameters),
+HydrostaticDirichletBC::HydrostaticDirichletBC(const InputParameters & parameters) :
+  NodalBC(parameters),
   _center_x(getParam<Real>("center_x")),
   _center_y(getParam<Real>("center_y")),
   _center_z(getParam<Real>("center_z")),

@@ -24,8 +24,8 @@ InputParameters validParams<TotalEnergy>()
   return params;
 }
 
-TotalEnergy::TotalEnergy(const std::string & name, InputParameters parameters) :
-  GeneralPostprocessor(name, parameters),
+TotalEnergy::TotalEnergy(const InputParameters & parameters) :
+  GeneralPostprocessor(parameters),
   _bulk_energy(getPostprocessorValue(getParam<PostprocessorName>("bulk_energy"))),
   _wall_energy(getPostprocessorValue(getParam<PostprocessorName>("wall_energy"))),
   _bulk_energy_fourth(getPostprocessorValue(getParam<PostprocessorName>("bulk_energy_fourth"))),

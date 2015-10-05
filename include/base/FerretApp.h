@@ -11,7 +11,7 @@ InputParameters validParams<FerretApp>();
 class FerretApp : public MooseApp
 {
 public:
-  FerretApp(const std::string & name, InputParameters parameters);
+  FerretApp(const InputParameters & parameters);
   virtual ~FerretApp();
 
   static void registerApps();

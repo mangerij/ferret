@@ -29,13 +29,13 @@ InputParameters validParams<PercentChangePostprocessor>();
  class PercentChangePostprocessor : public GeneralPostprocessor
  {
  public:
-   PercentChangePostprocessor(const std::string & name, InputParameters parameters);
+   PercentChangePostprocessor(const InputParameters & parameters);
    virtual ~PercentChangePostprocessor();
    virtual void initialize();
    virtual void execute();
    virtual Real getValue();
  protected:
-   const PostprocessorValue &_postprocessor,&_postprocessor_old;
+   const PostprocessorValue & _postprocessor, & _postprocessor_old;
  };
 
 #endif /* PERCENTCHANGEPOSTPROCESSOR_H */

@@ -22,7 +22,7 @@ InputParameters validParams<CoupledEnergy>();
 class CoupledEnergy : public ElementIntegralPostprocessor
 {
 public:
-  CoupledEnergy(const std::string & name, InputParameters parameters);
+  CoupledEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

@@ -26,8 +26,8 @@ InputParameters validParams<BulkEnergyFourth>()
   return params;
 }
 
-BulkEnergyFourth::BulkEnergyFourth(const std::string & name, InputParameters parameters) :
-  ElementIntegralPostprocessor(name, parameters),
+BulkEnergyFourth::BulkEnergyFourth(const InputParameters & parameters) :
+  ElementIntegralPostprocessor(parameters),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),

@@ -21,7 +21,7 @@ InputParameters validParams<BulkEnergyDensity>();
 class BulkEnergyDensity : public AuxKernel
 {
 public:
-  BulkEnergyDensity(const std::string & name, InputParameters parameters);
+  BulkEnergyDensity(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();

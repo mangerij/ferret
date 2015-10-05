@@ -24,7 +24,7 @@ InputParameters validParams<TotalEnergy>();
 class TotalEnergy : public GeneralPostprocessor
 {
 public:
-  TotalEnergy(const std::string & name, InputParameters parameters);
+  TotalEnergy(const InputParameters & parameters);
   virtual ~TotalEnergy();
   virtual void initialize();
   virtual void execute();

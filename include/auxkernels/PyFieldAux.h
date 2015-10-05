@@ -14,7 +14,7 @@ InputParameters validParams<PyFieldAux>();
 class PyFieldAux : public AuxKernel
 {
 public:
-  PyFieldAux( const std::string & name, InputParameters parameters );
+  PyFieldAux(const InputParameters & parameters);
 
   virtual ~PyFieldAux() {}
 

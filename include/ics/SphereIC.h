@@ -26,7 +26,7 @@ InputParameters validParams<SphereIC>();
 class SphereIC:public InitialCondition
 {
 public:
-  SphereIC(const std::string & name, InputParameters parameters);
+  SphereIC(const InputParameters & parameters);
 
   /**
    * The value of the variable at a point.

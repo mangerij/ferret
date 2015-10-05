@@ -22,7 +22,7 @@ class PolarElectricPStrong: public Kernel
 {
 public:
 
-  PolarElectricPStrong(const std::string & name, InputParameters parameters);
+  PolarElectricPStrong(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

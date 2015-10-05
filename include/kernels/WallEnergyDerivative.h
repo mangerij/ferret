@@ -22,7 +22,7 @@ class WallEnergyDerivative: public Kernel
 {
 public:
 
-  WallEnergyDerivative(const std::string & name, InputParameters parameters);
+  WallEnergyDerivative(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

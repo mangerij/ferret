@@ -7,7 +7,7 @@
 class PolarizationVortexAuxAction : public FerretBase, public Action
 {
 public:
-  PolarizationVortexAuxAction(const std::string & name, InputParameters params);
+  PolarizationVortexAuxAction(const InputParameters & parameters);
 
   virtual void act();
 private:

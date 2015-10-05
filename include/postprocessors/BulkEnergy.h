@@ -25,7 +25,7 @@ InputParameters validParams<BulkEnergy>();
 class BulkEnergy : public ElementIntegralPostprocessor
 {
 public:
-  BulkEnergy(const std::string & name, InputParameters parameters);
+  BulkEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

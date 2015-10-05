@@ -9,8 +9,8 @@ InputParameters validParams<VortexSurfaceEnergy>()
   return params;
 }
 
-VortexSurfaceEnergy::VortexSurfaceEnergy(const std::string & name, InputParameters parameters) :
-    SideIntegralVariablePostprocessor(name, parameters),
+VortexSurfaceEnergy::VortexSurfaceEnergy(const InputParameters & parameters) :
+    SideIntegralVariablePostprocessor(parameters),
     _a(parameters.get<Real>("a")),
     _verticality(parameters.get<Real>("verticality"))
 {}
@@ -27,6 +27,6 @@ VortexSurfaceEnergy::computeQpIntegral()
   // \sigma = 2a \sin{\phi} \frac{a \cos{\phi} - 1}{1 + a^2 - 2a\cos{\phi}}
   Real  sigma   = 2.0*_a*sphi*(_a*cphi-1.0)/(1.0+_a*_a-2.0*_a*cphi);
   if(fabs(_normals[_qp](2)) < _verticality)
-    res = _u[_qp]*sigma;  
+    res = _u[_qp]*sigma;
   return res;
 }

@@ -13,7 +13,7 @@ InputParameters validParams<ExFieldAux>();
 class ExFieldAux : public AuxKernel
 {
 public:
-  ExFieldAux( const std::string & name, InputParameters parameters );
+  ExFieldAux(const InputParameters & parameters);
 
   virtual ~ExFieldAux() {}
 

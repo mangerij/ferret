@@ -15,7 +15,7 @@ InputParameters validParams<BandGapAuxTiO2>();
 class BandGapAuxTiO2 : public AuxKernel
 {
 public:
-  BandGapAuxTiO2( const std::string & name, InputParameters parameters );
+  BandGapAuxTiO2(const InputParameters & parameters);
 
   virtual ~BandGapAuxTiO2() {}
 

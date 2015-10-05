@@ -29,8 +29,8 @@ InputParameters validParams<BulkEnergyDerivativeSixthCoupledT>()
 }
 
 //Constructor
-BulkEnergyDerivativeSixthCoupledT::BulkEnergyDerivativeSixthCoupledT(const std::string & name, InputParameters parameters)
-  :Kernel(name, parameters),
+BulkEnergyDerivativeSixthCoupledT::BulkEnergyDerivativeSixthCoupledT(const InputParameters & parameters)
+  :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),

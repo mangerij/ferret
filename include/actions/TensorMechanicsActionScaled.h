@@ -17,7 +17,7 @@ InputParameters validParams<TensorMechanicsActionScaled>();
 class TensorMechanicsActionScaled : public Action
 {
 public:
-  TensorMechanicsActionScaled(const std::string & name, InputParameters params);
+  TensorMechanicsActionScaled(const InputParameters & parameters);
 
   virtual void act();
 

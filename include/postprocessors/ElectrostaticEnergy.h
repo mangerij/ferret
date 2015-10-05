@@ -24,7 +24,7 @@ InputParameters validParams<ElectrostaticEnergy>();
 class ElectrostaticEnergy : public ElementIntegralPostprocessor
 {
 public:
-  ElectrostaticEnergy(const std::string & name, InputParameters parameters);
+  ElectrostaticEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

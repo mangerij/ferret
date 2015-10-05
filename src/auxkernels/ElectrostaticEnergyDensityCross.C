@@ -24,8 +24,8 @@ InputParameters validParams<ElectrostaticEnergyDensityCross>()
   return params;
 }
 
-ElectrostaticEnergyDensityCross::ElectrostaticEnergyDensityCross(const std::string & name, InputParameters parameters) :
-  AuxKernel(name, parameters),
+ElectrostaticEnergyDensityCross::ElectrostaticEnergyDensityCross(const InputParameters & parameters) :
+  AuxKernel(parameters),
   _potential_grad(coupledGradient("potential_int")),
   _polar_x(coupledValueOld("polar_x")),
   _polar_y(coupledValueOld("polar_y")),

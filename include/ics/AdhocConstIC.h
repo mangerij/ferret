@@ -26,7 +26,7 @@ InputParameters validParams<AdhocConstIC>();
 class AdhocConstIC:public InitialCondition
 {
 public:
-  AdhocConstIC(const std::string & name, InputParameters parameters);
+  AdhocConstIC(const InputParameters & parameters);
 
   /**
    * The value of the variable at a point.

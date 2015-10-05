@@ -47,8 +47,8 @@ InputParameters validParams<SurfaceMechanicsBC>()
     //    return params2;
 }
 
-SurfaceMechanicsBC::SurfaceMechanicsBC(const std::string & name, InputParameters parameters) :
-  IntegratedBC(name, parameters),
+SurfaceMechanicsBC::SurfaceMechanicsBC(const InputParameters & parameters) :
+  IntegratedBC(parameters),
   _dim(_mesh.dimension()),
   _component(getParam<unsigned int>("component")),
   _surface_euler_angle_1(getParam<Real>("surface_euler_angle_1")),

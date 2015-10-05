@@ -15,8 +15,8 @@ InputParameters validParams<ElasticEnergy>()
   return params;
 }
 
-ElasticEnergy::ElasticEnergy(const std::string & name, InputParameters parameters) :
-  ElementIntegralPostprocessor(name, parameters),
+ElasticEnergy::ElasticEnergy(const InputParameters & parameters) :
+  ElementIntegralPostprocessor(parameters),
   _elastic_strain(getMaterialProperty<RankTwoTensor>("elastic_strain")),
   _stress(getMaterialProperty<RankTwoTensor>("stress")),
   _strain_scale(getParam<Real>("strain_scale")),

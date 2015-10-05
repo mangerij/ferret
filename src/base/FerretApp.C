@@ -65,7 +65,7 @@
 
 //Materials
 #include "LinearFerroelectricMaterial.h"
-#include "PolarMaterial.h"
+//#include "PolarMaterial.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -84,10 +84,10 @@
 #include "TransientHalf.h" //these are all junk
 
 //custom functions
-#include "SinFunc.h"
-#include "RandomFunc.h"
-#include "SphereIC.h"
-#include "SphereToCartFunc.h"
+//#include "SinFunc.h"
+//#include "RandomFunc.h"
+//#include "SphereIC.h"
+//#include "SphereToCartFunc.h"
 
 
 template<>
@@ -97,8 +97,8 @@ InputParameters validParams<FerretApp>()
   return params;
 }
 
-FerretApp::FerretApp(const std::string & name, InputParameters parameters) :
-    MooseApp(name, parameters)
+FerretApp::FerretApp(const InputParameters & parameters) :
+    MooseApp(parameters)
 {
   srand(processor_id());
 
@@ -116,15 +116,31 @@ FerretApp::~FerretApp()
 {
 }
 
+// void
+//FerretApp::registerApps()
+//{
+//  registerApp(FerretApp);
+//}
+
 void
 FerretApp::registerApps()
 {
+#undef  registerApp
+#define registerApp(name) AppFactory::instance().reg<name>(#name)
   registerApp(FerretApp);
+#undef  registerApp
+#define registerApp(name) AppFactory::instance().regLegacy<name>(#name)
 }
+
+
 
 void
 FerretApp::registerObjects(Factory & factory)
 {
+
+#undef registerObject
+#define registerObject(name) factory.reg<name>(stringifyName(name))
+
   //BoundaryConditions
   registerBoundaryCondition(StressBC);
   registerBoundaryCondition(StressFunctionBC);
@@ -135,6 +151,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(DepolScreenBC);
 
   //AuxKernels:
+
   registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
   registerAux(ElectrostaticEnergyDensity);
@@ -185,7 +202,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(CoupledEnergy);
 
   //Materials
-  registerMaterial(PolarMaterial);
+  //registerMaterial(PolarMaterial); //no idea what this is; it was throwing an error on the constructor change compile so we'll deactivate for now.
+
   registerMaterial(LinearFerroelectricMaterial);
 
   //InitialConditions
@@ -194,22 +212,33 @@ FerretApp::registerObjects(Factory & factory)
   registerInitialCondition(AdhocConstIC);
 
   //Functions
-  registerFunction(SinFunc);
-  registerFunction(RandomFunc);
-  registerFunction(SphereIC);
-  registerFunction(SphereToCartFunc);
+//  registerFunction(SinFunc);
+//  registerFunction(RandomFunc);
+//  registerFunction(SphereIC);
+//  registerFunction(SphereToCartFunc);
 
   //TimeStepper
   registerTimeStepper(TransientHalf);
+
+#undef registerObject
+#define registerObject(name) factory.regLegacy<name>(stringifyName(name))
 }
 
 void
 FerretApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 {
+
+#undef registerAction
+#define registerAction(tplt, action) action_factory.reg<tplt>(stringifyName(tplt), action)
+
+
   syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
   registerAction(PolarizationVortexAuxAction, "add_kernel");
 
   syntax.registerActionSyntax("TensorMechanicsActionScaled", "Kernels/TensorMechanicsScaled");
   registerAction(TensorMechanicsActionScaled, "add_kernel");
+
+#undef registerAction
+#define registerAction(tplt, action) action_factory.regLegacy<tplt>(stringifyName(tplt), action)
 
 }

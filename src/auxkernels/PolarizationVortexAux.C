@@ -20,8 +20,8 @@ InputParameters validParams<PolarizationVortexAux>()
   return params;
 }
 
-PolarizationVortexAux::PolarizationVortexAux(const std::string & name, InputParameters parameters)
-  : FerretBase(parameters), AuxKernel(name, parameters),
+PolarizationVortexAux::PolarizationVortexAux(const InputParameters & parameters)
+  : FerretBase(parameters), AuxKernel(parameters),
    _i(getParam<unsigned int>("i")),
    _p(getParam<std::string>("p")),
    _a_x(getParam<Real>("a_x")),

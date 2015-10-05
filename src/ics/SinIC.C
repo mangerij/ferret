@@ -28,8 +28,8 @@ InputParameters validParams<SinIC>()
 
 
 
-SinIC::SinIC(const std::string & name, InputParameters parameters) :
-  InitialCondition(name, parameters),
+SinIC::SinIC(const InputParameters & parameters) :
+  InitialCondition(parameters),
   _amplitude(getParam<Real>("amplitude")),
   _wave_length_x(getParam<Real>("wave_length_x")),
   _wave_length_y(getParam<Real>("wave_length_y")),

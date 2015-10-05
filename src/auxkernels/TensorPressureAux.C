@@ -7,8 +7,8 @@ InputParameters validParams<TensorPressureAux>()
   return params;
 }
 
-TensorPressureAux::TensorPressureAux( const std::string & name, InputParameters parameters ) :
-  AuxKernel( name, parameters ),
+TensorPressureAux::TensorPressureAux(const InputParameters & parameters) :
+  AuxKernel(parameters ),
    _stress( getMaterialProperty<RankTwoTensor>("stress") )
 {}
 

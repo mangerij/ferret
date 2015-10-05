@@ -22,7 +22,7 @@ class BulkEnergyDerivativeSixth: public Kernel
 {
 public:
 
-  BulkEnergyDerivativeSixth(const std::string & name, InputParameters parameters);
+  BulkEnergyDerivativeSixth(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

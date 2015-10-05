@@ -1,7 +1,7 @@
 /****************************************************************/
 /* Hydrostatics BC:                                             */
 /*     This BC applies a hydrostatic pressur to  sphere.        */
-/*     The pressure is specified.                               */ 
+/*     The pressure is specified.                               */
 /*     Then, the traction is computed by taking the diagonals of*/
 /*     stress tensor to be a vector parallel to the surface normal. */
 /*     The traction is obtained by multiplying the              */
@@ -29,7 +29,7 @@ public:
    * Factory constructor, takes parameters so that all derived classes can be built using the same
    * constructor.
    */
-  HydrostaticBC(const std::string & name, InputParameters parameters);
+  HydrostaticBC(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

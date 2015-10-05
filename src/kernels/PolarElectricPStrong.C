@@ -24,8 +24,8 @@ InputParameters validParams<PolarElectricPStrong>()
 
 
 //Constructor
-PolarElectricPStrong::PolarElectricPStrong(const std::string & name, InputParameters parameters)
-  :Kernel(name, parameters),
+PolarElectricPStrong::PolarElectricPStrong(const InputParameters & parameters)
+  :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _potential_int_var(coupled("potential_int")),
    _potential_ext_var(coupled("potential_ext")),

@@ -21,7 +21,7 @@ InputParameters validParams<ElasticEnergy>();
 class ElasticEnergy : public ElementIntegralPostprocessor
 {
 public:
-  ElasticEnergy(const std::string & name, InputParameters parameters);
+  ElasticEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

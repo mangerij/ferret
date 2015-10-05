@@ -32,13 +32,13 @@ public:
    * Factory constructor, takes parameters so that all derived classes can be built using the same
    * constructor.
    */
-  StressBC(const std::string & name, InputParameters parameters);
+  StressBC(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
 
   //private:
-  const int _component; 
+  const int _component;
   const Real _stress_xx;
   const Real _stress_xy;
   const Real _stress_yy;

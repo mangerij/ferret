@@ -12,8 +12,8 @@ InputParameters validParams<BoundCharge>()
 }
 
 
-BoundCharge::BoundCharge( const std::string & name, InputParameters parameters ) :
-  AuxKernel( name, parameters ),
+BoundCharge::BoundCharge(const InputParameters & parameters) :
+  AuxKernel(parameters),
    _potential_int_grad(coupledGradient("potential_int")),
    _potential_ext_grad(coupledGradient("potential_ext"))
 {

@@ -30,8 +30,8 @@ InputParameters validParams<FerroelectricCouplingP>()
   return params;
 }
 
-FerroelectricCouplingP::FerroelectricCouplingP(const std::string & name, InputParameters parameters)
-  :Kernel(name, parameters),
+FerroelectricCouplingP::FerroelectricCouplingP(const InputParameters & parameters)
+  :Kernel(parameters),
    _electrostrictive_tensor(getMaterialProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
    _component(getParam<unsigned int>("component")),
    _disp_x_var(coupled("disp_x")),

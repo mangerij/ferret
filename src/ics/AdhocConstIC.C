@@ -23,8 +23,8 @@ InputParameters validParams<AdhocConstIC>()
 
 
 
-AdhocConstIC::AdhocConstIC(const std::string & name, InputParameters parameters) :
-  InitialCondition(name, parameters),
+AdhocConstIC::AdhocConstIC(const InputParameters & parameters) :
+  InitialCondition(parameters),
   _val0(getParam<Real>("value0")),
   _val1(getParam<Real>("value1"))
 {

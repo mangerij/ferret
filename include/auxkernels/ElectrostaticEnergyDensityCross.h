@@ -19,7 +19,7 @@ InputParameters validParams<ElectrostaticEnergyDensityCross>();
 class ElectrostaticEnergyDensityCross : public AuxKernel
 {
 public:
-  ElectrostaticEnergyDensityCross(const std::string & name, InputParameters parameters);
+  ElectrostaticEnergyDensityCross(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();

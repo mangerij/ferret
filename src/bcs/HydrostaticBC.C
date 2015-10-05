@@ -17,8 +17,8 @@ InputParameters validParams<HydrostaticBC>()
   return params;
 }
 
-HydrostaticBC::HydrostaticBC(const std::string & name, InputParameters parameters) :
-  IntegratedBC(name, parameters),
+HydrostaticBC::HydrostaticBC(const InputParameters & parameters) :
+  IntegratedBC(parameters),
   _pressure(getParam<Real>("pressure")),
   _component(getParam<int>("component"))
 {}

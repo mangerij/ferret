@@ -13,7 +13,7 @@ InputParameters validParams<BoundCharge>();
 class BoundCharge : public AuxKernel
 {
 public:
-  BoundCharge( const std::string & name, InputParameters parameters );
+  BoundCharge(const InputParameters & parameters);
 
   virtual ~BoundCharge() {}
 

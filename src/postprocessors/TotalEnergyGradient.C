@@ -37,8 +37,8 @@ InputParameters validParams<TotalEnergyGradient>()
   return params;
 }
 
-TotalEnergyGradient::TotalEnergyGradient(const std::string & name, InputParameters parameters) :
-  ElementIntegralPostprocessor(name, parameters),
+TotalEnergyGradient::TotalEnergyGradient(const InputParameters & parameters) :
+  ElementIntegralPostprocessor(parameters),
   _component(getParam<unsigned int>("component")),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
@@ -77,7 +77,7 @@ TotalEnergyGradient::computeQpIntegral()
   const VariableValue& _polar_i= (_component==0)? _polar_x : (_component==1)? _polar_y: _polar_z;
   const VariableValue& _polar_j= (_component==0)? _polar_y : (_component==1)? _polar_z: _polar_x;
   const VariableValue& _polar_k= (_component==0)? _polar_z : (_component==1)? _polar_x: _polar_y;
-  return 
+  return
 //bulk energy:
 ((2*_alpha1*_polar_i[_qp]+
 	  4*_alpha11*pow(_polar_i[_qp],3)+

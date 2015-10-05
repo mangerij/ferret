@@ -12,26 +12,26 @@
 /****************************************************************/
 
 
-#include "StressBC.h" 
+#include "StressBC.h"
 template<>
 InputParameters validParams<StressBC>()
 {
     InputParameters params = validParams<IntegratedBC>();
   // Here we are adding a parameter that will be extracted from the input file by the Parser
   params.addRequiredParam<int>("component","Which component(0 for x,1 for y, 2 for z) in traction is used");
-  params.addRequiredParam<Real>("stress_xx", "stress_xx"); 
-  params.addRequiredParam<Real>("stress_xy", "stress_xy"); 
-  params.addRequiredParam<Real>("stress_yy", "stress_yy"); 
-  params.addRequiredParam<Real>("stress_yz", "stress_yz"); 
+  params.addRequiredParam<Real>("stress_xx", "stress_xx");
+  params.addRequiredParam<Real>("stress_xy", "stress_xy");
+  params.addRequiredParam<Real>("stress_yy", "stress_yy");
+  params.addRequiredParam<Real>("stress_yz", "stress_yz");
   params.addRequiredParam<Real>("stress_zx", "stress_zx");
-  params.addRequiredParam<Real>("stress_zz", "stress_zz"); 
+  params.addRequiredParam<Real>("stress_zz", "stress_zz");
   //params.addRequiredParam<Real>("traction", "traction")
   //params.addRequiredParam<RealVectorValue>("vector_value",RealVectorValue(), "traction this BC should act on");
   return params;
 }
 
-StressBC::StressBC(const std::string & name, InputParameters parameters) :
-  IntegratedBC(name, parameters),
+StressBC::StressBC(const InputParameters & parameters) :
+  IntegratedBC(parameters),
   _component(getParam<int>("component")),
   _stress_xx(getParam<Real>("stress_xx")),
   _stress_xy(getParam<Real>("stress_xy")),
@@ -53,7 +53,7 @@ StressBC::computeQpResidual()
   for(int i=0;i<3;i++){
    _traction[i]=0;
     for(int j=0;j<3;j++)
-     _traction[i]=_traction[i]+_values[i][j]*_normals[_qp](j); 
+     _traction[i]=_traction[i]+_values[i][j]*_normals[_qp](j);
   }
   return -_test[_i][_qp]*_traction[_component]; //be careful with the sign
   //  return 0.0;

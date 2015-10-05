@@ -25,7 +25,7 @@ InputParameters validParams<BulkEnergyFourth>();
 class BulkEnergyFourth : public ElementIntegralPostprocessor
 {
 public:
-  BulkEnergyFourth(const std::string & name, InputParameters parameters);
+  BulkEnergyFourth(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

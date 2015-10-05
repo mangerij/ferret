@@ -25,8 +25,8 @@ InputParameters validParams<PolarElectricEStrong>()
 
 
 //Constructor
-PolarElectricEStrong::PolarElectricEStrong(const std::string & name, InputParameters parameters)
-  :Kernel(name, parameters),
+PolarElectricEStrong::PolarElectricEStrong(const InputParameters & parameters)
+  :Kernel(parameters),
    _permittivity(getParam<Real>("permittivity")),
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),

@@ -7,23 +7,23 @@
 template<>
 InputParameters validParams<PolarizationVortexAuxAction>()
 {
-  InputParameters params = validParams<Action>(); params += validParams<FerretBase>();
-  params.addParam<std::string>("class", "PolarizationVortexAuxAction", "Class name");
-  params.addParam<std::vector<SubdomainName> >("block", "The list of ids of the blocks (subdomain) that these kernels will be applied to");
-  params.addParam<Real>("R", 1, "Magnetic dot radius");
-  params.addParam<Real>("L", 1, "Magnetic dot thickness");
-  params.addParam<NonlinearVariableName>("P_x", "", "The x component of polarization");
-  params.addParam<NonlinearVariableName>("P_y", "", "The y component of polarization");
-  params.addParam<NonlinearVariableName>("P_z", "", "The z component of polarization");
-  params.addParam<Real>("a_x", 0, "Vortex location along x");
-  params.addParam<Real>("a_y", 0, "Vortex location along y");
-  params.addParam<Real>("c", 1, "Vortex size");
-  params.addParam<std::string>("p", "a_x", "Vortex evolution parameter: a_x, a_y or c.");
-  return params;
+  InputParameters parameters = validParams<Action>(); parameters += validParams<FerretBase>();
+  parameters.addParam<std::string>("class", "PolarizationVortexAuxAction", "Class name");
+  parameters.addParam<std::vector<SubdomainName> >("block", "The list of ids of the blocks (subdomain) that these kernels will be applied to");
+  parameters.addParam<Real>("R", 1, "Magnetic dot radius");
+  parameters.addParam<Real>("L", 1, "Magnetic dot thickness");
+  parameters.addParam<NonlinearVariableName>("P_x", "", "The x component of polarization");
+  parameters.addParam<NonlinearVariableName>("P_y", "", "The y component of polarization");
+  parameters.addParam<NonlinearVariableName>("P_z", "", "The z component of polarization");
+  parameters.addParam<Real>("a_x", 0, "Vortex location along x");
+  parameters.addParam<Real>("a_y", 0, "Vortex location along y");
+  parameters.addParam<Real>("c", 1, "Vortex size");
+  parameters.addParam<std::string>("p", "a_x", "Vortex evolution parameter: a_x, a_y or c.");
+  return parameters;
 }
 
-PolarizationVortexAuxAction::PolarizationVortexAuxAction(const std::string & name, InputParameters params) :
-  FerretBase(params), Action(name, params),
+PolarizationVortexAuxAction::PolarizationVortexAuxAction(const InputParameters & parameters) :
+  FerretBase(parameters), Action(parameters),
   _P_x(getParam<NonlinearVariableName>("P_x")),
   _P_y(getParam<NonlinearVariableName>("P_y")),
   _P_z(getParam<NonlinearVariableName>("P_z")),
@@ -67,10 +67,10 @@ PolarizationVortexAuxAction::act()
 
   /*
    * We need to manually set up the PolarizationVortex kernel parameters.
-   * Much of this is usualy hidden by the parser system, but 
+   * Much of this is usualy hidden by the parser system, but
    * we have to set things up ourselves this time.
    */
- 
+
   std::set<SubdomainID> subdomains;
   std::vector<SubdomainName> subdomainnames;
   // Set up PolarizationVortex kernel, one per each component of polarization and one per mesh block.
@@ -80,7 +80,7 @@ PolarizationVortexAuxAction::act()
       std::vector<SubdomainName> block = getParam<std::vector<SubdomainName> >("block");
       for(unsigned int i=0; i < block.size(); i++)
 	subdomains.insert(_problem->mesh().getSubdomainID(block[i]));
-    }  
+    }
   else // Put it everywhere
     subdomains = _problem->mesh().meshSubdomains();
 
@@ -126,8 +126,7 @@ PolarizationVortexAuxAction::act()
     polarization_vortex_params.set<std::vector<SubdomainName> >("block") = subdomainnames;
     polarization_vortex_params.set<std::vector<std::string> >("Debug") = _debug_vec;
     std::stringstream name;
-    name << "polarization_" << i;    
+    name << "polarization_" << i;
     _problem->addAuxKernel("PolarizationVortexAux", name.str(), polarization_vortex_params);
   }
 }
-

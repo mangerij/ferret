@@ -27,8 +27,8 @@ InputParameters validParams<BulkEnergyDensity>()
   return params;
 }
 
-BulkEnergyDensity::BulkEnergyDensity(const std::string & name, InputParameters parameters) :
-  AuxKernel(name, parameters),
+BulkEnergyDensity::BulkEnergyDensity(const InputParameters & parameters) :
+  AuxKernel(parameters),
    _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),

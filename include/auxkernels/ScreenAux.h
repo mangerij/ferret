@@ -13,7 +13,7 @@ InputParameters validParams<ScreenAux>();
 class ScreenAux : public AuxKernel
 {
 public:
-  ScreenAux( const std::string & name, InputParameters parameters );
+  ScreenAux(const InputParameters & parameters);
 
   virtual ~ScreenAux() {}
 

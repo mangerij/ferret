@@ -15,7 +15,7 @@ InputParameters validParams<TensorPressureAux>();
 class TensorPressureAux : public AuxKernel
 {
 public:
-  TensorPressureAux( const std::string & name, InputParameters parameters );
+  TensorPressureAux(const InputParameters & parameters);
 
   virtual ~TensorPressureAux() {}
 

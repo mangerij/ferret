@@ -22,7 +22,7 @@ class Electrostatics: public Kernel
 {
 public:
 
-  Electrostatics(const std::string & name, InputParameters parameters);
+  Electrostatics(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

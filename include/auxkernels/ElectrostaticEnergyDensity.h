@@ -19,7 +19,7 @@ InputParameters validParams<ElectrostaticEnergyDensity>();
 class ElectrostaticEnergyDensity : public AuxKernel
 {
 public:
-  ElectrostaticEnergyDensity(const std::string & name, InputParameters parameters);
+  ElectrostaticEnergyDensity(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();

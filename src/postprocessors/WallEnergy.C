@@ -26,8 +26,8 @@ InputParameters validParams<WallEnergy>()
   return params;
 }
 
-WallEnergy::WallEnergy(const std::string & name, InputParameters parameters) :
-  ElementIntegralPostprocessor(name, parameters),
+WallEnergy::WallEnergy(const InputParameters & parameters) :
+  ElementIntegralPostprocessor(parameters),
   _polar_x_grad(coupledGradient("polar_x")),
   _polar_y_grad(coupledGradient("polar_y")),
   _polar_z_grad(coupledGradient("polar_z")),

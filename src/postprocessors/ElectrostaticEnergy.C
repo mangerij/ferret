@@ -25,8 +25,8 @@ InputParameters validParams<ElectrostaticEnergy>()
   return params;
 }
 
-ElectrostaticEnergy::ElectrostaticEnergy(const std::string & name, InputParameters parameters) :
-  ElementIntegralPostprocessor(name, parameters),
+ElectrostaticEnergy::ElectrostaticEnergy(const InputParameters & parameters) :
+  ElementIntegralPostprocessor(parameters),
   _polar_x(coupledValueOld("polar_x")),
   _polar_y(coupledValueOld("polar_y")),
   _polar_z(coupledValueOld("polar_z")),

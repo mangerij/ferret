@@ -23,7 +23,7 @@ InputParameters validParams<TotalEnergyGradient>();
 class TotalEnergyGradient : public ElementIntegralPostprocessor
 {
 public:
-  TotalEnergyGradient(const std::string & name, InputParameters parameters);
+  TotalEnergyGradient(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

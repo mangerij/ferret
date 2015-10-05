@@ -21,8 +21,8 @@ InputParameters validParams<PercentChangePostprocessor>()
   return params;
 }
 
-PercentChangePostprocessor::PercentChangePostprocessor(const std::string & name, InputParameters parameters) :
-    GeneralPostprocessor(name, parameters),
+PercentChangePostprocessor::PercentChangePostprocessor(const InputParameters & parameters) :
+    GeneralPostprocessor(parameters),
     _postprocessor(getPostprocessorValue("postprocessor")),
     _postprocessor_old(getPostprocessorValueOld("postprocessor"))
 

@@ -18,8 +18,8 @@ InputParameters validParams<ElectrostaticEnergyDensityTotal>()
   return params;
 }
 
-ElectrostaticEnergyDensityTotal::ElectrostaticEnergyDensityTotal(const std::string & name, InputParameters parameters) :
-  AuxKernel(name, parameters),
+ElectrostaticEnergyDensityTotal::ElectrostaticEnergyDensityTotal(const InputParameters & parameters) :
+  AuxKernel(parameters),
   _permittivity(getParam<Real>("permittivity")),
   _potential_grad(coupledGradient("potential")),
   _polar_x(coupledValue("polar_x")),

@@ -22,10 +22,9 @@ InputParameters validParams<LinearFerroelectricMaterial>()
   return params;
 }
 
-LinearFerroelectricMaterial::LinearFerroelectricMaterial(const std::string & name,
-                                 InputParameters parameters) :
+LinearFerroelectricMaterial::LinearFerroelectricMaterial(const InputParameters & parameters) :
 
-  LinearElasticMaterial(name, parameters),
+  LinearElasticMaterial(parameters),
   _electrostrictivecoefficients(declareProperty<ElasticityTensorR4>("electrostrictivecoefficients")),
   _electrostrictive_tensor(declareProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
   _fill_method((RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),

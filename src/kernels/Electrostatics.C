@@ -17,8 +17,8 @@ InputParameters validParams<Electrostatics>()
 }
 
 //Constructor
-Electrostatics::Electrostatics(const std::string & name, InputParameters parameters)
-  :Kernel(name, parameters),
+Electrostatics::Electrostatics(const InputParameters & parameters)
+  :Kernel(parameters),
    _permittivity(getParam<Real>("permittivity")),
    _len_scale(getParam<Real>("len_scale"))
 {

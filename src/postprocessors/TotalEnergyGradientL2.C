@@ -21,8 +21,8 @@ InputParameters validParams<TotalEnergyGradientL2>()
   return params;
 }
 
-TotalEnergyGradientL2::TotalEnergyGradientL2(const std::string & name, InputParameters parameters) :
-  GeneralPostprocessor(name, parameters),
+TotalEnergyGradientL2::TotalEnergyGradientL2(const InputParameters & parameters):
+  GeneralPostprocessor(parameters),
   _gradx(getPostprocessorValue(getParam<PostprocessorName>("gradx"))),
   _grady(getPostprocessorValue(getParam<PostprocessorName>("grady"))),
   _gradz(getPostprocessorValue(getParam<PostprocessorName>("gradz")))
@@ -43,5 +43,5 @@ TotalEnergyGradientL2::execute(){
 Real
 TotalEnergyGradientL2::getValue()
 {
-  return pow(pow(_gradx,2)+pow(_grady,2)+pow(_gradz,2),0.5);
+  return pow(pow(_gradx, 2) + pow(_grady, 2) + pow(_gradz, 2), 0.5);
 }

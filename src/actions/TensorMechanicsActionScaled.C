@@ -28,8 +28,8 @@ InputParameters validParams<TensorMechanicsActionScaled>()
   return params;
 }
 
-TensorMechanicsActionScaled::TensorMechanicsActionScaled(const std::string & name, InputParameters params) :
-    Action(name, params)
+TensorMechanicsActionScaled::TensorMechanicsActionScaled(const InputParameters & parameters) :
+    Action(parameters)
 {
 }
 

@@ -19,7 +19,7 @@ InputParameters validParams<DepolScreenBC>();
 class DepolScreenBC : public NodalNormalBC
 {
 public:
-  DepolScreenBC(const std::string & name, InputParameters parameters);
+  DepolScreenBC(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

@@ -16,8 +16,8 @@ InputParameters validParams<BandGapAuxZnO>()
 }
 
 
-BandGapAuxZnO::BandGapAuxZnO( const std::string & name, InputParameters parameters ) :
-  AuxKernel( name, parameters ),
+BandGapAuxZnO::BandGapAuxZnO(const InputParameters & parameters) :
+  AuxKernel(parameters),
    _strain(getMaterialProperty<RankTwoTensor>("elastic_strain")),
    _du(getParam<Real>("biaxial_strain_rate")),
    _db(getParam<Real>("uniaxial_strain_rate")),

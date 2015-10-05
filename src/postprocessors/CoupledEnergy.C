@@ -20,8 +20,8 @@ InputParameters validParams<CoupledEnergy>()
   return params;
 }
 
-CoupledEnergy::CoupledEnergy(const std::string & name, InputParameters parameters) :
-  ElementIntegralPostprocessor(name, parameters),
+CoupledEnergy::CoupledEnergy(const InputParameters & parameters) :
+  ElementIntegralPostprocessor(parameters),
   _electrostrictive_tensor(getMaterialProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
   _disp_x_grad(coupledGradient("disp_x")),
   _disp_y_grad(coupledGradient("disp_y")),

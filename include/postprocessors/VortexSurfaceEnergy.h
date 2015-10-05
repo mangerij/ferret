@@ -10,13 +10,13 @@ template<>
 InputParameters validParams<VortexSurfaceEnergy>();
 
 /**
- * This postprocessor computes a surface integral of the product of the potential against 
+ * This postprocessor computes a surface integral of the product of the potential against
  * a vortex charge.
  */
 class VortexSurfaceEnergy : public SideIntegralVariablePostprocessor
 {
 public:
-  VortexSurfaceEnergy(const std::string & name, InputParameters parameters);
+  VortexSurfaceEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

@@ -19,7 +19,7 @@ class BulkEnergyDerivativeFourthCoupledT: public Kernel
 {
 public:
 
-  BulkEnergyDerivativeFourthCoupledT(const std::string & name, InputParameters parameters);
+  BulkEnergyDerivativeFourthCoupledT(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

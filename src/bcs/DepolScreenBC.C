@@ -14,8 +14,8 @@ InputParameters validParams<DepolScreenBC>()
   return p;
 }
 
-DepolScreenBC::DepolScreenBC(const std::string & name, InputParameters parameters) :
-  NodalNormalBC(name, parameters),
+DepolScreenBC::DepolScreenBC(const InputParameters & parameters) :
+  NodalNormalBC(parameters),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),

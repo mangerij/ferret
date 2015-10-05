@@ -11,8 +11,8 @@ InputParameters validParams<ScreenAux>()
 }
 
 
-ScreenAux::ScreenAux( const std::string & name, InputParameters parameters ) :
-  AuxKernel( name, parameters ),
+ScreenAux::ScreenAux(const InputParameters & parameters) :
+  AuxKernel(parameters ),
   _normals(_var.normals()),
   _potential_int_grad(coupledGradient("potential_int"))
 {

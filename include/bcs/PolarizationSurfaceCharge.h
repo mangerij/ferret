@@ -17,7 +17,7 @@ public:
    * Factory constructor, takes parameters so that all derived classes can be built using the same
    * constructor.
    */
-  PolarizationSurfaceCharge(const std::string & name, InputParameters parameters);
+  PolarizationSurfaceCharge(const InputParameters & parameters);
 
 
 protected:

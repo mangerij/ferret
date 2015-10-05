@@ -24,8 +24,8 @@ InputParameters validParams<TimeDerivativeScaled>()
   return params;
 }
 
-TimeDerivativeScaled::TimeDerivativeScaled(const std::string & name, InputParameters parameters) :
-    TimeKernel(name, parameters),
+TimeDerivativeScaled::TimeDerivativeScaled(const InputParameters & parameters) :
+    TimeKernel(parameters),
     _lumping(getParam<bool>("lumping")),
     _time_scale(getParam<Real>("time_scale"))
 {

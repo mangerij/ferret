@@ -13,7 +13,7 @@ InputParameters validParams<PxFieldAux>();
 class PxFieldAux : public AuxKernel
 {
 public:
-  PxFieldAux( const std::string & name, InputParameters parameters );
+  PxFieldAux(const InputParameters & parameters);
 
   virtual ~PxFieldAux() {}
 

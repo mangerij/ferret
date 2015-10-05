@@ -23,7 +23,7 @@ class BulkEnergyDerivativeFourth: public Kernel
 {
 public:
 
-  BulkEnergyDerivativeFourth(const std::string & name, InputParameters parameters);
+  BulkEnergyDerivativeFourth(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

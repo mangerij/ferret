@@ -36,7 +36,7 @@ public:
    * Factory constructor, takes parameters so that all derived classes can be built using the same
    * constructor.
    */
-  ElectrostaticEnergyDensityE(const std::string & name, InputParameters parameters);
+  ElectrostaticEnergyDensityE(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();

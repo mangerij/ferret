@@ -14,7 +14,7 @@ InputParameters validParams<PzFieldAux>();
 class PzFieldAux : public AuxKernel
 {
 public:
-  PzFieldAux( const std::string & name, InputParameters parameters );
+  PzFieldAux(const InputParameters & parameters);
 
   virtual ~PzFieldAux() {}
 

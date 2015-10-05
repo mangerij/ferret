@@ -22,7 +22,7 @@ class BulkEnergyDerivativeSixthCoupledT: public Kernel
 {
 public:
 
-  BulkEnergyDerivativeSixthCoupledT(const std::string & name, InputParameters parameters);
+  BulkEnergyDerivativeSixthCoupledT(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

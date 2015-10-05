@@ -18,8 +18,8 @@ InputParameters validParams<PxFieldAux>()
 }
 
 
-PxFieldAux::PxFieldAux( const std::string & name, InputParameters parameters ) :
-  AuxKernel( name, parameters ),
+PxFieldAux::PxFieldAux(const InputParameters & parameters) :
+  AuxKernel(parameters),
    _permittivity_int(getParam<Real>("permittivity_int")),
    _permittivity_ext(getParam<Real>("permittivity_ext")),
   // _potential_int_grad(coupledGradient("potential_int")),

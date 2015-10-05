@@ -16,7 +16,7 @@ InputParameters validParams<StressDivergenceTensorsScaled>();
 class StressDivergenceTensorsScaled : public StressDivergenceTensors
 {
 public:
-  StressDivergenceTensorsScaled(const std::string& name, InputParameters parameters);
+  StressDivergenceTensorsScaled(const InputParameters & parameters);
   ~StressDivergenceTensorsScaled(){}
 
 protected:

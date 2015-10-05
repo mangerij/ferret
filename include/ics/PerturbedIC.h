@@ -26,7 +26,7 @@ InputParameters validParams<PerturbedIC>();
 class PerturbedIC:public InitialCondition
 {
 public:
-  PerturbedIC(const std::string & name, InputParameters parameters);
+  PerturbedIC(const InputParameters & parameters);
 
   /**
    * The value of the variable at a point.

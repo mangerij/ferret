@@ -26,7 +26,7 @@ InputParameters validParams<SinIC>();
 class SinIC:public InitialCondition
 {
 public:
-  SinIC(const std::string & name, InputParameters parameters);
+  SinIC(const InputParameters & parameters);
   virtual Real value(const Point & p);
 private:
   Real _amplitude;

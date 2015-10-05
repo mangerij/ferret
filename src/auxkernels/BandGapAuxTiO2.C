@@ -14,8 +14,8 @@ InputParameters validParams<BandGapAuxTiO2>()
 }
 
 
-BandGapAuxTiO2::BandGapAuxTiO2( const std::string & name, InputParameters parameters ) :
-  AuxKernel( name, parameters ),
+BandGapAuxTiO2::BandGapAuxTiO2(const InputParameters & parameters) :
+  AuxKernel(parameters),
    _stress(getMaterialProperty<RankTwoTensor>("stress")),
    _ba(getParam<Real>("biaxial_stress_rate")),
    _bc(getParam<Real>("uniaxial_stress_rate")),

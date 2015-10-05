@@ -23,8 +23,8 @@ InputParameters validParams<PerturbedIC>()
 
 
 
-PerturbedIC::PerturbedIC(const std::string & name, InputParameters parameters) :
-  InitialCondition(name, parameters),
+PerturbedIC::PerturbedIC(const InputParameters & parameters) :
+  InitialCondition(parameters),
   _mean(getParam<Real>("mean")),
   _factor(getParam<Real>("factor"))
 {

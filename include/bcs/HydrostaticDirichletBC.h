@@ -25,7 +25,7 @@ public:
    * Factory constructor, takes parameters so that all derived classes can be built using the same
    * constructor.
    */
-  HydrostaticDirichletBC(const std::string & name, InputParameters parameters);
+  HydrostaticDirichletBC(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -35,7 +35,7 @@ protected:
   const Real _center_y;
   const Real _center_z;
   const Real _displacement;
-  const int  _component; 
+  const int  _component;
 };
 
 #endif

@@ -10,8 +10,8 @@ InputParameters validParams<PolarizationSurfaceCharge>()
   return params;
 }
 
-PolarizationSurfaceCharge::PolarizationSurfaceCharge(const std::string & name, InputParameters parameters) :
-  FerretBase(parameters), IntegratedBC(name, parameters),
+PolarizationSurfaceCharge::PolarizationSurfaceCharge(const InputParameters & parameters) :
+  FerretBase(parameters), IntegratedBC(parameters),
   _P_x(coupledValue("P", 0)),
   _P_y(coupledValue("P", 1)),
   _P_z(coupledValue("P", 2)),

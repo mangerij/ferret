@@ -14,7 +14,7 @@ InputParameters validParams<EzFieldAux>();
 class EzFieldAux : public AuxKernel
 {
 public:
-  EzFieldAux( const std::string & name, InputParameters parameters );
+  EzFieldAux(const InputParameters & parameters);
 
   virtual ~EzFieldAux() {}
 

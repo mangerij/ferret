@@ -13,7 +13,7 @@ InputParameters validParams<SurfaceChargeAux>();
 class SurfaceChargeAux : public AuxKernel
 {
 public:
-  SurfaceChargeAux( const std::string & name, InputParameters parameters );
+  SurfaceChargeAux(const InputParameters & parameters);
 
   virtual ~SurfaceChargeAux() {}
 

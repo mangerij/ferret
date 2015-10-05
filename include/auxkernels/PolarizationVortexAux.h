@@ -14,7 +14,7 @@ class PolarizationVortexAux : public FerretBase, public AuxKernel
 {
 public:
 
-  PolarizationVortexAux(const std::string & name, InputParameters parameters);
+  PolarizationVortexAux(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();

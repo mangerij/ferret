@@ -14,7 +14,7 @@ InputParameters validParams<EyFieldAux>();
 class EyFieldAux : public AuxKernel
 {
 public:
-  EyFieldAux( const std::string & name, InputParameters parameters );
+  EyFieldAux(const InputParameters & parameters);
 
   virtual ~EyFieldAux() {}
 

@@ -9,8 +9,8 @@ InputParameters validParams<VortexSurfaceCharge>()
   return params;
 }
 
-VortexSurfaceCharge::VortexSurfaceCharge(const std::string & name, InputParameters parameters) :
-  IntegratedBC(name, parameters),
+VortexSurfaceCharge::VortexSurfaceCharge(const InputParameters & parameters) :
+  IntegratedBC(parameters),
   _a(parameters.get<Real>("a")),
   _verticality(parameters.get<Real>("verticality"))
 {
@@ -31,4 +31,3 @@ VortexSurfaceCharge::computeQpResidual()
     res = -_test[_i][_qp]*sigma;
   return res;
 }
-

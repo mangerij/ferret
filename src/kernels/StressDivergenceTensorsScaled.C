@@ -17,8 +17,8 @@ InputParameters validParams<StressDivergenceTensorsScaled>()
   return params;
 }
 
-StressDivergenceTensorsScaled::StressDivergenceTensorsScaled(const std::string& name, InputParameters parameters)
-  :StressDivergenceTensors(name, parameters),
+StressDivergenceTensorsScaled::StressDivergenceTensorsScaled(const InputParameters & parameters)
+  :StressDivergenceTensors(parameters),
    _strain_scale(getParam<Real>("strain_scale")),
    _len_scale(getParam<Real>("len_scale"))
 {

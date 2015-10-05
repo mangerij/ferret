@@ -24,7 +24,7 @@ InputParameters validParams<WallEnergy>();
 class WallEnergy : public ElementIntegralPostprocessor
 {
 public:
-  WallEnergy(const std::string & name, InputParameters parameters);
+  WallEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();

@@ -22,7 +22,7 @@ class FerroelectricCouplingX: public Kernel
 {
 public:
 
-  FerroelectricCouplingX(const std::string & name, InputParameters parameters);
+  FerroelectricCouplingX(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

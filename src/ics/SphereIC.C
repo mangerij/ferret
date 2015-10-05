@@ -24,8 +24,8 @@ InputParameters validParams<SphereIC>()
 
 
 
-SphereIC::SphereIC(const std::string & name, InputParameters parameters) :
-  InitialCondition(name, parameters),
+SphereIC::SphereIC(const InputParameters & parameters) :
+  InitialCondition(parameters),
   _radial_func(getFunction("radial_function")),
   _polar_func(getFunction("polar_function")),
   _azimuthal_func(getFunction("azimuthal_function")),

@@ -24,7 +24,7 @@ class FerroelectricCouplingP: public Kernel
 {
 public:
 
-  FerroelectricCouplingP(const std::string & name, InputParameters parameters);
+  FerroelectricCouplingP(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

@@ -16,8 +16,8 @@ InputParameters validParams<ElectrostaticEnergyDensityE>()
   return params;
 }
 
-ElectrostaticEnergyDensityE::ElectrostaticEnergyDensityE(const std::string & name, InputParameters parameters) :
-  AuxKernel(name, parameters),
+ElectrostaticEnergyDensityE::ElectrostaticEnergyDensityE(const InputParameters & parameters) :
+  AuxKernel(parameters),
   _potential_grad(coupledGradient("potential")),
   _len_scale(getParam<Real>("len_scale"))
 {}

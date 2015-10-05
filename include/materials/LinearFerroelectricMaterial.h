@@ -22,7 +22,7 @@ InputParameters validParams<LinearFerroelectricMaterial>();
 class LinearFerroelectricMaterial : public LinearElasticMaterial
 {
 public:
-  LinearFerroelectricMaterial(const std::string & name, InputParameters parameters);
+  LinearFerroelectricMaterial(const InputParameters & parameters);
 
 protected:
   virtual void computeQpElectrostrictiveCoefficients();
