@@ -26,6 +26,7 @@
 #include "SurfaceChargeAux.h"
 #include "ScreenAux.h"
 #include "PolarizationSurfaceCharge.h" //?
+#include "WindingNumberDensity.h"
 
 //not sure what these are
 #include "ElectrostaticEnergyDensityE.h"
@@ -171,6 +172,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(BandGapAuxTiO2);
   registerAux(SurfaceChargeAux);
   registerAux(ScreenAux);
+  registerAux(WindingNumberDensity);
   //registerPostprocessor(VortexSurfaceEnergy);
 
   //Kernels
