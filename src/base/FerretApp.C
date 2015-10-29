@@ -21,6 +21,7 @@
 #include "PyFieldAux.h"
 #include "PzFieldAux.h"
 #include "BoundCharge.h"
+#include "CurlP.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
@@ -168,6 +169,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PyFieldAux);
   registerAux(PzFieldAux);
   registerAux(BoundCharge);
+  registerAux(CurlP);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
   registerAux(SurfaceChargeAux);

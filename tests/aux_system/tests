@@ -1,7 +1,0 @@
-[Tests]
-  [./test_bound_charge]
-    type = 'Exodiff'
-    input = 'bound_charge_test.i'
-    exodiff = 'out_bound_charge_test.e'
-  [../]
-[]
