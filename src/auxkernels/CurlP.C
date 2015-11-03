@@ -28,5 +28,5 @@ Real
 CurlP::computeValue()
 
 {
-    return std::pow(std::pow(std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2),0.5),-1) * std::pow(std::pow(-_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1), 2) + std::pow(-_polar_x_grad[_qp](1) + _polar_y_grad[_qp](0), 2) + std::pow(_polar_x_grad[_qp](2) - _polar_z_grad[_qp](0) , 2),0.5);
+    return std::pow(std::pow(-_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1), 2) + std::pow(-_polar_x_grad[_qp](1) + _polar_y_grad[_qp](0), 2) + std::pow(_polar_x_grad[_qp](2) - _polar_z_grad[_qp](0) , 2), 0.5);
 }
