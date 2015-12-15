@@ -52,7 +52,8 @@
 //Kernels
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
-#include "WallEnergyDerivative.h"
+#include "WallEnergyDerivative.h" //can be used for PbTiO3 and BaTiO3
+#include "PZTWallEnergyDerivative.h" //Implement a cheaper wall energy for PZT
 #include "BulkEnergyDerivativeSixth.h"
 #include "BulkEnergyDerivativeFourth.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
@@ -71,6 +72,7 @@
 
 //Postprocessors
 #include "WallEnergy.h"
+#include "PZTWallEnergy.h"
 //#include "WallEnergyFourth.h"
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
@@ -183,6 +185,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(BulkEnergyDerivativeFourthCoupledT);
   registerKernel(WallEnergyDerivative);
+  registerKernel(PZTWallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FerroelectricCouplingU);
@@ -195,6 +198,7 @@ FerretApp::registerObjects(Factory & factory)
   //Postprocessors
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
+  registerPostprocessor(PZTWallEnergy);
   registerPostprocessor(BulkEnergyFourth);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
