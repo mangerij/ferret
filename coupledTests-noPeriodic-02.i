@@ -1,0 +1,839 @@
+
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 80
+  ny = 80
+  nz = 25
+  xmin = -40
+  xmax = 40
+  ymin = -40
+  ymax = 40
+  zmin = -12
+  zmax = 12
+  elem_type = HEX8
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+  alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+  alpha11 = -0.07253
+  alpha111 = 0.26
+  alpha12 = 0.75
+  alpha112 = 0.61
+  alpha123 = -3.67
+  G110 = 0.13
+  G11/G110 = 0.6
+  G12/G110 = 0
+  G44/G110 = 0.3
+  G44P/G110 = 0.3
+  Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+  permittivity = 0.5843763
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_int = potential_int
+  disp_x = disp_x
+  disp_y = disp_y
+  disp_z = disp_z
+  prefactor = 0.02
+  displacements = 'disp_x disp_y disp_z'
+  #use_displaced_mesh = false
+  C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+  #initial_from_file_timestep = 120
+[]
+
+
+
+[Variables]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    block = '0'
+   # initial_from_file_var = polar_x
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    block = '0'
+  # initial_from_file_var = polar_y
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+    #initial_from_file_var = polar_y
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    block = '0'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+    #initial_from_file_var = polar_z
+  [../]
+  [./potential_int]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+    #initial_from_file_var = potential_int
+  [../]
+  #[./potential_ext]
+  #  order=FIRST
+  #  family = LAGRANGE
+  #  #initial_from_file_var = potential_ext
+  #[../]
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+    block = '0'
+    #scaling = 1e6
+    #initial_from_file_var = disp_x
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+    block = '0'
+    #scaling = 1e6
+    #initial_from_file_var = disp_y
+  [../]
+  [./disp_z]
+    order = FIRST
+    family = LAGRANGE
+    block = '0'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+    #initial_from_file_var = disp_z
+  [../]
+[]
+
+[AuxVariables]
+  #[./stress_xx]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_xx
+  #[../]
+  #[./stress_yy]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_yy
+  #[../]
+  #[./stress_xy]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_xy
+  #[../]
+  #[./stress_xz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_xz
+  #[../]
+  #[./stress_zz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_zz
+  #[../]
+  #[./stress_yz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = stress_yz
+  #[../]
+  #[./elastic_strain_xx]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_xx
+  #[../]
+  [./elastic_strain_yy]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = strain_yy
+  [../]
+  #[./elastic_strain_xy]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_xy
+  #[../]
+  #[./elastic_strain_xz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_xz
+  #[../]
+  #[./elastic_strain_zz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_zz
+  #[../]
+  #[./elastic_strain_yz]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = strain_yz
+  #[../]
+  #[./rho_b]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #  #initial_from_file_var = rho_b
+  #[../]
+#  [./screenfield]
+#    order = CONSTANT
+#    family = MONOMIAL
+#  [../]
+#  [./surf_charge]
+#    order = CONSTANT
+#    family = MONOMIAL
+#  [../]
+[]
+#
+[AuxKernels]
+#  [./surfacecharge]
+#    type = SurfaceChargeAux
+#    variable = surf_charge
+#    boundary = '3'
+#  [../]
+#  [./surfacescreenfield]
+#    type = ScreenAux
+#    variable = screenfield
+#    boundary = '3 4'
+#  [../]
+#  [./boundcharge]
+#    type = BoundCharge
+#    variable = rho_b
+#    block = '2'
+#    execute_on = 'timestep_end'
+#  [../]
+  #[./matl_s11]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 0
+  #  index_j = 0
+  #  block = '0'
+  #  variable = stress_xx
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s12]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 0
+  #  index_j = 1
+  #  block = '0'
+  #  variable = stress_xy
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s13]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 0
+  #  index_j = 2
+  #  block = '0'
+  #  variable = stress_xz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s22]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 1
+  #  index_j = 1
+  #  block = '0'
+  #  variable = stress_yy
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s23]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 1
+  #  index_j = 2
+  #  block = '0'
+  #  variable = stress_yz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_s33]
+  #  type = RankTwoAux
+  #  rank_two_tensor = stress
+  #  index_i = 2
+  #  index_j = 2
+  #  block = '0'
+  #  variable = stress_zz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_e11]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 0
+  #  index_j = 0
+  #  block = '0'
+  #  variable = elastic_strain_xx
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_e12]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 0
+  #  index_j = 1
+  #  block = '0'
+  #  variable = elastic_strain_xy
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_e13]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 0
+  #  index_j = 2
+  #  block = '0'
+  #  variable = elastic_strain_xz
+  #  execute_on = 'timestep_end'
+  #[../]
+  [./matl_e22]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    index_i = 1
+    index_j = 1
+    block = '0'
+    variable = elastic_strain_yy
+    execute_on = 'timestep_end'
+  [../]
+  #[./matl_e23]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 1
+  #  index_j = 2
+  #  block = '0'
+  #  variable = elastic_strain_yz
+  #  execute_on = 'timestep_end'
+  #[../]
+  #[./matl_e33]
+  #  type = RankTwoAux
+  #  rank_two_tensor = elastic_strain
+  #  index_i = 2
+  #  index_j = 2
+  #  block = '0'
+  #  variable = elastic_strain_zz
+  #  execute_on = 'timestep_end'
+  #[../]
+[]
+
+[Kernels]
+  #Elastic problem
+  [./TensorMechanics]
+     #This is an action block
+  [../]
+
+  #Bulk energy density
+  [./bed_x]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_z
+    component = 2
+  [../]
+  ##Wall energy penalty
+  [./walled_x]
+     type=WallEnergyDerivative
+     variable = polar_x
+     component = 0
+  [../]
+  [./walled_y]
+     type=WallEnergyDerivative
+     variable = polar_y
+     component = 1
+  [../]
+  [./walled_z]
+     type=WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  ##Polarization-strain coupling
+  [./ferroelectriccouplingu_x]
+     type = FerroelectricCouplingX
+     variable = disp_x
+     component = 0
+     block = '0'
+  [../]
+  [./ferroelectriccouplingu_y]
+     type = FerroelectricCouplingX
+     variable = disp_y
+     component = 1
+     block = '0'
+  [../]
+  [./ferroelectriccouplingu_z]
+     type = FerroelectricCouplingX
+     variable = disp_z
+     component = 2
+     block = '0'
+  [../]
+  [./ferroelectriccouplingp_xx]
+     type = FerroelectricCouplingP
+     variable = polar_x
+     component = 0
+  [../]
+  [./ferroelectriccouplingp_yy]
+     type = FerroelectricCouplingP
+     variable = polar_y
+     component = 1
+  [../]
+  [./ferroelectriccouplingp_zz]
+     type = FerroelectricCouplingP
+     variable = polar_z
+     component = 2
+  [../]
+  ##Electrostatics
+  [./polar_x_electric_E]
+     type=PolarElectricEStrong
+     variable = potential_int
+     block = '0'
+  [../]
+  #[./E_int]
+  #   type=Electrostatics
+  #   variable = potential_int
+  #   block='1 3'
+  #[../]
+  [./FE_E_int]
+     type=Electrostatics
+     variable = potential_int
+     block = '0'
+  [../]
+  #[./E_ext]
+  #   type=Electrostatics
+  #   variable = potential_ext
+  #   block='1 3'
+  #[../]
+  #[./FE_E_ext]
+  #   type=Electrostatics
+  #   variable = potential_ext
+  #   block='2'
+  #[../]
+  [./polar_electric_px]
+     type=PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type=PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type=PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+  ##Time dependence
+  [./polar_x_time]
+     type=TimeDerivativeScaled
+     variable=polar_x
+    # time_scale = 1.8e-7
+    time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type=TimeDerivativeScaled
+     variable=polar_y
+    # time_scale = 1.8e-7
+    time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type=TimeDerivativeScaled
+     variable = polar_z
+    # time_scale = 1.8e-7
+    time_scale = 1.0
+  [../]
+  #[./potential_int_time]
+  #   type=TimeDerivativeScaled
+  #   variable = potential_int
+  #   time_scale = 1.0
+  #[../]
+  #[./disp_x_time]
+  #   type=TimeDerivativeScaled
+  #   variable = disp_x
+  #   time_scale = 1.0e-9 #this is chosen so that the elastic problem is solved in ~4 timesteps.
+  #[../]
+  #[./disp_y_time]
+  #   type=TimeDerivativeScaled
+  #   variable = disp_y
+  #   time_scale = 1.0e-9
+  #[../]
+  #[./disp_z_time]
+  #   type=TimeDerivativeScaled
+  #   variable = disp_z
+  #   time_scale = 1.0e-9
+  #[../]
+[]
+
+[BCs]
+
+ #[./Periodic]
+ #  #active='disp_x_x disp_y_x polar_z_x disp_x_y disp_y_y disp_z_y'
+ #  #active='polar_x_x polar_y_x polar_z_x polar_x_y polar_y_y polar_z_y'
+ #  #active='potential_int_x potential_ext_x potential_int_y potential_ext_y'
+ #
+  # [./potential_int_x]
+  #    variable = potential_int
+  #    auto_direction = 'x y'
+  # [../]
+  #
+  # [./polar_x]
+  #    variable = polar_x
+  #    auto_direction = 'x y'
+  # [../]
+  # [./polar_y]
+  #    variable = polar_y
+  #    auto_direction = 'x y'
+  # [../]
+  # [./polar_z]
+  #    variable = polar_z
+  #    auto_direction = 'x y'
+  # [../]
+  #
+  # [./disp_x]
+  #    variable = disp_x
+  #    auto_direction = 'x y'
+  # [../]
+  # [./disp_y]
+  #    variable = disp_y
+  #    auto_direction = 'x y'
+  #
+  # [../]
+  # [./disp_z]
+  #    variable = disp_z
+  #    auto_direction = 'x y'
+  # [../]
+  #[../]
+
+
+  #[./disp_x_slab7] #compression
+  #  #type = DirichletBC
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'left'
+  #  value = 0.06
+  #[../]
+  #[./disp_y_slab7]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'left'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab7]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'left'
+  #  value = 0
+  #[../]
+  #
+  #
+  #[./disp_x_slab8]
+  #  #type = DirichletBC
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'right'
+  #  value = -0.06
+  #[../]
+  #[./disp_y_slab8]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'right'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab8]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'right'
+  #  value = 0
+  #[../]
+
+
+
+
+
+
+  #
+  #[./disp_y_sla98]
+  #  #type = DirichletBC
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'top'
+  #  value = -0.06
+  #[../]
+  #[./disp_x_slab9]
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'top'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab9]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'top'
+  #  value = 0
+  #[../]
+  #
+  #
+  #[./disp_y_slab10]
+  #  type = DirichletBC
+  #  variable = disp_y
+  #  boundary = 'bottom'
+  #  value = 0.06
+  #[../]
+  #[./disp_x_slab10]
+  #  type = DirichletBC
+  #  variable = disp_x
+  #  boundary = 'bottom'
+  #  value = 0
+  #[../]
+  #[./disp_z_slab10]
+  #  type = DirichletBC
+  #  variable = disp_z
+  #  boundary = 'bottom'
+  #  value = 0
+  #[../]
+
+
+
+
+  #
+  #
+  [./disp_x_slab_f]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'front'
+    value = 0.0
+  [../]
+  [./disp_y_slab_f]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'front'
+    value = 0.0
+  [../]
+  [./disp_z_slab_f]
+    type = DirichletBC
+    variable = disp_z
+    boundary = 'front'
+    value = 0.0
+  [../]
+
+
+
+
+  [./disp_x_slab_b]
+    type = DirichletBC
+    variable = disp_x
+    boundary = 'back'
+    value = 0.0
+  [../]
+  [./disp_y_slab_b]
+    type = DirichletBC
+    variable = disp_y
+    boundary = 'back'
+    value = 0.0
+  [../]
+  [./disp_z_slab_b]
+    type = DirichletBC
+    variable = disp_z
+    boundary = 'back'
+    value = 0.0
+  [../]
+
+  [./potential_cube5]
+    type = DirichletBC
+    boundary = 'front'
+    value = 0.0002
+    variable = potential_int
+  [../]
+  [./potential_cube6]
+    type = DirichletBC
+    boundary = 'back'
+    value = 0.0002
+    variable = potential_int
+  [../]
+[]
+
+[Materials]
+  [./slab_ferroelectric]
+    type=LinearFerroelectricMaterial
+    block = '0'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+    #in GPA. from N. Pandech et al. Ceramic. Internat., times 1e9 to convert to N/m^2
+    # C11 C12 C13 C22 C23 C33 C44 C55 C66
+    #C_ijkl = '3.80e-7 1.5e-7 1.50e-7 3.80e-7 1.50e-7 3.80e-7 1.1e-7 1.1e-7 1.1e-7'
+    #in m^4/C^2. from http://arxiv.org/pdf/1205.5640.pdf
+    # Q11 Q12 Q13 Q22 Q23 Q33 Q44 Q55 Q66
+    #euler_angle_1 = 0.0 #currently will only rotate C_ijkl
+    #euler_angle_2 = 0.0
+    #euler_angle_3 = 0.0
+  [../]
+  [./elasticity_tensor]
+    type = ComputeElasticityTensor
+    block = '0'
+  #  block = '2'
+    fill_method = symmetric9
+  [../]
+  [./strain]
+    type = ComputeSmallStrain
+    block = '0'
+  #  block = '2'
+  [../]
+  [./stress]
+    type = ComputeLinearElasticStress
+    block = '0'
+  #  block = '2'
+  [../]
+  #[./vacuum]
+  #  type=GenericConstantMaterial
+  #  block = '1 3'
+  #[../]
+  ##This seems to be what we want for a simple epitaxial test
+  ## (note that most epitaxial conditions are a strain gradient from the interface)
+  # Is this not seen by the simulation !!!!?!?!
+
+  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
+    block = '0'
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+  [../]
+[]
+
+[Postprocessors]
+  [./bulk_energy]
+   type = BulkEnergy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = bulk_energy
+   block = '0'
+  [../]
+  [./wall_energy]
+   type = WallEnergy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = wall_energy
+   block = '0'
+  [../]
+  [./elastic_energy]
+   type = ElasticEnergy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = elastic_energy
+   block = '0'
+  [../]
+  [./coupled_energy]
+    type = CoupledEnergy
+    execute_on = 'timestep_end'
+    block = '0'
+  [../]
+  [./electrostatic_energy]
+   type = ElectrostaticEnergy
+   execute_on = 'timestep_end'
+   block = '0'
+  # initial_from_file_var = electrostatic_energy
+  [../]
+  #[./total_energy]
+  # type = TotalEnergy
+  # bulk_energy = bulk_energy
+  # wall_energy = wall_energy
+  # bulk_energy_fourth = bulk_energy_fourth
+  # elastic_energy = elastic_energy
+  # coupled_energy = coupled_energy
+  # electrostatic_energy = electrostatic_energy
+  # execute_on = 'timestep_end'
+  ## initial_from_file_var = total_energy
+  #[../]
+  [./total_energy_noelastic]
+   type = TotalEnergyFlow
+   bulk_energy = bulk_energy
+   wall_energy = wall_energy
+   bulk_energy_fourth = bulk_energy_fourth
+   coupled_energy = coupled_energy
+   electrostatic_energy = electrostatic_energy
+   execute_on = 'timestep_end'
+  # initial_from_file_var = total_energy
+  [../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = total_energy_noelastic
+  [../]
+  [./|R(i)|]
+    type = Residual
+  [../]
+  #[./dt]
+  #  type = TimestepSize
+  #[../]
+[]
+
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = 'perc_change <= 8.0e-5'
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol      -pc_type   -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    121                   1e-8     1e-8         gamg        1e-50    1e-50      left  '
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  [./TimeStepper] #iterative DT halfs the time it takes to find a solution? oh well, our time is fake in this simulation anyway...
+    type = IterationAdaptiveDT
+    dt = 0.05 #max seems to be about 1.0 but could depend on refinement...
+    #there is also a cutback on this for 0.2*optimal and yes i think it does count the 0th one.
+    #iteration_window = 10
+    optimal_iterations = 10 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration? no the cutting has to do with the iteration ratio
+    growth_factor = 1.4
+    linear_iteration_ratio = 1000
+    #linear_iteration_ratio = 1000
+    cutback_factor =  0.92
+  [../]
+  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  dtmin = 1e-13
+  dtmax = 0.45
+[]
+
+
+[Outputs]
+  print_linear_residuals = true
+  print_perf_log = true
+  [./out]
+    type = Exodus
+    file_base = out_PbTiO3_slab_002
+    output_initial = true
+    elemental_as_nodal = true
+    interval = 5
+  [../]
+[]

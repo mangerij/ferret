@@ -1,5 +1,5 @@
 [Mesh]
- file = embedded_single_sphere_8.e
+ file = 80_single_sphere_6.e
 []
 
 [GlobalParams]
@@ -186,9 +186,17 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
+  [./windingnumber]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 [AuxKernels]
+  [./WindingnumberDensity]
+    type = WindingNumberDensity
+    variable = windingnumber
+  [../]
   [./matl_s11]
     type = RankTwoAux
     rank_two_tensor = stress
@@ -609,7 +617,7 @@
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = 'perc_change <= 4.0e-5'
+    expression = 'perc_change <= 3.0e-5'
   [../]
 []
 
@@ -647,9 +655,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTOSTOcomposite_single8_vac
+    file_base = out_PTOSTOcomposite_vac6_test
 #    output_initial = true
     elemental_as_nodal = true
-    interval = 1
+    interval = 2
   [../]
 []

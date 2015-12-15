@@ -1,5 +1,5 @@
 [Mesh]
- file = embedded_single_sphere_8.e
+ file = embedded_single_sphere_2.e
 []
 
 [GlobalParams]
@@ -647,7 +647,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTOSTOcomposite_single8_vac
+    file_base = out_PTOSTOcomposite_single2_vac
 #    output_initial = true
     elemental_as_nodal = true
     interval = 1

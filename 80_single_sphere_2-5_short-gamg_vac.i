@@ -1,5 +1,5 @@
 [Mesh]
- file = embedded_single_sphere_8.e
+ file = 80_single_sphere_2-5.e
 []
 
 [GlobalParams]
@@ -186,9 +186,17 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
+  [./windingnumber]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 [AuxKernels]
+  [./WindingnumberDensity]
+    type = WindingNumberDensity
+    variable = windingnumber
+  [../]
   [./matl_s11]
     type = RankTwoAux
     rank_two_tensor = stress
@@ -609,7 +617,7 @@
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = 'perc_change <= 4.0e-5'
+    expression = 'perc_change <= 3.0e-5'
   [../]
 []
 
@@ -618,8 +626,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left '
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type     -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121              1e-8	     1e-8     gamg      1e-50    1e-50	  left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type    -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    121            1e-8	 1e-10      gamg        7   ilu          1e-50    1e-50	  left        '
   [../]
 []
 
@@ -647,9 +655,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTOSTOcomposite_single8_vac
+    file_base = out_PTOSTOcomposite_single2-5_vac
 #    output_initial = true
     elemental_as_nodal = true
-    interval = 1
+    interval = 2
   [../]
 []

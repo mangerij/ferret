@@ -1,5 +1,5 @@
 [Mesh]
- file = embedded_single_sphere_8.e
+ file = embedded_single_sphere_29.e
 []
 
 [GlobalParams]
@@ -87,34 +87,32 @@
   [./disp_x]
     order = FIRST
     family = LAGRANGE
-    block = '1'
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
       seed = 1
     [../]
-    block = '1'
+    block = '1 2'
     #initial_from_file_var = disp_x
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
-    block = '1'
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
       seed = 1
     [../]
-    block = '1'
+    block = '1 2'
     #scaling = 1e6
     #initial_from_file_var = disp_y
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
-    block = '1'
+    block = '1 2'
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -186,15 +184,24 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
+  [./curlmag]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 [AuxKernels]
+  [./curlP]
+    type = CurlP
+    variable = curlmag
+    execute_on = 'timestep_end'
+  [../]
   [./matl_s11]
     type = RankTwoAux
     rank_two_tensor = stress
     index_i = 0
     index_j = 0
-    block = '1'
+    block = '1 2'
     variable = stress_xx
     execute_on = 'timestep_end'
   [../]
@@ -203,7 +210,7 @@
     rank_two_tensor = stress
     index_i = 0
     index_j = 1
-    block = '1'
+    block = '1 2'
     variable = stress_xy
     execute_on = 'timestep_end'
   [../]
@@ -212,7 +219,7 @@
     rank_two_tensor = stress
     index_i = 0
     index_j = 2
-    block = '1'
+    block = '1 2'
     variable = stress_xz
     execute_on = 'timestep_end'
   [../]
@@ -221,7 +228,7 @@
     rank_two_tensor = stress
     index_i = 1
     index_j = 1
-    block = '1'
+    block = '1 2'
     variable = stress_yy
     execute_on = 'timestep_end'
   [../]
@@ -230,7 +237,7 @@
     rank_two_tensor = stress
     index_i = 1
     index_j = 2
-    block = '1'
+    block = '1 2'
     variable = stress_yz
     execute_on = 'timestep_end'
   [../]
@@ -239,7 +246,7 @@
     rank_two_tensor = stress
     index_i = 2
     index_j = 2
-    block = '1'
+    block = '1 2'
     variable = stress_zz
     execute_on = 'timestep_end'
   [../]
@@ -248,7 +255,7 @@
     rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 0
-    block = '1'
+    block = '1 2'
     variable = elastic_strain_xx
     execute_on = 'timestep_end'
   [../]
@@ -257,7 +264,7 @@
     rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 1
-    block = '1'
+    block = '1 2'
     variable = elastic_strain_xy
     execute_on = 'timestep_end'
   [../]
@@ -266,7 +273,7 @@
     rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 2
-    block = '1'
+    block = '1 2'
     variable = elastic_strain_xz
     execute_on = 'timestep_end'
   [../]
@@ -275,7 +282,7 @@
     rank_two_tensor = elastic_strain
     index_i = 1
     index_j = 1
-    block = '1'
+    block = '1 2'
     variable = elastic_strain_yy
     execute_on = 'timestep_end'
   [../]
@@ -284,7 +291,7 @@
     rank_two_tensor = elastic_strain
     index_i = 1
     index_j = 2
-    block = '1'
+    block = '1 2'
     variable = elastic_strain_yz
     execute_on = 'timestep_end'
   [../]
@@ -293,7 +300,7 @@
     rank_two_tensor = elastic_strain
     index_i = 2
     index_j = 2
-    block = '1'
+    block = '1 2'
     variable = elastic_strain_zz
     execute_on = 'timestep_end'
   [../]
@@ -302,7 +309,6 @@
 [Kernels]
   #Elastic problem
   [./TensorMechanics]
-    block = '1'
      #This is an action block
   [../]
   #Bulk energy density
@@ -384,11 +390,11 @@
      block = '1'
      permittivity = 0.5843763
   [../]
-  [./vac_E_int]
+  [./DIE_E_int]
      type=Electrostatics
      variable = potential_int
      block = '2'
-     permittivity = 0.5843763
+     permittivity = 175.31289
   [../]
   [./polar_electric_px]
      type=PolarElectricPStrong
@@ -468,13 +474,13 @@
     type = DirichletBC
     variable = potential_int
     boundary = '1'
-    value = 0.0
+    value = 0.0001
   [../]
   [./potential_int_2]
     type = DirichletBC
     variable = potential_int
     boundary = '2'
-    value = 0.0
+    value = 0.0001
   [../]
 []
 
@@ -495,16 +501,18 @@
     #euler_angle_2 = 0.0
     #euler_angle_3 = 0.0
   [../]
-  #[./STO_dielectric]
-  #  type=LinearElasticMaterial
-  #  block = '2'
-  #  disp_x = disp_x
-  #  disp_y = disp_y
-  #  disp_z = disp_z
-  #  #in GPA. from Materials Project.org -- chose P3mm form?
-  #  # C11 C12 C13 C22 C23 C33 C44 C55 C66
-  #  C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
-  #[../]
+  [./STO_dielectric]
+    type=LinearElasticMaterial
+    block = '2'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
+    #in GPA. from Materials Project.org -- chose P3mm form?
+    # C11 C12 C13 C22 C23 C33 C44 C55 C66
+    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
+
+
+  [../]
   [./elasticity_tensor1]
     type = ComputeElasticityTensor
     block = '1'
@@ -521,22 +529,18 @@
     block = '1'
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
-  #[./elasticity_tensor2]
-  #  type = ComputeElasticityTensor
-  #  block = '2'
-  #  fill_method = symmetric9
-  #  C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
-  #[../]
-  #[./strain2]
-  #  type = ComputeSmallStrain
-  #  block = '2'
-  #[../]
-  #[./stress2]
-  #  type = ComputeLinearElasticStress
-  #  block = '2'
-  #[../]
-  [./vacuum]
-    type = GenericConstantMaterial
+  [./elasticity_tensor2]
+    type = ComputeElasticityTensor
+    block = '2'
+    fill_method = symmetric9
+    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
+  [../]
+  [./strain2]
+    type = ComputeSmallStrain
+    block = '2'
+  [../]
+  [./stress2]
+    type = ComputeLinearElasticStress
     block = '2'
   [../]
 []
@@ -559,7 +563,7 @@
    type = ElasticEnergy
    execute_on = 'timestep_end'
   # initial_from_file_var = elastic_energy
-   block = '1'
+   block = '1 2'
   [../]
   [./coupled_energy]
     type = CoupledEnergy
@@ -618,8 +622,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left '
-    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type     -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
-    petsc_options_value = '    121              1e-8	     1e-8     gamg      1e-50    1e-50	  left        '
+    petsc_options_iname = '-ksp_gmres_restart -snes_rtol -ksp_rtol -pc_type   -pc_asm_overlap -sub_pc_type    -sub_pc_factor_zeropivot -pc_factor_zeropivot -pc_side '
+    petsc_options_value = '    121            1e-8	 1e-12      gamg        7   ilu          1e-50    1e-50	  left        '
   [../]
 []
 
@@ -647,9 +651,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTOSTOcomposite_single8_vac
+    file_base = out_PTOSTOcomposite_single_29
 #    output_initial = true
     elemental_as_nodal = true
-    interval = 1
+    interval = 12
   [../]
 []
