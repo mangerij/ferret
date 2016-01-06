@@ -4,7 +4,7 @@ It might be a good idea to learn a few things about MOOSE, too.
 
 Generally, you will clone Ferret this way:
 ```
-git clone git@bitbucket.org/mesoscience/ferret.git 
+git clone https://user@bitbucket.org/mesoscience/ferret.git
 ```
 If you have write permissions, cloning this way will enable you to push to the repo.
 Generally this means that you are a member of the `mesoscience` BitBucket team.
@@ -33,5 +33,5 @@ make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 
 ### Who do I talk to? ###
 
-* Email Dmitry Karpeyev (karpeev@uchicago.edu) for help with Ferret
+* Email John Mangeri (john.mangeri@uconn.edu) for help with Ferret
 * MOOSE is at http://www.mooseframework.org
