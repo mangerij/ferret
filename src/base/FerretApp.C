@@ -7,7 +7,7 @@
 #include "MooseSyntax.h"
 
 //Actions
-#include "TensorMechanicsActionScaled.h" //not sure the tensormechanics action works right now
+#include "TensorMechanicsActionScaled.h"
 
 //AuxKernels
 #include "PolarizationVortexAux.h"
@@ -26,7 +26,7 @@
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
 #include "ScreenAux.h"
-#include "PolarizationSurfaceCharge.h" //?
+#include "PolarizationSurfaceCharge.h" // What was this?
 #include "WindingNumberDensity.h"
 
 //not sure what these are
@@ -52,8 +52,8 @@
 //Kernels
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
-#include "WallEnergyDerivative.h" //can be used for PbTiO3 and BaTiO3
-#include "PZTWallEnergyDerivative.h" //Implement a cheaper wall energy for PZT
+#include "WallEnergyDerivative.h" 
+#include "PZTWallEnergyDerivative.h" 
 #include "BulkEnergyDerivativeSixth.h"
 #include "BulkEnergyDerivativeFourth.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
@@ -79,20 +79,8 @@
 #include "BulkEnergy.h"
 #include "BulkEnergyFourth.h"
 #include "ElectrostaticEnergy.h"
-#include "TotalEnergyGradient.h" //deprecated
-#include "TotalEnergyGradientL2.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
-
-//Time steppers
-#include "TransientHalf.h" //these are all junk
-
-//custom functions
-//#include "SinFunc.h"
-//#include "RandomFunc.h"
-//#include "SphereIC.h"
-//#include "SphereToCartFunc.h"
-
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -177,7 +165,6 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(SurfaceChargeAux);
   registerAux(ScreenAux);
   registerAux(WindingNumberDensity);
-  //registerPostprocessor(VortexSurfaceEnergy);
 
   //Kernels
   registerKernel(BulkEnergyDerivativeSixth);
@@ -203,9 +190,6 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyFlow);
-  registerPostprocessor(TotalEnergyGradient);
-  registerPostprocessor(TotalEnergyGradientL2);
- // registerPostprocessor(PercentChangePostprocessor); //added to MOOSE (deprecated)
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(CoupledEnergy);
 
@@ -218,15 +202,6 @@ FerretApp::registerObjects(Factory & factory)
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
   registerInitialCondition(AdhocConstIC);
-
-  //Functions
-//  registerFunction(SinFunc);
-//  registerFunction(RandomFunc);
-//  registerFunction(SphereIC);
-//  registerFunction(SphereToCartFunc);
-
-  //TimeStepper
-  registerTimeStepper(TransientHalf);
 
 #undef registerObject
 #define registerObject(name) factory.regLegacy<name>(stringifyName(name))

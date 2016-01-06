@@ -4,7 +4,7 @@
  * @modified J. Mangeri <mangerij@anl.gov>
  * @date   Jun. 15 2015
  * @brief  LinearFerroelectricMaterial consider linear relation between linear elastic Tensor and electrostrictive tensor
- *       i.e. q_ijkl=2*C_ijmm * Q_mnkl
+ *       i.e. q_ijkl = 2 * C_ijmm * Q_mnkl
  */
 
 
@@ -42,8 +42,8 @@ LinearFerroelectricMaterial::LinearFerroelectricMaterial(const InputParameters &
 void
 LinearFerroelectricMaterial::computeQpElectrostrictiveCoefficients()
 {
-  // eR type: RealTensorValue
-//  RotationTensor eR(_Electrostrictive_Euler_angles);
+// eR type: RealTensorValue
+// RotationTensor eR(_Electrostrictive_Euler_angles);
 
   _electrostrictivecoefficients[_qp] = _Qmnkl;
 //  _electrostrictivecoefficients[_qp].rotate(eR) //construct rotated Q_mnkl
