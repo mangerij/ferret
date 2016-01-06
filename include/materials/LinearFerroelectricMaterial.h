@@ -11,6 +11,7 @@
 
 #include "LinearElasticMaterial.h"
 #include "ElectrostrictiveTensorR4.h"
+#include "libmesh/quadrature.h"
 //#include "RotationTensor.h"
 
 //Forward Declarations

@@ -17,6 +17,8 @@
 #define TIMEDERIVATIVE_SCALED_H
 
 #include "TimeKernel.h"
+#include "libmesh/quadrature.h"
+#include "Assembly.h"
 
 // Forward Declaration
 class TimeDerivativeScaled;

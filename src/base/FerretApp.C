@@ -4,10 +4,10 @@
 #include "Factory.h"
 #include "AppFactory.h"
 #include "ModulesApp.h"
+#include "MooseSyntax.h"
 
 //Actions
 #include "TensorMechanicsActionScaled.h" //not sure the tensormechanics action works right now
-#include "PolarizationVortexAuxAction.h"
 
 //AuxKernels
 #include "PolarizationVortexAux.h"
@@ -238,10 +238,6 @@ FerretApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 
 #undef registerAction
 #define registerAction(tplt, action) action_factory.reg<tplt>(stringifyName(tplt), action)
-
-
-  syntax.registerActionSyntax("PolarizationVortexAuxAction","PolarizationVortexAux");
-  registerAction(PolarizationVortexAuxAction, "add_kernel");
 
   syntax.registerActionSyntax("TensorMechanicsActionScaled", "Kernels/TensorMechanicsScaled");
   registerAction(TensorMechanicsActionScaled, "add_kernel");

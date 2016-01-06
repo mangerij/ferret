@@ -2,15 +2,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 512
-  ny = 512
-  nz = 4
-  xmin = -256
-  xmax = 256
-  ymin = -256
-  ymax = 256
-  zmin = -2
-  zmax = 2
+  nx = 10
+  ny = 10
+  nz = 10
+  xmin = -5
+  xmax = 5
+  ymin = -5
+  ymax = 5
+  zmin = -5
+  zmax = 5
   elem_type = HEX8
 []
 
@@ -19,6 +19,7 @@
 
 # Use the Srwolitz paper N. Ng et al. / Acta Materialia 60 (2012) 3632–3642
 # for PZT.
+
   len_scale = 1.0
   alpha1 = -0.1484 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 300 K)
   alpha11 = -0.0305
@@ -26,7 +27,11 @@
   alpha12 = 0.632
   alpha112 = 0.96839
   alpha123 = -4.901
-  G110 = 0.1483
+  G110 = 0.28
+  G11/G110 = 1.0
+  G12/G110 = 0
+  G44/G110 = 0.5
+  G44P/G110 = 0.5
   Q_mnkl = '0.08142 -0.02446 -0.02446 0.08142 -0.02446 0.08142 0.06417 0.06417 0.06417'
   permittivity = 0.5843763
   polar_x = polar_x
@@ -229,19 +234,16 @@
   [../]
   ##Time dependence
   [./polar_x_time]
-     type=TimeDerivativeScaled
+     type=TimeDerivative
      variable=polar_x
-    time_scale = 1.0
   [../]
   [./polar_y_time]
-     type=TimeDerivativeScaled
+     type=TimeDerivative
      variable=polar_y
-    time_scale = 1.0
   [../]
   [./polar_z_time]
-     type=TimeDerivativeScaled
+     type=TimeDerivative
      variable = polar_z
-    time_scale = 1.0
   [../]
 []
 
@@ -357,7 +359,7 @@
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = 'perc_change <= 4.0e-5'
+    expression = 'perc_change <= 5.0e-5'
   [../]
 []
 

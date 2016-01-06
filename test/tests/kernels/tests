@@ -1,7 +1,0 @@
-[Tests]
-  [./wall6]
-    type = 'Exodiff'
-    input = 'wall6.i'
-    exodiff = 'out_wall6.e'
-  [../]
-[]

@@ -1,0 +1,7 @@
+[Tests]
+  [./bulk]
+    type = 'Exodiff'
+    input = 'bulk_test.i'
+    exodiff = 'out_bulk_test.e'
+  [../]
+[]

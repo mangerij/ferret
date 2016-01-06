@@ -17,6 +17,7 @@
 #include "IntegratedBC.h"
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
+#include "MooseMesh.h"
 #include "RotationTensor.h"
 //#include "TensorMechanicsMaterial.h"
 //LibMesh includes
