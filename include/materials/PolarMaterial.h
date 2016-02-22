@@ -34,9 +34,9 @@ private:
   MaterialProperty<Real> & _G11, & _G12, & _G44, & _G44P;
   const Real _alpha1_i,_alpha11_i, _alpha12_i,_alpha111_i,_alpha112_i,_alpha123_i;
   const Real _G110_i,_G11_i, _G12_i, _G44_i, _G44P_i;
-  VariableValue & _polar_x_val;
-  VariableValue & _polar_y_val;
-  VariableValue & _polar_z_val;
+  const VariableValue & _polar_x_val;
+  const VariableValue & _polar_y_val;
+  const VariableValue & _polar_z_val;
   VariableGradient & _polar_x_grad;
   VariableGradient & _polar_y_grad;
   VariableGradient & _polar_z_grad;
