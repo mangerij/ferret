@@ -23,9 +23,9 @@ public:
 protected:
   virtual Real computeQpResidual();
 
-  VariableValue& _P_x;
-  VariableValue& _P_y;
-  VariableValue& _P_z;
+  const VariableValue & _P_x;
+  const VariableValue & _P_y;
+  const VariableValue & _P_z;
   bool _J_polarization;
 };
 
