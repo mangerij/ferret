@@ -37,9 +37,9 @@ private:
   const VariableValue & _polar_x_val;
   const VariableValue & _polar_y_val;
   const VariableValue & _polar_z_val;
-  VariableGradient & _polar_x_grad;
-  VariableGradient & _polar_y_grad;
-  VariableGradient & _polar_z_grad;
+  const VariableGradient & _polar_x_grad;
+  const VariableGradient & _polar_y_grad;
+  const VariableGradient & _polar_z_grad;
 };
 
 #endif //POLARMATERIAL_H

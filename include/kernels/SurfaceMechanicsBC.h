@@ -65,9 +65,9 @@ protected:
   RealVectorValue _tangent_1;
   RealVectorValue _tangent_2;
 
-  VariableGradient & _grad_disp_x;
-  VariableGradient & _grad_disp_y;
-  VariableGradient & _grad_disp_z;
+  const VariableGradient & _grad_disp_x;
+  const VariableGradient & _grad_disp_y;
+  const VariableGradient & _grad_disp_z;
 
   RankTwoTensor _projection, _surface_strain, _surface_stress;
   RankTwoTensor _tp11, _tp22;
