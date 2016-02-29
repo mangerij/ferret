@@ -35,7 +35,7 @@ HydrostaticDirichletBC::computeQpResidual()
         _center(1)=_center_y;
         _center(2)=_center_z;
 	Point normal_direction=(_center-*_current_node);
-	Point normal=normal_direction/normal_direction.size();
+	Point normal=normal_direction/normal_direction.norm();
 
   return _u[_qp]+normal(_component)*_displacement; //be careful with the sign
   //  return 0.0;

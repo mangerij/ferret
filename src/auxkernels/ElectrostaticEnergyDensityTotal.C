@@ -31,5 +31,5 @@ ElectrostaticEnergyDensityTotal::ElectrostaticEnergyDensityTotal(const InputPara
 Real
 ElectrostaticEnergyDensityTotal::computeValue()
 {
-  return _permittivity*_potential_grad[_qp].size_sq()-_potential_grad[_qp](0)*_polar_x[_qp]- _potential_grad[_qp](1)*_polar_y[_qp]- _potential_grad[_qp](2)*_polar_z[_qp];
+  return _permittivity*_potential_grad[_qp].norm_sq()-_potential_grad[_qp](0)*_polar_x[_qp]- _potential_grad[_qp](1)*_polar_y[_qp]- _potential_grad[_qp](2)*_polar_z[_qp];
 }
