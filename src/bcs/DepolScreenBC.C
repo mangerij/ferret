@@ -1,5 +1,5 @@
 /* Implement a simple screening of the depolarizing field.
-/* More complicated methods will come later. */
+   More complicated methods will come later. */
 
 #include "DepolScreenBC.h"
 

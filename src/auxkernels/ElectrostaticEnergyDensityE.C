@@ -25,5 +25,5 @@ ElectrostaticEnergyDensityE::ElectrostaticEnergyDensityE(const InputParameters &
 Real
 ElectrostaticEnergyDensityE::computeValue()
 {
-  return (_potential_grad[_qp].size_sq())*_len_scale;
+  return (_potential_grad[_qp].norm_sq())*_len_scale;
 }
