@@ -8,17 +8,33 @@
  */
 #ifndef ELECTROSTRICTIVETENSORR4_H
 #define ELECTROSTRICTIVETENSORR4_H
+
 #include "RankFourTensor.h"
 #include "ElasticityTensorR4.h"
 #include "ElectrostrictiveCoefficientR4.h"
-class ElectrostrictiveTensorR4 : public RankFourTensor
 
+class ElectrostrictiveTensorR4 : public RankFourTensor
 {
 public:
+  void computeProduct(const ElasticityTensorR4 & Cijkl, const ElasticityTensorR4 & Qmnkl);
 
-  void computeProduct(const ElasticityTensorR4& Cijkl, const ElasticityTensorR4& Qmnkl);
-  Real electrostrictiveProduct(unsigned int i,const RealVectorValue& v, unsigned int k, const RealVectorValue& w)const; //Sum over (j,l) q_ijkl*v(j)*w(l)
-  Real electrostrictiveProduct(unsigned int i, const RealVectorValue& v,unsigned int k, const unsigned int l)const; //Sum over l q_ijkl*v(j)
+  /// Sum over (j,l) q_ijkl*v(j)*w(l)
+  Real electrostrictiveProduct(unsigned int i,const RealVectorValue & v, unsigned int k, const RealVectorValue & w) const;
+
+  /// Sum over l q_ijkl*v(j)
+  Real electrostrictiveProduct(unsigned int i, const RealVectorValue & v,unsigned int k, const unsigned int l) const;
+
+  template<class T>
+  friend void dataStore(std::ostream &, T &, void *);
+
+  template<class T>
+  friend void dataLoad(std::istream &, T &, void *);
 };
+
+template<>
+void dataStore(std::ostream & stream, ElectrostrictiveTensorR4 & ert, void * context);
+
+template<>
+void dataLoad(std::istream & stream, ElectrostrictiveTensorR4 & ert, void * context);
 
 #endif //ELECTROSTRICTIVETENSORR4_H
