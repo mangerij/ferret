@@ -25,6 +25,7 @@
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
+#include "ChernSimonsDensity.h"
 #include "ScreenAux.h"
 #include "PolarizationSurfaceCharge.h" // What was this?
 #include "WindingNumberDensity.h"
@@ -159,6 +160,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PyFieldAux);
   registerAux(PzFieldAux);
   registerAux(BoundCharge);
+  registerAux(ChernSimonsDensity);
   registerAux(CurlP);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
