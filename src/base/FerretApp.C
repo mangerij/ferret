@@ -48,6 +48,7 @@
 //Initial Conditions
 #include "PerturbedIC.h"
 #include "SinIC.h"
+#include "FluctuationsIC.h"
 #include "AdhocConstIC.h"
 
 //Kernels
@@ -78,6 +79,7 @@
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
 #include "BulkEnergy.h"
+#include "ChernSimonsNumber.h"
 #include "BulkEnergyFourth.h"
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
@@ -187,7 +189,8 @@ FerretApp::registerObjects(Factory & factory)
   //Postprocessors
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
-  registerPostprocessor(PZTWallEnergy);
+  registerPostprocessor(PZTWallEnergy); //note this is deprecated
+  registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(BulkEnergyFourth);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
@@ -196,13 +199,14 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(CoupledEnergy);
 
   //Materials
-  //registerMaterial(PolarMaterial); //no idea what this is; it was throwing an error on the constructor change compile so we'll deactivate for now.
+  //registerMaterial(PolarMaterial); //no idea what this is; it was throwing an error on the constructor change compile so we'll deactivate for now. 
 
   registerMaterial(LinearFerroelectricMaterial);
 
   //InitialConditions
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
+  registerInitialCondition(FluctuationsIC);
   registerInitialCondition(AdhocConstIC);
 
 #undef registerObject
