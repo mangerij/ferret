@@ -9,6 +9,18 @@
 
 #include "ElectrostrictiveTensorR4.h"
 
+template<>
+void dataStore(std::ostream & stream, ElectrostrictiveTensorR4 & ert, void * context)
+{
+  dataStore<RankFourTensor>(stream, ert, context);
+}
+
+template<>
+void dataLoad(std::istream & stream, ElectrostrictiveTensorR4 & ert, void * context)
+{
+  dataLoad<RankFourTensor>(stream, ert, context);
+}
+
 void
 ElectrostrictiveTensorR4::computeProduct(const ElasticityTensorR4 & Cijkl, const ElasticityTensorR4 & Qmnkl)
 {
@@ -53,9 +65,8 @@ ElectrostrictiveTensorR4::computeProduct(const ElasticityTensorR4 & Cijkl, const
     // Moose::out << "\n Complete.";
 }
 
-
-
-Real ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w) const
+Real
+ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w) const
 {
   //Sum over (j,l) q_ijkl * v(j) * w(l) with k = _component
   Real sum = 0.0;
@@ -67,7 +78,8 @@ Real ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const Rea
   return sum;
 }
 
-Real ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const unsigned int l) const
+Real
+ElectrostrictiveTensorR4::electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const unsigned int l) const
 {
   //Sum over j q_ijkl * v(j) where k and l = _component (used for DiagJacobian)
   Real sum = 0.0;
