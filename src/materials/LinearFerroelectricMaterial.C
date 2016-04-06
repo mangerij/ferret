@@ -25,7 +25,7 @@ InputParameters validParams<LinearFerroelectricMaterial>()
 LinearFerroelectricMaterial::LinearFerroelectricMaterial(const InputParameters & parameters) :
 
   LinearElasticMaterial(parameters),
-  _electrostrictivecoefficients(declareProperty<ElasticityTensorR4>("electrostrictivecoefficients")),
+  _electrostrictivecoefficients(declareProperty<RankFourTensor>("electrostrictivecoefficients")),
   _electrostrictive_tensor(declareProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
   _fill_method((RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
   _Qmnkl_vector(getParam<std::vector<Real> >("Q_mnkl")),

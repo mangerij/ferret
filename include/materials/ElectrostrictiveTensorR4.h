@@ -10,13 +10,12 @@
 #define ELECTROSTRICTIVETENSORR4_H
 
 #include "RankFourTensor.h"
-#include "ElasticityTensorR4.h"
 #include "ElectrostrictiveCoefficientR4.h"
 
 class ElectrostrictiveTensorR4 : public RankFourTensor
 {
 public:
-  void computeProduct(const ElasticityTensorR4 & Cijkl, const ElasticityTensorR4 & Qmnkl);
+  void computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl);
 
   /// Sum over (j,l) q_ijkl*v(j)*w(l)
   Real electrostrictiveProduct(unsigned int i,const RealVectorValue & v, unsigned int k, const RealVectorValue & w) const;
