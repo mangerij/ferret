@@ -22,7 +22,7 @@ void dataLoad(std::istream & stream, ElectrostrictiveTensorR4 & ert, void * cont
 }
 
 void
-ElectrostrictiveTensorR4::computeProduct(const ElasticityTensorR4 & Cijkl, const ElasticityTensorR4 & Qmnkl)
+ElectrostrictiveTensorR4::computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl)
 {
   // Moose::out << "\n Printing Cijkl entries:"; //keep for debugging purposes
   // for(unsigned int a = 0; a < 3; ++a)

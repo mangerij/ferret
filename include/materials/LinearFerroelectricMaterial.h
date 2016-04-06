@@ -30,7 +30,7 @@ protected:
   virtual void computeProperties();
 //  virtual void computeValue();
 
-  MaterialProperty<ElasticityTensorR4> & _electrostrictivecoefficients;
+  MaterialProperty<RankFourTensor> & _electrostrictivecoefficients;
   MaterialProperty<ElectrostrictiveTensorR4> & _electrostrictive_tensor;
 
   /// determines the translation from C_ijkl to the Rank-4 tensor
@@ -42,7 +42,7 @@ protected:
 //  RealVectorValue _Electrostrictive_Euler_angles;
 
   /// Individual material information
-  ElasticityTensorR4 _Qmnkl; //electrostrictive coefficients will set them as elasticity components right now
+  RankFourTensor _Qmnkl; //electrostrictive coefficients will set them as elasticity components right now
   ElectrostrictiveTensorR4 _qijkl; // q_ijkl = 2 * C_ijmn * Q_mnkl
 
 };
