@@ -44,6 +44,8 @@
 #include "HydrostaticBC.h"
 #include "HydrostaticDirichletBC.h"
 #include "DepolScreenBC.h"
+#include "OpenCircuitBC.h"
+
 
 //Initial Conditions
 #include "PerturbedIC.h"
@@ -143,6 +145,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(HydrostaticDirichletBC);
   registerBoundaryCondition(PolarizationSurfaceCharge);
   registerBoundaryCondition(DepolScreenBC);
+  registerBoundaryCondition(OpenCircuitBC);
 
   //AuxKernels:
 
