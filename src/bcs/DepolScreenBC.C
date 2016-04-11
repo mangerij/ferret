@@ -20,8 +20,7 @@ DepolScreenBC::DepolScreenBC(const InputParameters & parameters) :
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
   _value(getParam<Real>("value"))
-{
-}
+{}
 
 Real
 DepolScreenBC::computeQpResidual()

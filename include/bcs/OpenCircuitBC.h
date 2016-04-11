@@ -1,5 +1,5 @@
 /****************************************************************/
-/* Hydrostatics BC:                                             */
+/* Open Circuit BC:                                             */
 /*     This BC is intended to implement                         */
 /*     P + \epsilon * _grad\phi = 0 at a boundary               */
 /****************************************************************/
@@ -33,4 +33,4 @@ private:
   const VariableValue & _polar_z;
 };
 
-#endif
+#endif /* OPENCIRCUITBC_H */
