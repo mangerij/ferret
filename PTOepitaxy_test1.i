@@ -563,22 +563,22 @@
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
-  [./PTO]
-    type=LinearElasticMaterial
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-    block = '1'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-  [../]
-  [./STO]
-    type=LinearElasticMaterial
-    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
-    block = '2'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-  [../]
+ # [./PTO]
+ #   type=LinearElasticMaterial
+ #   C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+ #   block = '1'
+ #   disp_x = disp_x
+ #   disp_y = disp_y
+ #   disp_z = disp_z
+ # [../]
+ # [./STO]
+ #   type=LinearElasticMaterial
+ #   C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
+ #   block = '2'
+ #   disp_x = disp_x
+ #   disp_y = disp_y
+ #   disp_z = disp_z
+ # [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor

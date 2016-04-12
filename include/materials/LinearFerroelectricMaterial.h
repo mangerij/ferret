@@ -28,6 +28,7 @@ public:
 protected:
   virtual void computeQpStrain();
   virtual void computeQpStress();
+  virtual RankTwoTensor computeStressFreeStrain();
   virtual void computeQpElectrostrictiveCoefficients();
   virtual void computeProperties();
 //  virtual void computeValue();
@@ -44,9 +45,17 @@ protected:
 //  RealVectorValue _Electrostrictive_Euler_angles;
 
   /// Individual material information
-  RankFourTensor _Qmnkl; //electrostrictive coefficients will set them as elasticity components right now
+  RankFourTensor _Qmnkl; //electrostrictive coefficientsw
   ElectrostrictiveTensorR4 _qijkl; // q_ijkl = 2 * C_ijmn * Q_mnkl
 
+private:
+  const VariableValue & _T;
+
+  const Real _T0;
+  Real _thermal_expansion_coeff;
+
+  std::vector<Real> _applied_strain_vector;
+  RankTwoTensor _applied_strain_tensor;
 };
 
 
