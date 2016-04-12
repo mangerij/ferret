@@ -66,8 +66,8 @@
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
 #include "FerroelectricCouplingP.h"
-#include "FerroelectricCouplingU.h"
-#include "FerroelectricCouplingX.h"
+//#include "FerroelectricCouplingU.h" removed, but we can leave this here as a testament to mediocrity
+//#include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 
 //Materials
@@ -181,8 +181,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PZTWallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
-  registerKernel(FerroelectricCouplingU);
-  registerKernel(FerroelectricCouplingX);
+ // registerKernel(FerroelectricCouplingU);
+ // registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
