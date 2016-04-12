@@ -13,7 +13,7 @@
 template<>
 InputParameters validParams<LinearFerroelectricMaterial>()
 {
-  InputParameters params = validParams<LinearElasticMaterial>();
+  InputParameters params = validParams<TensorMechanicsMaterial>();
   params.addRequiredParam<std::vector<Real> >("Q_mnkl", "electrostrictive coefficients(vector)");
   params.addParam<MooseEnum>("fill_method", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");
   // params.addParam<Real>("electrostrictive_euler_angle_1", 0.0, "Euler angle in direction 1 for electrostrictive tensor");
@@ -24,7 +24,7 @@ InputParameters validParams<LinearFerroelectricMaterial>()
 
 LinearFerroelectricMaterial::LinearFerroelectricMaterial(const InputParameters & parameters) :
 
-  LinearElasticMaterial(parameters),
+  TensorMechanicsMaterial(parameters),
   _electrostrictivecoefficients(declareProperty<RankFourTensor>("electrostrictivecoefficients")),
   _electrostrictive_tensor(declareProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
   _fill_method((RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),

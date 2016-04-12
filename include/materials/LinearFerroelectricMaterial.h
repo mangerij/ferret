@@ -9,7 +9,7 @@
 #ifndef LINEARFERROELECTRICMATERIAL_H
 #define LINEARFERROELECTRICMATERIAL_H
 
-#include "LinearElasticMaterial.h"
+#include "TensorMechanicsMaterial.h"
 #include "ElectrostrictiveTensorR4.h"
 #include "libmesh/quadrature.h"
 //#include "RotationTensor.h"
@@ -20,12 +20,14 @@ class LinearFerroelectricMaterial;
 template<>
 InputParameters validParams<LinearFerroelectricMaterial>();
 
-class LinearFerroelectricMaterial : public LinearElasticMaterial
+class LinearFerroelectricMaterial : public TensorMechanicsMaterial
 {
 public:
   LinearFerroelectricMaterial(const InputParameters & parameters);
 
 protected:
+  virtual void computeQpStrain();
+  virtual void computeQpStress();
   virtual void computeQpElectrostrictiveCoefficients();
   virtual void computeProperties();
 //  virtual void computeValue();

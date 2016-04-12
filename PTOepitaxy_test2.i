@@ -444,131 +444,131 @@
     boundary = '7'
   [../]
 
- [./Periodic]
+  [./Periodic]
     [./TB_disp_x_pbc]
       variable = disp_x
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
     [./TB_disp_y_pbc]
       variable = disp_y
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
     [./TB_disp_z_pbc]
       variable = disp_z
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
 
     [./TB_polar_x_pbc]
       variable = polar_x
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
   #
     [./TBsub_disp_x_pbc]
       variable = disp_x
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
     [./TBsub_disp_y_pbc]
       variable = disp_y
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
     [./TBsub_disp_z_pbc]
       variable = disp_z
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 5 0'
     [../]
 
     [./RL_disp_x_pbc]
       variable = disp_x
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
     [./RL_disp_y_pbc]
       variable = disp_y
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
     [./RL_disp_z_pbc]
       variable = disp_z
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = '4'
       secondary = '6'
-      translation = '45 0 0'
+      translation = '5 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
     [./RL_potential_int_pbc]
       variable = potential_int
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
 
     [./RLsub_disp_x_pbc]
       variable = disp_x
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
     [./RLsub_disp_y_pbc]
       variable = disp_y
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
     [./RLsub_disp_z_pbc]
       variable = disp_z
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '5 0 0'
     [../]
   [../]
 []
@@ -686,7 +686,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 5.0e-4'
+  expression = 'perc_change <= 5.0e-3'
  [../]
 []
 
@@ -700,13 +700,11 @@
   [../]
 []
 
-#Limits exist on -snes_rtol =< 1e-10.
-
 [Executioner]
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.12
+    dt = 0.08
     #iteration_window = 3
     optimal_iterations = 5
     growth_factor = 1.4
@@ -715,11 +713,8 @@
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-#dt = 0.15
   dtmin = 1e-13
   dtmax = 0.3
-#num_steps= 5000
-  #num_steps = 2
 []
 
 [Outputs]
@@ -729,6 +724,6 @@
     type = Exodus
     file_base = out_PTO_thinfilm_comp05_nat
     elemental_as_nodal = true
-    interval = 15
+    interval = 5
   [../]
 []
