@@ -10,12 +10,13 @@
 #define ELECTROSTRICTIVETENSORR4_H
 
 #include "RankFourTensor.h"
-#include "ElectrostrictiveCoefficientR4.h"
 
 class ElectrostrictiveTensorR4 : public RankFourTensor
 {
 public:
   void computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl);
+
+  ElectrostrictiveTensorR4(const std::vector<Real> & input, FillMethod fill_method) : RankFourTensor(input, fill_method) {}
 
   /// Sum over (j,l) q_ijkl*v(j)*w(l)
   Real electrostrictiveProduct(unsigned int i,const RealVectorValue & v, unsigned int k, const RealVectorValue & w) const;
@@ -28,6 +29,7 @@ public:
 
   template<class T>
   friend void dataLoad(std::istream &, T &, void *);
+
 };
 
 template<>

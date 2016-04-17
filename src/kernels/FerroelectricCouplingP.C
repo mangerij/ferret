@@ -32,7 +32,7 @@ InputParameters validParams<FerroelectricCouplingP>()
 
 FerroelectricCouplingP::FerroelectricCouplingP(const InputParameters & parameters)
   :Kernel(parameters),
-   _electrostrictive_tensor(getMaterialProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
+   _electrostrictive_tensor(getMaterialProperty<ElectrostrictiveTensorR4>("base_name + ""electrostrictive_tensor")),
    _component(getParam<unsigned int>("component")),
    _disp_x_var(coupled("disp_x")),
    _disp_y_var(coupled("disp_y")),

@@ -56,8 +56,7 @@
 //Kernels
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
-#include "WallEnergyDerivative.h" 
-#include "PZTWallEnergyDerivative.h" 
+#include "WallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
 #include "BulkEnergyDerivativeFourth.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
@@ -71,7 +70,11 @@
 #include "StressDivergenceTensorsScaled.h"
 
 //Materials
-#include "LinearFerroelectricMaterial.h"
+//#include "LinearFerroelectricMaterial.h"
+//new "plug and play" approach for electrostriction
+#include "ComputeElectrostrictiveTensor.h"
+//#include "ComputeRotatedElectrostrictiveTensorBase.h"
+//#include "ComputeElectrostrictiveTensorBase.h"
 //#include "PolarMaterial.h"
 
 //Postprocessors
@@ -178,7 +181,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(BulkEnergyDerivativeFourthCoupledT);
   registerKernel(WallEnergyDerivative);
-  registerKernel(PZTWallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
  // registerKernel(FerroelectricCouplingU);
@@ -191,7 +193,6 @@ FerretApp::registerObjects(Factory & factory)
   //Postprocessors
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(WallEnergy);
-  registerPostprocessor(PZTWallEnergy); //note this is deprecated
   //registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(BulkEnergyFourth);
   registerPostprocessor(ElectrostaticEnergy);
@@ -201,9 +202,11 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(CoupledEnergy);
 
   //Materials
-  //registerMaterial(PolarMaterial); //no idea what this is; it was throwing an error on the constructor change compile so we'll deactivate for now. 
+  //registerMaterial(LinearFerroelectricMaterial);
 
-  registerMaterial(LinearFerroelectricMaterial);
+  registerMaterial(ComputeElectrostrictiveTensor);
+  //registerMaterial(ComputeRotatedElectrostrictiveTensorBase);
+  //registerMaterial(ComputeElectrostrictiveTensorBase);
 
   //InitialConditions
   registerInitialCondition(PerturbedIC);
@@ -223,7 +226,7 @@ FerretApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 #define registerAction(tplt, action) action_factory.reg<tplt>(stringifyName(tplt), action)
 
   syntax.registerActionSyntax("TensorMechanicsActionScaled", "Kernels/TensorMechanicsScaled");
-  registerAction(TensorMechanicsActionScaled, "add_kernel");
+  registerAction(TensorMechanicsActionScaled, "add_kernel"); //this is deprecated in our code
 
 #undef registerAction
 #define registerAction(tplt, action) action_factory.regLegacy<tplt>(stringifyName(tplt), action)

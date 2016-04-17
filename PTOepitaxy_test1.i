@@ -5,7 +5,7 @@
 
 [GlobalParams]
   len_scale = 1.0
-  alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 673 K)
+  alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 293 K)
   alpha11 = -0.07253
   alpha111 = 0.26
   alpha12 = 0.75
@@ -324,12 +324,12 @@
   [./polar_x_electric_E]
      type=PolarElectricEStrong
      variable = potential_int
-     permittivity = 0.008812
+     permittivity = 0.08854187
   [../]
   [./FE_E_int]
      type=Electrostatics
      variable = potential_int
-     permittivity = 0.008812
+     permittivity = 0.08854187
   [../]
 
   [./polar_electric_px]
@@ -640,7 +640,7 @@
      block = '1'
      type = ElectrostaticEnergy
      execute_on = 'timestep_end'
-     permittivity = 0.008812
+     permittivity = 0.08854187
     [../]
     [./total_energy_noelastic]
     type = TotalEnergyFlow
