@@ -11,6 +11,8 @@
 
 #include "Kernel.h"
 #include "ElectrostrictiveTensorR4.h"
+#include "ElectrostrictiveTensorR4.h"
+#include "ComputeElectrostrictiveTensor.h"
 // #include "Material.h"
 // #include "DerivativeMaterialInterface.h"
 

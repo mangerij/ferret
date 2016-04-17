@@ -5,6 +5,7 @@
  */
 
 #include "CoupledEnergy.h"
+#include "ComputeElectrostrictiveTensor.h"
 
 template<>
 InputParameters validParams<CoupledEnergy>()

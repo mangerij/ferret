@@ -27,6 +27,13 @@ ComputeElectrostrictiveTensor::ComputeElectrostrictiveTensor(const InputParamete
 }
 
 void
+ComputeElectrostrictiveTensor::computeQpElectrostrictiveCoefficients()
+{
+  _electrostrictivecoefficients[_qp] = _Qmnkl;
+}
+
+
+void
 ComputeElectrostrictiveTensor::computeQpElectrostrictiveTensor()
 
 {

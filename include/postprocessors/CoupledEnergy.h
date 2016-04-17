@@ -11,6 +11,7 @@
 #include "RankTwoTensor.h"
 #include "ElementIntegralPostprocessor.h"
 #include "ElectrostrictiveTensorR4.h"
+#include "ComputeElectrostrictiveTensor.h"
 
 //Forward Declarations
 class CoupledEnergy;

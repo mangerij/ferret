@@ -9,6 +9,7 @@
  */
 
 #include "FerroelectricCouplingP.h"
+#include "ComputeElectrostrictiveTensor.h"
 
 class FerroelectricCouplingP;
 
