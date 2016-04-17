@@ -3,8 +3,10 @@
 /*
 /****************************************************************/
 
+#include "ComputeElasticityTensor.h"
 #include "ComputeElectrostrictiveTensor.h"
 #include "RotationTensor.h"
+#include "RankFourTensor.h"
 
 template<>
 InputParameters validParams<ComputeElectrostrictiveTensor>()
@@ -26,11 +28,11 @@ ComputeElectrostrictiveTensor::ComputeElectrostrictiveTensor(const InputParamete
   _Qmnkl.rotate(R);
 }
 
-void
-ComputeElectrostrictiveTensor::computeQpElectrostrictiveCoefficients()
-{
-  _electrostrictivecoefficients[_qp] = _Qmnkl;
-}
+// void
+// ComputeElectrostrictiveTensor::computeQpElectrostrictiveCoefficients()
+// {
+//   _electrostrictivecoefficients[_qp] = _Qmnkl;
+// }
 
 
 void
@@ -38,5 +40,5 @@ ComputeElectrostrictiveTensor::computeQpElectrostrictiveTensor()
 
 {
   //Assign an electrostrictive tensor at a given quad point
-  _electrostrictive_tensor[_qp].computeProduct(_Cijkl,_Qmnkl);
+  _electrostrictive_tensor[_qp].ElectrostrictiveTensorTools::computeProduct(_Cijkl,_Qmnkl);
 }

@@ -23,7 +23,7 @@ InputParameters validParams<CoupledEnergy>()
 
 CoupledEnergy::CoupledEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _electrostrictive_tensor(getMaterialProperty<ElectrostrictiveTensorR4>("electrostrictive_tensor")),
+  _electrostrictive_tensor(getMaterialProperty<RankFourTensor>("electrostrictive_tensor")),
   _disp_x_grad(coupledGradient("disp_x")),
   _disp_y_grad(coupledGradient("disp_y")),
   _disp_z_grad(coupledGradient("disp_z")),
@@ -42,17 +42,17 @@ CoupledEnergy::computeQpIntegral()
   Real sum3 = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
-  sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], 0, w);
-  sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], 0, w);
-  sum1 += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], 0, w);
 
-  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], 1, w);
-  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], 1, w);
-  sum2 += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], 1, w);
 
-  sum3 += _electrostrictive_tensor[_qp].electrostrictiveProduct(0, _disp_x_grad[_qp], 2, w);
-  sum3 += _electrostrictive_tensor[_qp].electrostrictiveProduct(1, _disp_y_grad[_qp], 2, w);
-  sum3 += _electrostrictive_tensor[_qp].electrostrictiveProduct(2, _disp_z_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], 2, w);
 
   return - 0.5 * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
 }

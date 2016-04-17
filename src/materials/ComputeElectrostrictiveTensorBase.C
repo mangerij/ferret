@@ -1,7 +1,5 @@
 
 #include "ComputeElectrostrictiveTensorBase.h"
-#include "Function.h"
-#include "ElectrostrictiveTensorR4.h"
 
 template<>
 InputParameters validParams<ComputeElectrostrictiveTensorBase>()

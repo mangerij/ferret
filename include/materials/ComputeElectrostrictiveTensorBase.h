@@ -3,7 +3,6 @@
 #define COMPUTEELECTROSTRICTIVETENSORBASE_H
 
 #include "Material.h"
-#include "ElectrostrictiveTensorR4.h"
 
 /**
  * ComputeElectrostrictiveTensorBase the base class for computing electrostrictive tensors
@@ -21,7 +20,7 @@ protected:
   std::string _electrostrictive_tensor_name;
 
 private:
-  MaterialProperty<ElectrostrictiveTensorR4> & _electrostrictive_tensor;
+  MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
 };
 
 #endif //COMPUTEELECTROSTRICTIVETENSORBASE_H

@@ -10,7 +10,6 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 #include "ElementIntegralPostprocessor.h"
-#include "ElectrostrictiveTensorR4.h"
 #include "ComputeElectrostrictiveTensor.h"
 
 //Forward Declarations
@@ -29,7 +28,7 @@ protected:
   virtual Real computeQpIntegral();
 
 private:
-  const MaterialProperty<ElectrostrictiveTensorR4> & _electrostrictive_tensor;
+  const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
   const VariableGradient & _disp_x_grad;
   const VariableGradient & _disp_y_grad;
   const VariableGradient & _disp_z_grad;

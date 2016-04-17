@@ -10,10 +10,8 @@
 #define FERROELECTRICCOUPLINGP_H
 
 #include "Kernel.h"
-#include "ElectrostrictiveTensorR4.h"
-#include "ElectrostrictiveTensorR4.h"
 #include "ComputeElectrostrictiveTensor.h"
-// #include "Material.h"
+#include "Material.h"
 // #include "DerivativeMaterialInterface.h"
 
 //Forward Declarations
@@ -37,7 +35,7 @@ protected:
 
 
 private:
-  const MaterialProperty<ElectrostrictiveTensorR4> & _electrostrictive_tensor;
+  const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
   const unsigned int _component;
   const unsigned int _disp_x_var;
   const unsigned int _disp_y_var;

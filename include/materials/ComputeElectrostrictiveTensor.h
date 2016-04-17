@@ -2,9 +2,10 @@
 #ifndef COMPUTEELECTROSTRICTIVETENSOR_H
 #define COMPUTEELECTROSTRICTIVETENSOR_H
 
+#include "RankFourTensor.h"
 #include "ComputeElasticityTensor.h"
+#include "ElectrostrictiveTensorTools.h"
 #include "ComputeRotatedElectrostrictiveTensorBase.h"
-#include "ElectrostrictiveTensorR4.h"
 #include "libmesh/quadrature.h"
 
 /**
@@ -19,8 +20,11 @@ protected:
   virtual void computeQpElectrostrictiveTensor();
 
   /// Individual material information
-  ElasticityTensorR4 _Cijkl; //the million dollar question is does this get computed _BEFORE_ ?
-  ElectrostrictiveTensorR4 _Qmnkl;
+  RankFourTensor _Cijkl; //the million dollar question is does this get computed _BEFORE_ ?
+  RankFourTensor _Qmnkl;
+
+private:
+  const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
 };
 
 #endif //COMPUTEELECTROSTRICTIVETENSOR_H
