@@ -39,8 +39,8 @@
 //#include "VortexSurfaceEnergy.h"
 
 //Boundary Conditions
-#include "StressBC.h"
-#include "StressFunctionBC.h"
+//#include "StressBC.h"
+//#include "StressFunctionBC.h"
 #include "HydrostaticBC.h"
 #include "HydrostaticDirichletBC.h"
 #include "DepolScreenBC.h"
@@ -79,7 +79,6 @@
 
 //Postprocessors
 #include "WallEnergy.h"
-#include "PZTWallEnergy.h"
 //#include "WallEnergyFourth.h"
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
@@ -141,8 +140,8 @@ FerretApp::registerObjects(Factory & factory)
 #define registerObject(name) factory.reg<name>(stringifyName(name))
 
   //BoundaryConditions
-  registerBoundaryCondition(StressBC);
-  registerBoundaryCondition(StressFunctionBC);
+  //registerBoundaryCondition(StressBC);
+  //registerBoundaryCondition(StressFunctionBC);
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
   registerBoundaryCondition(HydrostaticDirichletBC);

@@ -12,9 +12,10 @@
 namespace ElectrostrictiveTensorTools
 {
 
-Real
+RankFourTensor
 computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl)
 {
+  RankFourTensor qijkl;
     // Moose::out << "\n Printing Cijkl entries:"; //keep for debugging purposes
     // for(unsigned int a = 0; a < 3; ++a)
     //   for(unsigned int b = 0; b < 3; ++b)
@@ -33,38 +34,44 @@ computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl)
     //         }
 
 // Moose::out << "\n Performing C_ijmn Q_mnkl contraction on all the quadrature points?";
-for(unsigned int i = 0; i < LIBMESH_DIM; ++i)
-  for(unsigned int j = 0; j < LIBMESH_DIM; ++j)
-    for(unsigned int k = 0; k < LIBMESH_DIM; ++k)
-      for(unsigned int l = 0; l < LIBMESH_DIM; ++l)
-      {
-  	      Real sum = 0.0;
-  	      for(unsigned int m = 0; m < LIBMESH_DIM; ++m)
-  	        for(unsigned int n = 0; n < LIBMESH_DIM; ++n)
+  for(unsigned int i = 0; i < LIBMESH_DIM; ++i)
+    for(unsigned int j = 0; j < LIBMESH_DIM; ++j)
+      for(unsigned int k = 0; k < LIBMESH_DIM; ++k)
+        for(unsigned int l = 0; l < LIBMESH_DIM; ++l)
+        {
+          Real sum = 0.0;
+          for(unsigned int m = 0; m < LIBMESH_DIM; ++m)
+            for(unsigned int n = 0; n < LIBMESH_DIM; ++n)
+            {
               if( n != m)
               {
-                sum += 0.5 * Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
+                //sum += 0.5 * Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
+                qijkl(i,j,k,l) += 0.5 * Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
               }
               else
               {
-  	            sum += Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
-  	          }
-        return 2 * sum;
-          //  Moose::out << "\n  q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = " << _vals[i][j][k][l] << ";";
-      }
-
-  // Moose::out << "\n Complete.";
+                //sum += Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
+                qijkl(i,j,k,l) += Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
+              }
+            }
+      //  Moose::out << "\n  q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = " << _vals[i][j][k][l] << ";";
+        }
+  return qijkl;
+  //Moose::out << "\n Complete.";
 }
+
+
 
 Real
 electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w)
 {
+  RankFourTensor qijkl;
   //Sum over (j,l) q_ijkl * v(j) * w(l) with k = _component
   Real sum = 0.0;
   for(unsigned int j = 0; j < LIBMESH_DIM; ++j)
     for(unsigned int l = 0; l < LIBMESH_DIM; ++l)
     {
-      sum += (*this)(i, j, k, l) * v(j) * w(l);
+      sum += qijkl(i, j, k, l) * v(j) * w(l);
     }
   return sum;
 }
@@ -72,12 +79,14 @@ electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int 
 Real
 electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const unsigned int l)
 {
+  RankFourTensor qijkl;
   //Sum over j q_ijkl * v(j) where k and l = _component (used for DiagJacobian)
   Real sum = 0.0;
   for(unsigned int j = 0; j < LIBMESH_DIM; ++j)
-  {
-    sum += (*this)(i,j,k,l) * v(j);
+    {
+      sum += qijkl(i,j,k,l) * v(j);
     }
-    return sum;
-    }
+  return sum;
+}
+
 }
