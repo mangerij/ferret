@@ -28,7 +28,7 @@
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
   #use_displaced_mesh = false
-  prefactor = 0.005 #negative = tension, positive = compression
+  #prefactor = 0.005 #negative = tension, positive = compression
 []
 
 
@@ -167,7 +167,12 @@
   [../]
 []
 
+
 [AuxKernels]
+  #[./elastic_energy]
+  #  type = TensorElasticEnergyAux
+  #  variable = E
+  #[../]
   [./matl_s11]
     type = RankTwoAux
     rank_two_tensor = stress
@@ -218,53 +223,54 @@
   [../]
   [./matl_e11]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = mechanical_strain #or total strain?
     index_i = 0
     index_j = 0
     variable = strain_xx_elastic
-    execute_on = 'timestep_end'
+    #execute_on = 'timestep_end'
   [../]
   [./matl_e12]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = mechanical_strain
     index_i = 0
     index_j = 1
     variable = strain_xy_elastic
-    execute_on = 'timestep_end'
+    #execute_on = 'timestep_end'
   [../]
   [./matl_e13]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = mechanical_strain
     index_i = 0
     index_j = 2
     variable = strain_xz_elastic
-    execute_on = 'timestep_end'
+    #execute_on = 'timestep_end'
   [../]
   [./matl_e22]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = mechanical_strain
     index_i = 1
     index_j = 1
     variable = strain_yy_elastic
-    execute_on = 'timestep_end'
+    #execute_on = 'timestep_end'
   [../]
   [./matl_e23]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = mechanical_strain
     index_i = 1
     index_j = 2
     variable = strain_yz_elastic
-    execute_on = 'timestep_end'
+    #execute_on = 'timestep_end'
   [../]
   [./matl_e33]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = mechanical_strain
     index_i = 2
     index_j = 2
     variable = strain_zz_elastic
-    execute_on = 'timestep_end'
+    #execute_on = 'timestep_end'
   [../]
 []
+
 
 [Kernels]
   #Elastic problem
@@ -384,7 +390,7 @@
   #  type = DirichletBC
   #  variable = disp_z
   #  boundary = '1'
-  #  value = 0.0
+  #  value = 0.05
   #[../]
 
 [./potential_int_1]
@@ -550,36 +556,12 @@
 []
 
 [Materials]
-   [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-    type = ComputeEigenstrain
-    block = '1'
-   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-    eigen_base = '0 0 0 0 0 0 0 0 1'
-  [../]
-
-  [./slab_ferroelectric]
-    block = '1'
-    type = ComputeElectrostrictiveTensor
-    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
-    #C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-  [../]
-
- # [./PTO]
- #   type=LinearElasticMaterial
- #   C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
- #   block = '1'
- #   disp_x = disp_x
- #   disp_y = disp_y
- #   disp_z = disp_z
- # [../]
- # [./STO]
- #   type=LinearElasticMaterial
- #   C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
- #   block = '2'
- #   disp_x = disp_x
- #   disp_y = disp_y
- #   disp_z = disp_z
- # [../]
+  # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+  #  type = ComputeEigenstrain
+  #  block = '1'
+  # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+  #  eigen_base = '0 0 0 0 0 0 0 0 1'
+  #[../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -598,6 +580,13 @@
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
+  [./slab_ferroelectric]
+    block = '1'
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+    #C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+  [../]
+
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
     C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
@@ -613,6 +602,7 @@
     block = '2'
   [../]
 []
+
 [Postprocessors]
 #  [./volume]
 #    type = VolumePostprocessor
@@ -675,7 +665,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-8      1e-8     bjacobi'
+    petsc_options_value = '    121                1e-5      1e-10     bjacobi'
   [../]
 []
 
@@ -683,17 +673,17 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 1.4
+    dt = 0.2
     #iteration_window = 3
     optimal_iterations = 5
     growth_factor = 1.2
     linear_iteration_ratio = 1000
-    cutback_factor =  0.95
+    cutback_factor =  0.85
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
-  dtmax = 3.8
+  dtmax = 0.3
 []
 
 [Outputs]
@@ -701,8 +691,8 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTO_thinfilm_unstr_short
+    file_base = out_PTO_thinfilm_comp05_short_check2
     elemental_as_nodal = true
-    interval = 5
+    interval = 1
   [../]
 []

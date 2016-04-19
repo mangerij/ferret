@@ -1,10 +1,6 @@
 /**
  * @file   BulkEnergyDerivativeSixth.C
- * @author S. Gu <sgu@anl.gov>
- * @date   Thu May 30 11:59:56 2013
- *
- * @brief
- *
+ * @author J. Mangeri <john.mangeri@uconn.edu
  *
  */
 
@@ -19,17 +15,16 @@ InputParameters validParams<BulkEnergyDerivativeSixth>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredParam<Real>("alpha1","The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha11","The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha12","The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha111","The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha112","The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha123","The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("alpha12", "The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("alpha111", "The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("alpha112", "The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("alpha123", "The coefficients of the Landau expansion");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
 
-//Constructor
 BulkEnergyDerivativeSixth::BulkEnergyDerivativeSixth(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
@@ -46,7 +41,6 @@ BulkEnergyDerivativeSixth::BulkEnergyDerivativeSixth(const InputParameters & par
    _alpha112(getParam<Real>("alpha112")),
    _alpha123(getParam<Real>("alpha123")),
    _len_scale(getParam<Real>("len_scale"))
-
 {
   std::cout<<"_alpha1 ="<<_alpha1<<"\n";
   std::cout<<"_alpha11 ="<<_alpha11<<"\n";
@@ -62,15 +56,11 @@ BulkEnergyDerivativeSixth::computeQpResidual()
   const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1) ? _polar_y: _polar_z;
   const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
   const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
-
   Real Rbulk = 0.0;
-
-  Rbulk += ((2 * _alpha1 * _polar_i[_qp] + 4 * _alpha11 * std::pow(_polar_i[_qp], 3) + 2 * _alpha12 * _polar_i[_qp]*(std::pow(_polar_j[_qp],2) + std::pow(_polar_k[_qp],2)) +
-	  6 * _alpha111 * std::pow(_polar_i[_qp], 5) + 4 * _alpha112 * std::pow(_polar_i[_qp], 3) * (_polar_j[_qp] * _polar_j[_qp]+_polar_k[_qp] * _polar_k[_qp]) +
-	  2 * _alpha112 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 4) + std::pow(_polar_k[_qp], 4)) + 2 * _alpha123 * _polar_i[_qp]*std::pow(_polar_j[_qp], 2) * std::pow(_polar_k[_qp], 2)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
-
+  Rbulk += ((2.0 * _alpha1 * _polar_i[_qp] + 4.0 * _alpha11 * std::pow(_polar_i[_qp], 3.0) + 2.0 * _alpha12 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 2.0) + std::pow(_polar_k[_qp], 2.0)) +
+	  6.0 * _alpha111 * std::pow(_polar_i[_qp], 5.0) + 4.0 * _alpha112 * std::pow(_polar_i[_qp], 3.0) * (_polar_j[_qp] * _polar_j[_qp]+_polar_k[_qp] * _polar_k[_qp]) +
+	  2.0 * _alpha112 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 4.0) + std::pow(_polar_k[_qp], 4.0)) + 2.0 * _alpha123 * _polar_i[_qp]*std::pow(_polar_j[_qp], 2.0) * std::pow(_polar_k[_qp], 2.0)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
   //  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
-
   return Rbulk;
 }
 
@@ -80,10 +70,10 @@ BulkEnergyDerivativeSixth::computeQpJacobian()
   const VariableValue & _polar_i = (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;
   const VariableValue & _polar_j = (_component == 0)? _polar_y : (_component == 1)? _polar_z: _polar_x;
   const VariableValue & _polar_k = (_component == 0)? _polar_z : (_component == 1)? _polar_x: _polar_y;
-  return (2 * _alpha1 + 12 * _alpha11 * std::pow(_polar_i[_qp], 2) +
-	  2 * _alpha12 * (std::pow(_polar_j[_qp], 2) + std::pow(_polar_k[_qp], 2)) + 30 * _alpha111 * std::pow(_polar_i[_qp], 4) +
-	  12 * _alpha112 * std::pow(_polar_i[_qp], 2) * (std::pow(_polar_j[_qp],2) + std::pow(_polar_k[_qp], 2)) + 2 * _alpha112 * (std::pow(_polar_j[_qp], 4) + std::pow(_polar_k[_qp], 4)) +
-	  2 * _alpha123 * std::pow(_polar_j[_qp], 2) * std::pow(_polar_k[_qp], 2)
+  return (2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(_polar_i[_qp], 2) +
+	  2.0 * _alpha12 * (std::pow(_polar_j[_qp], 2.0) + std::pow(_polar_k[_qp], 2.0)) + 30.0 * _alpha111 * std::pow(_polar_i[_qp], 4.0) +
+	  12.0 * _alpha112 * std::pow(_polar_i[_qp], 2.0) * (std::pow(_polar_j[_qp], 2.0) + std::pow(_polar_k[_qp], 2.0)) + 2.0 * _alpha112 * (std::pow(_polar_j[_qp], 4.0) + std::pow(_polar_k[_qp], 4.0)) +
+	  2.0 * _alpha123 * std::pow(_polar_j[_qp], 2.0) * std::pow(_polar_k[_qp], 2.0)
   ) * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
 }
 
@@ -97,9 +87,8 @@ BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
       const VariableValue & _polar_i = (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;
       const VariableValue & _polar_j = (jvar == _polar_x_var)? _polar_x : (jvar == _polar_y_var)? _polar_y: _polar_z;
       const VariableValue & _polar_k = ((_component == 0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component == 0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
-
-      r = (4 * _alpha12 * _polar_i[_qp] * _polar_j[_qp] + 8 * _alpha112 * std::pow(_polar_i[_qp], 3) * _polar_j[_qp]
-      + 8 *_alpha112 * _polar_i[_qp] * std::pow(_polar_j[_qp], 3) + 4 * _alpha123 * _polar_i[_qp] * _polar_j[_qp] * std::pow(_polar_k[_qp], 2));
+      r = (4.0 * _alpha12 * _polar_i[_qp] * _polar_j[_qp] + 8.0 * _alpha112 * std::pow(_polar_i[_qp], 3.0) * _polar_j[_qp]
+      + 8.0 *_alpha112 * _polar_i[_qp] * std::pow(_polar_j[_qp], 3.0) + 4.0 * _alpha123 * _polar_i[_qp] * _polar_j[_qp] * std::pow(_polar_k[_qp], 2.0));
       return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
     }
   else

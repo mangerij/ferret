@@ -48,7 +48,6 @@ FerroelectricCouplingP::FerroelectricCouplingP(const InputParameters & parameter
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
-//   _stress_free_strain(getMaterialProperty<RankTwoTensor>("stress_free_strain")),
    _strain_scale(getParam<Real>("strain_scale")),
    _artificial(getParam<Real>("artificial")),
    _prefactor(getParam<Real>("prefactor")),
@@ -63,16 +62,13 @@ FerroelectricCouplingP::computeQpResidual()
   // \epsilon_{ij} = 0.5 (\frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i})
   // the minor symmetry of q_{ijkl = jikl} allows the below sum to only care about one disp_grad
   // vector and not its transpose as well.
-
   Real sum = 0.0;
   Real RpCoupled = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp], _component, w);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp], _component, w);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp], _component, w);
   RpCoupled += - std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
-
   return RpCoupled;
 }
 
@@ -80,12 +76,10 @@ Real
 FerroelectricCouplingP::computeQpJacobian()
 {
   Real sum = 0.0;
-
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp], _component, _component);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp], _component, _component);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp], _component, _component);
   return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
-
 }
 
 Real

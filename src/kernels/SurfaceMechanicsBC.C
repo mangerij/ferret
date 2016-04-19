@@ -25,12 +25,10 @@ template<>
 InputParameters validParams<SurfaceMechanicsBC>()
 {
   InputParameters params = validParams<IntegratedBC>();
-
   // First read the (at most) nine components of the surface elastic tensor
   // C_1111, C_1112, C_1122, C_1212, C_1222, C_1211, C_2211, C_2212, C_2222
   // These will have to be put into a 3x3x3x3 rank-4 tensor with appropriate zero padding
     params.addRequiredParam<std::vector<Real> >("Cs_ijkl", "Surface elastic tensor,  C_1111, C_1112, C_1122, C_1212, C_1222, C_1211, C_2211, C_2212, C_2222");
-
   // The intrinsic surface tension is a 2x2 rank-2 tensor that has to be expanded to a 3x3
     params.addRequiredParam<Real>("taus", "Intrinsic surface stress");
     params.addParam<Real>("surface_euler_angle_1", 0.0, "Euler angle in direction 1");
@@ -41,7 +39,6 @@ InputParameters validParams<SurfaceMechanicsBC>()
     params.addCoupledVar("disp_z", "The z displacement");
     params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
     return params;
-
     //    InputParameters params2 = validParams<Kernel>();
     //    params2.addRequiredParam<unsigned int>("component", "an integer corresponding to the direction the variable in the kernel acts on");
     //    return params2;

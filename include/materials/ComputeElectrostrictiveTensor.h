@@ -20,7 +20,6 @@ protected:
   virtual void computeQpElectrostrictiveTensor();
 
   /// Individual material information
-  // RankFourTensor _Cijkl; //the million dollar question is does this get computed _BEFORE_ ?
   RankFourTensor _Qmnkl;
   RankFourTensor _qijkl;
 
