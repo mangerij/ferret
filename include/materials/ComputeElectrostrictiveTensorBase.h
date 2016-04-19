@@ -3,11 +3,12 @@
 #define COMPUTEELECTROSTRICTIVETENSORBASE_H
 
 #include "Material.h"
-#include "ComputeElasticityTensor.h"
+#include "RankFourTensor.h"
+
 /**
  * ComputeElectrostrictiveTensorBase the base class for computing electrostrictive tensors
  */
-class ComputeElectrostrictiveTensorBase : public ComputeElasticityTensor
+class ComputeElectrostrictiveTensorBase : public Material
 {
 public:
   ComputeElectrostrictiveTensorBase(const InputParameters & parameters);
