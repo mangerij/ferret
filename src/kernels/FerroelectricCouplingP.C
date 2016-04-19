@@ -68,9 +68,9 @@ FerroelectricCouplingP::computeQpResidual()
   Real RpCoupled = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
-  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], _component, w);
-  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], _component, w);
-  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], _component, w);
+  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp], _component, w);
+  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp], _component, w);
+  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp], _component, w);
   RpCoupled += - std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
 
   return RpCoupled;
@@ -81,9 +81,9 @@ FerroelectricCouplingP::computeQpJacobian()
 {
   Real sum = 0.0;
 
-  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], _component, _component);
-  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], _component, _component);
-  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], _component, _component);
+  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp], _component, _component);
+  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp], _component, _component);
+  sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp], _component, _component);
   return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
 
 }
@@ -104,25 +104,25 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
       {
         coupled_component = 0;
 
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp],_component, coupled_component);
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp],_component, coupled_component);
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp],_component, coupled_component);
       }
     else if (jvar == _polar_y_var)
       {
         coupled_component = 1;
 
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp],_component, coupled_component);
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp],_component, coupled_component);
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp],_component, coupled_component);
       }
     else if (jvar == _polar_z_var)
       {
         coupled_component = 2;
 
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp],_component, coupled_component);
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp],_component, coupled_component);
-        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp],_component, coupled_component);
+        sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp],_component, coupled_component);
       }
     return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
 
@@ -132,17 +132,17 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
     if (jvar == _disp_x_var)
       {
         coupled_component = 0;
-        sum = ElectrostrictiveTensorTools::electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, w);
+        sum = ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], coupled_component, _grad_phi[_j][_qp], _component, w);
       }
     else if (jvar == _disp_y_var)
       {
         coupled_component = 1;
-        sum = ElectrostrictiveTensorTools::electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, w);
+        sum = ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], coupled_component, _grad_phi[_j][_qp], _component, w);
       }
     else if (jvar == _disp_z_var)
       {
         coupled_component = 2;
-        sum = ElectrostrictiveTensorTools::electrostrictiveProduct(coupled_component, _grad_phi[_j][_qp], _component, w);
+        sum = ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], coupled_component, _grad_phi[_j][_qp], _component, w);
       }
     return - std::pow(_len_scale, 3.0) * sum * _test[_i][_qp];
   }

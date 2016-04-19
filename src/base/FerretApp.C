@@ -6,6 +6,8 @@
 #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
+
+
 //Actions
 #include "TensorMechanicsActionScaled.h"
 
@@ -13,7 +15,7 @@
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
-#include "BandGapAuxTiO2.h"
+#include "BandGapAuxTiO2.h" //should rework this to be a "general" gap kernel
 #include "ExFieldAux.h"
 #include "EyFieldAux.h"
 #include "EzFieldAux.h"
@@ -27,7 +29,7 @@
 #include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
 #include "ScreenAux.h"
-#include "PolarizationSurfaceCharge.h" // What was this?
+//#include "PolarizationSurfaceCharge.h" // What was this?
 #include "WindingNumberDensity.h"
 
 //not sure what these are
@@ -36,14 +38,13 @@
 #include "ElectrostaticEnergyDensityCross.h"
 #include "ElectrostaticEnergyDensityTotal.h"
 
-//#include "VortexSurfaceEnergy.h"
 
 //Boundary Conditions
 //#include "StressBC.h"
 //#include "StressFunctionBC.h"
 #include "HydrostaticBC.h"
-#include "HydrostaticDirichletBC.h"
-#include "DepolScreenBC.h"
+//#include "HydrostaticDirichletBC.h"
+//#include "DepolScreenBC.h"
 #include "OpenCircuitBC.h"
 
 
@@ -87,6 +88,7 @@
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
+//#include "VortexSurfaceEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -144,9 +146,9 @@ FerretApp::registerObjects(Factory & factory)
   //registerBoundaryCondition(StressFunctionBC);
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
-  registerBoundaryCondition(HydrostaticDirichletBC);
-  registerBoundaryCondition(PolarizationSurfaceCharge);
-  registerBoundaryCondition(DepolScreenBC);
+  //registerBoundaryCondition(HydrostaticDirichletBC);
+  //registerBoundaryCondition(PolarizationSurfaceCharge);
+  //registerBoundaryCondition(DepolScreenBC);
   registerBoundaryCondition(OpenCircuitBC);
 
   //AuxKernels:

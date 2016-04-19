@@ -18,6 +18,12 @@ Once MOOSE is built, Ferret can usually be built simply as
 cd <ferret>
 make METHOD=opt MOOSE_DIR=<moose>
 ```
+or
+```
+make -j 4
+```
+to make the compile go faster. 
+
 Here `<ferret>` is the location of the Ferret clone, and `<moose>` is the MOOSE clone.
 Naturally, use an appropriate `METHOD` -- one of those that was used to build MOOSE
 (e.g., `dbg` or `opt`).
@@ -34,4 +40,4 @@ make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 ### Who do I talk to? ###
 
 * Email John Mangeri (john.mangeri@uconn.edu) for help with Ferret
-* MOOSE is at http://www.mooseframework.org
+* MOOSE can be found at http://www.mooseframework.org

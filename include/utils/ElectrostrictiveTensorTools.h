@@ -8,10 +8,10 @@ namespace ElectrostrictiveTensorTools
   RankFourTensor computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl);
 
   /// Sum over (j,l) q_ijkl*v(j)*w(l)
-  Real electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w);
+  Real electrostrictiveProduct(const RankFourTensor & qijkl, unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w);
 
   /// Sum over l q_ijkl*v(j)
-  Real electrostrictiveProduct(unsigned int i, const RealVectorValue & v,unsigned int k, const unsigned int l);
+  Real electrostrictiveProduct(const RankFourTensor & qijkl, unsigned int i, const RealVectorValue & v,unsigned int k, const unsigned int l);
 }
 
 #endif //ELECTROSTRICTIVETENSORTOOLS_H

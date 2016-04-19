@@ -42,17 +42,17 @@ CoupledEnergy::computeQpIntegral()
   Real sum3 = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
-  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], 0, w);
-  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], 0, w);
-  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp], 0, w);
 
-  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], 1, w);
-  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], 1, w);
-  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp], 1, w);
 
-  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(0, _disp_x_grad[_qp], 2, w);
-  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(1, _disp_y_grad[_qp], 2, w);
-  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(2, _disp_z_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp], 2, w);
 
   return - 0.5 * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
 }

@@ -15,7 +15,7 @@ namespace ElectrostrictiveTensorTools
 RankFourTensor
 computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl)
 {
-  RankFourTensor qijkl;
+  RankFourTensor result;
     // Moose::out << "\n Printing Cijkl entries:"; //keep for debugging purposes
     // for(unsigned int a = 0; a < 3; ++a)
     //   for(unsigned int b = 0; b < 3; ++b)
@@ -46,26 +46,26 @@ computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl)
               if( n != m)
               {
                 //sum += 0.5 * Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
-                qijkl(i,j,k,l) += 0.5 * Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
+                result(i,j,k,l) += 0.5 * Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
               }
               else
               {
                 //sum += Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
-                qijkl(i,j,k,l) += Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
+                result(i,j,k,l) += Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
               }
             }
       //  Moose::out << "\n  q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = " << _vals[i][j][k][l] << ";";
         }
-  return qijkl;
+  return result;
   //Moose::out << "\n Complete.";
 }
 
 
 
 Real
-electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w)
+electrostrictiveProduct(const RankFourTensor & qijkl, unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w)
 {
-  RankFourTensor qijkl;
+  // RankFourTensor qijkl;
   //Sum over (j,l) q_ijkl * v(j) * w(l) with k = _component
   Real sum = 0.0;
   for(unsigned int j = 0; j < LIBMESH_DIM; ++j)
@@ -77,9 +77,9 @@ electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int 
 }
 
 Real
-electrostrictiveProduct(unsigned int i, const RealVectorValue & v, unsigned int k, const unsigned int l)
+electrostrictiveProduct(const RankFourTensor & qijkl, unsigned int i, const RealVectorValue & v, unsigned int k, const unsigned int l)
 {
-  RankFourTensor qijkl;
+  // RankFourTensor qijkl;
   //Sum over j q_ijkl * v(j) where k and l = _component (used for DiagJacobian)
   Real sum = 0.0;
   for(unsigned int j = 0; j < LIBMESH_DIM; ++j)

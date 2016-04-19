@@ -1,6 +1,7 @@
 
 [Mesh]
   file = exodus_thinfilm.e
+  #uniform_refine = 1
 []
 
 [GlobalParams]
@@ -16,7 +17,6 @@
   G12/G110 = 0
   G44/G110 = 0.3
   G44P/G110 = 0.3
-  Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
   #permittivity = 5.8
   polar_x = polar_x
   polar_y = polar_y
@@ -28,7 +28,7 @@
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
   #use_displaced_mesh = false
-  prefactor = -0.005 #negative = tension, positive = compression
+  #prefactor = -0.005 #negative = tension, positive = compression
 []
 
 
@@ -425,141 +425,142 @@
       variable = disp_x
       primary = '3'
       secondary = '5'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_disp_y_pbc]
       variable = disp_y
       primary = '3'
       secondary = '5'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_disp_z_pbc]
       variable = disp_z
       primary = '3'
       secondary = '5'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
 
     [./TB_polar_x_pbc]
       variable = polar_x
       primary = '3'
       secondary = '5'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = '3'
       secondary = '5'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = '3'
       secondary = '5'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = '3'
       secondary = '5'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
   #
     [./TBsub_disp_x_pbc]
       variable = disp_x
       primary = '8'
       secondary = '10'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TBsub_disp_y_pbc]
       variable = disp_y
       primary = '8'
       secondary = '10'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TBsub_disp_z_pbc]
       variable = disp_z
       primary = '8'
       secondary = '10'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
 
     [./RL_disp_x_pbc]
       variable = disp_x
       primary = '4'
       secondary = '6'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
     [./RL_disp_y_pbc]
       variable = disp_y
       primary = '4'
       secondary = '6'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
     [./RL_disp_z_pbc]
       variable = disp_z
       primary = '4'
       secondary = '6'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = '4'
       secondary = '6'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = '4'
       secondary = '6'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = '4'
       secondary = '6'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
     [./RL_potential_int_pbc]
       variable = potential_int
       primary = '4'
       secondary = '6'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
 
     [./RLsub_disp_x_pbc]
       variable = disp_x
       primary = '9'
       secondary = '11'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
     [./RLsub_disp_y_pbc]
       variable = disp_y
       primary = '9'
       secondary = '11'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
     [./RLsub_disp_z_pbc]
       variable = disp_z
       primary = '9'
       secondary = '11'
-      translation = '4 0 0'
+      translation = '8 0 0'
     [../]
   [../]
 []
 
 [Materials]
-   [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-    type = ComputeEigenstrain
-    block = '1'
-   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-    eigen_base = '0 0 0 0 0 0 0 0 1'
-  [../]
+  # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+  #  type = ComputeEigenstrain
+  #  block = '1'
+  # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+  #  eigen_base = '0 0 0 0 0 0 0 0 1'
+  #[../]
 
   [./slab_ferroelectric]
     block = '1'
-    type=LinearFerroelectricMaterial
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
@@ -580,12 +581,12 @@
  #   disp_z = disp_z
  # [../]
 
-  [./elasticity_tensor_1]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-    block = '1'
-  [../]
+  #[./elasticity_tensor_1]
+  #  type = ComputeElasticityTensor
+  #  fill_method = symmetric9
+  #  C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+  #  block = '1'
+  #[../]
   [./strain_1]
     type = ComputeSmallStrain
     block = '1'
@@ -671,8 +672,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type '
-    petsc_options_value = '    121                1e-8      1e-10     bjacobi '
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol '  #'-pc_type '
+    petsc_options_value = '    121                1e-8      1e-10    ' #bjacobi '
   [../]
 []
 
@@ -680,17 +681,17 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.08
+    dt = 0.2
     #iteration_window = 3
     optimal_iterations = 5
     growth_factor = 1.2
     linear_iteration_ratio = 1000
     cutback_factor =  0.95
 [../]
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'PJFNK'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
-  dtmax = 0.25
+  dtmax = 1.5
 []
 
 [Outputs]
@@ -698,7 +699,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTO_thinfilm_tens05_nat
+    file_base = out_PTO_thinfilm_unstr_short
     elemental_as_nodal = true
     interval = 5
   [../]
