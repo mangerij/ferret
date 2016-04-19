@@ -590,10 +590,12 @@
   [./strain_1]
     type = ComputeSmallStrain
     block = '1'
+    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
   [./stress_1]
     type = ComputeLinearElasticStress
     block = '1'
+    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
   [./elasticity_tensor_2]
@@ -672,8 +674,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol '  #'-pc_type '
-    petsc_options_value = '    121                1e-8      1e-10    ' #bjacobi '
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type '
+    petsc_options_value = '    121                1e-8      1e-10    lu'
   [../]
 []
 

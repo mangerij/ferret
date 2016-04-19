@@ -3,10 +3,10 @@
 #include "Moose.h"
 #include "Factory.h"
 #include "AppFactory.h"
-#include "ModulesApp.h"
+// #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
-
+#include "TensorMechanicsApp.h"
 
 //Actions
 #include "TensorMechanicsActionScaled.h"
@@ -105,8 +105,11 @@ FerretApp::FerretApp(const InputParameters & parameters) :
   Moose::registerObjects(_factory);
   Moose::associateSyntax(_syntax, _action_factory);
 
-  ModulesApp::registerObjects(_factory);
-  ModulesApp::associateSyntax(_syntax, _action_factory);
+  // ModulesApp::registerObjects(_factory);
+  // ModulesApp::associateSyntax(_syntax, _action_factory);
+
+  TensorMechanicsApp::registerObjects(_factory);
+  TensorMechanicsApp::associateSyntax(_syntax, _action_factory);
 
   FerretApp::registerObjects(_factory);
   FerretApp::associateSyntax(_syntax, _action_factory);
