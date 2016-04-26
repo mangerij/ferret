@@ -28,7 +28,7 @@
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
   #use_displaced_mesh = false
-  #prefactor = 0.005 #negative = tension, positive = compression
+  prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
 []
 
 
@@ -326,6 +326,25 @@
     variable = polar_z
     component = 2
   [../]
+
+  [./ferroelectriccouplingX_xx]
+    type = FerroelectricCouplingX
+    block = '1'
+    variable = disp_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingX_yy]
+    type = FerroelectricCouplingX
+    block = '1'
+    variable = disp_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingX_zz]
+    type = FerroelectricCouplingX
+    block = '1'
+    variable = disp_z
+    component = 2
+  [../]
   ##Electrostatics
   [./polar_x_electric_E]
      type=PolarElectricEStrong
@@ -373,6 +392,31 @@
 
 
 [BCs]
+
+ # [./Stress_xz]
+ #   type = StressBC
+ #   variable = disp_x
+ #   component = 0
+ #   boundary_stress = '0 -0.1 0 0 0 0'
+ #   boundary = 'top'
+ # [../]
+
+ # [./Stress_yz]
+ #   type = StressBC
+ #   variable = disp_y
+ #   component = 1
+ #   boundary_stress = '0 0 0 0 0 0'
+ #   boundary = '1'
+ # [../]
+
+  [./hydroStress_zz]
+    type = HydrostaticBC
+    variable = disp_z
+    component = 2
+    pressure = 0.0
+    boundary = '1'
+ [../]
+
 
   #[./disp_x_1]
   #  type = DirichletBC
@@ -556,12 +600,12 @@
 []
 
 [Materials]
-  # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-  #  type = ComputeEigenstrain
-  #  block = '1'
-  # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-  #  eigen_base = '0 0 0 0 0 0 0 0 1'
-  #[../]
+   [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
+    block = '1'
+   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+  [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -572,12 +616,10 @@
   [./strain_1]
     type = ComputeSmallStrain
     block = '1'
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
   [./stress_1]
     type = ComputeLinearElasticStress
     block = '1'
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
   [./slab_ferroelectric]
@@ -655,7 +697,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 5.0e-3'
+  expression = 'perc_change <= 5.0e-5'
  [../]
 []
 
@@ -665,7 +707,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-5      1e-10     bjacobi'
+    petsc_options_value = '    121                1e-8      1e-8     bjacobi'
   [../]
 []
 
@@ -678,12 +720,12 @@
     optimal_iterations = 5
     growth_factor = 1.2
     linear_iteration_ratio = 1000
-    cutback_factor =  0.85
+    cutback_factor =  0.75
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
-  dtmax = 0.3
+  dtmax = 0.88
 []
 
 [Outputs]
@@ -691,8 +733,8 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTO_thinfilm_comp05_short_check2
+    file_base = out_PTO_thinfilm_comp05_short_check2_SF
     elemental_as_nodal = true
-    interval = 1
+    interval = 2
   [../]
 []
