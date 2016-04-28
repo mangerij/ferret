@@ -1,13 +1,15 @@
 /**
- * @file   FerroelectricCouplingP.h   FerroelectricCouplingP.h
+ * @file   FerroelectricCouplingQ.h
  * @author S. Gu <sgu@anl.gov>
  * @modified J. Mangeri <mangerij@anl.gov
  * @date   Jun 15. 2015
- * @brief   Implement the kernel for polar variables corresponding to ferroelectic coupling energy.
- *         Assume the energy has the form -0.5*q_ijkl* ui_j * Pk_l where u is the displacement and P is the polarization.
+
+ * @brief  Implement the kernel for polar variables corresponding to ferroelectic coupling energy after
+ *         the variational derivative of the polar dependent terms have been taken.
+ *         This is only the quartic term. See notes.
  */
-#ifndef FERROELECTRICCOUPLINGP_H
-#define FERROELECTRICCOUPLINGP_H
+#ifndef FERROELECTRICCOUPLINGQ_H
+#define FERROELECTRICCOUPLINGQ_H
 
 #include "Kernel.h"
 #include "ComputeElectrostrictiveTensor.h"
@@ -16,16 +18,16 @@
 // #include "DerivativeMaterialInterface.h"
 
 //Forward Declarations
-class FerroelectricCouplingP;
+class FerroelectricCouplingQ;
 
 template<>
-InputParameters validParams<FerroelectricCouplingP>();
+InputParameters validParams<FerroelectricCouplingQ>();
 
 class FerroelectricCouplingP: public Kernel
 {
 public:
 
-  FerroelectricCouplingP(const InputParameters & parameters);
+  FerroelectricCouplingQ(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -57,4 +59,4 @@ private:
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };
-#endif //FERROELECTRICCOUPLINGP_H
+#endif //FERROELECTRICCOUPLINGQ_H

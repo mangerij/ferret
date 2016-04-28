@@ -28,7 +28,7 @@
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
   #use_displaced_mesh = false
-  prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
+  #prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
 []
 
 
@@ -223,7 +223,7 @@
   [../]
   [./matl_e11]
     type = RankTwoAux
-    rank_two_tensor = mechanical_strain #or total strain?
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 0
     variable = strain_xx_elastic
@@ -231,7 +231,7 @@
   [../]
   [./matl_e12]
     type = RankTwoAux
-    rank_two_tensor = mechanical_strain
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 1
     variable = strain_xy_elastic
@@ -239,7 +239,7 @@
   [../]
   [./matl_e13]
     type = RankTwoAux
-    rank_two_tensor = mechanical_strain
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 2
     variable = strain_xz_elastic
@@ -247,7 +247,7 @@
   [../]
   [./matl_e22]
     type = RankTwoAux
-    rank_two_tensor = mechanical_strain
+    rank_two_tensor = total_strain
     index_i = 1
     index_j = 1
     variable = strain_yy_elastic
@@ -255,7 +255,7 @@
   [../]
   [./matl_e23]
     type = RankTwoAux
-    rank_two_tensor = mechanical_strain
+    rank_two_tensor = total_strain
     index_i = 1
     index_j = 2
     variable = strain_yz_elastic
@@ -263,7 +263,7 @@
   [../]
   [./matl_e33]
     type = RankTwoAux
-    rank_two_tensor = mechanical_strain
+    rank_two_tensor = total_strain
     index_i = 2
     index_j = 2
     variable = strain_zz_elastic
@@ -393,31 +393,6 @@
 
 [BCs]
 
- # [./Stress_xz]
- #   type = StressBC
- #   variable = disp_x
- #   component = 0
- #   boundary_stress = '0 -0.1 0 0 0 0'
- #   boundary = 'top'
- # [../]
-
- # [./Stress_yz]
- #   type = StressBC
- #   variable = disp_y
- #   component = 1
- #   boundary_stress = '0 0 0 0 0 0'
- #   boundary = '1'
- # [../]
-
-  [./hydroStress_zz]
-    type = HydrostaticBC
-    variable = disp_z
-    component = 2
-    pressure = 0.0
-    boundary = '1'
- [../]
-
-
   #[./disp_x_1]
   #  type = DirichletBC
   #  variable = disp_x
@@ -434,7 +409,7 @@
   #  type = DirichletBC
   #  variable = disp_z
   #  boundary = '1'
-  #  value = 0.05
+  #  value = 0.0
   #[../]
 
 [./potential_int_1]
@@ -600,12 +575,12 @@
 []
 
 [Materials]
-   [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-    type = ComputeEigenstrain
-    block = '1'
-   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-    eigen_base = '1 0 0 0 1 0 0 0 0'
-  [../]
+ #  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+ #   type = ComputeEigenstrain
+ #   block = '1'
+ #  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+ #   eigen_base = '1 0 0 0 1 0 0 0 0'
+ # [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -651,40 +626,40 @@
 #    block = '1'
 #    use_displaced_mesh = true
 #  [../]
-  [./bulk_energy]
-     type = BulkEnergy
-     block = '1'
-     execute_on = 'timestep_end'
+   [./bulk_energy]
+      type = BulkEnergy
+      block = '1'
+      execute_on = 'timestep_end'
     [../]
-   [./wall_energy]
-    type = WallEnergy
-    block = '1'
-    execute_on = 'timestep_end'
-   [../]
+    [./wall_energy]
+      type = WallEnergy
+      block = '1'
+      execute_on = 'timestep_end'
+    [../]
     [./elastic_energy]
-    type = ElasticEnergy
-    block = '1'
-    execute_on = 'timestep_end'
+      type = ElasticEnergy
+      block = '1'
+      execute_on = 'timestep_end'
     [../]
     [./coupled_energy]
-     block = '1'
-    type = CoupledEnergy
-    execute_on = 'timestep_end'
+      block = '1'
+      type = CoupledEnergy
+      execute_on = 'timestep_end'
     [../]
     [./electrostatic_energy]
-     block = '1'
-     type = ElectrostaticEnergy
-     execute_on = 'timestep_end'
-     permittivity = 0.08854187
+      block = '1'
+      type = ElectrostaticEnergy
+      execute_on = 'timestep_end'
+      permittivity = 0.08854187
     [../]
     [./total_energy_noelastic]
-    type = TotalEnergyFlow
-    bulk_energy = bulk_energy
-    wall_energy = wall_energy
-    bulk_energy_fourth = bulk_energy_fourth
-    coupled_energy = coupled_energy
-    electrostatic_energy = electrostatic_energy
-    execute_on = 'timestep_end'
+      type = TotalEnergyFlow
+      bulk_energy = bulk_energy
+      wall_energy = wall_energy
+      bulk_energy_fourth = bulk_energy_fourth
+      coupled_energy = coupled_energy
+      electrostatic_energy = electrostatic_energy
+      execute_on = 'timestep_end'
     [../]
     [./perc_change]
      type = PercentChangePostprocessor
@@ -694,12 +669,12 @@
 []
 
 
-[UserObjects]
- [./kill]
-  type = Terminator
-  expression = 'perc_change <= 5.0e-5'
- [../]
-[]
+#[UserObjects]
+# [./kill]
+#  type = Terminator
+#  expression = 'perc_change <= 5.0e-5'
+# [../]
+#[]
 
 [Preconditioning]
   [./smp]
@@ -707,7 +682,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-8      1e-8     bjacobi'
+    petsc_options_value = '    121                1e-8      1e-10    bjacobi'
   [../]
 []
 
@@ -715,9 +690,9 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.2
+    dt = 0.4
     #iteration_window = 3
-    optimal_iterations = 5
+    optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.2
     linear_iteration_ratio = 1000
     cutback_factor =  0.75
@@ -725,7 +700,7 @@
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
-  dtmax = 0.88
+  dtmax = 0.5
 []
 
 [Outputs]
@@ -733,7 +708,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTO_thinfilm_comp05_short_check2_SF
+    file_base = out_PTO_thinfilm_comp05_short_check2_SF3
     elemental_as_nodal = true
     interval = 2
   [../]

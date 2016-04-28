@@ -1,23 +1,23 @@
 /**
- * @file   FerroelectricCouplingP.C
+ * @file   FerroelectricCouplingQ.C
  * @author S. Gu <sgu@anl.gov>
  * @modified J. Mangeri <mangerij@anl.gov>
  * @date   Jun. 15. 2015
  *
  * @brief  Implement the kernel for polar variables corresponding to ferroelectic coupling energy after
  *         the variational derivative of the polar dependent terms have been taken.
- *         This is only the quadratic term. See notes.
+ *         This is only the quartic term. See notes.
  */
 
-#include "FerroelectricCouplingP.h"
+#include "FerroelectricCouplingQ.h"
 #include "ComputeElectrostrictiveTensor.h"
 #include "ElectrostrictiveTensorTools.h"
 #include "ComputeEigenstrain.h"
 
-class FerroelectricCouplingP;
+class FerroelectricCouplingQ;
 
 template<>
-InputParameters validParams<FerroelectricCouplingP>()
+InputParameters validParams<FerroelectricCouplingQ>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredCoupledVar("disp_x", "The x component of the elastic displacement");
@@ -33,7 +33,7 @@ InputParameters validParams<FerroelectricCouplingP>()
   return params;
 }
 
-FerroelectricCouplingP::FerroelectricCouplingP(const InputParameters & parameters)
+FerroelectricCouplingQ::FerroelectricCouplingQ(const InputParameters & parameters)
   :Kernel(parameters),
    _electrostrictive_tensor(getMaterialProperty<RankFourTensor>("electrostrictive_tensor")),
    _stress_free_strain(getMaterialProperty<RankTwoTensor>("stress_free_strain")),
@@ -58,7 +58,7 @@ FerroelectricCouplingP::FerroelectricCouplingP(const InputParameters & parameter
 }
 
 Real
-FerroelectricCouplingP::computeQpResidual()
+FerroelectricCouplingQ::computeQpResidual()
 {
   Real sum = 0.0;
   Real RpCoupled = 0.0;
@@ -75,7 +75,7 @@ FerroelectricCouplingP::computeQpResidual()
 }
 
 Real
-FerroelectricCouplingP::computeQpJacobian()
+FerroelectricCouplingQ::computeQpJacobian()
 {
   Real sum = 0.0;
   //form three vectors of the _stress_free_strain[_qp] object
@@ -89,7 +89,7 @@ FerroelectricCouplingP::computeQpJacobian()
 }
 
 Real
-FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
+FerroelectricCouplingQ::computeQpOffDiagJacobian(unsigned int jvar)
 {
   unsigned int coupled_component;
   Real sum = 0.0;
