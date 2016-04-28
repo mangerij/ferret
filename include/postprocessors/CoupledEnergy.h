@@ -11,6 +11,7 @@
 #include "RankTwoTensor.h"
 #include "ElementIntegralPostprocessor.h"
 #include "ComputeElectrostrictiveTensor.h"
+#include "ComputeEigenstrain.h"
 
 //Forward Declarations
 class CoupledEnergy;
@@ -29,6 +30,7 @@ protected:
 
 private:
   const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
+  const MaterialProperty<RankTwoTensor> & _stress_free_strain;
   const VariableGradient & _disp_x_grad;
   const VariableGradient & _disp_y_grad;
   const VariableGradient & _disp_z_grad;

@@ -21,7 +21,9 @@ protected:
 
   /// Individual material information
   RankFourTensor _Qmnkl;
+  RankFourTensor _Cijkl;
   RankFourTensor _qijkl;
+  RankFourTensor _QQijkl;
 
  private:
    const MaterialProperty<RankFourTensor> & _elasticity_tensor;

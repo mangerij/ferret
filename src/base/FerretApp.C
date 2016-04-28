@@ -39,7 +39,6 @@
 #include "HydrostaticBC.h"
 #include "OpenCircuitBC.h"
 
-
 //Initial Conditions
 #include "PerturbedIC.h"
 #include "SinIC.h"
@@ -58,6 +57,7 @@
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
 #include "FerroelectricCouplingP.h"
+#include "FerroelectricCouplingQ.h"
 #include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 
@@ -165,6 +165,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(WallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
+  registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);

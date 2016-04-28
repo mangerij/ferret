@@ -52,7 +52,6 @@ FerroelectricCouplingP::FerroelectricCouplingP(const InputParameters & parameter
    _polar_z(coupledValue("polar_z")),
    _strain_scale(getParam<Real>("strain_scale")),
    _artificial(getParam<Real>("artificial")),
-   _prefactor(getParam<Real>("prefactor")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }

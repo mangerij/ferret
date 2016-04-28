@@ -53,7 +53,6 @@ private:
   // const MaterialProperty<RankTwoTensor> & _stress_free_strain;
   const Real _strain_scale;
   const Real _artificial;
-  const Real _prefactor;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };
