@@ -27,8 +27,9 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
+  artificial = 1.0 #this is an artificial scaling parameter for coupling.
   #use_displaced_mesh = false
-  prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
+  #prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
 []
 
 
@@ -360,44 +361,44 @@
   [../]
   ##Electrostatics
   [./polar_x_electric_E]
-     type=PolarElectricEStrong
+     type = PolarElectricEStrong
      variable = potential_int
      permittivity = 0.08854187
   [../]
   [./FE_E_int]
-     type=Electrostatics
+     type = Electrostatics
      variable = potential_int
      permittivity = 0.08854187
   [../]
 
   [./polar_electric_px]
-     type=PolarElectricPStrong
+     type = PolarElectricPStrong
      variable = polar_x
      component = 0
   [../]
   [./polar_electric_py]
-     type=PolarElectricPStrong
+     type = PolarElectricPStrong
      variable = polar_y
      component = 1
   [../]
   [./polar_electric_pz]
-     type=PolarElectricPStrong
+     type = PolarElectricPStrong
      variable = polar_z
      component = 2
   [../]
   ##Time dependence
   [./polar_x_time]
-     type=TimeDerivativeScaled
+     type = TimeDerivativeScaled
      variable=polar_x
     time_scale = 1.0
   [../]
   [./polar_y_time]
-     type=TimeDerivativeScaled
+     type = TimeDerivativeScaled
      variable=polar_y
     time_scale = 1.0
   [../]
   [./polar_z_time]
-     type=TimeDerivativeScaled
+     type = TimeDerivativeScaled
      variable = polar_z
     time_scale = 1.0
   [../]
@@ -406,38 +407,40 @@
 
 [BCs]
 
-  #[./disp_x_1]
-  #  type = DirichletBC
-  #  variable = disp_x
-  #  boundary = '1'
-  #  value = 0.0
-  #[../]
-  #[./disp_y_1]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  boundary = '1'
-  #  value = 0.0
-  #[../]
-  #[./disp_z_1]
-  #  type = DirichletBC
-  #  variable = disp_z
-  #  boundary = '1'
-  #  value = 0.0
-  #[../]
+  [./disp_x_SF]
+    type = StressFreeBC
+    variable = disp_x
+    component = 0
+    boundary = '1'
 
-[./potential_int_1]
-  type = DirichletBC
-  variable = potential_int
-  boundary = '1'
-  value = -0.0001
-[../]
+  [../]
+  [./disp_y_1]
+    type = StressFreeBC
+    variable = disp_y
+    component = 1
+    boundary = '1'
 
-[./potential_int_2]
-  type = DirichletBC
-  variable = potential_int
-  boundary = '2'
-  value = -0.0001
-[../]
+  [../]
+  [./disp_z_1]
+    type = StressFreeBC
+    variable = disp_z
+    component = 2
+    boundary = '1'
+  [../]
+
+#[./potential_int_1]
+#  type = DirichletBC
+#  variable = potential_int
+#  boundary = '1'
+#  value = -0.0001
+#[../]
+#
+#[./potential_int_2]
+#  type = DirichletBC
+#  variable = potential_int
+#  boundary = '2'
+#  value = -0.0001
+#[../]
 
   [./bot_disp_x]
     variable = disp_x
@@ -588,12 +591,18 @@
 []
 
 [Materials]
-   [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-    type = ComputeEigenstrain
-    block = '1'
-   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-    eigen_base = '1 0 0 0 1 0 0 0 0'
-  [../]
+  # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+  #  type = ComputeEigenstrain
+  #  block = '1'
+  # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+  #  eigen_base = '0 0 0 0 0 0 0 0 1'
+  #[../]
+ # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+ #  type = ComputeEigenstrain
+ #  block = '1'
+ # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+ #  eigen_base = '1 0 0 0 1 0 0 0 0'
+ #[../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -662,7 +671,6 @@
     [./Felec]
       block = '1'
       type = ElectrostaticEnergy
-      execute_on = 'timestep_end'
       permittivity = 0.08854187
       execute_on = 'timestep_end'
     [../]
@@ -677,36 +685,31 @@
     [./perc_change]
      type = PercentChangePostprocessor
      postprocessor = Ftotal
-     execute_on = 'timestep_end'
    [../]
    [./num_NLin]
     type = NumNonlinearIterations
-    postprocessor = num_nonlin
-    execute_on = 'timestep_end'
    [../]
    [./num_Lin]
     type = NumLinearIterations
-    postprocessor = num_lin
-    execute_on = 'timestep_end'
    [../]
   []
 []
 
 
-#[UserObjects]
-# [./kill]
-#  type = Terminator
-#  expression = 'perc_change <= 5.0e-5'
-# [../]
-#[]
+[UserObjects]
+ [./kill]
+  type = Terminator
+  expression = 'perc_change <= 5.0e-3'
+ [../]
+[]
 
 [Preconditioning]
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -options_left'
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -ksp_snes_ew'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-7      1e-7    bjacobi'
+    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
 []
 
@@ -714,17 +717,18 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.45
+    dt = 0.8
     #iteration_window = 3
-    optimal_iterations = 4 #should be 5 probably
+    optimal_iterations = 8 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
-    cutback_factor =  0.75
+    cutback_factor =  0.8
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.45
+  dtmax = 0.8
 []
 
 [Outputs]
@@ -732,7 +736,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTO_thinfilm_comp05_short_check2_SF3
+    file_base = outPTO_thinfilm_tens05_SF3_Z_tol_art0
     elemental_as_nodal = true
     interval = 2
   [../]

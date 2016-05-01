@@ -49,6 +49,7 @@ private:
   const VariableGradient & _polar_x_grad;
   const VariableGradient & _polar_y_grad;
   const VariableGradient & _polar_z_grad;
+  const Real _artificial;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };

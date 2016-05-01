@@ -29,15 +29,11 @@
 #include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
 #include "WindingNumberDensity.h"
-#include "ElectrostaticEnergyDensityE.h" //prob can remove these
-#include "ElectrostaticEnergyDensity.h"
-#include "ElectrostaticEnergyDensityCross.h"
-#include "ElectrostaticEnergyDensityTotal.h"
-
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
 #include "OpenCircuitBC.h"
+#include "StressFreeBC.h"
 
 //Initial Conditions
 #include "PerturbedIC.h"
@@ -133,14 +129,11 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
   registerBoundaryCondition(OpenCircuitBC);
+  registerBoundaryCondition(StressFreeBC);
 
   //AuxKernels:
   registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
-  registerAux(ElectrostaticEnergyDensity);
-  registerAux(ElectrostaticEnergyDensityE);
-  registerAux(ElectrostaticEnergyDensityCross);
-  registerAux(ElectrostaticEnergyDensityTotal);
   registerAux(BulkEnergyDensity);
   registerAux(WallEnergyDensity);
   registerAux(ExFieldAux);

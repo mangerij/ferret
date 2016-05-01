@@ -18,6 +18,7 @@ InputParameters validParams<CoupledEnergy>()
   params.addRequiredCoupledVar("disp_x", "The x component of the elasticity displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
   params.addCoupledVar("disp_z", 0.0, "The z component of the elasticity displacement");
+  params.addParam<Real>("artificial", 1.0, "artificial increase coupling");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -32,6 +33,7 @@ CoupledEnergy::CoupledEnergy(const InputParameters & parameters) :
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
+  _artificial(getParam<Real>("artificial")),
   _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -60,5 +62,5 @@ CoupledEnergy::computeQpIntegral()
   sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp] - v2, 2, w);
 
   //TODO: need to add second coupling term (quartic) (it is a small contribution)
-  return - std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
+  return - _artificial * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
 }
