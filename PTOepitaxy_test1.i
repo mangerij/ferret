@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_thinfilm.e
+  file = exodus_thinfilm_8_10.e
   #uniform_refine = 1
 []
 
@@ -27,9 +27,9 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
-  artificial = 1.0 #this is an artificial scaling parameter for coupling.
+  #artificial = 1.0 #this is an artificial scaling parameter for coupling.
   #use_displaced_mesh = false
-  #prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
+  prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
 []
 
 
@@ -466,143 +466,143 @@
       variable = disp_x
       primary = '3'
       secondary = '5'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
     [./TB_disp_y_pbc]
       variable = disp_y
       primary = '3'
       secondary = '5'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
     [./TB_disp_z_pbc]
       variable = disp_z
       primary = '3'
       secondary = '5'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
 
     [./TB_polar_x_pbc]
       variable = polar_x
       primary = '3'
       secondary = '5'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = '3'
       secondary = '5'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = '3'
       secondary = '5'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = '3'
       secondary = '5'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
   #
     [./TBsub_disp_x_pbc]
       variable = disp_x
       primary = '8'
       secondary = '10'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
     [./TBsub_disp_y_pbc]
       variable = disp_y
       primary = '8'
       secondary = '10'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
     [./TBsub_disp_z_pbc]
       variable = disp_z
       primary = '8'
       secondary = '10'
-      translation = '0 15 0'
+      translation = '0 24 0'
     [../]
 
     [./RL_disp_x_pbc]
       variable = disp_x
       primary = '4'
       secondary = '6'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
     [./RL_disp_y_pbc]
       variable = disp_y
       primary = '4'
       secondary = '6'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
     [./RL_disp_z_pbc]
       variable = disp_z
       primary = '4'
       secondary = '6'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = '4'
       secondary = '6'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = '4'
       secondary = '6'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = '4'
       secondary = '6'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
     [./RL_potential_int_pbc]
       variable = potential_int
       primary = '4'
       secondary = '6'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
 
     [./RLsub_disp_x_pbc]
       variable = disp_x
       primary = '9'
       secondary = '11'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
     [./RLsub_disp_y_pbc]
       variable = disp_y
       primary = '9'
       secondary = '11'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
     [./RLsub_disp_z_pbc]
       variable = disp_z
       primary = '9'
       secondary = '11'
-      translation = '15 0 0'
+      translation = '24 0 0'
     [../]
   [../]
 []
 
 [Materials]
-  # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+  # [./eigen_strain_xx_yy] #Use for stress-free strain (which approach is correct?)
   #  type = ComputeEigenstrain
   #  block = '1'
   # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
   #  eigen_base = '0 0 0 0 0 0 0 0 1'
   #[../]
- # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
+  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+   type = ComputeEigenstrain
+   block = '1'
+  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+   eigen_base = '1 0 0 0 1 0 0 0 0'
+ [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -686,12 +686,12 @@
      type = PercentChangePostprocessor
      postprocessor = Ftotal
    [../]
-   [./num_NLin]
-    type = NumNonlinearIterations
-   [../]
-   [./num_Lin]
-    type = NumLinearIterations
-   [../]
+  # [./num_NLin]
+  #  type = NumNonlinearIterations
+  # [../]
+  # [./num_Lin]
+  #  type = NumLinearIterations
+  # [../]
   []
 []
 
@@ -699,7 +699,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 5.0e-3'
+  expression = 'perc_change <= 1.0e-5'
  [../]
 []
 
@@ -719,7 +719,7 @@
     type = IterationAdaptiveDT
     dt = 0.8
     #iteration_window = 3
-    optimal_iterations = 8 #should be 5 probably
+    optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
     cutback_factor =  0.8
@@ -738,6 +738,6 @@
     type = Exodus
     file_base = outPTO_thinfilm_tens05_SF3_Z_tol_art0
     elemental_as_nodal = true
-    interval = 2
+    interval = 3
   [../]
 []
