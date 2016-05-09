@@ -374,24 +374,24 @@
     component = 2
   [../]
 
-  [./ferroelectriccouplingX_xx]
-    type = FerroelectricCouplingX
-    block = '1'
-    variable = disp_x
-    component = 0
-  [../]
-  [./ferroelectriccouplingX_yy]
-    type = FerroelectricCouplingX
-    block = '1'
-    variable = disp_y
-    component = 1
-  [../]
-  [./ferroelectriccouplingX_zz]
-    type = FerroelectricCouplingX
-    block = '1'
-    variable = disp_z
-    component = 2
-  [../]
+  #[./ferroelectriccouplingX_xx]
+  #  type = FerroelectricCouplingX
+  #  block = '1'
+  #  variable = disp_x
+  #  component = 0
+  #[../]
+  #[./ferroelectriccouplingX_yy]
+  #  type = FerroelectricCouplingX
+  #  block = '1'
+  #  variable = disp_y
+  #  component = 1
+  #[../]
+  #[./ferroelectriccouplingX_zz]
+  #  type = FerroelectricCouplingX
+  #  block = '1'
+  #  variable = disp_z
+  #  component = 2
+  #[../]
 
   ##Electrostatics
   [./polar_x_electric_E]
@@ -437,46 +437,46 @@
     time_scale = 1.0
   [../]
 
-  #[./disp_x_time]
-  #   type = TimeDerivativeScaled
-  #   variable=disp_x
-  #  time_scale = 1.0
-  #[../]
-  #[./disp_y_time]
-  #   type = TimeDerivativeScaled
-  #   variable=disp_y
-  #  time_scale = 1.0
-  #[../]
-  #[./disp_z_time]
-  #   type = TimeDerivativeScaled
-  #   variable = disp_z
-  #  time_scale = 1.0
-  #[../]
+  [./disp_x_time]
+     type = TimeDerivativeScaled
+     variable=disp_x
+    time_scale = 1.0
+  [../]
+  [./disp_y_time]
+     type = TimeDerivativeScaled
+     variable=disp_y
+    time_scale = 1.0
+  [../]
+  [./disp_z_time]
+     type = TimeDerivativeScaled
+     variable = disp_z
+    time_scale = 1.0
+  [../]
 []
 
 
 [BCs]
 
-  #[./disp_x_SF]
-  #  type = StressFreeBC
-  #  variable = disp_x
-  #  component = 0
-  #  boundary = '1'
-  #
-  #[../]
-  #[./disp_y_1]
-  #  type = StressFreeBC
-  #  variable = disp_y
-  #  component = 1
-  #  boundary = '1'
-  #
-  #[../]
-  #[./disp_z_1]
-  #  type = StressFreeBC
-  #  variable = disp_z
-  #  component = 2
-  #  boundary = '1'
-  #[../]
+  [./disp_x_SF]
+    type = StressFreeBC
+    variable = disp_x
+    component = 0
+    boundary = '1'
+
+  [../]
+  [./disp_y_1]
+    type = StressFreeBC
+    variable = disp_y
+    component = 1
+    boundary = '1'
+
+  [../]
+  [./disp_z_1]
+    type = StressFreeBC
+    variable = disp_z
+    component = 2
+    boundary = '1'
+  [../]
 
 [./potential_int_1]
   type = DirichletBC
@@ -776,7 +776,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 1.0e-5'
+  expression = 'perc_change <= 1.0e-4'
  [../]
 []
 
@@ -794,7 +794,7 @@
   type = Transient
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.3
+    dt = 0.2
     optimal_iterations = 6 #should be 5 probably or 1?
     growth_factor = 1.4
     linear_iteration_ratio = 1000
@@ -804,7 +804,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 0.05
-  dtmax = 0.3
+  dtmax = 0.2
 []
 
 [Outputs]
@@ -812,7 +812,7 @@
   print_perf_log = true
   [./out1]
     type = Exodus
-    file_base = outPTO_TF_c05_modSF_E_89_oneeightminus_CTD
+    file_base = outPTO_TF_c05_modSF_E_121_no_Q_TD
     elemental_as_nodal = true
     interval = 1
   [../]
