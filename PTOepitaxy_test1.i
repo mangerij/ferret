@@ -1,7 +1,7 @@
 
 [Mesh]
-  file = exodus_thinfilm_8_10.e
-  #uniform_refine = 1
+  file = exodus_thinfilm_12_8_10.e
+  uniform_refine = 1
 []
 
 [GlobalParams]
@@ -26,6 +26,7 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
+  kappa = 1.0
   displacements = 'disp_x disp_y disp_z'
   #artificial = 1.0 #this is an artificial scaling parameter for coupling.
   #use_displaced_mesh = false
@@ -37,7 +38,7 @@
 [Variables]
   [./polar_x]
     block = '1'
-    order = FIRST
+    order = FIRST  #comment: Third order Hermites ->? dense problem -> pc fails
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
@@ -166,6 +167,10 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
+  [./wallenergydensity]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 
@@ -267,14 +272,42 @@
     variable = strain_zz_elastic
     execute_on = 'timestep_end'
   [../]
+  [./wallenergydensity]
+    type = WallEnergyDensity
+    block = '1'
+    variable = wallenergydensity
+    execute_on = 'timestep_end'
+  [../]
 []
 
 
 [Kernels]
   #Elastic problem
   [./TensorMechanics]
+    block = '1 2'
   #This is an action block
   [../]
+
+  #[./sd_x]
+  #  type = ModifiedStressDivergenceTensors
+  #  variable = disp_x
+  #  component = 0
+  #  block = '1'
+  #[../]
+  #[./sd_y]
+  #  type = ModifiedStressDivergenceTensors
+  #  variable = disp_y
+  #  component = 1
+  #  block = '1'
+  #[../]
+  #[./sd_z]
+  #  type = ModifiedStressDivergenceTensors
+  #  variable = disp_z
+  #  component = 2
+  #  block = '1'
+  #[../]
+
+
   #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivativeSixth
@@ -359,6 +392,7 @@
     variable = disp_z
     component = 2
   [../]
+
   ##Electrostatics
   [./polar_x_electric_E]
      type = PolarElectricEStrong
@@ -402,45 +436,61 @@
      variable = polar_z
     time_scale = 1.0
   [../]
+
+  #[./disp_x_time]
+  #   type = TimeDerivativeScaled
+  #   variable=disp_x
+  #  time_scale = 1.0
+  #[../]
+  #[./disp_y_time]
+  #   type = TimeDerivativeScaled
+  #   variable=disp_y
+  #  time_scale = 1.0
+  #[../]
+  #[./disp_z_time]
+  #   type = TimeDerivativeScaled
+  #   variable = disp_z
+  #  time_scale = 1.0
+  #[../]
 []
 
 
 [BCs]
 
-  [./disp_x_SF]
-    type = StressFreeBC
-    variable = disp_x
-    component = 0
-    boundary = '1'
+  #[./disp_x_SF]
+  #  type = StressFreeBC
+  #  variable = disp_x
+  #  component = 0
+  #  boundary = '1'
+  #
+  #[../]
+  #[./disp_y_1]
+  #  type = StressFreeBC
+  #  variable = disp_y
+  #  component = 1
+  #  boundary = '1'
+  #
+  #[../]
+  #[./disp_z_1]
+  #  type = StressFreeBC
+  #  variable = disp_z
+  #  component = 2
+  #  boundary = '1'
+  #[../]
 
-  [../]
-  [./disp_y_1]
-    type = StressFreeBC
-    variable = disp_y
-    component = 1
-    boundary = '1'
+[./potential_int_1]
+  type = DirichletBC
+  variable = potential_int
+  boundary = '1'
+  value = -0.00001
+[../]
 
-  [../]
-  [./disp_z_1]
-    type = StressFreeBC
-    variable = disp_z
-    component = 2
-    boundary = '1'
-  [../]
-
-#[./potential_int_1]
-#  type = DirichletBC
-#  variable = potential_int
-#  boundary = '1'
-#  value = -0.0001
-#[../]
-#
-#[./potential_int_2]
-#  type = DirichletBC
-#  variable = potential_int
-#  boundary = '2'
-#  value = -0.0001
-#[../]
+[./potential_int_2]
+  type = DirichletBC
+  variable = potential_int
+  boundary = '2'
+  value = -0.00001
+[../]
 
   [./bot_disp_x]
     variable = disp_x
@@ -466,143 +516,143 @@
       variable = disp_x
       primary = '3'
       secondary = '5'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
     [./TB_disp_y_pbc]
       variable = disp_y
       primary = '3'
       secondary = '5'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
     [./TB_disp_z_pbc]
       variable = disp_z
       primary = '3'
       secondary = '5'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
 
     [./TB_polar_x_pbc]
       variable = polar_x
       primary = '3'
       secondary = '5'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = '3'
       secondary = '5'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = '3'
       secondary = '5'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = '3'
       secondary = '5'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
-  #
+  ##
     [./TBsub_disp_x_pbc]
       variable = disp_x
       primary = '8'
       secondary = '10'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
     [./TBsub_disp_y_pbc]
       variable = disp_y
       primary = '8'
       secondary = '10'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
     [./TBsub_disp_z_pbc]
       variable = disp_z
       primary = '8'
       secondary = '10'
-      translation = '0 24 0'
+      translation = '0 12 0'
     [../]
 
     [./RL_disp_x_pbc]
       variable = disp_x
       primary = '4'
       secondary = '6'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
     [./RL_disp_y_pbc]
       variable = disp_y
       primary = '4'
       secondary = '6'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
     [./RL_disp_z_pbc]
       variable = disp_z
       primary = '4'
       secondary = '6'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = '4'
       secondary = '6'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = '4'
       secondary = '6'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = '4'
       secondary = '6'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
     [./RL_potential_int_pbc]
       variable = potential_int
       primary = '4'
       secondary = '6'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
 
     [./RLsub_disp_x_pbc]
       variable = disp_x
       primary = '9'
       secondary = '11'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
     [./RLsub_disp_y_pbc]
       variable = disp_y
       primary = '9'
       secondary = '11'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
     [./RLsub_disp_z_pbc]
       variable = disp_z
       primary = '9'
       secondary = '11'
-      translation = '24 0 0'
+      translation = '12 0 0'
     [../]
   [../]
 []
 
 [Materials]
-  # [./eigen_strain_xx_yy] #Use for stress-free strain (which approach is correct?)
-  #  type = ComputeEigenstrain
-  #  block = '1'
-  # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-  #  eigen_base = '0 0 0 0 0 0 0 0 1'
-  #[../]
-  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-   type = ComputeEigenstrain
-   block = '1'
-  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-   eigen_base = '1 0 0 0 1 0 0 0 0'
- [../]
+   [./eigen_strain_xx_yy] #Use for stress-free strain (which approach is correct?)
+    type = ComputeEigenstrain
+    block = '1'
+   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '0 0 0 0 0 0 0 0 1'
+  [../]
+ # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+ #  type = ComputeEigenstrain
+ #  block = '1'
+ # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+ #  eigen_base = '1 0 0 0 1 0 0 0 0'
+ #[../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -686,15 +736,42 @@
      type = PercentChangePostprocessor
      postprocessor = Ftotal
    [../]
-  # [./num_NLin]
-  #  type = NumNonlinearIterations
-  # [../]
-  # [./num_Lin]
-  #  type = NumLinearIterations
-  # [../]
-  []
+   [./nodes]
+     type = NumNodes
+    [../]
+   [./num_NLin]
+    type = NumNonlinearIterations
+   [../]
+   [./num_Lin]
+    type = NumLinearIterations
+   [../]
 []
 
+#[Adaptivity]
+#  marker = combo
+#  initial_steps = 0
+#  max_h_level = 3
+#  [./Markers]
+#    [./EFM_3]
+#      type = ErrorFractionMarker
+#      coarsen = 0.025
+#      refine = 0.45
+#      indicator = GJI_3
+#    [../]
+#
+#    [./combo]
+#      type = ComboMarker
+#      markers = 'EFM_3'
+#    [../]
+#  [../]
+#
+#  [./Indicators]
+#    [./GJI_3]
+#     type = GradientJumpIndicator
+#     variable = potential_int
+#    [../]
+#  [../]
+#[]
 
 [UserObjects]
  [./kill]
@@ -709,35 +786,42 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -ksp_snes_ew'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
+    petsc_options_value = '    121                1e-8      1e-8    bjacobi'
   [../]
 []
 
 [Executioner]
   type = Transient
-    [./TimeStepper]
+  [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.8
-    #iteration_window = 3
-    optimal_iterations = 6 #should be 5 probably
+    dt = 0.3
+    optimal_iterations = 6 #should be 5 probably or 1?
     growth_factor = 1.4
     linear_iteration_ratio = 1000
-    cutback_factor =  0.8
-[../]
+    cutback_factor =  0.55
+  [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
-  dtmin = 1e-13
-  dtmax = 0.8
+  dtmin = 0.05
+  dtmax = 0.3
 []
 
 [Outputs]
   print_linear_residuals = true
   print_perf_log = true
-  [./out]
+  [./out1]
     type = Exodus
-    file_base = outPTO_thinfilm_tens05_SF3_Z_tol_art0
+    file_base = outPTO_TF_c05_modSF_E_48_oneeightminus_CTD
     elemental_as_nodal = true
-    interval = 3
+    interval = 1
   [../]
+
+  #outPTO_TF_c05_modSF_E_2 been diverging at step 87 if we don't let dt decrease so that E flattens
+
+  #[./out2] #need for AMR -- [postprocessors don't print correctly in .e files]
+  #  type = CSV
+  #  file_base = outPTO_thinfilm_c05_modSF_AMRcsv_3200
+  #  interval = 1
+  #[../]
 []

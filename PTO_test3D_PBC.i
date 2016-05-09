@@ -2,15 +2,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 4
-  ny = 4
-  nz = 4
-  ymax = 2
-  ymin = -2
-  xmin = -2
-  xmax = 2
-  zmin = -2
-  zmax = 2
+  nx = 10
+  ny = 10
+  nz = 10
+  ymax = 4
+  ymin = -4
+  xmin = -4
+  xmax = 4
+  zmin = -4
+  zmax = 4
 []
 
 [GlobalParams]
@@ -541,7 +541,7 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -snes_check_jacobian'
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
     petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
@@ -551,19 +551,18 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.8
+    dt = 0.2
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
-    cutback_factor =  0.8
+    cutback_factor =  0.75
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.8
-  num_steps = 1
+  dtmax = 0.2
 []
 
 [Outputs]
@@ -571,7 +570,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_3D_test_noPBC
+    file_base = outPTO_3D_test_PBC_sign
     elemental_as_nodal = true
     interval = 1
   [../]

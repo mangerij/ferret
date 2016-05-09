@@ -30,6 +30,7 @@ ComputeElectrostrictiveTensor::ComputeElectrostrictiveTensor(const InputParamete
   RotationTensor R(_Euler_angles); // R type: RealTensorValue
   // rotate electrostrictive tensor -- note that it needs to be collinear with the elasticity tensor _always_
   _Qmnkl.rotate(R);
+  _Cijkl.rotate(R);
   //contractions using namespace
   _qijkl = ElectrostrictiveTensorTools::computeProduct(_Cijkl, _Qmnkl);
   _QQijkl = ElectrostrictiveTensorTools::computeProduct(_qijkl, _Qmnkl); //contract again

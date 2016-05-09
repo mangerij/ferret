@@ -21,6 +21,7 @@ InputParameters validParams<BulkEnergyDerivativeSixth>()
   params.addRequiredParam<Real>("alpha111", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha112", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha123", "The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("kappa", "artificial scaling");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -40,6 +41,7 @@ BulkEnergyDerivativeSixth::BulkEnergyDerivativeSixth(const InputParameters & par
    _alpha111(getParam<Real>("alpha111")),
    _alpha112(getParam<Real>("alpha112")),
    _alpha123(getParam<Real>("alpha123")),
+   _kappa(getParam<Real>("kappa")),
    _len_scale(getParam<Real>("len_scale"))
 {
   std::cout<<"_alpha1 ="<<_alpha1<<"\n";

@@ -42,6 +42,7 @@
 #include "AdhocConstIC.h"
 
 //Kernels
+#include "ModifiedStressDivergenceTensors.h"
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
@@ -151,6 +152,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(WindingNumberDensity);
 
   //Kernels
+
+  registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeFourth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
