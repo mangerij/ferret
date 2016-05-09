@@ -23,7 +23,7 @@ InputParameters validParams<WallEnergyDerivative>()
   params.addRequiredParam<Real>("G12/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44P/G110", "Domain wall coefficient ratio");
-  params.set<bool>("use_displaced_mesh") = false;
+  //params.set<bool>("use_displaced_mesh") = false;
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }

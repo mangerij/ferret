@@ -1,7 +1,7 @@
 
 [Mesh]
   file = exodus_thinfilm_12_8_10.e
-  uniform_refine = 1
+  #uniform_refine = 1
 []
 
 [GlobalParams]
@@ -812,7 +812,7 @@
   print_perf_log = true
   [./out1]
     type = Exodus
-    file_base = outPTO_TF_c05_modSF_E_48_oneeightminus_CTD
+    file_base = outPTO_TF_c05_modSF_E_89_oneeightminus_CTD
     elemental_as_nodal = true
     interval = 1
   [../]
