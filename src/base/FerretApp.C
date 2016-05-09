@@ -29,6 +29,7 @@
 #include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
 #include "WindingNumberDensity.h"
+#include "BandGapAuxZnOwRot.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -150,6 +151,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(BandGapAuxTiO2);
   registerAux(SurfaceChargeAux);
   registerAux(WindingNumberDensity);
+  registerAux(BandGapAuxZnOwRot);
 
   //Kernels
 
