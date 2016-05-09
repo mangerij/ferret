@@ -15,21 +15,19 @@ InputParameters validParams<TotalEnergyFlow>()
 {
 
   InputParameters params = validParams<GeneralPostprocessor>();
-  params.addParam<PostprocessorName>("bulk_energy", 0.0, "name of bulk energy postprocessor");
-  params.addParam<PostprocessorName>("wall_energy", 0.0,  "name of wall energy postprocessor");
-  params.addParam<PostprocessorName>("bulk_energy_fourth", 0.0,  "name of bulk energy postprocessor to fourth order");
-  params.addParam<PostprocessorName>("electrostatic_energy", 0.0, "name of electrostatic energy postprocessor");
-  params.addParam<PostprocessorName>("coupled_energy", 0.0, "name of the coupled energy postprocessor");
+  params.addParam<PostprocessorName>("Fbulk", 0.0, "name of bulk energy postprocessor");
+  params.addParam<PostprocessorName>("Fwall", 0.0,  "name of wall energy postprocessor");
+  params.addParam<PostprocessorName>("Felec", 0.0, "name of electrostatic energy postprocessor");
+  params.addParam<PostprocessorName>("Fcoupled", 0.0, "name of the coupled energy postprocessor");
   return params;
 }
 
 TotalEnergyFlow::TotalEnergyFlow(const InputParameters & parameters) :
   GeneralPostprocessor(parameters),
-  _bulk_energy(getPostprocessorValue(getParam<PostprocessorName>("bulk_energy"))),
-  _wall_energy(getPostprocessorValue(getParam<PostprocessorName>("wall_energy"))),
-  _bulk_energy_fourth(getPostprocessorValue(getParam<PostprocessorName>("bulk_energy_fourth"))),
-  _electrostatic_energy(getPostprocessorValue(getParam<PostprocessorName>("electrostatic_energy"))),
-  _coupled_energy(getPostprocessorValue(getParam<PostprocessorName>("coupled_energy")))
+  _Fbulk(getPostprocessorValue(getParam<PostprocessorName>("Fbulk"))),
+  _Fwall(getPostprocessorValue(getParam<PostprocessorName>("Fwall"))),
+  _Felec(getPostprocessorValue(getParam<PostprocessorName>("Felec"))),
+  _Fcoupled(getPostprocessorValue(getParam<PostprocessorName>("Fcoupled")))
 {
 }
 
@@ -48,5 +46,5 @@ Real
 TotalEnergyFlow::getValue()
 {
   //  return _bulk_energy + _wall_energy + _electrostatic_energy;
-  return _bulk_energy + _wall_energy + _bulk_energy_fourth + _electrostatic_energy + _coupled_energy;
+  return _Fbulk + _Fwall + _Felec + _Fcoupled;
 }

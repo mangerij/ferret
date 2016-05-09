@@ -2,7 +2,6 @@
  * @file   Electrostatics.h
  * @author S. Gu <sgu@anl.gov>
  * @modified J. Mangeri <mangerij@anl.gov>
- *
  */
 
 #include "Electrostatics.h"
@@ -28,11 +27,8 @@ Real
 Electrostatics::computeQpResidual()
 {
   Real Relec = 0.0;
-
   Relec += _permittivity * _grad_u[_qp] * _grad_test[_i][_qp] * _len_scale;
-
   //  Moose::out << "\n R_elec-"; std::cout << " = " << Relec;
-
   return Relec;
 }
 

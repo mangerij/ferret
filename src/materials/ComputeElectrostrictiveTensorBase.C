@@ -13,7 +13,9 @@ ComputeElectrostrictiveTensorBase::ComputeElectrostrictiveTensorBase(const Input
     Material(parameters),
    _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
    _electrostrictive_tensor_name(_base_name + "electrostrictive_tensor"),
-   _electrostrictive_tensor(declareProperty<RankFourTensor>(_electrostrictive_tensor_name))
+   _electrostrictive_tensorQ_name(_base_name + "electrostrictive_tensorQ"),
+   _electrostrictive_tensor(declareProperty<RankFourTensor>(_electrostrictive_tensor_name)),
+   _electrostrictive_tensorQ(declareProperty<RankFourTensor>(_electrostrictive_tensorQ_name))
 {
 }
 

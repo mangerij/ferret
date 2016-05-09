@@ -3,9 +3,9 @@
 #include "Moose.h"
 #include "Factory.h"
 #include "AppFactory.h"
-// #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
+//Specific Modules
 #include "TensorMechanicsApp.h"
 
 //Actions
@@ -28,25 +28,12 @@
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
-#include "ScreenAux.h"
-//#include "PolarizationSurfaceCharge.h" // What was this?
 #include "WindingNumberDensity.h"
 
-//not sure what these are
-#include "ElectrostaticEnergyDensityE.h"
-#include "ElectrostaticEnergyDensity.h"
-#include "ElectrostaticEnergyDensityCross.h"
-#include "ElectrostaticEnergyDensityTotal.h"
-
-
 //Boundary Conditions
-//#include "StressBC.h"
-//#include "StressFunctionBC.h"
 #include "HydrostaticBC.h"
-//#include "HydrostaticDirichletBC.h"
-//#include "DepolScreenBC.h"
 #include "OpenCircuitBC.h"
-
+#include "StressFreeBC.h"
 
 //Initial Conditions
 #include "PerturbedIC.h"
@@ -55,6 +42,7 @@
 #include "AdhocConstIC.h"
 
 //Kernels
+#include "ModifiedStressDivergenceTensors.h"
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
@@ -66,21 +54,16 @@
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
 #include "FerroelectricCouplingP.h"
-//#include "FerroelectricCouplingU.h" removed, but we can leave this here as a testament to mediocrity
-//#include "FerroelectricCouplingX.h"
+#include "FerroelectricCouplingQ.h"
+#include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 
 //Materials
-//#include "LinearFerroelectricMaterial.h"
-//new "plug and play" approach for electrostriction
 #include "ComputeElectrostrictiveTensor.h"
-//#include "ComputeRotatedElectrostrictiveTensorBase.h"
-//#include "ComputeElectrostrictiveTensorBase.h"
-//#include "PolarMaterial.h"
+
 
 //Postprocessors
 #include "WallEnergy.h"
-//#include "WallEnergyFourth.h"
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
 #include "BulkEnergy.h"
@@ -88,7 +71,6 @@
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
-//#include "VortexSurfaceEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -145,23 +127,14 @@ FerretApp::registerObjects(Factory & factory)
 #define registerObject(name) factory.reg<name>(stringifyName(name))
 
   //BoundaryConditions
-  //registerBoundaryCondition(StressBC);
-  //registerBoundaryCondition(StressFunctionBC);
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
-  //registerBoundaryCondition(HydrostaticDirichletBC);
-  //registerBoundaryCondition(PolarizationSurfaceCharge);
-  //registerBoundaryCondition(DepolScreenBC);
   registerBoundaryCondition(OpenCircuitBC);
+  registerBoundaryCondition(StressFreeBC);
 
   //AuxKernels:
-
   registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
-  registerAux(ElectrostaticEnergyDensity);
-  registerAux(ElectrostaticEnergyDensityE);
-  registerAux(ElectrostaticEnergyDensityCross);
-  registerAux(ElectrostaticEnergyDensityTotal);
   registerAux(BulkEnergyDensity);
   registerAux(WallEnergyDensity);
   registerAux(ExFieldAux);
@@ -176,10 +149,11 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
   registerAux(SurfaceChargeAux);
-  registerAux(ScreenAux);
   registerAux(WindingNumberDensity);
 
   //Kernels
+
+  registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeFourth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
@@ -187,8 +161,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(WallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
- // registerKernel(FerroelectricCouplingU);
- // registerKernel(FerroelectricCouplingX);
+  registerKernel(FerroelectricCouplingQ);
+  registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
@@ -207,10 +181,7 @@ FerretApp::registerObjects(Factory & factory)
 
   //Materials
   //registerMaterial(LinearFerroelectricMaterial);
-
   registerMaterial(ComputeElectrostrictiveTensor);
-  //registerMaterial(ComputeRotatedElectrostrictiveTensorBase);
-  //registerMaterial(ComputeElectrostrictiveTensorBase);
 
   //InitialConditions
   registerInitialCondition(PerturbedIC);

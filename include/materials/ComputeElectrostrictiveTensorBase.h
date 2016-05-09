@@ -19,8 +19,10 @@ protected:
 
   std::string _base_name;
   std::string _electrostrictive_tensor_name;
+  std::string _electrostrictive_tensorQ_name;
 
   MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
+  MaterialProperty<RankFourTensor> & _electrostrictive_tensorQ;
 };
 
 #endif //COMPUTEELECTROSTRICTIVETENSORBASE_H

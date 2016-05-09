@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = embedded_single_sphere_1.e
+  file = embedded_single_sphere_2.e
 
   #sphere = block 1
   #dielectric = block 2
@@ -309,7 +309,7 @@
   [../]
   [./matl_e11]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 0
     block = '1 2'
@@ -318,7 +318,7 @@
   [../]
   [./matl_e12]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 1
     block = '1 2'
@@ -327,7 +327,7 @@
   [../]
   [./matl_e13]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 2
     block = '1 2'
@@ -336,7 +336,7 @@
   [../]
   [./matl_e22]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = total_strain
     index_i = 1
     index_j = 1
     block = '1 2'
@@ -345,7 +345,7 @@
   [../]
   [./matl_e23]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = total_strain
     index_i = 1
     index_j = 2
     block = '1 2'
@@ -354,7 +354,7 @@
   [../]
   [./matl_e33]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = total_strain
     index_i = 2
     index_j = 2
     block = '1 2'
@@ -619,49 +619,54 @@
 
 []
 
-[Materials]
+
     #amorphous Si #C_ijkl = '62.543 5.735 5.735 62.543 5.735 62.543 28.404 28.404 28.404'
     #STO #C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53' #this is averaged..
     #PTO #C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
     #BTO #C_ijkl = '178 96.4 96.4 178 96.4 178 122 122 122'
-  [./spheres_ferroelectric]
-    type=LinearFerroelectricMaterial
-    block = '1'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-    #euler_angle_1 = 0.0 #currently will only rotate C_ijkl but Q_ijkl and C_ijkl are to be collinear
-    #euler_angle_2 = 0.0
-    #euler_angle_3 = 0.0
-  [../]
+[Materials]
+  # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+  #  type = ComputeEigenstrain
+  #  block = '1'
+  # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+  #  eigen_base = '0 0 0 0 0 0 0 0 1'
+  #[../]
 
-  [./elasticity_tensor1]
+  [./elasticity_tensor_1]
     type = ComputeElasticityTensor
-    block = '1'
     fill_method = symmetric9
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-  [../]
-  [./strain1]
-    type = ComputeSmallStrain
     block = '1'
   [../]
-  [./stress1]
+  [./strain_1]
+    type = ComputeSmallStrain
+    block = '1'
+    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+  [../]
+  [./stress_1]
     type = ComputeLinearElasticStress
     block = '1'
+    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
-  [./elasticity_tensor2]
-    type = ComputeElasticityTensor
-    block = '2'
-    fill_method = symmetric9
-    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
+  [./slab_ferroelectric]
+    block = '1'
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+    #C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
-  [./strain2]
+
+  [./elasticity_tensor_2]
+    type = ComputeElasticityTensor
+    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
+    fill_method = symmetric9
+    block = '2'
+  [../]
+  [./strain_2]
     type = ComputeSmallStrain
     block = '2'
   [../]
-  [./stress2]
+  [./stress_2]
     type = ComputeLinearElasticStress
     block = '2'
   [../]
@@ -750,7 +755,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTOsphere_inSTO_1
+    file_base = out_PTOsphere_inSTO_2
     elemental_as_nodal = true
     interval = 8
   [../]

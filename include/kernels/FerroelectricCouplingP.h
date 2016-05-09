@@ -12,7 +12,8 @@
 #include "Kernel.h"
 #include "ComputeElectrostrictiveTensor.h"
 #include "Material.h"
-// #include "DerivativeMaterialInterface.h"
+#include "ComputeEigenstrain.h"
+
 
 //Forward Declarations
 class FerroelectricCouplingP;
@@ -33,9 +34,9 @@ protected:
 
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-
 private:
   const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
+  const MaterialProperty<RankTwoTensor> & _stress_free_strain;
   const unsigned int _component;
   const unsigned int _disp_x_var;
   const unsigned int _disp_y_var;
@@ -52,7 +53,6 @@ private:
   // const MaterialProperty<RankTwoTensor> & _stress_free_strain;
   const Real _strain_scale;
   const Real _artificial;
-  const Real _prefactor;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };
