@@ -49,7 +49,7 @@ StressFreeBC::computeQpResidual()
   Real sum2 = 0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
-  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, w, _component, w); //contracts w^2 on q
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, w, _component, w); //contracts w^2 on q_ijkl
   sum2 += _elasticity_tensor[_qp](_component, 2, 0, 0) * _disp_x_grad[_qp](0) + _elasticity_tensor[_qp](_component, 2, 1, 0) * _disp_y_grad[_qp](0)
           + _elasticity_tensor[_qp](_component, 2, 2, 0) * _disp_z_grad[_qp](0) + _elasticity_tensor[_qp](_component, 2, 0, 1) * _disp_x_grad[_qp](1)
           + _elasticity_tensor[_qp](_component, 2, 1, 1) * _disp_y_grad[_qp](1) + _elasticity_tensor[_qp](_component, 2, 2, 1) * _disp_z_grad[_qp](1)

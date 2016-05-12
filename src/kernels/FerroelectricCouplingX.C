@@ -59,7 +59,7 @@ FerroelectricCouplingX::computeQpResidual()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 0, p) * _polar_x[_qp];
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 1, p) * _polar_y[_qp];
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 2, p) * _polar_z[_qp];
-  Rp = _artificial * std::pow(_len_scale, 2.0) * sum;
+  Rp = -_artificial * std::pow(_len_scale, 2.0) * sum;
   // Moose::out << "\n R ="; std::cout << Rp;
   return Rp;
 }
@@ -74,7 +74,7 @@ FerroelectricCouplingX::computeQpJacobian()
   RealVectorValue p(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], _component, p);
-  JRp =  2.0 * _artificial * std::pow(_len_scale, 2.0) * _phi[_j][_qp] * sum;
+  JRp = - 2.0 * _artificial * std::pow(_len_scale, 2.0) * _phi[_j][_qp] * sum;
   // Moose::out << "\n R ="; std::cout << Rp;
   return JRp;
 }
@@ -104,7 +104,7 @@ FerroelectricCouplingX::computeQpOffDiagJacobian(unsigned int jvar)
       coupled_component = 2;
       sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], coupled_component, p) ;
     }
-    return  2.0 * _artificial * std::pow(_len_scale, 2.0) * _phi[_j][_qp] * sum1;
+    return  - 2.0 * _artificial * std::pow(_len_scale, 2.0) * _phi[_j][_qp] * sum1;
   }
   else
   {
