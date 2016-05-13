@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_thinfilm_24_10_8.e
+  file = exodus_thinfilm_09_20_10_10.e
   #uniform_refine = 1
 []
 
@@ -26,10 +26,9 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
-  kappa = 1.0
   displacements = 'disp_x disp_y disp_z'
   #artificial = 1.0 #this is an artificial scaling parameter for coupling.
-  use_displaced_mesh = true
+  #use_displaced_mesh = false
   prefactor = 0.005 #negative = tension, positive = compression for stress-free strain along Z
 []
 
@@ -38,7 +37,7 @@
 [Variables]
   [./polar_x]
     block = '1'
-    order = FIRST  #comment: Third order Hermites ->? dense problem -> pc fails
+    order = FIRST
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
@@ -167,10 +166,6 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
-  [./wallenergydensity]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
 []
 
 
@@ -272,42 +267,14 @@
     variable = strain_zz_elastic
     execute_on = 'timestep_end'
   [../]
-  [./wallenergydensity]
-    type = WallEnergyDensity
-    block = '1'
-    variable = wallenergydensity
-    execute_on = 'timestep_end'
-  [../]
 []
 
 
 [Kernels]
   #Elastic problem
   [./TensorMechanics]
-    block = '1 2'
   #This is an action block
   [../]
-
-  #[./sd_x]
-  #  type = ModifiedStressDivergenceTensors
-  #  variable = disp_x
-  #  component = 0
-  #  block = '1'
-  #[../]
-  #[./sd_y]
-  #  type = ModifiedStressDivergenceTensors
-  #  variable = disp_y
-  #  component = 1
-  #  block = '1'
-  #[../]
-  #[./sd_z]
-  #  type = ModifiedStressDivergenceTensors
-  #  variable = disp_z
-  #  component = 2
-  #  block = '1'
-  #[../]
-
-
   #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivativeSixth
@@ -392,7 +359,6 @@
     variable = disp_z
     component = 2
   [../]
-
   ##Electrostatics
   [./polar_x_electric_E]
      type = PolarElectricEStrong
@@ -436,80 +402,44 @@
      variable = polar_z
     time_scale = 1.0
   [../]
-  #
-  #[./disp_x_time]
-  #   type = TimeDerivativeScaled
-  #   variable=disp_x
-  #  time_scale = 1.0
-  #[../]
-  #[./disp_y_time]
-  #   type = TimeDerivativeScaled
-  #   variable=disp_y
-  #  time_scale = 1.0
-  #[../]
-  #[./disp_z_time]
-  #   type = TimeDerivativeScaled
-  #   variable = disp_z
-  #  time_scale = 1.0
-  #[../]
 []
 
 
 [BCs]
 
-  #[./disp_x_SF]
-  #  type = DirichletBC #StressFreeBC
-  #  variable = disp_x
-  #  value = 0.0
-  #  boundary = '1'
-  #[../]
-  #[./disp_y_1]
-  #  type = DirichletBC
-  #  variable = disp_y
-  #  value = 0.0
-  #  boundary = '1'
-  #[../]
-  #[./disp_z_1]
-  #  type = DirichletBC
-  #  variable = disp_z
-  #  value = 0.0
-  #  boundary = '1'
-  #[../]
+  [./disp_x_SF]
+    type = StressFreeBC
+    variable = disp_x
+    component = 0
+    boundary = '1'
 
-  #[./polar_x_1]
-  #  type = OpenCircuitBC
-  #  variable = polar_x
-  #  component = 2
-  #  boundary = '1'
-  #  permittivity = 0.08854187
-  #[../]
-  #[./polar_y_1]
-  #  type = OpenCircuitBC
-  #  variable = polar_y
-  #  component = 1
-  #  boundary = '1'
-  #  permittivity = 0.08854187
-  #[../]
-  #[./polar_z_1]
-  #  type = OpenCircuitBC
-  #  variable = polar_z
-  #  component = 2
-  #  boundary = '1'
-  #  permittivity = 0.08854187
-  #[../]
+  [../]
+  [./disp_y_1]
+    type = StressFreeBC
+    variable = disp_y
+    component = 1
+    boundary = '1'
+
+  [../]
+  [./disp_z_1]
+    type = StressFreeBC
+    variable = disp_z
+    component = 2
+    boundary = '1'
+  [../]
 
 #[./potential_int_1]
 #  type = DirichletBC
 #  variable = potential_int
 #  boundary = '1'
-#  value = -0.00001
+#  value = -0.0001
 #[../]
 #
 #[./potential_int_2]
 #  type = DirichletBC
 #  variable = potential_int
 #  boundary = '2'
-#  value = -0.00001
+#  value = -0.0001
 #[../]
 
   [./bot_disp_x]
@@ -536,126 +466,126 @@
       variable = disp_x
       primary = '3'
       secondary = '5'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
     [./TB_disp_y_pbc]
       variable = disp_y
       primary = '3'
       secondary = '5'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
     [./TB_disp_z_pbc]
       variable = disp_z
       primary = '3'
       secondary = '5'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
 
     [./TB_polar_x_pbc]
       variable = polar_x
       primary = '3'
       secondary = '5'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = '3'
       secondary = '5'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = '3'
       secondary = '5'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = '3'
       secondary = '5'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
-  ##
+  #
     [./TBsub_disp_x_pbc]
       variable = disp_x
       primary = '8'
       secondary = '10'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_disp_y_pbc]
       variable = disp_y
       primary = '8'
       secondary = '10'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_disp_z_pbc]
       variable = disp_z
       primary = '8'
       secondary = '10'
-      translation = '0 12 0'
+      translation = '0 20 0'
     [../]
 
     [./RL_disp_x_pbc]
       variable = disp_x
       primary = '4'
       secondary = '6'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_disp_y_pbc]
       variable = disp_y
       primary = '4'
       secondary = '6'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_disp_z_pbc]
       variable = disp_z
       primary = '4'
       secondary = '6'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = '4'
       secondary = '6'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = '4'
       secondary = '6'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = '4'
       secondary = '6'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_potential_int_pbc]
       variable = potential_int
       primary = '4'
       secondary = '6'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
 
     [./RLsub_disp_x_pbc]
       variable = disp_x
       primary = '9'
       secondary = '11'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_disp_y_pbc]
       variable = disp_y
       primary = '9'
       secondary = '11'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_disp_z_pbc]
       variable = disp_z
       primary = '9'
       secondary = '11'
-      translation = '12 0 0'
+      translation = '20 0 0'
     [../]
   [../]
 []
@@ -756,38 +686,13 @@
      type = PercentChangePostprocessor
      postprocessor = Ftotal
    [../]
-   [./nodes]
-     type = NumNodes
-    [../]
-   [./num_NLin]
-    type = NumNonlinearIterations
-   [../]
-   [./num_Lin]
-    type = NumLinearIterations
-   [../]
-[]
-
-[Adaptivity]
-  marker = 'marker invmarker'
-  initial_steps = 0
-  max_h_level = 3
-  [./Markers]
-    [./marker]
-      type = ValueRangeMarker
-      lower_bound = 2.0e-5
-      upper_bound = 1000
-      variable = wallenergydensity
-      third_state = DO_NOTHING
-    [../]
-    [./invmarker]
-      type = ValueRangeMarker
-      invert = true
-      lower_bound = 2.0e-5
-      upper_bound = 1000
-      variable = wallenergydensity
-      third_state = DO_NOTHING
-    [../]
-  [../]
+  # [./num_NLin]
+  #  type = NumNonlinearIterations
+  # [../]
+  # [./num_Lin]
+  #  type = NumLinearIterations
+  # [../]
+  []
 []
 
 
@@ -802,47 +707,37 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart  -pc_type '
-    petsc_options_value = '    121           bjacobi'
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -ksp_snes_ew'
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
 []
 
 [Executioner]
   type = Transient
-  [./TimeStepper]
+    [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.4
-    optimal_iterations = 6 #should be 5 probably or 1?
+    dt = 0.8
+    #iteration_window = 3
+    optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
-    cutback_factor =  0.65
-  [../]
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON, LINEAR"
-  scheme = 'implicit-euler' #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+    cutback_factor =  0.8
+[../]
+  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
-  dtmin = 0.05e-4
-  dtmax = 0.4
-  #[./TimeIntegrator]
-  #  type = ImplicitMidpoint
-  #[../]
+  dtmin = 1e-13
+  dtmax = 0.8
 []
 
 [Outputs]
   print_linear_residuals = true
   print_perf_log = true
-  [./out1]
+  [./out]
     type = Exodus
-    file_base = outPTO_TF_c05_FREE_24_AMR_IMP
+    file_base = outPTO_thinfilm_09_20_10_10_G1
     elemental_as_nodal = true
-    interval = 2
-  [../]
-
-  #outPTO_TF_c05_modSF_E_2 been diverging at step 87 if we don't let dt decrease so that E flattens
-  #need for AMR -- [postprocessors don't print correctly in .e files]
-  [./out2]
-    type = CSV
-    file_base = outPTO_TF_c05_FREE_24_AMR_IMPcsv
-    interval = 2
+    interval = 3
   [../]
 []
