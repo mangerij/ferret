@@ -24,6 +24,7 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
+  artificial = 0.75
   displacements = 'disp_x disp_y disp_z'
   prefactor = 0.01 #negative = tension, positive = compression
 []
@@ -373,21 +374,21 @@
     component = 2
   [../]
 
-  #[./ferroelectriccouplingq_xx]
-  #  type = FerroelectricCouplingQ
-  #  variable = polar_x
-  #  component = 0
-  #[../]
-  #[./ferroelectriccouplingq_yy]
-  #  type = FerroelectricCouplingQ
-  #  variable = polar_y
-  #  component = 1
-  #[../]
-  #[./ferroelectriccouplingq_zz]
-  #  type = FerroelectricCouplingQ
-  #  variable = polar_z
-  #  component = 2
-  #[../]
+  [./ferroelectriccouplingq_xx]
+    type = FerroelectricCouplingQ
+    variable = polar_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingq_yy]
+    type = FerroelectricCouplingQ
+    variable = polar_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingq_zz]
+    type = FerroelectricCouplingQ
+    variable = polar_z
+    component = 2
+  [../]
 
   [./ferroelectriccouplingX_xx]
     type = FerroelectricCouplingX
@@ -455,26 +456,26 @@
 
 [BCs]
 
-  #[./disp_x_SF]
-  #  type = StressFreeBC
-  #  variable = disp_x
-  #  component = 0
-  #  boundary = '1'
-  #
-  #[../]
-  #[./disp_y_1]
-  #  type = StressFreeBC
-  #  variable = disp_y
-  #  component = 1
-  #  boundary = '1'
-  #
-  #[../]
-  #[./disp_z_1]
-  #  type = StressFreeBC
-  #  variable = disp_z
-  #  component = 2
-  #  boundary = '1'
-  #[../]
+  [./disp_x_SF]
+    type = StressFreeBC
+    variable = disp_x
+    component = 0
+    boundary = '1'
+
+  [../]
+  [./disp_y_1]
+    type = StressFreeBC
+    variable = disp_y
+    component = 1
+    boundary = '1'
+
+  [../]
+  [./disp_z_1]
+    type = StressFreeBC
+    variable = disp_z
+    component = 2
+    boundary = '1'
+  [../]
 
 #[./potential_int_1]
 #  type = DirichletBC
@@ -684,9 +685,9 @@
      type = PercentChangePostprocessor
      postprocessor = Ftotal
    [../]
-  # [./num_NLin]
-  #  type = NumNonlinearIterations
-  # [../]
+   [./num_NLin]
+    type = NumNonlinearIterations
+   [../]
   # [./num_Lin]
   #  type = NumLinearIterations
   # [../]
@@ -734,7 +735,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_20_10_10_G1_c01_noQ_noSF
+    file_base = outPTO_thinfilm_09_20_10_10_G1_c01_Q_SF_a075
     elemental_as_nodal = true
     interval = 3
   [../]
