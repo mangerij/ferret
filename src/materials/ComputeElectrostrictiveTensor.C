@@ -1,6 +1,5 @@
 /****************************************************************/
-/* Computes a rank 4 electrostrictive tensor
-/*
+/* Computes a rank 4 electrostrictive tensor                    */
 /****************************************************************/
 
 #include "ComputeElasticityTensor.h"
