@@ -1,7 +1,7 @@
-/****************************************************/
-/* Simply rotates the electrostrictive tensor Qmnkl.
-/* Must be colinear with Cijkl
-/*                                      */
+/*****************************************************/
+/* Simply rotates the electrostrictive tensor Qmnkl. */
+/* Must be colinear with Cijkl                       */
+/*****************************************************/
 
 #include "ComputeRotatedElectrostrictiveTensorBase.h"
 #include "RotationTensor.h"
