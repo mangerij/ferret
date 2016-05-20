@@ -1,0 +1,10 @@
+[Tests]
+  [./test]
+    type = 'Exodiff'
+    input = 'PTO_thinfilm_elastic.i'
+    exodiff = 'out_thinfilm_elastic.e'
+    group = 'periodic'
+    use_old_floor = true
+    abs_zero = 1e-5
+  [../]
+[]
