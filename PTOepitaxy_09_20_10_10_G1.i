@@ -273,13 +273,6 @@
    eigen_base = '1 0 0 0 1 0 0 0 0'
  [../]
 
- # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
-
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
@@ -740,5 +733,3 @@
     interval = 3
   [../]
 []
-
-#use this file, but no Q kernel... perhaps that is bugged... out_*_noQ looks good...maybe try the zz eigenstrain.
