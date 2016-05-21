@@ -214,7 +214,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
   dtmax = 0.25
-  num_steps = 40
+  num_steps = 5
 []
 
 [Outputs]
@@ -225,6 +225,5 @@
     file_base = out_wall_test
     output_initial = true
     elemental_as_nodal = true
-    interval = 1
   [../]
 []
