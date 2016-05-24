@@ -1,0 +1,9 @@
+[Tests]
+  [./grain_test]
+    type = 'Exodiff'
+    input = 'graintest.i'
+    exodiff = 'out_grains_elastic.e'
+    #use_old_floor = true
+    #abs_zero = 1e-5
+  [../]
+[]

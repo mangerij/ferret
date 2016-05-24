@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_thinfilm_09_20_10_10.e
+  file = exodus_thinfilm_test_09_20_10_10.e
   #uniform_refine = 1
 []
 
@@ -273,6 +273,13 @@
    eigen_base = '1 0 0 0 1 0 0 0 0'
  [../]
 
+ # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+ #  type = ComputeEigenstrain
+ #  block = '1'
+ # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+ #  eigen_base = '1 0 0 0 1 0 0 0 0'
+ #[../]
+
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
@@ -367,21 +374,6 @@
     component = 2
   [../]
 
-  [./ferroelectriccouplingq_xx]
-    type = FerroelectricCouplingQ
-    variable = polar_x
-    component = 0
-  [../]
-  [./ferroelectriccouplingq_yy]
-    type = FerroelectricCouplingQ
-    variable = polar_y
-    component = 1
-  [../]
-  [./ferroelectriccouplingq_zz]
-    type = FerroelectricCouplingQ
-    variable = polar_z
-    component = 2
-  [../]
 
   [./ferroelectriccouplingX_xx]
     type = FerroelectricCouplingX
@@ -410,7 +402,15 @@
   [./FE_E_int]
      type = Electrostatics
      variable = potential_int
+     block = '1'
      permittivity = 0.08854187
+  [../]
+
+  [./DIE_E_int]
+     type = Electrostatics
+     variable = potential_int
+     block  = '2'
+     permittivity = 2.6562561
   [../]
 
   [./polar_electric_px]
@@ -498,6 +498,13 @@
   [../]
   [./bot_disp_z]
     variable = disp_z
+    type = DirichletBC
+    value = 0
+    boundary = '7'
+  [../]
+
+  [./bot_potential_int]
+    variable = disp_x
     type = DirichletBC
     value = 0
     boundary = '7'
@@ -652,7 +659,7 @@
     [../]
     [./Felastic]
       type = ElasticEnergy
-      block = '1'
+      block = '1 2'
       execute_on = 'timestep_end'
     [../]
     [./Fcoupled]
@@ -684,14 +691,13 @@
   # [./num_Lin]
   #  type = NumLinearIterations
   # [../]
-  []
 []
 
 
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 1.0e-6'
+  expression = 'perc_change <= 1.0e-5'
  [../]
 []
 
@@ -728,8 +734,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_20_10_10_G1_c01_Q_SF_a075
+    file_base = outPTO_thinfilm_09_20_10_10_G1_c01_STO
     elemental_as_nodal = true
     interval = 3
   [../]
 []
+
