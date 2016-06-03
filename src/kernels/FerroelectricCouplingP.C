@@ -62,13 +62,17 @@ FerroelectricCouplingP::computeQpResidual()
   Real sum = 0.0;
   Real RpCoupled = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
+
   //form three vectors of the _stress_free_strain[_qp] object
+
   RealVectorValue v0(_stress_free_strain[_qp](0,0), _stress_free_strain[_qp](0,1), _stress_free_strain[_qp](0,2));
   RealVectorValue v1(_stress_free_strain[_qp](1,0), _stress_free_strain[_qp](1,1), _stress_free_strain[_qp](1,2));
   RealVectorValue v2(_stress_free_strain[_qp](2,0), _stress_free_strain[_qp](2,1), _stress_free_strain[_qp](2,2));
+
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp] - v0, _component, w);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp] - v1, _component, w);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp] - v2, _component, w);
+
   RpCoupled += std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
   return - _artificial * RpCoupled;
 }

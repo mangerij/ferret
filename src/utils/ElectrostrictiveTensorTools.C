@@ -44,6 +44,8 @@ computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl)
 }
 
 RankFourTensor
+//TODO: dump this
+//TODO: remove LIBMESH_DIM because this math should be done in 3D even for a n-D simulation.
 //here we use a different signature for the same member function
 computeProductQ(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl, const RankFourTensor & QQmnkl)
 {
