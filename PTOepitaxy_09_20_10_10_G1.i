@@ -25,6 +25,7 @@
   disp_y = disp_y
   disp_z = disp_z
   #artificial = 0.75
+  #use_displaced_mesh = 'false' #DO THIS!
   displacements = 'disp_x disp_y disp_z'
   prefactor = 0.01 #negative = tension, positive = compression
 []
@@ -169,7 +170,7 @@
 [AuxKernels]
   [./matl_e11]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 0
     variable = strain_xx_elastic
@@ -177,7 +178,7 @@
   [../]
   [./matl_e12]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 1
     variable = strain_xy_elastic
@@ -185,7 +186,7 @@
   [../]
   [./matl_e13]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 2
     variable = strain_xz_elastic
@@ -193,7 +194,7 @@
   [../]
   [./matl_e22]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 1
     index_j = 1
     variable = strain_yy_elastic
@@ -201,7 +202,7 @@
   [../]
   [./matl_e23]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 1
     index_j = 2
     variable = strain_yz_elastic
@@ -209,7 +210,7 @@
   [../]
   [./matl_e33]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 2
     index_j = 2
     variable = strain_zz_elastic
@@ -734,7 +735,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_20_10_10_G1_c01_STO
+    file_base = outPTO_thinfilm_09_20_10_10_G1_c01_noSTO
     elemental_as_nodal = true
     interval = 3
   [../]
