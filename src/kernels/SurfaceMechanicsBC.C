@@ -84,7 +84,7 @@ SurfaceMechanicsBC::computeQpProjection()
 }
 
 void
-SurfaceMechanicsBC :: computeQpRotation()
+SurfaceMechanicsBC::computeQpRotation()
 // compute rank-4 tensors used to write surface elastic constants in local representation
 // First form a vector perpendicular to the surface normal by taking cross-product of (1,1,1) with _normals[_qp]
 {
