@@ -683,7 +683,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 7.5e-4'
+  expression = 'perc_change <= 7.5e-3'
  [../]
 []
 
@@ -693,7 +693,7 @@
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
+    petsc_options_value = '    121                1e-6      1e-8    gamg'
   [../]
 []
 
@@ -720,7 +720,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_10_10_10_c01_STO_bench
+    file_base = outPTO_thinfilm_09_10_10_10_c01_STO_bench_gamg
     elemental_as_nodal = true
     interval = 1
   [../]

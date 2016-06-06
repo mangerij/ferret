@@ -683,7 +683,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 7.5e-4'
+  expression = 'perc_change <= 7.5e-3'
  [../]
 []
 
@@ -692,8 +692,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type  -pc_hypre_type -pc_hypre_boomeramg_strong_threshold'
-    petsc_options_value = '    121                1e-6      1e-8    hypre     boomeramg              1.0'
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
 []
 
@@ -720,8 +720,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_10_10_10_c01_STO_bench_hyperboomeramg1
+    file_base = outPTO_thinfilm_09_10_10_10_c01_STO_bench
     elemental_as_nodal = true
     interval = 1
   [../]
 []
+
