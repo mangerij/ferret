@@ -20,7 +20,7 @@ make METHOD=opt MOOSE_DIR=<moose>
 ```
 or
 ```
-make -j 4
+make METHOD=opt MOOSE_DIR=<moose> -j 4
 ```
 to make the compile go faster. 
 
