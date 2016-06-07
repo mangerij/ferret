@@ -2,15 +2,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 10
-  ny = 10
-  nz = 7
-  xmin = -4
-  xmax = 4
-  ymin = -4
-  ymax = 4
-  zmin = -3
-  zmax = 3
+  nx = 26
+  ny = 26
+  nz = 11
+  xmin = -12
+  xmax = 12
+  ymin = -12
+  ymax = 12
+  zmin = -5
+  zmax = 5
   elem_type = HEX8
 []
 
@@ -38,44 +38,61 @@
   prefactor = 0.01 #negative = tension, positive = compression
 []
 
+
+[Functions]
+  [./parsed_function]
+    type = ParsedFunction
+    value = '0.01*sin(x)*sin(y)'
+  [../]
+  [./parsed_grad_function]
+    type =ParsedGradFunction
+    value = '0.01*sin(x)*sin(y)'
+    grad_x = '0.01*cos(x)*sin(y)'
+    grad_y = '0.01*sin(x)*cos(x)'
+  [../]
+[]
+
+[AuxVariables]
+  [./a]
+   order = THIRD
+   family = HERMITE
+  [../]
+[]
+
+[ICs]
+  [./a_ic]
+    type = FunctionIC
+    variable = 'a'
+    function = parsed_function
+  [../]
+[]
+
 [Variables]
   [./polar_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = FluctuationsIC
-      epsilon = 1.0e-5
-      q1 = '354 1005 645'
-      q2 = '715 1065 1132'
-      q3 = '391 305 1106'
-      q4 = '1053 1116 627'
-      h = 0.22
+      type = RandomIC
+      min = -1.0e-5
+      max = 1.0e-5
     [../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = FluctuationsIC
-      epsilon = 1.0e-5
-      q1 = '354 850 10'
-      q2 = '715 28 5'
-      q3 = '391 305 1106'
-      q4 = '653 1116 627'
-      h = 0.15
+      type = RandomIC
+      min = -1.0e-5
+      max = 1.0e-5
     [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = FluctuationsIC
-      epsilon = 1.0e-5
-      q1 = '860 165 645'
-      q2 = '715 665 1332'
-      q3 = '361 15 706'
-      q4 = '253 1116 627'
-      h = 0.05
+      type = RandomIC
+      min = -1.0e-5
+      max = 1.0e-5
     [../]
   [../]
   [./potential_int]
@@ -98,19 +115,17 @@
 
 
 [Materials]
-  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
-   type = ComputeEigenstrain
+  [./eigen_strain_variable] #Use for stress-free strain (ie epitaxial)
+   type = ComputeVariableEigenstrain
    block = '0'
   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
    eigen_base = '1 0 0 0 1 0 0 0 0'
+   args = a
  [../]
 
- # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
+
+
+
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -367,7 +382,7 @@
   #dt = 0.5
   dtmin = 1e-13
   dtmax = 0.1
-  num_steps = 5
+  num_steps = 50
 []
 
 [Outputs]
@@ -375,7 +390,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTOchunk_test_fluct
+    file_base = outPTOchunk_test_var_eigen
     elemental_as_nodal = true
     interval = 1
   [../]
