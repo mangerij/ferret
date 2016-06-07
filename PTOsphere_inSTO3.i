@@ -23,8 +23,6 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
-  #artificial = 0.75
-  #use_displaced_mesh = 'false' #DO THIS!
   displacements = 'disp_x disp_y disp_z'
 []
 
@@ -165,10 +163,20 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
+
+  [./chern]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 
 [AuxKernels]
+  [./cherndens]
+    type = ChernSimonsDensity
+    variable = chern
+  [../]
+
   [./matl_e11]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
@@ -558,7 +566,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTOsphere_inSTO3
+    file_base = outPTOsphere_inSTO_def
     elemental_as_nodal = true
     interval = 1
   [../]

@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_thinfilm_test_09_10_10_10.e
+  file = exodus_thinfilm_test_09_40_10_10.e
   #uniform_refine = 1
 []
 
@@ -501,126 +501,126 @@
       variable = disp_x
       primary = '3'
       secondary = '5'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
     [./TB_disp_y_pbc]
       variable = disp_y
       primary = '3'
       secondary = '5'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
     [./TB_disp_z_pbc]
       variable = disp_z
       primary = '3'
       secondary = '5'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
 
     [./TB_polar_x_pbc]
       variable = polar_x
       primary = '3'
       secondary = '5'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = '3'
       secondary = '5'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = '3'
       secondary = '5'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = '3'
       secondary = '5'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
   #
     [./TBsub_disp_x_pbc]
       variable = disp_x
       primary = '8'
       secondary = '10'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
     [./TBsub_disp_y_pbc]
       variable = disp_y
       primary = '8'
       secondary = '10'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
     [./TBsub_disp_z_pbc]
       variable = disp_z
       primary = '8'
       secondary = '10'
-      translation = '0 10 0'
+      translation = '0 40 0'
     [../]
 
     [./RL_disp_x_pbc]
       variable = disp_x
       primary = '4'
       secondary = '6'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
     [./RL_disp_y_pbc]
       variable = disp_y
       primary = '4'
       secondary = '6'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
     [./RL_disp_z_pbc]
       variable = disp_z
       primary = '4'
       secondary = '6'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = '4'
       secondary = '6'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = '4'
       secondary = '6'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = '4'
       secondary = '6'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
     [./RL_potential_int_pbc]
       variable = potential_int
       primary = '4'
       secondary = '6'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
 
     [./RLsub_disp_x_pbc]
       variable = disp_x
       primary = '9'
       secondary = '11'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
     [./RLsub_disp_y_pbc]
       variable = disp_y
       primary = '9'
       secondary = '11'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
     [./RLsub_disp_z_pbc]
       variable = disp_z
       primary = '9'
       secondary = '11'
-      translation = '10 0 0'
+      translation = '40 0 0'
     [../]
   [../]
 []
@@ -692,8 +692,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type  -sub_pc_type  -pc_asm_overlap'
-    petsc_options_value = '    121                1e-6      1e-8    asm          lu             4'
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
 []
 
@@ -720,7 +720,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_10_10_10_c01_STO_bench_asm4lu
+    file_base = outPTO_thinfilm_09_40_10_10_c01_STO_bench
     elemental_as_nodal = true
     interval = 1
   [../]
