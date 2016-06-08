@@ -35,20 +35,20 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
-  prefactor = 0.01 #negative = tension, positive = compression
+  #prefactor = 0.01 #negative = tension, positive = compression
 []
 
 
 [Functions]
   [./parsed_function]
     type = ParsedFunction
-    value = '0.01*sin(x)*sin(y)'
+    value = '0.01 * sin(0.05 * x) * x * x * x'
   [../]
   [./parsed_grad_function]
     type =ParsedGradFunction
-    value = '0.01*sin(x)*sin(y)'
-    grad_x = '0.01*cos(x)*sin(y)'
-    grad_y = '0.01*sin(x)*cos(x)'
+    value = '0.01 * sin(0.05 * x) * x * x * x'
+    grad_x = '0.01 * 0.05 * cos(0.05 * x) * x * x * x + 0.01 * sin ( 0.05 * x) * x * x'
+    grad_y = '0'
   [../]
 []
 
@@ -115,16 +115,26 @@
 
 
 [Materials]
-  [./eigen_strain_variable] #Use for stress-free strain (ie epitaxial)
-   type = ComputeVariableEigenstrain
-   block = '0'
-  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+
+  [./var_dependence]
+    type = DerivativeParsedMaterial
+    block = 0
+    function = a
+    args = a
+    output_properties = 'var_dep'
+    f_name = var_dep
+    enable_jit = true
+    derivative_order = 2
+  [../]
+
+
+  [./eigen_strain]
+    type = ComputeVariableEigenstrain
+    block = 0
    eigen_base = '1 0 0 0 1 0 0 0 0'
-   args = a
- [../]
-
-
-
+    prefactor = var_dep
+    args = a
+  [../]
 
 
   [./elasticity_tensor_1]
@@ -267,24 +277,24 @@
 
 
 [BCs]
-  [./disp_x_front]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_x
-  [../]
-  [./disp_y_front]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_y
-  [../]
-  [./disp_z_front]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_z
-  [../]
+#  [./disp_x_front]
+#    type = DirichletBC
+#    boundary = 'front'
+#    value = 0.0
+#    variable = disp_x
+#  [../]
+#  [./disp_y_front]
+#    type = DirichletBC
+#    boundary = 'front'
+#    value = 0.0
+#    variable = disp_y
+#  [../]
+#  [./disp_z_front]
+#    type = DirichletBC
+#    boundary = 'front'
+#    value = 0.0
+#    variable = disp_z
+#  [../]
   [./potential_int_front]
     type = DirichletBC
     boundary = 'front'

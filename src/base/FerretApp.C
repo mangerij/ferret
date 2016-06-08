@@ -7,6 +7,7 @@
 
 //Specific Modules
 #include "TensorMechanicsApp.h"
+#include "PhaseFieldApp.h"
 
 //Actions
 #include "TensorMechanicsActionScaled.h"
@@ -93,6 +94,9 @@ FerretApp::FerretApp(const InputParameters & parameters) :
 
   TensorMechanicsApp::registerObjects(_factory);
   TensorMechanicsApp::associateSyntax(_syntax, _action_factory);
+
+  PhaseFieldApp::registerObjects(_factory);
+  PhaseFieldApp::associateSyntax(_syntax, _action_factory);
 
   FerretApp::registerObjects(_factory);
   FerretApp::associateSyntax(_syntax, _action_factory);
