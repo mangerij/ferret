@@ -1,4 +1,4 @@
-Ferret is a [MOOSE](http://mooseframework.org) application.
+Ferret is an application within the [MOOSE](http://mooseframework.org) framework.
 To build and use Ferret you will need to build MOOSE.
 It might be a good idea to learn a few things about MOOSE, too.
 
