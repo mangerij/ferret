@@ -1,6 +1,7 @@
 
 [Mesh]
   file = exodus_thinfilm_test_09_20_10_10.e
+  #uniform_refine = 1
 []
 
 [GlobalParams]
@@ -23,6 +24,8 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
+  #artificial = 0.75
+  #use_displaced_mesh = 'false' #DO THIS!
   displacements = 'disp_x disp_y disp_z'
   prefactor = 0.01 #negative = tension, positive = compression
 []
@@ -73,29 +76,14 @@
   [./disp_x]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-    [../]
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-    [../]
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-    [../]
   [../]
 []
 
@@ -264,19 +252,19 @@
 []
 
 [Materials]
-  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
-   type = ComputeEigenstrain
-   block = '1'
-  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-   eigen_base = '0 0 0 0 0 0 0 0 1'
- [../]
-
- # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+ # [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
  #  type = ComputeEigenstrain
  #  block = '1'
  # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
  #  eigen_base = '1 0 0 0 1 0 0 0 0'
  #[../]
+
+  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+   type = ComputeEigenstrain
+   block = '1'
+  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+   eigen_base = '0 0 0 0 0 0 0 0 1'
+ [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -640,6 +628,11 @@
 
 
 [Postprocessors]
+#  [./volume]
+#    type = VolumePostprocessor
+#    block = '1'
+#    use_displaced_mesh = true
+#  [../]
    [./Fbulk]
       type = BulkEnergy
       block = '1'
@@ -681,16 +674,16 @@
    [./num_NLin]
     type = NumNonlinearIterations
    [../]
-  # [./num_Lin]
-  #  type = NumLinearIterations
-  # [../]
+   [./num_Lin]
+    type = NumLinearIterations
+   [../]
 []
 
 
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 1.0e-5'
+  expression = 'perc_change <= 7.5e-3'
  [../]
 []
 
@@ -698,7 +691,7 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -ksp_snes_ew'
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
     petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
@@ -708,7 +701,7 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.6
+    dt = 0.8
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
@@ -719,7 +712,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.6
+  dtmax = 0.8
 []
 
 [Outputs]
@@ -727,9 +720,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_20_10_10_c01_STO
+    file_base = outPTO_thinfilm_09_100_10_10_c01_STO_bench
     elemental_as_nodal = true
-    interval = 1
+    interval = 5
   [../]
 []
 

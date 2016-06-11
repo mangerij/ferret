@@ -20,7 +20,6 @@ InputParameters validParams<ElectrostaticEnergy>()
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredCoupledVar("potential_int", "The internal electric potential");
   params.addCoupledVar("potential_ext", 0.0, "The external electric potential");
-  params.addRequiredParam<Real>("permittivity", "permittivity");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -32,7 +31,6 @@ ElectrostaticEnergy::ElectrostaticEnergy(const InputParameters & parameters) :
   _polar_z(coupledValueOld("polar_z")),
   _potential_int_grad(coupledGradient("potential_int")),
   _potential_ext_grad(coupledGradient("potential_ext")),
-  _permittivity(getParam<Real>("permittivity")),
   _len_scale(getParam<Real>("len_scale"))
 {
 }

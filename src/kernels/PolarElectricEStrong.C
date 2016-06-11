@@ -13,7 +13,6 @@ template<>
 InputParameters validParams<PolarElectricEStrong>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addRequiredParam<Real>("permittivity", "permittivity");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
@@ -24,7 +23,6 @@ InputParameters validParams<PolarElectricEStrong>()
 
 PolarElectricEStrong::PolarElectricEStrong(const InputParameters & parameters)
   :Kernel(parameters),
-   _permittivity(getParam<Real>("permittivity")),
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),
    _polar_z_var(coupled("polar_z")),

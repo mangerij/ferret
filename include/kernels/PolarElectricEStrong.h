@@ -32,7 +32,6 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-   const Real _permittivity;
    const unsigned int _polar_x_var;
    const unsigned int _polar_y_var;
    const unsigned int _polar_z_var;
