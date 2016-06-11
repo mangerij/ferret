@@ -56,7 +56,7 @@
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
 #include "FerroelectricCouplingP.h"
-#include "FerroelectricCouplingQ.h"
+//#include "FerroelectricCouplingQ.h"
 #include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 
@@ -167,7 +167,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(WallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
-  registerKernel(FerroelectricCouplingQ);
+//  registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
