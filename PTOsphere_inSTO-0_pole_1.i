@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = embedded_single_sphere_0.e
+  file = out_PTOsphere_inSTO_4.e
 []
 
 [GlobalParams]
@@ -24,6 +24,7 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
+  initial_from_file_timestep = 'LATEST'
 []
 
 
@@ -33,71 +34,43 @@
     block = '1'
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
+    initial_from_file_var = polar_x
   [../]
   [./polar_y]
     block = '1'
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
+    initial_from_file_var = polar_y
   [../]
   [./polar_z]
     block = '1'
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
+    initial_from_file_var = polar_z
   [../]
   [./potential_int]
     order = FIRST
     family = LAGRANGE
     block = '1 2'
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
+    initial_from_file_var = potential_int
   [../]
   [./disp_x]
     order = FIRST
     family = LAGRANGE
     block = '1 2'
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-    [../]
+    initial_from_file_var = disp_x
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
     block = '1 2'
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-    [../]
+    initial_from_file_var = disp_y
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
     block = '1 2'
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-6
-      max = 0.5e-6
-    [../]
+    initial_from_file_var = disp_z
   [../]
 []
 
@@ -449,14 +422,14 @@
   type = DirichletBC
   variable = potential_int
   boundary = '1'
-  value = -0.0001
+  value = -10.5
 [../]
 
 [./potential_int_2]
   type = DirichletBC
   variable = potential_int
   boundary = '2'
-  value = -0.0001
+  value = 10.5
 [../]
 
   [./disp_x]
@@ -529,7 +502,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 4.0e-4'
+  expression = 'perc_change <= 1.0e-4'
  [../]
 []
 
@@ -547,7 +520,7 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.7
+    dt = 0.1
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
@@ -558,7 +531,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.7
+  dtmax = 0.1
 []
 
 [Outputs]
@@ -566,9 +539,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTOsphere_inSTO_0
+    file_base = out_PTOsphere_inSTO_4_POLED
     elemental_as_nodal = true
-    interval = 5
+    interval = 1
   [../]
 []
 
