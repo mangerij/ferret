@@ -1,5 +1,5 @@
 /**
- * @file   WallEnergy.h
+ * @file   ElasticEnergy.h
  * @author J. Mangeri <mangerij@anl.gov>
  *
  */
@@ -28,8 +28,7 @@ protected:
   virtual Real computeQpIntegral();
 
 private:
-  const MaterialProperty<RankTwoTensor> & _total_strain;
-  const MaterialProperty<RankTwoTensor> & _stress_free_strain;
+  const MaterialProperty<RankTwoTensor> & _elastic_strain;
   const MaterialProperty<RankTwoTensor> & _stress;
   const Real _strain_scale;
   const Real _len_scale;
