@@ -1,7 +1,6 @@
 
 [Mesh]
-  file = exodus_thinfilm_test_09_20_10_10.e
-  #uniform_refine = 1
+  file = embedded_single_sphere_0.e
 []
 
 [GlobalParams]
@@ -24,10 +23,7 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
-  #artificial = 0.75
-  #use_displaced_mesh = 'false' #DO THIS!
   displacements = 'disp_x disp_y disp_z'
-  prefactor = -0.01 #negative = tension, positive = compression
 []
 
 
@@ -76,14 +72,32 @@
   [./disp_x]
     order = FIRST
     family = LAGRANGE
+    block = '1 2'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-6
+      max = 0.5e-6
+    [../]
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
+    block = '1 2'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-6
+      max = 0.5e-6
+    [../]
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
+    block = '1 2'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-6
+      max = 0.5e-6
+    [../]
   [../]
 []
 
@@ -149,10 +163,20 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
+
+  [./chern]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
 []
 
 
 [AuxKernels]
+  [./cherndens]
+    type = ChernSimonsDensity
+    variable = chern
+  [../]
+
   [./matl_e11]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
@@ -252,20 +276,6 @@
 []
 
 [Materials]
- # [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
-
-  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
-   type = ComputeEigenstrain
-   block = '1'
-  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-   eigen_base = '0 0 0 0 0 0 0 0 1'
- [../]
-
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
@@ -435,204 +445,43 @@
 
 [BCs]
 
-  [./disp_x_SF]
-    type = StressFreeBC
-    variable = disp_x
-    component = 0
-    boundary = '1'
+[./potential_int_1]
+  type = DirichletBC
+  variable = potential_int
+  boundary = '1'
+  value = -0.0001
+[../]
 
+[./potential_int_2]
+  type = DirichletBC
+  variable = potential_int
+  boundary = '2'
+  value = -0.0001
+[../]
+
+  [./disp_x]
+    type = DirichletBC
+    variable = disp_x
+    boundary = '1 2 3 4 5 6'
+    value = 0
   [../]
-  [./disp_y_1]
-    type = StressFreeBC
+  [./disp_y]
+    type = DirichletBC
     variable = disp_y
-    component = 1
-    boundary = '1'
-
+    boundary = '1 2 3 4 5 6'
+    value = 0
   [../]
-  [./disp_z_1]
-    type = StressFreeBC
+  [./disp_z]
+    type = DirichletBC
     variable = disp_z
-    component = 2
-    boundary = '1'
-  [../]
-
-#[./potential_int_1]
-#  type = DirichletBC
-#  variable = potential_int
-#  boundary = '1'
-#  value = -0.0001
-#[../]
-#
-#[./potential_int_2]
-#  type = DirichletBC
-#  variable = potential_int
-#  boundary = '2'
-#  value = -0.0001
-#[../]
-
-  [./bot_disp_x]
-    variable = disp_x
-    type = DirichletBC
+    boundary = '1 2 3 4 5 6'
     value = 0
-    boundary = '7'
-  [../]
-  [./bot_disp_y]
-    variable = disp_y
-    type = DirichletBC
-    value = 0
-    boundary = '7'
-  [../]
-  [./bot_disp_z]
-    variable = disp_z
-    type = DirichletBC
-    value = 0
-    boundary = '7'
-  [../]
-
-  [./bot_potential_int]
-    variable = disp_x
-    type = DirichletBC
-    value = 0
-    boundary = '7'
-  [../]
-
-  [./Periodic]
-    [./TB_disp_x_pbc]
-      variable = disp_x
-      primary = '3'
-      secondary = '5'
-      translation = '0 20 0'
-    [../]
-    [./TB_disp_y_pbc]
-      variable = disp_y
-      primary = '3'
-      secondary = '5'
-      translation = '0 20 0'
-    [../]
-    [./TB_disp_z_pbc]
-      variable = disp_z
-      primary = '3'
-      secondary = '5'
-      translation = '0 20 0'
-    [../]
-
-    [./TB_polar_x_pbc]
-      variable = polar_x
-      primary = '3'
-      secondary = '5'
-      translation = '0 20 0'
-    [../]
-    [./TB_polar_y_pbc]
-      variable = polar_y
-      primary = '3'
-      secondary = '5'
-      translation = '0 20 0'
-    [../]
-    [./TB_polar_z_pbc]
-      variable = polar_z
-      primary = '3'
-      secondary = '5'
-      translation = '0 20 0'
-    [../]
-    [./TB_potential_int_pbc]
-      variable = potential_int
-      primary = '3'
-      secondary = '5'
-      translation = '0 20 0'
-    [../]
-  #
-    [./TBsub_disp_x_pbc]
-      variable = disp_x
-      primary = '8'
-      secondary = '10'
-      translation = '0 20 0'
-    [../]
-    [./TBsub_disp_y_pbc]
-      variable = disp_y
-      primary = '8'
-      secondary = '10'
-      translation = '0 20 0'
-    [../]
-    [./TBsub_disp_z_pbc]
-      variable = disp_z
-      primary = '8'
-      secondary = '10'
-      translation = '0 20 0'
-    [../]
-
-    [./RL_disp_x_pbc]
-      variable = disp_x
-      primary = '4'
-      secondary = '6'
-      translation = '20 0 0'
-    [../]
-    [./RL_disp_y_pbc]
-      variable = disp_y
-      primary = '4'
-      secondary = '6'
-      translation = '20 0 0'
-    [../]
-    [./RL_disp_z_pbc]
-      variable = disp_z
-      primary = '4'
-      secondary = '6'
-      translation = '20 0 0'
-    [../]
-
-    [./RL_polar_x_pbc]
-      variable = polar_x
-      primary = '4'
-      secondary = '6'
-      translation = '20 0 0'
-    [../]
-    [./RL_polar_y_pbc]
-      variable = polar_y
-      primary = '4'
-      secondary = '6'
-      translation = '20 0 0'
-    [../]
-    [./RL_polar_z_pbc]
-      variable = polar_z
-      primary = '4'
-      secondary = '6'
-      translation = '20 0 0'
-    [../]
-    [./RL_potential_int_pbc]
-      variable = potential_int
-      primary = '4'
-      secondary = '6'
-      translation = '20 0 0'
-    [../]
-
-    [./RLsub_disp_x_pbc]
-      variable = disp_x
-      primary = '9'
-      secondary = '11'
-      translation = '20 0 0'
-    [../]
-    [./RLsub_disp_y_pbc]
-      variable = disp_y
-      primary = '9'
-      secondary = '11'
-      translation = '20 0 0'
-    [../]
-    [./RLsub_disp_z_pbc]
-      variable = disp_z
-      primary = '9'
-      secondary = '11'
-      translation = '20 0 0'
-    [../]
   [../]
 []
 
 
 
 [Postprocessors]
-#  [./volume]
-#    type = VolumePostprocessor
-#    block = '1'
-#    use_displaced_mesh = true
-#  [../]
    [./Fbulk]
       type = BulkEnergy
       block = '1'
@@ -674,16 +523,13 @@
    [./num_NLin]
     type = NumNonlinearIterations
    [../]
-   [./num_Lin]
-    type = NumLinearIterations
-   [../]
 []
 
 
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 7.5e-3'
+  expression = 'perc_change <= 4.0e-4'
  [../]
 []
 
@@ -691,7 +537,7 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -ksp_snes_ew'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
     petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
@@ -701,7 +547,7 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.8
+    dt = 0.7
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
@@ -712,7 +558,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.8
+  dtmax = 0.7
 []
 
 [Outputs]
@@ -720,7 +566,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_100_10_10_c01_STO_bench
+    file_base = out_PTOsphere_inSTO_0
     elemental_as_nodal = true
     interval = 5
   [../]
