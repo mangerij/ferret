@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#PBS -l nodes=3:ppn=16
+#PBS -l walltime=48:00:00
+#PBS -N PTObench3
+#PBS -q msd
+
+N_C=`wc -l $PBS_NODEFILE | gawk '//{print $1}'`       # number of CPUs or cores
+
+
+cd /lcrc/project/Meso/projects/ferret
+
+date
+mpiexec -np ${N_C} ./ferret-opt -i PTOepitaxy_09_100_10_10_G1.i  > PTObench3_log
+date
