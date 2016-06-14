@@ -44,7 +44,6 @@ private:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const Real _artificial;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };

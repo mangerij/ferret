@@ -18,7 +18,6 @@ InputParameters validParams<ModifiedStressDivergenceTensors>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addParam<Real>("artificial", 1.0, "artificial increase coupling");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
@@ -44,7 +43,6 @@ ModifiedStressDivergenceTensors::ModifiedStressDivergenceTensors(const InputPara
     _polar_x_grad(coupledGradient("polar_x")),
     _polar_y_grad(coupledGradient("polar_y")),
     _polar_z_grad(coupledGradient("polar_z")),
-    _artificial(getParam<Real>("artificial")),
     _len_scale(getParam<Real>("len_scale"))
 {
   for (unsigned int i = 0; i < _ndisp; ++i)
@@ -64,7 +62,7 @@ ModifiedStressDivergenceTensors::computeQpResidual()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 0, p) * _polar_x[_qp];
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 1, p) * _polar_y[_qp];
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 2, p) * _polar_z[_qp];
-  return (_stress[_qp].row(_component))* _grad_test[_i][_qp] - sum;
+  return (_stress[_qp].row(_component)) * _grad_test[_i][_qp] - sum;
 }
 
 Real
@@ -115,7 +113,7 @@ ModifiedStressDivergenceTensors::computeQpOffDiagJacobian(unsigned int jvar)
       coupled_component1 = 2;
       sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], coupled_component1, p) ;
     }
-    return - 2.0 * _artificial * std::pow(_len_scale, 2.0) * _phi[_j][_qp] * sum1;
+    return - 2.0 * std::pow(_len_scale, 2.0) * _phi[_j][_qp] * sum1;
   }
   else
   {

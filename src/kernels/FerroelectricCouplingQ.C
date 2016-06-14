@@ -39,7 +39,6 @@ FerroelectricCouplingQ::FerroelectricCouplingQ(const InputParameters & parameter
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
-   _artificial(getParam<Real>("artificial")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -52,7 +51,7 @@ FerroelectricCouplingQ::computeQpResidual()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 0, w, _component, w) * w(0);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 1, w, _component, w) * w(1);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 2, w, _component, w) * w(2);
-  return 2.0 * _artificial * _artificial * std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
+  return 2.0 * std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum;
 }
 
 Real
@@ -63,7 +62,7 @@ FerroelectricCouplingQ::computeQpJacobian()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 0, w, _component, _component) * w(0);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 1, w, _component, _component) * w(1);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 2, w, _component, _component) * w(2);
-  return 2.0 * _artificial * _artificial * std::pow(_len_scale, 3.0) * _phi[_j][_qp] * _test[_i][_qp] * sum;
+  return 2.0 * std::pow(_len_scale, 3.0) * _phi[_j][_qp] * _test[_i][_qp] * sum;
 }
 
 Real
@@ -95,7 +94,7 @@ FerroelectricCouplingQ::computeQpOffDiagJacobian(unsigned int jvar)
         sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 1, w, _component, coupled_component) * w(1);
         sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensorQ[_qp], 2, w, _component, coupled_component) * w(2);
       }
-    return 2.0 * _artificial * _artificial * std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
+    return 2.0 * std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
 
   }
   else

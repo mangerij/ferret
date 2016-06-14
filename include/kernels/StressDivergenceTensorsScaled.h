@@ -27,7 +27,6 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-  const Real _strain_scale;  //scaling the strains as in Ng et al
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };

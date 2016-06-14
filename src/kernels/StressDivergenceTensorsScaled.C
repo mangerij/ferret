@@ -12,14 +12,12 @@ template<>
 InputParameters validParams<StressDivergenceTensorsScaled>()
 {
   InputParameters params = validParams<StressDivergenceTensors>();
-  params.addParam<Real>("strain_scale", 1.0, "the strain_scale");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
 
 StressDivergenceTensorsScaled::StressDivergenceTensorsScaled(const InputParameters & parameters)
   :StressDivergenceTensors(parameters),
-   _strain_scale(getParam<Real>("strain_scale")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -27,17 +25,17 @@ StressDivergenceTensorsScaled::StressDivergenceTensorsScaled(const InputParamete
 Real
 StressDivergenceTensorsScaled::computeQpResidual()
 {
-  return std::pow(_len_scale, 2.0) * _strain_scale * StressDivergenceTensors::computeQpResidual();
+  return std::pow(_len_scale, 2.0) * StressDivergenceTensors::computeQpResidual();
 }
 
 Real
 StressDivergenceTensorsScaled::computeQpJacobian()
 {
-  return  std::pow(_len_scale, 2.0) * _strain_scale * StressDivergenceTensors::computeQpJacobian();
+  return  std::pow(_len_scale, 2.0) * StressDivergenceTensors::computeQpJacobian();
 }
 
 Real
 StressDivergenceTensorsScaled::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  return  std::pow(_len_scale, 2.0) * _strain_scale * StressDivergenceTensors::computeQpOffDiagJacobian(jvar);
+  return  std::pow(_len_scale, 2.0) * StressDivergenceTensors::computeQpOffDiagJacobian(jvar);
 }
