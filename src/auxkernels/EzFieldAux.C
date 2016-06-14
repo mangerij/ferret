@@ -6,8 +6,8 @@ InputParameters validParams<EzFieldAux>()
 
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
-  params.addRequiredCoupledVar("potential_ext", "The external electric potential variable");
+  params.addCoupledVar("potential_int", "The internal electric potential variable");
+  params.addCoupledVar("potential_ext", "The external electric potential variable");
   return params;
 }
 
