@@ -1,12 +1,12 @@
 reset
 set developer commands on
 undo on
-create brick x XY y XY z FilmHeight
-create brick x XY y XY z SubstrateDepth
-volume 2 move 0 0 MoveVector
+create brick x 20 y 20 z 12
+create brick x 20 y 20 z 10
+volume 2 move 0 0 11.0
 compress all
 merge surface all with surface all
-volume 1 2 size MeshSize 
+volume 1 2 size 0.9 
 #mesh size depends h-level and material DW width!
 volume 1 2 scheme sweep
 mesh volume 1 2
@@ -30,4 +30,4 @@ sideset 11 surface 12
 
 block all element type hex8
 set large exodus file off
-export Genesis "./exodus_thinfilm_test_def.e" dimension 3 block all overwrite
+export Genesis "/home/john/projects/ferret/mesh/./exodus_thinfilm_09_20_12_10.e" dimension 3 block all overwrite

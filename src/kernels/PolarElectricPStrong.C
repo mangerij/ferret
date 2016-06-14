@@ -39,8 +39,8 @@ Real
 PolarElectricPStrong::computeQpResidual()
 {
     Real RpolarP = 0.0;
-    // TODO: Investigate the nature of this 1/2. This probably shouldn't be here...
-    RpolarP += (0.5 * _potential_int_grad[_qp](_component) + _potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+
+    RpolarP += (_potential_int_grad[_qp](_component) + _potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
 
     //  Moose::out << "\n R_polarP-"; std::cout << _component << " = " << RpolarP;
 
@@ -57,7 +57,7 @@ Real
 PolarElectricPStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
     if( jvar == _potential_int_var )
-      return  0.5 * _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+      return  _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
     else if( jvar == _potential_ext_var)
       return  _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
     else

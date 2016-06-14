@@ -1,7 +1,7 @@
 /**
  * @file   BulkEnergyDerivativeSixth.h
- * @author S. Gu <sgu@anl.gov>
- * @date   Thu May 30 12:00:20 2013
+ * @author J. Mangeri <john.mangeri@uconn.edu>
+ * @date   Jun 1 12:00:20 2015
  *
  * @brief
  *

@@ -55,6 +55,7 @@
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
+#include "FluctuationKernel.h"
 #include "FerroelectricCouplingP.h"
 //#include "FerroelectricCouplingQ.h"
 #include "FerroelectricCouplingX.h"
@@ -167,6 +168,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(WallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
+  registerKernel(FluctuationKernel);
+
 //  registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
