@@ -92,13 +92,6 @@
    eigen_base = '1 0 0 0 1 0 0 0 0'
  [../]
 
- # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
-
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
@@ -123,9 +116,7 @@
 [Kernels]
   #Elastic problem
   [./TensorMechanics]
-  #This is an action block
   [../]
-  #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivativeSixth
     variable = polar_x
@@ -141,8 +132,7 @@
     variable = polar_z
     component = 2
   [../]
-  ##Wall energy penalty
-[./walled_x]
+  [./walled_x]
     type = WallEnergyDerivative
     variable = polar_x
     component = 0
@@ -157,8 +147,6 @@
      variable = polar_z
      component = 2
   [../]
-##Polarization-strain coupling
-
   [./ferroelectriccouplingp_xx]
     type = FerroelectricCouplingP
     variable = polar_x
@@ -174,8 +162,6 @@
     variable = polar_z
     component = 2
   [../]
-
-
   [./ferroelectriccouplingX_xx]
     type = FerroelectricCouplingX
     variable = disp_x
@@ -191,19 +177,15 @@
     variable = disp_z
     component = 2
   [../]
-  ##Electrostatics
   [./polar_x_electric_E]
      type = PolarElectricEStrong
      variable = potential_int
-     permittivity = 0.08854187
   [../]
   [./FE_E_int]
      type = Electrostatics
      variable = potential_int
      permittivity = 0.08854187
   [../]
-
-
   [./polar_electric_px]
      type = PolarElectricPStrong
      variable = polar_x
@@ -219,21 +201,20 @@
      variable = polar_z
      component = 2
   [../]
-  ##Time dependence
   [./polar_x_time]
      type = TimeDerivativeScaled
      variable=polar_x
-    time_scale = 1.0
+     time_scale = 1.0
   [../]
   [./polar_y_time]
      type = TimeDerivativeScaled
      variable=polar_y
-    time_scale = 1.0
+     time_scale = 1.0
   [../]
   [./polar_z_time]
      type = TimeDerivativeScaled
      variable = polar_z
-    time_scale = 1.0
+     time_scale = 1.0
   [../]
 []
 
@@ -311,7 +292,6 @@
     [../]
     [./Felec]
       type = ElectrostaticEnergy
-      permittivity = 0.08854187
       execute_on = 'timestep_end'
     [../]
     [./Ftotal]
@@ -343,8 +323,7 @@
     [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 0.1
-    #iteration_window = 3
-    optimal_iterations = 6 #should be 5 probably
+    optimal_iterations = 6
     growth_factor = 1.4
     linear_iteration_ratio = 1000
     cutback_factor =  0.8

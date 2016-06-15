@@ -198,15 +198,12 @@
 
 [Executioner]
   type = Transient
-  [./TimeStepper] #iterative DT halfs the time it takes to find a solution? oh well, our time is fake in this simulation anyway...
+  [./TimeStepper] 
     type = IterationAdaptiveDT
-    dt = 0.35 #max seems to be about 1.0 but could depend on refinement...
-    #there is also a cutback on this for 0.2*optimal and yes i think it does count the 0th one.
-    #iteration_window = 10
-    optimal_iterations = 4 #i think this is 3 or more then cut? less than 3 grow, does it count the 0th iteration? no the cutting has to do with the iteration ratio
+    dt = 0.35
+    optimal_iterations = 4 
     growth_factor = 1.4
     linear_iteration_ratio = 100
-    #linear_iteration_ratio = 1000
     cutback_factor =  0.55
     num_steps = 100
   [../]

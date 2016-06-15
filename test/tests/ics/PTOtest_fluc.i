@@ -16,7 +16,7 @@
 
 [GlobalParams]
   len_scale = 1.0
-  alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 293 K)
+  alpha1 = -0.1722883
   alpha11 = -0.07253
   alpha111 = 0.26
   alpha12 = 0.75
@@ -104,14 +104,6 @@
   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
    eigen_base = '1 0 0 0 1 0 0 0 0'
  [../]
-
- # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
-
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
@@ -134,11 +126,8 @@
 
 
 [Kernels]
-  #Elastic problem
   [./TensorMechanics]
-  #This is an action block
   [../]
-  #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivativeSixth
     variable = polar_x
@@ -154,13 +143,12 @@
     variable = polar_z
     component = 2
   [../]
-  ##Wall energy penalty
-[./walled_x]
+  [./walled_x]
     type = WallEnergyDerivative
     variable = polar_x
     component = 0
- [../]
- [./walled_y]
+  [../]
+  [./walled_y]
     type = WallEnergyDerivative
     variable = polar_y
     component = 1
@@ -170,8 +158,6 @@
      variable = polar_z
      component = 2
   [../]
-##Polarization-strain coupling
-
   [./ferroelectriccouplingp_xx]
     type = FerroelectricCouplingP
     variable = polar_x
@@ -187,8 +173,6 @@
     variable = polar_z
     component = 2
   [../]
-
-
   [./ferroelectriccouplingX_xx]
     type = FerroelectricCouplingX
     variable = disp_x
@@ -204,19 +188,15 @@
     variable = disp_z
     component = 2
   [../]
-  ##Electrostatics
   [./polar_x_electric_E]
      type = PolarElectricEStrong
      variable = potential_int
-     permittivity = 0.08854187
   [../]
   [./FE_E_int]
      type = Electrostatics
      variable = potential_int
      permittivity = 0.08854187
   [../]
-
-
   [./polar_electric_px]
      type = PolarElectricPStrong
      variable = polar_x
@@ -232,7 +212,6 @@
      variable = polar_z
      component = 2
   [../]
-  ##Time dependence
   [./polar_x_time]
      type = TimeDerivativeScaled
      variable=polar_x
@@ -324,7 +303,6 @@
     [../]
     [./Felec]
       type = ElectrostaticEnergy
-      permittivity = 0.08854187
       execute_on = 'timestep_end'
     [../]
     [./Ftotal]
@@ -356,15 +334,13 @@
     [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 0.1
-    #iteration_window = 3
-    optimal_iterations = 6 #should be 5 probably
+    optimal_iterations = 6
     growth_factor = 1.4
     linear_iteration_ratio = 1000
     cutback_factor =  0.8
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  #dt = 0.5
   dtmin = 1e-13
   dtmax = 0.1
   num_steps = 5

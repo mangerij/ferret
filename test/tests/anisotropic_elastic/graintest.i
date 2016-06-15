@@ -1,8 +1,5 @@
-
-
 [Mesh]
   file = 6grains.e
-  #uniform_refine = 2
 []
 
 [GlobalParams]
@@ -232,9 +229,7 @@
 []
 
 [Kernels]
-  #Elastic problem
   [./TensorMechanics]
-  #This is an action block
   [../]
 []
 
