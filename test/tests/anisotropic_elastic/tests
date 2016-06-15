@@ -6,4 +6,11 @@
     #use_old_floor = true
     #abs_zero = 1e-5
   [../]
+  [./surfmech_test]
+    type = 'Exodiff'
+    input = 'surf_graintest.i'
+    exodiff = 'out_grains_surf_elastic.e'
+    #use_old_floor = true
+    #abs_zero = 1e-5
+  [../]
 []

@@ -41,3 +41,4 @@ make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 
 * Email John Mangeri (john.mangeri@uconn.edu) for help with Ferret
 * MOOSE can be found at http://www.mooseframework.org
+* The moose-users list at https://groups.google.com/forum/#!forum/moose-users is good for help with MOOSE!
