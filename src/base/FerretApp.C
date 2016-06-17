@@ -29,6 +29,7 @@
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
+#include "ChernSimonsDensityMag.h"
 #include "WindingNumberDensity.h"
 #include "BandGapAuxZnOwRot.h"
 
@@ -151,6 +152,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PzFieldAux);
   registerAux(BoundCharge);
   registerAux(ChernSimonsDensity);
+  registerAux(ChernSimonsDensityMag);
   registerAux(CurlP);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
