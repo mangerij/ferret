@@ -4,21 +4,21 @@
 
 reset
 create brick x X y Y z Z
-create brick x 5 y 40 z 25
-create brick x 5 y 40 z 25
-create brick x 5 y 40 z 25
-create brick x 5 y 40 z 25
-create brick x 5 y 40 z 25
-create brick x 5 y 40 z 25
-create brick x 5 y 40 z 25
+create brick x X y Y z Z
+create brick x X y Y z Z
+create brick x X y Y z Z
+create brick x X y Y z Z
+create brick x X y Y z Z
+create brick x X y Y z Z
+create brick x X y Y z Z
 
-volume 1 move -15 0 0
-volume 2 move -10 0 0
-volume 3 move -5 0 0
-volume 5 move 5 0 0
-volume 6 move 10 0 0
-volume 7 move 15 0 0
-volume 8 move 20 0 0
+volume 1 move 3Xm 0 0
+volume 2 move 2Xm 0 0
+volume 3 move 1Xm 0 0
+volume 5 move 1Xp 0 0
+volume 6 move 2Xp 0 0
+volume 7 move 3Xp 0 0
+volume 8 move 4Xp 0 0
 
 create brick x 25 y 40 z 25
 create brick x 25 y 40 z 25
@@ -27,14 +27,14 @@ volume 9 move 35 0 0
 volume 10 move -30 0 0
 
 
-create brick x 5 y 40 z 10
-create brick x 5 y 40 z 10
-create brick x 5 y 40 z 10
-create brick x 5 y 40 z 10
-create brick x 5 y 40 z 10
-create brick x 5 y 40 z 10
-create brick x 5 y 40 z 10
-create brick x 5 y 40 z 10
+create brick x X y Y z Zsub
+create brick x X y Y z Zsub
+create brick x X y Y z Zsub
+create brick x X y Y z Zsub
+create brick x X y Y z Zsub
+create brick x X y Y z Zsub
+create brick x X y Y z Zsub
+create brick x X y Y z Zsub
 
 volume 11 move -15 0 -17.5 
 volume 12 move -10 0 -17.5 
