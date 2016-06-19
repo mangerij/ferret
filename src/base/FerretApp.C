@@ -25,6 +25,7 @@
 #include "PzFieldAux.h"
 #include "BoundCharge.h"
 #include "CurlP.h"
+#include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
@@ -154,6 +155,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
   registerAux(CurlP);
+  registerAux(CurlPMag);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
   registerAux(SurfaceChargeAux);

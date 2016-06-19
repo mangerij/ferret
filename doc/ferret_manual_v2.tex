@@ -117,16 +117,17 @@ J. Mangeri, O. Heinonen, S. Nakhmanson ]}
 
 \subsection{Elastic problem}
 
-We first consider a polarizable linear elastic body, $\Omega$, under some crystallogrophic misfit strain, $\varepsilon_{ij}^\mathrm{misfit} (\textbf{r})$.
+%
+We first consider a polarizable linear elastic body, $\Omega$, under some crystallographic misfit strain, $\varepsilon_{ij}^\mathrm{misfit} (\textbf{r})$.
 %
 Einstein summation notation is assumed throughout this document.
-%
+
 Above the Curie temperature, $T_C$, the polarization, $\textbf{P}$, is zero. 
 %
 Thus, the total elastic free energy of the system is, 
 %
 \begin{equation}\tag{1}
-F_\mathrm{elastic} = \int\limits_\Omega d^3 \textbf{r} \,\,\, f_\mathrm{elastic} = \int\limits_\Omega d^3 \textbf{r} \,\,\, C_{ijkl} \left(\varepsilon_{ij} - \varepsilon_{ij}^\mathrm{misfit} \right) \left(\varepsilon_{kl} - \varepsilon_{kl}^m \right) 
+F_\mathrm{elastic} = \int\limits_\Omega d^3 \textbf{r} \,\,\, f_\mathrm{elastic} = \int\limits_\Omega d^3 \textbf{r} \,\,\, C_{ijkl} \left(\varepsilon_{ij} - \varepsilon_{ij}^\mathrm{misfit} \right) \left(\varepsilon_{kl} - \varepsilon_{kl}^\mathrm{misfit} \right) 
 \end{equation}
 %
 where 
@@ -139,6 +140,21 @@ Note that $u_i =  u_i (\textbf{r})$, are the displacement vectors.
 %
 Under mechanical equilibrium, the system obeys,
 %
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+\vspace{-12pt}
+    \includegraphics[width=0.475\textwidth]{geometry.jpg}
+  \end{center}
+  \caption{Geometry setup in \textsc{Ferret}.
+%
+$\Omega$ is completely bounded by surface $\partial \Omega$. $\hat{\textbf{n}}$ is an \emph{outward} facing surface normal.
+%
+The volume and the surface may exist as set of subdomains, $\Omega_k \subseteq \Omega_{k+1} \subseteq ... \subseteq \Omega$ and $\partial \Omega_k \subseteq \partial \Omega_{k+1} \subseteq ... \subseteq \partial \Omega$.
+%
+This block decomposition proves useful when defining the material properties of the problem.} %it should be noted that Moose will rename this to "subdomain" instead of block in the near future
+\end{wrapfigure}
+%
+%
 \begin{equation}\tag{3}
 0 = \frac{\partial F}{\partial u_i} \Rightarrow \sigma_{ij,j} = \frac{\partial}{\partial x_j} C_{ijkl} \left(\varepsilon_{kl} - \varepsilon_{kl}^\mathrm{misfit} \right) = 0,
 \end{equation}
@@ -149,7 +165,7 @@ The elastic stiffness tensor $C_{ijkl}$ is a rank four tensor, a 6x6 matrix, and
 %
 \subsubsection{Surface elastic problem}
 %
-In a elastic material, a surface tension can arise from a free surface, $\delta \Omega$, bounding the body, $\Omega$.
+In a elastic material, a surface tension can arise from a free surface, $\partial \Omega$, bounding the body, $\Omega$.
 %
 Here, this surface tension, with the Gurtin-Murdoch approach \cite{Morton1975},  is related to surface tensorial quantities by
 %
@@ -163,7 +179,7 @@ $C_{\alpha \beta \delta \gamma}^s$ is the surface elastic tensor, and $\varepsil
 %
 The tension, $\tau^0$ is the intrinsic surface tension.
 %
-A surface free energy, $F_\mathrm{surface}$ can be introduced as,
+A surface free energy, $F_\mathrm{surface}$ can be introduced\footnote{It should be noted that an entire \emph{module} of surface tensor mechanics could be built into the MOOSE framework based on projecting the tensorial algebra onto the surface for various pieces of physics(adsorption concentration dependent eigenstrains, surface plasticity, surface-only thermoelastic effect, ect .} as,
 %
 \begin{equation}\tag{3.5}
 F_\mathrm{surface} = \frac{1}{2} \int\limits_{\delta \Omega} d^2 \textbf{r} \,\,\, C_{\alpha \beta \delta \gamma }^s \varepsilon_{\alpha \beta}^s \varepsilon_{\delta \gamma}^s 
@@ -196,9 +212,10 @@ These quantities are constructed and each quadrature point on the surface by tak
 \begin{align}\tag{3.9}
 \sigma^s = \mathbf{\hat{\textbf{P}}} \sigma \mathbf{\hat{\textbf{P}}} \,\,\,\mathrm{and}\,\,\, \varepsilon^s = \mathbf{\hat{\textbf{P}}} \varepsilon \mathbf{\hat{\textbf{P}}}.
 \end{align}
-
-See Influence of Elastic and Surface Strains on the Optical Properties of Semiconducting Core-Shell Nanoparticles,
-John Mangeri, Olle Heinonen, Dmitry Karpeyev, and Serge Nakhmanson, Phys. Rev. Applied 4, 014001 -- \href{http://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.4.014001}{Published}  7 July 2015
+%
+For application of this technique, see Influence of Elastic and Surface Strains on the Optical Properties of Semiconducting Core-Shell Nanoparticles,
+John Mangeri, Olle Heinonen, Dmitry Karpeyev, and Serge Nakhmanson, Phys. Rev. Applied 4, 014001 -- \href{http://journals.aps.org/prapplied/abstract/10.1103/PhysRevApplied.4.014001}{Published}  7 July 2015. 
+%
 
 %
 \subsection{Ferroelectric materials below $T_C$}
@@ -226,7 +243,9 @@ P_iP_jP_kP_lP_m P_n\,d^3 \textbf{r} + ... \nonumber\\
 \end{align}\nonumber
 %fix!%
 %
-Here, the higher order and mixing terms are neglected. Also, ${\mathbf E} = - \nabla \Phi$ is the {\em total} electrostatic field, that is introduced into the problem to coupled to electrostatic potential, $\Phi$, due to the dipole moments and external fields.
+Here, the higher order and mixing terms are neglected.
+%
+Also, ${\mathbf E} = - \nabla \Phi$ is the {\em total} electrostatic field, that is introduced into the problem to coupled to electrostatic potential, $\Phi$, due to the dipole moments \emph{and} external fields.
 %
 The multiderivative terms are the coefficient tensors of the expansion. We can rewrite Eq. (4) as
 %
@@ -284,7 +303,9 @@ C_{ijkl}\frac{\partial}{\partial x_j}\left(\varepsilon_{kl}-\varepsilon_{kl}^\ma
 -C_{ijkl}Q_{klmn}\frac{\partial}{\partial x_j}\left(P_mP_n\right).\nonumber\\
 \end{align}
 %
-where $\gamma_P$ and $\gamma_\varepsilon$ control the relaxation times of the material. In real materials, the elastic strain relaxes much faster than the polarization \cite{Dawber2005, Nelson2011}, so we can take the limit that $\gamma_\varepsilon / \gamma_P \to 0$, which is to say that the stress-divergence equation is solved at each time step.
+where $\gamma_P$ and $\gamma_\varepsilon$ control the relaxation times of the material.
+%
+In real ceramics, the elastic strain relaxes much faster than the polarization \cite{Dawber2005, Nelson2011}, so we can take the limit that $\gamma_\varepsilon / \gamma_P \to 0$, which is to say that the stress-divergence equation is solved at each time step.
 %
 Finally, we also have a coupling between the polar field and local electrostatic potential, which much satisfy the Poisson equation,
 %
@@ -363,7 +384,7 @@ The initial condition can also be an experimentally relevant scenario as long as
 %%
 
 %
-\section{Residual contributions}
+\section{Residual construction within Galerkin's method}
 %
 We seek explicit weak-form variations of the free energy whose integrand is weighted by a test function $\psi_h$,
 %
@@ -478,8 +499,7 @@ In index notation, \emph{but} \emph{no} \emph{summation} over $i, j, k$, this is
 %
 \subsection{Weak form for $f_\mathrm{coupling}$}
 %
-The coupling energy density between the polar variables and the displacements, $f_c$, as seen in Eq. (9) \cite{Li2001, Cao2008, Pertsev1998}
-to lowest order, takes the form as
+The coupling energy density between the polar variables and the displacements, $f_c$, as seen in Eq. (9) \cite{Li2001, Cao2008, Pertsev1998} to lowest order, takes the form as
 %
 $$f_\mathrm{coupling} = - \frac{1}{2} q_{jklm} \left(\frac{\partial u_j}{\partial x_k} - \varepsilon_{jk}^\mathrm{mis}\right)P_l P_m$$
 %
@@ -492,29 +512,38 @@ This is found by breaking the elastic free energy into the strain and self-strai
 &=& - \frac{1}{2} l_0^3 \int\limits_\Omega  d^3 {\boldsymbol x} \,\,\psi_h \left( q_{jknm}\left(\frac{\partial u_j}{\partial x_k} - \varepsilon_{jk}^\mathrm{mis}\right) P_m + q_{jkln} \frac{\partial u_j}{\partial x_k} P_m \right) \delta P_n\\ \nonumber
 \Rightarrow \frac{\delta F_c}{\delta P_n}&=& \underbrace{- l_0^3 \int\limits_\Omega  d^3 {\boldsymbol x} \,\, \psi_h q_{jknl} \left(\frac{\partial u_j}{\partial x_k} - \varepsilon_{jk}^\mathrm{mis}\right) P_l }_{\href{https://bitbucket.org/mesoscience/ferret/src/a4dc87461b2b31a8d9903b10282c4e1c1a6db9ef/src/kernels/FerroelectricCouplingP.C?at=master&fileviewer=file-view-default}{\texttt{\large FerroelectricCouplingP.C}}}\\ \nonumber
 \end{eqnarray}
-after switching the dummy indices $m \to l$ and invoking the minor symmetry of $q_{jknl} = q_{jkln} = 2 C_{jkrs} Q_{rsln}$ by defintion. We have other terms that couple the problem. First, within the stress-divergence equation,
-
+%
+after switching the dummy indices $m \to l$ and invoking the minor symmetry of $q_{jknl} = q_{jkln} = 2 C_{jkrs} Q_{rsln}$ by defintion.
+%
+We have other terms that couple the problem.
+%
+First, within the stress-divergence equation,
+%
 \begin{align}\nonumber
 \frac{\partial}{\partial x_j} \left[ C_{ijkl} \left(\varepsilon_{kl} - \varepsilon_{kl}^0 \right) \right] = 0.
 \end{align}
-
-So we aim to find the residual contribution of $-\partial / \partial x_j  \left(Q_{klmn} P_m P_n \right)$. Multiply by a test function, $\psi_h$, and integrate over the domain gives,
-
+%
+So we aim to find the residual contribution of $-\partial / \partial x_j  \left(Q_{klmn} P_m P_n \right)$.
+%
+Multiply by a test function, $\psi_h$, and integrate over the domain gives,
+%
 \begin{align}\nonumber
  -\int\limits_\Omega  d^3 {\boldsymbol x}  \psi_h \frac{\partial}{\partial x_j}  \left(Q_{klmn} P_m P_n \right)
 = \underbrace{\int\limits_\Omega  d^3 {\boldsymbol x}  \frac{\partial \psi_h}{\partial x_j}  \left(Q_{klmn} P_m P_n \right)}_{\href{https://bitbucket.org/mesoscience/ferret/src/a4dc87461b2b31a8d9903b10282c4e1c1a6db9ef/src/kernels/FerroelectricCouplingX.C?at=master&fileviewer=file-view-default}{\texttt{\large FerroelectricCouplingX.C}}}\\ \nonumber
 \end{align}
+%
 after using the divergence theorem and neglecting boundary terms. Note that the misfit strain is automatically added to the tensor mechanics problem with \href{https://github.com/idaholab/moose/blob/devel/modules/tensor_mechanics/src/materials/ComputeEigenstrain.C}{\texttt{ComputeEigenstrain.C}}.
-
+%
 \subsection{Weak form for $f_\mathrm{electric}$}
-
+%
 \begin{eqnarray}\nonumber
 \frac{\delta F_\mathrm{electric}}{\delta P_k} &=& l_0^2 \int\limits_\Omega d^3 {\boldsymbol x} \,\,\psi_h \frac{\partial}{\partial P_k}  \left( P_i \frac{\partial \Phi}{\partial x_i} \right)\\ \nonumber
 &=& l_0^2 \int\limits_\Omega d^3 {\boldsymbol x} \,\, \psi_h \delta_{ik} \frac{\partial \Phi}{\partial x_i} \,\,\,\,\,\mathrm{since} \,\,\,\delta_{ik} = \frac{\partial P_i}{\partial P_k}\\ \nonumber
 \Rightarrow \frac{\delta F_\mathrm{electric}}{\delta P_k} &=& \underbrace{l_0^2 \int\limits_\Omega d^3 {\boldsymbol x} \,\, \psi_h  \frac{\partial \Phi}{\partial x_k}}_{\href{https://bitbucket.org/mesoscience/ferret/src/a4dc87461b2b31a8d9903b10282c4e1c1a6db9ef/src/kernels/PolarElectricPStrong.C?at=master&fileviewer=file-view-default}{\texttt{\large PolarElectricPStrong.C}}} %TODO: fix links here
 \end{eqnarray}
+%
 Note here that in the code we apply the divergence theorem to use a derivative on the test function and not the potential variable.
-
+%
 \subsection{Remaining weak forms}
 %
 \subsubsection{Poisson equation}
@@ -526,7 +555,7 @@ Our auxillary Poisson equation is cast into the weak forms as is
 \Rightarrow &\,& \underbrace{l_0 \int\limits_\Omega d^3 {\boldsymbol x} \,\,  \frac{\partial \psi_h}{\partial x_i} \left( \kappa_0\frac{\partial \Phi}{\partial x_i} \right) }_{\href{https://bitbucket.org/mesoscience/ferret/src/a4dc87461b2b31a8d9903b10282c4e1c1a6db9ef/src/kernels/Electrostatics.C?at=master&fileviewer=file-view-default}{\texttt{\large Electrostatics.C}}}+ \underbrace{ l_0^2 \int\limits_\Omega d^3 {\boldsymbol x} \frac{\partial \psi_h}{\partial x_j}  P_j }_{\href{https://bitbucket.org/mesoscience/ferret/src/a4dc87461b2b31a8d9903b10282c4e1c1a6db9ef/src/kernels/PolarElectricEStrong.C?at=master&fileviewer=file-view-default}{\texttt{\large PolarElectricEStrong.C}}}= 0.\\ \nonumber%TODO: fix links here
 \end{eqnarray}
 %
-\subsubsection{Surface mechanics residual contribution}
+\subsubsection{Surface tensor mechanics residual contribution}
 %
 An \texttt{IntegratedBC} class is introduced of the form,
 %
@@ -535,7 +564,8 @@ An \texttt{IntegratedBC} class is introduced of the form,
 \end{align}
 %
 for some projection operator $P_{\alpha \beta}$ constructed from the normals of the quadrature points at the surface $\delta \Omega$.
-\section{Jacobian entries}
+%
+\section{Jacobian matrix elements}
 %
 Now we seek to find the components for the Jacobian matrix for all of the variables 
 %
@@ -543,30 +573,43 @@ Now we seek to find the components for the Jacobian matrix for all of the variab
 $$\{P_x, P_y, P_z, u_x, u_y, u_z, \Phi \}.$$
 \normalsize
 %
- Afterwards, we use this Jacobian along with discretizing the weak-form equations and construct the linear and nonlinear problems. First, let's define the Jacobian in general. That is
-
+Afterwards, we use this Jacobian along with discretizing the weak-form equations and construct the linear and nonlinear problems.
+%
+First, let's define the Jacobian in general.
+%
+That is
+%
 $$\mathscr{J}_{ij} = \frac{\partial f_i}{\partial x_j}$$
+%
+for some residual contribution $f_i$ and variable $x_j$.
+% 
+We have quite a few of these to construct.
+%
+Note this section may contain some typos.
+%
+\textbf{Tread with caution}. 
+%
+\subsection{Jacobian entries formed from $f_\mathrm{bulk}$ residual contributions}
+%
 
-for some residual contribution $f_i$ and variable $x_j$.  We have quite a few of these to construct. Note this section may contain some typos. Tread with caution. 
-
-\newpage
-
-\subsection{Jacobian terms formed from $f_\mathrm{bulk}$ residual contributions}
-
+%
 We have 
-
+%
 \begin{eqnarray}
 \frac{\delta F_\mathrm{bulk}}{\delta P_i} &=& l_0^3\int\limits_\Omega \psi_h d^3 {\boldsymbol x} \left(2 \alpha_1 P_i + 4 \alpha_{11} P_i^3 + 6 \alpha_{111} P_i^5 + 2 \alpha_{12} P_i \left(P_j^2 + P_k^2 \right) + 4 \alpha_{112} P_i^3 \left(P_j^2 + P_k^2 \right)  \right)\\ \nonumber
 &+& l_0^3 \int\limits_\Omega \psi_h d^3 {\boldsymbol x} \left(2 \alpha_{112} P_i \left(P_j^4 + P_k^4 \right) + 2 \alpha_{123} P_i P_j^2 P_k^2  \right) \\ \nonumber
 \end{eqnarray}
-
+%
 where the off-diagonal terms are for $i \neq n$,
+%
 \Large
 $$\{ \mathscr{J}_{R_{P_i}, P_n}^{f_\mathrm{bulk}}, \mathscr{J}_{R_{P_i}, u_i}^{f_\mathrm{bulk}}, \mathscr{J}_{R_{P_i}, u_n}^{f_\mathrm{bulk}}, \mathscr{J}_{R_{P_i}, \Phi}^{f_\mathrm{bulk}} \}.$$
 \normalsize
-
+%
 Note below that $\frac{\partial P_k}{\partial P_n} = \delta_{nk} \phi ({\boldsymbol x})$ \textit{or} $\frac{\partial P_j}{\partial P_n} = \delta_{nj} \phi ({\boldsymbol x})$ since $i \neq j =n$ \textit{or} $i \neq k = n$ and the shape function defines $P_m = \sum_\nu P_m^\nu \phi_\nu ({\boldsymbol x})$.
+%
 %input proof of finite-element power rule
+%
 Therefore, after picking $n = j$, 
 %
 \begin{eqnarray}\nonumber
@@ -580,13 +623,14 @@ The on-diagonal term
 \mathscr{J}_{R_{P_i}, P_i}^{f_\mathrm{bulk}} &=&l_0^3 \int\limits_\Omega d^3 {\boldsymbol x} \,\, \psi_h \phi \,\, \left[2 \alpha_1  + 12 \alpha_{11} P_i^2 + 2 \alpha_{12} \left(P_j^2 + P_k^2 \right) + 30 \alpha_{111} P_i^4 \right] \\ \nonumber
 &+&l_0^3\int\limits_\Omega d^3 {\boldsymbol x} \psi_h \phi  \left[ 12 \alpha_{112} P_i^2 \left(P_j^2 P_k^2 \right) + 2 \alpha_{112} \left(P_j^4 + P_k^4 \right) + 2 \alpha_{123} P_j^2 P_k^2 \right]\\ \nonumber
 \end{eqnarray}
+%
 Thankfully, 
-
+%
 $$\mathscr{J}_{R_{P_i} , u_i}^{f_\mathrm{bulk}} = \mathscr{J}_{R_{P_i} , u_n}^{f_\mathrm{bulk}} = \mathscr{J}_{R_{P_i} , \Phi}^{f_\mathrm{bulk}} = 0 \,\forall i \neq n $$
 %
 \newpage
 %
-\subsection*{Jacobian terms formed from $f_\mathrm{wall}$ residual contributions}
+\subsection{Jacobian entries formed from $f_\mathrm{wall}$ residual contributions}
 %
 Our wall term, which contributes only to the residual for $P_i$ is
 %
@@ -614,7 +658,7 @@ Here also,
 $$\mathscr{J}_{R_{P_i} , u_i}^{f_\mathrm{wall}} = \mathscr{J}_{R_{P_i} , u_n}^{f_\mathrm{wall}} = \mathscr{J}_{R_{P_i} , \Phi}^{f_\mathrm{wall}} = 0 \,\forall i \neq n $$
 
 \newpage
-\subsection{Jacobians terms form from $f_c$ residual contributions}
+\subsection{Jacobians entries formed from $f_c$ residual contributions}
 
 \begin{eqnarray}\nonumber
 \mathscr{J}_{R_{P_i}, P_i}^{f_c} &=& - l_0^3 \frac{\partial}{\partial P_i} \int\limits_\Omega  d^3 {\boldsymbol x} \,\, \psi_h q_{jkil} \frac{\partial u_j}{\partial x_k} P_l \\ \nonumber
@@ -634,7 +678,7 @@ Now, for all of the displacement components
 \mathscr{J}_{R_{P_i}, \Phi}^{f_c} &=& 0
 \end{eqnarray}
 
-\subsection{Jacobian terms formed from $f_\mathrm{electric}$ residual contributions}
+\subsection{Jacobian entries formed from $f_\mathrm{electric}$ residual contributions}
 
 Recall we put the gradient on the test function, so that
 \begin{eqnarray}\nonumber
@@ -753,7 +797,9 @@ Now the full form of the PDE, in time-discretized form, is
  \frac{\textbf{P}^{k+1} - \textbf{P}^k}{\Delta t} &=& -\gamma \frac{\delta}{\delta \textbf{P}^{k+1}}\int\limits_\Omega d^3 {\boldsymbol x} \,\,\,f\left(\textbf{P}^{k+1} \right)\\ \nonumber
 &=& -\gamma \left[\frac{\delta F_\mathrm{bulk}}{\delta \textbf{P}^{k+1}}+ \frac{\delta F_\mathrm{wall}}{\delta \textbf{P}^{k+1}}+ \frac{\delta F_\mathrm{elastic}}{\delta \textbf{P}^{k+1}} + \frac{\delta F_\mathrm{electric}}{\delta \textbf{P}^{k+1}} \right]\\ \nonumber
 \end{eqnarray}
-\vspace{-50pt}
+%
+with free index, $j$, 
+%
 \begin{eqnarray}\nonumber
 \Rightarrow \frac{P_j^k - P_j^{k+1}}{\gamma \Delta t}  &=& \int\limits_\Omega d^3 \textbf{r} \,\, \psi_h\,\left[2 \alpha_1 P_j^{k+1} + 4 \alpha_{11} (P_j^{k+1})^3 + 6 \alpha_{111} (P_j^{k+1})^5 + 2 \alpha_{12} P_j^{k+1} \left((P_r^{k+1})^2 + (P_t^{k+1})^2 \right) \right]\\ \nonumber
 &+& \int\limits_\Omega  d^3 \textbf{r}\,\,\psi_h\, \left[4 \alpha_{112} (P_j^{k+1})^3 \left(\left(P_r^{k+1}\right)^2 +( P_t^{k+1})^2 \right)  +  2 \alpha_{112} P_j^{k+1} \left((P_r^k)^4 + (P_t^{k+1})^4 \right) \right] \\ \nonumber
@@ -771,21 +817,23 @@ along with
 \end{eqnarray}
 and 
 \begin{eqnarray}\nonumber
-\int\limits_\Omega d^3 \textbf{r} \,\,C_{ijmn} \frac{\partial}{\partial x_j} \left(\frac{\partial u^{k+1}_m}{\partial x_n} - Q_{mnrt} P_r^{k+1} P_t^{k+1}  + \varepsilon_{mn}^\mathrm{misfit}\right) = 0
+\int\limits_\Omega d^3 \textbf{r} \,\,C_{ijmn} \frac{\partial}{\partial x_j} \left(\frac{\partial u^{k+1}_m}{\partial x_n} - Q_{mnrt} P_r^{k+1} P_t^{k+1}  + \varepsilon_{mn}^\mathrm{misfit}\right) = 0.
 \end{eqnarray}
 %
-Note that, as discussed previously, the dynamics of elastic displacement are assumed to be instantaneous as seen in experiment.
+Note that, as discussed previously, the dynamics of elastic displacement are assumed to be instantaneous compared to polarization relaxation time scales as seen in experiment.
 %
-This puts a lower limit on our time step size before we should see the elastic problem dynamics. This can be implemented later quite easily assuming a specific ratio of relaxation  constants for the two uncoupled problems.
+This puts a lower limit on our time step size $\widetilde{\mathrm{dt}}_\mathrm{elastic, min}$ before one should see the elastic problem dynamics and different approaches must be taken. This can be implemented later quite easily assuming a specific ratio of relaxation constants for the two uncoupled problems (e.g. how many time steps does it take to satisfy the TDLGD compared to how many time steps does it take to satisfy mechanical equilibrium in the presence of zero ferroelectric self-strain).
 %
-\newpage
-\vspace*{-55pt}
 \section{Newton-Raphson's method in a time-dependent scheme}
+%
+\textbf{Note}: this section is unfinished. Not sure how linear/nonlinear problem solves are done in PETSc.
+%
 
+%
 Consider the problem
-
+%
 $$f_i(\textbf{x}) = 0$$
-
+%
 to be solved by finding sufficient $\textbf{x}$. We look for iterative updates, $\delta \textbf{x}$ to $\textbf{x}$ as
 
 $$f_k \left(\textbf{x} + \delta \textbf{x} \right) = f_i \left(\textbf{x} \right) + \sum\limits_j \frac{\partial f_i}{\partial x_j} \delta x_j + O(\delta \textbf{x}) + ...$$
@@ -865,7 +913,7 @@ This solve can be preconditioned with a Schur split or physics-based preconditio
 For large problems, the default lu on the subblocks needs to be changed to ilu.
 
 
-\section{The aux system}
+\section{The Aux system}
 
 \subsection{Band gap energy paramerizations}
 
@@ -873,7 +921,151 @@ Within the work of \cite{Yin2010, Wagner2013}, \emph{ab initio} methods explored
 
 $$ E_g = E_g^0 + A_u \sigma_u + B_b \sigma_b$$
 
-for some \emph{solved} uniaxial, $\sigma_u$, and biaxial, $\sigma_b$ components of the stress tensor. $E_g^0$ is the unstrained bulk semiconducting band gap for these materials. Care must be taken to always respect crystallographic directions. For example, if the material is in some granular state where an Euler rotation is applied on the stiffness tensor, this formula also must use the rotated components of the stress tensor.
+for some \emph{solved} uniaxial, $\sigma_u$, and biaxial, $\sigma_b$ components of the stress tensor.
+%
+$E_g^0$ is the unstrained bulk semiconducting band gap for these materials.
+%
+Care must be taken to always respect crystallographic directions.
+%
+For example, if part of the structure in the model is in some granular state where an Euler rotation is applied on the stiffness tensor, then this gap energy formula also must use the rotated components of the stress tensor.
+%
+Currently, there is two different AuxKernels available for materials $\mathrm{ZnO}$ and $\mathrm{TiO}_2$.
+%
+There also exists a rotated version of the gap kernel for $\mathrm{ZnO}$.
+%
+Eventually, it would be good to contain this all in a generalized gap kernel that just accepts user input params.
+%
+%this was not done in the PRA work! :(
+%
+\subsection{polar AuxVariables}
+%
+\subsubsection{Stray fields}
+%
+Recall that the field from a dipole is
+%
+$$\Phi_\mathrm{dipole}\left(\textbf{r} \right) = \frac{1}{4\pi \epsilon_0} \frac{\textbf{r} \cdot \textbf{P}}{r^3}.$$
+%
+This relation implies that as the Poisson equation is satisfied for some bound dipolar charge, the resulting field should be related to this.
+%
+Starting with the $j^\mathrm{th}$ component of the field
+%
+\begin{align}\tag{123}
+\textbf{E}_\mathrm{dipole,j} &= - \frac{\partial}{\partial r_j} \Phi_\mathrm{dipole} \left(\textbf{r} \right) = - \frac{1}{4 \pi \epsilon_0} P_i \frac{\partial}{\partial r_j} \left(\frac{r_i}{r^3} \right)\\ \nonumber
+&= - \frac{1}{4 \pi \epsilon_0} P_i \left[ \frac{\partial r_i}{\partial r_j} \frac{1}{r^3} + r_i \frac{\partial}{\partial r_j} \left(\frac{1}{r^3} \right) \right]\\ \nonumber
+&= - \frac{1}{4 \pi \epsilon_0} P_i \left[ \delta_{ij}\frac{1}{r^3} + r_i \left(\nabla \frac{1}{r^3} \right) \cdot \hat{r_j}  \right]\\ \nonumber
+&= - \frac{1}{4 \pi \epsilon_0} P_i \left[ \delta_{ij}\frac{1}{r^3} - 3 \,\, r_i \left(\frac{\hat{r}}{r^4} \right) \cdot \hat{r_j}  \right]\\ \nonumber
+&= - \frac{1}{4 \pi \epsilon_0} P_i \left[ \delta_{ij}\frac{1}{r^3} - 3 \,\, r_i \left(\frac{\textbf{r}}{r^5} \right) \cdot \hat{r_j}  \right]\\ \nonumber
+&= - \frac{1}{4 \pi \epsilon_0} P_i \left[ \delta_{ij}\frac{1}{r^3} - 3 \,\, \left(\frac{r_i r_j}{r^5} \right)  \right]\\ \nonumber
+\end{align}
+%
+which some rearrangement brings us to the familiar result
+%
+$$\textbf{E}_\mathrm{dipole} = \frac{1}{4 \pi \epsilon_0} \frac{1}{r^3} \left[3 \left(\textbf{P} \cdot \hat{\textbf{r}} \right) \hat{\textbf{r}} - \textbf{P} \right]$$
+%
+In complicated nanostructures, this field is hard to visualize.
+%
+The reason for this is that there may be various types of domain walls that arise and the depolarization fields from bound and surface charges may obscure the "lone" simple field above.
+%
+The AuxKernel classes \texttt{ExFieldAux.C}, \texttt{EyFieldAux.C}, and \texttt{EzFieldAux.C} compute the Cartesian axis components of $-\nabla \Phi (\textbf{r})$.
+%
+This acts on the solution of the TDLGD equations and can be cast into a vector for \emph{ParaView} visualization purposes by adjusting the name of the AuxVariable appropriately.
+%
+\subsubsection{Bound charges}
+%
+The AuxKernel \texttt{BoundCharge.C} calculates the value of the function
+%
+$$\rho_b (\textbf{r} ) = - \nabla \cdot \textbf{P} (\textbf{r} )$$
+%
+at each quadrature point in the mesh.
+%
+This gives a bound charge density of the resulting solution, and can be useful for visualizing the ferroelectric structure.
+%
+\subsubsection{Curl of the polar field}
+%
+Quite simply, \texttt{CurlP.C}, is the AuxKernel needed to calculate the following,
+%
+$$\mathrm{curl} \,\, \textbf{P} (\textbf{r}) =  \nabla \times \textbf{P} (\textbf{r})$$
+%
+at every quadrature point in the mesh. An additional AuxKernel class \texttt{CurlPMag.C} calculates the magnitude of the curl.
+%
+\subsubsection{Chern numbers}
+%
+In order to study topological phase transitions, a quantitative indicator can be chosen known as the Chern-Simons number defined as
+%
+\begin{align}\nonumber
+N_{CS} = \int\limits_\Omega d^3 \textbf{r} \,\,  n_{CS} - \frac{1}{8 \pi^2} \int\limits_\Omega d^3 \textbf{r} \,\, \epsilon_{ijk} \mathrm{Tr} \left[A_i^\nu \left(\frac{\partial A_k^\nu}{\partial x_j} + \frac{2}{3} A_j^\nu A_k^\nu \right) \right]
+\end{align}
+%
+For the polar field $A_j^\nu \to P_j$, the trace disappears\footnote{Allegedly, according to field theorists, the trace arises from the need to sum over the color fields, $\nu$, in gauge theories used in high energy quantum chromodynamics} and this integrand becomes a dot product of the vector with its curl. %I'll note that I probably don't understand what the hell this means.
+%
+Within \textsc{Ferret}, we choose to track two quantities, $n_{CS}$ and $|n_{CS}|$ within \texttt{ChernSimonsNumberDensity.C} and \texttt{ChenSimonsNumberDensityMag.C} respectively. Construction of $N_{CS}$ can be done using an 
+\texttt{ElementIntegralVariablePostprocessor.C} postprocessor.
+%
+It should be noted that in almost any finite sized structure with a topological defect, the topological charge should be non-integer since the free surfaces, $\delta \Omega$, can terminate the pattern and disrupt winding numbers.
+% 
+
+%
+\subsubsection{Energy densities}
+
+Different parts of the total free energy density can be useful for visualization purposes (or for calculation of adaptive mesh refinement indicators and markers). These are available for $f_\mathrm{bulk}$, \texttt{BulkEnergyDensity.C}, and $f_\mathrm{wall}$, \texttt{WallEnergyDensity.C}.
+
+Note: the rest of the AuxKernels in the directory may be unfinished or not working for some reason or another.
+
+
+\section{Hysteresis}
+
+There a number of ways to generate a hysteresis curve in \textsc{Ferret}, but since the method is diffusional, we must take care to respect the physics. As far as the authors know, there are currently two methods for generating the nonlinear polar response. One consists of a quasi-static two-step method to introduce perturbations as the field is being swept. Another is a purely dynamic method where a second-time derivative is including in the TDLGD equations.
+
+\subsection{Quasi-static method}
+
+ Currently, the procedure is as follows, pole the system with some applied electric field $\textbf{E}_i$, and solve the TDLGD by letting the system relax to some minimum energy from a random paraelectric initial condition. 
+
+After the system has reached equilibrium, minor fluctuations are introduced by evolution the system according to the TDLGD, with a noise term $1/\gamma \Delta \textbf{P}$ with \texttt{FluctuationKernel.C}, as
+
+\begin{equation}\tag{40}
+- \gamma \frac{\partial \textbf{P}}{\partial t} =  \frac{\delta}{\delta \textbf{P}}\int\limits_\Omega d^3 \textbf{r} \,\,\,f\left(\textbf{P} \right)  - \frac{1}{\gamma} \Delta \textbf{P}.
+\end{equation}
+%
+Here, the initial condition is taken to be the previous solution at the poling field $\textbf{E}_i$. This perturbation simulation is done at zero applied field. 
+%
+Once the system again has been sufficiently\footnote{One could ask what does "sufficiently perturbed" in this situation really mean? This is definitely something to investigate, as there is a delicate relationship between how many time steps are needed to create fluctuations, the strength of the noise term $\Delta \textbf{P}$ and the energy evolution of the system.} perturbed then the applied electric field is changed $\textbf{E}_{i} \to \textbf{E}_{i+1}$ and the procedure is repeated.
+%
+%Some discussion in Chen's original paper: J. Am. Ceram. Soc. 81 (3) 492-500 (1998) regarding the use of the noise term and some relations on temperature.
+\subsection{Purely dynamic method}
+%
+
+%
+Following the work of \emph{Wang et al} \cite{Wang2003}, we first introduce a kinetic energy term,
+%
+$$T =  \frac{1}{2} \,\rho \left(\frac{\partial P}{\partial t} \right)^2 $$
+%
+with some effective mass density, $\rho$, into the total energy of the problem. A Lagrangian operator can be defined as
+%
+$$L = \int\limits_\Omega d^3 \textbf{r} \,\, T - F$$
+%
+with some total free energy $F$.
+%
+The dynamic behavior of the system between some initial time $t_i$, and some final time $t_f$, depends on the action of the Lagrangian as
+%
+$$S = \int\limits_{t_i}^{t_f} dt \,\, L  =  \int\limits_{t_i}^{t_f} dt \,\, \left(T - F \right). $$
+
+The approach this is, as follows,
+
+$$\gamma \frac{\partial \textbf{P}}{\partial t} =  \frac{\delta S}{\delta \textbf{P}}$$
+
+which generates a second-time derivative \emph{somehow} and the full TDLGD equations are now
+
+\begin{equation}\tag{50}
+- \gamma \frac{\partial \textbf{P}}{\partial t} =  -\rho \frac{\partial^2 \textbf{P}}{\partial t^2} + \frac{\delta}{\delta \textbf{P}}\int\limits_\Omega d^3 \textbf{r} \,\,\,f\left(\textbf{P} \right).
+\end{equation}
+
+This seems to be in agreement with work by \emph{Strukov et al}. Within this method, the initial condition is assumed to be some polar distribution with a domain structure and the field is applied as a sinusoidal boundary condition, $\textbf{E} =  \textbf{E}_0 \sin{\left(\omega t \right)}$.  In some later work \cite{Wang2011}, the area of the hysteresis loop was shown to depend sensitively to effective mass $\rho$, frequency of the applied field, $\omega$, and domain wall mobility, $\gamma$. One can show, that for constant $\omega \gamma/\rho$ that the loop remains unchanged.
+
+
+
+%Studying the agreement or limits of the two methods would be very interesting..
+
+%also, MOOSE can fit the dielectric response of the microstructure to some macroscale function and then pass this fit in a coarser grained model to a larger length scale problem in some MultiAppTransfer. This means, that Ferret simulations can be scaled up significantly to experimentally relevant length scales.
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
@@ -985,6 +1177,16 @@ W.-J.~Yin, S.~Chen, J.-H, Yang, X.-G.~Gong, Y.~Yan, and S.-H.~Wei
 M.~R.~Wagner, G.~Callsen, J.~S.~Reparaz, R.~Kirste, A.~Hoffmann, A.~V.~Rodina, A.~Schleife, F.~Bechstedt, and M.~R.~Phillips
 %\newblock {Effects of strain on the valence band structure and exciton-polariton energies in ZnO}.
 \newblock \emph{Phys. Rev. B.} \textbf{88} 235210 (2013).
+
+\bibitem{Wang2003}
+B.~Wang, R.~Xia, H.~Fan, C.~H.~Woo,
+%\newblock {Dynamic process of domain switching in ferroelectric films}.
+\newblock \emph{J. Appl. Phys.} \textbf{94} 5 (2003).
+
+\bibitem{Wang2011}
+Y.-L.~Wang, X.-Y.~Wang, L.-Z.~Chu, Z.-C.~Deng, X.-C.~Ding, W.-H.~Liang, P.-C.~Zhang, L.~Liu, B.-T.~Liu, and G.-S.~Fu,
+%\newblock {Simulation of the initial polarization curves and hyteresis loops for ferroelectric films by an extensive time-dependent Ginzburg-Landau model}.
+\newblock \emph{J. Mater. Sci.} \textbf{46}:2695-2699 5 (2011).
 
 
 %\bibitem{Alpay2014}
