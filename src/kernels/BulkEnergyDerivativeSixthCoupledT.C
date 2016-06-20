@@ -16,7 +16,7 @@ InputParameters validParams<BulkEnergyDerivativeSixthCoupledT>()
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredCoupledVar("temperature", "The temperature at the grid point");
-  params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
+  params.addRequiredParam<Real>("alpha0", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha12", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha111", "The coefficients of the Landau expansion");

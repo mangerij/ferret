@@ -73,6 +73,7 @@
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
 #include "BulkEnergy.h"
+#include "BulkEnergyCoupledT.h"
 #include "BulkEnergyFourth.h"
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
@@ -187,6 +188,7 @@ FerretApp::registerObjects(Factory & factory)
 
   //Postprocessors
   registerPostprocessor(BulkEnergy);
+  registerPostprocessor(BulkEnergyCoupledT);
   registerPostprocessor(WallEnergy);
   //registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(BulkEnergyFourth);
