@@ -19,11 +19,13 @@
 #  stress zx = 2 * 5e5 * 3e-6 / 2 = 1.5
 
 
-[Mesh]#Comment
+[Mesh]
   file = sheet_with_hole_thick.e
-#  uniform_refine = 1
+[]
+
+[GlobalParams]
   displacements = 'disp_x disp_y disp_z'
-[] # Mesh
+[]
 
 [Variables]
 
@@ -96,11 +98,9 @@
 
 [] #AuxVariables
 
-[TensorMechanics]
-  [./solid]
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
+[Kernels]
+  [./TensorMechanics]
+  #This is an action block
   [../]
 []
 
@@ -121,8 +121,8 @@
   [../]   
   [./f_disp_z]       
       type=SolutionFunction       
-      file_type=exodusII        
-      mesh=in.e       
+      file_type = exodusII        
+      mesh = in.e       
       variable=disp_z       
       timestep=2   
   [../]   

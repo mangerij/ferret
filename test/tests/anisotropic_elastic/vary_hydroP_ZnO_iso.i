@@ -380,16 +380,6 @@
   [../]
 []
 
-#test:anisotropic_elastic.coreshell_and_gap_test:    disp_x             rel diff: -8.7736156e-05 ~  9.4599151e-05 = 1.92745e+00 (node 452)
-#test:anisotropic_elastic.coreshell_and_gap_test:    disp_y             rel diff:  9.9527450e-05 ~ -9.9087929e-05 = 1.99558e+00 (node 495)
-#test:anisotropic_elastic.coreshell_and_gap_test:    disp_z             rel diff:  1.5954234e-04 ~ -1.6144098e-04 = 1.98824e+00 (node 441)
-
-#test:anisotropic_elastic.coreshell_and_gap_test:    disp_x             rel diff: -8.7736156e-05 ~  9.4599151e-05 = 1.92745e+00 (node 452)
-#test:anisotropic_elastic.coreshell_and_gap_test:    disp_y             rel diff:  9.9527450e-05 ~ -9.9087929e-05 = 1.99558e+00 (node 495)
-#test:anisotropic_elastic.coreshell_and_gap_test:    disp_z             rel diff:  1.5954234e-04 ~ -1.6144098e-04 = 1.98824e+00 (node 441)
-
-
-
 [Executioner]
   type = Steady
   solve_type = 'PJFNK'       #"PJFNK, JFNK, NEWTON"

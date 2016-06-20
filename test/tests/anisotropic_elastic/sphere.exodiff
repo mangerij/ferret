@@ -31,6 +31,6 @@ TIME STEPS relative 1.e-6 floor 0.0     # min:               0 @ t1 max:        
 # No GLOBAL VARIABLES
 
 NODAL VARIABLES relative 1.e-6 floor 1e-8
-	disp_x   relative 9.0 @ t2,n452
-	disp_y   relative 9.0 @ t2,n495
-	disp_z   relative 9.0 @ t2,n441
+	disp_x   relative 9.0 @ t2, n452
+	disp_y   relative 9.0 @ t2, n495
+	disp_z   relative 9.0 @ t2, n441 #doesn't seem that this is working...

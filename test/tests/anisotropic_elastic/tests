@@ -20,4 +20,9 @@
     exodiff = 'out_ZnZnO_xstl000_core_iso_shell_PJFNK.e'
     custom_cmp = sphere.exodiff
   [../]
+  [./nullspace]
+    type = 'Exodiff'
+    input = 'vary_hydroP_ZnO_iso_null.i'
+    exodiff = 'out_ZnZnO_xstl000_core_iso_shell_PJFNKnull.e'
+  [../]
 []
