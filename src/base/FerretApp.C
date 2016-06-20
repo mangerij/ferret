@@ -52,9 +52,7 @@
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
-#include "BulkEnergyDerivativeFourth.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
-#include "BulkEnergyDerivativeFourthCoupledT.h"
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
@@ -74,7 +72,6 @@
 #include "TotalEnergyFlow.h"
 #include "BulkEnergy.h"
 #include "BulkEnergyCoupledT.h"
-#include "BulkEnergyFourth.h"
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
@@ -171,9 +168,7 @@ FerretApp::registerObjects(Factory & factory)
 
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
-  registerKernel(BulkEnergyDerivativeFourth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
-  registerKernel(BulkEnergyDerivativeFourthCoupledT);
   registerKernel(WallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
@@ -191,7 +186,6 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(BulkEnergyCoupledT);
   registerPostprocessor(WallEnergy);
   //registerPostprocessor(ChernSimonsNumber);
-  registerPostprocessor(BulkEnergyFourth);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyFlow);
