@@ -275,9 +275,9 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason '
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot'
-    petsc_options_value = '    121            1e-6      1e-8    bjacobi           1e-50     '
+    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
+    petsc_options_iname = '-snes_type -ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot'
+    petsc_options_value = '    ksponly 121            1e-6      1e-8    bjacobi           1e-50     '
   [../]
 []
 
@@ -302,7 +302,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_domains
+    file_base = out_domains_temp
     elemental_as_nodal = true
   [../]
 []

@@ -62,6 +62,7 @@
 //#include "FerroelectricCouplingQ.h"
 #include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
+#include "KarmanenkoDriver.h"
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
@@ -175,6 +176,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FluctuationKernel);
+  registerKernel(KarmanenkoDriver);
 
 //  registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
