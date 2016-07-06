@@ -39,6 +39,7 @@
 #include "HydrostaticBC.h"
 #include "OpenCircuitBC.h"
 #include "StressFreeBC.h"
+#include "StressBC.h"
 
 //Initial Conditions
 #include "PerturbedIC.h"
@@ -143,6 +144,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(HydrostaticBC);
   registerBoundaryCondition(OpenCircuitBC);
   registerBoundaryCondition(StressFreeBC);
+  registerBoundaryCondition(StressBC);
 
   //AuxKernels:
   registerAux(PolarizationVortexAux);

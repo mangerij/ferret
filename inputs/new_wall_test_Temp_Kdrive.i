@@ -52,7 +52,16 @@
     # 0.007002995623847172` T^2 + 0.000043869615896454906` T^3 - 
     # 1.2761754181299432`*^-7 T^4 + 1.406985441442072`*^-10 T^5 - 
     # 1.1698546189488996` Log[T]
-
+    type = ParsedFunction
+    value = 
+'0.2139 
++ 0.49 * temperature 
+- 0.007 * temperature^2 
++ 4e-5 *  temperature^3 
+- 1.27e-7 temperature^4 
++ 1.40e-10 temperature^5 
+- 1.1698 * ln(temperature)'
+    vars = temperature
   [../]
 []
 
