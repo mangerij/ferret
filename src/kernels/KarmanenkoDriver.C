@@ -28,6 +28,8 @@ InputParameters validParams<KarmanenkoDriver>()
   params.addParam<Real>("rho1", 1.0, "the density of the electrocaloric material");
   params.addParam<Real>("C1", 1.0, "the first coefficient of the residual contribution");
   params.addParam<Real>("C2", 1.0, "the second coefficient of the residual contribution");
+  params.addParam<Real>("C3", 1.0, "the third coefficient of the residual contribution");
+  params.addParam<Real>("C4", 1.0, "the fourth coefficient of the residual contribution");
   params.addParam<Real>("dEstep", 0.0, "change in the electric field as a function of time");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
@@ -44,6 +46,8 @@ KarmanenkoDriver::KarmanenkoDriver(const InputParameters & parameters)
    _rho1(getParam<Real>("rho1")),
    _C1(getParam<Real>("C1")),
    _C2(getParam<Real>("C2")),
+   _C3(getParam<Real>("C3")),
+   _C4(getParam<Real>("C4")),
    _dEstep(getParam<Real>("dEstep")),
    _len_scale(getParam<Real>("len_scale"))
 {
@@ -52,21 +56,23 @@ KarmanenkoDriver::KarmanenkoDriver(const InputParameters & parameters)
 
 Real
 KarmanenkoDriver::computeQpResidual()
+
+///0.000116379 Ez + 0.00117004 Ez^2 - 3.27924*10^-6 Ez T + 4.68114*10^-6 Ez^2 T
 {
-  return _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (_C1 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2)) * _dEstep;
+  return _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (- _C1 * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) - _C3 * _potential_int_grad[_qp](2) * _temperature[_qp] + _C4 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
 }
 
 Real
 KarmanenkoDriver::computeQpJacobian()
 {
-  return _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _phi[_j][_qp] * (_C1 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2)) * _dEstep;
+  return _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _phi[_j][_qp] * (- _C1 * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) - _C3 * _potential_int_grad[_qp](2) * _temperature[_qp] + _C4 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
 }
 
 Real
 KarmanenkoDriver::computeQpOffDiagJacobian(unsigned int jvar)
 {
     if( jvar == _potential_int_var )
-      return  _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (_C1 * 2.0 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) + _C2 * 4.0 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2)) * _dEstep;
+      return  _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (- _C1 * _grad_phi[_j][_qp](2) + _C2 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) - _C3 * _grad_phi[_j][_qp](2) * _temperature[_qp] + _C4 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;;
     else if( jvar == _potential_ext_var)
       return  0.0;
     else

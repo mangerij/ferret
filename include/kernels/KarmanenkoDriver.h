@@ -45,7 +45,7 @@ protected:
   const VariableGradient &  _potential_ext_grad;
   const unsigned int _temperature_var;
   const VariableValue & _temperature;
-  const Real _rho1, _C1, _C2, _dEstep;
+  const Real _rho1, _C1, _C2, _C3, _C4, _dEstep;
   const Real _len_scale;
 };
 #endif //KARMANENKODRIVER_H

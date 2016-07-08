@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_parallel1.e
+  file = exodus_parallel2.e
   #block = '1 2' PTO
   #block = '4'   substrate
   #block = '3'   vacuum
@@ -388,43 +388,43 @@
       variable = disp_x
       primary = '2'
       secondary = '3'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./FE_disp_y_pbc]
       variable = disp_y
       primary = '2'
       secondary = '3'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./FE_disp_z_pbc]
       variable = disp_z
       primary = '2'
       secondary = '3'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./FE_polar_x_pbc]
       variable = polar_x
       primary = '2'
       secondary = '3'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./FE_polar_y_pbc]
       variable = polar_y
       primary = '2'
       secondary = '3'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./FE_polar_z_pbc]
       variable = polar_z
       primary = '2'
       secondary = '3'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./FE_potential_int_pbc]
       variable = potential_int
       primary = '2'
       secondary = '3'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
 
     #Substrate section
@@ -540,14 +540,13 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_p1PTOridge_test_const_eigen1
+    file_base = out_p2PTOridge_test_const_eigen1
     elemental_as_nodal = true
     interval = 1
   [../]
   [./outCSV]
     type = CSV
-    file_base = out_p1PTOridge_test_const_eigen1
-    elemental_as_nodal = true
+    file_base = out_p2PTOridge_test_const_eigen1
     interval = 1
   [../]
 []

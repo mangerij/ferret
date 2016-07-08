@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_parallel1.e
+  file = exodus_antiparallel.e
   #block = '1 2' PTO
   #block = '4'   substrate
   #block = '3'   vacuum
@@ -73,8 +73,8 @@
     type = RandomIC
     variable = polar_z
     block = '1'
-    min = -0.6e-5
-    max = -0.68e-5
+    min = -0.6
+    max = -0.68
   [../]
   [./polarzblock2]
     variable = polar_z
@@ -115,20 +115,173 @@
   [../]
 []
 
+[AuxVariables]
+  [./stress_xx_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_xy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_xz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_xx_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_yy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_xy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_xz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_zz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_yz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./matl_e11]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 0
+    variable = strain_xx_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_e12]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 1
+    variable = strain_xy_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_e13]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 2
+    variable = strain_xz_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_e22]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = elastic_strain
+    index_i = 1
+    index_j = 1
+    variable = strain_yy_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_e23]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = elastic_strain
+    index_i = 1
+    index_j = 2
+    variable = strain_yz_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_e33]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = elastic_strain
+    index_i = 2
+    index_j = 2
+    variable = strain_zz_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_s11]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+    variable = stress_xx_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_s12]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+    variable = stress_xy_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_s13]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 2
+    variable = stress_xz_elastic
+    execute_on = 'timestep_end'
+  [../]
+ [./matl_s22]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+    variable = stress_yy_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_s23]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 2
+    variable = stress_yz_elastic
+    execute_on = 'timestep_end'
+  [../]
+  [./matl_s33]
+    type = RankTwoAux
+    block = '1 2 4'
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+    variable = stress_zz_elastic
+    execute_on = 'timestep_end'
+  [../]
+[]
+
 [Materials]
   [./vacmat]
     type = GenericConstantMaterial
     block = '3'
   [../]
-
-  [./eigen_strain]
-    type = ComputeEigenstrain
-    block = '1 2'
-    eigen_base = '1 0 0 0 0 0 0 0 0'
-    prefactor = -0.00857142857143
-  [../]
-
-
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     block = '1 2'
@@ -143,8 +296,6 @@
     block = '1 2'
     type = ComputeLinearElasticStress
   [../]
-
-
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
     block = '4'
@@ -159,14 +310,12 @@
     block = '4'
     type = ComputeLinearElasticStress
   [../]
-
   [./slab_ferroelectric]
     type = ComputeElectrostrictiveTensor
     block = '1 2'
     Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
-
 []
 
 
@@ -208,7 +357,6 @@
      component = 2
   [../]
 ##Polarization-strain coupling
-
   [./ferroelectriccouplingp_xx]
     type = FerroelectricCouplingP
     variable = polar_x
@@ -336,23 +484,7 @@
     type = StressBC
     variable = disp_x
     component = 0
-    boundary_stress = '-0.1 0.0 0 0 0 0'
-    boundary = '9'
-  [../]
-
-  [./stress_dispy_left]
-    type = StressBC
-    variable = disp_y
-    component = 1
-    boundary_stress = '-0.1 0.0 0 0 0 0'
-    boundary = '9'
-  [../]
-
-  [./stress_dispz_left]
-    type = StressBC
-    variable = disp_z
-    component = 2
-    boundary_stress = '-0.1 0.0 0 0 0 0'
+    boundary_stress = '-1.0 0.0 0 0 0 0'
     boundary = '9'
   [../]
 
@@ -360,30 +492,13 @@
     type = StressBC
     variable = disp_x
     component = 0
-    boundary_stress = '0.1 0.0 0 0 0 0'
-    boundary = '10'
-  [../]
-
-  [./stress_dispy_right]
-    type = StressBC
-    variable = disp_y
-    component = 1
-    boundary_stress = '0.1 0.0 0 0 0 0'
-    boundary = '10'
-  [../]
-
-  [./stress_dispz_right]
-    type = StressBC
-    variable = disp_z
-    component = 2
-    boundary_stress = '0.1 0.0 0 0 0 0'
+    boundary_stress = '-1.0 0.0 0 0 0 0'
     boundary = '10'
   [../]
 
 
  [./Periodic]
     #FE section
-
     [./FE_disp_x_pbc]
       variable = disp_x
       primary = '2'
@@ -432,19 +547,19 @@
       variable = disp_x
       primary = '6'
       secondary = '7'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./Sub_disp_y_pbc]
       variable = disp_y
       primary = '6'
       secondary = '7'
-      translation = '0 40 0'
+      translation = '0 -40 0'
     [../]
     [./Sub_disp_z_pbc]
       variable = disp_z
       primary = '6'
       secondary = '7'
-      translation = '0 40 0'
+      translation = '0 -40 0'
    [../]
 
     #Vacuum section
@@ -456,8 +571,6 @@
     [../]
  [../]
 []
-
-
 
 [Postprocessors]
    [./Fbulk]
@@ -522,8 +635,9 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.6
-    optimal_iterations = 6
+    dt = 0.1
+    #iteration_window = 3
+    optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
     cutback_factor =  0.8
@@ -532,7 +646,8 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.6
+  dtmax = 0.1
+  num_steps = 1
 []
 
 [Outputs]
@@ -540,14 +655,13 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_p1PTOridge_test_const_eigen1
+    file_base = out_aPTOridge_test_const_stress1
     elemental_as_nodal = true
     interval = 1
   [../]
   [./outCSV]
     type = CSV
-    file_base = out_p1PTOridge_test_const_eigen1
-    elemental_as_nodal = true
+    file_base = out_aPTOridge_test_const_stress1
     interval = 1
   [../]
 []
