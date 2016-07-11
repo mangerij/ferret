@@ -72,7 +72,7 @@ Real
 KarmanenkoDriver::computeQpOffDiagJacobian(unsigned int jvar)
 {
     if( jvar == _potential_int_var )
-      return  _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (- _C1 * _grad_phi[_j][_qp](2) + _C2 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) - _C3 * _grad_phi[_j][_qp](2) * _temperature[_qp] + _C4 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;;
+      return  _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (- _C1 * _grad_phi[_j][_qp](2) + _C2 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) - _C3 * _grad_phi[_j][_qp](2) * _temperature[_qp] + _C4 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
     else if( jvar == _potential_ext_var)
       return  0.0;
     else
