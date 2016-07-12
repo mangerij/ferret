@@ -16,28 +16,20 @@ RankFourTensor
 computeProduct(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl)
 {
   RankFourTensor result;
-// Moose::out << "\n Performing C_ijmn Q_mnkl contraction on all the quadrature points?";
+  //Moose::out << "\n Performing C_ijmn Q_mnkl contraction on all the quadrature points?";
   for(unsigned int i = 0; i < LIBMESH_DIM; ++i)
     for(unsigned int j = 0; j < LIBMESH_DIM; ++j)
       for(unsigned int k = 0; k < LIBMESH_DIM; ++k)
         for(unsigned int l = 0; l < LIBMESH_DIM; ++l)
         {
+          result(i,j,k,l) = 0.0;
           for(unsigned int m = 0; m < LIBMESH_DIM; ++m)
             for(unsigned int n = 0; n < LIBMESH_DIM; ++n)
             {
-              if( n != m)
-              {
-                //Moose::out << "\n Q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = " << Qmnkl(i,j,k,l) << ";";
-                //sum += 0.5 * Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
-                result(i,j,k,l) += 0.5 * Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
-                //Moose::out << "\n q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = " << result(i,j,k,l) << ";";
-              }
-              else
-              {
                 //sum += Cijkl(i, j, m, n) * Qmnkl(m, n, k, l);
                 result(i,j,k,l) += Cijkl(i,j,m,n) * Qmnkl(m,n,k,l);
-              }
             }
+            //Moose::out << "\n q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = "; std::cout << result(i,j,k,l);
         }
   return result;
   //Moose::out << "\n Complete.";

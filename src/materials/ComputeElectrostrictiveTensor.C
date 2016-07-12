@@ -32,7 +32,6 @@ ComputeElectrostrictiveTensor::ComputeElectrostrictiveTensor(const InputParamete
   _Cijkl.rotate(R);
   //contractions using namespace
   _qijkl = ElectrostrictiveTensorTools::computeProduct(_Cijkl, _Qmnkl);
-  _QQijkl = ElectrostrictiveTensorTools::computeProduct(_qijkl, _Qmnkl); //contract again
 }
 
 void
@@ -40,5 +39,4 @@ ComputeElectrostrictiveTensor::computeQpElectrostrictiveTensor()
 {
   //Assign an electrostrictive tensor at a given quad point -- in principle we DON'T want this?
   _electrostrictive_tensor[_qp] = _qijkl;
-  _electrostrictive_tensorQ[_qp] = _QQijkl;
 }
