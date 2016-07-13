@@ -42,9 +42,11 @@ BandGapAuxZnOwRot::computeValue()
 
 {
   RotationTensor R(_Euler_angles);
-    return _E0 + (1/(1-_Rb))*((_db+_du*_Rb)*(R(0,0)*_strain[_qp](0,0)*R(0,0)+R(0,1)*_strain[_qp](1,0)*R(0,0)+R(0,2)*_strain[_qp](2,0)*R(0,0)+
-    R(0,0)*_strain[_qp](0,1)*R(1,0)+R(0,1)*_strain[_qp](1,1)*R(1,0)+R(0,2)*_strain[_qp](2,1)*R(1,0)+
-    R(0,0)*_strain[_qp](0,2)*R(2,0)+R(0,1)*_strain[_qp](1,2)*R(2,0)+R(0,2)*_strain[_qp](2,2)*R(2,0))
+    return _E0 + (1/(1-_Rb))*((_db+_du*_Rb)*0.5*(((R(0,0)*_strain[_qp](0,0)*R(0,0)+R(0,1)*_strain[_qp](1,0)*R(0,0)+R(0,2)*_strain[_qp](2,0)*R(0,0)+
+    R(0,0)*_strain[_qp](0,2)*R(2,0)+R(0,1)*_strain[_qp](1,2)*R(2,0)+R(0,2)*_strain[_qp](2,2)*R(2,0)))+
+    R(1,0)*_strain[_qp](0,0)*R(0,1)+R(1,1)*_strain[_qp](1,0)*R(0,1)+R(1,2)*_strain[_qp](2,0)*R(0,1)+
+    R(1,0)*_strain[_qp](0,1)*R(1,1)+R(1,1)*_strain[_qp](1,1)*R(1,1)+R(1,2)*_strain[_qp](2,1)*R(1,1)+
+    R(1,0)*_strain[_qp](0,2)*R(2,1)+R(1,1)*_strain[_qp](1,2)*R(2,1)+R(1,2)*_strain[_qp](2,2)*R(2,1))
     +(_du+_nu*_db)*(R(2,0)*_strain[_qp](0,0)*R(0,2)+R(2,1)*_strain[_qp](1,0)*R(0,2)+R(2,2)*_strain[_qp](2,0)*R(0,2)+
     R(2,0)*_strain[_qp](0,1)*R(1,2)+R(2,1)*_strain[_qp](1,1)*R(1,2)+R(2,2)*_strain[_qp](2,1)*R(1,2)+
     R(2,0)*_strain[_qp](0,2)*R(2,2)+R(2,1)*_strain[_qp](1,2)*R(2,2)+R(2,2)*_strain[_qp](2,2)*R(2,2)));

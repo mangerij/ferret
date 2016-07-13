@@ -31,7 +31,7 @@ Real
 BandGapAuxZnO::computeValue()
 
 {
-    return _E0 + (1/(1-_Rb))*((_db+_du*_Rb)*_strain[_qp](0,0)+(_du+_nu*_db)*_strain[_qp](2,2));
+    return _E0 + (1/(1-_Rb))*((_db+_du*_Rb)*0.5*(_strain[_qp](1,1)+_strain[_qp](0,0))+(_du+_nu*_db)*_strain[_qp](2,2));
 }
 
 
