@@ -333,7 +333,7 @@
   #dt = 0.5
   dtmin = 1e-13
   dtmax = 0.1
-  num_steps = 50
+  num_steps = 20
 []
 
 [Outputs]
