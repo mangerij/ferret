@@ -12,10 +12,10 @@
   alpha112 = 0.61
   alpha123 = -3.67
   G110 = 0.173
-  G11/G110 = 2.0
+  G11/G110 = 0.6
   G12/G110 = 0
-  G44/G110 = 1.0
-  G44P/G110 = 1.0
+  G44/G110 = 0.3
+  G44P/G110 = 0.3
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -24,7 +24,7 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
-  prefactor = 0.01 #negative = tension, positive = compression
+ # prefactor = 0.01 #negative = tension, positive = compression
 []
 
 
@@ -249,13 +249,6 @@
 []
 
 [Materials]
-  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
-   type = ComputeEigenstrain
-   block = '1'
-  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-   eigen_base = '1 0 0 0 1 0 0 0 0'
- [../]
-
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -445,11 +438,18 @@
   [../]
 
   [./bot_potential_int]
-    variable = disp_x
+    variable = potential_int
     type = DirichletBC
     value = 0
     boundary = '7'
   [../]
+
+#  [./bot_potential_int]
+#    variable = disp_x
+#    type = DirichletBC
+#    value = 0
+#    boundary = '1'
+#  [../]
 
   [./Periodic]
     [./TB_disp_x_pbc]
@@ -664,7 +664,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_20_10_10_c01_STO
+    file_base = outPTO_thinfilm_09_20_10_10_noEig_STO
     elemental_as_nodal = true
     interval = 1
   [../]

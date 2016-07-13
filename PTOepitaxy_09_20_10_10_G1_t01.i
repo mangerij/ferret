@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = embedded_single_sphere_18.e
+  file = exodus_thinfilm_test_09_20_10_10.e
 []
 
 [GlobalParams]
@@ -12,10 +12,10 @@
   alpha112 = 0.61
   alpha123 = -3.67
   G110 = 0.173
-  G11/G110 = 2.0
+  G11/G110 = 0.6
   G12/G110 = 0
-  G44/G110 = 1.0
-  G44P/G110 = 1.0
+  G44/G110 = 0.3
+  G44P/G110 = 0.3
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -24,6 +24,7 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
+  prefactor = -0.01 #negative = tension, positive = compression
 []
 
 
@@ -37,7 +38,6 @@
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
-      seed = 3
     [../]
   [../]
   [./polar_y]
@@ -48,7 +48,6 @@
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
-      seed = 3
     [../]
   [../]
   [./polar_z]
@@ -59,7 +58,6 @@
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
-      seed = 3
     [../]
   [../]
   [./potential_int]
@@ -70,23 +68,19 @@
       type = RandomIC
       min = -0.5e-5
       max = 0.5e-5
-      seed = 3
     [../]
   [../]
   [./disp_x]
     order = FIRST
     family = LAGRANGE
-    block = '1 2'
   [../]
   [./disp_y]
     order = FIRST
     family = LAGRANGE
-    block = '1 2'
   [../]
   [./disp_z]
     order = FIRST
     family = LAGRANGE
-    block = '1 2'
   [../]
 []
 
@@ -152,29 +146,10 @@
     family = MONOMIAL
     #initial_from_file_var = strain_yz
   [../]
-
-  [./chern]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./chernMag]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
 []
 
 
 [AuxKernels]
-  [./cherndens]
-    type = ChernSimonsDensity
-    variable = chern
-  [../]
-  [./cherndensMag]
-    type = ChernSimonsDensityMag
-    block = '1'
-    variable = chernMag
-  [../]
-
   [./matl_e11]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
@@ -274,6 +249,14 @@
 []
 
 [Materials]
+  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+   type = ComputeEigenstrain
+   block = '1'
+  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+   eigen_base = '1 0 0 0 1 0 0 0 0'
+ [../]
+
+
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
@@ -442,54 +425,164 @@
 
 
 [BCs]
-
-[./potential_int_1]
-  type = DirichletBC
-  variable = potential_int
-  boundary = '1'
-  value = -0.00001
-[../]
-
-[./potential_int_2]
-  type = DirichletBC
-  variable = potential_int
-  boundary = '2'
-  value = -0.00001
-[../]
-
-  [./disp_x]
-    type = DirichletBC
+  [./bot_disp_x]
     variable = disp_x
-    boundary = '1 2 3 4 5 6'
-    value = 0
-  [../]
-  [./disp_y]
     type = DirichletBC
+    value = 0
+    boundary = '7'
+  [../]
+  [./bot_disp_y]
     variable = disp_y
-    boundary = '1 2 3 4 5 6'
-    value = 0
-  [../]
-  [./disp_z]
     type = DirichletBC
-    variable = disp_z
-    boundary = '1 2 3 4 5 6'
     value = 0
+    boundary = '7'
+  [../]
+  [./bot_disp_z]
+    variable = disp_z
+    type = DirichletBC
+    value = 0
+    boundary = '7'
+  [../]
+
+  [./bot_potential_int]
+    variable = disp_x
+    type = DirichletBC
+    value = 0
+    boundary = '7'
+  [../]
+
+  [./Periodic]
+    [./TB_disp_x_pbc]
+      variable = disp_x
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+    [./TB_disp_y_pbc]
+      variable = disp_y
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+    [./TB_disp_z_pbc]
+      variable = disp_z
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+
+    [./TB_polar_x_pbc]
+      variable = polar_x
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+    [./TB_polar_y_pbc]
+      variable = polar_y
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+    [./TB_polar_z_pbc]
+      variable = polar_z
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+    [./TB_potential_int_pbc]
+      variable = potential_int
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+  #
+    [./TBsub_disp_x_pbc]
+      variable = disp_x
+      primary = '8'
+      secondary = '10'
+      translation = '0 20 0'
+    [../]
+    [./TBsub_disp_y_pbc]
+      variable = disp_y
+      primary = '8'
+      secondary = '10'
+      translation = '0 20 0'
+    [../]
+    [./TBsub_disp_z_pbc]
+      variable = disp_z
+      primary = '8'
+      secondary = '10'
+      translation = '0 20 0'
+    [../]
+
+    [./RL_disp_x_pbc]
+      variable = disp_x
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_disp_y_pbc]
+      variable = disp_y
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_disp_z_pbc]
+      variable = disp_z
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+
+    [./RL_polar_x_pbc]
+      variable = polar_x
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_polar_y_pbc]
+      variable = polar_y
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_polar_z_pbc]
+      variable = polar_z
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_potential_int_pbc]
+      variable = potential_int
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+
+    [./RLsub_disp_x_pbc]
+      variable = disp_x
+      primary = '9'
+      secondary = '11'
+      translation = '20 0 0'
+    [../]
+    [./RLsub_disp_y_pbc]
+      variable = disp_y
+      primary = '9'
+      secondary = '11'
+      translation = '20 0 0'
+    [../]
+    [./RLsub_disp_z_pbc]
+      variable = disp_z
+      primary = '9'
+      secondary = '11'
+      translation = '20 0 0'
+    [../]
   [../]
 []
 
 
 
 [Postprocessors]
-   [./avgChern]
-     block = '1'
-     type = ElementAverageValue
-    variable = chern
-   [../]
-   [./avgchernMag]
-     block = '1'
-     type = ElementAverageValue
-    variable = chernMag
-   [../]
    [./Fbulk]
       type = BulkEnergy
       block = '1'
@@ -552,7 +645,7 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.7
+    dt = 0.8
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
@@ -561,8 +654,9 @@
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.7
+  dtmax = 0.8
 []
 
 [Outputs]
@@ -570,13 +664,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTOsphere_inSTO_ij3-g18
+    file_base = outPTO_thinfilm_09_20_10_10_t01_STO
     elemental_as_nodal = true
     interval = 1
-  [../]
-  [./outcsv]
-    type = CSV
-    file_base = out_PTOsphere_inSTO_ij3-g18
   [../]
 []
 
