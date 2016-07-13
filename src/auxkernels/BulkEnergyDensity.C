@@ -16,13 +16,13 @@ InputParameters validParams<BulkEnergyDensity>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredParam<Real>("alpha1"," "); //FIXME: Give me an explanation
-  params.addRequiredParam<Real>("alpha11"," ");
-  params.addRequiredParam<Real>("alpha12"," ");
-  params.addRequiredParam<Real>("alpha111"," ");
-  params.addRequiredParam<Real>("alpha112"," ");
-  params.addRequiredParam<Real>("alpha123"," ");
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addRequiredParam<Real>("alpha1", "alpha1 coefficient of the Landau expansion");
+  params.addRequiredParam<Real>("alpha11", "alpha11 coefficient of the Landau expansion");
+  params.addRequiredParam<Real>("alpha12", "alpha12 coefficient of the Landau expansion");
+  params.addRequiredParam<Real>("alpha111", "alpha111 coefficient of the Landau expansion");
+  params.addRequiredParam<Real>("alpha112", "alpha112 coefficient of the Landau expansion");
+  params.addRequiredParam<Real>("alpha123", "alpha123 coefficient of the Landau expansion");
+  params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
 
@@ -38,7 +38,8 @@ BulkEnergyDensity::BulkEnergyDensity(const InputParameters & parameters) :
   _alpha112(getParam<Real>("alpha112")),
   _alpha123(getParam<Real>("alpha123")),
   _len_scale(getParam<Real>("len_scale"))
-{}
+{
+}
 
 Real
 BulkEnergyDensity::computeValue()

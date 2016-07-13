@@ -49,7 +49,7 @@ StressBC::StressBC(const InputParameters & parameters) :
 Real
 StressBC::computeQpResidual()
 {
-  // If nothing was coupled this will be a no-op
+  /// If nothing was coupled this will be a no-op
   for(unsigned int i=0; i<_boundary_stress_vars.size(); i++)
     _boundary_stress(i, i) = _multiplier * (*_boundary_stress_vars[i])[_qp];
 

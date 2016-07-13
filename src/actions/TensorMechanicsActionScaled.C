@@ -42,7 +42,7 @@ TensorMechanicsActionScaled::act()
   std::string type("StressDivergenceTensorsScaled");
 
   std::vector<std::vector<AuxVariableName> > save_in;
-  //Prepare displacements and set value for dim
+  ///Prepare displacements and set value for dim
   keys.push_back("disp_x");
   vars.push_back(getParam<NonlinearVariableName>("disp_x"));
 
@@ -70,7 +70,7 @@ TensorMechanicsActionScaled::act()
   if (isParamValid("save_in_disp_z"))
     save_in[2] = getParam<std::vector<AuxVariableName> >("save_in_disp_z");
 
-  //Add in the temperature
+  ///Add in the temperature
   unsigned int num_coupled(dim);
   if (isParamValid("temp"))
   {

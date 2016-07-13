@@ -139,14 +139,14 @@ FerretApp::registerObjects(Factory & factory)
 #undef registerObject
 #define registerObject(name) factory.reg<name>(stringifyName(name))
 
-  //BoundaryConditions
+  ///BoundaryConditions
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
   registerBoundaryCondition(OpenCircuitBC);
   registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
 
-  //AuxKernels:
+  ///AuxKernels:
   registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
   registerAux(BulkEnergyDensity);
@@ -168,8 +168,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(WindingNumberDensity);
   registerAux(BandGapAuxZnOwRot);
 
-  //Kernels
-
+  ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
@@ -180,29 +179,29 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FluctuationKernel);
   registerKernel(KarmanenkoDriver);
 
-//  registerKernel(FerroelectricCouplingQ);
+  /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
 
-  //Postprocessors
+  ///Postprocessors
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(BulkEnergyCoupledT);
   registerPostprocessor(WallEnergy);
-  //registerPostprocessor(ChernSimonsNumber);
+  ///registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyFlow);
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(CoupledEnergy);
 
-  //Materials
-  //registerMaterial(LinearFerroelectricMaterial);
+  ///Materials
+  ///registerMaterial(LinearFerroelectricMaterial);
   registerMaterial(ComputeElectrostrictiveTensor);
 
-  //InitialConditions
+  ///InitialConditions
   registerInitialCondition(PerturbedIC);
   registerInitialCondition(SinIC);
   registerInitialCondition(FluctuationsIC);
@@ -220,7 +219,7 @@ FerretApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
 #define registerAction(tplt, action) action_factory.reg<tplt>(stringifyName(tplt), action)
 
   syntax.registerActionSyntax("TensorMechanicsActionScaled", "Kernels/TensorMechanicsScaled");
-  registerAction(TensorMechanicsActionScaled, "add_kernel"); //this is deprecated in our code
+  registerAction(TensorMechanicsActionScaled, "add_kernel"); ///this is deprecated in our code
 
 #undef registerAction
 #define registerAction(tplt, action) action_factory.regLegacy<tplt>(stringifyName(tplt), action)

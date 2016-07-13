@@ -1,5 +1,5 @@
 #include "ChernSimonsDensityMag.h"
-// implements a density of the Chern-Simons number
+/// implements a magnitude of the density of the Chern-Simons number
 template<>
 
 InputParameters validParams<ChernSimonsDensityMag>()

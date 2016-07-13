@@ -59,7 +59,7 @@ FerroelectricCouplingX::computeQpResidual()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 1, p) * _polar_y[_qp];
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 2, p) * _polar_z[_qp];
   Rp = std::pow(_len_scale, 2.0) * sum;
-  // Moose::out << "\n R ="; std::cout << Rp;
+  /// Moose::out << "\n R ="; std::cout << Rp;
   return Rp;
 }
 
@@ -67,7 +67,7 @@ FerroelectricCouplingX::computeQpResidual()
 Real
 FerroelectricCouplingX::computeQpJacobian()
 {
-  return 0.0; //dRdu_i = 0 for this term!
+  return 0.0; ///dRdu_i = 0 for this term!
 }
 
 Real
@@ -77,7 +77,7 @@ FerroelectricCouplingX::computeQpOffDiagJacobian(unsigned int jvar)
   Real sum1 = 0.0;
   Real sum2 = 0.0;
   RealVectorValue p(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-  // return = 0.0;
+  /// return = 0.0;
   if (jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)
   {
     if (jvar == _polar_x_var)

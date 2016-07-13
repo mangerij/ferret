@@ -25,18 +25,18 @@ ComputeElectrostrictiveTensor::ComputeElectrostrictiveTensor(const InputParamete
     _Cijkl(getParam<std::vector<Real> >("C_ijkl"), (RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
     _elasticity_tensor(getMaterialProperty<RankFourTensor>("elasticity_tensor"))
 {
-  // Define a rotation according to Euler angle parameters
+  /// Define a rotation according to Euler angle parameters
   RotationTensor R(_Euler_angles); // R type: RealTensorValue
-  // rotate electrostrictive tensor -- note that it needs to be collinear with the elasticity tensor _always_
+  /// rotate electrostrictive tensor -- note that it needs to be collinear with the elasticity tensor _always_
   _Qmnkl.rotate(R);
   _Cijkl.rotate(R);
-  //contractions using namespace
+  ///contractions using namespace
   _qijkl = ElectrostrictiveTensorTools::computeProduct(_Cijkl, _Qmnkl);
 }
 
 void
 ComputeElectrostrictiveTensor::computeQpElectrostrictiveTensor()
 {
-  //Assign an electrostrictive tensor at a given quad point -- in principle we DON'T want this?
+  ///Assign an electrostrictive tensor at a given quad point -- in principle we DON'T want this?
   _electrostrictive_tensor[_qp] = _qijkl;
 }

@@ -60,7 +60,7 @@ BulkEnergyDerivativeSixth::computeQpResidual()
   Rbulk += ((2.0 * _alpha1 * _polar_i[_qp] + 4.0 * _alpha11 * std::pow(_polar_i[_qp], 3.0) + 2.0 * _alpha12 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 2.0) + std::pow(_polar_k[_qp], 2.0)) +
 	  6.0 * _alpha111 * std::pow(_polar_i[_qp], 5.0) + 4.0 * _alpha112 * std::pow(_polar_i[_qp], 3.0) * (_polar_j[_qp] * _polar_j[_qp]+_polar_k[_qp] * _polar_k[_qp]) +
 	  2.0 * _alpha112 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 4.0) + std::pow(_polar_k[_qp], 4.0)) + 2.0 * _alpha123 * _polar_i[_qp]*std::pow(_polar_j[_qp], 2.0) * std::pow(_polar_k[_qp], 2.0)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
-  //  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
+  ///  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
   return Rbulk;
 }
 

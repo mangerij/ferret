@@ -1,5 +1,5 @@
 #include "CurlP.h"
-// implements the curl of P auxkernel
+/// implements the curl of P auxkernel
 template<>
 
 InputParameters validParams<CurlP>()

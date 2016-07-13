@@ -1,7 +1,7 @@
 /**
  * @file   ElasticEnergy.C
- * @author J. Manger <mangerij@anl.gov>
- *
+ * @author J. Mangeri <mangerij@anl.gov>
+ * @modified A. Jookisaari <andrea.jokisaari@northwestern.edu>
  */
 
 #include "ElasticEnergy.h"

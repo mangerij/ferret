@@ -15,7 +15,6 @@ InputParameters validParams<Electrostatics>()
   return params;
 }
 
-//Constructor
 Electrostatics::Electrostatics(const InputParameters & parameters)
   :Kernel(parameters),
    _permittivity(getParam<Real>("permittivity")),
@@ -28,7 +27,7 @@ Electrostatics::computeQpResidual()
 {
   Real Relec = 0.0;
   Relec += _permittivity * _grad_u[_qp] * _grad_test[_i][_qp] * _len_scale;
-  //  Moose::out << "\n R_elec-"; std::cout << " = " << Relec;
+  ///  Moose::out << "\n R_elec-"; std::cout << " = " << Relec;
   return Relec;
 }
 

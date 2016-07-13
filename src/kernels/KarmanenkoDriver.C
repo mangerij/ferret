@@ -57,7 +57,7 @@ KarmanenkoDriver::KarmanenkoDriver(const InputParameters & parameters)
 Real
 KarmanenkoDriver::computeQpResidual()
 
-///0.000116379 Ez + 0.00117004 Ez^2 - 3.27924*10^-6 Ez T + 4.68114*10^-6 Ez^2 T
+////0.000116379 Ez + 0.00117004 Ez^2 - 3.27924*10^-6 Ez T + 4.68114*10^-6 Ez^2 T
 {
   return _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (- _C1 * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) - _C3 * _potential_int_grad[_qp](2) * _temperature[_qp] + _C4 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
 }

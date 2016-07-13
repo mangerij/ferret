@@ -49,6 +49,6 @@ TotalEnergy::execute(){
 Real
 TotalEnergy::getValue()
 {
-  //  return _bulk_energy + _wall_energy + _electrostatic_energy;
+  ///  return _bulk_energy + _wall_energy + _electrostatic_energy;
   return _bulk_energy + _wall_energy + _bulk_energy_fourth + _electrostatic_energy + _elastic_energy + _coupled_energy;
 }

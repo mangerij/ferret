@@ -21,9 +21,6 @@ InputParameters validParams<PolarElectricPStrong>()
   return params;
 }
 
-
-
-//Constructor
 PolarElectricPStrong::PolarElectricPStrong(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
@@ -42,7 +39,7 @@ PolarElectricPStrong::computeQpResidual()
 
     RpolarP += (_potential_int_grad[_qp](_component) + _potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
 
-    //  Moose::out << "\n R_polarP-"; std::cout << _component << " = " << RpolarP;
+    ///  Moose::out << "\n R_polarP-"; std::cout << _component << " = " << RpolarP;
 
     return RpolarP;
 }

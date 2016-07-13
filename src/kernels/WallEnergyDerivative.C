@@ -23,7 +23,7 @@ InputParameters validParams<WallEnergyDerivative>()
   params.addRequiredParam<Real>("G12/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44P/G110", "Domain wall coefficient ratio");
-  //params.set<bool>("use_displaced_mesh") = false;
+  ///params.set<bool>("use_displaced_mesh") = false;
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
@@ -47,7 +47,7 @@ WallEnergyDerivative::WallEnergyDerivative(const InputParameters & parameters)
   _G44P(getParam<Real>("G44P/G110") * _G110),
   _len_scale(getParam<Real>("len_scale"))
 {
-  //only for debug purpose
+  ///only for debug purpose
   std::cout<<"_G110 = "<<_G110<<"\n";
   std::cout<<"_G11 ="<<_G11<<"\n";
   std::cout<<"_G12 = "<<_G12<<"\n";
@@ -64,7 +64,7 @@ WallEnergyDerivative::computeQpResidual()
     _G12 * (_polar_j_grad[_qp](_jj) + _polar_k_grad[_qp](_kk)) * _grad_test[_i][_qp](_ii) +
     _G44 * (_polar_i_grad[_qp](_jj) + _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44 * (_polar_i_grad[_qp](_kk)+_polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk) +
 	   _G44P * (_polar_i_grad[_qp](_jj) - _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44P * (_polar_i_grad[_qp](_kk) - _polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk)) * _len_scale;
-  //  Moose::out << "\n R_wall-"; std::cout << _component << " = " << Rwall;
+  ///  Moose::out << "\n R_wall-"; std::cout << _component << " = " << Rwall;
   return Rwall;
 }
 

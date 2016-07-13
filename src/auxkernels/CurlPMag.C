@@ -1,5 +1,5 @@
 #include "CurlPMag.h"
-// implements a magnitude of the curl auxkernel
+/// implements a magnitude of the curl auxkernel
 template<>
 
 InputParameters validParams<CurlPMag>()

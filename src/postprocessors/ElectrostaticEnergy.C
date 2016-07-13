@@ -13,7 +13,6 @@
 template<>
 InputParameters validParams<ElectrostaticEnergy>()
 {
-  //TODO: inherit from an appropriate postprocessor
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

@@ -14,7 +14,7 @@ FerretBase::FerretBase(InputParameters parameters):
   _debug_vec(parameters.get<std::vector<std::string> >("Debug")),
   _class(parameters.get<std::string>("class"))
 {
-  // std::copy(_debug_vec.begin(),_debug_vec.end(),std::insert_iterator<std::set<std::string> >(_debug_set,_debug_set.begin()));
+  /// std::copy(_debug_vec.begin(),_debug_vec.end(),std::insert_iterator<std::set<std::string> >(_debug_set,_debug_set.begin()));
   for (unsigned int i = 0; i < _debug_vec.size(); ++i) {
     _debug_set.insert(_debug_vec[i]);
   }

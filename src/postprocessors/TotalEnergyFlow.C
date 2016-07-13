@@ -1,6 +1,6 @@
 /**
  * @file   TotalEnergy.C
- * @author S. Gu <sgu@anl.gov>
+ * @author J. Mangeri <john.mangeri@uconn.edu>
  * @date   Thu Aug 15 15:54:15 2013
  *
  * @brief
@@ -45,6 +45,6 @@ TotalEnergyFlow::execute(){
 Real
 TotalEnergyFlow::getValue()
 {
-  //  return _bulk_energy + _wall_energy + _electrostatic_energy;
+  ///  return _bulk_energy + _wall_energy + _electrostatic_energy;
   return _Fbulk + _Fwall + _Felec + _Fcoupled;
 }

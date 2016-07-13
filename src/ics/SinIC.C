@@ -43,8 +43,8 @@ SinIC::SinIC(const InputParameters & parameters) :
 
 Real
 SinIC::value(const Point & p)
+
 {
   Real rv=_vertical_shift+_amplitude*sin((2*pi)/_wave_length_x*p(0)+_phrase_x)*sin((2*pi)/_wave_length_y*p(1)+_phrase_y)*sin((2*pi)/_wave_length_z*p(2)+_phrase_z);
   return rv;
-  //return;
 }
