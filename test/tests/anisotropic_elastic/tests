@@ -14,10 +14,10 @@
     #abs_zero = 1e-5
   [../]
 
-  [./coreshell_and_gap_test]
-    type = 'Exodiff'
-    input = 'vary_hydroP_ZnO_iso.i'
-    exodiff = 'out_ZnZnO_xstl000_core_iso_shell_PJFNK.e'
-    custom_cmp = sphere.exodiff
-  [../]
+ # [./coreshell_and_gap_test]
+ #   type = 'Exodiff'
+ #   input = 'vary_hydroP_ZnO_iso.i'
+ #   exodiff = 'out_ZnZnO_xstl000_core_iso_shell_PJFNK.e'
+ #   custom_cmp = sphere.exodiff
+ # [../]
 []
