@@ -2,7 +2,6 @@
 #define BANDGAPAUXZNO_H
 
 #include "AuxKernel.h"
-#include "TensorMechanicsMaterial.h" //may not need this
 #include "RankTwoTensor.h"
 
 

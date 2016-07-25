@@ -3,7 +3,6 @@
 
 #include "AuxKernel.h"
 #include "Material.h"
-#include "TensorMechanicsMaterial.h" //may not need this
 #include "RankTwoTensor.h"
 
 //Forward declarations

@@ -1,5 +1,4 @@
 #include "BandGapAuxZnOwRot.h"
-#include "TensorMechanicsMaterial.h"
 #include "RotationTensor.h"
 #include "Material.h"
 #include "RankTwoTensor.h"

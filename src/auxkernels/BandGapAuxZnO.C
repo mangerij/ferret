@@ -1,5 +1,4 @@
 #include "BandGapAuxZnO.h"
-#include "TensorMechanicsMaterial.h"
 
 template<>
 
