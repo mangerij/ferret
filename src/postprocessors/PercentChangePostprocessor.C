@@ -29,9 +29,6 @@ PercentChangePostprocessor::PercentChangePostprocessor(const InputParameters & p
 {
 }
 
-PercentChangePostprocessor::~PercentChangePostprocessor(){
-}
-
 void
 PercentChangePostprocessor::initialize(){
 }
