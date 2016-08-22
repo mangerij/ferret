@@ -29,16 +29,12 @@ PercentChangePostprocessor::PercentChangePostprocessor(const InputParameters & p
 {
 }
 
-
-
 void
-PercentChangePostprocessor::initialize()
-{
+PercentChangePostprocessor::initialize(){
 }
 
 void
-PercentChangePostprocessor::execute()
-{
+PercentChangePostprocessor::execute(){
 }
 
 Real
@@ -46,3 +42,4 @@ PercentChangePostprocessor::getValue()
 {
   return fabs( ( fabs(_postprocessor)- fabs(_postprocessor_old) )*pow(fabs(_postprocessor),-1));
 }
+
