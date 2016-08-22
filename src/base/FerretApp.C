@@ -64,6 +64,7 @@
 #include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 #include "KarmanenkoDriver.h"
+#include "ConstantLatticeMismatch.h"
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
@@ -73,6 +74,7 @@
 #include "WallEnergy.h"
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
+#include "TotalEnergyFlowNoElast.h"
 #include "BulkEnergy.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
@@ -178,6 +180,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FerroelectricCouplingP);
   registerKernel(FluctuationKernel);
   registerKernel(KarmanenkoDriver);
+  registerKernel(ConstantLatticeMismatch);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
@@ -194,6 +197,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyFlow);
+  registerPostprocessor(TotalEnergyFlowNoElast);
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(CoupledEnergy);
 

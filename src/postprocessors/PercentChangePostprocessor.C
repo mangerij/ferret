@@ -29,15 +29,16 @@ PercentChangePostprocessor::PercentChangePostprocessor(const InputParameters & p
 {
 }
 
-PercentChangePostprocessor::~PercentChangePostprocessor(){
+
+
+void
+PercentChangePostprocessor::initialize()
+{
 }
 
 void
-PercentChangePostprocessor::initialize(){
-}
-
-void
-PercentChangePostprocessor::execute(){
+PercentChangePostprocessor::execute()
+{
 }
 
 Real
