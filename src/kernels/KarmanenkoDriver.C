@@ -11,8 +11,9 @@
  * quasi-static hysteresis loop. The only difficulty will pinning down how noise 
  * introduced is related to this kernel.
  *
- * Currently the kernel is setup for just a field along z and using the approximation of 
- * Gu et al Appl. Phys. Lett. 102, 112901, (2013).
+ * Currently the kernel is setup for just a field along z from a Mathematica fit.  
+ * See Gu et al Appl. Phys. Lett. 102, 112901, (2013) for details.
+ * In theory, we should use the approach in Phys. Rev. B. 84, 024102 (2011)
 */
 
 #include "KarmanenkoDriver.h"

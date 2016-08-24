@@ -14,6 +14,7 @@
 #include "TensorMechanicsActionScaled.h"
 
 //AuxKernels
+#include "MieField.h"
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
@@ -169,6 +170,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(SurfaceChargeAux);
   registerAux(WindingNumberDensity);
   registerAux(BandGapAuxZnOwRot);
+  registerAux(MieField);
+
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);

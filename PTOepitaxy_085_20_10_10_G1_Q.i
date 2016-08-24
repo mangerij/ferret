@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_thinfilm_test_09_40_10_10.e
+  file = exodus_thinfilm_test_085_20_10_10.e
 []
 
 [GlobalParams]
@@ -12,10 +12,10 @@
   alpha112 = 0.61
   alpha123 = -3.67
   G110 = 0.173
-  G11/G110 = 2.0
+  G11/G110 = 0.6
   G12/G110 = 0
-  G44/G110 = 1.0
-  G44P/G110 = 1.0
+  G44/G110 = 0.3
+  G44P/G110 = 0.3
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -100,85 +100,43 @@
   [./Qxx]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
   [./Qxy]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
   [./Qxz]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
+  [../]
+  [./Qxy]
+    order = FIRST
+    family = LAGRANGE
   [../]
   [./Qyx]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
   [./Qyy]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
   [./Qyz]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
   [./Qzx]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
   [./Qzy]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
   [./Qzz]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
-
 []
 
 
@@ -393,15 +351,19 @@
 
 
 [Kernels]
-  #------------------------#
-  #-----Elastic problem----#
-  #------------------------#
+  #-------------------------#
+  #-----Elastic problem-----#
+  #-------------------------#
 
   #Stress-divergence
   [./TensorMechanics]
   #This is an action block
   [../]
-  #Thin film subproblem
+   
+  #------------------------#
+  #--Thin film subproblem--#
+  #------------------------#
+
   [./qxx]
     type = ConstantLatticeMismatch
     variable = Qxx
@@ -420,6 +382,7 @@
     component = 0
     deriv_component = 2
   [../]
+
   [./qyx]
     type = ConstantLatticeMismatch
     variable = Qyx
@@ -438,6 +401,7 @@
     component = 1
     deriv_component = 2
   [../]
+
   [./qzx]
     type = ConstantLatticeMismatch
     variable = Qzx
@@ -581,51 +545,38 @@
     time_scale = 1.0
   [../]
 
-  [./Qxx_time]
-    type = TimeDerivativeScaled
-    variable = Qxx
-    time_scale = 1.0
-  [../]
-  [./Qxy_time]
-    type = TimeDerivativeScaled
-    variable = Qxy
-    time_scale = 1.0
-  [../]
-  [./Qxz_time]
-    type = TimeDerivativeScaled
-    variable = Qxz
-    time_scale = 1.0
-  [../]
-  [./Qyx_time]
-    type = TimeDerivativeScaled
-    variable = Qyx
-    time_scale = 1.0
-  [../]
-  [./Qyy_time]
-    type = TimeDerivativeScaled
-    variable = Qyy
-    time_scale = 1.0
-  [../]
-  [./Qyz_time]
-    type = TimeDerivativeScaled
-    variable = Qyz
-    time_scale = 1.0
-  [../]
-  [./Qzx_time]
-    type = TimeDerivativeScaled
-    variable = Qzx
-    time_scale = 1.0
-  [../]
-  [./Qzy_time]
-    type = TimeDerivativeScaled
-    variable = Qzy
-    time_scale = 1.0
-  [../]
-  [./Qzz_time]
-    type = TimeDerivativeScaled
-    variable = Qzz
-    time_scale = 1.0
-  [../]
+#  [./Qxx_time]
+#    type = TimeDerivativeScaled
+#    variable = Qxx
+#    time_scale = 1.0
+#  [../]
+#  [./Qxy_time]
+#    type = TimeDerivativeScaled
+#    variable = Qxy
+#    time_scale = 1.0
+#  [../]
+#  [./Qxz_time]
+#    type = TimeDerivativeScaled
+#    variable = Qxz
+#    time_scale = 1.0
+#  [../]
+#
+#  [./Qyy_time]
+#    type = TimeDerivativeScaled
+#    variable = Qyy
+#    time_scale = 1.0
+#  [../]
+#  [./Qyz_time]
+#    type = TimeDerivativeScaled
+#    variable = Qyz
+#    time_scale = 1.0
+#  [../]
+#
+#  [./Qzz_time]
+#    type = TimeDerivativeScaled
+#    variable = Qzz
+#    time_scale = 1.0
+#  [../]
 
 []
 
@@ -675,184 +626,194 @@
   [../]
 
   [./Periodic]
+#----TB thinfilm PBC for subproblem
     [./TB_Q_x_x_pbc]
       variable = Qxx
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_Q_x_y_pbc]
       variable = Qxy
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_Q_x_z_pbc]
       variable = Qxz
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
+
     [./TB_Q_y_x_pbc]
       variable = Qyx
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_Q_y_y_pbc]
       variable = Qyy
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_Q_y_z_pbc]
       variable = Qyz
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
+
     [./TB_Q_z_x_pbc]
       variable = Qzx
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_Q_z_y_pbc]
       variable = Qzy
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_Q_z_z_pbc]
       variable = Qzz
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
 
     [./TB_polar_x_pbc]
       variable = polar_x
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = '3'
       secondary = '5'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
-  #
+
+#----TB substrate PBC for subproblem
+
     [./TBsub_Q_x_x_pbc]
       variable = Qxx
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_Q_x_y_pbc]
       variable = Qxy
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_Q_x_z_pbc]
       variable = Qxz
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
+
     [./TBsub_Q_y_x_pbc]
       variable = Qyx
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_Q_y_y_pbc]
       variable = Qyy
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_Q_y_z_pbc]
       variable = Qyz
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
+
     [./TBsub_Q_z_x_pbc]
       variable = Qzx
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_Q_z_y_pbc]
       variable = Qzy
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
     [./TBsub_Q_z_z_pbc]
       variable = Qzz
       primary = '8'
       secondary = '10'
-      translation = '0 40 0'
+      translation = '0 20 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_potential_int_pbc]
       variable = potential_int
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
+
+#----RL thinfilm PBC for subproblem
 
     [./RL_Q_x_x_pbc]
       variable = Qxx
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_Q_x_y_pbc]
       variable = Qxy
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RL_Q_x_z_pbc]
       variable = Qxz
       primary = '4'
       secondary = '6'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
+
     [./RL_Q_y_x_pbc]
       variable = Qyx
       primary = '4'
@@ -871,6 +832,7 @@
       secondary = '6'
       translation = '40 0 0'
     [../]
+
     [./RL_Q_z_x_pbc]
       variable = Qzx
       primary = '4'
@@ -890,59 +852,63 @@
       translation = '40 0 0'
     [../]
 
+#----RL substrate PBC for subproblem
+
     [./RLsub_Q_x_x_pbc]
       variable = Qxx
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_Q_x_y_pbc]
       variable = Qxy
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_Q_x_z_pbc]
       variable = Qxz
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
+
     [./RLsub_Q_y_x_pbc]
       variable = Qyx
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_Q_y_y_pbc]
       variable = Qyy
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_Q_y_z_pbc]
       variable = Qyz
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
+
     [./RLsub_Q_z_x_pbc]
       variable = Qzx
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_Q_z_y_pbc]
       variable = Qzy
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
     [./RLsub_Q_z_z_pbc]
       variable = Qzz
       primary = '9'
       secondary = '11'
-      translation = '40 0 0'
+      translation = '20 0 0'
     [../]
   [../]
 []
@@ -1011,7 +977,8 @@
    #TO DEBUG: Not the zero pivot shift
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type '
-    petsc_options_value = '    121                1e-6      1e-8    bjacobi '
+    petsc_options_value = '    121                1e-6      1e-8     bjacobi '
+
   [../]
 []
 
@@ -1019,19 +986,18 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.3
+    dt = 0.5
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
     cutback_factor =  0.8
 [../]
-  #TO DEBUG: Not the NEWTON or PJFNK
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.3
+  dtmax = 0.5
 []
 
 [Outputs]
@@ -1039,7 +1005,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_40_10_10_c01_Q
+    file_base = outPTO_thinfilm_085_20_10_10_c01_Q
     elemental_as_nodal = true
     interval = 1
   [../]

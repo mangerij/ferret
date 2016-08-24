@@ -54,17 +54,17 @@ ConstantLatticeMismatch::computeQpResidual()
   if (_component == 0)
     {
       RealVectorValue Qx(_Qxx[_qp], _Qxy[_qp], _Qxz[_qp]);
-      return Qx(_deriv_component) - _disp_x_grad[_qp](_deriv_component);
+      return _test[_i][_qp] * ( Qx(_deriv_component) - _disp_x_grad[_qp](_deriv_component));
     }
   else if (_component == 1)
     {
       RealVectorValue Qy(_Qyx[_qp], _Qyy[_qp], _Qyz[_qp]);
-      return Qy(_deriv_component) - _disp_y_grad[_qp](_deriv_component);
+      return _test[_i][_qp] * ( Qy(_deriv_component) - _disp_y_grad[_qp](_deriv_component));
     }
   else if (_component == 2)
     {
       RealVectorValue Qz(_Qzx[_qp], _Qzy[_qp], _Qzz[_qp]);
-      return Qz(_deriv_component) - _disp_z_grad[_qp](_deriv_component);
+      return _test[_i][_qp] * (Qz(_deriv_component) - _disp_z_grad[_qp](_deriv_component));
     }
   else
     {
@@ -75,7 +75,22 @@ ConstantLatticeMismatch::computeQpResidual()
 Real
 ConstantLatticeMismatch::computeQpJacobian()
 {
-   return 0.0;
+  if (_component == 0)
+    {
+      return _test[_i][_qp] * _phi[_j][_qp];
+    }
+  else if (_component == 1)
+    {
+      return _test[_i][_qp] * _phi[_j][_qp];
+    }
+  else if (_component == 2)
+    {
+      return _test[_i][_qp] * _phi[_j][_qp];
+    }
+  else
+    {
+      return 0.0;
+    }
 }
 
 Real
@@ -83,7 +98,7 @@ ConstantLatticeMismatch::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
   {
-    return - _grad_phi[_j][_qp](_deriv_component);
+    return - _test[_i][_qp] * _grad_phi[_j][_qp](_deriv_component);
   }
   else
   {
