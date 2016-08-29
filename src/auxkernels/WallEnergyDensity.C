@@ -1,9 +1,9 @@
 /**
- * @file   BulkEnergyDensity.C
+ * @file   WallEnergyDensity.C
  * @author S. Gu <sgu@anl.gov>
- * @date   Thu Oct  3 13:26:45 2013
+ * @modified J. Mangeri <john.mangeri@uconn.edu>
  *
- * @brief calculate the bulk energy density:
+ * @brief calculate the gradient energy density:
  *
  *
  */

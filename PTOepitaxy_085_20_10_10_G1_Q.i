@@ -33,7 +33,7 @@
   Qzy = Qzy
   Qzz = Qzz
   displacements = 'disp_x disp_y disp_z'
-  prefactor = 0.01 #negative = tension, positive = compression
+  #prefactor = 0.01 #negative = tension, positive = compression
 []
 
 
@@ -304,12 +304,12 @@
 []
 
 [Materials]
-  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
-   type = ComputeEigenstrain
-   block = '1'
-  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-   eigen_base = '1 0 0 0 1 0 0 0 0'
- [../]
+ # [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+ #  type = ComputeEigenstrain
+ #  block = '1'
+ # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+ #  eigen_base = '1 0 0 0 1 0 0 0 0'
+ #[../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor

@@ -35,6 +35,7 @@
 #include "ChernSimonsDensityMag.h"
 #include "WindingNumberDensity.h"
 #include "BandGapAuxZnOwRot.h"
+#include "AngleAux.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -54,6 +55,7 @@
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
+#include "RotatedBulkEnergyDerivativeSixth.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
 #include "NoStdBulkEnergyDerivativeSixth.h"
 #include "TimeDerivativeScaled.h"
@@ -171,11 +173,13 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(WindingNumberDensity);
   registerAux(BandGapAuxZnOwRot);
   registerAux(MieField);
+  registerAux(AngleAux);
 
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
+  registerKernel(RotatedBulkEnergyDerivativeSixth);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(WallEnergyDerivative);
