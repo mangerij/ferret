@@ -48,14 +48,6 @@ RotatedBulkEnergyDerivativeSixth::RotatedBulkEnergyDerivativeSixth(const InputPa
    _alpha123(getParam<Real>("alpha123")),
    _len_scale(getParam<Real>("len_scale"))
 {
-  std::cout<<"Landau's single crystal bulk free energy coefficients:"<<_alpha1<<"\n";
-  std::cout<<"_alpha1 ="<<_alpha1<<"\n";
-  std::cout<<"_alpha11 ="<<_alpha11<<"\n";
-  std::cout<<"_alpha12 ="<<_alpha12<<"\n";
-  std::cout<<"_alpha111 ="<<_alpha111<<"\n";
-  std::cout<<"_alpha112 ="<<_alpha112<<"\n";
-  std::cout<<"_alpha123 ="<<_alpha123<<"\n";
-
 }
 
 Real
@@ -64,57 +56,140 @@ RotatedBulkEnergyDerivativeSixth::computeQpResidual()
   const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1) ? _polar_y: _polar_z;
   const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
   const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
-
-  RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
-  RotationTensor R(_Euler_angles);
-  RealVectorValue Rp = (R(0,0) * p(0) + R(0,1)* p(1) + R(0,2) * p(2), R(1,0) * p(0) + R(1,1)* p(1) + R(1,2) * p(2), R(2,0) * p(0) + R(2,1)* p(1) + R(2,2) * p(2)); 
-
-  /// Leave this for debug purposes.
-  Real Rbulk = 0.0;
-
-  Rbulk += ((2.0 * _alpha1 * Rp(0) + 4.0 * _alpha11 * std::pow(Rp(0), 3.0) + 2.0 * _alpha12 * Rp(0) * (std::pow(Rp(1), 2.0) + std::pow(Rp(3), 2.0)) +
+  if(_component == 0)
+    {
+      RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+      RotationTensor R(_Euler_angles);
+      RealVectorValue Rp = (R(0,0) * p(0) + R(1,0)* p(1) + R(2,0) * p(2), R(0,1) * p(0) + R(1,1)* p(1) + R(2,1) * p(2), R(0,2) * p(0) + R(1,2)* p(1) + R(2,2) * p(2));
+      Real Rbulk = 0.0;
+      Rbulk += ((2.0 * _alpha1 * Rp(0) + 4.0 * _alpha11 * std::pow(Rp(0), 3.0) + 2.0 * _alpha12 * Rp(0) * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) +
 	  6.0 * _alpha111 * std::pow(Rp(0), 5.0) + 4.0 * _alpha112 * std::pow(Rp(0), 3.0) * (Rp(1) * Rp(1) + Rp(2) * Rp(2)) +
 	  2.0 * _alpha112 * Rp(0) * (std::pow(Rp(1), 4.0) + std::pow(Rp(2), 4.0)) + 2.0 * _alpha123 * Rp(0) * std::pow(Rp(1), 2.0) * std::pow(Rp(2), 2.0)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
-  ///  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
-  return Rbulk;
+      ///  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
+      return Rbulk;
+    }
+  else if(_component == 1)
+    {// p(0) -> p(1), p(1) -> p(2), p(2) -> p(0)
+      RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+      RotationTensor R(_Euler_angles);
+      RealVectorValue Rp = (R(0,0) * p(1) + R(1,0)* p(2) + R(2,0) * p(0), R(0,1) * p(1) + R(1,1)* p(2) + R(2,1) * p(0), R(0,2) * p(1) + R(1,2)* p(2) + R(2,2) * p(0));
+      Real Rbulk = 0.0;
+      Rbulk += ((2.0 * _alpha1 * Rp(0) + 4.0 * _alpha11 * std::pow(Rp(0), 3.0) + 2.0 * _alpha12 * Rp(0) * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) +
+	  6.0 * _alpha111 * std::pow(Rp(0), 5.0) + 4.0 * _alpha112 * std::pow(Rp(0), 3.0) * (Rp(1) * Rp(1) + Rp(2) * Rp(2)) +
+	  2.0 * _alpha112 * Rp(0) * (std::pow(Rp(1), 4.0) + std::pow(Rp(2), 4.0)) + 2.0 * _alpha123 * Rp(0) * std::pow(Rp(1), 2.0) * std::pow(Rp(2), 2.0)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
+      ///  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
+      return Rbulk;
+    }
+  else
+    {// p(0) -> p(2), p(1) -> p(0), p(2) -> p(1)
+      RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+      RotationTensor R(_Euler_angles);
+      RealVectorValue Rp = (R(0,0) * p(2) + R(1,0)* p(0) + R(2,0) * p(1), R(0,1) * p(2) + R(1,1)* p(0) + R(2,1) * p(1), R(0,2) * p(2) + R(1,2)* p(0) + R(2,2) * p(1));
+      Real Rbulk = 0.0;
+      Rbulk += ((2.0 * _alpha1 * Rp(0) + 4.0 * _alpha11 * std::pow(Rp(0), 3.0) + 2.0 * _alpha12 * Rp(0) * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) +
+	  6.0 * _alpha111 * std::pow(Rp(0), 5.0) + 4.0 * _alpha112 * std::pow(Rp(0), 3.0) * (Rp(1) * Rp(1) + Rp(2) * Rp(2)) +
+	  2.0 * _alpha112 * Rp(0) * (std::pow(Rp(1), 4.0) + std::pow(Rp(2), 4.0)) + 2.0 * _alpha123 * Rp(0) * std::pow(Rp(1), 2.0) * std::pow(Rp(2), 2.0)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
+      ///  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
+      return Rbulk;
+    }
 }
 
 Real
 RotatedBulkEnergyDerivativeSixth::computeQpJacobian()
 {
-  const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1) ? _polar_y: _polar_z;
-  const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
-  const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
-
-  RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
-  RotationTensor R(_Euler_angles);
-  RealVectorValue Rp = (R(0,0) * p(0) + R(0,1)* p(1) + R(0,2) * p(2), R(1,0) * p(0) + R(1,1)* p(1) + R(1,2) * p(2), R(2,0) * p(0) + R(2,1)* p(1) + R(2,2) * p(2)); 
-
-  return (2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(Rp(0), 2) +
+  if(_component == 0)
+    {
+      const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1) ? _polar_y: _polar_z;
+      const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
+      const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
+      RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+      RotationTensor R(_Euler_angles);
+      RealVectorValue Rp = (R(0,0) * p(0) + R(1,0)* p(1) + R(2,0) * p(2), R(0,1) * p(0) + R(1,1)* p(1) + R(2,1) * p(2), R(0,2) * p(0) + R(1,2)* p(1) + R(2,2) * p(2));
+      Real Rbulk = 0.0;
+      return (2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(Rp(0), 2) +
 	  2.0 * _alpha12 * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) + 30.0 * _alpha111 * std::pow(Rp(0), 4.0) +
 	  12.0 * _alpha112 * std::pow(Rp(0), 2.0) * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) + 2.0 * _alpha112 * (std::pow(Rp(1), 4.0) + std::pow(Rp(2), 4.0)) +
 	  2.0 * _alpha123 * std::pow(Rp(1), 2.0) * std::pow(Rp(2), 2.0)
   ) * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+    }
+  else if(_component == 1)
+    {// p(0) -> p(1), p(1) -> p(2), p(2) -> p(0)
+      const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1) ? _polar_y: _polar_z;
+      const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
+      const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
+
+      RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+
+      RotationTensor R(_Euler_angles);
+
+      RealVectorValue Rp = (R(0,0) * p(1) + R(1,0)* p(2) + R(2,0) * p(0), R(0,1) * p(1) + R(1,1)* p(2) + R(2,1) * p(0), R(0,2) * p(1) + R(1,2)* p(2) + R(2,2) * p(0));
+      return (2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(Rp(0), 2) +
+	  2.0 * _alpha12 * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) + 30.0 * _alpha111 * std::pow(Rp(0), 4.0) +
+	  12.0 * _alpha112 * std::pow(Rp(0), 2.0) * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) + 2.0 * _alpha112 * (std::pow(Rp(1), 4.0) + std::pow(Rp(2), 4.0)) +
+	  2.0 * _alpha123 * std::pow(Rp(1), 2.0) * std::pow(Rp(2), 2.0)  ) * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+    }
+  else
+    {// p(0) -> p(2), p(1) -> p(0), p(2) -> p(1)
+      const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1) ? _polar_y: _polar_z;
+      const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
+      const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
+      RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+      RotationTensor R(_Euler_angles);
+      RealVectorValue Rp = (R(0,0) * p(2) + R(1,0)* p(0) + R(2,0) * p(1), R(0,1) * p(2) + R(1,1)* p(0) + R(2,1) * p(1), R(0,2) * p(2) + R(1,2)* p(0) + R(2,2) * p(1));
+      return (2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(Rp(0), 2) +
+	  2.0 * _alpha12 * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) + 30.0 * _alpha111 * std::pow(Rp(0), 4.0) +
+	  12.0 * _alpha112 * std::pow(Rp(0), 2.0) * (std::pow(Rp(1), 2.0) + std::pow(Rp(2), 2.0)) + 2.0 * _alpha112 * (std::pow(Rp(1), 4.0) + std::pow(Rp(2), 4.0)) +
+	  2.0 * _alpha123 * std::pow(Rp(1), 2.0) * std::pow(Rp(2), 2.0)
+  ) * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+    }
 }
 
 Real
 RotatedBulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  Real r;
+
   mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
     {
-      const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1)? _polar_y: _polar_z;
-      const VariableValue & _polar_j = (jvar == _polar_x_var)? _polar_x : (jvar == _polar_y_var)? _polar_y: _polar_z;
-      const VariableValue & _polar_k = ((_component == 0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component == 0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
-      
-      RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
-      RotationTensor R(_Euler_angles);
-      RealVectorValue Rp = (R(0,0) * p(0) + R(0,1)* p(1) + R(0,2) * p(2), R(1,0) * p(0) + R(1,1)* p(1) + R(1,2) * p(2), R(2,0) * p(0) + R(2,1)* p(1) + R(2,2) * p(2)); 
-
-      r = (4.0 * _alpha12 * Rp(0) * Rp(1) + 8.0 * _alpha112 * std::pow(Rp(0), 3.0) * Rp(1)
-      + 8.0 *_alpha112 * Rp(0) * std::pow(Rp(1), 3.0) + 4.0 * _alpha123 * Rp(0) * Rp(1) * std::pow(Rp(2), 2.0));
-      return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+    if(_component == 0)
+      {
+        Real r;
+        const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1)? _polar_y: _polar_z;
+        const VariableValue & _polar_j = (jvar == _polar_x_var)? _polar_x : (jvar == _polar_y_var)? _polar_y: _polar_z;
+        const VariableValue & _polar_k = ((_component == 0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component == 0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
+        RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+        RotationTensor R(_Euler_angles);
+        RealVectorValue Rp = (R(0,0) * p(0) + R(1,0)* p(1) + R(2,0) * p(2), R(0,1) * p(0) + R(1,1)* p(1) + R(2,1) * p(2), R(0,2) * p(0) + R(1,2)* p(1) + R(2,2) * p(2));
+        r = (4.0 * _alpha12 * Rp(0) * Rp(1) + 8.0 * _alpha112 * std::pow(Rp(0), 3.0) * Rp(1)
+        + 8.0 *_alpha112 * Rp(0) * std::pow(Rp(1), 3.0) + 4.0 * _alpha123 * Rp(0) * Rp(1) * std::pow(Rp(2), 2.0));
+        return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+      }
+    else if(_component == 1)
+      {// p(0) -> p(1), p(1) -> p(2), p(2) -> p(0)
+        Real r;
+        const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1)? _polar_y: _polar_z;
+        const VariableValue & _polar_j = (jvar == _polar_x_var)? _polar_x : (jvar == _polar_y_var)? _polar_y: _polar_z;
+        const VariableValue & _polar_k = ((_component == 0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component == 0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
+        RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+        RotationTensor R(_Euler_angles);
+        RealVectorValue Rp = (R(0,0) * p(1) + R(1,0)* p(2) + R(2,0) * p(0), R(0,1) * p(1) + R(1,1)* p(2) + R(2,1) * p(0), R(0,2) * p(1) + R(1,2)* p(2) + R(2,2) * p(0));
+        r = (4.0 * _alpha12 * Rp(0) * Rp(1) + 8.0 * _alpha112 * std::pow(Rp(0), 3.0) * Rp(1)
+        + 8.0 *_alpha112 * Rp(0) * std::pow(Rp(1), 3.0) + 4.0 * _alpha123 * Rp(0) * Rp(1) * std::pow(Rp(2), 2.0));
+        return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+      }
+    else
+      {// p(0) -> p(2), p(1) -> p(0), p(2) -> p(1)
+        Real r;
+        const VariableValue & _polar_i = (_component == 0) ? _polar_x : (_component == 1)? _polar_y: _polar_z;
+        const VariableValue & _polar_j = (jvar == _polar_x_var)? _polar_x : (jvar == _polar_y_var)? _polar_y: _polar_z;
+        const VariableValue & _polar_k = ((_component == 0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component == 0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
+        RealVectorValue p = (_polar_i[_qp], _polar_j[_qp], _polar_k[_qp]);
+        RotationTensor R(_Euler_angles);
+        RealVectorValue Rp = (R(0,0) * p(2) + R(1,0)* p(0) + R(2,0) * p(1), R(0,1) * p(2) + R(1,1)* p(0) + R(2,1) * p(1), R(0,2) * p(2) + R(1,2)* p(0) + R(2,2) * p(1));
+        r = (4.0 * _alpha12 * Rp(0) * Rp(1) + 8.0 * _alpha112 * std::pow(Rp(0), 3.0) * Rp(1)
+        + 8.0 *_alpha112 * Rp(0) * std::pow(Rp(1), 3.0) + 4.0 * _alpha123 * Rp(0) * Rp(1) * std::pow(Rp(2), 2.0));
+        return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+      }
     }
   else
     return 0.0;

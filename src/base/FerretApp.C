@@ -54,8 +54,10 @@
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
+#include "RotatedWallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
 #include "RotatedBulkEnergyDerivativeSixth.h"
+#include "RotatedBulkEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
 #include "NoStdBulkEnergyDerivativeSixth.h"
 #include "TimeDerivativeScaled.h"
@@ -180,9 +182,11 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(RotatedBulkEnergyDerivativeSixth);
+  registerKernel(RotatedBulkEnergyDerivative);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(WallEnergyDerivative);
+  registerKernel(RotatedWallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FluctuationKernel);
@@ -209,7 +213,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(CoupledEnergy);
 
   ///Materials
-  ///registerMaterial(LinearFerroelectricMaterial);
+  ///registerMaterial(LinearFerroelectricMaterial); //deprecated
   registerMaterial(ComputeElectrostrictiveTensor);
 
   ///InitialConditions
