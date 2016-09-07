@@ -20,7 +20,7 @@ public:
 
 protected:
   virtual Real computeValue();
-  const Real _a,_L, _order, _component;
+  const Real _a, _omega, _c, _epsilonII, _sigmaII, _L, _order, _component;
 private:
 
 };
