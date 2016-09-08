@@ -3,6 +3,6 @@
 #ifndef FERRET_REVISION_H
 #define FERRET_REVISION_H
 
-#define FERRET_REVISION "git commit 04a6c70 on 2016-08-29"
+#define FERRET_REVISION "git commit 68da716 on 2016-09-06"
 
 #endif // FERRET_REVISION_H
