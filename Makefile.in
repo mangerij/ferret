@@ -40,3 +40,4 @@ include            $(FRAMEWORK_DIR)/app.mk
 
 ###############################################################################
 # Additional special case targets should be added here
+app_INCLUDES += @BOOST_INCLUDE_PATH@

@@ -1,4 +1,5 @@
 #include "MieFieldReals.h"
+#include "FerretConfig.h"
 #include <complex>
 #include <cmath>
 
