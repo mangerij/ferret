@@ -14,7 +14,6 @@
 #include "TensorMechanicsActionScaled.h"
 
 //AuxKernels
-#include "MieFieldReals.h"
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
@@ -36,6 +35,10 @@
 #include "WindingNumberDensity.h"
 #include "BandGapAuxZnOwRot.h"
 #include "AngleAux.h"
+#include "MieElecFieldReals.h"
+#include "MieElecFieldImag.h"
+#include "Intensity.h"
+
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -175,7 +178,9 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(SurfaceChargeAux);
   registerAux(WindingNumberDensity);
   registerAux(BandGapAuxZnOwRot);
-  registerAux(MieFieldReals);
+  registerAux(MieElecFieldReals);
+  registerAux(MieElecFieldImag);
+  registerAux(Intensity);
   registerAux(AngleAux);
 
 
