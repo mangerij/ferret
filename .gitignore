@@ -178,4 +178,8 @@ elk/tests/tensor_mechanics_crystal_plasticity/rot.out
 # SPPARKS files
 *.potts
 *.spparks
-include/FerretRevision.h
+include/base/FerretRevision.h
+autom4te.cache/
+include/base/FerretConfig.h
+config.status
+Makefile
