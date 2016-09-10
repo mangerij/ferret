@@ -16,6 +16,7 @@ git clone bitbucket.org/mesoscience/ferret.git
 Once MOOSE is built, Ferret can usually be built simply as
 ```
 cd <ferret>
+./configure
 make METHOD=opt MOOSE_DIR=<moose>
 ```
 or
@@ -34,7 +35,7 @@ to be set:
 ```
 make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 ```
-
+NOTE: The ./configure step can alternatively include a BOOST directory which will allow compile of MOOSE objects with mathematical special functions.
 
 
 ### Who do I talk to? ###
