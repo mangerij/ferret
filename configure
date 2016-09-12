@@ -2432,6 +2432,9 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 #include <boost/math/special_functions/legendre.hpp>
+   #include <boost/math/special_functions/bessel.hpp>
+   #include <boost/math/special_functions/bessel_prime.hpp>
+   #include <boost/math/special_functions/hankel.hpp>
 int
 main ()
 {
@@ -2444,12 +2447,12 @@ if ac_fn_cxx_try_compile "$LINENO"; then :
 
 $as_echo "#define FERRET_HAVE_BOOST_MATH_SPECIAL_FUNCTIONS 1" >>confdefs.h
 
-   { $as_echo "$as_me:${as_lineno-$LINENO}: result: Boost special math function header found" >&5
-$as_echo "Boost special math function header found" >&6; }
+   { $as_echo "$as_me:${as_lineno-$LINENO}: result: Boost special math function headers found." >&5
+$as_echo "Boost special math function headers found." >&6; }
 
 else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: Boost special math function header not found, some Kernels may be disabled" >&5
-$as_echo "Boost special math function header not found, some Kernels may be disabled" >&6; }
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: Boost special math function headers not found, some kernels may be disabled." >&5
+$as_echo "Boost special math function headers not found, some kernels may be disabled." >&6; }
 
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext

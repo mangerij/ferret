@@ -48,12 +48,15 @@ fi
 #                [action if success],
 #                [action if fail])
 AC_TRY_COMPILE(
-  [@%:@include <boost/math/special_functions/legendre.hpp>],
+  [@%:@include <boost/math/special_functions/legendre.hpp>
+   @%:@include <boost/math/special_functions/bessel.hpp>
+   @%:@include <boost/math/special_functions/bessel_prime.hpp>
+   @%:@include <boost/math/special_functions/hankel.hpp>],
   [],
   [AC_DEFINE(FERRET_HAVE_BOOST_MATH_SPECIAL_FUNCTIONS, 1, [Flag indicating that Boost special functions are available])
-   AC_MSG_RESULT([Boost special math function header found])
+   AC_MSG_RESULT([Boost special math function headers found.])
    AC_SUBST(BOOST_INCLUDE_PATH)],
-  [AC_MSG_RESULT([Boost special math function header not found, some Kernels may be disabled])]
+  [AC_MSG_RESULT([Boost special math function headers not found, some kernels may be disabled.])]
 )
 
 # Reset CXXFLAGS to their original state
