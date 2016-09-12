@@ -183,3 +183,6 @@ autom4te.cache/
 include/base/FerretConfig.h
 config.status
 Makefile
+
+# Ignore everything in lib, all files in there are generated.
+lib/*
