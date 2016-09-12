@@ -5,6 +5,7 @@
 ///   scattering centers. We use the common nh formulation. 
 
 #include "MieElecFieldImag.h"
+#include "FerretConfig.h"
 #include <complex>
 #include <cmath>
 
