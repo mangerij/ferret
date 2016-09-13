@@ -81,6 +81,7 @@
 
 //Postprocessors
 #include "WallEnergy.h"
+#include "ThermalEnergy.h"
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
 #include "TotalEnergyFlowNoElast.h"
@@ -219,6 +220,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyFlowNoElast);
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(CoupledEnergy);
+  registerPostprocessor(ThermalEnergy);
   registerPostprocessor(CoupledEnergyCheckShear);
 
   ///Materials
