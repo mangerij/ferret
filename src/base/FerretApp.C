@@ -72,6 +72,7 @@
 #include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 #include "KarmanenkoDriver.h"
+#include "KappaTDiffusion.h"
 #include "ConstantLatticeMismatch.h"
 
 //Materials
@@ -197,6 +198,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FerroelectricCouplingP);
   registerKernel(FluctuationKernel);
   registerKernel(KarmanenkoDriver);
+  registerKernel(KappaTDiffusion);
   registerKernel(ConstantLatticeMismatch);
 
   /// registerKernel(FerroelectricCouplingQ);

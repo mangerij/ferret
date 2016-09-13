@@ -2,22 +2,18 @@
  * @file   KarmanenkoDriver.C
  * @author J. Mangeri <john.mangeri@uconn.edu>
  *
- * named after Karmanenko et al J. Euro. Ceram. Soc. 27 (2007) 3109–3112
+ * Form Karmanenko et al J. Euro. Ceram. Soc. 27 (2007) 3109–3112
  * this term drives the temperature changes due to the field-induced entropic changes
- * NOTE: this is just a test kernel for now, as the anisotropy of _grad_potential_int
- * needs to be taken into account
  *
- * The procedure is as follows, dEstep will be related to the stepping procedure in the
- * quasi-static hysteresis loop. The only difficulty will pinning down how noise 
- * introduced is related to this kernel.
+ * The procedure is as follows, dEstep will be related to the stepping procedure in a
+ * quasi-static hysteresis loop.
  *
- * Currently the kernel is setup for just a field along z from a Mathematica fit.  
+ * Currently the kernel is setup applying a field along z from a Mathematica fit.  
  * See Gu et al Appl. Phys. Lett. 102, 112901, (2013) for details.
  * In theory, we should use the approach in Phys. Rev. B. 84, 024102 (2011)
 */
 
 #include "KarmanenkoDriver.h"
-#include<cmath>
 
 template<>
 InputParameters validParams<KarmanenkoDriver>()
@@ -52,7 +48,7 @@ KarmanenkoDriver::KarmanenkoDriver(const InputParameters & parameters)
    _dEstep(getParam<Real>("dEstep")),
    _len_scale(getParam<Real>("len_scale"))
 {
-  std::cout<<"Implementing Karmanenko field-induced entropic change step with dEstep = "<< _dEstep <<"\n";
+  std::cout<<"Implementing Karmanenko field-induced entropic change with dEstep = "<< _dEstep <<"\n";
 }
 
 Real
