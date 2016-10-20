@@ -74,6 +74,7 @@
 #include "KarmanenkoDriver.h"
 #include "KappaTDiffusion.h"
 #include "ConstantLatticeMismatch.h"
+#include "CoeffParamDiffusion.h"
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
@@ -208,6 +209,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
+  registerKernel(CoeffParamDiffusion);
 
   ///Postprocessors
   registerPostprocessor(BulkEnergy);
