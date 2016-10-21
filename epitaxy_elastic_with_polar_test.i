@@ -1243,7 +1243,49 @@
       secondary = '5'
       translation = '0 20 0'
     [../]
- 
+    [./TB_polar_y_pbc]
+      variable = polar_y
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+    [./TB_polar_z_pbc]
+      variable = polar_z
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+    [./TB_potential_int_pbc]
+      variable = potential_int
+      primary = '3'
+      secondary = '5'
+      translation = '0 20 0'
+    [../]
+
+    [./RL_polar_x_pbc]
+      variable = polar_x
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_polar_y_pbc]
+      variable = polar_y
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_polar_z_pbc]
+      variable = polar_z
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
+    [./RL_potential_int_pbc]
+      variable = potential_int
+      primary = '4'
+      secondary = '6'
+      translation = '20 0 0'
+    [../]
   [../]
 
 
