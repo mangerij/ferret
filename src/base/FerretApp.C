@@ -38,6 +38,7 @@
 #include "MieElecFieldReals.h"
 #include "MieElecFieldImag.h"
 #include "Intensity.h"
+#include "OldVar.h"
 
 
 //Boundary Conditions
@@ -45,6 +46,7 @@
 #include "OpenCircuitBC.h"
 #include "StressFreeBC.h"
 #include "StressBC.h"
+#include "MatchedGradValueBC.h"
 
 //Initial Conditions
 #include "PerturbedIC.h"
@@ -75,6 +77,9 @@
 #include "KappaTDiffusion.h"
 #include "ConstantLatticeMismatch.h"
 #include "CoeffParamDiffusion.h"
+
+//InterfaceKernels
+#include "InterfaceDiffusion.h"
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
@@ -159,6 +164,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(OpenCircuitBC);
   registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
+  registerBoundaryCondition(MatchedGradValueBC);
 
   ///AuxKernels:
   registerAux(PolarizationVortexAux);
@@ -185,6 +191,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(MieElecFieldImag);
   registerAux(Intensity);
   registerAux(AngleAux);
+  registerAux(OldVar);
 
 
   ///Kernels
@@ -210,6 +217,9 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
   registerKernel(CoeffParamDiffusion);
+
+  ///registerInterfaceKernels
+  registerInterfaceKernel(InterfaceDiffusion);
 
   ///Postprocessors
   registerPostprocessor(BulkEnergy);
