@@ -506,6 +506,735 @@
     boundary = '7'
   [../]
 
+###The many BCs -- so many BCs####
+
+  [./TB_disp_x_3_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '3'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./TB_disp_x_5_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '5'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./TB_disp_y_3_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '3'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TB_disp_y_5_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '5'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TB_disp_z_3_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '3'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+
+  [./TB_disp_z_5_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '5'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+#
+  [./TB_disp_x_3_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '3'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TB_disp_x_5_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '5'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TB_disp_y_3_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '3'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./TB_disp_y_5_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '5'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./TB_disp_z_3_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '3'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+
+  [./TB_disp_z_5_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '5'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+#
+  [./TB_disp_x_3_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '3'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./TB_disp_x_5_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '5'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./TB_disp_y_3_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '3'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./TB_disp_y_5_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '5'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./TB_disp_z_3_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '3'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
+
+  [./TB_disp_z_5_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '5'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
+
+#Next surfaces
+
+
+  [./RL_disp_x_4_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '4'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./RL_disp_x_6_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '6'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./RL_disp_y_4_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '4'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RL_disp_y_6_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '6'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RL_disp_z_4_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '4'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+
+  [./RL_disp_z_6_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '6'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+#
+  [./RL_disp_x_4_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '4'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RL_disp_x_6_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '6'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RL_disp_y_4_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '4'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./RL_disp_y_6_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '6'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./RL_disp_z_4_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '4'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+
+  [./RL_disp_z_6_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '6'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+#
+  [./RL_disp_x_4_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '4'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./RL_disp_x_6_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '6'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./RL_disp_y_4_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '4'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./RL_disp_y_6_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '6'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./RL_disp_z_4_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '4'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
+
+  [./RL_disp_z_6_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '6'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
+
+###############substrate
+
+  [./TBsub_disp_x_8_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '8'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./TBsub_disp_x_10_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '10'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./TBsub_disp_y_8_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '8'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TBsub_disp_y_10_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '10'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TBsub_disp_z_8_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '8'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+
+  [./TBsub_disp_z_10_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '10'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+#
+  [./TBsub_disp_x_8_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '8'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TBsub_disp_x_10_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '10'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./TBsub_disp_y_8_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '8'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./TBsub_disp_y_10_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '10'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./TBsub_disp_z_8_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '8'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+
+  [./TBsub_disp_z_10_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '10'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+#
+  [./TBsub_disp_x_8_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '8'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./TBsub_disp_x_10_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '10'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./TBsub_disp_y_8_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '8'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./TBsub_disp_y_10_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '10'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./TBsub_disp_z_8_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '8'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
+
+  [./TBsub_disp_z_10_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '10'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
+
+#Next surfaces
+
+
+  [./RLsub_disp_x_9_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '9'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./RLsub_disp_x_11_match_PBC_x]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '11'
+    variable = disp_x
+    u = disp_x
+    v = strain_xx_elastic_old
+  [../]
+
+  [./RLsub_disp_y_9_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '9'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RLsub_disp_y_11_match_PBC_x]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '11'
+    variable = disp_y
+    u = disp_y
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RLsub_disp_z_9_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '9'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+
+  [./RLsub_disp_z_11_match_PBC_x]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 0
+    boundary = '11'
+    variable = disp_z
+    u = disp_z
+    v = strain_xz_elastic_old
+  [../]
+#
+  [./RLsub_disp_x_9_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '9'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RLsub_disp_x_11_match_PBC_y]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '11'
+    variable = disp_x
+    u = disp_x
+    v = strain_xy_elastic_old
+  [../]
+
+  [./RLsub_disp_y_9_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '9'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./RLsub_disp_y_11_match_PBC_y]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '11'
+    variable = disp_y
+    u = disp_y
+    v = strain_yy_elastic_old
+  [../]
+
+  [./RLsub_disp_z_9_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '9'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+
+  [./RLsub_disp_z_11_match_PBC_y]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 1
+    boundary = '11'
+    variable = disp_z
+    u = disp_z
+    v = strain_yz_elastic_old
+  [../]
+#
+  [./RLsub_disp_x_9_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '9'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./RLsub_disp_x_11_match_PBC_z]
+    variable = disp_x
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '11'
+    variable = disp_x
+    u = disp_x
+    v = strain_xz_elastic_old
+  [../]
+
+  [./RLsub_disp_y_9_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '9'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./RLsub_disp_y_11_match_PBC_z]
+    variable = disp_y
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '11'
+    variable = disp_y
+    u = disp_y
+    v = strain_yz_elastic_old
+  [../]
+
+  [./RLsub_disp_z_9_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '9'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
+
+  [./RLsub_disp_z_11_match_PBC_z]
+    variable = disp_z
+    type = MatchedGradValueBC
+    component = 2
+    boundary = '11'
+    variable = disp_z
+    u = disp_z
+    v = strain_zz_elastic_old
+  [../]
 
   [./Periodic]
     [./TB_polar_x_pbc]
