@@ -1,10 +1,12 @@
-##---------------------------TEST PROBLEM-----------------------------------#
-   # Core-shell nanoparticle, 25 nm in diameter: 
-   # Single-crystal round ZnO core, 15 nm in diameter.
-   # Single-crystal rutile TiO2 shell, 5 nm in thickness.
-   # Here, crystalline rTiO2 elastic parameters (both bulk and surface ones) in the shell were 
-   # averaged out to isotropic symmetry, which effectively makes the rTiO2 shell amorphous.
-##--------------------------------------------------------------------------#
+
+# Core-shell nanoparticle, 25 nm in diameter: 
+# Single-crystal round ZnO core, 15 nm in diameter.
+# Single-crystal rutile TiO2 shell, 5 nm in thickness.
+# Here, crystalline rTiO2 elastic parameters (both bulk and surface ones) in the shell were 
+# averaged out to isotropic symmetry, which effectively makes the rTiO2 shell amorphous.
+# See Influence of Elastic and Surface Strains on the Optical Properties of Semiconducting Core-Shell Nanoparticles
+# J. Mangeri, O. Heinonen, D. Karpeyev, and S. Nakhmanson, Phys. Rev. Applied 4, 014001 (2015)
+
 
 [Mesh]
   file = core_shell_exodus.e
@@ -24,6 +26,7 @@
     order = FIRST
     family = LAGRANGE
   [../]
+
   [./disp_z]
     order = FIRST
     family = LAGRANGE
@@ -80,6 +83,14 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
+  [./elastic_energy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./pressure]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
   [./EgZnO]
     order = CONSTANT
     family = MONOMIAL
@@ -102,7 +113,6 @@
     index_i = 0
     index_j = 0
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./stress_yy]
     type = RankTwoAux
@@ -111,7 +121,6 @@
     index_i = 1
     index_j = 1
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./stress_zz]
     type = RankTwoAux
@@ -120,7 +129,6 @@
     index_i = 2
     index_j = 2
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./stress_xy]
     type = RankTwoAux
@@ -129,7 +137,6 @@
     index_i = 0
     index_j = 1
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./stress_yz]
     type = RankTwoAux
@@ -138,7 +145,6 @@
     index_i = 1
     index_j = 2
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./stress_zx]
     type = RankTwoAux
@@ -147,7 +153,6 @@
     index_i = 2
     index_j = 0
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./strain_xx]
     type = RankTwoAux
@@ -156,7 +161,6 @@
     index_i = 0
     index_j = 0
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./strain_yy]
     type = RankTwoAux
@@ -165,7 +169,6 @@
     index_i = 1
     index_j = 1
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./strain_zz]
     type = RankTwoAux
@@ -174,7 +177,6 @@
     index_i = 2
     index_j = 2
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./strain_xy]
     type = RankTwoAux
@@ -183,7 +185,6 @@
     index_i = 0
     index_j = 1
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./strain_yz]
     type = RankTwoAux
@@ -192,7 +193,6 @@
     index_i = 1
     index_j = 2
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
   [./strain_zx]
     type = RankTwoAux
@@ -201,8 +201,8 @@
     index_i = 2
     index_j = 0
     use_displaced_mesh = false
-    execute_on = 'timestep_end'
   [../]
+
   [./bandgap]
     ### Here we use the results from Phys Rev B 88, 235210 (2013) Wagner et al 
     # which computes the strain-induced bandgap change of wurtzite ZnO using 
@@ -216,7 +216,6 @@
     biaxial_strain_rate = -0.450
     biaxial_relaxation_coeff = 0.929
     poisson_ratio = 0.31
-    execute_on = 'timestep_end'
   [../]
 []
 
@@ -269,9 +268,9 @@
     surface_euler_angle_1 = 0.0
     surface_euler_angle_2 = 0.0
     surface_euler_angle_3 = 0.0
-# Surface elastic tensor C_1111, C_1122
+    # Surface elastic tensor C_1111, C_1122
     Cs_ijkl = '42.0e-09 15.0e-09'
-# Intrinsic surface stress
+    # Intrinsic surface stress
     taus = '-1.7e-09'
     component = 0
   [../]
@@ -286,13 +285,12 @@
     surface_euler_angle_1 = 0.0
     surface_euler_angle_2 = 0.0
     surface_euler_angle_3 = 0.0
-# Surface elastic tensor C_1111, C_1122
+    # Surface elastic tensor C_1111, C_1122
     Cs_ijkl = '42.0e-09 15.0e-09'
-# Intrinsic surface stress
+    # Intrinsic surface stress
     taus = '-1.7e-09'
     component = 1
   [../]
-
   [./surface_elasticity_Z]
     type = SurfaceMechanicsBC
     disp_x = disp_x
@@ -309,74 +307,66 @@
     taus = '-1.7e-09'
     component = 2
   [../]
-
 []
 
 
 [Materials]
-  [./shell_grain1]
-    # wurtzite polycrystalline film (see Table 1.6 and Ref. 96) in "Zinc Oxide: Fundamentals, Materials and Device Technology"
+    # ZnO shell (full [hexagonal] crystalline symmetry)
+    # Single crystal (see Table 1.6 and Ref. 86) in "Zinc Oxide: Fundamentals, Materials and Device Technology"
     # by Hadis Morkoc and Umit Ozgur (2009 WILEY-VCH Verlag GmbH & Co. KGaA, Weinheim ISBN: 978-3-527-40813-9), Chapter 1.
-    # Isotropic parameters (B, G, E, nu) computed from elastic consts of the film:
-    # Bulk modulus B = 147.6 GPa (good agreement with the value from Ref. 12 ibid)
-    # Poisson ratio nu = C13/(C11+C12) = 0.365
-    # From that computed Young's modulus E = 3 B ( 1 - 2 nu ) = 119.3 GPa (good agreement with the value from Ref. 101 ibid)
-    # From that computed Shear modulus G = E / 2*( 1 + nu ) = 43.7 GPa
-    #
-    # Recast into (lambda, mu) Lame constants:
-    # lambda = B - 2*G/3 = 118.5 GPa, mu = G = 43.7 GPa, 2*mu + lambda = 205.9 GPa; see Nye 4.2 or wikipedia entry for "Hooke's law."
-    # C11 = C22 = C33 = 2*mu + lambda, C12 = C13 = C23 = lambda, C44 = C55 = C66 = mu.
-    #
-    # In GPa:
-    #    C_ijkl= 205.9 118.5 118.5 205.9 118.5 205.9 43.7 43.7 43.7
+    # In GPa: C_ijkl = 209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29
     # In N/(nm)^2, 1 GPa = 1 * 10^{-9} N/(nm)^2:
 
-    type = LinearElasticMaterial
-    block = '1'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-    fill_method = symmetric9
 
-    # C11 C12 C13 C22 C23 C33 C44 C55 C66
+    [./elasticity_tensor1]
+      type = ComputeElasticityTensor
+      block = '1'
+      fill_method = symmetric9
+      C_ijkl = '209.7e-09 121.1e-09 105.1e-09 209.7e-09 105.1e-09 210.9e-09 42.47e-09 42.47e-09 44.29e-09'
+      euler_angle_1 = 0.0
+      euler_angle_2 = 0.0
+      euler_angle_3 = 0.0
+    [../]
+    [./strain1]
+      type = ComputeSmallStrain
+      block = '1'
+    [../]
+    [./stress1]
+      type = ComputeLinearElasticStress
+      block = '1'
+    [../]
 
-    C_ijkl = '205.9e-09 118.5e-09 118.5e-09 205.9e-09 118.5e-09 205.9e-09 43.7e-09 43.7e-09 43.7e-09'
-    euler_angle_1 = 0.0
-    euler_angle_2 = 0.0
-    euler_angle_3 = 0.0
-  [../]
-
-
-
-  [./core]
     # Zn core (full [hexagonal] crystalline symmetry)
     # Averaged constants for crystalline Zn, see Table 2 in H. M. Ledbetter, J. Phys. Chem. Ref. Data 6, 1181 (1977).
     # In GPa: C_ijkl = 163.0 30.6 48.1 163.0 48.1 60.3 39.4 39.4 65.9
     # In N/(nm)^2, 1 GPa = 1 * 10^{-9} N/(nm)^2:
 
-    type = LinearElasticMaterial
-    block = '2'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
-    fill_method = symmetric9
-
-    # C11 C12 C13 C22 C23 C33 C44 C55 C66
-
-    C_ijkl = '163.0e-09 30.6e-09 48.1e-09 163.0e-09 48.1e-09 60.3e-09 39.4e-09 39.4e-09 65.9e-09'
-    euler_angle_1 = 0.0
-    euler_angle_2 = 0.0
-    euler_angle_3 = 0.0
-  [../]
+    [./elasticity_tensor2]
+       type = ComputeElasticityTensor
+       block = '2'
+       fill_method = symmetric9
+       C_ijkl = '163.0e-09 30.6e-09 48.1e-09 163.0e-09 48.1e-09 60.3e-09 39.4e-09 39.4e-09 65.9e-09'
+       euler_angle_1 = 0.0
+       euler_angle_2 = 0.0
+       euler_angle_3 = 0.0
+    [../]
+    [./strain2]
+      type = ComputeSmallStrain 
+      block = '2'
+    [../]
+    [./stress2]
+      type = ComputeLinearElasticStress
+      block = '2'
+    [../]
 []
 
 [Preconditioning]
-  active = 'smp_bjacobi'
-  [./smp_bjacobi]
-  type = SMP
-  full = true
-  petsc_options_iname = '-ksp_type -pc_type  -snes_rtol -ksp_rtol'
-  petsc_options_value = '    gmres    bjacobi     1e-8       1e-8'
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = '-snes_converged_reason -ksp_converged_reason'
+    petsc_options_iname = '-ksp_type -pc_type  -snes_rtol -ksp_rtol'
+    petsc_options_value = '    gmres    bjacobi     1e-4       1e-4'
   [../]
 []
 
@@ -387,10 +377,9 @@
 []
 
 [Outputs]
-  print_perf_log = true
   [./Exodus]
     type = Exodus
-    file_base = out_ZnZnO_xstl000_core_iso_shell_PJFNK
+    file_base = out_Zn_ZnO_xstl000_core_iso_shell
     elemental_as_nodal = true
   [../]
 []

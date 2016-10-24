@@ -7,7 +7,12 @@
 #ifndef SURFACEMECHANICSBC_H
 #define SURFACEMECHANICSBC_H
 
+#include "FEProblem.h"
 #include "IntegratedBC.h"
+#include "RankTwoTensor.h"
+#include "RankFourTensor.h"
+#include "RotationTensor.h"
+
 
 //Forward Declarations
 class SurfaceMechanicsBC;
@@ -17,11 +22,6 @@ class RankFourTensor;
 template<>
 InputParameters validParams<SurfaceMechanicsBC>();
 
-/*
-*    Includes surface stress contributions to the free energy
-*    A residual is formed as an integrated boundary condition, as IntegratedBC
-*    has access to surface integrals and surface normals
-*/
 class SurfaceMechanicsBC : public IntegratedBC
 {
 public:
@@ -33,20 +33,21 @@ protected:
   virtual void computeQpProjection();
   virtual void computeQpRotation();
 
-  const unsigned int _dim;
   const unsigned int _component;
+  const MaterialProperty<RankTwoTensor> & _elastic_strain;
 
+  Real _surface_euler_angle_1;
+  Real _surface_euler_angle_2;
+  Real _surface_euler_angle_3;
   std::vector<Real> _Csijkl_vector;
+
   Real _taus;
-  Real _surface_Euler_angle_1;
-  Real _surface_Euler_angle_2;
-  Real _surface_Euler_angle_3;
 
-  RealVectorValue _surface_Euler_angles;
+  RankFourTensor _Csijkl;
+  RealVectorValue _surface_euler_angles;
 
-  const VariableGradient & _grad_disp_x;
-  const VariableGradient & _grad_disp_y;
-  const VariableGradient & _grad_disp_z;
+  RankTwoTensor _projection, _surface_strain, _surface_stress;
+  RankTwoTensor _tp11, _tp22;
 };
 
-#endif
+#endif // SURFACEMECHANICSBC_H
