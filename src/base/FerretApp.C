@@ -46,7 +46,7 @@
 #include "OpenCircuitBC.h"
 #include "StressFreeBC.h"
 #include "StressBC.h"
-#include "MatchedGradValueBC.h"
+//#include "MatchedGradValueBC.h"
 
 //Initial Conditions
 #include "PerturbedIC.h"
@@ -164,7 +164,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(OpenCircuitBC);
   registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
-  registerBoundaryCondition(MatchedGradValueBC);
+ // registerBoundaryCondition(MatchedGradValueBC);
 
   ///AuxKernels:
   registerAux(PolarizationVortexAux);
