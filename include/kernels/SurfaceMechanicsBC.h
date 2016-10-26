@@ -7,12 +7,7 @@
 #ifndef SURFACEMECHANICSBC_H
 #define SURFACEMECHANICSBC_H
 
-#include "FEProblem.h"
 #include "IntegratedBC.h"
-#include "RankTwoTensor.h"
-#include "RankFourTensor.h"
-#include "RotationTensor.h"
-
 
 //Forward Declarations
 class SurfaceMechanicsBC;
@@ -30,24 +25,23 @@ public:
 
 protected:
   virtual Real computeQpResidual();
-  virtual void computeQpProjection();
-  virtual void computeQpRotation();
+
+  virtual RankTwoTensor computeQpProjection();
+
+  virtual RankTwoTensor computeQpRankTwoRotation(unsigned int tensor_component);
+
+  virtual RankFourTensor computeQpRankFourRotation(unsigned int tensor_component);
 
   const unsigned int _component;
   const MaterialProperty<RankTwoTensor> & _elastic_strain;
 
-  Real _surface_euler_angle_1;
-  Real _surface_euler_angle_2;
-  Real _surface_euler_angle_3;
-  std::vector<Real> _Csijkl_vector;
+  std::vector<Real> _Csijkl_vector; //surfaceFillFromInputVector method only takes std::vector<Real>. Might need to change..
+
+  RealVectorValue _S_k_vector;
 
   Real _taus;
-
-  RankFourTensor _Csijkl;
+  
   RealVectorValue _surface_euler_angles;
 
-  RankTwoTensor _projection, _surface_strain, _surface_stress;
-  RankTwoTensor _tp11, _tp22;
 };
-
 #endif // SURFACEMECHANICSBC_H
