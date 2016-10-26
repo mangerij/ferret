@@ -264,6 +264,7 @@
     disp_y = disp_y
     disp_z = disp_z
     variable = disp_x
+    S_k = '0 0 0'
     boundary = '1'
     surface_euler_angle_1 = 0.0
     surface_euler_angle_2 = 0.0
@@ -281,6 +282,7 @@
     disp_y = disp_y
     disp_z = disp_z
     variable = disp_y
+    S_k = '0 0 0'
     boundary = '1'
     surface_euler_angle_1 = 0.0
     surface_euler_angle_2 = 0.0
@@ -297,6 +299,7 @@
     disp_y = disp_y
     disp_z = disp_z
     variable = disp_z
+    S_k = '0 0 0'
     boundary = '1'
     surface_euler_angle_1 = 0.0
     surface_euler_angle_2 = 0.0
