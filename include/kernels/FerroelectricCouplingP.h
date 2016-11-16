@@ -36,7 +36,7 @@ protected:
 
 private:
   const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
-  const MaterialProperty<RankTwoTensor> & _stress_free_strain;
+  const MaterialProperty<RankTwoTensor> & _eigenstrain;
   const unsigned int _component;
   const unsigned int _disp_x_var;
   const unsigned int _disp_y_var;

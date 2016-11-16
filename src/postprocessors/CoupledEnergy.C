@@ -26,7 +26,7 @@ InputParameters validParams<CoupledEnergy>()
 CoupledEnergy::CoupledEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
   _electrostrictive_tensor(getMaterialProperty<RankFourTensor>("electrostrictive_tensor")),
-  _stress_free_strain(getMaterialProperty<RankTwoTensor>("stress_free_strain")),
+  _eigenstrain(getMaterialProperty<RankTwoTensor>("eigenstrain")),
   _disp_x_grad(coupledGradient("disp_x")),
   _disp_y_grad(coupledGradient("disp_y")),
   _disp_z_grad(coupledGradient("disp_z")),
@@ -45,9 +45,9 @@ CoupledEnergy::computeQpIntegral()
   Real sum2 = 0.0;
   Real sum3 = 0.0;
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-  RealVectorValue v0(_stress_free_strain[_qp](0,0), _stress_free_strain[_qp](0,1), _stress_free_strain[_qp](0,2));
-  RealVectorValue v1(_stress_free_strain[_qp](1,0), _stress_free_strain[_qp](1,1), _stress_free_strain[_qp](1,2));
-  RealVectorValue v2(_stress_free_strain[_qp](2,0), _stress_free_strain[_qp](2,1), _stress_free_strain[_qp](2,2));
+  RealVectorValue v0(_eigenstrain[_qp](0,0), _eigenstrain[_qp](0,1), _eigenstrain[_qp](0,2));
+  RealVectorValue v1(_eigenstrain[_qp](1,0), _eigenstrain[_qp](1,1), _eigenstrain[_qp](1,2));
+  RealVectorValue v2(_eigenstrain[_qp](2,0), _eigenstrain[_qp](2,1), _eigenstrain[_qp](2,2));
 
   sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp] - v0, 0, w);
   sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp] - v1, 0, w);

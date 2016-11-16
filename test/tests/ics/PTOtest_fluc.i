@@ -103,6 +103,7 @@
    block = '0'
   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
    eigen_base = '1 0 0 0 1 0 0 0 0'
+   eigenstrain_name = eigenstrain
  [../]
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -111,6 +112,7 @@
   [../]
   [./strain_1]
     type = ComputeSmallStrain
+    eigenstrain_names = eigenstrain
   [../]
   [./stress_1]
     type = ComputeLinearElasticStress

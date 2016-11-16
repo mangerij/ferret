@@ -30,7 +30,7 @@ protected:
 
 private:
   const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
-  const MaterialProperty<RankTwoTensor> & _stress_free_strain;
+  const MaterialProperty<RankTwoTensor> & _eigenstrain;
   const VariableGradient & _disp_x_grad;
   const VariableGradient & _disp_y_grad;
   const VariableGradient & _disp_z_grad;
