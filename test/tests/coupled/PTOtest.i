@@ -278,23 +278,23 @@
 [Postprocessors]
    [./Fbulk]
       type = BulkEnergy
-      execute_on = 'timestep_end'
+      execute_on = 'initial timestep_end'
     [../]
     [./Fwall]
       type = WallEnergy
-      execute_on = 'timestep_end'
+      execute_on = 'initial timestep_end'
     [../]
     [./Felastic]
       type = ElasticEnergy
-      execute_on = 'timestep_end'
+      execute_on = 'initial timestep_end'
     [../]
     [./Fcoupled]
       type = CoupledEnergy
-      execute_on = 'timestep_end'
+      execute_on = 'initial timestep_end'
     [../]
     [./Felec]
       type = ElectrostaticEnergy
-      execute_on = 'timestep_end'
+      execute_on = 'initial timestep_end'
     [../]
     [./Ftotal]
       type = TotalEnergyFlow
@@ -302,11 +302,12 @@
       Fwall = Fwall
       Fcoupled = Fcoupled
       Felec = Felec
-      execute_on = 'timestep_end'
+      execute_on = 'initial timestep_end'
     [../]
     [./perc_change]
      type = PercentChangePostprocessor
      postprocessor = Ftotal
+     execute_on = 'initial timestep_end'
    [../]
 []
 
@@ -348,4 +349,3 @@
     interval = 1
   [../]
 []
-
