@@ -146,12 +146,12 @@
 [Postprocessors]
   [./bulk_energy]
    type = BulkEnergy
-   execute_on = 'timestep_end'
+   execute_on = 'initial timestep_end'
    block = '0'
   [../]
   [./electrostatic_energy]
    type = ElectrostaticEnergy
-   execute_on = 'timestep_end'
+   execute_on = 'initial timestep_end'
    block = '0'
   [../]
 []
@@ -168,10 +168,10 @@
 
 [Executioner]
   type = Transient
-  [./TimeStepper] 
+  [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.35 
-    optimal_iterations = 4 
+    dt = 0.35
+    optimal_iterations = 4
     growth_factor = 1.4
     linear_iteration_ratio = 100
     cutback_factor =  0.55

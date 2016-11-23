@@ -102,6 +102,9 @@ template<>
 InputParameters validParams<FerretApp>()
 {
   InputParameters params = validParams<MooseApp>();
+  params.set<bool>("use_legacy_uo_initialization") = false;
+  params.set<bool>("use_legacy_uo_aux_computation") = false;
+
   return params;
 }
 

@@ -106,7 +106,7 @@
      variable = polar_z
      component = 2
   [../]
- 
+
   ##Electrostatics
   [./polar_x_electric_E]
      type=PolarElectricEStrong
@@ -171,17 +171,17 @@
 [Postprocessors]
   [./bulk_energy]
    type = BulkEnergy
-   execute_on = 'timestep_end'
+   execute_on = 'initial timestep_end'
    block = '0'
   [../]
   [./wall_energy]
    type = WallEnergy
-   execute_on = 'timestep_end'
+   execute_on = 'initial timestep_end'
    block = '0'
   [../]
   [./electrostatic_energy]
    type = ElectrostaticEnergy
-   execute_on = 'timestep_end'
+   execute_on = 'initial timestep_end'
    block = '0'
   [../]
 []
@@ -198,10 +198,10 @@
 
 [Executioner]
   type = Transient
-  [./TimeStepper] 
+  [./TimeStepper]
     type = IterationAdaptiveDT
     dt = 0.35
-    optimal_iterations = 4 
+    optimal_iterations = 4
     growth_factor = 1.4
     linear_iteration_ratio = 100
     cutback_factor =  0.55
