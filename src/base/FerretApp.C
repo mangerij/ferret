@@ -39,6 +39,7 @@
 #include "MieElecFieldImag.h"
 #include "Intensity.h"
 #include "OldVar.h"
+#include "CubicDielectricTensor.h"
 
 
 //Boundary Conditions
@@ -195,6 +196,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Intensity);
   registerAux(AngleAux);
   registerAux(OldVar);
+  registerAux(CubicDielectricTensor);
+
 
 
   ///Kernels
