@@ -11,7 +11,6 @@
 
 #include "Kernel.h"
 #include "ComputeElectrostrictiveTensor.h"
-#include "Material.h"
 #include "ComputeEigenstrain.h"
 
 
