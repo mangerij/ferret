@@ -1,31 +1,32 @@
 /**
- * @file   CubicDielectricTensor.C
+ * @file   DielectricTensor.C
  * @author J. Mangeri <john.mangeri@uconn.edu>
  *
  * @brief calculate the components of the anisotropic dielectric tensor
- *        assuming cubic symmetry of the parent phase
  */
 
-#ifndef CUBICDIELECTRICTENSOR_H
-#define CUBICDIELECTRICTENSOR_H
+#ifndef DIELECTRICTENSOR_H
+#define DIELECTRICTENSOR_H
 
 #include "AuxKernel.h"
 #include "ComputeElectrostrictiveTensor.h"
 
 //Forward Declarations
-class CubicDielectricTensor;
+class DielectricTensor;
+class RankTwoTensor;
 
 template<>
-InputParameters validParams<CubicDielectricTensor>();
+InputParameters validParams<DielectricTensor>();
 
-class CubicDielectricTensor : public AuxKernel
+class DielectricTensor : public AuxKernel
 {
 public:
-  CubicDielectricTensor(const InputParameters & parameters);
+  DielectricTensor(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();
   const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
+  const MaterialProperty<RankTwoTensor> & _elastic_strain;
   const VariableValue& _polar_x;
   const VariableValue& _polar_y;
   const VariableValue& _polar_z;
@@ -37,4 +38,4 @@ protected:
   const Real _len_scale;
 };
 
-#endif // CUBICDIELECTRICTENSOR_H
+#endif // DIELECTRICTENSOR_H
