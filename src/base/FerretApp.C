@@ -98,6 +98,7 @@
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
 #include "CoupledEnergyCheckShear.h"
+#include "GrainSize.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -240,6 +241,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(CoupledEnergy);
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(CoupledEnergyCheckShear);
+  registerPostprocessor(GrainSize);
 
   ///Materials
   ///registerMaterial(LinearFerroelectricMaterial); //deprecated
