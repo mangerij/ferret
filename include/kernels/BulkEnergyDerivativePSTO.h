@@ -37,6 +37,6 @@ protected:
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
 
-  const Real _E_x, _E_y, _alpha1, _alpha2, _alpha3, _alpha4, _alpha5,_x1, _x2, _x3, _x4, _x5, _x6, _epsilon, _T, _Tc;
+  const Real _alpha1, _alpha2, _alpha3, _alpha4, _alpha5,_x1, _x2, _x3, _x4, _x5, _x6, _epsilon, _T, _Tc;
 };
 #endif //BULKENERGYDERIVATIVEPSTO_H
