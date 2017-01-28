@@ -34,10 +34,8 @@ protected:
   const unsigned int _component;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
-  const unsigned int _polar_z_var;
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
 
   const Real _alpha1, _alpha2, _alpha3, _alpha4, _alpha5,_x1, _x2, _x3, _x4, _x5, _x6, _epsilon, _T, _Tc;
 };

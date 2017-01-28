@@ -15,7 +15,6 @@ InputParameters validParams<BulkEnergyDerivativePSTO>()
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", "The y component of the polarization");
-  params.addCoupledVar("polar_z", "The z component of the polarization");
   params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha2", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha3", "The coefficients of the Landau expansion");
@@ -38,10 +37,8 @@ BulkEnergyDerivativePSTO::BulkEnergyDerivativePSTO(const InputParameters & param
    _component(getParam<unsigned int>("component")),
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),
-   _polar_z_var(coupled("polar_z")),
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
-   _polar_z(coupledValue("polar_z")),
    _alpha1(getParam<Real>("alpha1")),
    _alpha2(getParam<Real>("alpha2")),
    _alpha3(getParam<Real>("alpha3")),
