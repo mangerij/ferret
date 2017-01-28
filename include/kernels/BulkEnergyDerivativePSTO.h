@@ -29,6 +29,8 @@ protected:
 
   virtual Real computeQpJacobian();
 
+  virtual Real computeQpOffDiagJacobian();
+
   const unsigned int _component;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
