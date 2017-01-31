@@ -78,13 +78,13 @@
 #include "KappaTDiffusion.h"
 #include "ConstantLatticeMismatch.h"
 #include "CoeffParamDiffusion.h"
+#include "AnisotropyEnergy.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
-
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -199,8 +199,6 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(OldVar);
   registerAux(DielectricTensor);
 
-
-
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
@@ -216,6 +214,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(KarmanenkoDriver);
   registerKernel(KappaTDiffusion);
   registerKernel(ConstantLatticeMismatch);
+  registerKernel(AnisotropyEnergy);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
