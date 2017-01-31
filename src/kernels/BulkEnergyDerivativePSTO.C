@@ -134,22 +134,15 @@ _x5 * 12.0 * std::pow(_polar_y[_qp], 2.0) + _x6 * 2.0 * std::pow(_polar_x[_qp], 
 }
 
 Real
-BulkEnergyDerivativePSTO::computeQpOffDiagJacobian()
+BulkEnergyDerivativePSTO::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if (_component == 0 or 1)
-  {
-    Real EfreeJac = 0.0;
-    EfreeJac += (_alpha3 * 4.0 * _polar_x[_qp] * _polar_y[_qp] + 
+   Real EfreeJac = 0.0;
+   EfreeJac += (_alpha3 * 4.0 * _polar_x[_qp] * _polar_y[_qp] + 
 _alpha5 * (8.0 * std::pow(_polar_x[_qp], 3.0) * _polar_y[_qp] + 8.0 * _polar_x[_qp] * std::pow(_polar_y[_qp], 3.0)) + 
 (_x3 * 4.0 * _polar_x[_qp] * _polar_y[_qp]) * _epsilon +
 (_x6 * 4.0 * _polar_x[_qp] * _polar_y[_qp]) * std::pow(_epsilon, 2.0)) * _test[_i][_qp] * _phi[_j][_qp]; 
-    return EfreeJac;
-  }
+   return EfreeJac;
 
-  else 
-  {
-    return 0;
-  }
 }
 
 
