@@ -44,7 +44,7 @@
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
-#include "OpenCircuitBC.h"
+#include "ScreenedBC.h"
 #include "StressFreeBC.h"
 #include "StressBC.h"
 //#include "MatchedGradValueBC.h"
@@ -79,6 +79,7 @@
 #include "ConstantLatticeMismatch.h"
 #include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
+#include "DepolEnergy.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -99,6 +100,7 @@
 #include "CoupledEnergy.h"
 #include "CoupledEnergyCheckShear.h"
 #include "GrainSize.h"
+#include "DepolarizationEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -166,7 +168,7 @@ FerretApp::registerObjects(Factory & factory)
   ///BoundaryConditions
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
-  registerBoundaryCondition(OpenCircuitBC);
+  registerBoundaryCondition(ScreenedBC);
   registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
  // registerBoundaryCondition(MatchedGradValueBC);
@@ -215,6 +217,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(KappaTDiffusion);
   registerKernel(ConstantLatticeMismatch);
   registerKernel(AnisotropyEnergy);
+  registerKernel(DepolEnergy);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
@@ -241,6 +244,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(CoupledEnergyCheckShear);
   registerPostprocessor(GrainSize);
+  registerPostprocessor(DepolarizationEnergy);
+
 
   ///Materials
   ///registerMaterial(LinearFerroelectricMaterial); //deprecated

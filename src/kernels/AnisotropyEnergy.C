@@ -41,11 +41,11 @@ Real
 AnisotropyEnergy::computeQpResidual()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-  return 2.0 * _K * w(_component) * _test[_i][_qp];
+  return 2.0 * _K * w(_component) * _test[_i][_qp] * std::pow(_len_scale, 3.0);
 }
 
 Real
 AnisotropyEnergy::computeQpJacobian()
 {
-  return 2.0 * _K * _phi[_j][_qp] * _test[_i][_qp];
+  return 2.0 * _K * _phi[_j][_qp] * _test[_i][_qp] * std::pow(_len_scale, 3.0);
 }
