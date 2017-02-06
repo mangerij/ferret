@@ -27,7 +27,6 @@ protected:
   virtual Real computeQpResidual();
 
 private:
-  const unsigned int _component;
   const VariableGradient &  _potential_int_grad;
   const Real _permittivity;
   const Real _lambda;

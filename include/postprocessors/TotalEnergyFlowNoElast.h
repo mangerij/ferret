@@ -1,7 +1,6 @@
 /**
  * @file   TotalEnergyNoElast.h
- * @author S. Gu <sgu@anl.gov>
- * @date   Thu Aug 15 15:48:51 2013
+ * @author J. Mangeri <john.mangeri@uconn.edu>
  *
  * @brief
  *

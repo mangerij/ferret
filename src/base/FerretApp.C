@@ -93,6 +93,7 @@
 #include "TotalEnergy.h"
 #include "TotalEnergyFlow.h"
 #include "TotalEnergyFlowNoElast.h"
+#include "TotalEnergyFlowNoElastNoElec.h"
 #include "BulkEnergy.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
@@ -239,6 +240,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergy);
   registerPostprocessor(TotalEnergyFlow);
   registerPostprocessor(TotalEnergyFlowNoElast);
+  registerPostprocessor(TotalEnergyFlowNoElastNoElec);
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(CoupledEnergy);
   registerPostprocessor(ThermalEnergy);

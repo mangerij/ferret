@@ -11,7 +11,6 @@ template<>
 InputParameters validParams<ScreenedBC>()
 {
     InputParameters params = validParams<IntegratedBC>();
-    params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
     params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
     params.addRequiredParam<Real>("permittivity", "permittivity");
     params.addRequiredParam<Real>("lambda", "lambda");
@@ -23,7 +22,6 @@ InputParameters validParams<ScreenedBC>()
 
 ScreenedBC::ScreenedBC(const InputParameters & parameters) :
   IntegratedBC(parameters),
-  _component(getParam<unsigned int>("component")),
   _potential_int_grad(coupledGradient("potential_int")),
   _permittivity(getParam<Real>("permittivity")),
   _lambda(getParam<Real>("lambda")),
