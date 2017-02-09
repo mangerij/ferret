@@ -1,31 +1,30 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 10
-  ny = 10
-  nz = 10
-  xmin = -5
-  xmax = 5
-  ymin = -5
-  ymax = 5
-  zmin = -5
-  zmax = 5
+  nx = 15
+  ny = 15
+  nz = 15
+  xmin = -8
+  xmax = 8
+  ymin = -8
+  ymax = 8
+  zmin = -8
+  zmax = 8
   elem_type = HEX8
 []
 
 [GlobalParams]
-  alpha1 = 1.27e-39 #units Nn/nm^3aC^3
-  alpha2 = 1.76e-72
-  alpha3 = 3.73e-108
-  alpha4 = -5.91e-109
-  alpha5 = -6.51e-109
-  alpha6 = 0
-  x1 = -4.18e-36
-  x2 = -3.69e-71
-  x3 = -2.51e-70
-  x4 = 1.21e-34
-  x5 = 2.41e-69
-  x6 = 6.49e-69
+  alpha1 = -0.1524
+  alpha2 = 1.76  
+  alpha3 = 3.73
+  alpha4 = -.591
+  alpha5 = -.651
+  x1 = -4.18
+  x2 = -36.9
+  x3 = -251
+  x4 = 121
+  x5 = 2410
+  x6 = 6490
   len_scale = 1.0
 			# find what MooseObject(BulkEnergy) uses these, and convert to PSTO
   G110 = 0.173
@@ -147,24 +146,6 @@
 []
 
 
-[Postprocessors]
-  [./bulk_energy]
-   type = BulkEnergyPSTO
-   execute_on = 'initial timestep_end'
-   block = '0'
-  [../]
-  [./wall_energy]
-   type = WallEnergy
-   execute_on = 'initial timestep_end'
-   block = '0'
-  [../]
-  [./electrostatic_energy]
-   type = ElectrostaticEnergy
-   execute_on = 'initial timestep_end'
-   block = '0'
-  [../]
-[]
-
 [Preconditioning]
   [./smp]
     type = SMP
@@ -190,7 +171,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
   dtmax = 0.25
-  num_steps = 5
+  num_steps = 200
 []
 
 [Outputs]

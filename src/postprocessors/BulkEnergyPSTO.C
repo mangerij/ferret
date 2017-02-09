@@ -33,29 +33,28 @@ BulkEnergyPSTO::BulkEnergyPSTO(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
-  _polar_z(coupledValue("polar_z")),
   _alpha1(getParam<Real>("alpha1")),
   _alpha2(getParam<Real>("alpha2")),
   _alpha3(getParam<Real>("alpha3")),
   _alpha4(getParam<Real>("alpha4")),
   _alpha5(getParam<Real>("alpha5")),
-  _alpha6(getParam<Real>("alpha6")),
-  _len_scale(getParam<Real>("len_scale"))
+  _x1(getParam<Real>("x1")),
+  _x2(getParam<Real>("x2")),
+  _x3(getParam<Real>("x3")),
+  _x4(getParam<Real>("x4")),
+  _x5(getParam<Real>("x5")),
+  _x6(getParam<Real>("x6")),
+  _epsilon(getParam<Real>("epsilon")),
+  _T(getParam<Real>("T")),
+  _Tc(getParam<Real>("Tc"))
+
 {
 }
 
 Real
 BulkEnergyPSTO::computeQpIntegral()
 {
-  return (
-    _alpha1 * (std::pow(_polar_x[_qp], 2) + std::pow(_polar_y[_qp], 2) + std::pow(_polar_z[_qp] ,2))
-  + _alpha2 * (std::pow(_polar_x[_qp], 4) + std::pow(_polar_y[_qp], 4) + std::pow(_polar_z[_qp], 4))
-    + _alpha3 * (std::pow(_polar_x[_qp], 2) * std::pow(_polar_y[_qp], 2)+
-	      std::pow(_polar_y[_qp], 2) * std::pow(_polar_z[_qp], 2)+
-	      std::pow(_polar_x[_qp], 2) * std::pow(_polar_z[_qp], 2))+
-    _alpha4 * (std::pow(_polar_x[_qp], 6) + std::pow(_polar_y[_qp], 6) + std::pow(_polar_z[_qp], 6))+
-    _alpha5 * (std::pow(_polar_x[_qp], 4) * (std::pow(_polar_y[_qp], 2) + std::pow(_polar_z[_qp], 2))
-	      + std::pow(_polar_y[_qp], 4) * (std::pow(_polar_z[_qp], 2) + std::pow(_polar_x[_qp], 2))
-	      + std::pow(_polar_z[_qp], 4) * (std::pow(_polar_x[_qp], 2) + std::pow(_polar_y[_qp], 2)))+
-	  _alpha6 * (pow(_polar_x[_qp], 2) * std::pow(_polar_y[_qp], 2) * std::pow(_polar_z[_qp], 2))) * std::pow(_len_scale,3);
+  return 
+  _alpha1 * (_T-_Tc) * (std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0)) + _alpha2 * (std::pow(_polar_x[_qp], 4.0) +std::pow(_polar_y[_qp], 4.0)) + _alpha3 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0) + _alpha4 * (std::pow(_polar_x[_qp], 6.0) + std::pow(_polar_y[_qp], 6.0)) + _alpha5 * (std::pow(_polar_x[_qp], 4.0) * std::pow(_polar_y[_qp], 2.0) + std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 4.0)) + (_x1 * (std::pow(_polar_x[_qp], 2.0) +std::pow(_polar_y[_qp], 2.0)) + _x2 * (std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0)) + _x3 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 4.0)) * _epsilon + (_x4 * (std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0)) + _x5 * (std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0))+ _x6 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0)) * _epsilon * _epsilon; 
+
 }
