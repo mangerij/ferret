@@ -122,7 +122,7 @@ SurfaceMechanicsBC::computeQpRankFourRotation(unsigned int tensor_component) ///
                   a(i, j, k, l) = T1(i) * T1(j) * T1(k) * T1(l);
                 else if (tensor_component == 22)
                   a(i, j, k, l) = T2(i) * T2(j) * T2(k) * T2(l);
-                else if (tensor_component = 12)
+                else if (tensor_component == 12)
                   a(i, j, k, l) = T1(i) * T1(j) * T2(k) * T2(l) + T2(i) * T2(j) * T1(k) * T1(l);
                 else if (tensor_component == 33)
                   a(i, j, k, l) = T1(i) * T2(j) * T1(k) * T2(l) + T2(i) * T1(j) * T2(k) * T1(l) + T1(i) * T2(j) * T2(k) * T1(l) + T2(i) * T1(j) * T1(k) * T2(l);
