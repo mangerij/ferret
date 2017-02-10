@@ -47,7 +47,7 @@
 #include "ScreenedBC.h"
 #include "StressFreeBC.h"
 #include "StressBC.h"
-#include "ExtrapBC.h"
+//#include "ExtrapBC.h"
 //#include "MatchedGradValueBC.h"
 
 //Initial Conditions
@@ -175,7 +175,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(ScreenedBC);
   registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
-  registerBoundaryCondition(ExtrapBC);
+  //registerBoundaryCondition(ExtrapBC);
  // registerBoundaryCondition(MatchedGradValueBC);
 
   ///AuxKernels:
