@@ -26,7 +26,6 @@
   x5 = 2410
   x6 = 6490
   len_scale = 1.0
-			# find what MooseObject(BulkEnergy) uses these, and convert to PSTO
   G110 = 0.173
   G11/G110 = 2.0
   G12/G110 = 0
@@ -171,7 +170,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
   dtmax = 0.25
-  num_steps = 200
+  num_steps = 100
 []
 
 [Outputs]
