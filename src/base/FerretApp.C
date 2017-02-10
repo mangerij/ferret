@@ -47,6 +47,7 @@
 #include "ScreenedBC.h"
 #include "StressFreeBC.h"
 #include "StressBC.h"
+#include "ExtrapBC.h"
 //#include "MatchedGradValueBC.h"
 
 //Initial Conditions
@@ -80,6 +81,8 @@
 #include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
 #include "DepolEnergy.h"
+#include "SemiconductorChargeCarriers.h"
+#include "ThomasFermiPotential.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -172,6 +175,7 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(ScreenedBC);
   registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
+  registerBoundaryCondition(ExtrapBC);
  // registerBoundaryCondition(MatchedGradValueBC);
 
   ///AuxKernels:
@@ -219,6 +223,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ConstantLatticeMismatch);
   registerKernel(AnisotropyEnergy);
   registerKernel(DepolEnergy);
+  registerKernel(ThomasFermiPotential);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
@@ -227,6 +232,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
   registerKernel(CoeffParamDiffusion);
+  registerKernel(SemiconductorChargeCarriers);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
