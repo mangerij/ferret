@@ -28,11 +28,18 @@ protected:
 
   virtual Real computeQpJacobian();
 
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
 private:
    const unsigned int _potential_int_var;
    const VariableValue & _potential_int;
+   const Real _q;
+   const Real _kT;
+   const Real _NA;
+   const Real _NC;
+   const Real _NV;
+   const Real _EA;
+   const Real _EC;
+   const Real _EV;
+   const Real _EF;
    const Real _len_scale;
 
 };
