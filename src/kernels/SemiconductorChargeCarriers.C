@@ -57,8 +57,5 @@ SemiconductorChargeCarriers::computeQpResidual()
 Real
 SemiconductorChargeCarriers::computeQpJacobian()
 {
-  return 0.0;
-  //-((q^2 (NA Sech[(q (EA - EF - \[Phi]))/(2 kT)]^2 + NC Sech[(q (EC - EF - \[Phi]))/(2 kT)]^2 + NV Sech[(q (EF - EV + \[Phi]))/(2 kT)]^2))/(4 kT));
+  return - _phi[_j][_qp] * _test[_i][_qp] * _q * _q * (1.0 / _kT) * (_NA * std::exp(_q * (_EA - _EF - _potential_int[_qp]) / _kT ) * std::pow((std::exp(_q * (_EA - _EF - _potential_int[_qp]) / _kT ) + 1), -2.0) - _NC * std::exp(_q * (_EC - _EF - _potential_int[_qp]) / _kT ) * std::pow((std::exp(_q * (_EC - _EF - _potential_int[_qp]) / _kT ) + 1), -2.0) - _NV * std::exp(_q * (_EV - _EF - _potential_int[_qp]) / _kT ) * std::pow((std::exp(_q * (_EV - _EF - _potential_int[_qp]) / _kT ) + 1), -2.0));
 }
-
-
