@@ -83,6 +83,7 @@
 #include "DepolEnergy.h"
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
+#include "ThomasFermiTerm.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -224,6 +225,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(AnisotropyEnergy);
   registerKernel(DepolEnergy);
   registerKernel(ThomasFermiPotential);
+  registerKernel(ThomasFermiTerm);
+
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);

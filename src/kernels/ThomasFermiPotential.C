@@ -35,6 +35,6 @@ ThomasFermiPotential::computeQpResidual()
 Real
 ThomasFermiPotential::computeQpJacobian()
 {
-  return _TFconstant * _potential_int[_qp] * _phi[_j][_qp];
+  return _TFconstant * _potential_int[_qp] * _phi[_j][_qp] * _test[_i][_qp];
 }
 

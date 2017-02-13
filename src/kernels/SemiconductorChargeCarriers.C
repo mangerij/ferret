@@ -52,7 +52,7 @@ SemiconductorChargeCarriers::computeQpResidual()
   Real pp = _NV * (1 - std::pow((std::exp(_q * (_EV - _EF - _potential_int[_qp]) / _kT ) + 1), -1.0));
   Real NAm = _NA * std::pow((std::exp(_q * (_EA - _EF - _potential_int[_qp]) / _kT ) + 1), -1.0);
   Real rho = _q * ( - nm + pp - NAm);
-  return rho * _test[_i][_qp];
+  return rho * _test[_i][_qp]; //might be off by a minus sign...
 }
 Real
 SemiconductorChargeCarriers::computeQpJacobian()
