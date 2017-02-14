@@ -90,6 +90,7 @@
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
+#include "ComputePhotostrictiveTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -125,8 +126,8 @@ FerretApp::FerretApp(const InputParameters & parameters) :
   Moose::registerObjects(_factory);
   Moose::associateSyntax(_syntax, _action_factory);
 
-  // ModulesApp::registerObjects(_factory);
-  // ModulesApp::associateSyntax(_syntax, _action_factory);
+  // ModulesApp::registerObjects(_factory);  //uncomment this to activate all modules
+  // ModulesApp::associateSyntax(_syntax, _action_factory); 
 
   TensorMechanicsApp::registerObjects(_factory);
   TensorMechanicsApp::associateSyntax(_syntax, _action_factory);
@@ -261,6 +262,7 @@ FerretApp::registerObjects(Factory & factory)
   ///Materials
   ///registerMaterial(LinearFerroelectricMaterial); //deprecated
   registerMaterial(ComputeElectrostrictiveTensor);
+  registerMaterial(ComputePhotostrictiveTensor);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);
