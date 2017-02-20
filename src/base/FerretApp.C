@@ -88,6 +88,9 @@
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
 
+//Markers
+#include "PolarizationNWEMarker.h"
+
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputePhotostrictiveTensor.h"
@@ -127,7 +130,7 @@ FerretApp::FerretApp(const InputParameters & parameters) :
   Moose::associateSyntax(_syntax, _action_factory);
 
   // ModulesApp::registerObjects(_factory);  //uncomment this to activate all modules
-  // ModulesApp::associateSyntax(_syntax, _action_factory); 
+  // ModulesApp::associateSyntax(_syntax, _action_factory);
 
   TensorMechanicsApp::registerObjects(_factory);
   TensorMechanicsApp::associateSyntax(_syntax, _action_factory);
@@ -258,6 +261,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(GrainSize);
   registerPostprocessor(DepolarizationEnergy);
 
+  //Markers
+  registerMarker(PolarizationNWEMarker);
 
   ///Materials
   ///registerMaterial(LinearFerroelectricMaterial); //deprecated
