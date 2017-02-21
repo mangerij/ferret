@@ -89,6 +89,7 @@
 #include "EulerSkyrmionPCubeTerm.h"
 #include "EulerSkyrmionThetaTerm.h"
 #include "EulerSkyrmionThetaKappaTerm.h"
+#include "AnisotropicElectrostatics.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -236,6 +237,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(DepolEnergy);
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
+  registerKernel(AnisotropicElectrostatics);
 
   registerKernel(EulerSkyrmionPTerm);
   registerKernel(EulerSkyrmionPCubeTerm);
