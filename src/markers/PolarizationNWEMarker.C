@@ -38,12 +38,12 @@ PolarizationNWEMarker::PolarizationNWEMarker(const InputParameters & parameters)
     _u(coupledValue("variable")),
     _Bulk_Polar(getParam<Real>("Bulk_Polar"))
 {
-  if (_refine_set && _coarsen_set)
-  {
-    Real diff = _refine - _coarsen;
-    if ((diff > 0 && _invert) || (diff < 0 && !_invert))
-      mooseError2("Invalid combination of refine, coarsen, and invert values specified");
-  }
+//  if (_refine_set && _coarsen_set)
+//  {
+//    Real diff = _refine - _coarsen;
+//   if ((diff > 0 && _invert) || (diff < 0 && !_invert))
+//      mooseError2("Invalid combination of refine, coarsen, and invert values specified");
+//  }
 }
 
 Marker::MarkerValue

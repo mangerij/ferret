@@ -171,44 +171,6 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-
-  #[./component_iny]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
-
-  #[./component_z]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
-  #
-  #[./componentxplus]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
-  #
-  #[./componentxminus]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
-  #
-  #[./componentyplus]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
-  #[./componentyminus]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
-  #
-  #[./componentzplus]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
-  #[./componentzminus]
-  #  order = CONSTANT
-  #  family = MONOMIAL
-  #[../]
 []
 
 
@@ -224,53 +186,6 @@
     variable = PolarMag
     block = '1'
   [../]
-
-  #[./NA_y]
-  #  type = NeighborAngleMarker
-  #  variable = component_iny
-  #  component = 1
-  #[../]
-  #[./NA_z]
-  #  type = NeighborAngleMarker
-  #  variable = component_z
-  #  component = 2
-  #[../]
-  #
-  #[./NA_x_plus]
-  #  type = NeighborAngleMarker
-  #  variable = componentxplus
-  #  component = 0
-  #[../]
-  #
-  #[./NA_x_minus]
-  #  type = NeighborAngleMarker
-  #  variable = componentxminus
-  #  component = 1
-  #[../]
-  #
-  #[./NA_y_plus]
-  #  type = NeighborAngleMarker
-  #  variable = componentyplus
-  #  component = 2
-  #[../]
-  #
-  #[./NA_y_minus]
-  #  type = NeighborAngleMarker
-  #  variable = componentyminus
-  #  component = 3
-  #[../]
-  #
-  #[./NA_z_plus]
-  #  type = NeighborAngleMarker
-  #  variable = componentzplus
-  #  component = 4
-  #[../]
-  #
-  #[./NA_z_minus]
-  #  type = NeighborAngleMarker
-  #  variable = componentzminus
-  #  component = 5
-  #[../]
 
   [./matl_e11]
     type = RankTwoAux
