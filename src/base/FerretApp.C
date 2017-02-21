@@ -84,6 +84,10 @@
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
 #include "ThomasFermiTerm.h"
+#include "EulerSkyrmionPTerm.h"
+#include "EulerSkyrmionPCubeTerm.h"
+#include "EulerSkyrmionThetaTerm.h"
+#include "EulerSkyrmionThetaKappaTerm.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -231,6 +235,10 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
 
+  registerKernel(EulerSkyrmionPTerm);
+  registerKernel(EulerSkyrmionPCubeTerm);
+  registerKernel(EulerSkyrmionThetaTerm);
+  registerKernel(EulerSkyrmionThetaKappaTerm);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
