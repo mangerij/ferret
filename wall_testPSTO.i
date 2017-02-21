@@ -1,20 +1,20 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 15
-  ny = 15
-  nz = 15
-  xmin = -8
-  xmax = 8
-  ymin = -8
-  ymax = 8
-  zmin = -8
-  zmax = 8
+  nx = 20
+  ny = 20
+  nz = 20
+  xmin = -10
+  xmax = 10
+  ymin = -10
+  ymax = 10
+  zmin = -10
+  zmax = 10
   elem_type = HEX8
 []
 
 [GlobalParams]
-  alpha1 = -0.1524
+  alpha1 = 0.00126
   alpha2 = 1.76  
   alpha3 = 3.73
   alpha4 = -.591
@@ -33,8 +33,8 @@
   G44P/G110 = 1.0
   T = 0.0
   Tc = 120.0
-  epsilon = .001
-  permittivity = 0.5843763
+  epsilon = 0.0
+  permittivity = 0.00885
   polar_x = polar_x
   polar_y = polar_y
   potential_int = potential_int
@@ -48,8 +48,9 @@
     family = LAGRANGE
     block = '0'
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.05
+      type = RandomIC
+      min = -0.1e-5
+      max = 0.1e-5
     [../]
   [../]
   [./polar_y]
@@ -57,17 +58,24 @@
     family = LAGRANGE
     block = '0'
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.05
+      type = RandomIC
+      min = -0.1e-5
+      max = 0.1e-5
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    block = '0'
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.1e-5
+      max = 0.1e-5
     [../]
   [../]
   [./potential_int]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = ConstantIC
-      value = 0.0005
-    [../]
   [../]
 []
 
@@ -126,18 +134,17 @@
      variable=polar_y
     time_scale = 1.0
   [../]
+  [./polar_z_time]
+     type=TimeDerivativeScaled
+     variable=polar_z
+    time_scale = 1.0
+  [../]
 []
 
 [BCs]
   [./potential_cube5]
     type = DirichletBC
     boundary = 'front'
-    value = 0.0002
-    variable = potential_int
-  [../]
-  [./potential_cube6]
-    type = DirichletBC
-    boundary = 'back'
     value = 0.0002
     variable = potential_int
   [../]
@@ -149,9 +156,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason '
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot'
-    petsc_options_value = '    121            1e-8      1e-8    gamg           1e-50     '
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type  -pc_hypre_type  '
+    petsc_options_value = '    121               1e-10          1e-8      1e-6           hypre      boomeramg   '
   [../]
 []
 
@@ -159,22 +165,22 @@
   type = Transient
   [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.35
+    dt = 0.2
     optimal_iterations = 4
     growth_factor = 1.4
     linear_iteration_ratio = 100
     cutback_factor =  0.55
-    num_steps = 100
+    num_steps = 2000
   [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
-  dtmax = 0.25
+  dtmax = 0.5
   num_steps = 100
 []
 
 [Outputs]
-  print_linear_residuals = true
+  print_linear_residuals = false
   print_perf_log = true
   [./out]
     type = Exodus
