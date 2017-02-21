@@ -37,20 +37,20 @@ EulerSkyrmionThetaTerm::EulerSkyrmionThetaTerm(const InputParameters & parameter
 Real
 EulerSkyrmionThetaTerm::computeQpResidual()
 {
-  return _test[_i][_qp] * _xi0 * _xi0 * _P[_qp] * _second_u[_qp](0,0);
+  return - _test[_i][_qp] * _xi0 * _xi0 * _P[_qp] * _second_u[_qp](0,0);
 }
 
 Real
 EulerSkyrmionThetaTerm::computeQpJacobian()
 {
-  return _test[_i][_qp] * _xi0 * _xi0 * _P[_qp] * _second_phi[_j][_qp](0,0);
+  return - _test[_i][_qp] * _xi0 * _xi0 * _P[_qp] * _second_phi[_j][_qp](0,0);
 }
 
 Real
 EulerSkyrmionThetaTerm::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _P_var)
-    return _test[_i][_qp] * _xi0 * _xi0 * _phi[_j][_qp] * _second_u[_qp](0,0);
+    return - _test[_i][_qp] * _xi0 * _xi0 * _phi[_j][_qp] * _second_u[_qp](0,0);
   else
     return 0.0;
 }

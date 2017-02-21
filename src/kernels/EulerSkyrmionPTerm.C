@@ -37,11 +37,11 @@ EulerSkyrmionPTerm::EulerSkyrmionPTerm(const InputParameters & parameters)
 Real
 EulerSkyrmionPTerm::computeQpResidual()
 {
-  return _test[_i][_qp] * _xi0 * _xi0 * _second_u[_qp](0,0);
+  return - _test[_i][_qp] * _xi0 * _xi0 * _second_u[_qp](0,0);
 }
 
 Real
 EulerSkyrmionPTerm::computeQpJacobian()
 {
-  return _test[_i][_qp] * _xi0 * _xi0 * _second_phi[_j][_qp](0,0);
+  return - _test[_i][_qp] * _xi0 * _xi0 * _second_phi[_j][_qp](0,0);
 }
