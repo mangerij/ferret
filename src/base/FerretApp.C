@@ -40,6 +40,7 @@
 #include "Intensity.h"
 #include "OldVar.h"
 #include "DielectricTensor.h"
+#include "NormalizedWallEnergyDensity.h"
 
 
 //Boundary Conditions
@@ -214,6 +215,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(AngleAux);
   registerAux(OldVar);
   registerAux(DielectricTensor);
+  registerAux(NormalizedWallEnergyDensity);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
