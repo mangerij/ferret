@@ -44,7 +44,7 @@ Real
 EulerSkyrmionPDepolTerm::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _theta_var)
-    return _test[_i][_qp] * _edep * std::sin(_theta[_qp]);
+    return _test[_i][_qp] * _phi[_j][_qp] * _edep * std::sin(_theta[_qp]);
   else
     return 0.0;
 }
