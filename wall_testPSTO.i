@@ -33,7 +33,7 @@
   G44P/G110 = 1.0
   T = 0.0
   Tc = 120.0
-  epsilon = 0.0
+  epsilon = -0.01
   permittivity = 0.00885
   polar_x = polar_x
   polar_y = polar_y
@@ -170,13 +170,12 @@
     growth_factor = 1.4
     linear_iteration_ratio = 100
     cutback_factor =  0.55
-    num_steps = 2000
+    num_steps = 1000
   [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
   dtmax = 0.5
-  num_steps = 100
 []
 
 [Outputs]
@@ -185,7 +184,7 @@
   [./out]
     type = Exodus
     file_base = out_wall_test
-    output_initial = true
+    output_initial = false
     elemental_as_nodal = true
   [../]
 []
