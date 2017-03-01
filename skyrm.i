@@ -1,7 +1,6 @@
 
 [Mesh]
   file = exodus_disk_r8_h1.e
-  uniform_refine = 1
 []
 
 [MeshModifiers]
@@ -38,8 +37,8 @@
   alpha123 = 0.0
 
   G110 = 0.141
-  G11/G110 = 0.0
-  G12/G110 = 0
+  G11/G110 = 0.0 #this is here to somehow prevent P_z "ringing" problems on the side...
+  G12/G110 = 0.0 #perhaps this allows for div P =0?
   G44/G110 = 1.0
   G44P/G110 = 1.0
 
@@ -48,32 +47,45 @@
   polar_z = polar_z
 []
 
+[Functions]
+  #This is a skyrmion.
+  [./parsed_function_x]
+    type = ParsedFunction
+    value = '-(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*sin(atan(y/x))'
+  [../]
+  [./parsed_function_y]
+    type = ParsedFunction
+    value = '(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*cos(atan(y/x))'
+  [../]
+  [./parsed_function_z]
+    type = ParsedFunction
+    value = '(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*cos(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))'
+  [../]
+[]
+
 [Variables]
   [./polar_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.2e-4
-      max = 0.2e-4
+      type = FunctionIC
+      function = parsed_function_x
     [../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.2e-4
-      max = 0.2e-4
+      type = FunctionIC
+      function = parsed_function_y
     [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.2e-4
-      max = 0.2e-4
+      type = FunctionIC
+      function = parsed_function_z
     [../]
   [../]
 []
@@ -114,24 +126,12 @@
      component = 2
   [../]
 
-  [./polar_xEstrong]
-     type = PolarElectricEStrong
-     variable = polar_x
-  [../]
-  [./polar_yEstrong]
-     type = PolarElectricEStrong
-     variable = polar_y
-  [../]
-  [./polar_zEstrong]
-     type = PolarElectricEStrong
-     variable = polar_z
-  [../]
 
   [./anis_x]
     type = AnisotropyEnergy
     variable = polar_x
     component = 0
-    K = 0.0565 #This sign seems to be right.
+    K = 0.0565 #minus means IN-PLANE
   [../]
   [./anis_y]
     type = AnisotropyEnergy
@@ -140,11 +140,41 @@
     K = 0.0565
   [../]
 
+  ##Electrostatics
+
+  #PdotE
+  #[./polar_electric_px]
+  #   type = PolarElectricPStrong
+  #   variable = polar_x
+  #   component = 0
+  #[../]
+  #[./polar_electric_py]
+  #   type = PolarElectricPStrong
+  #   variable = polar_y
+  #   component = 1
+  #[../]
+  #[./polar_electric_pz] #  when K > 0, turning this block off will get the two band state
+  #   type = PolarElectricPStrong
+  #   variable = polar_z
+  #   component = 2
+  #[../]
+
+  ##Poisson problem:
+  #[./FE_E_int]
+  #   type = Electrostatics
+  #   variable = potential_int
+  #   block = '1'
+  #   permittivity = 3.54
+  #[../]
+  #[./polar_x_electric_E]
+  #   type = PolarElectricEStrong
+  #   variable = potential_int
+  #[../]
 
   [./depol_z]
     type = DepolEnergy
-    permitivitty = 0.008854187
-    lambda = 0.0007 #sign I believe affects direction of the field
+    permitivitty = 0.00885
+    lambda = 0.00175 #this needs to be adjusted as a function of thickness.
     variable = polar_z
     avePz = avePz
   [../]
@@ -182,24 +212,32 @@
     value = 0.0
     boundary = 'center_node_1 center_node_2 center_node_3 center_node_4'
   [../]
-  [./side_neumann_x]
-    variable = 'polar_x'
-    type = NeumannBC
-    value = 0.0
-    boundary = '1'
-  [../]
-  [./side_neumann_y]
-    variable = 'polar_y'
-    type = NeumannBC
-    value = 0.0
-    boundary = '1'
-  [../]
-  [./side_neumann_z]
-    variable = 'polar_z'
-    type = NeumannBC
-    value = 0.0
-    boundary = '1'
-  [../]
+
+ # [./center_pol_z]
+ #   type = DirichletBC
+ #   variable = 'polar_z'
+ #   value = 0.65
+ #   boundary = 'center_node_1 center_node_2 center_node_3 center_node_4'
+ # [../]
+
+ # [./side_neumann_x]
+ #   variable = 'polar_x'
+ #   type = NeumannBC
+ #   value = 0.0
+ #   boundary = '1'
+ # [../]
+ # [./side_neumann_y]
+ #   variable = 'polar_y'
+ #   type = NeumannBC
+ #   value = 0.0
+ #   boundary = '1'
+ # [../]
+ # [./side_Neumann_z]
+ #   variable = 'polar_z'
+ #   type = NeumannBC
+ #   value = 0.0
+ #   boundary = '1'
+ # [../]
 []
 
 
@@ -225,7 +263,7 @@
     type = SMP
     full = true
     petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    250              1e-10      1e-8      1e-8      bjacobi   '
+    petsc_options_value = '    250              1e-10      1e-8      1e-6      bjacobi   '
   [../]
 []
 
@@ -238,7 +276,7 @@
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
-    cutback_factor =  0.8
+    cutback_factor =  0.9
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
@@ -252,7 +290,7 @@
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
-    file_base = out_skyrm
+    file_base = out_ic_skyrm_L00175
     elemental_as_nodal = true
   [../]
 []
