@@ -65,6 +65,7 @@
 #include "WallEnergyDerivative.h"
 #include "RotatedWallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
+#include "BulkEnergyDerivativePSTO.h"
 #include "RotatedBulkEnergyDerivativeSixth.h"
 #include "RotatedBulkEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
@@ -114,6 +115,7 @@
 #include "TotalEnergyFlowNoElast.h"
 #include "TotalEnergyFlowNoElastNoElec.h"
 #include "BulkEnergy.h"
+#include "BulkEnergyPSTO.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
@@ -227,6 +229,7 @@ FerretApp::registerObjects(Factory & factory)
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
+  registerKernel(BulkEnergyDerivativePSTO);
   registerKernel(RotatedBulkEnergyDerivativeSixth);
   registerKernel(RotatedBulkEnergyDerivative);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
@@ -267,6 +270,7 @@ FerretApp::registerObjects(Factory & factory)
 
   ///Postprocessors
   registerPostprocessor(BulkEnergy);
+  registerPostprocessor(BulkEnergyPSTO);
   registerPostprocessor(BulkEnergyCoupledT);
   registerPostprocessor(WallEnergy);
   ///registerPostprocessor(ChernSimonsNumber);
