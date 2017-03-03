@@ -8,5 +8,7 @@
     type = 'Exodiff'
     input = 'PSTOfunc_test.i'
     exodiff = 'out_PSTOfunc_test.e'
+    use_old_floor = true
+    abs_zero = 1.0
   [../]
 []
