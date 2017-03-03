@@ -3,8 +3,8 @@
  * @author J. Mangeri <john.mangeri@uconn.edu> and S. Churchill <steven.churchill@uconn.edu>
  * @date   Jun 1 12:00:20 2015
  *
- * @brief
- *
+ * Bulk energy function derived from first-principles calculations 
+ * for more information, see Mangeri et al npj Computational Materials 2, 16020 (2016)
  *
  */
 
@@ -37,6 +37,18 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
 
-  const Real _alpha1, _alpha2, _alpha3, _alpha4, _alpha5,_x1, _x2, _x3, _x4, _x5, _x6, _epsilon, _T, _Tc;
+  const Real _alpha1;
+  const Real _alpha2;
+  const Real _alpha3;
+  const Real _alpha4;
+  const Real _alpha5;
+  const Real _x1;
+  const Real _x2;
+  const Real _x3;
+  const Real _x4;
+  const Real _x5;
+  const Real _x6;
+  const Real _epsilon;
+  const Real _T;
 };
 #endif //BULKENERGYDERIVATIVEPSTO_H

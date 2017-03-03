@@ -32,7 +32,6 @@
   G44/G110 = 1.0
   G44P/G110 = 1.0
   T = 0.0
-  Tc = 120.0
   epsilon = 0.02
   permittivity = 0.5843763
   polar_x = polar_x
