@@ -17,7 +17,7 @@
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
-#include "BandGapAuxTiO2.h" //should rework this to be a "general" gap kernel
+#include "BandGapAuxTiO2.h" //should rework these to be a "general" gap kernel
 #include "ExFieldAux.h"
 #include "EyFieldAux.h"
 #include "EzFieldAux.h"
@@ -42,6 +42,7 @@
 #include "DielectricTensor.h"
 #include "NormalizedWallEnergyDensity.h"
 #include "DivP.h"
+#include "PiezoelectricApprox.h"
 
 
 //Boundary Conditions
@@ -225,6 +226,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(DielectricTensor);
   registerAux(NormalizedWallEnergyDensity);
   registerAux(DivP);
+  registerAux(PiezoelectricApprox);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
