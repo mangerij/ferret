@@ -43,6 +43,7 @@
 #include "NormalizedWallEnergyDensity.h"
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
+#include "RefractiveIndex.h"
 
 
 //Boundary Conditions
