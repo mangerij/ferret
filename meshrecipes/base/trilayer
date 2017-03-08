@@ -1,0 +1,50 @@
+reset
+create brick x 12 y 12 z 8
+create brick x 12 y 12 z 8
+create brick x 12 y 12 z 8
+volume 2 move 0 0 8
+volume 3 move 0 0 -8
+compress all
+merge surface all with surface all
+
+volume 1 2 3 size 0.75
+volume 1 2 3 scheme sweep
+mesh volume 1 2 3
+
+block 1 volume 2 3
+block 2 volume 1
+
+#block 1 (FE):
+#bottom
+sideset 1 surface 14
+
+#top
+sideset 2 surface 7
+
+#+/- y
+sideset 3 surface 9 15
+sideset 4 surface 11 17
+
+#+/- x
+sideset 5 surface 10 16
+sideset 6 surface 12 18
+
+#interface top
+sideset 7 surface 1
+
+#interface bottom
+sideset 8 surface 2
+
+#block 2 (dielectric)
+
+#+/- y
+sideset 9 surface 3
+sideset 10 surface 5
+
+#+/- x
+sideset 11 surface 4
+sideset 12 surface 6
+
+block all element type hex8
+set large exodus file off
+export Genesis "./exodus_trilayer_12_12_8.e" dimension 3 block all overwrite
