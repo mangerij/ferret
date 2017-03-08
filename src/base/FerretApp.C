@@ -228,6 +228,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(NormalizedWallEnergyDensity);
   registerAux(DivP);
   registerAux(PiezoelectricApprox);
+  registerAux(RefractiveIndex);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);

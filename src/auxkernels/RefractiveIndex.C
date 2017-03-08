@@ -50,7 +50,7 @@ RefractiveIndex::computeValue()
 {
   RotationTensor R(_Euler_angles);
   // Assume that n_e is along the z-axis for now
-  // note the birefringence is quantified by _ne - _no
+  // note the regular birefringence is quantified by _ne - _no
   RealVectorValue n(_no, _no, _ne); 
 
   // Rotate the indicatrix such that it is aligned with the crystallographic direction A_i = R_{ij} A_j
