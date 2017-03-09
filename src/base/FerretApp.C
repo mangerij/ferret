@@ -44,6 +44,7 @@
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
 #include "RefractiveIndex.h"
+#include "SemiconductingChargeCarriersAux.h"
 
 
 //Boundary Conditions
@@ -229,6 +230,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(DivP);
   registerAux(PiezoelectricApprox);
   registerAux(RefractiveIndex);
+  registerAux(SemiconductingChargeCarriersAux);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
