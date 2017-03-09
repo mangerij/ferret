@@ -126,7 +126,7 @@
 #include "CoupledEnergyCheckShear.h"
 #include "GrainSize.h"
 #include "DepolarizationEnergy.h"
-#include "AnisotropyEnergy.h"
+#include "AnisotropicEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -292,7 +292,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(CoupledEnergyCheckShear);
   registerPostprocessor(GrainSize);
   registerPostprocessor(DepolarizationEnergy);
-  registerPostprocessor(AnisotropyEnergy);
+  registerPostprocessor(AnisotropicEnergy);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
