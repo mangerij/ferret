@@ -1,7 +1,8 @@
 /**
- * @file   TotalEnergy.h
+ * @file   TotalEnergy.C
  * @author S. Gu <sgu@anl.gov>
- * @date   Thu Aug 15 15:48:51 2013
+ * @modified J. Mangeri <john.mangeri@uconn.edu>
+ * @date   Thu Mar 3 2017
  *
  * @brief
  *
@@ -30,7 +31,7 @@ public:
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _bulk_energy, & _wall_energy,& _bulk_energy_fourth, & _electrostatic_energy, & _elastic_energy, & _coupled_energy;
+  const PostprocessorValue & _Fbulk, & _Fwall;
 };
 
 #endif

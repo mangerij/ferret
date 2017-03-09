@@ -4,6 +4,6 @@
     input = 'PTOtest_fluc.i'
     exodiff = 'outPTOchunk_test_fluct.e'
     use_old_floor = true
-    abs_zero = 1.0e-2 #one should wonder why this is so erratic... is it the time step size? rtol?
+    abs_zero = 1.0 #one should wonder why this is so erratic... is it the time step size? rtol?
   [../]
 []

@@ -17,7 +17,7 @@
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
-#include "BandGapAuxTiO2.h" //should rework this to be a "general" gap kernel
+#include "BandGapAuxTiO2.h" //should rework these to be a "general" gap kernel
 #include "ExFieldAux.h"
 #include "EyFieldAux.h"
 #include "EzFieldAux.h"
@@ -41,6 +41,10 @@
 #include "OldVar.h"
 #include "DielectricTensor.h"
 #include "NormalizedWallEnergyDensity.h"
+#include "DivP.h"
+#include "PiezoelectricApprox.h"
+#include "RefractiveIndex.h"
+#include "SemiconductingChargeCarriersAux.h"
 
 
 //Boundary Conditions
@@ -64,6 +68,7 @@
 #include "WallEnergyDerivative.h"
 #include "RotatedWallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
+#include "BulkEnergyDerivativePSTO.h"
 #include "RotatedBulkEnergyDerivativeSixth.h"
 #include "RotatedBulkEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
@@ -85,6 +90,15 @@
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
 #include "ThomasFermiTerm.h"
+#include "EulerSkyrmionPTerm.h"
+#include "EulerSkyrmionPCubeTerm.h"
+#include "EulerSkyrmionThetaTerm.h"
+#include "EulerSkyrmionThetaKappaTerm.h"
+#include "EulerSkyrmionThetaDepolTerm.h"
+#include "EulerSkyrmionPDepolTerm.h"
+#include "EulerSkyrmionPTempTerm.h"
+
+#include "AnisotropicElectrostatics.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -104,6 +118,7 @@
 #include "TotalEnergyFlowNoElast.h"
 #include "TotalEnergyFlowNoElastNoElec.h"
 #include "BulkEnergy.h"
+#include "BulkEnergyPSTO.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
@@ -111,6 +126,7 @@
 #include "CoupledEnergyCheckShear.h"
 #include "GrainSize.h"
 #include "DepolarizationEnergy.h"
+#include "AnisotropicEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -212,10 +228,15 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(OldVar);
   registerAux(DielectricTensor);
   registerAux(NormalizedWallEnergyDensity);
+  registerAux(DivP);
+  registerAux(PiezoelectricApprox);
+  registerAux(RefractiveIndex);
+  registerAux(SemiconductingChargeCarriersAux);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
+  registerKernel(BulkEnergyDerivativePSTO);
   registerKernel(RotatedBulkEnergyDerivativeSixth);
   registerKernel(RotatedBulkEnergyDerivative);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
@@ -232,7 +253,15 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(DepolEnergy);
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
+  registerKernel(AnisotropicElectrostatics);
 
+  registerKernel(EulerSkyrmionPTerm);
+  registerKernel(EulerSkyrmionPCubeTerm);
+  registerKernel(EulerSkyrmionThetaTerm);
+  registerKernel(EulerSkyrmionThetaKappaTerm);
+  registerKernel(EulerSkyrmionThetaDepolTerm);
+  registerKernel(EulerSkyrmionPDepolTerm);
+  registerKernel(EulerSkyrmionPTempTerm);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
@@ -248,6 +277,7 @@ FerretApp::registerObjects(Factory & factory)
 
   ///Postprocessors
   registerPostprocessor(BulkEnergy);
+  registerPostprocessor(BulkEnergyPSTO);
   registerPostprocessor(BulkEnergyCoupledT);
   registerPostprocessor(WallEnergy);
   ///registerPostprocessor(ChernSimonsNumber);
@@ -262,6 +292,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(CoupledEnergyCheckShear);
   registerPostprocessor(GrainSize);
   registerPostprocessor(DepolarizationEnergy);
+  registerPostprocessor(AnisotropicEnergy);
 
   //Markers
   registerMarker(PolarizationNWEMarker);

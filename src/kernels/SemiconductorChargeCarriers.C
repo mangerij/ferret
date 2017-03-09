@@ -48,14 +48,18 @@ SemiconductorChargeCarriers::SemiconductorChargeCarriers(const InputParameters &
 Real
 SemiconductorChargeCarriers::computeQpResidual()
 {
-  Real nm = _NC * std::pow((std::exp(_q * (_EC - _EF - _potential_int[_qp]) / _kT ) + 1), -1.0);
-  Real pp = _NV * (1 - std::pow((std::exp(_q * (_EV - _EF - _potential_int[_qp]) / _kT ) + 1), -1.0));
-  Real NAm = _NA * std::pow((std::exp(_q * (_EA - _EF - _potential_int[_qp]) / _kT ) + 1), -1.0);
+  Real nm = _NC * std::pow((std::exp(_q * (_EC - _EF - _potential_int[_qp]) / _kT ) + 1.0), -1.0);
+  Real pp = _NV * (1 - std::pow((std::exp(_q * (_EV - _EF - _potential_int[_qp]) / _kT ) + 1.0), -1.0));
+  Real NAm = _NA * std::pow((std::exp(_q * (_EA - _EF - _potential_int[_qp]) / _kT ) + 1.0), -1.0);
   Real rho = _q * ( - nm + pp - NAm);
   return rho * _test[_i][_qp]; //might be off by a minus sign...
 }
 Real
 SemiconductorChargeCarriers::computeQpJacobian()
 {
-  return - _phi[_j][_qp] * _test[_i][_qp] * _q * _q * (1.0 / _kT) * (_NA * std::exp(_q * (_EA - _EF - _potential_int[_qp]) / _kT ) * std::pow((std::exp(_q * (_EA - _EF - _potential_int[_qp]) / _kT ) + 1), -2.0) - _NC * std::exp(_q * (_EC - _EF - _potential_int[_qp]) / _kT ) * std::pow((std::exp(_q * (_EC - _EF - _potential_int[_qp]) / _kT ) + 1), -2.0) - _NV * std::exp(_q * (_EV - _EF - _potential_int[_qp]) / _kT ) * std::pow((std::exp(_q * (_EV - _EF - _potential_int[_qp]) / _kT ) + 1), -2.0));
+  return - _phi[_j][_qp] * _test[_i][_qp] * _q * _q * (1.0 / 4.0*_kT) * (
+    _NA * std::pow(1.0/std::cosh(_q * (_EA - _EF - _potential_int[_qp]) / (2.0 * _kT) ), 2.0)
+    +_NC * std::pow(1.0/std::cosh(_q * (_EC - _EF - _potential_int[_qp]) / (2.0 * _kT) ), 2.0)
+    +_NV * std::pow(1.0/std::cosh(_q * (_EF - _EV + _potential_int[_qp]) / (2.0 * _kT) ), 2.0)
+  );
 }

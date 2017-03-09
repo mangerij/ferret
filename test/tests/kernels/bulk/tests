@@ -4,4 +4,11 @@
     input = 'bulk_test.i'
     exodiff = 'out_bulk_test.e'
   [../]
+  [./psto]
+    type = 'Exodiff'
+    input = 'PSTOfunc_test.i'
+    exodiff = 'out_PSTOfunc_test.e'
+    use_old_floor = true
+    abs_zero = 1.0
+  [../]
 []
