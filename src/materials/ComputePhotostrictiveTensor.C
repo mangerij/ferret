@@ -34,3 +34,29 @@ ComputePhotostrictiveTensor::computeQpPhotostrictiveTensor()
   ///Assign a photostrictive tensor at a given quad point. This will be reworked eventually for constant _qp.
   _photostrictive_tensor[_qp] = _Pmnkl;
 }
+
+
+//void
+//ComputePhotostrictiveTensor::computeQpUnstrainedRefractiveIndex()
+//{
+//  // Assume that n_e is along the z-axis for now
+//  // note the regular birefringence is quantified by _ne - _no
+//  RealVectorValue n(_no, _no, _ne); 
+
+//  // Rotate the indicatrix such that it is aligned with the crystallographic direction A_i = R_{ij} A_j
+//  RealVectorValue nR(R(0, 0) * n(0) + R(0, 1) * n(1) + R(0, 2) * n(2), R(1, 0) * n(0) + R(1, 1) * n(1) + R(1, 2) * n(2), R(2, 0) * n(0) + R(2, 1) * n(1) + R(2, 2) * n(2));1
+//}
+
+//void
+//ComputePhotostrictiveTensor::computeQpStrainedRefractiveIndex()
+//{
+//  // Assume that n_e is along the z-axis for now
+//  // note the regular birefringence is quantified by _ne - _no
+//  RealVectorValue n(_no, _no, _ne); 
+//
+//  // Rotate the indicatrix such that it is aligned with the crystallographic direction A_i = R_{ij} A_j
+//  RealVectorValue nR(R(0, 0) * n(0) + R(0, 1) * n(1) + R(0, 2) * n(2), R(1, 0) * n(0) + R(1, 1) * n(1) + R(1, 2) * n(2), R(2, 0) * n(0) + R(2, 1) * n(1) + R(2, 2) * n(2));1
+//
+//
+//  then store in an aux kernel 
+//}

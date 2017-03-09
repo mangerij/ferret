@@ -1,10 +1,9 @@
 /**
- * @file   BulkEnergy.h
- * @author S. Gu <sgu@anl.gov>
- * @date   Tue Jun  4 15:05:42 2013
+ * @file   BulkEnergy.C
+ * @author S. Churchell <steve.churchill@uconn.edu>
  *
  * @brief
- *
+ *  Total free energy postprocessor for PSTO (2D ferroelectric) 
  *
  */
 
@@ -12,7 +11,6 @@
 #ifndef BULKENERGYPSTO_H
 #define BULKENERGYPSTO_H
 
-//TODO: include the base header
 #include "ElementIntegralPostprocessor.h"
 
 //Forward Declarations
@@ -21,7 +19,6 @@ class BulkEnergyPSTO;
 template<>
 InputParameters validParams<BulkEnergyPSTO>();
 
-//TODO: change the base class!
 class BulkEnergyPSTO : public ElementIntegralPostprocessor
 {
 public:

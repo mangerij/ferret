@@ -29,7 +29,7 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
-  prefactor = 0.01 #negative = tension, positive = compression
+  prefactor = 0.008 #negative = tension, positive = compression
 []
 
 [Variables]
@@ -37,31 +37,31 @@
     block = '1'
     order = FIRST
     family = LAGRANGE
-    #[./InitialCondition]
-    #  type = RandomIC
-    #  min = -0.5e-5
-    #  max = 0.5e-5
-    #[../]
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
   [../]
   [./polar_y]
     block = '1'
     order = FIRST
     family = LAGRANGE
-    #[./InitialCondition]
-    #  type = RandomIC
-    #  min = -0.5e-5
-    #  max = 0.5e-5
-    #[../]
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
   [../]
   [./polar_z]
     block = '1'
     order = FIRST
     family = LAGRANGE
-    #[./InitialCondition]
-    #  type = RandomIC
-    #  min = -0.5e-5
-    #  max = 0.5e-5
-    #[../]
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
   [../]
   [./potential_int]
     order = FIRST
@@ -129,6 +129,24 @@
     family = MONOMIAL
   [../]
   [./strain_yz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  #semiconducting charge carriers (store their values)
+  [./nm]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./pp]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./NAm]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./rho]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -233,6 +251,72 @@
     variable = stress_zz_elastic
     execute_on = 'timestep_end'
   [../]
+
+  #calculate the semiconducting charge carriers
+  [./nm_calc]
+    type = SemiconductingChargeCarriersAux
+    charge_type = 0
+    variable = nm
+    kT = 0.0041124
+    q = -0.16
+    NA = 1e-7 #1e20 / m^3
+    NC = 0.000666
+    NV = 0.015
+    EA = -0.00801
+    EC = -0.66483
+    EV = -0.71289 #-4.45 eV
+    EF = -0.71289 #~-4.45 eV
+    block  = '2'
+    execute_on = 'timestep_end'
+  [../]
+  [./pp_calc]
+    type = SemiconductingChargeCarriersAux
+    charge_type = 1
+    variable = pp
+    kT = 0.0041124
+    q = -0.16
+    NA = 1e-7 #1e20 / m^3
+    NC = 0.000666
+    NV = 0.015
+    EA = -0.00801
+    EC = -0.66483
+    EV = -0.71289 #-4.45 eV
+    EF = -0.71289 #~-4.45 eV
+    block  = '2'
+    execute_on = 'timestep_end'
+  [../]
+  [./NAm_calc]
+    type = SemiconductingChargeCarriersAux
+    charge_type = 2
+    variable = NAm
+    kT = 0.0041124
+    q = -0.16
+    NA = 1e-7 #1e20 / m^3
+    NC = 0.000666
+    NV = 0.015
+    EA = -0.00801
+    EC = -0.66483
+    EV = -0.71289 #-4.45 eV
+    EF = -0.71289 #~-4.45 eV
+    block  = '2'
+    execute_on = 'timestep_end'
+  [../]
+  [./rho_calc]
+    type = SemiconductingChargeCarriersAux
+    charge_type = 3
+    variable = rho
+    kT = 0.0041124
+    q = -0.16
+    NA = 1e-7 #1e20 / m^3
+    NC = 0.000666
+    NV = 0.015
+    EA = -0.00801
+    EC = -0.66483
+    EV = -0.71289 #-4.45 eV
+    EF = -0.71289 #~-4.45 eV
+    block  = '2'
+    execute_on = 'timestep_end'
+  [../]
 []
 
 [Materials]
@@ -266,8 +350,6 @@
     Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
     C_ijkl = '281 115.74 115.74 281 115.74 281 97.18 97.18 97.18' #PTO from MaterialsProject
   [../]
-
-
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
     C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53' #STO from MaterialsProject
@@ -385,9 +467,9 @@
      variable = potential_int
      kT = 0.0041124
      q = -0.16
-     NA = 1e-7 #1e20 / m^3
-     NC = 0.000666
-     NV = 0.015
+     NA = 1e-8 #1e20 / m^3 1e-7 fact of 10..
+     NC = 0.0000666
+     NV = 0.0015
      EA = -0.00801
      EC = -0.66483
      EV = -0.71289 #-4.45 eV
@@ -397,20 +479,20 @@
      #      Comp. Mater. Sci. 96, 342–347, (2015)
   [../]
   #
-  [./FE_charge_carriers]
-     type = SemiconductorChargeCarriers
-     variable = potential_int
-     kT = 0.0041124
-     q = 0.16  #q 100??
-     NA = 0.0 #1e20 / m^3
-     NC = 0.025
-     NV = 0.025
-     EA = 0.0
-     EC = -0.5607
-     EV = -1.10538 #-4.45 eV
-     EF = -0.92916 #~-5.8 eV
-     block  = '1'
-  [../]
+  #[./FE_charge_carriers]
+  #   type = SemiconductorChargeCarriers
+  #   variable = potential_int
+  #   kT = 0.0041124
+  #   q = 0.16
+  #   NA = 0.0 #1e20 / m^3
+  #   NC = 0.0025
+  #   NV = 0.0025
+  #   EA = 0.0
+  #   EC = -0.5607
+  #   EV = -1.10538 #-4.45 eV
+  #   EF = -0.92916 #~-5.8 eV
+  #   block  = '1'
+  #[../]
 
   [./polar_electric_px]
      type = PolarElectricPStrong
@@ -427,21 +509,28 @@
      variable = polar_z
      component = 2
   [../]
-  ###Time dependence
-  #[./polar_x_time]
-  #   type = TimeDerivativeScaled
-  #   variable=polar_x
-  #  time_scale = 1.0
-  #[../]
-  #[./polar_y_time]
-  #   type = TimeDerivativeScaled
-  #   variable=polar_y
-  #  time_scale = 1.0
-  #[../]
-  #[./polar_z_time]
-  #   type = TimeDerivativeScaled
-  #   variable = polar_z
-  #  time_scale = 1.0
+  ##Time dependence
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable = polar_x
+    time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable = polar_y
+    time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+  [../]
+
+
+  #[./potential_int_time]
+  #  type = TimeDerivativeScaled
+  #  variable = potential_int
+  #  time_scale = 100.0 #artificially force the potential to relax slower than the polar field
   #[../]
 []
 
@@ -469,14 +558,14 @@
   [./bot_potential_int]
     variable = potential_int
     type = DirichletBC
-    value = 0.005
+    value = 0.016
     boundary = '1'
   [../]
 
   [./top_potential_int]
     variable = potential_int
     type = DirichletBC
-    value = 0.005
+    value = 0.016
     boundary = '2'
   [../]
 
@@ -623,54 +712,53 @@
 []
 
 
+[Postprocessors]
+   [./Fbulk]
+      type = BulkEnergy
+      block = '1'
+      execute_on = 'timestep_end'
+    [../]
+    [./Fwall]
+      type = WallEnergy
+      block = '1'
+      execute_on = 'timestep_end'
+    [../]
+    [./Felastic]
+      type = ElasticEnergy
+      block = '1 2'
+      execute_on = 'timestep_end'
+    [../]
+    [./Fcoupled]
+      block = '1'
+      type = CoupledEnergy
+      execute_on = 'timestep_end'
+    [../]
+    [./Felec]
+      block = '1'
+      type = ElectrostaticEnergy
+      execute_on = 'timestep_end'
+    [../]
+    [./Ftotal]
+      type = TotalEnergyFlow
+      Fbulk = Fbulk
+      Fwall = Fwall
+      Fcoupled = Fcoupled
+      Felec = Felec
+      execute_on = 'timestep_end'
+    [../]
+    [./perc_change]
+     type = PercentChangePostprocessor
+     postprocessor = Ftotal
+   [../]
+[]
 
-#[Postprocessors]
-#   [./Fbulk]
-#      type = BulkEnergy
-#      block = '1'
-#      execute_on = 'timestep_end'
-#    [../]
-#    [./Fwall]
-#      type = WallEnergy
-#      block = '1'
-#      execute_on = 'timestep_end'
-#    [../]
-#    [./Felastic]
-#      type = ElasticEnergy
-#      block = '1 2'
-#      execute_on = 'timestep_end'
-#    [../]
-#    [./Fcoupled]
-#      block = '1'
-#      type = CoupledEnergy
-#      execute_on = 'timestep_end'
-#    [../]
-#    [./Felec]
-#      block = '1'
-#      type = ElectrostaticEnergy
-#      execute_on = 'timestep_end'
-#    [../]
-#    [./Ftotal]
-#      type = TotalEnergyFlow
-#      Fbulk = Fbulk
-#      Fwall = Fwall
-#      Fcoupled = Fcoupled
-#      Felec = Felec
-#      execute_on = 'timestep_end'
-#    [../]
-#    [./perc_change]
-#     type = PercentChangePostprocessor
-#     postprocessor = Ftotal
-#   [../]
-#[]
 
-
-#[UserObjects]
-# [./kill]
-#  type = Terminator
-#  expression = 'perc_change <= 1.0e-3'
-# [../]
-#[]
+[UserObjects]
+ [./kill]
+  type = Terminator
+  expression = 'perc_change <= 1.0e-3'
+ [../]
+[]
 
 [Preconditioning]
   [./smp]
@@ -678,28 +766,27 @@
     full = true
     petsc_options = '-snes_converged_reason -ksp_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '        200            1e-10     1e-8      1e-8      lu'
+    petsc_options_value = '        200            1e-10     1e-8      1e-4      bjacobi'
   [../]
 []
 
 [Executioner]
-  #maybe add dPhi/dt?
-  type = Steady
-#    [./TimeStepper]
-#    type = IterationAdaptiveDT
-#    dt = 0.01
-#    #iteration_window = 3
-#    optimal_iterations = 6 #should be 5 probably
-#    growth_factor = 1.4
-#    linear_iteration_ratio = 1000
-#    cutback_factor =  0.75
-#[../]
+
+  type = Transient
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.25
+    optimal_iterations = 6 #should be 5 probably
+    growth_factor = 1.4
+    linear_iteration_ratio = 1000
+    cutback_factor =  0.75
+  [../]
   #line_search = none
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
-  #scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  ##dt = 0.5
-  #dtmin = 1e-13
-  #dtmax = 0.85
+  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  #dt = 0.5
+  dtmin = 1e-13
+  dtmax = 0.85
 []
 
 [Outputs]

@@ -1,10 +1,9 @@
 /**
  * @file   BulkEnergy.C
- * @author S. Gu <sgu@anl.gov>
- * @date   Tue Jun  4 15:01:35 2013
+ * @author S. Churchell <steve.churchill@uconn.edu>
  *
  * @brief
- *
+ *  Total free energy postprocessor for PSTO (2D ferroelectric) 
  *
  */
 
