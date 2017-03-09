@@ -1,0 +1,23 @@
+#ifndef COMPUTEBETATENSOR_H
+#define COMPUTEBETATENSOR_H
+
+#include "RankFourTensor.h"
+#include "RankTwoTensor.h"
+#include "ComputeBetaTensorBase.h"
+#include "libmesh/quadrature.h"
+
+/**
+ * ComputeBetaTensor defines an photostrictive tensor material object with a given base name.
+ */
+class ComputeBetaTensor : public ComputeBetaTensorBase
+{
+public:
+  ComputeBetaTensor(const InputParameters & parameters);
+
+protected:
+  virtual void computeQpBetaTensor();
+  const MaterialProperty<RankTwoTensor> & _strain;
+  const MaterialProperty<RankFourTensor> & _photostrictive_tensor;
+};
+
+#endif //COMPUTEPHOTOSTRICTIVETENSOR_H
