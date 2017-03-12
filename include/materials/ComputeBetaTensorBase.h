@@ -33,6 +33,9 @@ protected:
   std::string _beta_tensor_name;
 
   MaterialProperty<RankTwoTensor> & _beta_tensor;
+
+  std::string _beta_tensor_test_name;
+  MaterialProperty<RankTwoTensor> & _beta_tensor_test;
 };
 
 #endif //COMPUTEBETATENSORBASE_H

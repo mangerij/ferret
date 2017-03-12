@@ -13,7 +13,9 @@ ComputeBetaTensorBase::ComputeBetaTensorBase(const InputParameters & parameters)
     Material(parameters),
    _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
    _beta_tensor_name(_base_name + "beta_tensor"),
-   _beta_tensor(declareProperty<RankTwoTensor>(_beta_tensor_name))
+   _beta_tensor(declareProperty<RankTwoTensor>(_beta_tensor_name)),
+   _beta_tensor_test_name(_base_name + "beta_tensor_test"),
+   _beta_tensor_test(declareProperty<RankTwoTensor>(_beta_tensor_test_name))
 {
 }
 

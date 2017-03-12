@@ -13,6 +13,7 @@
 
 #include "RefractiveIndex.h"
 #include "RotationTensor.h"
+#include "RankTwoTensor.h"
 
 template<>
 
@@ -38,7 +39,7 @@ RefractiveIndex::RefractiveIndex(const InputParameters & parameters) :
 Real
 RefractiveIndex::computeValue()
 {
-  return _indicatrix_vector[_qp](_index_one) + std::pow(-_indicatrix_vector[_qp](_index_one)*_indicatrix_vector[_qp](_index_two) * _beta_tensor_ij[_qp](_index_one, _index_two),0.5);
+  return std::pow(- _beta_tensor_ij[_qp](_index_one, _index_one),0.5);
 }
 
 
