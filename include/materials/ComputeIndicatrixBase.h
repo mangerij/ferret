@@ -1,5 +1,5 @@
 /**
- * @file   ComputeBetaTensorBase.h
+ * @file   ComputeIndicatrixBase.h
  * @author J. Mangeri <john.mangeri@uconn.edu>
  *
  * Calculate an approximate photoelastic change to the refractive index
@@ -11,28 +11,29 @@
  *
  */
 
-#ifndef COMPUTEBETATENSORBASE_H
-#define COMPUTEBETATENSORBASE_H
+
+#ifndef COMPUTEINDICATRIXBASE_H
+#define COMPUTEINDICATRIXBASE_H
 
 #include "Material.h"
 #include "RankTwoTensor.h"
 
 /**
- * ComputeBetaTensorBase the base class for computing photostrictive tensors
+ * ComputeIndicatrixBase the base class for computing the indicatrix.
  */
-class ComputeBetaTensorBase : public Material
+class ComputeIndicatrixBase : public Material
 {
 public:
-  ComputeBetaTensorBase(const InputParameters & parameters);
+  ComputeIndicatrixBase(const InputParameters & parameters);
 
 protected:
   virtual void computeQpProperties();
-  virtual void computeQpBetaTensor() = 0;
+  virtual void computeQpIndicatrix() = 0;
 
   std::string _base_name;
-  std::string _beta_tensor_name;
+  std::string _indicatrix_name;
 
-  MaterialProperty<RankTwoTensor> & _beta_tensor;
+  MaterialProperty<RealVectorValue> & _indicatrix;
 };
 
-#endif //COMPUTEBETATENSORBASE_H
+#endif //COMPUTEINDICATRIXBASE_H

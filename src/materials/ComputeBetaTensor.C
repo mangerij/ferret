@@ -1,6 +1,15 @@
-/****************************************************************/
-/* Computes a rank 2 adjustment to indicatrix                   */
-/****************************************************************/
+/**
+ * @file   ComputeBetaTensor.C
+ * @author J. Mangeri <john.mangeri@uconn.edu>
+ *
+ * Calculate an approximate photoelastic change to the refractive index
+ * \Delta \epsilon_{ij} = - n_i^2 n_j^2 \Delta B_{ij}
+ *
+ * where \Delta B_{ij} = p_{ijkl} \varepsilon_{kl}
+ *
+ * for more information, see Chang (Chp. 12 Handbook of Optics).
+ *
+ */
 
 #include "ComputeBetaTensor.h"
 
