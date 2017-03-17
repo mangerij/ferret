@@ -37,6 +37,7 @@ protected:
 private:
   const unsigned int _index_one;
   const unsigned int _index_two;
+  const unsigned int _index_three;
   const MaterialProperty<RealVectorValue> & _indicatrix_vector;
   const MaterialProperty<RankTwoTensor> & _beta_tensor_ij;
 

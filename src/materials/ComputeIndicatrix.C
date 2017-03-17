@@ -38,8 +38,8 @@ void
 ComputeIndicatrix::computeQpIndicatrix()
 {
   RotationTensor R(_Euler_angles);
-  RealVectorValue n(_no, _no, _ne); 
+  RealVectorValue n(_no, _no, _ne);
   for (unsigned int i = 0; i < 3; ++i)
-    _indicatrix[_qp](i) = R(i, 0) * n(0) + R(i, 1) * n(1) + R(i, 2) * n(2);
+    _indicatrix[_qp](i) = R(i, 0) * n(0) + R(1, i) * n(1) + R(i, 2) * n(2);
 }
 
