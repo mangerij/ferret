@@ -15,6 +15,7 @@ template<>
 InputParameters validParams<PiezoelectricApprox>()
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return params;
 }
 
