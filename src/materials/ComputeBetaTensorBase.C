@@ -1,4 +1,4 @@
-#include "ComputeElasticityTensor.h"
+
 #include "ComputeBetaTensorBase.h"
 
 template<>

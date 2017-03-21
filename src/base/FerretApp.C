@@ -110,8 +110,8 @@
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputePhotostrictiveTensor.h"
+#include "ComputeDeltaBetaTensor.h"
 #include "ComputeBetaTensor.h"
-#include "ComputeIndicatrix.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -302,11 +302,12 @@ FerretApp::registerObjects(Factory & factory)
   registerMarker(PolarizationNWEMarker);
 
   ///Materials
-  ///registerMaterial(LinearFerroelectricMaterial); //deprecated
+  ///registerMaterial(LinearFerroelectricMaterial); //deprecated, long live this simple method!
   registerMaterial(ComputeElectrostrictiveTensor);
   registerMaterial(ComputePhotostrictiveTensor);
+  registerMaterial(ComputeDeltaBetaTensor);
   registerMaterial(ComputeBetaTensor);
-  registerMaterial(ComputeIndicatrix);
+
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);

@@ -18,7 +18,7 @@
 #include "RankTwoTensor.h"
 
 /**
- * ComputeBetaTensorBase the base class for computing photostrictive tensors
+ * ComputeTensorBase the base class for computing photostrictive tensors
  */
 class ComputeBetaTensorBase : public Material
 {
