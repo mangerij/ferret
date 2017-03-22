@@ -21,14 +21,17 @@ InputParameters validParams<ComputeBetaTensor>()
 {
   InputParameters params = validParams<ComputeRotatedBetaTensorBase>();
   params.addClassDescription("Compute the impermeability tensor.");
-  params.addRequiredParam<std::vector<Real> >("b_ij", "impermeability tensor for material"); //diagonal3 for now
+  params.addRequiredParam<Real>("n_o", "ordinary refractive index");
+  params.addRequiredParam<Real>("n_e", "extraordinary refractive index");
+  //params.addRequiredParam<std::vector<Real> >("b_ij", "impermeability tensor for material"); //diagonal3 for now
   //params.addParam<MooseEnum>("fill_method", RankTwoTensor::fillMethodEnum() = "diagonal3", "The fill method"); 
   return params;
 }
 
 ComputeBetaTensor::ComputeBetaTensor(const InputParameters & parameters) :
     ComputeRotatedBetaTensorBase(parameters),
-    _bij(getParam<RealVectorValue>("b_ij"))
+   _no(getParam<Real>("n_o")),
+   _ne(getParam<Real>("n_e"))
     //_bij(getParam<std::vector<Real> >("b_ij"), (RankTwoTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")) TODO: fix, how to fill_method a tensor?
 {
 }
@@ -37,15 +40,15 @@ void
 ComputeBetaTensor::computeQpBetaTensor()
 {
   //define the principle axis impermeability
-  _beta_tensor[_qp](0,0) = _bij(0);
+  _beta_tensor[_qp](0,0) = 1.0 / (_no * _no);
   _beta_tensor[_qp](0,1) = 0.0;
   _beta_tensor[_qp](0,2) = 0.0;
   _beta_tensor[_qp](1,0) = 0.0;
-  _beta_tensor[_qp](1,1) = _bij(1);
+  _beta_tensor[_qp](1,1) = 1.0 / (_no * _no);
   _beta_tensor[_qp](1,2) = 0.0;
   _beta_tensor[_qp](2,0) = 0.0;
   _beta_tensor[_qp](2,1) = 0.0;
-  _beta_tensor[_qp](2,2) = _bij(2);
+  _beta_tensor[_qp](2,2) = 1.0 / (_ne * _ne);
 
   // Define a rotation according to Euler angle parameters
   RotationTensor R(_Euler_angles);
