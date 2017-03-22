@@ -1,16 +1,39 @@
+
 [Mesh]
-  file = 6grains.e
+  file = exodus_disk_r8_h1_photo.e
+  uniform_refine = 1
+[]
+
+[MeshModifiers]
+  [./centernodeset_1]
+    type = AddExtraNodeset
+    new_boundary = 'center_node_1'
+    coord = '0.0 0.0 -0.5'
+  [../]
+  [./centernodeset_2]
+    type = AddExtraNodeset
+    new_boundary = 'center_node_2'
+    coord = '0.0 0.0 0.5'
+  [../]
+  [./centernodeset_3]
+    type = AddExtraNodeset
+    new_boundary = 'center_node_3'
+    coord = '0.0 0.0 0.166667'
+  [../]
+  [./centernodeset_4]
+    type = AddExtraNodeset
+    new_boundary = 'center_node_4'
+    coord = '0.0 0.0 -0.166667'
+  [../]
 []
 
 [GlobalParams]
-  disp_x = disp_x
-  disp_y = disp_y
-  disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
 []
 
+
 [Variables]
- [./disp_x]
+  [./disp_x]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -23,6 +46,7 @@
     family = LAGRANGE
   [../]
 []
+
 
 [AuxVariables]
   [./stress_xx_elastic]
@@ -73,56 +97,72 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
+
+  [./n_ave]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+ # [./dn]
+ #   order = CONSTANT
+ #   family = MONOMIAL
+ # [../]
 []
+
 
 [AuxKernels]
   [./matl_e11]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 0
     variable = strain_xx_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_e12]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 1
     variable = strain_xy_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_e13]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 0
     index_j = 2
     variable = strain_xz_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_e22]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 1
     index_j = 1
     variable = strain_yy_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_e23]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 1
     index_j = 2
     variable = strain_yz_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_e33]
     type = RankTwoAux
-    rank_two_tensor = total_strain
+    rank_two_tensor = elastic_strain
     index_i = 2
     index_j = 2
     variable = strain_zz_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_s11]
     type = RankTwoAux
@@ -131,6 +171,7 @@
     index_j = 0
     variable = stress_xx_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_s12]
     type = RankTwoAux
@@ -139,6 +180,7 @@
     index_j = 1
     variable = stress_xy_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_s13]
     type = RankTwoAux
@@ -147,6 +189,7 @@
     index_j = 2
     variable = stress_xz_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
  [./matl_s22]
     type = RankTwoAux
@@ -155,6 +198,7 @@
     index_j = 1
     variable = stress_yy_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_s23]
     type = RankTwoAux
@@ -163,6 +207,7 @@
     index_j = 2
     variable = stress_yz_elastic
     execute_on = 'timestep_end'
+    block  = '1 2 3 4'
   [../]
   [./matl_s33]
     type = RankTwoAux
@@ -170,132 +215,148 @@
     index_i = 2
     index_j = 2
     variable = stress_zz_elastic
+    block  = '1 2 3 4'
     execute_on = 'timestep_end'
   [../]
+
+  [./ref_deps]
+    type = RefractiveIndex
+    index_one = 0
+    index_two = 1
+    index_three = 2
+    variable = n_ave
+    execute_on = 'timestep_end'
+  [../]
+
+  #[./dn_r]
+  #  type = Birefringence
+  #  variable = dn
+  #  n_o = n_o_ij
+  #  n_e = n_e_ij
+  #  execute_on = 'timestep_end'
+  #[../]
 []
 
+
 [Materials]
+  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
+    block = '1 2 3 4'
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+    eigenstrain_name = eigenstrain
+    prefactor = 0.0
+  [../]
+
+
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-    block = '1 2 3'
+    #BaTiO3 from MaterialsProject
+    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    block = '2 3'
   [../]
   [./strain_1]
     type = ComputeSmallStrain
-    block = '1 2 3'
+    block = '2 3'
+    eigenstrain_names = eigenstrain
   [../]
   [./stress_1]
     type = ComputeLinearElasticStress
-    block = '1 2 3'
+    block = '2 3'
   [../]
+  [./photoelastic_tensor_1]
+    type = ComputePhotostrictiveTensor
+    fill_method = symmetric9
+    #S11 S21 S31 S12 S22 S32 S13 S23 S33
+    P_mnkl = '0.5 0.106 0.20 0.50 0.106 0.5 0.77 0.77 0.77'
+    block = '2 3'
+  [../]
+  [./beta_tensor_1]
+    type = ComputeBetaTensor
+    block = '2 3'
+  [../]
+  [./indicatrix_1]
+    type = ComputeIndicatrix
+    block = '2 3'
+    #from Handbook of Optics Chp. 17
+    refractive_index_bulk_ordinary = 2.437 
+    refractive_index_bulk_extraordinary = 2.365
+  [../]
+
 
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
-    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
     fill_method = symmetric9
-    block = '4 5'
-    euler_angle_1 = 0.0
-    euler_angle_2 = 83.0
-    euler_angle_3 = 0.0
+    #BaTiO3 from MaterialsProject
+    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 45.0
+    euler_angle_2 = 37.0
+    euler_angle_3 =-76.0  #ne = -2.162e-3, no = -4.279e-4, bf = -1.734e-3
+    block = '1 4'
   [../]
   [./strain_2]
     type = ComputeSmallStrain
-    block = '4 5'
+    block = '1 4'
+    eigenstrain_names = eigenstrain
   [../]
   [./stress_2]
     type = ComputeLinearElasticStress
-    block = '4 5'
+    block = '1 4'
   [../]
-
-  [./elasticity_tensor_3]
-    type = ComputeElasticityTensor
-    C_ijkl = '539 295.6 295.6 539 295.6 539 349.53 349.53 349.53'
+  [./photoelastic_tensor_2]
+    type = ComputePhotostrictiveTensor
     fill_method = symmetric9
-    block = '6'
-    euler_angle_1 = 55.0
-    euler_angle_2 = 26.0
-    euler_angle_3 = -10.0
+    #S11 S21 S31 S12 S22 S32 S13 S23 S33
+    P_mnkl = '0.5 0.106 0.20 0.50 0.106 0.5 0.77 0.77 0.77'
+    block = '1 4'
   [../]
-  [./strain_3]
-    type = ComputeSmallStrain
-    block = '6'
+  [./beta_tensor_2]
+    type = ComputeBetaTensor
+    block = '1 4'
   [../]
-  [./stress_3]
-    type = ComputeLinearElasticStress
-    block = '6'
+  [./indicatrix_2]
+    type = ComputeIndicatrix
+    block = '1 4'
+    #from BTO paper
+    refractive_index_bulk_ordinary = 2.412 
+    refractive_index_bulk_extraordinary = 2.360
+    euler_angle_1 = 45.0
+    euler_angle_2 = 37.0
+    euler_angle_3 =-76.0
   [../]
 []
 
 [Kernels]
+  #Elastic problem
   [./TensorMechanics]
+  #This is an action block
   [../]
 []
-
 
 
 [BCs]
-   active = 'anchor_up_Z anchor_dn_Z anchor_up_X anchor_dn_X anchor_up_Y anchor_dn_Y'
-  [./anchor_up_X]
+  [./center_disp_z_top]
     type = DirichletBC
-    variable = disp_x
-    boundary = '2 13 15 21 27 28'
-    value = 0.0
+    variable = 'disp_z'
+    value = -0.0025
+    boundary = '5'
   [../]
 
-  [./anchor_up_Y]
+  [./center_disp_z_bottom]
     type = DirichletBC
-    variable = disp_y
-    boundary = '2 13 15 21 27 28'
-    value = 0.0
+    variable = 'disp_z'
+    value = 0.0025
+    boundary = '6'
   [../]
-
-  [./anchor_up_Z]
-    type = DirichletBC
-    variable = disp_z
-    boundary = '2 13 15 21 27 28'
-    value = 0.025
-  [../]
- 
-  [./anchor_dn_X]
-    type = DirichletBC
-    variable = disp_x
-    boundary = '6 9 18 22 24 29'
-    value = 0.0
-  [../]
-
-  [./anchor_dn_Y]
-    type = DirichletBC
-    variable = disp_y
-    boundary = '6 9 18 22 24 29'
-    value = 0.0
-  [../]
-
-  [./anchor_dn_Z]
-    type = DirichletBC
-    variable = disp_z
-    boundary = '6 9 18 22 24 29'
-    value = -0.025
-  [../]
-
-[]
-
-
-[Postprocessors]
-    [./Felastic]
-      type = ElasticEnergy
-      block = '1 2 3 4 5 6'
-      execute_on = 'timestep_end'
-    [../]
 []
 
 [Preconditioning]
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason -ksp_snes_ew'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type -pc_hypre_type'
-    petsc_options_value = '    121                1e-8      1e-8    hypre    boomeramg'
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -pc_hypre_type'
+    petsc_options_value = '    250              1e-10      1e-8      1e-6      hypre       boomeramg '
   [../]
 []
 
@@ -305,13 +366,12 @@
 []
 
 [Outputs]
-  print_linear_residuals = true
+  print_linear_residuals = false
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_grains_elastic
+    execute_on = 'timestep_end'
+    file_base = out_disk
     elemental_as_nodal = true
   [../]
 []
-
-

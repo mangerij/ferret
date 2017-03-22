@@ -16,7 +16,6 @@
 
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
-#include "RankFourTensor.h"
 
 //Forward declarations
 class RefractiveIndex;
@@ -36,12 +35,12 @@ protected:
   virtual Real computeValue();
 
 private:
-  const MaterialProperty<RankTwoTensor> & _strain;
-  const MaterialProperty<RankFourTensor> & _pijkl;
-  const Real _no, _ne;
   const unsigned int _index_one;
   const unsigned int _index_two;
-  RealVectorValue _Euler_angles;
+  const unsigned int _index_three;
+  const MaterialProperty<RealVectorValue> & _indicatrix_vector;
+  const MaterialProperty<RankTwoTensor> & _beta_tensor_ij;
+
 };
 
 #endif // REFRACTIVEINDEX_H

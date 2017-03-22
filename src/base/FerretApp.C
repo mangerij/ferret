@@ -45,6 +45,7 @@
 #include "PiezoelectricApprox.h"
 #include "RefractiveIndex.h"
 #include "SemiconductingChargeCarriersAux.h"
+#include "Birefringence.h"
 
 
 //Boundary Conditions
@@ -109,6 +110,8 @@
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputePhotostrictiveTensor.h"
+#include "ComputeDeltaBetaTensor.h"
+#include "ComputeBetaTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -232,6 +235,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PiezoelectricApprox);
   registerAux(RefractiveIndex);
   registerAux(SemiconductingChargeCarriersAux);
+  registerAux(Birefringence);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
@@ -298,9 +302,12 @@ FerretApp::registerObjects(Factory & factory)
   registerMarker(PolarizationNWEMarker);
 
   ///Materials
-  ///registerMaterial(LinearFerroelectricMaterial); //deprecated
+  ///registerMaterial(LinearFerroelectricMaterial); //deprecated, long live this simple method!
   registerMaterial(ComputeElectrostrictiveTensor);
   registerMaterial(ComputePhotostrictiveTensor);
+  registerMaterial(ComputeDeltaBetaTensor);
+  registerMaterial(ComputeBetaTensor);
+
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);

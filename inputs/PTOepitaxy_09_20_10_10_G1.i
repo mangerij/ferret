@@ -1,7 +1,6 @@
 
 [Mesh]
-  file = exodus_thinfilm_test_09_20_10_10.e
-  #uniform_refine = 1
+  file = exodus_thinfilm_09_20_10_10.e
 []
 
 [GlobalParams]
@@ -27,7 +26,7 @@
   #artificial = 0.75
   #use_displaced_mesh = 'false' #DO THIS!
   displacements = 'disp_x disp_y disp_z'
-  prefactor = -0.01 #negative = tension, positive = compression
+  prefactor = 0.01 #negative = tension, positive = compression
 []
 
 
@@ -252,19 +251,19 @@
 []
 
 [Materials]
- # [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
-
-  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+ [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
    type = ComputeEigenstrain
    block = '1'
   # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-   eigen_base = '0 0 0 0 0 0 0 0 1'
+   eigen_base = '1 0 0 0 1 0 0 0 0'
  [../]
+
+#  [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
+#   type = ComputeEigenstrain
+#   block = '1'
+#  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+#   eigen_base = '0 0 0 0 0 0 0 0 1'
+# [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -628,11 +627,6 @@
 
 
 [Postprocessors]
-#  [./volume]
-#    type = VolumePostprocessor
-#    block = '1'
-#    use_displaced_mesh = true
-#  [../]
    [./Fbulk]
       type = BulkEnergy
       block = '1'
@@ -713,6 +707,7 @@
   #dt = 0.5
   dtmin = 1e-13
   dtmax = 0.8
+  num_steps = 15
 []
 
 [Outputs]
@@ -720,9 +715,9 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_100_10_10_c01_STO_bench
+    file_base = outPTO_thinfilm_09_20_10_10_c01_std
     elemental_as_nodal = true
-    interval = 5
+    interval = 1
   [../]
 []
 

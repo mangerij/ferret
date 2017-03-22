@@ -1,80 +1,26 @@
 
 [Mesh]
-  type = GeneratedMesh
-  dim = 3
- 
-  # number of elements along each of the cartesian directions
-  # NOTE: the gradient term needs ~1-2 elements across domain walls
-  nx = 11
-  ny = 11
-  nz = 11
-
-
-  # dimensions of the total computational volume in
-  # nanometers
-  xmin = -4.0
-  xmax = 4.0
-
-  ymin = -4.0
-  ymax = 4.0
-
-  zmin = -4.0
-  zmax = 4.0
+  file = exodus_trilayer_2_2_2.e
 []
-
-
-[MeshModifiers]
-  [./subdomain1]
-    type = SubdomainBoundingBox
-    bottom_left = '-4.0 -4.0 0.0'
-    top_right = '4.0 4.0 4.0'
-    block_id = 1
-  [../]
-  [./break_boundary]
-    depends_on = subdomain1
-    type = BreakBoundaryOnSubdomain
-  [../]
-  [./interface]
-    type = SideSetsBetweenSubdomains
-    depends_on = break_boundary
-    master_block = '0'
-    paired_block = '1'
-    new_boundary = 'master0_interface'
-  [../]
-
-  # need to generate sidesets with SideSetsFromNormals
-  # [./boundary_1]
-  # [../]
-  # ect...
-[]
-
 
 [GlobalParams]
-  # default length scale
-  # Note that all units are in nanometers
-  #                            nanoNewtons
-  #                            attoCoulombs
-  # By doing this, this allows for optimal
-  # convergence of the LGD solve
-  len_scale = 1.0
+  #NOTE: We use a nanometer, nanonewton, attocoulomb unit system
 
-  # Landau expansion parameters
-  alpha1 = -0.1722883 # Room temperature
+  len_scale = 1.0
+  alpha1 = -0.1722883 # T = 298 K
   alpha11 = -0.07253
   alpha111 = 0.26
   alpha12 = 0.75
   alpha112 = 0.61
   alpha123 = -3.67
 
-  # Gradient energy coefficients
   G110 = 0.173
   G11/G110 = 0.6
   G12/G110 = 0
   G44/G110 = 0.3
   G44P/G110 = 0.3
 
-
-  # Some default stuff. 
+  #miscellaneous GlobalParams options
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -83,24 +29,14 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
-
-  # Epitaxial eigenstrain
-  # prefactor = 0.01 #negative = tension, positive = compression
+  prefactor = 0.01 #negative = tension, positive = compression
 []
 
-
-
 [Variables]
-  # Here we define the variables that we want to solve over the mesh
-  # polar field polar_k, displacement field disp_k, and electrostatic
-  # potential_int (for k = x,y,z).
   [./polar_x]
     block = '1'
     order = FIRST
     family = LAGRANGE
-    # Note that the initial condition of the problem is near the paraelectric
-    # This ensures that the domain structure that forms is not biased.
-    # See L.-Q. Chen's 2001 APL for a discussion.
     [./InitialCondition]
       type = RandomIC
       min = -0.5e-5
@@ -130,12 +66,7 @@
   [./potential_int]
     order = FIRST
     family = LAGRANGE
-    block = '0 1'
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
+    block = '1 2'
   [../]
   [./disp_x]
     order = FIRST
@@ -153,77 +84,58 @@
 
 
 [AuxVariables]
-  # These are auxilliary variables of the problem
-  # This is how you store stress/strain (locally)
-  # You can also calculate anything you want (locally) 
-  # using the above variables (P, u, \phi)
-
   [./stress_xx_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_xx
   [../]
   [./stress_yy_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_yy
   [../]
   [./stress_xy_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_xy
   [../]
   [./stress_xz_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_xz
   [../]
   [./stress_zz_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_zz
   [../]
   [./stress_yz_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = stress_yz
   [../]
   [./strain_xx_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_xx
   [../]
   [./strain_yy_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_yy
   [../]
   [./strain_xy_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_xy
   [../]
   [./strain_xz_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_xz
   [../]
   [./strain_zz_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_zz
   [../]
   [./strain_yz_elastic]
     order = CONSTANT
     family = MONOMIAL
-    #initial_from_file_var = strain_yz
   [../]
 []
 
 
 [AuxKernels]
- # The above block stores the variables, while
- # this block calculates them.
   [./matl_e11]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
@@ -262,6 +174,7 @@
     index_i = 1
     index_j = 2
     variable = strain_yz_elastic
+  #this is a comment
     execute_on = 'timestep_end'
   [../]
   [./matl_e33]
@@ -324,23 +237,23 @@
 
 [Materials]
   [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
-   type = ComputeEigenstrain
-   block = '0 1'
-  # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-   eigen_base = '1 0 0 0 1 0 0 0 0'
-   eigenstrain_name = 'eigenstrain'
- [../]
-
-
+    type = ComputeEigenstrain
+    block = '1'
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+    eigenstrain_name = eigenstrain
+  [../]
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+    #from MaterialsProject
+    C_ijkl = '281 115.74 115.74 281 115.74 281 97.18 97.18 97.18'
     block = '1'
   [../]
   [./strain_1]
     type = ComputeSmallStrain
     block = '1'
+    eigenstrain_names = eigenstrain
   [../]
   [./stress_1]
     type = ComputeLinearElasticStress
@@ -351,22 +264,23 @@
     block = '1'
     type = ComputeElectrostrictiveTensor
     Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+    C_ijkl = '281 115.74 115.74 281 115.74 281 97.18 97.18 97.18' #PTO from MaterialsProject
   [../]
+
 
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
-    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53'
+    C_ijkl = '319 99.6 99.6 319 99.6 319 109.53 109.53 109.53' #STO from MaterialsProject
     fill_method = symmetric9
-    block = '0'
+    block = '2'
   [../]
   [./strain_2]
     type = ComputeSmallStrain
-    block = '0'
+    block = '2'
   [../]
   [./stress_2]
     type = ComputeLinearElasticStress
-    block = '0'
+    block = '2'
   [../]
 []
 
@@ -449,20 +363,50 @@
   [./polar_x_electric_E]
      type = PolarElectricEStrong
      variable = potential_int
-     permittivity = 0.08854187
+     permittivity = 0.0575522155 #er = 6.5
   [../]
   [./FE_E_int]
      type = Electrostatics
      variable = potential_int
      block = '1'
-     permittivity = 0.08854187
+     permittivity = 0.0575522155 #er = 6.5
   [../]
 
-  [./DIE_E_int]
+  [./semi_E_int]
      type = Electrostatics
      variable = potential_int
-     block  = '0'
-     permittivity = 2.6562561
+     block  = '2'
+     permittivity = 0.44270935 #er = 50
+  [../]
+
+  [./semiconducting_charge_carriers]
+     type = SemiconductorChargeCarriers
+     variable = potential_int
+     kT = 0.0041124
+     q = 0.16
+     NA = 1.0e-7 #1e20 / m^3
+     NC = 0.000666
+     NV = 0.015
+     EA = -0.00801
+     EC = -0.66483
+     EV = -0.71289 #-4.45 eV
+     EF = -0.71289 #~-4.45 eV
+     block  = '2'
+  [../]
+
+  [./FE_charge_carriers]
+     type = SemiconductorChargeCarriers
+     variable = potential_int
+     kT = 0.0041124
+     q = 0.16
+     NA = 0.0 #1e20 / m^3
+     NC = 0.025
+     NV = 0.025
+     EA = 0.0
+     EC = -0.5607
+     EV = -1.10538 #-4.45 eV
+     EF = -0.92916 #~-5.8 eV
+     block  = '1'
   [../]
 
   [./polar_electric_px]
@@ -499,124 +443,175 @@
 []
 
 
-#[BCs]
-#  [./bot_disp_x]
-#    variable = disp_x
-#    type = DirichletBC
-#    value = 0
-#    boundary = '7'
-#  [../]
-#  [./bot_disp_y]
-#    variable = disp_y
-#    type = DirichletBC
-#    value = 0
-#    boundary = '7'
-#  [../]
-#  [./bot_disp_z]
-#    variable = disp_z
-#    type = DirichletBC
-#    value = 0
-#    boundary = '7'
-#  [../]
+[BCs]
+  [./bot_disp_x]
+    variable = disp_x
+    type = DirichletBC
+    value = 0
+    boundary = '1'
+  [../]
+  [./bot_disp_y]
+    variable = disp_y
+    type = DirichletBC
+    value = 0
+    boundary = '1'
+  [../]
+  [./bot_disp_z]
+    variable = disp_z
+    type = DirichletBC
+    value = 0
+    boundary = '1'
+  [../]
 
-#  [./bot_potential_int]
-#    variable = disp_x
-#    type = DirichletBC
-#    value = 0
-#    boundary = '7'
-#  [../]
+  [./bot_potential_int]
+    variable = potential_int
+    type = DirichletBC
+    value = 0
+    boundary = '1'
+  [../]
 
-#  [./Periodic]
-#    [./TB_disp_x_pbc]
-#      variable = disp_x
-#      primary = '3'
-#      secondary = '5'
-#      translation = '0 20 0'
-#    [../]
-#    [./TB_disp_y_pbc]
-#      variable = disp_y
-#      primary = '3'
-#      secondary = '5'
-#      translation = '0 20 0'
-#    [../]
-#    [./TB_disp_z_pbc]
-#      variable = disp_z
-#      primary = '3'
-#      secondary = '5'
-#      translation = '0 20 0'
-#    [../]
 
-#    [./TB_polar_x_pbc]
-#      variable = polar_x
-#      primary = '3'
-#      secondary = '5'
-#      translation = '0 20 0'
-#    [../]
-#    [./TB_polar_y_pbc]
-#      variable = polar_y
-#      primary = '3'
-#      secondary = '5'
-#      translation = '0 20 0'
-#    [../]
-#    [./TB_polar_z_pbc]
-#      variable = polar_z
-#      primary = '3'
-#      secondary = '5'
-#      translation = '0 20 0'
-#    [../]
-#    [./TB_potential_int_pbc]
-#      variable = potential_int
-#      primary = '3'
-#      secondary = '5'
-#      translation = '0 20 0'
-#    [../]
+  [./Periodic]
+    [./TB_FE_disp_x_pbc]
+      variable = disp_x
+      primary = '3'
+      secondary = '4'
+      translation = '0 2 0'
+    [../]
+    [./TB_FE_disp_y_pbc]
+      variable = disp_y
+      primary = '3'
+      secondary = '4'
+      translation = '0 2 0'
+    [../]
+    [./TB_FE_disp_z_pbc]
+      variable = disp_z
+      primary = '3'
+      secondary = '4'
+      translation = '0 2 0'
+    [../]
+
+    [./TB_FE_polar_x_pbc]
+      variable = polar_x
+      primary = '3'
+      secondary = '4'
+      translation = '0 2 0'
+    [../]
+    [./TB_FE_polar_y_pbc]
+      variable = polar_y
+      primary = '3'
+      secondary = '4'
+      translation = '0 2 0'
+    [../]
+    [./TB_FE_polar_z_pbc]
+      variable = polar_z
+      primary = '3'
+      secondary = '4'
+      translation = '0 2 0'
+    [../]
+    [./TB_FE_potential_int_pbc]
+      variable = potential_int
+      primary = '3'
+      secondary = '4'
+      translation = '0 2 0'
+    [../]
   #
+    [./TBsemi_disp_x_pbc]
+      variable = disp_x
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./TBsemi_disp_y_pbc]
+      variable = disp_y
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./TBsemi_disp_z_pbc]
+      variable = disp_z
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./TBsemi_potential_int_pbc]
+      variable = potential_int
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
 
-#    [./RL_disp_x_pbc]
-#      variable = disp_x
-#      primary = '4'
-#      secondary = '6'
-#      translation = '20 0 0'
-#    [../]
-#    [./RL_disp_y_pbc]
-#      variable = disp_y
-#      primary = '4'
-#      secondary = '6'
-#      translation = '20 0 0'
-#    [../]
-#    [./RL_disp_z_pbc]
-#      variable = disp_z
-#      primary = '4'
-#      secondary = '6'
-#      translation = '20 0 0'
-#    [../]
+    [./RL_FE_disp_x_pbc]
+      variable = disp_x
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./RL_FE_disp_y_pbc]
+      variable = disp_y
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./RL_FE_disp_z_pbc]
+      variable = disp_z
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
 
-#    [./RL_polar_x_pbc]
-#      variable = polar_x
-#      primary = '4'
-#      secondary = '6'
-#      translation = '20 0 0'
-#    [../]
-#    [./RL_polar_y_pbc]
-#      variable = polar_y
-#      primary = '4'
-#      secondary = '6'
-#      translation = '20 0 0'
-#    [../]
-#    [./RL_polar_z_pbc]
-#      variable = polar_z
-#      primary = '4'
-#      secondary = '6'
-#      translation = '20 0 0'
-#    [../]
-#    [./RL_potential_int_pbc]
-#      variable = potential_int
-#      primary = '4'
-#      secondary = '6'
-#      translation = '20 0 0'
-#    [../]
-#  [../]
-#[]
+    [./RL_FE_polar_x_pbc]
+      variable = polar_x
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./RL_FE_polar_y_pbc]
+      variable = polar_y
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./RL_FE_polar_z_pbc]
+      variable = polar_z
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+    [./RL_FE_potential_int_pbc]
+      variable = potential_int
+      primary = '5'
+      secondary = '6'
+      translation = '2 0 0'
+    [../]
+
+    [./RLsemi_disp_x_pbc]
+      variable = disp_x
+      primary = '11'
+      secondary = '12'
+      translation = '2 0 0'
+    [../]
+    [./RLsemi_disp_y_pbc]
+      variable = disp_y
+      primary = '11'
+      secondary = '12'
+      translation = '2 0 0'
+    [../]
+    [./RLsub_disp_z_pbc]
+      variable = disp_z
+      primary = '11'
+      secondary = '12'
+      translation = '2 0 0'
+    [../]
+    [./RLsub_potential_int_pbc]
+      variable = potential_int
+      primary = '11'
+      secondary = '12'
+      translation = '2 0 0'
+    [../]
+  [../]
+[]
+
 
 
 [Postprocessors]
@@ -632,7 +627,7 @@
     [../]
     [./Felastic]
       type = ElasticEnergy
-      block = '0 1'
+      block = '1 2'
       execute_on = 'timestep_end'
     [../]
     [./Fcoupled]
@@ -672,9 +667,9 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
+    petsc_options = '-snes_converged_reason -ksp_converged_reason '
+    petsc_options_iname = '-ksp_gmres_restart  -snes_atol -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '        200              1e-10     1e-8      1e-8        bjacobi  '
   [../]
 []
 
@@ -682,18 +677,18 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.8
+    dt = 0.1
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
-    cutback_factor =  0.8
+    cutback_factor =  0.75
 [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.8
+  dtmax = 0.85
 []
 
 [Outputs]
@@ -701,9 +696,8 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_test
+    file_base = outPTO_trilayer_075_12_12_8_c01
     elemental_as_nodal = true
     interval = 1
   [../]
 []
-

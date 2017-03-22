@@ -28,10 +28,6 @@
 []
 
 [GlobalParams]
-  len_scale = 1.0
-  disp_x = disp_x
-  disp_y = disp_y
-  disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
 []
 
@@ -102,11 +98,15 @@
     family = MONOMIAL
   [../]
 
-  [./dEpsilon23_00_ij]
+  [./n_o_ij]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./dEpsilon14_00_ij]
+  [./n_e_ij]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./dn]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -223,27 +223,27 @@
     execute_on = 'timestep_end'
   [../]
 
-  [./ref_deps23_00_ij]
+  [./ref_deps_00_ij]
     type = RefractiveIndex
-    refractive_index_bulk_ordinary = 1.5
-    refractive_index_bulk_extraordinary = 1.76
     index_one = 0
     index_two = 0
-    variable = dEpsilon23_00_ij
-    block = '2 3'
+    variable = n_o_ij
+    execute_on = 'timestep_end'
+  [../]
+  [./ref_deps_22_ij]
+    type = RefractiveIndex
+    index_one = 2
+    index_two = 2
+    variable = n_e_ij
+    execute_on = 'timestep_end'
   [../]
 
-  [./ref_deps14_00_ij]
-    type = RefractiveIndex
-    refractive_index_bulk_ordinary = 1.5
-    refractive_index_bulk_extraordinary = 1.76
-    index_one = 0
-    index_two = 0
-    variable = dEpsilon14_00_ij
-    euler_angle_1 = 45.0
-    euler_angle_2 = 37.0
-    euler_angle_3 = -76.0
-    block = '1 4'
+  [./dn_r]
+    type = Birefringence
+    variable = dn
+    n_o = n_o_ij
+    n_e = n_e_ij
+    execute_on = 'timestep_end'
   [../]
 []
 
@@ -278,11 +278,21 @@
   [./photoelastic_tensor_1]
     type = ComputePhotostrictiveTensor
     fill_method = symmetric9
-    P_mnkl = '1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0'
+    #S11 S21 S31 S12 S22 S32 S13 S23 S33
+    P_mnkl = '0.5 0.106 0.20 0.50 0.106 0.5 0.77 0.77 0.77'
     block = '2 3'
   [../]
-
-
+  [./beta_tensor_1]
+    type = ComputeBetaTensor
+    block = '2 3'
+  [../]
+  [./indicatrix_1]
+    type = ComputeIndicatrix
+    block = '2 3'
+    #from Handbook of Optics Chp. 17
+    refractive_index_bulk_ordinary = 2.437 
+    refractive_index_bulk_extraordinary = 2.365
+  [../]
 
 
   [./elasticity_tensor_2]
@@ -290,9 +300,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = 45.0
-    euler_angle_2 = 37.0
-    euler_angle_3 = -76.0
+    euler_angle_1 = 0.0 # 45.0
+    euler_angle_2 = 54.74 #37.0
+    euler_angle_3 = 45.0 #-76.0  #ne = -2.162e-3, no = -4.279e-4, bf = -1.734e-3
     block = '1 4'
   [../]
   [./strain_2]
@@ -307,14 +317,24 @@
   [./photoelastic_tensor_2]
     type = ComputePhotostrictiveTensor
     fill_method = symmetric9
-    P_mnkl = '1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0'
+    P_mnkl = '0.5 0.106 0.20 0.50 0.106 0.5 0.77 0.77 0.77'
     block = '1 4'
   [../]
-
+  [./beta_tensor_2]
+    type = ComputeBetaTensor
+    block = '1 4'
+  [../]
+  [./indicatrix_2]
+    type = ComputeIndicatrix
+    block = '1 4'
+    #from BTO paper
+    refractive_index_bulk_ordinary = 2.412 
+    refractive_index_bulk_extraordinary = 2.360
+    euler_angle_1 = 0.0 # 45.0
+    euler_angle_2 = 54.74 #37.0
+    euler_angle_3 = 45.0 #-76.0
+  [../]
 []
-
-
-
 
 [Kernels]
   #Elastic problem
@@ -344,8 +364,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    250              1e-10      1e-8      1e-6      bjacobi   '
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -pc_hypre_type'
+    petsc_options_value = '    250              1e-10      1e-8      1e-6      hypre       boomeramg '
   [../]
 []
 
@@ -355,7 +375,7 @@
 []
 
 [Outputs]
-  print_linear_residuals = true
+  print_linear_residuals = false
   print_perf_log = true
   [./out]
     type = Exodus

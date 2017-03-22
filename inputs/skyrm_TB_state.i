@@ -37,29 +37,30 @@
   alpha123 = 0.0
 
   G110 = 0.141
-  G11/G110 = 0.0 #this is here to somehow prevent P_z "ringing" problems on the side...
-  G12/G110 = 0.0 #perhaps this allows for div P =0?
+  G11/G110 = 1.0 #this is here to somehow prevent P_z "ringing" problems on the side...
+  G12/G110 = 0.0 #perhaps this allows for divP =0?
   G44/G110 = 1.0
   G44P/G110 = 1.0
 
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
+
+  potential_int = potential_int
 []
 
 [Functions]
-  #This is a skyrmion.
-  [./parsed_function_x]
+  [./parsed_function]
     type = ParsedFunction
-    value = '-(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*sin(atan(y/x))'
+    value = '0.0005*(0.7-0.0625*(x^2+y^2)^(0.5)+0.0323*(x^2+y^2)-0.0156*(x^2+y^2)^(1.5)+0.0013*(x^2+y^2)^2)'
   [../]
-  [./parsed_function_y]
+  [./parsed_function2]
     type = ParsedFunction
-    value = '(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*cos(atan(y/x))'
+    value = '-0.0005*sin(2*3.14159*y/8)'
   [../]
-  [./parsed_function_z]
+  [./parsed_function3]
     type = ParsedFunction
-    value = '(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*cos(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))'
+    value = '-0.0005*sin(2*3.14159*x/8)'
   [../]
 []
 
@@ -68,25 +69,45 @@
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = FunctionIC
-      function = parsed_function_x
+      type = RandomIC
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
+    #[./InitialCondition]
+    #  type = FunctionIC
+    #  function = parsed_function2
+    #[../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = FunctionIC
-      function = parsed_function_y
+      type = RandomIC
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
+    #[./InitialCondition]
+    #  type = FunctionIC
+    #  function = parsed_function3
+    #[../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = FunctionIC
-      function = parsed_function_z
+      type = RandomIC
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
+    #[./InitialCondition]
+    #  type = FunctionIC
+    #  function = parsed_function
+    #[../]
+  [../]
+
+  [./potential_int]
+    order = FIRST
+    family = LAGRANGE
   [../]
 []
 
@@ -126,6 +147,18 @@
      component = 2
   [../]
 
+  #[./polar_xEstrong] #these terms send P to infinity at singularities on the mesh.
+  #   type = PolarElectricEStrong
+  #   variable = polar_x
+  #[../]
+  #[./polar_yEstrong]
+  #   type = PolarElectricEStrong
+  #   variable = polar_y
+  #[../]
+  #[./polar_zEstrong]
+  #   type = PolarElectricEStrong
+  #   variable = polar_z
+  #[../]
 
   [./anis_x]
     type = AnisotropyEnergy
@@ -141,40 +174,37 @@
   [../]
 
   ##Electrostatics
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_int
+     block = '1'
+     permittivity = 0.08854187
+  [../]
 
-  #PdotE
-  #[./polar_electric_px]
-  #   type = PolarElectricPStrong
-  #   variable = polar_x
-  #   component = 0
-  #[../]
-  #[./polar_electric_py]
-  #   type = PolarElectricPStrong
-  #   variable = polar_y
-  #   component = 1
-  #[../]
-  #[./polar_electric_pz] #  when K > 0, turning this block off will get the two band state
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  #[./polar_electric_pz]
   #   type = PolarElectricPStrong
   #   variable = polar_z
   #   component = 2
   #[../]
 
-  ##Poisson problem:
-  #[./FE_E_int]
-  #   type = Electrostatics
-  #   variable = potential_int
-  #   block = '1'
-  #   permittivity = 3.54
-  #[../]
-  #[./polar_x_electric_E]
-  #   type = PolarElectricEStrong
-  #   variable = potential_int
-  #[../]
-
   [./depol_z]
     type = DepolEnergy
-    permitivitty = 0.00885
-    lambda = 0.00175 #this needs to be adjusted as a function of thickness.
+    permitivitty = 0.008854187
+    lambda = 0.0007 #this needs to be adjusted as a function of thickness. Can we remove the ringing with G11 = 0?
     variable = polar_z
     avePz = avePz
   [../]
@@ -200,18 +230,18 @@
 
 
 [BCs]
-  [./center_pol_x]
-    type = DirichletBC
-    variable = 'polar_x'
-    value = 0.0
-    boundary = 'center_node_1 center_node_2 center_node_3 center_node_4'
-  [../]
-  [./center_pol_y]
-    type = DirichletBC
-    variable = 'polar_y'
-    value = 0.0
-    boundary = 'center_node_1 center_node_2 center_node_3 center_node_4'
-  [../]
+  #[./center_pol_x]
+  #  type = DirichletBC
+  #  variable = 'polar_x'
+  #  value = 0.0
+  #  boundary = 'center_node_1 center_node_2 center_node_3 center_node_4'
+  #[../]
+  #[./center_pol_y]
+  #  type = DirichletBC
+  #  variable = 'polar_y'
+  #  value = 0.0
+  #  boundary = 'center_node_1 center_node_2 center_node_3 center_node_4'
+  #[../]
 
  # [./center_pol_z]
  #   type = DirichletBC
@@ -220,24 +250,24 @@
  #   boundary = 'center_node_1 center_node_2 center_node_3 center_node_4'
  # [../]
 
- # [./side_neumann_x]
- #   variable = 'polar_x'
- #   type = NeumannBC
- #   value = 0.0
- #   boundary = '1'
- # [../]
- # [./side_neumann_y]
- #   variable = 'polar_y'
- #   type = NeumannBC
- #   value = 0.0
- #   boundary = '1'
- # [../]
- # [./side_Neumann_z]
- #   variable = 'polar_z'
- #   type = NeumannBC
- #   value = 0.0
- #   boundary = '1'
- # [../]
+  #[./side_neumann_x]
+  #  variable = 'polar_x'
+  #  type = NeumannBC
+  #  value = 0.0
+  #  boundary = '1'
+  #[../]
+  #[./side_neumann_y]
+  #  variable = 'polar_y'
+  #  type = NeumannBC
+  #  value = 0.0
+  #  boundary = '1'
+  #[../]
+  #[./side_Neumann_z]
+  #  variable = 'polar_z'
+  #  type = NeumannBC
+  #  value = 0.0
+  #  boundary = '1'
+  #[../]
 []
 
 
@@ -271,26 +301,26 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.1
+    dt = 0.2
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
     cutback_factor =  0.9
 [../]
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'PJFNK'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
-  dtmax = 0.7
+  dtmax = 1.0
 []
 
 [Outputs]
-  print_linear_residuals = false
+  print_linear_residuals = true
   print_perf_log = true
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
-    file_base = out_ic_skyrm_L00175
+    file_base = out_skyrm_parsed
     elemental_as_nodal = true
   [../]
 []

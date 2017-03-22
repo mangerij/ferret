@@ -1,3 +1,16 @@
+/**
+ * @file   ComputeBetaTensorBase.h
+ * @author J. Mangeri <john.mangeri@uconn.edu>
+ *
+ * Calculate an approximate photoelastic change to the refractive index
+ * \Delta \epsilon_{ij} = - n_i^2 n_j^2 \Delta B_{ij}
+ *
+ * where \Delta B_{ij} = p_{ijkl} \varepsilon_{kl}
+ *
+ * for more information, see Chang (Chp. 12 Handbook of Optics).
+ *
+ */
+
 #ifndef COMPUTEBETATENSORBASE_H
 #define COMPUTEBETATENSORBASE_H
 
@@ -5,7 +18,7 @@
 #include "RankTwoTensor.h"
 
 /**
- * ComputeBetaTensorBase the base class for computing photostrictive tensors
+ * ComputeTensorBase the base class for computing photostrictive tensors
  */
 class ComputeBetaTensorBase : public Material
 {
@@ -20,6 +33,9 @@ protected:
   std::string _beta_tensor_name;
 
   MaterialProperty<RankTwoTensor> & _beta_tensor;
+
+  std::string _beta_tensor_test_name;
+  MaterialProperty<RankTwoTensor> & _beta_tensor_test;
 };
 
 #endif //COMPUTEBETATENSORBASE_H

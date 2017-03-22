@@ -1,7 +1,6 @@
 
 [Mesh]
   file = exodus_thinfilm_test_09_40_10_10.e
-  #uniform_refine = 1
 []
 
 [GlobalParams]
@@ -13,10 +12,10 @@
   alpha112 = 0.61
   alpha123 = -3.67
   G110 = 0.173
-  G11/G110 = 0.6
+  G11/G110 = 2.0
   G12/G110 = 0
-  G44/G110 = 0.3
-  G44P/G110 = 0.3
+  G44/G110 = 1.0
+  G44P/G110 = 1.0
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -24,8 +23,15 @@
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
-  #artificial = 0.75
-  #use_displaced_mesh = 'false' #DO THIS!
+  Qxx = Qxx
+  Qxy = Qxy
+  Qxz = Qxz
+  Qyx = Qyx
+  Qyy = Qyy
+  Qyz = Qyz
+  Qzx = Qzx
+  Qzy = Qzy
+  Qzz = Qzz
   displacements = 'disp_x disp_y disp_z'
   prefactor = 0.01 #negative = tension, positive = compression
 []
@@ -85,6 +91,94 @@
     order = FIRST
     family = LAGRANGE
   [../]
+
+
+#------------------------------------------------#
+#---Dummy tensor to enforce periodicity       ---#
+#---in the strain fields. Need nine components---#
+
+  [./Qxx]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qxy]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qxz]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qyx]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qyy]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qyz]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qzx]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qzy]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+  [./Qzz]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+    [../]
+  [../]
+
 []
 
 
@@ -259,17 +353,10 @@
    eigen_base = '1 0 0 0 1 0 0 0 0'
  [../]
 
- # [./eigen_strain_xx_yy] #Use for stress-free strain (ie epitaxial)
- #  type = ComputeEigenstrain
- #  block = '1'
- # # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
- #  eigen_base = '1 0 0 0 1 0 0 0 0'
- #[../]
-
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+    C_ijkl = '281 115.74 115.74 281 115.74 281 97.18 97.18 97.18'
     block = '1'
   [../]
   [./strain_1]
@@ -285,7 +372,7 @@
     block = '1'
     type = ComputeElectrostrictiveTensor
     Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+    C_ijkl = '281 115.74 115.74 281 115.74 281 97.18 97.18 97.18'
   [../]
 
   [./elasticity_tensor_2]
@@ -306,10 +393,74 @@
 
 
 [Kernels]
-  #Elastic problem
+  #------------------------#
+  #-----Elastic problem----#
+  #------------------------#
+
+  #Stress-divergence
   [./TensorMechanics]
   #This is an action block
   [../]
+  #Thin film subproblem
+  [./qxx]
+    type = ConstantLatticeMismatch
+    variable = Qxx
+    component = 0
+    deriv_component = 0
+  [../]
+  [./qxy]
+    type = ConstantLatticeMismatch
+    variable = Qxy
+    component = 0
+    deriv_component = 1
+  [../]
+  [./qxz]
+    type = ConstantLatticeMismatch
+    variable = Qxz
+    component = 0
+    deriv_component = 2
+  [../]
+  [./qyx]
+    type = ConstantLatticeMismatch
+    variable = Qyx
+    component = 1
+    deriv_component = 0
+  [../]
+  [./qyy]
+    type = ConstantLatticeMismatch
+    variable = Qyy
+    component = 1
+    deriv_component = 1
+  [../]
+  [./qyz]
+    type = ConstantLatticeMismatch
+    variable = Qyz
+    component = 1
+    deriv_component = 2
+  [../]
+  [./qzx]
+    type = ConstantLatticeMismatch
+    variable = Qzx
+    component = 2
+    deriv_component = 0
+  [../]
+  [./qzy]
+    type = ConstantLatticeMismatch
+    variable = Qzy
+    component = 2
+    deriv_component = 1
+  [../]
+  [./qzz]
+    type = ConstantLatticeMismatch
+    variable = Qzz
+    component = 2
+    deriv_component = 2
+  [../]
+
+  #------------------------#
+  #-Ferroelectric problem -#
+  #------------------------#
+
   #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivativeSixth
@@ -383,7 +534,6 @@
   [./polar_x_electric_E]
      type = PolarElectricEStrong
      variable = potential_int
-     permittivity = 0.08854187
   [../]
   [./FE_E_int]
      type = Electrostatics
@@ -430,31 +580,59 @@
      variable = polar_z
     time_scale = 1.0
   [../]
+
+  [./Qxx_time]
+    type = TimeDerivativeScaled
+    variable = Qxx
+    time_scale = 1.0
+  [../]
+  [./Qxy_time]
+    type = TimeDerivativeScaled
+    variable = Qxy
+    time_scale = 1.0
+  [../]
+  [./Qxz_time]
+    type = TimeDerivativeScaled
+    variable = Qxz
+    time_scale = 1.0
+  [../]
+  [./Qyx_time]
+    type = TimeDerivativeScaled
+    variable = Qyx
+    time_scale = 1.0
+  [../]
+  [./Qyy_time]
+    type = TimeDerivativeScaled
+    variable = Qyy
+    time_scale = 1.0
+  [../]
+  [./Qyz_time]
+    type = TimeDerivativeScaled
+    variable = Qyz
+    time_scale = 1.0
+  [../]
+  [./Qzx_time]
+    type = TimeDerivativeScaled
+    variable = Qzx
+    time_scale = 1.0
+  [../]
+  [./Qzy_time]
+    type = TimeDerivativeScaled
+    variable = Qzy
+    time_scale = 1.0
+  [../]
+  [./Qzz_time]
+    type = TimeDerivativeScaled
+    variable = Qzz
+    time_scale = 1.0
+  [../]
+
 []
 
 
 [BCs]
 
-  [./disp_x_SF]
-    type = StressFreeBC
-    variable = disp_x
-    component = 0
-    boundary = '1'
 
-  [../]
-  [./disp_y_1]
-    type = StressFreeBC
-    variable = disp_y
-    component = 1
-    boundary = '1'
-
-  [../]
-  [./disp_z_1]
-    type = StressFreeBC
-    variable = disp_z
-    component = 2
-    boundary = '1'
-  [../]
 
 #[./potential_int_1]
 #  type = DirichletBC
@@ -462,7 +640,7 @@
 #  boundary = '1'
 #  value = -0.0001
 #[../]
-#
+
 #[./potential_int_2]
 #  type = DirichletBC
 #  variable = potential_int
@@ -492,25 +670,61 @@
   [./bot_potential_int]
     variable = disp_x
     type = DirichletBC
-    value = 0
+    value = -0.0001
     boundary = '7'
   [../]
 
   [./Periodic]
-    [./TB_disp_x_pbc]
-      variable = disp_x
+    [./TB_Q_x_x_pbc]
+      variable = Qxx
       primary = '3'
       secondary = '5'
       translation = '0 40 0'
     [../]
-    [./TB_disp_y_pbc]
-      variable = disp_y
+    [./TB_Q_x_y_pbc]
+      variable = Qxy
       primary = '3'
       secondary = '5'
       translation = '0 40 0'
     [../]
-    [./TB_disp_z_pbc]
-      variable = disp_z
+    [./TB_Q_x_z_pbc]
+      variable = Qxz
+      primary = '3'
+      secondary = '5'
+      translation = '0 40 0'
+    [../]
+    [./TB_Q_y_x_pbc]
+      variable = Qyx
+      primary = '3'
+      secondary = '5'
+      translation = '0 40 0'
+    [../]
+    [./TB_Q_y_y_pbc]
+      variable = Qyy
+      primary = '3'
+      secondary = '5'
+      translation = '0 40 0'
+    [../]
+    [./TB_Q_y_z_pbc]
+      variable = Qyz
+      primary = '3'
+      secondary = '5'
+      translation = '0 40 0'
+    [../]
+    [./TB_Q_z_x_pbc]
+      variable = Qzx
+      primary = '3'
+      secondary = '5'
+      translation = '0 40 0'
+    [../]
+    [./TB_Q_z_y_pbc]
+      variable = Qzy
+      primary = '3'
+      secondary = '5'
+      translation = '0 40 0'
+    [../]
+    [./TB_Q_z_z_pbc]
+      variable = Qzz
       primary = '3'
       secondary = '5'
       translation = '0 40 0'
@@ -541,42 +755,59 @@
       translation = '0 40 0'
     [../]
   #
-    [./TBsub_disp_x_pbc]
-      variable = disp_x
+    [./TBsub_Q_x_x_pbc]
+      variable = Qxx
       primary = '8'
       secondary = '10'
       translation = '0 40 0'
     [../]
-    [./TBsub_disp_y_pbc]
-      variable = disp_y
+    [./TBsub_Q_x_y_pbc]
+      variable = Qxy
       primary = '8'
       secondary = '10'
       translation = '0 40 0'
     [../]
-    [./TBsub_disp_z_pbc]
-      variable = disp_z
+    [./TBsub_Q_x_z_pbc]
+      variable = Qxz
       primary = '8'
       secondary = '10'
       translation = '0 40 0'
     [../]
-
-    [./RL_disp_x_pbc]
-      variable = disp_x
-      primary = '4'
-      secondary = '6'
-      translation = '40 0 0'
+    [./TBsub_Q_y_x_pbc]
+      variable = Qyx
+      primary = '8'
+      secondary = '10'
+      translation = '0 40 0'
     [../]
-    [./RL_disp_y_pbc]
-      variable = disp_y
-      primary = '4'
-      secondary = '6'
-      translation = '40 0 0'
+    [./TBsub_Q_y_y_pbc]
+      variable = Qyy
+      primary = '8'
+      secondary = '10'
+      translation = '0 40 0'
     [../]
-    [./RL_disp_z_pbc]
-      variable = disp_z
-      primary = '4'
-      secondary = '6'
-      translation = '40 0 0'
+    [./TBsub_Q_y_z_pbc]
+      variable = Qyz
+      primary = '8'
+      secondary = '10'
+      translation = '0 40 0'
+    [../]
+    [./TBsub_Q_z_x_pbc]
+      variable = Qzx
+      primary = '8'
+      secondary = '10'
+      translation = '0 40 0'
+    [../]
+    [./TBsub_Q_z_y_pbc]
+      variable = Qzy
+      primary = '8'
+      secondary = '10'
+      translation = '0 40 0'
+    [../]
+    [./TBsub_Q_z_z_pbc]
+      variable = Qzz
+      primary = '8'
+      secondary = '10'
+      translation = '0 40 0'
     [../]
 
     [./RL_polar_x_pbc]
@@ -604,20 +835,111 @@
       translation = '40 0 0'
     [../]
 
-    [./RLsub_disp_x_pbc]
-      variable = disp_x
+    [./RL_Q_x_x_pbc]
+      variable = Qxx
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_x_y_pbc]
+      variable = Qxy
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_x_z_pbc]
+      variable = Qxz
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_y_x_pbc]
+      variable = Qyx
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_y_y_pbc]
+      variable = Qyy
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_y_z_pbc]
+      variable = Qyz
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_z_x_pbc]
+      variable = Qzx
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_z_y_pbc]
+      variable = Qzy
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+    [./RL_Q_z_z_pbc]
+      variable = Qzz
+      primary = '4'
+      secondary = '6'
+      translation = '40 0 0'
+    [../]
+
+    [./RLsub_Q_x_x_pbc]
+      variable = Qxx
       primary = '9'
       secondary = '11'
       translation = '40 0 0'
     [../]
-    [./RLsub_disp_y_pbc]
-      variable = disp_y
+    [./RLsub_Q_x_y_pbc]
+      variable = Qxy
       primary = '9'
       secondary = '11'
       translation = '40 0 0'
     [../]
-    [./RLsub_disp_z_pbc]
-      variable = disp_z
+    [./RLsub_Q_x_z_pbc]
+      variable = Qxz
+      primary = '9'
+      secondary = '11'
+      translation = '40 0 0'
+    [../]
+    [./RLsub_Q_y_x_pbc]
+      variable = Qyx
+      primary = '9'
+      secondary = '11'
+      translation = '40 0 0'
+    [../]
+    [./RLsub_Q_y_y_pbc]
+      variable = Qyy
+      primary = '9'
+      secondary = '11'
+      translation = '40 0 0'
+    [../]
+    [./RLsub_Q_y_z_pbc]
+      variable = Qyz
+      primary = '9'
+      secondary = '11'
+      translation = '40 0 0'
+    [../]
+    [./RLsub_Q_z_x_pbc]
+      variable = Qzx
+      primary = '9'
+      secondary = '11'
+      translation = '40 0 0'
+    [../]
+    [./RLsub_Q_z_y_pbc]
+      variable = Qzy
+      primary = '9'
+      secondary = '11'
+      translation = '40 0 0'
+    [../]
+    [./RLsub_Q_z_z_pbc]
+      variable = Qzz
       primary = '9'
       secondary = '11'
       translation = '40 0 0'
@@ -628,11 +950,6 @@
 
 
 [Postprocessors]
-#  [./volume]
-#    type = VolumePostprocessor
-#    block = '1'
-#    use_displaced_mesh = true
-#  [../]
    [./Fbulk]
       type = BulkEnergy
       block = '1'
@@ -683,7 +1000,7 @@
 [UserObjects]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 7.5e-3'
+  expression = 'perc_change <= 1.0e-3'
  [../]
 []
 
@@ -691,9 +1008,10 @@
   [./smp]
     type = SMP
     full = true
+   #TO DEBUG: Not the zero pivot shift
     petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
+    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type '
+    petsc_options_value = '    121                1e-6      1e-8    bjacobi '
   [../]
 []
 
@@ -701,18 +1019,19 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.8
+    dt = 0.3
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
     linear_iteration_ratio = 1000
     cutback_factor =  0.8
 [../]
+  #TO DEBUG: Not the NEWTON or PJFNK
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.8
+  dtmax = 0.3
 []
 
 [Outputs]
@@ -720,9 +1039,8 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTO_thinfilm_09_40_10_10_c01_STO_bench
+    file_base = outPTO_thinfilm_09_40_10_10_c01_Q
     elemental_as_nodal = true
     interval = 1
   [../]
 []
-
