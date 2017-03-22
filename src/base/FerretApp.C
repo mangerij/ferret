@@ -41,6 +41,7 @@
 #include "OldVar.h"
 #include "DielectricTensor.h"
 #include "NormalizedWallEnergyDensity.h"
+#include "PolarMag.h"
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
 #include "RefractiveIndex.h"
@@ -231,6 +232,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(OldVar);
   registerAux(DielectricTensor);
   registerAux(NormalizedWallEnergyDensity);
+  registerAux(PolarMag);
   registerAux(DivP);
   registerAux(PiezoelectricApprox);
   registerAux(RefractiveIndex);
