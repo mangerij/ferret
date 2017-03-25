@@ -1,4 +1,7 @@
 
+
+#Isotropic -> biaxial. Only biaxial because the strains are anisotropic in this example. 
+
 [Mesh]
   file = exodus_disk_r8_h1_photo.e
 []
@@ -132,19 +135,6 @@
     family = MONOMIAL
   [../]
   [./dn_33_refract]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-  [./bire_1_2_dir]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./bire_2_3_dir]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./bire_1_3_dir]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -289,31 +279,6 @@
   [../]
 
 
-  [./b_1_2]
-    type = Birefringence
-    variable = bire_1_2_dir
-    per1 = dn_11_refract
-    per2 = dn_22_refract
-    execute_on = 'timestep_end'
-    block  = '1 2 3 4'
-  [../]
-  [./b_2_3]
-    type = Birefringence
-    variable = bire_2_3_dir
-    per1 = dn_22_refract
-    per2 = dn_33_refract
-    execute_on = 'timestep_end'
-    block  = '1 2 3 4'
-  [../]
-  [./b_1_3]
-    type = Birefringence
-    variable = bire_1_3_dir
-    per1 = dn_11_refract
-    per2 = dn_33_refract
-    execute_on = 'timestep_end'
-    block  = '1 2 3 4'
-  [../]
-
 []
 
 
@@ -363,8 +328,8 @@
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 0.0
-    euler_angle_2 = 15.0
-    euler_angle_3 = 65.0
+    euler_angle_2 = 0.0
+    euler_angle_3 = 0.0
     block = '1 4'
   [../]
   [./strain_2]
@@ -385,8 +350,8 @@
     #P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     P_mnkl = '1.0 0.3 0.3 1.0 0.3 1.0 0.65 0.65 0.65'
     euler_angle_1 = 0.0
-    euler_angle_2 = 15.0
-    euler_angle_3 = 65.0
+    euler_angle_2 = 0.0
+    euler_angle_3 = 0.0
     block = '1 4'
   [../]
   [./delta_beta_tensor_2]

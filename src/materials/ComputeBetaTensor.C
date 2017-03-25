@@ -40,15 +40,15 @@ void
 ComputeBetaTensor::computeQpBetaTensor()
 {
   //define the principle axis impermeability
-  _beta_tensor[_qp](0,0) = 1.0 / (_no * _no);
+  _beta_tensor[_qp](0,0) = 1.0 / (_no * _no * _no);
   _beta_tensor[_qp](0,1) = 0.0;
   _beta_tensor[_qp](0,2) = 0.0;
   _beta_tensor[_qp](1,0) = 0.0;
-  _beta_tensor[_qp](1,1) = 1.0 / (_no * _no);
+  _beta_tensor[_qp](1,1) = 1.0 / (_no * _no * _no);
   _beta_tensor[_qp](1,2) = 0.0;
   _beta_tensor[_qp](2,0) = 0.0;
   _beta_tensor[_qp](2,1) = 0.0;
-  _beta_tensor[_qp](2,2) = 1.0 / (_ne * _ne);
+  _beta_tensor[_qp](2,2) = 1.0 / (_ne * _ne * _ne);
 
   // Define a rotation according to Euler angle parameters
   RotationTensor R(_Euler_angles);

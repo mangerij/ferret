@@ -21,29 +21,24 @@ InputParameters validParams<RefractiveIndex>()
 
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addRequiredParam<unsigned int>("index_one", "A rank two tensor is being computed, need three indices");
-  params.addRequiredParam<unsigned int>("index_two", "A rank two tensor is being computed, need three indices");
-  params.addRequiredParam<unsigned int>("index_three", "A rank two tensor is being computed, need three indices");
+  params.addRequiredParam<unsigned int>("index_i", "index of the delta beta vector");
+  params.addRequiredParam<Real>("n", "need index of refraction along this (i, j) principle direction");
   return params;
 }
 
 
 RefractiveIndex::RefractiveIndex(const InputParameters & parameters) :
   AuxKernel(parameters),
-   _index_one(getParam<unsigned int>("index_one")),
-   _index_two(getParam<unsigned int>("index_two")),
-   _index_three(getParam<unsigned int>("index_three")),
-   _indicatrix_vector(getMaterialProperty<RealVectorValue>("indicatrix")),
-   _beta_tensor_ij(getMaterialProperty<RankTwoTensor>("beta_tensor"))
+   _index_i(getParam<unsigned int>("index_i")),
+   _n(getParam<Real>("n")),
+   _delta_beta_tensor(getMaterialProperty<RealTensorValue>("delta_beta_tensor"))
 {
 }
 
 Real
 RefractiveIndex::computeValue()
 {
-  return (_indicatrix_vector[_qp](_index_one) 
-+ _indicatrix_vector[_qp](_index_two) 
-+ _indicatrix_vector[_qp](_index_three) )/3.0; //+ std::pow(-std::pow(_indicatrix_vector[_qp](_index_one), 2) * std::pow(_indicatrix_vector[_qp](_index_two), 2) * _beta_tensor_ij[_qp](_index_one, _index_one), 0.5);
+  return - 0.5 * std::pow(_n, 3.0) * _delta_beta_tensor[_qp](0, _index_i); //note n needs to be the unstressed indicatrix entry. It is still unclear what B4, B5, B6 provide to this.
 }
 
 

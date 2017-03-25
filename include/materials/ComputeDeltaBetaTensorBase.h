@@ -32,10 +32,8 @@ protected:
   std::string _base_name;
   std::string _delta_beta_tensor_name;
 
-  MaterialProperty<RankTwoTensor> & _delta_beta_tensor;
+  MaterialProperty<RealTensorValue> & _delta_beta_tensor;
 
-  std::string _delta_beta_tensor_test_name;
-  MaterialProperty<RankTwoTensor> & _delta_beta_tensor_test;
 };
 
 #endif //COMPUTEDELTABETATENSORBASE_H

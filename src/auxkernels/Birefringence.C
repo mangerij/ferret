@@ -3,7 +3,7 @@
  * @author J. Mangeri <john.mangeri@uconn.edu>
  *
  * Calculate the birefringence
- * \delta n = n_o - n_e
+ * \delta n = n_o - n_e (unrotated, unstressed)
  *
  */
 
@@ -15,16 +15,16 @@ InputParameters validParams<Birefringence>()
 
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("n_o", "The ordinary axis of the indicatrix");
-  params.addRequiredCoupledVar("n_e", "The extraordinary axis of the indicatrix");
+  params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
+  params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");
   return params;
 }
 
 
 Birefringence::Birefringence(const InputParameters & parameters) :
   AuxKernel(parameters),
-  _var1(coupledValue("n_o")),
-  _var2(coupledValue("n_e"))
+  _var1(coupledValue("per1")),
+  _var2(coupledValue("per2"))
 {
 }
 

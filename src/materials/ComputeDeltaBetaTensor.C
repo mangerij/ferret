@@ -32,30 +32,30 @@ void
 ComputeDeltaBetaTensor::computeQpDeltaBetaTensor()
 {
   for (unsigned int a = 0; a < 3; ++a)
-    for (unsigned int b = 0; b < 3; ++b)
     {
       Real sum = 0;
       for (unsigned int i = 0; i < 3; ++i)
         for (unsigned int j = 0; j < 3; ++j)
         {
-          sum += _photostrictive_tensor[_qp](a, b, i,j) * _strain[_qp](i,j);
+          sum += _photostrictive_tensor[_qp](a, a, i, j) * _strain[_qp](i,j); //This needs to match what we have in Mathematica (Nye notation).
+          //Moose::out << "\n b"; std::cout << a << i << j; Moose::out << " = "; std::cout << _photostrictive_tensor[_qp](a, a, i, j) * _strain[_qp](i,j);
         }
-    _delta_beta_tensor[_qp](a, b) = sum;
+      _delta_beta_tensor[_qp](0, a) = sum;
+      //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
     }
+    Real sum1 = 0;
+    Real sum2 = 0;
+    Real sum3 = 0;
+    for (unsigned int i = 0; i < 3; ++i)
+      for (unsigned int j = 0; j < 3; ++j)
+      {
+        sum1 += _photostrictive_tensor[_qp](1, 2, i, j) * _strain[_qp](i,j);
+        sum2 += _photostrictive_tensor[_qp](2, 0, i, j) * _strain[_qp](i,j);
+        sum3 += _photostrictive_tensor[_qp](0, 1, i, j) * _strain[_qp](i,j);
+      }
+  _delta_beta_tensor[_qp](0,3) = sum1;
+  _delta_beta_tensor[_qp](0,4) = sum2;
+  _delta_beta_tensor[_qp](0,5) = sum3;
 }
-  //find inverse
-  //_beta_tensor[_qp](0,0) = _beta_tensor_test[_qp](1,1) * _beta_tensor_test[_qp](2,2) - _beta_tensor_test[_qp](2,1) * _beta_tensor_test[_qp](1,2);
-  //_beta_tensor[_qp](0,1) = _beta_tensor_test[_qp](0,2) * _beta_tensor_test[_qp](2,1) - _beta_tensor_test[_qp](0,1) * _beta_tensor_test[_qp](2,2);
-  //_beta_tensor[_qp](0,2) = _beta_tensor_test[_qp](0,1) * _beta_tensor_test[_qp](1,2) - _beta_tensor_test[_qp](0,2) * _beta_tensor_test[_qp](1,1);
-  //_beta_tensor[_qp](1,0) = _beta_tensor_test[_qp](1,2) * _beta_tensor_test[_qp](2,0) - _beta_tensor_test[_qp](1,0) * _beta_tensor_test[_qp](2,2);
-  //_beta_tensor[_qp](1,1) = _beta_tensor_test[_qp](0,0) * _beta_tensor_test[_qp](2,2) - _beta_tensor_test[_qp](0,2) * _beta_tensor_test[_qp](2,0);
-  //_beta_tensor[_qp](1,2) = _beta_tensor_test[_qp](0,2) * _beta_tensor_test[_qp](1,0) - _beta_tensor_test[_qp](0,0) * _beta_tensor_test[_qp](1,2);
-  //_beta_tensor[_qp](2,0) = _beta_tensor_test[_qp](1,0) * _beta_tensor_test[_qp](2,1) - _beta_tensor_test[_qp](1,1) * _beta_tensor_test[_qp](2,0);
-  //_beta_tensor[_qp](2,1) = _beta_tensor_test[_qp](0,1) * _beta_tensor_test[_qp](2,0) - _beta_tensor_test[_qp](0,0) * _beta_tensor_test[_qp](2,1);
-  //_beta_tensor[_qp](2,2) = _beta_tensor_test[_qp](0,0) * _beta_tensor_test[_qp](1,1) - _beta_tensor_test[_qp](0,1) * _beta_tensor_test[_qp](1,0);
-  //for (unsigned int i = 0; i < 3; ++i)
-  //  for (unsigned int j = 0; j < 3; ++j)
-  //_beta_tensor[_qp](i, j) = _beta_tensor[_qp](i, j) / _beta_tensor[_qp].det();
-//}
 
 
