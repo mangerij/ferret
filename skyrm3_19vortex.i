@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_disk_r8_h1.e
+  file = out_vortex.e
 []
 
 [MeshModifiers]
@@ -51,76 +51,24 @@
   K = 0.0466666666667
 []
 
-[Functions]
-  #-----------------------------------------------------#
-  # This is a skyrmion solution from Svitlana and Igor  #
-  # It was fit in Mathematica                           #
-  #-----------------------------------------------------#
-
-
-  [./parsed_function_x_skyrm]
-    type = ParsedFunction
-    value = '-(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*sin(atan(y/x))'
-  [../]
-  [./parsed_function_y_skyrm]
-    type = ParsedFunction
-    value = '(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*cos(atan(y/x))'
-  [../]
-  [./parsed_function_z_skyrm]
-    type = ParsedFunction
-    value = '(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*cos(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))'
-  [../]
-
-  #-----------------------------------------------------#
-  # This is a cylindrical domain solution from Svitlana #
-  # and Igor. It was fit in Mathematica.                #
-  #-----------------------------------------------------#
-
-
-  [./parsed_function_z_cd]
-    type = ParsedFunction
-    value = '0.719527-0.0061793*(x^2+y^2)^(0.5)-0.00641062*(x^2+y^2)+0.00508983*(x^2+y^2)^(1.5)-0.0020986*(x^2+y^2)^2+0.000171088*(x^2+y^2)^(5/2)'
-  [../]
-[]
-
 [Variables]
   [./polar_x]
     order = FIRST
     family = LAGRANGE
-    #[./InitialCondition]
-    #  type = RandomIC
-    #  min = -0.1e-5
-    #  max = 0.1e-5
-    #[../]
-    [./InitialCondition]
-      type = FunctionIC
-      function = parsed_function_x_skyrm
-    [../]
+    initial_from_file_var = polar_x
+    initial_from_file_timestep = 'LATEST'
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
-    #[./InitialCondition]
-    #  type = RandomIC
-    #  min = -0.1e-5
-    #  max = 0.1e-5
-    #[../]
-    [./InitialCondition]
-      type = FunctionIC
-      function = parsed_function_y_skyrm
-    [../]
+    initial_from_file_var = polar_y
+    initial_from_file_timestep = 'LATEST'
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
-    #[./InitialCondition]
-    #  type = FunctionIC
-    #  function = parsed_function_z_cd
-    #[../]
-    [./InitialCondition]
-      type = FunctionIC
-      function = parsed_function_z_skyrm
-    [../]
+    initial_from_file_var = polar_z
+    initial_from_file_timestep = 'LATEST'
   [../]
 []
 
@@ -328,7 +276,7 @@
   type = Transient
     [./TimeStepper]
     type = IterationAdaptiveDT
-    dt = 0.1
+    dt = 0.01
     #iteration_window = 3
     optimal_iterations = 6 #should be 5 probably
     growth_factor = 1.4
@@ -339,7 +287,6 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
   dtmax = 0.7
-  num_steps = 500
 []
 
 [Outputs]
@@ -348,11 +295,11 @@
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
-    file_base = out_ic_skyrm
+    file_base = out_ic_vortex
     elemental_as_nodal = true
   [../]
   [./outCSV]
     type = CSV
-    file_base = out_ic_skyrm
+    file_base = out_ic_vortex
   [../]
 []
