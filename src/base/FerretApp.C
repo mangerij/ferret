@@ -132,6 +132,8 @@
 #include "GrainSize.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
+#include "TotalEnergyG.h"
+
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -301,6 +303,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(GrainSize);
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
+  registerPostprocessor(TotalEnergyG);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
