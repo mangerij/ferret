@@ -37,7 +37,7 @@ ChangeInRefractiveIndex::ChangeInRefractiveIndex(const InputParameters & paramet
    _index_k(getParam<unsigned int>("index_k")),
    _index_l(getParam<unsigned int>("index_l")),
    _beta_tensor(getMaterialProperty<RankTwoTensor>("beta_tensor")),
-   _delta_beta_tensor(getMaterialProperty<RankTwoTensor>("delta_beta_tensor")) //or need RealTensorValue
+   _delta_beta_tensor(getMaterialProperty<RealTensorValue>("delta_beta_tensor")) //or need RealTensorValue
 {
 }
 

@@ -24,7 +24,7 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
-  prefactor = 0.0 #negative = tension, positive = compression
+  prefactor = 0.01 #negative = tension, positive = compression
 []
 
 [Functions]
@@ -385,14 +385,14 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_skyrm_weaktest_c0
+    file_base = out_skyrm_weaktest_c1
     elemental_as_nodal = true
     interval = 1
     execute_on = 'timestep_end'
   [../]
   [./outcsv]
     type = CSV
-    file_base = out_skyrm_weaktest_c0
+    file_base = out_skyrm_weaktest_c1
     execute_on = 'timestep_end'
   [../]
 []

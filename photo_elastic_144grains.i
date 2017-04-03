@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = 3D_HCP_256.e
+  file = 3D_HCP_144.e
 []
 
 [MeshModifiers]
@@ -195,7 +195,7 @@
 [Materials]
   [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
     type = ComputeEigenstrain
-    block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 100 101 102 103 104 105 106 107 108 109 110 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243'
+    block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143'
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
     eigenstrain_name = eigenstrain
@@ -2185,6 +2185,25 @@
     block = '98'
   [../]
 
+  [./elasticity_tensor_99]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    #BaTiO3 from MaterialsProject
+    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 65.5
+    euler_angle_2 = 85.5
+    euler_angle_3 = 13.5
+    block = '99'
+  [../]
+  [./strain_99]
+    type = ComputeSmallStrain
+    block = '99'
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_99]
+    type = ComputeLinearElasticStress
+    block = '99'
+  [../]
 
   [./elasticity_tensor_100]
     type = ComputeElasticityTensor
@@ -2675,6 +2694,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 0.0
+    euler_angle_2 = 250.0
+    euler_angle_3 = 30.0
     block = '124'
   [../]
   [./strain_124]
@@ -2714,6 +2736,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = -67.0
+    euler_angle_2 = 33.0
+    euler_angle_3 = -15.6
     block = '126'
   [../]
   [./strain_126]
@@ -2732,6 +2757,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = -15.0
+    euler_angle_2 = 36.0
+    euler_angle_3 = 115.6
     block = '127'
   [../]
   [./strain_127]
@@ -2749,6 +2777,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 59.0
+    euler_angle_2 = 75.0
+    euler_angle_3 = 25.6
     block = '128'
   [../]
   [./strain_128]
@@ -2766,6 +2797,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 18.0
+    euler_angle_2 = 179.0
+    euler_angle_3 = 196.0
     block = '129'
   [../]
   [./strain_129]
@@ -2783,6 +2817,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 10.0
+    euler_angle_2 = 148.0
+    euler_angle_3 = 63.0
     block = '130'
   [../]
   [./strain_130]
@@ -2800,6 +2837,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 63.0
+    euler_angle_2 = 67.9
+    euler_angle_3 = 100.0
     block = '131'
   [../]
   [./strain_131]
@@ -2817,6 +2857,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 100.0
+    euler_angle_2 = 169.0
+    euler_angle_3 = 198.0
     block = '132'
   [../]
   [./strain_132]
@@ -2834,6 +2877,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 100.0
+    euler_angle_2 = -115.0
+    euler_angle_3 = 89.0
     block = '133'
   [../]
   [./strain_133]
@@ -2851,6 +2897,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 21.0
+    euler_angle_2 = 25.0
+    euler_angle_3 = -26.0
     block = '134'
   [../]
   [./strain_134]
@@ -2868,6 +2917,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 121.0
+    euler_angle_2 = 125.0
+    euler_angle_3 = 126.9
     block = '135'
   [../]
   [./strain_135]
@@ -2885,6 +2937,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 3.0
+    euler_angle_2 = 3.0
+    euler_angle_3 = 134.0
     block = '136'
   [../]
   [./strain_136]
@@ -2902,6 +2957,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 52.0
+    euler_angle_2 = 63.0
+    euler_angle_3 = -81.0
     block = '137'
   [../]
   [./strain_137]
@@ -2919,6 +2977,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 34.0
+    euler_angle_2 = 38.0
+    euler_angle_3 = 35.0
     block = '138'
   [../]
   [./strain_138]
@@ -2936,6 +2997,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 47.0
+    euler_angle_2 = 86.0
+    euler_angle_3 = 92.5
     block = '139'
   [../]
   [./strain_139]
@@ -2953,6 +3017,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 15.0
+    euler_angle_2 = 2.0
+    euler_angle_3 = 10.0
     block = '140'
   [../]
   [./strain_140]
@@ -2970,6 +3037,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 37.0
+    euler_angle_2 = 13.0
+    euler_angle_3 = -113.5
     block = '141'
   [../]
   [./strain_141]
@@ -2987,6 +3057,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 67.0
+    euler_angle_2 = 5.0
+    euler_angle_3 = 192.5
     block = '142'
   [../]
   [./strain_142]
@@ -3004,6 +3077,9 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
+    euler_angle_1 = 7.0
+    euler_angle_2 = -192.0
+    euler_angle_3 = 77.5
     block = '143'
   [../]
   [./strain_143]
@@ -3014,1723 +3090,6 @@
   [./stress_143]
     type = ComputeLinearElasticStress
     block = '143'
-  [../]
-
-  [./elasticity_tensor_144]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '144'
-  [../]
-  [./strain_144]
-    type = ComputeSmallStrain
-    block = '144'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_144]
-    type = ComputeLinearElasticStress
-    block = '144'
-  [../]
-
-  [./elasticity_tensor_145]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '145'
-  [../]
-  [./strain_145]
-    type = ComputeSmallStrain
-    block = '145'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_145]
-    type = ComputeLinearElasticStress
-    block = '145'
-  [../]
-
-  [./elasticity_tensor_146]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '146'
-  [../]
-  [./strain_146]
-    type = ComputeSmallStrain
-    block = '146'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_146]
-    type = ComputeLinearElasticStress
-    block = '146'
-  [../]
-
-  [./elasticity_tensor_147]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '147'
-  [../]
-  [./strain_147]
-    type = ComputeSmallStrain
-    block = '147'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_147]
-    type = ComputeLinearElasticStress
-    block = '147'
-  [../]
-
-  [./elasticity_tensor_148]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '148'
-  [../]
-  [./strain_148]
-    type = ComputeSmallStrain
-    block = '148'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_148]
-    type = ComputeLinearElasticStress
-    block = '148'
-  [../]
-
-  [./elasticity_tensor_149]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '149'
-  [../]
-  [./strain_149]
-    type = ComputeSmallStrain
-    block = '149'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_149]
-    type = ComputeLinearElasticStress
-    block = '149'
-  [../]
-
-  [./elasticity_tensor_150]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '150'
-  [../]
-  [./strain_150]
-    type = ComputeSmallStrain
-    block = '150'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_150]
-    type = ComputeLinearElasticStress
-    block = '150'
-  [../]
-
-  [./elasticity_tensor_151]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '151'
-  [../]
-  [./strain_151]
-    type = ComputeSmallStrain
-    block = '151'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_151]
-    type = ComputeLinearElasticStress
-    block = '151'
-  [../]
-
-  [./elasticity_tensor_152]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '152'
-  [../]
-  [./strain_152]
-    type = ComputeSmallStrain
-    block = '152'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_152]
-    type = ComputeLinearElasticStress
-    block = '152'
-  [../]
-
-  [./elasticity_tensor_153]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '153'
-  [../]
-  [./strain_153]
-    type = ComputeSmallStrain
-    block = '153'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_153]
-    type = ComputeLinearElasticStress
-    block = '153'
-  [../]
-
-  [./elasticity_tensor_154]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '154'
-  [../]
-  [./strain_154]
-    type = ComputeSmallStrain
-    block = '154'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_154]
-    type = ComputeLinearElasticStress
-    block = '154'
-  [../]
-
-  [./elasticity_tensor_155]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '155'
-  [../]
-  [./strain_155]
-    type = ComputeSmallStrain
-    block = '155'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_155]
-    type = ComputeLinearElasticStress
-    block = '155'
-  [../]
-
-  [./elasticity_tensor_156]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '156'
-  [../]
-  [./strain_156]
-    type = ComputeSmallStrain
-    block = '156'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_156]
-    type = ComputeLinearElasticStress
-    block = '156'
-  [../]
-
-  [./elasticity_tensor_157]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '157'
-  [../]
-  [./strain_157]
-    type = ComputeSmallStrain
-    block = '157'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_157]
-    type = ComputeLinearElasticStress
-    block = '157'
-  [../]
-
-  [./elasticity_tensor_158]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '158'
-  [../]
-  [./strain_158]
-    type = ComputeSmallStrain
-    block = '158'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_158]
-    type = ComputeLinearElasticStress
-    block = '158'
-  [../]
-
-  [./elasticity_tensor_159]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '159'
-  [../]
-  [./strain_159]
-    type = ComputeSmallStrain
-    block = '159'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_159]
-    type = ComputeLinearElasticStress
-    block = '159'
-  [../]
-
-  [./elasticity_tensor_160]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '160'
-  [../]
-  [./strain_160]
-    type = ComputeSmallStrain
-    block = '160'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_160]
-    type = ComputeLinearElasticStress
-    block = '160'
-  [../]
-
-  [./elasticity_tensor_161]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '161'
-  [../]
-  [./strain_161]
-    type = ComputeSmallStrain
-    block = '161'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_161]
-    type = ComputeLinearElasticStress
-    block = '161'
-  [../]
-
-  [./elasticity_tensor_162]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '162'
-  [../]
-  [./strain_162]
-    type = ComputeSmallStrain
-    block = '162'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_162]
-    type = ComputeLinearElasticStress
-    block = '162'
-  [../]
-
-  [./elasticity_tensor_163]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '163'
-  [../]
-  [./strain_163]
-    type = ComputeSmallStrain
-    block = '163'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_163]
-    type = ComputeLinearElasticStress
-    block = '163'
-  [../]
-
-  [./elasticity_tensor_164]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '164'
-  [../]
-  [./strain_164]
-    type = ComputeSmallStrain
-    block = '164'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_164]
-    type = ComputeLinearElasticStress
-    block = '164'
-  [../]
-
-  [./elasticity_tensor_165]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '165'
-  [../]
-  [./strain_165]
-    type = ComputeSmallStrain
-    block = '165'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_165]
-    type = ComputeLinearElasticStress
-    block = '165'
-  [../]
-
-  [./elasticity_tensor_166]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '166'
-  [../]
-  [./strain_166]
-    type = ComputeSmallStrain
-    block = '166'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_166]
-    type = ComputeLinearElasticStress
-    block = '166'
-  [../]
-
-
-  [./elasticity_tensor_167]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '167'
-  [../]
-  [./strain_167]
-    type = ComputeSmallStrain
-    block = '167'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_167]
-    type = ComputeLinearElasticStress
-    block = '167'
-  [../]
-
-  [./elasticity_tensor_168]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '168'
-  [../]
-  [./strain_168]
-    type = ComputeSmallStrain
-    block = '168'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_168]
-    type = ComputeLinearElasticStress
-    block = '168'
-  [../]
-
-  [./elasticity_tensor_169]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '169'
-  [../]
-  [./strain_169]
-    type = ComputeSmallStrain
-    block = '169'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_169]
-    type = ComputeLinearElasticStress
-    block = '169'
-  [../]
-
-  [./elasticity_tensor_170]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '170'
-  [../]
-  [./strain_170]
-    type = ComputeSmallStrain
-    block = '170'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_170]
-    type = ComputeLinearElasticStress
-    block = '170'
-  [../]
-
-  [./elasticity_tensor_171]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '171'
-  [../]
-  [./strain_171]
-    type = ComputeSmallStrain
-    block = '171'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_171]
-    type = ComputeLinearElasticStress
-    block = '171'
-  [../]
-
-  [./elasticity_tensor_172]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '172'
-  [../]
-  [./strain_172]
-    type = ComputeSmallStrain
-    block = '172'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_172]
-    type = ComputeLinearElasticStress
-    block = '172'
-  [../]
-
-  [./elasticity_tensor_173]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '173'
-  [../]
-  [./strain_173]
-    type = ComputeSmallStrain
-    block = '173'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_173]
-    type = ComputeLinearElasticStress
-    block = '173'
-  [../]
-
-  [./elasticity_tensor_174]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '174'
-  [../]
-  [./strain_174]
-    type = ComputeSmallStrain
-    block = '174'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_174]
-    type = ComputeLinearElasticStress
-    block = '174'
-  [../]
-
-  [./elasticity_tensor_175]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '175'
-  [../]
-  [./strain_175]
-    type = ComputeSmallStrain
-    block = '175'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_175]
-    type = ComputeLinearElasticStress
-    block = '175'
-  [../]
-
-  [./elasticity_tensor_176]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '176'
-  [../]
-  [./strain_176]
-    type = ComputeSmallStrain
-    block = '176'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_176]
-    type = ComputeLinearElasticStress
-    block = '176'
-  [../]
-
-  [./elasticity_tensor_177]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = 20.0
-    euler_angle_2 = 57.0
-    euler_angle_3 = 35.6
-    block = '177'
-  [../]
-  [./strain_177]
-    type = ComputeSmallStrain
-    block = '177'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_177]
-    type = ComputeLinearElasticStress
-    block = '177'
-  [../]
-
-  [./elasticity_tensor_178]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = 28.0
-    euler_angle_2 = 156.0
-    euler_angle_3 = -45.7
-    block = '178'
-  [../]
-  [./strain_178]
-    type = ComputeSmallStrain
-    block = '178'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_178]
-    type = ComputeLinearElasticStress
-    block = '178'
-  [../]
-
-  [./elasticity_tensor_179]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '179'
-  [../]
-  [./strain_179]
-    type = ComputeSmallStrain
-    block = '179'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_179]
-    type = ComputeLinearElasticStress
-    block = '179'
-  [../]
-
-  [./elasticity_tensor_180]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '180'
-  [../]
-  [./strain_180]
-    type = ComputeSmallStrain
-    block = '180'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_180]
-    type = ComputeLinearElasticStress
-    block = '180'
-  [../]
-
-  [./elasticity_tensor_181]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '181'
-  [../]
-  [./strain_181]
-    type = ComputeSmallStrain
-    block = '181'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_181]
-    type = ComputeLinearElasticStress
-    block = '181'
-  [../]
-
-  [./elasticity_tensor_182]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '182'
-  [../]
-  [./strain_182]
-    type = ComputeSmallStrain
-    block = '182'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_182]
-    type = ComputeLinearElasticStress
-    block = '182'
-  [../]
-
-  [./elasticity_tensor_183]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '183'
-  [../]
-  [./strain_183]
-    type = ComputeSmallStrain
-    block = '183'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_183]
-    type = ComputeLinearElasticStress
-    block = '183'
-  [../]
-
-  [./elasticity_tensor_184]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '184'
-  [../]
-  [./strain_184]
-    type = ComputeSmallStrain
-    block = '184'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_184]
-    type = ComputeLinearElasticStress
-    block = '184'
-  [../]
-
-  [./elasticity_tensor_185]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '185'
-  [../]
-  [./strain_185]
-    type = ComputeSmallStrain
-    block = '185'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_185]
-    type = ComputeLinearElasticStress
-    block = '185'
-  [../]
-
-  [./elasticity_tensor_186]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '186'
-  [../]
-  [./strain_186]
-    type = ComputeSmallStrain
-    block = '186'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_186]
-    type = ComputeLinearElasticStress
-    block = '186'
-  [../]
-
-  [./elasticity_tensor_187]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '187'
-  [../]
-  [./strain_187]
-    type = ComputeSmallStrain
-    block = '187'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_187]
-    type = ComputeLinearElasticStress
-    block = '187'
-  [../]
-
-  [./elasticity_tensor_188]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '188'
-  [../]
-  [./strain_188]
-    type = ComputeSmallStrain
-    block = '188'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_188]
-    type = ComputeLinearElasticStress
-    block = '188'
-  [../]
-
-  [./elasticity_tensor_189]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '189'
-  [../]
-  [./strain_189]
-    type = ComputeSmallStrain
-    block = '189'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_189]
-    type = ComputeLinearElasticStress
-    block = '189'
-  [../]
-
-  [./elasticity_tensor_190]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '190'
-  [../]
-  [./strain_190]
-    type = ComputeSmallStrain
-    block = '190'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_190]
-    type = ComputeLinearElasticStress
-    block = '190'
-  [../]
-
-  [./elasticity_tensor_191]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = 38.0
-    euler_angle_2 = 39.0
-    euler_angle_3 = 59.0
-    block = '191'
-  [../]
-  [./strain_191]
-    type = ComputeSmallStrain
-    block = '191'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_191]
-    type = ComputeLinearElasticStress
-    block = '191'
-  [../]
-
-  [./elasticity_tensor_192]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '192'
-  [../]
-  [./strain_192]
-    type = ComputeSmallStrain
-    block = '192'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_192]
-    type = ComputeLinearElasticStress
-    block = '192'
-  [../]
-
-  [./elasticity_tensor_193]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '193'
-  [../]
-  [./strain_193]
-    type = ComputeSmallStrain
-    block = '193'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_193]
-    type = ComputeLinearElasticStress
-    block = '193'
-  [../]
-
-  [./elasticity_tensor_194]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '194'
-  [../]
-  [./strain_194]
-    type = ComputeSmallStrain
-    block = '194'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_194]
-    type = ComputeLinearElasticStress
-    block = '194'
-  [../]
-
-  [./elasticity_tensor_195]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '195'
-  [../]
-  [./strain_195]
-    type = ComputeSmallStrain
-    block = '195'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_195]
-    type = ComputeLinearElasticStress
-    block = '195'
-  [../]
-
-  [./elasticity_tensor_196]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '196'
-  [../]
-  [./strain_196]
-    type = ComputeSmallStrain
-    block = '196'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_196]
-    type = ComputeLinearElasticStress
-    block = '196'
-  [../]
-
-  [./elasticity_tensor_197]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '197'
-  [../]
-  [./strain_197]
-    type = ComputeSmallStrain
-    block = '197'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_197]
-    type = ComputeLinearElasticStress
-    block = '197'
-  [../]
-
-  [./elasticity_tensor_198]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '198'
-  [../]
-  [./strain_198]
-    type = ComputeSmallStrain
-    block = '198'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_198]
-    type = ComputeLinearElasticStress
-    block = '198'
-  [../]
-
-  [./elasticity_tensor_199]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '199'
-  [../]
-  [./strain_199]
-    type = ComputeSmallStrain
-    block = '199'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_199]
-    type = ComputeLinearElasticStress
-    block = '199'
-  [../]
-
-  [./elasticity_tensor_200]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '200'
-  [../]
-  [./strain_200]
-    type = ComputeSmallStrain
-    block = '200'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_200]
-    type = ComputeLinearElasticStress
-    block = '200'
-  [../]
-
-  [./elasticity_tensor_201]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '201'
-  [../]
-  [./strain_201]
-    type = ComputeSmallStrain
-    block = '201'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_201]
-    type = ComputeLinearElasticStress
-    block = '201'
-  [../]
-
-  [./elasticity_tensor_202]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '202'
-  [../]
-  [./strain_202]
-    type = ComputeSmallStrain
-    block = '202'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_202]
-    type = ComputeLinearElasticStress
-    block = '202'
-  [../]
-
-  [./elasticity_tensor_203]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '203'
-  [../]
-  [./strain_203]
-    type = ComputeSmallStrain
-    block = '203'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_203]
-    type = ComputeLinearElasticStress
-    block = '203'
-  [../]
-
-
-  [./elasticity_tensor_204]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = 76.0
-    euler_angle_2 = 48.0
-    euler_angle_3 = -29.0
-    block = '204'
-  [../]
-  [./strain_204]
-    type = ComputeSmallStrain
-    block = '204'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_204]
-    type = ComputeLinearElasticStress
-    block = '204'
-  [../]
-
-  [./elasticity_tensor_205]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = -21.0
-    euler_angle_2 = 208.0
-    euler_angle_3 = 24.0
-    block = '205'
-  [../]
-  [./strain_205]
-    type = ComputeSmallStrain
-    block = '205'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_205]
-    type = ComputeLinearElasticStress
-    block = '205'
-  [../]
-
-  [./elasticity_tensor_206]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '206'
-  [../]
-  [./strain_206]
-    type = ComputeSmallStrain
-    block = '206'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_206]
-    type = ComputeLinearElasticStress
-    block = '206'
-  [../]
-
-  [./elasticity_tensor_207]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '207'
-  [../]
-  [./strain_207]
-    type = ComputeSmallStrain
-    block = '207'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_207]
-    type = ComputeLinearElasticStress
-    block = '207'
-  [../]
-
-  [./elasticity_tensor_208]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '208'
-  [../]
-  [./strain_208]
-    type = ComputeSmallStrain
-    block = '208'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_208]
-    type = ComputeLinearElasticStress
-    block = '208'
-  [../]
-
-  [./elasticity_tensor_209]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '209'
-  [../]
-  [./strain_209]
-    type = ComputeSmallStrain
-    block = '209'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_209]
-    type = ComputeLinearElasticStress
-    block = '209'
-  [../]
-
-  [./elasticity_tensor_210]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '210'
-  [../]
-  [./strain_210]
-    type = ComputeSmallStrain
-    block = '210'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_210]
-    type = ComputeLinearElasticStress
-    block = '210'
-  [../]
-
-  [./elasticity_tensor_211]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '211'
-  [../]
-  [./strain_211]
-    type = ComputeSmallStrain
-    block = '211'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_211]
-    type = ComputeLinearElasticStress
-    block = '211'
-  [../]
-
-  [./elasticity_tensor_212]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '212'
-  [../]
-  [./strain_212]
-    type = ComputeSmallStrain
-    block = '212'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_212]
-    type = ComputeLinearElasticStress
-    block = '212'
-  [../]
-
-  [./elasticity_tensor_213]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '213'
-  [../]
-  [./strain_213]
-    type = ComputeSmallStrain
-    block = '213'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_213]
-    type = ComputeLinearElasticStress
-    block = '213'
-  [../]
-
-  [./elasticity_tensor_214]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '214'
-  [../]
-  [./strain_214]
-    type = ComputeSmallStrain
-    block = '214'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_214]
-    type = ComputeLinearElasticStress
-    block = '214'
-  [../]
-
-  [./elasticity_tensor_215]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '215'
-  [../]
-  [./strain_215]
-    type = ComputeSmallStrain
-    block = '215'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_215]
-    type = ComputeLinearElasticStress
-    block = '215'
-  [../]
-
-  [./elasticity_tensor_216]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '216'
-  [../]
-  [./strain_216]
-    type = ComputeSmallStrain
-    block = '216'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_216]
-    type = ComputeLinearElasticStress
-    block = '216'
-  [../]
-
-  [./elasticity_tensor_217]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '217'
-  [../]
-  [./strain_217]
-    type = ComputeSmallStrain
-    block = '217'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_217]
-    type = ComputeLinearElasticStress
-    block = '217'
-  [../]
-
-  [./elasticity_tensor_218]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '218'
-  [../]
-  [./strain_218]
-    type = ComputeSmallStrain
-    block = '218'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_218]
-    type = ComputeLinearElasticStress
-    block = '218'
-  [../]
-
-  [./elasticity_tensor_219]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '219'
-  [../]
-  [./strain_219]
-    type = ComputeSmallStrain
-    block = '219'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_219]
-    type = ComputeLinearElasticStress
-    block = '219'
-  [../]
-
-  [./elasticity_tensor_220]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '220'
-  [../]
-  [./strain_220]
-    type = ComputeSmallStrain
-    block = '220'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_220]
-    type = ComputeLinearElasticStress
-    block = '220'
-  [../]
-
-  [./elasticity_tensor_221]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '221'
-  [../]
-  [./strain_221]
-    type = ComputeSmallStrain
-    block = '221'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_221]
-    type = ComputeLinearElasticStress
-    block = '221'
-  [../]
-
-  [./elasticity_tensor_222]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '222'
-  [../]
-  [./strain_222]
-    type = ComputeSmallStrain
-    block = '222'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_222]
-    type = ComputeLinearElasticStress
-    block = '222'
-  [../]
-
-  [./elasticity_tensor_223]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '223'
-  [../]
-  [./strain_223]
-    type = ComputeSmallStrain
-    block = '223'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_223]
-    type = ComputeLinearElasticStress
-    block = '223'
-  [../]
-
-  [./elasticity_tensor_224]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '224'
-  [../]
-  [./strain_224]
-    type = ComputeSmallStrain
-    block = '224'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_224]
-    type = ComputeLinearElasticStress
-    block = '224'
-  [../]
-
-  [./elasticity_tensor_225]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '225'
-  [../]
-  [./strain_225]
-    type = ComputeSmallStrain
-    block = '225'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_225]
-    type = ComputeLinearElasticStress
-    block = '225'
-  [../]
-
-  [./elasticity_tensor_226]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '226'
-  [../]
-  [./strain_226]
-    type = ComputeSmallStrain
-    block = '226'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_226]
-    type = ComputeLinearElasticStress
-    block = '226'
-  [../]
-
-  [./elasticity_tensor_227]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '227'
-  [../]
-  [./strain_227]
-    type = ComputeSmallStrain
-    block = '227'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_227]
-    type = ComputeLinearElasticStress
-    block = '227'
-  [../]
-
-  [./elasticity_tensor_228]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '228'
-  [../]
-  [./strain_228]
-    type = ComputeSmallStrain
-    block = '228'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_228]
-    type = ComputeLinearElasticStress
-    block = '228'
-  [../]
-
-  [./elasticity_tensor_229]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '229'
-  [../]
-  [./strain_229]
-    type = ComputeSmallStrain
-    block = '229'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_229]
-    type = ComputeLinearElasticStress
-    block = '229'
-  [../]
-
-  [./elasticity_tensor_230]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '230'
-  [../]
-  [./strain_230]
-    type = ComputeSmallStrain
-    block = '230'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_230]
-    type = ComputeLinearElasticStress
-    block = '230'
-  [../]
-
-  [./elasticity_tensor_231]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '231'
-  [../]
-  [./strain_231]
-    type = ComputeSmallStrain
-    block = '231'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_231]
-    type = ComputeLinearElasticStress
-    block = '231'
-  [../]
-
-  [./elasticity_tensor_232]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '232'
-  [../]
-  [./strain_232]
-    type = ComputeSmallStrain
-    block = '232'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_232]
-    type = ComputeLinearElasticStress
-    block = '232'
-  [../]
-
-  [./elasticity_tensor_233]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '233'
-  [../]
-  [./strain_233]
-    type = ComputeSmallStrain
-    block = '233'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_233]
-    type = ComputeLinearElasticStress
-    block = '233'
-  [../]
-
-  [./elasticity_tensor_234]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '234'
-  [../]
-  [./strain_234]
-    type = ComputeSmallStrain
-    block = '234'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_234]
-    type = ComputeLinearElasticStress
-    block = '234'
-  [../]
-
-  [./elasticity_tensor_235]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '235'
-  [../]
-  [./strain_235]
-    type = ComputeSmallStrain
-    block = '235'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_235]
-    type = ComputeLinearElasticStress
-    block = '235'
-  [../]
-
-  [./elasticity_tensor_236]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '236'
-  [../]
-  [./strain_236]
-    type = ComputeSmallStrain
-    block = '236'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_236]
-    type = ComputeLinearElasticStress
-    block = '236'
-  [../]
-
-  [./elasticity_tensor_237]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '237'
-  [../]
-  [./strain_237]
-    type = ComputeSmallStrain
-    block = '237'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_237]
-    type = ComputeLinearElasticStress
-    block = '237'
-  [../]
-
-  [./elasticity_tensor_238]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '238'
-  [../]
-  [./strain_238]
-    type = ComputeSmallStrain
-    block = '238'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_238]
-    type = ComputeLinearElasticStress
-    block = '238'
-  [../]
-
-  [./elasticity_tensor_239]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '239'
-  [../]
-  [./strain_239]
-    type = ComputeSmallStrain
-    block = '239'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_239]
-    type = ComputeLinearElasticStress
-    block = '239'
-  [../]
-
-  [./elasticity_tensor_240]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '240'
-  [../]
-  [./strain_240]
-    type = ComputeSmallStrain
-    block = '240'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_240]
-    type = ComputeLinearElasticStress
-    block = '240'
-  [../]
-
-  [./elasticity_tensor_241]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '241'
-  [../]
-  [./strain_241]
-    type = ComputeSmallStrain
-    block = '241'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_241]
-    type = ComputeLinearElasticStress
-    block = '241'
-  [../]
-
-  [./elasticity_tensor_242]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '242'
-  [../]
-  [./strain_242]
-    type = ComputeSmallStrain
-    block = '242'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_242]
-    type = ComputeLinearElasticStress
-    block = '242'
-  [../]
-
-  [./elasticity_tensor_243]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '243'
-  [../]
-  [./strain_243]
-    type = ComputeSmallStrain
-    block = '243'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_243]
-    type = ComputeLinearElasticStress
-    block = '243'
   [../]
 []
 
@@ -4778,7 +3137,7 @@
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
-    file_base = out_484grain_structure
+    file_base = out_144grain_structure
     elemental_as_nodal = true
   [../]
 []

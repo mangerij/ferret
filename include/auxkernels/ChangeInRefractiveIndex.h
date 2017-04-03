@@ -40,7 +40,7 @@ private:
   const unsigned int _index_k;
   const unsigned int _index_l;
   const MaterialProperty<RankTwoTensor> & _beta_tensor;
-  const MaterialProperty<RankTwoTensor> & _delta_beta_tensor;
+  const MaterialProperty<RealTensorValue> & _delta_beta_tensor;
 };
 
 #endif // CHANGEINREFRACTIVEINDEX_H
