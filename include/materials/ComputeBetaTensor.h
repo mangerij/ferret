@@ -30,8 +30,9 @@ public:
 protected:
   virtual void computeQpBetaTensor();
   /// Individual material information
-  Real _no;
-  Real _ne;
+  Real _na;
+  Real _nb;
+  Real _ng;
 };
 
 #endif //COMPUTEBETATENSOR_H

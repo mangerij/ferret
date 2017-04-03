@@ -1,7 +1,6 @@
 
 [Mesh]
-  file = 6grains.e
-  uniform_refine = 1
+  file = 3D_HCP_256.e
 []
 
 [MeshModifiers]
@@ -84,61 +83,7 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-
-  [./beta_11_impermeability]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./beta_22_impermeability]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./beta_12_impermeability]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./beta_13_impermeability]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./beta_33_impermeability]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./beta_23_impermeability]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-
-  [./dn_11_refract]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./dn_22_refract]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./dn_33_refract]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-  [./bire_1_2_dir]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./bire_2_3_dir]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./bire_1_3_dir]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
 []
-
 
 [AuxKernels]
   [./matl_e11]
@@ -148,7 +93,6 @@
     index_j = 0
     variable = strain_xx_elastic
     execute_on = 'timestep_end'
-    block = '1 2 3 4 5 6'
   [../]
   [./matl_e12]
     type = RankTwoAux
@@ -238,59 +182,23 @@
     variable = stress_zz_elastic
     execute_on = 'timestep_end'
   [../]
-
-
-  [./dn_e11]
-    type = RefractiveIndex
-    index_i = 0
-    n = 1.4
-    variable = dn_11_refract
-    execute_on = 'timestep_end'
-  [../]
-  [./dn_e22]
-    type = RefractiveIndex
-    index_i = 1
-    n = 1.4
-    variable = dn_22_refract
-  [../]
-  [./dn_e33]
-    type = RefractiveIndex
-    index_i = 2
-    n = 1.4
-    variable = dn_33_refract
-    execute_on = 'timestep_end'
-  [../]
-
-
-  [./b_1_2]
-    type = Birefringence
-    variable = bire_1_2_dir
-    per1 = dn_11_refract
-    per2 = dn_22_refract
-    execute_on = 'timestep_end'
-  [../]
-  [./b_2_3]
-    type = Birefringence
-    variable = bire_2_3_dir
-    per1 = dn_22_refract
-    per2 = dn_33_refract
-    execute_on = 'timestep_end'
-  [../]
-  [./b_1_3]
-    type = Birefringence
-    variable = bire_1_3_dir
-    per1 = dn_11_refract
-    per2 = dn_33_refract
-    execute_on = 'timestep_end'
-  [../]
-
 []
+
+################################################
+# Block list:
+#
+# No 99
+#
+# block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 57 58 59 60 61 62 63 64 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 90 91 92 93 94 95 96 97 98 100 101 102 103 104 105 106 107 108 109 110 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 201 203 204 205 206 207 208 209 210 211 212 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388 389 390 391 392 393 394 395 396 397 398 399 400 401 402 403 404 405 406 407 408 409 410 411 412 413 414 415 416 417 418 419 420 421 422 423 424 425 426 427 428 429 430 431 432 433 434 435 436 437 438 439 440 441 442 443 444 445 446 447'
+#
+#
+#################################################
 
 
 [Materials]
   [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
     type = ComputeEigenstrain
-    block = '1 2 3 4 5 6'
+    block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 100 101 102 103 104 105 106 107 108 109 110 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243'
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
     eigenstrain_name = eigenstrain
@@ -303,105 +211,17 @@
     fill_method = symmetric9
     #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    block = '2 3'
+    block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 100 101 102 103 104 105 106 107 108 109 110 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243'
   [../]
   [./strain_1]
     type = ComputeSmallStrain
-    block = '2 3'
+    block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 100 101 102 103 104 105 106 107 108 109 110 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243'
     eigenstrain_names = eigenstrain
   [../]
   [./stress_1]
     type = ComputeLinearElasticStress
-    block = '2 3'
+    block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 66 65 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 100 101 102 103 104 105 106 107 108 109 110 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243'
   [../]
-  [./photoelastic_tensor_1]
-    type = ComputePhotostrictiveTensor
-    fill_method = symmetric9 #symmetric21
-    #C1111, C1122, C1133, C1123, C1113, C1112, C2222, C2233, C2223, C2213, C2212, C3333, C3323, C3313, C3312, C2323, C2313, C2312, C1313, C1312, C1212
-    #P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
-    P_mnkl = '1.0 0.3 0.3 1.0 0.3 1.0 0.65 0.65 0.65'
-    block = '2 3'
-  [../]
-  [./delta_beta_tensor_1]
-    type = ComputeDeltaBetaTensor
-    block = '2 3'
-  [../]
-
-  [./elasticity_tensor_2]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = 0.0
-    euler_angle_2 = 15.0
-    euler_angle_3 = 65.0
-    block = '1 4 6'
-  [../]
-  [./strain_2]
-    type = ComputeSmallStrain
-    block = '1 4 6'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_2]
-    type = ComputeLinearElasticStress
-    block = '1 4 6'
-  [../]
-  [./photoelastic_tensor_2]
-    type = ComputePhotostrictiveTensor
-    fill_method = symmetric9 #BTO is not symmetric21!! 
-    # Use BaTiO3, crystal symmetry P4mm.
-    #C1111,  0.5, C1122, 0.106, C1133, 0.20, C1123, 0.0, C1113, 0.0, C1112, 0.0, C2222, 0.5, C2233, 0.20, C2223, 0.0, C2213, 0.0
-    #C2212, 0.0, C3333, 0.77, C3323, 0.0, C3313, 0.0, C3312, 0.0, C2323, 1.0, C2313, 0.0, C2312, 0.0, C1313, 1.0, C1312, 0.0, C1212  0.1
-    #P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
-    P_mnkl = '1.0 0.3 0.3 1.0 0.3 1.0 0.65 0.65 0.65'
-    euler_angle_1 = 0.0
-    euler_angle_2 = 15.0
-    euler_angle_3 = 65.0
-    block = '1 4 6'
-  [../]
-  [./delta_beta_tensor_2]
-    type = ComputeDeltaBetaTensor
-    block = '1 4 6'
-  [../]
-
-
-  [./elasticity_tensor_3]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
-    C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
-    euler_angle_1 = -20.0
-    euler_angle_2 = 5.0
-    euler_angle_3 = -73.0
-    block = '5'
-  [../]
-  [./strain_3]
-    type = ComputeSmallStrain
-    block = '5'
-    eigenstrain_names = eigenstrain
-  [../]
-  [./stress_3]
-    type = ComputeLinearElasticStress
-    block = '5'
-  [../]
-  [./photoelastic_tensor_3]
-    type = ComputePhotostrictiveTensor
-    fill_method = symmetric9 #BTO is not symmetric21!! 
-    # Use BaTiO3, crystal symmetry P4mm.
-    #C1111,  0.5, C1122, 0.106, C1133, 0.20, C1123, 0.0, C1113, 0.0, C1112, 0.0, C2222, 0.5, C2233, 0.20, C2223, 0.0, C2213, 0.0
-    #C2212, 0.0, C3333, 0.77, C3323, 0.0, C3313, 0.0, C3312, 0.0, C2323, 1.0, C2313, 0.0, C2312, 0.0, C1313, 1.0, C1312, 0.0, C1212  0.1
-    #P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
-    P_mnkl = '1.0 0.3 0.3 1.0 0.3 1.0 0.65 0.65 0.65'
-    euler_angle_1 = -20.0
-    euler_angle_2 = 5.0
-    euler_angle_3 = -73.0
-    block = '5'
-  [../]
-  [./delta_beta_tensor_3]
-    type = ComputeDeltaBetaTensor
-    block = '5'
-  [../]
-
 []
 
 [Kernels]
@@ -416,14 +236,14 @@
   [./center_disp_z_top]
     type = DirichletBC
     variable = 'disp_z'
-    value = -0.02
+    value = -0.05
     boundary = 'front1'
   [../]
 
   [./center_disp_z_bottom]
     type = DirichletBC
     variable = 'disp_z'
-    value = 0.02
+    value = 0.05
     boundary = 'back1'
   [../]
 []
@@ -448,7 +268,7 @@
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
-    file_base = out_6grains
+    file_base = out_484grain_structure
     elemental_as_nodal = true
   [../]
 []

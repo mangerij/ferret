@@ -356,6 +356,14 @@
     type = ComputeDeltaBetaTensor
     block = '2 3'
   [../]
+  [./beta_tensor_1]
+    type = ComputeBetaTensor
+    n_a = 1.4
+    n_b = 1.4
+    n_g = 1.4
+    block = '2 3'
+  [../]
+
 
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
@@ -388,6 +396,16 @@
     euler_angle_2 = 15.0
     euler_angle_3 = 65.0
     block = '1 4'
+  [../]
+  [./beta_tensor_2]
+    type = ComputeBetaTensor
+    block = '1 4'
+    n_a = 1.4
+    n_b = 1.4
+    n_g = 1.4
+    euler_angle_1 = 0.0
+    euler_angle_2 = 15.0
+    euler_angle_3 = 65.0
   [../]
   [./delta_beta_tensor_2]
     type = ComputeDeltaBetaTensor

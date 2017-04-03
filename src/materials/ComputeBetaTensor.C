@@ -21,8 +21,9 @@ InputParameters validParams<ComputeBetaTensor>()
 {
   InputParameters params = validParams<ComputeRotatedBetaTensorBase>();
   params.addClassDescription("Compute the impermeability tensor.");
-  params.addRequiredParam<Real>("n_o", "ordinary refractive index");
-  params.addRequiredParam<Real>("n_e", "extraordinary refractive index");
+  params.addRequiredParam<Real>("n_a", "alpha refractive index");
+  params.addRequiredParam<Real>("n_b", "beta refractive index");
+  params.addRequiredParam<Real>("n_g", "gamma refractive index");
   //params.addRequiredParam<std::vector<Real> >("b_ij", "impermeability tensor for material"); //diagonal3 for now
   //params.addParam<MooseEnum>("fill_method", RankTwoTensor::fillMethodEnum() = "diagonal3", "The fill method"); 
   return params;
@@ -30,8 +31,9 @@ InputParameters validParams<ComputeBetaTensor>()
 
 ComputeBetaTensor::ComputeBetaTensor(const InputParameters & parameters) :
     ComputeRotatedBetaTensorBase(parameters),
-   _no(getParam<Real>("n_o")),
-   _ne(getParam<Real>("n_e"))
+   _na(getParam<Real>("n_a")),
+   _nb(getParam<Real>("n_b")),
+   _ng(getParam<Real>("n_g"))
     //_bij(getParam<std::vector<Real> >("b_ij"), (RankTwoTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")) TODO: fix, how to fill_method a tensor?
 {
 }
@@ -39,20 +41,19 @@ ComputeBetaTensor::ComputeBetaTensor(const InputParameters & parameters) :
 void
 ComputeBetaTensor::computeQpBetaTensor()
 {
-  //define the principle axis impermeability
-  _beta_tensor[_qp](0,0) = 1.0 / (_no * _no * _no);
-  _beta_tensor[_qp](0,1) = 0.0;
-  _beta_tensor[_qp](0,2) = 0.0;
-  _beta_tensor[_qp](1,0) = 0.0;
-  _beta_tensor[_qp](1,1) = 1.0 / (_no * _no * _no);
-  _beta_tensor[_qp](1,2) = 0.0;
-  _beta_tensor[_qp](2,0) = 0.0;
-  _beta_tensor[_qp](2,1) = 0.0;
-  _beta_tensor[_qp](2,2) = 1.0 / (_ne * _ne * _ne);
-
   // Define a rotation according to Euler angle parameters
   RotationTensor R(_Euler_angles);
-  _beta_tensor[_qp].rotate(R);
+  //define the principle axis impermeability rotated
+  _beta_tensor[_qp](0,0) = R(0,0) * R(0,0) / (_na * _na) + R(0,1) * R(1,0) / (_nb * _nb) + R(0,2) * R(2,0) / (_ng * _ng);
+  _beta_tensor[_qp](0,1) = R(0,0) * R(0,1) / (_na * _na) + R(0,1) * R(1,1) / (_nb * _nb) + R(0,2) * R(2,1) / (_ng * _ng);
+  _beta_tensor[_qp](0,2) = R(0,0) * R(0,2) / (_na * _na) + R(0,1) * R(1,2) / (_nb * _nb) + R(0,2) * R(2,2) / (_ng * _ng);
+  _beta_tensor[_qp](1,0) = R(1,0) * R(0,0) / (_na * _na) + R(1,1) * R(1,0) / (_nb * _nb) + R(1,2) * R(2,0) / (_ng * _ng);
+  _beta_tensor[_qp](1,1) = R(1,0) * R(0,1) / (_na * _na) + R(1,1) * R(1,1) / (_nb * _nb) + R(1,2) * R(2,1) / (_ng * _ng);
+  _beta_tensor[_qp](1,2) = R(1,0) * R(0,2) / (_na * _na) + R(1,1) * R(1,2) / (_nb * _nb) + R(1,2) * R(2,2) / (_ng * _ng);
+  _beta_tensor[_qp](2,0) = R(2,0) * R(0,0) / (_na * _na) + R(1,0) * R(2,1) / (_nb * _nb) + R(2,0) * R(2,2) / (_ng * _ng);
+  _beta_tensor[_qp](2,1) = R(2,0) * R(0,1) / (_na * _na) + R(1,1) * R(2,1) / (_nb * _nb) + R(2,1) * R(2,2) / (_ng * _ng);
+  _beta_tensor[_qp](2,2) = R(2,0) * R(0,2) / (_na * _na) + R(2,1) * R(1,2) / (_nb * _nb) + R(2,2) * R(2,2) / (_ng * _ng);
+  //Moose::out << "\n B"; std::cout << 0; std::cout << 0; Moose::out << " = "; std::cout << _beta_tensor[_qp](0,0);
 }
 
 

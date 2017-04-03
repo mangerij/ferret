@@ -23,7 +23,7 @@ ComputePhotostrictiveTensor::ComputePhotostrictiveTensor(const InputParameters &
     _Pmnkl(getParam<std::vector<Real> >("P_mnkl"), (RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method"))
 {
   /// Define a rotation according to Euler angle parameters
-  RotationTensor R(_Euler_angles); // R type: RealTensorValue
+  RotationTensor R(_Euler_angles); // R type: RealTensorValue TODO: DOUBLE CHECK THAT THIS INDEED DOES WORK.
   /// rotate electrostrictive tensor -- note that it needs to be collinear with the elasticity tensor _always_
   _Pmnkl.rotate(R);
 }
