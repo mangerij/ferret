@@ -45,7 +45,7 @@ Real
 ChangeInRefractiveIndex::computeValue()
 {
   // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
-  return - 0.5 * std::pow(_beta_tensor[_qp](_index_i, _index_j), 3.0) * _delta_beta_tensor[_qp](_index_k, _index_l);
+  return - 0.5 * std::pow(1.0 / (std::pow(_beta_tensor[_qp](_index_i, _index_j), 0.5)), 3.0) * _delta_beta_tensor[_qp](_index_k, _index_l);
 }
 
 
