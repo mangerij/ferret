@@ -100,6 +100,7 @@
 #include "EulerSkyrmionThetaDepolTerm.h"
 #include "EulerSkyrmionPDepolTerm.h"
 #include "EulerSkyrmionPTempTerm.h"
+#include "RenormalizedFreeEnergy.h"
 
 #include "AnisotropicElectrostatics.h"
 
@@ -272,6 +273,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(EulerSkyrmionThetaDepolTerm);
   registerKernel(EulerSkyrmionPDepolTerm);
   registerKernel(EulerSkyrmionPTempTerm);
+  registerKernel(RenormalizedFreeEnergy);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
