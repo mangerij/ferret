@@ -37,5 +37,6 @@ protected:
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
   const Real _epsilon;
+  const Real _T;
 };
 #endif //RENORMALIZEDFREEENERGY_H

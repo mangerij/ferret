@@ -101,7 +101,6 @@
 #include "EulerSkyrmionPDepolTerm.h"
 #include "EulerSkyrmionPTempTerm.h"
 #include "RenormalizedFreeEnergy.h"
-
 #include "AnisotropicElectrostatics.h"
 
 //InterfaceKernels
@@ -134,7 +133,8 @@
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
 #include "TotalEnergyG.h"
-
+#include "RenormalizedBulkEnergy.h"
+#include "TotalEnergyP.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -306,6 +306,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
   registerPostprocessor(TotalEnergyG);
+  registerPostprocessor(RenormalizedBulkEnergy);
+  registerPostprocessor(TotalEnergyP);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
