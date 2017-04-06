@@ -31,31 +31,18 @@ ComputeDeltaBetaTensor::ComputeDeltaBetaTensor(const InputParameters & parameter
 void
 ComputeDeltaBetaTensor::computeQpDeltaBetaTensor()
 {
-  for (unsigned int a = 0; a < 3; ++a)
+  Real sum = 0.0;
+  for (unsigned int i = 0; i < 3; ++i)
+    for (unsigned int j = 0; j < 3; ++j)
     {
-      Real sum = 0;
-      for (unsigned int i = 0; i < 3; ++i)
-        for (unsigned int j = 0; j < 3; ++j)
+      for (unsigned int k = 0; k < 3; ++k)
+        for (unsigned int l = 0; l < 3; ++l)
         {
-          sum += _photostrictive_tensor[_qp](a, a, i, j) * _strain[_qp](i,j); //This needs to match what we have in Mathematica (Nye notation).
-          //Moose::out << "\n b"; std::cout << a << i << j; Moose::out << " = "; std::cout << _photostrictive_tensor[_qp](a, a, i, j) * _strain[_qp](i,j);
+          sum += _photostrictive_tensor[_qp](i, j, k, l) * _strain[_qp](k,l);
         }
-      _delta_beta_tensor[_qp](0, a) = sum;
-      //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
+    _delta_beta_tensor[_qp](i, j) = sum;
     }
-    Real sum1 = 0;
-    Real sum2 = 0;
-    Real sum3 = 0;
-    for (unsigned int i = 0; i < 3; ++i)
-      for (unsigned int j = 0; j < 3; ++j)
-      {
-        sum1 += _photostrictive_tensor[_qp](1, 2, i, j) * _strain[_qp](i,j);
-        sum2 += _photostrictive_tensor[_qp](2, 0, i, j) * _strain[_qp](i,j);
-        sum3 += _photostrictive_tensor[_qp](0, 1, i, j) * _strain[_qp](i,j);
-      }
-  _delta_beta_tensor[_qp](0,3) = sum1;
-  _delta_beta_tensor[_qp](0,4) = sum2;
-  _delta_beta_tensor[_qp](0,5) = sum3;
+    //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
 }
 
 

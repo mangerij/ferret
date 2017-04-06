@@ -48,7 +48,8 @@
 #include "SemiconductingChargeCarriersAux.h"
 #include "Birefringence.h"
 #include "Impermeability.h"
-
+#include "PrefactorRefractive.h"
+#include "RefractiveIndex.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -243,6 +244,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(SemiconductingChargeCarriersAux);
   registerAux(Birefringence);
   registerAux(Impermeability);
+  registerAux(PrefactorRefractive);
+  registerAux(RefractiveIndex);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);

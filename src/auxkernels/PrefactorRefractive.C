@@ -1,5 +1,5 @@
 /**
- * @file   ChangeInRefractiveIndex.C
+ * @file   PrefactorRefractive.C
  * @author J. Mangeri <john.mangeri@uconn.edu>
  *
  * Calculate an approximate photoelastic change to the refractive index
@@ -12,13 +12,13 @@
  *
  */
 
-#include "ChangeInRefractiveIndex.h"
+#include "PrefactorRefractive.h"
 #include "RotationTensor.h"
 #include "RankTwoTensor.h"
 
 template<>
 
-InputParameters validParams<ChangeInRefractiveIndex>()
+InputParameters validParams<PrefactorRefractive>()
 
 {
   InputParameters params = validParams<AuxKernel>();
@@ -30,7 +30,7 @@ InputParameters validParams<ChangeInRefractiveIndex>()
 }
 
 
-ChangeInRefractiveIndex::ChangeInRefractiveIndex(const InputParameters & parameters) :
+PrefactorRefractive::PrefactorRefractive(const InputParameters & parameters) :
   AuxKernel(parameters),
    _index_i(getParam<unsigned int>("index_i")),
    _index_j(getParam<unsigned int>("index_j")),
@@ -42,11 +42,12 @@ ChangeInRefractiveIndex::ChangeInRefractiveIndex(const InputParameters & paramet
 }
 
 Real
-ChangeInRefractiveIndex::computeValue()
+PrefactorRefractive::computeValue()
 {
   // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
 //std::pow(  (1.0 / ( _beta_tensor[_qp](_index_i, _index_j)  ) ), 3.0) 
-  return - 0.5 * std::pow((2.437 + 2.365 / 2.0) , 3.0) *  _delta_beta_tensor[_qp](_index_k, _index_l);
+  return _beta_tensor[_qp](_index_k, _index_l);
+//- 0.5 * std::pow((1.0 / std::pow(std::abs(_beta_tensor[_qp](_index_k, _index_l)), 0.5), 3.0);
 }
 
 
