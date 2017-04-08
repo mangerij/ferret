@@ -310,24 +310,24 @@
   [./dn_bire_s12]
     type = Birefringence
     variable = dn_bire_12
-    per1 = dn_1
-    per2 = dn_2
+    per1 = n_1
+    per2 = n_2
     execute_on = 'timestep_end'
   [../]
 
   [./dn_bire_s23]
     type = Birefringence
     variable = dn_bire_23
-    per1 = dn_2
-    per2 = dn_3
+    per1 = n_2
+    per2 = n_3
     execute_on = 'timestep_end'
   [../]
 
   [./dn_bire_s13]
     type = Birefringence
     variable = dn_bire_13
-    per1 = dn_1
-    per2 = dn_3
+    per1 = n_1
+    per2 = n_3
     execute_on = 'timestep_end'
   [../]
 
@@ -1732,14 +1732,14 @@
   [./center_disp_z_top]
     type = DirichletBC
     variable = 'disp_z'
-    value = -0.25
+    value = -0.5
     boundary = 'side1'
   [../]
 
   [./center_disp_z_bottom]
     type = DirichletBC
     variable = 'disp_z'
-    value = 0.25
+    value = 0.0
     boundary = 'side2'
   [../]
 []
@@ -1764,7 +1764,7 @@
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
-    file_base = out_32grain_r100_struct_load_25top
+    file_base = out_32grain_r100_struct_load_50top
     elemental_as_nodal = true
   [../]
 []
