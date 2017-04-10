@@ -13,7 +13,7 @@ ComputeDeltaBetaTensorBase::ComputeDeltaBetaTensorBase(const InputParameters & p
     Material(parameters),
    _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
    _delta_beta_tensor_name(_base_name + "delta_beta_tensor"),
-   _delta_beta_tensor(declareProperty<RealTensorValue>("delta_beta_tensor"))
+   _delta_beta_tensor(declareProperty<RankTwoTensor>("delta_beta_tensor"))
 {
 }
 

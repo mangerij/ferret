@@ -1764,7 +1764,7 @@
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
-    file_base = out_32grain_r100_struct_load_50top
+    file_base = out_32grain_r100_struct_load_50top_s
     elemental_as_nodal = true
   [../]
 []

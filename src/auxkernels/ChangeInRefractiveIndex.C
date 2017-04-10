@@ -37,7 +37,7 @@ ChangeInRefractiveIndex::ChangeInRefractiveIndex(const InputParameters & paramet
    _index_k(getParam<unsigned int>("index_k")),
    _index_l(getParam<unsigned int>("index_l")),
    _beta_tensor(getMaterialProperty<RankTwoTensor>("beta_tensor")),
-   _delta_beta_tensor(getMaterialProperty<RealTensorValue>("delta_beta_tensor")) //or need RealTensorValue
+   _delta_beta_tensor(getMaterialProperty<RankTwoTensor>("delta_beta_tensor")) //or need RealTensorValue
 {
 }
 
@@ -46,7 +46,7 @@ ChangeInRefractiveIndex::computeValue()
 {
   // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
 //std::pow(  (1.0 / ( _beta_tensor[_qp](_index_i, _index_j)  ) ), 3.0) 
-  return - 0.5 * std::pow((2.437 + 2.365 / 2.0) , 3.0) *  _delta_beta_tensor[_qp](_index_k, _index_l);
+  return - 0.5 * std::pow(1.0/_beta_tensor[_qp](_index_i, _index_j) , 3.0) *  _delta_beta_tensor[_qp](_index_k, _index_l);
 }
 
 

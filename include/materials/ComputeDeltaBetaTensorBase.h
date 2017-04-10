@@ -32,7 +32,7 @@ protected:
   std::string _base_name;
   std::string _delta_beta_tensor_name;
 
-  MaterialProperty<RealTensorValue> & _delta_beta_tensor;
+  MaterialProperty<RankTwoTensor> & _delta_beta_tensor;
 
 };
 
