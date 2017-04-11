@@ -39,10 +39,8 @@ PrefactorRefractive::PrefactorRefractive(const InputParameters & parameters) :
 Real
 PrefactorRefractive::computeValue()
 {
-  // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
-//std::pow(  (1.0 / ( _beta_tensor[_qp](_index_i, _index_j)  ) ), 3.0) 
+  //Moose::out << "\n B"; std::cout << _index_i; std::cout << _index_j; Moose::out << " = "; std::cout << _beta_tensor[_qp](_index_i,_index_j);
   return _beta_tensor[_qp](_index_i, _index_j);
-//- 0.5 * std::pow((1.0 / std::pow(std::abs(_beta_tensor[_qp](_index_k, _index_l)), 0.5), 3.0);
 }
 
 

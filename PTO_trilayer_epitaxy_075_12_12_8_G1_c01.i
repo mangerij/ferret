@@ -509,6 +509,7 @@
      variable = polar_z
      component = 2
   [../]
+
   ##Time dependence
   [./polar_x_time]
     type = TimeDerivativeScaled
@@ -765,8 +766,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_atol -snes_rtol -ksp_rtol -ksp_atol -pc_type'
-    petsc_options_value = '       200            1e-10     1e-8      1e-8         1e-12 bjacobi'
+    petsc_options_iname = '-ksp_gmres_restart  -snes_atol -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '       200            1e-10     1e-8      1e-8      bjacobi'
   [../]
 []
 
@@ -786,7 +787,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   #dt = 0.5
   dtmin = 1e-13
-  dtmax = 0.5
+  dtmax = 0.85
 []
 
 [Outputs]

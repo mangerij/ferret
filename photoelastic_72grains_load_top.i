@@ -277,36 +277,6 @@
     execute_on = 'timestep_end'
   [../]
 
-  [./pfdn_s1]
-    type = ChangeInRefractiveIndex
-    index_i = 0
-    index_j = 0
-    index_k = 0
-    index_l = 0
-    variable = pfdn_1
-    execute_on = 'timestep_end'
-  [../]
-
-  [./pfdn_s2]
-    type = ChangeInRefractiveIndex
-    index_i = 1
-    index_j = 1
-    index_k = 1
-    index_l = 1
-    variable = pfdn_2
-    execute_on = 'timestep_end'
-  [../]
-
-  [./pfdn_s3]
-    type = ChangeInRefractiveIndex
-    index_i = 2
-    index_j = 2
-    index_k = 2
-    index_l = 2
-    variable = pfdn_3
-    execute_on = 'timestep_end'
-  [../]
-
   [./dn_bire_s12]
     type = Birefringence
     variable = dn_bire_12
