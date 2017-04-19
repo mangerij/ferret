@@ -1,6 +1,11 @@
-/****************************************************************/
-/* Computes a rank 4 electrostrictive tensor                    */
-/****************************************************************/
+/**
+ * @file   ComputeElectrostrictiveTensorBase.C
+ * @author J. Mangeri <john.mangeri@uconn.edu
+ *
+ * @brief  Material class for electrostrictive material.
+ *         Note that the electrostrictive tensor Qmnkl
+ *         must be collinear with Cijkl
+ */
 
 #include "ComputeElasticityTensor.h"
 #include "ComputeRotatedElasticityTensorBase.h"

@@ -1,3 +1,13 @@
+/**
+ * @file   ComputeRotatedElectrostrictiveTensorBase.C
+ * @author L. Kuna <lukasz.kuna@uconn.edu>
+ *
+ * @brief  Marker class to refine at specific points in the
+ *         Landau-Ginzburg-Devonshire evolution
+ *
+ */
+
+
 #include "PolarizationNWEMarker.h"
 #include "FEProblem.h"
 #include "MooseEnum.h"
@@ -38,15 +48,9 @@ PolarizationNWEMarker::PolarizationNWEMarker(const InputParameters & parameters)
     _u(coupledValue("variable")),
     _Bulk_Polar(getParam<Real>("Bulk_Polar"))
 {
-//  if (_refine_set && _coarsen_set)
-//  {
-//    Real diff = _refine - _coarsen;
-//   if ((diff > 0 && _invert) || (diff < 0 && !_invert))
-//      mooseError2("Invalid combination of refine, coarsen, and invert values specified");
-//  }
 }
 
-Marker::MarkerValue
+Marker::MarkerValue //TODO: is this line needed? -John
 PolarizationNWEMarker::computeQpMarker()
 {
   Real ten_per = 0.20 * _Bulk_Polar;

@@ -1,3 +1,12 @@
+/**
+ * @file   ComputeElectrostrictiveTensorBase.C
+ * @author J. Mangeri <john.mangeri@uconn.edu
+ *
+ * @brief  Base class for electrostrictive material
+ *
+ */
+
+
 #include "ComputeElasticityTensor.h"
 #include "ComputeElectrostrictiveTensorBase.h"
 
