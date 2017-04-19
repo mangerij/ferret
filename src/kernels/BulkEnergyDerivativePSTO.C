@@ -1,9 +1,10 @@
 
 /**
  * @file   BulkEnergyDerivativePSTO.C
- * @author J. Mangeri <john.mangeri@uconn.edu> and S. Churchill <steven.churchill@uconn.edu>
+ * @authors J. Mangeri <john.mangeri@uconn.edu> 
+ *          S. Churchill <steven.churchill@uconn.edu>
  *
- * Bulk energy function derived from first-principles calculations 
+ * Bulk energy function derived from first-principles calculations for 2D FE material. 
  * for more information, see Mangeri et al npj Computational Materials 2, 16020 (2016)
  *
  */
@@ -55,19 +56,6 @@ BulkEnergyDerivativePSTO::BulkEnergyDerivativePSTO(const InputParameters & param
    _epsilon(getParam<Real>("epsilon")),
    _T(getParam<Real>("T"))
 {
-  std::cout<<"_alpha1 ="<<_alpha1<<"\n";
-  std::cout<<"_alpha2 ="<<_alpha2<<"\n";
-  std::cout<<"_alpha3 ="<<_alpha3<<"\n";
-  std::cout<<"_alpha4 ="<<_alpha4<<"\n";
-  std::cout<<"_alpha5 ="<<_alpha5<<"\n";
-  std::cout<<"_x1 ="<<_x1<<"\n";
-  std::cout<<"_x2 ="<<_x2<<"\n";
-  std::cout<<"_x3 ="<<_x3<<"\n";
-  std::cout<<"_x4 ="<<_x4<<"\n";
-  std::cout<<"_x5 ="<<_x5<<"\n";
-  std::cout<<"_x6 ="<<_x6<<"\n";
-  std::cout<<"_epsilon ="<<_epsilon<<"\n";
-  std::cout<<"_T ="<<_T<<"\n";
 }
 
 Real

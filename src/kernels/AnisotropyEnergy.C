@@ -4,6 +4,7 @@
  *
  * @brief  Implement the kernel for polar variables corresponding to ferroelectic anisotropy energy after
  *         the variational derivative of the polar dependent terms have been taken.
+ *         Here, I just simply hard code f_aniso = K (Px^2 + Py^2) addition to free energy density.
  */
 
 #include "AnisotropyEnergy.h"

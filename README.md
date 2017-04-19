@@ -45,7 +45,7 @@ NOTE: The ./configure step can alternatively include a BOOST directory which wil
 * John Mangeri (john.mangeri@uconn.edu)
 * Serge Nakhmanson (serge.nakhmanson@uconn.edu)
 * Olle Heinonen (heinonen@anl.gov)
-* Lukasz Kuna (lukasz.kuna@uconn.edu
+* Lukasz Kuna (lukasz.kuna@uconn.edu)
 
-* MOOSE can be found at http://www.mooseframework.org
-* The moose-users list at https://groups.google.com/forum/#!forum/moose-users is good for help with MOOSE!
+### MOOSE can be found at http://www.mooseframework.org ###
+ * The moose-users list at https://groups.google.com/forum/#!forum/moose-users is good for help with MOOSE!
