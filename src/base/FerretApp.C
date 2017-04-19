@@ -43,11 +43,10 @@
 #include "PolarMag.h"
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
-#include "ChangeInRefractiveIndex.h"
 #include "SemiconductingChargeCarriersAux.h"
 #include "Birefringence.h"
-#include "Impermeability.h"
 #include "RefractiveIndex.h"
+#include "ChangeInRefractiveIndex.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -237,10 +236,9 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PolarMag);
   registerAux(DivP);
   registerAux(PiezoelectricApprox);
-  registerAux(ChangeInRefractiveIndex);
   registerAux(SemiconductingChargeCarriersAux);
   registerAux(Birefringence);
-  registerAux(Impermeability);
+  registerAux(ChangeInRefractiveIndex);
   registerAux(RefractiveIndex);
 
   ///Kernels
