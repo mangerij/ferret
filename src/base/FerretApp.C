@@ -24,7 +24,6 @@
 #include "PxFieldAux.h"
 #include "PyFieldAux.h"
 #include "PzFieldAux.h"
-#include "BoundCharge.h"
 #include "CurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
@@ -220,7 +219,6 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PxFieldAux);
   registerAux(PyFieldAux);
   registerAux(PzFieldAux);
-  registerAux(BoundCharge);
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
   registerAux(CurlP);
@@ -321,7 +319,6 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputePhotostrictiveTensor);
   registerMaterial(ComputeDeltaBetaTensor);
   registerMaterial(ComputeBetaTensor);
-
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);
