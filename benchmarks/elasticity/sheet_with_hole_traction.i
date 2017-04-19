@@ -33,12 +33,10 @@
     order = FIRST
     family = LAGRANGE
   [../]
-
   [./disp_y]
     order = FIRST
     family = LAGRANGE
   [../]
-
   [./disp_z]
     order = FIRST
     family = LAGRANGE
@@ -104,114 +102,116 @@
   [../]
 []
 
-[Functions]   
-  [./f_disp_x]      
-      type=SolutionFunction       
-      file_type=exodusII       
-      mesh=in.e       
-      variable=disp_x       
-      timestep=2   
-  [../]   
-  [./f_disp_y]       
-      type=SolutionFunction       
-      file_type=exodusII        
-      mesh=in.e       
-      variable=disp_y       
-      timestep=2   
-  [../]   
-  [./f_disp_z]       
-      type=SolutionFunction       
-      file_type = exodusII        
-      mesh = in.e       
-      variable=disp_z       
-      timestep=2   
-  [../]   
-  [./f_stress_xx]       
-      type=SolutionFunction       
-      file_type=exodusII       
-      mesh=in.e       
-      variable=stress_xx       
-      timestep=2   
-  [../]   
-  [./f_stress_xy]       
-      type=SolutionFunction       
-      file_type=exodusII       
-      mesh=in.e       
-      variable=stress_xy       
-      timestep=2   
-  [../]  
-  [./f_stress_yy]       
-      type=SolutionFunction       
-      file_type=exodusII       
-      mesh=in.e       
-      variable=stress_yy       
-      timestep=2   
-  [../]   
-  [./f_stress_yz]       
-      type=SolutionFunction       
-      file_type=exodusII       
-      mesh=in.e       
-      variable=stress_yz       
-      timestep=2   
-  [../]   
-  [./f_stress_zx]       
-      type=SolutionFunction       
-      file_type=exodusII       
-      mesh=in.e       
-      variable=stress_zx       
-      timestep=2   
-  [../]   
-  [./f_stress_zz]       
-      type=SolutionFunction       
-      file_type=exodusII       
-      mesh=in.e       
-      variable=stress_zz       
-      timestep=2   
-  [../]
-[]
+#[Functions]
+#  [./f_disp_x]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=disp_x
+#      timestep=2
+#  [../]
+#  [./f_disp_y]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=disp_y
+#      timestep=2
+#  [../]
+#  [./f_disp_z]
+#      type=SolutionFunction
+#      file_type = exodusII
+#      mesh = in.e
+#      variable=disp_z
+#      timestep=2
+#  [../]
+#  [./f_stress_xx]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=stress_xx
+#      timestep=2
+#  [../]
+#  [./f_stress_xy]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=stress_xy
+#      timestep=2
+#  [../]
+#  [./f_stress_yy]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=stress_yy
+#      timestep=2
+#  [../]
+#  [./f_stress_yz]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=stress_yz
+#      timestep=2
+#  [../]
+#  [./f_stress_zx]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=stress_zx
+#      timestep=2
+#  [../]
+#  [./f_stress_zz]
+#      type=SolutionFunction
+#      file_type=exodusII
+#      mesh=in.e
+#      variable=stress_zz
+#      timestep=2
+#  [../]
+#[]
+
+
 [AuxKernels]
 
   [./stress_xx]
     type = RankTwoAux
     rank_two_tensor = stress
     variable = stress_xx
-    index_i = 1
-    index_j=1
+    index_i = 0
+    index_j = 0
   [../]
   [./stress_yy]
     type = RankTwoAux
     rank_two_tensor = stress
     variable = stress_yy
-    index_i = 2
-    index_j=2
+    index_i = 1
+    index_j = 1
   [../]
   [./stress_zz]
     type = RankTwoAux
     rank_two_tensor = stress
     variable = stress_zz
-    index_i = 3
-    index_j = 3
+    index_i = 2
+    index_j = 2
   [../]
   [./stress_xy]
     type = RankTwoAux
    rank_two_tensor = stress
     variable = stress_xy
-    index_i = 1
-    index_j = 2
+    index_i = 0
+    index_j = 1
   [../]
   [./stress_yz]
     type = RankTwoAux
     rank_two_tensor = stress
     variable = stress_yz
-    index_i = 2
-    index_j = 3
+    index_i = 1
+    index_j = 2
   [../]
   [./stress_zx]
     type = RankTwoAux
     rank_two_tensor = stress
     variable = stress_zx
-    index_i = 3
-    index_j = 1
+    index_i = 2
+    index_j = 0
   [../]
 
 #hacks
@@ -219,43 +219,43 @@
     type = RankTwoAux
     rank_two_tensor = elastic_strain
     variable = strain_xx
-    index_i = 1
-    index_j = 1
+    index_i = 0
+    index_j = 0
   [../]
   [./strain_yy]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
     variable = strain_yy
-    index_i = 2
-    index_j = 2
+    index_i = 1
+    index_j = 1
   [../]
   [./strain_zz]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
     variable = strain_zz
-    index_i = 3
-    index_j = 3
+    index_i = 2
+    index_j = 2
   [../]
   [./strain_xy]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
     variable = strain_xy
-    index_i = 1
-    index_j = 2
+    index_i = 0
+    index_j = 1
   [../]
   [./strain_yz]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
     variable = strain_yz
-    index_i = 2
-    index_j = 3
+    index_i = 1
+    index_j = 2
   [../]
   [./strain_zx]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
     variable = strain_zx
-    index_i = 3
-    index_j = 1
+    index_i = 2
+    index_j = 0
   [../]
 # End hack
 
@@ -264,44 +264,44 @@
 
 [BCs]
 
-  [./anchor_up_X_pos]
-    type = StressFunctionBC
-    variable = disp_x
-    boundary = '2'
-    component=0
-    stress_xx=f_stress_xx    
-    stress_xy=f_stress_xy    
-    stress_yy=f_stress_yy    
-    stress_yz=f_stress_yz    
-    stress_zx=f_stress_zx    
-    stress_zz=f_stress_zz
-  [../]
-
-  [./anchor_up_Y_pos]
-    type = StressFunctionBC
-    variable = disp_y
-    boundary = '2'
-    component=1
-    stress_xx=f_stress_xx    
-    stress_xy=f_stress_xy    
-    stress_yy=f_stress_yy    
-    stress_yz=f_stress_yz    
-    stress_zx=f_stress_zx    
-    stress_zz=f_stress_zz
-  [../]
-
-  [./anchor_up_Z_pos]
-    type = StressFunctionBC
-    variable = disp_z
-    boundary = '2'
-    component=2
-    stress_xx=f_stress_xx    
-    stress_xy=f_stress_xy    
-    stress_yy=f_stress_yy    
-    stress_yz=f_stress_yz    
-    stress_zx=f_stress_zx    
-    stress_zz=f_stress_zz
-  [../]
+  #[./anchor_up_X_pos]
+  #  type = StressFunctionBC
+  #  variable = disp_x
+  #  boundary = '2'
+  #  component=0
+  #  stress_xx = f_stress_xx
+  #  stress_xy = f_stress_xy
+  #  stress_yy = f_stress_yy
+  #  stress_yz = f_stress_yz
+  #  stress_zx = f_stress_zx
+  #  stress_zz = f_stress_zz
+  #[../]
+  #
+  #[./anchor_up_Y_pos]
+  #  type = StressFunctionBC
+  #  variable = disp_y
+  #  boundary = '2'
+  #  component = 1
+  #  stress_xx = f_stress_xx
+  #  stress_xy = f_stress_xy
+  #  stress_yy = f_stress_yy
+  #  stress_yz = f_stress_yz
+  #  stress_zx = f_stress_zx
+  #  stress_zz = f_stress_zz
+  #[../]
+  #
+  #[./anchor_up_Z_pos]
+  #  type = StressFunctionBC
+  #  variable = disp_z
+  #  boundary = '2'
+  #  component = 2
+  #  stress_xx = f_stress_xx
+  #  stress_xy = f_stress_xy
+  #  stress_yy = f_stress_yy
+  #  stress_yz = f_stress_yz
+  #  stress_zx = f_stress_zx
+  #  stress_zz = f_stress_zz
+  #[../]
 
   [./anchor_up_X_neg]
     type = DirichletBC
@@ -325,30 +325,40 @@
     value = 1.e-6
   [../]
 
-  
+
 [] # BCs
 
 [Materials]
-
-  [./Goo1]
-    type = LinearElasticMaterial
+  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
     block = '1'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1 0 0 0 1 0 0 0 0'
+    eigenstrain_name = eigenstrain
+    prefactor = 0.0
+ [../]
 
-    all_21 = false
-# cubic symmetry C11 C12 C13 C22 C23 C33 C44 C55 C66
-#    C_ijkl ='1.0e6 0.5e6 0.5e6 1.0e6 0.5e6 0.5e6 1.5e6 1.5e6 1.5e6'
-# isotropic bulk modulus=1.5, shear modulus=1.5
-    C_ijkl='3.e6 1.e6 1.e6 3.e6 1.e6 3.e6 1.e6 1.e6 1.e6'
-
+ [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    # cubic symmetry C11 C12 C13 C22 C23 C33 C44 C55 C66
+    # C_ijkl ='1.0e6 0.5e6 0.5e6 1.0e6 0.5e6 0.5e6 1.5e6 1.5e6 1.5e6'
+    # isotropic bulk modulus=1.5, shear modulus=1.5
+    C_ijkl = '3.e6 1.e6 1.e6 3.e6 1.e6 3.e6 1.e6 1.e6 1.e6'
     euler_angle_1 = 0.0
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
+    block = '1'
   [../]
-  
-
+  [./strain_1]
+    type = ComputeSmallStrain
+    block = '1'
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_1]
+    type = ComputeLinearElasticStress
+    block = '1'
+  [../]
 [] # Materials
 
 [Preconditioning]
@@ -394,13 +404,13 @@
 #  end_time = 2.0
 [] # Executioner
 
-[Output]
-  linear_residuals = true
-  file_base = out2
-  interval = 1
-  output_initial = true
-  elemental_as_nodal = true
-  exodus = true
-  #tecplot = true
-  perf_log = true
-[] # Output
+[Outputs]
+  print_linear_residuals = false
+  print_perf_log = true
+  [./out]
+    type = Exodus
+    execute_on = 'timestep_end'
+    file_base = out_hole
+    elemental_as_nodal = true
+  [../]
+[]
