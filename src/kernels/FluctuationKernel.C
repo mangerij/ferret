@@ -1,7 +1,10 @@
 /**
  * @file   FluctuationKernel.C
- * @author J. Mangeri <john.mangeri@uconn.edu
+ * @author J. Mangeri <john.mangeri@uconn.edu>
+ * @date   Jun 14 12:00:20 2016
  *
+ * @brief This Kernel is used to introduce noise in between electric field changes in
+ *        a quasi-static hysteresis calculation (see arxiv.org/pdf/1701.02613.pdf)
  */
 
 #include "FluctuationKernel.h"
@@ -27,17 +30,4 @@ Real
 FluctuationKernel::computeQpResidual()
 {
   return -_deltaPi[_qp] * _test[_i][_qp];
-}
-
-Real
-FluctuationKernel::computeQpJacobian()
-{
- 
-  return 0.0;
-}
-
-Real
-FluctuationKernel::computeQpOffDiagJacobian(unsigned int jvar)
-{
-    return 0.0;
 }
