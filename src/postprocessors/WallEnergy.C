@@ -1,10 +1,11 @@
 /**
  * @file   WallEnergy.C
  * @author S. Gu <sgu@anl.gov>
- * @date   Tue Jul 30 16:35:05 2013
+ * @modified J. Mangeri <john.mangeri@uconn.edu
+ * @date
  *
- * @brief
- *
+ * @brief This is a energy postprocessor that tracks the local
+ *        gradients of the polar vector contributions to the energy.
  *
  */
 

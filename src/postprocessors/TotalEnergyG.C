@@ -3,8 +3,8 @@
  * @author J. Mangeri <john.mangeri@uconn.edu>
  * @date   Thu Mar 3 2017
  *
- * @brief
- *
+ * @brief This is a total energy postprocessor that tracks the following
+ *        bulk, wall, anisotropy (renormalized), and electrostatic energy
  *
  */
 
@@ -45,6 +45,5 @@ TotalEnergyG::execute(){
 Real
 TotalEnergyG::getValue()
 {
-  ///  return _bulk_energy + _wall_energy + _anisotropy_energy + _elec_energy;
   return _Fbulk + _Fwall + _Faniso + _Fec;
 }

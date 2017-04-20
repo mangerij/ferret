@@ -1,13 +1,12 @@
 /**
  * @file   BulkEnergy.C
- * @author S. Gu <sgu@anl.gov>
- * @date   Tue Jun  4 15:01:35 2013
+ * @author J. Mangeri <john.mangeri@uconn.edu>
+ * @date   
  *
- * @brief
- *
+ * @brief This is a total energy postprocessor that tracks the bulk
+ *        energy of the polarization expansion.
  *
  */
-
 
 #include "BulkEnergy.h"
 

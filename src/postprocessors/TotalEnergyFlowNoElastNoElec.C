@@ -3,8 +3,8 @@
  * @author J. Mangeri <john.mangeri@uconn.edu>
  * @date   Thu Aug 15 15:54:15 2013
  *
- * @brief
- *
+ * @brief This is a total energy postprocessor that tracks the following
+ *        bulk and wall energies (no elasticity or electrostatics).
  *
  */
 
@@ -41,6 +41,5 @@ TotalEnergyFlowNoElastNoElec::execute(){
 Real
 TotalEnergyFlowNoElastNoElec::getValue()
 {
-  ///  return _bulk_energy + _wall_energy;
   return _Fbulk + _Fwall;
 }

@@ -2,8 +2,8 @@
  * @file   AnisotropicEnergy.C
  * @author J. Mangeri <john.mangeri@uconn.edu>
  *
- * @brief
- *   adds anisotropy energy postprocessor for skyrmion problem
+ * @brief adds anisotropy energy postprocessor 
+ *        for skyrmion problem
  *
  */
 

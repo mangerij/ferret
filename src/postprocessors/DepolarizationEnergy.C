@@ -2,9 +2,11 @@
  * @file   DepolarizationEnergy.C
  * @author J. Mangeri <john.mangeri@uconn.edu>
  *
- * @brief
- *
- *
+ * @brief This is an energy postprocessor that tracks the depolarization
+ *        penalty to the P_z vector (this is a hard code approach)
+ *        We assume some structure has imperfect electrodes on planes that
+ *        share normals parallel to the z direction and introduce a \lambda
+ *        penalty to the P dot E electrostatic energy contribution.   
  */
 
 #include "DepolarizationEnergy.h"

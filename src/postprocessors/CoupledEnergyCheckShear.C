@@ -1,6 +1,12 @@
 /**
  * @file   CoupledEnergyCheckShear.C
+ * @author J. Mangeri <john.mangeri@uconn.edu>
+ *
+ * @brief This is an energy postprocessor that tracks the shear coupled terms
+ *        the arise in the contraction of the polar-elastic coupled energy
+ *        q_{ijkl} P_k P_l \varepsilon_{ij}.   
  */
+
 
 #include "CoupledEnergyCheckShear.h"
 #include "ComputeElectrostrictiveTensor.h"
@@ -60,13 +66,7 @@ CoupledEnergyCheckShear::computeQpIntegral()
   sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp] - v2, 2, w);
 
   return _artificial * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]) - 4 * _artificial * std::pow(_len_scale, 3.0) * (
-_electrostrictive_tensor[_qp](0,2,0,0) * w(0) * w(0) + 
-_electrostrictive_tensor[_qp](0,2,1,0) * w(1) * w(0) + 
-_electrostrictive_tensor[_qp](0,2,2,0) * w(2) * w(0) + 
-_electrostrictive_tensor[_qp](0,2,0,1) * w(0) * w(1) + 
-_electrostrictive_tensor[_qp](0,2,1,1) * w(1) * w(1) + 
-_electrostrictive_tensor[_qp](0,2,2,1) * w(2) * w(1) + 
-_electrostrictive_tensor[_qp](0,2,0,2) * w(0) * w(2) + 
-_electrostrictive_tensor[_qp](0,2,1,2) * w(1) * w(2) + 
-_electrostrictive_tensor[_qp](0,2,2,2) * w(2) * w(2)  );
+         _electrostrictive_tensor[_qp](0,2,0,0) * w(0) * w(0) + _electrostrictive_tensor[_qp](0,2,1,0) * w(1) * w(0) + _electrostrictive_tensor[_qp](0,2,2,0) * w(2) * w(0) +
+         _electrostrictive_tensor[_qp](0,2,0,1) * w(0) * w(1) + _electrostrictive_tensor[_qp](0,2,1,1) * w(1) * w(1) + _electrostrictive_tensor[_qp](0,2,2,1) * w(2) * w(1) + 
+         _electrostrictive_tensor[_qp](0,2,0,2) * w(0) * w(2) + _electrostrictive_tensor[_qp](0,2,1,2) * w(1) * w(2) + _electrostrictive_tensor[_qp](0,2,2,2) * w(2) * w(2)  );
 }

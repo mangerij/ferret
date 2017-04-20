@@ -1,9 +1,10 @@
 /**
- * @file   BulkEnergy.C
+ * @file   BulkEnergyPSTO.C
  * @author S. Churchell <steve.churchill@uconn.edu>
  *
- * @brief
- *  Total free energy postprocessor for PSTO (2D ferroelectric) 
+ * @brief A postprocessor to track bulk free energy for the 2D 
+ *        ferroelectric PbSr_{2}Ti_{2}O_{7}. 
+ *        See npj Comp. Mater. 2, 16020 (2016) for fit form.
  *
  */
 
@@ -53,7 +54,6 @@ BulkEnergyPSTO::BulkEnergyPSTO(const InputParameters & parameters) :
 Real
 BulkEnergyPSTO::computeQpIntegral()
 {
-  return 
-  _alpha1 * (_T-_Tc) * (std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0)) + _alpha2 * (std::pow(_polar_x[_qp], 4.0) +std::pow(_polar_y[_qp], 4.0)) + _alpha3 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0) + _alpha4 * (std::pow(_polar_x[_qp], 6.0) + std::pow(_polar_y[_qp], 6.0)) + _alpha5 * (std::pow(_polar_x[_qp], 4.0) * std::pow(_polar_y[_qp], 2.0) + std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 4.0)) + (_x1 * (std::pow(_polar_x[_qp], 2.0) +std::pow(_polar_y[_qp], 2.0)) + _x2 * (std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0)) + _x3 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 4.0)) * _epsilon + (_x4 * (std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0)) + _x5 * (std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0))+ _x6 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0)) * _epsilon * _epsilon; 
+  return _alpha1 * (_T-_Tc) * (std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0)) + _alpha2 * (std::pow(_polar_x[_qp], 4.0) +std::pow(_polar_y[_qp], 4.0)) + _alpha3 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0) + _alpha4 * (std::pow(_polar_x[_qp], 6.0) + std::pow(_polar_y[_qp], 6.0)) + _alpha5 * (std::pow(_polar_x[_qp], 4.0) * std::pow(_polar_y[_qp], 2.0) + std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 4.0)) + (_x1 * (std::pow(_polar_x[_qp], 2.0) +std::pow(_polar_y[_qp], 2.0)) + _x2 * (std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0)) + _x3 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 4.0)) * _epsilon + (_x4 * (std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0)) + _x5 * (std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0))+ _x6 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0)) * _epsilon * _epsilon; 
 
 }

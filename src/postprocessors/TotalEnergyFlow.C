@@ -3,9 +3,10 @@
  * @author J. Mangeri <john.mangeri@uconn.edu>
  * @date   Thu Aug 15 15:54:15 2013
  *
- * @brief
- *
- *
+ * @brief This is a total energy postprocessor that tracks the following
+ *        bulk, wall, coupled elastic, and electrostatic energy. The term 
+ *        "flow" means the energy that is nonzero under variational 
+ *        differentiation in the diffusive gradient flow approach.
  */
 
 #include "TotalEnergyFlow.h"
@@ -45,6 +46,5 @@ TotalEnergyFlow::execute(){
 Real
 TotalEnergyFlow::getValue()
 {
-  ///  return _bulk_energy + _wall_energy + _electrostatic_energy;
   return _Fbulk + _Fwall + _Felec + _Fcoupled;
 }

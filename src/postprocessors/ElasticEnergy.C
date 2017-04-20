@@ -2,6 +2,10 @@
  * @file   ElasticEnergy.C
  * @author J. Mangeri <mangerij@anl.gov>
  * @modified A. Jookisaari <andrea.jokisaari@northwestern.edu>
+ *
+ * @brief This is a energy postprocessor that tracks the elastic energy
+ *        which is equivalent to one half the contraction of stress on 
+ *        strain or 1/2 * \sigma_{ij} \varepsilon_{ij}.
  */
 
 #include "ElasticEnergy.h"

@@ -1,7 +1,9 @@
 /**
  * @file   CoupledEnergy.C
- * @author J. Mangeri <mangerij@anl.gov>
+ * @author J. Mangeri <john.mangeri@uconn.edu>
  *
+ * @brief This is a energy postprocessor that tracks the polar-elastic
+ *        coupled energy q_{ijkl} P_k P_l \varepsilon_{ij}. 
  */
 
 #include "CoupledEnergy.h"
@@ -18,7 +20,7 @@ InputParameters validParams<CoupledEnergy>()
   params.addRequiredCoupledVar("disp_x", "The x component of the elasticity displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
   params.addCoupledVar("disp_z", 0.0, "The z component of the elasticity displacement");
-  params.addParam<Real>("artificial", 1.0, "artificial increase coupling");
+  params.addParam<Real>("artificial", 1.0, "term used to artificially increase coupling");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }

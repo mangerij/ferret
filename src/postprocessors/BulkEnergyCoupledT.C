@@ -1,11 +1,13 @@
 /**
  * @file   BulkEnergyCoupledT.C
  * @author J. Mangeri <john.mangeri@uconn.edu>
- * @brief
+ * @date   
  *
+ * @brief This is a total energy postprocessor that tracks the bulk
+ *        energy of the polarization expansion including dependence 
+ *        on a spatially varying temperature.
  *
  */
-
 
 #include "BulkEnergyCoupledT.h"
 
