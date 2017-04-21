@@ -47,6 +47,7 @@
 #include "Birefringence.h"
 #include "RefractiveIndex.h"
 #include "ChangeInRefractiveIndex.h"
+#include "ChangeInRefractiveIndexWithPolar.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -112,6 +113,7 @@
 #include "ComputePhotostrictiveTensor.h"
 #include "ComputeDeltaBetaTensor.h"
 #include "ComputeBetaTensor.h"
+#include "ComputePolarOpticTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -240,6 +242,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Birefringence);
   registerAux(ChangeInRefractiveIndex);
   registerAux(RefractiveIndex);
+  registerAux(ChangeInRefractiveIndexWithPolar);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
@@ -315,6 +318,7 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputePhotostrictiveTensor);
   registerMaterial(ComputeDeltaBetaTensor);
   registerMaterial(ComputeBetaTensor);
+  registerMaterial(ComputePolarOpticTensor);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);

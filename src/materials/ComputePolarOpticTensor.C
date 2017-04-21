@@ -28,7 +28,7 @@ ComputePolarOpticTensor::ComputePolarOpticTensor(const InputParameters & paramet
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
   _photostrictive_tensor(getMaterialProperty<RankFourTensor>("photostrictive_tensor")),
-  _electrostrictive_tensor(getMaterialProperty<RankFourTensor>("electrostrictive_tensor"))
+  _electrostrictive_coefficients(getMaterialProperty<RankFourTensor>("electrostrictive_coefficients"))
 {
 }
 
@@ -46,7 +46,7 @@ ComputePolarOpticTensor::computeQpPolarOpticTensor()
         for (unsigned int m = 0; m < 3; ++m)
           for (unsigned int n = 0; n < 3; ++n)
           {
-          sum += _photostrictive_tensor[_qp](i, j, k, l) * _electrostrictive_tensor[_qp](k, l, m, n) * w(m) * w(n);
+          sum += _photostrictive_tensor[_qp](i, j, k, l) * _electrostrictive_coefficients[_qp](k, l, m, n) * w(m) * w(n);
           }
         }
     _delta_PO_tensor[_qp](i, j) = sum;

@@ -30,7 +30,7 @@ protected:
   const VariableValue & _polar_z;
 
   const MaterialProperty<RankFourTensor> & _photostrictive_tensor;
-  const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
+  const MaterialProperty<RankFourTensor> & _electrostrictive_coefficients;
 };
 
 #endif //COMPUTEPOLAROPTICTENSOR_H
