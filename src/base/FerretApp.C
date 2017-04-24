@@ -135,6 +135,7 @@
 #include "TotalEnergyG.h"
 #include "RenormalizedBulkEnergy.h"
 #include "TotalEnergyP.h"
+#include "TotalEnergySkFlow.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -308,6 +309,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyG);
   registerPostprocessor(RenormalizedBulkEnergy);
   registerPostprocessor(TotalEnergyP);
+  registerPostprocessor(TotalEnergySkFlow);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
