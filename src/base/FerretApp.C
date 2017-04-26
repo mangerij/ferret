@@ -128,6 +128,7 @@
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
+#include "ElectrostrictiveEnergy.h"
 #include "CoupledEnergyCheckShear.h"
 #include "GrainSize.h"
 #include "DepolarizationEnergy.h"
@@ -301,6 +302,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyFlowNoElastNoElec);
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(CoupledEnergy);
+  registerPostprocessor(ElectrostrictiveEnergy);
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(CoupledEnergyCheckShear);
   registerPostprocessor(GrainSize);
