@@ -11,8 +11,8 @@ InputParameters validParams<ComputeElectroopticTensorBase>()
 ComputeElectroopticTensorBase::ComputeElectroopticTensorBase(const InputParameters & parameters) :
     Material(parameters),
    _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
-   _electrooptic_tensor_name(_base_name + "electrooptic_tensor")//,
-  // _electrooptic_tensor(declareProperty<RankThreeTensor>(_electrooptic_tensor_name))
+   _electrooptic_tensor_name(_base_name + "electrooptic_tensor"),
+   _electrooptic_tensor(declareProperty<RankThreeTensor>(_electrooptic_tensor_name))
 {
 }
 

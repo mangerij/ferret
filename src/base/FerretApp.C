@@ -114,6 +114,7 @@
 #include "ComputeDeltaBetaTensor.h"
 #include "ComputeBetaTensor.h"
 #include "ComputePolarOpticTensor.h"
+#include "ComputeElectroopticTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -323,6 +324,7 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputeDeltaBetaTensor);
   registerMaterial(ComputeBetaTensor);
   registerMaterial(ComputePolarOpticTensor);
+  registerMaterial(ComputeElectroopticTensor);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);

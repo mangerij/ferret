@@ -2,7 +2,7 @@
 #define COMPUTEELECTROOPTICTENSORBASE_H
 
 #include "Material.h"
-//#include "RankThreeTensor.h"
+#include "RankThreeTensor.h"
 
 /**
  * ComputeElectroopticTensorBase the base class for computing photostrictive tensors
@@ -19,7 +19,7 @@ protected:
   std::string _base_name;
   std::string _electrooptic_tensor_name;
 
-//  MaterialProperty<RankThreeTensor> & _electrooptic_tensor;
+  MaterialProperty<RankThreeTensor> & _electrooptic_tensor;
 };
 
 #endif //COMPUTEELECTROOPTICTENSORBASE_H
