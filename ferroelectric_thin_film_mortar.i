@@ -5,15 +5,15 @@
 [Mesh]
   type = MortarPeriodicMesh
   dim = 3
-  nx = 9
-  ny = 9
-  nz = 5
-  xmin = -2
-  xmax = 2
-  ymin = -2
-  ymax = 2
-  zmin = -1
-  zmax = 1
+  nx = 12
+  ny = 12
+  nz = 10
+  xmin = -4
+  xmax = 4
+  ymin = -4
+  ymax = 4
+  zmin = -3
+  zmax = 3
   periodic_directions = 'x y'
 
   [./MortarInterfaces]
@@ -65,18 +65,6 @@
 []
 
 [AuxVariables]
-  [./chern]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./chernMag]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./pMag]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
   [./stress_xx_elastic]
     order = CONSTANT
     family = MONOMIAL
@@ -140,18 +128,6 @@
 []
 
 [AuxKernels]
-  [./cherndens]
-    type = ChernSimonsDensity  #Need to code in skyrmion number instead of this
-    variable = chern
-  [../]
-  [./chernMagdens]
-    type = ChernSimonsDensityMag  #Need to code in skyrmion number instead of this
-    variable = chernMag
-  [../]
-  [./pmag]
-    type = PolarMag
-    variable = pMag
-  [../]
   [./matl_e11]
     type = RankTwoAux
     rank_two_tensor = elastic_strain
@@ -567,19 +543,19 @@
   [./bot_disp_x]
     variable = disp_x
     type = DirichletBC
-    value = 0
+    value = 0.0
     boundary = 'back'
   [../]
   [./bot_disp_y]
     variable = disp_y
     type = DirichletBC
-    value = 0
+    value = 0.0
     boundary = 'back'
   [../]
   [./bot_disp_z]
     variable = disp_z
     type = DirichletBC
-    value = 0
+    value = 0.0
     boundary = 'back'
   [../]
 
@@ -590,73 +566,55 @@
       variable = polar_x
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 4 0'
+      translation = '0 8 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = 'right'
       secondary = 'left'
-      translation = '-4 0 0'
+      translation = '-8 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = 'right'
       secondary = 'left'
-      translation = '-4 0 0'
+      translation = '-8 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = 'right'
       secondary = 'left'
-      translation = '-4 0 0'
+      translation = '-8 0 0'
     [../]
     [./RL_potential_pbc]
       variable = potential_int
       primary = 'right'
       secondary = 'left'
-      translation = '-4 0 0'
+      translation = '-8 0 0'
     [../]
   [../]
 []
 
 [Postprocessors]
-   [./pmagave]
-     type = ElementAverageValue
-     variable = pMag
-     execute_on = 'timestep_end'
-   [../]
-   [./avePz]
-     type = ElementAverageValue
-     variable = polar_z
-     execute_on = 'initial linear nonlinear timestep_begin timestep_end'
-   [../]
-   [./avgChern]
-     type = ElementAverageValue
-    variable = chern
-   [../]
-   [./avgChernMag]
-     type = ElementAverageValue
-    variable = chernMag
-   [../]
    [./Fbulk]
       type = BulkEnergy
       execute_on = 'timestep_end'
