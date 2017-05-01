@@ -37,7 +37,6 @@ make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 ```
 NOTE: The ./configure step can alternatively include a BOOST directory which will allow compile of MOOSE objects with mathematical special functions.
 
-
 ### Who do I talk to? ###
 
 * The following people are contributors to the Ferret project and can be reached by email for help:
@@ -49,3 +48,7 @@ NOTE: The ./configure step can alternatively include a BOOST directory which wil
 
 ### MOOSE can be found at http://www.mooseframework.org ###
  * The moose-users list at https://groups.google.com/forum/#!forum/moose-users is good for help with MOOSE!
+
+### Contributing ###
+ * If you have an idea for some ferroelectric materials problem and would like to add it to the repository, then please submit a pull request with the relevant information. Generally, to submit a pull request, you should Fork Ferret to your own repo, make the changes/additions, push to your master or branch, and then submit the pull request (on the Bitbucket website).
+ * At the moment, please cite Nanoscale, 2017, 9, 1616-1624 if you use Ferret. A methods paper is currently in the works.
