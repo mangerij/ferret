@@ -5,13 +5,13 @@
 [Mesh]
   type = MortarPeriodicMesh
   dim = 3
-  nx = 12
-  ny = 12
+  nx = 10
+  ny = 10
   nz = 10
-  xmin = -4
-  xmax = 4
-  ymin = -4
-  ymax = 4
+  xmin = -3.5
+  xmax = 3.5
+  ymin = -3.5
+  ymax = 3.5
   zmin = -3
   zmax = 3
   periodic_directions = 'x y'
@@ -27,6 +27,19 @@
       slave = 2
       subdomain = 11
     [../]
+  [../]
+[]
+
+[MeshModifiers]
+  [./cnode]
+    type = AddExtraNodeset
+    coord = '0.0 0.0 0.0'
+    new_boundary = 100
+  [../]
+  [./anode]
+    type = AddExtraNodeset
+    coord = '-3.5 -3.5 -3.0'
+    new_boundary = 101
   [../]
 []
 
@@ -540,25 +553,65 @@
     value = -0.0001
   [../]
 
-  [./bot_disp_x]
+#  [./bot_disp_x]
+#    variable = disp_x
+#    type = DirichletBC
+#    value = 0.0
+#    boundary = 'back'
+#  [../]
+#  [./bot_disp_y]
+#    variable = disp_y
+#    type = DirichletBC
+#    value = 0.0
+#    boundary = 'back'
+#  [../]
+#  [./bot_disp_z]
+#    variable = disp_z
+#    type = DirichletBC
+#    value = 0.0
+#    boundary = 'back'
+#  [../]
+
+
+  # fix center point location
+  [./centerfix_x]
+    type = PresetBC
+    boundary = 100
     variable = disp_x
-    type = DirichletBC
-    value = 0.0
-    boundary = 'back'
+   value = 0.0
   [../]
-  [./bot_disp_y]
+  [./centerfix_y]
+    type = PresetBC
+    boundary = 100
     variable = disp_y
-    type = DirichletBC
     value = 0.0
-    boundary = 'back'
   [../]
-  [./bot_disp_z]
+  [./centerfix_z]
+    type = PresetBC
+    boundary = 100
     variable = disp_z
-    type = DirichletBC
     value = 0.0
-    boundary = 'back'
   [../]
 
+  # fix side point x coordinate to inhibit rotation
+  [./angularfix_x]
+    type = PresetBC
+    boundary = 101
+    variable = disp_x
+    value = 0.0
+  [../]
+  [./angularfix_y]
+    type = PresetBC
+    boundary = 101
+    variable = disp_y
+    value = 0.0
+  [../]
+  [./angularfix_z]
+    type = PresetBC
+    boundary = 101
+    variable = disp_z
+    value = 0.0
+  [../]
 
   [./Periodic]
 
@@ -566,50 +619,50 @@
       variable = polar_x
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 8 0'
+      translation = '0 7 0'
     [../]
     [./TB_polar_y_pbc]
       variable = polar_y
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 8 0'
+      translation = '0 7 0'
     [../]
     [./TB_polar_z_pbc]
       variable = polar_z
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 8 0'
+      translation = '0 7 0'
     [../]
     [./TB_potential_int_pbc]
       variable = potential_int
       primary = 'bottom'
       secondary = 'top'
-      translation = '0 8 0'
+      translation = '0 7 0'
     [../]
 
     [./RL_polar_x_pbc]
       variable = polar_x
       primary = 'right'
       secondary = 'left'
-      translation = '-8 0 0'
+      translation = '-7 0 0'
     [../]
     [./RL_polar_y_pbc]
       variable = polar_y
       primary = 'right'
       secondary = 'left'
-      translation = '-8 0 0'
+      translation = '-7 0 0'
     [../]
     [./RL_polar_z_pbc]
       variable = polar_z
       primary = 'right'
       secondary = 'left'
-      translation = '-8 0 0'
+      translation = '-7 0 0'
     [../]
     [./RL_potential_pbc]
       variable = potential_int
       primary = 'right'
       secondary = 'left'
-      translation = '-8 0 0'
+      translation = '-7 0 0'
     [../]
   [../]
 []
@@ -654,6 +707,7 @@
  [./kill]
   type = Terminator
   expression = 'perc_change <= 1.0e-3'
+  execute_on = 'timestep_end'
  [../]
 []
 
@@ -662,8 +716,9 @@
     type = SMP
     full = true
     petsc_options = '-snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121               1e-10      1e-8      1e-6        lu'
+    # mortar currently does not support MPI parallelization
+    petsc_options_iname = '-pc_type -pc_factor_shift_type -pc_factor_shift_amount -ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol'
+    petsc_options_value = '    lu        NONZERO                     1e-10                 100             1e-10      1e-8      1e-2 '
   [../]
 []
 
@@ -672,19 +727,17 @@
   scheme = bdf2
   solve_type = 'PJFNK'
 
-  line_search = basic
-
-  # mortar currently does not support MPI parallelization
-  petsc_options_iname = '-pc_type -pc_factor_shift_type -pc_factor_shift_amount'
-  petsc_options_value = ' lu       NONZERO               1e-10'
-
-  l_max_its = 30
-  nl_max_its = 12
 
   [./TimeStepper]
-    type = SolutionTimeAdaptiveDT
-    dt = 0.01
+    type = IterationAdaptiveDT
+    dt = 0.05
+    #iteration_window = 3
+    optimal_iterations = 6 #should be 5 probably
+    growth_factor = 1.4
+    linear_iteration_ratio = 1000
+    cutback_factor =  0.8
   [../]
+  dtmax = 0.4
 []
 
 [Outputs]

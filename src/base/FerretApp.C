@@ -48,6 +48,7 @@
 #include "RefractiveIndex.h"
 #include "ChangeInRefractiveIndex.h"
 #include "ChangeInRefractiveIndexWithPolar.h"
+#include "PkNorm.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -138,6 +139,7 @@
 #include "RenormalizedBulkEnergy.h"
 #include "TotalEnergyP.h"
 #include "TotalEnergySkFlow.h"
+#include "TotalWinding.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -246,6 +248,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndex);
   registerAux(RefractiveIndex);
   registerAux(ChangeInRefractiveIndexWithPolar);
+  registerAux(PkNorm);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
@@ -313,6 +316,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(RenormalizedBulkEnergy);
   registerPostprocessor(TotalEnergyP);
   registerPostprocessor(TotalEnergySkFlow);
+  registerPostprocessor(TotalWinding);
 
   //Markers
   registerMarker(PolarizationNWEMarker);

@@ -1,31 +1,32 @@
-#ifndef POLARMAG_H
-#define POLARMAG_H
+#ifndef PKNORM_H
+#define PKNORM_H
 
 #include "AuxKernel.h"
 
 //Forward Declarations
-class PolarMag;
+class PkNorm;
 
 template<>
-InputParameters validParams<PolarMag>();
+InputParameters validParams<PkNorm>();
 
 /**
  * Coupled auxiliary value
  */
-class PolarMag: public AuxKernel
+class PkNorm: public AuxKernel
 {
 public:
-  PolarMag(const InputParameters & parameters);
+  PkNorm(const InputParameters & parameters);
 
-  virtual ~PolarMag() {}
+  virtual ~PkNorm() {}
 
 protected:
     virtual Real computeValue();
 
 private:
+  const unsigned int _component;
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
 };
 
-#endif // POLARMAG_H
+#endif // PKNORM_H
