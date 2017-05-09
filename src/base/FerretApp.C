@@ -102,6 +102,7 @@
 #include "EulerSkyrmionPTempTerm.h"
 #include "RenormalizedFreeEnergy.h"
 #include "AnisotropicElectrostatics.h"
+#include "ConstField.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -289,6 +290,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(Electrostatics);
   registerKernel(CoeffParamDiffusion);
   registerKernel(SemiconductorChargeCarriers);
+  registerKernel(ConstField);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
