@@ -1,0 +1,446 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Short Sectioned Assignment - UConn
+% LaTeX Template
+% Version 1.0 (5/5/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Frits Wenneker (http://www.howtotex.com)
+
+% New Author after many edits:
+% John Mangeri (Univ. Conn.)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[paper=a4, fontsize=14pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage{dsfont}
+\usepackage{amssymb} %because we all want the therefore symbol
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage[mathscr]{euscript}
+\usepackage{subfigure}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{listings}
+\usetikzlibrary{fit}
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,
+    fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,
+  baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+
+%------Define UConn Blue---%
+\definecolor{uconnblue}{RGB}{15,25,56} % defined by http://webtools.uconn.edu/standards/colors.html
+%                                                          % also http://help.business.uconn.edu/index.php?pg=kb.page&id=252 (graphics standards)    
+\newcommand*{\boxedcolor}{uconnblue}
+\makeatletter
+\renewcommand{\boxed}[1]{\textcolor{\boxedcolor}{%
+  \fbox{\normalcolor\m@th$\displaystyle#1$}}}
+\makeatother
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\raggedright \normalfont\scshape} % Make all sections left, the default font and small caps
+\usepackage{graphicx}
+\usepackage{multirow}
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%-------------------------
+% Margins
+%------------------------
+\usepackage[margin=1.4in]{geometry}
+	\addtolength{\oddsidemargin}{-1.075in}
+	\addtolength{\evensidemargin}{-1.075in}
+	\addtolength{\textwidth}{1.95in}
+
+	\addtolength{\topmargin}{-.775in}
+	\addtolength{\textheight}{1.53in}
+%-------------------------------
+% Header with UConn Logo
+%--------------------------------
+\usepackage{fancyhdr}                           % Custom headers and footers
+\pagestyle{fancyplain}                            % Makes all pages in the document conform to the custom headers and footers
+
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+%\setlength{\headwidth}{51.6pt}  % Customize the width of the header
+\pagestyle{fancy}
+\fancyhf{} % clear all fields
+
+\renewcommand\footrule{\begin{minipage}{1\textwidth}
+\hrule width \hsize height 2pt \kern 1mm \hrule width \hsize   
+\end{minipage}\par}%
+
+\renewcommand\headrule{
+\begin{minipage}{1\textwidth}
+\hrule width \hsize \kern 1mm \hrule width \hsize height 2pt 
+\end{minipage}}%
+
+\fancyhead[RO]{%
+  \scshape
+  \begin{tabular}[b]{@{}r@{}}
+  %insert assignment title\\ % and class here
+ \textcolor{uconnblue}{\textsf{\textsc{Ferret} \date{\normalsize\today}}} \\ \textcolor{uconnblue}{\textsf{Tutorial problems}}
+  \end{tabular}}
+\fancyhead[LO]{%
+  \scshape
+  \begin{tabular}[b]{@{}l@{}}
+ %\includegraphics[height=0.53in]{uconnlogo.jpg}\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\\   \textcolor{uconnblue}{J. Mangeri}
+%{\textbf{FOR INTERNAL USE ONLY}}
+  \end{tabular}}
+
+\fancyfoot[R]{\thepage}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{} \\ [25pt]                                    % Your university, school and/or department name(s) (Currently Blank)
+\horrule{0.5pt} \\[0.1cm] % Thin top horizontal rule
+% The assignment title
+\horrule{2pt} \\[0.7cm] % Thick bottom horizontal rule
+}
+
+\author{} % Your name (currently left Blank)
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+%\tableofcontents
+%\newpage
+
+
+\newpage
+
+\section*{}
+
+\section*{Preface}
+
+First and foremost, \textsc{Ferret} \emph{only} works in 3D, so some extra care must be taken to do simple test problems that have analytical solutions. In what follows, are a few such test problems that build up to the fully-implicit fully-coupled inhomogeneous problem used in the Nanoscale paper (and other on-going work):
+
+\begin{itemize}
+\item \texttt{problem1.i} -- gradient-search for minima of the Landau expansion
+\item \texttt{problem2a.i} -- Poisson equation/TDLGD (constant field)
+\item \texttt{problem2b.i} -- Poisson equation/TDLGD (depolarization fields and domains)
+\item \texttt{problem3a.i} -- Poisson equation/TDLGD + polar-elastic coupled problems
+\item \texttt{problem3b.i} -- TDLGD coupled with elasticity and applied eigenstrain (misfit)
+\end{itemize}
+
+This work is current, as of May 9th, 2017, with the \textsc{Ferret} master, so please update your branch with 
+
+$$\texttt{cd /ferret}$$
+
+\vspace*{-12pt}
+
+$$\texttt{git pull}$$
+
+\vspace*{-12pt}
+
+$$\texttt{./configure}$$
+
+\vspace*{-12pt}
+
+$$\texttt{make}$$
+
+Compilation should \textbf{not} take long as many files have not changed since the last time you updated it. Please let me (john.mangeri@uconn.edu) know if it does. These problems for the most part should only use one processor but the last one, I would suggest to use 4 if possible.
+
+
+\newpage
+
+\vspace*{-65pt}
+
+\section*{Problem 1 (gradient-search for minima)}
+
+\vspace*{-10pt}
+
+\subsection*{Set up:}
+
+For the following, consult the input file \texttt{problem1.i}. Consider the bulk free energy \emph{density}
+
+$$f_\mathrm{bulk}(\textbf{P}) = - \alpha_1 \left(P_x^2 + P_y^2 + P_z^2 \right) + \alpha_{11} \left(P_x^4 + P_y^4 + P_z^4 \right) $$
+
+where $\alpha_1 = 0.5$ and $\alpha_{11} = 0.25$. Clearly, if 
+
+$$\frac{d f_\mathrm{bulk} }{d P_z} = 0 \,\, \mathrm{then} \,\, P_z = \pm \frac{\sqrt{\alpha_1}}{\sqrt{2} \sqrt{\alpha_{11}}} = \pm 1.$$ 
+
+If we apply a small field, $E_z = + 0.1$,  in the z direction, then the minima should be located at $P_z =  -1.04668$. The total energy density for this problem is then
+
+$$f_\mathrm{total} = f_\mathrm{bulk}(\textbf{P} ) + P_z E_z$$
+
+To find the minima, we evolve the time-dependent Landau problem,
+
+\begin{align}\tag{1}\label{eq:1}
+\frac{\partial P_z}{\partial t} = - \gamma \frac{\delta F}{\delta P_z},
+\end{align}
+
+with $\gamma = 1$ and $\delta/\delta \textbf{P}$ denotes the variational derivative of the total energy w.r.t. a component of $\textbf{P}$.  In \textsc{MOOSE}, we initialize the PDE term-by-term. The linearized terms in Eqs. \ref{eq:1} is a \texttt{Kernel}:
+
+\begin{itemize}
+\item \texttt{type} = \texttt{BulkEnergyDerivativeSixth} $\equiv \delta F_\mathrm{bulk} /\delta P_z$
+\item \texttt{type} = \texttt{ConstField} $\equiv \delta / \delta P_z \left(\int_\Omega d^3 \textbf{r}\, P_z E_z \right) = \int_\Omega  d^3 \textbf{r} \,E_z$
+\end{itemize}
+
+The total energy $F$ is related to the total free energy density by integration,
+
+$$F = \int\limits_\Omega d^3 \textbf{r}  \left(  f_\mathrm{bulk}(\textbf{P} (\textbf{r}),\textbf{r}) + P_z (\textbf{r}) E_z \right).$$
+
+This integral is discretized ($\Omega = \cup_h \Omega_h )$ in the finite element method and the PDE is solved for each element. Also, the variables $P_x$ and $P_y$ are trivial constants for this problem.
+
+\vspace{-15pt}
+
+\subsection*{Execution}
+
+\vspace{-8pt}
+
+If we choose a random paraelectric guess for the initial condition, then the components of $\textbf{P}$ are randomly (and negligibly) distributed about zero.  See \texttt{IntialCondition} in the \texttt{Variables} block.
+
+
+By running the input file, equation \ref{eq:1} is evolved in time until the minima has been reached. The field acts as a driving force to roll down the energy surface. By time step 6, the simulation ends because change $F_\mathrm{bulk} (t_n)  - F_\mathrm{bulk} (t_{n-1})$ is sufficiently small between adjacent time steps. The found minima $P_z = - 1.045814$ which is in agreement with the analytical solution found by taking derivatives and solving for the minima. 
+
+\newpage
+
+\vspace*{-65pt}
+
+\section*{Problem 2a: Poisson/TDLGD}
+
+\vspace*{-10pt}
+
+\subsection*{Set up:}
+
+Now, let's make this slightly more complicated -- see \texttt{problem2a.i}. Let's introduce a new variable $\Phi = \Phi (\textbf{r})$ and the Poisson problem,
+
+$$\nabla^2 \Phi = - \nabla \cdot \textbf{P}$$
+
+which couples to the bound charge $\rho_b = - \nabla \cdot \textbf{P}$. The linearized terms in this equation give the following new \texttt{Kernels}:
+
+\begin{itemize}
+\item \texttt{type} = \texttt{Electrostatics} $\equiv \nabla^2 \Phi$
+\item \texttt{type} = \texttt{PolarElectricEStrong} $\equiv \nabla \cdot \textbf{P}$ (three components)
+\end{itemize}
+
+
+At each time step, $\Phi$ and $\textbf{P}$ will be found such that this new equation is satisfied. The computational domain is 10x10x6 nm. Let's put a potential BC on the short sides such that $\partial \Phi / \partial z = +0.1$ (see \texttt{[BCs]}). Now let's choose the free energy density
+
+$$f_\mathrm{total} = - \alpha_1 \left(P_x^2 + P_y^2 + P_z^2 \right) + \alpha_{11} \left(P_x^4 + P_y^4 + P_z^4 \right) + P_z \frac{\partial \Phi}{\partial z} $$
+
+where $\alpha_1 = 0.5$ and $\alpha_{11} = 0.25$, and once again evolve (with the same initial conditions) 
+
+\begin{align}\nonumber
+\frac{\partial P_z}{\partial t} = - \gamma \frac{\delta F}{\delta P_z}.
+\end{align}
+
+We have, 
+
+\vspace{-10pt}
+
+\begin{itemize}
+\item \texttt{type} = \texttt{PolarElectricPStrong} $\equiv \delta /\delta P_z \left( P_z \partial \Phi / \partial z \right)$
+\end{itemize}
+
+Once $\Phi$ is found (analytical solution is a linear function that depends on $z$), it will update the TDLGD equation accordingly, which will influence the polarization with a constant field as before. 
+
+\subsection*{Execution}
+
+The degrees of freedom of the problem have gone up because we have introduced a new variable. Once again, we find $P_z = -1.045814$ but with a new mechanism of generating a field: satisfying the Poisson problem instantly, getting a constant field and then using that field to influence the time-dependent paraelectric $\to$ ferroelectric energy minimization. Inspection of $\Phi$ in the mesh file shows that indeed the Laplace problem is satisfied. Note that the uniform state returns a Laplace problem ($\nabla \cdot \textbf{P} \approx 0$).
+
+\newpage
+
+\vspace*{-65pt}
+
+\section*{Problem 2b: Poisson/TDLGD \hspace*{-4pt}(domains\hspace*{-4pt} + \hspace*{-4pt}depolarization)}
+
+\vspace*{-10pt}
+
+\subsection*{Set up:}
+
+Now we will show how the two-way coupling works when you have domains and a free surface. Let's introduce a new energy density, the Lifshitz invariant terms. They are
+
+\begin{align}\tag{2}
+\hspace{-5pt}f_\mathrm{wall} &= \frac{1}{2} G_{11} \left[\left(\frac{\partial P_x}{\partial x} \right)^2 \hspace{-1pt}+\hspace{-1pt} \left(\frac{\partial P_y}{\partial y}\right)^2 \hspace{-1pt}+\hspace{-1pt}\left( \frac{\partial P_z}{\partial z} \right)^2\right] + G_{12} \left[\frac{\partial P_x}{\partial x}\frac{\partial P_y}{\partial y}\hspace{-2pt} +\hspace{-1pt} \frac{\partial P_y}{\partial y} \frac{\partial P_z}{\partial z}\hspace{-2pt} +\hspace{-1pt} \frac{\partial P_x}{\partial x} \frac{\partial P_z}{\partial z} \right] \\ \nonumber
+&+ \hspace{-2pt} \frac{1}{2} G_{44}  \hspace{-2pt}\left[\left(\frac{\partial P_x}{\partial y} \hspace{-1pt}+ \hspace{-1pt} \frac{\partial P_y}{\partial x} \right)^2 \hspace{-6pt}+\hspace{-2pt} \left(\frac{\partial P_y}{\partial z} \hspace{-1pt}+ \hspace{-1pt}\frac{\partial P_z}{\partial y} \right)^2 \hspace{-6pt}+\hspace{-2pt} \left(\frac{\partial P_x}{\partial z} \hspace{-1pt}+\hspace{-1pt} \frac{\partial P_z}{\partial x} \right)^2  \hspace{-0.5pt}\right] \\ \nonumber
+&+ \hspace{-2pt}\frac{1}{2} G'_{44} \hspace{-2pt}\left[\left(\frac{\partial P_x}{\partial y} \hspace{-1pt}- \hspace{-1pt}\frac{\partial P_y}{\partial x} \right)^2 \hspace{-6pt} + \hspace{-2pt} \left(\frac{\partial P_y}{\partial z}\hspace{-1pt} - \hspace{-1pt}\frac{\partial P_z}{\partial y} \right)^2 \hspace{-6pt}+  \hspace{-2pt}\left(\frac{\partial P_x}{\partial z}\hspace{-1pt} - \hspace{-1pt}\frac{\partial P_z}{\partial x} \right)^2 \hspace{-0.5pt} \right]. \\ \nonumber
+\end{align}
+
+Let's choose $G_{11} = 0.2768$, $G_{12} = 0$, $G_{44} = G_{44}' = 0.1384$ (the magnitude of these control the size of the domain wall). The \texttt{Kernel} is
+
+\begin{itemize}
+\item \texttt{type} = \texttt{WallEnergyDerivative} $\equiv \delta /\delta \textbf{P} \left( G_{ijkl} \partial P_i / \partial x_j \partial P_k /\partial x_l \right)$ for each component of $\textbf{P}$.
+\end{itemize}
+
+We now evolve
+
+\begin{align}\nonumber
+\frac{\partial \textbf{P}}{\partial t} = - \gamma \frac{\delta F}{\delta \textbf{P}} = - \gamma \frac{\delta}{\delta \textbf{P}} \int\limits_\Omega d^3 \textbf{r} \left[ f_\mathrm{bulk} +  f_\mathrm{wall} + \textbf{P} \cdot \nabla \Phi \right]. 
+\end{align}
+
+and solve $\nabla^2 \Phi = - \nabla \cdot \textbf{P}$ at \emph{each} time step. We choose natural boundary conditions (so-called open circuit). The Landau coefficients are the same as the previous two examples.
+
+\subsection*{Execution}
+
+This solve takes slightly longer (439.225 seconds on one processor (Intel i7 w/ Ubuntu OS) because the domain wall term acts a micro-force to drive the system into equilibrium while still satisfying the unfavorable depolarization action of the Poisson problem (or so I understand) -- this gives rise to the vortex-like pattern seen in the solution. Unfortunately, we don't have analytical solutions for this, but this is essentially the simplest "generation" of a domain structure. Next, we will add elastic fields and their influence on the problems.
+
+\newpage
+
+\vspace*{-65pt}
+
+\section*{Problem 3a: Poisson/TDLGD \hspace*{-4pt}(elasticity)}
+
+\vspace*{-10pt}
+
+\subsection*{Set up:}
+
+Now we aim to couple the problem to elasticity. We do this by considering a stress-free strain caused by the polarization field \cite{Li2001, Mangeri2017},
+
+$$\varepsilon_{ij}^0 = Q_{ijkl} P_k P_l,$$
+
+where $Q_{ijkl}$ is the electrostrictive coefficient tensor. One then writes the total elastic free energy density as
+
+$$\tilde{f}_\mathrm{elastic} = \frac{1}{2} C_{ijkl} \left( \varepsilon_{ij} - \varepsilon_{ij}^0\right)\left( \varepsilon_{kl} - \varepsilon_{kl}^0 \right),$$
+
+with $C_{ijkl}$ being the elastic stiffness tensor and $\varepsilon_{ij}$ being elastic strains as functions of a new variable $\textbf{u}$, the elastic displacement fields. We can write this as
+
+$$\tilde{f}_\mathrm{elastic} \simeq f_\mathrm{elastic} + f_\mathrm{coupled} = \frac{1}{2} C_{ijkl} \varepsilon_{ij} \varepsilon_{kl} + \frac{1}{2} q_{ijkl} \varepsilon_{ij} P_k P_l$$
+
+where $q_{ijkl} = 2 Q_{ijmn} C_{mnkl}$. We then include these free energy densities in the TDLGD expression
+
+\begin{align}\nonumber
+\frac{\partial \textbf{P}}{\partial t} =  - \gamma \frac{\delta}{\delta \textbf{P}} \int\limits_\Omega d^3 \textbf{r} \left[ f_\mathrm{bulk} +  f_\mathrm{wall} + \textbf{P} \cdot \nabla \Phi  + f_\mathrm{elastic} + f_\mathrm{coupled}\right]. 
+\end{align}
+
+Note that the second-to-last term does not explicitly depend on the polarization field, so it is effectively zeroed under the variational derivative. In order to have two-way coupling to the polarization field, we need to also consider mechanical equilibrium of the stress field, $\sigma_{ij}$ , which takes the form of the stress-divergence problem,
+
+$$\frac{\partial \sigma_{ij} }{\partial x_j} = \frac{\partial}{\partial x_j} C_{ijkl} \left(\varepsilon_{ij} - \varepsilon_{ij}^0 \right) = 0,$$
+
+which is solved at each time step in the TDLGD evolution. For this example, we consider only natural boundary conditions on all of the variables ($\textbf{P}, \textbf{u}, \Phi$). This corresponds to a stress-free boundary condition for the elastic field. For these new additions:
+
+\vspace*{-5pt}
+
+\begin{itemize}
+\item \texttt{[./TensorMechanics]} $\equiv \partial /\partial x_j \left( C_{ijkl} \varepsilon_{kl}\right)$ for each $i$ (stress-divergence).
+\item \texttt{type} = \texttt{FerroelectricCouplingX} $\equiv -\partial /\partial x_j \left( C_{ijkl} \varepsilon_{kl}^0\right)$ for each $i$.
+\item \texttt{type} = \texttt{FerroelectricCouplingP} $\equiv \delta / \partial \textbf{P} \int_\Omega \left(\frac{1}{2} q_{ijkl} \varepsilon_{ij} P_k P_l \right)$
+
+\texttt{[Materials]}:
+
+\vspace*{-10pt}
+
+\begin{itemize}
+
+\item \texttt{type} = \texttt{ComputeElasticityTensor} $\equiv$ fills in $C_{ijkl}$
+
+\item \texttt{type} = \texttt{ComputeElectrostrictiveTensor} $\equiv$ fills in $q_{ijkl}$
+
+\item \texttt{type} = \texttt{ComputeSmallStrain} 
+\item \texttt{type} = \texttt{ComputeLinearElasticStress} computes strain/ stress fields.
+
+\end{itemize}
+
+\end{itemize}
+
+\subsection*{Execution}
+
+The new degrees of freedom increase the total number by about a factor of 2. It is suggested to use 2-4 processors for this problem and the solve will take around an hour to two hours. A new time-stepper has been introduced to facilitate the stiff parts of the solve. This time-stepper will automatically decrease the size of the time step if the nonlinear iterations are too large. We see that by time step 200, the energy changes are approaching order $10^{-3}$ which means the simulation has converged to an energy minima. This time, a clear vortex has formed since the electrostriction has the effect to soften the domain walls that can arise in small particles \cite{Mangeri2017}.
+
+\newpage
+
+\vspace*{-65pt}
+
+\section*{Problem 3b: TDLGD \hspace*{-4pt}(misfit eigenstrain)}
+
+\vspace*{-10pt}
+
+\subsection*{Set up:}
+
+Typically, it is common to study ferroelectric materials on substrate where the substrate lattice constant is different from the ferroelectric. To introduce a constant lattice mismatch, we can introduce a new eigenstrain in addition to the ferroelectric eigenstrain (also known as the self-strain or stress-free strain).
+
+$$\bar{f}_\mathrm{elastic} = \frac{1}{2} C_{ijkl} \left( \varepsilon_{ij} + \bar{\varepsilon}_{ij} - \varepsilon_{ij}^0\right)\left( \varepsilon_{kl} + \bar{\varepsilon}_{ij} - \varepsilon_{kl}^0 \right),$$
+
+where $\bar{\varepsilon}_{ij}$ is a constant value and only nonzero for $\bar{\varepsilon}_{xx} =  \bar{\varepsilon}_{yy}  = \bar{\varepsilon}$. To show the effectiveness of this approach, let's consider the problem
+
+\begin{align}\nonumber
+\frac{\partial \textbf{P}}{\partial t} =  - \gamma \frac{\delta}{\delta \textbf{P}} \int\limits_\Omega d^3 \textbf{r} \left[ f_\mathrm{bulk} +  f_\mathrm{wall}  + f_\mathrm{elastic} + f_\mathrm{coupled}\right]. 
+\end{align}
+
+with $\partial \sigma_{ij} /\partial x_j = 0$ and natural boundary conditions. Note that the Poisson equation and relevant coupling (including the $\Phi$ variable) has been \emph{removed} to simplify this discussion and we keep the same material tensor coefficients ($\alpha_{ij}, C_{ijkl}, Q_{ijkl}$, ect.) as before. The variable $\bar{\varepsilon}$ is modulated by the \texttt{[GlobalParams]} $\texttt{prefactor}$ in the input file. Note, 
+
+\begin{itemize}
+
+\vspace{-15pt}
+
+\item[] 
+
+\texttt{[Materials]}:
+
+\vspace*{-12pt}
+
+\begin{itemize}
+
+\item \texttt{type} = \texttt{ComputeEigenstrain} $\equiv$ fills in $\bar{\varepsilon}_{ij}$ with
+
+\texttt{eigen}$\_$\texttt{base} = 'exx exy exz eyx eyy eyz ezx ezy ezz' 
+
+defiing the appropriate nonzero components of the eigenstrain.
+
+\end{itemize}
+
+\end{itemize}
+
+\vspace*{-30pt}
+
+\subsection*{Execution:}
+
+When \texttt{prefactor} = 0.02, this means the structure is in tension, and all of the polar vectors will point in-plane (and form $90^\circ$ domain walls). When \texttt{prefactor} = - 0.02, the structure is in compression and the polar vectors will point out-of-plane( and form $180^\circ$ ``stripe'' patterns). Remember to change the name of the output mesh when looking at differences of the prefactor term! Here, the solve terminates after \texttt{num}$\_$\texttt{steps} = 55, but removing this line will allow the system to reach the true energy minima given the paraelectric initial condition.
+
+Note: head-to-head and tail-to-tail domain walls are allowed since the electrostatic penalties are zeroed in this example!
+
+
+
+\newpage
+\begin{thebibliography}{1}
+
+\bibitem{Li2001}
+Y. L. ~Li, S. Y. ~Hu, Z. K. ~Liu, and L-. Q. Chen,
+%\newblock {Phase-field model of domain structures in ferroelectric thin films}.
+\newblock \emph{Appl. Phys. Lett.} \textbf{78} 492--500 (2001).
+
+\bibitem{Mangeri2017}
+J.~Mangeri, Y.~Espinal, A.~Jokisaari, S. P. ~Alpay, S.~Nakhmanson, and O. Heinonen,
+%\newblock {Topological phase transitions and intrinsic size effects in ferroelectric nanoparticles}.
+\newblock {\em Nanoscale} \textbf{9}, 1616-1624 (2017).
+
+\end{thebibliography}
+
+
+
+\end{document}
