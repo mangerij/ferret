@@ -122,6 +122,9 @@
 #include "WallEnergy.h"
 #include "ThermalEnergy.h"
 #include "TotalEnergy.h"
+#include "TotalEnergyPSTO.h"
+#include "TotalEnergyPSTOcoupled.h"
+#include "CoupledEnergyPSTO.h"
 #include "TotalEnergyFlow.h"
 #include "TotalEnergyFlowNoElast.h"
 #include "TotalEnergyFlowNoElastNoElec.h"
@@ -303,6 +306,9 @@ FerretApp::registerObjects(Factory & factory)
   ///registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
+  registerPostprocessor(TotalEnergyPSTO);
+  registerPostprocessor(TotalEnergyPSTOcoupled);
+  registerPostprocessor(CoupledEnergyPSTO);
   registerPostprocessor(TotalEnergyFlow);
   registerPostprocessor(TotalEnergyFlowNoElast);
   registerPostprocessor(TotalEnergyFlowNoElastNoElec);
