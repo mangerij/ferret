@@ -43,8 +43,8 @@ ChangeInRefractiveIndexWithPolar::ChangeInRefractiveIndexWithPolar(const InputPa
    _index_j(getParam<unsigned int>("index_j")),
    _index_k(getParam<unsigned int>("index_k")),
    _index_l(getParam<unsigned int>("index_l")),
-   _beta_tensor(getMaterialProperty<RankTwoTensor>("beta_tensor")),
-   _delta_beta_tensor(getMaterialProperty<RankTwoTensor>("delta_beta_tensor")),
+   _beta_tensor(getMaterialProperty<RankTwoTensor>("indicatrix")),
+   _delta_beta_tensor(getMaterialProperty<RankTwoTensor>("delta_indicatrix")),
    _delta_PO_tensor(getMaterialProperty<RankTwoTensor>("delta_PO_tensor"))
 {
 }
@@ -54,7 +54,7 @@ ChangeInRefractiveIndexWithPolar::computeValue()
 {
   // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
   // Likely we will need to load in the dielectric constant representation of the inverse refractive index squared instead of this constant number here.
-  return - 0.5 * std::pow(1.0 / std::pow(_beta_tensor[_qp](_index_i, _index_j), 0.5) , 3.0) *  (_delta_beta_tensor[_qp](_index_k, _index_l) + _delta_PO_tensor[_qp](_index_k, _index_l));
+  return - 0.5 * std::pow(1.0 / std::pow(_indicatrix[_qp](_index_i, _index_j), 0.5) , 3.0) *  (_delta_indicatrix[_qp](_index_k, _index_l) + _delta_PO_tensor[_qp](_index_k, _index_l));
 }
 
 
