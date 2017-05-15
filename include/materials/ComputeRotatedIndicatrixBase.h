@@ -19,23 +19,22 @@
 
 /****************************************************************************/
 
-#include "ComputeRotatedPhotostrictiveTensorBase.h"
-#include "RotationTensor.h"
+#ifndef COMPUTEROTATEDINDICATRIXBASE_H
+#define COMPUTEROTATEDINDICATRIXBASE_H
 
-template<>
-InputParameters validParams<ComputeRotatedPhotostrictiveTensorBase>()
-{
-  InputParameters params = validParams<ComputePhotostrictiveTensorBase>();
-  params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
-  params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
-  params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");
-  return params;
-}
+#include "ComputeIndicatrixBase.h"
+#include "RankTwoTensor.h"
 
-ComputeRotatedPhotostrictiveTensorBase::ComputeRotatedPhotostrictiveTensorBase(const InputParameters & parameters) :
-    ComputePhotostrictiveTensorBase(parameters),
-    _Euler_angles(getParam<Real>("euler_angle_1"),
-                  getParam<Real>("euler_angle_2"),
-                  getParam<Real>("euler_angle_3"))
+/**
+ * ComputeRotatedIndicatrixBase the base class for computing photostrictive tensors
+ */
+class ComputeRotatedIndicatrixBase : public ComputeIndicatrixBase
 {
-}
+public:
+  ComputeRotatedIndicatrixBase(const InputParameters & parameters);
+
+protected:
+  RealVectorValue _Euler_angles;
+};
+
+#endif //COMPUTEROTATEDINDICATRIXBASE_H

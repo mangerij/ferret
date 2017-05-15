@@ -133,9 +133,9 @@
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
-#include "ComputePhotostrictiveTensor.h"
-#include "ComputeDeltaBetaTensor.h"
-#include "ComputeBetaTensor.h"
+#include "ComputeElastoopticTensor.h"
+#include "ComputeDeltaIndicatrix.h"
+#include "ComputeIndicatrix.h"
 #include "ComputePolarOpticTensor.h"
 #include "ComputeElectroopticTensor.h"
 
@@ -353,9 +353,9 @@ FerretApp::registerObjects(Factory & factory)
   ///Materials
   ///registerMaterial(LinearFerroelectricMaterial); //deprecated, long live this simple method!
   registerMaterial(ComputeElectrostrictiveTensor);
-  registerMaterial(ComputePhotostrictiveTensor);
-  registerMaterial(ComputeDeltaBetaTensor);
-  registerMaterial(ComputeBetaTensor);
+  registerMaterial(ComputeElastoopticTensor);
+  registerMaterial(ComputeDeltaIndicatrix);
+  registerMaterial(ComputeIndicatrix);
   registerMaterial(ComputePolarOpticTensor);
   registerMaterial(ComputeElectroopticTensor);
 

@@ -19,29 +19,26 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEBETATENSORBASE_H
-#define COMPUTEBETATENSORBASE_H
+#include "ComputeIndicatrixBase.h"
 
-#include "Material.h"
-#include "RankTwoTensor.h"
-
-/**
- * ComputeTensorBase the base class for computing photostrictive tensors
- */
-class ComputeBetaTensorBase : public Material
+template<>
+InputParameters validParams<ComputeIndicatrixBase>()
 {
-public:
-  ComputeBetaTensorBase(const InputParameters & parameters);
+  InputParameters params = validParams<Material>();
+  params.addParam<std::string>("base_name", "Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases");
+  return params;
+}
 
-protected:
-  virtual void computeQpProperties();
-  virtual void computeQpBetaTensor() = 0;
+ComputeIndicatrixBase::ComputeIndicatrixBase(const InputParameters & parameters) :
+    Material(parameters),
+   _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
+   _indicatrix_name(_base_name + "indicatrix"),
+   _indicatrix(declareProperty<RankTwoTensor>(_indicatrix_name))
+{
+}
 
-  std::string _base_name;
-  std::string _beta_tensor_name;
-
-  MaterialProperty<RankTwoTensor> & _beta_tensor;
-
-};
-
-#endif //COMPUTEBETATENSORBASE_H
+void
+ComputeIndicatrixBase::computeQpProperties()
+{
+  computeQpIndicatrix();
+}

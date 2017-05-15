@@ -19,26 +19,28 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEDELTABETATENSOR_H
-#define COMPUTEDELTABETATENSOR_H
+#ifndef COMPUTEELASTOOPTICTENSORBASE_H
+#define COMPUTEELASTOOPTICTENSORBASE_H
 
+#include "Material.h"
 #include "RankFourTensor.h"
-#include "RankTwoTensor.h"
-#include "ComputeDeltaBetaTensorBase.h"
-#include "libmesh/quadrature.h"
 
 /**
- * ComputeDeltaBetaTensor defines an impermeability tensor material object with a given base name.
+ * ComputeElastoopticTensorBase the base class for computing photostrictive tensors
  */
-class ComputeDeltaBetaTensor : public ComputeDeltaBetaTensorBase
+class ComputeElastoopticTensorBase : public Material
 {
 public:
-  ComputeDeltaBetaTensor(const InputParameters & parameters);
+  ComputeElastoopticTensorBase(const InputParameters & parameters);
 
 protected:
-  virtual void computeQpDeltaBetaTensor();
-  const MaterialProperty<RankTwoTensor> & _strain;
-  const MaterialProperty<RankFourTensor> & _photostrictive_tensor;
+  virtual void computeQpProperties();
+  virtual void computeQpElastoopticTensor() = 0;
+
+  std::string _base_name;
+  std::string _elastooptic_tensor_name;
+
+  MaterialProperty<RankFourTensor> & _elastooptic_tensor;
 };
 
-#endif //COMPUTEDELTABETATENSOR_H
+#endif //COMPUTEELASTOOPTICTENSORBASE_H

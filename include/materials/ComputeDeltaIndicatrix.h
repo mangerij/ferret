@@ -19,22 +19,26 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEROTATEDBETATENSORBASE_H
-#define COMPUTEROTATEDBETATENSORBASE_H
+#ifndef COMPUTEDELTAINDICATRIX_H
+#define COMPUTEDELTAINDICATRIX_H
 
-#include "ComputeBetaTensorBase.h"
+#include "RankFourTensor.h"
 #include "RankTwoTensor.h"
+#include "ComputeDeltaIndicatrixBase.h"
+#include "libmesh/quadrature.h"
 
 /**
- * ComputeRotatedTensorBase the base class for computing photostrictive tensors
+ * ComputeDeltaIndicatrix defines an impermeability tensor material object with a given base name.
  */
-class ComputeRotatedBetaTensorBase : public ComputeBetaTensorBase
+class ComputeDeltaIndicatrix : public ComputeDeltaIndicatrixBase
 {
 public:
-  ComputeRotatedBetaTensorBase(const InputParameters & parameters);
+  ComputeDeltaIndicatrix(const InputParameters & parameters);
 
 protected:
-  RealVectorValue _Euler_angles;
+  virtual void computeQpDeltaIndicatrix();
+  const MaterialProperty<RankTwoTensor> & _strain;
+  const MaterialProperty<RankFourTensor> & _elastooptic_tensor;
 };
 
-#endif //COMPUTEROTATEDBETATENSORBASE_H
+#endif //COMPUTEDELTAINDICATRIX_H

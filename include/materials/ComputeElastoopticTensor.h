@@ -19,26 +19,26 @@
 
 /****************************************************************************/
 
-#include "ComputeBetaTensorBase.h"
+#ifndef COMPUTEELASTOOPTICTENSOR_H
+#define COMPUTEELASTOOPTICTENSOR_H
 
-template<>
-InputParameters validParams<ComputeBetaTensorBase>()
-{
-  InputParameters params = validParams<Material>();
-  params.addParam<std::string>("base_name", "Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases");
-  return params;
-}
+#include "RankFourTensor.h"
+#include "ComputeRotatedElastoopticTensorBase.h"
+#include "libmesh/quadrature.h"
 
-ComputeBetaTensorBase::ComputeBetaTensorBase(const InputParameters & parameters) :
-    Material(parameters),
-   _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
-   _beta_tensor_name(_base_name + "beta_tensor"),
-   _beta_tensor(declareProperty<RankTwoTensor>(_beta_tensor_name))
+/**
+ * ComputePhotostrictiveTensor defines an photostrictive tensor material object with a given base name.
+ */
+class ComputeElastoopticTensor : public ComputeRotatedElastoopticTensorBase
 {
-}
+public:
+  ComputeElastoopticTensor(const InputParameters & parameters);
 
-void
-ComputeBetaTensorBase::computeQpProperties()
-{
-  computeQpBetaTensor();
-}
+protected:
+  virtual void computeQpElastoopticTensor();
+
+  /// Individual material information
+  RankFourTensor _Pmnkl;
+};
+
+#endif //COMPUTEELASTOOPTICTENSOR_H

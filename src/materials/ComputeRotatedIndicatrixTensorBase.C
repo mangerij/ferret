@@ -19,29 +19,23 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEDELTABETATENSORBASE_H
-#define COMPUTEDELTABETATENSORBASE_H
+#include "ComputeRotatedIndicatrixBase.h"
 
-#include "Material.h"
-#include "RankTwoTensor.h"
-
-/**
- * ComputeBetaTensorBase the base class for computing photostrictive tensors
- */
-class ComputeDeltaBetaTensorBase : public Material
+template<>
+InputParameters validParams<ComputeRotatedIndicatrixBase>()
 {
-public:
-  ComputeDeltaBetaTensorBase(const InputParameters & parameters);
+  InputParameters params = validParams<ComputeIndicatrixBase>();
+  params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
+  params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
+  params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");
+  return params;
+}
 
-protected:
-  virtual void computeQpProperties();
-  virtual void computeQpDeltaBetaTensor() = 0;
+ComputeRotatedIndicatrixBase::ComputeRotatedIndicatrixBase(const InputParameters & parameters) :
+    ComputeIndicatrixBase(parameters),
+    _Euler_angles(getParam<Real>("euler_angle_1"),
+                  getParam<Real>("euler_angle_2"),
+                  getParam<Real>("euler_angle_3"))
+{
+}
 
-  std::string _base_name;
-  std::string _delta_beta_tensor_name;
-
-  MaterialProperty<RankTwoTensor> & _delta_beta_tensor;
-
-};
-
-#endif //COMPUTEDELTABETATENSORBASE_H

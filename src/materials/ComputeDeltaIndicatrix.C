@@ -19,26 +19,26 @@
 
 /****************************************************************************/
 
-#include "ComputeDeltaBetaTensor.h"
+#include "ComputeDeltaIndicatrix.h"
 #include "RankTwoTensor.h"
 
 template<>
-InputParameters validParams<ComputeDeltaBetaTensor>()
+InputParameters validParams<ComputeDeltaIndicatrix>()
 {
-  InputParameters params = validParams<ComputeDeltaBetaTensorBase>();
+  InputParameters params = validParams<ComputeDeltaIndicatrixBase>();
   params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor).");
   return params;
 }
 
-ComputeDeltaBetaTensor::ComputeDeltaBetaTensor(const InputParameters & parameters) :
-    ComputeDeltaBetaTensorBase(parameters),
+ComputeDeltaIndicatrix::ComputeDeltaIndicatrix(const InputParameters & parameters) :
+    ComputeDeltaIndicatrixBase(parameters),
     _strain(getMaterialProperty<RankTwoTensor>("elastic_strain")),
-    _photostrictive_tensor(getMaterialProperty<RankFourTensor>("photostrictive_tensor"))
+    _elastooptic_tensor(getMaterialProperty<RankFourTensor>("elastooptic_tensor"))
 {
 }
 
 void
-ComputeDeltaBetaTensor::computeQpDeltaBetaTensor()
+ComputeDeltaIndicatrix::computeQpDeltaIndicatrix()
 {
   Real sum = 0.0;
   for (unsigned int i = 0; i < 3; ++i)
@@ -47,9 +47,9 @@ ComputeDeltaBetaTensor::computeQpDeltaBetaTensor()
       for (unsigned int k = 0; k < 3; ++k)
         for (unsigned int l = 0; l < 3; ++l)
         {
-          sum += _photostrictive_tensor[_qp](i, j, k, l) * _strain[_qp](k,l);
+          sum += _elastooptic_tensor[_qp](i, j, k, l) * _strain[_qp](k,l);
         }
-    _delta_beta_tensor[_qp](i, j) = sum;
+    _delta_indicatrix[_qp](i, j) = sum;
     }
     //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
 }

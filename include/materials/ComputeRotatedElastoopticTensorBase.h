@@ -19,30 +19,21 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEPHOTOSTRICTIVETENSORBASE_H
-#define COMPUTEPHOTOSTRICTIVETENSORBASE_H
+#ifndef COMPUTEROTATEDELASTOOPTICTENSORBASE_H
+#define COMPUTEROTATEDELASTOOPTICTENSORBASE_H
 
-#include "Material.h"
-#include "RankFourTensor.h"
+#include "ComputeElastoopticTensorBase.h"
 
 /**
- * ComputePhotostrictiveTensorBase the base class for computing photostrictive tensors
+ * ComputeRotatedElastoopticTensorBase is an intermediate base class that rotates the photostrictive tensor based on euler angles.
  */
-class ComputePhotostrictiveTensorBase : public Material
+class ComputeRotatedElastoopticTensorBase : public ComputeElastoopticTensorBase
 {
 public:
-  ComputePhotostrictiveTensorBase(const InputParameters & parameters);
+  ComputeRotatedElastoopticTensorBase(const InputParameters & parameters);
 
 protected:
-  virtual void computeQpProperties();
-  virtual void computeQpPhotostrictiveTensor() = 0;
-
-  std::string _base_name;
-  std::string _photostrictive_tensor_name;
-  std::string _photostrictive_tensorP_name;
-
-  MaterialProperty<RankFourTensor> & _photostrictive_tensor;
-  MaterialProperty<RankFourTensor> & _photostrictive_tensorP;
+  RealVectorValue _Euler_angles;
 };
 
-#endif //COMPUTEPHOTOSTRICTIVETENSORBASE_H
+#endif //COMPUTEROTATEDELASTOOPTICTENSORBASE_H

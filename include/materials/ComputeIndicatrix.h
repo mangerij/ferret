@@ -19,27 +19,27 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEBETATENSOR_H
-#define COMPUTEBETATENSOR_H
+#ifndef COMPUTEINDICATRIX_H
+#define COMPUTEINDICATRIX_H
 
 #include "RankTwoTensor.h"
-#include "ComputeRotatedBetaTensorBase.h"
+#include "ComputeRotatedIndicatrixBase.h"
 #include "libmesh/quadrature.h"
 
 /**
- * ComputeDeltaBetaTensor defines an impermeability tensor material object with a given base name.
+ * ComputeDeltaIndicatrix defines an impermeability tensor material object with a given base name.
  */
-class ComputeBetaTensor : public ComputeRotatedBetaTensorBase
+class ComputeIndicatrix : public ComputeRotatedIndicatrixBase
 {
 public:
-  ComputeBetaTensor(const InputParameters & parameters);
+  ComputeIndicatrix(const InputParameters & parameters);
 
 protected:
-  virtual void computeQpBetaTensor();
+  virtual void computeQpIndicatrix();
   /// Individual material information
   Real _na;
   Real _nb;
   Real _ng;
 };
 
-#endif //COMPUTEBETATENSOR_H
+#endif //COMPUTEINDICATRIX_H

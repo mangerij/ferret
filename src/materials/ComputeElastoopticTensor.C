@@ -21,22 +21,22 @@
 
 #include "ComputeElasticityTensor.h"
 #include "ComputeRotatedElasticityTensorBase.h"
-#include "ComputePhotostrictiveTensor.h"
+#include "ComputeElastoopticTensor.h"
 #include "RotationTensor.h"
 #include "RankFourTensor.h"
 
 template<>
-InputParameters validParams<ComputePhotostrictiveTensor>()
+InputParameters validParams<ComputeElastoopticTensor>()
 {
-  InputParameters params = validParams<ComputeRotatedPhotostrictiveTensorBase>();
+  InputParameters params = validParams<ComputeRotatedElastoopticTensorBase>();
   params.addClassDescription("Compute a photostrictive tensor.");
   params.addRequiredParam<std::vector<Real> >("P_mnkl", "elasto-optic tensor for material");
   params.addParam<MooseEnum>("fill_method", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");
   return params;
 }
 
-ComputePhotostrictiveTensor::ComputePhotostrictiveTensor(const InputParameters & parameters) :
-    ComputeRotatedPhotostrictiveTensorBase(parameters),
+ComputeElastoopticTensor::ComputeElastoopticTensor(const InputParameters & parameters) :
+    ComputeRotatedElastoopticTensorBase(parameters),
     _Pmnkl(getParam<std::vector<Real> >("P_mnkl"), (RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method"))
 {
   /// Define a rotation according to Euler angle parameters
@@ -46,34 +46,9 @@ ComputePhotostrictiveTensor::ComputePhotostrictiveTensor(const InputParameters &
 }
 
 void
-ComputePhotostrictiveTensor::computeQpPhotostrictiveTensor()
+ComputeElastoopticTensor::computeQpElastoopticTensor()
 {
   ///Assign a photostrictive tensor at a given quad point. This will be reworked eventually for constant _qp.
-  _photostrictive_tensor[_qp] = _Pmnkl;
+  _elastooptic_tensor[_qp] = _Pmnkl;
 }
 
-
-//void
-//ComputePhotostrictiveTensor::computeQpUnstrainedRefractiveIndex()
-//{
-//  // Assume that n_e is along the z-axis for now
-//  // note the regular birefringence is quantified by _ne - _no
-//  RealVectorValue n(_no, _no, _ne); 
-
-//  // Rotate the indicatrix such that it is aligned with the crystallographic direction A_i = R_{ij} A_j
-//  RealVectorValue nR(R(0, 0) * n(0) + R(0, 1) * n(1) + R(0, 2) * n(2), R(1, 0) * n(0) + R(1, 1) * n(1) + R(1, 2) * n(2), R(2, 0) * n(0) + R(2, 1) * n(1) + R(2, 2) * n(2));1
-//}
-
-//void
-//ComputePhotostrictiveTensor::computeQpStrainedRefractiveIndex()
-//{
-//  // Assume that n_e is along the z-axis for now
-//  // note the regular birefringence is quantified by _ne - _no
-//  RealVectorValue n(_no, _no, _ne); 
-//
-//  // Rotate the indicatrix such that it is aligned with the crystallographic direction A_i = R_{ij} A_j
-//  RealVectorValue nR(R(0, 0) * n(0) + R(0, 1) * n(1) + R(0, 2) * n(2), R(1, 0) * n(0) + R(1, 1) * n(1) + R(1, 2) * n(2), R(2, 0) * n(0) + R(2, 1) * n(1) + R(2, 2) * n(2));1
-//
-//
-//  then store in an aux kernel 
-//}

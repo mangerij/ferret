@@ -19,26 +19,26 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEPHOTOSTRICTIVETENSOR_H
-#define COMPUTEPHOTOSTRICTIVETENSOR_H
+#include "ComputeDeltaIndicatrixBase.h"
 
-#include "RankFourTensor.h"
-#include "ComputeRotatedPhotostrictiveTensorBase.h"
-#include "libmesh/quadrature.h"
-
-/**
- * ComputePhotostrictiveTensor defines an photostrictive tensor material object with a given base name.
- */
-class ComputePhotostrictiveTensor : public ComputeRotatedPhotostrictiveTensorBase
+template<>
+InputParameters validParams<ComputeDeltaIndicatrixBase>()
 {
-public:
-  ComputePhotostrictiveTensor(const InputParameters & parameters);
+  InputParameters params = validParams<Material>();
+  params.addParam<std::string>("base_name", "Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases");
+  return params;
+}
 
-protected:
-  virtual void computeQpPhotostrictiveTensor();
+ComputeDeltaIndicatrixBase::ComputeDeltaIndicatrixBase(const InputParameters & parameters) :
+    Material(parameters),
+   _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
+   _delta_indicatrix_name(_base_name + "delta_indicatrix"),
+   _delta_indicatrix(declareProperty<RankTwoTensor>("delta_indicatrix"))
+{
+}
 
-  /// Individual material information
-  RankFourTensor _Pmnkl;
-};
-
-#endif //COMPUTEPHOTOSTRICTIVETENSOR_H
+void
+ComputeDeltaIndicatrixBase::computeQpProperties()
+{
+  computeQpDeltaIndicatrix();
+}

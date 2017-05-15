@@ -19,26 +19,29 @@
 
 /****************************************************************************/
 
-#include "ComputeDeltaBetaTensorBase.h"
+#ifndef COMPUTEDELTAINDICATRIXBASE_H
+#define COMPUTEDELTAINDICATRIXBASE_H
 
-template<>
-InputParameters validParams<ComputeDeltaBetaTensorBase>()
-{
-  InputParameters params = validParams<Material>();
-  params.addParam<std::string>("base_name", "Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases");
-  return params;
-}
+#include "Material.h"
+#include "RankTwoTensor.h"
 
-ComputeDeltaBetaTensorBase::ComputeDeltaBetaTensorBase(const InputParameters & parameters) :
-    Material(parameters),
-   _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
-   _delta_beta_tensor_name(_base_name + "delta_beta_tensor"),
-   _delta_beta_tensor(declareProperty<RankTwoTensor>("delta_beta_tensor"))
+/**
+ * ComputeIndicatrixBase the base class for computing photostrictive tensors
+ */
+class ComputeDeltaIndicatrixBase : public Material
 {
-}
+public:
+  ComputeDeltaIndicatrixBase(const InputParameters & parameters);
 
-void
-ComputeDeltaBetaTensorBase::computeQpProperties()
-{
-  computeQpDeltaBetaTensor();
-}
+protected:
+  virtual void computeQpProperties();
+  virtual void computeQpDeltaIndicatrix() = 0;
+
+  std::string _base_name;
+  std::string _delta_indicatrix_name;
+
+  MaterialProperty<RankTwoTensor> & _delta_indicatrix;
+
+};
+
+#endif //COMPUTEDELTAINDICATRIXBASE_H
