@@ -350,7 +350,7 @@
     block = '1'
   [../]
   [./photoelastic_tensor_1]
-    type = ComputePhotostrictiveTensor
+    type = ComputeElastoopticTensor
     fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
@@ -360,14 +360,14 @@
     block = '1'
   [../]
   [./beta_tensor_1]
-    type = ComputeBetaTensor
+    type = ComputeIndicatrix
     block = '1'
     euler_angle_1 = 0.0
     euler_angle_2 = 15.0
     euler_angle_3 = 65.0
   [../]
   [./delta_beta_tensor_1]
-    type = ComputeDeltaBetaTensor
+    type = ComputeDeltaIndicatrix
     block = '1'
   [../]
 
@@ -392,7 +392,7 @@
     block = '2'
   [../]
   [./photoelastic_tensor_2]
-    type = ComputePhotostrictiveTensor
+    type = ComputeElastoopticTensor
     fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
@@ -402,14 +402,14 @@
     block = '2'
   [../]
   [./beta_tensor_2]
-    type = ComputeBetaTensor
+    type = ComputeIndicatrix
     block = '2'
     euler_angle_1 = 12.0
     euler_angle_2 = -15.0
     euler_angle_3 = 65.0
   [../]
   [./delta_beta_tensor_2]
-    type = ComputeDeltaBetaTensor
+    type = ComputeDeltaIndicatrix
     block = '2'
   [../]
 
@@ -435,7 +435,7 @@
     block = '3'
   [../]
   [./photoelastic_tensor_3]
-    type = ComputePhotostrictiveTensor
+    type = ComputeElastoopticTensor
     fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
@@ -445,14 +445,14 @@
     block = '3'
   [../]
   [./beta_tensor_3]
-    type = ComputeBetaTensor
+    type = ComputeIndicatrix
     block = '3'
     euler_angle_1 = 1.0
     euler_angle_2 = 50.0
     euler_angle_3 = -132.0
   [../]
   [./delta_beta_tensor_3]
-    type = ComputeDeltaBetaTensor
+    type = ComputeDeltaIndicatrix
     block = '3'
   [../]
 
@@ -477,7 +477,7 @@
     block = '4'
   [../]
   [./photoelastic_tensor_4]
-    type = ComputePhotostrictiveTensor
+    type = ComputeElastoopticTensor
     fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
@@ -487,14 +487,14 @@
     block = '4'
   [../]
   [./beta_tensor_4]
-    type = ComputeBetaTensor
+    type = ComputeIndicatrix
     block = '4'
     euler_angle_1 = 100.0
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
   [../]
   [./delta_beta_tensor_4]
-    type = ComputeDeltaBetaTensor
+    type = ComputeDeltaIndicatrix
     block = '4'
   [../]
 
@@ -519,7 +519,7 @@
     block = '5'
   [../]
   [./photoelastic_tensor_5]
-    type = ComputePhotostrictiveTensor
+    type = ComputeElastoopticTensor
     fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
@@ -529,14 +529,14 @@
     block = '5'
   [../]
   [./beta_tensor_5]
-    type = ComputeBetaTensor
+    type = ComputeIndicatrix
     block = '5'
     euler_angle_1 = 200.0
     euler_angle_2 = 33.0
     euler_angle_3 = 5.0
   [../]
   [./delta_beta_tensor_5]
-    type = ComputeDeltaBetaTensor
+    type = ComputeDeltaIndicatrix
     block = '5'
   [../]
 
@@ -561,7 +561,7 @@
     block = '6'
   [../]
   [./photoelastic_tensor_6]
-    type = ComputePhotostrictiveTensor
+    type = ComputeElastoopticTensor
     fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
@@ -571,14 +571,14 @@
     block = '6'
   [../]
   [./beta_tensor_6]
-    type = ComputeBetaTensor
+    type = ComputeIndicatrix
     block = '6'
     euler_angle_1 = 110.0
     euler_angle_2 = 0.0
     euler_angle_3 = 100.0
   [../]
   [./delta_beta_tensor_6]
-    type = ComputeDeltaBetaTensor
+    type = ComputeDeltaIndicatrix
     block = '6'
   [../]
 
