@@ -26,9 +26,9 @@
   displacements = 'disp_x disp_y disp_z'
   prefactor = 0.00 #negative = tension, positive = compression
   
-  n_a = 2.7625 #from Bellaiche's PRL (zero strain)
-  n_b = 2.7625
-  n_g = 2.715
+  n_a = 2.42 #from Bellaiche's PRL (zero strain)
+  n_b = 2.42
+  n_g = 2.42
   
 []
 
@@ -439,23 +439,23 @@
   [../]
   [./photoelastic_tensor_1]
     type = ComputeElastoopticTensor
-    fill_method = general
-    # Use BaTiO3, tetragonal crystal symmetry.
-    P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
+    fill_method = symmetric9
+    # Use BaTiO3, use cubic crystal symmetry. see J. Appl. Phys., 78, 4, 1995
+    P_mnkl = '0.37 0.11 0.11 0.37 0.11 0.37 -0.3 -0.3 -0.3'
     euler_angle_1 = 0.0
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
     block = '1'
   [../]
   [./beta_tensor_1]
-    type = ComputeBetaTensor
+    type = ComputeIndicatrix
     block = '1'
     euler_angle_1 = 0.0
     euler_angle_2 = 0.0
     euler_angle_3 = 0.0
   [../]
   [./delta_beta_tensor_1]
-    type = ComputeDeltaBetaTensor
+    type = ComputeDeltaIndicatrix
     block = '1'
   [../]
   [./PO_tensor_1]
@@ -729,7 +729,7 @@
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
   dtmax = 0.01
-  num_steps = 5
+  num_steps = 2
 []
 
 [Outputs]
@@ -737,12 +737,12 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_PTO_sphere_inSTO_28
+    file_base = out_BTO_sphere_inSTO_38_ref
     elemental_as_nodal = true
     interval = 1
   [../]
   [./outcsv]
     type = CSV
-    file_base = out_PTO_sphere_inSTO_28
+    file_base = out_BTO_sphere_inSTO_38_ref
   [../]
 []

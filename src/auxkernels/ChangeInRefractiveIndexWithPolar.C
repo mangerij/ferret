@@ -43,8 +43,8 @@ ChangeInRefractiveIndexWithPolar::ChangeInRefractiveIndexWithPolar(const InputPa
    _index_j(getParam<unsigned int>("index_j")),
    _index_k(getParam<unsigned int>("index_k")),
    _index_l(getParam<unsigned int>("index_l")),
-   _beta_tensor(getMaterialProperty<RankTwoTensor>("indicatrix")),
-   _delta_beta_tensor(getMaterialProperty<RankTwoTensor>("delta_indicatrix")),
+   _indicatrix(getMaterialProperty<RankTwoTensor>("indicatrix")),
+   _delta_indicatrix(getMaterialProperty<RankTwoTensor>("delta_indicatrix")),
    _delta_PO_tensor(getMaterialProperty<RankTwoTensor>("delta_PO_tensor"))
 {
 }

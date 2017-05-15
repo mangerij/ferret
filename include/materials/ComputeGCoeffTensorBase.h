@@ -19,30 +19,28 @@
 
 /****************************************************************************/
 
-#ifndef COMPUTEPOLAROPTICTENSOR_H
-#define COMPUTEPOLAROPTICTENSOR_H
+#ifndef COMPUTEGCOEFFTENSORBASE_H
+#define COMPUTEGCOEFFTENSORBASE_H
 
 #include "Material.h"
-#include "RankTwoTensor.h"
-#include "ComputePolarOpticTensorBase.h"
+#include "RankFourTensor.h"
 
 /**
- * ComputePolarOpticTensor the base class for computing polar-optic adjustments to B_{ij}
+ * ComputeGCoeffTensorBase the base class for computing photostrictive tensors
  */
-class ComputePolarOpticTensor : public ComputePolarOpticTensorBase
+class ComputeGCoeffTensorBase : public Material
 {
 public:
-  ComputePolarOpticTensor(const InputParameters & parameters);
+  ComputeGCoeffTensorBase(const InputParameters & parameters);
 
 protected:
-  virtual void computeQpPolarOpticTensor();
+  virtual void computeQpProperties();
+  virtual void computeQpGCoeffTensor() = 0;
 
-  const VariableValue & _polar_x;
-  const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
+  std::string _base_name;
+  std::string _gcoefficient_tensor_name;
 
-  const MaterialProperty<RankFourTensor> & _elastooptic_tensor;
-  const MaterialProperty<RankFourTensor> & _electrostrictive_coefficients;
+  MaterialProperty<RankFourTensor> & _gcoefficient_tensor;
 };
 
-#endif //COMPUTEPOLAROPTICTENSOR_H
+#endif //COMPUTEGCOEFFTENSORBASE_H
