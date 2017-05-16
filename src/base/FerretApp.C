@@ -69,6 +69,7 @@
 #include "RefractiveIndex.h"
 #include "ChangeInRefractiveIndex.h"
 #include "ChangeInRefractiveIndexWithPolar.h"
+#include "ChangeInRefractiveIndexWithGCoeffPolar.h"
 #include "PkNorm.h"
 
 //Boundary Conditions
@@ -137,7 +138,9 @@
 #include "ComputeDeltaIndicatrix.h"
 #include "ComputeIndicatrix.h"
 #include "ComputePolarOpticTensor.h"
+#include "ComputePolarOpticGCoeffTensor.h"
 #include "ComputeElectroopticTensor.h"
+#include "ComputeGCoeffTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -273,6 +276,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndex);
   registerAux(RefractiveIndex);
   registerAux(ChangeInRefractiveIndexWithPolar);
+  registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
 
   ///Kernels
@@ -357,7 +361,9 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputeDeltaIndicatrix);
   registerMaterial(ComputeIndicatrix);
   registerMaterial(ComputePolarOpticTensor);
+  registerMaterial(ComputePolarOpticGCoeffTensor);
   registerMaterial(ComputeElectroopticTensor);
+  registerMaterial(ComputeGCoeffTensor);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);
