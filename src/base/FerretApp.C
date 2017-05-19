@@ -125,6 +125,12 @@
 #include "RenormalizedFreeEnergy.h"
 #include "AnisotropicElectrostatics.h"
 #include "ConstField.h"
+#include "NerstPlanckDrivingTerm.h"
+#include "NerstPlanckDiffusive.h"
+#include "FreeChargeContribution.h"
+#include "HoleChargeContribution.h"
+#include "AcceptorIonContribution.h"
+
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -319,6 +325,11 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(CoeffParamDiffusion);
   registerKernel(SemiconductorChargeCarriers);
   registerKernel(ConstField);
+  registerKernel(NerstPlanckDrivingTerm);
+  registerKernel(NerstPlanckDiffusive);
+  registerKernel(FreeChargeContribution);
+  registerKernel(HoleChargeContribution);
+  registerKernel(AcceptorIonContribution);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
