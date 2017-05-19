@@ -27,7 +27,6 @@ template<>
 InputParameters validParams<NerstPlanckDrivingTerm>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addRequiredCoupledVar("c", "The charge carrier concentration");
   params.addRequiredCoupledVar("potential_int", "The electrostatic potential");
   params.addParam<Real>("mu_m", 1.0, "The mobility of the charge carriers");
   params.addParam<Real>("len_scale", 1.0, "The length scale of the unit");
@@ -36,9 +35,6 @@ InputParameters validParams<NerstPlanckDrivingTerm>()
 
 NerstPlanckDrivingTerm::NerstPlanckDrivingTerm(const InputParameters & parameters)
   :Kernel(parameters),
-   _c_var(coupled("c")),
-   _c(coupledValue("c")),
-   _c_grad(coupledGradient("c")),
    _potential_int_var(coupled("potential_int")),
    _potential_int(coupledValue("potential_int")),
    _potential_int_grad(coupledGradient("potential_int")),
@@ -51,7 +47,7 @@ Real
 NerstPlanckDrivingTerm::computeQpResidual()
 {
   // minus sign on the electric fields?
-  return std::pow(_len_scale, 2.0) * _mu_m * (_c[_qp] * _potential_int_grad[_qp] * _grad_test[_i][_qp] + _c_grad[_qp] * _potential_int_grad[_qp] * _test[_i][_qp]);
+  return std::pow(_len_scale, 2.0) * _mu_m * (_u[_qp] * _potential_int_grad[_qp] * _grad_test[_i][_qp] + _grad_u[_qp] * _potential_int_grad[_qp] * _test[_i][_qp]);
 }
 
 Real

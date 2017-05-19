@@ -41,9 +41,6 @@ protected:
   virtual Real computeQpJacobian();
 
 private:
-   const unsigned int _c_var;
-   const VariableValue & _c;
-   const VariableGradient & _c_grad;
    const Real _D_m;
    const Real _len_scale;
 

@@ -27,7 +27,6 @@ template<>
 InputParameters validParams<NerstPlanckDiffusive>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addRequiredCoupledVar("c", "The charge carrier concentration");
   params.addParam<Real>("D_m", 1.0, "The mobility of the charge carriers");
   params.addParam<Real>("len_scale", 1.0, "The length scale of the unit");
   return params;
@@ -35,9 +34,6 @@ InputParameters validParams<NerstPlanckDiffusive>()
 
 NerstPlanckDiffusive::NerstPlanckDiffusive(const InputParameters & parameters)
   :Kernel(parameters),
-   _c_var(coupled("c")),
-   _c(coupledValue("c")),
-   _c_grad(coupledGradient("c")),
    _D_m(getParam<Real>("D_m")),
    _len_scale(getParam<Real>("len_scale"))
 {
@@ -46,7 +42,7 @@ NerstPlanckDiffusive::NerstPlanckDiffusive(const InputParameters & parameters)
 Real
 NerstPlanckDiffusive::computeQpResidual()
 {
-  return - std::pow(_len_scale, 2.0) * _D_m * _c_grad[_qp] * _grad_test[_i][_qp] ;
+  return - std::pow(_len_scale, 2.0) * _D_m * _grad_u[_qp] * _grad_test[_i][_qp] ;
 }
 
 Real
