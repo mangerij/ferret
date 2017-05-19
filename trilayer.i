@@ -34,6 +34,8 @@
   prefactor = -0.008
 
   q = 0.16 # charge of the electron in attocoulombs
+  n = n
+  p = p
 []
 
 [Variables]
@@ -43,8 +45,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
   [../]
   [./polar_y]
@@ -53,8 +55,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
   [../]
   [./polar_z]
@@ -63,8 +65,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
+      min = -0.5e-6
+      max = 0.5e-6
     [../]
   [../]
   [./potential_int]
@@ -86,25 +88,15 @@
   [../]
 
   [./n]
-    block = '1'
+    block = '1 2'
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
 
   [./p]
-    block = '1'
+    block = '1 2'
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-    [../]
   [../]
 []
 
@@ -155,24 +147,6 @@
     family = MONOMIAL
   [../]
   [./strain_yz_elastic]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-  #semiconducting charge carriers (store their values)
-  [./nm]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./pp]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./NAm]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./rho]
     order = CONSTANT
     family = MONOMIAL
   [../]
@@ -275,72 +249,6 @@
     index_i = 2
     index_j = 2
     variable = stress_zz_elastic
-    execute_on = 'timestep_end'
-  [../]
-
-  #calculate the semiconducting charge carriers
-  [./nm_calc]
-    type = SemiconductingChargeCarriersAux
-    charge_type = 0
-    variable = nm
-    kT = 0.0041124
-    q = -0.16
-    NA = 1e-7 #1e20 / m^3
-    NC = 0.000666
-    NV = 0.015
-    EA = -0.00801
-    EC = -0.66483
-    EV = -0.71289 #-4.45 eV
-    EF = -0.71289 #~-4.45 eV
-    block  = '2'
-    execute_on = 'timestep_end'
-  [../]
-  [./pp_calc]
-    type = SemiconductingChargeCarriersAux
-    charge_type = 1
-    variable = pp
-    kT = 0.0041124
-    q = -0.16
-    NA = 1e-7 #1e20 / m^3
-    NC = 0.000666
-    NV = 0.015
-    EA = -0.00801
-    EC = -0.66483
-    EV = -0.71289 #-4.45 eV
-    EF = -0.71289 #~-4.45 eV
-    block  = '2'
-    execute_on = 'timestep_end'
-  [../]
-  [./NAm_calc]
-    type = SemiconductingChargeCarriersAux
-    charge_type = 2
-    variable = NAm
-    kT = 0.0041124
-    q = -0.16
-    NA = 1e-7 #1e20 / m^3
-    NC = 0.000666
-    NV = 0.015
-    EA = -0.00801
-    EC = -0.66483
-    EV = -0.71289 #-4.45 eV
-    EF = -0.71289 #~-4.45 eV
-    block  = '2'
-    execute_on = 'timestep_end'
-  [../]
-  [./rho_calc]
-    type = SemiconductingChargeCarriersAux
-    charge_type = 3
-    variable = rho
-    kT = 0.0041124
-    q = -0.16
-    NA = 1e-7 #1e20 / m^3
-    NC = 0.000666
-    NV = 0.015
-    EA = -0.00801
-    EC = -0.66483
-    EV = -0.71289 #-4.45 eV
-    EF = -0.71289 #~-4.45 eV
-    block  = '2'
     execute_on = 'timestep_end'
   [../]
 []
@@ -488,6 +396,90 @@
      permittivity = 0.44270935 #er = 50
   [../]
 
+ # [./poten_Na_1]
+ #    type = AcceptorIonContribution
+ #    variable = potential_int
+ #    block  = '1'
+ # [../]
+  [./poten_Na_2]
+     type = AcceptorIonContribution
+     variable = potential_int
+     block  = '2'
+     Na = 0.00001
+  [../]
+
+
+  [./free_block_1]
+     type = FreeChargeContribution
+     variable = potential_int
+     block  = '1'
+  [../]
+  [./free_block_2]
+     type = FreeChargeContribution
+     variable = potential_int
+     block  = '2'
+  [../]
+  [./hole_block_1]
+     type = HoleChargeContribution
+     variable = potential_int
+     block  = '1'
+  [../]
+  [./hole_block_2]
+     type = HoleChargeContribution
+     variable = potential_int
+     block  = '2'
+  [../]
+
+  [./n_NPD_1]
+     type = NerstPlanckDiffusive
+     block = '1'
+     variable = n
+     D_m = 0.1
+  [../]
+  [./p_NPD_1]
+     type = NerstPlanckDiffusive
+     block = '1'
+     variable = p
+     D_m = 0.1
+  [../]
+  [./n_NED_1]
+     type = NerstPlanckDrivingTerm
+     block = '1'
+     variable = n
+     mu_m = 0.05
+  [../]
+  [./p_NED_1]
+     type = NerstPlanckDrivingTerm
+     block = '1'
+     variable = p
+     mu_m = -0.05
+  [../]
+
+  [./n_NPD_2]
+     type = NerstPlanckDiffusive
+     block = '2'
+     variable = n
+     D_m = 1.0
+  [../]
+  [./p_NPD_2]
+     type = NerstPlanckDiffusive
+     block = '2'
+     variable = p
+     D_m = 1.0
+  [../]
+  [./n_NED_2]
+     type = NerstPlanckDrivingTerm
+     block = '2'
+     variable = n
+     mu_m = 1.0
+  [../]
+  [./p_NED_2]
+     type = NerstPlanckDrivingTerm
+     block = '2'
+     variable = p
+     mu_m = -1.0
+  [../]
+
 
 
   [./polar_electric_px]
@@ -522,6 +514,17 @@
     variable = polar_z
     time_scale = 1.0
   [../]
+
+  [./n_time]
+     type = TimeDerivativeScaled
+     variable = n
+    time_scale = 1.0
+  [../]
+  [./p_time]
+     type = TimeDerivativeScaled
+    variable = p
+    time_scale = 1.0
+  [../]
 []
 
 
@@ -548,19 +551,56 @@
   [./bot_potential_int]
     variable = potential_int
     type = DirichletBC
-    value = 0.00016
+    value = 0.0
     boundary = '1'
   [../]
-
   [./top_potential_int]
     variable = potential_int
     type = DirichletBC
-    value = 0.00016
+    value = 0.0
+    boundary = '2'
+  [../]
+
+  [./bot_p]
+    variable = p
+    type = DirichletBC
+    value = 0.00001
+    boundary = '1'
+  [../]
+  [./top_p]
+    variable = p
+    type = DirichletBC
+    value = 0.00001
+    boundary = '2'
+  [../]
+
+  [./bot_n]
+    variable = n
+    type = DirichletBC
+    value = 0.0001
+    boundary = '1'
+  [../]
+  [./top_n]
+    variable = n
+    type = DirichletBC
+    value = 0.0001
     boundary = '2'
   [../]
 
 
   [./Periodic]
+    [./TB_FE_n_pbc]
+      variable = n
+      primary = '3'
+      secondary = '4'
+      translation = '0 8 0'
+    [../]
+    [./TB_FE_p_pbc]
+      variable = p
+      primary = '3'
+      secondary = '4'
+      translation = '0 8 0'
+    [../]
     [./TB_FE_disp_x_pbc]
       variable = disp_x
       primary = '3'
@@ -605,6 +645,18 @@
       translation = '0 8 0'
     [../]
   #
+    [./TBsemi_n_pbc]
+      variable = n
+      primary = '5'
+      secondary = '6'
+      translation = '8 0 0'
+    [../]
+    [./TBsemi_p_pbc]
+      variable = p
+      primary = '5'
+      secondary = '6'
+      translation = '8 0 0'
+    [../]
     [./TBsemi_disp_x_pbc]
       variable = disp_x
       primary = '5'
@@ -630,6 +682,18 @@
       translation = '8 0 0'
     [../]
 
+    [./RL_FE_n_pbc]
+      variable = n
+      primary = '5'
+      secondary = '6'
+      translation = '8 0 0'
+    [../]
+    [./RL_FE_p_pbc]
+      variable = p
+      primary = '5'
+      secondary = '6'
+      translation = '8 0 0'
+    [../]
     [./RL_FE_disp_x_pbc]
       variable = disp_x
       primary = '5'
@@ -674,6 +738,19 @@
       translation = '8 0 0'
     [../]
 
+
+    [./RLsemi_n_pbc]
+      variable = n
+      primary = '11'
+      secondary = '12'
+      translation = '8 0 0'
+    [../]
+    [./RLsemi_p_pbc]
+      variable = p
+      primary = '11'
+      secondary = '12'
+      translation = '8 0 0'
+    [../]
     [./RLsemi_disp_x_pbc]
       variable = disp_x
       primary = '11'
@@ -756,7 +833,7 @@
     full = true
     petsc_options = '-snes_ksp_ew'
     petsc_options_iname = '-ksp_gmres_restart  -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '        200            1e-10     1e-8      1e-4      bjacobi'
+    petsc_options_value = '        200            1e-10     1e-8      1e-6     bjacobi'
   [../]
 []
 
@@ -768,9 +845,9 @@
     type = IterationAdaptiveDT
     dt = 0.25
     optimal_iterations = 6 #should be 5 probably
-    growth_factor = 1.4
+    growth_factor = 1.5
     linear_iteration_ratio = 1000
-    cutback_factor =  0.85
+    cutback_factor =  0.9
   [../]
 
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"

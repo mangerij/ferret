@@ -45,7 +45,7 @@ FreeChargeContribution::FreeChargeContribution(const InputParameters & parameter
 Real
 FreeChargeContribution::computeQpResidual()
 {
-  return std::pow(_len_scale, 2.0) * _q * _n[_qp] * _test[_i][_qp];
+  return - std::pow(_len_scale, 2.0) * _q * _n[_qp] * _test[_i][_qp];
 }
 
 Real
