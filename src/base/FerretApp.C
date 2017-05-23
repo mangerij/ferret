@@ -71,6 +71,7 @@
 #include "ChangeInRefractiveIndexWithPolar.h"
 #include "ChangeInRefractiveIndexWithGCoeffPolar.h"
 #include "PkNorm.h"
+#include "SemiconductingChargeCarriersPolyLogAux.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -130,7 +131,7 @@
 #include "FreeChargeContribution.h"
 #include "HoleChargeContribution.h"
 #include "AcceptorIonContribution.h"
-
+#include "SemiconductorChargeCarriersPolyLog.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -174,6 +175,7 @@
 #include "TotalEnergyP.h"
 #include "TotalEnergySkFlow.h"
 #include "TotalWinding.h"
+#include "EnergyRatePostprocessor.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -284,6 +286,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexWithPolar);
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
+  registerAux(SemiconductingChargeCarriersPolyLogAux);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
@@ -330,6 +333,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FreeChargeContribution);
   registerKernel(HoleChargeContribution);
   registerKernel(AcceptorIonContribution);
+  registerKernel(SemiconductorChargeCarriersPolyLog);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -361,6 +365,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyP);
   registerPostprocessor(TotalEnergySkFlow);
   registerPostprocessor(TotalWinding);
+  registerPostprocessor(EnergyRatePostprocessor);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
