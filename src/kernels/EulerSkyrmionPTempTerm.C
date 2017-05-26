@@ -65,9 +65,3 @@ EulerSkyrmionPTempTerm::computeQpJacobian()
   _t + _xi0 * _xi0 * _theta_grad[_qp](0) * _theta_grad[_qp](0)
   + (_kappa + _xi0 * _xi0 / (_q_point[_qp](0) * _q_point[_qp](0))) * std::sin(_theta[_qp]) * std::sin(_theta[_qp]) ) * _phi[_j][_qp];
 }
-
-Real
-EulerSkyrmionPTempTerm::computeQpOffDiagJacobian(unsigned int jvar)
-{
-  return 0.0;
-}
