@@ -163,7 +163,7 @@ Real
 RotatedBulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
 {
 
-  mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
+  //mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
     {
     if(_component == 0)

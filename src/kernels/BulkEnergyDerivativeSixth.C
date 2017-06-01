@@ -96,7 +96,7 @@ Real
 BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real r;
-  mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
+  //mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
     {
       const VariableValue & _polar_i = (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;
