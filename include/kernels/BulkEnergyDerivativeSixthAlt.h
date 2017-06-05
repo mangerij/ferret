@@ -19,34 +19,37 @@
 
 **/
 
-#include "NerstPlanckDiffusive.h"
+#ifndef BULKENERGYDERIVATIVESIXTHALT_H
+#define BULKENERGYDERIVATIVESIXTHALT_H
 
-class NerstPlanckDiffusive;
+#include "Kernel.h"
+
+class BulkEnergyDerivativeSixthAlt;
 
 template<>
-InputParameters validParams<NerstPlanckDiffusive>()
-{
-  InputParameters params = validParams<Kernel>();
-  params.addParam<Real>("D_m", 1.0, "The mobility of the charge carriers");
-  params.addParam<Real>("len_scale", 1.0, "The length scale of the unit");
-  return params;
-}
+InputParameters validParams<BulkEnergyDerivativeSixthAlt>();
 
-NerstPlanckDiffusive::NerstPlanckDiffusive(const InputParameters & parameters)
-  :Kernel(parameters),
-   _D_m(getParam<Real>("D_m")),
-   _len_scale(getParam<Real>("len_scale"))
+class BulkEnergyDerivativeSixthAlt: public Kernel
 {
-}
+public:
 
-Real
-NerstPlanckDiffusive::computeQpResidual()
-{
-  return - std::pow(_len_scale, 2.0) * _D_m * _grad_u[_qp] * _grad_test[_i][_qp] ;
-}
+  BulkEnergyDerivativeSixthAlt(const InputParameters & parameters);
 
-Real
-NerstPlanckDiffusive::computeQpJacobian()
-{
-  return - std::pow(_len_scale, 2.0) * _D_m * _grad_phi[_j][_qp] * _grad_test[_i][_qp] ;
-}
+protected:
+  virtual Real computeQpResidual();
+
+  virtual Real computeQpJacobian();
+
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+
+  const unsigned int _component;
+  const unsigned int _polar_x_var;
+  const unsigned int _polar_y_var;
+  const unsigned int _polar_z_var;
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
+  const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112,_alpha123;
+  const Real _len_scale;
+};
+#endif //BULKENERGYDERIVATIVESIXTHALT_H

@@ -1,23 +1,23 @@
-/***************************************************************************/
-/* This file is part of FERRET, an add-on module for MOOSE
+/**
+   This file is part of FERRET, an add-on module for MOOSE
 
-/* FERRET is free software: you can redistribute it and/or modify
+   FERRET is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-/* This program is distributed in the hope that it will be useful,
+   This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU General Public License for more details.
 
-/* You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
-/****************************************************************************/
+**/
 
 #include "SemiconductorChargeCarriersPolyLog.h"
 
@@ -64,7 +64,6 @@ SemiconductorChargeCarriersPolyLog::computeQpResidual()
   Real nm = _NC * std::pow(_kT, 1.5) * std::exp((-_EC + _EF + _q * _potential_int[_qp]) / _kT );
   Real pp = _NV * std::pow(_kT, 1.5) * std::exp((_EF - _EV + _q * _potential_int[_qp]) / _kT );
   Real NAm = _NA;
-
   Real rho = _q * ( - nm + pp - NAm);
   return rho * _test[_i][_qp]; //might be off by a minus sign...
 }

@@ -380,7 +380,7 @@ $$\frac{\partial L}{\partial g_{k}} - \frac{\partial}{\partial x_i}\frac{\partia
 so for $g_k = P_x$ and $L = f_\mathrm{wall}$ we have -- after tetragonal symmetry arguments of $G_{ijkl}$ -- for example material $\mathrm{PbTiO}_3$ \cite{Li2001}, 
 %
 \begin{eqnarray}\nonumber
-\hspace{-15pt} -\frac{\delta F_\mathrm{wall}}{\delta P_x}\hspace{-5pt} &=&\hspace{-6pt} l_0 \int\limits_\Omega d^3 {\boldsymbol x} \,\psi_h \,\,\left[ \frac{\partial}{\partial x} \left(2 G_{11} \frac{\partial P_x}{\partial x} + G_{12} \left(\frac{\partial P_y}{\partial x} + \frac{\partial P_z}{\partial z} \right) \right) - \frac{\partial}{\partial y} \left(2 G_{44}' \left(\frac{\partial P_x}{\partial y} - \frac{\partial P_y}{\partial x} \right) + 2 G_{44} \left(\frac{\partial P_x}{\partial y} + \frac{\partial P_y}{\partial x} \right) \right) \right]\\ \nonumber
+\hspace{-15pt} -\frac{\delta F_\mathrm{wall}}{\delta P_x}\hspace{-5pt} &=&\hspace{-6pt} l_0 \int\limits_\Omega d^3 {\boldsymbol x} \,\psi_h \,\,\left[ \frac{\partial}{\partial x} \left(2 G_{11} \frac{\partial P_x}{\partial x} + G_{12} \left(\frac{\partial P_y}{\partial x} + \frac{\partial P_z}{\partial z} \right) \right) + \frac{\partial}{\partial y} \left(2 G_{44}' \left(\frac{\partial P_x}{\partial y} - \frac{\partial P_y}{\partial x} \right) + 2 G_{44} \left(\frac{\partial P_x}{\partial y} + \frac{\partial P_y}{\partial x} \right) \right) \right]\\ \nonumber
 & +& l_0\int\limits_\Omega d^3 {\boldsymbol x} \,\, \psi_h \,\, \frac{\partial}{\partial z} \left( 2 G_{44}' \left(\frac{\partial P_x}{\partial z} - \frac{\partial P_z}{\partial x} \right) + 2 G_{44} \left(\frac{\partial P_x}{\partial z} + \frac{\partial P_z}{\partial x} \right)\right) \\ \nonumber
 &=&\hspace{-8pt}  l_0 \int\limits_\Omega d^3 {\boldsymbol x} \psi_h \left[ 2 G_{11} \frac{\partial^2 P_x}{\partial x^2} - G_{12} \left(\frac{\partial^2 P_y}{\partial x^2} + \frac{\partial^2 P_z}{\partial x \partial z} \right) - 2 G'_{44} \left(\frac{\partial^2 P_x}{\partial y^2} - \frac{\partial^2 P_y}{\partial x \partial y}\right) - 2 G_{44} \left( \frac{\partial^2 P_x}{\partial y^2} + \frac{\partial^2 P_y}{\partial x \partial y} \right) \right] \\ \nonumber
 &+&l_0 \int\limits_\Omega d^3 {\boldsymbol x} \psi_h \left[2 G_{44}' \left(\frac{\partial^2 P_z}{\partial z^2} - \frac{\partial^2 P_x}{\partial x \partial z} \right) + 2 G_{44} \left(\frac{\partial^2 P_x}{\partial z^2} + \frac{\partial^2 P_z}{\partial x \partial z} \right)\right]. \\ \nonumber
@@ -400,7 +400,7 @@ Observe that
 %
 is our integrand.
 %
-Apply the divergence theorem to get the desired result with $\nabla \psi \cdot (.)$ and this provides the first-order variation.
+Integrate by parts to get the desired result with $\nabla \psi \cdot (.)$ and this provides the first-order variation.
 %
 In index notation, \emph{but} \emph{no} \emph{summation} over $i, j, k$, this is
 %

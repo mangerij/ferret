@@ -92,8 +92,10 @@
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
+#include "WallEnergyDerivativeAlt.h"
 #include "RotatedWallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
+#include "BulkEnergyDerivativeSixthAlt.h"
 #include "BulkEnergyDerivativePSTO.h"
 #include "RotatedBulkEnergyDerivativeSixth.h"
 #include "RotatedBulkEnergyDerivative.h"
@@ -291,12 +293,14 @@ FerretApp::registerObjects(Factory & factory)
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
+  registerKernel(BulkEnergyDerivativeSixthAlt);
   registerKernel(BulkEnergyDerivativePSTO);
   registerKernel(RotatedBulkEnergyDerivativeSixth);
   registerKernel(RotatedBulkEnergyDerivative);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(WallEnergyDerivative);
+  registerKernel(WallEnergyDerivativeAlt);
   registerKernel(RotatedWallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);

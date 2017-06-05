@@ -19,34 +19,38 @@
 
 **/
 
-#include "NerstPlanckDiffusive.h"
+#ifndef WALLENERGYDERIVATIVEALT_H
+#define WALLENERGYDERIVATIVEALT_H
 
-class NerstPlanckDiffusive;
+#include "Kernel.h"
+
+class WallEnergyDerivativeAlt;
 
 template<>
-InputParameters validParams<NerstPlanckDiffusive>()
-{
-  InputParameters params = validParams<Kernel>();
-  params.addParam<Real>("D_m", 1.0, "The mobility of the charge carriers");
-  params.addParam<Real>("len_scale", 1.0, "The length scale of the unit");
-  return params;
-}
+InputParameters validParams<WallEnergyDerivativeAlt>();
 
-NerstPlanckDiffusive::NerstPlanckDiffusive(const InputParameters & parameters)
-  :Kernel(parameters),
-   _D_m(getParam<Real>("D_m")),
-   _len_scale(getParam<Real>("len_scale"))
+class WallEnergyDerivativeAlt: public Kernel
 {
-}
+public:
 
-Real
-NerstPlanckDiffusive::computeQpResidual()
-{
-  return - std::pow(_len_scale, 2.0) * _D_m * _grad_u[_qp] * _grad_test[_i][_qp] ;
-}
+  WallEnergyDerivativeAlt(const InputParameters & parameters);
 
-Real
-NerstPlanckDiffusive::computeQpJacobian()
-{
-  return - std::pow(_len_scale, 2.0) * _D_m * _grad_phi[_j][_qp] * _grad_test[_i][_qp] ;
-}
+protected:
+  virtual Real computeQpResidual();
+
+  virtual Real computeQpJacobian();
+
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+
+  const unsigned int _component;
+  const unsigned int _polar_x_var;
+  const unsigned int _polar_y_var;
+  const unsigned int _polar_z_var;
+  const VariableGradient & _polar_x_grad;
+  const VariableGradient & _polar_y_grad;
+  const VariableGradient & _polar_z_grad;
+  const Real _G110, _G11, _G12, _G44, _G44P;
+  const Real _len_scale;
+
+};
+#endif //WALLENERGYDERIVATIVEALT_H
