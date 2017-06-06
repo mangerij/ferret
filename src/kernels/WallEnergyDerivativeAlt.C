@@ -78,7 +78,7 @@ WallEnergyDerivativeAlt::computeQpResidual()
 Real
 WallEnergyDerivativeAlt::computeQpJacobian()
 {
- if (_component == 0)
+  if (_component == 0)
   {
     return _G11*_grad_test[_i][_qp](0)*_grad_phi[_j][_qp](0) + _grad_test[_i][_qp](1)*(_G44*_grad_phi[_j][_qp](1) + _G44P*_grad_phi[_j][_qp](1)) + _grad_test[_i][_qp](2)*(_G44*_grad_phi[_j][_qp](2) + _G44P*_grad_phi[_j][_qp](2));
   }
@@ -108,9 +108,7 @@ WallEnergyDerivativeAlt::computeQpOffDiagJacobian(unsigned int jvar)
       return _grad_test[_i][_qp](2)*(_G44*_grad_phi[_j][_qp](0) - _G44P*_grad_phi[_j][_qp](0)) + _G12*_grad_test[_i][_qp](0)*_grad_phi[_j][_qp](2);
     }
     else
-    {
       return 0.0;
-    }
   }
   else if (_component == 1)
   {
@@ -123,9 +121,7 @@ WallEnergyDerivativeAlt::computeQpOffDiagJacobian(unsigned int jvar)
       return _grad_test[_i][_qp](2)*(_G44*_grad_phi[_j][_qp](1) - _G44P*_grad_phi[_j][_qp](1)) + _G12*_grad_test[_i][_qp](1)*_grad_phi[_j][_qp](2);
     }
     else
-    {
       return 0.0;
-    }
   }
   else if (_component == 2)
   {
@@ -138,9 +134,7 @@ WallEnergyDerivativeAlt::computeQpOffDiagJacobian(unsigned int jvar)
       return _G12*_grad_test[_i][_qp](2)*_grad_phi[_j][_qp](1) + _grad_test[_i][_qp](1)*(_G44*_grad_phi[_j][_qp](2) - _G44P*_grad_phi[_j][_qp](2));
     }
     else
-    {
       return 0.0;
-    }
   }
   else
     return 0.0;

@@ -602,7 +602,7 @@
 
   [./center_disp_z_bottom]
     type = DirichletBC
-    variable = 'disp_x disp_y disp_z'
+    variable = 'disp_z'
     value = 0.0
     boundary = 'side2'
   [../]
