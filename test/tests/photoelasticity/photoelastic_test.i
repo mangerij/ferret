@@ -606,6 +606,20 @@
     value = 0.0
     boundary = 'side2'
   [../]
+
+  [./center_disp_x_bottom]
+    type = DirichletBC
+    variable = 'disp_x'
+    value = 0.0
+    boundary = 'side2'
+  [../]
+
+  [./center_disp_y_bottom]
+    type = DirichletBC
+    variable = 'disp_y'
+    value = 0.0
+    boundary = 'side2'
+  [../]
 []
 
 [Preconditioning]
