@@ -10,6 +10,7 @@
 
 [Mesh]
   file = core_shell_exodus.e
+  uniform_refine = 0
 []
 
 [GlobalParams]
@@ -21,12 +22,10 @@
     order = FIRST
     family = LAGRANGE
   [../]
-
   [./disp_y]
     order = FIRST
     family = LAGRANGE
   [../]
-
   [./disp_z]
     order = FIRST
     family = LAGRANGE
@@ -83,18 +82,6 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./elastic_energy]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./pressure]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./EgZnO]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
 []
 
 [Kernels]
@@ -112,7 +99,7 @@
     variable = stress_xx_elastic
     index_i = 0
     index_j = 0
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./stress_yy]
     type = RankTwoAux
@@ -120,7 +107,7 @@
     variable = stress_yy_elastic
     index_i = 1
     index_j = 1
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./stress_zz]
     type = RankTwoAux
@@ -128,7 +115,7 @@
     variable = stress_zz_elastic
     index_i = 2
     index_j = 2
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./stress_xy]
     type = RankTwoAux
@@ -136,7 +123,7 @@
     variable = stress_xy_elastic
     index_i = 0
     index_j = 1
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./stress_yz]
     type = RankTwoAux
@@ -144,7 +131,7 @@
     variable = stress_yz_elastic
     index_i = 1
     index_j = 2
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./stress_zx]
     type = RankTwoAux
@@ -152,7 +139,7 @@
     variable = stress_zx_elastic
     index_i = 2
     index_j = 0
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./strain_xx]
     type = RankTwoAux
@@ -160,7 +147,7 @@
     variable = strain_xx_elastic
     index_i = 0
     index_j = 0
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./strain_yy]
     type = RankTwoAux
@@ -168,7 +155,7 @@
     variable = strain_yy_elastic
     index_i = 1
     index_j = 1
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./strain_zz]
     type = RankTwoAux
@@ -176,7 +163,7 @@
     variable = strain_zz_elastic
     index_i = 2
     index_j = 2
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./strain_xy]
     type = RankTwoAux
@@ -184,7 +171,7 @@
     variable = strain_xy_elastic
     index_i = 0
     index_j = 1
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./strain_yz]
     type = RankTwoAux
@@ -192,7 +179,7 @@
     variable = strain_yz_elastic
     index_i = 1
     index_j = 2
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
   [./strain_zx]
     type = RankTwoAux
@@ -200,7 +187,7 @@
     variable = strain_zx_elastic
     index_i = 2
     index_j = 0
-    use_displaced_mesh = false
+    execute_on = 'timestep_end'
   [../]
 []
 
@@ -223,9 +210,9 @@
     boundary = '1'
     S_k = '0.0 0.0 0.0'
     # Surface elastic tensor C_1111, C_1122
-    Cs_ijkl = '42.0e-09 15.0e-09'
+    Cs_ijkl = '42.0 15.0'
     # Intrinsic surface stress
-    taus = '-1.7e-09'
+    taus = '-2.3'
     component = 0
   [../]
 
@@ -235,9 +222,9 @@
     boundary = '1'
     S_k = '0.0 0.0 0.0'
     # Surface elastic tensor C_1111, C_1122
-    Cs_ijkl = '42.0e-09 15.0e-09'
+    Cs_ijkl = '42.0 15.0'
     # Intrinsic surface stress
-    taus = '-1.7e-09'
+    taus = '-2.3'
     component = 1
   [../]
   [./surface_elasticity_Z]
@@ -246,9 +233,9 @@
     boundary = '1'
     S_k = '0.0 0.0 0.0'
     # Surface elastic tensor C_1111, C_1122
-    Cs_ijkl = '42.0e-09 15.0e-09'
+    Cs_ijkl = '42.0 15.0'
     # Intrinsic surface stress
-    taus = '-1.7e-09'
+    taus = '-2.3'
     component = 2
   [../]
 []
@@ -266,7 +253,7 @@
       type = ComputeElasticityTensor
       block = '1'
       fill_method = symmetric9
-      C_ijkl = '209.7e-09 121.1e-09 105.1e-09 209.7e-09 105.1e-09 210.9e-09 42.47e-09 42.47e-09 44.29e-09'
+      C_ijkl = '209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29'
       euler_angle_1 = 0.0
       euler_angle_2 = 0.0
       euler_angle_3 = 0.0
@@ -289,7 +276,7 @@
        type = ComputeElasticityTensor
        block = '2'
        fill_method = symmetric9
-       C_ijkl = '163.0e-09 30.6e-09 48.1e-09 163.0e-09 48.1e-09 60.3e-09 39.4e-09 39.4e-09 65.9e-09'
+       C_ijkl = '163.0 30.6 48.1 163.0 48.1 60.3 39.4 39.4 65.9'
        euler_angle_1 = 0.0
        euler_angle_2 = 0.0
        euler_angle_3 = 0.0
@@ -308,22 +295,24 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_type -pc_type  -snes_rtol -ksp_rtol'
-    petsc_options_value = '    gmres    bjacobi     1e-4       1e-4'
+    petsc_options = '-snes_ksp_ew -snes_converged_reason -ksp_converged_reason'
+    petsc_options_iname = '-pc_type -pc_factor_shift_type -pc_factor_shift_amount -ksp_atol -snes_atol'
+    petsc_options_value = ' bjacobi       NONZERO               1e-10                    2e-10      2e-10'
   [../]
 []
 
 [Executioner]
   type = Steady
   solve_type = 'PJFNK'       #"PJFNK, JFNK, NEWTON"
-  #PJFNK IS SLOW ~1500 seconds but NEWTON introduces the rigid body modes and causes many nonlinear iterations to show up
 []
 
 [Outputs]
+  print_linear_residuals = true
+  print_perf_log = true
   [./Exodus]
     type = Exodus
-    file_base = out_Zn_ZnO_xstl000_core_iso_shell
+    file_base = out_Zn_ZnO_collinear_taus3
     elemental_as_nodal = true
+    execute_on = 'TIMESTEP_END'
   [../]
 []
