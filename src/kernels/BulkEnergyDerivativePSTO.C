@@ -1,12 +1,23 @@
-
 /**
- * @file   BulkEnergyDerivativePSTO.C
- * @author J. Mangeri <john.mangeri@uconn.edu> and S. Churchill <steven.churchill@uconn.edu>
- *
- * Bulk energy function derived from first-principles calculations 
- * for more information, see Mangeri et al npj Computational Materials 2, 16020 (2016)
- *
- */
+   This file is part of FERRET, an add-on module for MOOSE
+
+   FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+
+**/
 
 #include "BulkEnergyDerivativePSTO.h"
 #include<cmath>
@@ -55,19 +66,6 @@ BulkEnergyDerivativePSTO::BulkEnergyDerivativePSTO(const InputParameters & param
    _epsilon(getParam<Real>("epsilon")),
    _T(getParam<Real>("T"))
 {
-  std::cout<<"_alpha1 ="<<_alpha1<<"\n";
-  std::cout<<"_alpha2 ="<<_alpha2<<"\n";
-  std::cout<<"_alpha3 ="<<_alpha3<<"\n";
-  std::cout<<"_alpha4 ="<<_alpha4<<"\n";
-  std::cout<<"_alpha5 ="<<_alpha5<<"\n";
-  std::cout<<"_x1 ="<<_x1<<"\n";
-  std::cout<<"_x2 ="<<_x2<<"\n";
-  std::cout<<"_x3 ="<<_x3<<"\n";
-  std::cout<<"_x4 ="<<_x4<<"\n";
-  std::cout<<"_x5 ="<<_x5<<"\n";
-  std::cout<<"_x6 ="<<_x6<<"\n";
-  std::cout<<"_epsilon ="<<_epsilon<<"\n";
-  std::cout<<"_T ="<<_T<<"\n";
 }
 
 Real

@@ -1,17 +1,23 @@
 /**
- * @file   KarmanenkoDriver.C
- * @author J. Mangeri <john.mangeri@uconn.edu>
- *
- * Form Karmanenko et al J. Euro. Ceram. Soc. 27 (2007) 3109–3112
- * this term drives the temperature changes due to the field-induced entropic changes
- *
- * The procedure is as follows, dEstep will be related to the stepping procedure in a
- * quasi-static hysteresis loop.
- *
- * Currently the kernel is setup applying a field along z from a Mathematica fit.  
- * See Gu et al Appl. Phys. Lett. 102, 112901, (2013) for details.
- * In theory, we should use the approach in Phys. Rev. B. 84, 024102 (2011)
-*/
+   This file is part of FERRET, an add-on module for MOOSE
+
+   FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+
+**/
 
 #include "KarmanenkoDriver.h"
 

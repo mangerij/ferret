@@ -1,21 +1,28 @@
-/**
- * @file   RefractiveIndex.h
- * @author J. Mangeri <john.mangeri@uconn.edu>
- *
- * Calculate an approximate photoelastic change to the refractive index
- * \Delta \epsilon_{ij} = - n_i^2 n_j^2 \Delta B_{ij}
- *
- * where \Delta B_{ij} = p_{ijkl} \varepsilon_{kl}
- *
- * for more information, see Chang (Chp. 12 Handbook of Optics).
- *
- */
+/***************************************************************************/
+/* This file is part of FERRET, an add-on module for MOOSE
+
+/* FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+/* This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+/* You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+
+/****************************************************************************/
 
 #ifndef REFRACTIVEINDEX_H
 #define REFRACTIVEINDEX_H
 
 #include "AuxKernel.h"
-#include "RankTwoTensor.h"
 
 //Forward declarations
 class RefractiveIndex;
@@ -35,12 +42,11 @@ protected:
   virtual Real computeValue();
 
 private:
-  const unsigned int _index_one;
-  const unsigned int _index_two;
-  const unsigned int _index_three;
-  const MaterialProperty<RealVectorValue> & _indicatrix_vector;
-  const MaterialProperty<RankTwoTensor> & _beta_tensor_ij;
-
+  const unsigned int _component;
+  Real _na;
+  Real _nb;
+  Real _ng;
+  const VariableValue & _var1;
 };
 
-#endif // REFRACTIVEINDEX_H
+#endif // CHANGEINREFRACTIVEINDEX_H

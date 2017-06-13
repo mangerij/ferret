@@ -1,3 +1,24 @@
+/***************************************************************************/
+/* This file is part of FERRET, an add-on module for MOOSE
+
+/* FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+/* This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+/* You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+
+/****************************************************************************/
+
 //Base Classes
 #include "FerretApp.h"
 #include "Moose.h"
@@ -24,7 +45,6 @@
 #include "PxFieldAux.h"
 #include "PyFieldAux.h"
 #include "PzFieldAux.h"
-#include "BoundCharge.h"
 #include "CurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
@@ -44,10 +64,14 @@
 #include "PolarMag.h"
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
-#include "RefractiveIndex.h"
 #include "SemiconductingChargeCarriersAux.h"
 #include "Birefringence.h"
-
+#include "RefractiveIndex.h"
+#include "ChangeInRefractiveIndex.h"
+#include "ChangeInRefractiveIndexWithPolar.h"
+#include "ChangeInRefractiveIndexWithGCoeffPolar.h"
+#include "PkNorm.h"
+#include "SemiconductingChargeCarriersPolyLogAux.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -68,8 +92,10 @@
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
+#include "WallEnergyDerivativeAlt.h"
 #include "RotatedWallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
+#include "BulkEnergyDerivativeSixthAlt.h"
 #include "BulkEnergyDerivativePSTO.h"
 #include "RotatedBulkEnergyDerivativeSixth.h"
 #include "RotatedBulkEnergyDerivative.h"
@@ -99,8 +125,15 @@
 #include "EulerSkyrmionThetaDepolTerm.h"
 #include "EulerSkyrmionPDepolTerm.h"
 #include "EulerSkyrmionPTempTerm.h"
-
+#include "RenormalizedFreeEnergy.h"
 #include "AnisotropicElectrostatics.h"
+#include "ConstField.h"
+#include "NerstPlanckDrivingTerm.h"
+#include "NerstPlanckDiffusive.h"
+#include "FreeChargeContribution.h"
+#include "HoleChargeContribution.h"
+#include "AcceptorIonContribution.h"
+#include "SemiconductorChargeCarriersPolyLog.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -110,14 +143,21 @@
 
 //Materials
 #include "ComputeElectrostrictiveTensor.h"
-#include "ComputePhotostrictiveTensor.h"
-#include "ComputeDeltaBetaTensor.h"
-#include "ComputeBetaTensor.h"
+#include "ComputeElastoopticTensor.h"
+#include "ComputeDeltaIndicatrix.h"
+#include "ComputeIndicatrix.h"
+#include "ComputePolarOpticTensor.h"
+#include "ComputePolarOpticGCoeffTensor.h"
+#include "ComputeElectroopticTensor.h"
+#include "ComputeGCoeffTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
 #include "ThermalEnergy.h"
 #include "TotalEnergy.h"
+#include "TotalEnergyPSTO.h"
+#include "TotalEnergyPSTOcoupled.h"
+#include "CoupledEnergyPSTO.h"
 #include "TotalEnergyFlow.h"
 #include "TotalEnergyFlowNoElast.h"
 #include "TotalEnergyFlowNoElastNoElec.h"
@@ -127,10 +167,17 @@
 #include "ElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
+#include "ElectrostrictiveEnergy.h"
 #include "CoupledEnergyCheckShear.h"
 #include "GrainSize.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
+#include "TotalEnergyG.h"
+#include "RenormalizedBulkEnergy.h"
+#include "TotalEnergyP.h"
+#include "TotalEnergySkFlow.h"
+#include "TotalWinding.h"
+#include "EnergyRatePostprocessor.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -215,7 +262,6 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PxFieldAux);
   registerAux(PyFieldAux);
   registerAux(PzFieldAux);
-  registerAux(BoundCharge);
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
   registerAux(CurlP);
@@ -235,19 +281,26 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PolarMag);
   registerAux(DivP);
   registerAux(PiezoelectricApprox);
-  registerAux(RefractiveIndex);
   registerAux(SemiconductingChargeCarriersAux);
   registerAux(Birefringence);
+  registerAux(ChangeInRefractiveIndex);
+  registerAux(RefractiveIndex);
+  registerAux(ChangeInRefractiveIndexWithPolar);
+  registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
+  registerAux(PkNorm);
+  registerAux(SemiconductingChargeCarriersPolyLogAux);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
+  registerKernel(BulkEnergyDerivativeSixthAlt);
   registerKernel(BulkEnergyDerivativePSTO);
   registerKernel(RotatedBulkEnergyDerivativeSixth);
   registerKernel(RotatedBulkEnergyDerivative);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(WallEnergyDerivative);
+  registerKernel(WallEnergyDerivativeAlt);
   registerKernel(RotatedWallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
@@ -268,6 +321,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(EulerSkyrmionThetaDepolTerm);
   registerKernel(EulerSkyrmionPDepolTerm);
   registerKernel(EulerSkyrmionPTempTerm);
+  registerKernel(RenormalizedFreeEnergy);
 
   /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
@@ -277,6 +331,13 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(Electrostatics);
   registerKernel(CoeffParamDiffusion);
   registerKernel(SemiconductorChargeCarriers);
+  registerKernel(ConstField);
+  registerKernel(NerstPlanckDrivingTerm);
+  registerKernel(NerstPlanckDiffusive);
+  registerKernel(FreeChargeContribution);
+  registerKernel(HoleChargeContribution);
+  registerKernel(AcceptorIonContribution);
+  registerKernel(SemiconductorChargeCarriersPolyLog);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -289,16 +350,26 @@ FerretApp::registerObjects(Factory & factory)
   ///registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
+  registerPostprocessor(TotalEnergyPSTO);
+  registerPostprocessor(TotalEnergyPSTOcoupled);
+  registerPostprocessor(CoupledEnergyPSTO);
   registerPostprocessor(TotalEnergyFlow);
   registerPostprocessor(TotalEnergyFlowNoElast);
   registerPostprocessor(TotalEnergyFlowNoElastNoElec);
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(CoupledEnergy);
+  registerPostprocessor(ElectrostrictiveEnergy);
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(CoupledEnergyCheckShear);
   registerPostprocessor(GrainSize);
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
+  registerPostprocessor(TotalEnergyG);
+  registerPostprocessor(RenormalizedBulkEnergy);
+  registerPostprocessor(TotalEnergyP);
+  registerPostprocessor(TotalEnergySkFlow);
+  registerPostprocessor(TotalWinding);
+  registerPostprocessor(EnergyRatePostprocessor);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
@@ -306,10 +377,13 @@ FerretApp::registerObjects(Factory & factory)
   ///Materials
   ///registerMaterial(LinearFerroelectricMaterial); //deprecated, long live this simple method!
   registerMaterial(ComputeElectrostrictiveTensor);
-  registerMaterial(ComputePhotostrictiveTensor);
-  registerMaterial(ComputeDeltaBetaTensor);
-  registerMaterial(ComputeBetaTensor);
-
+  registerMaterial(ComputeElastoopticTensor);
+  registerMaterial(ComputeDeltaIndicatrix);
+  registerMaterial(ComputeIndicatrix);
+  registerMaterial(ComputePolarOpticTensor);
+  registerMaterial(ComputePolarOpticGCoeffTensor);
+  registerMaterial(ComputeElectroopticTensor);
+  registerMaterial(ComputeGCoeffTensor);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);

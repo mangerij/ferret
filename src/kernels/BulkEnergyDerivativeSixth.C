@@ -1,8 +1,23 @@
 /**
- * @file   BulkEnergyDerivativeSixth.C
- * @author J. Mangeri <john.mangeri@uconn.edu
- *
- */
+   This file is part of FERRET, an add-on module for MOOSE
+
+   FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+
+**/
 
 #include "BulkEnergyDerivativeSixth.h"
 #include<cmath>
@@ -81,7 +96,7 @@ Real
 BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real r;
-  mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
+  //mooseAssert(jvar != variable().number(),"Something wrong: OffDiag coupled to itself.");
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
     {
       const VariableValue & _polar_i = (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;

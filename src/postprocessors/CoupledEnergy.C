@@ -1,8 +1,23 @@
-/**
- * @file   CoupledEnergy.C
- * @author J. Mangeri <mangerij@anl.gov>
- *
- */
+/***************************************************************************/
+/* This file is part of FERRET, an add-on module for MOOSE
+
+/* FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+/* This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+/* You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+
+/****************************************************************************/
 
 #include "CoupledEnergy.h"
 #include "ComputeElectrostrictiveTensor.h"
@@ -18,7 +33,7 @@ InputParameters validParams<CoupledEnergy>()
   params.addRequiredCoupledVar("disp_x", "The x component of the elasticity displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the elasticity displacement");
   params.addCoupledVar("disp_z", 0.0, "The z component of the elasticity displacement");
-  params.addParam<Real>("artificial", 1.0, "artificial increase coupling");
+  params.addParam<Real>("artificial", 1.0, "term used to artificially increase coupling");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -49,17 +64,17 @@ CoupledEnergy::computeQpIntegral()
   RealVectorValue v1(_eigenstrain[_qp](1,0), _eigenstrain[_qp](1,1), _eigenstrain[_qp](1,2));
   RealVectorValue v2(_eigenstrain[_qp](2,0), _eigenstrain[_qp](2,1), _eigenstrain[_qp](2,2));
 
-  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp] - v0, 0, w);
-  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp] - v1, 0, w);
-  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp] - v2, 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, v0 + _disp_x_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, v1 + _disp_y_grad[_qp], 0, w);
+  sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, v2 + _disp_z_grad[_qp], 0, w);
 
-  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp] - v0, 1, w);
-  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp] - v1, 1, w);
-  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp] - v2, 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, v0 + _disp_x_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, v1 + _disp_y_grad[_qp], 1, w);
+  sum2 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, v2 + _disp_z_grad[_qp], 1, w);
 
-  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, _disp_x_grad[_qp] - v0, 2, w);
-  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, _disp_y_grad[_qp] - v1, 2, w);
-  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, _disp_z_grad[_qp] - v2, 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, v0 + _disp_x_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, v1 + _disp_y_grad[_qp], 2, w);
+  sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, v2 + _disp_z_grad[_qp], 2, w);
 
   return _artificial * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
 }

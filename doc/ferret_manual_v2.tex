@@ -1,17 +1,23 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Simple Sectioned Essay Template
-% LaTeX Template
-%
-% This template has been downloaded from:
-% http://www.latextemplates.com
-%
-% Note:
-% The \lipsum[#] commands throughout this template generate dummy text
-% to fill the template out. These commands should all be removed when 
-% writing essay content.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-/***************************************************************************/
+%-/* This file is part of FERRET, an add-on module for MOOSE
+%-
+%-/* FERRET is free software: you can redistribute it and/or modify
+%-   it under the terms of the GNU General Public License as published by
+%-   the Free Software Foundation, either version 3 of the License, or
+%-  (at your option) any later version.
 
+%-/* This program is distributed in the hope that it will be useful,
+%-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+%-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+%-   GNU General Public License for more details.
+%-
+%-/* You should have received a copy of the GNU General Public License
+%-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%-
+%-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+%-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+%-
+%-/****************************************************************************/
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
@@ -55,49 +61,6 @@ J. Mangeri, O. Heinonen, S. Nakhmanson ]}
 %
 %\begin{titlepage}
 %
-%\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
-%
-%\center % Center everything on the page
-%
-%\textsc{\LARGE University of Connecticut, ANL Collaboration:}\\[1.5cm] % Name of your university/college
-%\textsc{\Large Manual for FERRET}\\[0.5cm] % Major heading such as course name
-%\textsc{\large Description of method used, examples, and miscelleneous discussion}\\[0.5cm] % Minor heading such as course title
-%
-%\HRule \\[0.4cm]
-%{ \huge \bfseries  --}\\[0.4cm] % Title of your document
-%\HRule \\[1.5cm]
-%
-%\begin{minipage}{1.2\textwidth}
-%\begin{flushleft} \large
-%\emph{Author:}\\
-%John \textsc{Mangeri} --  Department of Physics, University of Connecticut % Your name
-%
-%Serge \textsc{Nakhmanson}  -- Department of Materials Science and Engineering, University of Connecticut % Your name
-%
-%Olle \textsc{Heinonen} -- Material Science Division, Argonne National Laboratory% Your name
-%\end{flushleft}
-%\end{minipage}
-%%~
-%%\begin{minipage}{0.4\textwidth}
-%%\begin{flushright} \large
-%%\emph{Supervisor:} \\
-%%Dr. Serge \textsc{Nakhmanson} % Supervisor's Name
-%%\end{flushright}
-%%\begin{flushright} \large
-%%\emph{Co-Advisor:} \\
-%%Dr. S. Pamir \textsc{Alpay} % Supervisor's Name
-%%\end{flushright}
-%%\begin{flushright} \large
-%%\emph{Co-Advisor:} \\
-%%Dr. Jason \textsc{Hancock} % Supervisor's Name
-%%\end{flushright}
-%%\end{minipage}\\[4cm]
-%
-%{\vspace{20pt}\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
-%
-%%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
-%
-%\vfill % Fill the rest of the page with whitespace
 %
 %\end{titlepage}
 
@@ -331,57 +294,6 @@ This is equivalent to a thermodynamic equilibrium.
 %
 The initial condition can also be an experimentally relevant scenario as long as the goal of solving the system equations is to find a local or global minimum energy of the situation.
 %
-%Let's start with the elastic energy density
-%%
-%\begin{equation}\tag{2}
-%f_\mathrm{elastic} = \frac{1}{2} C_{ijkl} \left(\varepsilon_{ij} - \varepsilon_{ij}^0 \right) \left(\varepsilon_{kl} - \varepsilon_{kl}^0 \right) \end{equation}
-%%
-%where $\varepsilon_{ij}^0$ are ``stress-free'' strains that have two components with $\varepsilon_{ij}^0 = Q_{ijkl} P_k P_l + \varepsilon_{ij}^\mathrm{mis}$.
-%%
-%The first term involves the electrostrictive coefficients, $Q_{ijkl}$, and represents the self-strain induced from the paraelectric-ferroelectric phase transition at the Curie point, $T_C$ \emph{in the presence of an elastic deformation constraint}.
-%%
-%$\varepsilon_{ij}^\mathrm{mis}$ is the misfit strain that can be present if the material goes through the phase transition on a substrate with mismatched lattice parameters.
-%%
-%All strains, $\varepsilon_{ij}^{(\alpha)}$ and polarization vectors, \textbf{P} have implicit dependence on spatial coordinates.
-%%
-%One can show 
-%%
-%\begin{align}\nonumber
-%f_\mathrm{elastic} &= \frac{1}{2} C_{ijkl} \left(\varepsilon_{ij} - \varepsilon_{ij}^0 \right) \left(\varepsilon_{kl} - \varepsilon_{kl}^0 \right) \\ \nonumber
-%&= \frac{1}{2} C_{ijkl} \varepsilon_{ij} \varepsilon_{kl} - C_{ijkl} \varepsilon_{ij} \varepsilon_{kl}^0 + \frac{1}{2} C_{ijkl}\varepsilon_{ij}^0 \varepsilon_{kl}^0\\ \nonumber
-%&= \frac{1}{2} C_{ijkl} \varepsilon_{ij} \varepsilon_{kl} - C_{ijkl} \varepsilon_{ij} \left(Q_{klmn} P_m P_n + \varepsilon_{kl}^\mathrm{mis} \right) + \frac{1}{2} C_{ijkl}\left(Q_{ijrs} P_r P_s + \varepsilon_{ij}^\mathrm{mis} \right)\left(Q_{klmn} P_m P_n + \varepsilon_{kl}^\mathrm{mis} \right) \\ \nonumber
-%&= \frac{1}{2} C_{ijkl} \left(\varepsilon_{ij} \varepsilon_{kl} - 2 \varepsilon_{ij} \varepsilon_{kl}^\mathrm{mis} +\varepsilon_{ij}^\mathrm{mis} \varepsilon_{kl}^\mathrm{mis} \right) + \frac{1}{2} C_{ijkl} Q_{klmn} P_m P_n \left(Q_{ijrs} P_r P_s - 2 \varepsilon_{ij} + 2 \varepsilon_{ij}^\mathrm{mis} \right) \\ \nonumber
-%\end{align}
-%%
-%or
-%%
-%\begin{equation}\tag{3}
-%f_\mathrm{elastic} = \frac{1}{2} C_{ijkl} \left(\varepsilon_{ij} - \varepsilon_{ij}^\mathrm{mis} \right) \left(\varepsilon_{kl} - \varepsilon_{kl}^\mathrm{mis}  \right) + \frac{1}{2} C_{ijkl} Q_{klmn} P_m P_n \left[Q_{ijrs} P_r P_s - 2 \varepsilon_{ij} + 2 \varepsilon_{ij}^\mathrm{mis} \right]
-%\end{equation}
-%%
-%Note that some major and minor symmetry arguments can be invoked here to further simplify Eq. (3).
-%%
-%One material specific energy density needed is $f_\mathrm{bulk}$, which in full generality can be written as
-%%
-%\begin{equation}\tag{4}
-%f_\mathrm{bulk} = \alpha_{ij} P_i P_j + \beta_{ijk} P_i P_j P_k + \gamma_{ijkl} P_i P_j P_k P_l + \omega_{ijklm} P_i P_j P_k P_l P_m + \delta_{ijklmn} P_i P_j P_k P_l P_m P_n
-%\end{equation}
-%where symmetry arguments can reduce the number of terms. Another important energy density, that gives rise to domain walls, is the so-called ``wall'' term, $f_\mathrm{wall}$, which introduces an energy penalty of dipolar configurations that are not favorable under laws of electrostatics. This term takes the form
-%%
-%\begin{equation}\tag{5}
-%f_\mathrm{wall} =  G_{ijkl} \frac{\partial P_i}{\partial x_j} \frac{\partial P_k}{\partial x_l},
-%\end{equation}
-%%
-%where once again, material symmetry can eliminate terms.
-%%
-%Finally, we introduce an interaction of the dipolar field to the internal and external(applied) electrostatic potential, $\Phi$, that takes the form of
-%%
-%\begin{equation}\tag{6}
-%f_\mathrm{elec} =  - \frac{\partial \Phi}{\partial x_k} P_k,
-%\end{equation}
-%%
-%In addition to the energetics of the problem, we also have to satisfy certain mechanical and electrostatic auxillary equations.
-%%
 
 %
 \section{Residual construction within Galerkin's method}
@@ -468,7 +380,7 @@ $$\frac{\partial L}{\partial g_{k}} - \frac{\partial}{\partial x_i}\frac{\partia
 so for $g_k = P_x$ and $L = f_\mathrm{wall}$ we have -- after tetragonal symmetry arguments of $G_{ijkl}$ -- for example material $\mathrm{PbTiO}_3$ \cite{Li2001}, 
 %
 \begin{eqnarray}\nonumber
-\hspace{-15pt} -\frac{\delta F_\mathrm{wall}}{\delta P_x}\hspace{-5pt} &=&\hspace{-6pt} l_0 \int\limits_\Omega d^3 {\boldsymbol x} \,\psi_h \,\,\left[ \frac{\partial}{\partial x} \left(2 G_{11} \frac{\partial P_x}{\partial x} + G_{12} \left(\frac{\partial P_y}{\partial x} + \frac{\partial P_z}{\partial z} \right) \right) - \frac{\partial}{\partial y} \left(2 G_{44}' \left(\frac{\partial P_x}{\partial y} - \frac{\partial P_y}{\partial x} \right) + 2 G_{44} \left(\frac{\partial P_x}{\partial y} + \frac{\partial P_y}{\partial x} \right) \right) \right]\\ \nonumber
+\hspace{-15pt} -\frac{\delta F_\mathrm{wall}}{\delta P_x}\hspace{-5pt} &=&\hspace{-6pt} l_0 \int\limits_\Omega d^3 {\boldsymbol x} \,\psi_h \,\,\left[ \frac{\partial}{\partial x} \left(2 G_{11} \frac{\partial P_x}{\partial x} + G_{12} \left(\frac{\partial P_y}{\partial x} + \frac{\partial P_z}{\partial z} \right) \right) + \frac{\partial}{\partial y} \left(2 G_{44}' \left(\frac{\partial P_x}{\partial y} - \frac{\partial P_y}{\partial x} \right) + 2 G_{44} \left(\frac{\partial P_x}{\partial y} + \frac{\partial P_y}{\partial x} \right) \right) \right]\\ \nonumber
 & +& l_0\int\limits_\Omega d^3 {\boldsymbol x} \,\, \psi_h \,\, \frac{\partial}{\partial z} \left( 2 G_{44}' \left(\frac{\partial P_x}{\partial z} - \frac{\partial P_z}{\partial x} \right) + 2 G_{44} \left(\frac{\partial P_x}{\partial z} + \frac{\partial P_z}{\partial x} \right)\right) \\ \nonumber
 &=&\hspace{-8pt}  l_0 \int\limits_\Omega d^3 {\boldsymbol x} \psi_h \left[ 2 G_{11} \frac{\partial^2 P_x}{\partial x^2} - G_{12} \left(\frac{\partial^2 P_y}{\partial x^2} + \frac{\partial^2 P_z}{\partial x \partial z} \right) - 2 G'_{44} \left(\frac{\partial^2 P_x}{\partial y^2} - \frac{\partial^2 P_y}{\partial x \partial y}\right) - 2 G_{44} \left( \frac{\partial^2 P_x}{\partial y^2} + \frac{\partial^2 P_y}{\partial x \partial y} \right) \right] \\ \nonumber
 &+&l_0 \int\limits_\Omega d^3 {\boldsymbol x} \psi_h \left[2 G_{44}' \left(\frac{\partial^2 P_z}{\partial z^2} - \frac{\partial^2 P_x}{\partial x \partial z} \right) + 2 G_{44} \left(\frac{\partial^2 P_x}{\partial z^2} + \frac{\partial^2 P_z}{\partial x \partial z} \right)\right]. \\ \nonumber
@@ -488,7 +400,7 @@ Observe that
 %
 is our integrand.
 %
-Apply the divergence theorem to get the desired result with $\nabla \psi \cdot (.)$ and this provides the first-order variation.
+Integrate by parts to get the desired result with $\nabla \psi \cdot (.)$ and this provides the first-order variation.
 %
 In index notation, \emph{but} \emph{no} \emph{summation} over $i, j, k$, this is
 %
@@ -686,231 +598,9 @@ Recall we put the gradient on the test function, so that
 \end{eqnarray}
 Note that $\phi \neq \Phi$. It isn't clear whether $\frac{\partial \psi_h}{\partial x_i} \phi$ or $\frac{\partial \phi}{\partial x_i} \psi_h$ is more computationally feasible since the divergence theorem can be applied again here.
 
-%\newpage
-%\subsection{Jacobian terms formed from auxillary equations}
-%First, for the Poisson term, which contributes to the residual for $\Phi$,
-%$$\mathscr{J}_{R_{\Phi},P_k}^{\mathrm{poisson}} = \mathscr{J}_{R_{\Phi}, u_k}^{\mathrm{poisson}} = 0 \,\,\,\, \forall\,\,\, k = 1,2,3. $$
-%Next, we have a diagonal term
-%\begin{eqnarray}\nonumber
-%\mathscr{J}_{R_{\Phi},\Phi}^{\mathrm{poisson}} = l_0 \frac{\partial}{\partial \Phi} \int\limits_\Omega d^3 {\boldsymbol x} \frac{\partial \psi_h}{\partial x_i} \left(\kappa_0 \frac{\partial \Phi}{\partial x_i} \right) \Rightarrow \mathscr{J}_{R_{\Phi},\Phi}^{\mathrm{poisson}} = l_0  \int\limits_\Omega d^3 {\boldsymbol x} \frac{\partial \psi_h}{\partial x_i} \left(\kappa_0 \frac{\partial \phi}{\partial x_i} \right)\\ \nonumber
-%\end{eqnarray}
-%since $\frac{\partial \Phi}{\partial \Phi} = \phi$ in our finite-element calculus. Now, we observe the $\nabla \cdot \textbf{P}$ bound charge term, which has Jacobian entries(again, only contributing to the $\Phi$ residual) as
-%$$\mathscr{J}_{R_{\Phi},\Phi}^{\mathrm{bound}} = \mathscr{J}_{R_{\Phi}, u_k}^{\mathrm{bound}} = 0 \,\,\,\, \forall\,\,\, k = 1,2,3. $$
-%\begin{eqnarray}\nonumber
-%\mathscr{J}_{R_{\Phi},P_i}^{\mathrm{bound}} &=& l_0^2 \frac{\partial}{\partial P_i} \int\limits_\Omega d^3 {\boldsymbol x} \frac{\partial \psi_h}{\partial x_j} P_j  \Rightarrow \mathscr{J}_{R_{\Phi},P_i}^{\mathrm{bound}} = l_0^2  \int\limits_\Omega d^3 {\boldsymbol x} \frac{\partial \psi_h}{\partial x_i} \phi\\ \nonumber
-%\end{eqnarray}
-%Next, we observe our Jacobian entries for the tensor mechanics.
-%
-%-todo, but correct
-%
-%Finally we have
-%
-%\begin{eqnarray}\nonumber
-%\mathscr{J}^{\mathrm{stress-free}}_{R_{u_i}, P_n} &=&\mathbf{fix}  \\ \nonumber
-%\end{eqnarray}
-% Also, 
-%$$\mathscr{J}^{\mathrm{stress-free}}_{R_{u_i}, u_n} = \mathscr{J}^{\mathrm{stress-free}}_{R_{u_i}, \Phi} = 0 \,\,\,\forall \,\,i, n$$
-%%\subsection{Boundary condition terms, weak-form and jacobian entries}
-%%
-%%todo
-%%\newpage
-%%
-%%
-%%blank
-%%\newpage
-%blank
 
 \newpage
 
-%\section{Comments on current capabilities}
-%
-%\paragraph{}Landau expansions are typically parameterized a variety of ways, but they are not known for all materials and phases. This leads to a significant restriction on the FE materials that can be simulated with \textsc{Ferret}. However, a compiled list of various works shows that
-%
-%\begin{itemize}
-%\item PTO -- $\mathrm{PbTiO}_3$ \cite{Li2001, Li2002, Chen2007, Wang2013} This is the canonical test case. $90^\circ$ and $180^\circ$ domains form and the polarization directions along $\pm \hat{\boldsymbol x}, \pm \hat{\boldsymbol y}, \pm \hat{\boldsymbol z}$ are favorable energetically.
-%\item PZT -- $\mathrm{PbZr}_x\mathrm{Ti}_{1-x}\mathrm{O}_3 \,\,\, 0 \leq x \leq 1$ \cite{Chen2007, Ng2012}
-%\item BFO -- $\mathrm{BiFeO}_3$ \cite{Winchester2011} This material has magnetic ordering as well. Currently, \textsc{Ferret} does not support magneto-electric coupling, but this could be planned in the future.
-%\item BTO -- $\mathrm{BaTiO}_3$  \cite{Chen2007, Wang2010,Gu2014}  (The authors have introduced a flexoelectric effect as well)
-%\item STO -- $\mathrm{SrTiO}_3$ \cite{Chen2007, Zhang2012} This material is a quantum paraelectric but can exhibit ferroelectricity under specific mechanical boundary conditions. Additional order parameters such as rotation of the $\mathrm{TiO}$ octahedra cages should also be included.
-%\end{itemize}
-%
-%These materials have all been been studied within the framework of Landau's theory and thus the coefficient tensors, Curie temperatures, electrostrictive coefficients are known along with some additional materials in Ref \cite{Chen2007}.
-%
-%\paragraph{} \textsc{MOOSE}, can not only handle regular (planar, rectilinear) geometries, but can also simulate irregular geometries due to \textsc{libMesh}. This allows a more accurate study to be done, as with the spherical inclusions of FE within a dielectric or true curvilinear surfaces of nanowires, dots. An example of some work attempting to study cyllindrical geometries were done by approximating the cyllinder as a cuboid is in Ref \cite{Wang2013}. 
-
-%\paragraph{} Elastic stiffness tensors $C_{ijkl}$ for bulk materials, such as in PTO, STO, BTO \cite{Piskunov2004}, are known for a wide variety of temperatures. However, not all elastic stiffness tensors are available at all temperatures. 
-
-%Anti-ferroelectricity (AFE), can most likely be studied in FERRET since the Kittel model actually provides a Landau free energy functional for the order parameters on the sublattice.  %cite from some review paper (Alpay?)
-
-
-%\section{Aux scripts and kernels}
-%
-%\subsection{Correlation function}
-%
-%Within \textsc{Python} we want to calculate
-%
-%\begin{eqnarray}\nonumber
-%C(\textbf{r}) &=& \int\limits_\Omega d^3 {\boldsymbol x}  \frac{\left[(\textbf{P}({\boldsymbol x}) - \langle \textbf{P} \rangle)\cdot (\textbf{P}({\boldsymbol x} + \textbf{r}) - \langle \textbf{P} \rangle ) \right]}{V P_s^2}\\ \nonumber
-%\Rightarrow C_i &\simeq&  \frac{1}{P_s^2} \sum\limits_{j \neq i}^N \left(\textbf{P}_i - \langle \textbf{P} \rangle \right) \cdot \left( \textbf{P}_j - \langle \textbf{P} \rangle \right)  \\ \nonumber
-%&\simeq& \frac{1}{P_s^2} \sum\limits_{j}^N \left(\textbf{P}_i - \langle \textbf{P} \rangle \right) \cdot \left( \textbf{P}_j - \langle \textbf{P} \rangle \right) \,\,\,\, \mathrm{for}\,\,\,\,\mathrm{all} \,\,\,\, i,\\ \nonumber
-%\end{eqnarray}
-%
-%as a postprocessed data structure for the MOOSE output. We can parallelize the $i^{th}$ loop with $\texttt{CUDA}$. Here we have to call the $j^{th}$ loop in serial, perhaps this can be called in parallel but the speedup might cause bottlenecks with the automatic memory transfer of the \texttt{NumPy} arrays.
-%
-%$\mathrm{SrTiO}_3(\mathrm{STO}_{[100]})$
-%
-%$\mathrm{vacuum}$
-%
-%$\mathrm{PbTiO}_3(\mathrm{PTO}_{[100]}) (7 u.c.) / \mathrm{SrTiO}_3(\mathrm{STO}_{[100]}) (3 u.c.) $
-%
-%$$\textbf{P}_i, \,\,\,\,\,\,\,\textbf{P}_j, \,\,\,\,\,\,\, \textbf{P}_k,  \,\,\,\,\,\,\,\textbf{r}_{ij}, \,\,\,\,\,\,\,\textbf{r}_{ik} \textbf{P}_l$$
-%
-%\begin{itemize}
-%\item Compute all $\textbf{r}_{\alpha \beta}$ and $\textbf{P}_\alpha \cdot \textbf{P}_\beta$ for $0 \leq \beta \leq N$
-%
-%\item Bin $\textbf{r}_{\alpha, \beta}$ and sum dot product contributions
-%
-%\item This will give $C_\alpha (r)$ then average across $\alpha$?
-%\end{itemize}
-%
-%$$C_\alpha (r_\mathrm{bin}) = \frac{1}{V P_s} \sum\limits_{j = 1}^{N_\mathrm{bin}} \left(\textbf{P}_\alpha  - \langle \textbf{P} \rangle \right)\cdot \left( \textbf{P}_j (r_\mathrm{bin})  - \langle \textbf{P} \rangle\right)$$
-%
-%
-%\begin{eqnarray}\nonumber
-%F_e &=& \frac{1}{2}C_{ijkl}\left( \varepsilon_{ij}-\varepsilon_{ij}^0\right) \left(\varepsilon_{kl}-\varepsilon_{kl}^0\right)\\ \nonumber
-%&=& \frac{1}{2}C_{ijkl} \varepsilon_{ij} \varepsilon_{kl} - C_{ijkl} \varepsilon_{ij} \varepsilon^0_{kl} + \frac{1}{2} C_{ijkl} \varepsilon_{ij}^0 \varepsilon_{kl}^0\\ \nonumber
-%&=& \frac{1}{2}C_{ijkl} \varepsilon_{ij} \varepsilon_{kl} - C_{ijkl} \varepsilon_{ij} Q_{klmn} P_m P_n + \frac{1}{2} C_{ijkl} Q_{ijmn} P_m P_n Q_{klrs} P_r P_s\\ \nonumber
-%\end{eqnarray}
-%\section{$\mathscr{TODO} sections$}
-
-%
-\newpage
-\section{Discretizing the system}
-In order to discretize the system in time we do the following to our relaxation kernel
-
-$$\frac{\partial \textbf{P}}{\partial t} \approx \frac{\textbf{P}^{k+1} - \textbf{P}^k}{\Delta t}.$$
-
-Now the full form of the PDE, in time-discretized form, is
-
-\vspace{-10pt}
-\begin{eqnarray}\nonumber
- \frac{\textbf{P}^{k+1} - \textbf{P}^k}{\Delta t} &=& -\gamma \frac{\delta}{\delta \textbf{P}^{k+1}}\int\limits_\Omega d^3 {\boldsymbol x} \,\,\,f\left(\textbf{P}^{k+1} \right)\\ \nonumber
-&=& -\gamma \left[\frac{\delta F_\mathrm{bulk}}{\delta \textbf{P}^{k+1}}+ \frac{\delta F_\mathrm{wall}}{\delta \textbf{P}^{k+1}}+ \frac{\delta F_\mathrm{elastic}}{\delta \textbf{P}^{k+1}} + \frac{\delta F_\mathrm{electric}}{\delta \textbf{P}^{k+1}} \right]\\ \nonumber
-\end{eqnarray}
-%
-with free index, $j$, 
-%
-\begin{eqnarray}\nonumber
-\Rightarrow \frac{P_j^k - P_j^{k+1}}{\gamma \Delta t}  &=& \int\limits_\Omega d^3 \textbf{r} \,\, \psi_h\,\left[2 \alpha_1 P_j^{k+1} + 4 \alpha_{11} (P_j^{k+1})^3 + 6 \alpha_{111} (P_j^{k+1})^5 + 2 \alpha_{12} P_j^{k+1} \left((P_r^{k+1})^2 + (P_t^{k+1})^2 \right) \right]\\ \nonumber
-&+& \int\limits_\Omega  d^3 \textbf{r}\,\,\psi_h\, \left[4 \alpha_{112} (P_j^{k+1})^3 \left(\left(P_r^{k+1}\right)^2 +( P_t^{k+1})^2 \right)  +  2 \alpha_{112} P_j^{k+1} \left((P_r^k)^4 + (P_t^{k+1})^4 \right) \right] \\ \nonumber
-&+& \int\limits_\Omega d^3 \textbf{r} \left[2 \alpha_{123} P_j^{k+1} \left(P_r^{k+1} P_t^{k+1}\right)^2  \right] \\ \nonumber
-&+& \int\limits_\Omega d^3 \textbf{r} \left[G_{11} \frac{\partial P^k_j}{\partial x_j} \frac{\partial \psi_h}{\partial x_j} + G_{12} \left(\frac{\partial P^k_r}{\partial x_r} + \frac{\partial P^k_t}{\partial x_t} \right) \frac{\partial \psi_h}{\partial x_j} + G_{44} \left(\frac{\partial P^k_j}{\partial x_j} + \frac{\partial P^k_r}{\partial x_j} \right)\frac{\partial \psi_h}{\partial x_r} \right]\\ \nonumber
-&+& \int\limits_\Omega d^3 \textbf{r} \,\,\left[ G_{44} \left(\frac{\partial P^{k+1}_j}{\partial x_t} + \frac{\partial P^{k+1}_t}{\partial x_j} \right) \frac{\partial \psi_h}{\partial x^{k+1}_t} + G'_{44} \left(\frac{\partial P^{k+1}_j}{\partial x_r}  - \frac{\partial P^{k+1}_r}{\partial x_j}\right) \frac{\partial \psi_h}{\partial x_r} \right] \\ \nonumber
-&+& \int\limits_\Omega d^3 \textbf{r}\left[G_{44}' \left(\frac{\partial P^{k+1}_j}{\partial x_t} - \frac{\partial P^{k+1}_t}{\partial x_j} \right) \frac{\partial \psi_h}{\partial x_t}\right]\\ \nonumber
-&+&  \int\limits_\Omega d^3 \textbf{r}\,\, \psi_h \,\, \left(q_{imjl}\left( \frac{\partial u^{k+1}_i}{\partial x_m} - \varepsilon_{im}^\mathrm{misfit} \right) P^{k+1}_l  + ... + \frac{\partial \Phi^{k+1}}{\partial x_j}  \right)  \,\,\,\,\mathrm{sum}\,\,\,\,\mathrm{only}\,\,\,\,\mathrm{on}\,\,\,\,\, i,m,l \,\,\,\,\mathrm{and}\,\, j \neq r \,\,\mathrm{and}\,\, t \neq r\\ \nonumber %need to fix the fourth order term..
-\end{eqnarray}
-%
-along with
-%
-\begin{eqnarray}\nonumber
-\int\limits_\Omega d^3 \textbf{r} \frac{\partial \psi_h}{\partial x_i} \left(\kappa_0 \frac{\partial \Phi^{k+1}}{\partial x_i} \right) + \int\limits_\Omega d^3 \textbf{r} \frac{\partial \psi_h}{\partial x_i} P_i^{k+1} = 0 \\ \nonumber
-\end{eqnarray}
-and 
-\begin{eqnarray}\nonumber
-\int\limits_\Omega d^3 \textbf{r} \,\,C_{ijmn} \frac{\partial}{\partial x_j} \left(\frac{\partial u^{k+1}_m}{\partial x_n} - Q_{mnrt} P_r^{k+1} P_t^{k+1}  + \varepsilon_{mn}^\mathrm{misfit}\right) = 0.
-\end{eqnarray}
-%
-Note that, as discussed previously, the dynamics of elastic displacement are assumed to be instantaneous compared to polarization relaxation time scales as seen in experiment.
-%
-This puts a lower limit on our time step size $\widetilde{\mathrm{dt}}_\mathrm{elastic, min}$ before one should see the elastic problem dynamics and different approaches must be taken. This can be implemented later quite easily assuming a specific ratio of relaxation constants for the two uncoupled problems (e.g. how many time steps does it take to satisfy the TDLGD compared to how many time steps does it take to satisfy mechanical equilibrium in the presence of zero ferroelectric self-strain).
-%
-\section{Newton-Raphson's method in a time-dependent scheme}
-%
-\textbf{Note}: this section is unfinished. Not sure how linear/nonlinear problem solves are done in PETSc.
-%
-
-%
-Consider the problem
-%
-$$f_i(\textbf{x}) = 0$$
-%
-to be solved by finding sufficient $\textbf{x}$. We look for iterative updates, $\delta \textbf{x}$ to $\textbf{x}$ as
-
-$$f_k \left(\textbf{x} + \delta \textbf{x} \right) = f_i \left(\textbf{x} \right) + \sum\limits_j \frac{\partial f_i}{\partial x_j} \delta x_j + O(\delta \textbf{x}) + ...$$
-
-Note that $f_i (\textbf{x} + \delta \textbf{x} ) = 0$ to be the zero-crossing of the tangent, so that
-
-$$\sum\limits_j \frac{\partial f_i}{\partial x_j} \delta x_j = - f_i (\textbf{x})$$
-
-or $\mathscr{J}_{ij} \delta x_j = - f_i$, as an $Ax = b$ linear problem to solve for $\delta x_j$. This linear problem is solved during each time step \footnote{Note that we typically solve a $M^{-1} A x = M^{-1} b$ preconditioned problem instead with a variety of methods within \textsc{PETSc}.}. 
-%
-To set up our solve in \textsc{Ferret}/\textsc{MOOSE}, we first consider the residual vector, of length 7, which should be zero,
-
-\begin{align}\tag{959}
- \begin{pmatrix} R_{P_x^{k}}  \\
- R_{P_y^{k}}  \\
-R_{P_z^{k} } \\
-  R_{u_x^{k} } \\
-R_{u_y^{k}}  \\
-R_{u_z^{k} } \\
-  R_{\Phi^{k}} \\
-\end{pmatrix} = 0 \Rightarrow \mathscr{J}^k\begin{pmatrix}
-  \delta P_x  \\
- \delta P_y \\
- \delta P_z  \\
-  \delta u_x  \\
-\delta u_y \\
-\delta u_z \\
- \delta \Phi \\
- \end{pmatrix}= -  \begin{pmatrix} R_{P_x^{k}}  \\
- R_{P_y^{k}}  \\
-R_{P_z^{k} } \\
-  R_{u_x^{k} } \\
-R_{u_y^{k}}  \\
-R_{u_z^{k} } \\
-  R_{\Phi^{k}} \\
-\end{pmatrix}
-\end{align}
-
-Here, $k$, denotes the time step where $x^{k+1} = x^k + \delta x^k$ for some variable $x$. Once $\delta x^k$ is found (we form a GMRES Krylov subspace method) for the step $k$, we then pass the update to the next time step by updating the residual (RHS of discretized LGD on previous page) and proceed again.
-
-%implement this with NEWTON
-
-\subsection{Forming the Jacobian matrix}
-\vspace{-15pt}
-Now we form the Jacobian matrix from all of entries earlier in this document as,
-\Large
-$$ \mathscr{J}  = \begin{pmatrix}
-\mathscr{J}_{R_{P_x}, P_x} &\mathscr{J}_{R_{P_x},P_y}&\mathscr{J}_{R_{P_x},P_z} &\mathscr{J}_{R_{P_x}, u_x}& \mathscr{J}_{R_{P_x},u_y} &\mathscr{J}_{R_{P_x},u_z} & \mathscr{J}_{R_{P_x},\Phi}\\
-\mathscr{J}_{R_{P_y}, P_x} &\mathscr{J}_{R_{P_y},P_y}&\mathscr{J}_{R_{P_y},P_z} &\mathscr{J}_{R_{P_y}, u_x}& \mathscr{J}_{R_{P_y},u_y} &\mathscr{J}_{R_{P_y},u_z} & \mathscr{J}_{R_{P_y},\Phi}\\
-\mathscr{J}_{R_{P_z}, P_x} &\mathscr{J}_{R_{P_z},P_y}&\mathscr{J}_{R_{P_z},P_z} &\mathscr{J}_{R_{P_z}, u_x}& \mathscr{J}_{R_{P_z},u_y} &\mathscr{J}_{R_{P_z},u_z} & \mathscr{J}_{R_{P_z},\Phi}\\
-\mathscr{J}_{R_{u_x}, P_x} &\mathscr{J}_{R_{u_x},P_y}&\mathscr{J}_{R_{u_x},P_z} &\mathscr{J}_{R_{u_x}, u_x}& \mathscr{J}_{R_{u_x},u_y} &\mathscr{J}_{R_{u_x},u_z} & \mathscr{J}_{R_{u_x},\Phi}\\
-\mathscr{J}_{R_{u_y}, P_x} &\mathscr{J}_{R_{u_y},P_y}&\mathscr{J}_{R_{u_y},P_z} &\mathscr{J}_{R_{u_y}, u_x}& \mathscr{J}_{R_{u_y},u_y} &\mathscr{J}_{R_{u_y},u_z} & \mathscr{J}_{R_{u_y},\Phi}\\
-\mathscr{J}_{R_{u_z}, P_x} &\mathscr{J}_{R_{u_z},P_y}&\mathscr{J}_{R_{u_z},P_z} &\mathscr{J}_{R_{u_z}, u_x}& \mathscr{J}_{R_{u_z},u_y} &\mathscr{J}_{R_{u_z},u_z} & \mathscr{J}_{R_{u_z},\Phi}\\
-\mathscr{J}_{R_{\Phi}, P_x} &\mathscr{J}_{R_{\Phi},P_y}&\mathscr{J}_{R_{\Phi},P_z} &\mathscr{J}_{R_{\Phi}, u_x}& \mathscr{J}_{R_{\Phi},u_y} &\mathscr{J}_{R_{\Phi},u_z} & \mathscr{J}_{R_{\Phi},\Phi}\\
- \end{pmatrix}. $$
-\normalsize
-%
-% Su and Landis might have some odd error, they say the jacobian is symmetric and banded? This document proves it can't be...
-%
-Right off the bat, we can simplify our Jacobian a bit due to the nature of the terms in the differential equation.
-%
-\Large
-$$ \mathscr{J}  = \begin{pmatrix}
-\mathscr{J}_{R_{P_x}, P_x} &\mathscr{J}_{R_{P_x},P_y}&\mathscr{J}_{R_{P_x},P_z} &\mathscr{J}_{R_{P_x}, u_x}& \mathscr{J}_{R_{P_x},u_y} &\mathscr{J}_{R_{P_x},u_z} & \mathscr{J}_{R_{P_x},\Phi}\\
-\mathscr{J}_{R_{P_y}, P_x} &\mathscr{J}_{R_{P_y},P_y}&\mathscr{J}_{R_{P_y},P_z} &\mathscr{J}_{R_{P_y}, u_x}& \mathscr{J}_{R_{P_y},u_y} &\mathscr{J}_{R_{P_y},u_z} & \mathscr{J}_{R_{P_y},\Phi}\\
-\mathscr{J}_{R_{P_z}, P_x} &\mathscr{J}_{R_{P_z},P_y}&\mathscr{J}_{R_{P_z},P_z} &\mathscr{J}_{R_{P_z}, u_x}& \mathscr{J}_{R_{P_z},u_y} &\mathscr{J}_{R_{P_z},u_z} & \mathscr{J}_{R_{P_z},\Phi}\\
-0&0&0 &\mathscr{J}_{R_{u_x}, u_x}& \mathscr{J}_{R_{u_x},u_y} &\mathscr{J}_{R_{u_x},u_z} & 0\\
-0 &0&0 &\mathscr{J}_{R_{u_y}, u_x}& \mathscr{J}_{R_{u_y},u_y} &\mathscr{J}_{R_{u_y},u_z} & 0\\
-0 &0&0&\mathscr{J}_{R_{u_z}, u_x}& \mathscr{J}_{R_{u_z},u_y} &\mathscr{J}_{R_{u_z},u_z} & 0\\
-\mathscr{J}_{R_{\Phi}, P_x} &\mathscr{J}_{R_{\Phi},P_y}&\mathscr{J}_{R_{\Phi},P_z} & 0 & 0 & 0 & \mathscr{J}_{R_{\Phi},\Phi}\\
- \end{pmatrix} $$
-\normalsize
-but other than that, those entries are certainly nonzero. 
-%
-This solve can be preconditioned with a Schur split or physics-based preconditioning but for now we will just use block jacobi.
-%
-For large problems, the default lu on the subblocks needs to be changed to ilu.
 
 
 \section{The Aux system}
@@ -972,7 +662,7 @@ This acts on the solution of the TDLGD equations and can be cast into a vector f
 %
 \subsubsection{Bound charges}
 %
-The AuxKernel \texttt{BoundCharge.C} calculates the value of the function
+The AuxKernel \texttt{DivP.C} calculates the value of the function
 %
 $$\rho_b (\textbf{r} ) = - \nabla \cdot \textbf{P} (\textbf{r} )$$
 %
@@ -993,12 +683,14 @@ at every quadrature point in the mesh. An additional AuxKernel class \texttt{Cur
 In order to study topological phase transitions, a quantitative indicator can be chosen known as the Chern-Simons number defined as
 %
 \begin{align}\nonumber
-N_{CS} = \int\limits_\Omega d^3 \textbf{r} \,\,  n_{CS} - \frac{1}{8 \pi^2} \int\limits_\Omega d^3 \textbf{r} \,\, \epsilon_{ijk} \mathrm{Tr} \left[A_i^\nu \left(\frac{\partial A_k^\nu}{\partial x_j} + \frac{2}{3} A_j^\nu A_k^\nu \right) \right]
+N_{CS} = \int\limits_\Omega d^3 \textbf{r} \,\,  n_{CS} - \frac{1}{8 \pi^2} \int\limits_\Omega d^3 \textbf{r} \,\, \epsilon_{ijk} \mathrm{Tr} \left[A_i^\nu \left(\frac{\partial A_k^\nu}{\partial x_j} + \frac{2}{3} A_j^\nu A_k^\nu \right) \right],
 \end{align}
 %
 For the polar field $A_j^\nu \to P_j$, the trace disappears\footnote{Allegedly, according to field theorists, the trace arises from the need to sum over the color fields, $\nu$, in gauge theories used in high energy quantum chromodynamics} and this integrand becomes a dot product of the vector with its curl. %I'll note that I probably don't understand what the hell this means.
 %
-Within \textsc{Ferret}, we choose to track two quantities, $n_{CS}$ and $|n_{CS}|$ within \texttt{ChernSimonsNumberDensity.C} and \texttt{ChenSimonsNumberDensityMag.C} respectively. Construction of $N_{CS}$ can be done using an 
+Within \textsc{Ferret}, we choose to track two quantities, $n_{CS}$ and $|n_{CS}|$ within \texttt{ChernSimonsNumberDensity.C} and \texttt{ChenSimonsNumberDensityMag.C} respectively. 
+
+Construction of $N_{CS}$ can be done using an 
 \texttt{ElementIntegralVariablePostprocessor.C} postprocessor.
 %
 It should be noted that in almost any finite sized structure with a topological defect, the topological charge should be non-integer since the free surfaces, $\delta \Omega$, can terminate the pattern and disrupt winding numbers.
@@ -1007,7 +699,7 @@ It should be noted that in almost any finite sized structure with a topological 
 %
 \subsubsection{Energy densities}
 
-Different parts of the total free energy density can be useful for visualization purposes (or for calculation of adaptive mesh refinement indicators and markers). These are available for $f_\mathrm{bulk}$, \texttt{BulkEnergyDensity.C}, and $f_\mathrm{wall}$, \texttt{WallEnergyDensity.C}.
+Different parts of the total free energy density can be useful for visualization purposes (or for calculation of adaptive mesh refinement indicators and markers). These are available for $f_\mathrm{bulk}$, \texttt{BulkEnergyDensity.C}, and $f_\mathrm{wall}$, \texttt{WallEnergyDensity.C}, ect.
 
 Note: the rest of the AuxKernels in the directory may be unfinished or not working for some reason or another.
 
@@ -1188,177 +880,6 @@ Y.-L.~Wang, X.-Y.~Wang, L.-Z.~Chu, Z.-C.~Deng, X.-C.~Ding, W.-H.~Liang, P.-C.~Zh
 %\newblock {Simulation of the initial polarization curves and hyteresis loops for ferroelectric films by an extensive time-dependent Ginzburg-Landau model}.
 \newblock \emph{J. Mater. Sci.} \textbf{46}:2695-2699 5 (2011).
 
-
-%\bibitem{Alpay2014}
-%S.~P.~Alpay, J.~Mantese, S.~Trolier-McKinstry, Q.~Zhang, and R.~W.~Whatmore,
-%%\newblock {Next-generation electrocaloric and pyroelectric materials for
-%%  solid-state electrothermal energy interconversion}.
-%\newblock {\em MRS~Bull.} \textbf{39}, 1099 (2014);
-%I.~Takeuchi and K.~Sandeman,
-%\newblock {\em Physics Today} \textbf{68}, 48 (2015).
-%
-%\bibitem{Hong2014}
-%S.~Hong, O.~Auciello, and D.~Wouters, 
-%%Emerging non-volatile memories
-%\newblock {\em Emerging Nonvolatile Memories} Springer (2014).
-%
-%
-%
-%\bibitem{Gregg2012}   
-%J.~M.~Gregg,
-%%Exotic Domain States in Ferroelectrics: Searching for Vortices and Skyrmions
-%\newblock {\em Ferroelectrics} \textbf{433}, 74-87 (2012).
-%
-%\bibitem{Glazkova2014}
-%E.~Glazkova, K.~McCash, C.-M.~Chang, B.~K.~Mani, and I.~Ponomareva,
-%%Tailoring properties of ferroelectric ultrathin films by partial charge compensation
-%\newblock {\em Appl.~Phys.~Lett.} \textbf{104}, 012909 (2014).
-%
-%\bibitem{Belletti2014}
-%G.~D.~Belletti, S.~D.~Dalosto, and S.~Tinte, 
-%%Strain-gradient-induced switching of nanoscale domains in free-standing ultrathin films
-%\newblock {\em Phys.~Rev.~B.} \textbf{89}, 174104 (2014).
-%
-%\bibitem{Tong2015}
-%S.~Tong, W.~I.~Park, Y.-Y.~Choi, L.~Stan, S.~Hong, and A.~Roelofs,
-%%Mechanical Removal and Rescreening of Local Screening Charges at Ferroelectric Surfaces
-%\newblock {\em Phys.~Rev.~Appl.} \textbf{3}, 014003 (2015).
-%
-%\bibitem{Lee2014}
-%B.~Lee, S.~M.~Nakhmanson, and O.~Heinonen,
-%%\newblock {Strain induced vortex-to-uniform polarization transitions in
-%%  soft-ferroelectric nanoparticles}.
-%\newblock {\em Appl.~Phys.~Lett.} \textbf{104} 262906 (2014).
-%
-%
-%
-%
-%
-%
-%\bibitem{Balay1997}
-%S.~Balay, W.~Gropp, L.~Curfman~McInnes, and B.~F.~Smith,
-%%\newblock {Efficient Management of Parallelism in Object Oriented Numerical Software Libraries}.
-%\newblock {\em Modern Software Tools in Scientific Computing} Birkh{\"{a}}user Press 163--202 (1997).
-%
-%\bibitem{Pirc2011}
-%R.~Pirc, Z.~Kutnjak, R.~Blinc, Q.~M.~Zhang, 
-%%Upper bounds on the electrocaloric effect in polar solids
-%\newblock {\em Appl.~Phys.~Lett.} \textbf{98}, 021909 (2011).
-%
-%\bibitem{Ruddlesden1957}
-%S. N. ~Ruddlesden and P. ~Popper, 
-%%New compounds of the K 2 NIF 4 type
-%\newblock {\em Acta.~Cryst.} \textbf{10}, 538--539 (1957).
-%
-%\bibitem{Bez2000}
-%V. V. Beznosikov and K. S. Aleksandrov, 
-%%Perovskite-Like Crystals of the Ruddlesden\D0Popper Series,\D3 Kristallografiya 45, 864 (2000) 
-%\newblock {\em Crystallogr.~Rep.} \textbf{45}, 792 (2000).
-%
-%\bibitem{Nakhmanson2010}
-%S. M. ~Nakhmanson and I.~Naumov,
-%%\newblock {Goldstone-like States in a Layered Perovskite with Frustrated
-%%  Polarization: A First-Principles Investigation of PbSr$_2$Ti$_2$O$_7$}.
-%\newblock {\em Phys.~Rev.~Lett.} \textbf{104}, 097601 (2010).
-%
-%\bibitem{Louis2015}
-%L.~Louis, and S.~M.~Nakhmanson,
-%%\newblock {Structural, vibrational, and dielectric properties of Ruddlesden-Popper Ba2ZrO4 from first principles}.
-%\newblock {\em Phys.~Rev.~B.} \textbf{91}, 134103 (2015).
-%
-%\bibitem{Bousquet2010}
-%E.~Bousquet, J.~Junquera, and P.~Ghosez,
-%%\newblock {First-principles study of competing ferroelectric and antiferroelectric instabilities in BaTiO3/BaO superlattices}.
-%\newblock {\em Phys.~Rev.~B.} \textbf{82}, 045426 (2010).
-%
-%\bibitem{Chandra2006}
-%P.~Chandra, P.~B.~Littlewood,
-%\newblock {A Landau Primer for Ferroelectrics}, in
-%\newblock {\em Physics of Ferroelectrics: A Modern Perspective} (Springer-Verlag, Berlin, 2007),
-%\newblock pp.\ 69--115.
-%
-%\bibitem{Chen2007}
-%L.-Q.~Chen,
-%\newblock {APPENDIX A: Landau Free-Energy Coefficients}, in
-%\newblock {\em Physics of Ferroelectrics: A Modern Perspective} (Springer-Verlag, Berlin, 2007),
-%\newblock pp.\ 363--371.
-%
-%\bibitem{Hohenberg2015}
-%P.~C.~Hohenberg, and A.~P.~Krekhov,
-%%\newblock {An introduction to the Ginzburg-Landau theory of phase transitions and nonequilibrium patterns}.
-%\newblock \emph{Phys.~Rep.} \textbf{572} 1-42 (2006).
-%
-%
-%\bibitem{Hu1998}
-%H.-L.~Hu, and L.-Q.~Chen,
-%%\newblock {Ferroelectric Domain Formation}.
-%\newblock \emph{J.~Amer.~Ceram.} \textbf{81} 492--500 (1998).
-%
-%
-%
-%
-%
-%\bibitem{Mangeri2016}
-%J.~Mangeri, K.~C.~Pitike, S.~P.~Alpay, and S.~Nakhmanson,
-%%\newblock {Electrocaloric effects in layered oxides with easy polarization
-%%  rotation}.
-%\newblock {\em submitted to Nature Comp. Mater.} (2016).
-%
-%\bibitem{Crossley2014}
-%S.~Crossley, J.~R.~McGinnigle, S.~Kar-Narayan, and N.~D.~Mathur,
-%%\newblock {Finite-element optimisation of electrocaloric multilayer capacitors}.
-%\newblock {\em Appl.~Phys.~Lett.} \textbf{104} 082909 (2014).
-%
-%\bibitem{Epstein2009}
-%R.~I.~Epstein, and K.~J.~Malloy,
-%%\newblock {Electrocaloric devices based on thin-film heat switches}.
-%\newblock {\em J.~Appl.~Phys.} \textbf{106}, 064509 (2009).
-%
-%\bibitem{Akcay2008}
-%G.~Akcay, S.~P.~Alpay, G.~A.~Rossetti, and J.~F.~Scott,
-%%\newblock {Influence of mechanical boundary conditions on the electrocaloric properties of ferroelectric thin films}.
-%\newblock {\em J.~Appl.~Phys.} \textbf{103}, 024104 (2008).
-%
-%\bibitem{Zhang2012}
-%J.~Zhang, I.~B.~Misirlioglu, S.~P.~Alpay, and G.~A.~Rossetti,
-%%\newblock {Electrocaloric properties of epitaxial strontium titanate films}.
-%\newblock {\em Appl.~Phys.~Lett.} \textbf{100}, 222909 (2012).
-%
-%\bibitem{Peng2013}
-%B.~Peng, H.~Fan, and Q.~Zhang, 
-%%\newblock {A Giant Electrocaloric Effect in Nanoscale Antiferroelectric and Ferroelectric Phase Coexisting in a Relaxor Pb0.8Ba0.2ZrO3 Thin Film at Room Temperature}.
-%\newblock {\em Adv.~Mater.} \textbf{23}, 2987--2992 (2013).
-%
-%\bibitem{Li2013}
-%B.~Li, J.~B.~Wang, X.~L.~Zhong, F.~Wang, Y.~K.~Zeng,  and Y.~C.~Zhou, 
-%%\newblock {The coexistence of the negative and positive electrocaloric effect in ferroelectric thin films for solid-state refrigeration}.
-%\newblock {\em Europhys.~Lett.} \textbf{102}, 47004 (2013).
-%
-%\bibitem{Axelsson2013}
-%A.-K.~Axelsson, F.~Le~Goupil, L.~J.~Dunne, G.~Manos, G.~Valant, and N.~McN.~Alford, 
-%%\newblock {Microscopic interpretation of sign reversal in the electrocaloric effect in a ferroelectric PbMg 1/3 Nb 2/3 O 3 -30PbTiO 3 single crystal}.
-%\newblock {\em Appl.~Phys.~Lett.} \textbf{102}, 102902 (2013).
-%
-%\bibitem{Geng2015}
-%W.~Geng, Y.~Liu, X.~Meng, L.~Bellaiche, J.~Scott, B.~Dkhil, and A.~Jiang,
-%%\newblock {Giant Negative Electrocaloric Effect in Antiferroelectric La-Doped Pb(ZrTi)O3 Thin Films Near Room Temperature}.
-%\newblock {\em Adv.~Mater.} \textbf{27}, 3165--3169 (2015).
-%
-%\bibitem{Wu2015}
-%H.-H.~Wu, J.~Zhu, and T.-Y.~Zhang,
-%%\newblock {Size-dependent ultrahigh electrocaloric effect near pseudo-first-order phase transition temperature in barium titanate nanoparticles}.
-%\newblock {\em RSC~Adv.}~\textbf{5}, 37476--37484 (2015).
-%
-%\bibitem{Mangeri2015}
-%J.~Mangeri, O.~Heinonen, D.~Karpeyev, and S.~Nakhmanson,
-%%\newblock {Influence of Elastic and Surface Strains on the Optical Properties
-%%  of Semiconducting Core-Shell Nanoparticles}.
-%\newblock {\em Phys.~Rev.~Appl.}~\textbf{4},~014001~(2015).
-%
-%\bibitem{Videos}
-%Link to Ferret videos: http://satori.ims.uconn.edu/ferret-video-links
-%
-%%}
 \end{thebibliography}
 
 
