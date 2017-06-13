@@ -49,7 +49,7 @@ ComputeDeltaIndicatrixElectro::computeQpDeltaIndicatrix()
         {
           sum += _electrooptic_tensor[_qp](i, j, k) * (_permittivity * _grad_potential_int[_qp](k) * _len_scale);
         }
-    _delta_indicatrix[_qp](i, j) = sum;
+    _delta_indicatrix[_qp](i) = sum;
     }
     //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
 }
