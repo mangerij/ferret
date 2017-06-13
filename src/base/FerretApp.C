@@ -150,6 +150,7 @@
 #include "ComputePolarOpticGCoeffTensor.h"
 #include "ComputeElectroopticTensor.h"
 #include "ComputeGCoeffTensor.h"
+#include "ComputeDeltaIndicatrixElectro.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -384,6 +385,7 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputePolarOpticGCoeffTensor);
   registerMaterial(ComputeElectroopticTensor);
   registerMaterial(ComputeGCoeffTensor);
+  registerMaterial(ComputeDeltaIndicatrixElectro);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);
