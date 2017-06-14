@@ -23,22 +23,22 @@
 #define COMPUTEDELTAINDICATRIXELECTRO_H
 
 #include "RankThreeTensor.h"
-#include "ComputeElectroopticTensorBase.h"
+#include "ComputeDeltaIndicatrixElectroBase.h"
 #include "libmesh/quadrature.h"
 
 /**
  * ComputeDeltaIndicatrixElectro defines an impermeability tensor material object with a given base name.
  */
-class ComputeDeltaIndicatrixElectro : public ComputeElectroopticTensorBase
+class ComputeDeltaIndicatrixElectro : public ComputeDeltaIndicatrixElectroBase
 {
 public:
   ComputeDeltaIndicatrixElectro(const InputParameters & parameters);
 
 protected:
-  virtual void ComputeDeltaIndicatrixElectro();
-  const MaterialProperty<Real> & _permittivity;
-  const MaterialProperty<Real> & _len_scale;
+  virtual void computeQpDeltaIndicatrixElectro();
   const MaterialProperty<RankThreeTensor> & _electrooptic_tensor;
+  const VariableGradient & _potential_int_grad;
+  
 };
 
 #endif //COMPUTEDELTAINDICATRIXELECTRO_H

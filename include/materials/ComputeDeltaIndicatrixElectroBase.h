@@ -24,11 +24,15 @@
 
 #include "Material.h"
 #include "RankThreeTensor.h"
+#include "RankTwoTensor.h"
 
+/**
+ * ComputeIndicatrixElectroBase the base class for computing electrooptic tensors
+ */
 class ComputeDeltaIndicatrixElectroBase : public Material
 {
 public:
-  ComputeDeltaIndicatrixElectroBase(const InputParameters & parameters)
+  ComputeDeltaIndicatrixElectroBase(const InputParameters & parameters);
 
 protected:
   virtual void computeQpProperties();
@@ -38,6 +42,7 @@ protected:
   std::string _delta_indicatrix_electro_name;
 
   MaterialProperty<RankTwoTensor> & _delta_indicatrix_electro;
+
 };
 
 #endif //COMPUTEDELTAINDICATRIXELECTROBASE_H
