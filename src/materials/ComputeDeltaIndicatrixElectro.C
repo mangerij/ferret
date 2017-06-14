@@ -25,7 +25,7 @@
 template<>
 InputParameters validParams<ComputeDeltaIndicatrixElectro>()
 {
-  InputParameters params = validParams<ComputeDeltaIndicatrixElectro>();
+  InputParameters params = validParams<ComputeDeltaIndicatrixElectroBase>();
   params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor).");
   return params;
 }
