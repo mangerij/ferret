@@ -19,35 +19,27 @@
 
 /****************************************************************************/
 
-#include "ComputeDeltaIndicatrixElectro.h"
-#include "RankThreeTensor.h"
+#include "ComputeDeltaIndicatrixElectroBase.h"
 
 template<>
-InputParameters validParams<ComputeDeltaIndicatrixElectro>()
+InputParameters validParams<ComputeDeltaIndicatrixElectroBase>()
 {
-  InputParameters params = validParams<ComputeDeltaIndicatrixElectro>();
-  params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor).");
+  InputParameters params = validParams<Material>();
+  params.addParam<std::string>("base_name", "Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases");
   return params;
 }
 
-ComputeDeltaIndicatrixElectro::ComputeDeltaIndicatrixElectro(const InputParameters & parameters) :
-    ComputeDeltaIndicatrixElectro(parameters),
-    _electrooptic_tensor(getMaterialProperty<RankThreeTensor>("electrooptic_tensor"))
+
+ComputeDeltaIndicatrixElectroBase::ComputeDeltaIndicatrixElectroBase(const InputParameters & parameters) :
+    Material(parameters),
+   _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
+   _delta_indicatrix_electro_name(_base_name + "delta_indicatrix"),
+   _delta_indicatrix_electro(declareProperty<RankTwoTensor>("delta_indicatrix_electro"))
 {
 }
 
 void
-ComputeDeltaIndicatrixElectro::computeQpDeltaIndicatrix()
+ComputeDeltaIndicatrixElectroBase::computeQpProperties()
 {
-  Real sum = 0.0;
-  for (unsigned int i = 0; i < 3; ++i)
-    for (unsigned int j = 0; j < 3; ++j)
-    {
-      for (unsigned int k = 0; k < 3; ++k)
-        {
-          sum += _electrooptic_tensor[_qp](i, j, k) * _grad_potential_int[_qp](k);
-        }
-    _delta_indicatrix_electro[_qp](i, j) = sum;
-    }
-    //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
+  computeQpDeltaIndicatrixElectro();
 }

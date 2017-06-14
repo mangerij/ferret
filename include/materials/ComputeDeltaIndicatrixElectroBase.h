@@ -19,35 +19,25 @@
 
 /****************************************************************************/
 
-#include "ComputeDeltaIndicatrixElectro.h"
+#ifndef COMPUTEDELTAINDICATRIXELECTROBASE_H
+#define COMPUTEDELTAINDICATRIXELECTROBASE_H
+
+#include "Material.h"
 #include "RankThreeTensor.h"
 
-template<>
-InputParameters validParams<ComputeDeltaIndicatrixElectro>()
+class ComputeDeltaIndicatrixElectroBase : public Material
 {
-  InputParameters params = validParams<ComputeDeltaIndicatrixElectro>();
-  params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor).");
-  return params;
-}
+public:
+  ComputeDeltaIndicatrixElectroBase(const InputParameters & parameters)
 
-ComputeDeltaIndicatrixElectro::ComputeDeltaIndicatrixElectro(const InputParameters & parameters) :
-    ComputeDeltaIndicatrixElectro(parameters),
-    _electrooptic_tensor(getMaterialProperty<RankThreeTensor>("electrooptic_tensor"))
-{
-}
+protected:
+  virtual void computeQpProperties();
+  virtual void computeQpDeltaIndicatrixElectro() = 0;
 
-void
-ComputeDeltaIndicatrixElectro::computeQpDeltaIndicatrix()
-{
-  Real sum = 0.0;
-  for (unsigned int i = 0; i < 3; ++i)
-    for (unsigned int j = 0; j < 3; ++j)
-    {
-      for (unsigned int k = 0; k < 3; ++k)
-        {
-          sum += _electrooptic_tensor[_qp](i, j, k) * _grad_potential_int[_qp](k);
-        }
-    _delta_indicatrix_electro[_qp](i, j) = sum;
-    }
-    //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
-}
+  std::string _base_name;
+  std::string _delta_indicatrix_electro_name;
+
+  MaterialProperty<RankTwoTensor> & _delta_indicatrix_electro;
+};
+
+#endif //COMPUTEDELTAINDICATRIXELECTROBASE_H
