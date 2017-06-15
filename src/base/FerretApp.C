@@ -72,6 +72,7 @@
 #include "ChangeInRefractiveIndexWithGCoeffPolar.h"
 #include "PkNorm.h"
 #include "SemiconductingChargeCarriersPolyLogAux.h"
+#include "ChangeInRefractiveIndexElectro.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -290,6 +291,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
   registerAux(SemiconductingChargeCarriersPolyLogAux);
+  registerAux(ChangeInRefractiveIndexElectro);
 
   ///Kernels
   registerKernel(ModifiedStressDivergenceTensors);
