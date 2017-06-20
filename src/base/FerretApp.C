@@ -135,6 +135,7 @@
 #include "HoleChargeContribution.h"
 #include "AcceptorIonContribution.h"
 #include "SemiconductorChargeCarriersPolyLog.h"
+#include "PolarElectricEStrongAlt.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -341,6 +342,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(HoleChargeContribution);
   registerKernel(AcceptorIonContribution);
   registerKernel(SemiconductorChargeCarriersPolyLog);
+  registerKernel(PolarElectricEStrongAlt);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);

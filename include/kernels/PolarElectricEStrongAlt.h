@@ -19,34 +19,37 @@
 
 /****************************************************************************/
 
-#ifndef REFRACTIVEINDEX_H
-#define REFRACTIVEINDEX_H
+#ifndef POLARELECTRICESTRONGALT_H
+#define POLARELECTRICESTRONGALT_H
 
-#include "AuxKernel.h"
-#include "RankTwoTensor.h"
+#include "Kernel.h"
 
-//Forward declarations
-class RefractiveIndex;
+class PolarElectricEStrongAlt;
 
 template<>
-InputParameters validParams<RefractiveIndex>();
+InputParameters validParams<PolarElectricEStrongAlt>();
 
-
-class RefractiveIndex : public AuxKernel
+class PolarElectricEStrongAlt: public Kernel
 {
 public:
-  RefractiveIndex(const InputParameters & parameters);
 
-  virtual ~RefractiveIndex() {}
+  PolarElectricEStrongAlt(const InputParameters & parameters);
 
 protected:
-  virtual Real computeValue();
+  virtual Real computeQpResidual();
+
+  virtual Real computeQpJacobian();
+
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-  const unsigned int _index_j;
-  const unsigned int _index_k;
-  const MaterialProperty<RankTwoTensor> & _indicatrix;
-  const VariableValue & _var1;
-};
+   const unsigned int _polar_x_var;
+   const unsigned int _polar_y_var;
+   const unsigned int _polar_z_var;
+   const VariableGradient & _polar_x_grad;
+   const VariableGradient & _polar_y_grad;
+   const VariableGradient & _polar_z_grad;
+   const Real _len_scale;
 
-#endif // REFRACTIVEINDEX_H
+};
+#endif //POLARELECTRICESTRONGALT_H

@@ -27,10 +27,9 @@ InputParameters validParams<RefractiveIndex>()
 
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addRequiredParam<unsigned int>("component", "component");
-  params.addRequiredParam<Real>("n_a", "alpha refractive index");
-  params.addRequiredParam<Real>("n_b", "beta refractive index");
-  params.addRequiredParam<Real>("n_g", "gamma refractive index");
+  params.addRequiredParam<unsigned int>("index_j", "component");
+  params.addRequiredParam<unsigned int>("index_k", "component");
+  //We'll put some bools here to turn on and off different effects (elasto-, electro-, polar-,...)
   params.addRequiredCoupledVar("var1", "the change in this refractive index");
   return params;
 }
@@ -38,11 +37,10 @@ InputParameters validParams<RefractiveIndex>()
 
 RefractiveIndex::RefractiveIndex(const InputParameters & parameters) :
   AuxKernel(parameters),
-   _component(getParam<unsigned int>("component")),
-   _na(getParam<Real>("n_a")),
-   _nb(getParam<Real>("n_b")),
-   _ng(getParam<Real>("n_g")),
-  _var1(coupledValue("var1"))
+   _index_j(getParam<unsigned int>("index_j")),
+   _index_k(getParam<unsigned int>("index_k")),
+   _indicatrix(getMaterialProperty<RankTwoTensor>("indicatrix")),
+   _var1(coupledValue("var1"))
 {
 }
 
@@ -50,15 +48,7 @@ Real
 RefractiveIndex::computeValue()
 {
   // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
-//std::pow(  (1.0 / ( _beta_tensor[_qp](_index_i, _index_j)  ) ), 3.0)
-  if (_component == 0)
-    return _na - _var1[_qp];
-  else if (_component == 1)
-    return _nb - _var1[_qp];
-  else if (_component == 2)
-    return _ng - _var1[_qp];
-  else
-    return 0.0;
+  return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 2.0) + _var1[_qp];
 }
 
 
