@@ -289,7 +289,8 @@
   [./n_1_c]
     type = RefractiveIndex
     variable = n_1
-    component = 0
+    index_j = 0
+    index_k = 0
     var1 = dn_1
     execute_on = 'timestep_end'
   [../]
@@ -297,7 +298,8 @@
   [./n_2_c]
     type = RefractiveIndex
     variable = n_2
-    component = 1
+    index_j = 1
+    index_k = 1
     var1 = dn_2
     execute_on = 'timestep_end'
   [../]
@@ -305,7 +307,8 @@
   [./n_3_c]
     type = RefractiveIndex
     variable = n_3
-    component = 2
+    index_j = 2
+    index_k = 2
     var1 = dn_3
     execute_on = 'timestep_end'
   [../]

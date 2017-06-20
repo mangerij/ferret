@@ -23,6 +23,7 @@
 #define REFRACTIVEINDEX_H
 
 #include "AuxKernel.h"
+#include "RankTwoTensor.h"
 
 //Forward declarations
 class RefractiveIndex;
@@ -42,11 +43,10 @@ protected:
   virtual Real computeValue();
 
 private:
-  const unsigned int _component;
-  Real _na;
-  Real _nb;
-  Real _ng;
+  const unsigned int _index_j;
+  const unsigned int _index_k;
+  const MaterialProperty<RankTwoTensor> & _indicatrix;
   const VariableValue & _var1;
 };
 
-#endif // CHANGEINREFRACTIVEINDEX_H
+#endif // REFRACTIVEINDEX_H

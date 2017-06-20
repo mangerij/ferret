@@ -50,7 +50,7 @@ Real
 PolarElectricEStrongAlt::computeQpResidual()
 {
   Real RpolarE = 0.0;
-  RpolarE += - (_polar_x_grad[_qp](0) * _test[_i][_qp] + _polar_y_grad[_qp](1) * _test[_i][_qp] + _polar_z_grad[_qp](2) * _test[_i][_qp]) * std::pow(_len_scale, 2.0);
+  RpolarE += -(_polar_x_grad[_qp](0) * _test[_i][_qp] + _polar_y_grad[_qp](1) * _test[_i][_qp] + _polar_z_grad[_qp](2) * _test[_i][_qp]) * std::pow(_len_scale, 2.0); //this should be a MINUS
   ///  Moose::out << "\n R_polarE-"; std::cout << " = " << RpolarE;
   return RpolarE;
 }
@@ -64,11 +64,11 @@ Real
 PolarElectricEStrongAlt::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _polar_x_var)
-    return - _grad_phi[_j][_qp](0) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    return -_grad_phi[_j][_qp](0) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
   else if (jvar == _polar_y_var)
-    return - _grad_phi[_j][_qp](1) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    return -_grad_phi[_j][_qp](1) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
   else if (jvar == _polar_z_var)
-    return - _grad_phi[_j][_qp](2) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    return -_grad_phi[_j][_qp](2) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
   else
     return 0.0;
 }
