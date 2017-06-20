@@ -48,7 +48,5 @@ Real
 RefractiveIndex::computeValue()
 {
   // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
-  return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 2.0) + _var1[_qp];
+  return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp];
 }
-
-
