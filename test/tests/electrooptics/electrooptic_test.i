@@ -295,6 +295,7 @@
   [./n_1_c]
     type = RefractiveIndex
     variable = n_1
+    electro = true
     index_j = 0
     index_k = 0
     var1 = dn_1
@@ -304,6 +305,7 @@
   [./n_2_c]
     type = RefractiveIndex
     variable = n_2
+    electro = true
     index_j = 1
     index_k = 1
     var1 = dn_2
@@ -313,6 +315,7 @@
   [./n_3_c]
     type = RefractiveIndex
     variable = n_3
+    electro = true
     index_j = 2
     index_k = 2
     var1 = dn_3
