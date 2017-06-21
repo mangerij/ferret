@@ -1,8 +1,8 @@
 [Tests]
   [./electro_test]
     type = 'Exodiff'
-    input = ‘electrooptic_test.i'
-    exodiff = 'out_6grain_electro.e’
+    input = 'electrooptic_test.i'
+    exodiff = 'out_6grain_electro.e'
     abs_zero = 2e-2
   [../]
 []

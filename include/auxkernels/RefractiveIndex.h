@@ -45,8 +45,12 @@ protected:
 private:
   const unsigned int _index_j;
   const unsigned int _index_k;
+  bool _electro;
+  bool _elasto;
+  bool _polar;
   const MaterialProperty<RankTwoTensor> & _indicatrix;
   const VariableValue & _var1;
+  const VariableValue & _var2;
 };
 
 #endif // REFRACTIVEINDEX_H
