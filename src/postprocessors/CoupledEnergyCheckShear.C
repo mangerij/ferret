@@ -1,23 +1,23 @@
-/***************************************************************************/
-/* This file is part of FERRET, an add-on module for MOOSE
+/**
+   This file is part of FERRET, an add-on module for MOOSE
 
-/* FERRET is free software: you can redistribute it and/or modify
+   FERRET is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-/* This program is distributed in the hope that it will be useful,
+   This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU General Public License for more details.
 
-/* You should have received a copy of the GNU General Public License
+   You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
-/****************************************************************************/
+**/
 
 #include "CoupledEnergyCheckShear.h"
 #include "ComputeElectrostrictiveTensor.h"
@@ -78,6 +78,6 @@ CoupledEnergyCheckShear::computeQpIntegral()
 
   return _artificial * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]) - 4 * _artificial * std::pow(_len_scale, 3.0) * (
          _electrostrictive_tensor[_qp](0,2,0,0) * w(0) * w(0) + _electrostrictive_tensor[_qp](0,2,1,0) * w(1) * w(0) + _electrostrictive_tensor[_qp](0,2,2,0) * w(2) * w(0) +
-         _electrostrictive_tensor[_qp](0,2,0,1) * w(0) * w(1) + _electrostrictive_tensor[_qp](0,2,1,1) * w(1) * w(1) + _electrostrictive_tensor[_qp](0,2,2,1) * w(2) * w(1) + 
+         _electrostrictive_tensor[_qp](0,2,0,1) * w(0) * w(1) + _electrostrictive_tensor[_qp](0,2,1,1) * w(1) * w(1) + _electrostrictive_tensor[_qp](0,2,2,1) * w(2) * w(1) +
          _electrostrictive_tensor[_qp](0,2,0,2) * w(0) * w(2) + _electrostrictive_tensor[_qp](0,2,1,2) * w(1) * w(2) + _electrostrictive_tensor[_qp](0,2,2,2) * w(2) * w(2)  );
 }
