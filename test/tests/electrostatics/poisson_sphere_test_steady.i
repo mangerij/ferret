@@ -1,9 +1,6 @@
-#This is your standard linear dielectric (polarizable) sphere in a dielectric medium
-#This problem is worked out analytically in Jackson or Griffiths and we've shown that
-#the analytical solution matches the numerical solution to within high degree of accuracy
-#provided the medium mesh is large enough.
-#PjFieldAux is just the Claussius-Mosetti relation that arises from the analytical solution
-#but is not used to actually solve for \Phi.
+#This is a polarized (spontaneously) sphere in a dielectric medium. 
+#A background (optical) dielectric constant of 1 is assigned, while the medium has dielectric constant of 10.
+#The nonzero polarization gives rise to nonzero surface charges which are handled naturally.
 
 [Mesh]
   file = sphere_medium_exodus.e
