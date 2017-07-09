@@ -6,4 +6,11 @@
     use_old_floor = true
     abs_zero = 1e-5
   [../]
+  [./polar_sphere]
+    type = 'Exodiff'
+    input = 'poisson_sphere_test_steady.i'
+    exodiff = 'out_polar_sph_test.e'
+    use_old_floor = true
+    abs_zero = 1e-5
+  [../]
 []
