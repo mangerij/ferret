@@ -115,6 +115,7 @@
 #include "ConstantLatticeMismatch.h"
 #include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
+#include "LBOBulkEnergy.h"
 #include "DepolEnergy.h"
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
@@ -313,6 +314,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(KappaTDiffusion);
   registerKernel(ConstantLatticeMismatch);
   registerKernel(AnisotropyEnergy);
+  registerKernel(LBOBulkEnergy);
   registerKernel(DepolEnergy);
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
