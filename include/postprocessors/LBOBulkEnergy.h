@@ -22,32 +22,27 @@
 #ifndef LBOBULKENERGY_H
 #define LBOBULKENERGY_H
 
-#include "Kernel.h"
+#include "ElementIntegralPostprocessor.h"
 
+//Forward Declarations
 class LBOBulkEnergy;
 
 template<>
 InputParameters validParams<LBOBulkEnergy>();
 
-class LBOBulkEnergy: public Kernel
+class LBOBulkEnergy : public ElementIntegralPostprocessor
 {
 public:
-
   LBOBulkEnergy(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual();
-
-  virtual Real computeQpJacobian();
-
-  const unsigned int _component;
-  const unsigned int _polar_x_var;
-  const unsigned int _polar_y_var;
-  const unsigned int _polar_z_var;
-  const VariableValue & _polar_x;
-  const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
+  virtual Real computeQpIntegral();
+  const VariableValue& _polar_x;
+  const VariableValue& _polar_y;
+  const VariableValue& _polar_z;
   const Real _alpha1, _alpha2, _alpha3;
   const Real _len_scale;
+
 };
-#endif //LBOBULKENERGY_H
+
+#endif

@@ -115,7 +115,7 @@
 #include "ConstantLatticeMismatch.h"
 #include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
-#include "LBOBulkEnergy.h"
+#include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
@@ -182,6 +182,7 @@
 #include "TotalEnergySkFlow.h"
 #include "TotalWinding.h"
 #include "EnergyRatePostprocessor.h"
+#include "LBOBulkEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -314,7 +315,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(KappaTDiffusion);
   registerKernel(ConstantLatticeMismatch);
   registerKernel(AnisotropyEnergy);
-  registerKernel(LBOBulkEnergy);
+  registerKernel(LBOBulkEnergyDeriv);
   registerKernel(DepolEnergy);
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
@@ -377,6 +378,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergySkFlow);
   registerPostprocessor(TotalWinding);
   registerPostprocessor(EnergyRatePostprocessor);
+  registerPostprocessor(LBOBulkEnergy);
 
   //Markers
   registerMarker(PolarizationNWEMarker);

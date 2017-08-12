@@ -166,13 +166,22 @@
 
 
 [Postprocessors]
+    [./avePz]
+      type = ElementAverageValue
+      variable = polar_z
+      execute_on = 'timestep_end'
+    [../]
+    [./Fbulk]
+      type = BulkEnergy
+      execute_on = 'timestep_end'
+    [../]
     [./Fwall]
       type = WallEnergy
-      execute_on = 'initial timestep_end'
+      execute_on = 'timestep_end'
     [../]
     [./Felec]
       type = ElectrostaticEnergy
-      execute_on = 'initial timestep_end'
+      execute_on = 'timestep_end'
     [../]
 []
 

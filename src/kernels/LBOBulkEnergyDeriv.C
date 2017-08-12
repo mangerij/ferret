@@ -19,12 +19,12 @@
 
 **/
 
-#include "LBOBulkEnergy.h"
+#include "LBOBulkEnergyDeriv.h"
 
-class LBOBulkEnergy;
+class LBOBulkEnergyDeriv;
 
 template<>
-InputParameters validParams<LBOBulkEnergy>()
+InputParameters validParams<LBOBulkEnergyDeriv>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
@@ -38,7 +38,7 @@ InputParameters validParams<LBOBulkEnergy>()
   return params;
 }
 
-LBOBulkEnergy::LBOBulkEnergy(const InputParameters & parameters)
+LBOBulkEnergyDeriv::LBOBulkEnergyDeriv(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _polar_x_var(coupled("polar_x")),
@@ -55,7 +55,7 @@ LBOBulkEnergy::LBOBulkEnergy(const InputParameters & parameters)
 }
 
 Real
-LBOBulkEnergy::computeQpResidual()
+LBOBulkEnergyDeriv::computeQpResidual()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
   if (_component == 0)
@@ -68,14 +68,14 @@ LBOBulkEnergy::computeQpResidual()
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (- _alpha1  * w(2) + (3/4) * _alpha2  * w(2)*w(2)*w(2) );
+    return _test[_i][_qp] * (- _alpha1  * w(2) +  _alpha2  * w(2)*w(2)*w(2) );
   }
   else
     return 0.0;
 }
 
 Real
-LBOBulkEnergy::computeQpJacobian()
+LBOBulkEnergyDeriv::computeQpJacobian()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
   if (_component == 0)
@@ -88,7 +88,7 @@ LBOBulkEnergy::computeQpJacobian()
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (- _alpha1 + _alpha2  * w(2) * w(2) )* _phi[_j][_qp];
+    return _test[_i][_qp] * (- _alpha1 + 3 * _alpha2  * w(2) * w(2) ) * _phi[_j][_qp];
   }
   else
     return 0.0;
