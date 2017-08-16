@@ -137,6 +137,7 @@
 #include "AcceptorIonContribution.h"
 #include "SemiconductorChargeCarriersPolyLog.h"
 #include "PolarElectricEStrongAlt.h"
+#include "ConversePiezoelectricStrain.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -154,6 +155,7 @@
 #include "ComputeElectroopticTensor.h"
 #include "ComputeGCoeffTensor.h"
 #include "ComputeDeltaIndicatrixElectro.h"
+#include "ComputePiezoTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -346,6 +348,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(AcceptorIonContribution);
   registerKernel(SemiconductorChargeCarriersPolyLog);
   registerKernel(PolarElectricEStrongAlt);
+  registerKernel(ConversePiezoelectricStrain);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -394,6 +397,7 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputeElectroopticTensor);
   registerMaterial(ComputeGCoeffTensor);
   registerMaterial(ComputeDeltaIndicatrixElectro);
+  registerMaterial(ComputePiezoTensor);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);
