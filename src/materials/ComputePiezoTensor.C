@@ -23,6 +23,7 @@
 #include "ComputePiezoTensor.h"
 #include "RotationTensor.h"
 #include "RankThreeTensor.h"
+#include "PiezostrictiveTensorTools.h"
 
 template<>
 InputParameters validParams<ComputePiezoTensor>()

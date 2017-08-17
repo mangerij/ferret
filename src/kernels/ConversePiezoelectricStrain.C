@@ -64,6 +64,7 @@ ConversePiezoelectricStrain::computeQpResidual()
 Real
 ConversePiezoelectricStrain::computeQpJacobian()
 {
-  return _test[_i][_qp] * (_piezostrictive_tensor[_qp](_component,0,0) * _second_phi[_j][_qp](0,0) + _piezostrictive_tensor[_qp](_component,0,1) * _second_phi[_j][_qp](0,1) + _piezostrictive_tensor[_qp](_component,0,2) * _second_phi[_j][_qp](0,2) + _piezostrictive_tensor[_qp](_component,1,0) * _second_phi[_j][_qp](1,0) + _piezostrictive_tensor[_qp](_component,1,1) * _second_phi[_j][_qp](1,1) + _piezostrictive_tensor[_qp](_component,1,2) * _second_phi[_j][_qp](1,2) + _piezostrictive_tensor[_qp](_component,2,0) * _second_phi[_j][_qp](2,0) + _piezostrictive_tensor[_qp](_component,2,1) * _second_phi[_j][_qp](2,1) + _piezostrictive_tensor[_qp](_component,2,2) * _second_phi[_j][_qp](2,2));
+  return 0.0;
+//  return _test[_i][_qp] * (_piezostrictive_tensor[_qp](_component,0,0) * _second_phi[_j][_qp](0,0) + _piezostrictive_tensor[_qp](_component,0,1) * _second_phi[_j][_qp](0,1) + _piezostrictive_tensor[_qp](_component,0,2) * _second_phi[_j][_qp](0,2) + _piezostrictive_tensor[_qp](_component,1,0) * _second_phi[_j][_qp](1,0) + _piezostrictive_tensor[_qp](_component,1,1) * _second_phi[_j][_qp](1,1) + _piezostrictive_tensor[_qp](_component,1,2) * _second_phi[_j][_qp](1,2) + _piezostrictive_tensor[_qp](_component,2,0) * _second_phi[_j][_qp](2,0) + _piezostrictive_tensor[_qp](_component,2,1) * _second_phi[_j][_qp](2,1) + _piezostrictive_tensor[_qp](_component,2,2) * _second_phi[_j][_qp](2,2));
 }
 
