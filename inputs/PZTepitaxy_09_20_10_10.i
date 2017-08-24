@@ -13,9 +13,9 @@
   alpha123 = -4.901
   G110 = 0.1483
   G11_G110 = 1.0
-  G12/G110 = 0
-  G44/G110 = 0.5
-  G44P/G110 = 0.5
+  G12_G110 = 0
+  G44_G110 = 0.5
+  G44P_G110 = 0.5
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
