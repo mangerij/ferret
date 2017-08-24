@@ -37,7 +37,7 @@
   alpha123 = 0.0
 
   G110 = 0.141
-  G11/G110 = 1.0 #this is here to somehow prevent P_z "ringing" problems on the side...
+  G11_G110 = 1.0 #this is here to somehow prevent P_z "ringing" problems on the side...
   G12/G110 = 0.0 #perhaps this allows for divP =0?
   G44/G110 = 1.0
   G44P/G110 = 1.0

@@ -35,7 +35,7 @@
   potential_int = potential_int
 
   G110 = 0.173
-  G11/G110 = 1.6
+  G11_G110 = 1.6
   G12/G110 = 0
   G44/G110 = 0.8
   G44P/G110 = 0.8

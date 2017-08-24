@@ -30,7 +30,7 @@ InputParameters validParams<WallEnergyDerivative>()
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("G110", "Domain wall coefficient");
-  params.addRequiredParam<Real>("G11/G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G11_G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G12/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44P/G110", "Domain wall coefficient ratio");
@@ -52,7 +52,7 @@ WallEnergyDerivative::WallEnergyDerivative(const InputParameters & parameters)
   _jj((_component==0)? 1 : (_component==1)? 2: 0),
   _kk((_component==0)? 2 : (_component==1)? 0: 1),
   _G110(getParam<Real>("G110")),
-  _G11(getParam<Real>("G11/G110") * _G110),
+  _G11(getParam<Real>("G11_G110") * _G110),
   _G12(getParam<Real>("G12/G110") * _G110),
   _G44(getParam<Real>("G44/G110") * _G110),
   _G44P(getParam<Real>("G44P/G110") * _G110),
