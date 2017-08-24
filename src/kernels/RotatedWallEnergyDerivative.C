@@ -33,7 +33,7 @@ InputParameters validParams<RotatedWallEnergyDerivative>()
   params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
   params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");
   params.addRequiredParam<Real>("G110", "Domain wall coefficient");
-  params.addRequiredParam<Real>("G11/G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G11_G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G12/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44/G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G44P/G110", "Domain wall coefficient ratio");
@@ -58,7 +58,7 @@ RotatedWallEnergyDerivative::RotatedWallEnergyDerivative(const InputParameters &
   _jj((_component==0)? 1 : (_component==1)? 2: 0),
   _kk((_component==0)? 2 : (_component==1)? 0: 1),
   _G110(getParam<Real>("G110")),
-  _G11(getParam<Real>("G11/G110") * _G110),
+  _G11(getParam<Real>("G11_G110") * _G110),
   _G12(getParam<Real>("G12/G110") * _G110),
   _G44(getParam<Real>("G44/G110") * _G110),
   _G44P(getParam<Real>("G44P/G110") * _G110),
