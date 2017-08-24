@@ -69,9 +69,9 @@
   # Gradient energy coefficients
   G110 = 0.173
   G11_G110 = 0.6
-  G12/G110 = 0
-  G44/G110 = 0.3
-  G44P/G110 = 0.3
+  G12_G110 = 0
+  G44_G110 = 0.3
+  G44P_G110 = 0.3
 
 
   # Some default stuff. 

@@ -34,9 +34,9 @@ InputParameters validParams<RotatedWallEnergyDerivative>()
   params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");
   params.addRequiredParam<Real>("G110", "Domain wall coefficient");
   params.addRequiredParam<Real>("G11_G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G12/G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G44/G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G44P/G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G12_G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G44_G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G44P_G110", "Domain wall coefficient ratio");
   ///params.set<bool>("use_displaced_mesh") = false;
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
@@ -59,9 +59,9 @@ RotatedWallEnergyDerivative::RotatedWallEnergyDerivative(const InputParameters &
   _kk((_component==0)? 2 : (_component==1)? 0: 1),
   _G110(getParam<Real>("G110")),
   _G11(getParam<Real>("G11_G110") * _G110),
-  _G12(getParam<Real>("G12/G110") * _G110),
-  _G44(getParam<Real>("G44/G110") * _G110),
-  _G44P(getParam<Real>("G44P/G110") * _G110),
+  _G12(getParam<Real>("G12_G110") * _G110),
+  _G44(getParam<Real>("G44_G110") * _G110),
+  _G44P(getParam<Real>("G44P_G110") * _G110),
   _len_scale(getParam<Real>("len_scale"))
 {
   ///only for debug purpose

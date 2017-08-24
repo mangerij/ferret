@@ -31,9 +31,9 @@ InputParameters validParams<WallEnergyDerivativeAlt>()
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("G110", "Domain wall coefficient");
   params.addRequiredParam<Real>("G11_G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G12/G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G44/G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G44P/G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G12_G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G44_G110", "Domain wall coefficient ratio");
+  params.addRequiredParam<Real>("G44P_G110", "Domain wall coefficient ratio");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
@@ -49,9 +49,9 @@ WallEnergyDerivativeAlt::WallEnergyDerivativeAlt(const InputParameters & paramet
   _polar_z_grad(coupledGradient("polar_z")),
   _G110(getParam<Real>("G110")),
   _G11(getParam<Real>("G11_G110") * _G110),
-  _G12(getParam<Real>("G12/G110") * _G110),
-  _G44(getParam<Real>("G44/G110") * _G110),
-  _G44P(getParam<Real>("G44P/G110") * _G110),
+  _G12(getParam<Real>("G12_G110") * _G110),
+  _G44(getParam<Real>("G44_G110") * _G110),
+  _G44P(getParam<Real>("G44P_G110") * _G110),
   _len_scale(getParam<Real>("len_scale"))
 {
 }
