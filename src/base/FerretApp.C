@@ -138,6 +138,7 @@
 #include "SemiconductorChargeCarriersPolyLog.h"
 #include "PolarElectricEStrongAlt.h"
 #include "ConversePiezoelectricStrain.h"
+#include "PiezoelectricStrainCharge.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -185,6 +186,7 @@
 #include "TotalWinding.h"
 #include "EnergyRatePostprocessor.h"
 #include "LBOBulkEnergy.h"
+#include "TotalEnergyAll.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -349,6 +351,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(SemiconductorChargeCarriersPolyLog);
   registerKernel(PolarElectricEStrongAlt);
   registerKernel(ConversePiezoelectricStrain);
+  registerKernel(PiezoelectricStrainCharge);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -382,6 +385,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalWinding);
   registerPostprocessor(EnergyRatePostprocessor);
   registerPostprocessor(LBOBulkEnergy);
+  registerPostprocessor(TotalEnergyAll);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
