@@ -19,36 +19,40 @@
 
 **/
 
-#ifndef CONVERSEPIEZOELECTRICSTRAIN_H
-#define CONVERSEPIEZOELECTRICSTRAIN_H
+#ifndef PIEZOELECTRICSTRAINCHARGE_H
+#define PIEZOELECTRICSTRAINCHARGE_H
 
 #include "Kernel.h"
 #include "ComputePiezoTensor.h"
 #include "Material.h"
 
 //Forward Declarations
-class ConversePiezoelectricStrain;
+class PiezoelectricStrainCharge;
 
 template<>
-InputParameters validParams<ConversePiezoelectricStrain>();
+InputParameters validParams<PiezoelectricStrainCharge>();
 
-class ConversePiezoelectricStrain: public Kernel
+class PiezoelectricStrainCharge: public Kernel
 {
 public:
-  ConversePiezoelectricStrain(const InputParameters & parameters);
+  PiezoelectricStrainCharge(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
 
   virtual Real computeQpJacobian();
 
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+
 private:
   const MaterialProperty<RankThreeTensor> & _piezo_tensor;
   const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor;
-  const unsigned int _component;
-  const unsigned int _potential_int_var;
-  const VariableValue & _potential_int;
-  const VariableGradient & _potential_int_grad;
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };
