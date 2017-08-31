@@ -56,11 +56,10 @@ PiezoelectricStrainCharge::computeQpResidual()
   Real sum = 0.0;
   for(unsigned int j = 0; j < 3; ++j)
   {
-    sum += - _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,0,j) * _disp_x_grad[_qp](j) + _piezostrictive_tensor[_qp](0,1,j) * _disp_y_grad[_qp](j) + _piezostrictive_tensor[_qp](0,2,j) * _disp_z_grad[_qp](j)) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,0,j) * _disp_x_grad[_qp](j) + _piezostrictive_tensor[_qp](1,1,j) * _disp_y_grad[_qp](j) + _piezostrictive_tensor[_qp](1,2,j) * _disp_z_grad[_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,0,j) * _disp_x_grad[_qp](j) + _piezostrictive_tensor[_qp](2,1,j) * _disp_y_grad[_qp](j) + _piezostrictive_tensor[_qp](2,2,j) * _disp_z_grad[_qp](j));
+    sum += _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,0,j) * _disp_x_grad[_qp](j) + _piezostrictive_tensor[_qp](0,1,j) * _disp_y_grad[_qp](j) + _piezostrictive_tensor[_qp](0,2,j) * _disp_z_grad[_qp](j)) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,0,j) * _disp_x_grad[_qp](j) + _piezostrictive_tensor[_qp](1,1,j) * _disp_y_grad[_qp](j) + _piezostrictive_tensor[_qp](1,2,j) * _disp_z_grad[_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,0,j) * _disp_x_grad[_qp](j) + _piezostrictive_tensor[_qp](2,1,j) * _disp_y_grad[_qp](j) + _piezostrictive_tensor[_qp](2,2,j) * _disp_z_grad[_qp](j));
   }
   return sum;
 }
-
 
 Real
 PiezoelectricStrainCharge::computeQpJacobian()
@@ -78,21 +77,21 @@ PiezoelectricStrainCharge::computeQpOffDiagJacobian(unsigned int jvar)
       {
         for(unsigned int j = 0; j < 3; ++j)
           {
-            sum += - _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,0,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,0,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,0,j) * _grad_phi[_j][_qp](j));
+            sum += _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,0,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,0,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,0,j) * _grad_phi[_j][_qp](j));
           }
       }
     else if (jvar == _disp_y_var)
       {
         for(unsigned int j = 0; j < 3; ++j)
           {
-            sum += - _grad_test[_i][_qp](0) * ( _piezostrictive_tensor[_qp](0,1,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](1) * ( _piezostrictive_tensor[_qp](1,1,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,1,j) * _grad_phi[_j][_qp](j));
+            sum += _grad_test[_i][_qp](0) * ( _piezostrictive_tensor[_qp](0,1,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](1) * ( _piezostrictive_tensor[_qp](1,1,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,1,j) * _grad_phi[_j][_qp](j));
           }
       }
     else if (jvar == _disp_z_var)
       {
         for(unsigned int j = 0; j < 3; ++j)
           {
-            sum += - _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,2,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,2,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,2,j) * _grad_phi[_j][_qp](j));
+            sum += _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,2,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,2,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,2,j) * _grad_phi[_j][_qp](j));
           }
       }
     return sum;

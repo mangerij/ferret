@@ -1,21 +1,16 @@
 
-
-# This file just evolves from the PE state an open circuit BC
-# chunk of LNO using coefficients from Chen's appendix 
-# (and assuming gradient terms are == PTO).
-
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 12
-  ny = 12
-  nz = 8
-  xmin = -5
-  xmax = 5
-  ymin = -5
-  ymax = 5
-  zmin = -3
-  zmax = 3
+  nx = 20
+  ny = 20
+  nz = 12
+  xmin = -7
+  xmax = 7
+  ymin = -7
+  ymax = 7
+  zmin = -4
+  zmax = 4
   elem_type = HEX8
 []
 
@@ -43,8 +38,8 @@
     family = LAGRANGE
   [../]
   [./potential_int]
-    order = THIRD
-    family = HERMITE
+    order = FIRST
+    family = LAGRANGE
   [../]
 []
 
@@ -73,6 +68,10 @@
      type = Electrostatics
      variable = potential_int
      permittivity = 0.08854187
+  [../]
+  [./strain_charge]
+     type = PiezoelectricStrainCharge
+     variable = potential_int
   [../]
   [./disp_x_time]
      type = TimeDerivativeScaled
@@ -109,22 +108,22 @@
     fill_method = general
     compute_piezostrictive_coeff = true
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
-    d_ijk = '0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1'
+    d_ijk = '0.31 0 0 0 -0.31 0 0 -0.15 0 0 -0.31 0 -0.31 0 0 0.15 0 0 0 -0.15 0 0.15 0 0 0 0 0'
   [../]
 []
 
 [Functions]
   [./bc_func_1]
     type = ParsedFunction
-    value = '0.005*sin(omega*t)'
-    vars = 'omega'
-    vals = '0.1'
+    value = 'A*cos(omega*t)'
+    vars = 'A omega'
+    vals = '0.5 10.0'
   [../]
   [./bc_func_2]
     type = ParsedFunction
-    value = '-0.005*sin(omega*t)'
-    vars = 'omega'
-    vals = '0.1'
+    value = '-A*cos(omega*t)'
+    vars = 'omega A'
+    vals = '0.5 10.0'
   [../]
 []
 
@@ -142,6 +141,25 @@
     boundary = 'back'
     function = bc_func_2
   [../]
+
+  [./right_x]
+   type = DirichletBC
+   variable = disp_x
+   value = 0.0
+   boundary = 'right'
+  [../]
+  [./right_y]
+   type = DirichletBC
+   variable = disp_y
+   value = 0.0
+   boundary = 'right'
+  [../]
+  [./right_z]
+   type = DirichletBC
+   variable = disp_z
+   value = 0.0
+   boundary = 'right'
+  [../]
 []
 
 
@@ -151,8 +169,10 @@
   [./smp]
     type = SMP
     full = true
+    petsc_options = '-snes_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_atol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-10      1e-8    bjacobi'
+    petsc_options_value = '    121                1e-10      1e-6     bjacobi'
+
   [../]
 []
 
@@ -171,11 +191,11 @@
   #dt = 0.5
   dtmin = 1e-13
   dtmax = 0.1
-  num_steps = 1000
+  num_steps = 200
 []
 
 [Outputs]
-  print_linear_residuals = true
+  print_linear_residuals = false
   print_perf_log = true
   [./out]
     type = Exodus
