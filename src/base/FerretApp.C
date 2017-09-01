@@ -172,6 +172,7 @@
 #include "BulkEnergyPSTO.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
+#include "ExtElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
 #include "ElectrostrictiveEnergy.h"
@@ -386,6 +387,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(EnergyRatePostprocessor);
   registerPostprocessor(LBOBulkEnergy);
   registerPostprocessor(TotalEnergyAll);
+  registerPostprocessor(ExtElectrostaticEnergy);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
