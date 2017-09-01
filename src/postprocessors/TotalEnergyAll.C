@@ -31,6 +31,7 @@ InputParameters validParams<TotalEnergyAll>()
   params.addParam<PostprocessorName>("Felec", 0.0, "name of electrostatic energy postprocessor");
   params.addParam<PostprocessorName>("Fcoupled", 0.0, "name of the coupled energy postprocessor");
   params.addParam<PostprocessorName>("Felastic", 0.0, "name of the elastic energy postprocessor");
+  params.addParam<PostprocessorName>("Fextelec", 0.0, "name of the external electrostatic energy postprocessor");
   return params;
 }
 
@@ -40,7 +41,8 @@ TotalEnergyAll::TotalEnergyAll(const InputParameters & parameters) :
   _Fwall(getPostprocessorValue(getParam<PostprocessorName>("Fwall"))),
   _Felec(getPostprocessorValue(getParam<PostprocessorName>("Felec"))),
   _Fcoupled(getPostprocessorValue(getParam<PostprocessorName>("Fcoupled"))),
-  _Felastic(getPostprocessorValue(getParam<PostprocessorName>("Felastic")))
+  _Felastic(getPostprocessorValue(getParam<PostprocessorName>("Felastic"))),
+  _Fextelec(getPostprocessorValue(getParam<PostprocessorName>("Fextelec")))
 {
 }
 
@@ -58,5 +60,5 @@ TotalEnergyAll::execute(){
 Real
 TotalEnergyAll::getValue()
 {
-  return _Fbulk + _Fwall + _Felec + _Fcoupled + _Felastic;
+  return _Fbulk + _Fwall + _Felec + _Fcoupled + _Felastic + _Fextelec;
 }

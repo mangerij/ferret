@@ -41,7 +41,7 @@ public:
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _Fbulk, & _Fwall, & _Felec, & _Fcoupled, & _Felastic;
+  const PostprocessorValue & _Fbulk, & _Fwall, & _Felec, & _Fcoupled, & _Felastic, & _Fextelec;
 };
 
 #endif
