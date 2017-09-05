@@ -19,32 +19,32 @@
 
 **/
 
-#ifndef EYFIELDAUX_H
-#define EYFIELDAUX_H
-
-#include "AuxKernel.h"
-
-
-//Forward declarations
-class EyFieldAux;
+#include "ElecFieldAux.h"
 
 template<>
-InputParameters validParams<EyFieldAux>();
 
+InputParameters validParams<ElecFieldAux>()
 
-class EyFieldAux : public AuxKernel
 {
-public:
-  EyFieldAux(const InputParameters & parameters);
+  InputParameters params = validParams<AuxKernel>();
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addCoupledVar("potential_int", "The internal electric potential variable");
+  params.addCoupledVar("potential_ext", "The external electric potential variable");
+  return params;
+}
 
-  virtual ~EyFieldAux() {}
 
-protected:
-  virtual Real computeValue();
+ElecFieldAux::ElecFieldAux(const InputParameters & parameters) :
+  AuxKernel(parameters),
+   _component(getParam<unsigned int>("component")),
+   _potential_int_grad(coupledGradient("potential_int")),
+   _potential_ext_grad(coupledGradient("potential_ext"))
+{
+}
 
-private:
-  const VariableGradient & _potential_int_grad;
-  const VariableGradient & _potential_ext_grad;
-};
+Real
+ElecFieldAux::computeValue()
 
-#endif /* EYFIELDAUX_H */
+{
+    return - _potential_int_grad[_qp](_component) - _potential_ext_grad[_qp](_component);
+}

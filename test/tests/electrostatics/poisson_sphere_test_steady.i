@@ -90,21 +90,24 @@
 
 [AuxKernels]
   [./Ex]
-    type = ExFieldAux
+    type = ElecFieldAux
     variable = E_x
     block = '1 2'
+    component = 0
     potential_ext = potential
   [../]
   [./Ey]
-    type = EyFieldAux
+    type = ElecFieldAux
     variable = E_y
     block = '1 2'
+    component = 1
     potential_ext = potential
   [../]  
   [./Ez]
-    type = EzFieldAux
+    type = ElecFieldAux
     variable = E_z
     block = '1 2'
+    component = 2
     potential_ext = potential
   [../]
 

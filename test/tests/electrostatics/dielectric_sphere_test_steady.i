@@ -18,20 +18,20 @@
   [../]
 []
 
-[AuxVariables]
-  [./polar_x]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./polar_y]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./polar_z]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
+#[AuxVariables]
+#  [./polar_x]
+#    order = CONSTANT
+#    family = MONOMIAL
+#  [../]
+#  [./polar_y]
+#    order = CONSTANT
+#    family = MONOMIAL
+#  [../]
+#  [./polar_z]
+#    order = CONSTANT
+#    family = MONOMIAL
+#  [../]
+#[]
 
 [Kernels]
   [./E_Ext_block2]
@@ -49,32 +49,32 @@
   [../]
 []
 
-[AuxKernels]
-  [./polar_x]
-    type = PxFieldAux
-    variable = polar_x
-    block = '2'
-    permittivity_int = 6
-    permittivity_ext = 1 # 8.85e-12
-    potential_ext = potential
-  [../]
-  [./polar_y]
-    type = PyFieldAux
-    variable = polar_y
-    block = '2'
-    permittivity_int = 6
-    permittivity_ext = 1
-    potential_ext = potential
-  [../]
-  [./polar_z]
-    type = PzFieldAux
-    variable = polar_z
-    block = '2'
-    permittivity_int = 6
-    permittivity_ext = 1
-    potential_ext = potential
-  [../]
-[]
+#[AuxKernels]
+#  [./polar_x]
+#    type = PxFieldAux
+#    variable = polar_x
+#    block = '2'
+#    permittivity_int = 6
+#    permittivity_ext = 1 # 8.85e-12
+#    potential_ext = potential
+#  [../]
+#  [./polar_y]
+#    type = PyFieldAux
+#    variable = polar_y
+#    block = '2'
+#    permittivity_int = 6
+#    permittivity_ext = 1
+#    potential_ext = potential
+#  [../]
+#  [./polar_z]
+#    type = PzFieldAux
+#    variable = polar_z
+#    block = '2'
+#    permittivity_int = 6
+#    permittivity_ext = 1
+#    potential_ext = potential
+#  [../]
+#[]
 
 [BCs]
   #Please note that in typical textbooks, you apply the field with a Neumann boundary condition

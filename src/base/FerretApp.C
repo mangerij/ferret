@@ -39,12 +39,7 @@
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h" //should rework these to be a "general" gap kernel
-#include "ExFieldAux.h"
-#include "EyFieldAux.h"
-#include "EzFieldAux.h"
-#include "PxFieldAux.h"
-#include "PyFieldAux.h"
-#include "PzFieldAux.h"
+#include "ElecFieldAux.h"
 #include "CurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
@@ -266,12 +261,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(TensorPressureAux);
   registerAux(BulkEnergyDensity);
   registerAux(WallEnergyDensity);
-  registerAux(ExFieldAux);
-  registerAux(EyFieldAux);
-  registerAux(EzFieldAux);
-  registerAux(PxFieldAux);
-  registerAux(PyFieldAux);
-  registerAux(PzFieldAux);
+  registerAux(ElecFieldAux);
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
   registerAux(CurlP);
