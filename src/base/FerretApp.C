@@ -41,6 +41,7 @@
 #include "BandGapAuxTiO2.h" //should rework these to be a "general" gap kernel
 #include "ElecFieldAux.h"
 #include "CurlP.h"
+#include "ZCompCurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
@@ -130,6 +131,7 @@
 #include "FreeChargeContribution.h"
 #include "HoleChargeContribution.h"
 #include "AcceptorIonContribution.h"
+#include "SkyrmionChargeDensityZ.h"
 #include "SemiconductorChargeCarriersPolyLog.h"
 #include "PolarElectricEStrongAlt.h"
 #include "ConversePiezoelectricStrain.h"
@@ -265,6 +267,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
   registerAux(CurlP);
+  registerAux(ZCompCurlP);
   registerAux(CurlPMag);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
@@ -288,6 +291,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexWithPolar);
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
+  registerAux(SkyrmionChargeDensityZ);
   registerAux(SemiconductingChargeCarriersPolyLogAux);
   registerAux(ChangeInRefractiveIndexElectro);
 
