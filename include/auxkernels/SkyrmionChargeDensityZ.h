@@ -41,12 +41,12 @@ protected:
   virtual Real computeValue();
 
 private:
-  const VariableValue & _polar_x_norm;
-  const VariableValue & _polar_y_norm;
-  const VariableValue & _polar_z_norm;
-  const VariableGradient & _polar_x_norm_grad;
-  const VariableGradient & _polar_y_norm_grad;
-  const VariableGradient & _polar_z_norm_grad;
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
+  const VariableGradient & _polar_x_grad;
+  const VariableGradient & _polar_y_grad;
+  const VariableGradient & _polar_z_grad;
 };
 
 #endif

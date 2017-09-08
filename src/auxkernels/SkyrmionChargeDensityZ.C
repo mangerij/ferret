@@ -26,21 +26,21 @@ InputParameters validParams<SkyrmionChargeDensityZ>()
 
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("polar_x_norm", "The x component of the normalized polarization");
-  params.addRequiredCoupledVar("polar_y_norm", "The y component of the normalized polarization");
-  params.addRequiredCoupledVar("polar_z_norm", "The z component of the normalized polarization");
+  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return params;
 }
 
 
 SkyrmionChargeDensityZ::SkyrmionChargeDensityZ(const InputParameters & parameters) :
   AuxKernel(parameters),
-   _polar_x_norm(coupledValue("polar_x_norm")),
-   _polar_y_norm(coupledValue("polar_y_norm")),
-   _polar_z_norm(coupledValue("polar_z_norm")),
-   _polar_x_norm_grad(coupledGradient("polar_x_norm")),
-   _polar_y_norm_grad(coupledGradient("polar_y_norm")),
-   _polar_z_norm_grad(coupledGradient("polar_z_norm"))
+   _polar_x(coupledValue("polar_x")),
+   _polar_y(coupledValue("polar_y")),
+   _polar_z(coupledValue("polar_z")),
+   _polar_x_grad(coupledGradient("polar_x")),
+   _polar_y_grad(coupledGradient("polar_y")),
+   _polar_z_grad(coupledGradient("polar_z"))
 {
 }
 
@@ -48,5 +48,6 @@ Real
 SkyrmionChargeDensityZ::computeValue()
 
 {
-    return std::abs((1.0 / (4.0 * 3.14159)) * (_polar_z_norm[_qp] * (-_polar_x_norm_grad[_qp](1) * _polar_y_norm_grad[_qp](0) + _polar_x_norm_grad[_qp](0) * _polar_y_norm_grad[_qp](1)) + _polar_y_norm[_qp] * (_polar_x_norm_grad[_qp](1) * _polar_z_norm_grad[_qp](0) - _polar_x_norm_grad[_qp](0) * _polar_z_norm_grad[_qp](1)) + _polar_x_norm[_qp] *(-_polar_y_norm_grad[_qp](1) * _polar_z_norm_grad[_qp](0) + _polar_y_norm_grad[_qp](0) * _polar_z_norm_grad[_qp](1))));
+    return std::abs((1.0 / (4.0 * 3.14159)) * ((-_polar_y_grad[_qp](1) * _polar_z_grad[_qp](0) * _polar_x[_qp] + _polar_y_grad[_qp](0) * _polar_z_grad[_qp](1) * _polar_x[_qp] + _polar_x_grad[_qp](1) * _polar_z_grad[_qp](0) * _polar_y[_qp] - _polar_x_grad[_qp](0) * _polar_z_grad[_qp](1) * _polar_y[_qp] - _polar_x_grad[_qp](1) * _polar_y_grad[_qp](0) * _polar_z[_qp] + _polar_x_grad[_qp](0) * _polar_y_grad[_qp](1) * _polar_z[_qp])/(std::pow(_polar_x[_qp],2.0) + std::pow(_polar_y[_qp],2.0) + std::pow(_polar_z[_qp],2.0))))
+;
 }
