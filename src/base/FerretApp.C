@@ -39,13 +39,9 @@
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h" //should rework these to be a "general" gap kernel
-#include "ExFieldAux.h"
-#include "EyFieldAux.h"
-#include "EzFieldAux.h"
-#include "PxFieldAux.h"
-#include "PyFieldAux.h"
-#include "PzFieldAux.h"
+#include "ElecFieldAux.h"
 #include "CurlP.h"
+#include "ZCompCurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
@@ -115,6 +111,7 @@
 #include "ConstantLatticeMismatch.h"
 #include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
+#include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
@@ -134,8 +131,11 @@
 #include "FreeChargeContribution.h"
 #include "HoleChargeContribution.h"
 #include "AcceptorIonContribution.h"
+#include "SkyrmionChargeDensityZ.h"
 #include "SemiconductorChargeCarriersPolyLog.h"
 #include "PolarElectricEStrongAlt.h"
+#include "ConversePiezoelectricStrain.h"
+#include "PiezoelectricStrainCharge.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -153,6 +153,7 @@
 #include "ComputeElectroopticTensor.h"
 #include "ComputeGCoeffTensor.h"
 #include "ComputeDeltaIndicatrixElectro.h"
+#include "ComputePiezoTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -168,6 +169,7 @@
 #include "BulkEnergyPSTO.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
+#include "ExtElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
 #include "CoupledEnergy.h"
 #include "ElectrostrictiveEnergy.h"
@@ -181,6 +183,8 @@
 #include "TotalEnergySkFlow.h"
 #include "TotalWinding.h"
 #include "EnergyRatePostprocessor.h"
+#include "LBOBulkEnergy.h"
+#include "TotalEnergyAll.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -259,15 +263,11 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(TensorPressureAux);
   registerAux(BulkEnergyDensity);
   registerAux(WallEnergyDensity);
-  registerAux(ExFieldAux);
-  registerAux(EyFieldAux);
-  registerAux(EzFieldAux);
-  registerAux(PxFieldAux);
-  registerAux(PyFieldAux);
-  registerAux(PzFieldAux);
+  registerAux(ElecFieldAux);
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
   registerAux(CurlP);
+  registerAux(ZCompCurlP);
   registerAux(CurlPMag);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
@@ -291,6 +291,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexWithPolar);
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
+  registerAux(SkyrmionChargeDensityZ);
   registerAux(SemiconductingChargeCarriersPolyLogAux);
   registerAux(ChangeInRefractiveIndexElectro);
 
@@ -313,6 +314,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(KappaTDiffusion);
   registerKernel(ConstantLatticeMismatch);
   registerKernel(AnisotropyEnergy);
+  registerKernel(LBOBulkEnergyDeriv);
   registerKernel(DepolEnergy);
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
@@ -343,6 +345,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(AcceptorIonContribution);
   registerKernel(SemiconductorChargeCarriersPolyLog);
   registerKernel(PolarElectricEStrongAlt);
+  registerKernel(ConversePiezoelectricStrain);
+  registerKernel(PiezoelectricStrainCharge);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -375,6 +379,9 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergySkFlow);
   registerPostprocessor(TotalWinding);
   registerPostprocessor(EnergyRatePostprocessor);
+  registerPostprocessor(LBOBulkEnergy);
+  registerPostprocessor(TotalEnergyAll);
+  registerPostprocessor(ExtElectrostaticEnergy);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
@@ -390,6 +397,7 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputeElectroopticTensor);
   registerMaterial(ComputeGCoeffTensor);
   registerMaterial(ComputeDeltaIndicatrixElectro);
+  registerMaterial(ComputePiezoTensor);
 
   ///InitialConditions
   registerInitialCondition(PerturbedIC);

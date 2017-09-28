@@ -30,10 +30,10 @@ InputParameters validParams<NormalizedWallEnergyDensity>()
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("G110","Domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G11/G110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G12/G110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G44/G110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G44P/G110","Ratio of domain wall penalty coefficients");
+  params.addRequiredParam<Real>("G11_G110","Ratio of domain wall penalty coefficients");
+  params.addRequiredParam<Real>("G12_G110","Ratio of domain wall penalty coefficients");
+  params.addRequiredParam<Real>("G44_G110","Ratio of domain wall penalty coefficients");
+  params.addRequiredParam<Real>("G44P_G110","Ratio of domain wall penalty coefficients");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
@@ -50,10 +50,10 @@ NormalizedWallEnergyDensity::NormalizedWallEnergyDensity(const InputParameters &
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
   _G110(getParam<Real>("G110")),
-  _G11(getParam<Real>("G11/G110")*_G110),
-  _G12(getParam<Real>("G12/G110")*_G110),
-  _G44(getParam<Real>("G44/G110")*_G110),
-  _G44P(getParam<Real>("G44P/G110")*_G110),
+  _G11(getParam<Real>("G11_G110")*_G110),
+  _G12(getParam<Real>("G12_G110")*_G110),
+  _G44(getParam<Real>("G44_G110")*_G110),
+  _G44P(getParam<Real>("G44P_G110")*_G110),
   _len_scale(getParam<Real>("len_scale"))
 {}
 

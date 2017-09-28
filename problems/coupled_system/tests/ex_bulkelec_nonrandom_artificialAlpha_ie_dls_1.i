@@ -65,10 +65,10 @@
    alpha123=0
    #G110=1.73e4
    G110=0
-   G11/G110=0.6
-   G12/G110=0.0
-   G44/G110=0.3
-   G44P/G110=0.3
+   G11_G110=0.6
+   G12_G110=0.0
+   G44_G110=0.3
+   G44P_G110=0.3
    permittivity=8.85e-12
    polar_x=polar_x
    polar_y=polar_y
