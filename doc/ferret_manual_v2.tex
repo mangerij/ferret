@@ -148,19 +148,19 @@ The tension, $\tau^0$ is the intrinsic surface tension.
 %
 A surface free energy, $F_\mathrm{surface}$ can be introduced as,
 %
-\begin{equation}\tag{3.5}
+\begin{equation}\tag{3}
 F_\mathrm{surface} = \frac{1}{2} \int\limits_{\delta \Omega} d^2 \textbf{r} \,\,\, C_{\alpha \beta \delta \gamma }^s \varepsilon_{\alpha \beta}^s \varepsilon_{\delta \gamma}^s 
 \end{equation}
 %
 with
 %
-\begin{equation}\tag{3.6}
+\begin{equation}\tag{4}
  \varepsilon_{\alpha \beta}^s = \frac{1}{2} \left(\frac{\partial u_\alpha}{\partial x_\beta} + \frac{\partial u_\beta}{\partial x_\alpha} \right).
 \end{equation}
 %
 The purely elastic free energy balance of the volume $\Omega$ bounded by $\delta \Omega$ with body forces $\textbf{b}$ and traction $\tau$ upon the surface, under an infinitesimal displacement field $\textbf{u}$, is
 %
-\begin{align}\tag{3.7}
+\begin{align}\tag{5}
  \frac{1}{2} \int\limits_\Omega C_{ijkl} \varepsilon_{ij} \varepsilon_{kl} \,\,d^3 \textbf{r} + \frac{1}{2} \int\limits_{\delta \Omega} \,\, C_{\alpha \beta \delta \gamma}^s \varepsilon_{\alpha \beta}^s \varepsilon_{\delta \gamma}^s\,\, d^2 \textbf{r} = \int\limits_\Omega \textbf{b} \cdot \textbf{u} \,\,\,d^3 \textbf{r} + \int\limits_{\partial \Omega} \tau \cdot \mathbf{\hat{n}} \,\,d^2 \textbf{r} - \int\limits_{\partial \Omega} \tau^0_{\alpha \beta} \varepsilon_{\alpha \beta}^s \,\,d^2 \textbf{r} \\ \nonumber
 \end{align}
 %
@@ -168,7 +168,7 @@ for some surface normal $\mathbf{\hat{n}}$.
 %
 Enforcing stationary under first-order variations \cite{BowerBook}, gives us three $(k = 1,2,3)$ weak form of the equations suitable for Galerkin finite element analysis, with test function $\psi_h$:
 %
-\begin{align}\tag{3.8}
+\begin{align}\tag{6}
  0 = \int\limits_\Omega C_{ijkl} \frac{\partial u_i}{\partial x_j} \frac{\partial \psi_h}{\partial x_l} d^3 \textbf{r} + \int\limits_{\partial \Omega} C_{ijkl}^s \left(\frac{\partial u_i}{\partial x_j} \frac{\partial \psi_h}{\partial x_k} \right)_s d^2 \textbf{r} - \int\limits_\Omega b_k \psi_h d^3 \textbf{r} - \int\limits_{\partial \Omega} \tau_k \psi_h d^2 \textbf{r} + \int\limits_{\partial \Omega} \left(\tau_{ij}^0 \frac{\partial \psi_h}{\partial x_j} \right)_s d^2 \textbf{r}.
 \end{align}
 %
@@ -176,7 +176,7 @@ The notation $\left( . \right)_s$ denotes the projection of the tensor onto the 
 %
 These quantities are constructed and each quadrature point on the finite element mesh surface by taking their bulk counterparts and using a local projection operator $\mathbf{\hat{\textbf{D}}} = \mathds{1} - \mathbf{\hat{n}}(\textbf{r}) \otimes \mathbf{\hat{n}} (\textbf{r})$ \cite{Yvonnet2012} such that 
 %
-\begin{align}\tag{3.9}
+\begin{align}\tag{7}
 \sigma^s = \mathbf{\hat{\textbf{D}}} \sigma \mathbf{\hat{\textbf{D}}} \,\,\,\mathrm{and}\,\,\, \varepsilon^s = \mathbf{\hat{\textbf{D}}} \varepsilon \mathbf{\hat{\textbf{D}}}.
 \end{align}
 %
@@ -231,14 +231,13 @@ This equation is known as the time-dependent Landau-Ginzburg-Devonshire equation
 %
 The value of $\Gamma$ that has to be adopted for generic ferroelectric materials is still a subject of an extensive debate. Some researchers have suggested that $\Gamma$ can depend on the strength of the applied electric field during hysteretic switching \cite{Meng2015}.
 %
-
-$$f = f_\mathrm{LD} \left[\textbf{P}, \varepsilon_{ij}, ... \right] + f_\mathrm{grad}\left[\partial_i \textbf{P} \right]$$
-
-Reasonable assumptions about $\Gamma$ for certain poling scenarios have produced good agreement with experimental results, such as the coercive field magnitudes and relaxation times of the polar field \cite{Fridkin2000, Hlinka2007}.
+Reasonable assumptions about $\Gamma$ for certain electric poling scenarios have produced good agreement with experimental results, such as the coercive field magnitudes and relaxation times of the polar field \cite{Fridkin2000, Hlinka2007}.
+%
+For most problems, the material coefficient is set to unity and as such, the system governing equations are solved in scaled time until a local minima has been found.
 %
 The total energy, $F$, can be written as an integral over a linear combination of energy densities,
 %
-$$F = \int\limits_\Omega d^3 \textbf{r} \Bigg[f_\mathrm{bulk} + f_\mathrm{elastic} + f_\mathrm{elec} + f_\mathrm{grad} \Bigg].$$
+$$F = \int\limits_\Omega d^3 \textbf{x} \Bigg[f_\mathrm{bulk} + \widetilde{f}_\mathrm{elastic} + f_\mathrm{elec} + f_\mathrm{grad} \Bigg].$$
 %
 In standard fashion, the bulk free energy density, $f_\mathrm{bulk}$ is expanded to sixth order,
 %
@@ -256,6 +255,13 @@ that arises due to the polarization for some electrostrictive coefficient tensor
 %
 Note that this term can be decomposed into two terms (one of which explicitly contains the polarization field) in which we write $\widetilde{f}_\mathrm{elastic} = f_\mathrm{elastic}( \varepsilon_{ij}) + f_\mathrm{coupled}(\textbf{P}, \varepsilon_{ij})$.
 %
+The elastic displacement vectors (and their corresponding strain fields) should obey mechanical equilibrium (stress-divergence equation), namely,
+%
+\begin{align}\nonumber
+\frac{\partial}{\partial x_i} \left[C_{ijkl} \left(\varepsilon_{ij} -  \varepsilon_{ij}^0 \right)\right] = 0
+\end{align}
+
+%
 The electrostatic energy density term is written in the following fashion, 
 %
 \begin{align}\nonumber
@@ -266,7 +272,9 @@ f_\mathrm{electrostatic} &= - \frac{1}{2} E_k D_k\\ \nonumber
 %
 using $E_k = - \partial \Phi_\mathrm{int} / \partial x_k$ and $D_k = \epsilon_b \epsilon_0 E_k + P_k$ with $\Phi_\mathrm{int}$ being the electrostatic potential generated by the Poisson equation\footnote[4]{The factor of $\frac{1}{2}$ in $f_\mathrm{electrostatic}$ being physically significant due to the adiabatic charging of the capacitor.},
 %
-$$\frac{\partial}{\partial x_j} \left( \epsilon_b \epsilon_0 \frac{\partial \Phi_\mathrm{int}}{\partial x_j}\right) = - \frac{\partial P_k}{\partial x_k}.$$
+$$\frac{\partial}{\partial x_j} \left( \epsilon_b \epsilon_0 \frac{\partial \Phi_\mathrm{int}}{\partial x_j}\right) = \frac{\partial P_k}{\partial x_k},$$
+%
+where $\rho_b = - \frac{\partial P_k}{\partial x_k}$ is the bound polarization charge density.
 %
 The parameter $\epsilon_b$ is the dielectric constant of the ferroelectric medium due to the core-electrons (sometimes noted as $\epsilon^\infty$ in DFT routines).
 %
@@ -276,7 +284,7 @@ Externally to the ferroelectric medium,
 %
 $$\frac{\partial}{\partial x_j} \left( \epsilon_{b,e} \epsilon_0 \frac{\partial \Phi_\mathrm{int}}{\partial x_j}\right) = 0$$
 %
-where the subscript $b,e$ denotes the (optical) dielectric constant of the external medium in units of $\epsilon_0$.
+where the subscript $b,e$ denotes the dielectric constant of the external medium in units of $\epsilon_0$.
 %
 The energy density due to local gradients of the polarization, usually called the Ginzburg functional is, 
 %
@@ -319,6 +327,8 @@ with sign and factor of 2 convention from Ref. \cite{Li2001, Hlinka2006}. By for
 \end{align}
 %
 where $\textbf{u} = \langle u_x, u_y, u_z \rangle$ is the elastic displacement vector.
+%
+
 %
 
 %
@@ -420,8 +430,7 @@ The ``natural'' boundary condition, applied to region $S_2$ where the value of $
 %
 In that case, Eq.~(\ref{eq:poisson_problem_5}) would be unchanged.
 %
-For the boundary value problem, there is another type of boundary condition that could be specified (Dirichlet)
-that will be discussed below.
+For the boundary value problem, there is another type of boundary condition that could be specified (Dirichlet) which involves constraining the value of the variables at the nodes - removing the degrees of freedom of the problem. 
 %
 
 %
@@ -654,6 +663,11 @@ E.~A.~Eliseev, S.~V.~Kalinin, and A.~N.~Morozovska,
 %\newblock {Finite size effects in ferroelectric-semiconductor thin films under open-circuit electric boundary conditions}.
 \newblock \emph{J.~Appl.~Phys.} \textbf{117}, 034102 (2015).
 
+\bibitem{Hu1998}
+H.~Hu, and L.-Q. Chen,
+%\newblock {}.
+\newblock \emph{J. Am. Ceram. Soc.} \textbf{81} [3] 492-500 (1998).
+
 \bibitem{Li2001}
 Y.~L.~Li, S.~Y.~Hu, Z.~K.~Liu, and L.-Q.~Chen,
 %\newblock {Phase-field model of domain structures in ferroelectric thin films}.
@@ -668,6 +682,33 @@ Q.~Meng, M.-G.~Han, J.~Tao, G.~Xu, D.~O.~Welch, and Y.~Zhu
 W.~Cao,
 %\newblock {Constructing Landau-Ginzburg-Devonshire Type Models for Ferroelectric Systems based on Symmetry}.
 \newblock \emph{Ferroelectrics.} 375:28-39 (2008).
+
+\bibitem{Chan1977}
+S.-K. Chan,
+%\newblock {}.
+\newblock \emph{J. Chem. Phys.} \textbf{67}, 5755-5762, (1977)
+
+\bibitem{LandauBook}
+L. D.~Landau, and I. M.~Khalatnikov
+%\newblock {On the  theory  of  superconductivity}.
+\newblock \emph{Collected Papers  of L.D.  Landau, (ed.  D. Ter  Haar), Pergamon,  Oxford} (1965)
+
+\bibitem{Allen1979}
+S.-K. Allen, and J. W. Cahn,
+%\newblock {}.
+\newblock \emph{Ada. Metall.} \textbf{27}, 1085-1095, (1979)
+
+
+\bibitem{Fridkin2000}
+V. M.~Fridkin, and S. Ducharme,
+%\newblock {}.
+\newblock \emph{Phys. Solid State} \textbf{43} 7, 1320-1324 (2001).
+
+\bibitem{Hlinka2007}
+J. ~Hlinka,
+%\newblock {Mobility of ferroelastic domain walls in barium titanate}.
+\newblock \emph{Ferroelectrics} \textbf{349} 499-544 (2007).
+
 
 \bibitem{Hlinka2006}
 J. ~Hlinka, and P. ~Marton
@@ -684,10 +725,10 @@ W.-J.~Yin, S.~Chen, J.-H, Yang, X.-G.~Gong, Y.~Yan, and S.-H.~Wei
 %\newblock {Effective band gap narrowing of anatase TiO2 by strain along a soft crystal direction}.
 \newblock \emph{Appl. Phys. Lett.} \textbf{96} 221901 (2010).
 
-\bibitem{Wagner2013}
-M.~R.~Wagner, G.~Callsen, J.~S.~Reparaz, R.~Kirste, A.~Hoffmann, A.~V.~Rodina, A.~Schleife, F.~Bechstedt, and M.~R.~Phillips
-%\newblock {Effects of strain on the valence band structure and exciton-polariton energies in ZnO}.
-\newblock \emph{Phys. Rev. B.} \textbf{88} 235210 (2013).
+%\bibitem{Wagner2013}
+%M.~R.~Wagner, G.~Callsen, J.~S.~Reparaz, R.~Kirste, A.~Hoffmann, A.~V.~Rodina, A.~Schleife, F.~Bechstedt, and M.~R.~Phillips
+%%\newblock {Effects of strain on the valence band structure and exciton-polariton energies in ZnO}.
+%\newblock \emph{Phys. Rev. B.} \textbf{88} 235210 (2013).
 
 \bibitem{Wang2003}
 B.~Wang, R.~Xia, H.~Fan, C.~H.~Woo,
