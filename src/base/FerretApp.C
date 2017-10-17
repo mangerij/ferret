@@ -75,8 +75,6 @@
 #include "ScreenedBC.h"
 #include "StressFreeBC.h"
 #include "StressBC.h"
-//#include "ExtrapBC.h"
-//#include "MatchedGradValueBC.h"
 
 //Initial Conditions
 #include "PerturbedIC.h"
@@ -103,7 +101,6 @@
 #include "PolarElectricEStrong.h"
 #include "FluctuationKernel.h"
 #include "FerroelectricCouplingP.h"
-//#include "FerroelectricCouplingQ.h"
 #include "FerroelectricCouplingX.h"
 #include "StressDivergenceTensorsScaled.h"
 #include "KarmanenkoDriver.h"
@@ -116,13 +113,6 @@
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
 #include "ThomasFermiTerm.h"
-#include "EulerSkyrmionPTerm.h"
-#include "EulerSkyrmionPCubeTerm.h"
-#include "EulerSkyrmionThetaTerm.h"
-#include "EulerSkyrmionThetaKappaTerm.h"
-#include "EulerSkyrmionThetaDepolTerm.h"
-#include "EulerSkyrmionPDepolTerm.h"
-#include "EulerSkyrmionPTempTerm.h"
 #include "RenormalizedFreeEnergy.h"
 #include "AnisotropicElectrostatics.h"
 #include "ConstField.h"
@@ -255,8 +245,6 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(ScreenedBC);
   registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
-  //registerBoundaryCondition(ExtrapBC);
- // registerBoundaryCondition(MatchedGradValueBC);
 
   ///AuxKernels:
   registerAux(PolarizationVortexAux);
@@ -319,17 +307,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
   registerKernel(AnisotropicElectrostatics);
-
-  registerKernel(EulerSkyrmionPTerm);
-  registerKernel(EulerSkyrmionPCubeTerm);
-  registerKernel(EulerSkyrmionThetaTerm);
-  registerKernel(EulerSkyrmionThetaKappaTerm);
-  registerKernel(EulerSkyrmionThetaDepolTerm);
-  registerKernel(EulerSkyrmionPDepolTerm);
-  registerKernel(EulerSkyrmionPTempTerm);
   registerKernel(RenormalizedFreeEnergy);
-
-  /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
