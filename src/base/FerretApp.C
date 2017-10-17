@@ -31,9 +31,6 @@
 #include "PhaseFieldApp.h"
 #include "MiscApp.h"
 
-//Actions
-#include "TensorMechanicsActionScaled.h"
-
 //AuxKernels
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
@@ -50,7 +47,6 @@
 #include "ChernSimonsDensityMag.h"
 #include "WindingNumberDensity.h"
 #include "BandGapAuxZnOwRot.h"
-#include "AngleAux.h"
 #include "MieElecFieldReals.h"
 #include "MieElecFieldImag.h"
 #include "Intensity.h"
@@ -72,15 +68,10 @@
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
-#include "ScreenedBC.h"
-#include "StressFreeBC.h"
 #include "StressBC.h"
 
 //Initial Conditions
-#include "PerturbedIC.h"
-#include "SinIC.h"
 #include "FluctuationsIC.h"
-#include "AdhocConstIC.h"
 
 //Kernels
 #include "ModifiedStressDivergenceTensors.h"
@@ -105,7 +96,6 @@
 #include "StressDivergenceTensorsScaled.h"
 #include "KarmanenkoDriver.h"
 #include "KappaTDiffusion.h"
-#include "ConstantLatticeMismatch.h"
 #include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
 #include "LBOBulkEnergyDeriv.h"
@@ -115,7 +105,6 @@
 #include "ThomasFermiTerm.h"
 #include "RenormalizedFreeEnergy.h"
 #include "AnisotropicElectrostatics.h"
-#include "ConstField.h"
 #include "NerstPlanckDrivingTerm.h"
 #include "NerstPlanckDiffusive.h"
 #include "FreeChargeContribution.h"
@@ -207,7 +196,6 @@ FerretApp::FerretApp(const InputParameters & parameters) :
   MiscApp::associateSyntax(_syntax, _action_factory);
 
   FerretApp::registerObjects(_factory);
-  FerretApp::associateSyntax(_syntax, _action_factory);
 }
 
 FerretApp::~FerretApp()
@@ -242,8 +230,6 @@ FerretApp::registerObjects(Factory & factory)
   ///BoundaryConditions
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
-  registerBoundaryCondition(ScreenedBC);
-  registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
 
   ///AuxKernels:
@@ -265,7 +251,6 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(MieElecFieldReals);
   registerAux(MieElecFieldImag);
   registerAux(Intensity);
-  registerAux(AngleAux);
   registerAux(OldVar);
   registerAux(DielectricTensor);
   registerAux(NormalizedWallEnergyDensity);
@@ -300,7 +285,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FluctuationKernel);
   registerKernel(KarmanenkoDriver);
   registerKernel(KappaTDiffusion);
-  registerKernel(ConstantLatticeMismatch);
   registerKernel(AnisotropyEnergy);
   registerKernel(LBOBulkEnergyDeriv);
   registerKernel(DepolEnergy);
@@ -315,7 +299,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(Electrostatics);
   registerKernel(CoeffParamDiffusion);
   registerKernel(SemiconductorChargeCarriers);
-  registerKernel(ConstField);
   registerKernel(NerstPlanckDrivingTerm);
   registerKernel(NerstPlanckDiffusive);
   registerKernel(FreeChargeContribution);
@@ -378,26 +361,8 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputePiezoTensor);
 
   ///InitialConditions
-  registerInitialCondition(PerturbedIC);
-  registerInitialCondition(SinIC);
   registerInitialCondition(FluctuationsIC);
-  registerInitialCondition(AdhocConstIC);
 
 #undef registerObject
 #define registerObject(name) factory.regLegacy<name>(stringifyName(name))
-}
-
-void
-FerretApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
-{
-
-#undef registerAction
-#define registerAction(tplt, action) action_factory.reg<tplt>(stringifyName(tplt), action)
-
-  syntax.registerActionSyntax("TensorMechanicsActionScaled", "Kernels/TensorMechanicsScaled");
-  registerAction(TensorMechanicsActionScaled, "add_kernel"); ///this is deprecated in our code
-
-#undef registerAction
-#define registerAction(tplt, action) action_factory.regLegacy<tplt>(stringifyName(tplt), action)
-
 }
