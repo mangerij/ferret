@@ -56,14 +56,12 @@
 #include "PolarMag.h"
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
-#include "SemiconductingChargeCarriersAux.h"
 #include "Birefringence.h"
 #include "RefractiveIndex.h"
 #include "ChangeInRefractiveIndex.h"
 #include "ChangeInRefractiveIndexWithPolar.h"
 #include "ChangeInRefractiveIndexWithGCoeffPolar.h"
 #include "PkNorm.h"
-#include "SemiconductingChargeCarriersPolyLogAux.h"
 #include "ChangeInRefractiveIndexElectro.h"
 
 //Boundary Conditions
@@ -74,7 +72,6 @@
 #include "FluctuationsIC.h"
 
 //Kernels
-#include "ModifiedStressDivergenceTensors.h"
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
@@ -93,25 +90,12 @@
 #include "FluctuationKernel.h"
 #include "FerroelectricCouplingP.h"
 #include "FerroelectricCouplingX.h"
-#include "StressDivergenceTensorsScaled.h"
 #include "KarmanenkoDriver.h"
-#include "KappaTDiffusion.h"
-#include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
 #include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
-#include "SemiconductorChargeCarriers.h"
-#include "ThomasFermiPotential.h"
-#include "ThomasFermiTerm.h"
 #include "RenormalizedFreeEnergy.h"
-#include "AnisotropicElectrostatics.h"
-#include "NerstPlanckDrivingTerm.h"
-#include "NerstPlanckDiffusive.h"
-#include "FreeChargeContribution.h"
-#include "HoleChargeContribution.h"
-#include "AcceptorIonContribution.h"
 #include "SkyrmionChargeDensityZ.h"
-#include "SemiconductorChargeCarriersPolyLog.h"
 #include "PolarElectricEStrongAlt.h"
 #include "ConversePiezoelectricStrain.h"
 #include "PiezoelectricStrainCharge.h"
@@ -153,7 +137,6 @@
 #include "CoupledEnergy.h"
 #include "ElectrostrictiveEnergy.h"
 #include "CoupledEnergyCheckShear.h"
-#include "GrainSize.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
 #include "TotalEnergyG.h"
@@ -257,7 +240,6 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PolarMag);
   registerAux(DivP);
   registerAux(PiezoelectricApprox);
-  registerAux(SemiconductingChargeCarriersAux);
   registerAux(Birefringence);
   registerAux(ChangeInRefractiveIndex);
   registerAux(RefractiveIndex);
@@ -265,11 +247,9 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
   registerAux(SkyrmionChargeDensityZ);
-  registerAux(SemiconductingChargeCarriersPolyLogAux);
   registerAux(ChangeInRefractiveIndexElectro);
 
   ///Kernels
-  registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthAlt);
   registerKernel(BulkEnergyDerivativePSTO);
@@ -284,27 +264,14 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FerroelectricCouplingP);
   registerKernel(FluctuationKernel);
   registerKernel(KarmanenkoDriver);
-  registerKernel(KappaTDiffusion);
   registerKernel(AnisotropyEnergy);
   registerKernel(LBOBulkEnergyDeriv);
   registerKernel(DepolEnergy);
-  registerKernel(ThomasFermiPotential);
-  registerKernel(ThomasFermiTerm);
-  registerKernel(AnisotropicElectrostatics);
   registerKernel(RenormalizedFreeEnergy);
   registerKernel(FerroelectricCouplingX);
-  registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
-  registerKernel(CoeffParamDiffusion);
-  registerKernel(SemiconductorChargeCarriers);
-  registerKernel(NerstPlanckDrivingTerm);
-  registerKernel(NerstPlanckDiffusive);
-  registerKernel(FreeChargeContribution);
-  registerKernel(HoleChargeContribution);
-  registerKernel(AcceptorIonContribution);
-  registerKernel(SemiconductorChargeCarriersPolyLog);
   registerKernel(PolarElectricEStrongAlt);
   registerKernel(ConversePiezoelectricStrain);
   registerKernel(PiezoelectricStrainCharge);
@@ -331,7 +298,6 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ElectrostrictiveEnergy);
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(CoupledEnergyCheckShear);
-  registerPostprocessor(GrainSize);
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
   registerPostprocessor(TotalEnergyG);
