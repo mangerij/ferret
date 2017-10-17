@@ -113,13 +113,6 @@
 #include "SemiconductorChargeCarriers.h"
 #include "ThomasFermiPotential.h"
 #include "ThomasFermiTerm.h"
-#include "EulerSkyrmionPTerm.h"
-#include "EulerSkyrmionPCubeTerm.h"
-#include "EulerSkyrmionThetaTerm.h"
-#include "EulerSkyrmionThetaKappaTerm.h"
-#include "EulerSkyrmionThetaDepolTerm.h"
-#include "EulerSkyrmionPDepolTerm.h"
-#include "EulerSkyrmionPTempTerm.h"
 #include "RenormalizedFreeEnergy.h"
 #include "AnisotropicElectrostatics.h"
 #include "ConstField.h"
@@ -314,13 +307,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ThomasFermiPotential);
   registerKernel(ThomasFermiTerm);
   registerKernel(AnisotropicElectrostatics);
-  registerKernel(EulerSkyrmionPTerm);
-  registerKernel(EulerSkyrmionPCubeTerm);
-  registerKernel(EulerSkyrmionThetaTerm);
-  registerKernel(EulerSkyrmionThetaKappaTerm);
-  registerKernel(EulerSkyrmionThetaDepolTerm);
-  registerKernel(EulerSkyrmionPDepolTerm);
-  registerKernel(EulerSkyrmionPTempTerm);
   registerKernel(RenormalizedFreeEnergy);
   registerKernel(FerroelectricCouplingX);
   registerKernel(StressDivergenceTensorsScaled);
