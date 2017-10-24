@@ -71,25 +71,25 @@ Real
 PiezoelectricStrainCharge::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real sum = 0.0;
-  if(jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
+  if (jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
   {
     if (jvar == _disp_x_var)
       {
-        for(unsigned int j = 0; j < 3; ++j)
+        for (unsigned int j = 0; j < 3; ++j)
           {
             sum += _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,0,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,0,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,0,j) * _grad_phi[_j][_qp](j));
           }
       }
     else if (jvar == _disp_y_var)
       {
-        for(unsigned int j = 0; j < 3; ++j)
+        for (unsigned int j = 0; j < 3; ++j)
           {
             sum += _grad_test[_i][_qp](0) * ( _piezostrictive_tensor[_qp](0,1,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](1) * ( _piezostrictive_tensor[_qp](1,1,j) * _grad_phi[_j][_qp](j) ) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,1,j) * _grad_phi[_j][_qp](j));
           }
       }
     else if (jvar == _disp_z_var)
       {
-        for(unsigned int j = 0; j < 3; ++j)
+        for (unsigned int j = 0; j < 3; ++j)
           {
             sum += _grad_test[_i][_qp](0) * (_piezostrictive_tensor[_qp](0,2,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](1) * (_piezostrictive_tensor[_qp](1,2,j) * _grad_phi[_j][_qp](j)) + _grad_test[_i][_qp](2) * (_piezostrictive_tensor[_qp](2,2,j) * _grad_phi[_j][_qp](j));
           }
@@ -101,4 +101,3 @@ PiezoelectricStrainCharge::computeQpOffDiagJacobian(unsigned int jvar)
     return 0.0;
   }
 }
-

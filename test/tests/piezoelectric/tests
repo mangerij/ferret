@@ -1,0 +1,8 @@
+[Tests]
+  [./piezo_test]
+    type = 'Exodiff'
+    input = 'piezo_test.i
+    exodiff = 'out_steady_piezo.e'
+    abs_zero = 2e-2
+  [../]
+[]
