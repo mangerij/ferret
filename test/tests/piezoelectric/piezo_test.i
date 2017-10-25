@@ -5,6 +5,7 @@
 
 [GlobalParams]
   potential_int = potential_int
+
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
@@ -33,7 +34,6 @@
 []
 
 [AuxVariables]
-
     [./stress_xx]
       order = CONSTANT
       family = MONOMIAL
@@ -117,14 +117,12 @@
 
 
 [AuxKernels]
-
   [./stress_xx]
     type = RankTwoAux
     rank_two_tensor = stress
     variable = stress_xx
     index_i = 0
     index_j = 0
-    use_displaced_mesh = false
   [../]
   [./stress_yy]
     type = RankTwoAux
@@ -132,7 +130,6 @@
     variable = stress_yy
     index_i = 1
     index_j = 1
-    use_displaced_mesh = false
   [../]
   [./stress_zz]
     type = RankTwoAux
@@ -140,7 +137,6 @@
     variable = stress_zz
     index_i = 2
     index_j = 2
-    use_displaced_mesh = false
   [../]
   [./stress_xy]
     type = RankTwoAux
@@ -148,7 +144,6 @@
     variable = stress_xy
     index_i = 0
     index_j = 1
-    use_displaced_mesh = false
   [../]
   [./stress_yz]
     type = RankTwoAux
@@ -156,7 +151,6 @@
     variable = stress_yz
     index_i = 1
     index_j = 2
-    use_displaced_mesh = false
   [../]
   [./stress_zx]
     type = RankTwoAux
@@ -164,7 +158,6 @@
     variable = stress_zx
     index_i = 2
     index_j = 0
-    use_displaced_mesh = false
   [../]
   [./strain_xx]
     type = RankTwoAux
@@ -172,7 +165,6 @@
     variable = strain_xx
     index_i = 0
     index_j = 0
-    use_displaced_mesh = false
   [../]
   [./strain_yy]
     type = RankTwoAux
@@ -180,7 +172,6 @@
     variable = strain_yy
     index_i = 1
     index_j = 1
-    use_displaced_mesh = false
   [../]
   [./strain_zz]
     type = RankTwoAux
@@ -188,7 +179,6 @@
     variable = strain_zz
     index_i = 2
     index_j = 2
-    use_displaced_mesh = false
   [../]
   [./strain_xy]
     type = RankTwoAux
@@ -196,7 +186,6 @@
     variable = strain_xy
     index_i = 0
     index_j = 1
-    use_displaced_mesh = false
   [../]
   [./strain_yz]
     type = RankTwoAux
@@ -204,7 +193,6 @@
     variable = strain_yz
     index_i = 1
     index_j = 2
-    use_displaced_mesh = false
   [../]
   [./strain_zx]
     type = RankTwoAux
@@ -212,7 +200,6 @@
     variable = strain_zx
     index_i = 2
     index_j = 0
-    use_displaced_mesh = false
   [../]
 
 []
@@ -245,31 +232,55 @@
   [./front_pot]
     type = DirichletBC
     variable = potential_int
-    boundary = 3
-    value = 10.0
+    boundary = 2
+    value = 5.0.0
   [../]
   [./back_pot]
     type =DirichletBC
     variable = potential_int
-    boundary = 1
+    boundary = 5
     value = 0.0
   [../]
 
+  [./top_x]
+   type = DirichletBC
+   variable = disp_x
+   value = 0.0
+   boundary = '3'
+  [../]
   [./top_y]
    type = DirichletBC
-   variable = 'disp_y disp_x'
-   value = 0.00
+   variable = disp_y
+   value = 0.0
+   boundary = '3'
+  [../]
+  [./top_z]
+   type = DirichletBC
+   variable = disp_z
+   value = 0.0
+   boundary = '3'
+  [../]
+
+  [./bot_x]
+   type = DirichletBC
+   variable = disp_x
+   value = 0.0
+   boundary = '1'
+  [../]
+  [./bot_y]
+   type = DirichletBC
+   variable = disp_y
+   value = 0.0
+   boundary = '1'
+  [../]
+  [./bot_z]
+   type = DirichletBC
+   variable = disp_z
+   value = 0.0
    boundary = '1'
   [../]
 []
 
-[Postprocessors]
-  [./Felastic]
-    type = ElasticEnergy
-    block = '1'
-    execute_on = 'timestep_end'
-  [../]
-  []
 
 [Preconditioning]
   [./smp]
@@ -278,7 +289,6 @@
     petsc_options = '-snes_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_atol -ksp_rtol -pc_type'
     petsc_options_value = '    121                1e-10      1e-6     bjacobi'
-
   [../]
 []
 
@@ -290,12 +300,11 @@
 
 
 [Outputs]
-  print_linear_residuals = false
+  print_linear_residuals = true
   print_perf_log = true
   [./out]
     type = Exodus
     file_base = out_steady_piezo
     elemental_as_nodal = true
-    interval = 1
   [../]
 []
