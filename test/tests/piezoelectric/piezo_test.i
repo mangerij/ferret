@@ -5,6 +5,7 @@
 
 [GlobalParams]
   potential_int = potential_int
+
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
