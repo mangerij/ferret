@@ -27,8 +27,8 @@ InputParameters validParams<RotatedWallEnergyDerivative>()
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
-  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
   params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
   params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");

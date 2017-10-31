@@ -28,8 +28,8 @@ InputParameters validParams<BulkEnergyDerivativeSixthAlt>()
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
-  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha12", "The coefficients of the Landau expansion");

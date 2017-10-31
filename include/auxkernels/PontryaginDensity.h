@@ -1,4 +1,4 @@
-/**
+/* 
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -17,29 +17,36 @@
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
-**/
+*/
 
-#include "FluctuationKernel.h"
-#include<cmath>
+#ifndef PONTYRAGINDENSITY_H
+#define PONTYRAGINDENSITY_H
+
+#include "AuxKernel.h"
+
+//Forward declarations
+class PontryaginDensity;
 
 template<>
-InputParameters validParams<FluctuationKernel>()
-{
-  InputParameters params = validParams<Kernel>();
-  params.addRequiredCoupledVar("deltaPi", "The magnitude of the fluctuation across the ith component");
-  params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
-  return params;
-}
+InputParameters validParams<PontryaginDensity>();
 
-FluctuationKernel::FluctuationKernel(const InputParameters & parameters)
-  :Kernel(parameters),
-   _deltaPi(coupledValue("deltaPi")),
-   _len_scale(getParam<Real>("len_scale"))
+class PontryaginDensity : public AuxKernel
 {
-}
+public:
+  PontryaginDensity(const InputParameters & parameters);
 
-Real
-FluctuationKernel::computeQpResidual()
-{
-  return -_deltaPi[_qp] * _test[_i][_qp];
-}
+  virtual ~PontryaginDensity() {}
+
+protected:
+  virtual Real computeValue();
+
+private:
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
+  const VariableGradient & _polar_x_grad;
+  const VariableGradient & _polar_y_grad;
+  const VariableGradient & _polar_z_grad;
+};
+
+#endif

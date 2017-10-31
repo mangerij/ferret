@@ -19,27 +19,28 @@
 
 **/
 
-#include "FluctuationKernel.h"
-#include<cmath>
-
+#include "InPlaneP.h"
 template<>
-InputParameters validParams<FluctuationKernel>()
+
+InputParameters validParams<InPlaneP>()
+
 {
-  InputParameters params = validParams<Kernel>();
-  params.addRequiredCoupledVar("deltaPi", "The magnitude of the fluctuation across the ith component");
-  params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
+  InputParameters params = validParams<AuxKernel>();
+  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   return params;
 }
 
-FluctuationKernel::FluctuationKernel(const InputParameters & parameters)
-  :Kernel(parameters),
-   _deltaPi(coupledValue("deltaPi")),
-   _len_scale(getParam<Real>("len_scale"))
+InPlaneP::InPlaneP(const InputParameters & parameters) :
+  AuxKernel(parameters),
+   _polar_x(coupledValue("polar_x")),
+   _polar_y(coupledValue("polar_y"))
 {
 }
 
 Real
-FluctuationKernel::computeQpResidual()
+InPlaneP::computeValue()
 {
-  return -_deltaPi[_qp] * _test[_i][_qp];
+    return (_polar_x[_qp]*_polar_x[_qp] + _polar_y[_qp]*_polar_y[_qp]);
+;
 }

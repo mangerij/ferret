@@ -19,23 +19,23 @@
 
 */
 
-#ifndef SKYRMIONCHARGEDENSITYZ_H
-#define SKYRMIONCHARGEDENSITYZ_H
+#ifndef INPLANEP_H
+#define INPLANEP_H
 
 #include "AuxKernel.h"
 
 //Forward declarations
-class SkyrmionChargeDensityZ;
+class InPlaneP;
 
 template<>
-InputParameters validParams<SkyrmionChargeDensityZ>();
+InputParameters validParams<InPlaneP>();
 
-class SkyrmionChargeDensityZ : public AuxKernel
+class InPlaneP : public AuxKernel
 {
 public:
-  SkyrmionChargeDensityZ(const InputParameters & parameters);
+  InPlaneP(const InputParameters & parameters);
 
-  virtual ~SkyrmionChargeDensityZ() {}
+  virtual ~InPlaneP() {}
 
 protected:
   virtual Real computeValue();
@@ -43,10 +43,6 @@ protected:
 private:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
-  const VariableGradient & _polar_x_grad;
-  const VariableGradient & _polar_y_grad;
-  const VariableGradient & _polar_z_grad;
 };
 
 #endif
