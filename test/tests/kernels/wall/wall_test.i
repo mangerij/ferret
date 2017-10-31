@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 10
-  ny = 10
-  nz = 10
-  xmin = -5
-  xmax = 5
-  ymin = -5
-  ymax = 5
-  zmin = -5
-  zmax = 5
+  nx = 9
+  ny = 9
+  nz = 9
+  xmin = -4
+  xmax = 4
+  ymin = -4
+  ymax = 4
+  zmin = -4
+  zmax = 4
   elem_type = HEX8
 []
 
@@ -21,12 +21,15 @@
   alpha12 = 0.75
   alpha112 = 0.61
   alpha123 = -3.67
+
   G110 = 0.15
   G11_G110 = 0.6
   G12_G110 = 0
   G44_G110 = 0.3
   G44P_G110 = 0.3
+
   permittivity = 0.5843763
+
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -41,8 +44,10 @@
     family = LAGRANGE
     block = '0'
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.05
+      type = RandomIC
+      min = -0.01e-6
+      max = 0.01e-6
+      seed = 5
     [../]
   [../]
   [./polar_y]
@@ -50,8 +55,10 @@
     family = LAGRANGE
     block = '0'
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.05
+      type = RandomIC
+      min = -0.01e-6
+      max = 0.01e-6
+      seed = 5
     [../]
   [../]
   [./polar_z]
@@ -59,17 +66,15 @@
     family = LAGRANGE
     block = '0'
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.05
+      type = RandomIC
+      min = -0.01e-6
+      max = 0.01e-6
+      seed = 5
     [../]
   [../]
   [./potential_int]
     order = FIRST
     family = LAGRANGE
-    [./InitialCondition]
-      type = ConstantIC
-      value = 0.0005
-    [../]
   [../]
 []
 
@@ -172,17 +177,14 @@
   [./bulk_energy]
    type = BulkEnergy
    execute_on = 'initial timestep_end'
-   block = '0'
   [../]
   [./wall_energy]
    type = WallEnergy
    execute_on = 'initial timestep_end'
-   block = '0'
   [../]
   [./electrostatic_energy]
    type = ElectrostaticEnergy
    execute_on = 'initial timestep_end'
-   block = '0'
   [../]
 []
 
@@ -190,37 +192,25 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason '
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type    -pc_factor_zeropivot'
-    petsc_options_value = '    121            1e-8      1e-8    gamg           1e-50     '
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '    121               1e-10       1e-8       1e-6     bjacobi'
   [../]
 []
 
 [Executioner]
   type = Transient
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 0.35
-    optimal_iterations = 4
-    growth_factor = 1.4
-    linear_iteration_ratio = 100
-    cutback_factor =  0.55
-    num_steps = 100
-  [../]
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
-  dtmax = 0.25
-  num_steps = 5
+  dtmax = 0.5
+  num_steps = 8
 []
 
 [Outputs]
-  print_linear_residuals = true
-  print_perf_log = true
+  print_linear_residuals = false
+  print_perf_log = false
   [./out]
     type = Exodus
     file_base = out_wall_test
-    output_initial = true
-    elemental_as_nodal = true
   [../]
 []
