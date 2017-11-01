@@ -95,7 +95,8 @@
 #include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
 #include "RenormalizedFreeEnergy.h"
-#include "SkyrmionChargeDensityZ.h"
+#include "PontryaginDensity.h"
+#include "InPlaneP.h"
 #include "PolarElectricEStrongAlt.h"
 #include "ConversePiezoelectricStrain.h"
 #include "PiezoelectricStrainCharge.h"
@@ -246,7 +247,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexWithPolar);
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
-  registerAux(SkyrmionChargeDensityZ);
+  registerAux(PontryaginDensity);
+  registerAux(InPlaneP);
   registerAux(ChangeInRefractiveIndexElectro);
 
   ///Kernels
