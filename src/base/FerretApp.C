@@ -100,6 +100,23 @@
 #include "PolarElectricEStrongAlt.h"
 #include "ConversePiezoelectricStrain.h"
 #include "PiezoelectricStrainCharge.h"
+#include "MagneticExchangeDerivative.h"
+#include "MagneticAnisotropyDerivative.h"
+#include "SpinFlexoelectricPolarDerivative.h"
+#include "SpinFlexoelectricMagDerivative.h"
+#include "SpinFlexoelectricMagGradDerivative.h"
+#include "DzyaloshinskiiMagDerivative.h"
+#include "DzyaloshinskiiDistortDerivative.h"
+#include "MagHStrong.h"
+#include "MagMStrong.h"
+#include "BulkAntiferrodistortEnergyDerivativeSixth.h"
+#include "RotopolarCoupledDistortDerivativeFourth.h"
+#include "RotopolarCoupledPolarDerivativeFourth.h"
+#include "AFDAntiphaseEnergyDerivative.h"
+#include "LagrangianMultiplierAntiferromagConstraint.h"
+#include "DampingMagneticExchangeDerivative.h"
+#include "DampingMagneticAnisotropyDerivative.h"
+#include "DampingSoftConstraint.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -148,6 +165,11 @@
 #include "EnergyRatePostprocessor.h"
 #include "LBOBulkEnergy.h"
 #include "TotalEnergyAll.h"
+#include "BulkAntiferrodistortEnergy.h"
+#include "MagneticExchangeEnergy.h"
+#include "MagneticAnisotropyEnergy.h"
+#include "DMInteractionEnergy.h"
+#include "RotopolarCouplingEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -277,6 +299,26 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricEStrongAlt);
   registerKernel(ConversePiezoelectricStrain);
   registerKernel(PiezoelectricStrainCharge);
+  //experimental magnetic and magnetoelectric kernels under development
+  // see Popkov et al PRB,92,140414(R) (2015)
+  registerKernel(SpinFlexoelectricPolarDerivative);
+  registerKernel(SpinFlexoelectricMagDerivative);
+  registerKernel(SpinFlexoelectricMagGradDerivative);
+  registerKernel(MagneticExchangeDerivative);
+  registerKernel(MagneticAnisotropyDerivative);
+  registerKernel(DzyaloshinskiiMagDerivative);
+  registerKernel(DzyaloshinskiiDistortDerivative);
+  registerKernel(MagMStrong);
+  registerKernel(MagHStrong);
+  registerKernel(BulkAntiferrodistortEnergyDerivativeSixth);
+  registerKernel(RotopolarCoupledDistortDerivativeFourth);
+  registerKernel(RotopolarCoupledPolarDerivativeFourth);
+  registerKernel(AFDAntiphaseEnergyDerivative);
+  registerKernel(LagrangianMultiplierAntiferromagConstraint);
+  registerKernel(DampingMagneticExchangeDerivative);
+  registerKernel(DampingMagneticAnisotropyDerivative);
+  registerKernel(DampingSoftConstraint);
+
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -311,6 +353,12 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(LBOBulkEnergy);
   registerPostprocessor(TotalEnergyAll);
   registerPostprocessor(ExtElectrostaticEnergy);
+  registerPostprocessor(BulkAntiferrodistortEnergy);
+  registerPostprocessor(MagneticExchangeEnergy);
+  registerPostprocessor(MagneticAnisotropyEnergy);
+  registerPostprocessor(DMInteractionEnergy);
+  registerPostprocessor(RotopolarCouplingEnergy);
+
 
   //Markers
   registerMarker(PolarizationNWEMarker);
