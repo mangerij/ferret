@@ -117,6 +117,10 @@
 #include "DampingMagneticExchangeDerivative.h"
 #include "DampingMagneticAnisotropyDerivative.h"
 #include "DampingSoftConstraint.h"
+#include "BulkEnergyDerivativeEighth.h"
+#include "RotoBulkEnergyDerivativeEighth.h"
+#include "RotoPolarCoupledEnergyPolarDerivative.h"
+#include "RotoPolarCoupledEnergyDistortDerivative.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -318,7 +322,10 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(DampingMagneticExchangeDerivative);
   registerKernel(DampingMagneticAnisotropyDerivative);
   registerKernel(DampingSoftConstraint);
-
+  registerKernel(BulkEnergyDerivativeEighth);
+  registerKernel(RotoBulkEnergyDerivativeEighth);
+  registerKernel(RotoPolarCoupledEnergyPolarDerivative);
+  registerKernel(RotoPolarCoupledEnergyDistortDerivative);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
