@@ -41,6 +41,7 @@
 #include "ZCompCurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
+#include "RotoBulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
@@ -57,6 +58,7 @@
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
 #include "Birefringence.h"
+#include "AFDWallEnergyDensity.h"
 #include "RefractiveIndex.h"
 #include "ChangeInRefractiveIndex.h"
 #include "ChangeInRefractiveIndexWithPolar.h"
@@ -174,6 +176,10 @@
 #include "MagneticAnisotropyEnergy.h"
 #include "DMInteractionEnergy.h"
 #include "RotopolarCouplingEnergy.h"
+#include "BulkEnergyEighth.h"
+#include "RotoBulkEnergyEighth.h"
+#include "RotoPolarCoupledEnergyEighth.h"
+#include "AFDWallEnergy.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -246,7 +252,9 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
   registerAux(BulkEnergyDensity);
+  registerAux(RotoBulkEnergyDensity);
   registerAux(WallEnergyDensity);
+  registerAux(AFDWallEnergyDensity);
   registerAux(ElecFieldAux);
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
@@ -365,7 +373,10 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(MagneticAnisotropyEnergy);
   registerPostprocessor(DMInteractionEnergy);
   registerPostprocessor(RotopolarCouplingEnergy);
-
+  registerPostprocessor(BulkEnergyEighth);
+  registerPostprocessor(RotoBulkEnergyEighth);
+  registerPostprocessor(RotoPolarCoupledEnergyEighth);
+  registerPostprocessor(AFDWallEnergy);
 
   //Markers
   registerMarker(PolarizationNWEMarker);

@@ -1,9 +1,9 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 4
-  ny = 4
-  nz = 12
+  nx = 8
+  ny = 8
+  nz = 22
   xmin = -1
   xmax = 1
   ymin = -1
@@ -64,7 +64,7 @@
   t4411111111 = 0.00004747
   t4411112222 = 0.00001888
 
-  H110 = 0.253
+  H110 = 0.08
   H11_H110 = 0.6
   H12_H110 = 0
   H44_H110 = 0.3
@@ -89,8 +89,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.1e-3
-      max = 0.1e-3
+      min = -0.1e-7
+      max = 0.1e-7
     [../]
   [../]
   [./polar_y]
@@ -98,8 +98,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.1e-3
-      max = 0.1e-3
+      min = -0.1e-7
+      max = 0.1e-7
     [../]
   [../]
   [./polar_z]
@@ -107,8 +107,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.1e-3
-      max = 0.1e-3
+      min = -0.1e-7
+      max = 0.1e-7
     [../]
   [../]
 
@@ -122,8 +122,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.1e-3
-      max = 0.1e-3
+      min = -0.1e-7
+      max = 0.1e-7
     [../]
   [../]
   [./antiferrodis_A_y]
@@ -131,8 +131,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.1e-3
-      max = 0.1e-3
+      min = -0.1e-7
+      max = 0.1e-7
     [../]
   [../]
   [./antiferrodis_A_z]
@@ -140,8 +140,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.1e-3
-      max = 0.1e-3
+      min = -0.1e-7
+      max = 0.1e-7
     [../]
   [../]
 []
@@ -272,6 +272,23 @@
     type = AFDAntiphaseEnergyDerivative
     variable = antiferrodis_A_z
     component = 2
+  [../]
+
+  ###Time dependence
+  [./antiferrodis_A_x_time]
+    type = TimeDerivativeScaled
+    variable = antiferrodis_A_x
+    time_scale = 1.0
+  [../]
+  [./antiferrodis_A_y_time]
+     type = TimeDerivativeScaled
+     variable = antiferrodis_A_y
+    time_scale = 1.0
+  [../]
+  [./antiferrodis_A_z_time]
+     type = TimeDerivativeScaled
+     variable = antiferrodis_A_z
+    time_scale = 1.0
   [../]
 
 []
