@@ -72,6 +72,7 @@
 
 //Initial Conditions
 #include "FluctuationsIC.h"
+#include "RandomConstrainedVectorFieldIC.h"
 
 //Kernels
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
@@ -396,6 +397,8 @@ FerretApp::registerObjects(Factory & factory)
 
   ///InitialConditions
   registerInitialCondition(FluctuationsIC);
+  registerInitialCondition(RandomConstrainedVectorFieldIC);
+
 
 #undef registerObject
 #define registerObject(name) factory.regLegacy<name>(stringifyName(name))
