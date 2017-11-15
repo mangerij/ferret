@@ -1,0 +1,190 @@
+/**
+   This file is part of FERRET, an add-on module for MOOSE
+
+   FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+
+**/
+
+#include "RotostrictiveCouplingDistortDerivative.h"
+
+class RotostrictiveCouplingDistortDerivative;
+
+template<>
+InputParameters validParams<RotostrictiveCouplingDistortDerivative>()
+{
+  InputParameters params = validParams<Kernel>();
+  params.addRequiredCoupledVar("disp_x", "The x component of the elastic displacement");
+  params.addRequiredCoupledVar("disp_y", "The y component of the elastic displacement");
+  params.addRequiredCoupledVar("disp_z", "The z component of the elastic displacement");
+  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
+  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
+  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the afd vector field");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addRequiredParam<Real>("r11", "the 11 component of rotostrictive coupling tensor");
+  params.addRequiredParam<Real>("r12", "the 12 component of rotostrictive coupling tensor");
+  params.addRequiredParam<Real>("r44", "the 44 component of rotostrictive coupling tensor");
+  params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
+  return params;
+}
+
+RotostrictiveCouplingDistortDerivative::RotostrictiveCouplingDistortDerivative(const InputParameters & parameters)
+  :Kernel(parameters),
+   _component(getParam<unsigned int>("component")),
+   _disp_x_var(coupled("disp_x")),
+   _disp_y_var(coupled("disp_y")),
+   _disp_z_var(coupled("disp_z")),
+   _antiferrodis_A_x_var(coupled("antiferrodis_A_x")),
+   _antiferrodis_A_y_var(coupled("antiferrodis_A_y")),
+   _antiferrodis_A_z_var(coupled("antiferrodis_A_z")),
+   _disp_x_grad(coupledGradient("disp_x")),
+   _disp_y_grad(coupledGradient("disp_y")),
+   _disp_z_grad(coupledGradient("disp_z")),
+   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
+   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
+   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _r11(getParam<Real>("r11")),
+   _r12(getParam<Real>("r12")),
+   _r44(getParam<Real>("r44")),
+   _len_scale(getParam<Real>("len_scale"))
+{
+}
+
+Real
+RotostrictiveCouplingDistortDerivative::computeQpResidual()
+{
+  if (_component == 0)
+  {
+    return _test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_r11*_disp_x_grad[_qp](0) - 2*_r44*((_antiferrodis_A_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2. + (_antiferrodis_A_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.) - _r12*(2*_antiferrodis_A_x[_qp]*_disp_y_grad[_qp](1) + 2*_antiferrodis_A_x[_qp]*_disp_z_grad[_qp](2)));
+  }
+  else if (_component == 1)
+  {
+    return _test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_r11*_disp_y_grad[_qp](1) - 2*_r44*((_antiferrodis_A_x[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2. + (_antiferrodis_A_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.) - _r12*(2*_antiferrodis_A_y[_qp]*_disp_x_grad[_qp](0) + 2*_antiferrodis_A_y[_qp]*_disp_z_grad[_qp](2)));
+  }
+  else if (_component == 2)
+  {
+    return _test[_i][_qp] * (-(_r12*(2*_antiferrodis_A_z[_qp]*_disp_x_grad[_qp](0) + 2*_antiferrodis_A_z[_qp]*_disp_y_grad[_qp](1))) - 2*_r44*((_antiferrodis_A_x[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2. + (_antiferrodis_A_y[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.) - 2*_antiferrodis_A_z[_qp]*_r11*_disp_z_grad[_qp](2));
+  }
+  else
+    return 0.0;
+}
+
+Real
+RotostrictiveCouplingDistortDerivative::computeQpJacobian()
+{
+  if (_component == 0)
+  {
+    return _test[_i][_qp] * _phi[_j][_qp] * (-2*_r11*_disp_x_grad[_qp](0) - _r12*(2*_disp_y_grad[_qp](1) + 2*_disp_z_grad[_qp](2)));
+  }
+  else if (_component == 1)
+  {
+    return _test[_i][_qp] * _phi[_j][_qp] * (-2*_r11*_disp_y_grad[_qp](1) - _r12*(2*_disp_x_grad[_qp](0) + 2*_disp_z_grad[_qp](2)));
+  }
+  else if (_component == 2)
+  {
+    return _test[_i][_qp] * _phi[_j][_qp] * (-(_r12*(2*_disp_x_grad[_qp](0) + 2*_disp_y_grad[_qp](1))) - 2*_r11*_disp_z_grad[_qp](2));
+  }
+  else
+    return 0.0;
+}
+
+Real
+RotostrictiveCouplingDistortDerivative::computeQpOffDiagJacobian(unsigned int jvar)
+{
+  if (_component == 0)
+  {
+    if (jvar == _antiferrodis_A_y_var)
+    {
+      return _test[_i][_qp] * _phi[_j][_qp] * (-(_r44*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
+    }
+    else if (jvar == _antiferrodis_A_z_var)
+    {
+      return _test[_i][_qp] * _phi[_j][_qp] * (-(_r44*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0))));
+    }
+    else if (jvar == _disp_x_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0)*_r11 - 2*((_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1))/2. + (_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_r44);
+    }
+    else if (jvar == _disp_y_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](1)*_r12 - _antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](0)*_r44);
+    }
+    else if (jvar == _disp_z_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](2)*_r12 - _antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](0)*_r44);
+    }
+    else
+    {
+      return 0.0;
+    }
+  }
+  else if (_component == 1)
+  {
+    if (jvar == _antiferrodis_A_x_var)
+    {
+      return _test[_i][_qp] * (-(_r44*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
+    }
+    else if (jvar == _antiferrodis_A_z_var)
+    {
+      return _test[_i][_qp] * (-(_r44*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1))));
+    }
+    else if (jvar == _disp_x_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](0)*_r12 - _antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](1)*_r44);
+    }
+    else if (jvar == _disp_y_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1)*_r11 - 2*((_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_r44);
+    }
+    else if (jvar == _disp_z_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](2)*_r12 - _antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](1)*_r44);
+    }
+    else
+    {
+      return 0.0;
+    }
+  }
+  else if (_component == 2)
+  {
+    if (jvar == _antiferrodis_A_x_var)
+    {
+      return _test[_i][_qp] * (-(_r44*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0))));
+    }
+    else if (jvar == _antiferrodis_A_y_var)
+    {
+      return _test[_i][_qp] * (-(_r44*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
+    }
+    else if (jvar == _disp_x_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](0)*_r12 - _antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](2)*_r44);
+    }
+    else if (jvar == _disp_y_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](1)*_r12 - _antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](2)*_r44);
+    }
+    else if (jvar == _disp_z_var)
+    {
+      return _test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2)*_r11 - 2*((_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1))/2.)*_r44);
+    }
+    else
+    {
+      return 0.0;
+    }
+  }
+  else
+    return 0.0;
+}

@@ -57,19 +57,19 @@ LagrangianMultiplierAntiferromagConstraint::computeQpResidual()
 {
   if (_component == 0)
   {
-    return - 2.0 * _test[_i][_qp] * (_lambda[_qp] * _antiferromag_L_x[_qp]);
+    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_antiferromag_L_x[_qp]);
   }
   else if (_component == 1)
   {
-    return - 2.0 * _test[_i][_qp] * (_lambda[_qp] * _antiferromag_L_y[_qp]);
+    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_antiferromag_L_y[_qp]);
   }
   else if (_component == 2)
   {
-    return - 2.0 * _test[_i][_qp] * (_lambda[_qp] * _antiferromag_L_z[_qp]);
+    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_antiferromag_L_z[_qp]);
   }
   else if (_component == 3)
   {
-    return _test[_i][_qp] * ( 1.0 - _antiferromag_L_x[_qp] * _antiferromag_L_x[_qp] - _antiferromag_L_y[_qp] * _antiferromag_L_y[_qp] - _antiferromag_L_z[_qp] * _antiferromag_L_z[_qp] - _epsilon * _lambda[_qp]);
+    return _test[_i][_qp] * (1.0 - (std::pow(_antiferromag_L_x[_qp],2) + std::pow(_antiferromag_L_y[_qp],2) + std::pow(_antiferromag_L_z[_qp],2)));
   }
   else
   {
@@ -82,19 +82,19 @@ LagrangianMultiplierAntiferromagConstraint::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return - 2.0 * _test[_i][_qp] * (_lambda[_qp] * _phi[_j][_qp]);
+    return -_test[_i][_qp] * _phi[_j][_qp] * (2.0*_lambda[_qp]);
   }
   else if (_component == 1)
   {
-    return - 2.0 * _test[_i][_qp] * (_lambda[_qp] * _phi[_j][_qp]);
+    return -_test[_i][_qp] * _phi[_j][_qp] * (2.0*_lambda[_qp]);
   }
   else if (_component == 2)
   {
-    return - 2.0 * _test[_i][_qp] * (_lambda[_qp] * _phi[_j][_qp]);
+    return -_test[_i][_qp] * _phi[_j][_qp] * (2.0*_lambda[_qp]);
   }
   else if (_component == 3)
   {
-    return - _epsilon * _test[_i][_qp] * _phi[_j][_qp];
+    return 0.0;
   }
   else
   {
@@ -108,30 +108,30 @@ LagrangianMultiplierAntiferromagConstraint::computeQpOffDiagJacobian(unsigned in
   if (_component == 0)
   {
     if (jvar == _lambda_var)
-      {
-        return - 2.0 * _test[_i][_qp] * _phi[_j][_qp];
-      }
+    {
+      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _antiferromag_L_x[_qp]);
+    }
     else
-      {
-        return 0.0;
-      }
+    {
+      return 0.0;
+    }
   }
   else if (_component == 1)
   {
     if (jvar == _lambda_var)
-      {
-        return - 2.0 * _test[_i][_qp] * _phi[_j][_qp];
-      }
+    {
+      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _antiferromag_L_y[_qp]);
+    }
     else
-      {
-        return 0.0;
-      }
+    {
+      return 0.0;
+    }
   }
   else if (_component == 2)
   {
     if (jvar == _lambda_var)
     {
-      return - 2.0 * _test[_i][_qp] * _phi[_j][_qp];
+      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _antiferromag_L_z[_qp]);
     }
     else
     {
@@ -142,16 +142,17 @@ LagrangianMultiplierAntiferromagConstraint::computeQpOffDiagJacobian(unsigned in
   {
     if (jvar == _antiferromag_L_x_var)
     {
-      return - 2.0 * _test[_i][_qp] * _phi[_j][_qp];
+      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _antiferromag_L_x[_qp];
     }
     else if (jvar == _antiferromag_L_y_var)
-    { 
-      return - 2.0 * _test[_i][_qp] * _phi[_j][_qp];
+    {
+      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _antiferromag_L_y[_qp];
     }
     else if (jvar == _antiferromag_L_z_var)
-    { 
-      return - 2.0 * _test[_i][_qp] * _phi[_j][_qp];
+    {
+      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _antiferromag_L_z[_qp];
     }
+    else
     {
       return 0.0;
     }
