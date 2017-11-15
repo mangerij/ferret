@@ -117,6 +117,8 @@
 #include "RotopolarCoupledPolarDerivativeFourth.h"
 #include "AFDAntiphaseEnergyDerivative.h"
 #include "LagrangianMultiplierAntiferromagConstraint.h"
+#include "LagrangianMultiplierAntiferromagMediumConstraint.h"
+#include "LagrangianMultiplierAntiferromagHeavyConstraint.h"
 #include "DampingMagneticExchangeDerivative.h"
 #include "DampingMagneticAnisotropyDerivative.h"
 #include "DampingSoftConstraint.h"
@@ -124,6 +126,7 @@
 #include "RotoBulkEnergyDerivativeEighth.h"
 #include "RotoPolarCoupledEnergyPolarDerivative.h"
 #include "RotoPolarCoupledEnergyDistortDerivative.h"
+#include "RotostrictiveCouplingDistortDerivative.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -313,7 +316,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ConversePiezoelectricStrain);
   registerKernel(PiezoelectricStrainCharge);
   //experimental magnetic and magnetoelectric kernels under development
-  // see Popkov et al PRB,92,140414(R) (2015)
+  // see Popkov et al PRB,92,140414(R) (2015):
   registerKernel(SpinFlexoelectricPolarDerivative);
   registerKernel(SpinFlexoelectricMagDerivative);
   registerKernel(SpinFlexoelectricMagGradDerivative);
@@ -328,6 +331,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(RotopolarCoupledPolarDerivativeFourth);
   registerKernel(AFDAntiphaseEnergyDerivative);
   registerKernel(LagrangianMultiplierAntiferromagConstraint);
+  registerKernel(LagrangianMultiplierAntiferromagMediumConstraint);
+  registerKernel(LagrangianMultiplierAntiferromagHeavyConstraint);
   registerKernel(DampingMagneticExchangeDerivative);
   registerKernel(DampingMagneticAnisotropyDerivative);
   registerKernel(DampingSoftConstraint);
@@ -335,6 +340,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(RotoBulkEnergyDerivativeEighth);
   registerKernel(RotoPolarCoupledEnergyPolarDerivative);
   registerKernel(RotoPolarCoupledEnergyDistortDerivative);
+  registerKernel(RotostrictiveCouplingDistortDerivative);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
