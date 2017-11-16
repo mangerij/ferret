@@ -19,28 +19,26 @@
 
 **/
 
-#ifndef WALLENERGY_H
-#define WALLENERGY_H
+#ifndef TOTALENERGYBFO_H
+#define TOTALENERGYBFO_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "GeneralPostprocessor.h"
 
-class WallEnergy;
+class TotalEnergyBFO;
 
 template<>
-InputParameters validParams<WallEnergy>();
+InputParameters validParams<TotalEnergyBFO>();
 
-class WallEnergy : public ElementIntegralPostprocessor
+class TotalEnergyBFO : public GeneralPostprocessor
 {
 public:
-  WallEnergy(const InputParameters & parameters);
-
+  TotalEnergyBFO(const InputParameters & parameters);
+  virtual ~TotalEnergyBFO();
+  virtual void initialize();
+  virtual void execute();
+  virtual Real getValue();
 protected:
-  virtual Real computeQpIntegral();
-  const VariableGradient& _polar_x_grad;
-  const VariableGradient& _polar_y_grad;
-  const VariableGradient& _polar_z_grad;
-  const Real _G110,_G11, _G12, _G44, _G44P;
-  const Real _len_scale;
+  const PostprocessorValue & _FbP, & _FbA, & _FgP, & _FgA, & _FcPA, & _FcPu, & _FcAu, & _Felu;
 };
 
 #endif
