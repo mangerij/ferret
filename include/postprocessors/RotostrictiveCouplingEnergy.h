@@ -19,28 +19,42 @@
 
 **/
 
-#ifndef WALLENERGY_H
-#define WALLENERGY_H
+#ifndef ROTOSTRICTIVECOUPLINGENERGY_H
+#define ROTOSTRICTIVECOUPLINGENERGY_H
 
 #include "ElementIntegralPostprocessor.h"
 
-class WallEnergy;
+class RotostrictiveCouplingEnergy;
 
 template<>
-InputParameters validParams<WallEnergy>();
+InputParameters validParams<RotostrictiveCouplingEnergy>();
 
-class WallEnergy : public ElementIntegralPostprocessor
+
+class RotostrictiveCouplingEnergy : public ElementIntegralPostprocessor
 {
 public:
-  WallEnergy(const InputParameters & parameters);
+  RotostrictiveCouplingEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();
-  const VariableGradient& _polar_x_grad;
-  const VariableGradient& _polar_y_grad;
-  const VariableGradient& _polar_z_grad;
-  const Real _G110,_G11, _G12, _G44, _G44P;
-  const Real _len_scale;
+
+private:
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
+  const unsigned int _antiferrodis_A_x_var;
+  const unsigned int _antiferrodis_A_y_var;
+  const unsigned int _antiferrodis_A_z_var;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
+  const VariableValue & _antiferrodis_A_x;
+  const VariableValue & _antiferrodis_A_y;
+  const VariableValue & _antiferrodis_A_z;
+  const Real _r11;
+  const Real _r12;
+  const Real _r44;
+  const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 };
 
 #endif

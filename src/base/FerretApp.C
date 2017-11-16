@@ -127,6 +127,9 @@
 #include "RotoPolarCoupledEnergyPolarDerivative.h"
 #include "RotoPolarCoupledEnergyDistortDerivative.h"
 #include "RotostrictiveCouplingDistortDerivative.h"
+#include "RotostrictiveCouplingDispDerivative.h"
+#include "ElectrostrictiveCouplingPolarDerivative.h"
+#include "ElectrostrictiveCouplingDispDerivative.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -184,6 +187,9 @@
 #include "RotoBulkEnergyEighth.h"
 #include "RotoPolarCoupledEnergyEighth.h"
 #include "AFDWallEnergy.h"
+#include "RotostrictiveCouplingEnergy.h"
+#include "ElectrostrictiveCouplingEnergy.h"
+#include "TotalEnergyBFO.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -341,6 +347,9 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(RotoPolarCoupledEnergyPolarDerivative);
   registerKernel(RotoPolarCoupledEnergyDistortDerivative);
   registerKernel(RotostrictiveCouplingDistortDerivative);
+  registerKernel(RotostrictiveCouplingDispDerivative);
+  registerKernel(ElectrostrictiveCouplingPolarDerivative);
+  registerKernel(ElectrostrictiveCouplingDispDerivative);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -384,6 +393,9 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(RotoBulkEnergyEighth);
   registerPostprocessor(RotoPolarCoupledEnergyEighth);
   registerPostprocessor(AFDWallEnergy);
+  registerPostprocessor(RotostrictiveCouplingEnergy);
+  registerPostprocessor(ElectrostrictiveCouplingEnergy);
+  registerPostprocessor(TotalEnergyBFO);
 
   //Markers
   registerMarker(PolarizationNWEMarker);

@@ -19,28 +19,42 @@
 
 **/
 
-#ifndef WALLENERGY_H
-#define WALLENERGY_H
+#ifndef ELECTROSTRICTIVECOUPLINGENERGY_H
+#define ELECTROSTRICTIVECOUPLINGENERGY_H
 
 #include "ElementIntegralPostprocessor.h"
 
-class WallEnergy;
+class ElectrostrictiveCouplingEnergy;
 
 template<>
-InputParameters validParams<WallEnergy>();
+InputParameters validParams<ElectrostrictiveCouplingEnergy>();
 
-class WallEnergy : public ElementIntegralPostprocessor
+
+class ElectrostrictiveCouplingEnergy : public ElementIntegralPostprocessor
 {
 public:
-  WallEnergy(const InputParameters & parameters);
+  ElectrostrictiveCouplingEnergy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpIntegral();
-  const VariableGradient& _polar_x_grad;
-  const VariableGradient& _polar_y_grad;
-  const VariableGradient& _polar_z_grad;
-  const Real _G110,_G11, _G12, _G44, _G44P;
-  const Real _len_scale;
+
+private:
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
+  const unsigned int _polar_x_var;
+  const unsigned int _polar_y_var;
+  const unsigned int _polar_z_var;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
+  const Real _q11;
+  const Real _q12;
+  const Real _q44;
+  const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 };
 
 #endif
