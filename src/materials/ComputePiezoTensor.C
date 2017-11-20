@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -30,8 +30,8 @@ InputParameters validParams<ComputePiezoTensor>()
 {
   InputParameters params = validParams<ComputeRotatedPiezoTensorBase>();
   params.addClassDescription("Compute the converse piezoelectric tensor.");
-  params.addParam<bool>("compute_piezostrictive_coeff", false, "compute the piezostrictive coefficients C_ijmn * d_mnk");
-  params.addRequiredParam<std::vector<Real> >("d_ijk", "piezoelectric tensor for material");
+  params.addParam<bool>("compute_piezostrictive_coeff", false, "compute the piezostrictive coefficients C_ijmn * d_mkl");
+  params.addRequiredParam<std::vector<Real> >("d_mkl", "piezoelectric tensor for material");
   params.addRequiredParam<std::vector<Real> >("C_ijkl", "elastic stiffness tensor for material");
   params.addParam<MooseEnum>("fill_method", RankThreeTensor::fillMethodEnum() = "general", "The fill method");
   params.addParam<MooseEnum>("fill_method2", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");
@@ -40,24 +40,26 @@ InputParameters validParams<ComputePiezoTensor>()
 
 ComputePiezoTensor::ComputePiezoTensor(const InputParameters & parameters) :
     ComputeRotatedPiezoTensorBase(parameters),
-    _dijk(getParam<std::vector<Real> >("d_ijk"), (RankThreeTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
+    _dmkl(getParam<std::vector<Real> >("d_mkl"), (RankThreeTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
     _Cijkl(getParam<std::vector<Real> >("C_ijkl"), (RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method2"))
 {
   /// Define a rotation according to Euler angle parameters
   RotationTensor R(_Euler_angles); // R type: RealTensorValue TODO: DOUBLE CHECK THAT THIS INDEED DOES WORK.
   /// rotate electrostrictive tensor -- note that it needs to be collinear with the elasticity tensor _always_
-  _dijk.rotate(R);
+  _dmkl.rotate(R);
   ///contractions using namespace method
   if (_compute_piezostrictive_coeff == true)
-    _Dijk = PiezostrictiveTensorTools::computeProduct(_Cijkl, _dijk);
+    _Dijm = PiezostrictiveTensorTools::computeProduct(_Cijkl, _dmkl);
+    _Dmij = PiezostrictiveTensorTools::computePiezoTransposeProduct(_Cijkl, _dmkl);
 }
 
 void
 ComputePiezoTensor::computeQpPiezoTensor()
 {
   ///Assign a photostrictive tensor at a given quad point. This will be reworked eventually for constant _qp.
-  _piezo_tensor[_qp] = _dijk;
+  _piezo_tensor[_qp] = _dmkl;
   if (_compute_piezostrictive_coeff == true)
-    _piezostrictive_tensor[_qp] = _Dijk;
-}
+    _piezostrictive_tensor[_qp] = _Dijm;
+    _piezostrictive_tensor_i[_qp] = _Dmij;
 
+}

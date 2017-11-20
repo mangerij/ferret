@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -40,9 +40,12 @@ protected:
   std::string _base_name;
   std::string _piezo_tensor_name;
   std::string _piezostrictive_tensor_name;
+  std::string _piezostrictive_tensor_i_name;
+
 
   MaterialProperty<RankThreeTensor> & _piezo_tensor;
   MaterialProperty<RankThreeTensor> & _piezostrictive_tensor;
+  MaterialProperty<RankThreeTensor> & _piezostrictive_tensor_i;
 };
 
 #endif //COMPUTEPIEZOTENSORBASE_H

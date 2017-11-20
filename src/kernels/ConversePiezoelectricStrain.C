@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -53,7 +53,8 @@ ConversePiezoelectricStrain::computeQpResidual()
   Real sum = 0.0;
   for (unsigned int j = 0; j < 3; ++j)
   {
-    sum += -_grad_test[_i][_qp](j) * (_piezostrictive_tensor[_qp](_component,j,0) * _potential_int_grad[_qp](0) + _piezostrictive_tensor[_qp](_component,j,1) * _potential_int_grad[_qp](1) + _piezostrictive_tensor[_qp](_component,j,2) * _potential_int_grad[_qp](2));
+    sum += _grad_test[_i][_qp](j) * ((_potential_int_grad[_qp](0) * _piezostrictive_tensor[_qp](0,j,_component)) + (_potential_int_grad[_qp](1) * _piezostrictive_tensor[_qp](1,j,_component)) + (_potential_int_grad[_qp](2) * _piezostrictive_tensor[_qp](2,j,_component)));
+
   }
   return sum;
 }
@@ -72,7 +73,8 @@ ConversePiezoelectricStrain::computeQpOffDiagJacobian(unsigned int jvar)
   {
     for (unsigned int j = 0; j < 3; ++j)
     {
-      sum += -_grad_test[_i][_qp](j) * (_piezostrictive_tensor[_qp](_component,j,0) * _grad_phi[_j][_qp](0) + _piezostrictive_tensor[_qp](_component,j,1) * _grad_phi[_j][_qp](1) + _piezostrictive_tensor[_qp](_component,j,2) * _grad_phi[_j][_qp](2));
+      sum += _grad_test[_i][_qp](j) * ((_grad_phi[_j][_qp](0) * _piezostrictive_tensor[_qp](0,j,_component)) + (_grad_phi[_j][_qp](1) * _piezostrictive_tensor[_qp](1,j,_component)) + (_grad_phi[_j][_qp](2) * _piezostrictive_tensor[_qp](2,j,_component)));
+;
     }
     return sum;
   }
