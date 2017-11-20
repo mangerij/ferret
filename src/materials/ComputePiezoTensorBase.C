@@ -34,8 +34,10 @@ ComputePiezoTensorBase::ComputePiezoTensorBase(const InputParameters & parameter
    _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
    _piezo_tensor_name(_base_name + "piezo_tensor"),
    _piezostrictive_tensor_name(_base_name + "piezostrictive_tensor"),
+   _piezostrictive_tensor_i_name(_base_name + "piezostrictive_tensor_i"),
    _piezo_tensor(declareProperty<RankThreeTensor>(_piezo_tensor_name)),
-   _piezostrictive_tensor(declareProperty<RankThreeTensor>(_piezostrictive_tensor_name))
+   _piezostrictive_tensor(declareProperty<RankThreeTensor>(_piezostrictive_tensor_name)),
+   _piezostrictive_tensor_i(declareProperty<RankThreeTensor>(_piezostrictive_tensor_i_name))
 {
 }
 

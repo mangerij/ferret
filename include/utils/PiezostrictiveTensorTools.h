@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -28,6 +28,9 @@ class RankFourTensor;
 namespace PiezostrictiveTensorTools
 {
   RankThreeTensor computeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk);
+
+  RankThreeTensor computePiezoTransposeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk);
+
 
   /// Sum over (j,k) -> A_ijk*v(j)*w(k)
   Real piezostrictiveProduct(const RankThreeTensor & Aijk, unsigned int i, const RealVectorValue & v, const RealVectorValue & w);

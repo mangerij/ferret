@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -40,8 +40,9 @@ protected:
 
   /// Individual material information
   bool _compute_piezostrictive_coeff;
-  RankThreeTensor _dijk;
-  RankThreeTensor _Dijk;
+  RankThreeTensor _dmkl;
+  RankThreeTensor _Dijm;
+  RankThreeTensor _Dmij;
   RankFourTensor _Cijkl;
 };
 
