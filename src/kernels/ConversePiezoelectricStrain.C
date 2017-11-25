@@ -38,7 +38,7 @@ InputParameters validParams<ConversePiezoelectricStrain>()
 ConversePiezoelectricStrain::ConversePiezoelectricStrain(const InputParameters & parameters)
   :Kernel(parameters),
    _piezo_tensor(getMaterialProperty<RankThreeTensor>("piezo_tensor")),
-   _piezostrictive_tensor(getMaterialProperty<RankThreeTensor>("piezostrictive_tensor")),
+   _piezostrictive_tensor_i(getMaterialProperty<RankThreeTensor>("piezostrictive_tensor_i")),
    _component(getParam<unsigned int>("component")),
    _potential_int_var(coupled("potential_int")),
    _potential_int(coupledValue("potential_int")),
@@ -53,7 +53,7 @@ ConversePiezoelectricStrain::computeQpResidual()
   Real sum = 0.0;
   for (unsigned int j = 0; j < 3; ++j)
   {
-    sum += _grad_test[_i][_qp](j) * ((_potential_int_grad[_qp](0) * _piezostrictive_tensor[_qp](0,j,_component)) + (_potential_int_grad[_qp](1) * _piezostrictive_tensor[_qp](1,j,_component)) + (_potential_int_grad[_qp](2) * _piezostrictive_tensor[_qp](2,j,_component)));
+    sum += _grad_test[_i][_qp](j) * ((_potential_int_grad[_qp](0) * _piezostrictive_tensor_i[_qp](0,j,_component)) + (_potential_int_grad[_qp](1) * _piezostrictive_tensor_i[_qp](1,j,_component)) + (_potential_int_grad[_qp](2) * _piezostrictive_tensor_i[_qp](2,j,_component)));
 
   }
   return sum;
@@ -73,8 +73,7 @@ ConversePiezoelectricStrain::computeQpOffDiagJacobian(unsigned int jvar)
   {
     for (unsigned int j = 0; j < 3; ++j)
     {
-      sum += _grad_test[_i][_qp](j) * ((_grad_phi[_j][_qp](0) * _piezostrictive_tensor[_qp](0,j,_component)) + (_grad_phi[_j][_qp](1) * _piezostrictive_tensor[_qp](1,j,_component)) + (_grad_phi[_j][_qp](2) * _piezostrictive_tensor[_qp](2,j,_component)));
-;
+      sum += _grad_test[_i][_qp](j) * ((_grad_phi[_j][_qp](0) * _piezostrictive_tensor_i[_qp](0,j,_component)) + (_grad_phi[_j][_qp](1) * _piezostrictive_tensor_i[_qp](1,j,_component)) + (_grad_phi[_j][_qp](2) * _piezostrictive_tensor_i[_qp](2,j,_component)));
     }
     return sum;
   }

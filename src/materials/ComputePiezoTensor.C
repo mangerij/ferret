@@ -30,9 +30,11 @@ InputParameters validParams<ComputePiezoTensor>()
 {
   InputParameters params = validParams<ComputeRotatedPiezoTensorBase>();
   params.addClassDescription("Compute the converse piezoelectric tensor.");
-  params.addParam<bool>("compute_piezostrictive_coeff", false, "compute the piezostrictive coefficients C_ijmn * d_mkl");
-  params.addRequiredParam<std::vector<Real> >("d_mkl", "piezoelectric tensor for material");
+  params.addParam<bool>("compute_piezostrictive_coeff", false, "compute the piezostrictive coefficients C_ijmn * d_kij");
+  params.addRequiredParam<std::vector<Real> >("d_kpq", "piezoelectric tensor for material");
+  params.addRequiredParam<std::vector<Real> >("d_pqkT", "piezoelectric tensor for material");
   params.addRequiredParam<std::vector<Real> >("C_ijkl", "elastic stiffness tensor for material");
+  params.addParam<MooseEnum>("fill_method", RankThreeTensor::fillMethodEnum() = "general", "The fill method");
   params.addParam<MooseEnum>("fill_method", RankThreeTensor::fillMethodEnum() = "general", "The fill method");
   params.addParam<MooseEnum>("fill_method2", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");
   return params;
@@ -40,26 +42,88 @@ InputParameters validParams<ComputePiezoTensor>()
 
 ComputePiezoTensor::ComputePiezoTensor(const InputParameters & parameters) :
     ComputeRotatedPiezoTensorBase(parameters),
-    _dmkl(getParam<std::vector<Real> >("d_mkl"), (RankThreeTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
+    _dkpq(getParam<std::vector<Real> >("d_kpq"), (RankThreeTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
+    _dpqkT(getParam<std::vector<Real> >("d_pqkT"), (RankThreeTensor::FillMethod)(int)getParam<MooseEnum>("fill_method")),
     _Cijkl(getParam<std::vector<Real> >("C_ijkl"), (RankFourTensor::FillMethod)(int)getParam<MooseEnum>("fill_method2"))
 {
   /// Define a rotation according to Euler angle parameters
   RotationTensor R(_Euler_angles); // R type: RealTensorValue TODO: DOUBLE CHECK THAT THIS INDEED DOES WORK.
   /// rotate electrostrictive tensor -- note that it needs to be collinear with the elasticity tensor _always_
-  _dmkl.rotate(R);
+  // _dmkl.rotate(R);
   ///contractions using namespace method
   if (_compute_piezostrictive_coeff == true)
-    _Dijm = PiezostrictiveTensorTools::computeProduct(_Cijkl, _dmkl);
-    _Dmij = PiezostrictiveTensorTools::computePiezoTransposeProduct(_Cijkl, _dmkl);
+    _Dkij = PiezostrictiveTensorTools::computeProduct(_Cijkl, _dkpq);
+    Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,0,0) "; std::cout << _Dkij(0,0,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,0,1) "; std::cout << _Dkij(0,0,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,0,2) "; std::cout << _Dkij(0,0,2); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,1,0) "; std::cout << _Dkij(0,1,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,1,1) "; std::cout << _Dkij(0,1,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,1,2) "; std::cout << _Dkij(0,1,2); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,2,0) "; std::cout << _Dkij(0,2,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,2,1) "; std::cout << _Dkij(0,2,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(0,2,2) "; std::cout << _Dkij(0,2,2); Moose::out << " \n     ";
+    Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,0,0) "; std::cout << _Dkij(1,0,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,0,1) "; std::cout << _Dkij(1,0,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,0,2) "; std::cout << _Dkij(1,0,2); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,1,0) "; std::cout << _Dkij(1,1,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,1,1) "; std::cout << _Dkij(1,1,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,1,2) "; std::cout << _Dkij(1,1,2); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,2,0) "; std::cout << _Dkij(1,2,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,2,1) "; std::cout << _Dkij(1,2,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(1,2,2) "; std::cout << _Dkij(1,2,2); Moose::out << " \n     ";
+    Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,0,0) "; std::cout << _Dkij(2,0,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,0,1) "; std::cout << _Dkij(2,0,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,0,2) "; std::cout << _Dkij(2,0,2); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,1,0) "; std::cout << _Dkij(2,1,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,1,1) "; std::cout << _Dkij(2,1,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,1,2) "; std::cout << _Dkij(2,1,2); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,2,0) "; std::cout << _Dkij(2,2,0); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,2,1) "; std::cout << _Dkij(2,2,1); Moose::out << " \n     ";
+    Moose::out << "_Dkij(2,2,2) "; std::cout << _Dkij(2,2,2); Moose::out << " \n     ";
+    _DijkT = PiezostrictiveTensorTools::computePiezoTransposeProduct(_Cijkl, _dpqkT);
+    Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,0,0)"; std::cout << _DijkT(0,0,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,0,1)"; std::cout << _DijkT(0,0,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,0,2)"; std::cout << _DijkT(0,0,2); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,1,0)"; std::cout << _DijkT(0,1,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,1,1)"; std::cout << _DijkT(0,1,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,1,2)"; std::cout << _DijkT(0,1,2); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,2,0)"; std::cout << _DijkT(0,2,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,2,1)"; std::cout << _DijkT(0,2,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(0,2,2)"; std::cout << _DijkT(0,2,2); Moose::out << " \n     ";
+    Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,0,0)"; std::cout << _DijkT(1,0,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,0,1)"; std::cout << _DijkT(1,0,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,0,2)"; std::cout << _DijkT(1,0,2); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,1,0)"; std::cout << _DijkT(1,1,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,1,1)"; std::cout << _DijkT(1,1,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,1,2)"; std::cout << _DijkT(1,1,2); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,2,0)"; std::cout << _DijkT(1,2,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,2,1)"; std::cout << _DijkT(1,2,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(1,2,2)"; std::cout << _DijkT(1,2,2); Moose::out << " \n     ";
+    Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,0,0)"; std::cout << _DijkT(2,0,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,0,1)"; std::cout << _DijkT(2,0,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,0,2)"; std::cout << _DijkT(2,0,2); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,1,0)"; std::cout << _DijkT(2,1,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,1,1)"; std::cout << _DijkT(2,1,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,1,2)"; std::cout << _DijkT(2,1,2); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,2,0)"; std::cout << _DijkT(2,2,0); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,2,1)"; std::cout << _DijkT(2,2,1); Moose::out << " \n     ";
+    Moose::out << "_DijkT(2,2,2)"; std::cout << _DijkT(2,2,2); Moose::out << " \n     ";
+    Moose::out << " \n     ";
 }
 
 void
 ComputePiezoTensor::computeQpPiezoTensor()
 {
   ///Assign a photostrictive tensor at a given quad point. This will be reworked eventually for constant _qp.
-  _piezo_tensor[_qp] = _dmkl;
+  _piezo_tensor[_qp] = _dkpq;
   if (_compute_piezostrictive_coeff == true)
-    _piezostrictive_tensor[_qp] = _Dijm;
-    _piezostrictive_tensor_i[_qp] = _Dmij;
+    _piezostrictive_tensor[_qp] = _Dkij;
+    _piezostrictive_tensor_i[_qp] = _DijkT;
 
 }
