@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -74,8 +74,8 @@ computeProductQ(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl, cons
 Real
 electrostrictiveProduct(const RankFourTensor & qijkl, unsigned int i, const RealVectorValue & v, unsigned int k, const RealVectorValue & w)
 {
-  /// RankFourTensor qijkl;
-  ///Sum over (j,l) q_ijkl * v(j) * w(l) with k = _component
+  // RankFourTensor qijkl;
+  // Sum over (j,l) q_ijkl * v(j) * w(l) with k = _component
   Real sum = 0.0;
   for(unsigned int j = 0; j < 3; ++j)
     for(unsigned int l = 0; l < 3; ++l)
@@ -88,8 +88,8 @@ electrostrictiveProduct(const RankFourTensor & qijkl, unsigned int i, const Real
 Real
 electrostrictiveProduct(const RankFourTensor & qijkl, unsigned int i, const RealVectorValue & v, unsigned int k, const unsigned int l)
 {
-  /// RankFourTensor qijkl;
-  ///Sum over j q_ijkl * v(j) where k and l = _component (used for DiagJacobian)
+  // RankFourTensor qijkl;
+  // Sum over j q_ijkl * v(j) where k and l = _component (used for DiagJacobian)
   Real sum = 0.0;
   for(unsigned int j = 0; j < 3; ++j)
     {

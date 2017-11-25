@@ -29,6 +29,9 @@ namespace PiezostrictiveTensorTools
 {
   RankThreeTensor computeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk);
 
+  RankThreeTensor computePiezoTransposeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk);
+
+
   /// Sum over (j,k) -> A_ijk*v(j)*w(k)
   Real piezostrictiveProduct(const RankThreeTensor & Aijk, unsigned int i, const RealVectorValue & v, const RealVectorValue & w);
 

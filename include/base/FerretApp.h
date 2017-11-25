@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 */
@@ -37,7 +37,6 @@ public:
 
   static void registerApps();
   static void registerObjects(Factory & factory);
-  static void associateSyntax(Syntax& syntax, ActionFactory & action_factory);
 };
 
 #endif /* FERRETAPP_H */

@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -28,8 +28,8 @@ InputParameters validParams<PolarElectricEStrongAlt>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
-  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }

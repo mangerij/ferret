@@ -31,13 +31,36 @@ computeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk)
 {
   RankThreeTensor result;
   ///Moose::out << "\n Performing C_ijmn A_mnk contraction on all the quadrature points?";
-  for(unsigned int i = 0; i < 3; ++i)
-    for(unsigned int j = 0; j < 3; ++j)
-      for(unsigned int k = 0; k < 3; ++k)
+  for (unsigned int i = 0; i < 3; ++i)
+    for (unsigned int j = 0; j < 3; ++j)
+      for (unsigned int k = 0; k < 3; ++k)
         {
           result(i,j,k) = 0.0;
-          for(unsigned int m = 0; m < 3; ++m)
-            for(unsigned int n = 0; n < 3; ++n)
+          for (unsigned int m = 0; m < 3; ++m)
+            for (unsigned int n = 0; n < 3; ++n)
+            {
+                ///sum += Cijkl(i, j, m, n) * Amnk(m, n, k);
+                result(i,j,k) += Cijmn(i,j,m,n) * Amnk(k,m,n);
+            }
+            ///Moose::out << "\n q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = "; std::cout << result(i,j,k,l);
+        }
+  return result;
+  ///Moose::out << "\n Complete.";
+}
+
+
+RankThreeTensor
+computePiezoTransposeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk)
+{
+  RankThreeTensor result;
+  ///Moose::out << "\n Performing C_ijmn A_mnk contraction on all the quadrature points?";
+  for (unsigned int i = 0; i < 3; ++i)
+    for (unsigned int j = 0; j < 3; ++j)
+      for (unsigned int k = 0; k < 3; ++k)
+        {
+          result(i,j,k) = 0.0;
+          for (unsigned int m = 0; m < 3; ++m)
+            for (unsigned int n = 0; n < 3; ++n)
             {
                 ///sum += Cijkl(i, j, m, n) * Amnk(m, n, k);
                 result(i,j,k) += Cijmn(i,j,m,n) * Amnk(m,n,k);
@@ -48,15 +71,14 @@ computeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk)
   ///Moose::out << "\n Complete.";
 }
 
-
 Real
 piezostrictiveProduct(const RankThreeTensor & Aijk, unsigned int i, const RealVectorValue & v, const RealVectorValue & w)
 {
   /// RankThreeTensor Aijk;
   ///Sum over (j,l) A_ijk * v(j) * w(l) with k = _component
   Real sum = 0.0;
-  for(unsigned int j = 0; j < 3; ++j)
-    for(unsigned int k = 0; k < 3; ++k)
+  for (unsigned int j = 0; j < 3; ++j)
+    for (unsigned int k = 0; k < 3; ++k)
     {
       sum += Aijk(i, j, k) * v(j) * w(k);
     }
@@ -69,7 +91,7 @@ piezostrictiveProduct(const RankThreeTensor & Aijk, unsigned int i, const RealVe
   /// RankFourTensor qijkl;
   ///Sum over j q_ijkl * v(j) where k and l = _component (used for DiagJacobian)
   Real sum = 0.0;
-  for(unsigned int k = 0; k < 3; ++k)
+  for (unsigned int k = 0; k < 3; ++k)
     {
       sum += Aijk(i, j, k) * v(k);
     }

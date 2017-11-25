@@ -39,14 +39,12 @@ public:
 
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
   const MaterialProperty<RankThreeTensor> & _piezo_tensor;
-  const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor;
+  const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor_i;
   const unsigned int _disp_x_var;
   const unsigned int _disp_y_var;
   const unsigned int _disp_z_var;

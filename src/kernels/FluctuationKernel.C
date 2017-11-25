@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -26,7 +26,7 @@ template<>
 InputParameters validParams<FluctuationKernel>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addCoupledVar("deltaPi", 0.0, "The magnitude of the fluctuation across the ith component");
+  params.addRequiredCoupledVar("deltaPi", "The magnitude of the fluctuation across the ith component");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }

@@ -35,7 +35,7 @@
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
-  prefactor = 0.01 #negative = tension, positive = compression
+  prefactor = 0.01 #negative = tension,positive = compression
 []
 
 
@@ -45,24 +45,30 @@
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.01e-4
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 5
     [../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.01e-4
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 5
     [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.01e-4
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 5
     [../]
   [../]
   [./potential_int]
@@ -240,6 +246,7 @@
     value = 0.0
     variable = disp_z
   [../]
+
   [./potential_int_front]
     type = DirichletBC
     boundary = 'front'
@@ -253,6 +260,7 @@
     value = 0.0001
     variable = potential_int
   [../]
+
   [./disp_x_back]
     type = DirichletBC
     boundary = 'back'
@@ -315,9 +323,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-6      1e-8    bjacobi'
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '    121               1e-10      1e-8      1e-6    bjacobi'
   [../]
 []
 
@@ -336,12 +343,12 @@
   #dt = 0.5
   dtmin = 1e-13
   dtmax = 0.1
-  num_steps = 20
+  num_steps = 15
 []
 
 [Outputs]
-  print_linear_residuals = true
-  print_perf_log = true
+  print_linear_residuals = false
+  print_perf_log = false
   [./out]
     type = Exodus
     file_base = outPTOchunk_test

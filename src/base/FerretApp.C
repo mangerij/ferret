@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -31,9 +31,6 @@
 #include "PhaseFieldApp.h"
 #include "MiscApp.h"
 
-//Actions
-#include "TensorMechanicsActionScaled.h"
-
 //AuxKernels
 #include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
@@ -44,13 +41,13 @@
 #include "ZCompCurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
+#include "RotoBulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
 #include "ChernSimonsDensityMag.h"
 #include "WindingNumberDensity.h"
 #include "BandGapAuxZnOwRot.h"
-#include "AngleAux.h"
 #include "MieElecFieldReals.h"
 #include "MieElecFieldImag.h"
 #include "Intensity.h"
@@ -60,32 +57,25 @@
 #include "PolarMag.h"
 #include "DivP.h"
 #include "PiezoelectricApprox.h"
-#include "SemiconductingChargeCarriersAux.h"
 #include "Birefringence.h"
+#include "AFDWallEnergyDensity.h"
 #include "RefractiveIndex.h"
 #include "ChangeInRefractiveIndex.h"
 #include "ChangeInRefractiveIndexWithPolar.h"
 #include "ChangeInRefractiveIndexWithGCoeffPolar.h"
 #include "PkNorm.h"
-#include "SemiconductingChargeCarriersPolyLogAux.h"
 #include "ChangeInRefractiveIndexElectro.h"
+#include "ConvertField.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
-#include "ScreenedBC.h"
-#include "StressFreeBC.h"
 #include "StressBC.h"
-//#include "ExtrapBC.h"
-//#include "MatchedGradValueBC.h"
 
 //Initial Conditions
-#include "PerturbedIC.h"
-#include "SinIC.h"
 #include "FluctuationsIC.h"
-#include "AdhocConstIC.h"
+#include "RandomConstrainedVectorFieldIC.h"
 
 //Kernels
-#include "ModifiedStressDivergenceTensors.h"
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
@@ -103,39 +93,44 @@
 #include "PolarElectricEStrong.h"
 #include "FluctuationKernel.h"
 #include "FerroelectricCouplingP.h"
-//#include "FerroelectricCouplingQ.h"
 #include "FerroelectricCouplingX.h"
-#include "StressDivergenceTensorsScaled.h"
 #include "KarmanenkoDriver.h"
-#include "KappaTDiffusion.h"
-#include "ConstantLatticeMismatch.h"
-#include "CoeffParamDiffusion.h"
 #include "AnisotropyEnergy.h"
 #include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
-#include "SemiconductorChargeCarriers.h"
-#include "ThomasFermiPotential.h"
-#include "ThomasFermiTerm.h"
-#include "EulerSkyrmionPTerm.h"
-#include "EulerSkyrmionPCubeTerm.h"
-#include "EulerSkyrmionThetaTerm.h"
-#include "EulerSkyrmionThetaKappaTerm.h"
-#include "EulerSkyrmionThetaDepolTerm.h"
-#include "EulerSkyrmionPDepolTerm.h"
-#include "EulerSkyrmionPTempTerm.h"
 #include "RenormalizedFreeEnergy.h"
-#include "AnisotropicElectrostatics.h"
-#include "ConstField.h"
-#include "NerstPlanckDrivingTerm.h"
-#include "NerstPlanckDiffusive.h"
-#include "FreeChargeContribution.h"
-#include "HoleChargeContribution.h"
-#include "AcceptorIonContribution.h"
-#include "SkyrmionChargeDensityZ.h"
-#include "SemiconductorChargeCarriersPolyLog.h"
+#include "PontryaginDensity.h"
+#include "InPlaneP.h"
 #include "PolarElectricEStrongAlt.h"
 #include "ConversePiezoelectricStrain.h"
 #include "PiezoelectricStrainCharge.h"
+#include "MagneticExchangeDerivative.h"
+#include "MagneticAnisotropyDerivative.h"
+#include "SpinFlexoelectricPolarDerivative.h"
+#include "SpinFlexoelectricMagDerivative.h"
+#include "SpinFlexoelectricMagGradDerivative.h"
+#include "DzyaloshinskiiMagDerivative.h"
+#include "DzyaloshinskiiDistortDerivative.h"
+#include "MagHStrong.h"
+#include "MagMStrong.h"
+#include "BulkAntiferrodistortEnergyDerivativeSixth.h"
+#include "RotopolarCoupledDistortDerivativeFourth.h"
+#include "RotopolarCoupledPolarDerivativeFourth.h"
+#include "AFDAntiphaseEnergyDerivative.h"
+#include "LagrangianMultiplierAntiferromagConstraint.h"
+#include "LagrangianMultiplierAntiferromagMediumConstraint.h"
+#include "LagrangianMultiplierAntiferromagHeavyConstraint.h"
+#include "DampingMagneticExchangeDerivative.h"
+#include "DampingMagneticAnisotropyDerivative.h"
+#include "DampingSoftConstraint.h"
+#include "BulkEnergyDerivativeEighth.h"
+#include "RotoBulkEnergyDerivativeEighth.h"
+#include "RotoPolarCoupledEnergyPolarDerivative.h"
+#include "RotoPolarCoupledEnergyDistortDerivative.h"
+#include "RotostrictiveCouplingDistortDerivative.h"
+#include "RotostrictiveCouplingDispDerivative.h"
+#include "ElectrostrictiveCouplingPolarDerivative.h"
+#include "ElectrostrictiveCouplingDispDerivative.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -174,7 +169,6 @@
 #include "CoupledEnergy.h"
 #include "ElectrostrictiveEnergy.h"
 #include "CoupledEnergyCheckShear.h"
-#include "GrainSize.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
 #include "TotalEnergyG.h"
@@ -185,6 +179,18 @@
 #include "EnergyRatePostprocessor.h"
 #include "LBOBulkEnergy.h"
 #include "TotalEnergyAll.h"
+#include "BulkAntiferrodistortEnergy.h"
+#include "MagneticExchangeEnergy.h"
+#include "MagneticAnisotropyEnergy.h"
+#include "DMInteractionEnergy.h"
+#include "RotopolarCouplingEnergy.h"
+#include "BulkEnergyEighth.h"
+#include "RotoBulkEnergyEighth.h"
+#include "RotoPolarCoupledEnergyEighth.h"
+#include "AFDWallEnergy.h"
+#include "RotostrictiveCouplingEnergy.h"
+#include "ElectrostrictiveCouplingEnergy.h"
+#include "TotalEnergyBFO.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -217,7 +223,6 @@ FerretApp::FerretApp(const InputParameters & parameters) :
   MiscApp::associateSyntax(_syntax, _action_factory);
 
   FerretApp::registerObjects(_factory);
-  FerretApp::associateSyntax(_syntax, _action_factory);
 }
 
 FerretApp::~FerretApp()
@@ -252,17 +257,15 @@ FerretApp::registerObjects(Factory & factory)
   ///BoundaryConditions
   registerBoundaryCondition(SurfaceMechanicsBC);
   registerBoundaryCondition(HydrostaticBC);
-  registerBoundaryCondition(ScreenedBC);
-  registerBoundaryCondition(StressFreeBC);
   registerBoundaryCondition(StressBC);
-  //registerBoundaryCondition(ExtrapBC);
- // registerBoundaryCondition(MatchedGradValueBC);
 
   ///AuxKernels:
   registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
   registerAux(BulkEnergyDensity);
+  registerAux(RotoBulkEnergyDensity);
   registerAux(WallEnergyDensity);
+  registerAux(AFDWallEnergyDensity);
   registerAux(ElecFieldAux);
   registerAux(ChernSimonsDensity);
   registerAux(ChernSimonsDensityMag);
@@ -277,26 +280,24 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(MieElecFieldReals);
   registerAux(MieElecFieldImag);
   registerAux(Intensity);
-  registerAux(AngleAux);
   registerAux(OldVar);
   registerAux(DielectricTensor);
   registerAux(NormalizedWallEnergyDensity);
   registerAux(PolarMag);
   registerAux(DivP);
   registerAux(PiezoelectricApprox);
-  registerAux(SemiconductingChargeCarriersAux);
   registerAux(Birefringence);
   registerAux(ChangeInRefractiveIndex);
   registerAux(RefractiveIndex);
   registerAux(ChangeInRefractiveIndexWithPolar);
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
-  registerAux(SkyrmionChargeDensityZ);
-  registerAux(SemiconductingChargeCarriersPolyLogAux);
+  registerAux(PontryaginDensity);
+  registerAux(InPlaneP);
   registerAux(ChangeInRefractiveIndexElectro);
+  registerAux(ConvertField);
 
   ///Kernels
-  registerKernel(ModifiedStressDivergenceTensors);
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthAlt);
   registerKernel(BulkEnergyDerivativePSTO);
@@ -311,42 +312,46 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(FerroelectricCouplingP);
   registerKernel(FluctuationKernel);
   registerKernel(KarmanenkoDriver);
-  registerKernel(KappaTDiffusion);
-  registerKernel(ConstantLatticeMismatch);
   registerKernel(AnisotropyEnergy);
   registerKernel(LBOBulkEnergyDeriv);
   registerKernel(DepolEnergy);
-  registerKernel(ThomasFermiPotential);
-  registerKernel(ThomasFermiTerm);
-  registerKernel(AnisotropicElectrostatics);
-
-  registerKernel(EulerSkyrmionPTerm);
-  registerKernel(EulerSkyrmionPCubeTerm);
-  registerKernel(EulerSkyrmionThetaTerm);
-  registerKernel(EulerSkyrmionThetaKappaTerm);
-  registerKernel(EulerSkyrmionThetaDepolTerm);
-  registerKernel(EulerSkyrmionPDepolTerm);
-  registerKernel(EulerSkyrmionPTempTerm);
   registerKernel(RenormalizedFreeEnergy);
-
-  /// registerKernel(FerroelectricCouplingQ);
   registerKernel(FerroelectricCouplingX);
-  registerKernel(StressDivergenceTensorsScaled);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
-  registerKernel(CoeffParamDiffusion);
-  registerKernel(SemiconductorChargeCarriers);
-  registerKernel(ConstField);
-  registerKernel(NerstPlanckDrivingTerm);
-  registerKernel(NerstPlanckDiffusive);
-  registerKernel(FreeChargeContribution);
-  registerKernel(HoleChargeContribution);
-  registerKernel(AcceptorIonContribution);
-  registerKernel(SemiconductorChargeCarriersPolyLog);
   registerKernel(PolarElectricEStrongAlt);
   registerKernel(ConversePiezoelectricStrain);
   registerKernel(PiezoelectricStrainCharge);
+  //experimental magnetic and magnetoelectric kernels under development
+  // see Popkov et al PRB,92,140414(R) (2015):
+  registerKernel(SpinFlexoelectricPolarDerivative);
+  registerKernel(SpinFlexoelectricMagDerivative);
+  registerKernel(SpinFlexoelectricMagGradDerivative);
+  registerKernel(MagneticExchangeDerivative);
+  registerKernel(MagneticAnisotropyDerivative);
+  registerKernel(DzyaloshinskiiMagDerivative);
+  registerKernel(DzyaloshinskiiDistortDerivative);
+  registerKernel(MagMStrong);
+  registerKernel(MagHStrong);
+  registerKernel(BulkAntiferrodistortEnergyDerivativeSixth);
+  registerKernel(RotopolarCoupledDistortDerivativeFourth);
+  registerKernel(RotopolarCoupledPolarDerivativeFourth);
+  registerKernel(AFDAntiphaseEnergyDerivative);
+  registerKernel(LagrangianMultiplierAntiferromagConstraint);
+  registerKernel(LagrangianMultiplierAntiferromagMediumConstraint);
+  registerKernel(LagrangianMultiplierAntiferromagHeavyConstraint);
+  registerKernel(DampingMagneticExchangeDerivative);
+  registerKernel(DampingMagneticAnisotropyDerivative);
+  registerKernel(DampingSoftConstraint);
+  registerKernel(BulkEnergyDerivativeEighth);
+  registerKernel(RotoBulkEnergyDerivativeEighth);
+  registerKernel(RotoPolarCoupledEnergyPolarDerivative);
+  registerKernel(RotoPolarCoupledEnergyDistortDerivative);
+  registerKernel(RotostrictiveCouplingDistortDerivative);
+  registerKernel(RotostrictiveCouplingDispDerivative);
+  registerKernel(ElectrostrictiveCouplingPolarDerivative);
+  registerKernel(ElectrostrictiveCouplingDispDerivative);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -370,7 +375,6 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ElectrostrictiveEnergy);
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(CoupledEnergyCheckShear);
-  registerPostprocessor(GrainSize);
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
   registerPostprocessor(TotalEnergyG);
@@ -382,6 +386,18 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(LBOBulkEnergy);
   registerPostprocessor(TotalEnergyAll);
   registerPostprocessor(ExtElectrostaticEnergy);
+  registerPostprocessor(BulkAntiferrodistortEnergy);
+  registerPostprocessor(MagneticExchangeEnergy);
+  registerPostprocessor(MagneticAnisotropyEnergy);
+  registerPostprocessor(DMInteractionEnergy);
+  registerPostprocessor(RotopolarCouplingEnergy);
+  registerPostprocessor(BulkEnergyEighth);
+  registerPostprocessor(RotoBulkEnergyEighth);
+  registerPostprocessor(RotoPolarCoupledEnergyEighth);
+  registerPostprocessor(AFDWallEnergy);
+  registerPostprocessor(RotostrictiveCouplingEnergy);
+  registerPostprocessor(ElectrostrictiveCouplingEnergy);
+  registerPostprocessor(TotalEnergyBFO);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
@@ -400,26 +416,10 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputePiezoTensor);
 
   ///InitialConditions
-  registerInitialCondition(PerturbedIC);
-  registerInitialCondition(SinIC);
   registerInitialCondition(FluctuationsIC);
-  registerInitialCondition(AdhocConstIC);
+  registerInitialCondition(RandomConstrainedVectorFieldIC);
+
 
 #undef registerObject
 #define registerObject(name) factory.regLegacy<name>(stringifyName(name))
-}
-
-void
-FerretApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
-{
-
-#undef registerAction
-#define registerAction(tplt, action) action_factory.reg<tplt>(stringifyName(tplt), action)
-
-  syntax.registerActionSyntax("TensorMechanicsActionScaled", "Kernels/TensorMechanicsScaled");
-  registerAction(TensorMechanicsActionScaled, "add_kernel"); ///this is deprecated in our code
-
-#undef registerAction
-#define registerAction(tplt, action) action_factory.regLegacy<tplt>(stringifyName(tplt), action)
-
 }

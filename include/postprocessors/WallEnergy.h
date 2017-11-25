@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
@@ -22,16 +22,13 @@
 #ifndef WALLENERGY_H
 #define WALLENERGY_H
 
-//TODO: include the base header
 #include "ElementIntegralPostprocessor.h"
 
-//Forward Declarations
 class WallEnergy;
 
 template<>
 InputParameters validParams<WallEnergy>();
 
-//TODO: change the base class!
 class WallEnergy : public ElementIntegralPostprocessor
 {
 public:
