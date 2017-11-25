@@ -65,6 +65,7 @@
 #include "ChangeInRefractiveIndexWithGCoeffPolar.h"
 #include "PkNorm.h"
 #include "ChangeInRefractiveIndexElectro.h"
+#include "ConvertField.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -294,6 +295,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PontryaginDensity);
   registerAux(InPlaneP);
   registerAux(ChangeInRefractiveIndexElectro);
+  registerAux(ConvertField);
 
   ///Kernels
   registerKernel(BulkEnergyDerivativeSixth);
