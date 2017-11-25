@@ -40,9 +40,10 @@ protected:
 
   /// Individual material information
   bool _compute_piezostrictive_coeff;
-  RankThreeTensor _dmkl;
-  RankThreeTensor _Dijm;
-  RankThreeTensor _Dmij;
+  RankThreeTensor _dkpq;
+  RankThreeTensor _dpqkT;
+  RankThreeTensor _Dkij;
+  RankThreeTensor _DijkT;
   RankFourTensor _Cijkl;
 };
 

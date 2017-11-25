@@ -46,7 +46,7 @@ protected:
 
 private:
   const MaterialProperty<RankThreeTensor> & _piezo_tensor;
-  const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor;
+  const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor_i;
   const unsigned int _component;
   const unsigned int _potential_int_var;
   const VariableValue & _potential_int;
