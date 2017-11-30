@@ -75,6 +75,9 @@
 #include "FluctuationsIC.h"
 #include "RandomConstrainedVectorFieldIC.h"
 
+//Functions
+#include "DomainFunc.h"
+
 //Kernels
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
@@ -191,6 +194,8 @@
 #include "RotostrictiveCouplingEnergy.h"
 #include "ElectrostrictiveCouplingEnergy.h"
 #include "TotalEnergyBFO.h"
+#include "PolarizationValue.h"
+#include "PolarizationComponentValue.h"
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -297,6 +302,8 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexElectro);
   registerAux(ConvertField);
 
+  registerFunction(DomainFunc);
+  
   ///Kernels
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthAlt);
@@ -398,6 +405,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(RotostrictiveCouplingEnergy);
   registerPostprocessor(ElectrostrictiveCouplingEnergy);
   registerPostprocessor(TotalEnergyBFO);
+  registerPostprocessor(PolarizationValue);
+  registerPostprocessor(PolarizationComponentValue);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
