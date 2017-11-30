@@ -39,13 +39,10 @@ int main(int argc, char *argv[])
   FerretApp::registerApps();
 
   // This creates dynamic memory that we're responsible for deleting
-  MooseApp * app = AppFactory::createApp("FerretApp", argc, argv);
+  std::shared_ptr<MooseApp> app = AppFactory::createAppShared("FerretApp", argc, argv);
 
   // Execute the application
   app->run();
-
-  // Free up the memory we created earlier
-  delete app;
 
   return 0;
 }
