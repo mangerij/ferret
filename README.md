@@ -50,5 +50,5 @@ NOTE: The ./configure step can alternatively include a BOOST directory which wil
  * The moose-users list at https://groups.google.com/forum/#!forum/moose-users is good for help with MOOSE!
 
 ### Contributing ###
- * If you have an idea for some ferroelectric materials problem and would like to add it to the repository, then please submit a pull request *to the devel branch* with the relevant information. Generally, to submit a pull request, you should clone Ferret, type git checkout devel, git fetch origin, git rebase origin/devel, then make the changes/additions and a commit message, type git push. The pull request will be handled automatically.
+ * If you have an idea for some ferroelectric materials problem and would like to add it to the repository, then please submit a pull request *to the devel branch* with the relevant information. Generally, to submit a pull request, you should *fork* Ferret, type git checkout devel, git fetch origin, git rebase origin/devel, then make the changes/additions and a commit message, type git push. Then submit the pull request on the page (the next steps will be handled automatically).
  * At the moment, please cite Nanoscale, 2017, 9, 1616-1624 if you use Ferret. A methods paper is currently in the works.
