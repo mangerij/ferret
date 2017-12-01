@@ -1,9 +1,9 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 4
-  ny = 4
-  nz = 4
+  nx = 3
+  ny = 3
+  nz = 3
   xmin = -1.0
   xmax = 1.0
   ymin = -1.0
@@ -11,19 +11,6 @@
   zmin = -1.0
   zmax = 1.0
   elem_type = HEX8
-[]
-
-[Problem]
-  null_space_dimension = 6
-[]
-
-[UserObjects]
-  [./rigidbodymodes_x]
-     type = RigidBodyModes3D
-     subspace_name = NullSpace
-     subspace_indices = '0 1 2 3 4 5'
-     modes = 'trans_x trans_y trans_z rot_x rot_y rot_z'
-  [../]
 []
 
 [GlobalParams]
@@ -620,7 +607,6 @@
 []
 
 
- 
 [BCs]
   [./Periodic]
     [./xy]
@@ -630,7 +616,17 @@
   [../]
 []
 
+[Problem]
+  null_space_dimension = 6
+[]
+
 [UserObjects]
+ [./rigidbodymodes_x]
+    type = RigidBodyModes3D
+    subspace_name = NullSpace
+    subspace_indices = '0 1 2 3 4 5'
+    modes = 'trans_x trans_y trans_z rot_x rot_y rot_z'
+ [../]
  [./kill]
   type = Terminator
   expression = 'perc_change <= 1.0e-5'
@@ -642,14 +638,14 @@
     type = SMP
     full = true
     #petsc_options = '-snes_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type  '
-    petsc_options_value = '     121              1e-10     1e-10      1e-6     bjacobi  '
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
+    petsc_options_value = '     121              1e-10     1e-8        1e-5     bjacobi'
   [../]
 []
 
 [Executioner]
   type = Transient
-  dt = 0.1
+  dt = 0.25
   solve_type = 'NEWTON'
   scheme = 'bdf2'
   dtmin = 1e-13
@@ -661,7 +657,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_BFO_P-A-u_n4_A0e0.P0e0_gPgA1.0_sp
+    file_base = out_BFO_P-A-u_n4_A0e0.P0e0_gPgA1.0_sp_e
     elemental_as_nodal = true
   [../]
 []
