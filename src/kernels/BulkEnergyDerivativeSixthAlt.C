@@ -36,8 +36,8 @@ InputParameters validParams<BulkEnergyDerivativeSixthAlt>()
   params.addParam<Real>("alpha3", BulkEnergyDerivativeSixthAlt::_default_uniform_val, "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");
   params.addParam<Real>("alpha33", BulkEnergyDerivativeSixthAlt::_default_uniform_val, "The coefficients of the Landau expansion");
-  params.addParam<Real>("alpha13", BulkEnergyDerivativeSixthAlt::_default_uniform_val, "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha12", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha13", BulkEnergyDerivativeSixthAlt::_default_uniform_val, "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha111", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha112", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha123", "The coefficients of the Landau expansion");
