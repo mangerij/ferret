@@ -20,7 +20,7 @@
 **/
 
 #include "BulkEnergyDerivativeSixthAlt.h"
-#include<cmath>
+#include "libmesh/utility.h"
 
 constexpr Real BulkEnergyDerivativeSixthAlt::_default_uniform_val;
 
@@ -74,44 +74,44 @@ BulkEnergyDerivativeSixthAlt::computeQpResidual()
   {
     return (
         2.0 * _alpha1 * _polar_x[_qp] +
-        4.0 * _alpha11 * std::pow(_polar_x[_qp], 3.0) +
-        2.0 * _alpha13 * _polar_x[_qp] * std::pow(_polar_z[_qp], 2.0) +
-        2.0 * _alpha12 * _polar_x[_qp] * std::pow(_polar_y[_qp], 2.0) +
-        6.0 * _alpha111 * std::pow(_polar_x[_qp], 5.0) +
+        4.0 * _alpha11 * Utility::pow<3>(_polar_x[_qp]) +
+        2.0 * _alpha13 * _polar_x[_qp] * Utility::pow<2>(_polar_z[_qp]) +
+        2.0 * _alpha12 * _polar_x[_qp] * Utility::pow<2>(_polar_y[_qp]) +
+        6.0 * _alpha111 * Utility::pow<5>(_polar_x[_qp]) +
         _alpha112 * (
-            4.0 * std::pow(_polar_x[_qp], 3.0) * ( std::pow(_polar_y[_qp], 2.0) + std::pow(_polar_z[_qp], 2.0) ) +
-            2.0 * _polar_x[_qp] * ( std::pow(_polar_y[_qp], 4.0) + std::pow(_polar_z[_qp], 4.0) )
+            4.0 * Utility::pow<3>(_polar_x[_qp]) * ( Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) +
+            2.0 * _polar_x[_qp] * ( Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_polar_z[_qp]) )
         ) +
-        2.0 * _alpha123 * _polar_x[_qp] * std::pow(_polar_y[_qp], 2.0) * std::pow(_polar_z[_qp], 2.0)
+        2.0 * _alpha123 * _polar_x[_qp] * Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp])
     )  * _test[_i][_qp];
   }
   else if (_component == 1)
   {
     return (
         2.0 * _alpha1 * _polar_y[_qp] +
-        4.0 * _alpha11 * std::pow(_polar_y[_qp], 3.0) +
-        2.0 * _alpha13 * _polar_y[_qp] * std::pow(_polar_z[_qp], 2.0) +
-        2.0 * _alpha12 * _polar_y[_qp] * std::pow(_polar_x[_qp], 2.0) +
-        6.0 * _alpha111 * std::pow(_polar_y[_qp], 5.0) +
+        4.0 * _alpha11 * Utility::pow<3>(_polar_y[_qp]) +
+        2.0 * _alpha13 * _polar_y[_qp] * Utility::pow<2>(_polar_z[_qp]) +
+        2.0 * _alpha12 * _polar_y[_qp] * Utility::pow<2>(_polar_x[_qp]) +
+        6.0 * _alpha111 * Utility::pow<5>(_polar_y[_qp]) +
         _alpha112 * (
-            4.0 * std::pow(_polar_y[_qp], 3.0) * ( std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_z[_qp], 2.0) ) +
-            2.0 * _polar_y[_qp] * ( std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_z[_qp], 4.0) )
+            4.0 * Utility::pow<3>(_polar_y[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) +
+            2.0 * _polar_y[_qp] * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_z[_qp]) )
         ) +
-        2.0 * _alpha123 * _polar_y[_qp] * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_z[_qp], 2.0)
+        2.0 * _alpha123 * _polar_y[_qp] * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_z[_qp])
     )  * _test[_i][_qp];
   }
   else if (_component == 2)
   {
     return (
         2.0 * _alpha3 * _polar_z[_qp] +
-        4.0 * _alpha33 * std::pow(_polar_z[_qp], 3.0) +
-        2.0 * _alpha13 * _polar_z[_qp] * ( std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0) ) +
-        6.0 * _alpha111 * std::pow(_polar_z[_qp], 5.0) +
+        4.0 * _alpha33 * Utility::pow<3>(_polar_z[_qp]) +
+        2.0 * _alpha13 * _polar_z[_qp] * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) +
+        6.0 * _alpha111 * Utility::pow<5>(_polar_z[_qp]) +
         _alpha112 * (
-            4.0 * std::pow(_polar_z[_qp], 3.0) * ( std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0) ) +
-            2.0 * _polar_z[_qp] * ( std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0) ) 
+            4.0 * Utility::pow<3>(_polar_z[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) +
+            2.0 * _polar_z[_qp] * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) ) 
         ) +
-        2.0 * _alpha123 * _polar_z[_qp] * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0)
+        2.0 * _alpha123 * _polar_z[_qp] * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp])
     )  * _test[_i][_qp];
   }
   else 
@@ -126,38 +126,38 @@ BulkEnergyDerivativeSixthAlt::computeQpJacobian()
   if (_component == 0)
   {
     return (
-        2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(_polar_x[_qp], 2.0) + 2.0 * _alpha13 * std::pow(_polar_z[_qp], 2.0) +
-        2.0 * _alpha12 * std::pow(_polar_y[_qp], 2.0) + 30.0 * _alpha111 * std::pow(_polar_x[_qp], 4.0) +
+        2.0 * _alpha1 + 12.0 * _alpha11 * Utility::pow<2>(_polar_x[_qp]) + 2.0 * _alpha13 * Utility::pow<2>(_polar_z[_qp]) +
+        2.0 * _alpha12 * Utility::pow<2>(_polar_y[_qp]) + 30.0 * _alpha111 * Utility::pow<4>(_polar_x[_qp]) +
         _alpha112 * ( 
-            12.0 * std::pow(_polar_x[_qp], 2.0) * ( std::pow(_polar_y[_qp], 2.0) + std::pow(_polar_z[_qp], 2.0) ) + 
-            2.0 * ( std::pow(_polar_y[_qp], 4.0) + std::pow(_polar_z[_qp], 4.0) ) 
+            12.0 * Utility::pow<2>(_polar_x[_qp]) * ( Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) + 
+            2.0 * ( Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_polar_z[_qp]) ) 
         ) + 
-        2.0 * _alpha123 * std::pow(_polar_y[_qp], 2.0) * std::pow(_polar_z[_qp], 2.0)
+        2.0 * _alpha123 * Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp])
     )  * _phi[_j][_qp] * _test[_i][_qp];
   }
   else if (_component == 1)
   {
     return (
-        2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(_polar_y[_qp], 2.0) + 2.0 * _alpha13 * _polar_y[_qp] * std::pow(_polar_z[_qp], 2.0) +
-        2.0 * _alpha12 * _polar_y[_qp] * std::pow(_polar_x[_qp], 2.0) + 30.0 * _alpha111 * std::pow(_polar_y[_qp], 4.0) +
+        2.0 * _alpha1 + 12.0 * _alpha11 * Utility::pow<2>(_polar_y[_qp]) + 2.0 * _alpha13 * _polar_y[_qp] * Utility::pow<2>(_polar_z[_qp]) +
+        2.0 * _alpha12 * _polar_y[_qp] * Utility::pow<2>(_polar_x[_qp]) + 30.0 * _alpha111 * Utility::pow<4>(_polar_y[_qp]) +
         _alpha112 * ( 
-            4.0 * std::pow(_polar_y[_qp], 3.0) * ( std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_z[_qp], 2.0) ) + 
-            2.0 * _polar_y[_qp] * ( std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_z[_qp], 4.0) ) 
+            4.0 * Utility::pow<3>(_polar_y[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) + 
+            2.0 * _polar_y[_qp] * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_z[_qp]) ) 
         ) + 
-        2.0 * _alpha123 * _polar_y[_qp] * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_z[_qp], 2.0)
+        2.0 * _alpha123 * _polar_y[_qp] * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_z[_qp])
     )  * _phi[_j][_qp] * _test[_i][_qp];
   }
   else if (_component == 2)
   {
     return (
-        2.0 * _alpha3 + 12.0 * _alpha33 * std::pow(_polar_z[_qp], 2.0) + 
-        2.0 * _alpha13 * ( std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0) ) + 
-        30.0 * _alpha111 * std::pow(_polar_z[_qp], 4.0) +
+        2.0 * _alpha3 + 12.0 * _alpha33 * Utility::pow<2>(_polar_z[_qp]) + 
+        2.0 * _alpha13 * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) + 
+        30.0 * _alpha111 * Utility::pow<4>(_polar_z[_qp]) +
         _alpha112 * ( 
-            12.0 * std::pow(_polar_z[_qp], 2.0) * ( std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0) ) + 
-            2.0 * ( std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0) ) 
+            12.0 * Utility::pow<2>(_polar_z[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) + 
+            2.0 * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) ) 
         ) + 
-        2.0 * _alpha123 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0)
+        2.0 * _alpha123 * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp])
     )  * _phi[_j][_qp] * _test[_i][_qp];
   }
   else 
@@ -176,10 +176,10 @@ BulkEnergyDerivativeSixthAlt::computeQpOffDiagJacobian(unsigned int jvar)
         return (
             4.0 * _alpha12 * _polar_x[_qp] * _polar_y[_qp] + 
             _alpha112 * ( 
-                8.0 * std::pow(_polar_x[_qp], 3.0) * _polar_y[_qp] + 
-                8.0 * _polar_x[_qp] *  std::pow(_polar_y[_qp], 3.0) 
+                8.0 * Utility::pow<3>(_polar_x[_qp]) * _polar_y[_qp] + 
+                8.0 * _polar_x[_qp] *  Utility::pow<3>(_polar_y[_qp]) 
             ) + 
-            4.0 * _alpha123 * _polar_x[_qp] * _polar_y[_qp] * std::pow(_polar_z[_qp], 2.0)
+            4.0 * _alpha123 * _polar_x[_qp] * _polar_y[_qp] * Utility::pow<2>(_polar_z[_qp])
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
     else if (jvar == _polar_z_var)
@@ -187,10 +187,10 @@ BulkEnergyDerivativeSixthAlt::computeQpOffDiagJacobian(unsigned int jvar)
         return (
             4.0 * _alpha13 * _polar_x[_qp] * _polar_z[_qp] +
             _alpha112 * ( 
-                8.0 * std::pow(_polar_x[_qp], 3.0) * _polar_z[_qp] + 
-                8.0 * _polar_x[_qp] * std::pow(_polar_z[_qp], 3.0) 
+                8.0 * Utility::pow<3>(_polar_x[_qp]) * _polar_z[_qp] + 
+                8.0 * _polar_x[_qp] * Utility::pow<3>(_polar_z[_qp]) 
             ) + 
-            4.0 * _alpha123 * _polar_x[_qp] * std::pow(_polar_y[_qp], 2.0) * _polar_z[_qp]
+            4.0 * _alpha123 * _polar_x[_qp] * Utility::pow<2>(_polar_y[_qp]) * _polar_z[_qp]
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
     else
@@ -203,20 +203,20 @@ BulkEnergyDerivativeSixthAlt::computeQpOffDiagJacobian(unsigned int jvar)
         return (
             4.0 * _alpha12 * _polar_y[_qp] * _polar_x[_qp] +
             _alpha112 * ( 
-                8.0 * std::pow(_polar_y[_qp], 3.0) * _polar_x[_qp] + 
-                8.0 * _polar_y[_qp] * std::pow(_polar_x[_qp], 3.0)
+                8.0 * Utility::pow<3>(_polar_y[_qp]) * _polar_x[_qp] + 
+                8.0 * _polar_y[_qp] * Utility::pow<3>(_polar_x[_qp])
             ) + 
-            4.0 * _alpha123 * _polar_y[_qp] * _polar_x[_qp] * std::pow(_polar_z[_qp], 2.0)
+            4.0 * _alpha123 * _polar_y[_qp] * _polar_x[_qp] * Utility::pow<2>(_polar_z[_qp])
         ) * _phi[_j][_qp] * _test[_i][_qp];
     } 
     else if(jvar == _polar_z_var) {
         return (
             4.0 * _alpha13 * _polar_y[_qp] * _polar_z[_qp] +
             _alpha112 * ( 
-                8.0 * std::pow(_polar_y[_qp], 3.0) * _polar_z[_qp] + 
-                8.0 * _polar_y[_qp] * std::pow(_polar_z[_qp], 3.0) 
+                8.0 * Utility::pow<3>(_polar_y[_qp]) * _polar_z[_qp] + 
+                8.0 * _polar_y[_qp] * Utility::pow<3>(_polar_z[_qp]) 
             ) + 
-            4.0 * _alpha123 * _polar_y[_qp] * std::pow(_polar_x[_qp], 2.0) * _polar_z[_qp]
+            4.0 * _alpha123 * _polar_y[_qp] * Utility::pow<2>(_polar_x[_qp]) * _polar_z[_qp]
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
     else 
@@ -229,20 +229,20 @@ BulkEnergyDerivativeSixthAlt::computeQpOffDiagJacobian(unsigned int jvar)
         return (
             4.0 * _alpha13 * _polar_z[_qp] * _polar_x[_qp] + 
             _alpha112 * ( 
-                8.0 * std::pow(_polar_z[_qp], 3.0) * _polar_x[_qp] + 
-                8.0 * _polar_z[_qp] * std::pow(_polar_x[_qp], 3.0)
+                8.0 * Utility::pow<3>(_polar_z[_qp]) * _polar_x[_qp] + 
+                8.0 * _polar_z[_qp] * Utility::pow<3>(_polar_x[_qp])
             ) + 
-            4.0 * _alpha123 * _polar_z[_qp] * _polar_x[_qp] * std::pow(_polar_y[_qp], 2.0)
+            4.0 * _alpha123 * _polar_z[_qp] * _polar_x[_qp] * Utility::pow<2>(_polar_y[_qp])
         ) * _phi[_j][_qp] * _test[_i][_qp];
     } 
     else if(jvar == _polar_y_var) {
         return (
             4.0 * _alpha13 * _polar_z[_qp] * _polar_y[_qp] + 
             _alpha112 * ( 
-                8.0 * std::pow(_polar_z[_qp], 3.0) * _polar_y[_qp] + 
-                8.0 * _polar_z[_qp] * std::pow(_polar_y[_qp], 3.0)  
+                8.0 * Utility::pow<3>(_polar_z[_qp]) * _polar_y[_qp] + 
+                8.0 * _polar_z[_qp] * Utility::pow<3>(_polar_y[_qp])  
             ) + 
-            4.0 * _alpha123 * _polar_z[_qp] * std::pow(_polar_x[_qp], 2.0) * _polar_y[_qp]
+            4.0 * _alpha123 * _polar_z[_qp] * Utility::pow<2>(_polar_x[_qp]) * _polar_y[_qp]
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
     else
