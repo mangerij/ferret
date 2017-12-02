@@ -66,6 +66,7 @@
 #include "PkNorm.h"
 #include "ChangeInRefractiveIndexElectro.h"
 #include "ConvertField.h"
+#include "PzSq.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -301,6 +302,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(InPlaneP);
   registerAux(ChangeInRefractiveIndexElectro);
   registerAux(ConvertField);
+  registerAux(PzSq);
 
   registerFunction(DomainFunc);
   
