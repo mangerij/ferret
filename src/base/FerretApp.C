@@ -67,6 +67,7 @@
 #include "ChangeInRefractiveIndexElectro.h"
 #include "ConvertField.h"
 #include "PzSq.h"
+#include "PlaneAux.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -198,6 +199,7 @@
 #include "PolarizationValue.h"
 #include "PolarizationComponentValue.h"
 
+
 template<>
 InputParameters validParams<FerretApp>()
 {
@@ -303,6 +305,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexElectro);
   registerAux(ConvertField);
   registerAux(PzSq);
+  registerAux(PlaneAux);
 
   registerFunction(DomainFunc);
   
