@@ -136,6 +136,7 @@
 #include "RotostrictiveCouplingDispDerivative.h"
 #include "ElectrostrictiveCouplingPolarDerivative.h"
 #include "ElectrostrictiveCouplingDispDerivative.h"
+#include "LocalBulkEnergyDerivative.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -364,6 +365,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(RotostrictiveCouplingDispDerivative);
   registerKernel(ElectrostrictiveCouplingPolarDerivative);
   registerKernel(ElectrostrictiveCouplingDispDerivative);
+  registerKernel(LocalBulkEnergyDerivative);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
