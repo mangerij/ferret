@@ -54,7 +54,6 @@ ConversePiezoelectricStrain::computeQpResidual()
   for (unsigned int j = 0; j < 3; ++j)
   {
     sum += _grad_test[_i][_qp](j) * ((_potential_int_grad[_qp](0) * _piezostrictive_tensor_i[_qp](0,j,_component)) + (_potential_int_grad[_qp](1) * _piezostrictive_tensor_i[_qp](1,j,_component)) + (_potential_int_grad[_qp](2) * _piezostrictive_tensor_i[_qp](2,j,_component)));
-
   }
   return sum;
 }
