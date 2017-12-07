@@ -1,17 +1,26 @@
 
 [Mesh]
-  file = 10by10by10cube.e
+  type = GeneratedMesh
+  dim = 3
+  nx = 10
+  ny = 10
+  nz = 8
+  xmin = -1.5
+  xmax = 1.5
+  ymin = -1.5
+  ymax = 1.5
+  zmin = -0.5
+  zmax = 0.5
+  elem_type = HEX8
 []
 
 [GlobalParams]
   potential_int = potential_int
-
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
   displacements = 'disp_x disp_y disp_z'
 []
-
 
 
 [Variables]
@@ -107,7 +116,7 @@
   [./FE_E_int]
      type = Electrostatics
      variable = potential_int
-     permittivity = 0.08854187
+     permittivity = 0.0721616
   [../]
   [./strain_charge]
      type = PiezoelectricStrainCharge
@@ -201,7 +210,6 @@
     index_i = 2
     index_j = 0
   [../]
-
 []
 
 [Materials]
@@ -222,73 +230,73 @@
     fill_method = general
     compute_piezostrictive_coeff = true
     C_ijkl = '209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29'
-    d_ijk = '0 0 -0.0166 0 0 0 -0.0166 0 0 0 0 0 0 0 -0.0166 0 -0.0166 0 -0.005 0 0 0 -0.005 0 0 0 0.0124'
+    d_kpq = '0 0 -0.00415 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.00415 0 -0.00415 0 -0.005 0 0 0 -0.005 0 0 0 0.0124'
+    d_pqkT = '0 0 -0.005 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.005 0 -0.00415 0 -0.00415 0 0 0 -0.00415 0 0 0 0.0124'
   [../]
 []
 
 
 [BCs]
   # Boundary Condition System
-  [./front_pot]
-    type = DirichletBC
-    variable = potential_int
-    boundary = 2
-    value = 5.0.0
-  [../]
   [./back_pot]
     type =DirichletBC
     variable = potential_int
-    boundary = 5
-    value = 0.0
+    boundary = 'back'
+    value = -0.25
+  [../]
+  [./front_pot]
+    type =DirichletBC
+    variable = potential_int
+    boundary = 'front'
+    value = 0.25
   [../]
 
-  [./top_x]
-   type = DirichletBC
-   variable = disp_x
-   value = 0.0
-   boundary = '3'
-  [../]
-  [./top_y]
-   type = DirichletBC
-   variable = disp_y
-   value = 0.0
-   boundary = '3'
-  [../]
-  [./top_z]
-   type = DirichletBC
-   variable = disp_z
-   value = 0.0
-   boundary = '3'
-  [../]
-
-  [./bot_x]
-   type = DirichletBC
-   variable = disp_x
-   value = 0.0
-   boundary = '1'
-  [../]
-  [./bot_y]
-   type = DirichletBC
-   variable = disp_y
-   value = 0.0
-   boundary = '1'
-  [../]
-  [./bot_z]
-   type = DirichletBC
-   variable = disp_z
-   value = 0.0
-   boundary = '1'
+  #[./stablizer_x]
+  #  type = DirichletBC
+  #  variable = 'disp_x'
+  #  boundary = 'front'
+  #  value = 0.0
+  #[../]
+  #[./stablizer_y]
+  #  type = DirichletBC
+  #  variable = 'disp_y'
+  #  boundary = 'front'
+  #  value = 0.0
+  #[../]
+  #[./stablizer_z]
+  #  type = DirichletBC
+  #  variable = 'disp_z'
+  #  boundary = 'front'
+  #  value = 0.0
   [../]
 []
 
+[Postprocessors]
+  [./Felastic]
+    type = ElasticEnergy
+    execute_on = 'timestep_end'
+  [../]
+[]
+
+[Problem]
+  null_space_dimension = 6
+[]
+
+[UserObjects]
+  [./rigidbodymodes_x]
+     type = RigidBodyModes3D
+     subspace_name = NullSpace
+     subspace_indices = '0 1 2 3 4 5'
+     modes = 'trans_x trans_y trans_z rot_x rot_y rot_z'
+  [../]
+[]
 
 [Preconditioning]
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_atol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-10      1e-6     bjacobi'
+    petsc_options_value = '    121                1e-10      1e-8     bjacobi'
   [../]
 []
 
@@ -298,13 +306,12 @@
 []
 
 
-
 [Outputs]
-  print_linear_residuals = true
+  print_linear_residuals = false
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_steady_piezo
+    file_base = out_test_conversepiezoelectric
     elemental_as_nodal = true
   [../]
 []
