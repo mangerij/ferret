@@ -1,7 +1,14 @@
 #[Tests]
-#  [./piezo_test]
+#  [./piezoelectric_test]
 #    type = 'Exodiff'
-#    input = 'piezo_test.i'
-#    exodiff = 'out_steady_piezo.e'
+#    input = 'Piezoelectrictest.i'
+#    exodiff = 'out_test_piezoelectric.e'
 #  [../]
+#
+#  [./conversepiezoelectric_test]
+#    type = 'Exodiff'
+#    input = 'ConversePiezoelectrictest.i'
+#    exodiff = 'out_test_conversepiezoelectric.e'
+#  [../]
+#
 #[]
