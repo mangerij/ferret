@@ -27,22 +27,22 @@ namespace PiezostrictiveTensorTools
 {
 
 RankThreeTensor
-computeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk)
+computeProduct(const RankFourTensor & Cpqij, const RankThreeTensor & Akpq)
 {
   RankThreeTensor result;
   ///Moose::out << "\n Performing C_ijmn A_mnk contraction on all the quadrature points?";
-  for (unsigned int i = 0; i < 3; ++i)
-    for (unsigned int j = 0; j < 3; ++j)
-      for (unsigned int k = 0; k < 3; ++k)
+  for (unsigned int k = 0; k < 3; ++k)
+    for (unsigned int i = 0; i < 3; ++i)
+      for (unsigned int j = 0; j < 3; ++j)
         {
-          result(i,j,k) = 0.0;
-          for (unsigned int m = 0; m < 3; ++m)
-            for (unsigned int n = 0; n < 3; ++n)
+          result(k,i,j) = 0.0;
+          for (unsigned int p = 0; p < 3; ++p)
+            for (unsigned int q = 0; q < 3; ++q)
             {
                 ///sum += Cijkl(i, j, m, n) * Amnk(m, n, k);
-                result(i,j,k) += Cijmn(i,j,m,n) * Amnk(k,m,n);
+                result(k,i,j) += Cpqij(p,q,i,j) * Akpq(k,p,q);
+                // Moose::out << "\n q"; std::cout << k + 1 << i + 1 << j + 1; Moose::out << " = "; std::cout << result(k,i,j);
             }
-            ///Moose::out << "\n q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = "; std::cout << result(i,j,k,l);
         }
   return result;
   ///Moose::out << "\n Complete.";
@@ -50,24 +50,24 @@ computeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk)
 
 
 RankThreeTensor
-computePiezoTransposeProduct(const RankFourTensor & Cijmn, const RankThreeTensor & Amnk)
+computePiezoTransposeProduct(const RankFourTensor & Cijpq, const RankThreeTensor & Apqk)
 {
-  RankThreeTensor result;
+  RankThreeTensor res;
   ///Moose::out << "\n Performing C_ijmn A_mnk contraction on all the quadrature points?";
   for (unsigned int i = 0; i < 3; ++i)
     for (unsigned int j = 0; j < 3; ++j)
       for (unsigned int k = 0; k < 3; ++k)
         {
-          result(i,j,k) = 0.0;
-          for (unsigned int m = 0; m < 3; ++m)
-            for (unsigned int n = 0; n < 3; ++n)
+          res(i,j,k) = 0.0;
+          for (unsigned int p = 0; p < 3; ++p)
+            for (unsigned int q = 0; q < 3; ++q)
             {
                 ///sum += Cijkl(i, j, m, n) * Amnk(m, n, k);
-                result(i,j,k) += Cijmn(i,j,m,n) * Amnk(m,n,k);
+                res(i,j,k) += Cijpq(i,j,p,q) * Apqk(p,q,k);
+                // Moose::out << "\n eT"; std::cout << i + 1 << j + 1 << k + 1; Moose::out << " = "; std::cout << res(i,j,k);
             }
-            ///Moose::out << "\n q"; std::cout << i + 1 << j + 1 << k + 1 << l + 1; Moose::out << " = "; std::cout << result(i,j,k,l);
         }
-  return result;
+  return res;
   ///Moose::out << "\n Complete.";
 }
 

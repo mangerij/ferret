@@ -1,4 +1,4 @@
-/**
+/* 
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -14,37 +14,34 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
-**/
+*/
 
-#ifndef COMPUTEPIEZOTENSOR_H
-#define COMPUTEPIEZOTENSOR_H
+#ifndef PZSQ_H
+#define PZSQ_H
 
-#include "RankThreeTensor.h"
-#include "RankFourTensor.h"
-#include "PiezostrictiveTensorTools.h"
-#include "ComputeRotatedPiezoTensorBase.h"
+#include "AuxKernel.h"
 
-/**
- * ComputeElectroopticTensor defines a linear electrooptic tensor material object with a given base name.
- */
-class ComputePiezoTensor : public ComputeRotatedPiezoTensorBase
+//Forward declarations
+class PzSq;
+
+template<>
+InputParameters validParams<PzSq>();
+
+class PzSq : public AuxKernel
 {
 public:
-  ComputePiezoTensor(const InputParameters & parameters);
+  PzSq(const InputParameters & parameters);
+
+  virtual ~PzSq() {}
 
 protected:
-  virtual void computeQpPiezoTensor();
+  virtual Real computeValue();
 
-  /// Individual material information
-  bool _compute_piezostrictive_coeff;
-  RankThreeTensor _dkpq;
-  RankThreeTensor _dpqkT;
-  RankThreeTensor _Dkij;
-  RankThreeTensor _DijkT;
-  RankFourTensor _Cijkl;
+private:
+  const VariableValue & _polar_z;
 };
 
-#endif //COMPUTEPIEZOTENSOR_H
+#endif

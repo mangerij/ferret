@@ -19,28 +19,25 @@
 
 **/
 
-#ifndef BULKENERGYDERIVATIVESIXTHALT_H
-#define BULKENERGYDERIVATIVESIXTHALT_H
+#ifndef BULKENERGYDERIVATIVEEIGHTHALT_H
+#define BULKENERGYDERIVATIVEEIGHTHALT_H
 
 #include "Kernel.h"
 
-class BulkEnergyDerivativeSixthAlt;
+class BulkEnergyDerivativeEighthAlt;
 
 template<>
-InputParameters validParams<BulkEnergyDerivativeSixthAlt>();
+InputParameters validParams<BulkEnergyDerivativeEighthAlt>();
 
-class BulkEnergyDerivativeSixthAlt: public Kernel
+class BulkEnergyDerivativeEighthAlt: public Kernel
 {
 public:
 
-  BulkEnergyDerivativeSixthAlt(const InputParameters & parameters);
+  BulkEnergyDerivativeEighthAlt(const InputParameters & parameters);
 
-  static constexpr Real _default_uniform_val = 123456.0;
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
@@ -50,7 +47,7 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const Real _alpha1, _alpha3, _alpha11, _alpha33, _alpha12, _alpha13, _alpha111, _alpha112,_alpha123;
+  const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112, _alpha123, _alpha1111, _alpha1112, _alpha1122, _alpha1123;
   const Real _len_scale;
 };
-#endif //BULKENERGYDERIVATIVESIXTHALT_H
+#endif //BULKENERGYDERIVATIVEEIGHTHALT_H

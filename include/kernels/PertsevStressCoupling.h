@@ -19,30 +19,32 @@
 
 **/
 
-#ifndef BULKENERGYDERIVATIVESIXTHALT_H
-#define BULKENERGYDERIVATIVESIXTHALT_H
+#ifndef PERTSEVSTRESSCOUPLING_H
+#define PERTSEVSTRESSCOUPLING_H
 
 #include "Kernel.h"
+#include "RankTwoTensor.h"
 
-class BulkEnergyDerivativeSixthAlt;
+//Forward Declarations
+class PertsevStressCoupling;
 
 template<>
-InputParameters validParams<BulkEnergyDerivativeSixthAlt>();
+InputParameters validParams<PertsevStressCoupling>();
 
-class BulkEnergyDerivativeSixthAlt: public Kernel
+class PertsevStressCoupling: public Kernel
 {
 public:
 
-  BulkEnergyDerivativeSixthAlt(const InputParameters & parameters);
+  PertsevStressCoupling(const InputParameters & parameters);
 
-  static constexpr Real _default_uniform_val = 123456.0;
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
+private:
+  std::string _base_name;
+  const MaterialProperty<RankTwoTensor> & _stress;
   const unsigned int _component;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
@@ -50,7 +52,10 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const Real _alpha1, _alpha3, _alpha11, _alpha33, _alpha12, _alpha13, _alpha111, _alpha112,_alpha123;
-  const Real _len_scale;
+  const Real _Q11;
+  const Real _Q12;
+  const Real _Q44;
+  const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
+
 };
-#endif //BULKENERGYDERIVATIVESIXTHALT_H
+#endif //PERTSEVSTRESSCOUPLING_H

@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 3
-  ny = 3
-  nz = 3
-  xmin = -1.0
-  xmax = 1.0
-  ymin = -1.0
-  ymax = 1.0
-  zmin = -1.0
-  zmax = 1.0
+  nx = 2
+  ny = 2
+  nz = 2
+  xmin = -0.25
+  xmax = 0.25
+  ymin = -0.25
+  ymax = 0.25
+  zmin = -0.25
+  zmax = 0.25
   elem_type = HEX8
 []
 
@@ -650,6 +650,7 @@
   scheme = 'bdf2'
   dtmin = 1e-13
   dtmax = 0.5
+  num_steps = 15
 []
 
 [Outputs]
@@ -657,7 +658,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_BFO_P-A-u_n4_A0e0.P0e0_gPgA1.0_sp_e
+    file_base = out_BFO_P-A-u_n2_test
     elemental_as_nodal = true
   [../]
 []

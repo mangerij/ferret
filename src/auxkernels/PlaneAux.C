@@ -19,33 +19,29 @@
 
 **/
 
-#ifndef BULKENERGY_H
-#define BULKENERGY_H
-
-//TODO: include the base header
-#include "ElementIntegralPostprocessor.h"
-
-//Forward Declarations
-class BulkEnergy;
-
+#include "PlaneAux.h"
 template<>
-InputParameters validParams<BulkEnergy>();
 
-//TODO: change the base class!
-class BulkEnergy : public ElementIntegralPostprocessor
+InputParameters validParams<PlaneAux>()
+
 {
-public:
-  BulkEnergy(const InputParameters & parameters);
+  InputParameters params = validParams<AuxKernel>();
+  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
+  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  return params;
+}
 
-  static constexpr Real _default_uniform_val = 123456.0;
-protected:
-  virtual Real computeQpIntegral();
-  const VariableValue& _polar_x;
-  const VariableValue& _polar_y;
-  const VariableValue& _polar_z;
-  const Real _alpha1, _alpha3, _alpha11, _alpha33, _alpha12, _alpha13, _alpha111, _alpha112,_alpha123;
-  const Real _len_scale;
 
-};
+PlaneAux::PlaneAux(const InputParameters & parameters) :
+  AuxKernel(parameters),
+   _polar_x(coupledValue("polar_x")),
+   _polar_y(coupledValue("polar_y"))
+{
+}
 
-#endif
+Real
+PlaneAux::computeValue()
+
+{
+    return (_q_point[_qp](1) * _polar_x[_qp] - _q_point[_qp](0) * _polar_y[_qp]);
+}

@@ -19,33 +19,26 @@
 
 **/
 
-#ifndef BULKENERGY_H
-#define BULKENERGY_H
-
-//TODO: include the base header
-#include "ElementIntegralPostprocessor.h"
-
-//Forward Declarations
-class BulkEnergy;
-
+#include "PzSq.h"
 template<>
-InputParameters validParams<BulkEnergy>();
 
-//TODO: change the base class!
-class BulkEnergy : public ElementIntegralPostprocessor
+InputParameters validParams<PzSq>()
+
 {
-public:
-  BulkEnergy(const InputParameters & parameters);
+  InputParameters params = validParams<AuxKernel>();
+  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  return params;
+}
 
-  static constexpr Real _default_uniform_val = 123456.0;
-protected:
-  virtual Real computeQpIntegral();
-  const VariableValue& _polar_x;
-  const VariableValue& _polar_y;
-  const VariableValue& _polar_z;
-  const Real _alpha1, _alpha3, _alpha11, _alpha33, _alpha12, _alpha13, _alpha111, _alpha112,_alpha123;
-  const Real _len_scale;
+PzSq::PzSq(const InputParameters & parameters) :
+  AuxKernel(parameters),
+   _polar_z(coupledValue("polar_z"))
+{
+}
 
-};
-
-#endif
+Real
+PzSq::computeValue()
+{
+    return _polar_z[_qp]*_polar_z[_qp];
+;
+}

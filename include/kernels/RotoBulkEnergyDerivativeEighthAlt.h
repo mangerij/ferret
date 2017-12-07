@@ -19,38 +19,35 @@
 
 **/
 
-#ifndef BULKENERGYDERIVATIVESIXTHALT_H
-#define BULKENERGYDERIVATIVESIXTHALT_H
+#ifndef ROTOBULKENERGYDERIVATIVEEIGHTHALT_H
+#define ROTOBULKENERGYDERIVATIVEEIGHTHALT_H
 
 #include "Kernel.h"
 
-class BulkEnergyDerivativeSixthAlt;
+class RotoBulkEnergyDerivativeEighthAlt;
 
 template<>
-InputParameters validParams<BulkEnergyDerivativeSixthAlt>();
+InputParameters validParams<RotoBulkEnergyDerivativeEighthAlt>();
 
-class BulkEnergyDerivativeSixthAlt: public Kernel
+class RotoBulkEnergyDerivativeEighthAlt: public Kernel
 {
 public:
 
-  BulkEnergyDerivativeSixthAlt(const InputParameters & parameters);
+  RotoBulkEnergyDerivativeEighthAlt(const InputParameters & parameters);
 
-  static constexpr Real _default_uniform_val = 123456.0;
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
-  const unsigned int _polar_x_var;
-  const unsigned int _polar_y_var;
-  const unsigned int _polar_z_var;
-  const VariableValue & _polar_x;
-  const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
-  const Real _alpha1, _alpha3, _alpha11, _alpha33, _alpha12, _alpha13, _alpha111, _alpha112,_alpha123;
+  const unsigned int _antiferrodis_A_x_var;
+  const unsigned int _antiferrodis_A_y_var;
+  const unsigned int _antiferrodis_A_z_var;
+  const VariableValue & _antiferrodis_A_x;
+  const VariableValue & _antiferrodis_A_y;
+  const VariableValue & _antiferrodis_A_z;
+  const Real _beta1, _beta11, _beta12, _beta111, _beta112,_beta123, _beta1111, _beta1112, _beta1122, _beta1123;
   const Real _len_scale;
 };
-#endif //BULKENERGYDERIVATIVESIXTHALT_H
+#endif //ROTOBULKENERGYDERIVATIVEEIGHTHALT_H

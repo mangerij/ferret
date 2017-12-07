@@ -66,6 +66,8 @@
 #include "PkNorm.h"
 #include "ChangeInRefractiveIndexElectro.h"
 #include "ConvertField.h"
+#include "PzSq.h"
+#include "PlaneAux.h"
 
 //Boundary Conditions
 #include "HydrostaticBC.h"
@@ -74,6 +76,9 @@
 //Initial Conditions
 #include "FluctuationsIC.h"
 #include "RandomConstrainedVectorFieldIC.h"
+
+//Functions
+#include "DomainFunc.h"
 
 //Kernels
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
@@ -131,6 +136,7 @@
 #include "RotostrictiveCouplingDispDerivative.h"
 #include "ElectrostrictiveCouplingPolarDerivative.h"
 #include "ElectrostrictiveCouplingDispDerivative.h"
+#include "LocalBulkEnergyDerivative.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -191,6 +197,9 @@
 #include "RotostrictiveCouplingEnergy.h"
 #include "ElectrostrictiveCouplingEnergy.h"
 #include "TotalEnergyBFO.h"
+#include "PolarizationValue.h"
+#include "PolarizationComponentValue.h"
+
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -296,7 +305,11 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(InPlaneP);
   registerAux(ChangeInRefractiveIndexElectro);
   registerAux(ConvertField);
+  registerAux(PzSq);
+  registerAux(PlaneAux);
 
+  registerFunction(DomainFunc);
+  
   ///Kernels
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthAlt);
@@ -352,6 +365,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(RotostrictiveCouplingDispDerivative);
   registerKernel(ElectrostrictiveCouplingPolarDerivative);
   registerKernel(ElectrostrictiveCouplingDispDerivative);
+  registerKernel(LocalBulkEnergyDerivative);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -398,6 +412,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(RotostrictiveCouplingEnergy);
   registerPostprocessor(ElectrostrictiveCouplingEnergy);
   registerPostprocessor(TotalEnergyBFO);
+  registerPostprocessor(PolarizationValue);
+  registerPostprocessor(PolarizationComponentValue);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
