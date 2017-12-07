@@ -1,14 +1,14 @@
-[Tests]
-  [./piezoelectric_test]
-    type = 'Exodiff'
-    input = 'Piezoelectrictest.i'
-    exodiff = 'out_test_piezoelectric.e'
-  [../]
-
-  [./conversepiezoelectric_test]
-    type = 'Exodiff'
-    input = 'ConversePiezoelectrictest.i'
-    exodiff = 'out_test_conversepiezoelectric.e'
-  [../]
-
-[]
+#[Tests]
+#  [./piezoelectric_test]
+#    type = 'Exodiff'
+#    input = 'Piezoelectrictest.i'
+#    exodiff = 'out_test_piezoelectric.e'
+#  [../]
+#
+#  [./conversepiezoelectric_test]
+#    type = 'Exodiff'
+#    input = 'ConversePiezoelectrictest.i'
+#    exodiff = 'out_test_conversepiezoelectric.e'
+#  [../]
+#
+#[]
