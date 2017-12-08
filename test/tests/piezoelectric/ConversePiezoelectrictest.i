@@ -250,25 +250,6 @@
     boundary = 'front'
     value = 0.25
   [../]
-
-  #[./stablizer_x]
-  #  type = DirichletBC
-  #  variable = 'disp_x'
-  #  boundary = 'front'
-  #  value = 0.0
-  #[../]
-  #[./stablizer_y]
-  #  type = DirichletBC
-  #  variable = 'disp_y'
-  #  boundary = 'front'
-  #  value = 0.0
-  #[../]
-  #[./stablizer_z]
-  #  type = DirichletBC
-  #  variable = 'disp_z'
-  #  boundary = 'front'
-  #  value = 0.0
-  [../]
 []
 
 [Postprocessors]
