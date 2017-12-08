@@ -1,14 +1,18 @@
-#[Tests]
-#  [./piezoelectric_test]
-#    type = 'Exodiff'
-#    input = 'Piezoelectrictest.i'
-#    exodiff = 'out_test_piezoelectric.e'
-#  [../]
-#
-#  [./conversepiezoelectric_test]
-#    type = 'Exodiff'
-#    input = 'ConversePiezoelectrictest.i'
-#    exodiff = 'out_test_conversepiezoelectric.e'
-#  [../]
-#
-#[]
+[Tests]
+  [./piezoelectric_test]
+    type = 'Exodiff'
+    input = 'Piezoelectrictest.i'
+    exodiff = 'out_test_piezoelectric.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./conversepiezoelectric_test]
+    type = 'Exodiff'
+    input = 'ConversePiezoelectrictest.i'
+    exodiff = 'out_test_conversepiezoelectric.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+[]

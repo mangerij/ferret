@@ -2,15 +2,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 10
-  ny = 10
-  nz = 8
-  xmin = -1.5
-  xmax = 1.5
-  ymin = -1.5
-  ymax = 1.5
-  zmin = -0.5
-  zmax = 0.5
+  nx = 7
+  ny = 7
+  nz = 5
+  xmin = -3
+  xmax = 3
+  ymin = -3
+  ymax = 3
+  zmin = -2
+  zmax = 2
   elem_type = HEX8
 []
 
