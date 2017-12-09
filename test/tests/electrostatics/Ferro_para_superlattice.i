@@ -1,19 +1,13 @@
 
-alpha1 = -0.0827836
-alpha3 = -0.250056
-alpha11 = 0.42229
-alpha33 = 0.04990909090909092
-alpha13 = 0.4521818181818182
-alpha12 = 0.734181277056277
+alpha1 = '-0.0827836 -0.250056' #alpha1 alpha3 
+alpha11 = '0.42229 0.04990909090909092' #alpha11 alpha33
+alpha12 = '0.734181277056277 0.4521818181818182' #alpha12 alpha13
 alpha111 = 0.0#0.26
 alpha112 = 0.0#0.61
 alpha123 = 0.0#-3.7
-alpha1_para = 0.1854662
-alpha3_para = 0.1854662
-alpha11_para = 0.0
-alpha33_para = 0.0
-alpha13_para = 0.0
-alpha12_para = 0.0
+alpha1_para = '0.1854662 0.1854662'
+alpha11_para = '0.0 0.0'
+alpha12_para = '0.0 0.0'
 alpha111_para = 0.0
 alpha112_para = 0.0
 alpha123_para = 0.0
