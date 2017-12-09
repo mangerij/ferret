@@ -37,7 +37,6 @@ class BulkEnergy : public ElementIntegralPostprocessor
 public:
   BulkEnergy(const InputParameters & parameters);
 
-  static constexpr Real _default_uniform_val = 123456.0;
 protected:
   virtual Real computeQpIntegral();
   const VariableValue& _polar_x;
