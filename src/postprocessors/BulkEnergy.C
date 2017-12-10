@@ -20,8 +20,8 @@
 **/
 
 #include "BulkEnergy.h"
-
-constexpr Real BulkEnergy::_default_uniform_val;
+#include "libmesh/utility.h"
+#include <vector>
 
 template<>
 InputParameters validParams<BulkEnergy>()
@@ -31,12 +31,9 @@ InputParameters validParams<BulkEnergy>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
-  params.addParam<Real>("alpha3", BulkEnergy::_default_uniform_val, "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");
-  params.addParam<Real>("alpha33", BulkEnergy::_default_uniform_val, "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha12", "The coefficients of the Landau expansion");
-  params.addParam<Real>("alpha13", BulkEnergy::_default_uniform_val, "The coefficients of the Landau expansion");
+  params.addRequiredParam<std::vector<Real>>("alpha1", "The coefficients of the Landau expansion");
+  params.addRequiredParam<std::vector<Real>>("alpha11", "The coefficients of the Landau expansion");
+  params.addRequiredParam<std::vector<Real>>("alpha12", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha111", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha112", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha123", "The coefficients of the Landau expansion");
@@ -49,12 +46,12 @@ BulkEnergy::BulkEnergy(const InputParameters & parameters) :
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
-  _alpha1(getParam<Real>("alpha1")),
-  _alpha3(getParam<Real>("alpha3") == _default_uniform_val ? _alpha1 : getParam<Real>("alpha3")),
-  _alpha11(getParam<Real>("alpha11")),
-  _alpha33(getParam<Real>("alpha33") == _default_uniform_val ? _alpha11 : getParam<Real>("alpha33")),
-  _alpha12(getParam<Real>("alpha12")),
-  _alpha13(getParam<Real>("alpha13") == _default_uniform_val ? _alpha12 : getParam<Real>("alpha13")),
+  _alpha1(getParam<std::vector<Real>>("alpha1").at(0)),
+  _alpha3(getParam<std::vector<Real>>("alpha1").size() > 1 ? getParam<std::vector<Real>>("alpha1").at(1) : _alpha1),
+  _alpha11(getParam<std::vector<Real>>("alpha11").at(0)),
+  _alpha33(getParam<std::vector<Real>>("alpha11").size() > 1 ? getParam<std::vector<Real>>("alpha11").at(1) : _alpha11),
+  _alpha12(getParam<std::vector<Real>>("alpha12").at(0)),
+  _alpha13(getParam<std::vector<Real>>("alpha12").size() > 1 ? getParam<std::vector<Real>>("alpha12").at(1) : _alpha12),
   _alpha111(getParam<Real>("alpha111")),
   _alpha112(getParam<Real>("alpha112")),
   _alpha123(getParam<Real>("alpha123")),
@@ -66,18 +63,18 @@ Real
 BulkEnergy::computeQpIntegral()
 {
   return (
-        _alpha1 * ( std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0) ) + 
-        _alpha3 * std::pow(_polar_z[_qp], 2.0) + 
-        _alpha11 * ( std::pow(_polar_x[_qp], 4.0) + std::pow(_polar_y[_qp], 4.0) ) +
-        _alpha33 * std::pow(_polar_z[_qp], 4.0) + 
-        _alpha13 * ( std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_z[_qp], 2.0) + std::pow(_polar_y[_qp], 2.0) * std::pow(_polar_z[_qp], 2.0) ) +
-        _alpha12 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0) +
-        _alpha111 * (std::pow(_polar_x[_qp], 6.0) + std::pow(_polar_y[_qp], 6.0) + std::pow(_polar_z[_qp], 6.0)) +
+        _alpha1 * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) + 
+        _alpha3 * Utility::pow<2>(_polar_z[_qp]) + 
+        _alpha11 * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) ) +
+        _alpha33 * Utility::pow<4>(_polar_z[_qp]) + 
+        _alpha13 * ( Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_z[_qp]) + Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp]) ) +
+        _alpha12 * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp]) +
+        _alpha111 * (Utility::pow<6>(_polar_x[_qp]) + Utility::pow<6>(_polar_y[_qp]) + Utility::pow<6>(_polar_z[_qp])) +
         _alpha112 * (
-            std::pow(_polar_x[_qp], 4.0) * (std::pow(_polar_y[_qp], 2.0) + std::pow(_polar_z[_qp], 2.0)) + 
-            std::pow(_polar_y[_qp], 4.0) * (std::pow(_polar_x[_qp], 2.0) + std::pow(_polar_z[_qp], 2.0)) + 
-            std::pow(_polar_z[_qp], 4.0) * (std::pow(_polar_y[_qp], 2.0) + std::pow(_polar_x[_qp], 2.0)) 
+            Utility::pow<4>(_polar_x[_qp]) * (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])) + 
+            Utility::pow<4>(_polar_y[_qp]) * (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp])) + 
+            Utility::pow<4>(_polar_z[_qp]) * (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_x[_qp])) 
         ) + 
-        _alpha123 * std::pow(_polar_x[_qp], 2.0) * std::pow(_polar_y[_qp], 2.0) * std::pow(_polar_z[_qp], 2.0)
+        _alpha123 * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp])
     );
 }

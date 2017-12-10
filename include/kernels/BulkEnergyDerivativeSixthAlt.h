@@ -35,7 +35,6 @@ public:
 
   BulkEnergyDerivativeSixthAlt(const InputParameters & parameters);
 
-  static constexpr Real _default_uniform_val = 123456.0;
 protected:
   virtual Real computeQpResidual();
 
