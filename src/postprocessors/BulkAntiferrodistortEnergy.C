@@ -20,6 +20,7 @@
 **/
 
 #include "BulkAntiferrodistortEnergy.h"
+#include "libmesh/utility.h"
 
 template<>
 InputParameters validParams<BulkAntiferrodistortEnergy>()
@@ -58,14 +59,14 @@ Real
 BulkAntiferrodistortEnergy::computeQpIntegral()
 {
   return (
-    _beta1 * (std::pow(_antiferrodis_A_x[_qp], 2) + std::pow(_antiferrodis_A_y[_qp], 2) + std::pow(_antiferrodis_A_z[_qp] ,2))
-  + _beta11 * (std::pow(_antiferrodis_A_x[_qp], 4) + std::pow(_antiferrodis_A_y[_qp], 4) + std::pow(_antiferrodis_A_z[_qp], 4))
-    + _beta12 * (std::pow(_antiferrodis_A_x[_qp], 2) * std::pow(_antiferrodis_A_y[_qp], 2)+
-	      std::pow(_antiferrodis_A_y[_qp], 2) * std::pow(_antiferrodis_A_z[_qp], 2)+
-	      std::pow(_antiferrodis_A_x[_qp], 2) * std::pow(_antiferrodis_A_z[_qp], 2))+
-    _beta111 * (std::pow(_antiferrodis_A_x[_qp], 6) + std::pow(_antiferrodis_A_y[_qp], 6) + std::pow(_antiferrodis_A_z[_qp], 6))+
-    _beta112 * (std::pow(_antiferrodis_A_x[_qp], 4) * (std::pow(_antiferrodis_A_y[_qp], 2) + std::pow(_antiferrodis_A_z[_qp], 2))
-	      + std::pow(_antiferrodis_A_y[_qp], 4) * (std::pow(_antiferrodis_A_z[_qp], 2) + std::pow(_antiferrodis_A_x[_qp], 2))
-	      + std::pow(_antiferrodis_A_z[_qp], 4) * (std::pow(_antiferrodis_A_x[_qp], 2) + std::pow(_antiferrodis_A_y[_qp], 2)))+
-	  _beta123 * (pow(_antiferrodis_A_x[_qp], 2) * std::pow(_antiferrodis_A_y[_qp], 2) * std::pow(_antiferrodis_A_z[_qp], 2))) * std::pow(_len_scale,3);
+    _beta1 * (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))
+  + _beta11 * (Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]))
+    + _beta12 * (Utility::pow<2>(_antiferrodis_A_x[_qp]) * Utility::pow<2>(_antiferrodis_A_y[_qp])+
+	      Utility::pow<2>(_antiferrodis_A_y[_qp]) * Utility::pow<2>(_antiferrodis_A_z[_qp])+
+	      Utility::pow<2>(_antiferrodis_A_x[_qp]) * Utility::pow<2>(_antiferrodis_A_z[_qp]))+
+    _beta111 * (Utility::pow<6>(_antiferrodis_A_x[_qp]) + Utility::pow<6>(_antiferrodis_A_y[_qp]) + Utility::pow<6>(_antiferrodis_A_z[_qp]))+
+    _beta112 * (Utility::pow<4>(_antiferrodis_A_x[_qp]) * (Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))
+	      + Utility::pow<4>(_antiferrodis_A_y[_qp]) * (Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_x[_qp]))
+	      + Utility::pow<4>(_antiferrodis_A_z[_qp]) * (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])))+
+	  _beta123 * (pow(_antiferrodis_A_x[_qp], 2) * Utility::pow<2>(_antiferrodis_A_y[_qp]) * Utility::pow<2>(_antiferrodis_A_z[_qp]))) * Utility::pow<3>(_len_scale);
 }

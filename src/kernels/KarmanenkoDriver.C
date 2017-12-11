@@ -20,6 +20,7 @@
 **/
 
 #include "KarmanenkoDriver.h"
+#include "libmesh/utility.h"
 
 template<>
 InputParameters validParams<KarmanenkoDriver>()
@@ -62,20 +63,20 @@ KarmanenkoDriver::computeQpResidual()
 
 ////0.000116379 Ez + 0.00117004 Ez^2 - 3.27924*10^-6 Ez T + 4.68114*10^-6 Ez^2 T
 {
-  return _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (- _C1 * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) - _C3 * _potential_int_grad[_qp](2) * _temperature[_qp] + _C4 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
+  return _test[_i][_qp] * Utility::pow<2>(_len_scale) * _rho1 * _temperature[_qp] * (- _C1 * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) - _C3 * _potential_int_grad[_qp](2) * _temperature[_qp] + _C4 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
 }
 
 Real
 KarmanenkoDriver::computeQpJacobian()
 {
-  return _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _phi[_j][_qp] * (- _C1 * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) - _C3 * _potential_int_grad[_qp](2) * _temperature[_qp] + _C4 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
+  return _test[_i][_qp] * Utility::pow<2>(_len_scale) * _rho1 * _phi[_j][_qp] * (- _C1 * _potential_int_grad[_qp](2) + _C2 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) - _C3 * _potential_int_grad[_qp](2) * _temperature[_qp] + _C4 * _potential_int_grad[_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
 }
 
 Real
 KarmanenkoDriver::computeQpOffDiagJacobian(unsigned int jvar)
 {
     if( jvar == _potential_int_var )
-      return  _test[_i][_qp] * std::pow(_len_scale, 2.0) * _rho1 * _temperature[_qp] * (- _C1 * _grad_phi[_j][_qp](2) + _C2 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) - _C3 * _grad_phi[_j][_qp](2) * _temperature[_qp] + _C4 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
+      return  _test[_i][_qp] * Utility::pow<2>(_len_scale) * _rho1 * _temperature[_qp] * (- _C1 * _grad_phi[_j][_qp](2) + _C2 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) - _C3 * _grad_phi[_j][_qp](2) * _temperature[_qp] + _C4 * _grad_phi[_j][_qp](2) * _potential_int_grad[_qp](2) * _temperature[_qp]) * _dEstep;
     else if( jvar == _potential_ext_var)
       return  0.0;
     else

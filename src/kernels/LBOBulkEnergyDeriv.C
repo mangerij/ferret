@@ -92,4 +92,4 @@ LBOBulkEnergyDeriv::computeQpJacobian()
   }
   else
     return 0.0;
-} //the simple function has no off-diagonal terms (
+}

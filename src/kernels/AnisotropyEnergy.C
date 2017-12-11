@@ -20,6 +20,7 @@
 **/
 
 #include "AnisotropyEnergy.h"
+#include "libmesh/utility.h"
 
 class AnisotropyEnergy;
 
@@ -54,11 +55,11 @@ Real
 AnisotropyEnergy::computeQpResidual()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-  return 2.0 * _K * w(_component) * _test[_i][_qp] * std::pow(_len_scale, 3.0);
+  return 2.0 * _K * w(_component) * _test[_i][_qp] * Utility::pow<3>(_len_scale);
 }
 
 Real
 AnisotropyEnergy::computeQpJacobian()
 {
-  return 2.0 * _K * _phi[_j][_qp] * _test[_i][_qp] * std::pow(_len_scale, 3.0);
+  return 2.0 * _K * _phi[_j][_qp] * _test[_i][_qp] * Utility::pow<3>(_len_scale);
 }

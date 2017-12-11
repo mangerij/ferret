@@ -137,6 +137,10 @@
 #include "ElectrostrictiveCouplingPolarDerivative.h"
 #include "ElectrostrictiveCouplingDispDerivative.h"
 #include "LocalBulkEnergyDerivative.h"
+#include "BulkEnergyDerivativeEighthAlt.h"
+#include "RotoPolarCoupledEnergyPolarDerivativeAlt.h"
+#include "RotoBulkEnergyDerivativeEighthAlt.h"
+#include "RotoPolarCoupledEnergyDistortDerivativeAlt.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -350,6 +354,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkAntiferrodistortEnergyDerivativeSixth);
   registerKernel(RotopolarCoupledDistortDerivativeFourth);
   registerKernel(RotopolarCoupledPolarDerivativeFourth);
+  registerKernel(RotoPolarCoupledEnergyPolarDerivativeAlt);
   registerKernel(AFDAntiphaseEnergyDerivative);
   registerKernel(LagrangianMultiplierAntiferromagConstraint);
   registerKernel(LagrangianMultiplierAntiferromagMediumConstraint);
@@ -366,6 +371,9 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ElectrostrictiveCouplingPolarDerivative);
   registerKernel(ElectrostrictiveCouplingDispDerivative);
   registerKernel(LocalBulkEnergyDerivative);
+  registerKernel(BulkEnergyDerivativeEighthAlt);
+  registerKernel(RotoBulkEnergyDerivativeEighthAlt);
+  registerKernel(RotoPolarCoupledEnergyDistortDerivativeAlt);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
