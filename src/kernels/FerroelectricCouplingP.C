@@ -23,6 +23,7 @@
 #include "ComputeElectrostrictiveTensor.h"
 #include "ElectrostrictiveTensorTools.h"
 #include "ComputeEigenstrain.h"
+#include "libmesh/utility.h"
 
 class FerroelectricCouplingP;
 
@@ -90,7 +91,7 @@ FerroelectricCouplingP::computeQpResidual()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, v1 + _disp_y_grad[_qp], _component, w);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, v2 + _disp_z_grad[_qp], _component, w);
 
-  RpCoupled += std::pow(_len_scale, 3.0) * _test[_i][_qp] * sum; //factor of 1/2 disappears because variation of P_i P_j w.r.t P_k gives 2 terms equivalent in symmetry
+  RpCoupled += Utility::pow<3>(_len_scale) * _test[_i][_qp] * sum; //factor of 1/2 disappears because variation of P_i P_j w.r.t P_k gives 2 terms equivalent in symmetry
   return - RpCoupled;
 }
 
@@ -105,7 +106,7 @@ FerroelectricCouplingP::computeQpJacobian()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 0, v0 + _disp_x_grad[_qp], _component, _component);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, v1 + _disp_y_grad[_qp], _component, _component);
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, v2 + _disp_z_grad[_qp], _component, _component);
-  return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
+  return - Utility::pow<3>(_len_scale) * sum * _phi[_j][_qp] * _test[_i][_qp];
 }
 
 Real
@@ -149,7 +150,7 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
         sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, v1 + _disp_y_grad[_qp], _component, coupled_component);
         sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, v2 + _disp_z_grad[_qp], _component, coupled_component);
       }
-    return - std::pow(_len_scale, 3.0) * sum * _phi[_j][_qp] * _test[_i][_qp];
+    return - Utility::pow<3>(_len_scale) * sum * _phi[_j][_qp] * _test[_i][_qp];
 
   }
   else if(jvar == _disp_x_var || jvar == _disp_y_var || jvar == _disp_z_var)
@@ -169,7 +170,7 @@ FerroelectricCouplingP::computeQpOffDiagJacobian(unsigned int jvar)
         coupled_component = 2;
         sum = ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], coupled_component, _grad_phi[_j][_qp], _component, w);
       }
-    return - std::pow(_len_scale, 3.0) * sum * _test[_i][_qp];
+    return - Utility::pow<3>(_len_scale) * sum * _test[_i][_qp];
   }
   else
   {

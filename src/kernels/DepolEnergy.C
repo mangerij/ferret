@@ -20,8 +20,9 @@
 **/
 
 #include "DepolEnergy.h"
+#include "libmesh/utility.h"
 
-class DepolEnergy;
+//class DepolEnergy;
 
 template<>
 InputParameters validParams<DepolEnergy>()
@@ -49,7 +50,7 @@ DepolEnergy::DepolEnergy(const InputParameters & parameters)
 Real
 DepolEnergy::computeQpResidual()
 {
-  return 0.5 * _lambda * (1.0 / _permitivitty) * _avePz * _test[_i][_qp] * std::pow(_len_scale, 3.0);
+  return 0.5 * _lambda * (1.0 / _permitivitty) * _avePz * _test[_i][_qp] * Utility::pow<3>(_len_scale);
 }
 
 Real

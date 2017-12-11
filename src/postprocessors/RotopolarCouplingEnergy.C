@@ -20,6 +20,7 @@
 **/
 
 #include "RotopolarCouplingEnergy.h"
+#include "libmesh/utility.h"
 
 template<>
 InputParameters validParams<RotopolarCouplingEnergy>()
@@ -57,6 +58,6 @@ RotopolarCouplingEnergy::RotopolarCouplingEnergy(const InputParameters & paramet
 Real
 RotopolarCouplingEnergy::computeQpIntegral()
 {
-  return (-((std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_polar_x[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2)*std::pow(_polar_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)*std::pow(_polar_z[_qp],2))*_t11) - 
-   (std::pow(_antiferrodis_A_z[_qp],2)*(std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2)) + std::pow(_antiferrodis_A_y[_qp],2)*(std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2)) + std::pow(_antiferrodis_A_x[_qp],2)*(std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2)))*_t12 - (_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_x[_qp]*_polar_z[_qp] + _antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_polar_y[_qp]*_polar_z[_qp])*_t44) * std::pow(_len_scale,3);
+  return (-((Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t11) - 
+   (Utility::pow<2>(_antiferrodis_A_z[_qp])*(Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp])) + Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp])) + Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])))*_t12 - (_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_x[_qp]*_polar_z[_qp] + _antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_polar_y[_qp]*_polar_z[_qp])*_t44) * Utility::pow<3>(_len_scale);
 }

@@ -20,6 +20,7 @@
 **/
 
 #include "ElectrostrictiveCouplingDispDerivative.h"
+#include "libmesh/utility.h"
 
 class ElectrostrictiveCouplingDispDerivative;
 
@@ -65,15 +66,15 @@ ElectrostrictiveCouplingDispDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    return -(_grad_test[_i][_qp](0)*(_C12*(std::pow(_polar_z[_qp],2)*_Q11 + (std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2))*_Q12) + _C12*(std::pow(_polar_y[_qp],2)*_Q11 + (std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2))*_Q12) + _C11*(std::pow(_polar_x[_qp],2)*_Q11 + (std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2))*_Q12)) + 2*_polar_x[_qp]*_polar_y[_qp]*_C44*_grad_test[_i][_qp](1)*_Q44 + 2*_polar_x[_qp]*_polar_z[_qp]*_C44*_grad_test[_i][_qp](2)*_Q44);
+    return -(_grad_test[_i][_qp](0)*(_C12*(Utility::pow<2>(_polar_z[_qp])*_Q11 + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_Q12) + _C12*(Utility::pow<2>(_polar_y[_qp])*_Q11 + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_Q12) + _C11*(Utility::pow<2>(_polar_x[_qp])*_Q11 + (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_Q12)) + 2*_polar_x[_qp]*_polar_y[_qp]*_C44*_grad_test[_i][_qp](1)*_Q44 + 2*_polar_x[_qp]*_polar_z[_qp]*_C44*_grad_test[_i][_qp](2)*_Q44);
   }
   else if (_component == 1)
   {
-    return -(_grad_test[_i][_qp](1)*(_C12*(std::pow(_polar_z[_qp],2)*_Q11 + (std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2))*_Q12) + _C11*(std::pow(_polar_y[_qp],2)*_Q11 + (std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2))*_Q12) + _C12*(std::pow(_polar_x[_qp],2)*_Q11 + (std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2))*_Q12)) + 2*_polar_x[_qp]*_polar_y[_qp]*_C44*_grad_test[_i][_qp](0)*_Q44 + 2*_polar_y[_qp]*_polar_z[_qp]*_C44*_grad_test[_i][_qp](2)*_Q44);
+    return -(_grad_test[_i][_qp](1)*(_C12*(Utility::pow<2>(_polar_z[_qp])*_Q11 + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_Q12) + _C11*(Utility::pow<2>(_polar_y[_qp])*_Q11 + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_Q12) + _C12*(Utility::pow<2>(_polar_x[_qp])*_Q11 + (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_Q12)) + 2*_polar_x[_qp]*_polar_y[_qp]*_C44*_grad_test[_i][_qp](0)*_Q44 + 2*_polar_y[_qp]*_polar_z[_qp]*_C44*_grad_test[_i][_qp](2)*_Q44);
   }
   else if (_component == 2)
   {
-    return -(_grad_test[_i][_qp](2)*(_C11*(std::pow(_polar_z[_qp],2)*_Q11 + (std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2))*_Q12) + _C12*(std::pow(_polar_y[_qp],2)*_Q11 + (std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2))*_Q12) + _C12*(std::pow(_polar_x[_qp],2)*_Q11 + (std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2))*_Q12)) + 
+    return -(_grad_test[_i][_qp](2)*(_C11*(Utility::pow<2>(_polar_z[_qp])*_Q11 + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_Q12) + _C12*(Utility::pow<2>(_polar_y[_qp])*_Q11 + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_Q12) + _C12*(Utility::pow<2>(_polar_x[_qp])*_Q11 + (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_Q12)) + 
    2*_polar_x[_qp]*_polar_z[_qp]*_C44*_grad_test[_i][_qp](0)*_Q44 + 2*_polar_y[_qp]*_polar_z[_qp]*_C44*_grad_test[_i][_qp](1)*_Q44);
   }
   else

@@ -20,6 +20,7 @@
 **/
 
 #include "BulkEnergyDerivativeSixth.h"
+#include "libmesh/utility.h"
 #include<cmath>
 
 template<>
@@ -72,9 +73,9 @@ BulkEnergyDerivativeSixth::computeQpResidual()
   const VariableValue & _polar_j = (_component == 0) ? _polar_y : (_component == 1) ? _polar_z: _polar_x;
   const VariableValue & _polar_k = (_component == 0) ? _polar_z : (_component == 1) ? _polar_x: _polar_y;
   Real Rbulk = 0.0;
-  Rbulk += ((2.0 * _alpha1 * _polar_i[_qp] + 4.0 * _alpha11 * std::pow(_polar_i[_qp], 3.0) + 2.0 * _alpha12 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 2.0) + std::pow(_polar_k[_qp], 2.0)) +
-	  6.0 * _alpha111 * std::pow(_polar_i[_qp], 5.0) + 4.0 * _alpha112 * std::pow(_polar_i[_qp], 3.0) * (_polar_j[_qp] * _polar_j[_qp]+_polar_k[_qp] * _polar_k[_qp]) +
-	  2.0 * _alpha112 * _polar_i[_qp]*(std::pow(_polar_j[_qp], 4.0) + std::pow(_polar_k[_qp], 4.0)) + 2.0 * _alpha123 * _polar_i[_qp]*std::pow(_polar_j[_qp], 2.0) * std::pow(_polar_k[_qp], 2.0)) * _test[_i][_qp]) * std::pow(_len_scale, 3.0);
+  Rbulk += ((2.0 * _alpha1 * _polar_i[_qp] + 4.0 * _alpha11 * Utility::pow<3>(_polar_i[_qp]) + 2.0 * _alpha12 * _polar_i[_qp]*(Utility::pow<2>(_polar_j[_qp]) + Utility::pow<2>(_polar_k[_qp])) +
+	  6.0 * _alpha111 * Utility::pow<5>(_polar_i[_qp]) + 4.0 * _alpha112 * Utility::pow<3>(_polar_i[_qp]) * (_polar_j[_qp] * _polar_j[_qp]+_polar_k[_qp] * _polar_k[_qp]) +
+	  2.0 * _alpha112 * _polar_i[_qp]*(Utility::pow<4>(_polar_j[_qp]) + Utility::pow<4>(_polar_k[_qp])) + 2.0 * _alpha123 * _polar_i[_qp]*Utility::pow<2>(_polar_j[_qp]) * Utility::pow<2>(_polar_k[_qp])) * _test[_i][_qp]) * Utility::pow<3>(_len_scale);
   ///  Moose::out << "\n R_bulk-"; std::cout << _component << " = " << Rbulk;
   return Rbulk;
 }
@@ -86,10 +87,10 @@ BulkEnergyDerivativeSixth::computeQpJacobian()
   const VariableValue & _polar_j = (_component == 0)? _polar_y : (_component == 1)? _polar_z: _polar_x;
   const VariableValue & _polar_k = (_component == 0)? _polar_z : (_component == 1)? _polar_x: _polar_y;
   return (2.0 * _alpha1 + 12.0 * _alpha11 * std::pow(_polar_i[_qp], 2) +
-	  2.0 * _alpha12 * (std::pow(_polar_j[_qp], 2.0) + std::pow(_polar_k[_qp], 2.0)) + 30.0 * _alpha111 * std::pow(_polar_i[_qp], 4.0) +
-	  12.0 * _alpha112 * std::pow(_polar_i[_qp], 2.0) * (std::pow(_polar_j[_qp], 2.0) + std::pow(_polar_k[_qp], 2.0)) + 2.0 * _alpha112 * (std::pow(_polar_j[_qp], 4.0) + std::pow(_polar_k[_qp], 4.0)) +
-	  2.0 * _alpha123 * std::pow(_polar_j[_qp], 2.0) * std::pow(_polar_k[_qp], 2.0)
-  ) * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+	  2.0 * _alpha12 * (Utility::pow<2>(_polar_j[_qp]) + Utility::pow<2>(_polar_k[_qp])) + 30.0 * _alpha111 * Utility::pow<4>(_polar_i[_qp]) +
+	  12.0 * _alpha112 * Utility::pow<2>(_polar_i[_qp]) * (Utility::pow<2>(_polar_j[_qp]) + Utility::pow<2>(_polar_k[_qp])) + 2.0 * _alpha112 * (Utility::pow<4>(_polar_j[_qp]) + Utility::pow<4>(_polar_k[_qp])) +
+	  2.0 * _alpha123 * Utility::pow<2>(_polar_j[_qp]) * Utility::pow<2>(_polar_k[_qp])
+  ) * _test[_i][_qp] * _phi[_j][_qp] * Utility::pow<3>(_len_scale);
 }
 
 Real
@@ -102,9 +103,9 @@ BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
       const VariableValue & _polar_i = (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;
       const VariableValue & _polar_j = (jvar == _polar_x_var)? _polar_x : (jvar == _polar_y_var)? _polar_y: _polar_z;
       const VariableValue & _polar_k = ((_component == 0 && jvar == _polar_y_var) || (_component == 1 && jvar == _polar_x_var) )? _polar_z : ( (_component == 0 && jvar == _polar_z_var) || (_component == 2 && jvar == _polar_x_var))? _polar_y: _polar_x;
-      r = (4.0 * _alpha12 * _polar_i[_qp] * _polar_j[_qp] + 8.0 * _alpha112 * std::pow(_polar_i[_qp], 3.0) * _polar_j[_qp]
-      + 8.0 *_alpha112 * _polar_i[_qp] * std::pow(_polar_j[_qp], 3.0) + 4.0 * _alpha123 * _polar_i[_qp] * _polar_j[_qp] * std::pow(_polar_k[_qp], 2.0));
-      return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
+      r = (4.0 * _alpha12 * _polar_i[_qp] * _polar_j[_qp] + 8.0 * _alpha112 * Utility::pow<3>(_polar_i[_qp]) * _polar_j[_qp]
+      + 8.0 *_alpha112 * _polar_i[_qp] * Utility::pow<3>(_polar_j[_qp]) + 4.0 * _alpha123 * _polar_i[_qp] * _polar_j[_qp] * Utility::pow<2>(_polar_k[_qp]));
+      return r * _test[_i][_qp] * _phi[_j][_qp] * Utility::pow<3>(_len_scale);
     }
   else
     return 0.0;

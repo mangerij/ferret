@@ -33,13 +33,13 @@ InputParameters validParams<BulkEnergyDerivativeEighthAlt>()
   params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha12", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha111", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha112", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha123", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha1111", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha1112", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha1122", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("alpha1123", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha111", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha112", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha123", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha1111", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha1112", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha1122", "The coefficients of the Landau expansion");
+  params.addParam<Real>("alpha1123", "The coefficients of the Landau expansion");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }

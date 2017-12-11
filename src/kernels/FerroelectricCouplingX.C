@@ -20,6 +20,7 @@
 **/
 
 #include "FerroelectricCouplingX.h"
+#include "libmesh/utility.h"
 
 class FerroelectricCouplingX;
 
@@ -70,7 +71,7 @@ FerroelectricCouplingX::computeQpResidual()
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 0, p) * _polar_x[_qp];
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 1, p) * _polar_y[_qp];
   sum += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], 2, p) * _polar_z[_qp];
-  Rp = std::pow(_len_scale, 2.0) * sum;
+  Rp = Utility::pow<2>(_len_scale) * sum;
   /// Moose::out << "\n R ="; std::cout << Rp;
   return Rp;
 }
@@ -107,7 +108,7 @@ FerroelectricCouplingX::computeQpOffDiagJacobian(unsigned int jvar)
       coupled_component = 2;
       sum1 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], _component, _grad_test[_i][_qp], coupled_component, p) ;
     }
-    return std::pow(_len_scale, 2.0) * _phi[_j][_qp] * sum1;
+    return Utility::pow<2>(_len_scale) * _phi[_j][_qp] * sum1;
   }
   else
   {
