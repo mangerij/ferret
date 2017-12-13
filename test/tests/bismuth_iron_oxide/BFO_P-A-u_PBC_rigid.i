@@ -1,15 +1,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 2
-  ny = 2
-  nz = 2
-  xmin = -0.25
-  xmax = 0.25
-  ymin = -0.25
-  ymax = 0.25
-  zmin = -0.25
-  zmax = 0.25
+  nx = 3
+  ny = 3
+  nz = 3
+  xmin = -1.0
+  xmax = 1.0
+  ymin = -1.0
+  ymax = 1.0
+  zmin = -1.0
+  zmax = 1.0
   elem_type = HEX8
 []
 
@@ -60,37 +60,49 @@
   t4411111111 = 6.133e-3
   t4411112222 = 2.438e-3
 
-  G110 = 0.15
+  G110 = 0.173
   G11_G110 = 0.5
   G12_G110 = 0
   G44_G110 = 0.5 
   G44P_G110 = 0.5
 
-  H110 = 0.15
+  H110 = 0.173
   H11_H110 = 0.5
   H12_H110 = 0
   H44_H110 = 0.5
   H44P_H110 = 0.5
 
+
+
+  #factor of two here? q = 2 C Q?. Last set gives shear ~ 1.0 whereis new set gives normal and shear ~1. Note a factor of 8 difference!
+  #Q11 = 2.03079   #4.06157    # 12.1847    #0.676929
+  #Q12 = -0.357442 #-0.714883  # -2.14465  #-0.119147
+  #Q44 = 2.08738    # 4.17475    # 16.699      #4.17474
+  #R11 = 1.21666   #2.43332    # 7.29995     #0.405553
+  #R12 = -0.51628  #-1.03256   # -3.09768    #-0.172093 
+  #R44 = -1.83738   # -3.67475   # -14.699     #-3.67475
+
+
+  #from mathematica
+
   C11 = 1.762732e-2
   C12 = 9.4905087e-3
   C44 = 5.24373333e-5
 
-  #factor of two here? q = 2 C Q?. I removed it. Divide by 2 to add.
   Q11 = 1.35386
   Q12 = -0.238295
-  Q44 = 8.34949
-  R11 = 0.811105
-  R12 = -0.344186
-  R44 = -7.34949
+  Q44 = 4.17474 #16.698978569333416 #4.17474 #factor of 4 here...
+  R11 = 2.35149
+  R12 = -1.1143805
+  R44 = -3.67475 #-14.69898038101976 #-3.67475
 
   q11 = 1.93418062e-2
   q12 = 6.3875442e-3
-  q44 = 8.75649995e-4
+  q44 = 8.75649995e-4 #due to factor of 2 in code #0.000437825 #
 
   r11 = 7.7644e-3
-  r12 = -1.63357e-3
-  r44 = -7.70775329e-4
+  r12 = -1.63357e-3 
+  r44 = -7.70775329e-4 # due to factor of 2 in code #-0.000385388 #
 
   polar_x = polar_x
   polar_y = polar_y
@@ -115,60 +127,48 @@
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-      seed = 3
+      type = ConstantIC
+      value = 1.0
     [../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-      seed = 3
+      type = ConstantIC
+      value = 1.0
     [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-      seed = 3
+      type = ConstantIC
+      value = 1.0
     [../]
   [../]
   [./antiferrodis_A_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-      seed = 3
+      type = ConstantIC
+      value = 1.0
     [../]
   [../]
   [./antiferrodis_A_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-      seed = 3
+      type = ConstantIC
+      value = 1.0
     [../]
   [../]
   [./antiferrodis_A_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = RandomIC
-      min = -0.5e-5
-      max = 0.5e-5
-      seed = 3
+      type = ConstantIC
+      value = 1.0
     [../]
   [../]
   [./disp_x]
@@ -376,17 +376,17 @@
 
   ### Operators for the polar field: ###
   [./bed_x]
-    type = BulkEnergyDerivativeEighth
+    type = BulkEnergyDerivativeEighthAlt
     variable = polar_x
     component = 0
   [../]
   [./bed_y]
-    type = BulkEnergyDerivativeEighth
+    type = BulkEnergyDerivativeEighthAlt
     variable = polar_y
     component = 1
   [../]
   [./bed_z]
-    type = BulkEnergyDerivativeEighth
+    type = BulkEnergyDerivativeEighthAlt
     variable = polar_z
     component = 2
   [../]
@@ -408,17 +408,17 @@
   [../]
 
   [./roto_polar_coupled_x]
-    type = RotoPolarCoupledEnergyPolarDerivative
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
     variable = polar_x
     component = 0
   [../]
   [./roto_polar_coupled_y]
-    type = RotoPolarCoupledEnergyPolarDerivative
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
     variable = polar_y
     component = 1
   [../]
   [./roto_polar_coupled_z]
-    type = RotoPolarCoupledEnergyPolarDerivative
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
     variable = polar_z
     component = 2
   [../]
@@ -443,17 +443,17 @@
   #Operators for the AFD field
 
   [./rbed_x]
-    type = RotoBulkEnergyDerivativeEighth
+    type = RotoBulkEnergyDerivativeEighthAlt
     variable = antiferrodis_A_x
     component = 0
   [../]
   [./rbed_y]
-    type = RotoBulkEnergyDerivativeEighth
+    type = RotoBulkEnergyDerivativeEighthAlt
     variable = antiferrodis_A_y
     component = 1
   [../]
   [./rbed_z]
-    type = RotoBulkEnergyDerivativeEighth
+    type = RotoBulkEnergyDerivativeEighthAlt
     variable = antiferrodis_A_z
     component = 2
   [../]
@@ -475,17 +475,17 @@
   [../]
 
   [./roto_dis_coupled_x]
-    type = RotoPolarCoupledEnergyDistortDerivative
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
     variable = antiferrodis_A_x
     component = 0
   [../]
   [./roto_dis_coupled_y]
-    type = RotoPolarCoupledEnergyDistortDerivative
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
     variable = antiferrodis_A_y
     component = 1
   [../]
   [./roto_dis_coupled_z]
-    type = RotoPolarCoupledEnergyDistortDerivative
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
     variable = antiferrodis_A_z
     component = 2
   [../]
@@ -555,6 +555,9 @@
 []
 
 [Postprocessors]
+  [./dt]
+     type = TimestepSize
+  [../]
   [./FbP]
     type = BulkEnergyEighth
     execute_on = 'initial timestep_end'
@@ -600,9 +603,10 @@
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change]
-    type = PercentChangePostprocessor
+    type = EnergyRatePostprocessor
     postprocessor = Ftot
     execute_on = 'initial timestep_end'
+    dt = dt
   [../]
 []
 
@@ -629,7 +633,7 @@
  [../]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 1.0e-5'
+  expression = 'perc_change <= 1.0e-6'
  [../]
 []
 
@@ -637,9 +641,8 @@
   [./smp]
     type = SMP
     full = true
-    #petsc_options = '-snes_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '     121              1e-10     1e-8        1e-5     bjacobi'
+    petsc_options_value = '    121            1e-8          1e-8       1e-8     bjacobi'
   [../]
 []
 
@@ -649,16 +652,19 @@
   solve_type = 'NEWTON'
   scheme = 'bdf2'
   dtmin = 1e-13
-  dtmax = 0.5
-  num_steps = 15
+  dtmax = 0.25
 []
+
+#[Debug]
+#  show_var_residual_norms = true
+#[]
 
 [Outputs]
   print_linear_residuals = false
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_BFO_P-A-u_n2_test
+    file_base = out_BFO_P-A-u
     elemental_as_nodal = true
   [../]
 []
