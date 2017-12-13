@@ -72,21 +72,40 @@ RotoBulkEnergyDerivativeEighthAlt::computeQpResidual()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * (2.0*_antiferrodis_A_x[_qp]*_beta1 + 4.0*Utility::pow<3>(_antiferrodis_A_x[_qp])*_beta11 + 6.0*Utility::pow<5>(_antiferrodis_A_x[_qp])*_beta111 + 8*Utility::pow<7>(_antiferrodis_A_x[_qp])*_beta1111 + (2.0*_antiferrodis_A_x[_qp]*Utility::pow<6>(_antiferrodis_A_y[_qp]) + 2.0*_antiferrodis_A_x[_qp]*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 6.0*Utility::pow<5>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta1112 + 
-   (2.0*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 2.0*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 4.0*Utility::pow<3>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta112 + (4.0*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 4.0*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1122 + 
-   (6.0*Utility::pow<5>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2.0*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2.0*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1123 + (2.0*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 2.0*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]))*_beta12 + 2.0*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])*_beta123);
+    return _test[_i][_qp] * (2*_beta1*_antiferrodis_A_x[_qp] + 4*_beta11*Utility::pow<3>(_antiferrodis_A_x[_qp]) + 6*_beta111*Utility::pow<5>(_antiferrodis_A_x[_qp]) + 8*_beta1111*Utility::pow<7>(_antiferrodis_A_x[_qp]) + 
+   2*_beta123*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + _beta12*(2*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 2*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
+   _beta1122*(4*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 4*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(4*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+      2*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta112*(2*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 2*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 
+      4*Utility::pow<3>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))) + 
+   _beta1112*(2*_antiferrodis_A_x[_qp]*Utility::pow<6>(_antiferrodis_A_y[_qp]) + 2*_antiferrodis_A_x[_qp]*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 
+      6*Utility::pow<5>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * (2.0*_antiferrodis_A_y[_qp]*_beta1 + 4.0*Utility::pow<3>(_antiferrodis_A_y[_qp])*_beta11 + 6.0*Utility::pow<5>(_antiferrodis_A_y[_qp])*_beta111 + 8*Utility::pow<7>(_antiferrodis_A_y[_qp])*_beta1111 + (2.0*Utility::pow<6>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 2.0*_antiferrodis_A_y[_qp]*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 6.0*Utility::pow<5>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta1112 + 
-   (2.0*Utility::pow<4>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 2.0*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 4.0*Utility::pow<3>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta112 + (4.0*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp]) + 4.0*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1122 + 
-   (4.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1123 + (2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 2.0*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]))*_beta12 + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])*_beta123);
+    return _test[_i][_qp] * (2*_beta1*_antiferrodis_A_y[_qp] + 4*_beta11*Utility::pow<3>(_antiferrodis_A_y[_qp]) + 6*_beta111*Utility::pow<5>(_antiferrodis_A_y[_qp]) + 8*_beta1111*Utility::pow<7>(_antiferrodis_A_y[_qp]) + 
+   2*_beta123*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]) + _beta12*(2*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 2*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(2*Utility::pow<4>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 4*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+      2*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta1122*(4*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp]) + 4*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta112*(2*Utility::pow<4>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 2*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 
+      4*Utility::pow<3>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))) + 
+   _beta1112*(2*Utility::pow<6>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 2*_antiferrodis_A_y[_qp]*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 
+      6*Utility::pow<5>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (2.0*_antiferrodis_A_z[_qp]*_beta1 + 4.0*Utility::pow<3>(_antiferrodis_A_z[_qp])*_beta11 + 6.0*Utility::pow<5>(_antiferrodis_A_z[_qp])*_beta111 + 8*Utility::pow<7>(_antiferrodis_A_z[_qp])*_beta1111 + (2.0*Utility::pow<6>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2.0*Utility::pow<6>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 6.0*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<5>(_antiferrodis_A_z[_qp]))*_beta1112 + 
-   (2.0*Utility::pow<4>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2.0*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 4.0*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta112 + (4.0*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]) + 4.0*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta1122 + 
-   (2.0*Utility::pow<6>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 4.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta1123 + (2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2.0*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp])*_beta12 + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp]*_beta123);
+    return _test[_i][_qp] * (2*_beta1*_antiferrodis_A_z[_qp] + 2*_beta123*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 4*_beta11*Utility::pow<3>(_antiferrodis_A_z[_qp]) + 
+   6*_beta111*Utility::pow<5>(_antiferrodis_A_z[_qp]) + 8*_beta1111*Utility::pow<7>(_antiferrodis_A_z[_qp]) + 
+   _beta12*(2*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp]) + 
+   _beta1123*(2*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 2*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 
+      4*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])) + 
+   _beta1122*(4*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]) + 4*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])) + 
+   _beta112*(2*Utility::pow<4>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 
+      4*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<3>(_antiferrodis_A_z[_qp])) + 
+   _beta1112*(2*Utility::pow<6>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2*Utility::pow<6>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 
+      6*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<5>(_antiferrodis_A_z[_qp])));
   }
   else
     return 0.0;
@@ -97,21 +116,39 @@ RotoBulkEnergyDerivativeEighthAlt::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (2.0*_beta1 + 12*Utility::pow<2>(_antiferrodis_A_x[_qp])*_beta11 + 30*Utility::pow<4>(_antiferrodis_A_x[_qp])*_beta111 + 56*Utility::pow<6>(_antiferrodis_A_x[_qp])*_beta1111 + (2.0*Utility::pow<6>(_antiferrodis_A_y[_qp]) + 2.0*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 30*Utility::pow<4>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta1112 + 
-   (2.0*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 2.0*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta112 + (12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1122 + 
-   (30*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2.0*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2.0*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1123 + (2.0*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 2.0*Utility::pow<2>(_antiferrodis_A_z[_qp]))*_beta12 + 2.0*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])*_beta123);
+    return _test[_i][_qp] * _phi[_j][_qp] * (2*_beta1 + 12*_beta11*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 30*_beta111*Utility::pow<4>(_antiferrodis_A_x[_qp]) + 56*_beta1111*Utility::pow<6>(_antiferrodis_A_x[_qp]) + 
+   2*_beta123*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + _beta12*(2*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 2*Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
+   _beta1122*(12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+      2*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta112*(2*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 2*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 
+      12*Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))) + 
+   _beta1112*(2*Utility::pow<6>(_antiferrodis_A_y[_qp]) + 2*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 
+      30*Utility::pow<4>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (2.0*_beta1 + 12*Utility::pow<2>(_antiferrodis_A_y[_qp])*_beta11 + 30*Utility::pow<4>(_antiferrodis_A_y[_qp])*_beta111 + 56*Utility::pow<6>(_antiferrodis_A_y[_qp])*_beta1111 + (2.0*Utility::pow<6>(_antiferrodis_A_x[_qp]) + 2.0*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 30*Utility::pow<4>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta1112 + 
-   (2.0*Utility::pow<4>(_antiferrodis_A_x[_qp]) + 2.0*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))*_beta112 + (12*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1122 + 
-   (12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1123 + (2.0*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 2.0*Utility::pow<2>(_antiferrodis_A_z[_qp]))*_beta12 + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])*_beta123);
+    return _test[_i][_qp] * _phi[_j][_qp] * (2*_beta1 + 12*_beta11*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 30*_beta111*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 56*_beta1111*Utility::pow<6>(_antiferrodis_A_y[_qp]) + 
+   2*_beta123*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + _beta12*(2*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 2*Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(2*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+      2*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta1122*(12*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + 
+   _beta112*(2*Utility::pow<4>(_antiferrodis_A_x[_qp]) + 2*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 
+      12*Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))) + 
+   _beta1112*(2*Utility::pow<6>(_antiferrodis_A_x[_qp]) + 2*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 
+      30*Utility::pow<4>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (2.0*_beta1 + 12*Utility::pow<2>(_antiferrodis_A_z[_qp])*_beta11 + 30*Utility::pow<4>(_antiferrodis_A_z[_qp])*_beta111 + 56*Utility::pow<6>(_antiferrodis_A_z[_qp])*_beta1111 + (2.0*Utility::pow<6>(_antiferrodis_A_x[_qp]) + 2.0*Utility::pow<6>(_antiferrodis_A_y[_qp]) + 30*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1112 + 
-   (2.0*Utility::pow<4>(_antiferrodis_A_x[_qp]) + 2.0*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 12*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_antiferrodis_A_z[_qp]))*_beta112 + (12*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 12*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]))*_beta1122 + 
-   (2.0*Utility::pow<6>(_antiferrodis_A_x[_qp]) + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]))*_beta1123 + (2.0*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 2.0*Utility::pow<2>(_antiferrodis_A_y[_qp]))*_beta12 + 2.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*_beta123);
+    return _test[_i][_qp] * _phi[_j][_qp] * (2*_beta1 + 2*_beta123*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp]) + _beta12*(2*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 2*Utility::pow<2>(_antiferrodis_A_y[_qp])) + 
+   12*_beta11*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 30*_beta111*Utility::pow<4>(_antiferrodis_A_z[_qp]) + 56*_beta1111*Utility::pow<6>(_antiferrodis_A_z[_qp]) + 
+   _beta1123*(2*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 2*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 
+      12*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
+   _beta1122*(12*Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 12*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
+   _beta112*(2*Utility::pow<4>(_antiferrodis_A_x[_qp]) + 2*Utility::pow<4>(_antiferrodis_A_y[_qp]) + 
+      12*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
+   _beta1112*(2*Utility::pow<6>(_antiferrodis_A_x[_qp]) + 2*Utility::pow<6>(_antiferrodis_A_y[_qp]) + 
+      30*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<4>(_antiferrodis_A_z[_qp])));
   }
   else
     return 0.0;
@@ -124,11 +161,18 @@ RotoBulkEnergyDerivativeEighthAlt::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  ((12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_y[_qp]))*_beta1112 + (8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp]))*_beta112 + 16*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*_beta1122 + (8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1123 + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_beta12 + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])*_beta123);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_beta12*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp] + 16*_beta1122*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp]) + 
+   _beta112*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp])) + 
+   _beta1112*(12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_y[_qp])) + 4*_beta123*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+   _beta1123*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+      4*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp])));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  ((12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp]))*_beta1112 + (8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta112 + 16*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])*_beta1122 + (12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 4.0*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta1123 + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_beta12 + 4.0*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp]*_beta123);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_beta12*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp] + 4*_beta123*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 16*_beta1122*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]) + 
+   _beta112*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 4*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 
+      8*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])) + _beta1112*(12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp])));
     }
     else
     {
@@ -139,11 +183,18 @@ RotoBulkEnergyDerivativeEighthAlt::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  ((12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_y[_qp]))*_beta1112 + (8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp]))*_beta112 + 16*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*_beta1122 + (8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp]))*_beta1123 + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_beta12 + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])*_beta123);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_beta12*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp] + 16*_beta1122*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp]) + 
+   _beta112*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp])) + 
+   _beta1112*(12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_y[_qp])) + 4*_beta123*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+   _beta1123*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + 
+      4*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<4>(_antiferrodis_A_z[_qp])));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  ((12*Utility::pow<5>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_y[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp]))*_beta1112 + (8*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta112 + 16*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])*_beta1122 + (8*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta1123 + 4.0*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_beta12 + 4.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_beta123);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_beta12*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] + 4*_beta123*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] + 16*_beta1122*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]) + 
+   _beta112*(8*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(4*Utility::pow<4>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] + 8*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 
+      8*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp])) + _beta1112*(12*Utility::pow<5>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_y[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp])));
     }
     else
     {
@@ -154,11 +205,17 @@ RotoBulkEnergyDerivativeEighthAlt::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  ((12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp]))*_beta1112 + (8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta112 + 16*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])*_beta1122 + (12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 4.0*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta1123 + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_beta12 + 4.0*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp]*_beta123);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_beta12*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp] + 4*_beta123*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 16*_beta1122*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]) + 
+   _beta112*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_x[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(8*Utility::pow<3>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 4*_antiferrodis_A_x[_qp]*Utility::pow<4>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 
+      8*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])) + _beta1112*(12*Utility::pow<5>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_x[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp])));
     }
     else if (jvar == _antiferrodis_A_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  ((12*Utility::pow<5>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_y[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp]))*_beta1112 + (8*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta112 + 16*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp])*_beta1122 + (8*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp]))*_beta1123 + 4.0*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_beta12 + 4.0*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_beta123);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_beta12*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] + 4*_beta123*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] + 16*_beta1122*Utility::pow<3>(_antiferrodis_A_y[_qp])*Utility::pow<3>(_antiferrodis_A_z[_qp]) + 
+   _beta112*(8*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 8*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp])) + 
+   _beta1123*(4*Utility::pow<4>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] + 8*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<3>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 
+      8*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*Utility::pow<3>(_antiferrodis_A_z[_qp])) + _beta1112*(12*Utility::pow<5>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] + 12*_antiferrodis_A_y[_qp]*Utility::pow<5>(_antiferrodis_A_z[_qp])));
     }
     else
     {

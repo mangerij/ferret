@@ -66,16 +66,24 @@ RotostrictiveCouplingDispDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    return -(_grad_test[_i][_qp](0)*(_C12*(Utility::pow<2>(_antiferrodis_A_z[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*_R12) + _C12*(Utility::pow<2>(_antiferrodis_A_y[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_R12) + _C11*(Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_R12)) + 2*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_C44*_grad_test[_i][_qp](1)*_R44 + 2*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](2)*_R44);
+    return ((_C11*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + _C12*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R11 + _C12*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R11 + 
+      2*_C12*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R12 + _C11*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R12 + _C12*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R12 + 
+      _C11*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R12 + _C12*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R12)*_grad_test[_i][_qp](0) + 4*_C44*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_R44*_grad_test[_i][_qp](1) + 
+   4*_C44*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](2));
   }
   else if (_component == 1)
   {
-    return -(_grad_test[_i][_qp](1)*(_C12*(Utility::pow<2>(_antiferrodis_A_z[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*_R12) + _C11*(Utility::pow<2>(_antiferrodis_A_y[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_R12) + _C12*(Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_R12)) + 2*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_C44*_grad_test[_i][_qp](0)*_R44 + 2*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](2)*_R44);
+    return (4*_C44*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_R44*_grad_test[_i][_qp](0) + (_C12*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + _C11*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R11 + 
+      _C12*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R11 + _C11*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R12 + _C12*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R12 + 
+      2*_C12*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R12 + _C11*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R12 + _C12*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R12)*_grad_test[_i][_qp](1) + 
+   4*_C44*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](2));
   }
   else if (_component == 2)
   {
-    return -(_grad_test[_i][_qp](2)*(_C11*(Utility::pow<2>(_antiferrodis_A_z[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*_R12) + _C12*(Utility::pow<2>(_antiferrodis_A_y[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_R12) + _C12*(Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + (Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_R12)) + 
-   2*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](0)*_R44 + 2*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](1)*_R44);
+    return (4*_C44*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](0) + 4*_C44*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](1) + 
+   (_C12*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + _C12*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R11 + _C11*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R11 + 
+      _C11*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R12 + _C12*Utility::pow<2>(_antiferrodis_A_x[_qp])*_R12 + _C11*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R12 + 
+      _C12*Utility::pow<2>(_antiferrodis_A_y[_qp])*_R12 + 2*_C12*Utility::pow<2>(_antiferrodis_A_z[_qp])*_R12)*_grad_test[_i][_qp](2));
   }
   else
     return 0.0;
@@ -94,15 +102,15 @@ RotostrictiveCouplingDispDerivative::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](0)*(2*_antiferrodis_A_x[_qp]*_C11*_R11 + 4*_antiferrodis_A_x[_qp]*_C12*_R12) + 2*_antiferrodis_A_y[_qp]*_C44*_grad_test[_i][_qp](1)*_R44 + 2*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](2)*_R44);
+      return _phi[_j][_qp] * (2*_C11*_antiferrodis_A_x[_qp]*_R11*_grad_test[_i][_qp](0) + 4*_C12*_antiferrodis_A_x[_qp]*_R12*_grad_test[_i][_qp](0) + 4*_C44*_antiferrodis_A_y[_qp]*_R44*_grad_test[_i][_qp](1) + 4*_C44*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](2));
     }
     else if (jvar == _antiferrodis_A_y_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](0)*(2*_antiferrodis_A_y[_qp]*_C12*_R11 + 2*_antiferrodis_A_y[_qp]*_C11*_R12 + 2*_antiferrodis_A_y[_qp]*_C12*_R12) + 2*_antiferrodis_A_x[_qp]*_C44*_grad_test[_i][_qp](1)*_R44);
+      return _phi[_j][_qp] * (2*_C12*_antiferrodis_A_y[_qp]*_R11*_grad_test[_i][_qp](0) + 2*_C11*_antiferrodis_A_y[_qp]*_R12*_grad_test[_i][_qp](0) + 2*_C12*_antiferrodis_A_y[_qp]*_R12*_grad_test[_i][_qp](0) + 4*_C44*_antiferrodis_A_x[_qp]*_R44*_grad_test[_i][_qp](1));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](0)*(2*_antiferrodis_A_z[_qp]*_C12*_R11 + 2*_antiferrodis_A_z[_qp]*_C11*_R12 + 2*_antiferrodis_A_z[_qp]*_C12*_R12) + 2*_antiferrodis_A_x[_qp]*_C44*_grad_test[_i][_qp](2)*_R44);
+      return _phi[_j][_qp] * (2*_C12*_antiferrodis_A_z[_qp]*_R11*_grad_test[_i][_qp](0) + 2*_C11*_antiferrodis_A_z[_qp]*_R12*_grad_test[_i][_qp](0) + 2*_C12*_antiferrodis_A_z[_qp]*_R12*_grad_test[_i][_qp](0) + 4*_C44*_antiferrodis_A_x[_qp]*_R44*_grad_test[_i][_qp](2));
     }
     else
     {
@@ -113,15 +121,15 @@ RotostrictiveCouplingDispDerivative::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](1)*(2*_antiferrodis_A_x[_qp]*_C12*_R11 + 2*_antiferrodis_A_x[_qp]*_C11*_R12 + 2*_antiferrodis_A_x[_qp]*_C12*_R12) + 2*_antiferrodis_A_y[_qp]*_C44*_grad_test[_i][_qp](0)*_R44);
+      return _phi[_j][_qp] * (4*_C44*_antiferrodis_A_y[_qp]*_R44*_grad_test[_i][_qp](0) + 2*_C12*_antiferrodis_A_x[_qp]*_R11*_grad_test[_i][_qp](1) + 2*_C11*_antiferrodis_A_x[_qp]*_R12*_grad_test[_i][_qp](1) + 2*_C12*_antiferrodis_A_x[_qp]*_R12*_grad_test[_i][_qp](1));
     }
     else if (jvar == _antiferrodis_A_y_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](1)*(2*_antiferrodis_A_y[_qp]*_C11*_R11 + 4*_antiferrodis_A_y[_qp]*_C12*_R12) + 2*_antiferrodis_A_x[_qp]*_C44*_grad_test[_i][_qp](0)*_R44 + 2*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](2)*_R44);
+      return _phi[_j][_qp] * (4*_C44*_antiferrodis_A_x[_qp]*_R44*_grad_test[_i][_qp](0) + 2*_C11*_antiferrodis_A_y[_qp]*_R11*_grad_test[_i][_qp](1) + 4*_C12*_antiferrodis_A_y[_qp]*_R12*_grad_test[_i][_qp](1) + 4*_C44*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](2));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](1)*(2*_antiferrodis_A_z[_qp]*_C12*_R11 + 2*_antiferrodis_A_z[_qp]*_C11*_R12 + 2*_antiferrodis_A_z[_qp]*_C12*_R12) + 2*_antiferrodis_A_y[_qp]*_C44*_grad_test[_i][_qp](2)*_R44);
+      return _phi[_j][_qp] * (2*_C12*_antiferrodis_A_z[_qp]*_R11*_grad_test[_i][_qp](1) + 2*_C11*_antiferrodis_A_z[_qp]*_R12*_grad_test[_i][_qp](1) + 2*_C12*_antiferrodis_A_z[_qp]*_R12*_grad_test[_i][_qp](1) + 4*_C44*_antiferrodis_A_y[_qp]*_R44*_grad_test[_i][_qp](2));
     }
     else
     {
@@ -132,15 +140,15 @@ RotostrictiveCouplingDispDerivative::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](2)*(2*_antiferrodis_A_x[_qp]*_C12*_R11 + 2*_antiferrodis_A_x[_qp]*_C11*_R12 + 2*_antiferrodis_A_x[_qp]*_C12*_R12) + 2*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](0)*_R44);
+      return _phi[_j][_qp] * (4*_C44*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](0) + 2*_C12*_antiferrodis_A_x[_qp]*_R11*_grad_test[_i][_qp](2) + 2*_C11*_antiferrodis_A_x[_qp]*_R12*_grad_test[_i][_qp](2) + 2*_C12*_antiferrodis_A_x[_qp]*_R12*_grad_test[_i][_qp](2));
     }
     else if (jvar == _antiferrodis_A_y_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](2)*(2*_antiferrodis_A_y[_qp]*_C12*_R11 + 2*_antiferrodis_A_y[_qp]*_C11*_R12 + 2*_antiferrodis_A_y[_qp]*_C12*_R12) + 2*_antiferrodis_A_z[_qp]*_C44*_grad_test[_i][_qp](1)*_R44);
+      return _phi[_j][_qp] * (4*_C44*_antiferrodis_A_z[_qp]*_R44*_grad_test[_i][_qp](1) + 2*_C12*_antiferrodis_A_y[_qp]*_R11*_grad_test[_i][_qp](2) + 2*_C11*_antiferrodis_A_y[_qp]*_R12*_grad_test[_i][_qp](2) + 2*_C12*_antiferrodis_A_y[_qp]*_R12*_grad_test[_i][_qp](2));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return -_phi[_j][_qp] * (_grad_test[_i][_qp](2)*(2*_antiferrodis_A_z[_qp]*_C11*_R11 + 4*_antiferrodis_A_z[_qp]*_C12*_R12) + 2*_antiferrodis_A_x[_qp]*_C44*_grad_test[_i][_qp](0)*_R44 + 2*_antiferrodis_A_y[_qp]*_C44*_grad_test[_i][_qp](1)*_R44);
+      return _phi[_j][_qp] * (4*_C44*_antiferrodis_A_x[_qp]*_R44*_grad_test[_i][_qp](0) + 4*_C44*_antiferrodis_A_y[_qp]*_R44*_grad_test[_i][_qp](1) + 2*_C11*_antiferrodis_A_z[_qp]*_R11*_grad_test[_i][_qp](2) + 4*_C12*_antiferrodis_A_z[_qp]*_R12*_grad_test[_i][_qp](2));
     }
     else
     {
