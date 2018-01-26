@@ -19,31 +19,26 @@
 
 **/
 
-#ifndef COMPUTEDELTAINDICATRIXELECTRO_H
-#define COMPUTEDELTAINDICATRIXELECTRO_H
+#ifndef TOTALENERGYBFONOELAST_H
+#define TOTALENERGYBFONOELAST_H
 
-#include "RankThreeTensor.h"
-#include "ComputeDeltaIndicatrixElectroBase.h"
-#include "libmesh/quadrature.h"
+#include "GeneralPostprocessor.h"
 
-class ComputeDeltaIndicatrixElectro;
+class TotalEnergyBFONoElast;
 
 template<>
-InputParameters validParams<ComputeDeltaIndicatrixElectro>();
+InputParameters validParams<TotalEnergyBFONoElast>();
 
-/**
- * ComputeDeltaIndicatrixElectro defines an impermeability tensor material object with a given base name.
- */
-class ComputeDeltaIndicatrixElectro : public ComputeDeltaIndicatrixElectroBase
+class TotalEnergyBFONoElast : public GeneralPostprocessor
 {
 public:
-  ComputeDeltaIndicatrixElectro(const InputParameters & parameters);
-
+  TotalEnergyBFONoElast(const InputParameters & parameters);
+  virtual ~TotalEnergyBFONoElast();
+  virtual void initialize();
+  virtual void execute();
+  virtual Real getValue();
 protected:
-  virtual void computeQpDeltaIndicatrixElectro();
-  const MaterialProperty<RankThreeTensor> & _electrooptic_tensor;
-  const VariableGradient & _potential_int_grad;
-
+  const PostprocessorValue & _FbP, & _FbA, & _FgP, & _FgA, & _FcPA;
 };
 
-#endif //COMPUTEDELTAINDICATRIXELECTRO_H
+#endif

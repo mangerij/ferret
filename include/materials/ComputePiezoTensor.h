@@ -27,6 +27,11 @@
 #include "PiezostrictiveTensorTools.h"
 #include "ComputeRotatedPiezoTensorBase.h"
 
+class ComputePiezoTensor;
+
+template<>
+InputParameters validParams<ComputePiezoTensor>();
+
 /**
  * ComputeElectroopticTensor defines a linear electrooptic tensor material object with a given base name.
  */

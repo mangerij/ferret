@@ -201,6 +201,7 @@
 #include "RotostrictiveCouplingEnergy.h"
 #include "ElectrostrictiveCouplingEnergy.h"
 #include "TotalEnergyBFO.h"
+#include "TotalEnergyBFONoElast.h"
 #include "PolarizationValue.h"
 #include "PolarizationComponentValue.h"
 
@@ -420,6 +421,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(RotostrictiveCouplingEnergy);
   registerPostprocessor(ElectrostrictiveCouplingEnergy);
   registerPostprocessor(TotalEnergyBFO);
+  registerPostprocessor(TotalEnergyBFONoElast);
   registerPostprocessor(PolarizationValue);
   registerPostprocessor(PolarizationComponentValue);
 

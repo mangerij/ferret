@@ -25,6 +25,11 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
+class ComputePolarOpticTensorBase;
+
+template<>
+InputParameters validParams<ComputePolarOpticTensorBase>();
+
 /**
  * ComputePolarOpticTensorBase the base class for computing polar-optic tensors
  */

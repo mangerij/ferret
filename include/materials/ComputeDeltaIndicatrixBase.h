@@ -25,6 +25,11 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
+class ComputeDeltaIndicatrixBase;
+
+template<>
+InputParameters validParams<ComputeDeltaIndicatrixBase>();
+
 /**
  * ComputeIndicatrixBase the base class for computing photostrictive tensors
  */

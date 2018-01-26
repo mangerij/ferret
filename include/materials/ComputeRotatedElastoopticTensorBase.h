@@ -24,6 +24,11 @@
 
 #include "ComputeElastoopticTensorBase.h"
 
+class ComputeRotatedElastoopticTensorBase;
+
+template<>
+InputParameters validParams<ComputeRotatedElastoopticTensorBase>();
+
 /**
  * ComputeRotatedElastoopticTensorBase is an intermediate base class that rotates the photostrictive tensor based on euler angles.
  */
