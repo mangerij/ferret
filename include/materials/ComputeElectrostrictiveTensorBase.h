@@ -25,6 +25,11 @@
 #include "Material.h"
 #include "RankFourTensor.h"
 
+class ComputeElectrostrictiveTensorBase;
+
+template<>
+InputParameters validParams<ComputeElectrostrictiveTensorBase>();
+
 /**
  * ComputeElectrostrictiveTensorBase the base class for computing electrostrictive tensors
  */

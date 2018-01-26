@@ -25,6 +25,11 @@
 #include "Material.h"
 #include "RankThreeTensor.h"
 
+class ComputeElectroopticTensorBase;
+
+template<>
+InputParameters validParams<ComputeElectroopticTensorBase>();
+
 /**
  * ComputeElectroopticTensorBase the base class for computing photostrictive tensors
  */

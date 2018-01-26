@@ -25,6 +25,11 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
+class ComputePolarOpticGCoeffTensorBase;
+
+template<>
+InputParameters validParams<ComputePolarOpticGCoeffTensorBase>();
+
 /**
  * ComputePolarOpticGCoeffTensorBase the base class for computing polar-optic tensors
  */
