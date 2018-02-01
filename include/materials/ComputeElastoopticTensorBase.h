@@ -25,6 +25,11 @@
 #include "Material.h"
 #include "RankFourTensor.h"
 
+class ComputeElastoopticTensorBase;
+
+template<>
+InputParameters validParams<ComputeElastoopticTensorBase>();
+
 /**
  * ComputeElastoopticTensorBase the base class for computing photostrictive tensors
  */

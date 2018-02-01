@@ -27,6 +27,11 @@
 #include "InputParameters.h"
 #include "MooseObject.h"
 
+class FerretBase;
+
+template<>
+InputParameters validParams<FerretBase>();
+
 class FerretBase
 {
  public:

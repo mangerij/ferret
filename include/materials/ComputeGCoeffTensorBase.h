@@ -25,6 +25,11 @@
 #include "Material.h"
 #include "RankFourTensor.h"
 
+class ComputeGCoeffTensorBase;
+
+template<>
+InputParameters validParams<ComputeGCoeffTensorBase>();
+
 /**
  * ComputeGCoeffTensorBase the base class for computing photostrictive tensors
  */

@@ -26,6 +26,11 @@
 #include "RankTwoTensor.h"
 #include "ComputePolarOpticTensorBase.h"
 
+class ComputePolarOpticTensor;
+
+template<>
+InputParameters validParams<ComputePolarOpticTensor>();
+
 /**
  * ComputePolarOpticTensor the base class for computing polar-optic adjustments to B_{ij}
  */

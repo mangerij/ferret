@@ -24,6 +24,11 @@
 
 #include "ComputeGCoeffTensorBase.h"
 
+class ComputeRotatedGCoeffTensorBase;
+
+template<>
+InputParameters validParams<ComputeRotatedGCoeffTensorBase>();
+
 /**
  * ComputeRotatedGCoeffTensorBase is an intermediate base class that rotates the photostrictive tensor based on euler angles.
  */

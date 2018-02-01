@@ -24,6 +24,11 @@
 
 #include "ComputeElectrostrictiveTensorBase.h"
 
+class ComputeRotatedElectrostrictiveTensorBase;
+
+template<>
+InputParameters validParams<ComputeRotatedElectrostrictiveTensorBase>();
+
 /**
  * ComputeRotatedElectrostrictiveTensorBase is an intermediate base class that rotates the electrostrictive tensor based on euler angles.
  */
