@@ -23,7 +23,7 @@
 #define CONVERSEPIEZOELECTRICSTRAIN_H
 
 #include "Kernel.h"
-#include "ComputePiezoTensor.h"
+#include "ComputePiezostrictiveTensor.h"
 #include "Material.h"
 
 //Forward Declarations
@@ -45,8 +45,7 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-  const MaterialProperty<RankThreeTensor> & _piezo_tensor;
-  const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor_i;
+  const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor;
   const unsigned int _component;
   const unsigned int _potential_int_var;
   const VariableValue & _potential_int;

@@ -217,6 +217,9 @@
     type = ComputeElasticityTensor
     fill_method = symmetric9
     C_ijkl = '209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29'
+    euler_angle_1 = 30
+    euler_angle_2 = 30
+    euler_angle_3 = 0
   [../]
   [./strain_1]
     type = ComputeSmallStrain
@@ -225,13 +228,12 @@
     type = ComputeLinearElasticStress
   [../]
   [./d333]
-    type = ComputePiezoTensor
-    fill_method2 = symmetric9
+    type = ComputePiezostrictiveTensor
     fill_method = general
-    compute_piezostrictive_coeff = true
-    C_ijkl = '209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29'
-    d_kpq = '0 0 -0.00415 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.00415 0 -0.00415 0 -0.005 0 0 0 -0.005 0 0 0 0.0124'
-    d_pqkT = '0 0 -0.005 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.005 0 -0.00415 0 -0.00415 0 0 0 -0.00415 0 0 0 0.0124'
+    e_ijk = '0 0 -0.00415 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.00415 0 -0.00415 0 -0.005 0 0 0 -0.005 0 0 0 0.0124'
+    euler_angle_1 = 30
+    euler_angle_2 = 30
+    euler_angle_3 = 0
   [../]
 []
 

@@ -159,6 +159,7 @@
 #include "ComputeGCoeffTensor.h"
 #include "ComputeDeltaIndicatrixElectro.h"
 #include "ComputePiezoTensor.h"
+#include "ComputePiezostrictiveTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -201,7 +202,6 @@
 #include "RotostrictiveCouplingEnergy.h"
 #include "ElectrostrictiveCouplingEnergy.h"
 #include "TotalEnergyBFO.h"
-#include "TotalEnergyBFONoElast.h"
 #include "PolarizationValue.h"
 #include "PolarizationComponentValue.h"
 
@@ -314,7 +314,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(PlaneAux);
 
   registerFunction(DomainFunc);
-  
+
   ///Kernels
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthAlt);
@@ -421,7 +421,6 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(RotostrictiveCouplingEnergy);
   registerPostprocessor(ElectrostrictiveCouplingEnergy);
   registerPostprocessor(TotalEnergyBFO);
-  registerPostprocessor(TotalEnergyBFONoElast);
   registerPostprocessor(PolarizationValue);
   registerPostprocessor(PolarizationComponentValue);
 
@@ -440,6 +439,7 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputeGCoeffTensor);
   registerMaterial(ComputeDeltaIndicatrixElectro);
   registerMaterial(ComputePiezoTensor);
+  registerMaterial(ComputePiezostrictiveTensor);
 
   ///InitialConditions
   registerInitialCondition(FluctuationsIC);
