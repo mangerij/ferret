@@ -20,8 +20,7 @@
 **/
 
 #include "PiezoelectricStrainCharge.h"
-#include "ComputePiezoTensor.h"
-#include "PiezostrictiveTensorTools.h"
+#include "ComputePiezostrictiveTensor.h"
 
 class PiezoelectricStrainCharge;
 
@@ -38,8 +37,7 @@ InputParameters validParams<PiezoelectricStrainCharge>()
 
 PiezoelectricStrainCharge::PiezoelectricStrainCharge(const InputParameters & parameters)
   :Kernel(parameters),
-   _piezo_tensor(getMaterialProperty<RankThreeTensor>("piezo_tensor")),
-   _piezostrictive_tensor(getMaterialProperty<RankThreeTensor>("piezostrictive_tensor_i")),
+   _piezostrictive_tensor(getMaterialProperty<RankThreeTensor>("piezostrictive_tensor")),
    _disp_x_var(coupled("disp_x")),
    _disp_y_var(coupled("disp_y")),
    _disp_z_var(coupled("disp_z")),
