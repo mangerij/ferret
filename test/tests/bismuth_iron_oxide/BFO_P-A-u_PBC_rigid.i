@@ -89,20 +89,20 @@
   C12 = 9.4905087e-3
   C44 = 5.24373333e-5
 
-  Q11 = 1.35386
-  Q12 = -0.238295
-  Q44 = 4.17474 #16.698978569333416 #4.17474 #factor of 4 here...
-  R11 = 2.35149
-  R12 = -1.1143805
-  R44 = -3.67475 #-14.69898038101976 #-3.67475
+  Q11 = -1.35386
+  Q12 = 0.238295
+  Q44 = -4.17474 #16.698978569333416
+  R11 = -2.35149
+  R12 = 1.1143805
+  R44 = 3.67475 #-14.69898038101976
 
-  q11 = 1.93418062e-2
-  q12 = 6.3875442e-3
-  q44 = 8.75649995e-4 #due to factor of 2 in code #0.000437825 #
+  q11 = -1.93418062e-2
+  q12 = -6.3875442e-3
+  q44 = -8.75649995e-4
 
-  r11 = 7.7644e-3
-  r12 = -1.63357e-3 
-  r44 = -7.70775329e-4 # due to factor of 2 in code #-0.000385388 #
+  r11 = -7.7644e-3
+  r12 = 1.63357e-3 
+  r44 = 7.70775329e-4
 
   polar_x = polar_x
   polar_y = polar_y
@@ -128,7 +128,7 @@
     family = LAGRANGE
     [./InitialCondition]
       type = ConstantIC
-      value = 1.0
+      value = 0.85
     [../]
   [../]
   [./polar_y]
@@ -136,7 +136,7 @@
     family = LAGRANGE
     [./InitialCondition]
       type = ConstantIC
-      value = 1.0
+      value = 0.85
     [../]
   [../]
   [./polar_z]
@@ -144,7 +144,7 @@
     family = LAGRANGE
     [./InitialCondition]
       type = ConstantIC
-      value = 1.0
+      value = 0.85
     [../]
   [../]
   [./antiferrodis_A_x]
@@ -152,7 +152,7 @@
     family = LAGRANGE
     [./InitialCondition]
       type = ConstantIC
-      value = 1.0
+      value = 0.85
     [../]
   [../]
   [./antiferrodis_A_y]
@@ -160,7 +160,7 @@
     family = LAGRANGE
     [./InitialCondition]
       type = ConstantIC
-      value = 1.0
+      value = 0.85
     [../]
   [../]
   [./antiferrodis_A_z]
@@ -168,7 +168,7 @@
     family = LAGRANGE
     [./InitialCondition]
       type = ConstantIC
-      value = 1.0
+      value = 0.85
     [../]
   [../]
   [./disp_x]
@@ -654,10 +654,6 @@
   dtmin = 1e-13
   dtmax = 0.25
 []
-
-#[Debug]
-#  show_var_residual_norms = true
-#[]
 
 [Outputs]
   print_linear_residuals = false
