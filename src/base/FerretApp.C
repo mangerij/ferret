@@ -141,6 +141,7 @@
 #include "RotoPolarCoupledEnergyPolarDerivativeAlt.h"
 #include "RotoBulkEnergyDerivativeEighthAlt.h"
 #include "RotoPolarCoupledEnergyDistortDerivativeAlt.h"
+#include "ConstField.h"
 
 //InterfaceKernels
 #include "InterfaceDiffusion.h"
@@ -202,6 +203,7 @@
 #include "RotostrictiveCouplingEnergy.h"
 #include "ElectrostrictiveCouplingEnergy.h"
 #include "TotalEnergyBFO.h"
+#include "TotalEnergyBFOElec.h"
 #include "PolarizationValue.h"
 #include "PolarizationComponentValue.h"
 
@@ -375,6 +377,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkEnergyDerivativeEighthAlt);
   registerKernel(RotoBulkEnergyDerivativeEighthAlt);
   registerKernel(RotoPolarCoupledEnergyDistortDerivativeAlt);
+  registerKernel(ConstField);
 
   ///registerInterfaceKernels
   registerInterfaceKernel(InterfaceDiffusion);
@@ -423,6 +426,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(TotalEnergyBFO);
   registerPostprocessor(PolarizationValue);
   registerPostprocessor(PolarizationComponentValue);
+  registerPostprocessor(TotalEnergyBFOElec);
 
   //Markers
   registerMarker(PolarizationNWEMarker);
