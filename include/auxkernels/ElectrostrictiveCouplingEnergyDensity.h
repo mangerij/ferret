@@ -14,48 +14,47 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
 
-#ifndef ROTOPOLARCOUPLEDPOLARDERIVATIVEFOURTH_H
-#define ROTOPOLARCOUPLEDPOLARDERIVATIVEFOURTH_H
+#ifndef ELECTROSTRICTIVECOUPLINGENERGYDENSITY_H
+#define ELECTROSTRICTIVECOUPLINGENERGYDENSITY_H
 
-#include "Kernel.h"
+#include "AuxKernel.h"
 
-class RotopolarCoupledPolarDerivativeFourth;
+class ElectrostrictiveCouplingEnergyDensity;
 
 template<>
-InputParameters validParams<RotopolarCoupledPolarDerivativeFourth>();
+InputParameters validParams<ElectrostrictiveCouplingEnergyDensity>();
 
-class RotopolarCoupledPolarDerivativeFourth: public Kernel
+
+class ElectrostrictiveCouplingEnergyDensity : public AuxKernel
 {
 public:
-
-  RotopolarCoupledPolarDerivativeFourth(const InputParameters & parameters);
+  ElectrostrictiveCouplingEnergyDensity(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual();
+  virtual Real computeValue();
 
-  virtual Real computeQpJacobian();
-
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
-  const unsigned int _component;
+private:
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const unsigned int _antiferrodis_A_x_var;
-  const unsigned int _antiferrodis_A_y_var;
-  const unsigned int _antiferrodis_A_z_var;
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
-  const Real _t11, _t12, _t44;
-  const Real _len_scale;
+  const Real _q11;
+  const Real _q12;
+  const Real _q44;
+  const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 };
-#endif //ROTOPOLARCOUPLEDPOLARDERIVATIVEFOURTH_H
+
+#endif

@@ -19,41 +19,42 @@
 
 **/
 
-#ifndef COUPLEDENERGY_H
-#define COUPLEDENERGY_H
+#ifndef ROTOSTRICTIVECOUPLINGENERGYDENSITY_H
+#define ROTOSTRICTIVECOUPLINGENERGYDENSITY_H
 
 #include "AuxKernel.h"
-#include "RankTwoTensor.h"
-#include "ElementIntegralPostprocessor.h"
-#include "ComputeElectrostrictiveTensor.h"
-#include "ComputeEigenstrain.h"
 
-//Forward Declarations
-class CoupledEnergy;
+class RotostrictiveCouplingEnergyDensity;
 
 template<>
-InputParameters validParams<CoupledEnergy>();
+InputParameters validParams<RotostrictiveCouplingEnergyDensity>();
 
 
-class CoupledEnergy : public ElementIntegralPostprocessor
+class RotostrictiveCouplingEnergyDensity : public AuxKernel
 {
 public:
-  CoupledEnergy(const InputParameters & parameters);
+  RotostrictiveCouplingEnergyDensity(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpIntegral();
+  virtual Real computeValue();
 
 private:
-  const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
-  const MaterialProperty<RankTwoTensor> & _eigenstrain;
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
+  const unsigned int _antiferrodis_A_x_var;
+  const unsigned int _antiferrodis_A_y_var;
+  const unsigned int _antiferrodis_A_z_var;
   const VariableGradient & _disp_x_grad;
   const VariableGradient & _disp_y_grad;
   const VariableGradient & _disp_z_grad;
-  const VariableValue & _polar_x;
-  const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
-  const Real _artificial;
-  const Real _len_scale;
+  const VariableValue & _antiferrodis_A_x;
+  const VariableValue & _antiferrodis_A_y;
+  const VariableValue & _antiferrodis_A_z;
+  const Real _r11;
+  const Real _r12;
+  const Real _r44;
+  const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 };
 
 #endif

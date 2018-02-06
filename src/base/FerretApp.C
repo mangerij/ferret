@@ -32,7 +32,6 @@
 #include "MiscApp.h"
 
 //AuxKernels
-#include "PolarizationVortexAux.h"
 #include "TensorPressureAux.h"
 #include "BandGapAuxZnO.h"
 #include "BandGapAuxTiO2.h" //should rework these to be a "general" gap kernel
@@ -41,6 +40,10 @@
 #include "ZCompCurlP.h"
 #include "CurlPMag.h"
 #include "BulkEnergyDensity.h"
+#include "ElectrostrictiveEnergyDensity.h"
+#include "ElectrostrictiveCouplingEnergyDensity.h"
+#include "RotostrictiveCouplingEnergyDensity.h"
+#include "RotoPolarCouplingEnergyDensity.h"
 #include "RotoBulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
 #include "SurfaceChargeAux.h"
@@ -85,12 +88,8 @@
 #include "Electrostatics.h"
 #include "WallEnergyDerivative.h"
 #include "WallEnergyDerivativeAlt.h"
-#include "RotatedWallEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixth.h"
 #include "BulkEnergyDerivativeSixthAlt.h"
-#include "BulkEnergyDerivativePSTO.h"
-#include "RotatedBulkEnergyDerivativeSixth.h"
-#include "RotatedBulkEnergyDerivative.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
 #include "NoStdBulkEnergyDerivativeSixth.h"
 #include "TimeDerivativeScaled.h"
@@ -119,8 +118,6 @@
 #include "MagHStrong.h"
 #include "MagMStrong.h"
 #include "BulkAntiferrodistortEnergyDerivativeSixth.h"
-#include "RotopolarCoupledDistortDerivativeFourth.h"
-#include "RotopolarCoupledPolarDerivativeFourth.h"
 #include "AFDAntiphaseEnergyDerivative.h"
 #include "LagrangianMultiplierAntiferromagConstraint.h"
 #include "LagrangianMultiplierAntiferromagMediumConstraint.h"
@@ -166,21 +163,15 @@
 #include "WallEnergy.h"
 #include "ThermalEnergy.h"
 #include "TotalEnergy.h"
-#include "TotalEnergyPSTO.h"
-#include "TotalEnergyPSTOcoupled.h"
-#include "CoupledEnergyPSTO.h"
 #include "TotalEnergyFlow.h"
 #include "TotalEnergyFlowNoElast.h"
 #include "TotalEnergyFlowNoElastNoElec.h"
 #include "BulkEnergy.h"
-#include "BulkEnergyPSTO.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
 #include "ExtElectrostaticEnergy.h"
 #include "ElasticEnergy.h"
-#include "CoupledEnergy.h"
 #include "ElectrostrictiveEnergy.h"
-#include "CoupledEnergyCheckShear.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
 #include "TotalEnergyG.h"
@@ -276,9 +267,12 @@ FerretApp::registerObjects(Factory & factory)
   registerBoundaryCondition(StressBC);
 
   ///AuxKernels:
-  registerAux(PolarizationVortexAux);
   registerAux(TensorPressureAux);
   registerAux(BulkEnergyDensity);
+  registerAux(ElectrostrictiveEnergyDensity);
+  registerAux(ElectrostrictiveCouplingEnergyDensity);
+  registerAux(RotostrictiveCouplingEnergyDensity);
+  registerAux(RotoPolarCouplingEnergyDensity);
   registerAux(RotoBulkEnergyDensity);
   registerAux(WallEnergyDensity);
   registerAux(AFDWallEnergyDensity);
@@ -320,14 +314,10 @@ FerretApp::registerObjects(Factory & factory)
   ///Kernels
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthAlt);
-  registerKernel(BulkEnergyDerivativePSTO);
-  registerKernel(RotatedBulkEnergyDerivativeSixth);
-  registerKernel(RotatedBulkEnergyDerivative);
   registerKernel(NoStdBulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(WallEnergyDerivative);
   registerKernel(WallEnergyDerivativeAlt);
-  registerKernel(RotatedWallEnergyDerivative);
   registerKernel(TimeDerivativeScaled);
   registerKernel(FerroelectricCouplingP);
   registerKernel(FluctuationKernel);
@@ -355,8 +345,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(MagMStrong);
   registerKernel(MagHStrong);
   registerKernel(BulkAntiferrodistortEnergyDerivativeSixth);
-  registerKernel(RotopolarCoupledDistortDerivativeFourth);
-  registerKernel(RotopolarCoupledPolarDerivativeFourth);
   registerKernel(RotoPolarCoupledEnergyPolarDerivativeAlt);
   registerKernel(AFDAntiphaseEnergyDerivative);
   registerKernel(LagrangianMultiplierAntiferromagConstraint);
@@ -384,23 +372,17 @@ FerretApp::registerObjects(Factory & factory)
 
   ///Postprocessors
   registerPostprocessor(BulkEnergy);
-  registerPostprocessor(BulkEnergyPSTO);
   registerPostprocessor(BulkEnergyCoupledT);
   registerPostprocessor(WallEnergy);
   ///registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(ElectrostaticEnergy);
   registerPostprocessor(TotalEnergy);
-  registerPostprocessor(TotalEnergyPSTO);
-  registerPostprocessor(TotalEnergyPSTOcoupled);
-  registerPostprocessor(CoupledEnergyPSTO);
   registerPostprocessor(TotalEnergyFlow);
   registerPostprocessor(TotalEnergyFlowNoElast);
   registerPostprocessor(TotalEnergyFlowNoElastNoElec);
   registerPostprocessor(ElasticEnergy);
-  registerPostprocessor(CoupledEnergy);
-  registerPostprocessor(ElectrostrictiveEnergy);
+  registerPostprocessor(ElectrostrictiveEnergy); //used to be called CoupledEnergy
   registerPostprocessor(ThermalEnergy);
-  registerPostprocessor(CoupledEnergyCheckShear);
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
   registerPostprocessor(TotalEnergyG);
