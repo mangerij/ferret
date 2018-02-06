@@ -1,4 +1,4 @@
-/**
+/*
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -19,33 +19,37 @@
 
 **/
 
-#ifndef COUPLEDENERGYCHECKSHEAR_H
-#define COUPLEDENERGYCHECKSHEAR_H
+#ifndef ELECTROSTRICTIVEENERGYDENSITY_H
+#define ELECTROSTRICTIVEENERGYDENSITY_H
 
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
-#include "ElementIntegralPostprocessor.h"
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputeEigenstrain.h"
 
 //Forward Declarations
-class CoupledEnergyCheckShear;
+class ElectrostrictiveEnergyDensity;
 
 template<>
-InputParameters validParams<CoupledEnergyCheckShear>();
+InputParameters validParams<ElectrostrictiveEnergyDensity>();
 
-
-class CoupledEnergyCheckShear : public ElementIntegralPostprocessor
+/**
+ * Coupled auxiliary value
+ */
+class ElectrostrictiveEnergyDensity : public AuxKernel
 {
 public:
-  CoupledEnergyCheckShear(const InputParameters & parameters);
+
+  /**
+   * Factory constructor, takes parameters so that all derived classes can be built using the same
+   * constructor.
+   */
+  ElectrostrictiveEnergyDensity(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpIntegral();
-
-private:
+  virtual Real computeValue();
   const MaterialProperty<RankFourTensor> & _electrostrictive_tensor;
-  const MaterialProperty<RankTwoTensor> & _stress_free_strain;
+  const MaterialProperty<RankTwoTensor> & _eigenstrain;
   const VariableGradient & _disp_x_grad;
   const VariableGradient & _disp_y_grad;
   const VariableGradient & _disp_z_grad;
@@ -56,4 +60,4 @@ private:
   const Real _len_scale;
 };
 
-#endif
+#endif // ELECTROSTRICTIVEENERGYDENSITY_H

@@ -300,7 +300,7 @@
       execute_on = 'initial timestep_end'
     [../]
     [./Fcoupled]
-      type = CoupledEnergy
+      type = ElectrostrictiveEnergy
       execute_on = 'initial timestep_end'
     [../]
     [./Felec]

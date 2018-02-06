@@ -44,7 +44,5 @@ Real
 ElasticEnergy::computeQpIntegral()
 {
   Real scaling = _len_scale*_len_scale*_len_scale*_strain_scale;
-
   return scaling*0.5*_stress[_qp].doubleContraction(_elastic_strain[_qp]);
-
 }

@@ -19,41 +19,40 @@
 
 **/
 
-#ifndef ROTATEDBULKENERGYDERIVATIVESIXTH_H
-#define ROTATEDBULKENERGYDERIVATIVESIXTH_H
+#ifndef ROTOPOLARCOUPLINGENERGYDENSITY_H
+#define ROTOPOLARCOUPLINGENERGYDENSITY_H
 
-#include "Kernel.h"
-#include "RankTwoTensor.h"
-#include "RankFourTensor.h"
-#include "RotationTensor.h"
+#include "AuxKernel.h"
 
-class RotatedBulkEnergyDerivativeSixth;
+class RotoPolarCouplingEnergyDensity;
 
 template<>
-InputParameters validParams<RotatedBulkEnergyDerivativeSixth>();
+InputParameters validParams<RotoPolarCouplingEnergyDensity>();
 
-class RotatedBulkEnergyDerivativeSixth: public Kernel
+
+class RotoPolarCouplingEnergyDensity : public AuxKernel
 {
 public:
-
-  RotatedBulkEnergyDerivativeSixth(const InputParameters & parameters);
+  RotoPolarCouplingEnergyDensity(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual();
+  virtual Real computeValue();
 
-  virtual Real computeQpJacobian();
-
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
-  const unsigned int _component;
+private:
+  const unsigned int _antiferrodis_A_x_var;
+  const unsigned int _antiferrodis_A_y_var;
+  const unsigned int _antiferrodis_A_z_var;
+  const VariableValue & _antiferrodis_A_x;
+  const VariableValue & _antiferrodis_A_y;
+  const VariableValue & _antiferrodis_A_z;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  RealVectorValue _Euler_angles;
-  const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112,_alpha123;
+  const Real _t1111, _t1122, _t1212,  _t42111111, _t24111111, _t42111122,  _t24112222, _t42112233, _t24112233, _t42112211, _t24111122, _t42111212, _t42123312, _t24121112, _t24121233, _t6211111111, _t2611111111, _t6211111122, _t2611222222, _t4411111111, _t4411112222;
   const Real _len_scale;
 };
-#endif //ROTATEDBULKENERGYDERIVATIVESIXTH_H
+
+#endif

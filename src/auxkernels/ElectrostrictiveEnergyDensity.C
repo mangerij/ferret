@@ -19,16 +19,14 @@
 
 **/
 
-#include "CoupledEnergy.h"
+#include "ElectrostrictiveEnergyDensity.h"
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputeEigenstrain.h"
-#include "libmesh/utility.h"
-
 
 template<>
-InputParameters validParams<CoupledEnergy>()
+InputParameters validParams<ElectrostrictiveEnergyDensity>()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
@@ -40,8 +38,8 @@ InputParameters validParams<CoupledEnergy>()
   return params;
 }
 
-CoupledEnergy::CoupledEnergy(const InputParameters & parameters) :
-  ElementIntegralPostprocessor(parameters),
+ElectrostrictiveEnergyDensity::ElectrostrictiveEnergyDensity(const InputParameters & parameters) :
+  AuxKernel(parameters),
   _electrostrictive_tensor(getMaterialProperty<RankFourTensor>("electrostrictive_tensor")),
   _eigenstrain(getMaterialProperty<RankTwoTensor>("eigenstrain")),
   _disp_x_grad(coupledGradient("disp_x")),
@@ -56,7 +54,7 @@ CoupledEnergy::CoupledEnergy(const InputParameters & parameters) :
 }
 
 Real
-CoupledEnergy::computeQpIntegral()
+ElectrostrictiveEnergyDensity::computeValue()
 {
   Real sum1 = 0.0;
   Real sum2 = 0.0;
@@ -78,5 +76,5 @@ CoupledEnergy::computeQpIntegral()
   sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 1, v1 + _disp_y_grad[_qp], 2, w);
   sum3 += ElectrostrictiveTensorTools::electrostrictiveProduct(_electrostrictive_tensor[_qp], 2, v2 + _disp_z_grad[_qp], 2, w);
 
-  return - _artificial * Utility::pow<3>(_len_scale) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
+  return - _artificial * std::pow(_len_scale, 3.0) * ( sum1 * _polar_x[_qp] + sum2 * _polar_y[_qp] + sum3 * _polar_z[_qp]);
 }
