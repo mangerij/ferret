@@ -63,6 +63,7 @@
 #include "Birefringence.h"
 #include "AFDWallEnergyDensity.h"
 #include "RefractiveIndex.h"
+#include "RenormalizedStrain.h"
 #include "ChangeInRefractiveIndex.h"
 #include "ChangeInRefractiveIndexWithPolar.h"
 #include "ChangeInRefractiveIndexWithGCoeffPolar.h"
@@ -91,7 +92,6 @@
 #include "BulkEnergyDerivativeSixth.h"
 #include "BulkEnergyDerivativeSixthAlt.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
-#include "NoStdBulkEnergyDerivativeSixth.h"
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
@@ -299,6 +299,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(Birefringence);
   registerAux(ChangeInRefractiveIndex);
   registerAux(RefractiveIndex);
+  registerAux(RenormalizedStrain);
   registerAux(ChangeInRefractiveIndexWithPolar);
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
@@ -314,7 +315,6 @@ FerretApp::registerObjects(Factory & factory)
   ///Kernels
   registerKernel(BulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthAlt);
-  registerKernel(NoStdBulkEnergyDerivativeSixth);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(WallEnergyDerivative);
   registerKernel(WallEnergyDerivativeAlt);

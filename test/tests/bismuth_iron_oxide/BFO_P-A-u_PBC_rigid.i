@@ -633,7 +633,7 @@
  [../]
  [./kill]
   type = Terminator
-  expression = 'perc_change <= 1.0e-6'
+  expression = 'perc_change <= 1.0e-7'
  [../]
 []
 
@@ -642,7 +642,7 @@
     type = SMP
     full = true
     petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121            1e-8          1e-8       1e-8     bjacobi'
+    petsc_options_value = '    121            1e-10          1e-8       1e-8     bjacobi'
   [../]
 []
 

@@ -17,39 +17,34 @@
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
-**/
+*/
 
-#ifndef NOSTDBULKENERGYDERIVATIVESIXTH_H
-#define NOSTDBULKENERGYDERIVATIVESIXTH_H
+#ifndef RENORMALIZEDSTRAIN_H
+#define RENORMALIZEDSTRAIN_H
 
-#include "Kernel.h"
+#include "AuxKernel.h"
+#include "RankTwoTensor.h"
 
-class NoStdBulkEnergyDerivativeSixth;
+//Forward declarations
+class RenormalizedStrain;
 
 template<>
-InputParameters validParams<NoStdBulkEnergyDerivativeSixth>();
+InputParameters validParams<RenormalizedStrain>();
 
-class NoStdBulkEnergyDerivativeSixth: public Kernel
+
+class RenormalizedStrain : public AuxKernel
 {
 public:
+  RenormalizedStrain(const InputParameters & parameters);
 
-  NoStdBulkEnergyDerivativeSixth(const InputParameters & parameters);
+  virtual ~RenormalizedStrain() {}
 
 protected:
-  virtual Real computeQpResidual();
+  virtual Real computeValue();
 
-  virtual Real computeQpJacobian();
-
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
-  const unsigned int _component;
-  const unsigned int _polar_x_var;
-  const unsigned int _polar_y_var;
-  const unsigned int _polar_z_var;
-  const VariableValue & _polar_x;
-  const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
-  const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112,_alpha123;
-  const Real _len_scale;
+private:
+  const VariableValue & _var1;
+  const PostprocessorValue & _var2;
 };
-#endif //NOSTDBULKENERGYDERIVATIVESIXTH_H
+
+#endif // RENORMALIZEDSTRAIN_H
