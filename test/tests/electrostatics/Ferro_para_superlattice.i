@@ -121,7 +121,7 @@ permitivitty_depol_para = 0.00885
 [Kernels]
   #FERROELECTRIC BLOCK
   [./bed_x_ferro]
-    type = BulkEnergyDerivativeSixthAlt
+    type = BulkEnergyDerivativeSixth
     block = 'ferro_volume'
     variable = FE_polar_x
     polar_x = FE_polar_x
@@ -136,7 +136,7 @@ permitivitty_depol_para = 0.00885
     component = 0
   [../]
   [./bed_y_ferro]
-    type = BulkEnergyDerivativeSixthAlt
+    type = BulkEnergyDerivativeSixth
     block = 'ferro_volume'
     variable = FE_polar_y
     polar_x = FE_polar_x
@@ -151,7 +151,7 @@ permitivitty_depol_para = 0.00885
     component = 1
   [../]
   [./bed_z_ferro]
-    type = BulkEnergyDerivativeSixthAlt
+    type = BulkEnergyDerivativeSixth
     block = 'ferro_volume'
     variable = FE_polar_z
     polar_x = FE_polar_x
@@ -264,7 +264,7 @@ permitivitty_depol_para = 0.00885
     alpha1112 = 0
     alpha1122 = 0
     alpha1123 = 0
-    type = BulkEnergyDerivativeSixthAlt
+    type = BulkEnergyDerivativeSixth
     block = 'para_bottom_volume para_top_volume'
     variable = PE_polar_x
     polar_x = PE_polar_x
@@ -283,7 +283,7 @@ permitivitty_depol_para = 0.00885
     alpha1112 = 0
     alpha1122 = 0
     alpha1123 = 0
-    type = BulkEnergyDerivativeSixthAlt
+    type = BulkEnergyDerivativeSixth
     block = 'para_bottom_volume para_top_volume'
     variable = PE_polar_y
     polar_x = PE_polar_x
@@ -302,7 +302,7 @@ permitivitty_depol_para = 0.00885
     alpha1112 = 0
     alpha1122 = 0
     alpha1123 = 0
-    type = BulkEnergyDerivativeSixthAlt
+    type = BulkEnergyDerivativeSixth
     block = 'para_bottom_volume para_top_volume'
     variable = PE_polar_z
     polar_x = PE_polar_x

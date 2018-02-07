@@ -85,13 +85,15 @@
 #include "DomainFunc.h"
 
 //Kernels
-#include "SurfaceMechanicsBC.h" //not sure why this is called a BC
-#include "Electrostatics.h"
-#include "WallEnergyDerivative.h"
-#include "WallEnergyDerivativeAlt.h"
+
+#include "AnisotropyEnergy.h"
+
 #include "BulkEnergyDerivativeSixth.h"
-#include "BulkEnergyDerivativeSixthAlt.h"
 #include "BulkEnergyDerivativeSixthCoupledT.h"
+#include "BulkEnergyDerivativeEighth.h"
+
+#include "BulkAntiferrodistortEnergyDerivativeSixth.h"
+
 #include "TimeDerivativeScaled.h"
 #include "PolarElectricPStrong.h"
 #include "PolarElectricEStrong.h"
@@ -99,13 +101,12 @@
 #include "FerroelectricCouplingP.h"
 #include "FerroelectricCouplingX.h"
 #include "KarmanenkoDriver.h"
-#include "AnisotropyEnergy.h"
+
 #include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
 #include "RenormalizedFreeEnergy.h"
 #include "PontryaginDensity.h"
 #include "InPlaneP.h"
-#include "PolarElectricEStrongAlt.h"
 #include "ConversePiezoelectricStrain.h"
 #include "PiezoelectricStrainCharge.h"
 #include "MagneticExchangeDerivative.h"
@@ -117,7 +118,7 @@
 #include "DzyaloshinskiiDistortDerivative.h"
 #include "MagHStrong.h"
 #include "MagMStrong.h"
-#include "BulkAntiferrodistortEnergyDerivativeSixth.h"
+
 #include "AFDAntiphaseEnergyDerivative.h"
 #include "LagrangianMultiplierAntiferromagConstraint.h"
 #include "LagrangianMultiplierAntiferromagMediumConstraint.h"
@@ -125,19 +126,23 @@
 #include "DampingMagneticExchangeDerivative.h"
 #include "DampingMagneticAnisotropyDerivative.h"
 #include "DampingSoftConstraint.h"
-#include "BulkEnergyDerivativeEighth.h"
+
+#include "SurfaceMechanicsBC.h" //not sure why this is called a BC
+#include "Electrostatics.h"
+
+#include "WallEnergyDerivative.h"
+#include "WallEnergyDerivativeAlt.h"
+
 #include "RotoBulkEnergyDerivativeEighth.h"
-#include "RotoPolarCoupledEnergyPolarDerivative.h"
-#include "RotoPolarCoupledEnergyDistortDerivative.h"
 #include "RotostrictiveCouplingDistortDerivative.h"
 #include "RotostrictiveCouplingDispDerivative.h"
 #include "ElectrostrictiveCouplingPolarDerivative.h"
 #include "ElectrostrictiveCouplingDispDerivative.h"
 #include "LocalBulkEnergyDerivative.h"
-#include "BulkEnergyDerivativeEighthAlt.h"
 #include "RotoPolarCoupledEnergyPolarDerivativeAlt.h"
 #include "RotoBulkEnergyDerivativeEighthAlt.h"
 #include "RotoPolarCoupledEnergyDistortDerivativeAlt.h"
+#include "RotoPolarCoupledEnergyPolarDerivative.h"
 #include "ConstField.h"
 
 //InterfaceKernels
@@ -314,7 +319,6 @@ FerretApp::registerObjects(Factory & factory)
 
   ///Kernels
   registerKernel(BulkEnergyDerivativeSixth);
-  registerKernel(BulkEnergyDerivativeSixthAlt);
   registerKernel(BulkEnergyDerivativeSixthCoupledT);
   registerKernel(WallEnergyDerivative);
   registerKernel(WallEnergyDerivativeAlt);
@@ -330,7 +334,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
   registerKernel(Electrostatics);
-  registerKernel(PolarElectricEStrongAlt);
   registerKernel(ConversePiezoelectricStrain);
   registerKernel(PiezoelectricStrainCharge);
   //experimental magnetic and magnetoelectric kernels under development
@@ -355,16 +358,14 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(DampingSoftConstraint);
   registerKernel(BulkEnergyDerivativeEighth);
   registerKernel(RotoBulkEnergyDerivativeEighth);
-  registerKernel(RotoPolarCoupledEnergyPolarDerivative);
-  registerKernel(RotoPolarCoupledEnergyDistortDerivative);
   registerKernel(RotostrictiveCouplingDistortDerivative);
   registerKernel(RotostrictiveCouplingDispDerivative);
   registerKernel(ElectrostrictiveCouplingPolarDerivative);
   registerKernel(ElectrostrictiveCouplingDispDerivative);
   registerKernel(LocalBulkEnergyDerivative);
-  registerKernel(BulkEnergyDerivativeEighthAlt);
   registerKernel(RotoBulkEnergyDerivativeEighthAlt);
   registerKernel(RotoPolarCoupledEnergyDistortDerivativeAlt);
+  registerKernel(RotoPolarCoupledEnergyPolarDerivative);
   registerKernel(ConstField);
 
   ///registerInterfaceKernels

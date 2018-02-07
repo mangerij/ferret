@@ -376,17 +376,17 @@
 
   ### Operators for the polar field: ###
   [./bed_x]
-    type = BulkEnergyDerivativeEighthAlt
+    type = BulkEnergyDerivativeEighth
     variable = polar_x
     component = 0
   [../]
   [./bed_y]
-    type = BulkEnergyDerivativeEighthAlt
+    type = BulkEnergyDerivativeEighth
     variable = polar_y
     component = 1
   [../]
   [./bed_z]
-    type = BulkEnergyDerivativeEighthAlt
+    type = BulkEnergyDerivativeEighth
     variable = polar_z
     component = 2
   [../]
