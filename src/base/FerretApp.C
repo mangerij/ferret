@@ -166,14 +166,7 @@
 #include "WallEnergy.h"
 #include "ThermalEnergy.h"
 
-#include "SumTwoPostprocessors.h"
-#include "SumThreePostprocessors.h"
-#include "SumFourPostprocessors.h"
-#include "SumFivePostprocessors.h"
-#include "SumSixPostprocessors.h"
-#include "SumSevenPostprocessors.h"
-#include "SumEightPostprocessors.h"
-#include "SumNinePostprocessors.h"
+#include "PostprocessorsSum.h"
 
 #include "BulkEnergy.h"
 #include "BulkEnergyCoupledT.h"
@@ -381,15 +374,7 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(RenormalizedBulkEnergy);
   registerPostprocessor(TotalWinding);
 
-
-  registerPostprocessor(SumTwoPostprocessors);
-  registerPostprocessor(SumThreePostprocessors);
-  registerPostprocessor(SumFourPostprocessors);
-  registerPostprocessor(SumFivePostprocessors);
-  registerPostprocessor(SumSixPostprocessors);
-  registerPostprocessor(SumSevenPostprocessors);
-  registerPostprocessor(SumEightPostprocessors);
-  registerPostprocessor(SumNinePostprocessors);
+  registerPostprocessor(PostprocessorsSum);
 
   registerPostprocessor(EnergyRatePostprocessor);
   registerPostprocessor(LBOBulkEnergy);

@@ -19,26 +19,27 @@
 
 **/
 
-#ifndef SUMSIXPOSTPROCESSORS_H
-#define SUMSIXPOSTPROCESSORS_H
+#ifndef POSTPROCESSORSSUM_H
+#define POSTPROCESSORSSUM_H
 
 #include "GeneralPostprocessor.h"
 
-class SumSixPostprocessors;
+class PostprocessorsSum;
 
 template<>
-InputParameters validParams<SumSixPostprocessors>();
+InputParameters validParams<PostprocessorsSum>();
 
-class SumSixPostprocessors : public GeneralPostprocessor
+class PostprocessorsSum : public GeneralPostprocessor
 {
 public:
-  SumSixPostprocessors(const InputParameters & parameters);
-  virtual ~SumSixPostprocessors();
+  PostprocessorsSum(const InputParameters & parameters);
+  virtual ~PostprocessorsSum();
   virtual void initialize();
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _var0, & _var1, & _var2, & _var3, & _var4, & _var5;
+  const unsigned int _num_pp;
+  const PostprocessorValue & _var0, & _var1, & _var2, & _var3, & _var4, & _var5, & _var6, & _var7, & _var8;
 };
 
 #endif
