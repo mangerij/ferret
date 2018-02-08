@@ -133,7 +133,6 @@
 #include "WallEnergyDerivative.h"
 #include "WallEnergyDerivativeAlt.h"
 
-#include "RotoBulkEnergyDerivativeEighth.h"
 #include "RotostrictiveCouplingDistortDerivative.h"
 #include "RotostrictiveCouplingDispDerivative.h"
 #include "ElectrostrictiveCouplingPolarDerivative.h"
@@ -142,7 +141,6 @@
 #include "RotoPolarCoupledEnergyPolarDerivativeAlt.h"
 #include "RotoBulkEnergyDerivativeEighthAlt.h"
 #include "RotoPolarCoupledEnergyDistortDerivativeAlt.h"
-#include "RotoPolarCoupledEnergyPolarDerivative.h"
 #include "ConstField.h"
 
 //InterfaceKernels
@@ -167,10 +165,16 @@
 //Postprocessors
 #include "WallEnergy.h"
 #include "ThermalEnergy.h"
-#include "TotalEnergy.h"
-#include "TotalEnergyFlow.h"
-#include "TotalEnergyFlowNoElast.h"
-#include "TotalEnergyFlowNoElastNoElec.h"
+
+#include "SumTwoPostprocessors.h"
+#include "SumThreePostprocessors.h"
+#include "SumFourPostprocessors.h"
+#include "SumFivePostprocessors.h"
+#include "SumSixPostprocessors.h"
+#include "SumSevenPostprocessors.h"
+#include "SumEightPostprocessors.h"
+#include "SumNinePostprocessors.h"
+
 #include "BulkEnergy.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
@@ -179,14 +183,11 @@
 #include "ElectrostrictiveEnergy.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
-#include "TotalEnergyG.h"
 #include "RenormalizedBulkEnergy.h"
-#include "TotalEnergyP.h"
-#include "TotalEnergySkFlow.h"
+
 #include "TotalWinding.h"
 #include "EnergyRatePostprocessor.h"
 #include "LBOBulkEnergy.h"
-#include "TotalEnergyAll.h"
 #include "BulkAntiferrodistortEnergy.h"
 #include "MagneticExchangeEnergy.h"
 #include "MagneticAnisotropyEnergy.h"
@@ -198,8 +199,6 @@
 #include "AFDWallEnergy.h"
 #include "RotostrictiveCouplingEnergy.h"
 #include "ElectrostrictiveCouplingEnergy.h"
-#include "TotalEnergyBFO.h"
-#include "TotalEnergyBFOElec.h"
 #include "PolarizationValue.h"
 #include "PolarizationComponentValue.h"
 
@@ -357,7 +356,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(DampingMagneticAnisotropyDerivative);
   registerKernel(DampingSoftConstraint);
   registerKernel(BulkEnergyDerivativeEighth);
-  registerKernel(RotoBulkEnergyDerivativeEighth);
   registerKernel(RotostrictiveCouplingDistortDerivative);
   registerKernel(RotostrictiveCouplingDispDerivative);
   registerKernel(ElectrostrictiveCouplingPolarDerivative);
@@ -365,7 +363,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(LocalBulkEnergyDerivative);
   registerKernel(RotoBulkEnergyDerivativeEighthAlt);
   registerKernel(RotoPolarCoupledEnergyDistortDerivativeAlt);
-  registerKernel(RotoPolarCoupledEnergyPolarDerivative);
   registerKernel(ConstField);
 
   ///registerInterfaceKernels
@@ -375,25 +372,27 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(BulkEnergy);
   registerPostprocessor(BulkEnergyCoupledT);
   registerPostprocessor(WallEnergy);
-  ///registerPostprocessor(ChernSimonsNumber);
   registerPostprocessor(ElectrostaticEnergy);
-  registerPostprocessor(TotalEnergy);
-  registerPostprocessor(TotalEnergyFlow);
-  registerPostprocessor(TotalEnergyFlowNoElast);
-  registerPostprocessor(TotalEnergyFlowNoElastNoElec);
   registerPostprocessor(ElasticEnergy);
   registerPostprocessor(ElectrostrictiveEnergy); //used to be called CoupledEnergy
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
-  registerPostprocessor(TotalEnergyG);
   registerPostprocessor(RenormalizedBulkEnergy);
-  registerPostprocessor(TotalEnergyP);
-  registerPostprocessor(TotalEnergySkFlow);
   registerPostprocessor(TotalWinding);
+
+
+  registerPostprocessor(SumTwoPostprocessors);
+  registerPostprocessor(SumThreePostprocessors);
+  registerPostprocessor(SumFourPostprocessors);
+  registerPostprocessor(SumFivePostprocessors);
+  registerPostprocessor(SumSixPostprocessors);
+  registerPostprocessor(SumSevenPostprocessors);
+  registerPostprocessor(SumEightPostprocessors);
+  registerPostprocessor(SumNinePostprocessors);
+
   registerPostprocessor(EnergyRatePostprocessor);
   registerPostprocessor(LBOBulkEnergy);
-  registerPostprocessor(TotalEnergyAll);
   registerPostprocessor(ExtElectrostaticEnergy);
   registerPostprocessor(BulkAntiferrodistortEnergy);
   registerPostprocessor(MagneticExchangeEnergy);
@@ -406,10 +405,8 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(AFDWallEnergy);
   registerPostprocessor(RotostrictiveCouplingEnergy);
   registerPostprocessor(ElectrostrictiveCouplingEnergy);
-  registerPostprocessor(TotalEnergyBFO);
   registerPostprocessor(PolarizationValue);
   registerPostprocessor(PolarizationComponentValue);
-  registerPostprocessor(TotalEnergyBFOElec);
 
   //Markers
   registerMarker(PolarizationNWEMarker);

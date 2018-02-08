@@ -19,29 +19,26 @@
 
 **/
 
-#ifndef TOTALENERGYPSTO_H
-#define TOTALENERGYPSTO_H
+#ifndef SUMSEVENPOSTPROCESSORS_H
+#define SUMSEVENPOSTPROCESSORS_H
 
-//TODO: include the base header
 #include "GeneralPostprocessor.h"
 
-//Forward Declarations
-class TotalEnergyPSTO;
+class SumSevenPostprocessors;
 
 template<>
-InputParameters validParams<TotalEnergyPSTO>();
+InputParameters validParams<SumSevenPostprocessors>();
 
-//TODO: change the base class!
-class TotalEnergyPSTO : public GeneralPostprocessor
+class SumSevenPostprocessors : public GeneralPostprocessor
 {
 public:
-  TotalEnergyPSTO(const InputParameters & parameters);
-  virtual ~TotalEnergyPSTO();
+  SumSevenPostprocessors(const InputParameters & parameters);
+  virtual ~SumSevenPostprocessors();
   virtual void initialize();
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _FbulkPSTO, & _Fwall, & _Felec;
+  const PostprocessorValue & _var0, & _var1, & _var2, & _var3, & _var4, & _var5, & _var6;
 };
 
 #endif

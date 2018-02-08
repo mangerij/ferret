@@ -19,38 +19,44 @@
 
 **/
 
-#include "TotalEnergyFlowNoElastNoElec.h"
+#include "SumFivePostprocessors.h"
 #include<iostream>
 template<>
-InputParameters validParams<TotalEnergyFlowNoElastNoElec>()
+InputParameters validParams<SumFivePostprocessors>()
 {
 
   InputParameters params = validParams<GeneralPostprocessor>();
-  params.addParam<PostprocessorName>("Fbulk", 0.0, "name of bulk energy postprocessor");
-  params.addParam<PostprocessorName>("Fwall", 0.0,  "name of wall energy postprocessor");
+  params.addRequiredParam<PostprocessorName>("var0", "name of first postprocessor");
+  params.addRequiredParam<PostprocessorName>("var1", "name of second postprocessor");
+  params.addRequiredParam<PostprocessorName>("var2", "name of third postprocessor");
+  params.addRequiredParam<PostprocessorName>("var3", "name of fourth postprocessor");
+  params.addRequiredParam<PostprocessorName>("var4", "name of fifth postprocessor");
   return params;
 }
 
-TotalEnergyFlowNoElastNoElec::TotalEnergyFlowNoElastNoElec(const InputParameters & parameters) :
+SumFivePostprocessors::SumFivePostprocessors(const InputParameters & parameters) :
   GeneralPostprocessor(parameters),
-  _Fbulk(getPostprocessorValue(getParam<PostprocessorName>("Fbulk"))),
-  _Fwall(getPostprocessorValue(getParam<PostprocessorName>("Fwall")))
+  _var0(getPostprocessorValue("var0")),
+  _var1(getPostprocessorValue("var1")),
+  _var2(getPostprocessorValue("var2")),
+  _var3(getPostprocessorValue("var3")),
+  _var4(getPostprocessorValue("var4"))
 {
 }
 
-TotalEnergyFlowNoElastNoElec::~TotalEnergyFlowNoElastNoElec(){
+SumFivePostprocessors::~SumFivePostprocessors(){
 }
 
 void
-TotalEnergyFlowNoElastNoElec::initialize(){
+SumFivePostprocessors::initialize(){
 }
 
 void
-TotalEnergyFlowNoElastNoElec::execute(){
+SumFivePostprocessors::execute(){
 }
 
 Real
-TotalEnergyFlowNoElastNoElec::getValue()
+SumFivePostprocessors::getValue()
 {
-  return _Fbulk + _Fwall;
+  return _var0 + _var1 + _var2 + _var3 + _var4;
 }
