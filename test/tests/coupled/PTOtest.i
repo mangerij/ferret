@@ -305,11 +305,11 @@
       execute_on = 'initial timestep_end'
     [../]
     [./Ftotal]
-      type = TotalEnergyFlow
-      Fbulk = Fbulk
-      Fwall = Fwall
-      Fcoupled = Fcoupled
-      Felec = Felec
+      type = SumFourPostprocessors
+      var0 = Fbulk
+      var1 = Fwall
+      var2 = Fcoupled
+      var3 = Felec
       execute_on = 'initial timestep_end'
     [../]
     [./perc_change]

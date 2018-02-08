@@ -591,15 +591,15 @@
     execute_on = 'initial timestep_end'
   [../]
   [./Ftot]
-    type = TotalEnergyBFO
-    FbP = FbP
-    FbA = FbA
-    FgP = FgP
-    FgA = FgA
-    FcPA = FcPA
-    FcPu = FcPu
-    FcAu = FcAu
-    Felu = Felu
+    type = SumEightPostprocessors
+    var0 = FbP
+    var1 = FbA
+    var2 = FgP
+    var3 = FgA
+    var4 = FcPA
+    var5 = FcPu
+    var6 = FcAu
+    var7 = Felu
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change]

@@ -19,44 +19,42 @@
 
 **/
 
-#include "TotalEnergyPSTO.h"
+#include "SumFourPostprocessors.h"
 #include<iostream>
 template<>
-InputParameters validParams<TotalEnergyPSTO>()
+InputParameters validParams<SumFourPostprocessors>()
 {
 
   InputParameters params = validParams<GeneralPostprocessor>();
-  params.addParam<PostprocessorName>("FbulkPSTO", 0.0, "name of bulk energy postprocessor");
-  params.addParam<PostprocessorName>("Fwall", 0.0,  "name of wall energy postprocessor");
-  params.addParam<PostprocessorName>("Felec", 0.0,  "name of electrical energy postprocessor");
-
+  params.addRequiredParam<PostprocessorName>("var0", "name of first postprocessor");
+  params.addRequiredParam<PostprocessorName>("var1", "name of second postprocessor");
+  params.addRequiredParam<PostprocessorName>("var2", "name of third postprocessor");
+  params.addRequiredParam<PostprocessorName>("var3", "name of fourth postprocessor");
   return params;
 }
 
-TotalEnergyPSTO::TotalEnergyPSTO(const InputParameters & parameters) :
+SumFourPostprocessors::SumFourPostprocessors(const InputParameters & parameters) :
   GeneralPostprocessor(parameters),
-  _FbulkPSTO(getPostprocessorValue(getParam<PostprocessorName>("FbulkPSTO"))),
-  _Fwall(getPostprocessorValue(getParam<PostprocessorName>("Fwall"))),
-  _Felec(getPostprocessorValue(getParam<PostprocessorName>("Felec")))
-
-
+  _var0(getPostprocessorValue("var0")),
+  _var1(getPostprocessorValue("var1")),
+  _var2(getPostprocessorValue("var2")),
+  _var3(getPostprocessorValue("var3"))
 {
 }
 
-TotalEnergyPSTO::~TotalEnergyPSTO(){
+SumFourPostprocessors::~SumFourPostprocessors(){
 }
 
 void
-TotalEnergyPSTO::initialize(){
+SumFourPostprocessors::initialize(){
 }
 
 void
-TotalEnergyPSTO::execute(){
+SumFourPostprocessors::execute(){
 }
 
 Real
-TotalEnergyPSTO::getValue()
+SumFourPostprocessors::getValue()
 {
-  ///  return _bulk_energy + _wall_energy + _electrical_energy;
-  return _FbulkPSTO + _Fwall + _Felec;
+  return _var0 + _var1 + _var2 + _var3;
 }

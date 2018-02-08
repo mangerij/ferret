@@ -19,29 +19,26 @@
 
 **/
 
-#ifndef TOTALENERGYFLOW_H
-#define TOTALENERGYFLOW_H
+#ifndef SUMSIXPOSTPROCESSORS_H
+#define SUMSIXPOSTPROCESSORS_H
 
-//TODO: include the base header
 #include "GeneralPostprocessor.h"
 
-//Forward Declarations
-class TotalEnergyFlow;
+class SumSixPostprocessors;
 
 template<>
-InputParameters validParams<TotalEnergyFlow>();
+InputParameters validParams<SumSixPostprocessors>();
 
-//TODO: change the base class!
-class TotalEnergyFlow : public GeneralPostprocessor
+class SumSixPostprocessors : public GeneralPostprocessor
 {
 public:
-  TotalEnergyFlow(const InputParameters & parameters);
-  virtual ~TotalEnergyFlow();
+  SumSixPostprocessors(const InputParameters & parameters);
+  virtual ~SumSixPostprocessors();
   virtual void initialize();
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _Fbulk, & _Fwall, & _Felec, & _Fcoupled;
+  const PostprocessorValue & _var0, & _var1, & _var2, & _var3, & _var4, & _var5;
 };
 
 #endif

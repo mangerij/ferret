@@ -19,29 +19,26 @@
 
 **/
 
-#ifndef TOTALENERGYFLOWNOELAST_H
-#define TOTALENERGYFLOWNOELAST_H
+#ifndef SUMFOURPOSTPROCESSORS_H
+#define SUMFOURPOSTPROCESSORS_H
 
-//TODO: include the base header
 #include "GeneralPostprocessor.h"
 
-//Forward Declarations
-class TotalEnergyFlowNoElast;
+class SumFourPostprocessors;
 
 template<>
-InputParameters validParams<TotalEnergyFlowNoElast>();
+InputParameters validParams<SumFourPostprocessors>();
 
-//TODO: change the base class!
-class TotalEnergyFlowNoElast : public GeneralPostprocessor
+class SumFourPostprocessors : public GeneralPostprocessor
 {
 public:
-  TotalEnergyFlowNoElast(const InputParameters & parameters);
-  virtual ~TotalEnergyFlowNoElast();
+  SumFourPostprocessors(const InputParameters & parameters);
+  virtual ~SumFourPostprocessors();
   virtual void initialize();
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _Fbulk, & _Fwall, & _Felec;
+  const PostprocessorValue & _var0, & _var1, & _var2, & _var3;
 };
 
 #endif

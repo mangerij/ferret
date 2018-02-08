@@ -19,26 +19,38 @@
 
 **/
 
-#ifndef TOTALENERGYBFOELEC_H
-#define TOTALENERGYBFOELEC_H
-
-#include "GeneralPostprocessor.h"
-
-class TotalEnergyBFOElec;
-
+#include "SumTwoPostprocessors.h"
+#include<iostream>
 template<>
-InputParameters validParams<TotalEnergyBFOElec>();
-
-class TotalEnergyBFOElec : public GeneralPostprocessor
+InputParameters validParams<SumTwoPostprocessors>()
 {
-public:
-  TotalEnergyBFOElec(const InputParameters & parameters);
-  virtual ~TotalEnergyBFOElec();
-  virtual void initialize();
-  virtual void execute();
-  virtual Real getValue();
-protected:
-  const PostprocessorValue & _FbP, & _FbA, & _FgP, & _FgA, & _FcPA, & _FcPu, & _FcAu, & _Felu, & _Felec;
-};
 
-#endif
+  InputParameters params = validParams<GeneralPostprocessor>();
+  params.addRequiredParam<PostprocessorName>("var0", "name of first postprocessor");
+  params.addRequiredParam<PostprocessorName>("var1", "name of second postprocessor");
+  return params;
+}
+
+SumTwoPostprocessors::SumTwoPostprocessors(const InputParameters & parameters) :
+  GeneralPostprocessor(parameters),
+  _var0(getPostprocessorValue("var0")),
+  _var1(getPostprocessorValue("var1"))
+{
+}
+
+SumTwoPostprocessors::~SumTwoPostprocessors(){
+}
+
+void
+SumTwoPostprocessors::initialize(){
+}
+
+void
+SumTwoPostprocessors::execute(){
+}
+
+Real
+SumTwoPostprocessors::getValue()
+{
+  return _var0 + _var1;
+}

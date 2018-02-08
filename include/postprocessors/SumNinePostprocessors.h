@@ -19,29 +19,26 @@
 
 **/
 
-#ifndef TOTALENERGYPSTOCOUPLED_H
-#define TOTALENERGYPSTOCOUPLED_H
+#ifndef SUMNINEPOSTPROCESSORS_H
+#define SUMNINEPOSTPROCESSORS_H
 
-//TODO: include the base header
 #include "GeneralPostprocessor.h"
 
-//Forward Declarations
-class TotalEnergyPSTOcoupled;
+class SumNinePostprocessors;
 
 template<>
-InputParameters validParams<TotalEnergyPSTOcoupled>();
+InputParameters validParams<SumNinePostprocessors>();
 
-//TODO: change the base class!
-class TotalEnergyPSTOcoupled : public GeneralPostprocessor
+class SumNinePostprocessors : public GeneralPostprocessor
 {
 public:
-  TotalEnergyPSTOcoupled(const InputParameters & parameters);
-  virtual ~TotalEnergyPSTOcoupled();
+  SumNinePostprocessors(const InputParameters & parameters);
+  virtual ~SumNinePostprocessors();
   virtual void initialize();
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _FbulkPSTO, & _Fwall, & _Felec, & _Fcoupled;
+  const PostprocessorValue & _var0, & _var1, & _var2, & _var3, & _var4, & _var5, & _var6, & _var7, & _var8;
 };
 
 #endif

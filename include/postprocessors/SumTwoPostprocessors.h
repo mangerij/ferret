@@ -19,26 +19,26 @@
 
 **/
 
-#ifndef TOTALENERGYBFONOELAST_H
-#define TOTALENERGYBFONOELAST_H
+#ifndef SUMTWOPOSTPROCESSORS_H
+#define SUMTWOPOSTPROCESSORS_H
 
 #include "GeneralPostprocessor.h"
 
-class TotalEnergyBFONoElast;
+class SumTwoPostprocessors;
 
 template<>
-InputParameters validParams<TotalEnergyBFONoElast>();
+InputParameters validParams<SumTwoPostprocessors>();
 
-class TotalEnergyBFONoElast : public GeneralPostprocessor
+class SumTwoPostprocessors : public GeneralPostprocessor
 {
 public:
-  TotalEnergyBFONoElast(const InputParameters & parameters);
-  virtual ~TotalEnergyBFONoElast();
+  SumTwoPostprocessors(const InputParameters & parameters);
+  virtual ~SumTwoPostprocessors();
   virtual void initialize();
   virtual void execute();
   virtual Real getValue();
 protected:
-  const PostprocessorValue & _FbP, & _FbA, & _FgP, & _FgA, & _FcPA;
+  const PostprocessorValue & _var0, & _var1;
 };
 
 #endif

@@ -19,42 +19,40 @@
 
 **/
 
-#include "TotalEnergyP.h"
+#include "SumThreePostprocessors.h"
 #include<iostream>
 template<>
-InputParameters validParams<TotalEnergyP>()
+InputParameters validParams<SumThreePostprocessors>()
 {
 
   InputParameters params = validParams<GeneralPostprocessor>();
-  params.addParam<PostprocessorName>("Fbulk", 0.0, "name of bulk energy postprocessor");
-  params.addParam<PostprocessorName>("Fwall", 0.0,  "name of wall energy postprocessor");
-  params.addParam<PostprocessorName>("Fec", 0.0,  "name of elec energy postprocessor");
-  params.addParam<PostprocessorName>("Fdepol", 0.0,  "name of depol energy postprocessor");
+  params.addRequiredParam<PostprocessorName>("var0", "name of first postprocessor");
+  params.addRequiredParam<PostprocessorName>("var1", "name of second postprocessor");
+  params.addRequiredParam<PostprocessorName>("var2", "name of third postprocessor");
   return params;
 }
 
-TotalEnergyP::TotalEnergyP(const InputParameters & parameters) :
+SumThreePostprocessors::SumThreePostprocessors(const InputParameters & parameters) :
   GeneralPostprocessor(parameters),
-  _Fbulk(getPostprocessorValue(getParam<PostprocessorName>("Fbulk"))),
-  _Fwall(getPostprocessorValue(getParam<PostprocessorName>("Fwall"))),
-  _Fec(getPostprocessorValue(getParam<PostprocessorName>("Fec"))),
-  _Fdepol(getPostprocessorValue(getParam<PostprocessorName>("Fdepol")))
+  _var0(getPostprocessorValue("var0")),
+  _var1(getPostprocessorValue("var1")),
+  _var2(getPostprocessorValue("var2"))
 {
 }
 
-TotalEnergyP::~TotalEnergyP(){
+SumThreePostprocessors::~SumThreePostprocessors(){
 }
 
 void
-TotalEnergyP::initialize(){
+SumThreePostprocessors::initialize(){
 }
 
 void
-TotalEnergyP::execute(){
+SumThreePostprocessors::execute(){
 }
 
 Real
-TotalEnergyP::getValue()
+SumThreePostprocessors::getValue()
 {
-  return _Fbulk + _Fwall + _Fec + _Fdepol;
+  return _var0 + _var1 + _var2;
 }
