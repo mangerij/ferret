@@ -305,7 +305,8 @@
       execute_on = 'initial timestep_end'
     [../]
     [./Ftotal]
-      type = SumFourPostprocessors
+      type = PostprocessorsSum
+      num_pp = 4
       var0 = Fbulk
       var1 = Fwall
       var2 = Fcoupled

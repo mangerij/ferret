@@ -591,7 +591,8 @@
     execute_on = 'initial timestep_end'
   [../]
   [./Ftot]
-    type = SumEightPostprocessors
+    type = PostprocessorsSum
+    num_pp = 8
     var0 = FbP
     var1 = FbA
     var2 = FgP
