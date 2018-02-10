@@ -28,6 +28,7 @@ template<>
 InputParameters validParams<DepolEnergy>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to an arbitrary depolarization energy adjustment to the P$*$E term.");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   params.addParam<PostprocessorName>("avePz", "the average polarization due to the depol field term");

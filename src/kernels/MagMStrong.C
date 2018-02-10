@@ -27,6 +27,7 @@ template<>
 InputParameters validParams<MagMStrong>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution - M$*$H in the total energy, assuming H = - div *potential.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("potential_H_int", "The internal magnetic potential variable");
   params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");

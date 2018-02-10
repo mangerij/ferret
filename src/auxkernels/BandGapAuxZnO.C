@@ -27,6 +27,7 @@ InputParameters validParams<BandGapAuxZnO>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Calculates the changes to local band gap due to the elastic strain fields.");
   params.addParam<Real>("relaxed_energy", 0.0,"relaxed energy");
   params.addParam<Real>("biaxial_strain_rate", 0.0, "uniaxial strain rate");
   params.addParam<Real>("uniaxial_strain_rate", 0.0, "biaxial strain rate");

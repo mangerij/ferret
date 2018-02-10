@@ -26,6 +26,7 @@ template<>
 InputParameters validParams<KarmanenkoDriver>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution intrinsic to the thermal diffusion equation due to electrocaloric coupling. Note: experimental!");
   params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
   params.addCoupledVar("potential_ext", 0.0, "The external electric potential variable");
   params.addRequiredCoupledVar("temperature", "The temperature at the grid point");

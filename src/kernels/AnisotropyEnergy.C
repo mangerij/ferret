@@ -28,6 +28,7 @@ template<>
 InputParameters validParams<AnisotropyEnergy>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Adds a residual contribution for an arbitrary anisotropy quadratic in the polarization field.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");

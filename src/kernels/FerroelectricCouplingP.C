@@ -31,6 +31,7 @@ template<>
 InputParameters validParams<FerroelectricCouplingP>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to the variation w.r.t polarization of the electrostrictive coupling energy");
   params.addRequiredCoupledVar("disp_x", "The x component of the elastic displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the elastic displacement");
   params.addRequiredCoupledVar("disp_z", "The z component of the elastic displacement");

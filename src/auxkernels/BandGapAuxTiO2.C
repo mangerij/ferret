@@ -27,6 +27,7 @@ InputParameters validParams<BandGapAuxTiO2>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Calculates the changes to local band gap due to the elastic stress fields.");
   params.addParam<Real>("relaxed_energy", 0.0,"relaxed energy");
   params.addParam<Real>("biaxial_stress_rate", 0.0, "biaxial stress rate");
   params.addParam<Real>("uniaxial_stress_rate", 0.0, "uniaxial stress rate");

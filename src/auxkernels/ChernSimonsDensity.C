@@ -26,6 +26,7 @@ InputParameters validParams<ChernSimonsDensity>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Calculates a topological winding number.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");

@@ -26,6 +26,7 @@ InputParameters validParams<InPlaneP>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Computes some in-plane (assuming th x-y plane is the plane) polarization components");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   return params;

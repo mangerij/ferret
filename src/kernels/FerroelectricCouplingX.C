@@ -28,6 +28,8 @@ template<>
 InputParameters validParams<FerroelectricCouplingX>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to the differentiation w.r.t spartial coordinates of the ferroelectric self-strain"
+                             " in the condition for mechanical equilibrium.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");

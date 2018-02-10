@@ -28,6 +28,8 @@ template<>
 InputParameters validParams<ElectrostrictiveCouplingDispDerivative>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to the differentiation w.r.t spartial coordinates of the ferroelectric self-strain"
+                             " in the condition for mechanical equilibrium. Note for BFO only.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");

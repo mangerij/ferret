@@ -27,6 +27,7 @@ template<>
 InputParameters validParams<MagHStrong>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution for divM (used concomitantly with a magnetostatic kernel)");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
   params.addRequiredCoupledVar("mag_z", "The z component of the magnetization");

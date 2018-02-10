@@ -28,6 +28,7 @@ template<>
 InputParameters validParams<PiezoelectricStrainCharge>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to a charge arising via piezoelectric coupling in the Poisson equation.");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
   params.addRequiredCoupledVar("disp_z", "The z component of the displacement");

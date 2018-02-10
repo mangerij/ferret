@@ -27,6 +27,7 @@ template<>
 InputParameters validParams<ElectrostrictiveEnergyDensity>()
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Computes the free energy density of the local electrostrictive coupling.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");

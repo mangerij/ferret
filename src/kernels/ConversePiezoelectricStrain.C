@@ -28,6 +28,7 @@ template<>
 InputParameters validParams<ConversePiezoelectricStrain>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates the residual for additional piezoelectric strain arising in the conditions for mechanical equilibrium.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("potential_E_int", "The electrostatic potential");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");

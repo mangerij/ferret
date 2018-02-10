@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<LagrangianMultiplierAntiferromagMediumConstraint>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution to enforce M$*$M =1. Note: untested");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the vari_lambda[_qp]le this kernel acts in. (0 for x, 1 for y, 2 for z, 3 for lambda)");
   params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the antiferromagnetic vector");
   params.addRequiredCoupledVar("antiferromag_L_y", "The y component of the antiferromagnetic vector");

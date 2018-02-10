@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<AFDWallEnergyDensity>()
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Calculates the free energy density due to the local gradients in the antiferrodistortive vector field");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the afd vector field");

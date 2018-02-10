@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<DampingSoftConstraint>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a soft constraint residual contributuion to enforce M$*$M = 1 in the damped part of the LLG equation.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the antiferromagnetic vector");
   params.addCoupledVar("antiferromag_L_y", 0.0, "The y component of the antiferromagnetic vector");

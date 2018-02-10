@@ -27,6 +27,7 @@ InputParameters validParams<Birefringence>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Computes the local birefringence.");
   params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
   params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");
   return params;

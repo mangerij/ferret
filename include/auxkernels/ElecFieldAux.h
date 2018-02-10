@@ -43,8 +43,8 @@ protected:
 
 private:
   const unsigned int _component;
-  const VariableGradient & _potential_int_grad;
-  const VariableGradient & _potential_ext_grad;
+  const VariableGradient & _potential_E_int_grad;
+  const VariableGradient & _potential_E_ext_grad;
 };
 
 #endif /* ELECFIELDAUX_H */
