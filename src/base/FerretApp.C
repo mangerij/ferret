@@ -195,6 +195,14 @@
 #include "PolarizationValue.h"
 #include "PolarizationComponentValue.h"
 
+//UserObjects
+
+//#include "GrainBoundaryUserObject.h"
+
+//VectorPostprocessors
+
+//#include "GrainBoundaryOutwardNormalLineValueSampler.h"
+
 
 template<>
 InputParameters validParams<FerretApp>()
@@ -392,6 +400,12 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ElectrostrictiveCouplingEnergy);
   registerPostprocessor(PolarizationValue);
   registerPostprocessor(PolarizationComponentValue);
+
+   //VectorPostprocessors
+ // registerVectorPostprocessor(GrainBoundaryOutwardNormalLineValueSampler);
+  //UserObjects
+  
+  //registerUserObject(GrainBoundaryUserObject);
 
   //Markers
   registerMarker(PolarizationNWEMarker);

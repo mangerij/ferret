@@ -113,9 +113,7 @@ BulkEnergyDerivativeSixthCoupledT::computeQpOffDiagJacobian(unsigned int jvar)
     }
   if(jvar == _temperature_var)
   {
-    const VariableValue& _polar_i= (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;
-    const VariableValue& _polar_j= (_component == 0)? _polar_y : (_component == 1)? _polar_z: _polar_x;
-    const VariableValue& _polar_k= (_component == 0)? _polar_z : (_component == 1)? _polar_x: _polar_y;
+    const VariableValue& _polar_i = (_component == 0)? _polar_x : (_component == 1)? _polar_y: _polar_z;
     r = 2.0 * _alpha0 * _polar_i[_qp];
     return r * _test[_i][_qp] * _phi[_j][_qp] * std::pow(_len_scale, 3.0);
   }
