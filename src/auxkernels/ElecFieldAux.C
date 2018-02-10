@@ -27,9 +27,10 @@ InputParameters validParams<ElecFieldAux>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Converts electrostatic potential to the vector electric field.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addCoupledVar("potential_int", "The internal electric potential variable");
-  params.addCoupledVar("potential_ext", "The external electric potential variable");
+  params.addCoupledVar("potential_E_int", "The internal electric potential variable");
+  params.addCoupledVar("potential_E_ext", "The external electric potential variable");
   return params;
 }
 
@@ -37,8 +38,8 @@ InputParameters validParams<ElecFieldAux>()
 ElecFieldAux::ElecFieldAux(const InputParameters & parameters) :
   AuxKernel(parameters),
    _component(getParam<unsigned int>("component")),
-   _potential_int_grad(coupledGradient("potential_int")),
-   _potential_ext_grad(coupledGradient("potential_ext"))
+   _potential_E_int_grad(coupledGradient("potential_E_int")),
+   _potential_E_ext_grad(coupledGradient("potential_E_ext"))
 {
 }
 
@@ -46,5 +47,5 @@ Real
 ElecFieldAux::computeValue()
 
 {
-    return - _potential_int_grad[_qp](_component) - _potential_ext_grad[_qp](_component);
+    return - _potential_E_int_grad[_qp](_component) - _potential_E_ext_grad[_qp](_component);
 }

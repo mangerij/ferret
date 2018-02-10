@@ -27,6 +27,7 @@ template<>
 InputParameters validParams<PolarElectricEStrong>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to divP (to be used concomitantly with the electrostatics (Laplace) kernel).");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");

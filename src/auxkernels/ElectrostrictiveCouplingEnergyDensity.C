@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<ElectrostrictiveCouplingEnergyDensity>()
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Computes the free energy density of the local electrostrictive coupling. Note: for use with BFO based potentials only.");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
   params.addRequiredCoupledVar("disp_z", "The z component of the displacement");

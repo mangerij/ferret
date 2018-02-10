@@ -29,6 +29,7 @@ InputParameters validParams<ChangeInRefractiveIndexElectro>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Calculates the changes to local refractive index due to the electric field.");
   params.addRequiredParam<unsigned int>("index_i", "first index of the beta vector");
   params.addRequiredParam<unsigned int>("index_j", "second index of the beta vector");
   params.addRequiredParam<unsigned int>("index_k", "first index of the delta_beta vector");

@@ -27,6 +27,8 @@ template<>
 InputParameters validParams<ConstField>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("This is just a test kernel. It is a residual contribution due to a constant electric field term"
+                             " along the z-direction of polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   params.addParam<Real>("field", 0.0, "the constant field");

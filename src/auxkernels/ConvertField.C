@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<ConvertField>()
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("This file is useful for quickly converting from reduced to real units in BFO based potentials.");
   params.addRequiredParam<unsigned int>("conv_type","type of conversion");
   params.addRequiredParam<unsigned int>("component","component of field to convert");
   params.addRequiredCoupledVar("polar_x_red", "The reduced field");

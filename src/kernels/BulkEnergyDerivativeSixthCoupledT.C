@@ -26,6 +26,8 @@ template<>
 InputParameters validParams<BulkEnergyDerivativeSixthCoupledT>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates the residual for the local free energy which is an sixth order expansion in the "
+                             "polarization coupled to the thermal field through the first Landau coefficient.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");

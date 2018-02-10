@@ -104,7 +104,6 @@
 
 #include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
-#include "RenormalizedFreeEnergy.h"
 #include "PontryaginDensity.h"
 #include "InPlaneP.h"
 #include "ConversePiezoelectricStrain.h"
@@ -137,7 +136,6 @@
 #include "RotostrictiveCouplingDispDerivative.h"
 #include "ElectrostrictiveCouplingPolarDerivative.h"
 #include "ElectrostrictiveCouplingDispDerivative.h"
-#include "LocalBulkEnergyDerivative.h"
 #include "RotoPolarCoupledEnergyPolarDerivativeAlt.h"
 #include "RotoBulkEnergyDerivativeEighthAlt.h"
 #include "RotoPolarCoupledEnergyDistortDerivativeAlt.h"
@@ -176,7 +174,6 @@
 #include "ElectrostrictiveEnergy.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
-#include "RenormalizedBulkEnergy.h"
 
 #include "TotalWinding.h"
 #include "EnergyRatePostprocessor.h"
@@ -329,7 +326,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(AnisotropyEnergy);
   registerKernel(LBOBulkEnergyDeriv);
   registerKernel(DepolEnergy);
-  registerKernel(RenormalizedFreeEnergy);
   registerKernel(FerroelectricCouplingX);
   registerKernel(PolarElectricEStrong);
   registerKernel(PolarElectricPStrong);
@@ -361,7 +357,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(RotostrictiveCouplingDispDerivative);
   registerKernel(ElectrostrictiveCouplingPolarDerivative);
   registerKernel(ElectrostrictiveCouplingDispDerivative);
-  registerKernel(LocalBulkEnergyDerivative);
   registerKernel(RotoBulkEnergyDerivativeEighthAlt);
   registerKernel(RotoPolarCoupledEnergyDistortDerivativeAlt);
   registerKernel(ConstField);
@@ -379,7 +374,6 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(ThermalEnergy);
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
-  registerPostprocessor(RenormalizedBulkEnergy);
   registerPostprocessor(TotalWinding);
 
   registerPostprocessor(PostprocessorsSum);

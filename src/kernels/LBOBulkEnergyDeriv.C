@@ -27,6 +27,7 @@ template<>
 InputParameters validParams<LBOBulkEnergyDeriv>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to local bulk energy of LBO, where B can be Ti, Ta, etc.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");

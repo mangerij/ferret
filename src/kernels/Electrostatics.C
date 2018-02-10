@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<Electrostatics>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
   params.addRequiredParam<Real>("permittivity", "permittivity");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;

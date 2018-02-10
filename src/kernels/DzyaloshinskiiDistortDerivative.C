@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<DzyaloshinskiiDistortDerivative>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution in magnetoelectric coupling due to antiferrodistortive and magnetic ordering.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("mag_x", "The x component of the antiferromagnetic vector");
   params.addCoupledVar("mag_y", 0.0, "The y component of the antiferromagnetic vector");

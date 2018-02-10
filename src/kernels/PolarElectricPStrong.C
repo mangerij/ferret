@@ -27,6 +27,7 @@ template<>
 InputParameters validParams<PolarElectricPStrong>()
 {
   InputParameters params = validParams<Kernel>();
+  params.addClassDescription("Calculates a residual contribution due to -P$*$E term in the total energy.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("potential_E_int", "The internal electric potential variable");
   params.addCoupledVar("potential_E_ext", 0.0, "The external electric potential variable");
