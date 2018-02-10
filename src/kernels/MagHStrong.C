@@ -27,21 +27,21 @@ template<>
 InputParameters validParams<MagHStrong>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the magnetization");
-  params.addRequiredCoupledVar("antiferromag_L_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("antiferromag_L_z", "The z component of the polarization");
+  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
+  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
+  params.addRequiredCoupledVar("mag_z", "The z component of the magnetization");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
 
 MagHStrong::MagHStrong(const InputParameters & parameters)
   :Kernel(parameters),
-   _antiferromag_L_x_var(coupled("antiferromag_L_x")),
-   _antiferromag_L_y_var(coupled("antiferromag_L_y")),
-   _antiferromag_L_z_var(coupled("antiferromag_L_z")),
-   _antiferromag_L_x(coupledValue("antiferromag_L_x")),
-   _antiferromag_L_y(coupledValue("antiferromag_L_y")),
-   _antiferromag_L_z(coupledValue("antiferromag_L_z")),
+   _mag_x_var(coupled("mag_x")),
+   _mag_y_var(coupled("mag_y")),
+   _mag_z_var(coupled("mag_z")),
+   _mag_x(coupledValue("mag_x")),
+   _mag_y(coupledValue("mag_y")),
+   _mag_z(coupledValue("mag_z")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -49,7 +49,7 @@ MagHStrong::MagHStrong(const InputParameters & parameters)
 Real
 MagHStrong::computeQpResidual()
 {
-  return - (_antiferromag_L_x[_qp] * _grad_test[_i][_qp](0) + _antiferromag_L_y[_qp] * _grad_test[_i][_qp](1) + _antiferromag_L_z[_qp] * _grad_test[_i][_qp](2)) * std::pow(_len_scale, 2.0);
+  return - (_mag_x[_qp] * _grad_test[_i][_qp](0) + _mag_y[_qp] * _grad_test[_i][_qp](1) + _mag_z[_qp] * _grad_test[_i][_qp](2)) * std::pow(_len_scale, 2.0);
 }
 Real
 MagHStrong::computeQpJacobian()
@@ -60,11 +60,11 @@ MagHStrong::computeQpJacobian()
 Real
 MagHStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if (jvar == _antiferromag_L_x_var)
+  if (jvar == _mag_x_var)
     return - _phi[_j][_qp] * _grad_test[_i][_qp](0) * std::pow(_len_scale, 2.0);
-  else if (jvar == _antiferromag_L_y_var)
+  else if (jvar == _mag_y_var)
     return - _phi[_j][_qp] * _grad_test[_i][_qp](1) * std::pow(_len_scale, 2.0);
-  else if (jvar == _antiferromag_L_z_var)
+  else if (jvar == _mag_z_var)
     return - _phi[_j][_qp] * _grad_test[_i][_qp](2) * std::pow(_len_scale, 2.0);
   else
     return 0.0;

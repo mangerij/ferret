@@ -106,7 +106,7 @@ permitivitty_depol_para = 0.00885
       seed = 5
     [../]
   [../]
-  [./potential_int]
+  [./potential_E_int]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -171,33 +171,33 @@ permitivitty_depol_para = 0.00885
        polar_x = FE_polar_x
        polar_y = FE_polar_y
        polar_z = FE_polar_z
-       variable = potential_int
+       variable = potential_E_int
   [../]
   [./FE_E_int_ferro]
        type = Electrostatics
        block = 'ferro_volume'
-       variable = potential_int
+       variable = potential_E_int
        permittivity = ${permittivity_electrostatic}
   [../]
   [./polar_electric_px_ferro]
      type = PolarElectricPStrong
        block = 'ferro_volume'
        variable = FE_polar_x
-       potential_int = potential_int
+       potential_E_int = potential_E_int
        component = 0
   [../]
   [./polar_electric_py_ferro]
      type = PolarElectricPStrong
        block = 'ferro_volume'
        variable = FE_polar_y
-       potential_int = potential_int
+       potential_E_int = potential_E_int
        component = 1
   [../]
   [./polar_electric_pz_ferro]
      type = PolarElectricPStrong
        block = 'ferro_volume'
        variable = FE_polar_z
-       potential_int = potential_int
+       potential_E_int = potential_E_int
        component = 2
   [../]
   [./walled_x_ferro]
@@ -323,12 +323,12 @@ permitivitty_depol_para = 0.00885
      polar_x = PE_polar_x
      polar_y = PE_polar_y
      polar_z = PE_polar_z
-     variable = potential_int
+     variable = potential_E_int
   [../]
   [./FE_E_intp_para]
      type = Electrostatics
      block = 'para_bottom_volume para_top_volume'
-     variable = potential_int
+     variable = potential_E_int
      permittivity = ${permittivity_electrostatic_para}
   [../]
   
@@ -336,21 +336,21 @@ permitivitty_depol_para = 0.00885
      type = PolarElectricPStrong
      block = 'para_bottom_volume para_top_volume'
      variable = PE_polar_x
-     potential_int = potential_int
+     potential_E_int = potential_E_int
      component = 0
   [../]
   [./polar_electric_pyp_para]
      type = PolarElectricPStrong
      block = 'para_bottom_volume para_top_volume'
      variable = PE_polar_y
-     potential_int = potential_int
+     potential_E_int = potential_E_int
      component = 1
   [../]
   [./polar_electric_pzp_para]
      type = PolarElectricPStrong
      block = 'para_bottom_volume para_top_volume'
      variable = PE_polar_z
-     potential_int = potential_int
+     potential_E_int = potential_E_int
      component = 2
   [../]
   
@@ -417,50 +417,50 @@ permitivitty_depol_para = 0.00885
 [BCs]
    [./top_phi]
       type = DirichletBC
-      variable = potential_int
+      variable = potential_E_int
       value = 0.0001
       boundary = 'para_top_surface_top'
    [../]
    [./bottom_phi]
       type = DirichletBC
-      variable = potential_int
+      variable = potential_E_int
       value = 0.0
       boundary = 'para_bottom_surface_bottom'
    [../]   
    
   [./Periodic]
    [./per1]
-     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_int'
+     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_E_int'
      primary = 'para_top_side_1'
      secondary = 'para_top_side_3'
      translation = '0 1 0'
    [../]
    [./per2]
-     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_int'
+     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_E_int'
      primary = 'para_bottom_side_1'
      secondary = 'para_bottom_side_3'
      translation = '0 1 0'
    [../]
    [./per3]
-     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_int'
+     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_E_int'
      primary = 'para_top_side_4'
      secondary = 'para_top_side_2'
      translation = '1 0 0'
    [../]
    [./per4]
-     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_int'
+     variable = 'PE_polar_x PE_polar_y PE_polar_z potential_E_int'
      primary = 'para_bottom_side_4'
      secondary = 'para_bottom_side_2'
      translation = '1 0 0'
    [../]
    [./per5]
-     variable = 'FE_polar_x FE_polar_y FE_polar_z potential_int'
+     variable = 'FE_polar_x FE_polar_y FE_polar_z potential_E_int'
      primary = 'ferro_side_4'
      secondary = 'ferro_side_2'
      translation = '1 0 0'
    [../]
    [./per6]
-     variable = 'FE_polar_x FE_polar_y FE_polar_z potential_int'
+     variable = 'FE_polar_x FE_polar_y FE_polar_z potential_E_int'
      primary = 'ferro_side_1'
      secondary = 'ferro_side_3'
      translation = '0 1 0'
@@ -517,7 +517,7 @@ permitivitty_depol_para = 0.00885
     polar_x = FE_polar_x
     polar_y = FE_polar_y
     polar_z = FE_polar_z
-    potential_int = potential_int
+    potential_E_int = potential_E_int
     execute_on = 'initial timestep_end'
   [../]
     
@@ -555,7 +555,7 @@ permitivitty_depol_para = 0.00885
     polar_x = PE_polar_x
     polar_y = PE_polar_y
     polar_z = PE_polar_z
-    potential_int = potential_int
+    potential_E_int = potential_E_int
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change_ferro]

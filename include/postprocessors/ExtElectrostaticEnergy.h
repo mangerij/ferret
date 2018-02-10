@@ -39,7 +39,7 @@ public:
 
 protected:
   virtual Real computeQpIntegral();
-  const VariableGradient & _potential_int_grad;   //for internal potential
+  const VariableGradient & _potential_E_int_grad;   //for internal potential
   const Real _permittivity;
   const Real _len_scale;
 };

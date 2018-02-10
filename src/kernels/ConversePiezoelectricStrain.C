@@ -29,7 +29,7 @@ InputParameters validParams<ConversePiezoelectricStrain>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("potential_int", "The electrostatic potential");
+  params.addRequiredCoupledVar("potential_E_int", "The electrostatic potential");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
@@ -38,9 +38,9 @@ ConversePiezoelectricStrain::ConversePiezoelectricStrain(const InputParameters &
   :Kernel(parameters),
    _piezostrictive_tensor(getMaterialProperty<RankThreeTensor>("piezostrictive_tensor")),
    _component(getParam<unsigned int>("component")),
-   _potential_int_var(coupled("potential_int")),
-   _potential_int(coupledValue("potential_int")),
-   _potential_int_grad(coupledGradient("potential_int")),
+   _potential_E_int_var(coupled("potential_E_int")),
+   _potential_E_int(coupledValue("potential_E_int")),
+   _potential_E_int_grad(coupledGradient("potential_E_int")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -51,7 +51,7 @@ ConversePiezoelectricStrain::computeQpResidual()
   Real sum = 0.0;
   for (unsigned int j = 0; j < 3; ++j)
   {
-    sum += _grad_test[_i][_qp](j) * ((_potential_int_grad[_qp](0) * _piezostrictive_tensor[_qp](0,j,_component)) + (_potential_int_grad[_qp](1) * _piezostrictive_tensor[_qp](1,j,_component)) + (_potential_int_grad[_qp](2) * _piezostrictive_tensor[_qp](2,j,_component)));
+    sum += _grad_test[_i][_qp](j) * ((_potential_E_int_grad[_qp](0) * _piezostrictive_tensor[_qp](0,j,_component)) + (_potential_E_int_grad[_qp](1) * _piezostrictive_tensor[_qp](1,j,_component)) + (_potential_E_int_grad[_qp](2) * _piezostrictive_tensor[_qp](2,j,_component)));
   }
   return sum;
 }
@@ -66,7 +66,7 @@ Real
 ConversePiezoelectricStrain::computeQpOffDiagJacobian(unsigned int jvar)
 {
   Real sum = 0.0;
-  if (jvar == _potential_int_var)
+  if (jvar == _potential_E_int_var)
   {
     for (unsigned int j = 0; j < 3; ++j)
     {

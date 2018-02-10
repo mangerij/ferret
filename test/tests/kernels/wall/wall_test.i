@@ -33,7 +33,7 @@
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
-  potential_int = potential_int
+  potential_E_int = potential_E_int
 []
 
 
@@ -72,7 +72,7 @@
       seed = 5
     [../]
   [../]
-  [./potential_int]
+  [./potential_E_int]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -115,12 +115,12 @@
   ##Electrostatics
   [./polar_x_electric_E]
      type=PolarElectricEStrong
-     variable = potential_int
+     variable = potential_E_int
      block = '0'
   [../]
   [./FE_E_int]
      type=Electrostatics
-     variable = potential_int
+     variable = potential_E_int
      block = '0'
   [../]
   [./polar_electric_px]
@@ -161,13 +161,13 @@
     type = DirichletBC
     boundary = 'front'
     value = 0.0002
-    variable = potential_int
+    variable = potential_E_int
   [../]
   [./potential_cube6]
     type = DirichletBC
     boundary = 'back'
     value = 0.0002
-    variable = potential_int
+    variable = potential_E_int
   [../]
 
 []

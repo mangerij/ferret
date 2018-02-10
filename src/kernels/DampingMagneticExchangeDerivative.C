@@ -26,9 +26,9 @@ InputParameters validParams<DampingMagneticExchangeDerivative>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the antiferromagnetic vector");
-  params.addRequiredCoupledVar("antiferromag_L_y", "The y component of the antiferromagnetic vector");
-  params.addRequiredCoupledVar("antiferromag_L_z", "The z component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_x", "The x component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_z", "The z component of the antiferromagnetic vector");
   params.addRequiredParam<Real>("A", "The exchange coefficient");
   params.addRequiredParam<Real>("M0", "The scaled magnetization vector value");
   params.addRequiredParam<Real>("alphaLL", "The damping coefficient");
@@ -39,15 +39,15 @@ InputParameters validParams<DampingMagneticExchangeDerivative>()
 DampingMagneticExchangeDerivative::DampingMagneticExchangeDerivative(const InputParameters & parameters)
   :Kernel(parameters),
   _component(getParam<unsigned int>("component")),
-  _antiferromag_L_x_var(coupled("antiferromag_L_x")),
-  _antiferromag_L_y_var(coupled("antiferromag_L_y")),
-  _antiferromag_L_z_var(coupled("antiferromag_L_z")),
-  _antiferromag_L_x(coupledValue("antiferromag_L_x")),
-  _antiferromag_L_y(coupledValue("antiferromag_L_y")),
-  _antiferromag_L_z(coupledValue("antiferromag_L_z")),
-  _antiferromag_L_x_grad(coupledGradient("antiferromag_L_x")),
-  _antiferromag_L_y_grad(coupledGradient("antiferromag_L_y")),
-  _antiferromag_L_z_grad(coupledGradient("antiferromag_L_z")),
+  _mag_x_var(coupled("mag_x")),
+  _mag_y_var(coupled("mag_y")),
+  _mag_z_var(coupled("mag_z")),
+  _mag_x(coupledValue("mag_x")),
+  _mag_y(coupledValue("mag_y")),
+  _mag_z(coupledValue("mag_z")),
+  _mag_x_grad(coupledGradient("mag_x")),
+  _mag_y_grad(coupledGradient("mag_y")),
+  _mag_z_grad(coupledGradient("mag_z")),
   _A(getParam<Real>("A")),
   _M0(getParam<Real>("M0")),
   _alphaLL(getParam<Real>("alphaLL")),
@@ -61,17 +61,17 @@ DampingMagneticExchangeDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    RealVectorValue w(-(_antiferromag_L_y_grad[_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _antiferromag_L_x_grad[_qp](0)*std::pow(_antiferromag_L_y[_qp],2) - _antiferromag_L_z_grad[_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp] + _antiferromag_L_x_grad[_qp](0)*std::pow(_antiferromag_L_z[_qp],2), -(_antiferromag_L_y_grad[_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _antiferromag_L_x_grad[_qp](1)*std::pow(_antiferromag_L_y[_qp],2) - _antiferromag_L_z_grad[_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp] + _antiferromag_L_x_grad[_qp](1)*std::pow(_antiferromag_L_z[_qp],2), -(_antiferromag_L_y_grad[_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _antiferromag_L_x_grad[_qp](2)*std::pow(_antiferromag_L_y[_qp],2) - _antiferromag_L_z_grad[_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp] + _antiferromag_L_x_grad[_qp](2)*std::pow(_antiferromag_L_z[_qp],2));
+    RealVectorValue w(-(_mag_y_grad[_qp](0)*_mag_x[_qp]*_mag_y[_qp]) + _mag_x_grad[_qp](0)*std::pow(_mag_y[_qp],2) - _mag_z_grad[_qp](0)*_mag_x[_qp]*_mag_z[_qp] + _mag_x_grad[_qp](0)*std::pow(_mag_z[_qp],2), -(_mag_y_grad[_qp](1)*_mag_x[_qp]*_mag_y[_qp]) + _mag_x_grad[_qp](1)*std::pow(_mag_y[_qp],2) - _mag_z_grad[_qp](1)*_mag_x[_qp]*_mag_z[_qp] + _mag_x_grad[_qp](1)*std::pow(_mag_z[_qp],2), -(_mag_y_grad[_qp](2)*_mag_x[_qp]*_mag_y[_qp]) + _mag_x_grad[_qp](2)*std::pow(_mag_y[_qp],2) - _mag_z_grad[_qp](2)*_mag_x[_qp]*_mag_z[_qp] + _mag_x_grad[_qp](2)*std::pow(_mag_z[_qp],2));
     return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
   }
   else if (_component == 1)
   {
-    RealVectorValue w(_antiferromag_L_y_grad[_qp](0)*std::pow(_antiferromag_L_x[_qp],2) - _antiferromag_L_x_grad[_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp] - _antiferromag_L_z_grad[_qp](0)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp] + _antiferromag_L_y_grad[_qp](0)*std::pow(_antiferromag_L_z[_qp],2), _antiferromag_L_y_grad[_qp](1)*std::pow(_antiferromag_L_x[_qp],2) - _antiferromag_L_x_grad[_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp] - _antiferromag_L_z_grad[_qp](1)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp] + _antiferromag_L_y_grad[_qp](1)*std::pow(_antiferromag_L_z[_qp],2), _antiferromag_L_y_grad[_qp](2)*std::pow(_antiferromag_L_x[_qp],2) - _antiferromag_L_x_grad[_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp] - _antiferromag_L_z_grad[_qp](2)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp] + _antiferromag_L_y_grad[_qp](2)*std::pow(_antiferromag_L_z[_qp],2));
+    RealVectorValue w(_mag_y_grad[_qp](0)*std::pow(_mag_x[_qp],2) - _mag_x_grad[_qp](0)*_mag_x[_qp]*_mag_y[_qp] - _mag_z_grad[_qp](0)*_mag_y[_qp]*_mag_z[_qp] + _mag_y_grad[_qp](0)*std::pow(_mag_z[_qp],2), _mag_y_grad[_qp](1)*std::pow(_mag_x[_qp],2) - _mag_x_grad[_qp](1)*_mag_x[_qp]*_mag_y[_qp] - _mag_z_grad[_qp](1)*_mag_y[_qp]*_mag_z[_qp] + _mag_y_grad[_qp](1)*std::pow(_mag_z[_qp],2), _mag_y_grad[_qp](2)*std::pow(_mag_x[_qp],2) - _mag_x_grad[_qp](2)*_mag_x[_qp]*_mag_y[_qp] - _mag_z_grad[_qp](2)*_mag_y[_qp]*_mag_z[_qp] + _mag_y_grad[_qp](2)*std::pow(_mag_z[_qp],2));
     return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
   }
   else if (_component == 2)
   {
-    RealVectorValue w(_antiferromag_L_z_grad[_qp](0)*std::pow(_antiferromag_L_x[_qp],2) + _antiferromag_L_z_grad[_qp](0)*std::pow(_antiferromag_L_y[_qp],2) - _antiferromag_L_x_grad[_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp] - _antiferromag_L_y_grad[_qp](0)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp], _antiferromag_L_z_grad[_qp](1)*std::pow(_antiferromag_L_x[_qp],2) + _antiferromag_L_z_grad[_qp](1)*std::pow(_antiferromag_L_y[_qp],2) - _antiferromag_L_x_grad[_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp] - _antiferromag_L_y_grad[_qp](1)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp], _antiferromag_L_z_grad[_qp](2)*std::pow(_antiferromag_L_x[_qp],2) + _antiferromag_L_z_grad[_qp](2)*std::pow(_antiferromag_L_y[_qp],2) - _antiferromag_L_x_grad[_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp] - _antiferromag_L_y_grad[_qp](2)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp]);
+    RealVectorValue w(_mag_z_grad[_qp](0)*std::pow(_mag_x[_qp],2) + _mag_z_grad[_qp](0)*std::pow(_mag_y[_qp],2) - _mag_x_grad[_qp](0)*_mag_x[_qp]*_mag_z[_qp] - _mag_y_grad[_qp](0)*_mag_y[_qp]*_mag_z[_qp], _mag_z_grad[_qp](1)*std::pow(_mag_x[_qp],2) + _mag_z_grad[_qp](1)*std::pow(_mag_y[_qp],2) - _mag_x_grad[_qp](1)*_mag_x[_qp]*_mag_z[_qp] - _mag_y_grad[_qp](1)*_mag_y[_qp]*_mag_z[_qp], _mag_z_grad[_qp](2)*std::pow(_mag_x[_qp],2) + _mag_z_grad[_qp](2)*std::pow(_mag_y[_qp],2) - _mag_x_grad[_qp](2)*_mag_x[_qp]*_mag_z[_qp] - _mag_y_grad[_qp](2)*_mag_y[_qp]*_mag_z[_qp]);
     return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
   }
   else
@@ -83,17 +83,17 @@ DampingMagneticExchangeDerivative::computeQpJacobian()
 {
   if (_component == 0)
   {
-    RealVectorValue w(-(_antiferromag_L_y_grad[_qp](0)*_antiferromag_L_y[_qp]) - _antiferromag_L_z_grad[_qp](0)*_antiferromag_L_z[_qp], -(_antiferromag_L_y_grad[_qp](1)*_antiferromag_L_y[_qp]) - _antiferromag_L_z_grad[_qp](1)*_antiferromag_L_z[_qp], -(_antiferromag_L_y_grad[_qp](2)*_antiferromag_L_y[_qp]) - _antiferromag_L_z_grad[_qp](2)*_antiferromag_L_z[_qp]);
+    RealVectorValue w(-(_mag_y_grad[_qp](0)*_mag_y[_qp]) - _mag_z_grad[_qp](0)*_mag_z[_qp], -(_mag_y_grad[_qp](1)*_mag_y[_qp]) - _mag_z_grad[_qp](1)*_mag_z[_qp], -(_mag_y_grad[_qp](2)*_mag_y[_qp]) - _mag_z_grad[_qp](2)*_mag_z[_qp]);
     return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * _phi[_j][_qp] * ( _grad_test[_i][_qp] * w );
   }
   else if (_component == 1)
   {
-    RealVectorValue w(-(_antiferromag_L_x_grad[_qp](0)*_antiferromag_L_x[_qp]) - _antiferromag_L_z_grad[_qp](0)*_antiferromag_L_z[_qp], -(_antiferromag_L_x_grad[_qp](1)*_antiferromag_L_x[_qp]) - _antiferromag_L_z_grad[_qp](1)*_antiferromag_L_z[_qp], -(_antiferromag_L_x_grad[_qp](2)*_antiferromag_L_x[_qp]) - _antiferromag_L_z_grad[_qp](2)*_antiferromag_L_z[_qp]);
+    RealVectorValue w(-(_mag_x_grad[_qp](0)*_mag_x[_qp]) - _mag_z_grad[_qp](0)*_mag_z[_qp], -(_mag_x_grad[_qp](1)*_mag_x[_qp]) - _mag_z_grad[_qp](1)*_mag_z[_qp], -(_mag_x_grad[_qp](2)*_mag_x[_qp]) - _mag_z_grad[_qp](2)*_mag_z[_qp]);
     return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * _phi[_j][_qp] * ( _grad_test[_i][_qp] * w );
   }
   else if (_component == 2)
   {
-    RealVectorValue w(-(_antiferromag_L_x_grad[_qp](0)*_antiferromag_L_x[_qp]) - _antiferromag_L_y_grad[_qp](0)*_antiferromag_L_y[_qp], -(_antiferromag_L_x_grad[_qp](1)*_antiferromag_L_x[_qp]) - _antiferromag_L_y_grad[_qp](1)*_antiferromag_L_y[_qp], -(_antiferromag_L_x_grad[_qp](2)*_antiferromag_L_x[_qp]) - _antiferromag_L_y_grad[_qp](2)*_antiferromag_L_y[_qp]);
+    RealVectorValue w(-(_mag_x_grad[_qp](0)*_mag_x[_qp]) - _mag_y_grad[_qp](0)*_mag_y[_qp], -(_mag_x_grad[_qp](1)*_mag_x[_qp]) - _mag_y_grad[_qp](1)*_mag_y[_qp], -(_mag_x_grad[_qp](2)*_mag_x[_qp]) - _mag_y_grad[_qp](2)*_mag_y[_qp]);
     return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * _phi[_j][_qp] * ( _grad_test[_i][_qp] * w );
   }
   else
@@ -105,14 +105,14 @@ DampingMagneticExchangeDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (_component == 0)
   {
-    if (jvar == _antiferromag_L_y_var)
+    if (jvar == _mag_y_var)
     {
-      RealVectorValue w(-(_grad_phi[_j][_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_y_grad[_qp](0)*_antiferromag_L_x[_qp]) + 2*_antiferromag_L_x_grad[_qp](0)*_antiferromag_L_y[_qp]), -(_grad_phi[_j][_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_y_grad[_qp](1)*_antiferromag_L_x[_qp]) + 2*_antiferromag_L_x_grad[_qp](1)*_antiferromag_L_y[_qp]), -(_grad_phi[_j][_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_y_grad[_qp](2)*_antiferromag_L_x[_qp]) + 2*_antiferromag_L_x_grad[_qp](2)*_antiferromag_L_y[_qp]));
+      RealVectorValue w(-(_grad_phi[_j][_qp](0)*_mag_x[_qp]*_mag_y[_qp]) + _phi[_j][_qp]*(-(_mag_y_grad[_qp](0)*_mag_x[_qp]) + 2*_mag_x_grad[_qp](0)*_mag_y[_qp]), -(_grad_phi[_j][_qp](1)*_mag_x[_qp]*_mag_y[_qp]) + _phi[_j][_qp]*(-(_mag_y_grad[_qp](1)*_mag_x[_qp]) + 2*_mag_x_grad[_qp](1)*_mag_y[_qp]), -(_grad_phi[_j][_qp](2)*_mag_x[_qp]*_mag_y[_qp]) + _phi[_j][_qp]*(-(_mag_y_grad[_qp](2)*_mag_x[_qp]) + 2*_mag_x_grad[_qp](2)*_mag_y[_qp]));
       return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
     }
-    else if (jvar == _antiferromag_L_z_var)
+    else if (jvar == _mag_z_var)
       {
-        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_z_grad[_qp](0)*_antiferromag_L_x[_qp]) + 2*_antiferromag_L_x_grad[_qp](0)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_z_grad[_qp](1)*_antiferromag_L_x[_qp]) + 2*_antiferromag_L_x_grad[_qp](1)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_z_grad[_qp](2)*_antiferromag_L_x[_qp]) + 2*_antiferromag_L_x_grad[_qp](2)*_antiferromag_L_z[_qp]));
+        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_mag_x[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(-(_mag_z_grad[_qp](0)*_mag_x[_qp]) + 2*_mag_x_grad[_qp](0)*_mag_z[_qp]), -(_grad_phi[_j][_qp](1)*_mag_x[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(-(_mag_z_grad[_qp](1)*_mag_x[_qp]) + 2*_mag_x_grad[_qp](1)*_mag_z[_qp]), -(_grad_phi[_j][_qp](2)*_mag_x[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(-(_mag_z_grad[_qp](2)*_mag_x[_qp]) + 2*_mag_x_grad[_qp](2)*_mag_z[_qp]));
         return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
       }
     else
@@ -122,14 +122,14 @@ DampingMagneticExchangeDerivative::computeQpOffDiagJacobian(unsigned int jvar)
   }
   else if (_component == 1)
   {
-    if (jvar == _antiferromag_L_x_var)
+    if (jvar == _mag_x_var)
       {
-        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_y_grad[_qp](0)*_antiferromag_L_x[_qp] - _antiferromag_L_x_grad[_qp](0)*_antiferromag_L_y[_qp]), -(_grad_phi[_j][_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_y_grad[_qp](1)*_antiferromag_L_x[_qp] - _antiferromag_L_x_grad[_qp](1)*_antiferromag_L_y[_qp]), -(_grad_phi[_j][_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_y[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_y_grad[_qp](2)*_antiferromag_L_x[_qp] - _antiferromag_L_x_grad[_qp](2)*_antiferromag_L_y[_qp]));
+        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_mag_x[_qp]*_mag_y[_qp]) + _phi[_j][_qp]*(2*_mag_y_grad[_qp](0)*_mag_x[_qp] - _mag_x_grad[_qp](0)*_mag_y[_qp]), -(_grad_phi[_j][_qp](1)*_mag_x[_qp]*_mag_y[_qp]) + _phi[_j][_qp]*(2*_mag_y_grad[_qp](1)*_mag_x[_qp] - _mag_x_grad[_qp](1)*_mag_y[_qp]), -(_grad_phi[_j][_qp](2)*_mag_x[_qp]*_mag_y[_qp]) + _phi[_j][_qp]*(2*_mag_y_grad[_qp](2)*_mag_x[_qp] - _mag_x_grad[_qp](2)*_mag_y[_qp]));
         return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
       }
-    else if (jvar == _antiferromag_L_z_var)
+    else if (jvar == _mag_z_var)
       {
-        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_z_grad[_qp](0)*_antiferromag_L_y[_qp]) + 2*_antiferromag_L_y_grad[_qp](0)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](1)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_z_grad[_qp](1)*_antiferromag_L_y[_qp]) + 2*_antiferromag_L_y_grad[_qp](1)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](2)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(-(_antiferromag_L_z_grad[_qp](2)*_antiferromag_L_y[_qp]) + 2*_antiferromag_L_y_grad[_qp](2)*_antiferromag_L_z[_qp]));
+        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_mag_y[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(-(_mag_z_grad[_qp](0)*_mag_y[_qp]) + 2*_mag_y_grad[_qp](0)*_mag_z[_qp]), -(_grad_phi[_j][_qp](1)*_mag_y[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(-(_mag_z_grad[_qp](1)*_mag_y[_qp]) + 2*_mag_y_grad[_qp](1)*_mag_z[_qp]), -(_grad_phi[_j][_qp](2)*_mag_y[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(-(_mag_z_grad[_qp](2)*_mag_y[_qp]) + 2*_mag_y_grad[_qp](2)*_mag_z[_qp]));
         return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
       }
     else
@@ -139,14 +139,14 @@ DampingMagneticExchangeDerivative::computeQpOffDiagJacobian(unsigned int jvar)
   }
   else if (_component == 2)
   {
-    if (jvar == _antiferromag_L_x_var)
+    if (jvar == _mag_x_var)
       {
-        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_z_grad[_qp](0)*_antiferromag_L_x[_qp] - _antiferromag_L_x_grad[_qp](0)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](1)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_z_grad[_qp](1)*_antiferromag_L_x[_qp] - _antiferromag_L_x_grad[_qp](1)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](2)*_antiferromag_L_x[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_z_grad[_qp](2)*_antiferromag_L_x[_qp] - _antiferromag_L_x_grad[_qp](2)*_antiferromag_L_z[_qp]));
+        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_mag_x[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(2*_mag_z_grad[_qp](0)*_mag_x[_qp] - _mag_x_grad[_qp](0)*_mag_z[_qp]), -(_grad_phi[_j][_qp](1)*_mag_x[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(2*_mag_z_grad[_qp](1)*_mag_x[_qp] - _mag_x_grad[_qp](1)*_mag_z[_qp]), -(_grad_phi[_j][_qp](2)*_mag_x[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(2*_mag_z_grad[_qp](2)*_mag_x[_qp] - _mag_x_grad[_qp](2)*_mag_z[_qp]));
         return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
       }
-    else if (jvar == _antiferromag_L_y_var)
+    else if (jvar == _mag_y_var)
       {
-        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_z_grad[_qp](0)*_antiferromag_L_y[_qp] - _antiferromag_L_y_grad[_qp](0)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](1)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_z_grad[_qp](1)*_antiferromag_L_y[_qp] - _antiferromag_L_y_grad[_qp](1)*_antiferromag_L_z[_qp]), -(_grad_phi[_j][_qp](2)*_antiferromag_L_y[_qp]*_antiferromag_L_z[_qp]) + _phi[_j][_qp]*(2*_antiferromag_L_z_grad[_qp](2)*_antiferromag_L_y[_qp] - _antiferromag_L_y_grad[_qp](2)*_antiferromag_L_z[_qp]));
+        RealVectorValue w(-(_grad_phi[_j][_qp](0)*_mag_y[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(2*_mag_z_grad[_qp](0)*_mag_y[_qp] - _mag_y_grad[_qp](0)*_mag_z[_qp]), -(_grad_phi[_j][_qp](1)*_mag_y[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(2*_mag_z_grad[_qp](1)*_mag_y[_qp] - _mag_y_grad[_qp](1)*_mag_z[_qp]), -(_grad_phi[_j][_qp](2)*_mag_y[_qp]*_mag_z[_qp]) + _phi[_j][_qp]*(2*_mag_z_grad[_qp](2)*_mag_y[_qp] - _mag_y_grad[_qp](2)*_mag_z[_qp]));
         return _alphaLL * 2.0 * _A * (1.0 / (8 * _M0 *_M0 * _M0)) * ( _grad_test[_i][_qp] * w );
       }
     else

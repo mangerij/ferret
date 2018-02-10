@@ -42,7 +42,7 @@ public:
 protected:
   virtual void computeQpDeltaIndicatrixElectro();
   const MaterialProperty<RankThreeTensor> & _electrooptic_tensor;
-  const VariableGradient & _potential_int_grad;
+  const VariableGradient & _potential_E_int_grad;
 
 };
 

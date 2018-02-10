@@ -28,8 +28,8 @@ InputParameters validParams<PolarElectricPStrong>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("potential_int", "The internal electric potential variable");
-  params.addCoupledVar("potential_ext", 0.0, "The external electric potential variable");
+  params.addRequiredCoupledVar("potential_E_int", "The internal electric potential variable");
+  params.addCoupledVar("potential_E_ext", 0.0, "The external electric potential variable");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
@@ -37,10 +37,10 @@ InputParameters validParams<PolarElectricPStrong>()
 PolarElectricPStrong::PolarElectricPStrong(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
-   _potential_int_var(coupled("potential_int")),
-   _potential_ext_var(coupled("potential_ext")),
-   _potential_int_grad(coupledGradient("potential_int")),
-   _potential_ext_grad(coupledGradient("potential_ext")),
+   _potential_E_int_var(coupled("potential_E_int")),
+   _potential_E_ext_var(coupled("potential_E_ext")),
+   _potential_E_int_grad(coupledGradient("potential_E_int")),
+   _potential_E_ext_grad(coupledGradient("potential_E_ext")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -50,7 +50,7 @@ PolarElectricPStrong::computeQpResidual()
 {
     Real RpolarP = 0.0;
 
-    RpolarP += (_potential_int_grad[_qp](_component) + _potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    RpolarP += (_potential_E_int_grad[_qp](_component) + _potential_E_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
 
     ///  Moose::out << "\n R_polarP-"; std::cout << _component << " = " << RpolarP;
 
@@ -66,9 +66,9 @@ PolarElectricPStrong::computeQpJacobian()
 Real
 PolarElectricPStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-    if( jvar == _potential_int_var )
+    if( jvar == _potential_E_int_var )
       return  _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
-    else if( jvar == _potential_ext_var)
+    else if( jvar == _potential_E_ext_var)
       return  _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
     else
     {

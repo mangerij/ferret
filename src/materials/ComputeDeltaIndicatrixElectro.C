@@ -28,14 +28,14 @@ InputParameters validParams<ComputeDeltaIndicatrixElectro>()
 {
   InputParameters params = validParams<ComputeDeltaIndicatrixElectroBase>();
   params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor).");
-  params.addRequiredCoupledVar("potential_int", "The electrostatic potential");
+  params.addRequiredCoupledVar("potential_E_int", "The electrostatic potential");
   return params;
 }
 
 ComputeDeltaIndicatrixElectro::ComputeDeltaIndicatrixElectro(const InputParameters & parameters) :
     ComputeDeltaIndicatrixElectroBase(parameters),
     _electrooptic_tensor(getMaterialProperty<RankThreeTensor>("electrooptic_tensor")),
-    _potential_int_grad(coupledGradient("potential_int"))
+    _potential_E_int_grad(coupledGradient("potential_E_int"))
 {
 }
 
@@ -48,7 +48,7 @@ ComputeDeltaIndicatrixElectro::computeQpDeltaIndicatrixElectro()
     {
       for (unsigned int k = 0; k < 3; ++k)
         {
-          sum += _electrooptic_tensor[_qp](i, j, k) * _potential_int_grad[_qp](k) ;
+          sum += _electrooptic_tensor[_qp](i, j, k) * _potential_E_int_grad[_qp](k) ;
         }
     _delta_indicatrix_electro[_qp](i, j) = sum;
     }

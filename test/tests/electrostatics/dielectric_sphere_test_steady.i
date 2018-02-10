@@ -1,9 +1,7 @@
-#This is your standard linear dielectric (polarizable) sphere in a dielectric medium
-#This problem is worked out analytically in Jackson or Griffiths and we've shown that
-#the analytical solution matches the numerical solution to within high degree of accuracy
-#provided the medium mesh is large enough.
-#PjFieldAux is just the Claussius-Mosetti relation that arises from the analytical solution
-#but is not used to actually solve for \Phi.
+# This is your standard linear dielectric (polarizable) sphere in a dielectric medium
+# This problem is worked out analytically in Jackson or Griffiths and we've shown that
+# the analytical solution matches the numerical solution to within high degree of accuracy
+# provided the medium mesh is large enough.
 
 [Mesh]
   file = sphere_medium_exodus.e
@@ -18,68 +16,27 @@
   [../]
 []
 
-#[AuxVariables]
-#  [./polar_x]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
-#  [./polar_y]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
-#  [./polar_z]
-#    order = CONSTANT
-#    family = MONOMIAL
-#  [../]
-#[]
-
 [Kernels]
   [./E_Ext_block2]
-     type=Electrostatics
+     type = Electrostatics
      permittivity = 6
-     variable=potential
-     block='2'
+     variable = potential
+     block = '2'
   [../]
 
   [./E_Ext_block1]
-     type=Electrostatics
+     type = Electrostatics
      permittivity = 1
-     variable=potential
-     block='1'
+     variable = potential
+     block = '1'
   [../]
 []
 
-#[AuxKernels]
-#  [./polar_x]
-#    type = PxFieldAux
-#    variable = polar_x
-#    block = '2'
-#    permittivity_int = 6
-#    permittivity_ext = 1 # 8.85e-12
-#    potential_ext = potential
-#  [../]
-#  [./polar_y]
-#    type = PyFieldAux
-#    variable = polar_y
-#    block = '2'
-#    permittivity_int = 6
-#    permittivity_ext = 1
-#    potential_ext = potential
-#  [../]
-#  [./polar_z]
-#    type = PzFieldAux
-#    variable = polar_z
-#    block = '2'
-#    permittivity_int = 6
-#    permittivity_ext = 1
-#    potential_ext = potential
-#  [../]
-#[]
-
 [BCs]
-  #Please note that in typical textbooks, you apply the field with a Neumann boundary condition
-  #but this isn't ideal for the exodiff so we can just as easily apply with a DirichletBC
-  #but also note that the field strength depends on the distance between the boundaries!
+  # Please note that in typical textbooks, you apply the field with a Neumann boundary condition
+  # but this isn't ideal for the exodiff so we can just as easily apply with a DirichletBC
+  # but also note that the field strength depends on the distance between the boundaries!
+
   [./potential_ext_1]
     type = DirichletBC
     variable = potential
@@ -96,8 +53,8 @@
 
 [Preconditioning]
    [./smp]
-     type=SMP
-     full=true   #to use every off diagonal block
+     type = SMP
+     full = true
    [../]
 []
 

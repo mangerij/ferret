@@ -18,7 +18,7 @@
   n_a = 2.91
   n_b = 2.91
   n_g = 3.27
-  potential_int = 'potential_int'
+  potential_E_int = potential_E_int
 []
 
 
@@ -35,7 +35,7 @@
     order = FIRST
     family = LAGRANGE
   [../]
-  [./potential_int]
+  [./potential_E_int]
     order = FIRST
     family = LAGRANGE
     block = '1 2 3 4 5 6'
@@ -384,7 +384,7 @@
   [./delta_beta_tensor_1]
     type = ComputeDeltaIndicatrixElectro
     block = '1'
-    potential_int = potential_int
+    potential_E_int = potential_E_int
   [../]
 
 
@@ -430,7 +430,7 @@
   [./delta_beta_tensor_2]
     type = ComputeDeltaIndicatrixElectro
     block = '2'
-    potential_int =  potential_int
+    potential_E_int =  potential_E_int
   [../]
 
 
@@ -477,7 +477,7 @@
   [./delta_beta_tensor_3]
     type = ComputeDeltaIndicatrixElectro
     block = '3'
-    potential_int = potential_int
+    potential_E_int = potential_E_int
   [../]
 
 
@@ -523,7 +523,7 @@
   [./delta_beta_tensor_4]
     type = ComputeDeltaIndicatrixElectro
     block = '4'
-    potential_int = potential_int
+    potential_E_int = potential_E_int
   [../]
 
 
@@ -569,7 +569,7 @@
   [./delta_beta_tensor_5]
     type = ComputeDeltaIndicatrixElectro
     block = '5'
-    potential_int = potential_int
+    potential_E_int = potential_E_int
   [../]
 
 
@@ -615,7 +615,7 @@
   [./delta_beta_tensor_6]
     type = ComputeDeltaIndicatrixElectro
     block = '6'
-    potential_int = potential_int
+    potential_E_int = potential_E_int
   [../]
 
 []
@@ -628,7 +628,7 @@
 
   [./ElectroStats]
     type = Electrostatics
-    variable = potential_int
+    variable = potential_E_int
     permittivity = 1
     block = '1 2 3 4 5 6'
   [../]
@@ -638,14 +638,14 @@
 [BCs]
   [./pot_top]
     type = DirichletBC
-    variable = 'potential_int'
+    variable = 'potential_E_int'
     value = -10
     boundary = 'side1'
   [../]
 
   [./pot_bottom]
     type = DirichletBC
-    variable = 'potential_int'
+    variable = 'potential_E_int'
     value = 0.0
     boundary = 'side2'
   [../]

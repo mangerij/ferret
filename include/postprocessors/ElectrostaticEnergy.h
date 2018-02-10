@@ -42,8 +42,8 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const VariableGradient & _potential_int_grad;   //for internal potential
-  const VariableGradient & _potential_ext_grad;   //for external potential
+  const VariableGradient & _potential_E_int_grad;   //for internal potential
+  const VariableGradient & _potential_E_ext_grad;   //for external potential
   const Real _len_scale;
 };
 
