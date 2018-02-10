@@ -47,9 +47,9 @@ protected:
 private:
   const MaterialProperty<RankThreeTensor> & _piezostrictive_tensor;
   const unsigned int _component;
-  const unsigned int _potential_int_var;
-  const VariableValue & _potential_int;
-  const VariableGradient & _potential_int_grad;
+  const unsigned int _potential_E_int_var;
+  const VariableValue & _potential_E_int;
+  const VariableGradient & _potential_E_int_grad;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };

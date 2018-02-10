@@ -30,7 +30,7 @@
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
-  potential_int = potential_int
+  potential_E_int = potential_E_int
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
@@ -78,7 +78,7 @@
       h = 0.05
     [../]
   [../]
-  [./potential_int]
+  [./potential_E_int]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -192,11 +192,11 @@
   [../]
   [./polar_x_electric_E]
      type = PolarElectricEStrong
-     variable = potential_int
+     variable = potential_E_int
   [../]
   [./FE_E_int]
      type = Electrostatics
-     variable = potential_int
+     variable = potential_E_int
      permittivity = 0.08854187
   [../]
   [./polar_electric_px]
@@ -251,18 +251,18 @@
     value = 0.0
     variable = disp_z
   [../]
-  [./potential_int_front]
+  [./potential_E_int_front]
     type = DirichletBC
     boundary = 'front'
     value = 0.0001
-    variable = potential_int
+    variable = potential_E_int
   [../]
 
-  [./potential_int_back]
+  [./potential_E_int_back]
     type = DirichletBC
     boundary = 'back'
     value = 0.0001
-    variable = potential_int
+    variable = potential_E_int
   [../]
   [./disp_x_back]
     type = DirichletBC

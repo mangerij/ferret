@@ -43,12 +43,12 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-   const unsigned int _antiferromag_L_x_var;
-   const unsigned int _antiferromag_L_y_var;
-   const unsigned int _antiferromag_L_z_var;
-   const VariableValue & _antiferromag_L_x;
-   const VariableValue & _antiferromag_L_y;
-   const VariableValue & _antiferromag_L_z;
+   const unsigned int _mag_x_var;
+   const unsigned int _mag_y_var;
+   const unsigned int _mag_z_var;
+   const VariableValue & _mag_x;
+   const VariableValue & _mag_y;
+   const VariableValue & _mag_z;
    const Real _len_scale;
 
 };

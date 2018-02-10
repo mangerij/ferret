@@ -25,7 +25,7 @@ template<>
 InputParameters validParams<ExtElectrostaticEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
-  params.addRequiredCoupledVar("potential_int", "The internal electric potential");
+  params.addRequiredCoupledVar("potential_E_int", "The internal electric potential");
   params.addRequiredParam<Real>("permittivity", "permittivity");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
@@ -33,7 +33,7 @@ InputParameters validParams<ExtElectrostaticEnergy>()
 
 ExtElectrostaticEnergy::ExtElectrostaticEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _potential_int_grad(coupledGradient("potential_int")),
+  _potential_E_int_grad(coupledGradient("potential_E_int")),
    _permittivity(getParam<Real>("permittivity")),
   _len_scale(getParam<Real>("len_scale"))
 {
@@ -42,5 +42,5 @@ ExtElectrostaticEnergy::ExtElectrostaticEnergy(const InputParameters & parameter
 Real
 ExtElectrostaticEnergy::computeQpIntegral()
 {
-  return 0.5 * _permittivity * _potential_int_grad[_qp] * _potential_int_grad[_qp] * std::pow(_len_scale, 2.0);
+  return 0.5 * _permittivity * _potential_E_int_grad[_qp] * _potential_E_int_grad[_qp] * std::pow(_len_scale, 2.0);
 }

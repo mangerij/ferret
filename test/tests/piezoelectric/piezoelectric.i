@@ -15,7 +15,7 @@
 []
 
 [GlobalParams]
-  potential_int = potential_int
+  potential_E_int = potential_E_int
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
@@ -36,7 +36,7 @@
     order = FIRST
     family = LAGRANGE
   [../]
-  [./potential_int]
+  [./potential_E_int]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -115,12 +115,12 @@
   [../]
   [./FE_E_int]
      type = Electrostatics
-     variable = potential_int
+     variable = potential_E_int
      permittivity = 0.0721616
   [../]
   [./strain_charge]
      type = PiezoelectricStrainCharge
-     variable = potential_int
+     variable = potential_E_int
   [../]
 []
 
@@ -217,6 +217,9 @@
     type = ComputeElasticityTensor
     fill_method = symmetric9
     C_ijkl = '209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29'
+    euler_angle_1 = 30
+    euler_angle_2 = 30
+    euler_angle_3 = 0
   [../]
   [./strain_1]
     type = ComputeSmallStrain
@@ -228,23 +231,45 @@
     type = ComputePiezostrictiveTensor
     fill_method = general
     e_ijk = '0 0 -0.00415 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.00415 0 -0.00415 0 -0.005 0 0 0 -0.005 0 0 0 0.0124'
+    euler_angle_1 = 30
+    euler_angle_2 = 30
+    euler_angle_3 = 0
   [../]
 []
 
 
 [BCs]
   # Boundary Condition System
-  [./back_pot]
-    type =DirichletBC
-    variable = potential_int
-    boundary = 'back'
-    value = -0.25
+  #[./back_pot]
+  #  type =DirichletBC
+  #  variable = potential_E_int
+  #  boundary = 2
+  #  value = 0
+  #[../]
+
+  [./stablizer_x]
+    type = DirichletBC
+    variable = 'disp_x'
+    boundary = 'front back'
+    value = 0.0
   [../]
-  [./front_pot]
-    type =DirichletBC
-    variable = potential_int
+  [./stablizer_y]
+    type = DirichletBC
+    variable = 'disp_y'
+    boundary = 'front back'
+    value = 0.0
+  [../]
+  [./front_strain]
+    type = DirichletBC
+    variable = 'disp_z'
     boundary = 'front'
-    value = 0.25
+    value = -0.01
+  [../]
+  [./back_strain]
+    type = DirichletBC
+    variable = 'disp_z'
+    boundary = 'back'
+    value = 0.01
   [../]
 []
 
@@ -288,7 +313,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_test_conversepiezoelectric
+    file_base = out_test_piezoelectric
     elemental_as_nodal = true
   [../]
 []

@@ -42,10 +42,10 @@ protected:
 
 private:
   const unsigned int _component;
-  const unsigned int _potential_int_var;
-  const unsigned int _potential_ext_var;
-  const VariableGradient &  _potential_int_grad;
-  const VariableGradient &  _potential_ext_grad;
+  const unsigned int _potential_E_int_var;
+  const unsigned int _potential_E_ext_var;
+  const VariableGradient &  _potential_E_int_grad;
+  const VariableGradient &  _potential_E_ext_grad;
   const Real _len_scale;
 };
 #endif //POLARELECTRICPSTRONG_H

@@ -28,8 +28,8 @@ InputParameters validParams<MagMStrong>()
 {
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("potential_int", "The internal magnetic potential variable");
-  params.addCoupledVar("potential_ext", 0.0, "The external magnetic potential variable");
+  params.addRequiredCoupledVar("potential_H_int", "The internal magnetic potential variable");
+  params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
@@ -37,10 +37,10 @@ InputParameters validParams<MagMStrong>()
 MagMStrong::MagMStrong(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
-   _potential_int_var(coupled("potential_int")),
-   _potential_ext_var(coupled("potential_ext")),
-   _potential_int_grad(coupledGradient("potential_int")),
-   _potential_ext_grad(coupledGradient("potential_ext")),
+   _potential_H_int_var(coupled("potential_H_int")),
+   _potential_H_ext_var(coupled("potential_H_ext")),
+   _potential_H_int_grad(coupledGradient("potential_H_int")),
+   _potential_H_ext_grad(coupledGradient("potential_H_ext")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -48,7 +48,7 @@ MagMStrong::MagMStrong(const InputParameters & parameters)
 Real
 MagMStrong::computeQpResidual()
 {
-    return 0.5 * (_potential_int_grad[_qp](_component) + _potential_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
+    return 0.5 * (_potential_H_int_grad[_qp](_component) + _potential_H_ext_grad[_qp](_component)) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
 }
 
 Real
@@ -60,9 +60,9 @@ MagMStrong::computeQpJacobian()
 Real
 MagMStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-    if( jvar == _potential_int_var )
+    if( jvar == _potential_H_int_var )
       return  0.5 *_grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
-    else if( jvar == _potential_ext_var)
+    else if( jvar == _potential_H_ext_var)
       return  0.5 * _grad_phi[_j][_qp](_component) * _test[_i][_qp] * std::pow(_len_scale, 2.0);
     else
     {
