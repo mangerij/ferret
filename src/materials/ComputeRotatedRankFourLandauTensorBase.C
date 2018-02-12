@@ -19,34 +19,23 @@
 
 **/
 
-#include "ZCompCurlP.h"
+#include "ComputeRotatedRankFourLandauTensorBase.h"
+#include "RotationTensor.h"
+
 template<>
-
-InputParameters validParams<ZCompCurlP>()
-
+InputParameters validParams<ComputeRotatedRankFourLandauTensorBase>()
 {
-  InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  InputParameters params = validParams<ComputeRotatedRankFourLandauTensorBase>();
+  params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
+  params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
+  params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");
   return params;
 }
 
-
-ZCompCurlP::ZCompCurlP(const InputParameters & parameters) :
-  AuxKernel(parameters),
-   _polar_x(coupledValue("polar_x")),
-   _polar_y(coupledValue("polar_y")),
-   _polar_z(coupledValue("polar_z")),
-   _polar_x_grad(coupledGradient("polar_x")),
-   _polar_y_grad(coupledGradient("polar_y")),
-   _polar_z_grad(coupledGradient("polar_z"))
+ComputeRotatedRankFourLandauTensorBase::ComputeRotatedRankFourLandauTensorBase(const InputParameters & parameters) :
+    ComputeRankFourLandauTensorBase(parameters),
+    _Euler_angles(getParam<Real>("euler_angle_1"),
+                  getParam<Real>("euler_angle_2"),
+                  getParam<Real>("euler_angle_3"))
 {
-}
-
-Real
-ZCompCurlP::computeValue()
-
-{
-    return (_polar_y_grad[_qp](0) - _polar_x_grad[_qp](1));
 }

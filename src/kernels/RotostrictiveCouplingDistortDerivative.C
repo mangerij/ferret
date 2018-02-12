@@ -29,10 +29,10 @@ InputParameters validParams<RotostrictiveCouplingDistortDerivative>()
   InputParameters params = validParams<Kernel>();
   params.addRequiredCoupledVar("disp_x", "The x component of the elastic displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the elastic displacement");
-  params.addRequiredCoupledVar("disp_z", "The z component of the elastic displacement");
+  params.addCoupledVar("disp_z", 0.0, "The z component of the elastic displacement");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the afd vector field");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredParam<Real>("r11", "the 11 component of rotostrictive coupling tensor");
   params.addRequiredParam<Real>("r12", "the 12 component of rotostrictive coupling tensor");

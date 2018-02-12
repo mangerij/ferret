@@ -30,7 +30,7 @@ InputParameters validParams<MagHStrong>()
   params.addClassDescription("Calculates a residual contribution for divM (used concomitantly with a magnetostatic kernel)");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
-  params.addRequiredCoupledVar("mag_z", "The z component of the magnetization");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }

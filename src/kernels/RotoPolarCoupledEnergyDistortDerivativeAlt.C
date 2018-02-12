@@ -29,10 +29,10 @@ InputParameters validParams<RotoPolarCoupledEnergyDistortDerivativeAlt>()
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the antiferrodistortive tilt");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("t1111", "The coupling coefficients");
   params.addRequiredParam<Real>("t1122", "The coupling coefficients");
   params.addRequiredParam<Real>("t1212", "The coupling coefficients");

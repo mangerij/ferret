@@ -28,7 +28,7 @@ InputParameters validParams<WallEnergyDerivativeAlt>()
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("G110", "Domain wall coefficient");
   params.addRequiredParam<Real>("G11_G110", "Domain wall coefficient ratio");
   params.addRequiredParam<Real>("G12_G110", "Domain wall coefficient ratio");

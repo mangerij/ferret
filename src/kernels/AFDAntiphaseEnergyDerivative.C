@@ -28,7 +28,7 @@ InputParameters validParams<AFDAntiphaseEnergyDerivative>()
   params.addClassDescription("Calculates the residual for the local gradients in the antiferrodistortive vector field");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
-  params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive tilt vector");
+  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
   params.addRequiredParam<Real>("H110", "Gradient coefficient in the AFD ordering");
   params.addRequiredParam<Real>("H11_H110", "Gradient coefficient in the AFD ordering");

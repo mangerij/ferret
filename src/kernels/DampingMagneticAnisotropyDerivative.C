@@ -28,12 +28,12 @@ InputParameters validParams<DampingMagneticAnisotropyDerivative>()
   params.addClassDescription("Calculates the residual for anisotropy term in the damped part of the LLG equation.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("mag_x", "The x component of the antiferromagnetic vector");
-  params.addCoupledVar("mag_y", 0.0, "The y component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the antiferromagnetic vector");
   params.addCoupledVar("mag_z", 0.0, "The z component of the antiferromagnetic vector");
   params.addRequiredParam<Real>("Ku", "The exchange coefficient");
   params.addRequiredParam<Real>("nx", "The x component of the magnetic anisotropy");
   params.addRequiredParam<Real>("ny", "The y component of the magnetic anisotropy");
-  params.addRequiredParam<Real>("nz", "The z component of the magnetic anisotropy");
+  params.addParam<Real>("nz", 0.0, "The z component of the magnetic anisotropy");
   params.addRequiredParam<Real>("M0", "The scaling of the magnetic vector");
   params.addRequiredParam<Real>("alphaLL", "The damping strength");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");

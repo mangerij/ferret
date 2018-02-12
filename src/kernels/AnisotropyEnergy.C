@@ -31,7 +31,7 @@ InputParameters validParams<AnisotropyEnergy>()
   params.addClassDescription("Adds a residual contribution for an arbitrary anisotropy quadratic in the polarization field.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   params.addParam<Real>("K", 1.0, "the anisotropy energy");

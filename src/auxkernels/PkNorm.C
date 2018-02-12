@@ -28,7 +28,7 @@ InputParameters validParams<PkNorm>()
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredParam<unsigned int>("component", "the component of the normalized vector to store");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   return params;
 }

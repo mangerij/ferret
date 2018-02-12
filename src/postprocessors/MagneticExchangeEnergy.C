@@ -28,7 +28,7 @@ InputParameters validParams<MagneticExchangeEnergy>()
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over the magnetic exchange energy density.");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
-  params.addCoupledVar("mag_y", 0.0, "The y component of the magnetization vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization vector");
   params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
   params.addRequiredParam<Real>("A", "The constant of magnetic exchange");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");

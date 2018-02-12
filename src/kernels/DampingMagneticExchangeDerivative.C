@@ -27,9 +27,9 @@ InputParameters validParams<DampingMagneticExchangeDerivative>()
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates the residual for exchange term in the damped part of the LLG equation.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("mag_x", "The x component of the antiferromagnetic vector");
-  params.addRequiredCoupledVar("mag_y", "The y component of the antiferromagnetic vector");
-  params.addRequiredCoupledVar("mag_z", "The z component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization vector");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
   params.addRequiredParam<Real>("A", "The exchange coefficient");
   params.addRequiredParam<Real>("M0", "The scaled magnetization vector value");
   params.addRequiredParam<Real>("alphaLL", "The damping coefficient");

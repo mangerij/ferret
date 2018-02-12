@@ -29,7 +29,7 @@ InputParameters validParams<RotoBulkEnergyDerivativeEighthAlt>()
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2.0 for z)");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the antiferrodistortive tilt");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt");
   params.addRequiredParam<Real>("beta1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta12", "The coefficients of the Landau expansion");

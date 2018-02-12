@@ -158,6 +158,8 @@
 #include "ComputeDeltaIndicatrixElectro.h"
 #include "ComputePiezoTensor.h"
 #include "ComputePiezostrictiveTensor.h"
+#include "ComputeRankTwoLandauTensor.h"
+#include "ComputeRankFourLandauTensor.h"
 
 //Postprocessors
 #include "WallEnergy.h"
@@ -415,6 +417,9 @@ FerretApp::registerObjects(Factory & factory)
   registerMaterial(ComputeDeltaIndicatrixElectro);
   registerMaterial(ComputePiezoTensor);
   registerMaterial(ComputePiezostrictiveTensor);
+  registerMaterial(ComputeRankTwoLandauTensor);
+  registerMaterial(ComputeRankFourLandauTensor);
+
 
   ///InitialConditions
   registerInitialCondition(FluctuationsIC);

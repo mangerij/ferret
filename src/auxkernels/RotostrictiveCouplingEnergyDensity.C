@@ -27,10 +27,10 @@ InputParameters validParams<RotostrictiveCouplingEnergyDensity>()
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
-  params.addRequiredCoupledVar("disp_z", "The z component of the displacement");
+  params.addCoupledVar("disp_z", 0.0, "The z component of the displacement");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt vector");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the antiferrodistortive tilt vector");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
   params.addRequiredParam<Real>("r11", "The coupling constants");
   params.addRequiredParam<Real>("r12", "The coupling constants");
   params.addRequiredParam<Real>("r44", "The coupling constants");
