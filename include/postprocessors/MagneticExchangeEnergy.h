@@ -39,9 +39,9 @@ public:
 protected:
   virtual Real computeQpIntegral();
 
-  const VariableGradient& _antiferromag_L_x_grad;
-  const VariableGradient& _antiferromag_L_y_grad;
-  const VariableGradient& _antiferromag_L_z_grad;
+  const VariableGradient& _mag_x_grad;
+  const VariableGradient& _mag_y_grad;
+  const VariableGradient& _mag_z_grad;
   const Real _A;
   const Real _len_scale;
 

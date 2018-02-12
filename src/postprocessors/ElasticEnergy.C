@@ -26,6 +26,7 @@ template<>
 InputParameters validParams<ElasticEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral over the elastic energy density. Note this file also exists in tensor mechanics.");
   params.addParam<Real>("strain_scale", 1.0, "the strain_scale");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;

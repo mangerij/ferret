@@ -26,8 +26,9 @@ InputParameters validParams<BulkEnergyCoupledT>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral over the sixth order free energy density of local polarization coupled to temperature.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredCoupledVar("temperature", "The temperature at the grid point");
   params.addRequiredParam<Real>("alpha0", "The coefficients of the Landau expansion");

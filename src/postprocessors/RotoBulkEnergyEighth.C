@@ -26,9 +26,10 @@ InputParameters validParams<RotoBulkEnergyEighth>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the afd vector field");
+  params.addClassDescription("Calculates an integral whose integrand is the eighth order expansion of the AFD fields");
+  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the AFD vector field");
+  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the AFD vector field");
+  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the AFD vector field");
   params.addRequiredParam<Real>("beta1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta12", "The coefficients of the Landau expansion");

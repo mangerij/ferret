@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<ThermalEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral whose integrand is 3$/$2$*$k$*$T where k is a constant (Boltzmann perhaps).");
   params.addRequiredCoupledVar("temperature", "The local temperature");
   params.addParam<Real>("const", 1.0, "thermal relation constant (e.g. Boltzmann constant)");
   return params;

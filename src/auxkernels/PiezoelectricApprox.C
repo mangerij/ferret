@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<PiezoelectricApprox>()
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Stores an approximation of the piezoelectric tensor Pz$/$szz");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return params;
 }

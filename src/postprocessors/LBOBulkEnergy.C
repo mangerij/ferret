@@ -26,6 +26,7 @@ InputParameters validParams<LBOBulkEnergy>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral over local bulk energy density for LBO-type pseudo-uniaxial ferroelectrics.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");

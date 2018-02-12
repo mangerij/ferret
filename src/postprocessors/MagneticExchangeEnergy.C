@@ -26,9 +26,10 @@ InputParameters validParams<MagneticExchangeEnergy>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
-  params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the antiferromagnetic vector");
-  params.addCoupledVar("antiferromag_L_y", 0.0, "The y component of the antiferromagnetic vector");
-  params.addCoupledVar("antiferromag_L_z", 0.0, "The z component of the antiferromagnetic vector");
+  params.addClassDescription("Calculates an integral over the magnetic exchange energy density.");
+  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
+  params.addCoupledVar("mag_y", 0.0, "The y component of the magnetization vector");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
   params.addRequiredParam<Real>("A", "The constant of magnetic exchange");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
@@ -36,9 +37,9 @@ InputParameters validParams<MagneticExchangeEnergy>()
 
 MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _antiferromag_L_x_grad(coupledGradient("antiferromag_L_x")),
-  _antiferromag_L_y_grad(coupledGradient("antiferromag_L_y")),
-  _antiferromag_L_z_grad(coupledGradient("antiferromag_L_z")),
+  _mag_x_grad(coupledGradient("mag_x")),
+  _mag_y_grad(coupledGradient("mag_y")),
+  _mag_z_grad(coupledGradient("mag_z")),
   _A(getParam<Real>("A")),
   _len_scale(getParam<Real>("len_scale"))
 {
@@ -47,5 +48,5 @@ MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameter
 Real
 MagneticExchangeEnergy::computeQpIntegral()
 {
-  return (_A*(std::pow(_antiferromag_L_x_grad[_qp](0),2) + std::pow(_antiferromag_L_x_grad[_qp](1),2) + std::pow(_antiferromag_L_x_grad[_qp](2),2) + std::pow(_antiferromag_L_y_grad[_qp](0),2) + std::pow(_antiferromag_L_y_grad[_qp](1),2) + std::pow(_antiferromag_L_y_grad[_qp](2),2) + std::pow(_antiferromag_L_z_grad[_qp](0),2) + std::pow(_antiferromag_L_z_grad[_qp](1),2) + std::pow(_antiferromag_L_z_grad[_qp](2),2))) * std::pow(_len_scale,1.0);
+  return (_A*(std::pow(_mag_x_grad[_qp](0),2) + std::pow(_mag_x_grad[_qp](1),2) + std::pow(_mag_x_grad[_qp](2),2) + std::pow(_mag_y_grad[_qp](0),2) + std::pow(_mag_y_grad[_qp](1),2) + std::pow(_mag_y_grad[_qp](2),2) + std::pow(_mag_z_grad[_qp](0),2) + std::pow(_mag_z_grad[_qp](1),2) + std::pow(_mag_z_grad[_qp](2),2))) * std::pow(_len_scale,1.0);
 }

@@ -26,6 +26,7 @@ InputParameters validParams<PostprocessorsSum>()
 {
 
   InputParameters params = validParams<GeneralPostprocessor>();
+  params.addClassDescription("Calculates a sum of arbitrary postprocessors.");
   params.addRequiredParam<unsigned int>("num_pp", "How many postprocessors to sum? Need to be 2 < num_pp < 9.");
   params.addRequiredParam<PostprocessorName>("var0", "name of first postprocessor");
   params.addRequiredParam<PostprocessorName>("var1", "name of second postprocessor");

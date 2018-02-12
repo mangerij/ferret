@@ -25,6 +25,8 @@ template<>
 InputParameters validParams<AFDWallEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral over the computational volume of the free energy density"
+                             "corresponding to gradients in the AFD field.");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the polarization");

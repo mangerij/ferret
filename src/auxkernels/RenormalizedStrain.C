@@ -27,8 +27,9 @@ InputParameters validParams<RenormalizedStrain>()
 
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("var1", "strain");
-  params.addRequiredParam<PostprocessorName>("var2", "name of ave strain");                
+  params.addClassDescription("Renormalizes a variable value.");
+  params.addRequiredCoupledVar("var1", "value");
+  params.addRequiredParam<PostprocessorName>("var2", "scalar to shift by");                
   return params;
 }
 

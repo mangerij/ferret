@@ -27,7 +27,7 @@ template<>
 InputParameters validParams<ComputeIndicatrix>()
 {
   InputParameters params = validParams<ComputeRotatedIndicatrixBase>();
-  params.addClassDescription("Compute the impermeability tensor.");
+  params.addClassDescription("Compute the impermeability tensor, or indicatrix.");
   params.addRequiredParam<Real>("n_a", "alpha refractive index");
   params.addRequiredParam<Real>("n_b", "beta refractive index");
   params.addRequiredParam<Real>("n_g", "gamma refractive index");

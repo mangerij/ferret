@@ -26,9 +26,10 @@ InputParameters validParams<MagneticAnisotropyEnergy>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
-  params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the antiferromagnetic vector");
-  params.addCoupledVar("antiferromag_L_y", 0.0, "The y component of the antiferromagnetic vector");
-  params.addCoupledVar("antiferromag_L_z", 0.0, "The z component of the antiferromagnetic vector");
+  params.addClassDescription("Calculates an integral over the magnetization anisotropy energy.");
+  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
+  params.addCoupledVar("mag_y", 0.0, "The y component of the magnetization vector");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
   params.addRequiredParam<Real>("Ku", "The constant of anisotropy");
   params.addRequiredParam<Real>("nx", "x direction of the anisotropy");
   params.addRequiredParam<Real>("ny", "y direction of the anisotropy");
@@ -39,9 +40,9 @@ InputParameters validParams<MagneticAnisotropyEnergy>()
 
 MagneticAnisotropyEnergy::MagneticAnisotropyEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _antiferromag_L_x(coupledValue("antiferromag_L_x")),
-  _antiferromag_L_y(coupledValue("antiferromag_L_y")),
-  _antiferromag_L_z(coupledValue("antiferromag_L_z")),
+  _mag_x(coupledValue("mag_x")),
+  _mag_y(coupledValue("mag_y")),
+  _mag_z(coupledValue("mag_z")),
   _Ku(getParam<Real>("Ku")),
   _nx(getParam<Real>("nx")),
   _ny(getParam<Real>("ny")),
@@ -53,5 +54,5 @@ MagneticAnisotropyEnergy::MagneticAnisotropyEnergy(const InputParameters & param
 Real
 MagneticAnisotropyEnergy::computeQpIntegral()
 {
-  return _Ku*std::pow(_antiferromag_L_x[_qp]*_nx + _antiferromag_L_y[_qp]*_ny + _antiferromag_L_z[_qp]*_nz,2);
+  return _Ku * std::pow(_mag_x[_qp]*_nx + _mag_y[_qp]*_ny + _mag_z[_qp]*_nz,2);
 }
