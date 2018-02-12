@@ -27,7 +27,7 @@ InputParameters validParams<WindingNumberDensity>()
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("norm_polar_x", "The x component of the normalized polarization");
   params.addRequiredCoupledVar("norm_polar_y", "The y component of the normalized polarization");
-  params.addRequiredCoupledVar("norm_polar_z", "The z component of the normalized polarization");
+  params.addCoupledVar("norm_polar_z", 0.0, "The z component of the normalized polarization");
   return params;
 }
 

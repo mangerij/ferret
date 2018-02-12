@@ -28,7 +28,7 @@ InputParameters validParams<MagneticAnisotropyEnergy>()
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over the magnetization anisotropy energy.");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
-  params.addCoupledVar("mag_y", 0.0, "The y component of the magnetization vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization vector");
   params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
   params.addRequiredParam<Real>("Ku", "The constant of anisotropy");
   params.addRequiredParam<Real>("nx", "x direction of the anisotropy");

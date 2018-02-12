@@ -33,10 +33,10 @@ InputParameters validParams<FerroelectricCouplingX>()
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
-  params.addRequiredCoupledVar("disp_z", "The z component of the displacement");
+  params.addCoupledVar("disp_z", 0.0, "The z component of the displacement");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addParam<Real>("artificial", 1.0, "artificial increase coupling");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;

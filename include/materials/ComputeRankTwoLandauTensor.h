@@ -19,34 +19,31 @@
 
 **/
 
-#include "ZCompCurlP.h"
+#ifndef COMPUTERANKTWOLANDAUTENSOR_H
+#define COMPUTERANKTWOLANDAUTENSOR_H
+
+#include "RankTwoTensor.h"
+//#include "LandauTensorTools.h"
+#include "ComputeRotatedRankTwoLandauTensorBase.h"
+
+
+class ComputeRankTwoLandauTensor;
+
 template<>
+InputParameters validParams<ComputeRankTwoLandauTensor>();
 
-InputParameters validParams<ZCompCurlP>()
-
+/**
+ * ComputeRankTwoLandauTensor defines the \alpha_{ij} tensor material object with a given base name.
+ */
+class ComputeRankTwoLandauTensor : public ComputeRotatedRankTwoLandauTensorBase
 {
-  InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  return params;
-}
+public:
+  ComputeRankTwoLandauTensor(const InputParameters & parameters);
 
+protected:
+  virtual void computeQpRankTwoLandauTensor();
 
-ZCompCurlP::ZCompCurlP(const InputParameters & parameters) :
-  AuxKernel(parameters),
-   _polar_x(coupledValue("polar_x")),
-   _polar_y(coupledValue("polar_y")),
-   _polar_z(coupledValue("polar_z")),
-   _polar_x_grad(coupledGradient("polar_x")),
-   _polar_y_grad(coupledGradient("polar_y")),
-   _polar_z_grad(coupledGradient("polar_z"))
-{
-}
+  RankTwoTensor _alpha_ij;
+};
 
-Real
-ZCompCurlP::computeValue()
-
-{
-    return (_polar_y_grad[_qp](0) - _polar_x_grad[_qp](1));
-}
+#endif //COMPUTERANKTWOLANDAUTENSOR_H

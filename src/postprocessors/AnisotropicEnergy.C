@@ -27,7 +27,7 @@ InputParameters validParams<AnisotropicEnergy>()
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over an energy density quadratic in the polarization meant to artificially introduce anisotropy.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   params.addParam<Real>("K", 1.0, "the anisotropy energy");

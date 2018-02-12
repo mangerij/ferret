@@ -27,7 +27,7 @@ InputParameters validParams<WallEnergyDensity>()
 {
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("G110","Domain wall penalty coefficients");
   params.addRequiredParam<Real>("G11_G110","Ratio of domain wall penalty coefficients");

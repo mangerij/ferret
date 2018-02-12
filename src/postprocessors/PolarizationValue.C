@@ -29,7 +29,7 @@ InputParameters validParams<PolarizationValue>()
   params.addClassDescription("Calculates an integral whose integrand is the magnitude of the polarization");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   return params;
 }
 

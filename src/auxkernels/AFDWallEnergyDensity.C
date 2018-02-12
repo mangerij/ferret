@@ -28,7 +28,7 @@ InputParameters validParams<AFDWallEnergyDensity>()
   params.addClassDescription("Calculates the free energy density due to the local gradients in the antiferrodistortive vector field");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the afd vector field");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");
   params.addRequiredParam<Real>("H110","antiphase penalty coefficients");
   params.addRequiredParam<Real>("H11_H110","Ratio of antiphase penalty coefficients");
   params.addRequiredParam<Real>("H12_H110","Ratio of antiphase penalty coefficients");

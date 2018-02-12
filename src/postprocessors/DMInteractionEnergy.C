@@ -28,7 +28,7 @@ InputParameters validParams<DMInteractionEnergy>()
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
-  params.addCoupledVar("mag_y", 0.0, "The y component of the magnetization vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization vector");
   params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive tilt vector");

@@ -28,10 +28,10 @@ InputParameters validParams<DzyaloshinskiiDistortDerivative>()
   params.addClassDescription("Calculates a residual contribution in magnetoelectric coupling due to antiferrodistortive and magnetic ordering.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("mag_x", "The x component of the antiferromagnetic vector");
-  params.addCoupledVar("mag_y", 0.0, "The y component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the antiferromagnetic vector");
   params.addCoupledVar("mag_z", 0.0, "The z component of the antiferromagnetic vector");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive vector");
-  params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive vector");
+  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive vector");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive vector");
   params.addRequiredParam<Real>("chiP", "The magnetic susceptibility");
   params.addRequiredParam<Real>("hD", "The Dzyaloshinkii field");

@@ -31,7 +31,7 @@ InputParameters validParams<PiezoelectricStrainCharge>()
   params.addClassDescription("Calculates a residual contribution due to a charge arising via piezoelectric coupling in the Poisson equation.");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
-  params.addRequiredCoupledVar("disp_z", "The z component of the displacement");
+  params.addCoupledVar("disp_z", 0.0, "The z component of the displacement");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }

@@ -30,10 +30,10 @@ InputParameters validParams<RotoPolarCoupledEnergyEighth>()
   params.addClassDescription("Calculates an integral over the eighth order coupling energy density between AFD and polarization fields.");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the AFD vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the AFD vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the AFD vector field");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the AFD vector field");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("t1111", "The coupling coefficients");
   params.addRequiredParam<Real>("t1122", "The coupling coefficients");
   params.addRequiredParam<Real>("t1212", "The coupling coefficients");

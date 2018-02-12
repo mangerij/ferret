@@ -27,9 +27,9 @@ InputParameters validParams<LagrangianMultiplierAntiferromagConstraint>()
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution to enforce Lagrange mulitplier-based constraints of M$*$M = 1");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z, 3 for lambda)");
-  params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the antiferromagnetic vector");
-  params.addRequiredCoupledVar("antiferromag_L_y", "The y component of the antiferromagnetic vector");
-  params.addRequiredCoupledVar("antiferromag_L_z", "The z component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_x", "The x component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the antiferromagnetic vector");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the antiferromagnetic vector");
   params.addRequiredCoupledVar("lambda", "The Lagrange multiplier field variable");
   params.addRequiredParam<Real>("epsilon", "The epsilon parameter to enforce nonzero diagonals.");
   params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
@@ -39,12 +39,12 @@ InputParameters validParams<LagrangianMultiplierAntiferromagConstraint>()
 LagrangianMultiplierAntiferromagConstraint::LagrangianMultiplierAntiferromagConstraint(const InputParameters & parameters)
   :Kernel(parameters),
   _component(getParam<unsigned int>("component")),
-  _antiferromag_L_x_var(coupled("antiferromag_L_x")),
-  _antiferromag_L_y_var(coupled("antiferromag_L_y")),
-  _antiferromag_L_z_var(coupled("antiferromag_L_z")),
-  _antiferromag_L_x(coupledValue("antiferromag_L_x")),
-  _antiferromag_L_y(coupledValue("antiferromag_L_y")),
-  _antiferromag_L_z(coupledValue("antiferromag_L_z")),
+  _mag_x_var(coupled("mag_x")),
+  _mag_y_var(coupled("mag_y")),
+  _mag_z_var(coupled("mag_z")),
+  _mag_x(coupledValue("mag_x")),
+  _mag_y(coupledValue("mag_y")),
+  _mag_z(coupledValue("mag_z")),
   _lambda_var(coupled("lambda")),
   _lambda(coupledValue("lambda")),
   _epsilon(getParam<Real>("epsilon")),
@@ -58,19 +58,19 @@ LagrangianMultiplierAntiferromagConstraint::computeQpResidual()
 {
   if (_component == 0)
   {
-    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_antiferromag_L_x[_qp]);
+    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_mag_x[_qp]);
   }
   else if (_component == 1)
   {
-    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_antiferromag_L_y[_qp]);
+    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_mag_y[_qp]);
   }
   else if (_component == 2)
   {
-    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_antiferromag_L_z[_qp]);
+    return -_test[_i][_qp] * (2.0*_lambda[_qp]*_mag_z[_qp]);
   }
   else if (_component == 3)
   {
-    return _test[_i][_qp] * (1.0 - (std::pow(_antiferromag_L_x[_qp],2) + std::pow(_antiferromag_L_y[_qp],2) + std::pow(_antiferromag_L_z[_qp],2)));
+    return _test[_i][_qp] * (1.0 - (std::pow(_mag_x[_qp],2) + std::pow(_mag_y[_qp],2) + std::pow(_mag_z[_qp],2)));
   }
   else
   {
@@ -110,7 +110,7 @@ LagrangianMultiplierAntiferromagConstraint::computeQpOffDiagJacobian(unsigned in
   {
     if (jvar == _lambda_var)
     {
-      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _antiferromag_L_x[_qp]);
+      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _mag_x[_qp]);
     }
     else
     {
@@ -121,7 +121,7 @@ LagrangianMultiplierAntiferromagConstraint::computeQpOffDiagJacobian(unsigned in
   {
     if (jvar == _lambda_var)
     {
-      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _antiferromag_L_y[_qp]);
+      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _mag_y[_qp]);
     }
     else
     {
@@ -132,7 +132,7 @@ LagrangianMultiplierAntiferromagConstraint::computeQpOffDiagJacobian(unsigned in
   {
     if (jvar == _lambda_var)
     {
-      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _antiferromag_L_z[_qp]);
+      return -_test[_i][_qp] * _phi[_j][_qp] * (2.0 * _mag_z[_qp]);
     }
     else
     {
@@ -141,17 +141,17 @@ LagrangianMultiplierAntiferromagConstraint::computeQpOffDiagJacobian(unsigned in
   }
   else if (_component == 3)
   {
-    if (jvar == _antiferromag_L_x_var)
+    if (jvar == _mag_x_var)
     {
-      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _antiferromag_L_x[_qp];
+      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _mag_x[_qp];
     }
-    else if (jvar == _antiferromag_L_y_var)
+    else if (jvar == _mag_y_var)
     {
-      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _antiferromag_L_y[_qp];
+      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _mag_y[_qp];
     }
-    else if (jvar == _antiferromag_L_z_var)
+    else if (jvar == _mag_z_var)
     {
-      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _antiferromag_L_z[_qp];
+      return -2.0 * _test[_i][_qp] * _phi[_j][_qp] * _mag_z[_qp];
     }
     else
     {

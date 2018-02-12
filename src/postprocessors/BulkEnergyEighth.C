@@ -29,7 +29,7 @@ InputParameters validParams<BulkEnergyEighth>()
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral whose integrand is the eighth order expansion of the polarization.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<Real>("alpha1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("alpha11", "The coefficients of the Landau expansion");

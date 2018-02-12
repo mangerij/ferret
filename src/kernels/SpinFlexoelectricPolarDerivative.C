@@ -27,10 +27,10 @@ InputParameters validParams<SpinFlexoelectricPolarDerivative>()
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization vector");
-  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization vector");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization vector");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization vector");
   params.addRequiredCoupledVar("mag_x", "The x component of the antiferromagnetic vector");
-  params.addCoupledVar("mag_y", 0.0, "The y component of the antiferromagnetic vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the antiferromagnetic vector");
   params.addCoupledVar("mag_z", 0.0, "The z component of the antiferromagnetic vector");
   params.addRequiredParam<Real>("beta", "The constant of spinflexoelectric interaction");
   params.addRequiredParam<Real>("P0", "The constant of the polarization scaling");

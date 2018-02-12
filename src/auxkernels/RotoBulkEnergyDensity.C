@@ -27,7 +27,7 @@ InputParameters validParams<RotoBulkEnergyDensity>()
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_z", "The z component of the afd vector field");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");
   params.addRequiredParam<Real>("beta1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta12", "The coefficients of the Landau expansion");

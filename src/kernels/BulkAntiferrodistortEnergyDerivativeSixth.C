@@ -29,7 +29,7 @@ InputParameters validParams<BulkAntiferrodistortEnergyDerivativeSixth>()
   InputParameters params = validParams<Kernel>();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
-  params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive tilt vector");
+  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
   params.addRequiredParam<Real>("beta1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta11", "The coefficients of the Landau expansion");
