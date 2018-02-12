@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<TensorPressureAux>()
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Calculates the value of the hydrostatic stress (which is 1/3 the minus of the stress tensor trace).");
   return params;
 }
 

@@ -26,6 +26,7 @@ InputParameters validParams<PzSq>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Stores the squared value of the z-component of the polarization.");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return params;
 }

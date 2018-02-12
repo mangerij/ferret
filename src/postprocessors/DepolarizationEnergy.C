@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<DepolarizationEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral over a fictious depolarization field energy density");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   params.addParam<Real>("avePz", 1.0, "the average polarization due to the depol field term");

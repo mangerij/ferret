@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<ExtElectrostaticEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral over an electrostatic energy contribution 1$/$2$*$E$^$2.");
   params.addRequiredCoupledVar("potential_E_int", "The internal electric potential");
   params.addRequiredParam<Real>("permittivity", "permittivity");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");

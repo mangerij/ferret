@@ -46,7 +46,6 @@
 #include "RotoPolarCouplingEnergyDensity.h"
 #include "RotoBulkEnergyDensity.h"
 #include "WallEnergyDensity.h"
-#include "SurfaceChargeAux.h"
 #include "ChernSimonsDensity.h"
 #include "ChernSimonsDensityMag.h"
 #include "WindingNumberDensity.h"
@@ -286,7 +285,6 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(CurlPMag);
   registerAux(BandGapAuxZnO);
   registerAux(BandGapAuxTiO2);
-  registerAux(SurfaceChargeAux);
   registerAux(WindingNumberDensity);
   registerAux(BandGapAuxZnOwRot);
   registerAux(MieElecFieldReals);

@@ -39,9 +39,9 @@ public:
 protected:
   virtual Real computeQpIntegral();
 
-  const VariableValue& _antiferromag_L_x;
-  const VariableValue& _antiferromag_L_y;
-  const VariableValue& _antiferromag_L_z;
+  const VariableValue& _mag_x;
+  const VariableValue& _mag_y;
+  const VariableValue& _mag_z;
   const VariableValue& _antiferrodis_A_x;
   const VariableValue& _antiferrodis_A_y;
   const VariableValue& _antiferrodis_A_z;

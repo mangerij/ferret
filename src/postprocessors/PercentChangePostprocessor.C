@@ -25,6 +25,7 @@ template<>
 InputParameters validParams<PercentChangePostprocessor>()
 {
   InputParameters params = validParams<GeneralPostprocessor>();
+  params.addClassDescription("Calculates the absolute value change between adjacent postprocessors in time");
   params.addRequiredParam<PostprocessorName>("postprocessor", "The name of the postprocessor used for exit criterion");
   return params;
 }

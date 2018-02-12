@@ -26,9 +26,10 @@ InputParameters validParams<DMInteractionEnergy>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
-  params.addRequiredCoupledVar("antiferromag_L_x", "The x component of the antiferromagnetic vector");
-  params.addCoupledVar("antiferromag_L_y", 0.0, "The y component of the antiferromagnetic vector");
-  params.addCoupledVar("antiferromag_L_z", 0.0, "The z component of the antiferromagnetic vector");
+  params.addClassDescription("Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).");
+  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
+  params.addCoupledVar("mag_y", 0.0, "The y component of the magnetization vector");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
@@ -40,9 +41,9 @@ InputParameters validParams<DMInteractionEnergy>()
 
 DMInteractionEnergy::DMInteractionEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _antiferromag_L_x(coupledValue("antiferromag_L_x")),
-  _antiferromag_L_y(coupledValue("antiferromag_L_y")),
-  _antiferromag_L_z(coupledValue("antiferromag_L_z")),
+  _mag_x(coupledValue("mag_x")),
+  _mag_y(coupledValue("mag_y")),
+  _mag_z(coupledValue("mag_z")),
   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
@@ -55,5 +56,5 @@ DMInteractionEnergy::DMInteractionEnergy(const InputParameters & parameters) :
 Real
 DMInteractionEnergy::computeQpIntegral()
 {
-  return (-(_chiP*std::pow(_hD,2)*(std::pow(-(_antiferrodis_A_y[_qp]*_antiferromag_L_x[_qp]) + _antiferrodis_A_x[_qp]*_antiferromag_L_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp]*_antiferromag_L_x[_qp] - _antiferrodis_A_x[_qp]*_antiferromag_L_z[_qp],2) + std::pow(-(_antiferrodis_A_z[_qp]*_antiferromag_L_y[_qp]) + _antiferrodis_A_y[_qp]*_antiferromag_L_z[_qp],2)))/2.0);
+  return (-(_chiP*std::pow(_hD,2)*(std::pow(-(_antiferrodis_A_y[_qp]*_mag_x[_qp]) + _antiferrodis_A_x[_qp]*_mag_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp]*_mag_x[_qp] - _antiferrodis_A_x[_qp]*_mag_z[_qp],2) + std::pow(-(_antiferrodis_A_z[_qp]*_mag_y[_qp]) + _antiferrodis_A_y[_qp]*_mag_z[_qp],2)))/2.0);
 }

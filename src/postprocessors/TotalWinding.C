@@ -24,8 +24,8 @@
 template<>
 InputParameters validParams<TotalWinding>()
 {
-
   InputParameters params = validParams<ElementIntegralPostprocessor>();
+  params.addClassDescription("Calculates an integral over winding number density.");
   params.addRequiredCoupledVar("q", "The winding number density");
   return params;
 }

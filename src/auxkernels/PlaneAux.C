@@ -26,6 +26,7 @@ InputParameters validParams<PlaneAux>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Calculates a function dependent on spatial coordinate and the polarization variable.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   return params;

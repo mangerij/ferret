@@ -27,6 +27,7 @@ InputParameters validParams<OldVar>()
 
 {
   InputParameters params = validParams<AuxKernel>();
+  params.addClassDescription("Stores the variable at the last time step.");
   return params;
 }
 
