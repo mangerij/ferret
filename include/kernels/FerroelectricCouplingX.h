@@ -24,7 +24,7 @@
 
 #include "Kernel.h"
 #include "ComputeElectrostrictiveTensor.h"
-#include "Material.h"
+//#include "Material.h"
 
 //Forward Declarations
 class FerroelectricCouplingX;
@@ -59,9 +59,6 @@ private:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const VariableGradient & _polar_x_grad;
-  const VariableGradient & _polar_y_grad;
-  const VariableGradient & _polar_z_grad;
   const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
 
 };

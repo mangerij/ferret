@@ -19,27 +19,25 @@
 
 **/
 
-#ifndef MAGNETICEXCHANGEDERIVATIVE_H
-#define MAGNETICEXCHANGEDERIVATIVE_H
+#ifndef DAMPEDEXCHANGELLG_H
+#define DAMPEDEXCHANGELLG_H
 
 #include "Kernel.h"
 
-class MagneticExchangeDerivative;
+class DampedExchangeLLG;
 
 template<>
-InputParameters validParams<MagneticExchangeDerivative>();
+InputParameters validParams<DampedExchangeLLG>();
 
-class MagneticExchangeDerivative: public Kernel
+class  DampedExchangeLLG: public Kernel
 {
 public:
 
-  MagneticExchangeDerivative(const InputParameters & parameters);
+  DampedExchangeLLG(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
@@ -52,9 +50,9 @@ protected:
   const VariableGradient & _mag_x_grad;
   const VariableGradient & _mag_y_grad;
   const VariableGradient & _mag_z_grad;
+  const Real _alphaLL;
   const Real _A;
-  const Real _M0;
   const Real _len_scale;
 
 };
-#endif //MAGNETICEXCHANGEDERIVATIVE_H
+#endif //DAMPEDEXCHANGELLG_H

@@ -21,7 +21,6 @@
 
 #include "BulkAntiferrodistortEnergyDerivativeSixth.h"
 #include "libmesh/utility.h"
-#include<cmath>
 
 template<>
 InputParameters validParams<BulkAntiferrodistortEnergyDerivativeSixth>()

@@ -19,40 +19,36 @@
 
 **/
 
-#ifndef LAGRANGIANMULTIPLIERANTIFERROMAGHEAVYCONSTRAINT_H
-#define LAGRANGIANMULTIPLIERANTIFERROMAGHEAVYCONSTRAINT_H
+#ifndef LAGRANGEMAGCONSTRAINT_H
+#define LAGRANGEMAGCONSTRAINT_H
 
 #include "Kernel.h"
 
-class LagrangianMultiplierAntiferromagHeavyConstraint;
+class LagrangeMagConstraint;
 
 template<>
-InputParameters validParams<LagrangianMultiplierAntiferromagHeavyConstraint>();
+InputParameters validParams<LagrangeMagConstraint>();
 
-class LagrangianMultiplierAntiferromagHeavyConstraint: public Kernel
+class  LagrangeMagConstraint: public Kernel
 {
 public:
 
-  LagrangianMultiplierAntiferromagHeavyConstraint(const InputParameters & parameters);
+  LagrangeMagConstraint(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
+  const unsigned int _lambda_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const unsigned int _lambda_var;
   const VariableValue & _lambda;
-  const Real _epsilon;
-  const Real _len_scale;
 
 };
-#endif //LAGRANGIANMULTIPLIERANTIFERROMAGHEAVYCONSTRAINT_H
+#endif //LAGRANGEMAGCONSTRAINT_H
