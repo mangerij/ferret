@@ -55,9 +55,6 @@ FerroelectricCouplingX::FerroelectricCouplingX(const InputParameters & parameter
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
-   _polar_x_grad(coupledGradient("polar_x")),
-   _polar_y_grad(coupledGradient("polar_y")),
-   _polar_z_grad(coupledGradient("polar_z")),
    _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -90,7 +87,6 @@ FerroelectricCouplingX::computeQpOffDiagJacobian(unsigned int jvar)
 {
   unsigned int coupled_component;
   Real sum1 = 0.0;
-  Real sum2 = 0.0;
   RealVectorValue p(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
   /// return = 0.0;
   if (jvar == _polar_x_var || jvar == _polar_y_var || jvar == _polar_z_var)

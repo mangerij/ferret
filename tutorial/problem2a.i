@@ -32,7 +32,7 @@
   # -0.1722883 #room temp PTO
   alpha1 = -0.5
 
-  potential_int = potential_int
+  potential_E_int = potential_int
 []
 
 

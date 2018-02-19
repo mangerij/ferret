@@ -107,8 +107,6 @@
 #include "InPlaneP.h"
 #include "ConversePiezoelectricStrain.h"
 #include "PiezoelectricStrainCharge.h"
-#include "MagneticExchangeDerivative.h"
-#include "MagneticAnisotropyDerivative.h"
 #include "SpinFlexoelectricPolarDerivative.h"
 #include "SpinFlexoelectricMagDerivative.h"
 #include "SpinFlexoelectricMagGradDerivative.h"
@@ -116,14 +114,12 @@
 #include "DzyaloshinskiiDistortDerivative.h"
 #include "MagHStrong.h"
 #include "MagMStrong.h"
-
+#include "DampedExchangeLLG.h"
+#include "DampedAnisotropyLLG.h"
+#include "LagrangeMagConstraint.h"
+#include "LagrangeLambdaConstraint.h"
+#include "LocalSaturationConstraint.h"
 #include "AFDAntiphaseEnergyDerivative.h"
-#include "LagrangianMultiplierAntiferromagConstraint.h"
-#include "LagrangianMultiplierAntiferromagMediumConstraint.h"
-#include "LagrangianMultiplierAntiferromagHeavyConstraint.h"
-#include "DampingMagneticExchangeDerivative.h"
-#include "DampingMagneticAnisotropyDerivative.h"
-#include "DampingSoftConstraint.h"
 
 #include "SurfaceMechanicsBC.h" //not sure why this is called a BC
 #include "Electrostatics.h"
@@ -337,8 +333,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(SpinFlexoelectricPolarDerivative);
   registerKernel(SpinFlexoelectricMagDerivative);
   registerKernel(SpinFlexoelectricMagGradDerivative);
-  registerKernel(MagneticExchangeDerivative);
-  registerKernel(MagneticAnisotropyDerivative);
   registerKernel(DzyaloshinskiiMagDerivative);
   registerKernel(DzyaloshinskiiDistortDerivative);
   registerKernel(MagMStrong);
@@ -346,12 +340,6 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(BulkAntiferrodistortEnergyDerivativeSixth);
   registerKernel(RotoPolarCoupledEnergyPolarDerivativeAlt);
   registerKernel(AFDAntiphaseEnergyDerivative);
-  registerKernel(LagrangianMultiplierAntiferromagConstraint);
-  registerKernel(LagrangianMultiplierAntiferromagMediumConstraint);
-  registerKernel(LagrangianMultiplierAntiferromagHeavyConstraint);
-  registerKernel(DampingMagneticExchangeDerivative);
-  registerKernel(DampingMagneticAnisotropyDerivative);
-  registerKernel(DampingSoftConstraint);
   registerKernel(BulkEnergyDerivativeEighth);
   registerKernel(RotostrictiveCouplingDistortDerivative);
   registerKernel(RotostrictiveCouplingDispDerivative);
@@ -360,9 +348,14 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(RotoBulkEnergyDerivativeEighthAlt);
   registerKernel(RotoPolarCoupledEnergyDistortDerivativeAlt);
   registerKernel(ConstField);
+  registerKernel(DampedAnisotropyLLG);
+  registerKernel(DampedExchangeLLG);
+  registerKernel(LagrangeMagConstraint);
+  registerKernel(LagrangeLambdaConstraint);
+  registerKernel(LocalSaturationConstraint);
 
   ///registerInterfaceKernels
-  registerInterfaceKernel(InterfaceDiffusion);
+  registerInterfaceKernel(InterfaceDiffusion); //used for testing purposes
 
   ///Postprocessors
   registerPostprocessor(BulkEnergy);

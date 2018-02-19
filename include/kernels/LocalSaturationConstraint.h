@@ -19,28 +19,24 @@
 
 **/
 
-#ifndef LAGRANGIANMULTIPLIERANTIFERROMAGCONSTRAINT_H
-#define LAGRANGIANMULTIPLIERANTIFERROMAGCONSTRAINT_H
+#ifndef LOCALSATURATIONCONSTRAINT_H
+#define LOCALSATURATIONCONSTRAINT_H
 
 #include "Kernel.h"
 
-class LagrangianMultiplierAntiferromagConstraint;
+class LocalSaturationConstraint;
 
 template<>
-InputParameters validParams<LagrangianMultiplierAntiferromagConstraint>();
+InputParameters validParams<LocalSaturationConstraint>();
 
-class LagrangianMultiplierAntiferromagConstraint: public Kernel
+class  LocalSaturationConstraint: public Kernel
 {
 public:
-
-  LagrangianMultiplierAntiferromagConstraint(const InputParameters & parameters);
+  LocalSaturationConstraint(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
   const unsigned int _mag_x_var;
@@ -49,10 +45,8 @@ protected:
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const unsigned int _lambda_var;
-  const VariableValue & _lambda;
-  const Real _epsilon;
-  const Real _len_scale;
+  const Real _var_mag;
+  const Real _sat_penalty;
 
 };
-#endif //LAGRANGIANMULTIPLIERANTIFERROMAGCONSTRAINT_H
+#endif //LOCALSATURATIONCONSTRAINT_H

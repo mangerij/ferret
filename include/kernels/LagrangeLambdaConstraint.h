@@ -19,45 +19,36 @@
 
 **/
 
-#ifndef MAGNETICANISOTROPYDERIVATIVE_H
-#define MAGNETICANISOTROPYDERIVATIVE_H
+#ifndef LAGRANGELAMBDACONSTRAINT_H
+#define LAGRANGELAMBDACONSTRAINT_H
 
 #include "Kernel.h"
 
-class MagneticAnisotropyDerivative;
+class LagrangeLambdaConstraint;
 
 template<>
-InputParameters validParams<MagneticAnisotropyDerivative>();
+InputParameters validParams<LagrangeLambdaConstraint>();
 
-class MagneticAnisotropyDerivative: public Kernel
+class  LagrangeLambdaConstraint: public Kernel
 {
 public:
 
-  MagneticAnisotropyDerivative(const InputParameters & parameters);
+  LagrangeLambdaConstraint(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
-
   virtual Real computeQpJacobian();
-
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-  const unsigned int _component;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const VariableGradient & _mag_x_grad;
-  const VariableGradient & _mag_y_grad;
-  const VariableGradient & _mag_z_grad;
-  const Real _Ku;
-  const Real _nx;
-  const Real _ny;
-  const Real _nz;
-  const Real _M0;
-  const Real _len_scale;
+  const VariableValue & _lambda;
+  const Real _eps;
+
 
 };
-#endif //MAGNETICANISOTROPYDERIVATIVE_H
+#endif //LAGRANGELAMBDACONSTRAINT_H

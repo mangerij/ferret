@@ -19,21 +19,21 @@
 
 **/
 
-#ifndef DAMPINGMAGNETICEXCHANGEDERIVATIVE_H
-#define DAMPINGMAGNETICEXCHANGEDERIVATIVE_H
+#ifndef DAMPEDANISOTROPYLLG_H
+#define DAMPEDANISOTROPYLLG_H
 
 #include "Kernel.h"
 
-class DampingMagneticExchangeDerivative;
+class DampedAnisotropyLLG;
 
 template<>
-InputParameters validParams<DampingMagneticExchangeDerivative>();
+InputParameters validParams<DampedAnisotropyLLG>();
 
-class DampingMagneticExchangeDerivative: public Kernel
+class  DampedAnisotropyLLG: public Kernel
 {
 public:
 
-  DampingMagneticExchangeDerivative(const InputParameters & parameters);
+  DampedAnisotropyLLG(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -49,13 +49,12 @@ protected:
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const VariableGradient & _mag_x_grad;
-  const VariableGradient & _mag_y_grad;
-  const VariableGradient & _mag_z_grad;
-  const Real _A;
-  const Real _M0;
   const Real _alphaLL;
+  const Real _Ku;
+  const Real _nx;
+  const Real _ny;
+  const Real _nz;
   const Real _len_scale;
 
 };
-#endif //DAMPINGMAGNETICEXCHANGEDERIVATIVE_H
+#endif //DAMPEDANISOTROPYLLG_H

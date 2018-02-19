@@ -1,17 +1,13 @@
 
 [Mesh]
   type = GeneratedMesh
-  dim = 3
+  dim = 2
   nx = 15
   ny = 15
-  nz = 10
   xmin = -5
   xmax = 5
   ymin = -5
   ymax = 5
-  zmin = -3
-  zmax = 3
-  elem_type = HEX8
 []
 
 
@@ -35,15 +31,13 @@
 
   polar_x = polar_x
   polar_y = polar_y
-  polar_z = polar_z
 
   disp_x = disp_x
   disp_y = disp_y
-  disp_z = disp_z
 
-  displacements = 'disp_x disp_y disp_z'
+  displacements = 'disp_x disp_y'
 
-  potential_int = potential_int
+  potential_E_int = potential_int
 []
 
 
@@ -66,15 +60,6 @@
       max = 0.0001
     [../]
   [../]
-  [./polar_z]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = -0.0001
-      max = 0.0001
-    [../]
-  [../]
 
   [./potential_int]
     order = FIRST
@@ -85,10 +70,6 @@
     family = LAGRANGE
   [../]
   [./disp_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./disp_z]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -142,11 +123,6 @@
    variable = polar_y
    component = 1
  [../]
- [./bed_z]
-   type = BulkEnergyDerivativeSixth
-   variable = polar_z
-   component = 2
- [../]
  ##Wall energy penalty
  [./walled_x]
     type = WallEnergyDerivative
@@ -157,11 +133,6 @@
     type = WallEnergyDerivative
     variable = polar_y
     component = 1
-  [../]
-  [./walled_z]
-     type = WallEnergyDerivative
-     variable = polar_z
-     component = 2
   [../]
   ##Polarization-strain coupling
 
@@ -175,12 +146,6 @@
     variable = polar_y
     component = 1
   [../]
-  [./ferroelectriccouplingp_zz]
-    type = FerroelectricCouplingP
-    variable = polar_z
-    component = 2
-  [../]
-
 
   [./ferroelectriccouplingX_xx]
     type = FerroelectricCouplingX
@@ -191,11 +156,6 @@
     type = FerroelectricCouplingX
     variable = disp_y
     component = 1
-  [../]
-  [./ferroelectriccouplingX_zz]
-    type = FerroelectricCouplingX
-    variable = disp_z
-    component = 2
   [../]
 
   ##Electrostatics
@@ -219,12 +179,6 @@
      variable = polar_y
      component = 1
   [../]
-  [./polar_electric_pz]
-     type = PolarElectricPStrong
-     variable = polar_z
-     component = 2
-  [../]
-
 
   ##Time dependence
   [./polar_x_time]
@@ -237,11 +191,6 @@
      variable=polar_y
      time_scale = 1.0
   [../]
-  [./polar_z_time]
-     type = TimeDerivativeScaled
-     variable = polar_z
-     time_scale = 1.0
-  [../]
 []
 
 
@@ -250,11 +199,6 @@
 []
 
 [Postprocessors]
-  [./avePz]
-    type = ElementAverageValue
-    variable = polar_z
-    execute_on = 'timestep_end'
-  [../]
   [./Fbulk]
     type = BulkEnergy
     execute_on = 'initial timestep_end'
