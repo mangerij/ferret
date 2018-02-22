@@ -70,6 +70,7 @@
 #include "ChangeInRefractiveIndexElectro.h"
 #include "ConvertField.h"
 #include "PzSq.h"
+#include "MagFieldAux.h"
 #include "PlaneAux.h"
 
 //Boundary Conditions
@@ -116,6 +117,8 @@
 #include "MagMStrong.h"
 #include "DampedExchangeLLG.h"
 #include "DampedAnisotropyLLG.h"
+#include "DampedConstrainedExchangeLLG.h"
+#include "DampedConstrainedAnisotropyLLG.h"
 #include "LagrangeMagConstraint.h"
 #include "LagrangeLambdaConstraint.h"
 #include "LocalSaturationConstraint.h"
@@ -302,6 +305,7 @@ FerretApp::registerObjects(Factory & factory)
   registerAux(ChangeInRefractiveIndexWithGCoeffPolar);
   registerAux(PkNorm);
   registerAux(PontryaginDensity);
+  registerAux(MagFieldAux);
   registerAux(InPlaneP);
   registerAux(ChangeInRefractiveIndexElectro);
   registerAux(ConvertField);
@@ -350,6 +354,8 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(ConstField);
   registerKernel(DampedAnisotropyLLG);
   registerKernel(DampedExchangeLLG);
+  registerKernel(DampedConstrainedAnisotropyLLG);
+  registerKernel(DampedConstrainedExchangeLLG);
   registerKernel(LagrangeMagConstraint);
   registerKernel(LagrangeLambdaConstraint);
   registerKernel(LocalSaturationConstraint);

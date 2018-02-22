@@ -1,3 +1,9 @@
+## BENCHMARK PROBLEM #1
+## DOES NOT WORK AT THE MOMENT
+##
+##
+
+
 [Mesh]
   # Mesh details
   type = GeneratedMesh
@@ -22,9 +28,9 @@
   mag_x = magnetic_x
   mag_y = magnetic_y
   mag_z = magnetic_z
-  #lambda = lambda
+  lambda = lambda
 
-  M0 = 80.0 #microns!
+  #M0 = 80.0 #microns!
 
   alphaLL = 1.0
 
@@ -32,11 +38,11 @@
   ny = 0.0
   nz = 0.0
 
-  eps = 1.0e-9
+  eps = 1.0e-7
 
-  Ku = -5e-1
+  Ku = 0.00078
 
-  A = 1.0e-3
+  A = 20.31
 
   phi = phi
   theta = theta
@@ -47,10 +53,10 @@
 []
 
 [Variables]
-  #[./potential_H_int]
-  #  order = FIRST
-  #  family = LAGRANGE
-  #[../]
+  [./potential_H_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
 
   [./magnetic_x]
     order = FIRST
@@ -59,6 +65,7 @@
       type = RandomConstrainedVectorFieldIC
       component = 0
     [../]
+      scaling = 1e-5
   [../]
   [./magnetic_y]
     order = FIRST
@@ -67,6 +74,7 @@
       type = RandomConstrainedVectorFieldIC
       component = 1
     [../]
+      scaling = 1e-5
   [../]
   [./magnetic_z]
     order = FIRST
@@ -75,11 +83,12 @@
       type = RandomConstrainedVectorFieldIC
       component = 2
     [../]
+      scaling = 1e-5
   [../]
-  #[./lambda]
-  #  order = FIRST
-  #  family = LAGRANGE
-  #[../]
+ # [./lambda]
+ #   order = FIRST
+ #   family = LAGRANGE
+ # [../]
 []
 
 [AuxVariables]
@@ -152,31 +161,31 @@
   [../]
 
   ## Magnetostatic terms:
-  #[./mag_h]
-  #   type = MagHStrong
-  #   variable = potential_H_int
-  #[../]
-  #[./M_int]
-  #   type = Electrostatics
-  #   variable = potential_H_int
-  #   permittivity = 1.0
-  #[../]
-  #
-  #[./mag_x]
-  #   type = MagMStrong
-  #   variable = magnetic_x
-  #   component = 0
-  #[../]
-  #[./mag_y]
-  #   type = MagMStrong
-  #   variable = magnetic_y
-  #  component = 1
-  #[../]
-  #[./mag_z]
-  #   type = MagMStrong
-  #   variable = magnetic_z
-  #   component = 2
-  #[../]
+  [./mag_h]
+     type = MagHStrong
+     variable = potential_H_int
+  [../]
+  [./M_int]
+     type = Electrostatics
+     variable = potential_H_int
+     permittivity = 1.0
+  [../]
+  
+  [./mag_x]
+     type = MagMStrong
+     variable = magnetic_x
+     component = 0
+  [../]
+  [./mag_y]
+     type = MagMStrong
+     variable = magnetic_y
+    component = 1
+  [../]
+  [./mag_z]
+     type = MagMStrong
+     variable = magnetic_z
+     component = 2
+  [../]
 
   ## LLG precessional terms
   #
@@ -219,21 +228,25 @@
   [../]
 
   ## Magnetic constraint kernels
-  [./Lx]
-    type = LocalSaturationConstraint
-    component  = 0
-    variable = magnetic_x
-  [../]
-  [./Ly]
-    type = LocalSaturationConstraint
-    component  = 1
-    variable = magnetic_y
-  [../]
-  [./Lz]
-    type = LocalSaturationConstraint
-    component  = 2
-    variable = magnetic_z
-  [../]
+ # [./Lx]
+ #   type = LagrangeMagConstraint
+ #   component  = 0
+ #   variable = magnetic_x
+ # [../]
+ # [./Ly]
+ #   type = LagrangeMagConstraint
+ #   component  = 1
+ #   variable = magnetic_y
+ # [../]
+ # [./Lz]
+ #   type = LagrangeMagConstraint
+ #   component  = 2
+ #   variable = magnetic_z
+ # [../]
+ # [./LL]
+ #   type = LagrangeLambdaConstraint
+ #   variable = lambda
+ # [../]
 []
 
 [Postprocessors]
@@ -310,23 +323,22 @@
     type = SMP
     full = true
     petsc_options = '-snes_converged_reason'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol  -pc_type  -pc_asm_overlap  -sub_pc_type'
-    petsc_options_value = '     121              1e-10      1e-8      1e-6        asm             1            lu'
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol  -pc_type -sub_pc_type -pc_asm_overlap'
+    petsc_options_value = '     121              1e-10         1e-8      1e-8     asm       lu              2'
   [../]
 []
 
 [Executioner]
   type = Transient
-  dt = 0.001
+  dt = 0.1
   solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-13
   dtmax = 1.0
-  #num_steps = 2
 []
 
 [Outputs]
-  print_linear_residuals = false
+  print_linear_residuals = true
   print_perf_log = true
   [./out]
     type = Exodus
