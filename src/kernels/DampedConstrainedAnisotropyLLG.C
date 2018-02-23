@@ -62,15 +62,15 @@ DampedConstrainedAnisotropyLLG::computeQpResidual()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * ((-((_g0*_K1*std::sin(4*_azimuth_phi[_qp])*Utility::pow<3>(std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M)) - (_g0*std::cos(_polar_theta[_qp])*std::sin(_polar_theta[_qp])*
-        (4*_Ae*_alpha*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](1)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) + 4*_alpha*_K1*Utility::pow<2>(std::cos(_polar_theta[_qp])) + 8*_K2*std::cos(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp])*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) + 
-          _alpha*(-(_K1*(3 + std::cos(4*_azimuth_phi[_qp]))) + 2.0*_K2*(1.0+3.0*std::cos(2*_polar_theta[_qp]))*Utility::pow<4>(std::sin(_azimuth_phi[_qp])))*Utility::pow<2>(std::sin(_polar_theta[_qp]))))/((1 + Utility::pow<2>(_alpha))*_M))/2.0);
+    return _test[_i][_qp] * ((-0.5*_g0*(4.*_alpha*_K1*Utility::pow<3>(std::cos(_polar_theta[_qp]))*std::sin(_polar_theta[_qp]) + 8.*_K2*std::cos(_azimuth_phi[_qp])*Utility::pow<2>(std::cos(_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<3>(std::sin(_polar_theta[_qp])) + _K1*std::sin(4.*_azimuth_phi[_qp])*Utility::pow<3>(std::sin(_polar_theta[_qp])) - 
+       1.*_alpha*std::cos(_polar_theta[_qp])*std::sin(_polar_theta[_qp])*(-4.*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) + _K1*(3. + std::cos(4.*_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) + 4.*_K2*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<4>(std::sin(_polar_theta[_qp]))) + 2.*_Ae*_alpha*Utility::pow<2>(_azimuth_phi_grad[_qp](1))*std::sin(2.*_polar_theta[_qp]) + 
+       _alpha*_K2*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<3>(std::sin(2.*_polar_theta[_qp]))))/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * ((-((_alpha*_g0*_K1*std::sin(4.0*_azimuth_phi[_qp])*Utility::pow<2>(std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M)) + (_g0*std::cos(_polar_theta[_qp])*
-        (4*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](1)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) + 4*_K1*Utility::pow<2>(std::cos(_polar_theta[_qp])) - 8*_alpha*_K2*std::cos(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp])*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) + 
-          (-(_K1*(3 + std::cos(4*_azimuth_phi[_qp]))) + 2.0*_K2*(1.0+3.0*std::cos(2*_polar_theta[_qp]))*Utility::pow<4>(std::sin(_azimuth_phi[_qp])))*Utility::pow<2>(std::sin(_polar_theta[_qp]))))/((1 + Utility::pow<2>(_alpha))*_M))/2.0);
+    return _test[_i][_qp] * ((0.5*_g0*(_K1*std::cos(3.*_polar_theta[_qp]) - 8.*_alpha*_K2*std::cos(_azimuth_phi[_qp])*Utility::pow<2>(std::cos(_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) - 1.*_alpha*_K1*std::sin(4.*_azimuth_phi[_qp])*Utility::pow<2>(std::sin(_polar_theta[_qp])) + 
+       std::cos(_polar_theta[_qp])*(4.*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](1)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) + 3.*_K1 - 1.*_K1*(3. + std::cos(4.*_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) - 4.*_K2*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<4>(std::sin(_polar_theta[_qp]))) + 
+       _K2*(1.0/std::sin(_polar_theta[_qp]))*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<3>(std::sin(2.*_polar_theta[_qp]))))/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else
     return 0.0;
@@ -81,14 +81,16 @@ DampedConstrainedAnisotropyLLG::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp]*((_g0*(-24*_K1*Utility::pow<3>(std::cos(_azimuth_phi[_qp]))*std::cos(_polar_theta[_qp])*std::sin(_azimuth_phi[_qp])*Utility::pow<2>(std::sin(_polar_theta[_qp])) - 8*std::cos(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp])*(-3*_K1 + _K2 + 5.0*_K2*std::cos(2*_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) - 
-       2*_alpha*_K2*(5 + 10*std::cos(2*_polar_theta[_qp])+9.0*std::cos(4*_polar_theta[_qp]))*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) + 
-       _alpha*(-((8*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0))+Utility::pow<2>(_azimuth_phi_grad[_qp](1)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) + _K1)*std::cos(2*_polar_theta[_qp])) - 7*_K1*std::cos(4*_polar_theta[_qp]) + 2*_K1*std::cos(4*_azimuth_phi[_qp])*(1.0+2*std::cos(2*_polar_theta[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])))))/(4.*(1 + Utility::pow<2>(_alpha))*_M));
+    return _test[_i][_qp]*((-0.5*_g0*_phi[_j][_qp]*(4.*_alpha*_K1*Utility::pow<4>(std::cos(_polar_theta[_qp])) + 24.*_K2*std::cos(_azimuth_phi[_qp])*Utility::pow<3>(std::cos(_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) + 
+       std::cos(_polar_theta[_qp])*(3.*_K1*std::sin(4.*_azimuth_phi[_qp])*Utility::pow<2>(std::sin(_polar_theta[_qp])) - 16.*_K2*std::cos(_azimuth_phi[_qp])*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<4>(std::sin(_polar_theta[_qp]))) + 
+       _alpha*Utility::pow<2>(std::cos(_polar_theta[_qp]))*(4.*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) - 3.*_K1*(7. + std::cos(4.*_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) - 20.*_K2*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<4>(std::sin(_polar_theta[_qp]))) + 
+       _alpha*(4.*_Ae*Utility::pow<2>(_azimuth_phi_grad[_qp](1))*std::cos(2.*_polar_theta[_qp]) - 4.*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2)))*Utility::pow<2>(std::sin(_polar_theta[_qp])) + _K1*(3. + std::cos(4.*_azimuth_phi[_qp]))*Utility::pow<4>(std::sin(_polar_theta[_qp])) + 4.*_K2*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<6>(std::sin(_polar_theta[_qp])) + 
+          3.*_K2*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*std::sin(2.*_polar_theta[_qp])*std::sin(4.*_polar_theta[_qp]))))/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp]*((-2*_g0*(_alpha*_K1*Utility::pow<4>(std::cos(_azimuth_phi[_qp])) - 4*_K1*Utility::pow<3>(std::cos(_azimuth_phi[_qp]))*std::cos(_polar_theta[_qp])*std::sin(_azimuth_phi[_qp]) - 6*_alpha*Utility::pow<2>(std::cos(_azimuth_phi[_qp]))*(_K1 - _K2*Utility::pow<2>(std::cos(_polar_theta[_qp])))*Utility::pow<2>(std::sin(_azimuth_phi[_qp])) - 
-       2*std::cos(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp])*(-2*_K1 + _K2 + 3*_K2*std::cos(2*_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp])) + _alpha*(_K1 - 2*_K2*Utility::pow<2>(std::cos(_polar_theta[_qp])))*Utility::pow<4>(std::sin(_azimuth_phi[_qp])))*Utility::pow<2>(std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M));
+    return _test[_i][_qp]*((_g0*(-2.*_alpha*_K1*_phi[_j][_qp]*std::cos(4.*_azimuth_phi[_qp])*Utility::pow<2>(std::sin(_polar_theta[_qp])) + 4.*std::cos(_polar_theta[_qp])*(_Ae*(_azimuth_phi_grad[_qp](0)*_grad_phi[_j][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_phi[_j][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_phi[_j][_qp](2)) + _K2*_phi[_j][_qp]*std::cos(_azimuth_phi[_qp])*(1. + 3.*std::cos(2.*_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp]))) + 
+       _phi[_j][_qp]*std::sin(2.*_polar_theta[_qp])*(_K1*std::sin(4.*_azimuth_phi[_qp])*std::sin(_polar_theta[_qp]) - 1.*_alpha*_K2*(1. + 2.*std::cos(2.*_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_azimuth_phi[_qp]))*std::sin(2.*_polar_theta[_qp]))))/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else
     return 0.0;
@@ -101,7 +103,7 @@ DampedConstrainedAnisotropyLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _azimuth_phi_var)
     {
-      return _test[_i][_qp] * ((-2*_g0*(_K1*Utility::pow<4>(std::cos(_azimuth_phi[_qp])) + 4*_alpha*_K1*Utility::pow<3>(std::cos(_azimuth_phi[_qp]))*std::cos(_polar_theta[_qp])*std::sin(_azimuth_phi[_qp]) -6.0*Utility::pow<2>(std::cos(_azimuth_phi[_qp]))*(_K1 - _K2*Utility::pow<2>(std::cos(_polar_theta[_qp])))*Utility::pow<2>(std::sin(_azimuth_phi[_qp]))+2.0*_alpha*std::cos(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp])*(-2*_K1 + _K2 + 3*_K2*std::cos(2*_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))+(_K1-2.0*_K2*Utility::pow<2>(std::cos(_polar_theta[_qp])))*Utility::pow<4>(std::sin(_azimuth_phi[_qp])))*Utility::pow<3>(std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M));
+      return _test[_i][_qp]*((-2*_g0*_phi[_j][_qp]*(_K1*std::cos(4*_azimuth_phi[_qp]) + _K2*Utility::pow<2>(std::sin(_azimuth_phi[_qp]))*(6*Utility::pow<2>(std::cos(_azimuth_phi[_qp]))*Utility::pow<2>(std::cos(_polar_theta[_qp])) + _alpha*std::cos(_azimuth_phi[_qp])*(5*std::cos(_polar_theta[_qp]) + 3*std::cos(3*_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp]) - 2*Utility::pow<2>(std::cos(_polar_theta[_qp]))*Utility::pow<2>(std::sin(_azimuth_phi[_qp]))) + _alpha*_K1*std::cos(_polar_theta[_qp])*std::sin(4*_azimuth_phi[_qp]))*Utility::pow<3>(std::sin(_polar_theta[_qp])) - 2*_Ae*_alpha*(_azimuth_phi_grad[_qp](0)*_grad_phi[_j][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_phi[_j][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_phi[_j][_qp](2))*_g0*std::sin(2*_polar_theta[_qp]))/((1 + Utility::pow<2>(_alpha))*_M));
     }
     else
     {
@@ -112,8 +114,9 @@ DampedConstrainedAnisotropyLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_theta_var)
     {
-      return _test[_i][_qp] * (-(_g0*(8*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](1)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) + 15*_K1 + _K1*std::cos(4.0*_azimuth_phi[_qp]) - 5*_K2*(1 + 3*std::cos(4*_polar_theta[_qp]))*Utility::pow<4>(std::sin(_azimuth_phi[_qp])) + 
-        std::cos(2*_polar_theta[_qp])*(21*_K1 + 3*_K1*std::cos(4*_azimuth_phi[_qp]) + 4*_K2*(8*_alpha*std::cos(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp]) - 3*std::sin(_azimuth_phi[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))) + 4*_alpha*_K1*std::cos(_polar_theta[_qp])*std::sin(4*_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp]))/(4.*(1 + Utility::pow<2>(_alpha))*_M));
+      return _test[_i][_qp] * ((0.5*_g0*_phi[_j][_qp]*(-2.*(2.*_Ae*(Utility::pow<2>(_azimuth_phi_grad[_qp](0)) + Utility::pow<2>(_azimuth_phi_grad[_qp](1)) + Utility::pow<2>(_azimuth_phi_grad[_qp](2))) + _K1 + _K1*(7. + std::cos(4.*_azimuth_phi[_qp]))*Utility::pow<2>(std::cos(_polar_theta[_qp])) + _K1*std::cos(2.*_polar_theta[_qp]) + 8.*_alpha*_K2*std::cos(_azimuth_phi[_qp])*Utility::pow<3>(std::cos(_polar_theta[_qp]))*Utility::pow<3>(std::sin(_azimuth_phi[_qp])) - 
+          8.*_K2*Utility::pow<4>(std::cos(_polar_theta[_qp]))*Utility::pow<4>(std::sin(_azimuth_phi[_qp])))*std::sin(_polar_theta[_qp]) + (3.*_K1 + _K1*std::cos(4.*_azimuth_phi[_qp]) + 8.*_K2*std::cos(_polar_theta[_qp])*Utility::pow<3>(std::sin(_azimuth_phi[_qp]))*(2.*_alpha*std::cos(_azimuth_phi[_qp]) - 5.*std::cos(_polar_theta[_qp])*std::sin(_azimuth_phi[_qp])))*Utility::pow<3>(std::sin(_polar_theta[_qp])) + 
+       4.*_K2*Utility::pow<4>(std::sin(_azimuth_phi[_qp]))*Utility::pow<5>(std::sin(_polar_theta[_qp])) - 1.*_alpha*_K1*std::sin(4.*_azimuth_phi[_qp])*std::sin(2.*_polar_theta[_qp])))/((1. + Utility::pow<2>(_alpha))*_M));
     }
     else
     {
