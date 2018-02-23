@@ -181,6 +181,8 @@
 #include "BulkAntiferrodistortEnergy.h"
 #include "MagneticExchangeEnergy.h"
 #include "MagneticAnisotropyEnergy.h"
+#include "MagneticConstrainedExchangeEnergy.h"
+#include "MagneticConstrainedAnisotropyEnergy.h"
 #include "DMInteractionEnergy.h"
 #include "RotopolarCouplingEnergy.h"
 #include "BulkEnergyEighth.h"
@@ -374,15 +376,15 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
   registerPostprocessor(TotalWinding);
-
   registerPostprocessor(PostprocessorsSum);
-
   registerPostprocessor(EnergyRatePostprocessor);
   registerPostprocessor(LBOBulkEnergy);
   registerPostprocessor(ExtElectrostaticEnergy);
   registerPostprocessor(BulkAntiferrodistortEnergy);
   registerPostprocessor(MagneticExchangeEnergy);
   registerPostprocessor(MagneticAnisotropyEnergy);
+  registerPostprocessor(MagneticConstrainedExchangeEnergy);
+  registerPostprocessor(MagneticConstrainedAnisotropyEnergy);
   registerPostprocessor(DMInteractionEnergy);
   registerPostprocessor(RotopolarCouplingEnergy);
   registerPostprocessor(BulkEnergyEighth);

@@ -19,39 +19,30 @@
 
 **/
 
-#ifndef MAGMSTRONG_H
-#define MAGMSTRONG_H
+#ifndef MAGNETICCONSTRAINEDANISOTROPYENERGY_H
+#define MAGNETICCONSTRAINEDANISOTROPYENERGY_H
 
-#include "Kernel.h"
+#include "ElementIntegralPostprocessor.h"
 
-class MagMStrong;
+//Forward Declarations
+class MagneticConstrainedAnisotropyEnergy;
 
 template<>
-InputParameters validParams<MagMStrong>();
+InputParameters validParams<MagneticConstrainedAnisotropyEnergy>();
 
-class MagMStrong: public Kernel
+class MagneticConstrainedAnisotropyEnergy : public ElementIntegralPostprocessor
 {
 public:
-
-  MagMStrong(const InputParameters & parameters);
+  MagneticConstrainedAnisotropyEnergy(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  virtual Real computeQpIntegral();
 
-private:
-  const unsigned int _component;
-  const unsigned int _potential_H_int_var;
-  const unsigned int _potential_H_ext_var;
-  const VariableGradient & _potential_H_int_grad;
-  const VariableGradient & _potential_H_ext_grad;
-  const unsigned int _azimuth_phi_var;
-  const unsigned int _polar_theta_var;
   const VariableValue & _azimuth_phi;
   const VariableValue & _polar_theta;
-  const Real _alpha;
-  const Real _mu0;
-  const Real _M;
+  const Real _K1;
+  const Real _K2;
+
 };
-#endif //MAGMSTRONG_H
+
+#endif

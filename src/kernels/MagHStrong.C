@@ -27,30 +27,27 @@ template<>
 InputParameters validParams<MagHStrong>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addClassDescription("Calculates a residual contribution for divM (used concomitantly with a magnetostatic kernel)");
-  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
-  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
-  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization");
-  params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
+  params.addClassDescription("Calculates a residual contribution for bound magnetic charge (div M)");
+  params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");
+  params.addRequiredCoupledVar("polar_theta", "The polar component of the constrained magnetic vector");
+  params.addRequiredParam<Real>("M", "M");
   return params;
 }
 
 MagHStrong::MagHStrong(const InputParameters & parameters)
   :Kernel(parameters),
-   _mag_x_var(coupled("mag_x")),
-   _mag_y_var(coupled("mag_y")),
-   _mag_z_var(coupled("mag_z")),
-   _mag_x(coupledValue("mag_x")),
-   _mag_y(coupledValue("mag_y")),
-   _mag_z(coupledValue("mag_z")),
-   _len_scale(getParam<Real>("len_scale"))
+   _azimuth_phi_var(coupled("azimuth_phi")),
+   _polar_theta_var(coupled("polar_theta")),
+   _azimuth_phi(coupledValue("azimuth_phi")),
+   _polar_theta(coupledValue("polar_theta")),
+   _M(getParam<Real>("M"))
 {
 }
 
 Real
 MagHStrong::computeQpResidual()
 {
-  return - (_mag_x[_qp] * _grad_test[_i][_qp](0) + _mag_y[_qp] * _grad_test[_i][_qp](1) + _mag_z[_qp] * _grad_test[_i][_qp](2)) * std::pow(_len_scale, 2.0);
+  return -(_M*(_grad_test[_i][_qp](2)*std::cos(_polar_theta[_qp])+(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp])+_grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
 }
 Real
 MagHStrong::computeQpJacobian()
@@ -61,12 +58,14 @@ MagHStrong::computeQpJacobian()
 Real
 MagHStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if (jvar == _mag_x_var)
-    return - _phi[_j][_qp] * _grad_test[_i][_qp](0) * std::pow(_len_scale, 2.0);
-  else if (jvar == _mag_y_var)
-    return - _phi[_j][_qp] * _grad_test[_i][_qp](1) * std::pow(_len_scale, 2.0);
-  else if (jvar == _mag_z_var)
-    return - _phi[_j][_qp] * _grad_test[_i][_qp](2) * std::pow(_len_scale, 2.0);
+  if (jvar == _polar_theta_var)
+  {
+    return _M*_phi[_j][_qp]*(-(std::cos(_polar_theta[_qp])*(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp]) + _grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))) + _grad_test[_i][_qp](2)*std::sin(_polar_theta[_qp]));
+  }
+  else if (jvar == _azimuth_phi_var)
+  {
+    return _M*_phi[_j][_qp]*(-(_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp])) + _grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp]);
+  }
   else
     return 0.0;
 }

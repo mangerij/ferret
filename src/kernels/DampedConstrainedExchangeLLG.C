@@ -27,7 +27,7 @@ InputParameters validParams<DampedConstrainedExchangeLLG>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution for the magnetic anisotropy energy.");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for polar, 1 for azimuthal)");
   params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");
   params.addRequiredCoupledVar("polar_theta", "The polar component of the constrained magnetic vector");
   params.addRequiredParam<Real>("alpha", "the damping coefficient in the LLG equation");
@@ -58,12 +58,11 @@ DampedConstrainedExchangeLLG::computeQpResidual()
 {
   if (_component == 0)
   {
-    return (-((_grad_test[_i][_qp](0)*_g0*(2*_Ae*_alpha*_polar_theta_grad[_qp](0) + 2*_Ae*_azimuth_phi_grad[_qp](0)*std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M)) - (_grad_test[_i][_qp](1)*_g0*(2*_Ae*_alpha*_polar_theta_grad[_qp](1) + 2*_Ae*_azimuth_phi_grad[_qp](1)*std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M) - 
-   (_grad_test[_i][_qp](2)*_g0*(2*_Ae*_alpha*_polar_theta_grad[_qp](2) + 2*_Ae*_azimuth_phi_grad[_qp](2)*std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M));
+    return ((-2.*_Ae*_g0*(_alpha*(_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2)) + (_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))*std::sin(_polar_theta[_qp])))/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else if (_component == 1)
   {
-    return ((2*_Ae*_g0*(-(_alpha*(_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))) + (_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*(1.0/std::sin(_polar_theta[_qp]))))/((1 + Utility::pow<2>(_alpha))*_M));
+    return ((2.*_Ae*_g0*(-1.*_alpha*(_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2)) + (_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*(1.0/std::sin(_polar_theta[_qp]))))/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else
     return 0.0;
@@ -74,11 +73,11 @@ DampedConstrainedExchangeLLG::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return ((-2*_Ae*_g0*(_alpha*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2)) + (_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))*std::cos(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M));
+    return ((_Ae*_g0*(_alpha*(-2.*_grad_test[_i][_qp](0)*_grad_phi[_j][_qp](0) - 2.*_grad_test[_i][_qp](1)*_grad_phi[_j][_qp](1) - 2.*_grad_test[_i][_qp](2)*_grad_phi[_j][_qp](2)) + (-2.*_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) - 2.*_azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) - 2.*_azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))*_phi[_j][_qp]*std::cos(_polar_theta[_qp])))/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else if (_component == 1)
   {
-    return ((-2*_Ae*_alpha*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_g0)/((1 + Utility::pow<2>(_alpha))*_M));
+    return ((_Ae*_alpha*(-2.*_grad_test[_i][_qp](0)*_grad_phi[_j][_qp](0) - 2.*_grad_test[_i][_qp](1)*_grad_phi[_j][_qp](1) - 2.*_grad_test[_i][_qp](2)*_grad_phi[_j][_qp](2))*_g0)/((1. + Utility::pow<2>(_alpha))*_M));
   }
   else
     return 0.0;
@@ -91,7 +90,7 @@ DampedConstrainedExchangeLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _azimuth_phi_var)
     {
-      return ((-2*_Ae*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_g0*std::sin(_polar_theta[_qp]))/((1 + Utility::pow<2>(_alpha))*_M));
+      return ((_Ae*(-2.*_grad_test[_i][_qp](0)*_grad_phi[_j][_qp](0) - 2.*_grad_test[_i][_qp](1)*_grad_phi[_j][_qp](1) - 2.*_grad_test[_i][_qp](2)*_grad_phi[_j][_qp](2))*_g0*std::sin(_polar_theta[_qp]))/((1. + Utility::pow<2>(_alpha))*_M));
     }
     else
     {
@@ -102,7 +101,7 @@ DampedConstrainedExchangeLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_theta_var)
     {
-      return ((2*_Ae*_g0*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2) - (_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*( std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp])))*(1.0/std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_M));
+      return ((_Ae*_g0*(2.*_grad_test[_i][_qp](0)*_grad_phi[_j][_qp](0) + 2.*_grad_test[_i][_qp](1)*_grad_phi[_j][_qp](1) + 2.*_grad_test[_i][_qp](2)*_grad_phi[_j][_qp](2) + (-2.*_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) - 2.*_grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) - 2.*_grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*_phi[_j][_qp]*(std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp])))*(1.0/std::sin(_polar_theta[_qp])))/((1. + Utility::pow<2>(_alpha))*_M));
     }
     else
     {
