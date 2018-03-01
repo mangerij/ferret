@@ -1,0 +1,1 @@
+/Users/lukaszkuna/projects/ferret/include/kernels/SpinFlexoelectricPolarDerivative.h

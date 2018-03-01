@@ -40,10 +40,10 @@ ComputeDeltaIndicatrix::ComputeDeltaIndicatrix(const InputParameters & parameter
 void
 ComputeDeltaIndicatrix::computeQpDeltaIndicatrix()
 {
-  Real sum = 0.0;
   for (unsigned int i = 0; i < 3; ++i)
     for (unsigned int j = 0; j < 3; ++j)
     {
+      Real sum = 0.0;
       for (unsigned int k = 0; k < 3; ++k)
         for (unsigned int l = 0; l < 3; ++l)
         {
@@ -53,5 +53,3 @@ ComputeDeltaIndicatrix::computeQpDeltaIndicatrix()
     }
     //Moose::out << "\n b"; std::cout << a; Moose::out << " = "; std::cout << _delta_beta_tensor[_qp](0, a);
 }
-
-

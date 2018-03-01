@@ -42,10 +42,10 @@ ComputeDeltaIndicatrixElectro::ComputeDeltaIndicatrixElectro(const InputParamete
 void
 ComputeDeltaIndicatrixElectro::computeQpDeltaIndicatrixElectro()
 {
-  Real sum = 0.0;
   for (unsigned int i = 0; i < 3; ++i)
     for (unsigned int j = 0; j < 3; ++j)
     {
+      Real sum = 0.0;
       for (unsigned int k = 0; k < 3; ++k)
         {
           sum += _electrooptic_tensor[_qp](i, j, k) * _potential_E_int_grad[_qp](k) ;
