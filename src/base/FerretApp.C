@@ -118,6 +118,7 @@
 #include "DampedExchangeLLG.h"
 #include "DampedAnisotropyLLG.h"
 #include "DampedConstrainedExchangeLLG.h"
+#include "DampedConstrainedAltAnisotropyLLG.h"
 #include "DampedConstrainedAnisotropyLLG.h"
 #include "LagrangeMagConstraint.h"
 #include "LagrangeLambdaConstraint.h"
@@ -163,9 +164,6 @@
 //Postprocessors
 #include "WallEnergy.h"
 #include "ThermalEnergy.h"
-
-#include "PostprocessorsSum.h"
-
 #include "BulkEnergy.h"
 #include "BulkEnergyCoupledT.h"
 #include "ElectrostaticEnergy.h"
@@ -174,13 +172,14 @@
 #include "ElectrostrictiveEnergy.h"
 #include "DepolarizationEnergy.h"
 #include "AnisotropicEnergy.h"
-
 #include "TotalWinding.h"
 #include "EnergyRatePostprocessor.h"
 #include "LBOBulkEnergy.h"
 #include "BulkAntiferrodistortEnergy.h"
 #include "MagneticExchangeEnergy.h"
+#include "MagnetostaticEnergy.h"
 #include "MagneticAnisotropyEnergy.h"
+#include "MagneticConstrainedAltAnisotropyEnergy.h"
 #include "MagneticConstrainedExchangeEnergy.h"
 #include "MagneticConstrainedAnisotropyEnergy.h"
 #include "DMInteractionEnergy.h"
@@ -358,6 +357,7 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(DampedExchangeLLG);
   registerKernel(DampedConstrainedAnisotropyLLG);
   registerKernel(DampedConstrainedExchangeLLG);
+  registerKernel(DampedConstrainedAltAnisotropyLLG);
   registerKernel(LagrangeMagConstraint);
   registerKernel(LagrangeLambdaConstraint);
   registerKernel(LocalSaturationConstraint);
@@ -376,15 +376,16 @@ FerretApp::registerObjects(Factory & factory)
   registerPostprocessor(DepolarizationEnergy);
   registerPostprocessor(AnisotropicEnergy);
   registerPostprocessor(TotalWinding);
-  registerPostprocessor(PostprocessorsSum);
   registerPostprocessor(EnergyRatePostprocessor);
   registerPostprocessor(LBOBulkEnergy);
   registerPostprocessor(ExtElectrostaticEnergy);
   registerPostprocessor(BulkAntiferrodistortEnergy);
   registerPostprocessor(MagneticExchangeEnergy);
   registerPostprocessor(MagneticAnisotropyEnergy);
+  registerPostprocessor(MagnetostaticEnergy);
   registerPostprocessor(MagneticConstrainedExchangeEnergy);
   registerPostprocessor(MagneticConstrainedAnisotropyEnergy);
+  registerPostprocessor(MagneticConstrainedAltAnisotropyEnergy);
   registerPostprocessor(DMInteractionEnergy);
   registerPostprocessor(RotopolarCouplingEnergy);
   registerPostprocessor(BulkEnergyEighth);

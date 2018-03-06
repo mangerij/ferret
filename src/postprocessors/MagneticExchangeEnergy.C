@@ -48,5 +48,5 @@ MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameter
 Real
 MagneticExchangeEnergy::computeQpIntegral()
 {
-  return (_A*(std::pow(_mag_x_grad[_qp](0),2) + std::pow(_mag_x_grad[_qp](1),2) + std::pow(_mag_x_grad[_qp](2),2) + std::pow(_mag_y_grad[_qp](0),2) + std::pow(_mag_y_grad[_qp](1),2) + std::pow(_mag_y_grad[_qp](2),2) + std::pow(_mag_z_grad[_qp](0),2) + std::pow(_mag_z_grad[_qp](1),2) + std::pow(_mag_z_grad[_qp](2),2))) * std::pow(_len_scale,1.0);
+  return -(_A*(std::pow(_mag_x_grad[_qp](0),2) + std::pow(_mag_x_grad[_qp](1),2) + std::pow(_mag_x_grad[_qp](2),2) + std::pow(_mag_y_grad[_qp](0),2) + std::pow(_mag_y_grad[_qp](1),2) + std::pow(_mag_y_grad[_qp](2),2) + std::pow(_mag_z_grad[_qp](0),2) + std::pow(_mag_z_grad[_qp](1),2) + std::pow(_mag_z_grad[_qp](2),2))) * std::pow(_len_scale,1.0);
 }

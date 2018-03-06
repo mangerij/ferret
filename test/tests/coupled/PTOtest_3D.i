@@ -305,12 +305,9 @@
       execute_on = 'initial timestep_end'
     [../]
     [./Ftotal]
-      type = PostprocessorsSum
-      num_pp = 4
-      var0 = Fbulk
-      var1 = Fwall
-      var2 = Fcoupled
-      var3 = Felec
+      type = LinearCombinationPostprocessor 
+      pp_names = 'Fbulk Fwall Fcoupled Felec' 
+      pp_coefs = ' 1 1 1 1' 
       execute_on = 'initial timestep_end'
     [../]
     [./perc_change]

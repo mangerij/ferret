@@ -186,3 +186,5 @@ Makefile
 
 # Ignore everything in lib, all files in there are generated.
 lib/*
+# Ignore everything in build/header_symlinks/, all files in there are generated.
+build/header_symlinks/*
