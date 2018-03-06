@@ -14,32 +14,36 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
 
-#ifndef POSTPROCESSORSSUM_H
-#define POSTPROCESSORSSUM_H
+#ifndef MAGNETOSTATICENERGY_H
+#define MAGNETOSTATICENERGY_H
 
-#include "GeneralPostprocessor.h"
+#include "ElementIntegralPostprocessor.h"
 
-class PostprocessorsSum;
+//Forward Declarations
+class MagnetostaticEnergy;
 
 template<>
-InputParameters validParams<PostprocessorsSum>();
+InputParameters validParams<MagnetostaticEnergy>();
 
-class PostprocessorsSum : public GeneralPostprocessor
+class MagnetostaticEnergy : public ElementIntegralPostprocessor
 {
 public:
-  PostprocessorsSum(const InputParameters & parameters);
-  virtual ~PostprocessorsSum();
-  virtual void initialize();
-  virtual void execute();
-  virtual Real getValue();
+  MagnetostaticEnergy(const InputParameters & parameters);
+
 protected:
-  const unsigned int _num_pp;
-  const PostprocessorValue & _var0, & _var1, & _var2, & _var3, & _var4, & _var5, & _var6, & _var7, & _var8;
+  virtual Real computeQpIntegral();
+  const VariableGradient & _potential_H_int_grad;
+  const VariableGradient & _potential_H_ext_grad;
+  const VariableValue & _azimuth_phi;
+  const VariableValue & _polar_theta;
+  const Real _mu0;
+  const Real _M;
+
 };
 
 #endif

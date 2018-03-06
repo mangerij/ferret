@@ -580,16 +580,9 @@
     execute_on = 'initial timestep_end'
   [../]
   [./Ftot]
-    type = PostprocessorsSum
-    num_pp = 8
-    var0 = FbP
-    var1 = FbA
-    var2 = FgP
-    var3 = FgA
-    var4 = FcPA
-    var5 = FcPu
-    var6 = FcAu
-    var7 = Felu
+    type = LinearCombinationPostprocessor 
+    pp_names = 'FbP FbA FgP FgA FcPA FcPu FcAu Felu' 
+    pp_coefs = ' 1 1 1 1 1 1 1 1' 
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change]
