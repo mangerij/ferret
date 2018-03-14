@@ -102,6 +102,10 @@
 #include "FerroelectricCouplingX.h"
 #include "KarmanenkoDriver.h"
 
+#include "ConstrainedAnisotropyLLG.h"
+#include "ConstrainedExchangeLLG.h"
+#include "ConstrainedInteractionLLG.h"
+
 #include "LBOBulkEnergyDeriv.h"
 #include "DepolEnergy.h"
 #include "PontryaginDensity.h"
@@ -358,6 +362,9 @@ FerretApp::registerObjects(Factory & factory)
   registerKernel(DampedConstrainedAnisotropyLLG);
   registerKernel(DampedConstrainedExchangeLLG);
   registerKernel(DampedConstrainedAltAnisotropyLLG);
+  registerKernel(ConstrainedAnisotropyLLG);
+  registerKernel(ConstrainedExchangeLLG);
+  registerKernel(ConstrainedInteractionLLG);
   registerKernel(LagrangeMagConstraint);
   registerKernel(LagrangeLambdaConstraint);
   registerKernel(LocalSaturationConstraint);

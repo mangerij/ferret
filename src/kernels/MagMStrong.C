@@ -110,7 +110,7 @@ MagMStrong::computeQpOffDiagJacobian(unsigned int jvar)
     }
     else
     {
-      return 0.0;
+      return 0.0; //wrong!!!! where is the \Phi component!!!?????
     }
   }
   else
