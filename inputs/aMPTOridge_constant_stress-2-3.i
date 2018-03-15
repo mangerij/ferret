@@ -16,21 +16,6 @@
 
 [GlobalParams]
   len_scale = 1.0
-  #alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 293 K)
-  #alpha11 = -0.07253
-  #alpha111 = 0.26
-  #alpha12 = 0.75
-  #alpha112 = 0.61
-  #alpha123 = -3.67
-  #G110 = 0.173
-  #G11_G110 = 0.6
-  #G12_G110 = 0
-  #G44_G110 = 0.3
-  #G44P_G110 = 0.3
-  #polar_x = polar_x
-  #polar_y = polar_y
-  #polar_z = polar_z
-  #potential_int = potential_int
   disp_x = disp_x
   disp_y = disp_y
   disp_z = disp_z
@@ -38,21 +23,6 @@
 []
 
 [Variables]
-  #[./polar_x]
-  #  block = '1 2'
-  #  order = FIRST
-  #  family = LAGRANGE
-  #[../]
-  #[./polar_y]
-  #  block = '1 2'
-  #  order = FIRST
-  #  family = LAGRANGE
-  #[../]
-  #[./polar_z]
-  #  block = '1 2'
-  #  order = FIRST
-  #  family = LAGRANGE
-  #[../]
   [./potential_int]
     block = '3' #should be '1 2 3 4'
     order = FIRST
