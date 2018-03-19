@@ -120,7 +120,7 @@
 
   [./slab_ferroelectric]
     type = ComputeElectrostrictiveTensor
-    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+    Q_mnkl = '-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375'
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
@@ -324,7 +324,6 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason'
     petsc_options_iname = '-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type'
     petsc_options_value = '    121                1e-6      1e-8    bjacobi'
   [../]
@@ -332,27 +331,19 @@
 
 [Executioner]
   type = Transient
-    [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 0.1
-    optimal_iterations = 6
-    growth_factor = 1.4
-    linear_iteration_ratio = 1000
-    cutback_factor =  0.8
-[../]
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
-  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  solve_type = 'NEWTON'
+  scheme = 'implicit-euler'
   dtmin = 1e-13
   dtmax = 0.1
   num_steps = 5
 []
 
 [Outputs]
-  print_linear_residuals = true
+  print_linear_residuals = false
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = outPTOchunk_test_fluct
+    file_base = outPTO_test_fluct
     elemental_as_nodal = true
     interval = 1
   [../]

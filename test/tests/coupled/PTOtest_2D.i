@@ -94,7 +94,7 @@
 
   [./slab_ferroelectric]
     type = ComputeElectrostrictiveTensor
-    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+    Q_mnkl = '-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375'
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
@@ -254,16 +254,8 @@
 
 [Executioner]
   type = Transient
-    [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 0.1
-    optimal_iterations = 6
-    growth_factor = 1.4
-    linear_iteration_ratio = 1000
-    cutback_factor =  0.8
-[../]
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
-  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  solve_type = 'NEWTON'
+  scheme = 'implicit-euler'
   #dt = 0.5
   dtmin = 1e-13
   dtmax = 0.1

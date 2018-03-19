@@ -2,15 +2,15 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 7
-  ny = 7
-  nz = 5
-  xmin = -3
-  xmax = 3
-  ymin = -3
-  ymax = 3
-  zmin = -2
-  zmax = 2
+  nx = 6
+  ny = 6
+  nz = 4
+  xmin = -1.5
+  xmax = 1.5
+  ymin = -1.5
+  ymax = 1.5
+  zmin = -1
+  zmax = 1
   elem_type = HEX8
 []
 
@@ -46,8 +46,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.01e-5
+      max = 0.01e-5
       seed = 5
     [../]
   [../]
@@ -56,8 +56,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.01e-5
+      max = 0.01e-5
       seed = 5
     [../]
   [../]
@@ -66,8 +66,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.01e-5
+      max = 0.01e-5
       seed = 5
     [../]
   [../]
@@ -114,7 +114,7 @@
 
   [./slab_ferroelectric]
     type = ComputeElectrostrictiveTensor
-    Q_mnkl = '0.089 -0.026 -0.026 0.089 -0.026 0.089 0.03375 0.03375 0.03375'
+    Q_mnkl = '-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375'
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
@@ -228,25 +228,6 @@
 
 
 [BCs]
-  [./disp_x_front]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_x
-  [../]
-  [./disp_y_front]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_y
-  [../]
-  [./disp_z_front]
-    type = DirichletBC
-    boundary = 'front'
-    value = 0.0
-    variable = disp_z
-  [../]
-
   [./potential_E_int_front]
     type = DirichletBC
     boundary = 'front'
@@ -259,25 +240,6 @@
     boundary = 'back'
     value = 0.0001
     variable = potential_E_int
-  [../]
-
-  [./disp_x_back]
-    type = DirichletBC
-    boundary = 'back'
-    value = 0.0
-    variable = disp_x
-  [../]
-  [./disp_y_back]
-    type = DirichletBC
-    boundary = 'back'
-    value = 0.0
-    variable = disp_y
-  [../]
-  [./disp_z_back]
-    type = DirichletBC
-    boundary = 'back'
-    value = 0.0
-    variable = disp_z
   [../]
 []
 
@@ -328,19 +290,10 @@
 
 [Executioner]
   type = Transient
-    [./TimeStepper]
-    type = IterationAdaptiveDT
-    dt = 0.1
-    optimal_iterations = 6
-    growth_factor = 1.4
-    linear_iteration_ratio = 1000
-    cutback_factor =  0.8
-[../]
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
-  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
-  #dt = 0.5
+  solve_type = 'NEWTON'
+  scheme = 'implicit-euler'
   dtmin = 1e-13
-  dtmax = 0.1
+  dtmax = 0.35
   num_steps = 15
 []
 
