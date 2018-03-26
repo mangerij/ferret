@@ -21,6 +21,8 @@
 
 #include "WindingNumberDensity.h"
 
+registerMooseObject("FerretApp", WindingNumberDensity);
+
 template<>
 InputParameters validParams<WindingNumberDensity>()
 {

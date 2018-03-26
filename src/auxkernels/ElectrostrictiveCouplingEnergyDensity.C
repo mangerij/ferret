@@ -21,6 +21,8 @@
 
 #include "ElectrostrictiveCouplingEnergyDensity.h"
 
+registerMooseObject("FerretApp", ElectrostrictiveCouplingEnergyDensity);
+
 template<>
 InputParameters validParams<ElectrostrictiveCouplingEnergyDensity>()
 {

@@ -20,6 +20,8 @@
 **/
 
 #include "InPlaneP.h"
+registerMooseObject("FerretApp", InPlaneP);
+
 template<>
 
 InputParameters validParams<InPlaneP>()

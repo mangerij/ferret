@@ -23,6 +23,8 @@
 #include "RotationTensor.h"
 #include "RankFourTensor.h"
 
+registerMooseObject("FerretApp", ComputeGCoeffTensor);
+
 template<>
 InputParameters validParams<ComputeGCoeffTensor>()
 {

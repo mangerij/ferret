@@ -22,6 +22,8 @@
 #include "DampedExchangeLLG.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", DampedExchangeLLG);
+
 template<>
 InputParameters validParams<DampedExchangeLLG>()
 {

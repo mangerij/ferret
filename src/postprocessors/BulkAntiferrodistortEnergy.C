@@ -22,6 +22,8 @@
 #include "BulkAntiferrodistortEnergy.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", BulkAntiferrodistortEnergy);
+
 template<>
 InputParameters validParams<BulkAntiferrodistortEnergy>()
 {

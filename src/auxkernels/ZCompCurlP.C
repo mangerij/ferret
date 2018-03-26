@@ -20,6 +20,8 @@
 **/
 
 #include "ZCompCurlP.h"
+registerMooseObject("FerretApp", ZCompCurlP);
+
 template<>
 
 InputParameters validParams<ZCompCurlP>()

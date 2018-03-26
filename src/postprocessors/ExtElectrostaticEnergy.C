@@ -21,6 +21,8 @@
 
 #include "ExtElectrostaticEnergy.h"
 
+registerMooseObject("FerretApp", ExtElectrostaticEnergy);
+
 template<>
 InputParameters validParams<ExtElectrostaticEnergy>()
 {

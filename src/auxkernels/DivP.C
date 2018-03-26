@@ -20,6 +20,8 @@
 **/
 
 #include "DivP.h"
+registerMooseObject("FerretApp", DivP);
+
 template<>
 
 InputParameters validParams<DivP>()

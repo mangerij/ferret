@@ -22,6 +22,8 @@
 #include "ComputeDeltaIndicatrix.h"
 #include "RankTwoTensor.h"
 
+registerMooseObject("FerretApp", ComputeDeltaIndicatrix);
+
 template<>
 InputParameters validParams<ComputeDeltaIndicatrix>()
 {

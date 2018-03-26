@@ -21,6 +21,8 @@
 
 #include "PiezoelectricApprox.h"
 
+registerMooseObject("FerretApp", PiezoelectricApprox);
+
 template<>
 InputParameters validParams<PiezoelectricApprox>()
 {

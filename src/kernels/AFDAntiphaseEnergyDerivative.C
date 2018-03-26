@@ -21,6 +21,8 @@
 
 #include "AFDAntiphaseEnergyDerivative.h"
 
+registerMooseObject("FerretApp", AFDAntiphaseEnergyDerivative);
+
 template<>
 InputParameters validParams<AFDAntiphaseEnergyDerivative>()
 {

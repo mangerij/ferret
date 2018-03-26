@@ -21,6 +21,8 @@
 
 #include "EnergyRatePostprocessor.h"
 
+registerMooseObject("FerretApp", EnergyRatePostprocessor);
+
 template<>
 InputParameters validParams<EnergyRatePostprocessor>()
 {

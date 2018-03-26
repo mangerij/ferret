@@ -21,6 +21,8 @@
 
 #include "Birefringence.h"
 
+registerMooseObject("FerretApp", Birefringence);
+
 template<>
 
 InputParameters validParams<Birefringence>()

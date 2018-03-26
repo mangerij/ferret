@@ -25,6 +25,8 @@
 #include "RotationTensor.h"
 #include "RankFourTensor.h"
 
+registerMooseObject("FerretApp", ComputeElastoopticTensor);
+
 template<>
 InputParameters validParams<ComputeElastoopticTensor>()
 {

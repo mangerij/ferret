@@ -25,6 +25,8 @@
 #include "RotationTensor.h"
 #include "RankFourTensor.h"
 
+registerMooseObject("FerretApp", ComputeElectrostrictiveTensor);
+
 template<>
 InputParameters validParams<ComputeElectrostrictiveTensor>()
 {

@@ -22,6 +22,8 @@
 #include "DampedAnisotropyLLG.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", DampedAnisotropyLLG);
+
 template<>
 InputParameters validParams<DampedAnisotropyLLG>()
 {

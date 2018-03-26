@@ -24,6 +24,8 @@
 
 class AnisotropyEnergy;
 
+registerMooseObject("FerretApp", AnisotropyEnergy);
+
 template<>
 InputParameters validParams<AnisotropyEnergy>()
 {

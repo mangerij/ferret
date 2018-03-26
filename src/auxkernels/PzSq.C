@@ -20,6 +20,8 @@
 **/
 
 #include "PzSq.h"
+registerMooseObject("FerretApp", PzSq);
+
 template<>
 
 InputParameters validParams<PzSq>()

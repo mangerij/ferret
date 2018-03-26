@@ -22,6 +22,8 @@
 #include "BulkEnergyDerivativeEighth.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", BulkEnergyDerivativeEighth);
+
 template<>
 InputParameters validParams<BulkEnergyDerivativeEighth>()
 {

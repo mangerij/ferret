@@ -21,6 +21,8 @@
 
 #include "LBOBulkEnergy.h"
 
+registerMooseObject("FerretApp", LBOBulkEnergy);
+
 template<>
 InputParameters validParams<LBOBulkEnergy>()
 {

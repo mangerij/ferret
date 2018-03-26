@@ -21,6 +21,8 @@
 
 #include "WallEnergy.h"
 
+registerMooseObject("FerretApp", WallEnergy);
+
 template<>
 InputParameters validParams<WallEnergy>()
 {

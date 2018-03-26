@@ -25,6 +25,8 @@
 #include "RankThreeTensor.h"
 #include "PiezostrictiveTensorTools.h"
 
+registerMooseObject("FerretApp", ComputePiezoTensor);
+
 template<>
 InputParameters validParams<ComputePiezoTensor>()
 {

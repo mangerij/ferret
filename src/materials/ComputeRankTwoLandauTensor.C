@@ -23,6 +23,8 @@
 #include "RotationTensor.h"
 #include "RankTwoTensor.h"
 
+registerMooseObject("FerretApp", ComputeRankTwoLandauTensor);
+
 template<>
 InputParameters validParams<ComputeRankTwoLandauTensor>()
 {

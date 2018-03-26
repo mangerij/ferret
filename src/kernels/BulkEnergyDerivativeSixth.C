@@ -23,6 +23,8 @@
 #include "libmesh/utility.h"
 #include <vector>
 
+registerMooseObject("FerretApp", BulkEnergyDerivativeSixth);
+
 template<>
 InputParameters validParams<BulkEnergyDerivativeSixth>()
 {

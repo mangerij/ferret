@@ -1,1 +1,0 @@
-/Users/lukaszkuna/projects/ferret/include/postprocessors/ElasticEnergy.h

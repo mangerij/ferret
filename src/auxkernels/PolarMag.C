@@ -22,6 +22,8 @@
 #include "PolarMag.h"
 #include <math.h>
 
+registerMooseObject("FerretApp", PolarMag);
+
 template<>
 InputParameters validParams<PolarMag>()
 {

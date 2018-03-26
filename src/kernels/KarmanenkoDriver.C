@@ -22,6 +22,8 @@
 #include "KarmanenkoDriver.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", KarmanenkoDriver);
+
 template<>
 InputParameters validParams<KarmanenkoDriver>()
 {

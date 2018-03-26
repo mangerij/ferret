@@ -22,6 +22,8 @@
 #include "ConstrainedAnisotropyLLG.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", ConstrainedAnisotropyLLG);
+
 template<>
 InputParameters validParams<ConstrainedAnisotropyLLG>()
 {

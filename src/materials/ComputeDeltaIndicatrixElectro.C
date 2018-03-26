@@ -23,6 +23,8 @@
 #include "RankThreeTensor.h"
 #include "ComputeElectroopticTensor.h"
 
+registerMooseObject("FerretApp", ComputeDeltaIndicatrixElectro);
+
 template<>
 InputParameters validParams<ComputeDeltaIndicatrixElectro>()
 {

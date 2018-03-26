@@ -21,6 +21,8 @@
 
 #include "MagFieldAux.h"
 
+registerMooseObject("FerretApp", MagFieldAux);
+
 template<>
 
 InputParameters validParams<MagFieldAux>()

@@ -27,6 +27,8 @@
 #include "RotationTensor.h"
 #include "MooseMesh.h"
 
+registerMooseObject("FerretApp", SurfaceMechanicsBC);
+
 template<>
 InputParameters validParams<SurfaceMechanicsBC>()
 {

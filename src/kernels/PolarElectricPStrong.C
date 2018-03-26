@@ -23,6 +23,8 @@
 
 class PolarElectricPStrong;
 
+registerMooseObject("FerretApp", PolarElectricPStrong);
+
 template<>
 InputParameters validParams<PolarElectricPStrong>()
 {

@@ -21,6 +21,8 @@
 
 #include "StressBC.h"
 
+registerMooseObject("FerretApp", StressBC);
+
 template<>
 InputParameters validParams<StressBC>()
 {

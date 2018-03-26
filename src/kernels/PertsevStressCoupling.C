@@ -23,6 +23,8 @@
 
 class PertsevStressCoupling;
 
+registerMooseObject("FerretApp", PertsevStressCoupling);
+
 template<>
 InputParameters validParams<PertsevStressCoupling>()
 {

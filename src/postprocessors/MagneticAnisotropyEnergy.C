@@ -21,6 +21,8 @@
 
 #include "MagneticAnisotropyEnergy.h"
 
+registerMooseObject("FerretApp", MagneticAnisotropyEnergy);
+
 template<>
 InputParameters validParams<MagneticAnisotropyEnergy>()
 {

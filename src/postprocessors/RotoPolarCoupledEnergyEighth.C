@@ -22,6 +22,8 @@
 #include "RotoPolarCoupledEnergyEighth.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", RotoPolarCoupledEnergyEighth);
+
 template<>
 InputParameters validParams<RotoPolarCoupledEnergyEighth>()
 {

@@ -20,6 +20,8 @@
 **/
 
 #include "PontryaginDensity.h"
+registerMooseObject("FerretApp", PontryaginDensity);
+
 template<>
 
 InputParameters validParams<PontryaginDensity>()

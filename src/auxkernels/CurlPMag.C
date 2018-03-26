@@ -20,6 +20,8 @@
 **/
 
 #include "CurlPMag.h"
+registerMooseObject("FerretApp", CurlPMag);
+
 template<>
 
 InputParameters validParams<CurlPMag>()

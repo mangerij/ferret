@@ -23,6 +23,8 @@
 #include "RotationTensor.h"
 #include "RankThreeTensor.h"
 
+registerMooseObject("FerretApp", ComputeElectroopticTensor);
+
 template<>
 InputParameters validParams<ComputeElectroopticTensor>()
 {

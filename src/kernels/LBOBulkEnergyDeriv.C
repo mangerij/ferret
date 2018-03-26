@@ -23,6 +23,8 @@
 
 class LBOBulkEnergyDeriv;
 
+registerMooseObject("FerretApp", LBOBulkEnergyDeriv);
+
 template<>
 InputParameters validParams<LBOBulkEnergyDeriv>()
 {

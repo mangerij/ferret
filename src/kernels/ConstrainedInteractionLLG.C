@@ -24,6 +24,8 @@
 
 class MagMStrong;
 
+registerMooseObject("FerretApp", ConstrainedInteractionLLG);
+
 template<>
 InputParameters validParams<ConstrainedInteractionLLG>()
 {

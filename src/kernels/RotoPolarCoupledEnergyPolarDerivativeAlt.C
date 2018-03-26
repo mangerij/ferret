@@ -22,6 +22,8 @@
 #include "RotoPolarCoupledEnergyPolarDerivativeAlt.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", RotoPolarCoupledEnergyPolarDerivativeAlt);
+
 template<>
 InputParameters validParams<RotoPolarCoupledEnergyPolarDerivativeAlt>()
 {
