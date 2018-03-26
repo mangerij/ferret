@@ -24,6 +24,8 @@
 
 //class DepolEnergy;
 
+registerMooseObject("FerretApp", DepolEnergy);
+
 template<>
 InputParameters validParams<DepolEnergy>()
 {

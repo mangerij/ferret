@@ -21,6 +21,8 @@
 
 #include "RenormalizedStrain.h"
 
+registerMooseObject("FerretApp", RenormalizedStrain);
+
 template<>
 
 InputParameters validParams<RenormalizedStrain>()

@@ -21,6 +21,8 @@
 
 #include "AnisotropicEnergy.h"
 
+registerMooseObject("FerretApp", AnisotropicEnergy);
+
 template<>
 InputParameters validParams<AnisotropicEnergy>()
 {

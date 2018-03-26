@@ -21,6 +21,8 @@
 
 #include "Intensity.h"
 
+registerMooseObject("FerretApp", Intensity);
+
 template<>
 
 InputParameters validParams<Intensity>()

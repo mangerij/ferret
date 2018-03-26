@@ -24,6 +24,8 @@
 
 class MagMStrong;
 
+registerMooseObject("FerretApp", MagMStrong);
+
 template<>
 InputParameters validParams<MagMStrong>()
 {

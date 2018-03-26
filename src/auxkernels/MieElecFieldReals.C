@@ -31,6 +31,8 @@
 # include <boost/math/special_functions/hankel.hpp>
 #endif
 
+registerMooseObject("FerretApp", MieElecFieldReals);
+
 template<>
 
 InputParameters validParams<MieElecFieldReals>()

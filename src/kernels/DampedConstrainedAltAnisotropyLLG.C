@@ -22,6 +22,8 @@
 #include "DampedConstrainedAltAnisotropyLLG.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", DampedConstrainedAltAnisotropyLLG);
+
 template<>
 InputParameters validParams<DampedConstrainedAltAnisotropyLLG>()
 {

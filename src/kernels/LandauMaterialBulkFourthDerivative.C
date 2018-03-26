@@ -24,6 +24,8 @@
 #include "ComputeRankTwoLandauTensor.h"
 #include "ComputeRankFourLandauTensor.h"
 
+registerMooseObject("FerretApp", LandauMaterialBulkFourthDerivative);
+
 template<>
 InputParameters validParams<LandauMaterialBulkFourthDerivative>()
 {

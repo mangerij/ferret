@@ -23,6 +23,8 @@
 #include "RankTwoTensor.h"
 #include "RotationTensor.h"
 
+registerMooseObject("FerretApp", ComputeIndicatrix);
+
 template<>
 InputParameters validParams<ComputeIndicatrix>()
 {

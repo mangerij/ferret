@@ -23,6 +23,8 @@
 
 class ConstField;
 
+registerMooseObject("FerretApp", ConstField);
+
 template<>
 InputParameters validParams<ConstField>()
 {

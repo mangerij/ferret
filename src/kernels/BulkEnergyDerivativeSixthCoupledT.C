@@ -22,6 +22,8 @@
 #include "BulkEnergyDerivativeSixthCoupledT.h"
 #include<cmath>
 
+registerMooseObject("FerretApp", BulkEnergyDerivativeSixthCoupledT);
+
 template<>
 InputParameters validParams<BulkEnergyDerivativeSixthCoupledT>()
 {

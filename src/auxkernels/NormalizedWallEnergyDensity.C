@@ -22,6 +22,8 @@
 #include "NormalizedWallEnergyDensity.h"
 #include <math.h>
 
+registerMooseObject("FerretApp", NormalizedWallEnergyDensity);
+
 template<>
 InputParameters validParams<NormalizedWallEnergyDensity>()
 {

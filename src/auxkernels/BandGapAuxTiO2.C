@@ -21,10 +21,10 @@
 
 #include "BandGapAuxTiO2.h"
 
-template<>
+registerMooseObject("FerretApp", BandGapAuxTiO2);
 
+template <>
 InputParameters validParams<BandGapAuxTiO2>()
-
 {
   InputParameters params = validParams<AuxKernel>();
   params.addClassDescription("Calculates the changes to local band gap due to the elastic stress fields.");

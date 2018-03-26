@@ -21,6 +21,8 @@
 
 #include "DzyaloshinskiiMagDerivative.h"
 
+registerMooseObject("FerretApp", DzyaloshinskiiMagDerivative);
+
 template<>
 InputParameters validParams<DzyaloshinskiiMagDerivative>()
 {

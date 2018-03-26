@@ -21,6 +21,8 @@
 
 #include "WallEnergyDerivativeAlt.h"
 
+registerMooseObject("FerretApp", WallEnergyDerivativeAlt);
+
 template<>
 InputParameters validParams<WallEnergyDerivativeAlt>()
 {

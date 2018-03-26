@@ -21,6 +21,8 @@
 
 #include "SpinFlexoelectricPolarDerivative.h"
 
+registerMooseObject("FerretApp", SpinFlexoelectricPolarDerivative);
+
 template<>
 InputParameters validParams<SpinFlexoelectricPolarDerivative>()
 {

@@ -22,6 +22,8 @@
 #include "PkNorm.h"
 #include <math.h>
 
+registerMooseObject("FerretApp", PkNorm);
+
 template<>
 InputParameters validParams<PkNorm>()
 {

@@ -22,6 +22,8 @@
 #include "RotostrictiveCouplingEnergy.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", RotostrictiveCouplingEnergy);
+
 template<>
 InputParameters validParams<RotostrictiveCouplingEnergy>()
 {

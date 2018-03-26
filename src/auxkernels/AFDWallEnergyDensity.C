@@ -21,6 +21,8 @@
 
 #include "AFDWallEnergyDensity.h"
 
+registerMooseObject("FerretApp", AFDWallEnergyDensity);
+
 template<>
 InputParameters validParams<AFDWallEnergyDensity>()
 {

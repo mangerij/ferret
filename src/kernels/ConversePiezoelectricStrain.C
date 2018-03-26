@@ -24,6 +24,8 @@
 
 class ConversePiezoelectricStrain;
 
+registerMooseObject("FerretApp", ConversePiezoelectricStrain);
+
 template<>
 InputParameters validParams<ConversePiezoelectricStrain>()
 {

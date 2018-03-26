@@ -24,6 +24,8 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
+registerMooseObject("FerretApp", BandGapAuxZnOwRot);
+
 template<>
 
 InputParameters validParams<BandGapAuxZnOwRot>()

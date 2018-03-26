@@ -24,6 +24,8 @@
 
 class FerroelectricCouplingX;
 
+registerMooseObject("FerretApp", FerroelectricCouplingX);
+
 template<>
 InputParameters validParams<FerroelectricCouplingX>()
 {

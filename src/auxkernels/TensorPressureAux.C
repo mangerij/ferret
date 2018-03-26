@@ -21,6 +21,8 @@
 
 #include "TensorPressureAux.h"
 
+registerMooseObject("FerretApp", TensorPressureAux);
+
 template<>
 InputParameters validParams<TensorPressureAux>()
 {

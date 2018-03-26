@@ -1,6 +1,8 @@
 #include "DomainFunc.h"
 #include "MooseRandom.h"
 
+registerMooseObject("FerretApp", DomainFunc);
+
 template <>
 InputParameters
 validParams<DomainFunc>()

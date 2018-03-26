@@ -22,6 +22,8 @@
 #include "ComputePolarOpticGCoeffTensor.h"
 #include "RankTwoTensor.h"
 
+registerMooseObject("FerretApp", ComputePolarOpticGCoeffTensor);
+
 template<>
 InputParameters validParams<ComputePolarOpticGCoeffTensor>()
 {

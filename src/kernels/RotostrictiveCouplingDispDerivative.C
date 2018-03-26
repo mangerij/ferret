@@ -24,6 +24,8 @@
 
 class RotostrictiveCouplingDispDerivative;
 
+registerMooseObject("FerretApp", RotostrictiveCouplingDispDerivative);
+
 template<>
 InputParameters validParams<RotostrictiveCouplingDispDerivative>()
 {

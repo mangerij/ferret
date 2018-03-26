@@ -22,6 +22,8 @@
 #include "RotoBulkEnergyDerivativeEighthAlt.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", RotoBulkEnergyDerivativeEighthAlt);
+
 template<>
 InputParameters validParams<RotoBulkEnergyDerivativeEighthAlt>()
 {

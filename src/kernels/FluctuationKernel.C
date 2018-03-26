@@ -22,6 +22,8 @@
 #include "FluctuationKernel.h"
 #include<cmath>
 
+registerMooseObject("FerretApp", FluctuationKernel);
+
 template<>
 InputParameters validParams<FluctuationKernel>()
 {

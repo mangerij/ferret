@@ -21,6 +21,8 @@
 
 #include "RotoBulkEnergyEighth.h"
 
+registerMooseObject("FerretApp", RotoBulkEnergyEighth);
+
 template<>
 InputParameters validParams<RotoBulkEnergyEighth>()
 {

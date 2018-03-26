@@ -23,6 +23,8 @@
 #include "ComputeElectrostrictiveTensor.h"
 #include "RankTwoTensor.h"
 
+registerMooseObject("FerretApp", DielectricTensor);
+
 template<>
 InputParameters validParams<DielectricTensor>()
 {

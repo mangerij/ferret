@@ -20,6 +20,8 @@
 **/
 
 #include "PlaneAux.h"
+registerMooseObject("FerretApp", PlaneAux);
+
 template<>
 
 InputParameters validParams<PlaneAux>()

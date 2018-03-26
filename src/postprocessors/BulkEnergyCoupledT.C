@@ -21,6 +21,8 @@
 
 #include "BulkEnergyCoupledT.h"
 
+registerMooseObject("FerretApp", BulkEnergyCoupledT);
+
 template<>
 InputParameters validParams<BulkEnergyCoupledT>()
 {

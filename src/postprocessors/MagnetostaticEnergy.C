@@ -22,6 +22,8 @@
 #include "MagnetostaticEnergy.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", MagnetostaticEnergy);
+
 template<>
 InputParameters validParams<MagnetostaticEnergy>()
 {

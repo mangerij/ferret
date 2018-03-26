@@ -22,6 +22,8 @@
 #include "MagneticConstrainedAnisotropyEnergy.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", MagneticConstrainedAnisotropyEnergy);
+
 template<>
 InputParameters validParams<MagneticConstrainedAnisotropyEnergy>()
 {

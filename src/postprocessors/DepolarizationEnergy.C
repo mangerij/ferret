@@ -21,6 +21,8 @@
 
 #include "DepolarizationEnergy.h"
 
+registerMooseObject("FerretApp", DepolarizationEnergy);
+
 template<>
 InputParameters validParams<DepolarizationEnergy>()
 {

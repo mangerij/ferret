@@ -24,6 +24,8 @@
 #include "MooseEnum.h"
 #include <math.h>
 
+registerMooseObject("FerretApp", PolarizationNWEMarker);
+
 template<>
 InputParameters validParams<PolarizationNWEMarker>()
 {
