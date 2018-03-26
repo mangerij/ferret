@@ -23,6 +23,8 @@
 #include "RotationTensor.h"
 #include "RankTwoTensor.h"
 
+registerMooseObject("FerretApp", ChangeInRefractiveIndexElectro);
+
 template<>
 
 InputParameters validParams<ChangeInRefractiveIndexElectro>()

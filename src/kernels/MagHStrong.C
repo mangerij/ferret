@@ -23,6 +23,8 @@
 
 class MagHStrong;
 
+registerMooseObject("FerretApp", MagHStrong);
+
 template<>
 InputParameters validParams<MagHStrong>()
 {

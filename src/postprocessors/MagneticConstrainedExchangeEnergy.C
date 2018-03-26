@@ -22,6 +22,8 @@
 #include "MagneticConstrainedExchangeEnergy.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", MagneticConstrainedExchangeEnergy);
+
 template<>
 InputParameters validParams<MagneticConstrainedExchangeEnergy>()
 {

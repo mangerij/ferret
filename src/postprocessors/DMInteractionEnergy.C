@@ -21,6 +21,8 @@
 
 #include "DMInteractionEnergy.h"
 
+registerMooseObject("FerretApp", DMInteractionEnergy);
+
 template<>
 InputParameters validParams<DMInteractionEnergy>()
 {

@@ -22,6 +22,8 @@
 #include "BulkAntiferrodistortEnergyDerivativeSixth.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", BulkAntiferrodistortEnergyDerivativeSixth);
+
 template<>
 InputParameters validParams<BulkAntiferrodistortEnergyDerivativeSixth>()
 {

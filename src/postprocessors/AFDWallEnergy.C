@@ -21,6 +21,8 @@
 
 #include "AFDWallEnergy.h"
 
+registerMooseObject("FerretApp", AFDWallEnergy);
+
 template<>
 InputParameters validParams<AFDWallEnergy>()
 {

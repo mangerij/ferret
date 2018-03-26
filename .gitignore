@@ -188,3 +188,5 @@ Makefile
 lib/*
 # Ignore everything in build/header_symlinks/, all files in there are generated.
 build/header_symlinks/*
+build
+.failed_tests

@@ -21,6 +21,8 @@
 
 #include "RotoBulkEnergyDensity.h"
 
+registerMooseObject("FerretApp", RotoBulkEnergyDensity);
+
 template<>
 InputParameters validParams<RotoBulkEnergyDensity>()
 {

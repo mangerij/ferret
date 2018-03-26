@@ -22,6 +22,8 @@
 #include "ElasticEnergy.h"
 #include "ComputeEigenstrain.h"
 
+registerMooseObject("FerretApp", ElasticEnergy);
+
 template<>
 InputParameters validParams<ElasticEnergy>()
 {

@@ -21,6 +21,8 @@
 
 #include "TotalWinding.h"
 
+registerMooseObject("FerretApp", TotalWinding);
+
 template<>
 InputParameters validParams<TotalWinding>()
 {

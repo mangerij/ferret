@@ -21,6 +21,8 @@
 
 #include "ElecFieldAux.h"
 
+registerMooseObject("FerretApp", ElecFieldAux);
+
 template<>
 
 InputParameters validParams<ElecFieldAux>()

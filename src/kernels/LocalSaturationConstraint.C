@@ -22,6 +22,8 @@
 #include "LocalSaturationConstraint.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", LocalSaturationConstraint);
+
 template<>
 InputParameters validParams<LocalSaturationConstraint>()
 {

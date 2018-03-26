@@ -22,6 +22,8 @@
 #include "WallEnergyDensity.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", WallEnergyDensity);
+
 template<>
 InputParameters validParams<WallEnergyDensity>()
 {

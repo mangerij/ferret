@@ -23,6 +23,8 @@
 
 #include <cmath>
 
+registerMooseObject("FerretApp", InterfaceDiffusion);
+
 template<>
 InputParameters validParams<InterfaceDiffusion>()
 {

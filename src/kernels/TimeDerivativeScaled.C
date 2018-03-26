@@ -24,6 +24,8 @@
 // MOOSE includes
 #include "MooseVariable.h"
 
+registerMooseObject("FerretApp", TimeDerivativeScaled);
+
 template<>
 InputParameters validParams<TimeDerivativeScaled>()
 {

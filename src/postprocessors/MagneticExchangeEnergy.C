@@ -21,6 +21,8 @@
 
 #include "MagneticExchangeEnergy.h"
 
+registerMooseObject("FerretApp", MagneticExchangeEnergy);
+
 template<>
 InputParameters validParams<MagneticExchangeEnergy>()
 {

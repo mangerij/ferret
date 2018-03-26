@@ -21,6 +21,8 @@
 
 #include "PolarizationComponentValue.h"
 
+registerMooseObject("FerretApp", PolarizationComponentValue);
+
 template<>
 InputParameters validParams<PolarizationComponentValue>()
 {

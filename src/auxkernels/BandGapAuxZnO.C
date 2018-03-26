@@ -21,10 +21,10 @@
 
 #include "BandGapAuxZnO.h"
 
-template<>
+registerMooseObject("FerretApp", BandGapAuxZnO);
 
+template <>
 InputParameters validParams<BandGapAuxZnO>()
-
 {
   InputParameters params = validParams<AuxKernel>();
   params.addClassDescription("Calculates the changes to local band gap due to the elastic strain fields.");

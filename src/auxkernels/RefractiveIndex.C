@@ -21,6 +21,8 @@
 
 #include "RefractiveIndex.h"
 
+registerMooseObject("FerretApp", RefractiveIndex);
+
 template<>
 
 InputParameters validParams<RefractiveIndex>()

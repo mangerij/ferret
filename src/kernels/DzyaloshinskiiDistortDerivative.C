@@ -21,6 +21,8 @@
 
 #include "DzyaloshinskiiDistortDerivative.h"
 
+registerMooseObject("FerretApp", DzyaloshinskiiDistortDerivative);
+
 template<>
 InputParameters validParams<DzyaloshinskiiDistortDerivative>()
 {

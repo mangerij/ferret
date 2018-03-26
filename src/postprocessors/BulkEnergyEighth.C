@@ -22,6 +22,8 @@
 #include "BulkEnergyEighth.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", BulkEnergyEighth);
+
 template<>
 InputParameters validParams<BulkEnergyEighth>()
 {

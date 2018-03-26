@@ -21,6 +21,8 @@
 
 #include "ThermalEnergy.h"
 
+registerMooseObject("FerretApp", ThermalEnergy);
+
 template<>
 InputParameters validParams<ThermalEnergy>()
 {

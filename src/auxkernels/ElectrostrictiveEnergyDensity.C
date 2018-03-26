@@ -23,6 +23,8 @@
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputeEigenstrain.h"
 
+registerMooseObject("FerretApp", ElectrostrictiveEnergyDensity);
+
 template<>
 InputParameters validParams<ElectrostrictiveEnergyDensity>()
 {

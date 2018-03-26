@@ -20,6 +20,8 @@
 **/
 
 #include "CurlP.h"
+registerMooseObject("FerretApp", CurlP);
+
 template<>
 
 InputParameters validParams<CurlP>()

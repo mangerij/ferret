@@ -24,6 +24,8 @@
 
 class PiezoelectricStrainCharge;
 
+registerMooseObject("FerretApp", PiezoelectricStrainCharge);
+
 template<>
 InputParameters validParams<PiezoelectricStrainCharge>()
 {

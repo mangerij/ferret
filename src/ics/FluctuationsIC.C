@@ -24,6 +24,8 @@
 #include "libmesh/point.h"
 #include <cmath>
 
+registerMooseObject("FerretApp", FluctuationsIC);
+
 template<>
 InputParameters validParams<FluctuationsIC>()
 {

@@ -20,6 +20,8 @@
 **/
 
 #include "ChernSimonsDensityMag.h"
+registerMooseObject("FerretApp", ChernSimonsDensityMag);
+
 template<>
 
 InputParameters validParams<ChernSimonsDensityMag>()

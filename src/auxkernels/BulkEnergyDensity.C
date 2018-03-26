@@ -22,6 +22,8 @@
 #include "BulkEnergyDensity.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", BulkEnergyDensity);
+
 template<>
 InputParameters validParams<BulkEnergyDensity>()
 {

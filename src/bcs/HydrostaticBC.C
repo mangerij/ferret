@@ -21,6 +21,8 @@
 
 #include "HydrostaticBC.h"
 
+registerMooseObject("FerretApp", HydrostaticBC);
+
 template<>
 InputParameters validParams<HydrostaticBC>()
 {

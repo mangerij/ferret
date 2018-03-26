@@ -23,6 +23,8 @@
 
 class ElectrostrictiveCouplingPolarDerivative;
 
+registerMooseObject("FerretApp", ElectrostrictiveCouplingPolarDerivative);
+
 template<>
 InputParameters validParams<ElectrostrictiveCouplingPolarDerivative>()
 {

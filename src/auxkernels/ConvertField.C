@@ -21,6 +21,8 @@
 
 #include "ConvertField.h"
 
+registerMooseObject("FerretApp", ConvertField);
+
 template<>
 InputParameters validParams<ConvertField>()
 {

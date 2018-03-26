@@ -21,6 +21,8 @@
 
 #include "OldVar.h"
 
+registerMooseObject("FerretApp", OldVar);
+
 template<>
 
 InputParameters validParams<OldVar>()

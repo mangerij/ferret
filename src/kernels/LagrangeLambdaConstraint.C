@@ -22,6 +22,8 @@
 #include "LagrangeLambdaConstraint.h"
 #include "libmesh/utility.h"
 
+registerMooseObject("FerretApp", LagrangeLambdaConstraint);
+
 template<>
 InputParameters validParams<LagrangeLambdaConstraint>()
 {
