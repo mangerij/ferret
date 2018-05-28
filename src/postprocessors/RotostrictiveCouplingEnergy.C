@@ -30,9 +30,9 @@ InputParameters validParams<RotostrictiveCouplingEnergy>()
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over the coupling free energy density between the AFD and elastic fields.");
-  params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
-  params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
-  params.addCoupledVar("disp_z", 0.0, "The z component of the displacement");
+  params.addRequiredCoupledVar("u_x", "The x component of the displacement");
+  params.addRequiredCoupledVar("u_y", "The y component of the displacement");
+  params.addCoupledVar("u_z", 0.0, "The z component of the displacement");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
@@ -45,15 +45,15 @@ InputParameters validParams<RotostrictiveCouplingEnergy>()
 
 RotostrictiveCouplingEnergy::RotostrictiveCouplingEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-   _disp_x_var(coupled("disp_x")),
-   _disp_y_var(coupled("disp_y")),
-   _disp_z_var(coupled("disp_z")),
+   _u_x_var(coupled("u_x")),
+   _u_y_var(coupled("u_y")),
+   _u_z_var(coupled("u_z")),
    _antiferrodis_A_x_var(coupled("antiferrodis_A_x")),
    _antiferrodis_A_y_var(coupled("antiferrodis_A_y")),
    _antiferrodis_A_z_var(coupled("antiferrodis_A_z")),
-   _disp_x_grad(coupledGradient("disp_x")),
-   _disp_y_grad(coupledGradient("disp_y")),
-   _disp_z_grad(coupledGradient("disp_z")),
+   _u_x_grad(coupledGradient("u_x")),
+   _u_y_grad(coupledGradient("u_y")),
+   _u_z_grad(coupledGradient("u_z")),
    _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
    _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
    _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
@@ -67,7 +67,7 @@ RotostrictiveCouplingEnergy::RotostrictiveCouplingEnergy(const InputParameters &
 Real
 RotostrictiveCouplingEnergy::computeQpIntegral()
 {
-  return -(-2.0*_r44*((_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _r12*((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_disp_x_grad[_qp](0) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_disp_y_grad[_qp](1) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*_disp_z_grad[_qp](2)) - 
-   _r11*(Utility::pow<2>(_antiferrodis_A_x[_qp])*_disp_x_grad[_qp](0) + Utility::pow<2>(_antiferrodis_A_y[_qp])*_disp_y_grad[_qp](1) + Utility::pow<2>(_antiferrodis_A_z[_qp])*_disp_z_grad[_qp](2))) * Utility::pow<3>(_len_scale);
+  return -(-2.0*_r44*((_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _r12*((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*_u_z_grad[_qp](2)) - 
+   _r11*(Utility::pow<2>(_antiferrodis_A_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_antiferrodis_A_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_antiferrodis_A_z[_qp])*_u_z_grad[_qp](2))) * Utility::pow<3>(_len_scale);
 
 }

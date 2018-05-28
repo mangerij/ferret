@@ -1,9 +1,9 @@
 [Tests]
-  [./full]
-    type = 'Exodiff'
-    input = 'BFO_P-A-u_PBC_rigid.i'
-    exodiff = 'out_BFO_P-A-u.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+#  [./full]
+#    type = 'Exodiff'
+#    input = 'BFO_P-A-u_PBC_rigid.i'
+#    exodiff = 'out_BFO_P-A-u.e'
+#    max_parallel = 1
+#    max_threads = 1
+#  [../]
 []
