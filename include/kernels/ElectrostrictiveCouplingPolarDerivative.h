@@ -42,15 +42,15 @@ protected:
 
 private:
   const unsigned int _component;
-  const unsigned int _u_x_var;
-  const unsigned int _u_y_var;
-  const unsigned int _u_z_var;
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;
-  const VariableGradient & _u_x_grad;
-  const VariableGradient & _u_y_grad;
-  const VariableGradient & _u_z_grad;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
