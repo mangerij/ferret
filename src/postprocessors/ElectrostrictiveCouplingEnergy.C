@@ -28,9 +28,9 @@ InputParameters validParams<ElectrostrictiveCouplingEnergy>()
 {
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over the coupling energy density between the elastic and AFD fields.");
-  params.addRequiredCoupledVar("u_x", "The x component of the displacement");
-  params.addRequiredCoupledVar("u_y", "The y component of the displacement");
-  params.addCoupledVar("u_z", 0.0, "The z component of the displacement");
+  params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
+  params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
+  params.addCoupledVar("disp_z", 0.0, "The z component of the displacement");
   params.addRequiredCoupledVar("polar_x", "The x component of the antiferrodistortive tilt vector");
   params.addRequiredCoupledVar("polar_y", "The y component of the antiferrodistortive tilt vector");
   params.addCoupledVar("polar_z", 0.0, "The z component of the antiferrodistortive tilt vector");
@@ -43,15 +43,15 @@ InputParameters validParams<ElectrostrictiveCouplingEnergy>()
 
 ElectrostrictiveCouplingEnergy::ElectrostrictiveCouplingEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-   _u_x_var(coupled("u_x")),
-   _u_y_var(coupled("u_y")),
-   _u_z_var(coupled("u_z")),
+   _disp_x_var(coupled("disp_x")),
+   _disp_y_var(coupled("disp_y")),
+   _disp_z_var(coupled("disp_z")),
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),
    _polar_z_var(coupled("polar_z")),
-   _u_x_grad(coupledGradient("u_x")),
-   _u_y_grad(coupledGradient("u_y")),
-   _u_z_grad(coupledGradient("u_z")),
+   _disp_x_grad(coupledGradient("disp_x")),
+   _disp_y_grad(coupledGradient("disp_y")),
+   _disp_z_grad(coupledGradient("disp_z")),
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
@@ -65,6 +65,6 @@ ElectrostrictiveCouplingEnergy::ElectrostrictiveCouplingEnergy(const InputParame
 Real
 ElectrostrictiveCouplingEnergy::computeQpIntegral()
 {
-  return -(-2.0*_q44*((_polar_x[_qp]*_polar_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _q12*((std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2))*_u_x_grad[_qp](0) + (std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2))*_u_y_grad[_qp](1) + (std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2))*_u_z_grad[_qp](2)) - 
-   _q11*(std::pow(_polar_x[_qp],2)*_u_x_grad[_qp](0) + std::pow(_polar_y[_qp],2)*_u_y_grad[_qp](1) + std::pow(_polar_z[_qp],2)*_u_z_grad[_qp](2))) * std::pow(_len_scale,3);
+  return -(-2.0*_q44*((_polar_x[_qp]*_polar_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _q12*((std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2))*_disp_x_grad[_qp](0) + (std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2))*_disp_y_grad[_qp](1) + (std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2))*_disp_z_grad[_qp](2)) - 
+   _q11*(std::pow(_polar_x[_qp],2)*_disp_x_grad[_qp](0) + std::pow(_polar_y[_qp],2)*_disp_y_grad[_qp](1) + std::pow(_polar_z[_qp],2)*_disp_z_grad[_qp](2))) * std::pow(_len_scale,3);
 }

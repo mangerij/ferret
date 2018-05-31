@@ -43,15 +43,15 @@ protected:
 
 private:
   const unsigned int _component;
-  const unsigned int _u_x_var;
-  const unsigned int _u_y_var;
-  const unsigned int _u_z_var;
+  const unsigned int _disp_x_var;
+  const unsigned int _disp_y_var;
+  const unsigned int _disp_z_var;
   const unsigned int _antiferrodis_A_x_var;
   const unsigned int _antiferrodis_A_y_var;
   const unsigned int _antiferrodis_A_z_var;
-  const VariableGradient & _u_x_grad;
-  const VariableGradient & _u_y_grad;
-  const VariableGradient & _u_z_grad;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
   const VariableValue & _antiferrodis_A_x;
   const VariableValue & _antiferrodis_A_y;
   const VariableValue & _antiferrodis_A_z;
