@@ -5,7 +5,7 @@
   ny = 4
   nz = 4
   xmin = -1.0
-  xmax = 1.0
+  xmax =  1.0
   ymin = -1.0
   ymax = 1.0
   zmin = -1.0
@@ -120,48 +120,60 @@
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = -0.01
+      max = 0.01
+      seed = 5
     [../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = -0.01
+      max = 0.01
+      seed = 5
     [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = -0.01
+      max = 0.01
+      seed = 5
     [../]
   [../]
   [./antiferrodis_A_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = -0.01
+      max = 0.01
+      seed = 5
     [../]
   [../]
   [./antiferrodis_A_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = -0.01
+      max = 0.01
+      seed = 5
     [../]
   [../]
   [./antiferrodis_A_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = -0.01
+      max = 0.01
+      seed = 5
     [../]
   [../]
   [./u_x]
@@ -469,7 +481,6 @@
     component = 2
   [../]
 
-
   #Operators for the AFD field
 
   [./rbed_x]
@@ -694,7 +705,7 @@
 
 [UserObjects]
  [./global_strain_uo]
-   type = GlobalStrainUserObject
+   type = GlobalRVEUserObject
    applied_stress_tensor = '0.0 0.0 0.0 0.0 0.0 0.0'
    execute_on = 'Initial Linear Nonlinear'
  [../]
@@ -708,26 +719,45 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121            1e-10          1e-8      1e-8     bjacobi'
+    petsc_options = '-snes_linesearch_monitor -snes_converged_reason -snes_monitor -ksp_monitor_true_residual -ksp_converged_reason'
+    petsc_options_iname = '-snes_atol -pc_type -ksp_gmres_restart -sub_pc_type -pc_asm_overlap'
+    petsc_options_value = ' 1e-10      asm         31                  lu             1'
   [../]
 []
 
 [Executioner]
   type = Transient
-  dt = 0.25
-  solve_type = 'NEWTON'
-  scheme = 'bdf2'
-  dtmin = 1e-13
-  dtmax = 0.25
+  scheme = bdf2
+  solve_type = 'PJFNK'
+
+  petsc_options_iname = '-pc_type -ksp_gmres_restart'
+  petsc_options_value = 'lu       31'
+
+  l_max_its = 30
+  nl_max_its = 12
+
+  l_tol = 1.0e-4
+
+  nl_rel_tol = 1.0e-8
+  nl_abs_tol = 1.0e-10
+
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.01
+    growth_factor = 1.5
+    cutback_factor = 0.8
+    optimal_iterations = 9
+    iteration_window = 2
+  [../]
 []
 
 [Outputs]
-  print_linear_residuals = false
+  print_linear_residuals = true
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_BFO_P-A-u
+    file_base = out_BFO_P-A-u_global_L
     elemental_as_nodal = true
   [../]
 []
