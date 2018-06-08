@@ -17,41 +17,34 @@
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
-**/
+*/
 
-#ifndef GLOBALRVEUSEROBJECT_H
-#define GLOBALRVEUSEROBJECT_H
+#ifndef BFOEIGENSTRAIN_H
+#define BFOEIGENSTRAIN_H
 
-#include "GlobalStrainUserObject.h"
-#include "RankFourTensor.h"
+#include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class GlobalRVEUserObject;
+//Forward declarations
+class BFOEigenstrain;
 
-template <> InputParameters validParams<GlobalRVEUserObject>();
+template<>
+InputParameters validParams<BFOEigenstrain>();
 
-class GlobalRVEUserObject : public GlobalStrainUserObject {
+
+class BFOEigenstrain : public AuxKernel
+{
 public:
-  GlobalRVEUserObject(const InputParameters &parameters);
+  BFOEigenstrain(const InputParameters & parameters);
 
-  void initialize() override;
-  void execute() override;
-  void threadJoin(const UserObject &uo) override;
-  void finalize() override;
-  // virtual const RankTwoTensor & getResidual() const;
-  // virtual const RankFourTensor & getJacobian() const;
-  // virtual const VectorValue<bool> & getPeriodicDirections() const;
-
-  /**
-   * Calculate additional applied stresses
-   */
-  // virtual void computeEigenstress(){} override;
+  virtual ~BFOEigenstrain() {}
 
 protected:
-  // RankTwoTensor _eigenstress_tensor;
+  virtual Real computeValue();
 
-  RankTwoTensor _residual;
-  RankFourTensor _jacobian;
+private:
+  const unsigned int _index_j;
+  const unsigned int _index_k;
 
   const VariableValue &_antiferrodis_A_x;
   const VariableValue &_antiferrodis_A_y;
@@ -68,6 +61,9 @@ protected:
   const Real _R11;
   const Real _R12;
   const Real _R44;
+
+  const MaterialProperty<RankTwoTensor> & _strain; //elastic?
+
 };
 
-#endif // GLOBALRVEUSEROBJECT_H
+#endif // BFOEIGENSTRAIN_H

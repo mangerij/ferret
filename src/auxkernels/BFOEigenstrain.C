@@ -19,16 +19,19 @@
 
 **/
 
-#include "GlobalRVEUserObject.h"
+#include "BFOEigenstrain.h"
+#include "libmesh/utility.h"
 
-#include "libmesh/quadrature.h"
+registerMooseObject("FerretApp", BFOEigenstrain);
 
-registerMooseObject("FerretApp", GlobalRVEUserObject);
+template<>
 
-template <> InputParameters validParams<GlobalRVEUserObject>() {
-  InputParameters params = validParams<GlobalStrainUserObject>();
-  params.addClassDescription("Global RVE UserObject to provide Residual and "
-                             "diagonal Jacobian entry for BFO approach");
+InputParameters validParams<BFOEigenstrain>()
+
+{
+  InputParameters params = validParams<AuxKernel>();
+  params.addRequiredParam<unsigned int>("index_j", "component");
+  params.addRequiredParam<unsigned int>("index_k", "component");
   params.addRequiredCoupledVar("antiferrodis_A_x",
                                "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y",
@@ -61,27 +64,32 @@ template <> InputParameters validParams<GlobalRVEUserObject>() {
   return params;
 }
 
-GlobalRVEUserObject::GlobalRVEUserObject(const InputParameters &parameters)
-    : GlobalStrainUserObject(parameters),
-      _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-      _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-      _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
-      _polar_x(coupledValue("polar_x")), _polar_y(coupledValue("polar_y")),
-      _polar_z(coupledValue("polar_z")), _C11(getParam<Real>("C11")),
-      _C12(getParam<Real>("C12")), _C44(getParam<Real>("C44")),
-      _Q11(getParam<Real>("Q11")), _Q12(getParam<Real>("Q12")),
-      _Q44(getParam<Real>("Q44")), _R11(getParam<Real>("R11")),
-      _R12(getParam<Real>("R12")), _R44(getParam<Real>("R44")) 
-{}
 
-void GlobalRVEUserObject::initialize() { GlobalStrainUserObject::initialize(); }
+BFOEigenstrain::BFOEigenstrain(const InputParameters & parameters) :
+  AuxKernel(parameters),
+   _index_j(getParam<unsigned int>("index_j")),
+   _index_k(getParam<unsigned int>("index_k")),
+   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
+   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
+   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _polar_x(coupledValue("polar_x")), _polar_y(coupledValue("polar_y")),
+   _polar_z(coupledValue("polar_z")), _C11(getParam<Real>("C11")),
+   _C12(getParam<Real>("C12")), _C44(getParam<Real>("C44")),
+   _Q11(getParam<Real>("Q11")), _Q12(getParam<Real>("Q12")),
+   _Q44(getParam<Real>("Q44")), _R11(getParam<Real>("R11")),
+   _R12(getParam<Real>("R12")), _R44(getParam<Real>("R44")),
+   _strain(getMaterialProperty<RankTwoTensor>("elastic_strain"))
+{
+}
 
-void GlobalRVEUserObject::execute() {
-  // computeEigenstress();
-  RankTwoTensor eigenstress_tensor;
-  for (unsigned int _qp = 0; _qp < _qrule->n_points(); _qp++) {
-    eigenstress_tensor(0, 0) =
-        _C11 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
+Real
+BFOEigenstrain::computeValue()
+{
+  if (_index_j == 0)
+  {
+    if (_index_k == 0)
+    {
+      return _strain[_qp](0,0) + _C11 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
         _C12 * Utility::pow<2>(_polar_y[_qp]) * _Q11 +
         _C12 * Utility::pow<2>(_polar_z[_qp]) * _Q11 +
         2.0 * _C12 * Utility::pow<2>(_polar_x[_qp]) * _Q12 +
@@ -97,9 +105,30 @@ void GlobalRVEUserObject::execute() {
         _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
         _C11 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12 +
         _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12;
-
-    eigenstress_tensor(1, 1) =
-        _C12 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
+    }
+    else if (_index_k == 1)
+    {
+      return _strain[_qp](0,1) + 4.0 * _C44 * _polar_x[_qp] * _polar_y[_qp] * _Q44 
+             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_y[_qp] * _R44;
+    }
+    else if (_index_k == 2)
+    {
+      return _strain[_qp](0,2) + 4.0 * _C44 * _polar_x[_qp] * _polar_z[_qp] * _Q44 
+             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_z[_qp] * _R44;
+    }
+    else 
+      return 0.0;
+  }
+  else if (_index_j == 1)
+  {
+    if (_index_k == 0)
+    {
+      return _strain[_qp](1,0) + 4.0 * _C44 * _polar_x[_qp] * _polar_y[_qp] * _Q44 
+             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_y[_qp] * _R44;
+    }
+    else if (_index_k == 1)
+    {
+      return _strain[_qp](1,1) + _C12 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
         _C11 * Utility::pow<2>(_polar_y[_qp]) * _Q11 +
         _C12 * Utility::pow<2>(_polar_z[_qp]) * _Q11 +
         _C11 * Utility::pow<2>(_polar_x[_qp]) * _Q12 +
@@ -115,9 +144,30 @@ void GlobalRVEUserObject::execute() {
         2.0 * _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
         _C11 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12 +
         _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12;
-
-    eigenstress_tensor(2, 2) =
-        _C12 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
+    }
+    else if (_index_k == 2)
+    {
+      return _strain[_qp](1,2) + 4.0 * _C44 * _polar_y[_qp] * _polar_z[_qp] * _Q44 
+             + 4.0 * _C44 * _antiferrodis_A_y[_qp] * _antiferrodis_A_z[_qp] * _R44;
+    }
+    else 
+      return 0.0;
+  }
+  else if (_index_j == 2)
+  {
+    if (_index_k == 0)
+    {
+      return _strain[_qp](2,0) + 4.0 * _C44 * _polar_x[_qp] * _polar_z[_qp] * _Q44 
+             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_z[_qp] * _R44;
+    }
+    else if (_index_k == 1)
+    {
+      return _strain[_qp](2,1) + 4.0 * _C44 * _polar_y[_qp] * _polar_z[_qp] * _Q44 
+             + 4.0 * _C44 * _antiferrodis_A_y[_qp] * _antiferrodis_A_z[_qp] * _R44;
+    }
+    else if (_index_k == 2)
+    {
+      return _strain[_qp](2,2) + _C12 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
         _C12 * Utility::pow<2>(_polar_y[_qp]) * _Q11 +
         _C11 * Utility::pow<2>(_polar_z[_qp]) * _Q11 +
         _C11 * Utility::pow<2>(_polar_x[_qp]) * _Q12 +
@@ -133,32 +183,10 @@ void GlobalRVEUserObject::execute() {
         _C11 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
         _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
         2.0 * _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12;
-
-    eigenstress_tensor(0, 1) = eigenstress_tensor(1, 0) =
-        4.0 * _C44 * _polar_x[_qp] * _polar_y[_qp] * _Q44 +
-        4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_y[_qp] * _R44;
-
-    eigenstress_tensor(1, 2) = eigenstress_tensor(2, 1) =
-        4.0 * _C44 * _polar_y[_qp] * _polar_z[_qp] * _Q44 +
-        4.0 * _C44 * _antiferrodis_A_y[_qp] * _antiferrodis_A_z[_qp] * _R44;
-
-    eigenstress_tensor(0, 2) = eigenstress_tensor(2, 0) =
-        4.0 * _C44 * _polar_x[_qp] * _polar_z[_qp] * _Q44 +
-        4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_z[_qp] * _R44;
-
-    // residual, integral of stress components
-    _residual += _JxW[_qp] * _coord[_qp] *
-                 (_stress[_qp] - _applied_stress_tensor + eigenstress_tensor);
-
-    // diagonal jacobian, integral of elasticity tensor components
-    _jacobian += _JxW[_qp] * _coord[_qp] * _Cijkl[_qp];
+    }
+    else 
+      return 0.0;
   }
-  // Moose::out << "\n s"; std::cout << 0 << 2; Moose::out << " = "; std::cout
-  // << _eigenstress_tensor(0,2);
+  else
+    return 0.0;
 }
-
-void GlobalRVEUserObject::threadJoin(const UserObject &uo) {
-  GlobalStrainUserObject::threadJoin(uo);
-}
-
-void GlobalRVEUserObject::finalize() { GlobalStrainUserObject::finalize(); }
