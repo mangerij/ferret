@@ -71,15 +71,14 @@ GlobalRVEUserObject::GlobalRVEUserObject(const InputParameters &parameters)
       _C12(getParam<Real>("C12")), _C44(getParam<Real>("C44")),
       _Q11(getParam<Real>("Q11")), _Q12(getParam<Real>("Q12")),
       _Q44(getParam<Real>("Q44")), _R11(getParam<Real>("R11")),
-      _R12(getParam<Real>("R12")), _R44(getParam<Real>("R44")) 
-{}
+      _R12(getParam<Real>("R12")), _R44(getParam<Real>("R44")) {}
 
 void GlobalRVEUserObject::initialize() { GlobalStrainUserObject::initialize(); }
 
 void GlobalRVEUserObject::execute() {
-  // computeEigenstress();
-  RankTwoTensor eigenstress_tensor;
   for (unsigned int _qp = 0; _qp < _qrule->n_points(); _qp++) {
+    RankTwoTensor eigenstress_tensor;
+
     eigenstress_tensor(0, 0) =
         _C11 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
         _C12 * Utility::pow<2>(_polar_y[_qp]) * _Q11 +
@@ -148,13 +147,11 @@ void GlobalRVEUserObject::execute() {
 
     // residual, integral of stress components
     _residual += _JxW[_qp] * _coord[_qp] *
-                 (_stress[_qp] - _applied_stress_tensor + eigenstress_tensor);
+                 (_stress[_qp] - _applied_stress_tensor - eigenstress_tensor);
 
     // diagonal jacobian, integral of elasticity tensor components
-    _jacobian += _JxW[_qp] * _coord[_qp] * _Cijkl[_qp];
+    _jacobian += _JxW[_qp] * _coord[_qp] * _dstress_dstrain[_qp];
   }
-  // Moose::out << "\n s"; std::cout << 0 << 2; Moose::out << " = "; std::cout
-  // << _eigenstress_tensor(0,2);
 }
 
 void GlobalRVEUserObject::threadJoin(const UserObject &uo) {

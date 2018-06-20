@@ -38,18 +38,8 @@ public:
   void execute() override;
   void threadJoin(const UserObject &uo) override;
   void finalize() override;
-  // virtual const RankTwoTensor & getResidual() const;
-  // virtual const RankFourTensor & getJacobian() const;
-  // virtual const VectorValue<bool> & getPeriodicDirections() const;
-
-  /**
-   * Calculate additional applied stresses
-   */
-  // virtual void computeEigenstress(){} override;
 
 protected:
-  // RankTwoTensor _eigenstress_tensor;
-
   RankTwoTensor _residual;
   RankFourTensor _jacobian;
 
