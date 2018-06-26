@@ -80,10 +80,10 @@
 
   Q11 = -1.35386
   Q12 = 0.238295
-  Q44 = -4.17474 #16.698978569333416
+  Q44 = -4.17474
   R11 = -2.35149
   R12 = 1.1143805
-  R44 = 3.67475 #-14.69898038101976
+  R44 = 3.67475
 
   q11 = -1.93418062e-2
   q12 = -6.3875442e-3
@@ -228,7 +228,7 @@
 [AuxKernels]
   [./matl_e11]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 0
     variable = strain_xx_elastic
@@ -643,7 +643,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_BFO_P-A-u
+    file_base = out_BFO_P-A-u_2
     elemental_as_nodal = true
   [../]
 []
