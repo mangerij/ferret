@@ -4,7 +4,7 @@ It might be a good idea to learn a few things about MOOSE, too.
 
 Generally, you will clone Ferret this way:
 ```
-git clone https://user@bitbucket.org/mesoscience/ferret.git
+git clone https://bitbucket.org/mesoscience/ferret.git
 ```
 Once MOOSE is built, Ferret can usually be built simply as
 ```
@@ -39,9 +39,9 @@ NOTE: The ./configure step can alternatively include a BOOST directory which wil
 * Olle Heinonen (heinonen@anl.gov)
 * Lukasz Kuna (lukasz.kuna@uconn.edu)
 
-### Tutorials?
+### Manual or Tutorials?
 
-* A semi-updated tutorial and manual exists but is not in the repository at the present time. If you would like a copy of it, please contact one of the contributors.
+* A semi-updated tutorial and manual exists but is not in the repository at the present time due to its status as work-in-progress. If you would like a copy of it, please contact one of the contributors.
 
 ### MOOSE can be found at http://www.mooseframework.org ###
  * The moose-users list at https://groups.google.com/forum/#!forum/moose-users is a great link for help with MOOSE or new implementations.
