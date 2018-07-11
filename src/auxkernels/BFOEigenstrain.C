@@ -78,7 +78,7 @@ BFOEigenstrain::BFOEigenstrain(const InputParameters & parameters) :
    _Q11(getParam<Real>("Q11")), _Q12(getParam<Real>("Q12")),
    _Q44(getParam<Real>("Q44")), _R11(getParam<Real>("R11")),
    _R12(getParam<Real>("R12")), _R44(getParam<Real>("R44")),
-   _strain(getMaterialProperty<RankTwoTensor>("elastic_strain"))
+   _strain(getMaterialProperty<RankTwoTensor>("total_strain"))
 {
 }
 
@@ -88,23 +88,9 @@ BFOEigenstrain::computeValue()
   if (_index_j == 0)
   {
     if (_index_k == 0)
-    {
-      return _strain[_qp](0,0) + _C11 * Utility::pow<2>(_polar_x[_qp]) * _Q11 +
-        _C12 * Utility::pow<2>(_polar_y[_qp]) * _Q11 +
-        _C12 * Utility::pow<2>(_polar_z[_qp]) * _Q11 +
-        2.0 * _C12 * Utility::pow<2>(_polar_x[_qp]) * _Q12 +
-        _C11 * Utility::pow<2>(_polar_y[_qp]) * _Q12 +
-        _C12 * Utility::pow<2>(_polar_y[_qp]) * _Q12 +
-        _C11 * Utility::pow<2>(_polar_z[_qp]) * _Q12 +
-        _C12 * Utility::pow<2>(_polar_z[_qp]) * _Q12 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11 +
-        2.0 * _C12 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12;
+    { 
+      //_strain[_qp](0,0) + 
+      return Utility::pow<2>(_polar_x[_qp])*_Q11 + Utility::pow<2>(_polar_y[_qp])*_Q12 + Utility::pow<2>(_polar_z[_qp])*_Q12 + Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + Utility::pow<2>(_antiferrodis_A_y[_qp])*_R12 + Utility::pow<2>(_antiferrodis_A_z[_qp])*_R12;
     }
     else if (_index_k == 1)
     {

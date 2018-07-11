@@ -1,9 +1,9 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 3
-  ny = 3
-  nz = 3
+  nx = 4
+  ny = 4
+  nz = 4
   xmin = -1.0
   xmax = 1.0
   ymin = -1.0
@@ -11,6 +11,14 @@
   zmin = -1.0
   zmax = 1.0
   elem_type = HEX8
+[]
+
+[MeshModifiers]
+  [./cnode]
+    type = AddExtraNodeset
+    coord = '0.0 0.0 0.0'
+    new_boundary = 100
+  [../]
 []
 
 [GlobalParams]
@@ -101,265 +109,230 @@
   antiferrodis_A_y = antiferrodis_A_y
   antiferrodis_A_z = antiferrodis_A_z
 
-  disp_x = disp_x
-  disp_y = disp_y
-  disp_z = disp_z
-  
-  displacements = 'disp_x disp_y disp_z'
-
-  #potential_int = potential_int
+  displacements = 'u_x u_y u_z'
 []
 
-
 [Variables]
+  [./u_x]
+  [../]
+  [./u_y]
+  [../]
+  [./u_z]
+  [../]
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
   [./polar_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = 0.08
+      max = 0.09
     [../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = 0.08
+      max = 0.09
     [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = 0.08
+      max = 0.09
     [../]
   [../]
   [./antiferrodis_A_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = 0.08
+      max = 0.09
     [../]
   [../]
   [./antiferrodis_A_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = 0.08
+      max = 0.09
     [../]
   [../]
   [./antiferrodis_A_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
-      type = ConstantIC
-      value = 0.85
+      type = RandomIC
+      min = 0.08
+      max = 0.09
     [../]
-  [../]
-  [./disp_x]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./disp_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./disp_z]
-    order = FIRST
-    family = LAGRANGE
   [../]
 []
 
 [AuxVariables]
-  [./stress_xx_elastic]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./s00]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./stress_yy_elastic]
+  [./s01]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./stress_xy_elastic]
+  [./s10]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./stress_xz_elastic]
+  [./s11]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./stress_zz_elastic]
+  [./e00]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./stress_yz_elastic]
+  [./e01]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./strain_xx_elastic]
+  [./e10]
     order = CONSTANT
     family = MONOMIAL
   [../]
-  [./strain_yy_elastic]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_xy_elastic]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_xz_elastic]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_zz_elastic]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./strain_yz_elastic]
+  [./e11]
     order = CONSTANT
     family = MONOMIAL
   [../]
 []
 
 [AuxKernels]
-  [./matl_e11]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
     type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
     rank_two_tensor = total_strain
     index_i = 0
     index_j = 0
-    variable = strain_xx_elastic
-    execute_on = 'timestep_end'
   [../]
-  [./matl_e12]
+  [./e01]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    variable = e01
+    rank_two_tensor = total_strain
     index_i = 0
     index_j = 1
-    variable = strain_xy_elastic
-    execute_on = 'timestep_end'
   [../]
-  [./matl_e13]
+  [./e10]
     type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    index_i = 0
-    index_j = 2
-    variable = strain_xz_elastic
-    execute_on = 'timestep_end'
-  [../]
-  [./matl_e22]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
+    variable = e10
+    rank_two_tensor = total_strain
     index_i = 1
-    index_j = 1
-    variable = strain_yy_elastic
-    execute_on = 'timestep_end'
-  [../]
-  [./matl_e23]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    index_i = 1
-    index_j = 2
-    variable = strain_yz_elastic
-    execute_on = 'timestep_end'
-  [../]
-  [./matl_e33]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    index_i = 2
-    index_j = 2
-    variable = strain_zz_elastic
-    execute_on = 'timestep_end'
-  [../]
-  [./matl_s11]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    index_i = 0
     index_j = 0
-    variable = stress_xx_elastic
-    execute_on = 'timestep_end'
   [../]
-  [./matl_s12]
+  [./e11]
     type = RankTwoAux
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 1
-    variable = stress_xy_elastic
-    execute_on = 'timestep_end'
-  [../]
-  [./matl_s13]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 2
-    variable = stress_xz_elastic
-    execute_on = 'timestep_end'
-  [../]
- [./matl_s22]
-    type = RankTwoAux
-    rank_two_tensor = stress
+    variable = e11
+    rank_two_tensor = total_strain
     index_i = 1
     index_j = 1
-    variable = stress_yy_elastic
-    execute_on = 'timestep_end'
-  [../]
-  [./matl_s23]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    index_i = 1
-    index_j = 2
-    variable = stress_yz_elastic
-    execute_on = 'timestep_end'
-  [../]
-  [./matl_s33]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    index_i = 2
-    index_j = 2
-    variable = stress_zz_elastic
-    execute_on = 'timestep_end'
   [../]
 []
 
 [Kernels]
-
-  #Elastic problem
   [./TensorMechanics]
-  #This is an action block
   [../]
 
   [./rotostr_ux]
     type = RotostrictiveCouplingDispDerivative
-    variable = disp_x
+    variable = u_x
     component = 0
   [../]
   [./rotostr_uy]
     type = RotostrictiveCouplingDispDerivative
-    variable = disp_y
+    variable = u_y
     component = 1
   [../]
   [./rotostr_uz]
     type = RotostrictiveCouplingDispDerivative
-    variable = disp_z
+    variable = u_z
     component = 2
   [../]
 
   [./electrostr_ux]
     type = ElectrostrictiveCouplingDispDerivative
-    variable = disp_x
+    variable = u_x
     component = 0
   [../]
   [./electrostr_uy]
     type = ElectrostrictiveCouplingDispDerivative
-    variable = disp_y
+    variable = u_y
     component = 1
   [../]
   [./electrostr_uz]
     type = ElectrostrictiveCouplingDispDerivative
-    variable = disp_z
+    variable = u_z
     component = 2
   [../]
 
@@ -416,16 +389,25 @@
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_x
     component = 0
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
   [./electrostr_polar_coupled_y]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_y
     component = 1
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
   [./electrostr_polar_coupled_z]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_z
     component = 2
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
 
 
@@ -483,16 +465,25 @@
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_x
     component = 0
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
   [./rotostr_dis_coupled_y]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_y
     component = 1
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
   [./rotostr_dis_coupled_z]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_z
     component = 2
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
 
   ###Time dependence
@@ -529,18 +520,36 @@
   [../]
 []
 
+[ScalarKernels]
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+[]
+
 [Materials]
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
     C_ijkl = '1.762732e-2 9.4905087e-3 9.4905087e-3 1.762732e-2 9.4905087e-3 1.762732e-2 5.24373333e-5 5.24373333e-5 5.24373333e-5'
   [../]
-  [./strain_1]
+
+  [./strain]
     type = ComputeSmallStrain
+    global_strain = global_strain
   [../]
-  [./stress_1]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./stress]
     type = ComputeLinearElasticStress
   [../]
+
 []
 
 [Postprocessors]
@@ -570,10 +579,16 @@
   [./FcPu]
     type = ElectrostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
   [./FcAu]
     type = RotostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
+    disp_x = disp_x
+    disp_y = disp_y
+    disp_z = disp_z
   [../]
   [./Felu]
     type = ElasticEnergy
@@ -598,26 +613,39 @@
   [./Periodic]
     [./xy]
       auto_direction = 'x y z'
-      variable = 'polar_x polar_y polar_z antiferrodis_A_x antiferrodis_A_y antiferrodis_A_z'
+      variable = 'u_x u_y u_z polar_x polar_y polar_z antiferrodis_A_x antiferrodis_A_y antiferrodis_A_z'
     [../]
+  [../]
+  # fix center point location
+  [./centerfix_x]
+    type = PresetBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = PresetBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = PresetBC
+    boundary = 100
+    variable = u_z
+    value = 0
   [../]
 []
 
-[Problem]
-  null_space_dimension = 6
-[]
-
 [UserObjects]
- [./rigidbodymodes_x]
-    type = RigidBodyModes3D
-    subspace_name = NullSpace
-    subspace_indices = '0 1 2 3 4 5'
-    modes = 'trans_x trans_y trans_z rot_x rot_y rot_z'
- [../]
- [./kill]
-  type = Terminator
-  expression = 'perc_change <= 1.0e-7'
- [../]
+  [./global_strain_uo]
+    type = GlobalBFOMaterialRVEUserObject
+    execute_on = 'Initial Linear Nonlinear'
+  [../]
+  [./kill]
+   type = Terminator
+   expression = 'perc_change <= 1.0e-7'
+  [../]
 []
 
 [Preconditioning]
@@ -631,11 +659,12 @@
 
 [Executioner]
   type = Transient
-  dt = 0.25
+  dt = 0.18
   solve_type = 'NEWTON'
   scheme = 'bdf2'
   dtmin = 1e-13
-  dtmax = 0.25
+  dtmax = 0.18
+  num_steps = 4
 []
 
 [Outputs]
@@ -643,7 +672,7 @@
   print_perf_log = true
   [./out]
     type = Exodus
-    file_base = out_BFO_P-A-u_2
+    file_base = out_global_test
     elemental_as_nodal = true
   [../]
 []
