@@ -255,19 +255,6 @@
   [../]
 []
 
-[Problem]
-  null_space_dimension = 6
-[]
-
-[UserObjects]
-  [./rigidbodymodes_x]
-     type = RigidBodyModes3D
-     subspace_name = NullSpace
-     subspace_indices = '0 1 2 3 4 5'
-     modes = 'trans_x trans_y trans_z rot_x rot_y rot_z'
-  [../]
-[]
-
 [Preconditioning]
   [./smp]
     type = SMP
