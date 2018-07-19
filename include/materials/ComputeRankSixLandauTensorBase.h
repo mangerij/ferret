@@ -19,32 +19,32 @@
 
 **/
 
-#ifndef COMPUTERANKFOURLANDAUTENSORBASE_H
-#define COMPUTERANKFOURLANDAUTENSORBASE_H
+#ifndef COMPUTERANKSIXLANDAUTENSORBASE_H
+#define COMPUTERANKSIXLANDAUTENSORBASE_H
 
 #include "Material.h"
-#include "RankFourTensor.h"
+#include "RankSixTensor.h"
 
-class ComputeRankFourLandauTensorBase;
+class ComputeRankSixLandauTensorBase;
 
 template<>
-InputParameters validParams<ComputeRankFourLandauTensorBase>();
+InputParameters validParams<ComputeRankSixLandauTensorBase>();
 
 /**
  * ComputeLandauTensorBase the base class for computing Landau expansion tensors
  */
-class ComputeRankFourLandauTensorBase : public Material
+class ComputeRankSixLandauTensorBase : public Material
 {
 public:
-  ComputeRankFourLandauTensorBase(const InputParameters & parameters);
+  ComputeRankSixLandauTensorBase(const InputParameters & parameters);
 
 protected:
   virtual void computeQpProperties();
-  virtual void computeQpRankFourLandauTensor() = 0;
+  virtual void computeQpRankSixLandauTensor() = 0;
 
   std::string _base_name;
-  std::string _rank_four_landau_tensor_name;
-  MaterialProperty<RankFourTensor> & _rank_four_landau_tensor;
+  std::string _rank_six_landau_tensor_name;
+  MaterialProperty<RankSixTensor> & _rank_six_landau_tensor;
 };
 
-#endif //COMPUTERANKFOURLANDAUTENSORBASE_H
+#endif //COMPUTERANKSIXLANDAUTENSORBASE_H

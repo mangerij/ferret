@@ -7,8 +7,8 @@
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#ifndef GLOBALATOMATERIALRVEUSEROBJECT_H
-#define GLOBALATOMATERIALRVEUSEROBJECT_H
+#ifndef GLOBALATIO3MATERIALRVEUSEROBJECT_H
+#define GLOBALATIO3MATERIALRVEUSEROBJECT_H
 
 #include "ElementUserObject.h"
 #include "GlobalStrainUserObjectInterface.h"
@@ -16,15 +16,15 @@
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
 
-class GlobalATOMaterialRVEUserObject;
+class GlobalATiO3MaterialRVEUserObject;
 
 template <>
-InputParameters validParams<GlobalATOMaterialRVEUserObject>();
+InputParameters validParams<GlobalATiO3MaterialRVEUserObject>();
 
-class GlobalATOMaterialRVEUserObject : public ElementUserObject, public GlobalStrainUserObjectInterface
+class GlobalATiO3MaterialRVEUserObject : public ElementUserObject, public GlobalStrainUserObjectInterface
 {
 public:
-  GlobalATOMaterialRVEUserObject(const InputParameters & parameters);
+  GlobalATiO3MaterialRVEUserObject(const InputParameters & parameters);
 
   void initialize() override;
   void execute() override;
@@ -65,4 +65,4 @@ protected:
 
 };
 
-#endif // GLOBALATOMATERIALRVEUSEROBJECT_H
+#endif // GLOBALATIO3MATERIALRVEUSEROBJECT_H

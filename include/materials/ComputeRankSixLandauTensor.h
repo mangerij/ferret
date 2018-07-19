@@ -19,22 +19,31 @@
 
 **/
 
-#ifndef LANDAUTENSORTOOLS_H
-#define LANDAUTENSORTOOLS_H
+#ifndef COMPUTERANKSIXLANDAUTENSOR_H
+#define COMPUTERANKSIXLANDAUTENSOR_H
 
-class RankTwoTensor;
-class RankFourTensor;
-class RankSixTensor;
-//class RankEightTensor;
+#include "RankSixTensor.h"
+//#include "LandauTensorTools.h"
+#include "ComputeRotatedRankSixLandauTensorBase.h"
 
-namespace LandauTensorTools
+
+class ComputeRankSixLandauTensor;
+
+template<>
+InputParameters validParams<ComputeRankSixLandauTensor>();
+
+/**
+ * ComputeRankSixLandauTensor defines the \alpha_{ijklmn} tensor material object with a given base name.
+ */
+class ComputeRankSixLandauTensor : public ComputeRotatedRankSixLandauTensorBase
 {
-  Real landauTwoProduct(const RankTwoTensor & aij, const RealVectorValue & p);
-  Real landauFourProduct(const RankFourTensor & aijkl, const RealVectorValue & p);
-  Real landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p);
-  Real landauTwoProductDerivative(const RankTwoTensor & aij, unsigned int k, const RealVectorValue & p);
-  Real landauFourProductDerivative(const RankFourTensor & aijkl, unsigned int m, const RealVectorValue & p);
-//  Real landauSixProductDerivative(const RankSixTensor & aijklmn, unsigned int m, const RealVectorValue & p);
-}
+public:
+  ComputeRankSixLandauTensor(const InputParameters & parameters);
 
-#endif //LANDAUTENSORTOOLS_H
+protected:
+  virtual void computeQpRankSixLandauTensor();
+
+  RankSixTensor _alpha_ijklmn;
+};
+
+#endif //COMPUTERANKSIXLANDAUTENSOR_H

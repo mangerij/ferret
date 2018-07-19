@@ -19,32 +19,26 @@
 
 **/
 
-#ifndef COMPUTERANKFOURLANDAUTENSORBASE_H
-#define COMPUTERANKFOURLANDAUTENSORBASE_H
-
-#include "Material.h"
-#include "RankFourTensor.h"
-
-class ComputeRankFourLandauTensorBase;
+#include "ComputeRankSixLandauTensorBase.h"
 
 template<>
-InputParameters validParams<ComputeRankFourLandauTensorBase>();
-
-/**
- * ComputeLandauTensorBase the base class for computing Landau expansion tensors
- */
-class ComputeRankFourLandauTensorBase : public Material
+InputParameters validParams<ComputeRankSixLandauTensorBase>()
 {
-public:
-  ComputeRankFourLandauTensorBase(const InputParameters & parameters);
+  InputParameters params = validParams<Material>();
+  params.addParam<std::string>("base_name", "Optional parameter that allows the user to define multiple material systems on the same block, i.e. for multiple phases");
+  return params;
+}
 
-protected:
-  virtual void computeQpProperties();
-  virtual void computeQpRankFourLandauTensor() = 0;
+ComputeRankSixLandauTensorBase::ComputeRankSixLandauTensorBase(const InputParameters & parameters) :
+    Material(parameters),
+   _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : "" ),
+   _rank_six_landau_tensor_name(_base_name + "rank_six_landau_tensor"),
+   _rank_six_landau_tensor(declareProperty<RankSixTensor>(_rank_six_landau_tensor_name))
+{
+}
 
-  std::string _base_name;
-  std::string _rank_four_landau_tensor_name;
-  MaterialProperty<RankFourTensor> & _rank_four_landau_tensor;
-};
-
-#endif //COMPUTERANKFOURLANDAUTENSORBASE_H
+void
+ComputeRankSixLandauTensorBase::computeQpProperties()
+{
+  computeQpRankSixLandauTensor();
+}

@@ -466,7 +466,7 @@
 
 [UserObjects]
   [./global_strain_uo]
-    type = GlobalATOMaterialRVEUserObject
+    type = GlobalATiO3MaterialRVEUserObject
     Q11 = -0.089
     Q12 = 0.026
     Q44 = -0.03375
