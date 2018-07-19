@@ -22,7 +22,7 @@
 #include "MooseTypes.h"
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
-//#include "RankSixTensor.h"
+#include "RankSixTensor.h"
 //#include "RankEightTensor.h"
 
 namespace LandauTensorTools
@@ -56,21 +56,21 @@ landauFourProduct(const RankFourTensor & aijkl, const RealVectorValue & p)
   return sum;
 }
 
-//Real
-//landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p)
-//{
-//  Real sum = 0.0;
-//  for(unsigned int i = 0; i < 3; ++i)
-//    for(unsigned int j = 0; j < 3; ++j)
-//      for(unsigned int k = 0; k < 3; ++k)
-//        for(unsigned int l = 0; l < 3; ++l)
-//          for(unsigned int m = 0; m < 3; ++m)
-//            for(unsigned int n = 0; n < 3; ++n)
-//            {
-//              sum += aijklmn(i, j, k, l, m, n) * p(i) * p(j) * p(k) * p(l) * p(m) * p(n);
-//            }
-//  return sum;
-//}
+Real
+landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p)
+{
+  Real sum = 0.0;
+  for(unsigned int i = 0; i < 3; ++i)
+    for(unsigned int j = 0; j < 3; ++j)
+      for(unsigned int k = 0; k < 3; ++k)
+        for(unsigned int l = 0; l < 3; ++l)
+          for(unsigned int m = 0; m < 3; ++m)
+            for(unsigned int n = 0; n < 3; ++n)
+            {
+              sum += aijklmn(i, j, k, l, m, n) * p(i) * p(j) * p(k) * p(l) * p(m) * p(n);
+            }
+  return sum;
+}
 
 //Real
 //landauEightProduct(const RankEightTensor & aijklmnrs, const RealVectorValue & p)

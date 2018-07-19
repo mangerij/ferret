@@ -19,22 +19,23 @@
 
 **/
 
-#ifndef LANDAUTENSORTOOLS_H
-#define LANDAUTENSORTOOLS_H
+#include "ComputeRotatedRankSixLandauTensorBase.h"
+#include "RotationTensor.h"
 
-class RankTwoTensor;
-class RankFourTensor;
-class RankSixTensor;
-//class RankEightTensor;
-
-namespace LandauTensorTools
+template<>
+InputParameters validParams<ComputeRotatedRankSixLandauTensorBase>()
 {
-  Real landauTwoProduct(const RankTwoTensor & aij, const RealVectorValue & p);
-  Real landauFourProduct(const RankFourTensor & aijkl, const RealVectorValue & p);
-  Real landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p);
-  Real landauTwoProductDerivative(const RankTwoTensor & aij, unsigned int k, const RealVectorValue & p);
-  Real landauFourProductDerivative(const RankFourTensor & aijkl, unsigned int m, const RealVectorValue & p);
-//  Real landauSixProductDerivative(const RankSixTensor & aijklmn, unsigned int m, const RealVectorValue & p);
+  InputParameters params = validParams<ComputeRotatedRankSixLandauTensorBase>();
+  params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
+  params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
+  params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");
+  return params;
 }
 
-#endif //LANDAUTENSORTOOLS_H
+ComputeRotatedRankSixLandauTensorBase::ComputeRotatedRankSixLandauTensorBase(const InputParameters & parameters) :
+    ComputeRankSixLandauTensorBase(parameters),
+    _Euler_angles(getParam<Real>("euler_angle_1"),
+                  getParam<Real>("euler_angle_2"),
+                  getParam<Real>("euler_angle_3"))
+{
+}

@@ -7,16 +7,16 @@
 //* Licensed under LGPL 2.1, please see LICENSE for details
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#include "GlobalATOMaterialRVEUserObject.h"
+#include "GlobalATiO3MaterialRVEUserObject.h"
 
 #include "libmesh/quadrature.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", GlobalATOMaterialRVEUserObject);
+registerMooseObject("FerretApp", GlobalATiO3MaterialRVEUserObject);
 
 template <>
 InputParameters
-validParams<GlobalATOMaterialRVEUserObject>()
+validParams<GlobalATiO3MaterialRVEUserObject>()
 {
   InputParameters params = validParams<ElementUserObject>();
   params.addClassDescription(
@@ -39,7 +39,7 @@ validParams<GlobalATOMaterialRVEUserObject>()
   return params;
 }
 
-GlobalATOMaterialRVEUserObject::GlobalATOMaterialRVEUserObject(const InputParameters & parameters)
+GlobalATiO3MaterialRVEUserObject::GlobalATiO3MaterialRVEUserObject(const InputParameters & parameters)
   : ElementUserObject(parameters),
     _base_name(isParamValid("base_name") ? getParam<std::string>("base_name") + "_" : ""),
     _dstress_dstrain(getMaterialProperty<RankFourTensor>(_base_name + "Jacobian_mult")),
@@ -79,14 +79,14 @@ GlobalATOMaterialRVEUserObject::GlobalATOMaterialRVEUserObject(const InputParame
 }
 
 void
-GlobalATOMaterialRVEUserObject::initialize()
+GlobalATiO3MaterialRVEUserObject::initialize()
 {
   _residual.zero();
   _jacobian.zero();
 }
 
 void
-GlobalATOMaterialRVEUserObject::execute()
+GlobalATiO3MaterialRVEUserObject::execute()
 {
   computeAdditionalStress();
 
@@ -142,15 +142,15 @@ GlobalATOMaterialRVEUserObject::execute()
 }
 
 void
-GlobalATOMaterialRVEUserObject::threadJoin(const UserObject & uo)
+GlobalATiO3MaterialRVEUserObject::threadJoin(const UserObject & uo)
 {
-  const GlobalATOMaterialRVEUserObject & pstuo = static_cast<const GlobalATOMaterialRVEUserObject &>(uo);
+  const GlobalATiO3MaterialRVEUserObject & pstuo = static_cast<const GlobalATiO3MaterialRVEUserObject &>(uo);
   _residual += pstuo._residual;
   _jacobian += pstuo._jacobian;
 }
 
 void
-GlobalATOMaterialRVEUserObject::finalize()
+GlobalATiO3MaterialRVEUserObject::finalize()
 {
   std::vector<Real> residual(9);
   std::vector<Real> jacobian(81);
@@ -166,19 +166,19 @@ GlobalATOMaterialRVEUserObject::finalize()
 }
 
 const RankTwoTensor &
-GlobalATOMaterialRVEUserObject::getResidual() const
+GlobalATiO3MaterialRVEUserObject::getResidual() const
 {
   return _residual;
 }
 
 const RankFourTensor &
-GlobalATOMaterialRVEUserObject::getJacobian() const
+GlobalATiO3MaterialRVEUserObject::getJacobian() const
 {
   return _jacobian;
 }
 
 const VectorValue<bool> &
-GlobalATOMaterialRVEUserObject::getPeriodicDirections() const
+GlobalATiO3MaterialRVEUserObject::getPeriodicDirections() const
 {
   return _periodic_dir;
 }

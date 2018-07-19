@@ -19,22 +19,26 @@
 
 **/
 
-#ifndef LANDAUTENSORTOOLS_H
-#define LANDAUTENSORTOOLS_H
+#ifndef COMPUTEROTATEDRANKSIXLANDAUTENSORBASE_H
+#define COMPUTEROTATEDRANKSIXLANDAUTENSORBASE_H
 
-class RankTwoTensor;
-class RankFourTensor;
-class RankSixTensor;
-//class RankEightTensor;
+#include "ComputeRankSixLandauTensorBase.h"
 
-namespace LandauTensorTools
+class ComputeRotatedRankSixLandauTensorBase;
+
+template<>
+InputParameters validParams<ComputeRotatedRankSixLandauTensorBase>();
+
+/**
+ * ComputeRotatedRankSixLandauTensorBase is an intermediate base class that rotates the \alpha_{ijklmn} tensor based on euler angles.
+ */
+class ComputeRotatedRankSixLandauTensorBase : public ComputeRankSixLandauTensorBase
 {
-  Real landauTwoProduct(const RankTwoTensor & aij, const RealVectorValue & p);
-  Real landauFourProduct(const RankFourTensor & aijkl, const RealVectorValue & p);
-  Real landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p);
-  Real landauTwoProductDerivative(const RankTwoTensor & aij, unsigned int k, const RealVectorValue & p);
-  Real landauFourProductDerivative(const RankFourTensor & aijkl, unsigned int m, const RealVectorValue & p);
-//  Real landauSixProductDerivative(const RankSixTensor & aijklmn, unsigned int m, const RealVectorValue & p);
-}
+public:
+  ComputeRotatedRankSixLandauTensorBase(const InputParameters & parameters);
 
-#endif //LANDAUTENSORTOOLS_H
+protected:
+  RealVectorValue _Euler_angles;
+};
+
+#endif //COMPUTEROTATEDRANKSIXLANDAUTENSORBASE_H
