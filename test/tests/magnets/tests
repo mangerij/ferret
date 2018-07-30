@@ -1,0 +1,9 @@
+[Tests]
+  [./how_do_they_work]
+    type = 'Exodiff'
+    input = 'magnets_how_do_they_work.i'
+    exodiff = 'out_LLG_test.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]
