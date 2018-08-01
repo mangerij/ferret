@@ -297,7 +297,7 @@
 
 [Outputs]
   print_linear_residuals = false
-  print_perf_log = true
+  print_perf_graph = true
   [./out]
     type = Exodus
     file_base = out_test_piezoelectric

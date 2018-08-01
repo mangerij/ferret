@@ -299,7 +299,6 @@
 
 [Outputs]
   print_linear_residuals = false
-  print_perf_log = false
   [./out]
     type = Exodus
     file_base = outPTOchunk_test

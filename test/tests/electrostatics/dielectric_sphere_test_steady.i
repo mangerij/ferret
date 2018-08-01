@@ -66,7 +66,6 @@
 [Outputs]
   file_base = out_lindie_sph_test
   print_linear_residuals = true
-  print_perf_log = true
   [./out]
     type = Exodus
     elemental_as_nodal = true

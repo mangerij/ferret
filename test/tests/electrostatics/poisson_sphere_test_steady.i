@@ -136,7 +136,6 @@
 
 [Outputs]
   print_linear_residuals = false
-  print_perf_log = true
   [./out]
     type = Exodus
     file_base = out_polar_sph_test

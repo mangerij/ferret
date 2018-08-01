@@ -598,7 +598,6 @@ permitivitty_depol_para = 0.00885
 
 [Outputs]
   print_linear_residuals = false
-  print_perf_log = true
   [./out]
     type = Exodus
     execute_on = 'timestep_end'
