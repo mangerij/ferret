@@ -16,23 +16,23 @@
 
 [GlobalParams]
   potential_E_int = potential_E_int
-  disp_x = disp_x
-  disp_y = disp_y
-  disp_z = disp_z
-  displacements = 'disp_x disp_y disp_z'
+  disp_x = u_x
+  disp_y = u_y
+  disp_z = u_z
+  displacements = 'u_x u_y u_z'
 []
 
 
 [Variables]
-  [./disp_x]
+  [./u_x]
     order = FIRST
     family = LAGRANGE
   [../]
-  [./disp_y]
+  [./u_y]
     order = FIRST
     family = LAGRANGE
   [../]
-  [./disp_z]
+  [./u_z]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -100,17 +100,17 @@
   [../]
   [./piezocouple_0]
     type = ConversePiezoelectricStrain
-    variable = disp_x
+    variable = u_x
     component = 0
   [../]
   [./piezocouple_1]
     type = ConversePiezoelectricStrain
-    variable = disp_y
+    variable = u_y
     component = 1
   [../]
   [./piezocouple_2]
     type = ConversePiezoelectricStrain
-    variable = disp_z
+    variable = u_z
     component = 2
   [../]
   [./FE_E_int]
@@ -249,25 +249,25 @@
 
   [./stablizer_x]
     type = DirichletBC
-    variable = 'disp_x'
+    variable = 'u_x'
     boundary = 'front back'
     value = 0.0
   [../]
   [./stablizer_y]
     type = DirichletBC
-    variable = 'disp_y'
+    variable = 'u_y'
     boundary = 'front back'
     value = 0.0
   [../]
   [./front_strain]
     type = DirichletBC
-    variable = 'disp_z'
+    variable = 'u_z'
     boundary = 'front'
     value = -0.01
   [../]
   [./back_strain]
     type = DirichletBC
-    variable = 'disp_z'
+    variable = 'u_z'
     boundary = 'back'
     value = 0.01
   [../]
