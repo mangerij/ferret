@@ -1,9 +1,9 @@
-#[Tests]
-#  [./full]
-#    type = 'Exodiff'
-#    input = 'BTO_mono_dispersion_A1_1.i'
-#    exodiff = 'outBTO_0_adef.e'
-#    max_parallel = 1
-#    max_threads = 1
-#  [../]
-#[]
+[Tests]
+  [./full]
+    type = 'Exodiff'
+    input = 'BTO_mono_dispersion_A1_1.i'
+    exodiff = 'outBTO_0_adef.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]

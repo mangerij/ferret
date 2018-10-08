@@ -299,7 +299,6 @@ amplitude = 0.01
 
 [Outputs]
   print_linear_residuals = false
-  print_perf_log = false
   [./out]
     type = Exodus
     file_base = outBTO_0_adef
