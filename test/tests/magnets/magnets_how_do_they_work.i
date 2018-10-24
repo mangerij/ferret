@@ -21,7 +21,7 @@
 [GlobalParams]
   polar_theta = polar_theta
   azimuth_phi = azimuth_phi
- 
+
   potential_H_int = potential_H_int
   potential_H_ext = potential_H_ext
 
@@ -192,9 +192,9 @@
     execute_on = 'initial timestep_end'
   [../]
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fexchange Faniso'
-    pp_coefs = ' 1 1' 
+    pp_coefs = ' 1 1'
     execute_on = 'initial timestep_end'
   [../]
 []
@@ -265,8 +265,9 @@
 [Executioner]
   type = Transient
   dt = 1.0e-5                 #NOTE FOR MAGNETS, TIMESTEP AND ALPHA CHOICE ARE INTERTWINED
-  solve_type = 'NEWTON'       # PJFNK not supported for rsls 
+  solve_type = 'NEWTON'       # PJFNK not supported for rsls
   scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  line_search = 'bt'
   dtmin = 1e-13
   dtmax = 1.0
   num_steps = 8
