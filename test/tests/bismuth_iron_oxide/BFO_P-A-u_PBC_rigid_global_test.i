@@ -71,7 +71,7 @@
   G110 = 0.173
   G11_G110 = 0.5
   G12_G110 = 0
-  G44_G110 = 0.5 
+  G44_G110 = 0.5
   G44P_G110 = 0.5
 
   H110 = 0.173
@@ -98,7 +98,7 @@
   q44 = -8.75649995e-4
 
   r11 = -7.7644e-3
-  r12 = 1.63357e-3 
+  r12 = 1.63357e-3
   r44 = 7.70775329e-4
 
   polar_x = polar_x
@@ -595,9 +595,9 @@
     execute_on = 'initial timestep_end'
   [../]
   [./Ftot]
-    type = LinearCombinationPostprocessor 
-    pp_names = 'FbP FbA FgP FgA FcPA FcPu FcAu Felu' 
-    pp_coefs = ' 1 1 1 1 1 1 1 1' 
+    type = LinearCombinationPostprocessor
+    pp_names = 'FbP FbA FgP FgA FcPA FcPu FcAu Felu'
+    pp_coefs = ' 1 1 1 1 1 1 1 1'
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change]
@@ -661,6 +661,7 @@
   type = Transient
   dt = 0.18
   solve_type = 'NEWTON'
+  line_search = 'bt'
   scheme = 'bdf2'
   dtmin = 1e-13
   dtmax = 0.18
