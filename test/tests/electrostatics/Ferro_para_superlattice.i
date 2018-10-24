@@ -49,6 +49,7 @@ permitivitty_depol_para = 0.00885
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./FE_polar_y]
@@ -60,6 +61,7 @@ permitivitty_depol_para = 0.00885
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./FE_polar_z]
@@ -71,6 +73,7 @@ permitivitty_depol_para = 0.00885
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./PE_polar_x]
@@ -82,6 +85,7 @@ permitivitty_depol_para = 0.00885
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./PE_polar_y]
@@ -93,6 +97,7 @@ permitivitty_depol_para = 0.00885
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./PE_polar_z]
@@ -104,6 +109,7 @@ permitivitty_depol_para = 0.00885
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./potential_E_int]
@@ -114,6 +120,7 @@ permitivitty_depol_para = 0.00885
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
 []
@@ -257,7 +264,7 @@ permitivitty_depol_para = 0.00885
      block = 'ferro_volume'
      variable = FE_polar_z
   [../]
-  
+
   #PARAELECTRIC BLOCK
   [./bed_xp_para]
     alpha1111 = 0
@@ -331,7 +338,7 @@ permitivitty_depol_para = 0.00885
      variable = potential_E_int
      permittivity = ${permittivity_electrostatic_para}
   [../]
-  
+
   [./polar_electric_pxp_para]
      type = PolarElectricPStrong
      block = 'para_bottom_volume para_top_volume'
@@ -353,7 +360,7 @@ permitivitty_depol_para = 0.00885
      potential_E_int = potential_E_int
      component = 2
   [../]
-  
+
   [./walled_xp_para]
     type = WallEnergyDerivativeAlt
     block = 'para_bottom_volume para_top_volume'
@@ -396,7 +403,7 @@ permitivitty_depol_para = 0.00885
     G44P_G110 = ${G44P_G110_para}
     component = 2
   [../]
-  
+
   [./polar_x_timep_para]
      type = TimeDerivativeScaled
      block = 'para_bottom_volume para_top_volume'
@@ -426,8 +433,8 @@ permitivitty_depol_para = 0.00885
       variable = potential_E_int
       value = 0.0
       boundary = 'para_bottom_surface_bottom'
-   [../]   
-   
+   [../]
+
   [./Periodic]
    [./per1]
      variable = 'PE_polar_x PE_polar_y PE_polar_z potential_E_int'
@@ -507,7 +514,7 @@ permitivitty_depol_para = 0.00885
     G12_G110 = ${G12_G110}
     G44_G110 = ${G44_G110}
     G44P_G110 = ${G44P_G110}
-    
+
     block = 'ferro_volume'
     execute_on = 'initial timestep_end'
   [../]
@@ -520,7 +527,7 @@ permitivitty_depol_para = 0.00885
     potential_E_int = potential_E_int
     execute_on = 'initial timestep_end'
   [../]
-    
+
   [./Fbulk_para]
     type = BulkEnergy
     block = 'para_bottom_volume para_top_volume'
@@ -545,7 +552,7 @@ permitivitty_depol_para = 0.00885
     G12_G110 = ${G12_G110_para}
     G44_G110 = ${G44_G110_para}
     G44P_G110 = ${G44P_G110_para}
-    
+
     block = 'para_bottom_volume para_top_volume'
     execute_on = 'initial timestep_end'
   [../]
@@ -575,8 +582,8 @@ permitivitty_depol_para = 0.00885
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol  -pc_type '     
-    petsc_options_value = '    120               1e-10      1e-8     1e-5        bjacobi'    
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol  -pc_type '
+    petsc_options_value = '    120               1e-10      1e-8     1e-5        bjacobi'
   [../]
 []
 

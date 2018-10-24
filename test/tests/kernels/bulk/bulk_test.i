@@ -39,6 +39,7 @@
       min = -0.01e-4
       max = 0.01e-4
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./polar_y]
@@ -49,6 +50,7 @@
       min = -0.01e-4
       max = 0.01e-4
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./polar_z]
@@ -59,6 +61,7 @@
       min = -0.01e-4
       max = 0.01e-4
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./potential_E_int]
