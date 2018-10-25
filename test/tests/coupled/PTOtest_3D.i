@@ -49,6 +49,7 @@
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./polar_y]
@@ -59,6 +60,7 @@
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./polar_z]
@@ -69,6 +71,7 @@
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./potential_E_int]
@@ -267,9 +270,9 @@
       execute_on = 'initial timestep_end'
     [../]
     [./Ftotal]
-      type = LinearCombinationPostprocessor 
-      pp_names = 'Fbulk Fwall Fcoupled Felec' 
-      pp_coefs = ' 1 1 1 1' 
+      type = LinearCombinationPostprocessor
+      pp_names = 'Fbulk Fwall Fcoupled Felec'
+      pp_coefs = ' 1 1 1 1'
       execute_on = 'initial timestep_end'
     [../]
     [./perc_change]

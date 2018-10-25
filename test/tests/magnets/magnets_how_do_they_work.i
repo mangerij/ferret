@@ -51,6 +51,7 @@
       min = 0.00000001
       max = 3.14159265357
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./azimuth_phi]
@@ -61,6 +62,7 @@
       min = 0.000000001
       max = 6.283185307178
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./potential_H_int]

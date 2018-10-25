@@ -61,6 +61,7 @@
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./polar_y]
@@ -71,6 +72,7 @@
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
   [./polar_z]
@@ -81,6 +83,7 @@
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
+      legacy_generator = true
     [../]
   [../]
 
@@ -280,7 +283,7 @@
   [./ferroelectriccouplingp_zz]
     type = FerroelectricCouplingP
     variable = polar_z
-    disp_x = disp_x #should this be u_x? 
+    disp_x = disp_x #should this be u_x?
     disp_y = disp_y
     disp_z = disp_z
     component = 2
@@ -288,7 +291,7 @@
   [./ferroelectriccouplingX_xx]
     type = FerroelectricCouplingX
     variable = u_x
-    disp_x = u_x 
+    disp_x = u_x
     disp_y = u_y
     disp_z = u_z
     component = 0
@@ -296,7 +299,7 @@
   [./ferroelectriccouplingX_yy]
     type = FerroelectricCouplingX
     variable = u_y
-    disp_x = u_x 
+    disp_x = u_x
     disp_y = u_y
     disp_z = u_z
     component = 1
@@ -304,7 +307,7 @@
   [./ferroelectriccouplingX_zz]
     type = FerroelectricCouplingX
     variable = u_z
-    disp_x = u_x 
+    disp_x = u_x
     disp_y = u_y
     disp_z = u_z
     component = 2
@@ -452,9 +455,9 @@
       execute_on = 'initial timestep_end'
     [../]
     [./Ftotal]
-      type = LinearCombinationPostprocessor 
-      pp_names = 'Fbulk Fwall Fcoupled Felec' 
-      pp_coefs = ' 1 1 1 1' 
+      type = LinearCombinationPostprocessor
+      pp_names = 'Fbulk Fwall Fcoupled Felec'
+      pp_coefs = ' 1 1 1 1'
       execute_on = 'initial timestep_end'
     [../]
     [./perc_change]

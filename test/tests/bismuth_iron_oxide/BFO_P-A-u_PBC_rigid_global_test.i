@@ -130,6 +130,7 @@
       type = RandomIC
       min = 0.08
       max = 0.09
+      legacy_generator = true
     [../]
   [../]
   [./polar_y]
@@ -139,6 +140,7 @@
       type = RandomIC
       min = 0.08
       max = 0.09
+      legacy_generator = true
     [../]
   [../]
   [./polar_z]
@@ -148,6 +150,7 @@
       type = RandomIC
       min = 0.08
       max = 0.09
+      legacy_generator = true
     [../]
   [../]
   [./antiferrodis_A_x]
@@ -157,6 +160,7 @@
       type = RandomIC
       min = 0.08
       max = 0.09
+      legacy_generator = true
     [../]
   [../]
   [./antiferrodis_A_y]
@@ -166,6 +170,7 @@
       type = RandomIC
       min = 0.08
       max = 0.09
+      legacy_generator = true
     [../]
   [../]
   [./antiferrodis_A_z]
@@ -175,6 +180,7 @@
       type = RandomIC
       min = 0.08
       max = 0.09
+      legacy_generator = true
     [../]
   [../]
 []
