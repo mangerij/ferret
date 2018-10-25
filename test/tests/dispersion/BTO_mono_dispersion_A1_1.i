@@ -60,6 +60,7 @@ amplitude = 0.01
       type = RandomIC
       min = -0.1e-5
       max = 0.1e-5
+      legacy_generator = true
     [../]
   [../]
   [./polar_y]
@@ -69,6 +70,7 @@ amplitude = 0.01
       type = RandomIC
       min = -0.1e-5
       max = 0.1e-5
+      legacy_generator = true
     [../]
   [../]
   [./polar_z]
@@ -78,6 +80,7 @@ amplitude = 0.01
       type = RandomIC
       min = ${val}
       max = ${val}
+      legacy_generator = true
     [../]
   [../]
   [./potential_int]
@@ -94,6 +97,7 @@ amplitude = 0.01
       type = RandomIC
       min = ${val}
       max = ${val}
+      legacy_generator = true
     [../]
   [../]
   [./Ez]
@@ -303,6 +307,6 @@ amplitude = 0.01
     type = Exodus
     file_base = outBTO_0_adef
     elemental_as_nodal = true
-    #execute_on = 'initial final'  
+    #execute_on = 'initial final'
   [../]
 []
