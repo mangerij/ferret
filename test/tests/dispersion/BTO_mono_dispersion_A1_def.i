@@ -1,7 +1,8 @@
 
 
-val = -0.2652339 #note that this quantity depends on the amplitude of the applied field
-freq = 2.5e10
+val1 = -0.2652339 #note that this quantity depends on the amplitude of the applied field
+val2 = -0.2652338 
+freq = 1e10
 amplitude = 0.01
 
 [Mesh]
@@ -60,7 +61,6 @@ amplitude = 0.01
       type = RandomIC
       min = -0.1e-5
       max = 0.1e-5
-      legacy_generator = true
     [../]
   [../]
   [./polar_y]
@@ -70,7 +70,6 @@ amplitude = 0.01
       type = RandomIC
       min = -0.1e-5
       max = 0.1e-5
-      legacy_generator = true
     [../]
   [../]
   [./polar_z]
@@ -78,9 +77,8 @@ amplitude = 0.01
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = ${val}
-      max = ${val}
-      legacy_generator = true
+      min = ${val1}
+      max = ${val2}
     [../]
   [../]
   [./potential_int]
@@ -95,9 +93,8 @@ amplitude = 0.01
     family = MONOMIAL
     [./InitialCondition]
       type = RandomIC
-      min = ${val}
-      max = ${val}
-      legacy_generator = true
+      min = ${val1}
+      max = ${val2}
     [../]
   [../]
   [./Ez]
@@ -298,15 +295,20 @@ amplitude = 0.01
   dtmin = 1e-20
   dt = 1e-12
   dtmax = 1.0
-  num_steps = 15
+  num_steps = 20
 []
 
 [Outputs]
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = outBTO_0_adef
+    file_base = outBTO_disp_test
     elemental_as_nodal = true
-    #execute_on = 'initial final'
+    execute_on = 'initial final'   #this isn't needed. But I've never run MOOSE calculations without an exodus file!
+  [../]
+  [./outCSV]
+    type = CSV
+    new_row_tolerance = 1e-16
+    file_base = outBTO_disp_test
   [../]
 []
