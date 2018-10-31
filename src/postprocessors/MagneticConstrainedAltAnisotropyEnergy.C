@@ -32,11 +32,9 @@ InputParameters validParams<MagneticConstrainedAltAnisotropyEnergy>()
   params.addClassDescription("Calculates an integral over the magnetic anisotropy energy.");
   params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");
   params.addRequiredCoupledVar("polar_theta", "The polar component of the constrained magnetic vector");
-  params.addRequiredParam<Real>("nx", "nx");
-  params.addRequiredParam<Real>("ny", "ny");
-  params.addRequiredParam<Real>("nz", "nz");
-  params.addRequiredParam<Real>("Ku", "Ku");
-  params.addRequiredParam<Real>("M", "M");
+  params.addRequiredParam<Real>("K1", "K1");
+  params.addRequiredParam<Real>("K2", "K2");
+  params.addRequiredParam<Real>("Ms", "Ms");
   return params;
 }
 
@@ -44,16 +42,14 @@ MagneticConstrainedAltAnisotropyEnergy::MagneticConstrainedAltAnisotropyEnergy(c
   ElementIntegralPostprocessor(parameters),
   _azimuth_phi(coupledValue("azimuth_phi")),
   _polar_theta(coupledValue("polar_theta")),
-  _nx(getParam<Real>("nx")),
-  _ny(getParam<Real>("ny")),
-  _nz(getParam<Real>("nz")),
-  _Ku(getParam<Real>("Ku")),
-  _M(getParam<Real>("M"))
+  _K1(getParam<Real>("K1")),
+  _K2(getParam<Real>("K2")),
+  _Ms(getParam<Real>("Ms"))
 {
 }
 
 Real
 MagneticConstrainedAltAnisotropyEnergy::computeQpIntegral()
 {
-  return _Ku*(Utility::pow<2>(_M)*Utility::pow<2>(_nz*std::cos(_polar_theta[_qp]) + (_nx*std::cos(_azimuth_phi[_qp]) + _ny*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
+  return _K2*Utility::pow<6>(_Ms)*Utility::pow<2>(std::cos(_azimuth_phi[_qp]))*Utility::pow<2>(std::cos(_polar_theta[_qp]))*Utility::pow<2>(std::sin(_azimuth_phi[_qp]))*Utility::pow<4>(std::sin(_polar_theta[_qp])) + _K1*(Utility::pow<2>(_Ms)*Utility::pow<2>(std::cos(_polar_theta[_qp])) + Utility::pow<2>(_Ms)*Utility::pow<2>(std::cos(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])) + Utility::pow<2>(_Ms)*Utility::pow<2>(std::sin(_azimuth_phi[_qp]))*Utility::pow<2>(std::sin(_polar_theta[_qp])));
 }
