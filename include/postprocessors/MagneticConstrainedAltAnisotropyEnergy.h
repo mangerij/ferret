@@ -40,11 +40,9 @@ protected:
 
   const VariableValue & _azimuth_phi;
   const VariableValue & _polar_theta;
-  const Real _nx;
-  const Real _ny;
-  const Real _nz;
-  const Real _Ku;
-  const Real _M;
+  const Real _K1;
+  const Real _K2;
+  const Real _Ms;
 
 };
 

@@ -49,6 +49,7 @@ MagneticConstrainedExchangeEnergy::MagneticConstrainedExchangeEnergy(const Input
 Real
 MagneticConstrainedExchangeEnergy::computeQpIntegral()
 {
+  // see 2.32 in Yi M, Xu B-X. 2014
   RealVectorValue r = (Utility::pow<2>(_polar_theta_grad[_qp](0)), Utility::pow<2>(_polar_theta_grad[_qp](1)), Utility::pow<2>(_polar_theta_grad[_qp](2)));
   RealVectorValue s = (Utility::pow<2>(_azimuth_phi_grad[_qp](0)), Utility::pow<2>(_azimuth_phi_grad[_qp](1)), Utility::pow<2>(_azimuth_phi_grad[_qp](2)));
   return _Ae*(r(0)+r(1)+r(2)+(s(0)+s(1)+s(2))*Utility::pow<2>(std::sin(_polar_theta[_qp])));
