@@ -19,8 +19,12 @@
 
 // Forward declarations
 class MooseEnum;
-class RankTwoTensor;
-class RankFourTensor;
+template <typename>
+class RankTwoTensorTempl;
+typedef RankTwoTensorTempl<Real> RankTwoTensor;
+template <typename>
+class RankFourTensorTempl;
+typedef RankFourTensorTempl<Real> RankFourTensor;
 class RankSixTensor;
 
 template <typename T>
@@ -238,9 +242,9 @@ protected:
   template <class T>
   friend void dataLoad(std::istream &, T &, void *);
 
-  friend class RankTwoTensor;
+  friend class RankTwoTensorTempl<Real>;
   friend class RankThreeTensor;
-  friend class RankFourTensor;
+  friend class RankFourTensorTempl<Real>;
 };
 
 template <>

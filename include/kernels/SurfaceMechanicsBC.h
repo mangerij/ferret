@@ -26,8 +26,12 @@
 
 //Forward Declarations
 class SurfaceMechanicsBC;
-class RankTwoTensor;
-class RankFourTensor;
+template <typename>
+class RankTwoTensorTempl;
+typedef RankTwoTensorTempl<Real> RankTwoTensor;
+template <typename>
+class RankFourTensorTempl;
+typedef RankFourTensorTempl<Real> RankFourTensor;
 
 template<>
 InputParameters validParams<SurfaceMechanicsBC>();

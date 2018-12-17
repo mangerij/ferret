@@ -27,7 +27,9 @@
 
 //Forward Declarations
 class DielectricTensor;
-class RankTwoTensor;
+template <typename>
+class RankTwoTensorTempl;
+typedef RankTwoTensorTempl<Real> RankTwoTensor;
 
 template<>
 InputParameters validParams<DielectricTensor>();
