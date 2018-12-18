@@ -61,11 +61,11 @@ InteractionUSLLG::computeQpResidual()
 {
   if (_component == 0)
   {
-    return ((_g0*_potential_H_int[_qp]*((1 + Utility::pow<2>(_alpha))*(_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp]) - _grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp])) + _alpha*std::cos(_polar_theta[_qp])*(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp]) + _grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp])) - _alpha*_grad_test[_i][_qp](2)*std::sin(_polar_theta[_qp])))/(1 + Utility::pow<2>(_alpha)));
+    return ((_g0*_potential_H_int[_qp]*(std::cos(_azimuth_phi[_qp])*(_grad_test[_i][_qp](1) + _alpha*_grad_test[_i][_qp](0)*std::cos(_polar_theta[_qp])) + (-_grad_test[_i][_qp](0) + _alpha*_grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp]) - _alpha*_grad_test[_i][_qp](2)*std::sin(_polar_theta[_qp])))/(1 + Utility::pow<2>(_alpha)));
   }
   else if (_component == 1)
   {
-    return ((_g0*_potential_H_int[_qp]*((1 + Utility::pow<2>(_alpha))*_grad_test[_i][_qp](2) + std::cos(_azimuth_phi[_qp])*(-((1 + Utility::pow<2>(_alpha))*_grad_test[_i][_qp](0)*(std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp]))) + _alpha*_grad_test[_i][_qp](1)*(1.0/std::sin(_polar_theta[_qp]))) - (_alpha*_grad_test[_i][_qp](0) + (1 + Utility::pow<2>(_alpha))*_grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp]))*(1.0/std::sin(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp])))/(1 + Utility::pow<2>(_alpha)));
+    return ((_g0*_potential_H_int[_qp]*(_grad_test[_i][_qp](2) + std::cos(_azimuth_phi[_qp])*(-(_grad_test[_i][_qp](0)*(std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp]))) + _alpha*_grad_test[_i][_qp](1)*(1.0/std::sin(_polar_theta[_qp]))) - (_alpha*_grad_test[_i][_qp](0) + _grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp]))*(1.0/std::sin(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp])))/(1 + Utility::pow<2>(_alpha)));
   }
   else
     return 0.0;
@@ -80,7 +80,7 @@ InteractionUSLLG::computeQpJacobian()
   }
   else if (_component == 1)
   {
-    return ((_g0*_phi[_j][_qp]*_potential_H_int[_qp]*(1.0/std::sin(_polar_theta[_qp]))*((1 + Utility::pow<2>(_alpha))*std::cos(_polar_theta[_qp])*(-(_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp])) + _grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp])) - _alpha*(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp]) + _grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))))/(1 + Utility::pow<2>(_alpha)));
+    return (-((_g0*_phi[_j][_qp]*_potential_H_int[_qp]*(1.0/std::sin(_polar_theta[_qp]))*(std::cos(_azimuth_phi[_qp])*(_alpha*_grad_test[_i][_qp](0) + _grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp])) + (_alpha*_grad_test[_i][_qp](1) - _grad_test[_i][_qp](0)*std::cos(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp])))/(1 + Utility::pow<2>(_alpha))));
   }
   else
     return 0.0;
@@ -93,11 +93,11 @@ InteractionUSLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _azimuth_phi_var)
     {
-      return ((_g0*_phi[_j][_qp]*_potential_H_int[_qp]*(_alpha*std::cos(_polar_theta[_qp])*(_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp]) - _grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp])) - (1 + Utility::pow<2>(_alpha))*(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp]) + _grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))))/(1 + Utility::pow<2>(_alpha)));
+      return (-((_g0*_phi[_j][_qp]*_potential_H_int[_qp]*(std::cos(_azimuth_phi[_qp])*(_grad_test[_i][_qp](0) - _alpha*_grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp])) + (_grad_test[_i][_qp](1) + _alpha*_grad_test[_i][_qp](0)*std::cos(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp])))/(1 + Utility::pow<2>(_alpha))));
     }
     else if (jvar == _potential_H_int_var)
     {
-      return ((_g0*_phi[_j][_qp]*((1 + Utility::pow<2>(_alpha))*(_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp]) - _grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp])) + _alpha*std::cos(_polar_theta[_qp])*(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp]) + _grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp])) - _alpha*_grad_test[_i][_qp](2)*std::sin(_polar_theta[_qp])))/(1 + Utility::pow<2>(_alpha)));
+      return ((_g0*_phi[_j][_qp]*(std::cos(_azimuth_phi[_qp])*(_grad_test[_i][_qp](1) + _alpha*_grad_test[_i][_qp](0)*std::cos(_polar_theta[_qp])) + (-_grad_test[_i][_qp](0) + _alpha*_grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp]) - _alpha*_grad_test[_i][_qp](2)*std::sin(_polar_theta[_qp])))/(1 + Utility::pow<2>(_alpha)));
     }
     else if (jvar == _potential_H_ext_var)
     {
@@ -110,12 +110,11 @@ InteractionUSLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_theta_var)
     {
-      return ((_g0*_phi[_j][_qp]*_potential_H_int[_qp]*Utility::pow<2>((1.0/std::sin(_polar_theta[_qp])))*(_alpha*std::cos(_polar_theta[_qp])*(-(_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp])) + _grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp])) + (1 + Utility::pow<2>(_alpha))*(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp]) + _grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))))/(1 + Utility::pow<2>(_alpha)));
+      return ((_g0*_phi[_j][_qp]*_potential_H_int[_qp]*Utility::pow<2>((1.0/std::sin(_polar_theta[_qp])))*(std::cos(_azimuth_phi[_qp])*(_grad_test[_i][_qp](0) - _alpha*_grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp])) + (_grad_test[_i][_qp](1) + _alpha*_grad_test[_i][_qp](0)*std::cos(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp])))/(1 + Utility::pow<2>(_alpha)));
     }
     else if (jvar == _potential_H_int_var)
     {
-      return ((_g0*_phi[_j][_qp]*((1 + Utility::pow<2>(_alpha))*_grad_test[_i][_qp](2) + std::cos(_azimuth_phi[_qp])*(-((1 + Utility::pow<2>(_alpha))*_grad_test[_i][_qp](0)*(std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp]))) + _alpha*_grad_test[_i][_qp](1)*(1.0/std::sin(_polar_theta[_qp]))) - (_alpha*_grad_test[_i][_qp](0) + (1 + Utility::pow<2>(_alpha))*_grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp]))*(1.0/std::sin(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp])))/
-   (1 + Utility::pow<2>(_alpha)));
+      return ((_g0*_phi[_j][_qp]*(_grad_test[_i][_qp](2) + std::cos(_azimuth_phi[_qp])*(-(_grad_test[_i][_qp](0)*(std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp]))) + _alpha*_grad_test[_i][_qp](1)*(1.0/std::sin(_polar_theta[_qp]))) - (_alpha*_grad_test[_i][_qp](0) + _grad_test[_i][_qp](1)*std::cos(_polar_theta[_qp]))*(1.0/std::sin(_polar_theta[_qp]))*std::sin(_azimuth_phi[_qp])))/(1.0 + Utility::pow<2>(_alpha)));
     }
     else if (jvar == _potential_H_ext_var)
     {

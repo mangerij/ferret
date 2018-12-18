@@ -50,6 +50,9 @@ protected:
   const Real _alpha;
   const Real _K1;
   const Real _K2;
+  const Real _nx;
+  const Real _ny;
+  const Real _nz;
   const Real _g0;
   const Real _Ms;
   const Real _mu0;
