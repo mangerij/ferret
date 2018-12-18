@@ -33,8 +33,7 @@ InputParameters validParams<MagnetostaticEnergy>()
   params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");
   params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");
   params.addRequiredCoupledVar("polar_theta", "The polar component of the constrained magnetic vector");
-  params.addRequiredParam<Real>("mu0", "mu0");
-  params.addRequiredParam<Real>("M", "M");
+  params.addRequiredParam<Real>("Ms", "Ms");
   return params;
 }
 
@@ -44,13 +43,12 @@ MagnetostaticEnergy::MagnetostaticEnergy(const InputParameters & parameters) :
    _potential_H_ext_grad(coupledGradient("potential_H_ext")),
    _azimuth_phi(coupledValue("azimuth_phi")),
    _polar_theta(coupledValue("polar_theta")),
-   _mu0(getParam<Real>("mu0")),
-   _M(getParam<Real>("M"))
+   _Ms(getParam<Real>("Ms"))
 {
 }
 
 Real
 MagnetostaticEnergy::computeQpIntegral()
 {
-  return (_M*_mu0*(-((_potential_H_ext_grad[_qp](2) + _potential_H_int_grad[_qp](2))*std::cos(_polar_theta[_qp])) - ((_potential_H_ext_grad[_qp](0) + _potential_H_int_grad[_qp](0))*std::cos(_azimuth_phi[_qp]) + (_potential_H_ext_grad[_qp](1) + _potential_H_int_grad[_qp](1))*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
+  return -0.5*_Ms*((-((_potential_H_ext_grad[_qp](2) + _potential_H_int_grad[_qp](2))*std::cos(_polar_theta[_qp])) - ((_potential_H_ext_grad[_qp](0) + _potential_H_int_grad[_qp](0))*std::cos(_azimuth_phi[_qp]) + (_potential_H_ext_grad[_qp](1) + _potential_H_int_grad[_qp](1))*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
 }

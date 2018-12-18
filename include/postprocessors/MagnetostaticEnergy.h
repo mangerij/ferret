@@ -41,8 +41,7 @@ protected:
   const VariableGradient & _potential_H_ext_grad;
   const VariableValue & _azimuth_phi;
   const VariableValue & _polar_theta;
-  const Real _mu0;
-  const Real _M;
+  const Real _Ms;
 
 };
 

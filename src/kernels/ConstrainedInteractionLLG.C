@@ -61,6 +61,7 @@ ConstrainedInteractionLLG::ConstrainedInteractionLLG(const InputParameters & par
 {
 }
 
+
 Real
 ConstrainedInteractionLLG::computeQpResidual()
 {
