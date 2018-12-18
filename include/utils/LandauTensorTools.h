@@ -22,8 +22,12 @@
 #ifndef LANDAUTENSORTOOLS_H
 #define LANDAUTENSORTOOLS_H
 
-class RankTwoTensor;
-class RankFourTensor;
+template <typename>
+class RankTwoTensorTempl;
+typedef RankTwoTensorTempl<Real> RankTwoTensor;
+template <typename>
+class RankFourTensorTempl;
+typedef RankFourTensorTempl<Real> RankFourTensor;
 class RankSixTensor;
 //class RankEightTensor;
 

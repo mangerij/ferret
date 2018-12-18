@@ -22,7 +22,9 @@
 #ifndef ELECTROSTRICTIVETENSORTOOLS_H
 #define ELECTROSTRICTIVETENSORTOOLS_H
 
-class RankFourTensor;
+template <typename>
+class RankFourTensorTempl;
+typedef RankFourTensorTempl<Real> RankFourTensor;
 
 namespace ElectrostrictiveTensorTools
 {
