@@ -22,6 +22,8 @@
 #include "MooseTypes.h"
 #include "RankFourTensor.h"
 
+#include "libmesh/vector_value.h"
+
 namespace ElectrostrictiveTensorTools
 {
 
