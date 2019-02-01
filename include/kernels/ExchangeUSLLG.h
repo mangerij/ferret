@@ -50,8 +50,6 @@ protected:
   const Real _g0;
   const Real _Ae;
   const Real _Ms;
-  const Real _mu0;
-
 
 };
 #endif //EXCHANGEUSLLG_H

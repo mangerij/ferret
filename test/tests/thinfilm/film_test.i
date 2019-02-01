@@ -2,35 +2,34 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 12
-  ny = 12
+  nx = 6
+  ny = 6
   nz = 6
-  xmin = -3.0
-  xmax = 3.0
-  ymin = -3.0
-  ymax = 3.0
-  zmin = -1.5
-  zmax = 1.5
+  xmin = -2.0
+  xmax = 2.0
+  ymin = -2.0
+  ymax = 2.0
+  zmin = -2.0
+  zmax = 2.0
   elem_type = HEX8
 []
 
 [MeshModifiers]
+  [./subdomains]
+    type = SubdomainBoundingBox
+    bottom_left = '-2.0 -2.0 -2.0'
+    block_id = 1
+    top_right = '2.0 2.0 0.0'
+  [../]
   [./cnode]
     type = AddExtraNodeset
-    coord = '0.0 0.0 0.0'
+    coord = '0.0 0.0 -2.0'
     new_boundary = 100
   [../]
 []
 
 [GlobalParams]
   len_scale = 1.0
-
-  alpha1 = -0.1722883
-  alpha11 = -0.07253
-  alpha111 = 0.26
-  alpha12 = 0.75
-  alpha112 = 0.61
-  alpha123 = -3.67
 
   G110 = 0.173
   G11_G110 = 0.6
@@ -56,34 +55,34 @@
   [./polar_x]
     order = FIRST
     family = LAGRANGE
+    block = '0 1'
     [./InitialCondition]
       type = RandomIC
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
-      legacy_generator = true
     [../]
   [../]
   [./polar_y]
     order = FIRST
     family = LAGRANGE
+    block = '0 1'
     [./InitialCondition]
       type = RandomIC
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
-      legacy_generator = true
     [../]
   [../]
   [./polar_z]
     order = FIRST
     family = LAGRANGE
+    block = '0 1'
     [./InitialCondition]
       type = RandomIC
       min = -0.01e-5
       max = 0.01e-5
       seed = 5
-      legacy_generator = true
     [../]
   [../]
 
@@ -194,36 +193,60 @@
 [Materials]
   [./eigen_strain]
     type = ComputeEigenstrain
-    block = '0'
+    block = '0 1'
     eigen_base = '0. 0 0 0 0 0 0 0 0'
     eigenstrain_name = eigenstrain
     prefactor = 0.0
   [../]
 
+  [./elasticity_tensor_0]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    block = '0'
+    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+  [../]
+
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
+    block = '1'
+    C_ijkl = '280. 140. 140. 280. 140. 280. 95. 95. 95.'
+  [../]
+
+  [./strain_0]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+    block = '0'
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./stress_0]
+    type = ComputeLinearElasticStress
+    block = '0'
   [../]
 
   [./strain_1]
     type = ComputeSmallStrain
     global_strain = global_strain
+    block = '1'
     eigenstrain_names = eigenstrain
   [../]
 
   [./stress_1]
     type = ComputeLinearElasticStress
+    block = '1'
   [../]
 
   [./global_strain]
     type = ComputeGlobalStrain
+    block = '0 1'
     scalar_global_strain = global_strain
     global_strain_uo = global_strain_uo
   [../]
 
   [./slab_ferroelectric]
     type = ComputeElectrostrictiveTensor
+    block = '0 1'
     Q_mnkl = '-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375'
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
@@ -237,36 +260,100 @@
   [./bed_x]
     type = BulkEnergyDerivativeSixth
     variable = polar_x
+    block = '0'
     component = 0
+    alpha1 = -0.1722883
+    alpha11 = -0.07253
+    alpha111 = 0.26
+    alpha12 = 0.75
+    alpha112 = 0.61
+    alpha123 = -3.67
   [../]
   [./bed_y]
     type = BulkEnergyDerivativeSixth
     variable = polar_y
+    block = '0'
     component = 1
+    alpha1 = -0.1722883
+    alpha11 = -0.07253
+    alpha111 = 0.26
+    alpha12 = 0.75
+    alpha112 = 0.61
+    alpha123 = -3.67
   [../]
   [./bed_z]
     type = BulkEnergyDerivativeSixth
     variable = polar_z
+    block = '0'
     component = 2
+    alpha1 = -0.1722883
+    alpha11 = -0.07253
+    alpha111 = 0.26
+    alpha12 = 0.75
+    alpha112 = 0.61
+    alpha123 = -3.67
   [../]
+
+  [./bed_x_sub]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_x
+    block = '1'
+    component = 0
+    alpha1 = 5.0
+    alpha11 = 0.0
+    alpha111 = 0.0
+    alpha12 = 0.0
+    alpha112 = 0.0
+    alpha123 = 0.0
+  [../]
+  [./bed_y_sub]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_y
+    block = '1'
+    component = 1
+    alpha1 = 5.0
+    alpha11 = 0.0
+    alpha111 = 0.0
+    alpha12 = 0.0
+    alpha112 = 0.0
+    alpha123 = 0.0
+  [../]
+  [./bed_z_sub]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_z
+    block = '1'
+    component = 2
+    alpha1 = 5.0
+    alpha11 = 0.0
+    alpha111 = 0.0
+    alpha12 = 0.0
+    alpha112 = 0.0
+    alpha123 = 0.0
+  [../]
+
+
   [./walled_x]
     type = WallEnergyDerivative
     variable = polar_x
+    block = '0 1'
     component = 0
  [../]
  [./walled_y]
     type = WallEnergyDerivative
     variable = polar_y
+    block = '0 1'
     component = 1
   [../]
   [./walled_z]
      type = WallEnergyDerivative
      variable = polar_z
+     block = '0 1'
      component = 2
   [../]
   [./ferroelectriccouplingp_xx]
     type = FerroelectricCouplingP
     variable = polar_x
+    block = '0 1'
     disp_x = disp_x
     disp_y = disp_y
     disp_z = disp_z
@@ -275,6 +362,7 @@
   [./ferroelectriccouplingp_yy]
     type = FerroelectricCouplingP
     variable = polar_y
+    block = '0 1'
     disp_x = disp_x
     disp_y = disp_y
     disp_z = disp_z
@@ -283,13 +371,15 @@
   [./ferroelectriccouplingp_zz]
     type = FerroelectricCouplingP
     variable = polar_z
-    disp_x = disp_x #should this be u_x?
+    block = '0 1'
+    disp_x = disp_x
     disp_y = disp_y
     disp_z = disp_z
     component = 2
   [../]
   [./ferroelectriccouplingX_xx]
     type = FerroelectricCouplingX
+    block = '0 1'
     variable = u_x
     disp_x = u_x
     disp_y = u_y
@@ -298,6 +388,7 @@
   [../]
   [./ferroelectriccouplingX_yy]
     type = FerroelectricCouplingX
+    block = '0 1'
     variable = u_y
     disp_x = u_x
     disp_y = u_y
@@ -306,6 +397,7 @@
   [../]
   [./ferroelectriccouplingX_zz]
     type = FerroelectricCouplingX
+    block = '0 1'
     variable = u_z
     disp_x = u_x
     disp_y = u_y
@@ -314,28 +406,41 @@
   [../]
   [./polar_x_electric_E]
      type = PolarElectricEStrong
+     block = '0 1'
      variable = potential_E_int
   [../]
   [./FE_E_int]
      type = Electrostatics
      variable = potential_E_int
+     block = '0'
      permittivity = 0.08854187
   [../]
+
+  [./DIE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+     block = '1'
+     permittivity = 2.3
+  [../]
+
 
   [./polar_electric_px]
      type = PolarElectricPStrong
      variable = polar_x
+     block = '0 1'
      component = 0
   [../]
   [./polar_electric_py]
      type = PolarElectricPStrong
      variable = polar_y
+     block = '0 1'
      component = 1
   [../]
   [./polar_electric_pz]
      type = PolarElectricPStrong
      variable = polar_z
      component = 2
+     block = '0 1'
   [../]
 
   [./polar_x_time]
@@ -359,7 +464,7 @@
 [BCs]
   [./Periodic]
     [./xy]
-      auto_direction = 'x y z'
+      auto_direction = 'x y'
       variable = 'u_x u_y u_z polar_x polar_y polar_z'
     [../]
   [../]
@@ -430,10 +535,18 @@
 [Postprocessors]
    [./Fbulk]
       type = BulkEnergy
+      block = '0'
       execute_on = 'initial timestep_end'
+      alpha1 = -0.1722883
+      alpha11 = -0.07253
+      alpha111 = 0.26
+      alpha12 = 0.75
+      alpha112 = 0.61
+      alpha123 = -3.67
     [../]
     [./Fwall]
       type = WallEnergy
+      block = '0'
       execute_on = 'initial timestep_end'
     [../]
     [./Felastic]
@@ -469,6 +582,7 @@
 
 [UserObjects]
   [./global_strain_uo]
+    block = '0 1'
     type = GlobalATiO3MaterialRVEUserObject
     Q11 = -0.089
     Q12 = 0.026
@@ -484,25 +598,32 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121               1e-10      1e-8      1e-6    bjacobi'
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  '
+    petsc_options_value = '    121               1e-8      1e-8      1e-6        bjacobi'
   [../]
 []
 
 [Executioner]
   type = Transient
-  solve_type = 'NEWTON'
-  scheme = 'implicit-euler'
+  solve_type = 'PJFNK'
+  scheme = 'bdf2'
+  #line_search = none
   dtmin = 1e-13
-  dtmax = 0.35
-  num_steps = 7
+  dtmax = 0.8
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 15
+    cutback_factor = 0.75
+    dt = 0.1
+  [../]
+  num_steps = 10
 []
 
 [Outputs]
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = outPTO_test_UO
+    file_base = out_film_test
     elemental_as_nodal = true
     interval = 1
   [../]
