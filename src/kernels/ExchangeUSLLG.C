@@ -36,7 +36,6 @@ InputParameters validParams<ExchangeUSLLG>()
   params.addRequiredParam<Real>("g0", "g0");
   params.addRequiredParam<Real>("Ae", "Ae");
   params.addRequiredParam<Real>("Ms", "Ms");
-  params.addRequiredParam<Real>("mu0", "mu0");
   return params;
 }
 
@@ -52,8 +51,7 @@ ExchangeUSLLG::ExchangeUSLLG(const InputParameters & parameters)
   _alpha(getParam<Real>("alpha")),
   _g0(getParam<Real>("g0")),
   _Ae(getParam<Real>("Ae")),
-  _Ms(getParam<Real>("Ms")),
-  _mu0(getParam<Real>("mu0"))
+  _Ms(getParam<Real>("Ms"))
 {
 }
 
@@ -62,11 +60,11 @@ ExchangeUSLLG::computeQpResidual()
 {
   if (_component == 0)
   {
-    return -((-2*_Ae*_g0*(_alpha*(_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2)) + (_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))*std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_mu0));
+    return -((-2*_Ae*_g0*(_alpha*(_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2)) + (_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))*std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*Utility::pow<2>(_Ms)));
   }
   else if (_component == 1)
   {
-    return -((2*_Ae*_g0*(-(_alpha*(_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))) + (_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*(1.0/std::sin(_polar_theta[_qp]))))/((1 + Utility::pow<2>(_alpha))*_mu0));
+    return -((2*_Ae*_g0*(-(_alpha*(_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))) + (_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*(1/std::sin(_polar_theta[_qp]))))/((1 + Utility::pow<2>(_alpha))*Utility::pow<2>(_Ms)));
   }
   else
     return 0.0;
@@ -77,11 +75,11 @@ ExchangeUSLLG::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return -((-2*_Ae*_g0*(_alpha*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2)) + (_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))*_phi[_j][_qp]*std::cos(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_mu0));
+    return -((-2*_Ae*_g0*(_alpha*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2)) + (_azimuth_phi_grad[_qp](0)*_grad_test[_i][_qp](0) + _azimuth_phi_grad[_qp](1)*_grad_test[_i][_qp](1) + _azimuth_phi_grad[_qp](2)*_grad_test[_i][_qp](2))*_phi[_j][_qp]*std::cos(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*Utility::pow<2>(_Ms)));
   }
   else if (_component == 1)
   {
-    return -((-2*_Ae*_alpha*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_g0)/((1 + Utility::pow<2>(_alpha))*_mu0));
+    return -((-2*_Ae*_alpha*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_g0)/((1 + Utility::pow<2>(_alpha))*Utility::pow<2>(_Ms)));
   }
   else
     return 0.0;
@@ -94,7 +92,7 @@ ExchangeUSLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _azimuth_phi_var)
     {
-      return -((-2*_Ae*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_g0*std::sin(_polar_theta[_qp]))/((1 + Utility::pow<2>(_alpha))*_mu0));
+      return -((-2*_Ae*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_g0*std::sin(_polar_theta[_qp]))/((1 + Utility::pow<2>(_alpha))*Utility::pow<2>(_Ms)));
     }
     else
     {
@@ -105,7 +103,7 @@ ExchangeUSLLG::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_theta_var)
     {
-      return -((2*_Ae*_g0*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2) - (_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*_phi[_j][_qp]*(std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp])))*(1.0/std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*_mu0));
+      return -((2*_Ae*_g0*(_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + _grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + _grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2) - (_grad_test[_i][_qp](0)*_polar_theta_grad[_qp](0) + _grad_test[_i][_qp](1)*_polar_theta_grad[_qp](1) + _grad_test[_i][_qp](2)*_polar_theta_grad[_qp](2))*_phi[_j][_qp]*(std::cos(_polar_theta[_qp])/std::sin(_polar_theta[_qp])))*(1/std::sin(_polar_theta[_qp])))/((1 + Utility::pow<2>(_alpha))*Utility::pow<2>(_Ms)));
     }
     else
     {

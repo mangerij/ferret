@@ -55,7 +55,6 @@ protected:
   const Real _nz;
   const Real _g0;
   const Real _Ms;
-  const Real _mu0;
 
 };
 #endif //ANISOTROPYUSLLG_H
