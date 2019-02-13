@@ -35,7 +35,6 @@ InputParameters validParams<PolarizationNWEMarker>()
   params.addParam<MooseEnum>("third_state", third_state, "The Marker state to apply to values falling in-between the coarsen and refine thresholds.");
   params.addParam<Real>("coarsen", "The threshold value for coarsening.  Elements with variable values beyond this will be marked for coarsening.");
   params.addParam<Real>("refine", "The threshold value for refinement.  Elements with variable values beyond this will be marked for refinement.");
-  params.addParam<bool>("invert", false, "If this is true then values _below_ 'refine' will be refined and _above_ 'coarsen' will be coarsened.");
   params.addParam<bool>("AMRoff", false, "If this is true then values _below_ 'refine' will be refined and _above_ 'coarsen' will be coarsened.");
   params.addParam<PostprocessorName>("ExtremeValue", "The magnitude of the maximum polarization");
 
@@ -58,7 +57,6 @@ PolarizationNWEMarker::PolarizationNWEMarker(const InputParameters & parameters)
     _AMRoff(parameters.get<bool>("AMRoff")),
     _third_state(getParam<MooseEnum>("third_state").getEnum<MarkerValue>()),
 
-    _u(coupledValue("variable")),
     _Bulk_Polar(getParam<Real>("Bulk_Polar"))
 {
 }
