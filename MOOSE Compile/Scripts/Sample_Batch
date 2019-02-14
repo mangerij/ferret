@@ -1,0 +1,39 @@
+#!/bin/bash
+#SBATCH --partition=SandyBridgePriority        # Name of partition
+#SBATCH --ntasks=8                          # Request 48 CPU cores
+#SBATCH --time=6:59:00                       # Job should run for up to 2 hours (for example)
+#SBATCH --nodes=1
+#SBATCH --exclusive
+#SBATCH --exclude=cn65,cn77,cn78,cn79,cn80,cn103,cn267,cn266
+#SBATCH -o Poly.out
+#SBATCH -e Poly.out
+
+echo > Poly.out
+
+
+source /apps2/Modules/default/init/bash
+module purge
+module load zlib/1.2.11 openssl/1.0.2o gcc/5.4.0-alt libcurl/7.60.0 mpi/openmpi/1.10.3 cuda/7.5 python/2.7.6 petsc/3.7.3-gcc-mpi libxml2/2.9.3-gcc boost/1.61.0\
+-gcc-mpi hdf5/1.8.12 hwloc/5.6.1 git/2.7.2
+
+export \
+    CPPFLAGS=$(echo "-I${INCLUDE//:/ -I}") -g \
+    LDFLAGS=$(echo "-L${LD_LIBRARY_PATH//:/ -L}") \
+#    MOOSE_JOBS=1 \                                                                                                                                             
+    MOOSE_JOBS=$SLURM_CPUS_ON_NODE \
+    BOOST_ROOT=/apps2/boost/1.61.0-gcc-mpi \
+    HDF5_DIR=/apps2/hdf5/1.8.12 \
+    PETSC_DIR=/apps2/petsc/3.7.3-gcc-mpi
+
+export \
+    CC=mpicc \
+    CXX=mpicxx \
+    FC=mpifort \
+    F90=mpif90
+
+cd /shared/sergelab/testprojects/ferret
+
+for i in {0..1};
+do
+mpiexec -n 8 ./ferret-opt -i BTO_mono_dispersion_A1_def.i
+done
