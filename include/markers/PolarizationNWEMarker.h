@@ -46,7 +46,6 @@ protected:
   bool _AMRoff;
   MarkerValue _third_state;
 
-  const VariableValue & _u;
   const Real _Bulk_Polar;
 
 };
