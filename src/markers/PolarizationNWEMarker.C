@@ -53,7 +53,6 @@ PolarizationNWEMarker::PolarizationNWEMarker(const InputParameters & parameters)
     _refine(parameters.get<Real>("refine")),
     _PolarMag(getPostprocessorValue("ExtremeValue")),
 
-    _invert(parameters.get<bool>("invert")),
     _AMRoff(parameters.get<bool>("AMRoff")),
     _third_state(getParam<MooseEnum>("third_state").getEnum<MarkerValue>()),
 
