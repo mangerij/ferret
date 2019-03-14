@@ -243,7 +243,7 @@ protected:
   friend void dataLoad(std::istream &, T &, void *);
 
   friend class RankTwoTensorTempl<Real>;
-  friend class RankThreeTensor;
+  friend class RankThreeTensorTempl<Real>;
   friend class RankFourTensorTempl<Real>;
 };
 
