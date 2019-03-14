@@ -11,6 +11,7 @@
 
 // MOOSE includes
 #include "RankFourTensor.h"
+#include "RankThreeTensor.h"
 #include "RankTwoTensor.h"
 #include "MooseEnum.h"
 #include "MooseException.h"
