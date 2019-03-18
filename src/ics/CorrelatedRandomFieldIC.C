@@ -83,7 +83,13 @@ InputParameters validParams<CorrelatedRandomFieldIC>()
   params.addParam<Real>("ymax", 1.0, "Upper Y Coordinate of the generated mesh");
   params.addParam<Real>("zmax", 1.0, "Upper Z Coordinate of the generated mesh");
   params.addParam<Real>("Nnodes", 1.0, "total number of nodes to loop over");
-  params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator"); 
+  params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator");
+  params.addParam<bool>(
+      "legacy_generator",
+      false,
+      "Determines whether or not the legacy generator (deprecated) should be used.");
+  //params.addParam<DistributionName>(
+  //    "distribution", "Name of distribution defining distribution of randomly generated values");
   return params;
 }
 
@@ -102,8 +108,16 @@ CorrelatedRandomFieldIC::CorrelatedRandomFieldIC(const InputParameters & paramet
     _zmin(getParam<Real>("zmin")),
     _zmax(getParam<Real>("zmax")),
     _Nnodes(getParam<Real>("Nnodes")),
-    _mesh(_fe_problem.mesh().getMesh())
+    _mesh(_fe_problem.mesh().getMesh())//,
+   // _distribution(nullptr)
 {
+//  if (parameters.isParamSetByUser("distribution"))
+//  {
+//    _distribution = &getDistributionByName(getParam<DistributionName>("distribution"));
+//    if (parameters.isParamSetByUser("min") || parameters.isParamSetByUser("max"))
+//      paramError("distribution", "Cannot use together with 'min' or 'max' parameter");
+//  }
+
   unsigned int processor_seed = getParam<unsigned int>("seed");
   MooseRandom::seed(processor_seed);
 
@@ -173,91 +187,78 @@ std::vector<std::vector<std::vector<std::vector<Real>>>>
 CorrelatedRandomFieldIC::fourierCoeffs()
 {
     int nodes = _Nnodes; //_mesh.n_nodes();
-    std::cout << nodes;
     std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
   
-   std::vector<std::vector<std::vector<std::vector<Real>>>> output = std::vector<std::vector<std::vector<std::vector<Real>>>>(2*nodes+1,std::vector<std::vector<std::vector<Real>>>(2*nodes+1,std::vector<std::vector<Real>>(2*nodes+1,std::vector<Real>(2,0))));
+    std::vector<std::vector<std::vector<std::vector<Real>>>> output = std::vector<std::vector<std::vector<std::vector<Real>>>>(2*nodes+1,std::vector<std::vector<std::vector<Real>>>(2*nodes+1,std::vector<std::vector<Real>>(2*nodes+1,std::vector<Real>(2,0))));
     
     Real rand1  = 0.0;
     Real rand2  = 0.0;
     
     Real nrand1  = 0.0;
-    Real nrand2  = 0.0;   //random seed needs to be MOOSE-y but for now we can test this
+    Real nrand2  = 0.0;
     
     Real randnorm = 0.0;
     Real amp = 0.0;
     
     RealVectorValue kv(0.0, 0.0, 0.0); //kx ky kz
     Real k2 = 0.0;
+   
 
-    Real norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*L[0]*L[1]*L[2]));
-
+    Real norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*(_xmax-_xmin)));//*L[1]*L[2]));
 
    // srand(seed);
-    for (unsigned int i = 0; i<2*nodes+1; i++){
-        for (unsigned int j = 0;j<2*nodes+1;j++){
-            for (unsigned int k = 0; k<2*nodes+1; k++){
-                // the fourier transform of a real variable 
-                // has the symmetry F(i,j,k) = F^*(-i,-j,-k)
-                
-                if (i+j+k < 0){
-                    continue;
-                }
-                
-                kv(0) = 2.0*libMesh::pi*(i-nodes)/L[0];
-                kv(1) = 2.0*libMesh::pi*(j-nodes)/L[1];
-                kv(2) = 2.0*libMesh::pi*(k-nodes)/L[2];
-                
-                // compute absolute value of coefficient
-                k2 = kv(0)*kv(0) + kv(1)*kv(1) + kv(2)*kv(2);
-                amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
-                
-                // Box-Muller method for gaussian random numbers
-                
-                rand1  = (generateRandom()+1)/1000000.0;
-                //Moose::out << "\n ";
-                //Moose::out << "\n rand1 = "; std::cout << rand1;
-                //Moose::out << "\n ";
-                rand2  = (generateRandom()+1)/1000000.0;
-                
-                //construct random numbers with unit variance
-                //with unit variance for nrand1^2 + nrand2^2
-                nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand2)/sqrt(2.0);
+  for (unsigned int i = 0; i<2*nodes+1; i++)
+  {
+    for (unsigned int j = 0;j<2*nodes+1;j++)
+    {
+      for (unsigned int k = 0; k<2*nodes+1; k++)
+      {
+        // the fourier transform of a real variable 
+        // has the symmetry F(i,j,k) = F^*(-i,-j,-k)
+        kv(0) = 2.0*libMesh::pi*(i-nodes)/(_xmax-_xmin);
+        // kv(1) = 2.0*libMesh::pi*(j-nodes)/L[1];
+        // kv(2) = 2.0*libMesh::pi*(k-nodes)/L[2];
+              
+        // compute absolute value of coefficient
 
-                //Moose::out << "\n nrand1 = "; std::cout << nrand1;
+        //!!!!!!!!!!!!!  if dim
 
-                nrand2 = sqrt(-2.0*std::log(rand1))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
+        k2 = kv(0)*kv(0); //+ kv(1)*kv(1) + kv(2)*kv(2);
+             
+        amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
 
-                //Moose::out << "\n nrand2 = "; std::cout << nrand2;
+        // Box-Muller method for gaussian random numbers
+                
+        rand1  = (generateRandom()*10000+1)/10000.0;
+        rand2  = (generateRandom()*10000+1)/10000.0;
+                
+        //construct random numbers with unit variance
+        //with unit variance for nrand1^2 + nrand2^2
+        nrand1 = sqrt(2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
+        nrand2 = sqrt(2.0*std::log(rand2))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
 
-                //enforce 0 mean
-                if (i == nodes && j == nodes && k == nodes){
-                    amp = 0.0;
-                }
-
-                output[i][j][k][0] = amp*nrand1;
-                output[i][j][k][1] = amp*nrand2;
-            }
+        //enforce 0 mean
+        if (i == nodes && j == nodes && k == nodes)
+        {
+          amp = 0.0;
         }
+        output[i][j][k][0] = amp*nrand1;
+        output[i][j][k][1] = amp*nrand2;
+      }
     }
-  //  Moose::out << "\n ";
-   // Moose::out << "\n output[0][0][0][0] = "; std::cout << output[0][0][0][0];
-  //  Moose::out << "\n ";
-   // Moose::out << "\n ";
-  //  Moose::out << "\n output[0][0][0][1] = "; std::cout << output[0][0][0][1];
-   // Moose::out << "\n ";
-    return output;
+  }
+  return output;
 }
 
 Real
 CorrelatedRandomFieldIC::evaluate(const Point & p, std::vector<std::vector<std::vector<std::vector<Real>>>> output)// array4ptr coeffs???) //this is main()
 {
-  int nodes = _mesh.n_nodes();
+  int nodes = _Nnodes; //_mesh.n_nodes();
   Real result = 0.0;
   RealVectorValue kv(0.0, 0.0, 0.0); //kx ky kz
   Real phase = 0.0;
 
-  std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
+ // std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
 
   for (unsigned int i = 0; i<2*nodes+1; i++)
   {
@@ -265,11 +266,16 @@ CorrelatedRandomFieldIC::evaluate(const Point & p, std::vector<std::vector<std::
     {
       for (unsigned int k = 0; k<2*nodes+1; k++)
       {
-        kv(0) = 2.0*libMesh::pi*double(i-nodes)/L[0];
-        kv(1) = 2.0*libMesh::pi*double(j-nodes)/L[1];
-        kv(2) = 2.0*libMesh::pi*double(k-nodes)/L[2];
+        //if (_dim == 1)
+        kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
+        //else if (_dim == 2)
+        //  kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
+        //  kv(1) = 2.0*libMesh::pi*double(j-nodes)/(_ymax-+ymin);
+        //else if (_dim == 3)
+      //  kv(2) = 2.0*libMesh::pi*double(k-nodes)/L[2];
                 
-        phase = kv(0)*p(0) + kv(1)*p(1) + kv(2)*p(2);
+        phase = kv(0)*p(0);// + kv(1)*p(1) + kv(2)*p(2);
+        //Moose::out << "\n phase = "; std::cout << phase;
         //the real part
         result += output[i][j][k][0]*cos(phase);
         result += output[i][j][k][1]*sin(phase); //???
@@ -284,9 +290,9 @@ CorrelatedRandomFieldIC::evaluate(const Point & p, std::vector<std::vector<std::
 Real
 CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
 {
-    int nodes = _mesh.n_nodes();
+    int nodes = _Nnodes; //_mesh.n_nodes();
     Real result = 0.0;
-    std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
+   // std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
 
     RealVectorValue kv(0.0, 0.0, 0.0); //kx ky kz
 
@@ -303,42 +309,44 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
     Real amp = 0.0;
     
     // normalization constant
-    double norm = sqrt(8.0*libMesh::pi/(_Lcorr*L[0]*L[1]*L[2]));
+    double norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*(_xmax-_xmin)));//*L[1]*L[2]));
     
     // sum over kspace
     for (int i = 0; i<2*nodes+1; i++)
     {
-        for (int j = 0;j<2*nodes+1;j++)
+        for (int j = 0;j<2*nodes+1; j++)
         {
             for (int k = 0; k<2*nodes+1; k++)
             {
                 // k vector 
-                kv(0) = 2.0*libMesh::pi*double(i-nodes)/L[0];
-                kv(1) = 2.0*libMesh::pi*double(j-nodes)/L[1];
-                kv(2) = 2.0*libMesh::pi*double(k-nodes)/L[2];
+                kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
+              //  kv(1) = 2.0*libMesh::pi*double(j-nodes)/L[1];
+              //  kv(2) = 2.0*libMesh::pi*double(k-nodes)/L[2];
                 
                 // compute absolute value of coefficient
-                k2 = kv(0)*kv(0) + kv(1)*kv(1) + kv(2)*kv(2);
+                k2 = kv(0)*kv(0);// + kv(1)*kv(1) + kv(2)*kv(2);
                 amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
                 
                 // Box-Muller method for gaussian random numbers
-                rand1  = (generateRandom()+1)/1000000.0;
-                rand2  = (generateRandom()+1)/1000000.0;
                 
+                rand1  = (generateRandom()*10000+1)/10000.0;
+                rand2  = (generateRandom()*10000+1)/10000.0;
+                //Moose::out << "\n rand2 = "; std::cout << rand2;
+
                 //construct random numbers with unit variance
                 //with unit variance for nrand1^2 + nrand2^2
-                nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand2)/sqrt(2.0);
-                nrand2 = sqrt(-2.0*std::log(rand1))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
+                nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
+                nrand2 = sqrt(-2.0*std::log(rand2))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
 
                 
                 //enforce 0 mean
                 if (i == nodes && j == nodes && k == nodes){
                     amp = 0.0;
                 }
-                phase = kv(0)*p(0) + kv(1)*p(1) + kv(2)*p(2);
+                phase = kv(0)*p(0);// + kv(1)*p(1) + kv(2)*p(2);
                 
                 //the real part
-                result+=amp*(nrand1*cos(phase)+nrand2*sin(phase));
+                result += amp*(nrand1*cos(phase)+nrand2*sin(phase));
             }
         }
     }
@@ -346,9 +354,9 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
 }
 
 Real
-CorrelatedRandomFieldIC::value(const Point & p) //this is main()
+CorrelatedRandomFieldIC::value(const Point & p)
 {
-  //CorrelatedRandomFieldIC::fourierCoeffs();
-//  std::cout << d[0][0][0][0];  //issues with this. Why is it -nan??
-  return 0.0; //evaluate(p,d);
+  //std::vector<std::vector<std::vector<std::vector<Real>>>> d = CorrelatedRandomFieldIC::fourierCoeffs();
+  //Moose::out << "\n p = "; std::cout << p(0); Moose::out << "; d[p] = "; std::cout << CorrelatedRandomFieldIC::evaluate(p, d);
+  return CorrelatedRandomFieldIC::evaluateNoArray(p);
 }
