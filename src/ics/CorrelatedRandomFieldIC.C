@@ -35,6 +35,10 @@
 #include "libmesh/point.h"
 #include <cmath>
 
+#include "MooseRandom.h"
+
+#include "libmesh/point.h"
+
 /**
 #include <fstream>
 #include <iostream>
@@ -42,6 +46,25 @@
 #include <cstdlib>
 #include <vector>
 **/
+
+namespace
+{
+/**
+ * Method for retrieving or generating and caching a value in a map.
+ */
+inline Real
+valueHelper(dof_id_type id, MooseRandom & generator, std::map<dof_id_type, Real> & map)
+{
+  auto it_pair = map.lower_bound(id);
+
+  // Do we need to generate a new number?
+  if (it_pair == map.end() || it_pair->first != id)
+    it_pair = map.emplace_hint(it_pair, id, generator.rand(id));
+
+  return it_pair->second;
+}
+}
+
 
 registerMooseObject("FerretApp", CorrelatedRandomFieldIC);
 
@@ -59,12 +82,17 @@ InputParameters validParams<CorrelatedRandomFieldIC>()
   params.addParam<Real>("xmax", 1.0, "Upper X Coordinate of the generated mesh");
   params.addParam<Real>("ymax", 1.0, "Upper Y Coordinate of the generated mesh");
   params.addParam<Real>("zmax", 1.0, "Upper Z Coordinate of the generated mesh");
-  //params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator"); //not sure this is needed
+  params.addParam<Real>("Nnodes", 1.0, "total number of nodes to loop over");
+  params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator"); 
   return params;
 }
 
 CorrelatedRandomFieldIC::CorrelatedRandomFieldIC(const InputParameters & parameters) :
     InitialCondition(parameters),
+    _is_nodal(_var.isNodal()),
+    _use_legacy(getParam<bool>("legacy_generator")),
+    _elem_random_generator(nullptr),
+    _node_random_generator(nullptr),
     _Lcorr(getParam<Real>("Lcorr")),
     _dim(getParam<MooseEnum>("dim")),
     _xmin(getParam<Real>("xmin")),
@@ -73,8 +101,70 @@ CorrelatedRandomFieldIC::CorrelatedRandomFieldIC(const InputParameters & paramet
     _ymax(getParam<Real>("ymax")),
     _zmin(getParam<Real>("zmin")),
     _zmax(getParam<Real>("zmax")),
+    _Nnodes(getParam<Real>("Nnodes")),
     _mesh(_fe_problem.mesh().getMesh())
 {
+  unsigned int processor_seed = getParam<unsigned int>("seed");
+  MooseRandom::seed(processor_seed);
+
+  if (_use_legacy)
+  {
+    auto proc_id = processor_id();
+    if (proc_id > 0)
+    {
+      for (processor_id_type i = 0; i < proc_id; ++i)
+        processor_seed = MooseRandom::randl();
+      MooseRandom::seed(processor_seed);
+    }
+  }
+  else
+  {
+    _elem_random_data =
+        libmesh_make_unique<RandomData>(_fe_problem, false, EXEC_INITIAL, MooseRandom::randl());
+    _node_random_data =
+        libmesh_make_unique<RandomData>(_fe_problem, true, EXEC_INITIAL, MooseRandom::randl());
+
+    _elem_random_generator = &_elem_random_data->getGenerator();
+    _node_random_generator = &_node_random_data->getGenerator();
+  }
+}
+
+
+void
+CorrelatedRandomFieldIC::initialSetup()
+{
+  if (!_use_legacy)
+  {
+    _elem_random_data->updateSeeds(EXEC_INITIAL);
+    _node_random_data->updateSeeds(EXEC_INITIAL);
+  }
+}
+
+Real
+CorrelatedRandomFieldIC::generateRandom()
+{
+  Real rand_num;
+
+  if (_use_legacy)
+  {
+    mooseDeprecated("legacy_generator is deprecated. Please set \"legacy_generator = false\". This "
+                    "capability will be removed after 11/01/2018");
+
+    // Random number between 0 and 1
+    rand_num = MooseRandom::rand();
+  }
+  else
+  {
+    if (_current_node)
+      rand_num = valueHelper(_current_node->id(), *_node_random_generator, _node_numbers);
+    else if (_current_elem)
+      rand_num = valueHelper(_current_elem->id(), *_elem_random_generator, _elem_numbers);
+    else
+      mooseError("We can't generate parallel consistent random numbers for this kind of variable "
+                 "yet. Please contact the MOOSE team for assistance");
+  }
+
+  return rand_num;
 }
 
 
@@ -82,7 +172,7 @@ CorrelatedRandomFieldIC::CorrelatedRandomFieldIC(const InputParameters & paramet
 std::vector<std::vector<std::vector<std::vector<Real>>>>
 CorrelatedRandomFieldIC::fourierCoeffs()
 {
-    int nodes = _mesh.n_nodes();
+    int nodes = _Nnodes; //_mesh.n_nodes();
     std::cout << nodes;
     std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
   
@@ -124,11 +214,11 @@ CorrelatedRandomFieldIC::fourierCoeffs()
                 
                 // Box-Muller method for gaussian random numbers
                 
-                rand1  = (rand()%1000000+1)/1000000.0;
+                rand1  = (generateRandom()+1)/1000000.0;
                 //Moose::out << "\n ";
                 //Moose::out << "\n rand1 = "; std::cout << rand1;
                 //Moose::out << "\n ";
-                rand2  = (rand()%1000000+1)/1000000.0;
+                rand2  = (generateRandom()+1)/1000000.0;
                 
                 //construct random numbers with unit variance
                 //with unit variance for nrand1^2 + nrand2^2
@@ -232,8 +322,8 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
                 amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
                 
                 // Box-Muller method for gaussian random numbers
-                rand1  = (rand()%1000000+1)/1000000.0;
-                rand2  = (rand()%1000000+1)/1000000.0;
+                rand1  = (generateRandom()+1)/1000000.0;
+                rand2  = (generateRandom()+1)/1000000.0;
                 
                 //construct random numbers with unit variance
                 //with unit variance for nrand1^2 + nrand2^2
@@ -254,8 +344,6 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
     }
     return result;
 }
-
-
 
 Real
 CorrelatedRandomFieldIC::value(const Point & p) //this is main()

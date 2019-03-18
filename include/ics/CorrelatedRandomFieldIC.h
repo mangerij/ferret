@@ -23,10 +23,15 @@
 #define CORRELATEDRANDOMFIELDIC_H
 
 #include "InitialCondition.h"
+#include "RandomData.h"
+#include "MooseRandom.h"
 
 // Forward Declarations
 class CorrelatedRandomFieldIC;
-namespace libMesh { class Point; }
+namespace libMesh 
+{ 
+class Point; 
+}
 
 template<>
 InputParameters validParams<CorrelatedRandomFieldIC>();
@@ -36,6 +41,7 @@ class CorrelatedRandomFieldIC : public InitialCondition
 public:
   CorrelatedRandomFieldIC(const InputParameters & parameters);
 
+  void initialSetup() override;
   virtual std::vector<std::vector<std::vector<std::vector<Real>>>> fourierCoeffs();
 
   virtual Real evaluate(const Point & p, std::vector<std::vector<std::vector<std::vector<Real>>>> output);
@@ -43,14 +49,48 @@ public:
   virtual Real value(const Point & p);
 
 protected:
+  /**
+   * Generate a uniformly distributed random number on the interval from 0 to 1
+   * @return random number
+   */
+  Real generateRandom();
 
+  /// Determines whether a variable basis is elemental or nodal
+  const bool _is_nodal;
+
+  /// Boolean to indicate whether we want to use the old (deprecated) generation pattern
+  const bool _use_legacy;
 private:
+  /// RandomData element object, we cannot inherit from RandomInterface in an InitialCondition
+  std::unique_ptr<RandomData> _elem_random_data;
+
+  /// RandomData node object, we cannot inherit from RandomInterface in an InitialCondition
+  std::unique_ptr<RandomData> _node_random_data;
+
+  /// Elemental random number generator
+  MooseRandom * _elem_random_generator;
+
+  /// Nodal random number generator
+  MooseRandom * _node_random_generator;
+
+  /// Random numbers per element (currently limited to a single value at a time)
+  std::map<dof_id_type, Real> _elem_numbers;
+
+  /// Random numbers per node (currently limited to a single value at a time)
+  std::map<dof_id_type, Real> _node_numbers;
+
+////////
+// User defined things:
+//
+////////
   //correlation length scale
   const Real _Lcorr;
   /// The dimension of the mesh
   MooseEnum _dim;
   /// The min/max values for x,y,z component
   Real _xmin, _xmax, _ymin, _ymax, _zmin, _zmax;
+  //
+  Real _Nnodes;
   //mesh object
   const MeshBase & _mesh;
 };
