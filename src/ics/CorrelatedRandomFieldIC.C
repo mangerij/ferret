@@ -234,8 +234,8 @@ CorrelatedRandomFieldIC::fourierCoeffs()
                 
         //construct random numbers with unit variance
         //with unit variance for nrand1^2 + nrand2^2
-        nrand1 = sqrt(2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
-        nrand2 = sqrt(2.0*std::log(rand2))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
+        nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
+        nrand2 = sqrt(-2.0*std::log(rand2))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
 
         //enforce 0 mean
         if (i == nodes && j == nodes && k == nodes)
@@ -312,12 +312,12 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
     double norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*(_xmax-_xmin)));//*L[1]*L[2]));
     
     // sum over kspace
-    for (int i = 0; i<2*nodes+1; i++)
+    for (unsigned int i = 0; i<2*nodes+1; i++)   ///why do we sum 2N+1?
     {
-        for (int j = 0;j<2*nodes+1; j++)
-        {
-            for (int k = 0; k<2*nodes+1; k++)
-            {
+      //  for (int j = 0;j<2*nodes+1; j++)
+      //  {
+      //      for (int k = 0; k<2*nodes+1; k++)
+      //      {
                 // k vector 
                 kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
               //  kv(1) = 2.0*libMesh::pi*double(j-nodes)/L[1];
@@ -325,30 +325,38 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
                 
                 // compute absolute value of coefficient
                 k2 = kv(0)*kv(0);// + kv(1)*kv(1) + kv(2)*kv(2);
+
+               // Moose::out << "\n k2 = "; std::cout << k2;
+
                 amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
                 
                 // Box-Muller method for gaussian random numbers
                 
-                rand1  = (generateRandom()*10000+1)/10000.0;
-                rand2  = (generateRandom()*10000+1)/10000.0;
-                //Moose::out << "\n rand2 = "; std::cout << rand2;
+                rand1  = (generateRandom()*1000000+1)/1000000.0;
+                rand2  = (rand()%1000000+1)/1000000.0;
+
+                Moose::out << "\n rand1 = "; std::cout << rand1;
+                Moose::out << "\n rand2 = "; std::cout << rand2;
 
                 //construct random numbers with unit variance
                 //with unit variance for nrand1^2 + nrand2^2
-                nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
-                nrand2 = sqrt(-2.0*std::log(rand2))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
-
+                nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand2);
+                nrand2 = sqrt(-2.0*std::log(rand1))*sin(2.0*libMesh::pi*rand2);
+                
+                nrand1 /= sqrt(2.0);
+                nrand2 /= sqrt(2.0);
                 
                 //enforce 0 mean
-                if (i == nodes && j == nodes && k == nodes){
+                if (i == nodes)
+                { //&& j == nodes && k == nodes){
                     amp = 0.0;
                 }
                 phase = kv(0)*p(0);// + kv(1)*p(1) + kv(2)*p(2);
                 
                 //the real part
                 result += amp*(nrand1*cos(phase)+nrand2*sin(phase));
-            }
-        }
+        //    }
+        //}
     }
     return result;
 }
