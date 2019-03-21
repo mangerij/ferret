@@ -22,7 +22,10 @@
 #ifndef PIEZOSTRICTIVETENSORTOOLS_H
 #define PIEZOSTRICTIVETENSORTOOLS_H
 
-class RankThreeTensor;
+template <typename>
+class RankThreeTensorTempl;
+typedef RankThreeTensorTempl<Real> RankThreeTensor;
+
 template <typename>
 class RankFourTensorTempl;
 typedef RankFourTensorTempl<Real> RankFourTensor;

@@ -23,6 +23,9 @@ template <typename>
 class RankTwoTensorTempl;
 typedef RankTwoTensorTempl<Real> RankTwoTensor;
 template <typename>
+class RankThreeTensorTempl;
+typedef RankThreeTensorTempl<Real> RankThreeTensor;
+template <typename>
 class RankFourTensorTempl;
 typedef RankFourTensorTempl<Real> RankFourTensor;
 class RankSixTensor;
@@ -243,7 +246,7 @@ protected:
   friend void dataLoad(std::istream &, T &, void *);
 
   friend class RankTwoTensorTempl<Real>;
-  friend class RankThreeTensor;
+  friend class RankThreeTensorTempl<Real>;
   friend class RankFourTensorTempl<Real>;
 };
 
