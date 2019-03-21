@@ -36,18 +36,18 @@ SecondDerivativeImplicitEulerScaled::SecondDerivativeImplicitEulerScaled(const I
   :TimeKernel(parameters),
   _u_old(valueOld()),
   _u_older(valueOlder()),
-  _damnpening(getParam<Real>("dampening"))
+  _dampening(getParam<Real>("dampening"))
 {
 }
 
 Real
 SecondDerivativeImplicitEulerScaled::computeQpResidual()
 {
-  return _test[_i][_qp] * _damnpening *((_u[_qp] - 2 * _u_old[_qp] + _u_older[_qp]) / (_dt * _dt));
+  return _test[_i][_qp] * _dampening *((_u[_qp] - 2 * _u_old[_qp] + _u_older[_qp]) / (_dt * _dt));
 }
 
 Real
 SecondDerivativeImplicitEulerScaled::computeQpJacobian()
 {
-  return _test[_i][_qp] * _damnpening* (_phi[_j][_qp] / (_dt * _dt));
+  return _test[_i][_qp] * _dampening* (_phi[_j][_qp] / (_dt * _dt));
 }

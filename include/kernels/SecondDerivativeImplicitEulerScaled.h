@@ -43,7 +43,7 @@ protected:
 private:
   const VariableValue & _u_old;
   const VariableValue & _u_older;
-  const Real _damnpening;
+  const Real _dampening;
 };
 
 #endif // SECONDDERIVATIVEIMPLICITEULERSCALED_H
