@@ -60,6 +60,11 @@ protected:
 
   /// Boolean to indicate whether we want to use the old (deprecated) generation pattern
   const bool _use_legacy;
+
+//public:
+//  Real rnd1  = (CorrelatedRandomFieldIC::generateRandom()*1000000+1)/1000000.0;
+//  Real rnd2  = (CorrelatedRandomFieldIC::generateRandom()*1000000+1)/1000000.0;
+
 private:
   /// RandomData element object, we cannot inherit from RandomInterface in an InitialCondition
   std::unique_ptr<RandomData> _elem_random_data;
