@@ -98,6 +98,8 @@ private:
   Real _Nnodes;
   //mesh object
   const MeshBase & _mesh;
+
+  std::vector<std::vector<std::vector<std::vector<Real>>>> dcoeffs;
 };
 
 #endif //CORRELATEDRANDOMFIELDIC_H

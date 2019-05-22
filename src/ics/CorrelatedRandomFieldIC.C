@@ -79,17 +79,15 @@ InputParameters validParams<CorrelatedRandomFieldIC>()
   params.addParam<Real>("xmin", 0.0, "Lower X Coordinate of the generated mesh");
   params.addParam<Real>("ymin", 0.0, "Lower Y Coordinate of the generated mesh");
   params.addParam<Real>("zmin", 0.0, "Lower Z Coordinate of the generated mesh");
-  params.addParam<Real>("xmax", 1.0, "Upper X Coordinate of the generated mesh");
-  params.addParam<Real>("ymax", 1.0, "Upper Y Coordinate of the generated mesh");
-  params.addParam<Real>("zmax", 1.0, "Upper Z Coordinate of the generated mesh");
+  params.addParam<Real>("xmax", 0.0, "Upper X Coordinate of the generated mesh");
+  params.addParam<Real>("ymax", 0.0, "Upper Y Coordinate of the generated mesh");
+  params.addParam<Real>("zmax", 0.0, "Upper Z Coordinate of the generated mesh");
   params.addParam<Real>("Nnodes", 1.0, "total number of nodes to loop over");
   params.addParam<unsigned int>("seed", 0, "Seed value for the random number generator");
   params.addParam<bool>(
       "legacy_generator",
       false,
       "Determines whether or not the legacy generator (deprecated) should be used.");
-  //params.addParam<DistributionName>(
-  //    "distribution", "Name of distribution defining distribution of randomly generated values");
   return params;
 }
 
@@ -108,18 +106,12 @@ CorrelatedRandomFieldIC::CorrelatedRandomFieldIC(const InputParameters & paramet
     _zmin(getParam<Real>("zmin")),
     _zmax(getParam<Real>("zmax")),
     _Nnodes(getParam<Real>("Nnodes")),
-    _mesh(_fe_problem.mesh().getMesh())//,
-   // _distribution(nullptr)
+    _mesh(_fe_problem.mesh().getMesh())
 {
-//  if (parameters.isParamSetByUser("distribution"))
-//  {
-//    _distribution = &getDistributionByName(getParam<DistributionName>("distribution"));
-//    if (parameters.isParamSetByUser("min") || parameters.isParamSetByUser("max"))
-//      paramError("distribution", "Cannot use together with 'min' or 'max' parameter");
-//  }
-
   unsigned int processor_seed = getParam<unsigned int>("seed");
   MooseRandom::seed(processor_seed);
+
+  dcoeffs = CorrelatedRandomFieldIC::fourierCoeffs();
 
   if (_use_legacy)
   {
@@ -152,10 +144,6 @@ CorrelatedRandomFieldIC::initialSetup()
     _elem_random_data->updateSeeds(EXEC_INITIAL);
     _node_random_data->updateSeeds(EXEC_INITIAL);
   }
-  //CorrelatedRandomFieldIC::genSeedOneInitial()
-  //CorrelatedRandomFieldIC::genSeedTwoInitial()
-  //Real rnd1  = (generateRandom()*1000000+1)/1000000.0;
-  //Real rnd2  = (generateRandom()*1000000+1)/1000000.0;
 }
 
 Real
@@ -193,6 +181,9 @@ CorrelatedRandomFieldIC::generateRandom()
 //stores the coefficient matrix
 std::vector<std::vector<std::vector<std::vector<Real>>>>
 CorrelatedRandomFieldIC::fourierCoeffs()
+
+
+//fix this: generate coefficients once and then pass to evaluate () instead of evaluateNoArray()
 {
   int nodes = _Nnodes; //_mesh.n_nodes();
   std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
@@ -215,14 +206,14 @@ CorrelatedRandomFieldIC::fourierCoeffs()
     Real norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*(_xmax-_xmin)));
     for (unsigned int i = 0; i<2*nodes+1; i++)
     {
-      kv(0) = 2.0*libMesh::pi*(i-nodes)/(_xmax-_xmin);
+      kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
       k2 = kv(0)*kv(0); //+ kv(1)*kv(1) + kv(2)*kv(2);
              
       amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
       // Box-Muller method for gaussian random numbers
                 
-     //rand1  = (generateRandom()*10000+1)/10000.0;
-     // rand2  = (generateRandom()*10000+1)/10000.0;
+      rand1  = (rand()%1000000+1)/1000000.0; //0.989879;//(generateRandom()*1000000.0+1)/1000000.0; //these could be input params?
+      rand2  = (rand()%1000000+1)/1000000.0; //0.30799;//(generateRandom()*1000000.0+1)/1000000.0;
                 
       //construct random numbers with unit variance
       //with unit variance for nrand1^2 + nrand2^2
@@ -241,20 +232,20 @@ CorrelatedRandomFieldIC::fourierCoeffs()
   else if (_dim == 2)
   {
     Real norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*(_xmax-_xmin)*(_ymax-_ymin)));
-    for (unsigned int i = 0; i<2*nodes+1; i++)
+    for (int i = 0; i<2*nodes+1; i++)
     {
-      for (unsigned int j = 0; j<2*nodes+1; j++)
+      for (int j = 0; j<2*nodes+1; j++)
       {
-        kv(0) = 2.0*libMesh::pi*(i-nodes)/(_xmax-_xmin);
-        kv(1) = 2.0*libMesh::pi*(j-nodes)/(_ymax-_ymin);
+        kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
+        kv(1) = 2.0*libMesh::pi*double(j-nodes)/(_ymax-_ymin);
 
         k2 = kv(0)*kv(0) + kv(1)*kv(1); //+ kv(1)*kv(1) + kv(2)*kv(2);
              
         amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
         // Box-Muller method for gaussian random numbers
                 
-       // rand1  = (generateRandom()*10000+1)/10000.0;
-       // rand2  = (generateRandom()*10000+1)/10000.0;
+        rand1  = (rand()%1000000+1)/1000000.0; //0.989879;//(generateRandom()*1000000.0+1)/1000000.0; //these could be input params?
+        rand2  = (rand()%1000000+1)/1000000.0; //0.30799;//(generateRandom()*1000000.0+1)/1000000.0;
                 
         //construct random numbers with unit variance
         //with unit variance for nrand1^2 + nrand2^2
@@ -274,31 +265,31 @@ CorrelatedRandomFieldIC::fourierCoeffs()
   else if (_dim == 3)
   {
     Real norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*(_xmax-_xmin)*(_ymax-_ymin)*(_zmax-_zmin)));
-    for (unsigned int i = 0; i<2*nodes+1; i++)
+    for (int i = 0; i<2*nodes+1; i++)
     {
-      for (unsigned int j = 0; j<2*nodes+1; j++)
+      for (int j = 0; j<2*nodes+1; j++)
       {
-        for (unsigned int k = 0; k<2*nodes+1; k++)
+        for (int k = 0; k<2*nodes+1; k++)
         {
-          kv(0) = 2.0*libMesh::pi*(i-nodes)/(_xmax-_xmin);
-          kv(1) = 2.0*libMesh::pi*(j-nodes)/(_ymax-_ymin);
-          kv(2) = 2.0*libMesh::pi*(k-nodes)/(_zmax-_zmin);
+          kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
+          kv(1) = 2.0*libMesh::pi*double(j-nodes)/(_ymax-_ymin);
+          kv(2) = 2.0*libMesh::pi*double(k-nodes)/(_zmax-_zmin);
 
-          k2 = kv(0)*kv(0) + kv(1)*kv(1) + kv(2)*kv(2); //+ kv(1)*kv(1) + kv(2)*kv(2);
+          k2 = kv(0)*kv(0) + kv(1)*kv(1) + kv(2)*kv(2);
              
           amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
           // Box-Muller method for gaussian random numbers
                 
-        //  rand1  = (generateRandom()*10000+1)/10000.0;
-       //   rand2  = (generateRandom()*10000+1)/10000.0;
-                
+          rand1  = (rand()%1000000+1)/1000000.0; //these could be input params?
+          rand2  = (rand()%1000000+1)/1000000.0;
+
           //construct random numbers with unit variance
           //with unit variance for nrand1^2 + nrand2^2
-          nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
-          nrand2 = sqrt(-2.0*std::log(rand2))*sin(2.0*libMesh::pi*rand2)/sqrt(2.0);
+          nrand1 = std::sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/std::sqrt(2.0);
+          nrand2 = std::sqrt(-2.0*std::log(rand2))*sin(2.0*libMesh::pi*rand2)/std::sqrt(2.0);
 
           //enforce 0 mean
-          if (i == nodes && j == nodes)
+          if (i == nodes && j == nodes && k == nodes)
           {
             amp = 0.0;
           }
@@ -355,23 +346,24 @@ CorrelatedRandomFieldIC::evaluate(const Point & p, std::vector<std::vector<std::
       }
     }
   }
+/////////////////////////////////////////
   else if (_dim == 3)
   {
-    for (unsigned int i = 0; i<2*nodes+1; i++)
+    for (int i = 0; i<2*nodes+1; i++) //no unsigned ints
     {
-      for (unsigned int j = 0;j<2*nodes+1;j++)
+      for (int j = 0; j<2*nodes+1;j++)
       {
-        for (unsigned int k = 0; k<2*nodes+1; k++)
+        for (int k = 0; k<2*nodes+1; k++)
         {
           kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
           kv(1) = 2.0*libMesh::pi*double(j-nodes)/(_ymax-_ymin);
           kv(2) = 2.0*libMesh::pi*double(k-nodes)/(_zmax-_zmin);
 
           phase = kv(0)*p(0) + kv(1)*p(1) + kv(2)*p(2);
-          //Moose::out << "\n phase = "; std::cout << phase;
           //the real part
-          result += output[i][j][k][0]*cos(phase);
-          result += output[i][j][k][1]*sin(phase); //???
+
+          result += output[i][j][k][0]*std::cos(phase);
+          result += output[i][j][k][1]*std::sin(phase); //???
         }
       }
     }
@@ -379,9 +371,8 @@ CorrelatedRandomFieldIC::evaluate(const Point & p, std::vector<std::vector<std::
   else
     result = 0.0;
   return result;
+///////////////////////////////////////////////
 }
-
-
 
 Real
 CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
@@ -407,9 +398,9 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
   // normalization constant
   double norm = std::sqrt(8.0*libMesh::pi/(_Lcorr*(_xmax-_xmin)));//*L[1]*L[2]));
     
+  //srand(2); //this doesn't work properly
+  //srand(_seed);
   // sum over kspace
-
-
   if (_dim == 1)
   {
     for (unsigned int i = 0; i<2*nodes+1; i++)   ///why do we sum 2N+1?
@@ -422,8 +413,16 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
                 
       // Box-Muller method for gaussian random numbers
                 
-      rand1  = (generateRandom()*1000000+1)/1000000.0; //these should be input params!!!
-      rand2  = (generateRandom()*1000000+1)/1000000.0;
+      rand1  = (generateRandom()*1000000.0+1)/1000000.0; //these could be input params?
+      rand2  = (generateRandom()*1000000.0+1)/1000000.0;
+ 
+//note that these should be 0 to 1
+
+
+// tried generateRandom(): here
+// tried rand_num_inc in the .h file
+// tried seeding it *directly* by having the input file pass params
+// something else is wrong...
 
       nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand2);
       nrand2 = sqrt(-2.0*std::log(rand1))*sin(2.0*libMesh::pi*rand2);
@@ -457,8 +456,8 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
                 
         // Box-Muller method for gaussian random numbers
                 
-        rand1  = (generateRandom()*1000000+1)/1000000.0; //these should be input params!!!
-        rand2  = (generateRandom()*1000000+1)/1000000.0;
+        rand1  = (generateRandom()*1000000.0+1)/1000000.0; //these should be input params!!!
+        rand2  = (generateRandom()*1000000.0+1)/1000000.0;
 
         nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand2);
         nrand2 = sqrt(-2.0*std::log(rand1))*sin(2.0*libMesh::pi*rand2);
@@ -496,8 +495,8 @@ CorrelatedRandomFieldIC::evaluateNoArray(const Point & p)
                 
           // Box-Muller method for gaussian random numbers
 
-          rand1  = (generateRandom()*1000000+1)/1000000.0; //these should be input params!!!
-          rand2  = (generateRandom()*1000000+1)/1000000.0;
+          rand1  = (generateRandom()*1000000.0+1)/1000000.0; //these should be input params!!!
+          rand2  = (generateRandom()*1000000.0+1)/1000000.0;
 
           nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand2);
           nrand2 = sqrt(-2.0*std::log(rand1))*sin(2.0*libMesh::pi*rand2);
@@ -525,5 +524,6 @@ Real
 CorrelatedRandomFieldIC::value(const Point & p)
 {
   //Moose::out << "\n p = "; std::cout << p(0); Moose::out << "; d[p] = "; std::cout << CorrelatedRandomFieldIC::evaluate(p, d);
-  return CorrelatedRandomFieldIC::evaluateNoArray(p);
+  //;
+  return CorrelatedRandomFieldIC::evaluate(p, dcoeffs);
 }
