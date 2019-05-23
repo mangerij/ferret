@@ -45,7 +45,6 @@ public:
   virtual std::vector<std::vector<std::vector<std::vector<Real>>>> fourierCoeffs();
 
   virtual Real evaluate(const Point & p, std::vector<std::vector<std::vector<std::vector<Real>>>> output);
-  virtual Real evaluateNoArray(const Point & p);
   virtual Real value(const Point & p);
 
 protected:
