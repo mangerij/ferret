@@ -16,7 +16,7 @@ validParams<DomainFunc>()
 }
 
 DomainFunc::DomainFunc(const InputParameters & parameters)
-  : Function(parameters), 
+  : Function(parameters),
   _ax(getParam<Real>("ax")),
   _af(getParam<Real>("af")),
   _min(getParam<Real>("min")),
@@ -26,7 +26,7 @@ DomainFunc::DomainFunc(const InputParameters & parameters)
 }
 
 Real
-DomainFunc::value(Real /*t*/, const Point & p)
+DomainFunc::value(Real /*t*/, const Point & p) const
 {
   Real rand_num = MooseRandom::rand();
 
@@ -35,6 +35,6 @@ DomainFunc::value(Real /*t*/, const Point & p)
 
   // Between min and max
   rand_num += _min;
-    
+
   return 1.4 * std::cos(2.0 * libMesh::pi * p(0) / _ax) * std::cos(libMesh::pi * p(2) / _af) + rand_num;
 }
