@@ -1,6 +1,6 @@
 ### We have moved from BitBucket! ###
 
-As of July 23rd, the BitBucket repository is no longer supported or current the MOOSE master. All official changes will be made here at GitHub.
+As of July 23rd, the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here at GitHub and Ferret business will continue as usual on CIVET.
 
 ### What is Ferret and how can I compile it? ###
 
