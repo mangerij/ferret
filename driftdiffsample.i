@@ -1,6 +1,4 @@
 [Mesh]
-  # file = mug.e
-
     type = GeneratedMesh
     dim = 2
     nx = 300
