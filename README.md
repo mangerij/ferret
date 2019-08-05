@@ -2,6 +2,8 @@
 
 As of July 23rd, the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here at GitHub and Ferret business will continue as usual on CIVET.
 
+Ferret still exists under GNU License but to access the repository, please contact on of the developers.
+
 ### What is Ferret and how can I compile it? ###
 
 Ferret is an application within the [MOOSE](http://mooseframework.org) framework.
