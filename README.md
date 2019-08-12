@@ -1,6 +1,6 @@
 ### We have moved from BitBucket! ###
 
-As of July 23rd, the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here at GitHub and Ferret business will continue as usual on CIVET.
+As of July 23rd, 2019 the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here at GitHub and Ferret business will continue as usual on CIVET.
 
 Ferret still exists under the open-source GNU License but to access the repository, please contact one of the developers.
 
@@ -12,7 +12,7 @@ It might be a good idea to learn a few things about MOOSE, too.
 
 Generally, you will clone Ferret this way:
 ```
-git clone https://bitbucket.org/mesoscience/ferret.git
+git clone https://github.com/mangerij/ferret.git
 ```
 Once MOOSE is built, Ferret can usually be built simply as
 ```
