@@ -1,6 +1,6 @@
 ### We have moved from BitBucket! ###
 
-As of July 23rd, 2019 the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here at GitHub and Ferret business will continue as usual on CIVET.
+As of July 23rd, 2019 the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here at GitHub and Ferret business will continue as usual on CIVET (https://civet.inl.gov/).
 
 Ferret still exists under the open-source GNU License but to access the repository you will need an RSA deploy key registered with our application.
 Please contact one of the developers for assistance in generating one.
