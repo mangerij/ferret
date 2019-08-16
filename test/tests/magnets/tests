@@ -1,4 +1,4 @@
-#[Tests]
+[Tests]
 #  [./how_do_they_work]
 #    type = 'Exodiff'
 #    input = 'magnets_how_do_they_work.i'
@@ -6,4 +6,11 @@
 #    max_parallel = 1
 #    max_threads = 1
 #  [../]
-#[]
+  [./larmor]
+    type = 'Exodiff'
+    input = 'larmor_test.i'
+    exodiff = 'Larmor_stable_USLLG_test.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]
