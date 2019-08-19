@@ -12,5 +12,6 @@
     exodiff = 'Larmor_stable_USLLG_test.e'
     max_parallel = 1
     max_threads = 1
+    skip = "Possible deprecated code"
   [../]
 []
