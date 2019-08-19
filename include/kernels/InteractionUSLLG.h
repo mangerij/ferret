@@ -46,6 +46,7 @@ private:
   const unsigned int _potential_H_ext_var;
   const VariableValue & _potential_H_int;
   const VariableValue & _potential_H_ext;
+  const VariableGradient & _potential_H_int_grad;
   const unsigned int _azimuth_phi_var;
   const unsigned int _polar_theta_var;
   const VariableValue & _azimuth_phi;
