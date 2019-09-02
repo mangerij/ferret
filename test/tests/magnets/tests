@@ -9,9 +9,8 @@
   [./larmor]
     type = 'Exodiff'
     input = 'larmor_test.i'
-    exodiff = 'Larmor_stable_USLLG_test.e'
+    exodiff = 'Larmor_USLLG_test_A0.e'
     max_parallel = 1
     max_threads = 1
-    skip = "Possible deprecated code"
   [../]
 []

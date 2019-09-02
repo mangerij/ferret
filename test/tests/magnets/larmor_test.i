@@ -236,8 +236,14 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = Larmor_stable_USLLG_test
+    file_base = Larmor_USLLG_test_A0
     interval = 1
     elemental_as_nodal = true
   [../]
+  #[./pgraph]
+  #  type = PerfGraphOutput
+  #  level = 1
+  #  heaviest_branch = true
+  #  heaviest_sections = 10
+  #[]
 []
