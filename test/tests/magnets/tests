@@ -6,11 +6,11 @@
 #    max_parallel = 1
 #    max_threads = 1
 #  [../]
-  [./larmor]
-    type = 'Exodiff'
-    input = 'larmor_test.i'
-    exodiff = 'Larmor_USLLG_test_A0.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+#  [./larmor]
+#    type = 'Exodiff'
+#    input = 'larmor_test.i'
+#    exodiff = 'Larmor_USLLG_test_A0.e'
+#    max_parallel = 1
+#    max_threads = 1
+#  [../]
 []
