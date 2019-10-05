@@ -49,7 +49,7 @@ MagHStrong::MagHStrong(const InputParameters & parameters)
 Real
 MagHStrong::computeQpResidual()
 {
-  return (_Ms*(_grad_test[_i][_qp](2)*std::cos(_polar_theta[_qp])+(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp])+_grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
+  return -(_Ms*(_grad_test[_i][_qp](2)*std::cos(_polar_theta[_qp])+(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp])+_grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
 }
 Real
 MagHStrong::computeQpJacobian()

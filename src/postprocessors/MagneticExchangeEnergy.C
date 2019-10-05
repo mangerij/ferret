@@ -20,6 +20,7 @@
 **/
 
 #include "MagneticExchangeEnergy.h"
+#include "libmesh/utility.h"
 
 registerMooseObject("FerretApp", MagneticExchangeEnergy);
 
@@ -29,26 +30,26 @@ InputParameters validParams<MagneticExchangeEnergy>()
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over the magnetic exchange energy density.");
-  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
-  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization vector");
-  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization vector");
-  params.addRequiredParam<Real>("A", "The constant of magnetic exchange");
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
+  params.addRequiredCoupledVar("magnetic_x", "The x component of the magnetization");
+  params.addRequiredCoupledVar("magnetic_y", "The y component of the magnetization");
+  params.addCoupledVar("magnetic_z", 0.0, "The z component of the magnetization");
+  params.addRequiredParam<Real>("Ae", "Ae");
+  params.addRequiredParam<Real>("Ms", "Ms");
   return params;
 }
 
 MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _mag_x_grad(coupledGradient("mag_x")),
-  _mag_y_grad(coupledGradient("mag_y")),
-  _mag_z_grad(coupledGradient("mag_z")),
-  _A(getParam<Real>("A")),
-  _len_scale(getParam<Real>("len_scale"))
+  _magnetic_x_grad(coupledGradient("magnetic_x")),
+  _magnetic_y_grad(coupledGradient("magnetic_y")),
+  _magnetic_z_grad(coupledGradient("magnetic_z")),
+  _Ae(getParam<Real>("Ae")),
+  _Ms(getParam<Real>("Ms"))
 {
 }
 
 Real
 MagneticExchangeEnergy::computeQpIntegral()
 {
-  return -(_A*(std::pow(_mag_x_grad[_qp](0),2) + std::pow(_mag_x_grad[_qp](1),2) + std::pow(_mag_x_grad[_qp](2),2) + std::pow(_mag_y_grad[_qp](0),2) + std::pow(_mag_y_grad[_qp](1),2) + std::pow(_mag_y_grad[_qp](2),2) + std::pow(_mag_z_grad[_qp](0),2) + std::pow(_mag_z_grad[_qp](1),2) + std::pow(_mag_z_grad[_qp](2),2))) * std::pow(_len_scale,1.0);
+  return (_Ae/_Ms)*(Utility::pow<2>(_magnetic_x_grad[_qp](0))+Utility::pow<2>(_magnetic_x_grad[_qp](1))+Utility::pow<2>(_magnetic_x_grad[_qp](2))+Utility::pow<2>(_magnetic_y_grad[_qp](0))+Utility::pow<2>(_magnetic_y_grad[_qp](1))+Utility::pow<2>(_magnetic_y_grad[_qp](2))+Utility::pow<2>(_magnetic_z_grad[_qp](0))+Utility::pow<2>(_magnetic_z_grad[_qp](1))+Utility::pow<2>(_magnetic_z_grad[_qp](2)));
 }
