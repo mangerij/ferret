@@ -1,9 +1,7 @@
 
 [Mesh]
-  file = exodus_Lbrick.e
+  file = exodus_brick.e
 []
-
-
 
 [GlobalParams]
   polar_theta = polar_theta
@@ -12,27 +10,17 @@
   potential_H_int = potential_H_int
   potential_H_ext = potential_H_ext
 
-  alpha = -10000.0
+  magnetic_x = magnetic_x
+  magnetic_y = magnetic_y
+  magnetic_z = magnetic_z
 
-  Ae = -0.0000129313 #can multiply by 1/mu0 and then hit alpha with 100 and get same structure faster (10 time steps of 1e-7)
+  alpha = 1.0 #what is the sign of alpha?? Flipping this makes the exchange energy decrease.
 
+  Ae = 0.013
   Ms = 0.8
-  M = 0.8
+  g0 = 175.88 
 
-  K1 = 0.0
-  K2 = 0.0
-
-
-  nx = 1.0
-  ny = 0.0
-  nz = 0.0
-
-  Ku = 0.0
-
-  g0 = 175929.0 #sign of gamma for conservative term just which way its spinning, damping term => pumping energy in or out
-
-  permittivity = 0.000795775 #0.000795775 This should be 1/mu0... in these units
-  mu0 = 1.0
+  permittivity = 1.0 # this scalar is in the Electrostatics.C kernel. It is grad * permitivitty * grad * potential = ...
 []
 
 [Variables]
@@ -42,8 +30,8 @@
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 1.9
-      max = 3.14159265357
+      min = 0.0
+      max = 3.1459
       seed = 3 
     [../]
   [../]
@@ -53,7 +41,7 @@
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 6.1
+      min = 0.0
       max = 6.283185307178
       seed = 3
     [../]
@@ -86,14 +74,36 @@
     family = LAGRANGE
     block = '1'
   [../]
-  [./bounds_theta_dummy]
-    order = FIRST
-    family = LAGRANGE
+
+  [./Hexch_x]
+    order = CONSTANT
+    family = MONOMIAL
     block = '1'
   [../]
-  [./bounds_phi_dummy]
-    order = FIRST
-    family = LAGRANGE
+  [./Hexch_y]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '1'
+  [../]
+  [./Hexch_z]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '1'
+  [../]
+
+  [./Hdemag_x]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '1'
+  [../]
+  [./Hdemag_y]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '1'
+  [../]
+  [./Hdemag_z]
+    order = CONSTANT
+    family = MONOMIAL
     block = '1'
   [../]
 []
@@ -103,20 +113,64 @@
    type = MagFieldAux
    component = 0
    variable = magnetic_x
-   execute_on = 'initial timestep_end'
+   execute_on = 'initial linear nonlinear timestep_end'
    block = '1'
  [../]
  [./mag_y_c]
    type = MagFieldAux
    component = 1
    variable = magnetic_y
-   execute_on = 'initial timestep_end'
+   execute_on = 'initial linear nonlinear timestep_end'
    block = '1'
  [../]
  [./mag_z_c]
    type = MagFieldAux
    component = 2
    variable = magnetic_z
+   execute_on = 'initial linear nonlinear timestep_end'
+   block = '1'
+ [../]
+
+ [./Hexch_x_c]
+   type = ExchangeFieldAux
+   component = 0
+   variable = Hexch_x
+   execute_on = 'initial timestep_end'
+   block = '1'
+ [../]
+ [./Hexch_y_c]
+   type =  ExchangeFieldAux
+   component = 1
+   variable = Hexch_y
+   execute_on = 'initial timestep_end'
+   block = '1'
+ [../]
+ [./Hexch_z_c]
+   type =  ExchangeFieldAux
+   component = 2
+   variable = Hexch_z
+   execute_on = 'initial timestep_end'
+   block = '1'
+ [../]
+
+ [./Hdemag_x_c]
+   type = DemagFieldAux
+   component = 0
+   variable = Hexch_x
+   execute_on = 'initial timestep_end'
+   block = '1'
+ [../]
+ [./Hdemag_y_c]
+   type =  DemagFieldAux
+   component = 1
+   variable = Hexch_y
+   execute_on = 'initial timestep_end'
+   block = '1'
+ [../]
+ [./Hdemag_z_c]
+   type =  DemagFieldAux
+   component = 2
+   variable = Hexch_z
    execute_on = 'initial timestep_end'
    block = '1'
  [../]
@@ -137,7 +191,10 @@
     block = '1'
   [../]
 
-  # LLG simple
+   #LLG simple
+
+  # Exchange term
+
   [./d_llg_exch_th]
     type = ExchangeUSLLG
     variable = polar_theta
@@ -149,16 +206,18 @@
     component = 1
   [../]
 
-  [./d_llg_aniso_th]
-    type = AnisotropyUSLLG
-    variable = polar_theta
-    component = 0
-  [../]
-  [./d_llg_aniso_phi]
-    type = AnisotropyUSLLG
-    variable = azimuth_phi
-    component = 1
-  [../]
+  # Anisotropy term. TURNED OFF
+
+  #[./d_llg_anis_th]
+  #  type = AnisotropyUSLLG
+  #  variable = polar_theta
+  #  component = 0
+  #[../]
+  #[./d_llg_anis_phi]
+  #  type = AnisotropyUSLLG
+  #  variable = azimuth_phi
+  #  component = 1
+  #[../]
 
   # Magnetic interaction term
 
@@ -173,7 +232,7 @@
     component = 0
   [../]
 
-  # Magnetostatic equations
+  # Magnetostatic Poisson equation
 
   [./ext_pot_lap]
     type = Electrostatics
@@ -192,103 +251,77 @@
   [../]
 []
 
-[Postprocessors]
-  [./Fexchange]
-    type = MagneticConstrainedExchangeEnergy
-    execute_on = 'initial timestep_end'
-    block = '1'
-  [../]
-  [./Faniso]
-    type = MagneticConstrainedAltAnisotropyEnergy
-    execute_on = 'initial timestep_end'
-    block = '1'
-  [../]
-  [./Fmag]
-    type = MagnetostaticEnergy
-    execute_on = 'initial timestep_end'
-    block = '1'
-  [../]
-  [./Ftot]
-    type = LinearCombinationPostprocessor 
-    pp_names = 'Fexchange Faniso Fmag'
-    pp_coefs = ' 1 1 1' 
-    execute_on = 'initial timestep_end'
-  [../]
-[]
-
 [BCs]
    [./bc_int_pot_R]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_int
     value = 0.0
     boundary = '1'
   [../]
 
   [./bc_int_pot_L]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_int
     value = 0.0
     boundary = '2'
   [../]
 
   [./bc_int_pot_T]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_int
     value = 0.0
     boundary = '3'
   [../]
   [./bc_int_pot_Bo]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_int
     value = 0.0
     boundary = '4'
   [../]
 
   [./bc_int_pot_F]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_int
     value = 0.0
     boundary = '5'
   [../]
   [./bc_int_pot_Ba]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_int
     value = 0.0
     boundary = '6'
   [../]
 
-
   [./bc_ext_pot_front]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_ext
     value = 0.0
     boundary = '1'
   [../]
   [./bc_ext_pot_back]
-    type = DirichletBC
+    type = PresetBC
     variable = potential_H_ext
     value = 0.0
     boundary = '2'
   [../]
 []
 
-[Bounds]
-  [./u_bounds]
-    type = BoundsAux
-    variable = bounds_theta_dummy
-    bounded_variable = polar_theta
-    upper = 3.14159265357                  #should this just be \pi?
-    lower = -3.14159265357
-    execute_on = 'Initial Linear Nonlinear'
+[Postprocessors]
+  [./Fexchange]
+    type = MagneticExchangeEnergy
+    execute_on = 'initial timestep_end'
+    block = '1'
   [../]
-
-  [./v_bounds]
-    type = BoundsAux
-    variable = bounds_phi_dummy
-    bounded_variable = azimuth_phi
-    upper = 6.283185307177
-    lower = 0.0
-    execute_on = 'Initial Linear Nonlinear'
+  [./Fdemag]
+    type = MagnetostaticEnergy
+    execute_on = 'initial timestep_end'
+    block = '1'
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor 
+    pp_names = 'Fexchange Fdemag'
+    pp_coefs = ' 1 1 ' 
+    execute_on = 'initial timestep_end'
   [../]
 []
 
@@ -297,13 +330,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_converged_reason'
-    petsc_options_iname = '-snes_type  -snes_mf_operator -ksp_gmres_restart -snes_stol -snes_atol  -snes_rtol -ksp_rtol -pc_type -pc_asm_overlap -sub_pc_type -sub_pc_factor_shift_type -sub_pc_factor_shift_amount'
-    petsc_options_value = ' vinewtonrsls     0                 121          0   1e-9        1e-8      1e-12      asm        8              lu         nonzero                1e-10'
   [../]
 []
-
-# -snes_mf_operator 0???
 
 [Debug]
   show_var_residual_norms = false
@@ -311,17 +339,17 @@
 
 [Executioner]
   type = Transient
-  #dt = 1.0e-7                 # NOTE FOR MAGNETS, TIMESTEP AND ALPHA CHOICE ARE INTERTWINED
-  solve_type = 'NEWTON'       # PJFNK not supported for rsls (or is it)! 
-  scheme = 'bdf2'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  #dt = 1.0e-7                
+  solve_type = 'NEWTON'
+  scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-16
-  dtmax = 1.5e-6
+  dtmax = 1.0e-8
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 30
+    optimal_iterations = 12
     growth_factor = 1.2
-    cutback_factor = 0.5
-    dt = 1e-9
+    cutback_factor = 0.85
+    dt = 1.0e-10
   [../]
 []
 
@@ -329,7 +357,7 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = USLLG_test3G
+    file_base = outUSLLG_test_0
     interval = 1
     elemental_as_nodal = true
   [../]

@@ -14,36 +14,37 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
 
-#ifndef MAGNETICCONSTRAINEDALTANISOTROPYENERGY_H
-#define MAGNETICCONSTRAINEDALTANISOTROPYENERGY_H
+#ifndef DEMAGFIELDAUX_H
+#define DEMAGFIELDAUX_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "AuxKernel.h"
 
-//Forward Declarations
-class MagneticConstrainedAltAnisotropyEnergy;
+
+//Forward declarations
+class DemagFieldAux;
 
 template<>
-InputParameters validParams<MagneticConstrainedAltAnisotropyEnergy>();
+InputParameters validParams<DemagFieldAux>();
 
-class MagneticConstrainedAltAnisotropyEnergy : public ElementIntegralPostprocessor
+class DemagFieldAux : public AuxKernel
 {
 public:
-  MagneticConstrainedAltAnisotropyEnergy(const InputParameters & parameters);
+  DemagFieldAux(const InputParameters & parameters);
+
+  virtual ~DemagFieldAux() {}
 
 protected:
-  virtual Real computeQpIntegral();
+  virtual Real computeValue();
 
-  const VariableValue & _azimuth_phi;
-  const VariableValue & _polar_theta;
-  const Real _K1;
-  const Real _K2;
-  const Real _Ms;
-
+private:
+  const unsigned int _component;
+  const VariableGradient & _potential_H_int_grad;
+  const VariableGradient & _potential_H_ext_grad;
 };
 
-#endif
+#endif /* DEMAGFIELDAUX_H */

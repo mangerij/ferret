@@ -14,36 +14,40 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at bitbucket.org/mesoscience/ferret
 
 **/
 
-#ifndef MAGNETICCONSTRAINEDEXCHANGEENERGY_H
-#define MAGNETICCONSTRAINEDEXCHANGEENERGY_H
+#ifndef EXCHANGEFIELDAUX_H
+#define EXCHANGEFIELDAUX_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "AuxKernel.h"
 
-//Forward Declarations
-class MagneticConstrainedExchangeEnergy;
+
+//Forward declarations
+class ExchangeFieldAux;
 
 template<>
-InputParameters validParams<MagneticConstrainedExchangeEnergy>();
+InputParameters validParams<ExchangeFieldAux>();
 
-class MagneticConstrainedExchangeEnergy : public ElementIntegralPostprocessor
+class ExchangeFieldAux : public AuxKernel
 {
 public:
-  MagneticConstrainedExchangeEnergy(const InputParameters & parameters);
+  ExchangeFieldAux(const InputParameters & parameters);
+
+  virtual ~ExchangeFieldAux() {}
 
 protected:
-  virtual Real computeQpIntegral();
+  virtual Real computeValue();
 
-  const VariableValue & _azimuth_phi;
-  const VariableValue & _polar_theta;
-  const VariableGradient & _azimuth_phi_grad;
-  const VariableGradient & _polar_theta_grad;
+private:
+  const unsigned int _component;
+  const VariableSecond & _magnetic_x_lap;
+  const VariableSecond & _magnetic_y_lap;
+  const VariableSecond & _magnetic_z_lap;
   const Real _Ae;
-
+  const Real _Ms;
 };
 
-#endif
+#endif /* EXCHANGEFIELDAUX_H */
