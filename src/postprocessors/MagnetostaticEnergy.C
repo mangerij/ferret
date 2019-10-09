@@ -50,5 +50,6 @@ MagnetostaticEnergy::MagnetostaticEnergy(const InputParameters & parameters) :
 Real
 MagnetostaticEnergy::computeQpIntegral()
 {
-  return _Ms*((-((_potential_H_ext_grad[_qp](2) + _potential_H_int_grad[_qp](2))*std::cos(_polar_theta[_qp])) - ((_potential_H_ext_grad[_qp](0) + _potential_H_int_grad[_qp](0))*std::cos(_azimuth_phi[_qp]) + (_potential_H_ext_grad[_qp](1) + _potential_H_int_grad[_qp](1))*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
+  // -1/2 * M*B = - 1/2 * M*(-gradPotential)
+  return -0.5*_Ms * (-_potential_H_int_grad[_qp](0)*std::cos(_azimuth_phi[_qp])*std::sin(_polar_theta[_qp]) - _potential_H_int_grad[_qp](1)*std::sin(_azimuth_phi[_qp])*std::sin(_polar_theta[_qp]) - _potential_H_int_grad[_qp](2)*std::cos(_polar_theta[_qp]));
 }
