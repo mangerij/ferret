@@ -45,6 +45,7 @@ private:
   const unsigned int _polar_theta_var;
   const VariableValue & _azimuth_phi;
   const VariableValue & _polar_theta;
+  const Real _mu0;
   const Real _Ms;
 
 };

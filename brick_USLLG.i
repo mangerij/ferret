@@ -14,13 +14,14 @@
   magnetic_y = magnetic_y
   magnetic_z = magnetic_z
 
-  alpha = 1.0 #what is the sign of alpha?? Flipping this makes the exchange energy decrease.
+  alpha = 1.0 #flip alpha now?
 
-  Ae = 0.013
+  Ae = -0.013
   Ms = 0.8
   g0 = 175.88 
 
   permittivity = 1.0 # this scalar is in the Electrostatics.C kernel. It is grad * permitivitty * grad * potential = ...
+  mu0 = 1256.64
 []
 
 [Variables]
@@ -330,11 +331,13 @@
   [./smp]
     type = SMP
     full = true
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type '
+    petsc_options_value = '    121               1e-10      1e-8      1e-6       bjacobi'
   [../]
 []
 
 [Debug]
-  show_var_residual_norms = false
+  show_var_residual_norms = true
 []
 
 [Executioner]
@@ -343,13 +346,13 @@
   solve_type = 'NEWTON'
   scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-16
-  dtmax = 1.0e-8
+  dtmax = 1.0e-6
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 12
     growth_factor = 1.2
     cutback_factor = 0.85
-    dt = 1.0e-10
+    dt = 1.0e-7
   [../]
 []
 
@@ -357,7 +360,7 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = outUSLLG_test_0
+    file_base = outUSLLG_test_1
     interval = 1
     elemental_as_nodal = true
   [../]
