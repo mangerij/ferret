@@ -14,11 +14,11 @@
   magnetic_y = magnetic_y
   magnetic_z = magnetic_z
 
-  alpha = -0.85
+  alpha = 0.85
 
-  Ae = 0.01625  #-?? #intrinsic factor of 0.8 here
+  Ae = 0.013
   Ms = 0.8
-  g0 = 175.88
+  g0 = 176.1
 
   permittivity = 1.0 # this scalar is in the Electrostatics.C kernel. It is grad * permitivitty * grad * potential = ...
   mu0 = 1256.64
@@ -331,8 +331,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type '
-    petsc_options_value = '    121               1e-10      1e-8      1e-6       bjacobi'
+    petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type '
+    petsc_options_value = '    121               1e-10      1e-8      1e-8       bjacobi'
   [../]
 []
 
@@ -345,12 +345,12 @@
   solve_type = 'PJFNK'
   scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-16
-  dtmax = 1.0e-6
+  dtmax = 5.0e-7
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 12
     growth_factor = 1.2
-    cutback_factor = 0.85
+    cutback_factor = 0.4
     dt = 1.0e-8
   [../]
 []
@@ -359,7 +359,7 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = outUSLLG_test_M1
+    file_base = outUSLLG_test_G3
     interval = 1
     elemental_as_nodal = true
   [../]
