@@ -4,8 +4,9 @@
 []
 
 [GlobalParams]
-  polar_theta = polar_theta
-  azimuth_phi = azimuth_phi
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
  
   potential_H_int = potential_H_int
   potential_H_ext = potential_H_ext
@@ -21,32 +22,43 @@
   g0 = 176.1
 
   permittivity = 1.0
-  mu0 = -1256.64
+  mu0 = 1256.64
 []
 
 #theta = 0  not a problem!!!
 
 [Variables]
-  [./polar_theta]
+  [./mag_x]
     order = FIRST
     family = LAGRANGE
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 0.01
-      max = 3.14159
+      min = 0.79999
+      max = 0.80001
       seed = 3 
     [../]
   [../]
-  [./azimuth_phi]
+  [./mag_y]
     order = FIRST
     family = LAGRANGE
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 0.01
-      max = 6.283185307178
-      seed = 3
+      min = 0.79999
+      max = 0.80001
+      seed = 3 
+    [../]
+  [../]
+  [./mag_z]
+    order = FIRST
+    family = LAGRANGE
+    block = '1'
+    [./InitialCondition]
+      type = RandomIC
+      min = 0.79999
+      max = 0.80001
+      seed = 3 
     [../]
   [../]
   [./potential_H_int]
@@ -62,177 +74,74 @@
 []
 
 [AuxVariables]
-  [./magnetic_x]
-    order = FIRST
-    family = LAGRANGE
-    block = '1'
-  [../]
-  [./magnetic_y]
-    order = FIRST
-    family = LAGRANGE
-    block = '1'
-  [../]
-  [./magnetic_z]
-    order = FIRST
-    family = LAGRANGE
-    block = '1'
-  [../]
-
-  [./Hexch_x]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1'
-  [../]
-  [./Hexch_y]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1'
-  [../]
-  [./Hexch_z]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1'
-  [../]
-
-  [./Hdemag_x]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1'
-  [../]
-  [./Hdemag_y]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1'
-  [../]
-  [./Hdemag_z]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1'
-  [../]
+ 
 []
 
 [AuxKernels]
- [./mag_x_c]
-   type = MagFieldAux
-   component = 0
-   variable = magnetic_x
-   execute_on = 'initial linear nonlinear timestep_end'
-   block = '1'
- [../]
- [./mag_y_c]
-   type = MagFieldAux
-   component = 1
-   variable = magnetic_y
-   execute_on = 'initial linear nonlinear timestep_end'
-   block = '1'
- [../]
- [./mag_z_c]
-   type = MagFieldAux
-   component = 2
-   variable = magnetic_z
-   execute_on = 'initial linear nonlinear timestep_end'
-   block = '1'
- [../]
 
- [./Hexch_x_c]
-   type = ExchangeFieldAux
-   component = 0
-   variable = Hexch_x
-   execute_on = 'initial timestep_end'
-   block = '1'
- [../]
- [./Hexch_y_c]
-   type =  ExchangeFieldAux
-   component = 1
-   variable = Hexch_y
-   execute_on = 'initial timestep_end'
-   block = '1'
- [../]
- [./Hexch_z_c]
-   type =  ExchangeFieldAux
-   component = 2
-   variable = Hexch_z
-   execute_on = 'initial timestep_end'
-   block = '1'
- [../]
-
- [./Hdemag_x_c]
-   type = DemagFieldAux
-   component = 0
-   variable = Hexch_x
-   execute_on = 'initial timestep_end'
-   block = '1'
- [../]
- [./Hdemag_y_c]
-   type =  DemagFieldAux
-   component = 1
-   variable = Hexch_y
-   execute_on = 'initial timestep_end'
-   block = '1'
- [../]
- [./Hdemag_z_c]
-   type =  DemagFieldAux
-   component = 2
-   variable = Hexch_z
-   execute_on = 'initial timestep_end'
-   block = '1'
- [../]
 []
 
 [Kernels]
   ## Time dependence
-  [./polar_time]
+  [./mag_x_time]
     type = TimeDerivativeScaled
-    variable = polar_theta
+    variable = mag_x
     time_scale = 1.0
     block = '1'
   [../]
-  [./azimuthal_time]
+  [./mag_y_time]
     type = TimeDerivativeScaled
-    variable = azimuth_phi
+    variable = mag_y
     time_scale = 1.0
     block = '1'
   [../]
+
+  [./mag_z_time]
+    type = TimeDerivativeScaled
+    variable = mag_z
+    time_scale = 1.0
+    block = '1'
+  [../]
+
 
    #LLG simple
 
   # Exchange term
 
-  [./d_llg_exch_th]
-    type = ExchangeUSLLG
-    variable = polar_theta
+  [./d_llg_exch_x]
+    type = ExchangeCartLLG
+    variable = mag_x
     component = 0
   [../]
-  [./d_llg_exch_phi]
-    type = ExchangeUSLLG
-    variable = azimuth_phi
+  [./d_llg_exch_y]
+    type = ExchangeCartLLG
+    variable = mag_y
     component = 1
+  [../]
+  [./d_llg_exch_z]
+    type = ExchangeCartLLG
+    variable = mag_z
+    component = 2
   [../]
 
   # Anisotropy term. TURNED OFF
 
-  #[./d_llg_anis_th]
-  #  type = AnisotropyUSLLG
-  #  variable = polar_theta
-  #  component = 0
-  #[../]
-  #[./d_llg_anis_phi]
-  #  type = AnisotropyUSLLG
-  #  variable = azimuth_phi
-  #  component = 1
-  #[../]
-
   # Magnetic interaction term
 
-  [./d_HM_1]
-    type = InteractionUSLLG
-    variable = azimuth_phi
+  [./d_HM_x]
+    type = InteractionCartLLG
+    variable = mag_x
+    component = 0
+  [../]
+  [./d_HM_y]
+    type = InteractionCartLLG
+    variable = mag_y
     component = 1
   [../]
-  [./d_HM_0]
-    type = InteractionUSLLG
-    variable = polar_theta
-    component = 0
+  [./d_HM_z]
+    type = InteractionCartLLG
+    variable = mag_z
+    component = 2
   [../]
 
   # Magnetostatic Poisson equation
@@ -250,9 +159,6 @@
   [./int_bc_pot_lap]
     type = MagHStrongCart
     variable = potential_H_int
-    mag_x = magnetic_x
-    mag_y = magnetic_y
-    mag_z = magnetic_z
     block = '1'
   [../]
 []
@@ -317,10 +223,16 @@
     type = MagneticExchangeEnergy
     execute_on = 'initial timestep_end'
     block = '1'
+    magnetic_x = mag_x
+    magnetic_y = mag_y
+    magnetic_z = mag_z
   [../]
   [./Fdemag]
-    type = MagnetostaticEnergy
+    type = MagnetostaticEnergyCart
     execute_on = 'initial timestep_end'
+    magnetic_x = mag_x
+    magnetic_y = mag_y
+    magnetic_z = mag_z
     block = '1'
   [../]
   [./Ftot]
@@ -336,8 +248,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121               1e-10      1e-8      1e-8       lu'
+    petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type '
+    petsc_options_value = '    121               1e-10      1e-8      1e-8       bjacobi'
   [../]
 []
 
@@ -350,13 +262,13 @@
   solve_type = 'NEWTON'
   scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-16
-  dtmax = 5.0e-6
+  dtmax = 5.0e-7
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 12
     growth_factor = 1.2
     cutback_factor = 0.4
-    dt = 1.0e-9
+    dt = 1.0e-7
   [../]
   verbose = true
 []
@@ -365,7 +277,7 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = outUSLLG_test_VB
+    file_base = outCartLLG_test_VB
     interval = 1
     elemental_as_nodal = true
   [../]

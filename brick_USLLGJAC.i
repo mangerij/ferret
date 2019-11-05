@@ -2,9 +2,9 @@
 [Mesh]
   type = GeneratedMesh
   dim = 3
-  nx = 5
-  ny = 5
-  nz = 5
+  nx = 7
+  ny = 7
+  nz = 7
   xmin = -0.1
   xmax = 0.1
   ymin = -0.1
@@ -29,10 +29,10 @@
 
   Ae = 0.013
   Ms = 0.8
-  g0 = 175.88
+  g0 = 0.17588
 
   permittivity = 1.0 # this scalar is in the Electrostatics.C kernel. It is grad * permitivitty * grad * potential = ...
-  mu0 = 1256.64
+  mu0 = -1256.64
 []
 
 [Variables]
@@ -352,9 +352,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_check_jacobian'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type '
-    petsc_options_value = '    121               1e-10      1e-8      1e-6       bjacobi'
+    petsc_options_iname = '-snes_type -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type '
+    petsc_options_value = '   test            121               1e-10      1e-8      1e-6      lu'
   [../]
 []
 
@@ -376,7 +375,7 @@
     cutback_factor = 0.85
     dt = 1.0e-8
   [../]
-  num_steps = 1
+  num_steps = 2
 []
 
 [Outputs]
