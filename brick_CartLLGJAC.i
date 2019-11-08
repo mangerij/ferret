@@ -1,6 +1,17 @@
 
 [Mesh]
-  file = exodus_brick.e
+  type = GeneratedMesh
+  dim = 3
+  nx = 7
+  ny = 7
+  nz = 7
+  xmin = -0.1
+  xmax = 0.1
+  ymin = -0.1
+  ymax = 0.1
+  zmin = -0.1
+  zmax = 0.1
+  elem_type = HEX8
 []
 
 [GlobalParams]
@@ -219,7 +230,6 @@
     mag_z = mag_z
     variable = lagrange
     block = '1'
-    lambda = lagrange
   [../]
 []
 
