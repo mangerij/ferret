@@ -24,6 +24,8 @@
 #include "libmesh/point.h"
 #include <cmath>
 
+registerMooseObject("FerretApp", RandomConstrainedVectorFieldIC);
+
 template<>
 InputParameters validParams<RandomConstrainedVectorFieldIC>()
 {
