@@ -47,10 +47,8 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const VariableValue & _alpha1;
-  const VariableValue & _alpha11;
-  const VariableValue & _alpha111;
-  const Real _alpha12, _alpha112, _alpha123, _alpha1111, _alpha1112, _alpha1122, _alpha1123;
+  const VariableValue & _x;
+  const Real _alpha01, _alpha011, _alpha0111, _alpha012, _alpha0112, _alpha0123, _alpha1111, _alpha1112, _alpha1122, _alpha1123, _b1, _b2, _b3, _T;
   const Real _len_scale;
 };
 #endif //SDBULKENERGYDERIVATIVEEIGHTH_H
