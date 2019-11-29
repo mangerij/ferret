@@ -15,17 +15,15 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
-*/
+**/
 
 #ifndef ROTOBULKENERGYDENSITY_H
 #define ROTOBULKENERGYDENSITY_H
 
 #include "AuxKernel.h"
 
-
-//Forward Declarations
 class RotoBulkEnergyDensity;
 
 template<>

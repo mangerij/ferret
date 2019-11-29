@@ -1,5 +1,5 @@
-/**************************************************************************
-  This file is part of FERRET, an add-on module for MOOSE
+/*
+   This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -15,16 +15,15 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
-***************************************************************************/
+**/
 
 #ifndef ANISOTROPICENERGY_H
 #define ANISOTROPICENERGY_H
 
 #include "ElementIntegralPostprocessor.h"
 
-//Forward Declarations
 class AnisotropicEnergy;
 
 template<>

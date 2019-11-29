@@ -15,7 +15,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
@@ -25,7 +25,6 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-//Forward declarations
 class Intensity;
 
 template<>
@@ -48,12 +47,6 @@ private:
   const VariableValue & _ImagE_x;
   const VariableValue & _ImagE_y;
   const VariableValue & _ImagE_z;
-  //const VariableValue & _ReH_x;
-  //const VariableValue & _ReH_y;
-  //const VariableValue & _ReH_z;
-  //const VariableValue & _ImagH_x;
-  //const VariableValue & _ImagH_y;
-  //const VariableValue & _ImagH_z;
 
 };
 

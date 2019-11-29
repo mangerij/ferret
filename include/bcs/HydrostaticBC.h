@@ -1,4 +1,4 @@
-/**
+/*
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -15,16 +15,15 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
-*/
+**/
 
 #ifndef HYDROSTATICBC_H
 #define HYDROSTATICBC_H
 
 #include "IntegratedBC.h"
 
-//Forward Declarations
 class HydrostaticBC;
 
 template<>
@@ -33,11 +32,6 @@ InputParameters validParams<HydrostaticBC>();
 class HydrostaticBC : public IntegratedBC
 {
 public:
-
-  /**
-   * Factory constructor, takes parameters so that all derived classes can be built using the same
-   * constructor.
-   */
   HydrostaticBC(const InputParameters & parameters);
 
 protected:

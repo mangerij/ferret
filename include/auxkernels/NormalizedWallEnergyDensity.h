@@ -1,4 +1,4 @@
-/**
+/*
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -15,33 +15,23 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
-*/
+**/
 
 #ifndef NORMALIZEDWALLENERGYDENSITY_H
 #define NORMALIZEDWALLENERGYDENSITY_H
 
 #include "AuxKernel.h"
 
-
-//Forward Declarations
 class NormalizedWallEnergyDensity;
 
 template<>
 InputParameters validParams<NormalizedWallEnergyDensity>();
 
-/**
- * Coupled auxiliary value
- */
 class NormalizedWallEnergyDensity : public AuxKernel
 {
 public:
-
-  /**
-   * Factory constructor, takes parameters so that all derived classes can be built using the same
-   * constructor.
-   */
   NormalizedWallEnergyDensity(const InputParameters & parameters);
 
 protected:

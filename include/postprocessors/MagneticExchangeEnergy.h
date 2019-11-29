@@ -1,4 +1,4 @@
-/**
+/*
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -14,8 +14,8 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.mangeri@uconn.edu>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
@@ -24,13 +24,11 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-//Forward Declarations
 class MagneticExchangeEnergy;
 
 template<>
 InputParameters validParams<MagneticExchangeEnergy>();
 
-//TODO: change the base class!
 class MagneticExchangeEnergy : public ElementIntegralPostprocessor
 {
 public:

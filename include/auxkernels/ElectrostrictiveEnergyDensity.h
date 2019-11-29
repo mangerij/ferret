@@ -15,7 +15,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
@@ -27,23 +27,15 @@
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputeEigenstrain.h"
 
-//Forward Declarations
 class ElectrostrictiveEnergyDensity;
 
 template<>
 InputParameters validParams<ElectrostrictiveEnergyDensity>();
 
-/**
- * Coupled auxiliary value
- */
 class ElectrostrictiveEnergyDensity : public AuxKernel
 {
 public:
 
-  /**
-   * Factory constructor, takes parameters so that all derived classes can be built using the same
-   * constructor.
-   */
   ElectrostrictiveEnergyDensity(const InputParameters & parameters);
 
 protected:
