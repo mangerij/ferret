@@ -15,7 +15,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
@@ -31,17 +31,10 @@ class AFDWallEnergyDensity;
 template<>
 InputParameters validParams<AFDWallEnergyDensity>();
 
-/**
- * Coupled auxiliary value
- */
 class AFDWallEnergyDensity : public AuxKernel
 {
 public:
 
-  /**
-   * Factory constructor, takes parameters so that all derived classes can be built using the same
-   * constructor.
-   */
   AFDWallEnergyDensity(const InputParameters & parameters);
 
 protected:

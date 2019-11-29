@@ -1,4 +1,4 @@
-/**
+/*
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
@@ -49,7 +49,6 @@ DivP::DivP(const InputParameters & parameters) :
 
 Real
 DivP::computeValue()
-
 {
     return _polar_x_grad[_qp](0) + _polar_y_grad[_qp](1) + _polar_z_grad[_qp](2);
 }

@@ -1,4 +1,4 @@
-/**
+/*
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
@@ -26,10 +26,6 @@
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
 
-//LibMesh includes
-//#include "libmesh/vector_value.h"
-
-//Forward Declarations
 class StressBC;
 
 template<>
@@ -38,11 +34,6 @@ InputParameters validParams<StressBC>();
 class StressBC : public IntegratedBC
 {
 public:
-
-  /**
-   * Factory constructor, takes parameters so that all derived classes can be built using the same
-   * constructor.
-   */
   StressBC(const InputParameters & parameters);
 
 protected:

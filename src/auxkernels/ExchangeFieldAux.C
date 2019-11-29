@@ -1,4 +1,4 @@
-/**
+/*
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
@@ -26,7 +26,6 @@ registerMooseObject("FerretApp", ExchangeFieldAux);
 template<>
 
 InputParameters validParams<ExchangeFieldAux>()
-
 {
   InputParameters params = validParams<AuxKernel>();
   params.addClassDescription("Computes the exchange field");
@@ -62,5 +61,4 @@ ExchangeFieldAux::computeValue()
     return (2.0*_Ae/_Ms)*(_magnetic_z_lap[_qp](0,0)+_magnetic_z_lap[_qp](1,1)+_magnetic_z_lap[_qp](2,2));
   else
     return 0.0;
-
 }

@@ -15,9 +15,9 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
-   and be sure to track new changes at bitbucket.org/mesoscience/ferret
+   and be sure to track new changes at github.com/mangerij/ferret
 
-*/
+**/
 
 #ifndef CHANGEINREFRACTIVEINDEXWITHPOLAR_H
 #define CHANGEINREFRACTIVEINDEXWITHPOLAR_H
@@ -25,7 +25,6 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-//Forward declarations
 class ChangeInRefractiveIndexWithPolar;
 
 template<>
