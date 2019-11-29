@@ -60,12 +60,6 @@ WallEnergyDerivative::WallEnergyDerivative(const InputParameters & parameters)
   _G44P(getParam<Real>("G44P_G110") * _G110),
   _len_scale(getParam<Real>("len_scale"))
 {
-  ///only for debug purpose
-  std::cout<<"_G110 = "<<_G110<<"\n";
-  std::cout<<"_G11 ="<<_G11<<"\n";
-  std::cout<<"_G12 = "<<_G12<<"\n";
-  std::cout<<"_G44 = "<<_G44<<"\n";
-  std::cout<<"_G44P = "<<_G44P<<"\n";
 }
 
 Real

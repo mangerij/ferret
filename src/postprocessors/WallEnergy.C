@@ -51,7 +51,20 @@ WallEnergy::WallEnergy(const InputParameters & parameters) :
   _G44(getParam<Real>("G44_G110")*_G110),
   _G44P(getParam<Real>("G44P_G110")*_G110),
   _len_scale(getParam<Real>("len_scale"))
-{}
+{
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"Selecting:                                                                "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<" time-dependent coupled Landau-Ginzburg equations for evolution of the    "<<"\n";
+  std::cout<<" ferroelectric system:                                                    "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"       dPk/dt = -Γ δF/δPk                                                 "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  //TODO: later can rework this in the following way: postprocessors will print energetic contributions and a "blank" kernel will print the LGD/LLG/coupled terms
+  //      can also use for elastic and electrostatic coupling.
+}
 
 Real
 WallEnergy::computeQpIntegral()

@@ -64,7 +64,6 @@ ElectrostrictiveCouplingPolarDerivative::ElectrostrictiveCouplingPolarDerivative
    _q44(getParam<Real>("q44")),
    _len_scale(getParam<Real>("len_scale"))
 {
-  std::cout<<"WARNING: This kernel is only for use with BiFeO3 potentials. Its form has not been tested for other materials (like PbTiO3). Did you mean to use FerroelectricCouplingP?"<<"\n";
 }
 
 Real
