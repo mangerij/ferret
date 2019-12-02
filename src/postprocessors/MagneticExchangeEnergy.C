@@ -46,6 +46,17 @@ MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameter
   _Ae(getParam<Real>("Ae")),
   _Ms(getParam<Real>("Ms"))
 {
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"Selecting:                                                                "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<" Landau-Liftshitz-Gilbert equations for evolution of the magnetic system  "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"       dMk/dt = - γ' Mk × δF/δMk - γ' α [Mk × (Mk × δF/δMk]               "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  //TODO: later can rework this in the following way: postprocessors will print energetic contributions and a "blank" kernel will print the LGD/LLG/coupled terms
+  //      can also use for elastic and electrostatic coupling.
 }
 
 Real
