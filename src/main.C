@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
   std::shared_ptr<MooseApp> app = AppFactory::createAppShared("FerretApp", argc, argv);
 
   std::cout<<"   .-.                                                          ___       "<<"\n";
-  std::cout<<"  /    \                                                       (   )      "<<"\n";
-  std::cout<<"  | .`. ;      .--.      ___ .-.       ___ .-.        .--.      | |_      "<<"\n";
-  std::cout<<"  | |(___)    /    \    (   )   \     (   )   \      /    \    (   __)    "<<"\n";
+  std::cout<<"  /    \                                                        (   )     "<<"\n";
+  std::cout<<"  | .`. ;      .--.      ___           ___            .--.      | |_      "<<"\n";
+  std::cout<<"  | |(___)    /    \     (   )         (   )          /    \     (   __)  "<<"\n";
   std::cout<<"  | |_       |  .-. ;    | ' .-. ;     | ' .-. ;    |  .-. ;    | |       "<<"\n"; 
   std::cout<<" (   __)     |  | | |    |  / (___)    |  / (___)   |  | | |    | | ___   "<<"\n"; 
   std::cout<<"  | |        |  |/  |    | |           | |          |  |/  |    | |(   )  "<<"\n";
@@ -54,8 +54,9 @@ int main(int argc, char *argv[])
   std::cout<<"  | |        '  `-' /    | |           | |          '  `-' /    ' `-' ;   "<<"\n";  
   std::cout<<" (___)        `.__.'    (___)         (___)          `.__.'      `.__.    "<<"\n";
   std::cout<<"                                                                          "<<"\n";
-  std::cout<<"            ...a MOOSE package for simulating ferroic nanostructure       "<<"\n";
+  std::cout<<"            ...a MOOSE package for simulating the ferroic nanostructure   "<<"\n";
 
+  std::cout<<"                                                                          "<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
@@ -77,6 +78,11 @@ int main(int argc, char *argv[])
   std::cout<<"   and be sure to track new changes at github.com/mangerij/ferret         "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"  Selecting physics:                                                      "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
 
   // Execute the application
   app->run();
