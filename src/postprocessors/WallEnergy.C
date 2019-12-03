@@ -54,15 +54,12 @@ WallEnergy::WallEnergy(const InputParameters & parameters) :
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
-  std::cout<<"Selecting:                                                                "<<"\n";
-  std::cout<<"__________________________________________________________________________"<<"\n";
-  std::cout<<"                                                                          "<<"\n";
   std::cout<<" time-dependent coupled Landau-Ginzburg equations for evolution of the    "<<"\n";
   std::cout<<" ferroelectric system:                                                    "<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"       dPk/dt = -Γ δF/δPk                                                 "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
-  //TODO: later can rework this in the following way: postprocessors will print energetic contributions and a "blank" kernel will print the LGD/LLG/coupled terms
+  //TODO: later can rework this in the following way: postprocessors will print energetic contributions and a "blank" postprocessor will print the LGD/LLG/coupled terms
   //      can also use for elastic and electrostatic coupling.
 }
 

@@ -46,6 +46,12 @@ ElectrostaticEnergy::ElectrostaticEnergy(const InputParameters & parameters) :
   _potential_E_ext_grad(coupledGradient("potential_E_ext")),
   _len_scale(getParam<Real>("len_scale"))
 {
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<" Electrostatic Poisson equation:                                          "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"       ∇·(ε∇Φ)  = -∇·P                                                   "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
 }
 
 Real

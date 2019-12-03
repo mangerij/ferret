@@ -37,9 +37,9 @@ InputParameters validParams<ElectrostrictiveCouplingPolarDerivative>()
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredParam<Real>("q11", "the 11 component of rotostrictive coupling tensor");
-  params.addRequiredParam<Real>("q12", "the 12 component of rotostrictive coupling tensor");
-  params.addRequiredParam<Real>("q44", "the 44 component of rotostrictive coupling tensor");
+  params.addRequiredParam<Real>("q11", "the 11 component of electrostrictive coupling tensor");
+  params.addRequiredParam<Real>("q12", "the 12 component of electrostrictive coupling tensor");
+  params.addRequiredParam<Real>("q44", "the 44 component of electrostrictive coupling tensor");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
