@@ -43,6 +43,7 @@ private:
   const unsigned int _component;
   const VariableValue & _phi;
   const VariableValue & _theta;
+  const Real _Ms;
 };
 
 #endif //RANDOMCONSTRAINEDVECTORFIELDIC_H

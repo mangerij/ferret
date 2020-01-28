@@ -54,7 +54,7 @@ MagHStrongCart::MagHStrongCart(const InputParameters & parameters)
 Real
 MagHStrongCart::computeQpResidual()
 {
-  return -_mu0*_Ms*(_mag_x_grad[_qp](0)+_mag_y_grad[_qp](1)+_mag_z_grad[_qp](2));
+  return -_test[_i][_qp]*_mu0*_Ms*(_mag_x_grad[_qp](0)+_mag_y_grad[_qp](1)+_mag_z_grad[_qp](2));
 }
 Real
 MagHStrongCart::computeQpJacobian()
@@ -67,15 +67,15 @@ MagHStrongCart::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _mag_x_var)
   {
-    return -_mu0*_Ms*(_grad_phi[_j][_qp](0));
+    return -_test[_i][_qp]*_mu0*_Ms*(_grad_phi[_j][_qp](0));
   }
   else if (jvar == _mag_y_var)
   {
-    return -_mu0*_Ms*(_grad_phi[_j][_qp](1));
+    return -_test[_i][_qp]*_mu0*_Ms*(_grad_phi[_j][_qp](1));
   }
   else if (jvar == _mag_z_var)
   {
-    return -_mu0*_Ms*(_grad_phi[_j][_qp](2));
+    return -_test[_i][_qp]*_mu0*_Ms*(_grad_phi[_j][_qp](2));
   }
   else
     return 0.0;

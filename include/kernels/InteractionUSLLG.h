@@ -52,6 +52,7 @@ private:
   const VariableValue & _azimuth_phi;
   const VariableValue & _polar_theta;
   const Real _alpha;
+  const Real _Ms;
   const Real _g0;
 };
 #endif //INTERACTIONUSLLG_H

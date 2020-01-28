@@ -33,6 +33,7 @@ InputParameters validParams<RandomConstrainedVectorFieldIC>()
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this IC is set. (0 for x, 1 for y, 2.0 for z)");
   params.addRequiredCoupledVar("phi", "The field of random azimuthal angles");
   params.addRequiredCoupledVar("theta", "The field of random polar angles");
+  params.addRequiredParam<Real>("Ms", "Ms");
   return params;
 }
 
@@ -40,7 +41,8 @@ RandomConstrainedVectorFieldIC::RandomConstrainedVectorFieldIC(const InputParame
     InitialCondition(parameters),
     _component(getParam<unsigned int>("component")),
     _phi(coupledValue("phi")),
-    _theta(coupledValue("theta"))
+    _theta(coupledValue("theta")),
+    _Ms(getParam<Real>("Ms"))
 {
 }
 
@@ -49,15 +51,15 @@ RandomConstrainedVectorFieldIC::value(const Point & p)
 {
   if (_component == 0)
   {
-    return 0.8*std::cos(_phi[_qp]) * std::sin(_theta[_qp]); //0.999? should this be _M0????
+    return _Ms*std::cos(_phi[_qp]) * std::sin(_theta[_qp]); //0.999? should this be _M0????
   }
   else if (_component == 1)
   {
-    return 0.8*std::sin(_phi[_qp]) * std::sin(_theta[_qp]);
+    return _Ms*std::sin(_phi[_qp]) * std::sin(_theta[_qp]);
   }
   else if (_component == 2)
   {
-    return 0.8*std::cos(_theta[_qp]);
+    return _Ms*std::cos(_theta[_qp]);
   }
   else
     return 0.0;

@@ -19,36 +19,37 @@
 
 **/
 
-#ifndef LAGRANGECONSTRAINTCARTLLG_H
-#define LAGRANGECONSTRAINTLLG_H
+#ifndef SATURATIONCONSTRCARTLLG_H
+#define SATURATIONCONSTRCARTLLG_H
 
 #include "Kernel.h"
 
-class LagrangeConstraintCartLLG;
+class SaturationConstrCartLLG;
 
 template<>
-InputParameters validParams<LagrangeConstraintCartLLG>();
+InputParameters validParams<SaturationConstrCartLLG>();
 
-class LagrangeConstraintCartLLG: public Kernel
+class  SaturationConstrCartLLG: public Kernel
 {
 public:
-
-  LagrangeConstraintCartLLG(const InputParameters & parameters);
+  SaturationConstrCartLLG(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-private:
+  const unsigned int _component;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const VariableValue & _lambda;
+  const Real _alpha;
+  const Real _g0;
+  const Real _As;
   const Real _Ms;
-  const Real _eps;
+
 };
-#endif //LAGRANGECONSTRAINTCARTLLG_H
+#endif //SATURATIONCONSTRARTLLG_H
