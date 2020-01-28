@@ -28,11 +28,13 @@ template<>
 InputParameters validParams<LagrangeConstraintCartLLG>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addClassDescription("Calculates a residual contribution - 1 - M*M = 0");
+  params.addClassDescription("Calculates a residual contribution - M_s - M*M = 0");
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_z", "The z component of the constrained magnetic vector");
   params.addRequiredCoupledVar("lambda", "The lagrange multiplier");
+  params.addRequiredParam<Real>("Ms", "saturation magnetization");
+  params.addRequiredParam<Real>("eps", "eps");
   return params;
 }
 
@@ -44,7 +46,9 @@ LagrangeConstraintCartLLG::LagrangeConstraintCartLLG(const InputParameters & par
    _mag_x(coupledValue("mag_x")),
    _mag_y(coupledValue("mag_y")),
    _mag_z(coupledValue("mag_z")),
-   _lambda(coupledValue("lambda"))
+   _lambda(coupledValue("lambda")),
+   _Ms(getParam<Real>("Ms")),
+   _eps(getParam<Real>("eps"))
 {
 }
 
@@ -52,13 +56,13 @@ LagrangeConstraintCartLLG::LagrangeConstraintCartLLG(const InputParameters & par
 Real
 LagrangeConstraintCartLLG::computeQpResidual()
 {
-  return _lambda[_qp]*_test[_i][_qp]*(1.0 - _mag_x[_qp]*_mag_x[_qp] - _mag_y[_qp]*_mag_y[_qp] - _mag_z[_qp]*_mag_z[_qp]);
+  return (-(_eps*_lambda[_qp]) - Utility::pow<2>(_Ms) + Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))*_test[_i][_qp];
 }
 
 Real
 LagrangeConstraintCartLLG::computeQpJacobian()
 {
-  return _phi[_j][_qp]*_test[_i][_qp]*(1.0 - _mag_x[_qp]*_mag_x[_qp] - _mag_y[_qp]*_mag_y[_qp] - _mag_z[_qp]*_mag_z[_qp]);
+  return -(_eps*_phi[_j][_qp]*_test[_i][_qp]);
 }
 
 Real
@@ -66,15 +70,15 @@ LagrangeConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _mag_x_var)
   {
-    return -2.0*_lambda[_qp]*_test[_i][_qp]*_phi[_j][_qp]*_mag_x[_qp];
+    return 2.0*_mag_x[_qp]*_phi[_j][_qp]*_test[_i][_qp];
   }
   else if (jvar == _mag_y_var)
   {
-    return -2.0*_lambda[_qp]*_test[_i][_qp]*_phi[_j][_qp]*_mag_y[_qp];
+    return 2.0*_mag_y[_qp]*_phi[_j][_qp]*_test[_i][_qp];
   }
   else if (jvar == _mag_z_var)
   {
-    return -2.0*_lambda[_qp]*_test[_i][_qp]*_phi[_j][_qp]*_mag_z[_qp];
+    return 2.0*_mag_z[_qp]*_phi[_j][_qp]*_test[_i][_qp];
   }
   else
     return 0.0;

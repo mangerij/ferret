@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"                                                                          "<<"\n";
-  std::cout<<"  Selecting physics:                                                      "<<"\n";
+  std::cout<<"  Initializing simulation:                                                "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
 
   // Execute the application

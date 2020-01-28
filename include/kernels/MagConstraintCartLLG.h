@@ -19,21 +19,21 @@
 
 **/
 
-#ifndef LAGRANGECONSTRAINTCARTLLG_H
-#define LAGRANGECONSTRAINTLLG_H
+#ifndef MAGCONSTRAINTCARTLLG_H
+#define MAGCONSTRAINTLLG_H
 
 #include "Kernel.h"
 
-class LagrangeConstraintCartLLG;
+class MagConstraintCartLLG;
 
 template<>
-InputParameters validParams<LagrangeConstraintCartLLG>();
+InputParameters validParams<MagConstraintCartLLG>();
 
-class LagrangeConstraintCartLLG: public Kernel
+class MagConstraintCartLLG: public Kernel
 {
 public:
 
-  LagrangeConstraintCartLLG(const InputParameters & parameters);
+  MagConstraintCartLLG(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -41,14 +41,14 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
+  const unsigned int _component;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
+  const unsigned int _lambda_var;
   const VariableValue & _lambda;
-  const Real _Ms;
-  const Real _eps;
 };
-#endif //LAGRANGECONSTRAINTCARTLLG_H
+#endif //MAGCONSTRAINTCARTLLG_H
