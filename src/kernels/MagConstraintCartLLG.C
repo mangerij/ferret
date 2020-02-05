@@ -59,11 +59,11 @@ MagConstraintCartLLG::computeQpResidual()
   {
     return 2.0*_lambda[_qp]*_mag_x[_qp]*_test[_i][_qp];
   }
-  else if (_component == 1)
+    else if (_component == 1)
   {
     return 2.0*_lambda[_qp]*_mag_y[_qp]*_test[_i][_qp];
   }
-  else if (_component == 2)
+    else if (_component == 2)
   {
     return 2.0*_lambda[_qp]*_mag_z[_qp]*_test[_i][_qp];
   }
@@ -78,16 +78,16 @@ MagConstraintCartLLG::computeQpJacobian()
   {
     return 2.0*_lambda[_qp]*_phi[_j][_qp]*_test[_i][_qp];
   }
-  else if (_component == 1)
+    else if (_component == 1)
   {
     return 2.0*_lambda[_qp]*_phi[_j][_qp]*_test[_i][_qp];
   }
-  else if (_component == 2)
+    else if (_component == 2)
   {
     return 2.0*_lambda[_qp]*_phi[_j][_qp]*_test[_i][_qp];
   }
-  else
-    return 0.0;
+    else
+      return 0.0;
 }
 
 Real

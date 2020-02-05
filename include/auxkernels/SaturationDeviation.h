@@ -19,42 +19,31 @@
 
 **/
 
-#ifndef INTERACTIONCARTLLG_H
-#define INTERACTIONCARTLLG_H
+#ifndef SATURATIONDEVIATION_H
+#define SATURATIONDEVIATION_H
 
-#include "Kernel.h"
+#include "AuxKernel.h"
 
-class InteractionCartLLG;
+class SaturationDeviation;
 
 template<>
-InputParameters validParams<InteractionCartLLG>();
+InputParameters validParams<SaturationDeviation>();
 
-class InteractionCartLLG: public Kernel
+class SaturationDeviation: public AuxKernel
 {
 public:
+  SaturationDeviation(const InputParameters & parameters);
 
-  InteractionCartLLG(const InputParameters & parameters);
+  virtual ~SaturationDeviation() {}
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+    virtual Real computeValue();
 
 private:
-  const unsigned int _component;
-  const unsigned int _potential_H_int_var;
-  const unsigned int _potential_H_ext_var;
-  const VariableValue & _potential_H_int;
-  const VariableValue & _potential_H_ext;
-  const VariableGradient & _potential_H_int_grad;
-  const unsigned int _mag_x_var;
-  const unsigned int _mag_y_var;
-  const unsigned int _mag_z_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const Real _alpha;
-  const Real _g0;
   const Real _Ms;
 };
-#endif //INTERACTIONCARTLLG_H
+
+#endif // SATURATIONDEVIATION_H

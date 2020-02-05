@@ -56,13 +56,13 @@ LagrangeConstraintCartLLG::LagrangeConstraintCartLLG(const InputParameters & par
 Real
 LagrangeConstraintCartLLG::computeQpResidual()
 {
-  return (-(_eps*_lambda[_qp]) - Utility::pow<2>(_Ms) + Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))*_test[_i][_qp];
+  return ((_eps*_lambda[_qp]) - Utility::pow<2>(_Ms) + Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))*_test[_i][_qp];
 }
 
 Real
 LagrangeConstraintCartLLG::computeQpJacobian()
 {
-  return -(_eps*_phi[_j][_qp]*_test[_i][_qp]);
+  return (_eps*_phi[_j][_qp]*_test[_i][_qp]);
 }
 
 Real
