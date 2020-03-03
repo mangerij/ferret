@@ -19,30 +19,41 @@
 
 **/
 
-#ifndef POLARMAG_H
-#define POLARMAG_H
+#ifndef RHSEXCHANGECARTLLG_H
+#define RHSEXCHANGECARTLLG_H
 
-#include "AuxKernel.h"
+#include "Kernel.h"
 
-class PolarMag;
+class RHSExchangeCartLLG;
 
 template<>
-InputParameters validParams<PolarMag>();
+InputParameters validParams<RHSExchangeCartLLG>();
 
-class PolarMag: public AuxKernel
+class  RHSExchangeCartLLG: public Kernel
 {
 public:
-  PolarMag(const InputParameters & parameters);
-
-  virtual ~PolarMag() {}
+  RHSExchangeCartLLG(const InputParameters & parameters);
 
 protected:
-    virtual Real computeValue();
+  virtual Real computeQpResidual();
+  virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-private:
-  const VariableValue & _polar_x;
-  const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
+  const unsigned int _component;
+  const unsigned int _mag_x_var;
+  const unsigned int _mag_y_var;
+  const unsigned int _mag_z_var;
+  const VariableValue & _mag_x;
+  const VariableValue & _mag_y;
+  const VariableValue & _mag_z;
+  const VariableGradient & _mag_x_grad;
+  const VariableGradient & _mag_y_grad;
+  const VariableGradient & _mag_z_grad;
+  const Real _alpha;
+  const Real _g0;
+  const Real _Ae;
+  const Real _Ms;
+  const Real _mu0;
+
 };
-
-#endif // POLARMAG_H
+#endif //RHSEXCHANGECARTLLG_H

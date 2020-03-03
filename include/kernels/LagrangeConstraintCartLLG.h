@@ -48,7 +48,7 @@ private:
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
   const VariableValue & _lambda;
-  const Real _Ms;
+  const Real _M0s;
   const Real _eps;
 };
 #endif //LAGRANGECONSTRAINTCARTLLG_H

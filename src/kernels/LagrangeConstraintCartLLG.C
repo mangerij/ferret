@@ -33,7 +33,7 @@ InputParameters validParams<LagrangeConstraintCartLLG>()
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_z", "The z component of the constrained magnetic vector");
   params.addRequiredCoupledVar("lambda", "The lagrange multiplier");
-  params.addRequiredParam<Real>("Ms", "saturation magnetization");
+  params.addRequiredParam<Real>("M0s", "saturation magnetization");
   params.addRequiredParam<Real>("eps", "eps");
   return params;
 }
@@ -47,7 +47,7 @@ LagrangeConstraintCartLLG::LagrangeConstraintCartLLG(const InputParameters & par
    _mag_y(coupledValue("mag_y")),
    _mag_z(coupledValue("mag_z")),
    _lambda(coupledValue("lambda")),
-   _Ms(getParam<Real>("Ms")),
+   _M0s(getParam<Real>("M0s")),
    _eps(getParam<Real>("eps"))
 {
 }
@@ -56,7 +56,7 @@ LagrangeConstraintCartLLG::LagrangeConstraintCartLLG(const InputParameters & par
 Real
 LagrangeConstraintCartLLG::computeQpResidual()
 {
-  return ((_eps*_lambda[_qp]) - Utility::pow<2>(_Ms) + Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))*_test[_i][_qp];
+  return ((_eps*_lambda[_qp]) - Utility::pow<2>(_M0s) + Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))*_test[_i][_qp];
 }
 
 Real

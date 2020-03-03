@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_cyl2_flat4_brick.e
+  file = out_USLLG_test2_0.e
 []
 
 [GlobalParams]
@@ -33,34 +33,19 @@
     order = FIRST
     family = LAGRANGE
     block = '1'
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.0001
-      max = 3.14159
-      seed = 3 
-    [../]
+    initial_from_file_var = polar_theta
   [../]
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
     block = '1'
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.000001
-      max = 6.283185307178
-      seed = 3
-    [../]
+    initial_from_file_var = azimuth_phi
   [../]
   [./potential_H_int]
     order = FIRST
     family = LAGRANGE
     block = '1 2'
-    [./InitialCondition]
-      type = RandomIC
-      min = -5
-      max = 5
-      seed = 3
-    [../]
+    initial_from_file_var = potential_H_int
   [../]
   [./potential_H_ext]
     order = FIRST
@@ -306,13 +291,13 @@
   solve_type = 'NEWTON'
   scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-16
-  dtmax = 1.0e-2
+  dtmax = 1.0e-6
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 12
-    growth_factor = 2.0
+    growth_factor = 1.2
     cutback_factor = 0.4
-    dt = 1.0e-8
+    dt = 1.0e-7
   [../]
   verbose = true
 []
@@ -322,7 +307,7 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = out_USLLG_test2_0
+    file_base = out_USLLG_test2_R0
     interval = 1
     elemental_as_nodal = true
   [../]
@@ -333,8 +318,9 @@
 
 #1: then with larger disk (*test2_0.e)
 #
-#
-#2: next try to flip sign on Poisson equation (this will invert the vectors at the <near> point and perhaps cause vortex nucleation).
+#   had to do a restart (*test2_R0.e)
+# 
+#2: next could try to flip sign on Poisson equation (this will invert the vectors at the <near> point and perhaps cause vortex nucleation).
 #3:
 #4:       
 #5:

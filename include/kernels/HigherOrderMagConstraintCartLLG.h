@@ -19,31 +19,36 @@
 
 **/
 
-#ifndef TIMEDERIVATIVESCALED_H
-#define TIMEDERIVATIVESCALED_H
+#ifndef HIGHERORDERMAGCONSTRAINTCARTLLG_H
+#define HIGHERORDERMAGCONSTRAINTLLG_H
 
-#include "TimeKernel.h"
-#include "libmesh/quadrature.h"
-#include "Assembly.h"
+#include "Kernel.h"
 
-class TimeDerivativeScaled;
+class HigherOrderMagConstraintCartLLG;
 
 template<>
-InputParameters validParams<TimeDerivativeScaled>();
+InputParameters validParams<HigherOrderMagConstraintCartLLG>();
 
-class TimeDerivativeScaled : public TimeKernel
+class HigherOrderMagConstraintCartLLG: public Kernel
 {
 public:
-  TimeDerivativeScaled(const InputParameters & parameters);
 
-  virtual void computeJacobian();
+  HigherOrderMagConstraintCartLLG(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-  bool _lumping;
-  const Real _time_scale;
+private:
+  const unsigned int _component;
+  const unsigned int _mag_x_var;
+  const unsigned int _mag_y_var;
+  const unsigned int _mag_z_var;
+  const VariableValue & _mag_x;
+  const VariableValue & _mag_y;
+  const VariableValue & _mag_z;
+  const unsigned int _lambda_var;
+  const VariableValue & _lambda;
 };
-
-#endif //TIMEDERIVATIVESCALED_H
+#endif //HIGHERORDERMAGCONSTRAINTCARTLLG_H

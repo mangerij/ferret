@@ -19,31 +19,43 @@
 
 **/
 
-#ifndef TIMEDERIVATIVESCALED_H
-#define TIMEDERIVATIVESCALED_H
+#ifndef RHSINTERACTIONCARTLLG_H
+#define RHSINTERACTIONCARTLLG_H
 
-#include "TimeKernel.h"
-#include "libmesh/quadrature.h"
-#include "Assembly.h"
+#include "Kernel.h"
 
-class TimeDerivativeScaled;
+class RHSInteractionCartLLG;
 
 template<>
-InputParameters validParams<TimeDerivativeScaled>();
+InputParameters validParams<RHSInteractionCartLLG>();
 
-class TimeDerivativeScaled : public TimeKernel
+class RHSInteractionCartLLG: public Kernel
 {
 public:
-  TimeDerivativeScaled(const InputParameters & parameters);
 
-  virtual void computeJacobian();
+  RHSInteractionCartLLG(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-  bool _lumping;
-  const Real _time_scale;
+private:
+  const unsigned int _component;
+  const unsigned int _potential_H_int_var;
+  const unsigned int _potential_H_ext_var;
+  const VariableValue & _potential_H_int;
+  const VariableValue & _potential_H_ext;
+  const VariableGradient & _potential_H_int_grad;
+  const unsigned int _mag_x_var;
+  const unsigned int _mag_y_var;
+  const unsigned int _mag_z_var;
+  const VariableValue & _mag_x;
+  const VariableValue & _mag_y;
+  const VariableValue & _mag_z;
+  const Real _alpha;
+  const Real _g0;
+  const Real _mu0;
+  const Real _Ms;
 };
-
-#endif //TIMEDERIVATIVESCALED_H
+#endif //RHSINTERACTIONCARTLLG_H
