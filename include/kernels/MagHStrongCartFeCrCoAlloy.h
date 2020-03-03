@@ -19,31 +19,38 @@
 
 **/
 
-#ifndef TIMEDERIVATIVESCALED_H
-#define TIMEDERIVATIVESCALED_H
+#ifndef MAGHSTRONGCARTFECRCOALLOY_H
+#define MAGHSTRONGCARTFECRCOALLOY_H
 
-#include "TimeKernel.h"
-#include "libmesh/quadrature.h"
-#include "Assembly.h"
+#include "Kernel.h"
 
-class TimeDerivativeScaled;
+class MagHStrongCartFeCrCoAlloy;
 
 template<>
-InputParameters validParams<TimeDerivativeScaled>();
+InputParameters validParams<MagHStrongCartFeCrCoAlloy>();
 
-class TimeDerivativeScaled : public TimeKernel
+class MagHStrongCartFeCrCoAlloy: public Kernel
 {
 public:
-  TimeDerivativeScaled(const InputParameters & parameters);
 
-  virtual void computeJacobian();
+  MagHStrongCartFeCrCoAlloy(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-  bool _lumping;
-  const Real _time_scale;
+private:
+  const unsigned int _c2_var;
+  const unsigned int _c3_var;
+  const VariableValue & _mag_x;
+  const VariableValue & _mag_y;
+  const VariableValue & _mag_z;
+  const VariableValue & _c1;
+  const VariableValue & _c2;
+  const VariableValue & _c3;
+  const Real _bohrM;
+  const Real _T;
+
 };
-
-#endif //TIMEDERIVATIVESCALED_H
+#endif //MAGHSTRONGCARTFECRCOALLOY_H

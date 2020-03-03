@@ -19,31 +19,32 @@
 
 **/
 
-#ifndef TIMEDERIVATIVESCALED_H
-#define TIMEDERIVATIVESCALED_H
+#include "VectorMag.h"
+#include <math.h>
 
-#include "TimeKernel.h"
-#include "libmesh/quadrature.h"
-#include "Assembly.h"
-
-class TimeDerivativeScaled;
+registerMooseObject("FerretApp", VectorMag);
 
 template<>
-InputParameters validParams<TimeDerivativeScaled>();
-
-class TimeDerivativeScaled : public TimeKernel
+InputParameters validParams<VectorMag>()
 {
-public:
-  TimeDerivativeScaled(const InputParameters & parameters);
+  InputParameters params = validParams<AuxKernel>();
+  params.addRequiredCoupledVar("vector_x", "The x component of the vector");
+  params.addRequiredCoupledVar("vector_y", "The y component of the vector");
+  params.addCoupledVar("vector_z", 0.0, "The z component of the vector");
+  return params;
+}
 
-  virtual void computeJacobian();
 
-protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
+VectorMag::VectorMag(const InputParameters & parameters) :
+  AuxKernel(parameters),
+  _vector_x(coupledValue("vector_x")),
+  _vector_y(coupledValue("vector_y")),
+  _vector_z(coupledValue("vector_z"))
+{}
 
-  bool _lumping;
-  const Real _time_scale;
-};
-
-#endif //TIMEDERIVATIVESCALED_H
+Real
+VectorMag::computeValue()
+{
+  RealVectorValue w(_vector_x[_qp], _vector_y[_qp], _vector_z[_qp]);
+  return sqrt(w*w);
+}

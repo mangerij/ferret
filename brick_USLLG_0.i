@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_cyl2_flat4_brick.e
+  file = exodus_cyl3_flat4_brick.e
 []
 
 [GlobalParams]
@@ -322,7 +322,7 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = out_USLLG_test2_0
+    file_base = out_USLLG_test3_0
     interval = 1
     elemental_as_nodal = true
   [../]

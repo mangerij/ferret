@@ -19,32 +19,32 @@
 
 **/
 
-#include "PolarMag.h"
-#include <math.h>
+#ifndef TIMEDERIVATIVESCALEDNORM_H
+#define TIMEDERIVATIVESCALEDNORM_H
 
-registerMooseObject("FerretApp", PolarMag);
+#include "TimeKernel.h"
+#include "libmesh/quadrature.h"
+#include "Assembly.h"
+
+class TimeDerivativeScaledNorm;
 
 template<>
-InputParameters validParams<PolarMag>()
+InputParameters validParams<TimeDerivativeScaledNorm>();
+
+class TimeDerivativeScaledNorm : public TimeKernel
 {
-  InputParameters params = validParams<AuxKernel>();
-  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  return params;
-}
+public:
+  TimeDerivativeScaledNorm(const InputParameters & parameters);
 
+  virtual void computeJacobian();
 
-PolarMag::PolarMag(const InputParameters & parameters) :
-  AuxKernel(parameters),
-  _polar_x(coupledValue("polar_x")),
-  _polar_y(coupledValue("polar_y")),
-  _polar_z(coupledValue("polar_z"))
-{}
+protected:
+  virtual Real computeQpResidual();
+  virtual Real computeQpJacobian();
 
-Real
-PolarMag::computeValue()
-{
-  RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-  return sqrt(w*w);
-}
+  bool _lumping;
+  const Real _time_scale;
+  const VariableValue & _norm;
+};
+
+#endif //TIMEDERIVATIVESCALEDNORM_H

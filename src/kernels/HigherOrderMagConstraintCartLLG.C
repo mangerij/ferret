@@ -19,13 +19,13 @@
 
 **/
 
-#include "MagConstraintCartLLG.h"
+#include "HigherOrderMagConstraintCartLLG.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", MagConstraintCartLLG);
+registerMooseObject("FerretApp", HigherOrderMagConstraintCartLLG);
 
 template<>
-InputParameters validParams<MagConstraintCartLLG>()
+InputParameters validParams<HigherOrderMagConstraintCartLLG>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution for the constraint |M|-Ms = 0 using the method of lagrange multipliers");
@@ -37,7 +37,7 @@ InputParameters validParams<MagConstraintCartLLG>()
   return params;
 }
 
-MagConstraintCartLLG::MagConstraintCartLLG(const InputParameters & parameters)
+HigherOrderMagConstraintCartLLG::HigherOrderMagConstraintCartLLG(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _mag_x_var(coupled("mag_x")),
@@ -53,45 +53,45 @@ MagConstraintCartLLG::MagConstraintCartLLG(const InputParameters & parameters)
 
 
 Real
-MagConstraintCartLLG::computeQpResidual()
+HigherOrderMagConstraintCartLLG::computeQpResidual()
 {
   if (_component == 0)
   {
-    return 2.0*_lambda[_qp]*_mag_x[_qp]*_test[_i][_qp]; //sign doesn't matter because the constraint condition could be (1 - m^2) = 0 or (m^2 - 1) = 0
+    return 0.0;
   }
     else if (_component == 1)
   {
-    return 2.0*_lambda[_qp]*_mag_y[_qp]*_test[_i][_qp];
+    return 0.0;
   }
     else if (_component == 2)
   {
-    return 2.0*_lambda[_qp]*_mag_z[_qp]*_test[_i][_qp];
+    return 0.0;
   }
   else
     return 0.0;
 }
 
 Real
-MagConstraintCartLLG::computeQpJacobian()
+HigherOrderMagConstraintCartLLG::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return 2.0*_lambda[_qp]*_phi[_j][_qp]*_test[_i][_qp];
+    return 0.0;
   }
     else if (_component == 1)
   {
-    return 2.0*_lambda[_qp]*_phi[_j][_qp]*_test[_i][_qp];
+    return 0.0;
   }
     else if (_component == 2)
   {
-    return 2.0*_lambda[_qp]*_phi[_j][_qp]*_test[_i][_qp];
+    return 0.0;
   }
     else
       return 0.0;
 }
 
 Real
-MagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
+HigherOrderMagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (_component == 0)
   {
@@ -105,7 +105,7 @@ MagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
     }
     else if (jvar == _lambda_var)
     {
-      return 2.0*_mag_x[_qp]*_phi[_j][_qp]*_test[_i][_qp];
+      return 0.0;
     }
     else
     {
@@ -124,7 +124,7 @@ MagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
     }
     else if (jvar == _lambda_var)
     {
-      return 2.0*_mag_y[_qp]*_phi[_j][_qp]*_test[_i][_qp];
+      return 0.0;
     }
     else
     {
@@ -143,7 +143,7 @@ MagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
     }
     else if (jvar == _lambda_var)
     {
-      return 2.0*_mag_z[_qp]*_phi[_j][_qp]*_test[_i][_qp];
+      return 0.0;
     }
     else
     {

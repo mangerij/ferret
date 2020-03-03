@@ -19,31 +19,48 @@
 
 **/
 
-#ifndef TIMEDERIVATIVESCALED_H
-#define TIMEDERIVATIVESCALED_H
+#ifndef TIMELAMBDACONSTRAINTLLG_H
+#define TIMELAMBDACONSTRAINTLLG_H
 
 #include "TimeKernel.h"
 #include "libmesh/quadrature.h"
 #include "Assembly.h"
 
-class TimeDerivativeScaled;
+class TimeLambdaConstraintLLG;
 
 template<>
-InputParameters validParams<TimeDerivativeScaled>();
+InputParameters validParams<TimeLambdaConstraintLLG>();
 
-class TimeDerivativeScaled : public TimeKernel
+class TimeLambdaConstraintLLG : public TimeKernel
 {
 public:
-  TimeDerivativeScaled(const InputParameters & parameters);
+  TimeLambdaConstraintLLG(const InputParameters & parameters);
 
-  virtual void computeJacobian();
-
-protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-  bool _lumping;
-  const Real _time_scale;
+protected:
+
+  const unsigned int _mag_x_var;
+  const unsigned int _mag_y_var;
+  const unsigned int _mag_z_var;
+  const unsigned int _lambda_var;
+
+  const VariableValue & _mag_x;
+  const VariableValue & _mag_y;
+  const VariableValue & _mag_z;
+  const VariableValue & _lambda;
+
+  const VariableValue & _mag_x_dot;
+  const VariableValue & _mag_y_dot;
+  const VariableValue & _mag_z_dot;
+
+  const VariableValue & _mag_x_d_dot;
+  const VariableValue & _mag_y_d_dot;
+  const VariableValue & _mag_z_d_dot;
+
+  const Real _eps;
 };
 
-#endif //TIMEDERIVATIVESCALED_H
+#endif //TIMELAMBDACONSTRAINTLLG_H

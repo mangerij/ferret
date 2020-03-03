@@ -68,7 +68,7 @@ MagHStrong::computeQpOffDiagJacobian(unsigned int jvar)
   }
   else if (jvar == _azimuth_phi_var)
   {
-    return _mu0*_Ms*_phi[_j][_qp]*(-(_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp]))+_grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp]);
+    return -_mu0*_Ms*_phi[_j][_qp]*((_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp]))-_grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp]);
   }
   else
     return 0.0;

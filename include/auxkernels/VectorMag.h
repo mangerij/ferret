@@ -19,31 +19,30 @@
 
 **/
 
-#ifndef TIMEDERIVATIVESCALED_H
-#define TIMEDERIVATIVESCALED_H
+#ifndef VECTORMAG_H
+#define VECTORMAG_H
 
-#include "TimeKernel.h"
-#include "libmesh/quadrature.h"
-#include "Assembly.h"
+#include "AuxKernel.h"
 
-class TimeDerivativeScaled;
+class VectorMag;
 
 template<>
-InputParameters validParams<TimeDerivativeScaled>();
+InputParameters validParams<VectorMag>();
 
-class TimeDerivativeScaled : public TimeKernel
+class VectorMag: public AuxKernel
 {
 public:
-  TimeDerivativeScaled(const InputParameters & parameters);
+  VectorMag(const InputParameters & parameters);
 
-  virtual void computeJacobian();
+  virtual ~VectorMag() {}
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
+    virtual Real computeValue();
 
-  bool _lumping;
-  const Real _time_scale;
+private:
+  const VariableValue & _vector_x;
+  const VariableValue & _vector_y;
+  const VariableValue & _vector_z;
 };
 
-#endif //TIMEDERIVATIVESCALED_H
+#endif // VECTORMAG_H
