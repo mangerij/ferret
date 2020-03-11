@@ -19,51 +19,63 @@
 
 **/
 
-#include "HigherOrderMagConstraintCartLLG.h"
+#include "InteractionCartLLB.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", HigherOrderMagConstraintCartLLG);
+registerMooseObject("FerretApp", InteractionCartLLB);
 
 template<>
-InputParameters validParams<HigherOrderMagConstraintCartLLG>()
+InputParameters validParams<InteractionCartLLB>()
 {
   InputParameters params = validParams<Kernel>();
-  params.addClassDescription("Calculates a residual contribution for the constraint |M|-Ms = 0 using the method of lagrange multipliers");
+  params.addClassDescription("Calculates a residual contribution - M$*$H in the total energy, assuming H = - div * potential.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("mag_x", "The x component of the magnetic vector");
-  params.addRequiredCoupledVar("mag_y", "The y component of the magnetic vector");
-  params.addRequiredCoupledVar("mag_z", "The z component of the magnetic vector");
-  params.addRequiredCoupledVar("lambda", "The lagrange multiplier");
+  params.addRequiredCoupledVar("potential_H_int", "The internal magnetic potential variable");
+  params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");
+  params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetic vector");
+  params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetic vector");
+  params.addRequiredCoupledVar("mag_z", "The z component of the constrained magnetic vector");
+  params.addRequiredParam<Real>("alpha", "the damping coefficient in the LLG equation");
+  params.addRequiredParam<Real>("g0", "g0");
+  params.addRequiredParam<Real>("Ms", "Ms");
+  params.addRequiredParam<Real>("x", "x");
   return params;
 }
 
-HigherOrderMagConstraintCartLLG::HigherOrderMagConstraintCartLLG(const InputParameters & parameters)
+InteractionCartLLB::InteractionCartLLB(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
+   _potential_H_int_var(coupled("potential_H_int")),
+   _potential_H_ext_var(coupled("potential_H_ext")),
+   _potential_H_int(coupledValue("potential_H_int")),
+   _potential_H_ext(coupledValue("potential_H_ext")),
+   _potential_H_int_grad(coupledGradient("potential_H_int")),
    _mag_x_var(coupled("mag_x")),
    _mag_y_var(coupled("mag_y")),
    _mag_z_var(coupled("mag_z")),
    _mag_x(coupledValue("mag_x")),
    _mag_y(coupledValue("mag_y")),
    _mag_z(coupledValue("mag_z")),
-   _lambda_var(coupled("lambda")),
-   _lambda(coupledValue("lambda"))
+   _alpha(getParam<Real>("alpha")),
+   _g0(getParam<Real>("g0")),
+   _Ms(getParam<Real>("Ms")),
+   _x(getParam<Real>("x"))
 {
 }
 
 
 Real
-HigherOrderMagConstraintCartLLG::computeQpResidual()
+InteractionCartLLB::computeQpResidual()
 {
   if (_component == 0)
   {
     return 0.0;
   }
-    else if (_component == 1)
+  else if (_component == 1)
   {
     return 0.0;
   }
-    else if (_component == 2)
+  else if (_component == 2)
   {
     return 0.0;
   }
@@ -72,26 +84,26 @@ HigherOrderMagConstraintCartLLG::computeQpResidual()
 }
 
 Real
-HigherOrderMagConstraintCartLLG::computeQpJacobian()
+InteractionCartLLB::computeQpJacobian()
 {
   if (_component == 0)
   {
     return 0.0;
   }
-    else if (_component == 1)
+  else if (_component == 1)
   {
     return 0.0;
   }
-    else if (_component == 2)
+  else if (_component == 2)
   {
     return 0.0;
   }
-    else
-      return 0.0;
+  else
+    return 0.0;
 }
 
 Real
-HigherOrderMagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
+InteractionCartLLB::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (_component == 0)
   {
@@ -103,14 +115,16 @@ HigherOrderMagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
     {
       return 0.0;
     }
-    else if (jvar == _lambda_var)
+    else if (jvar == _potential_H_int_var)
+    {
+      return 0.0;
+    }
+    else if (jvar == _potential_H_ext_var)
     {
       return 0.0;
     }
     else
-    {
       return 0.0;
-    }
   }
   else if (_component == 1)
   {
@@ -122,7 +136,11 @@ HigherOrderMagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
     {
       return 0.0;
     }
-    else if (jvar == _lambda_var)
+    else if (jvar == _potential_H_int_var)
+    {
+      return 0.0;
+    }
+    else if (jvar == _potential_H_ext_var)
     {
       return 0.0;
     }
@@ -141,7 +159,11 @@ HigherOrderMagConstraintCartLLG::computeQpOffDiagJacobian(unsigned int jvar)
     {
       return 0.0;
     }
-    else if (jvar == _lambda_var)
+    else if (jvar == _potential_H_int_var)
+    {
+      return 0.0;
+    }
+    else if (jvar == _potential_H_ext_var)
     {
       return 0.0;
     }

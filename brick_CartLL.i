@@ -1,16 +1,19 @@
 
 [Mesh]
-  file = exodus_cyl_flat4_brick.e
+  file = exodus_cylH_flat4_brick.e
 []
 
 [GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
   mag_z = mag_z
+  magnetic_x = mag_x
+  magnetic_y = mag_y
+  magnetic_z = mag_z
 
   potential_H_int = potential_H_int
 
-  alpha = 0.1
+  alpha = 0.4
   Ae = 0.013
 
   Ms = 1.0 #0.8
@@ -21,11 +24,11 @@
 
   permittivity = 1.0 #a dummy variable at the moment since we use the "electrostatics" kernel
 
-  mu0 = 1256.0 
+  mu0 = 1256.1 
 
   norm = mag_s  # variable used for Norm Kernels
 
-  alpha_long = 100.0
+  alpha_long = 500.0
 
 []
 
@@ -69,6 +72,11 @@
     order = FIRST
     family = LAGRANGE
     block = '1 2'
+    [./InitialCondition]
+      type = RandomIC
+      min = -5.0
+      max = 5.0
+    [../]
   [../]
 []
 
@@ -79,8 +87,8 @@
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 1.5
-      max = 1.7
+      min = 1.3
+      max = 3.0
     [../]
   [../]
   [./polar_theta]
@@ -89,8 +97,8 @@
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 3.0
-      max = 3.14159
+      min = 1.1
+      max = 1.8
     [../]
   [../]
 
@@ -117,6 +125,7 @@
     block = '1'
   [../]
 
+ 
   [./placer]
     order = FIRST
     family = LAGRANGE
@@ -143,7 +152,7 @@
 []
 
 [Kernels]
-  ## Time dependence
+   ## Time dependence
   [./mag_x_time]
     type = TimeDerivative
     variable = mag_x
@@ -166,17 +175,17 @@
   # Exchange term
 
   [./dllg_x_exch]
-    type = ExchangeCartLLG
+    type = ExchangeCartLL
     variable = mag_x
     component = 0
   [../]
   [./dllg_y_exch]
-    type = ExchangeCartLLG
+    type = ExchangeCartLL
     variable = mag_y
     component = 1
   [../]
   [./dllg_z_exch]
-    type = ExchangeCartLLG
+    type = ExchangeCartLL
     variable = mag_z
     component = 2
   [../]
@@ -184,17 +193,17 @@
   # Magnetic interaction term
 
   [./d_HM_x]
-    type = InteractionCartLLG
+    type = InteractionCartLL
     variable = mag_x
     component = 0
   [../]
   [./d_HM_y]
-    type = InteractionCartLLG
+    type = InteractionCartLL
     variable = mag_y
     component = 1
   [../]
   [./d_HM_z]
-    type = InteractionCartLLG
+    type = InteractionCartLL
     variable = mag_z
     component = 2
   [../]
@@ -216,18 +225,18 @@
   [../]
 
   [./llb_x]
-   type = LLBLongitudinal
+   type = LongitudinalLLB
    variable = mag_x
    component = 0
    [../]
   [./llb_y]
-   type = LLBLongitudinal
+   type = LongitudinalLLB
    variable = mag_y
    component = 1
    [../]
 
   [./llb_z]
-   type = LLBLongitudinal
+   type = LongitudinalLLB
    variable = mag_z
    component = 2
    [../]
@@ -266,13 +275,13 @@
 
   [../]
   [./Fdemag]
-    type = MagnetostaticEnergy
+    type = MagnetostaticEnergyCart
     execute_on = 'initial timestep_end'
     block = '1'
   [../]
   [./Ftot]
-     type = LinearCombinationPostprocessor 
-     pp_names = 'Fexchange Fdemag'
+    type = LinearCombinationPostprocessor 
+    pp_names = 'Fexchange Fdemag'
     pp_coefs = ' 1 1 ' 
     execute_on = 'initial timestep_end'
   [../]
@@ -283,9 +292,9 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_converged_reason'
+    petsc_options = '-snes_ksp_ew -snes_converged_reason'
     petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121               1e-10      1e-8      1e-6       lu'
+    petsc_options_value = '    121               1e-8      1e-8      1e-6       lu'
   [../]
 []
 
@@ -295,16 +304,19 @@
 
 [Executioner]
   type = Transient            
-  solve_type = 'NEWTON'
-  scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
+  solve_type = 'PJFNK'
+  [./TimeIntegrator]
+   type = Heun
+  [../]
+ # scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
   dtmin = 1e-16
-  dtmax = 1.0e-3
+  dtmax = 1.0e-2
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 12
+    optimal_iterations = 18
     growth_factor = 2.0
-    cutback_factor = 0.4
-    dt = 1.0e-5
+    cutback_factor = 0.6
+    dt = 1.0e-7
   [../]
   verbose = true
 []
@@ -313,8 +325,8 @@
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = ouLLG_Norm_0
-    interval = 2
+    file_base = ouLLG_Norm_n26
+    interval = 5
     elemental_as_nodal = true
   [../]
 []

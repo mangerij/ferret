@@ -19,41 +19,29 @@
 
 **/
 
-#ifndef RHSEXCHANGECARTLLG_H
-#define RHSEXCHANGECARTLLG_H
+#ifndef MAGNETOSTATICENERGYUS_H
+#define MAGNETOSTATICENERGYUS_H
 
-#include "Kernel.h"
+#include "ElementIntegralPostprocessor.h"
 
-class RHSExchangeCartLLG;
+class MagnetostaticEnergyUS;
 
 template<>
-InputParameters validParams<RHSExchangeCartLLG>();
+InputParameters validParams<MagnetostaticEnergyUS>();
 
-class  RHSExchangeCartLLG: public Kernel
+class MagnetostaticEnergyUS : public ElementIntegralPostprocessor
 {
 public:
-  RHSExchangeCartLLG(const InputParameters & parameters);
+  MagnetostaticEnergyUS(const InputParameters & parameters);
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
-  const unsigned int _component;
-  const unsigned int _mag_x_var;
-  const unsigned int _mag_y_var;
-  const unsigned int _mag_z_var;
-  const VariableValue & _mag_x;
-  const VariableValue & _mag_y;
-  const VariableValue & _mag_z;
-  const VariableGradient & _mag_x_grad;
-  const VariableGradient & _mag_y_grad;
-  const VariableGradient & _mag_z_grad;
-  const Real _alpha;
-  const Real _g0;
-  const Real _Ae;
+  virtual Real computeQpIntegral();
+  const VariableGradient & _potential_H_int_grad;
+  const VariableGradient & _potential_H_ext_grad;
+  const VariableValue & _azimuth_phi;
+  const VariableValue & _polar_theta;
   const Real _Ms;
-  const Real _mu0;
 
 };
-#endif //RHSEXCHANGECARTLLG_H
+
+#endif

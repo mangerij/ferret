@@ -19,13 +19,13 @@
 
 **/
 
-#include "LLBLongitudinal.h"
+#include "LongitudinalLLB.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", LLBLongitudinal);
+registerMooseObject("FerretApp", LongitudinalLLB);
 
 template<>
-InputParameters validParams<LLBLongitudinal>()
+InputParameters validParams<LongitudinalLLB>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution for the magnetic anisotropy energy.");
@@ -42,7 +42,7 @@ InputParameters validParams<LLBLongitudinal>()
   return params;
 }
 
-LLBLongitudinal::LLBLongitudinal(const InputParameters & parameters)
+LongitudinalLLB::LongitudinalLLB(const InputParameters & parameters)
   :Kernel(parameters),
   _component(getParam<unsigned int>("component")),
   _mag_x_var(coupled("mag_x")),
@@ -61,7 +61,7 @@ LLBLongitudinal::LLBLongitudinal(const InputParameters & parameters)
 }
 
 Real
-LLBLongitudinal::computeQpResidual()
+LongitudinalLLB::computeQpResidual()
 {
    Real _temp1 = Utility::pow<2>(_mag_x[_qp])+Utility::pow<2>(_mag_y[_qp])+Utility::pow<2>(_mag_z[_qp]);
    Real _temp=_g0*_alpha_long*_temp1*(_temp1-1.)/(1+Utility::pow<2>(_alpha));
@@ -82,40 +82,36 @@ LLBLongitudinal::computeQpResidual()
 }
 
 Real
-LLBLongitudinal::computeQpJacobian()
+LongitudinalLLB::computeQpJacobian()
 {
-     Real _temp1 = Utility::pow<2>(_mag_x[_qp])+Utility::pow<2>(_mag_y[_qp])+Utility::pow<2>(_mag_z[_qp]);
-  Real _temp=_temp*_g0*_alpha_long/(1.+Utility::pow<2>(_alpha));
   if (_component == 0)
   {
-  return  _temp1*(4.*Utility::pow<2>(_mag_x[_qp])*(_temp1-0.5)-_temp1*(_temp1-1.))*_phi[_j][_qp]*_test[_i][_qp];
+  return  _test[_i][_qp]*(_alpha_long*_g0*(5*Utility::pow<4>(_mag_x[_qp]) + (-1 + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))*(Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])) + Utility::pow<2>(_mag_x[_qp])*(-3 + 6*Utility::pow<2>(_mag_y[_qp]) + 6*Utility::pow<2>(_mag_z[_qp])))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
   }
   else if (_component == 1)
   {
-  return _temp1*(4.*Utility::pow<2>(_mag_y[_qp])*(_temp1-0.5)-_temp1*(_temp1-1.))*_phi[_j][_qp]*_test[_i][_qp]; 
+  return _test[_i][_qp]*(_alpha_long*_g0*(Utility::pow<4>(_mag_x[_qp]) + 5*Utility::pow<4>(_mag_y[_qp]) - Utility::pow<2>(_mag_z[_qp]) + Utility::pow<4>(_mag_z[_qp]) + Utility::pow<2>(_mag_x[_qp])*(-1 + 6*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp])) + Utility::pow<2>(_mag_y[_qp])*(-3 + 6*Utility::pow<2>(_mag_z[_qp])))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
   }
   else if (_component == 2)
   {
-  return _temp1*(4.*Utility::pow<2>(_mag_z[_qp])*(_temp1-0.5)-_temp1*(_temp1-1.))*_phi[_j][_qp]*_test[_i][_qp]; 
+  return _test[_i][_qp]*(_alpha_long*_g0*(Utility::pow<4>(_mag_x[_qp]) + Utility::pow<4>(_mag_y[_qp]) - 3*Utility::pow<2>(_mag_z[_qp]) + 5*Utility::pow<4>(_mag_z[_qp]) + Utility::pow<2>(_mag_y[_qp])*(-1 + 6*Utility::pow<2>(_mag_z[_qp])) + Utility::pow<2>(_mag_x[_qp])*(-1 + 2*Utility::pow<2>(_mag_y[_qp]) + 6*Utility::pow<2>(_mag_z[_qp])))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
   }
   else
     return 0.0;
 }
 
 Real
-LLBLongitudinal::computeQpOffDiagJacobian(unsigned int jvar)
+LongitudinalLLB::computeQpOffDiagJacobian(unsigned int jvar)
 {
- Real _temp1 = Utility::pow<2>(_mag_x[_qp])+Utility::pow<2>(_mag_y[_qp])+Utility::pow<2>(_mag_z[_qp]);
- Real _temp=_g0*_alpha_long/(1+Utility::pow<2>(_alpha));
   if (_component == 0)
   {
     if (jvar == _mag_y_var)
     {
-    return _temp*(4.*_temp1*_mag_x[_qp]*_mag_y[_qp]*(_temp1-0.5))*_phi[_j][_qp]*_test[_i][_qp];
+    return _test[_i][_qp]*(2*_alpha_long*_g0*_mag_x[_qp]*_mag_y[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
     }
     else if (jvar == _mag_z_var)
     {
-    return _temp*(4.*_temp1*_mag_x[_qp]*_mag_z[_qp]*(_temp1-0.5))*_phi[_j][_qp]*_test[_i][_qp];
+    return _test[_i][_qp]*(2*_alpha_long*_g0*_mag_x[_qp]*_mag_z[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
     }
     else
     {
@@ -126,11 +122,11 @@ LLBLongitudinal::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _mag_x_var)
     {
-    return _temp*(4.*_temp1*_mag_y[_qp]*_mag_x[_qp]*(_temp1-0.5))*_phi[_j][_qp]*_test[_i][_qp]; 
+    return _test[_i][_qp]*(2*_alpha_long*_g0*_mag_x[_qp]*_mag_y[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha)); 
     }
     else if (jvar == _mag_z_var)
     {
-    return _temp*(4.*_temp1*_mag_y[_qp]*_mag_z[_qp]*(_temp1-0.5))*_phi[_j][_qp]*_test[_i][_qp];
+    return _test[_i][_qp]*(2*_alpha_long*_g0*_mag_y[_qp]*_mag_z[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
     }
     else
     {
@@ -141,11 +137,11 @@ LLBLongitudinal::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _mag_x_var)
     {
-    return _temp*(4.*_temp1*_mag_z[_qp]*_mag_x[_qp]*(_temp1-0.5))*_phi[_j][_qp]*_test[_i][_qp];
+    return _test[_i][_qp]*(2*_alpha_long*_g0*_mag_x[_qp]*_mag_z[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
     }
     else if (jvar == _mag_y_var)
     {
-    return _temp*(4.*_temp1*_mag_z[_qp]*_mag_y[_qp]*(_temp1-0.5))*_phi[_j][_qp]*_test[_i][_qp];
+    return _test[_i][_qp]*(2*_alpha_long*_g0*_mag_y[_qp]*_mag_z[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha));
     }
     else
     {

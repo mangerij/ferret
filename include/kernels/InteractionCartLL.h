@@ -19,21 +19,21 @@
 
 **/
 
-#ifndef MAGCONSTRAINTCARTLLG_H
-#define MAGCONSTRAINTLLG_H
+#ifndef INTERACTIONCARTLL_H
+#define INTERACTIONCARTLL_H
 
 #include "Kernel.h"
 
-class MagConstraintCartLLG;
+class InteractionCartLL;
 
 template<>
-InputParameters validParams<MagConstraintCartLLG>();
+InputParameters validParams<InteractionCartLL>();
 
-class MagConstraintCartLLG: public Kernel
+class InteractionCartLL: public Kernel
 {
 public:
 
-  MagConstraintCartLLG(const InputParameters & parameters);
+  InteractionCartLL(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -42,13 +42,19 @@ protected:
 
 private:
   const unsigned int _component;
+  const unsigned int _potential_H_int_var;
+  const unsigned int _potential_H_ext_var;
+  const VariableValue & _potential_H_int;
+  const VariableValue & _potential_H_ext;
+  const VariableGradient & _potential_H_int_grad;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const unsigned int _lambda_var;
-  const VariableValue & _lambda;
+  const Real _alpha;
+  const Real _g0;
+  const Real _Ms;
 };
-#endif //MAGCONSTRAINTCARTLLG_H
+#endif //INTERACTIONCARTLL_H
