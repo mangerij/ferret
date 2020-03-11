@@ -62,5 +62,5 @@ MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameter
 Real
 MagneticExchangeEnergy::computeQpIntegral()
 {
-  return (_Ae/_Ms)*(Utility::pow<2>(_magnetic_x_grad[_qp](0))+Utility::pow<2>(_magnetic_x_grad[_qp](1))+Utility::pow<2>(_magnetic_x_grad[_qp](2))+Utility::pow<2>(_magnetic_y_grad[_qp](0))+Utility::pow<2>(_magnetic_y_grad[_qp](1))+Utility::pow<2>(_magnetic_y_grad[_qp](2))+Utility::pow<2>(_magnetic_z_grad[_qp](0))+Utility::pow<2>(_magnetic_z_grad[_qp](1))+Utility::pow<2>(_magnetic_z_grad[_qp](2)));
+  return (_Ae)*(Utility::pow<2>(_magnetic_x_grad[_qp](0))+Utility::pow<2>(_magnetic_x_grad[_qp](1))+Utility::pow<2>(_magnetic_x_grad[_qp](2))+Utility::pow<2>(_magnetic_y_grad[_qp](0))+Utility::pow<2>(_magnetic_y_grad[_qp](1))+Utility::pow<2>(_magnetic_y_grad[_qp](2))+Utility::pow<2>(_magnetic_z_grad[_qp](0))+Utility::pow<2>(_magnetic_z_grad[_qp](1))+Utility::pow<2>(_magnetic_z_grad[_qp](2)));
 }

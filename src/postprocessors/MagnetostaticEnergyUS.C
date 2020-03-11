@@ -19,13 +19,13 @@
 
 **/
 
-#include "MagnetostaticEnergy.h"
+#include "MagnetostaticEnergyUS.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", MagnetostaticEnergy);
+registerMooseObject("FerretApp", MagnetostaticEnergyUS);
 
 template<>
-InputParameters validParams<MagnetostaticEnergy>()
+InputParameters validParams<MagnetostaticEnergyUS>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
@@ -37,7 +37,7 @@ InputParameters validParams<MagnetostaticEnergy>()
   return params;
 }
 
-MagnetostaticEnergy::MagnetostaticEnergy(const InputParameters & parameters) :
+MagnetostaticEnergyUS::MagnetostaticEnergyUS(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
    _potential_H_int_grad(coupledGradient("potential_H_int")),
    _potential_H_ext_grad(coupledGradient("potential_H_ext")),
@@ -48,7 +48,7 @@ MagnetostaticEnergy::MagnetostaticEnergy(const InputParameters & parameters) :
 }
 
 Real
-MagnetostaticEnergy::computeQpIntegral()
+MagnetostaticEnergyUS::computeQpIntegral()
 {
   // -1/2 * M*B = - 1/2 * M*(-gradPotential)
   return -0.5*_Ms * (-_potential_H_int_grad[_qp](0)*std::cos(_azimuth_phi[_qp])*std::sin(_polar_theta[_qp]) - _potential_H_int_grad[_qp](1)*std::sin(_azimuth_phi[_qp])*std::sin(_polar_theta[_qp]) - _potential_H_int_grad[_qp](2)*std::cos(_polar_theta[_qp]));

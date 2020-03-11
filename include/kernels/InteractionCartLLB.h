@@ -19,42 +19,43 @@
 
 **/
 
-#ifndef EXCHANGECARTLLGNORM_H
-#define EXCHANGECARTLLGNORM_H
+#ifndef INTERACTIONCARTLLB_H
+#define INTERACTIONCARTLLB_H
 
 #include "Kernel.h"
 
-class ExchangeCartLLGNorm;
+class InteractionCartLLB;
 
 template<>
-InputParameters validParams<ExchangeCartLLGNorm>();
+InputParameters validParams<InteractionCartLLB>();
 
-class  ExchangeCartLLGNorm: public Kernel
+class InteractionCartLLB: public Kernel
 {
 public:
-  ExchangeCartLLGNorm(const InputParameters & parameters);
+
+  InteractionCartLLB(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
+private:
   const unsigned int _component;
+  const unsigned int _potential_H_int_var;
+  const unsigned int _potential_H_ext_var;
+  const VariableValue & _potential_H_int;
+  const VariableValue & _potential_H_ext;
+  const VariableGradient & _potential_H_int_grad;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const VariableGradient & _mag_x_grad;
-  const VariableGradient & _mag_y_grad;
-  const VariableGradient & _mag_z_grad;
   const Real _alpha;
   const Real _g0;
-  const Real _Ae;
   const Real _Ms;
-  const Real _mu0;
-  const VariableValue & _norm;
-
+  const Real _x;
 };
-#endif //EXCHANGECARTLLGNORM_H
+#endif //INTERACTIONCARTLLB_H

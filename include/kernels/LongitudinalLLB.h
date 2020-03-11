@@ -19,50 +19,39 @@
 
 **/
 
-#ifndef RHSPENALTYCARTLLG_H
-#define RHSPENALTYCARTLLG_H
+#ifndef LONGITUDINALLLB_H
+#define LONGITUDINALLLB_H
 
-#include "TimeKernel.h"
-#include "libmesh/quadrature.h"
-#include "Assembly.h"
+#include "Kernel.h"
 
-class RHSPenaltyCartLLG;
+class LongitudinalLLB;
 
 template<>
-InputParameters validParams< RHSPenaltyCartLLG>();
+InputParameters validParams<LongitudinalLLB>();
 
-class  RHSPenaltyCartLLG : public TimeKernel
+class  LongitudinalLLB: public Kernel
 {
 public:
-   RHSPenaltyCartLLG(const InputParameters & parameters);
+  LongitudinalLLB(const InputParameters & parameters);
 
+protected:
   virtual Real computeQpResidual();
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
-
-protected:
 
   const unsigned int _component;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
-
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-
-  const VariableValue & _mag_x_dot;
-  const VariableValue & _mag_y_dot;
-  const VariableValue & _mag_z_dot;
-
-  const VariableValue & _mag_x_d_dot;
-  const VariableValue & _mag_y_d_dot;
-  const VariableValue & _mag_z_d_dot;
-
+  const Real _alpha;
   const Real _g0;
+  const Real _Ae;
+  const Real _Ms;
   const Real _mu0;
-  const Real _Ap;
-  const Real _eps;
-};
+  const Real _alpha_long;
 
-#endif //TIMEMAGCONSTRAINTLLG_H
+};
+#endif //LONGITUDINALLLB_H
