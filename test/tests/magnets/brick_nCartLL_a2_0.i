@@ -1,6 +1,6 @@
 
 [Mesh]
-  file = exodus_cylH_flat4_brick.e
+  file = exodus_cylS_flat4_brick.e
 []
 
 [GlobalParams]
@@ -13,14 +13,14 @@
 
   potential_H_int = potential_H_int
 
-  alpha = 0.4
+  alpha = 0.2
   Ae = 0.013
 
   Ms = 1.0 #0.8
 
   M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
 
-  g0 = 176.1
+  g0 = 0.1761
 
   permittivity = 1.0 #a dummy variable at the moment since we use the "electrostatics" kernel
 
@@ -28,7 +28,7 @@
 
   norm = mag_s  # variable used for Norm Kernels
 
-  alpha_long = 500.0
+  alpha_long = 50.0
 
 []
 
@@ -97,8 +97,8 @@
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 1.1
-      max = 1.8
+      min = 0.
+      max = 0.2
     [../]
   [../]
 
@@ -256,7 +256,11 @@
 []
 
 [Postprocessors]
-
+  [./elapsed]
+    type = PerfGraphData
+    section_name = "Root"
+    data_type = total
+  [../]
   [./aveMs]
     type = ElementAverageValue
     variable = mag_s
@@ -304,28 +308,30 @@
 
 [Executioner]
   type = Transient            
-  solve_type = 'PJFNK'
+  solve_type = 'NEWTON' #'NEWTON' #'PJFNK'
   [./TimeIntegrator]
-   type = Heun
+   type = ImplicitEuler #Heun
   [../]
  # scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dtmin = 1e-16
-  dtmax = 1.0e-2
+  dtmin = 1e-6
+  dtmax = 5.0e-3
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 18
-    growth_factor = 2.0
-    cutback_factor = 0.6
+    growth_factor = 1.3
+    cutback_factor = 0.8
     dt = 1.0e-7
   [../]
   verbose = true
+  num_steps = 10
 []
 
 [Outputs]
   print_linear_residuals = false
+  perf_graph = true
   [./out]
     type = Exodus
-    file_base = ouLLG_Norm_n26
+    file_base = out_nLL_a2_al50
     interval = 5
     elemental_as_nodal = true
   [../]
