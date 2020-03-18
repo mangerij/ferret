@@ -28,7 +28,7 @@
 
   norm = mag_s  # variable used for Norm Kernels
 
-  alpha_long = 50.0
+  alpha_long = 500.0
 
 []
 
@@ -256,11 +256,6 @@
 []
 
 [Postprocessors]
-  [./elapsed]
-    type = PerfGraphData
-    section_name = "Root"
-    data_type = total
-  [../]
   [./aveMs]
     type = ElementAverageValue
     variable = mag_s
@@ -328,10 +323,9 @@
 
 [Outputs]
   print_linear_residuals = false
-  perf_graph = true
   [./out]
     type = Exodus
-    file_base = out_nLL_a2_al50
+    file_base = out_test
     interval = 5
     elemental_as_nodal = true
   [../]
