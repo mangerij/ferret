@@ -7,33 +7,18 @@
   mag_x = mag_x
   mag_y = mag_y
   mag_z = mag_z
-  magnetic_x = mag_x
-  magnetic_y = mag_y
-  magnetic_z = mag_z
-
   potential_H_int = potential_H_int
+[]
 
-  alpha = 0.2
-  Ae = 0.013
-
-  Ms = 1.0 #0.8
-
-  M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
-
-  g0 = 0.1761
-
-  permittivity = 1.0 #a dummy variable at the moment since we use the "electrostatics" kernel
-
-  mu0 = 1256.1 
-
-  norm = mag_s  # variable used for Norm Kernels
-
-  alpha_long = 500.0
-
+[Materials]
+  [./constants] # Constants used in other material properties
+    type = GenericConstantMaterial
+    prop_names = ' alpha    Ae    Ms g0 mu0 alpha_long'
+    prop_values = '0.4  0.013  1.0 0.1761 1256.1 500'
+  [../]
 []
 
 [Variables]
-
   [./mag_x]
     order = FIRST
     family = LAGRANGE
@@ -42,6 +27,7 @@
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
+      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
       component  = 0
     [../]
   [../]
@@ -53,6 +39,7 @@
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
+      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
       component  = 1
     [../]
   [../]
@@ -64,6 +51,7 @@
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
+      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
       component  = 2
     [../]
   [../]
@@ -81,6 +69,11 @@
 []
 
 [AuxVariables]
+  #--------------------------------------------#
+  #                                            #
+  #  field to seed IC that obeys constraint    #
+  #                                            #
+  #--------------------------------------------#
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
@@ -102,41 +95,11 @@
     [../]
   [../]
 
-  [./mag_norm_x]
-    order = FIRST
-    family = LAGRANGE
-    block = '1'
-  [../]
-  [./mag_norm_y]
-    order = FIRST
-    family = LAGRANGE
-    block = '1'
-  [../]
-  [./mag_norm_z]
-    order = FIRST
-    family = LAGRANGE
-    block = '1'
-  [../]
-
-
   [./mag_s]
     order = FIRST
     family = LAGRANGE
     block = '1'
   [../]
-
- 
-  [./placer]
-    order = FIRST
-    family = LAGRANGE
-    block = '1'
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.9999999
-      max = 1.0000001
-    [../]
-  [../]
-
 []
 
 [AuxKernels]
@@ -152,7 +115,12 @@
 []
 
 [Kernels]
-   ## Time dependence
+  #---------------------------------------#
+  #                                       #
+  #          Time dependence              #
+  #                                       #
+  #---------------------------------------#
+
   [./mag_x_time]
     type = TimeDerivative
     variable = mag_x
@@ -169,10 +137,11 @@
     block = '1'
   [../]
 
-
-   #LLG simple
-
-  # Exchange term
+  #---------------------------------------#
+  #                                       #
+  #          Magnetic exchange            #
+  #                                       #
+  #---------------------------------------#
 
   [./dllg_x_exch]
     type = ExchangeCartLL
@@ -190,7 +159,11 @@
     component = 2
   [../]
 
-  # Magnetic interaction term
+  #---------------------------------------#
+  #                                       #
+  #         demagnetization field         #
+  #                                       #
+  #---------------------------------------#
 
   [./d_HM_x]
     type = InteractionCartLL
@@ -208,12 +181,17 @@
     component = 2
   [../]
 
-  # Magnetostatic Poisson equation
+  #---------------------------------------#
+  #                                       #
+  #    Magnetostatic Poisson equation     #
+  #                                       #
+  #---------------------------------------#
 
   [./int_pot_lap]
     type = Electrostatics
     variable = potential_H_int
     block = '1 2'
+    permittivity = 1.0 #a dummy variable at the moment since we use the "electrostatics" kernel
   [../]
   [./int_bc_pot_lap]
     type = MagHStrongCart
@@ -223,6 +201,12 @@
     mag_y = mag_y
     mag_z = mag_z
   [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          LLB constraint term          #
+  #                                       #
+  #---------------------------------------#
 
   [./llb_x]
    type = LongitudinalLLB
@@ -240,12 +224,15 @@
    variable = mag_z
    component = 2
    [../]
-
-
 []
 
 [BCs]
-  # Ground the magnetostatic potential far from the ferromagnetic body.
+  #---------------------------------------#
+  #                                       #
+  #  ground the magnetostatic potential   #
+  #  far from the ferromagnetic body      #
+  #                                       #
+  #---------------------------------------#
   
   [./bc_int_pot_boundary]
     type = DirichletBC
@@ -256,31 +243,48 @@
 []
 
 [Postprocessors]
-  [./aveMs]
+  #---------------------------------------#
+  #                                       #
+  #             Average |M|               #
+  #                                       #
+  #---------------------------------------#
+
+  [./<M>]
     type = ElementAverageValue
     variable = mag_s
     block = '1'
     execute_on = 'initial timestep_end'
   [../]
 
+  #---------------------------------------#
+  #                                       #
+  #   Calculate exchange energy of        #
+  #   the magnetic body                   #
+  #                                       #
+  #---------------------------------------#
 
-  [./Fexchange]
+  [./Fexch]
     type = MagneticExchangeEnergy
     execute_on = 'initial timestep_end'
     block = '1'
-    magnetic_x = mag_x
-    magnetic_y = mag_y
-    magnetic_z = mag_z
-
   [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Calculate demagnetization energy    #
+  #   of the magnetic body                #
+  #                                       #
+  #---------------------------------------#
+
   [./Fdemag]
     type = MagnetostaticEnergyCart
     execute_on = 'initial timestep_end'
     block = '1'
   [../]
+
   [./Ftot]
     type = LinearCombinationPostprocessor 
-    pp_names = 'Fexchange Fdemag'
+    pp_names = 'Fexch Fdemag'
     pp_coefs = ' 1 1 ' 
     execute_on = 'initial timestep_end'
   [../]
@@ -288,6 +292,11 @@
 
 
 [Preconditioning]
+  #---------------------------------------#
+  #                                       #
+  #            Solver options             #
+  #                                       #
+  #---------------------------------------#
   [./smp]
     type = SMP
     full = true
@@ -295,10 +304,6 @@
     petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
     petsc_options_value = '    121               1e-8      1e-8      1e-6       lu'
   [../]
-[]
-
-[Debug]
-  show_var_residual_norms = false
 []
 
 [Executioner]
