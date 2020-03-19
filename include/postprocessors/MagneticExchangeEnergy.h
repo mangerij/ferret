@@ -37,11 +37,10 @@ public:
 protected:
   virtual Real computeQpIntegral();
 
-  const VariableGradient & _magnetic_x_grad;
-  const VariableGradient & _magnetic_y_grad;
-  const VariableGradient & _magnetic_z_grad;
-  const Real _Ae;
-  const Real _Ms;
+  const VariableGradient & _mag_x_grad;
+  const VariableGradient & _mag_y_grad;
+  const VariableGradient & _mag_z_grad;
+  const MaterialProperty<Real> & _Ae;
 };
 
 #endif

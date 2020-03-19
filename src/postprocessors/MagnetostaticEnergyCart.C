@@ -31,10 +31,9 @@ InputParameters validParams<MagnetostaticEnergyCart>()
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addRequiredCoupledVar("potential_H_int", "The internal magnetic potential variable");
   params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");
-  params.addRequiredCoupledVar("magnetic_x", "The x component of the magnetization");
-  params.addRequiredCoupledVar("magnetic_y", "The y component of the magnetization");
-  params.addCoupledVar("magnetic_z", 0.0, "The z component of the magnetization");
-  params.addRequiredParam<Real>("Ms", "Ms");
+  params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetization");
+  params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetization");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the constrained magnetization");
   return params;
 }
 
@@ -42,16 +41,22 @@ MagnetostaticEnergyCart::MagnetostaticEnergyCart(const InputParameters & paramet
   ElementIntegralPostprocessor(parameters),
    _potential_H_int_grad(coupledGradient("potential_H_int")),
    _potential_H_ext_grad(coupledGradient("potential_H_ext")),
-   _magnetic_x(coupledValue("magnetic_x")),
-   _magnetic_y(coupledValue("magnetic_y")),
-   _magnetic_z(coupledValue("magnetic_z")),
-   _Ms(getParam<Real>("Ms"))
+   _mag_x(coupledValue("mag_x")),
+   _mag_y(coupledValue("mag_y")),
+   _mag_z(coupledValue("mag_z")),
+   _Ms(getMaterialProperty<Real>("Ms"))
 {
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<" Magnetostatic Poisson equation:                                          "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"       ∇·(∇ΦB)  = μ0 Ms ∇·m                                              "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
 }
 
 Real
 MagnetostaticEnergyCart::computeQpIntegral()
 {
   // -1/2 * M*B = - 1/2 * M*(-gradPotential)
-  return -0.5*_Ms * (-_potential_H_int_grad[_qp](0)*_magnetic_x[_qp]-_potential_H_int_grad[_qp](1)*_magnetic_y[_qp]-_potential_H_int_grad[_qp](2)*_magnetic_z[_qp]);
+  return -0.5*_Ms[_qp] * (-_potential_H_int_grad[_qp](0)*_mag_x[_qp]-_potential_H_int_grad[_qp](1)*_mag_y[_qp]-_potential_H_int_grad[_qp](2)*_mag_z[_qp]);
 }

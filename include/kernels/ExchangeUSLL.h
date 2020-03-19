@@ -45,10 +45,10 @@ protected:
   const VariableValue & _polar_theta;
   const VariableGradient & _azimuth_phi_grad;
   const VariableGradient & _polar_theta_grad;
-  const Real _alpha;
-  const Real _g0;
-  const Real _Ae;
-  const Real _Ms;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _g0;
+  const MaterialProperty<Real> & _Ae;
+  const MaterialProperty<Real> & _Ms;
 
 };
 #endif //EXCHANGEUSLL_H

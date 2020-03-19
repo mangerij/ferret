@@ -33,8 +33,6 @@ InputParameters validParams<MagHStrongCart>()
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_z", "The z component of the constrained magnetic vector");
-  params.addRequiredParam<Real>("mu0", "mu0");
-  params.addRequiredParam<Real>("Ms", "Ms");
   return params;
 }
 
@@ -49,15 +47,15 @@ MagHStrongCart::MagHStrongCart(const InputParameters & parameters)
    _mag_x_grad(coupledGradient("mag_x")),
    _mag_y_grad(coupledGradient("mag_y")),
    _mag_z_grad(coupledGradient("mag_z")),
-   _mu0(getParam<Real>("mu0")),
-   _Ms(getParam<Real>("Ms"))
+   _mu0(getMaterialProperty<Real>("mu0")),
+   _Ms(getMaterialProperty<Real>("Ms"))
 {
 }
 
 Real
 MagHStrongCart::computeQpResidual()
 {
-  return -_Ms*_mu0*(_grad_test[_i][_qp](0)*_mag_x[_qp]+_grad_test[_i][_qp](1)*_mag_y[_qp]+_grad_test[_i][_qp](2)*_mag_z[_qp]);
+  return -_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](0)*_mag_x[_qp]+_grad_test[_i][_qp](1)*_mag_y[_qp]+_grad_test[_i][_qp](2)*_mag_z[_qp]);
 }
 Real
 MagHStrongCart::computeQpJacobian()
@@ -70,15 +68,15 @@ MagHStrongCart::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _mag_x_var)
   {
-    return -_Ms*_mu0*(_grad_test[_i][_qp](0)*_phi[_j][_qp]);
+    return -_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](0)*_phi[_j][_qp]);
   }
   else if (jvar == _mag_y_var)
   {
-    return -_Ms*_mu0*(_grad_test[_i][_qp](1)*_phi[_j][_qp]);
+    return -_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](1)*_phi[_j][_qp]);
   }
   else if (jvar == _mag_z_var)
   {
-    return -_Ms*_mu0*(_grad_test[_i][_qp](2)*_phi[_j][_qp]);
+    return -_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](2)*_phi[_j][_qp]);
   }
   else
     return 0.0;

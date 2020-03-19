@@ -46,12 +46,12 @@ protected:
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const Real _alpha;
-  const Real _g0;
-  const Real _Ae;
-  const Real _Ms;
-  const Real _mu0;
-  const Real _alpha_long;
+  const MaterialProperty<Real> &_alpha;
+  const MaterialProperty<Real> &  _g0;
+  const MaterialProperty<Real> & _Ae;
+  const MaterialProperty<Real> & _Ms;
+  const MaterialProperty<Real> & _mu0;
+  const MaterialProperty<Real> & _alpha_long;
 
 };
 #endif //LONGITUDINALLLB_H

@@ -40,7 +40,7 @@ protected:
   const VariableGradient & _potential_H_ext_grad;
   const VariableValue & _azimuth_phi;
   const VariableValue & _polar_theta;
-  const Real _Ms;
+  const MaterialProperty<Real> & _Ms;
 
 };
 

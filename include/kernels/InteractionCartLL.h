@@ -53,8 +53,8 @@ private:
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const Real _alpha;
-  const Real _g0;
-  const Real _Ms;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _g0;
+  const MaterialProperty<Real> & _Ms;
 };
 #endif //INTERACTIONCARTLL_H
