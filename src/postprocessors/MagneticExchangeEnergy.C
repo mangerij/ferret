@@ -30,31 +30,28 @@ InputParameters validParams<MagneticExchangeEnergy>()
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral over the magnetic exchange energy density.");
-  params.addRequiredCoupledVar("magnetic_x", "The x component of the magnetization");
-  params.addRequiredCoupledVar("magnetic_y", "The y component of the magnetization");
-  params.addCoupledVar("magnetic_z", 0.0, "The z component of the magnetization");
-  params.addRequiredParam<Real>("Ae", "Ae");
-  params.addRequiredParam<Real>("Ms", "Ms");
+  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
+  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization");
   return params;
 }
 
 MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _magnetic_x_grad(coupledGradient("magnetic_x")),
-  _magnetic_y_grad(coupledGradient("magnetic_y")),
-  _magnetic_z_grad(coupledGradient("magnetic_z")),
-  _Ae(getParam<Real>("Ae")),
-  _Ms(getParam<Real>("Ms"))
+  _mag_x_grad(coupledGradient("mag_x")),
+  _mag_y_grad(coupledGradient("mag_y")),
+  _mag_z_grad(coupledGradient("mag_z")),
+  _Ae(getMaterialProperty<Real>("Ae"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"Selecting:                                                                "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
-  std::cout<<" Landau-Liftshitz-Gilbert equations for evolution of the magnetic system  "<<"\n";
+  std::cout<<" Landau-Liftshitz-Bloch equations for evolution of the magnetic system    "<<"\n";
   std::cout<<"                                                                          "<<"\n";
-  std::cout<<"       dMk/dt = - γ' Mk × δF/δMk - γ' α [Mk × (Mk × δF/δMk]               "<<"\n";
-  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<" dmk/dt = - γ' (mk × δF/δmk - α [mk × (mk × δF/δmk] + αL [m^4 - m^2] m_k) "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
   //TODO: later can rework this in the following way: postprocessors will print energetic contributions and a "blank" kernel will print the LGD/LLG/coupled terms
   //      can also use for elastic and electrostatic coupling.
 }
@@ -62,5 +59,5 @@ MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameter
 Real
 MagneticExchangeEnergy::computeQpIntegral()
 {
-  return (_Ae)*(Utility::pow<2>(_magnetic_x_grad[_qp](0))+Utility::pow<2>(_magnetic_x_grad[_qp](1))+Utility::pow<2>(_magnetic_x_grad[_qp](2))+Utility::pow<2>(_magnetic_y_grad[_qp](0))+Utility::pow<2>(_magnetic_y_grad[_qp](1))+Utility::pow<2>(_magnetic_y_grad[_qp](2))+Utility::pow<2>(_magnetic_z_grad[_qp](0))+Utility::pow<2>(_magnetic_z_grad[_qp](1))+Utility::pow<2>(_magnetic_z_grad[_qp](2)));
+  return (_Ae[_qp])*(Utility::pow<2>(_mag_x_grad[_qp](0))+Utility::pow<2>(_mag_x_grad[_qp](1))+Utility::pow<2>(_mag_x_grad[_qp](2))+Utility::pow<2>(_mag_y_grad[_qp](0))+Utility::pow<2>(_mag_y_grad[_qp](1))+Utility::pow<2>(_mag_y_grad[_qp](2))+Utility::pow<2>(_mag_z_grad[_qp](0))+Utility::pow<2>(_mag_z_grad[_qp](1))+Utility::pow<2>(_mag_z_grad[_qp](2)));
 }

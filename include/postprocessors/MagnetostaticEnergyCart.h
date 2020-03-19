@@ -38,10 +38,10 @@ protected:
   virtual Real computeQpIntegral();
   const VariableGradient & _potential_H_int_grad;
   const VariableGradient & _potential_H_ext_grad;
-  const VariableValue & _magnetic_x;
-  const VariableValue & _magnetic_y;
-  const VariableValue & _magnetic_z;
-  const Real _Ms;
+  const VariableValue & _mag_x;
+  const VariableValue & _mag_y;
+  const VariableValue & _mag_z;
+  const MaterialProperty<Real> & _Ms;
 
 };
 

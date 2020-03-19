@@ -49,11 +49,11 @@ protected:
   const VariableGradient & _mag_x_grad;
   const VariableGradient & _mag_y_grad;
   const VariableGradient & _mag_z_grad;
-  const Real _alpha;
-  const Real _g0;
-  const Real _Ae;
-  const Real _Ms;
-  const Real _mu0;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _g0;
+  const MaterialProperty<Real> & _Ae;
+  const MaterialProperty<Real> & _Ms;
+  const MaterialProperty<Real> &_mu0;
 
 };
 #endif //EXCHANGECARTLL_H

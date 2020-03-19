@@ -51,8 +51,8 @@ private:
   const unsigned int _polar_theta_var;
   const VariableValue & _azimuth_phi;
   const VariableValue & _polar_theta;
-  const Real _alpha;
-  const Real _Ms;
-  const Real _g0;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _Ms;
+  const MaterialProperty<Real> & _g0;
 };
 #endif //INTERACTIONUSLL_H
