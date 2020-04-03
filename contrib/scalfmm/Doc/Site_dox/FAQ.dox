@@ -1,0 +1,26 @@
+// This page contains the special doxygen pages and mainpage.
+
+/*!
+ *
+ * \section FAQ FAQ
+ *
+ * \subsection faq1 System/Compilers/Libraries Supported
+ * From our tests ScalFMM works with almost all configurations, except on Mac OS with the CLang compiler (or Intel compiler over CLang).
+ *
+ * \subsection faq2 Is ScalFMM easy to custimize?
+ * It is easy to create your own kernel or algorithm inside scalfmm, from scratch or from an existing component.
+ *
+ * \subsection faq3 Where should I put my source test file?
+ * If you only add a main file that uses scalfmm, it is appropriate to store it inside the Tests/Kernels directory.
+ * After taping cmake .. you file will be automatically compilable
+ *
+ * \subsection faq4 I cannot compiled the tests/unit tests/examples?
+ * Ensure you have activated the cmake options to compile them (for example by using ccmake ..).
+ * You can still turn the option on by cmake -DSCALFMM_BUILD_TESTS=ON .. for example.
+ *
+ * \subsection faq5 How to use MPI scalfmm?
+ * You must turn the cmake option on to activate the mpi tests.
+ */
+
+
+

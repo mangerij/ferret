@@ -1,0 +1,64 @@
+
+/** \page rules Programming rules of ScalFMM project
+
+   
+* \section rule Rules
+
+* <ol> 
+* <li> Static (variables, members, attributes) should start with a capital letter </li>
+* <li> Class name should start with a capital letter </li>
+* <li> Mix capital and normal letter to write names (IAmAStaticName, iAmAName) no underscore (but if you have several variables that looks the same be careful: thisIsAXVariable thisIsAYVariable) </li>
+* <li> Put const every where it is possible (method, value, pointer etc.) </li>
+* <li> Declare variables usually as late as possible (we are not in old C so do not declare every thing at the beginning of a function). Of course, variable that are used in a loop but with always the same value can be declared at the function beginning. </li>
+* <li> Declare index inside the for loop where they are used (and their names should start with "idx" if appropriate) </li>
+* <li> Use pre-inc if possible (even if the compiler will optimized post-inc for native type) </li>
+* <li> If a parameter is changed by a function use pointer else use const ref (if the size of object is less than 20 Bytes you can pass it by value, moreover if it is intensively used!)</li>
+* <li> Please do not name variables with one letter difference (except if it is related to a mathematical formula but then this one should be in the comment in latex format)</li>
+* <li> Try not to have function bigger than 100 lines</li>
+* <li> Be consistent</li>
+* <li> Methods should start with a verb or an action (get, compute, print, etc...)</li>
+* <li> If some code are here temporary (for testing, assertion, etc), put it in a section "{}", and add a comment that explicitly says that it can be removed "todo remove this section" for example.</li>
+* <li> Sometime no comment is better than outdated (or wrong copy-pasted) comments.</li>
+* <li> Plain-data struct can be used if it seams natural to use container without method.</li>
+* </ol>
+
+* \section questions Why everything is inside the HPP!? 
+
+* A discussion about why scalfmm should stay like this for now
+
+* First of all, many classes are Templates and so, even if it is possible to split declaration and implementation
+* of templates in different files such approach is not supported by all compiler, it then better
+* for templates to stay in their hpp.
+* For other classes the debate is more open.
+* Even if it is not a argument, it is interesting to notice that all modern languages are one file per class (C#, Java, Ruby, Python, ...).
+
+* \subsection cons Cons
+  <ul>
+* <li> It takes much time to compile since you need to generate almost all the program every time (and the generation is hardly parallelized).</li>
+* <li> It is impossible to have cross references.</li>
+* <li> It looks strange for a new guy that discover the project (is it really a con?).</li>
+* <li> It is "less" standard.</li>
+* <li> You do not have an header to know what a class is proposing.</li>
+  </ul>
+
+* \subsection pros Pros
+  <ul>
+* <li> It is closed to modern languages.</li>
+* <li> It is easy to maintains (you do not have to change the cpp and then the hpp).</li>
+* <li> You do not have to put you comment twice or to have an header with comments and a implementation without some.</li>
+* <li> It is directly global optimizations to object file and inline is performed directly.</li>
+* <li> It is more usual to use all in hpp template class.</li>
+* <li> It is more easy to get into the code, and once you feel usual to it you finally prefer like this.</li>
+  </ul>
+
+* Now if we look to cons and pros, we can notice that in our project we do not have a big UML diagram at the beginning that let us generate all the classes and methods,
+
+* We are working in small iterations, and all the code (even the one that looks stable may change tomorrow or in a year).
+* And is it more easy to maintains because we do not have to change two files every time we re-factor something.
+* Of course it takes more time to compile, but for now this is not a consideration.
+* In our project we have plenty of templates.
+* Our project is not that big and many people arrived to work on it, and for now, all of them finally like to have all in the hpp when they discovered the project.
+
+* If someone wants to know what a class is proposing, then he can do as it is usual, he looks to the doc (who looks to Qt header to know QVector methods??) or let his IDE propose the correct methods.
+
+**/
