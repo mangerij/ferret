@@ -1,0 +1,18 @@
+/** \page Periodic Periodic system under ScalFmm
+
+
+* \section Periodic-1 Periodicity in usual FMM
+
+* Our periodicity is kernel independant but is not a real/usual periodicity.
+* We simply repeat the simulation box a high number of times which means that if
+* needed the simulation box can be repeated a million times in each direction.
+* In order to enable this feature nothing special is needed, any ScalFMM kernel can
+* be used with this periodicity.
+* Moreover the usual FMM garantees apply here because we are doing nothing more than a FMM.
+* Please refer to the Periodic example to know more and test the degree of repetition based on 
+* the "-per" parameter.
+
+ * \subsection Limitation
+ * Our periodic system supports only cubic box for now (it is not possible to choose in wich directions the periodicity
+ * applies.
+*/

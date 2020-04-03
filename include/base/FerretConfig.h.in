@@ -3,6 +3,9 @@
 /* Flag indicating that Boost special functions are available */
 #undef FERRET_HAVE_BOOST_MATH_SPECIAL_FUNCTIONS
 
+/* Flag indicating that ScalFMM is available */
+#undef FERRET_HAVE_SCALFMM
+
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
 

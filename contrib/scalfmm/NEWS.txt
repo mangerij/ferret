@@ -1,0 +1,46 @@
+Copyright (c) 2011-2014 Inria,   All rights reserved.
+
+
+===========================================================================
+
+This file contains the main features as well as overviews of specific
+bug fixes (and other actions) for each version of ScalFMM since
+version 1.1
+
+1.4
+-----
+- Add interpolation FMM based on uniform grid points
+- Add the group tree and the things related to starpu (runtime system)
+- Change the P2P (it is now done by tree functions in the abstract kernel) refer to the P2P page of the doc
+- Update the P2P/M2L prototype, the position of the elements is known from an array position
+- Fix bug in SSE, AVX, ...  kernel 1/r 
+
+1.3
+-----
+- The choice of floating point values is done by template (by passing template to all classes) and no more at configure time
+- There is no more ScalFMM variables and defines but only SCALFMM (all letters in upper case)
+- We start to use unique ptr (and advise to use it) in the main files
+- Add blocked version of the algorithm to increase the granularity (task-based approach)
+- Fix bug with Chebyschev kernel and multi RHS.
+- Improvements in unit tests (works with Linux and MacOs X for intel and gcc)
+- Use MORSE distribution to detect BLAS, FFTW, ....
+- BLAS and FFTW are turned on by default, and the compilation continue even if they are not found
+
+1.2.1
+-----
+- Bug fix : Support for huge MPI message in tree construction and Parallel QuickSort (count can be greater than Int32.MaxValue)
+- Bug fix : Data sharing attribute clauses for omp in Core/FAlgorithmThreadProc.hpp
+
+1.2
+-----
+- New FMA format to read/write particles
+- Add examples repository
+- Add distributions generator
+- Fix bugs in periodic model
+- Fix bug and performance improvements in MPI thread algorithms
+- Now we use MPI_THREAD_SERIALIZED rather than MPI_THREAD_MULTIPLE in MPI+OpenMP algorithm.
+- Improve tests -> now we use CTest and CDash (Thanks to  F Rue  (Inria))
+- Add support for Intel icl++ compiler (Intel 2015 compiler) on MacOS X and Clang on linux system
+- Add SSE and AVX support in CMake
+- Add SSE and AVX code for 1/r kernel
+- CMake improvements

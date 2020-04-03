@@ -1,0 +1,89 @@
+/*! \page install Downloading, Building and Installing ScalFMM
+*
+* On this page, you will find all the requirements for building and installing ScalFMM.
+*
+* \tableofcontents
+*
+* \section download Download ScalFMM
+*
+* To download ScalFmm go on https://gforge.inria.fr/frs/?group_id=4479 .
+*
+* You can stay in touch of the updates and new version by registering
+* to the users mailing list
+* (scalfmm-public-users@lists.gforge.inria.fr) which has a very low
+* traffic (one email per month) at :
+* http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/scalfmm-public-users.
+*
+* \section secNecessary Require
+*
+* <ul>
+  * <li> CMake for compiling, ccmake for configuring the build. Version 2.8.12.1 or later </li>
+  * <li> Open MP </li>
+  * <li> MPI, if you want to use distributed version of the algorithm (Optional) </li>
+  * <li> A compiler supporting C++ 2011 </li>
+  * <li> BLAS, FFTW, ... (Optionals) </li>
+  * </ul>
+*
+* \section build Build
+* How to build ScalFMM
+* <ul>
+  * <li> Go to scalfmm/Build directory </li>
+  * <li> type <b> $> cmake .. </b> 
+    * <ul>
+      * <li> If you want to enable MPI, use <b> $> cmake .. -DSCALFMM_USE_MPI=ON </b> </li>
+      * </ul>
+    * </li>
+  * <li> then configure your build with <b> $> ccmake .. </b> if needed </li>
+  * <li> then type <b> $> make name_of_exec </b> </li>
+  * </ul>
+*
+* an example : <br>
+*        <b> cmake -DSCALFMM_USE_BLAS=ON -DSCALFMM_USE_MKL_AS_BLAS=ON \  <br>
+*                           -DSCALFMM_USE_SSE=OFF -DSCALFMM_USE_AVX=ON ../ </b>
+*
+* \subsection conf Configuration of the build
+* 
+* This is all the build options you can modify.
+*
+* <ul>
+  * <li> CMAKE_INSTALL_PREFIX : to choose where to install ScalFmm </li>
+  * <li> SCALFMM_USE_MPI : to use and enable MPI. Warning, you need to use this parameter at the first cmake command you write. </li>
+  * <li> SCALFMM_ATTACHE_SOURCE : to build with -g (which enables debugging with release binaries)</li>
+  * <li> SCALFMM_BUILD_EXAMPLES : to build the examples </li>
+  * <li> SCALFMM_BUILD_TESTS : to build the tests </li>
+  * <li> SCALFMM_BUILD_UTESTS : to build the unit tests </li>
+  * <li> SCALFMM_BUILD_DOC : to enable make doc to generate the documentation </li>
+  * <li> SCALFMM_USE_ADDONS : to activate add ons </li>
+  * <ul>
+    * <li> SCALFMM_ADDON_FMMAPI : to build Fmm Api </li>
+    * </ul>
+  * <li> ScalFMMUSE_MEM_STATS : to use memory stats (which count any new/delete done during a simulation) </li>
+  * <li> SCALFMM_USE_BLAS : to enable BLAS (needed by Chebyshev interpolation kernel) </li>
+  * <ul>
+    * <li> SCALFMM_USE_MKL_AS_BLAS : to use MKL as blas </li>
+    * </ul>
+    * <li> SCALFMM_USE_FFT : Use FFTW needed by the uniform interpolation kernel</li> 
+      * <ul>
+    * <li> ( SCALFMM_USE_MKL_AS_FFTW : to use MKL as FFTW) </li>
+    * </ul>
+    * <li> SCALFMM_USE_LOG        to print output debug information during the execution
+    * <li> SCALFMM_USE_ASSERT   enable safe tests during execution
+     * <li> SCALFMM_USE_SSE  compile with SEE support
+     * <li> SCALFMM_USE_AVX      compile with AVX support
+                    * <li> 
+  * </ul>
+*
+* Once the library is built, you may want to install it : <b> $> make
+* install </b>. Note that it is not an obligation to install ScalFmm
+* to use it. You can build it and use it from the Build directory.
+
+* The whole project is documented using Doxygen. You can build the doc
+* by typing <b> $> make doc </b> in the Build directory.
+
+* Notice that if you would like to create you own executable and rely on ScalFMM you can simply create
+* a .cpp file and store it inside the Tests/Utils directory. Then by running cmake one more time (cmake ..)
+* you will be able to compile your file without the need to change CMake files.
+
+*
+*
+*/
