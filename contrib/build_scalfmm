@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd scalfmm
+mkdir build
+cd build
+cmake .. -DSCALFMM_USE_MPI=ON -DSCALFMM_USE_FFT=OFF -DSCALFMM_USE_SSE=OFF -DSCALFMM_USE_AVX=OFF -DCMAKE_INSTALL_PREFIX=../Install
+make
+make install

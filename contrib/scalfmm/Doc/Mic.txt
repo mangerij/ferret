@@ -1,0 +1,9 @@
+How to use ScalFMM on MIC
+
+
+ -fp-model precise -fp-model source -fimf-precision=low 
+
+Native mode
+1)
+2) Launch the code as follow
+micnativeloadex Tests/Release/testNewCompareKernels  -a "-f /tmp/coulaud/file.fma"

@@ -1,0 +1,465 @@
+/*! \page quick Quick Start
+
+ * In this section, we present the organization of the data structures and the 
+ * classes design to understand completly ScalFmm and to customize it.
+ 
+ * Remark 1.2 : There is a big difference between the versions 1.0 and 1.2
+ * since we do not store array of particles anymore but rather several arrays.
+ * This was needed in order to be able to vectorize the P2P code directly from the particles. 
+ 
+ * Remark 1.3 : There is a big difference between the versions 1.2 and 1.3
+ * The precision is chosen with template (usually called FReal) and no more
+ * during the configure.
+ * Therefor, almost all classes have FReal as a template, and it is possible to use different
+ * accuracies for the template and the position for example.
+ 
+ * We would like to inform users who want to create a kernel (or to execute FMM from a high level)
+ * and who are not familiar with 'C++'
+ * but are familiar with 'C' that a C API have been made for them.
+ * In order to get access to this API, go in Addons/CKernelApi.
+ * (To compile, enable the addons and then the CKernelApi in the CMake stage).
+ * However, to have access to all the features of ScalFmm it is required to use C++
+ * as described in this QuickStart.
+ 
+ * \tableofcontents 
+ 
+ * \section prerequisite Prerequisite 
+ 
+ * It is recommended to have built the library or at least to have 
+ * downloaded the source code. The users need to be comfortable with the 'C++' 
+ * language and if possible also with templates and 'C++11'.
+
+ * If you want to browse the code, you may want to see first our \ref rules.
+
+ * \section classes Overview of general architecture
+ *
+ * \image html Classes.png "General architecture"
+ 
+ * \section data What Data 
+ 
+ * In ScalFmm we proceed the Fast Multipole Method. New users should see 
+ * this process as a way to estimate far interactions and compute 
+ * accurately the close interactions in a group of particles. We start 
+ * with some particles (unknowns) that we insert in a octree. The octree stores the 
+ * particles in its leaves. From the root to the leaves there are the 
+ * cells. At this point we only express primitives classes which hold 
+ * data or primitives classes. 
+ 
+ * Then, we need a kernel which is the computational part of the FMM. It is a 
+ * class that is able to compute the interactions between particles or 
+ * cells, etc. There are several possible kernels depending on what we 
+ * want to compute and it is easy to implement your own.
+ 
+ * Finally, the FMM Core algorithm is a class that takes the primitives 
+ * classes and calls the kernel with the correct arguments. In our 
+ * implementation, the user has to choose between sequential FMM or 
+ * OpenMP FMM or even MPI FMM.
+ 
+ * From the previous paragraphs we derive three main parts of the FMM,
+ * the algorithm, the data structures (containers) and the kernels.
+ * ScalFMM respect this organization with the help of templates.
+ 
+ * \section primitivesclasses Primitives Classes
+ 
+ * \subsection particles Particles
+ 
+ * In order to put the particles in the right leaf, the octree needs to know their spatial positions
+ * (but nothing more).
+ * From a position, once the right leaf is found, this one is allocated (using the given template LeafClass of the octree),
+ * and the particles is pushed into the leaf. If a basic leaf is used, this one only push to a particles container
+ * what it has received. So a particle container is nothing more than a class that has a push method
+ * which matches the one you call on the octree. To ensure that, a particle container should inherit from FAbstractParticleContainer.
+
+ * <pre class='brush: cpp'>
+ * template <class FReal>
+ * class FAbstractParticleContainer{ 
+ *   template<typename... Args>
+ *   void push(const FPoint<FReal>& /*inParticlePosition*/, Args ... /*args*/){
+ *       
+ *   }
+ * </pre>
+ * If your goal is to work on the cells (and not on the particules) you may have an empty push method in your
+ * particle container.
+ 
+ * Here is how we can print the index of the particles that are inserted and doing so from a particle containers : 
+ 
+ * <pre class='brush: cpp'>
+ * template <class FReal>
+ * class MyCustomContainer : public FAbstractParticleContainer<FReal> { 
+ * template<typename... Args>
+ * void push(const FPoint<FReal>& , int particleIndex, double anythingElse){
+ *      std::cout << "The particle " << particleIndex << " has just been inserted with " << anythingElse << "\n";
+ * };
+ *
+ * // In the main
+ *     typedef MyCustomContainer<double>      ContainerClass;
+ *     typedef FSimpleLeaf<double, ContainerClass >                     LeafClass;
+ *     typedef FOctree<double, FBasicCell, ContainerClass , LeafClass >  OctreeClass;
+ * // From your system properties
+ * OctreeClass tree(treeHeight, subHeight, loader.getBoxWidth(), loader.getCenterOfBox());
+ *
+ * // Add a particle
+ * tree.push(FPoint(x, y, z), particleIndex, anythingElse);
+ * // The octree will push in the FSimpleLeaf which will push in the MyCustomContainer which will print the message.
+ * </pre>
+ 
+ * In the same way you can sort your particles in different buffer by passing a flag which will be passed to your container:
+ 
+  * <pre class='brush: cpp'>
+ * template <class FReal>
+ * class MyCustomContainer : public FAbstractParticleContainer<FReal>{ 
+ * std::vector<int> bigParticles;
+ * std::vector<int> smallParticles;
+ * template<typename... Args>
+ * void push(const FPoint<FReal>& , bool isBig, int particleIndex){
+ *      if(isBig) bigParticles.push_back(particleIndex);
+ *      else smallParticles.push_back(particleIndex);        
+ * };
+ *
+ * // In the main
+ *     typedef MyCustomContainer<double>      ContainerClass;
+ *     typedef FSimpleLeaf<double, ContainerClass >                     LeafClass;
+ *     typedef FOctree<double, FBasicCell, ContainerClass , LeafClass >  OctreeClass;
+ * // From your system properties
+ * OctreeClass tree(treeHeight, subHeight, loader.getBoxWidth(), loader.getCenterOfBox());
+ *
+ * // Add a particle
+ * tree.push(FPoint(x, y, z), boolIsBigParticle, particleIndex);
+ * // The octree will push in the FSimpleLeaf which will push in the MyCustomContainer which will store idx in the correct vector
+ * </pre>
+
+ * The FBasicParticleContainer class is given for those who would like to store one or several data type
+ * of the same kind per particles (in addition to their positions).
+ * For example if someone wants to store 10 integers for each particles or: 
+ 
+  * <pre class='brush: cpp'>
+ *  // Declaration
+  * typedef FBasicParticleContainer<double, 10, int> MyContainer;
+  * </pre>
+  * (the first double stands for the position).
+  
+ * If for example you would like to store 2 doubles per particles (one initialized during the push
+ * whereas the other if set to 0) you can use the following code: 
+ 
+  * <pre class='brush: cpp'>
+ *     typedef FBasicParticleContainer< double, 2, double>      ContainerClass;
+ *     typedef FSimpleLeaf< ContainerClass >                     LeafClass;
+ *     typedef FOctree< FBasicCell, ContainerClass , LeafClass >  OctreeClass;
+ * // From your system properties
+ * OctreeClass tree(treeHeight, subHeight, loader.getBoxWidth(), loader.getCenterOfBox());
+ *
+ * // Add a particle
+ * tree.push(FPoint(x, y, z), myFirstDouble); //, mySecondValueIfNotZero);
+ *
+ * // Then to print all the doubles value :
+ * tree.forEachLeaf([&](LeafClass* lf){
+ *      ContainerClass* container = lf->getSrc();
+ *      int nbParticlesInLeaf = container->getNbParticles();
+ *      double* x_pos = container->getPositions()[0];
+ *      double* y_pos = container->getPositions()[1];
+ *      double* z_pos = container->getPositions()[2];
+ *      double* firstDoubleArray = container->getAttribute(0); // same as getAttribute<0>()
+ *      double* secondDoubleArray = container->getAttribute(1); // same as getAttribute<1>()
+ *
+ *      for(int idxPart = 0 ; idxPart < nbParticlesInLeaf ; ++idxPart){
+ *          std::cout << "Particle inserted " << idxPart << " in the leaf\n";
+ *          std::cout << "Has position " << x_pos[idxPart] << " " << y_pos[idxPart] << " " << z_part[idxPart] << "\n";
+ *          std::cout << "And values " << firstDoubleArray[idxPart] << " and " << secondDoubleArray[idxPart] << "\n";
+ *      }
+ * });
+ * </pre>
+ 
+ 
+ * Therefor, we propose a particle container called FP2PParticleContainer (based on FBasicParticleContainer) to store the position,
+ * a force vector, a potential and a physical value per particle.
+ * This container is one used in our kernels and you can read our P2P (or P2M/L2P) in order to catch
+ * the way it works.
+ 
+ * It is important to notice that for all classes based on FBasicParticleContainer,
+ * it is not required to push a value for all attributes.
+
+ * <pre class='brush: cpp'>
+ * typedef FBasicParticleContainer<double, 3, int> MyContainer;
+ * // After having declare everything:
+ * tree.insert(pos); // Works the 3 integers of this particles will be zero
+ * tree.insert(pos, 1); // Works the first attribute is initialized and the 2 other integers of this particles will be zero
+ * tree.insert(pos, 4, 5, 4); // Works Here we init all the attributes of this particles 
+ * tree.insert(pos, 0.4); // Works but will fire a warnings because we give a double to init a int
+ * tree.insert(pos, 0, 0, 0, 0); // Failed, there are only 3 int as attributes for the particles
+ * tree.insert(pos, (int*)ptr); // Failed, there are no known conversion from int* to int (the attribute type)
+ * </pre>
+
+ * \subsection cells Cells
+
+ * The same principle apply to cells. There is a minimum sets of
+ * methods that must propose a cell class to be able to be used in the
+ * octree. And then, there are some other methods that you can add to
+ * make it usable by your kernel.
+
+ * The class Src/Components/FAbstractCell.hpp shows what should implement a cell:
+
+ * <pre class='brush: cpp'> 
+  * class FAbstractCell{ 
+  *  public: 
+  *  virtual ~FAbstractCell(){ 
+  *  } 
+  *  virtual MortonIndex getMortonIndex() const = 0; 
+  *  virtual void setMortonIndex(const MortonIndex inIndex) = 0; 
+  *  virtual void setPosition(const FPoint& inPosition) = 0; 
+  *  virtual const FTreeCoordinate& getCoordinate() const = 0; 
+  *  virtual void setCoordinate(const long inX, const long inY, const long inZ) = 0; 
+  *
+  *  virtual bool hasSrcChild() const = 0;  // Needed if TSM (target source model) is used
+  *  virtual bool hasTargetsChild() const = 0;   // Needed if TSM (target source model) is used
+  *  virtual void setSrcChildTrue() = 0;   // Needed if TSM (target source model) is used
+  *  virtual void setTargetsChildTrue() = 0;   // Needed if TSM (target source model) is used
+  *  }; 
+ * </pre>
+ 
+ * The FBasicCell class provides an implementation of all these methods (without TSM).
+ * Also you can have a look to FRotationCell and FTypedRotationCell to see a real cell.
+
+ * \subsection leaves Leaves 
+
+ * The leaf is the class responsible of hosting the container of particles.
+ * It is the intermediate layer between the particles containers and the octree.
+ * Usually, the leaves stores the particle indexes and for example two containers
+ * if we are in TSM.
+
+ * In the following class, FAbstractLeaf, one can see what is required
+ * by the algorithm :
+
+ * <pre class='brush: cpp'> 
+ * template< class ParticleClass, class ContainerClass > 
+ *   class FAbstractLeaf { 
+ *   public: 
+ *   // Default destructor
+ *   virtual ~FAbstractLeaf(){ 
+ *   }     
+ *  template<typename... Args>
+ *   void push(const FPoint& inParticlePosition, Args ... args){
+ *       FLOG( FLog::Controller.write("Warning, push is not implemented!").write(FLog::Flush) );
+ *   }
+ *   virtual ContainerClass* getSrc() = 0; 
+ *   virtual ContainerClass* getTargets() = 0; 
+ *   }; 
+ * </pre>
+
+ * The push method is needed by the octree.
+ * Whereas the getSrc and getTargets methods are usually needed by FMM algorithms.
+ 
+ * Here is an example taken from the FSimpleLeaf, we can see that it simply push what it receives
+ * directly to the container:
+ * <pre class='brush: cpp'> 
+*     template<typename... Args>
+*    void push(const FPoint<FReal>& inParticlePosition, Args ...  args){
+*       // We pass every thing to the container and let it manage
+*	    this->particles.push(inParticlePosition, args...);
+*    }
+ * </pre>
+ 
+ * Here is from the class FTypedLeaf, which push to the source or target container depending on the type parameter.
+ * When inserting in the octree we must give the position (as usual) but also the particle type.
+  * <pre class='brush: cpp'> 
+*      template<typename... Args>
+*    void push(const FPoint<FReal>& inParticlePosition, const FParticleType type, Args ... args){
+*        if(type == FParticleTypeTarget) targets.push(inParticlePosition, FParticleTypeTarget, args...);
+*        else sources.push(inParticlePosition, FParticleTypeSource, args...);
+*    }
+ * </pre>
+ 
+ * \subsection loading Loading Particle
+
+ * In most of our examples, we are using "loaders" which are classes used to manage the files.
+ * They returned the physical properties (box width, center of box, ...) which are used to build the octree.
+ * Then they are used to get the particle positions (and their physical values if appropriate).
+
+ * <pre class='brush: cpp'> 
+ * template <class ParticleClass> 
+ *   class FAbstractLoader { 
+ *   public:	 
+ *   // Default destructor 
+ *   virtual ~FAbstractLoader(){ 
+ *   } 
+ *   virtual FSize getNumberOfParticles() const = 0; 
+ *   virtual FPoint getCenterOfBox() const = 0; 
+ *   virtual FReal getBoxWidth() const = 0; 
+ *   virtual bool isOpen() const = 0; 
+ *   void fillTree(FPoint& particlesPos);
+ *  }; 
+ * </pre>
+
+ * There exist several loaders; one per file format.
+ * Usually we do as the following:
+ * <pre class='brush: cpp'> 
+ * FRandomLoader<FReal> loader(NbPart, 1, FPoint(0.5,0.5,0.5), 1);
+ * OctreeClass tree(10, 3, loader.getBoxWidth(), loader.getCenterOfBox());
+ * FPoint<FReal> particlePosition;
+ * for(FSize idxPart = 0 ; idxPart < loader.getNumberOfParticles() ; ++idxPart){
+ *     loader.fillParticle(&particlePosition);
+ *     tree.insert(particlePosition);
+ * }
+ * </pre>
+
+ * \subsection octreeIterator Iterating on an Octree
+ 
+ * There are two ways to iterate on the data of an octree :
+ * Using an iterator, or using a lambda function.
+
+ * This next sample is taken from Tests/Utils/testOctreeIter.cpp and count the leaves :
+ 
+ * <pre class='brush: cpp'> 
+ * OctreeClass::Iterator octreeIterator(&tree);
+ *     octreeIterator.gotoBottomLeft();
+ *     int counter = 0;
+ *     do{
+ *             ++counter;
+ *     } while(octreeIterator.moveRight());
+ * </pre>
+ * But here is the equivalent using lambda function:
+ * long counter = 0;
+ * tree.forEachLeaf([&](LeafClass* leaf){
+ *      ++counter;
+ * });
+
+ * To iterate on the cells we can proceed as follow :
+ * <pre class='brush: cpp'> 
+ * OctreeClass::Iterator octreeIterator(&tree);
+ * octreeIterator.gotoBottomLeft();
+ * for(int idxLevel = NbLevels - 1 ; idxLevel >= 1 ; --idxLevel ){
+ *    int counter = 0;
+ *    do{
+ *       ++counter;
+ *    } while(octreeIterator.moveRight());
+ *    octreeIterator.moveUp();
+ *    octreeIterator.gotoLeft();
+ *    std::cout << "Cells at level " << idxLevel << " = " << counter << " ...\n";
+ * }
+ * </pre>
+ * Here is an equivalent:
+  * <pre class='brush: cpp'> 
+  *  long nbCells[TreeHeight];
+  *  tree.forEachCellWithLevel([&nbCells](CellClass* cell, int idxLevel){
+  *      nbCells[idxLevel] += 1;
+  *  });
+
+ * \section kernel The kernel
+ 
+ * Kernel refers to the class that perform the computation.
+
+ * An empty kernel can be found in Src/Components/FBasicKernels.hpp,
+ * it implements the class definition FAbstractKernels :
+
+ * <pre class='brush: cpp'> 
+ * template< class CellClass, class ContainerClass> class FBasicKernels : public FAbstractKernels<CellClass,ContainerClass> { 
+ * public: 
+ *
+ * // Default destructor
+ * virtual ~FBasicKernels(){}
+ * virtual void P2M(CellClass* const , const ContainerClass* const ) {}
+ * virtual void M2M(CellClass* const FRestrict , const CellClass*const FRestrict *const FRestrict , const int ) {} 
+ * virtual void M2L(CellClass* const FRestrict , const CellClass* [], const int , const int ) {}
+ * virtual void L2L(const CellClass* const FRestrict , CellClass* FRestrict *const FRestrict  , const int ) {}
+ * virtual void L2P(const CellClass* const , ContainerClass* const ){}
+ * virtual void P2P(const FTreeCoordinate& , 
+ *                  ContainerClass* const FRestrict , const ContainerClass* const FRestrict , 
+ *                  ContainerClass* const [27], const int ){}
+ * virtual void P2PRemote(const FTreeCoordinate& , 
+ *                  ContainerClass* const FRestrict , const ContainerClass* const FRestrict , 
+ *                  ContainerClass* const [27], const int ){}
+ * </pre>
+
+ * One example of kernel is the 'test' kernel called
+ * FTestKernels. This kernels simply sum the particles (one particle
+ * weigh = 1) so at the end of the simulation each particles should be
+ * have a weigh of N-1. We just declare this kernel based on the
+ * components type but usually do not call any method manually since
+ * this is performed per the FMM core.
+
+ * <pre class='brush: cpp'> 
+ * typedef FTestKernels<CellClass, ContainerClass >         KernelClass;
+ * KernelClass kernels;
+ * </pre>
+
+ * \section coreFMM The FMM Core
+ 
+ * We showed how to have an octree and a kernel. Now, we show how to use
+ * a Fmm Algorithm on the data. Remember, the FMM algorithm simply
+ * takes the data from the octree and call the method of the
+ * kernel. The goal is to have a FMM independent from the data.
+
+ * The next sample is taken from Tests/Utils/testFmmAlgorithm.cpp and
+ * use the basic sequential FMM :
+ 
+ * <pre class='brush: cpp'> 
+ * typedef FFmmAlgorithm<OctreeClass, CellClass, ContainerClass, KernelClass, LeafClass >     FmmClass;
+ * FmmClass algo(&tree,&kernels);
+ * algo.execute();
+ * </pre>
+
+ * To move to the OpenMP threaded FMM we can use the fallowing code by
+ * changing 'FFmmAlgorithm' per 'FFmmAlgorithmThread' :
+
+ * <pre class='brush: cpp'> 
+ * typedef FFmmAlgorithmThread<OctreeClass, CellClass, ContainerClass, KernelClass, LeafClass >     FmmClass;
+ * FmmClass algo(&tree,&kernels);
+ * algo.execute();
+ * </pre>
+
+ * \section parallelfmm Make your kernel parrallel ready
+
+ * To ensure your kernel will work will all OpenMP based FMM algorithms,
+ * your kernel should propose a copy constructor.
+ * The call to this copy constructor will be sequential (no need to protect the attributes of
+ * your kernel).
+ * And the goal of your constructor will be to factorize the precomputed matrices
+ * and to duplicate the working buffer per kernel.
+ * To prepare your kernel for the MPI based algorithm it has to implemente the P2PRemote method
+ * (which will be used between leaves of different nodes).
+ 
+ * If you look to our kernels you may see our FSmartPointer class.
+ * Which is a good help to have several kernel using the same matrices for example. 
+ * <pre class='brush: cpp'> 
+ * FSmartPointer<FReal[P+1]> M2MTranslationCoef;
+ * </pre>
+ 
+ * For the shared memory nothing special is needed to prepare your cells and particle containers.
+ * However for the distribute memory (MPI) parallelization,
+ * your cell must implement FAbstractSendable.
+ * It will make your cell proposing some methods in order to let scalfmm move it on a different node.
+ * The same happens for your particle containers which must inherit from FAbstractSerializable.
+
+ * Remark: most of our cells also implement FAbstractSerializable but not for the MPI support,
+ * it make them movable and savable into file for example.
+
+ \section reasons The reasons why ...
+ 
+ * Of course the library is changing and re-factorized usually but
+ * lets discuss about 'The reasons why' : 
+ 
+ * <ul>
+ * <li> Every things is templatized : 
+ * <blockquote>
+ * The reason is to avoid the use of virtual and abstract class. In
+ * this page we present some abstract classes, but they are not really
+ * use. They only define what we need, the minimum required to implement a
+ * particle container or a cell. But the kernels should not work on an abstract
+ * type but on the real data. This enable lots of compiler
+ * optimizations and avoid the use of V-Table.
+ * </blockquote>
+ * </li>
+ 
+ * <li>
+ * Typedef is used like this : 
+ * <blockquote>
+ * It can take some time to understand how it works. But all our users
+ * finally like the way of using typedef and template. As you will see
+ * in most of the examples the structure is the same and you will not be
+ * lost.
+ * </blockquote>
+ * </li>
+
+ 
+ * </ul>
+
+*/
