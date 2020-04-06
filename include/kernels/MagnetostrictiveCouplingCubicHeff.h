@@ -19,22 +19,22 @@
 
 **/
 
-#ifndef MAGNETOSTRICTIVECOUPLINGHEFF_H
-#define MAGNETOSTRICTIVECOUPLINGHEFF_H
+#ifndef MAGNETOSTRICTIVECOUPLINGCUBICHEFF_H
+#define MAGNETOSTRICTIVECOUPLINGCUBICHEFF_H
 
 #include "Kernel.h"
 
 //Forward Declarations
-class MagnetostrictiveCouplingHeff;
+class MagnetostrictiveCouplingCubicHeff;
 
 template<>
-InputParameters validParams<MagnetostrictiveCouplingHeff>();
+InputParameters validParams<MagnetostrictiveCouplingCubicHeff>();
 
-class MagnetostrictiveCouplingHeff: public Kernel
+class MagnetostrictiveCouplingCubicHeff: public Kernel
 {
 public:
 
-  MagnetostrictiveCouplingHeff(const InputParameters & parameters);
+  MagnetostrictiveCouplingCubicHeff(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -52,18 +52,14 @@ private:
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const VariableValue & _disp_x;
-  const VariableValue & _disp_y;
-  const VariableValue & _disp_z;
+  const VariableGradient & _disp_x_grad;
+  const VariableGradient & _disp_y_grad;
+  const VariableGradient & _disp_z_grad;
   const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _g0;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _C11;
-  const MaterialProperty<Real> & _C12;
-  const MaterialProperty<Real> & _C44;
-  const MaterialProperty<Real> & _L11;
-  const MaterialProperty<Real> & _L12;
-  const MaterialProperty<Real> & _L44;
+  const MaterialProperty<Real> & _B11;
+  const MaterialProperty<Real> & _B22;
 
 };
-#endif //MAGNETOSTRICTIVECOUPLINGHEFF_H
+#endif //MAGNETOSTRICTIVECOUPLINGCUBICHEFF_H
