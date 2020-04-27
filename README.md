@@ -37,7 +37,15 @@ to be set:
 ```
 make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 ```
-NOTE: The ./configure step can alternatively include a BOOST directory which will allow compile of MOOSE objects with mathematical special functions.
+### Additional information: ###
+
+The ./configure step can include additional libraries such as BOOST which will allow compile of MOOSE objects with mathematical special functions.
+Or it can include an advanced boundary element method (BEM) developed primarily by Prof. Xikai Jiang. In order to use the BEM, you need to compile ScalFMM with the following commands
+
+cd <ferret>/contrib
+./build_scalfmm
+./configure --with-scalfmm=contrib/scalfmm
+make -j2
 
 ### Who do I talk to? ###
 
