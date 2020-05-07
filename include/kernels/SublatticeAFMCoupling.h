@@ -19,20 +19,20 @@
 
 **/
 
-#ifndef SATURATIONCONSTRCARTLLG_H
-#define SATURATIONCONSTRCARTLLG_H
+#ifndef SUBLATTICEAFMCOUPLING_H
+#define SUBLATTICEAFMCOUPLING_H
 
 #include "Kernel.h"
 
-class SaturationConstrCartLLG;
+class SublatticeAFMCoupling;
 
 template<>
-InputParameters validParams<SaturationConstrCartLLG>();
+InputParameters validParams<SublatticeAFMCoupling>();
 
-class  SaturationConstrCartLLG: public Kernel
+class  SublatticeAFMCoupling: public Kernel
 {
 public:
-  SaturationConstrCartLLG(const InputParameters & parameters);
+  SublatticeAFMCoupling(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -46,10 +46,17 @@ protected:
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const Real _alpha;
-  const Real _g0;
-  const Real _As;
-  const Real _Ms;
+  const unsigned int _mag2_x_var;
+  const unsigned int _mag2_y_var;
+  const unsigned int _mag2_z_var;
+  const VariableValue & _mag2_x;
+  const VariableValue & _mag2_y;
+  const VariableValue & _mag2_z;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _g0;
+  const MaterialProperty<Real> & _La;
+  const MaterialProperty<Real> & _Ms;
+  const MaterialProperty<Real> & _mu0;
 
 };
-#endif //SATURATIONCONSTRARTLLG_H
+#endif //SUBLATTICEAFMCOUPLING_H
