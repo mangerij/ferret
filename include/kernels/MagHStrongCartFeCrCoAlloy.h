@@ -43,14 +43,19 @@ protected:
 private:
   const unsigned int _c2_var;
   const unsigned int _c3_var;
+  const unsigned int _mag_x_var;
+  const unsigned int _mag_y_var;
+  const unsigned int _mag_z_var;
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
   const VariableValue & _c1;
   const VariableValue & _c2;
   const VariableValue & _c3;
-  const Real _bohrM;
-  const Real _T;
+  const MaterialProperty<Real> & _bohrM;
+  const MaterialProperty<Real> & _T;
+  const MaterialProperty<Real> & _mu0;
+  const MaterialProperty<Real> & _Ms;
 
 };
 #endif //MAGHSTRONGCARTFECRCOALLOY_H
