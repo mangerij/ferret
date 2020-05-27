@@ -1,9 +1,9 @@
 [Tests]
-  [./full]
-    type = 'Exodiff'
-    input = 'film_test.i'
-    exodiff = 'out_film_test.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+ # [./full]
+ #   type = 'Exodiff'
+ #   input = 'film_test.i'
+ #   exodiff = 'out_film_test.e'
+ #   max_parallel = 1
+ #   max_threads = 1
+ # [../]
 []

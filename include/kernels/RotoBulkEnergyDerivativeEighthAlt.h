@@ -47,7 +47,15 @@ protected:
   const VariableValue & _antiferrodis_A_x;
   const VariableValue & _antiferrodis_A_y;
   const VariableValue & _antiferrodis_A_z;
-  const Real _beta1, _beta11, _beta12, _beta111, _beta112,_beta123, _beta1111, _beta1112, _beta1122, _beta1123;
-  const Real _len_scale;
+  const MaterialProperty<Real> & _beta1;
+  const MaterialProperty<Real> & _beta11;
+  const MaterialProperty<Real> & _beta12;
+  const MaterialProperty<Real> & _beta111;
+  const MaterialProperty<Real> & _beta112;
+  const MaterialProperty<Real> & _beta123;
+  const MaterialProperty<Real> & _beta1111;
+  const MaterialProperty<Real> & _beta1112;
+  const MaterialProperty<Real> & _beta1122;
+  const MaterialProperty<Real> & _beta1123;
 };
 #endif //ROTOBULKENERGYDERIVATIVEEIGHTHALT_H

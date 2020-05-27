@@ -24,49 +24,15 @@
 [GlobalParams]
   len_scale = 1.0
 
-  alpha1 = -3.29328296e-1
-  alpha11 = 7.15515014e-2
-  alpha12 = 8.85202744e-2
-  alpha111 = -4.44849403e-3
-  alpha112 = 1.96626638e-3
-  alpha123 = -5.32358548e-2
-  alpha1111 = 1.86312506e-4
-  alpha1112 = -4.70479587e-4
-  alpha1122 = 9.55233783e-4
-  alpha1123 = 3.0759255e-3
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
 
-  beta1 = -3.88826748e-1
-  beta11 = 9.14933665e-2
-  beta12 = 1.07046279e-1
-  beta111 = -7.73266661e-3
-  beta112 = -6.09716685e-3
-  beta123 = -6.926e-3
-  beta1111 = 3.961e-4
-  beta1112 = 1.294e-4
-  beta1122 = 9.67e-4
-  beta1123 = 8.115e-4
+  antiferrodis_A_x = antiferrodis_A_x
+  antiferrodis_A_y = antiferrodis_A_y
+  antiferrodis_A_z = antiferrodis_A_z
 
-  t1111 = 1.165e-1
-  t1122 = 1.539e-1
-  t1212 = -1.925e-1
-  t42111111 = 4.432e-3
-  t24111111 = -2.662e-2
-  t42111122 = -1.695e-2
-  t24112222 = -2.157e-2
-  t42112233 = -1.577e-2
-  t24112233 = -1.133e-2
-  t42112211 = 1.272e-2
-  t24111122 = 1.214e-2
-  t42111212 = -3.652e-2
-  t42123312 = 4.972e-2
-  t24121112 = -3.891e-3
-  t24121233 = -2.554e-2
-  t6211111111 = -1.327e-3
-  t2611111111 = 3.663e-3
-  t6211111122 = 7.066e-4
-  t2611222222 = 1.7e-3
-  t4411111111 = 6.133e-3
-  t4411112222 = 2.438e-3
+  displacements = 'u_x u_y u_z'
 
   G110 = 0.173
   G11_G110 = 0.5
@@ -79,37 +45,6 @@
   H12_H110 = 0
   H44_H110 = 0.5
   H44P_H110 = 0.5
-
-  #from mathematica
-
-  C11 = 1.762732e-2
-  C12 = 9.4905087e-3
-  C44 = 5.24373333e-5
-
-  Q11 = -1.35386
-  Q12 = 0.238295
-  Q44 = -4.17474
-  R11 = -2.35149
-  R12 = 1.1143805
-  R44 = 3.67475
-
-  q11 = -1.93418062e-2
-  q12 = -6.3875442e-3
-  q44 = -8.75649995e-4
-
-  r11 = -7.7644e-3
-  r12 = 1.63357e-3
-  r44 = 7.70775329e-4
-
-  polar_x = polar_x
-  polar_y = polar_y
-  polar_z = polar_z
-
-  antiferrodis_A_x = antiferrodis_A_x
-  antiferrodis_A_y = antiferrodis_A_y
-  antiferrodis_A_z = antiferrodis_A_z
-
-  displacements = 'u_x u_y u_z'
 []
 
 [Variables]
@@ -535,6 +470,66 @@
 []
 
 [Materials]
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
+    prop_values = '-3.29328296e-1 7.15515014e-2 8.85202744e-2 -4.44849403e-3 1.96626638e-3 -5.32358548e-2 1.86312506e-4 -4.70479587e-4 9.55233783e-4 3.0759255e-3'
+  [../]
+
+  [./Landau_A]
+    type = GenericConstantMaterial
+    prop_names = 'beta1 beta11 beta12 beta111 beta112 beta123 beta1111 beta1112 beta1122 beta1123'
+    prop_values = '-3.88826748e-1 9.14933665e-2 1.07046279e-1 -7.73266661e-3 -6.09716685e-3 -6.926e-3 3.961e-4 1.294e-4 9.67e-4 8.115e-4'
+  [../]
+
+  [./P_A_couple]
+    type = GenericConstantMaterial
+    prop_names = 't1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212 t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222'
+    prop_values = '1.165e-1 1.539e-1 -1.925e-1 4.432e-3 -2.662e-2 -1.695e-2 -2.157e-2 -1.577e-2 -1.133e-2 1.272e-2 1.214e-2 -3.652e-2 4.972e-2 -3.891e-3 -2.554e-2 -1.327e-3 3.663e-3 7.066e-4 1.7e-3 6.133e-3 2.438e-3'
+  [../]
+
+  [./grad_P]
+    type = GenericConstantMaterial
+    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
+    prop_values = '0.173 0.5 0 0.5 0.5'
+  [../]
+
+  [./grad_A]
+    type = GenericConstantMaterial
+    prop_names = 'H110 H11_H110 H12_H110 H44_H110 H44P_H110'
+    prop_values = '0.173 0.5 0 0.5 0.5'
+  [../]
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = 'C11 C12 C44'
+    prop_values = '1.762732e-2 9.4905087e-3 5.24373333e-5'
+  [../]
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = 'Q11 Q12 Q44'
+    prop_values = '-1.35386 0.238295 -4.17474'
+  [../]
+
+  [./mat_R]
+    type = GenericConstantMaterial
+    prop_names = 'R11 R12 R44'
+    prop_values = '-2.35149 1.1143805 3.67475'
+  [../]
+
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = 'q11 q12 q44'
+    prop_values = '-1.93418062e-2 -6.3875442e-3 -8.75649995e-4'
+  [../]
+
+  [./mat_r]
+    type = GenericConstantMaterial
+    prop_names = 'r11 r12 r44'
+    prop_values = '-7.7644e-3 1.63357e-3 7.70775329e-4'
+  [../]
+
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
@@ -582,6 +577,7 @@
     type = RotoPolarCoupledEnergyEighth
     execute_on = 'initial timestep_end'
   [../]
+
   [./FcPu]
     type = ElectrostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
@@ -596,6 +592,7 @@
     disp_y = disp_y
     disp_z = disp_z
   [../]
+
   [./Felu]
     type = ElasticEnergy
     execute_on = 'initial timestep_end'
