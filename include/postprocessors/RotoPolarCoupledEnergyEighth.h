@@ -48,8 +48,27 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const Real _t1111, _t1122, _t1212,  _t42111111, _t24111111, _t42111122,  _t24112222, _t42112233, _t24112233, _t42112211, _t24111122, _t42111212, _t42123312, _t24121112, _t24121233, _t6211111111, _t2611111111, _t6211111122, _t2611222222, _t4411111111, _t4411112222;
-  const Real _len_scale;
+  const MaterialProperty<Real> & _t1111;
+  const MaterialProperty<Real> & _t1122;
+  const MaterialProperty<Real> & _t1212;
+  const MaterialProperty<Real> & _t42111111;
+  const MaterialProperty<Real> & _t24111111;
+  const MaterialProperty<Real> & _t42111122;
+  const MaterialProperty<Real> & _t24112222;
+  const MaterialProperty<Real> & _t42112233;
+  const MaterialProperty<Real> & _t24112233;
+  const MaterialProperty<Real> & _t42112211;
+  const MaterialProperty<Real> & _t24111122;
+  const MaterialProperty<Real> & _t42111212;
+  const MaterialProperty<Real> & _t42123312;
+  const MaterialProperty<Real> & _t24121112;
+  const MaterialProperty<Real> & _t24121233;
+  const MaterialProperty<Real> & _t6211111111;
+  const MaterialProperty<Real> & _t2611111111;
+  const MaterialProperty<Real> & _t6211111122;
+  const MaterialProperty<Real> & _t2611222222;
+  const MaterialProperty<Real> & _t4411111111;
+  const MaterialProperty<Real> & _t4411112222;
 };
 
 #endif

@@ -51,10 +51,9 @@ private:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const Real _q11;
-  const Real _q12;
-  const Real _q44;
-  const Real _len_scale;     //dimension unit, eg: 1e-9 for nm
+  const MaterialProperty<Real> & _q11;
+  const MaterialProperty<Real> & _q12;
+  const MaterialProperty<Real> & _q44;
 };
 
 #endif

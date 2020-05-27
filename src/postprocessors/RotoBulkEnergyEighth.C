@@ -32,17 +32,6 @@ InputParameters validParams<RotoBulkEnergyEighth>()
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the AFD vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the AFD vector field");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the AFD vector field");
-  params.addRequiredParam<Real>("beta1", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta11", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta12", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta111", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta112", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta123", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta1111", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta1112", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta1122", "The coefficients of the Landau expansion");
-  params.addRequiredParam<Real>("beta1123", "The coefficients of the Landau expansion");
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -51,26 +40,25 @@ RotoBulkEnergyEighth::RotoBulkEnergyEighth(const InputParameters & parameters) :
    _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
    _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
    _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
-   _beta1(getParam<Real>("beta1")),
-   _beta11(getParam<Real>("beta11")),
-   _beta12(getParam<Real>("beta12")),
-   _beta111(getParam<Real>("beta111")),
-   _beta112(getParam<Real>("beta112")),
-   _beta123(getParam<Real>("beta123")),
-   _beta1111(getParam<Real>("beta1111")),
-   _beta1112(getParam<Real>("beta1112")),
-   _beta1122(getParam<Real>("beta1122")),
-   _beta1123(getParam<Real>("beta1123")),
-  _len_scale(getParam<Real>("len_scale"))
+   _beta1(getMaterialProperty<Real>("beta1")),
+   _beta11(getMaterialProperty<Real>("beta11")),
+   _beta12(getMaterialProperty<Real>("beta12")),
+   _beta111(getMaterialProperty<Real>("beta111")),
+   _beta112(getMaterialProperty<Real>("beta112")),
+   _beta123(getMaterialProperty<Real>("beta123")),
+   _beta1111(getMaterialProperty<Real>("beta1111")),
+   _beta1112(getMaterialProperty<Real>("beta1112")),
+   _beta1122(getMaterialProperty<Real>("beta1122")),
+   _beta1123(getMaterialProperty<Real>("beta1123"))
 {
 }
 
 Real
 RotoBulkEnergyEighth::computeQpIntegral()
 {
-  return (_beta123*std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],2)*std::pow(_antiferrodis_A_z[_qp],2) + _beta1*(std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)) + _beta12*(std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_z[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2)*std::pow(_antiferrodis_A_z[_qp],2)) + 
-   _beta11*(std::pow(_antiferrodis_A_x[_qp],4) + std::pow(_antiferrodis_A_y[_qp],4) + std::pow(_antiferrodis_A_z[_qp],4)) + _beta1123*(std::pow(_antiferrodis_A_x[_qp],6)*std::pow(_antiferrodis_A_z[_qp],2) + std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],4)*std::pow(_antiferrodis_A_z[_qp],2) + std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],2)*std::pow(_antiferrodis_A_z[_qp],4)) + 
-   _beta1122*(std::pow(_antiferrodis_A_x[_qp],4)*std::pow(_antiferrodis_A_y[_qp],4) + std::pow(_antiferrodis_A_x[_qp],4)*std::pow(_antiferrodis_A_z[_qp],4) + std::pow(_antiferrodis_A_y[_qp],4)*std::pow(_antiferrodis_A_z[_qp],4)) + _beta111*(std::pow(_antiferrodis_A_x[_qp],6) + std::pow(_antiferrodis_A_y[_qp],6) + std::pow(_antiferrodis_A_z[_qp],6)) + _beta1111*(std::pow(_antiferrodis_A_x[_qp],8) + std::pow(_antiferrodis_A_y[_qp],8) + std::pow(_antiferrodis_A_z[_qp],8)) + 
-   _beta112*((std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2))*std::pow(_antiferrodis_A_z[_qp],4) + std::pow(_antiferrodis_A_y[_qp],4)*(std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)) + std::pow(_antiferrodis_A_x[_qp],4)*(std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2))) + 
-   _beta1112*((std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2))*std::pow(_antiferrodis_A_z[_qp],6) + std::pow(_antiferrodis_A_y[_qp],6)*(std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)) + std::pow(_antiferrodis_A_x[_qp],6)*(std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)))) * std::pow(_len_scale,3);
+  return (_beta123[_qp]*std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],2)*std::pow(_antiferrodis_A_z[_qp],2) + _beta1[_qp]*(std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)) + _beta12[_qp]*(std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_z[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2)*std::pow(_antiferrodis_A_z[_qp],2)) + 
+   _beta11[_qp]*(std::pow(_antiferrodis_A_x[_qp],4) + std::pow(_antiferrodis_A_y[_qp],4) + std::pow(_antiferrodis_A_z[_qp],4)) + _beta1123[_qp]*(std::pow(_antiferrodis_A_x[_qp],6)*std::pow(_antiferrodis_A_z[_qp],2) + std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],4)*std::pow(_antiferrodis_A_z[_qp],2) + std::pow(_antiferrodis_A_x[_qp],2)*std::pow(_antiferrodis_A_y[_qp],2)*std::pow(_antiferrodis_A_z[_qp],4)) + 
+   _beta1122[_qp]*(std::pow(_antiferrodis_A_x[_qp],4)*std::pow(_antiferrodis_A_y[_qp],4) + std::pow(_antiferrodis_A_x[_qp],4)*std::pow(_antiferrodis_A_z[_qp],4) + std::pow(_antiferrodis_A_y[_qp],4)*std::pow(_antiferrodis_A_z[_qp],4)) + _beta111[_qp]*(std::pow(_antiferrodis_A_x[_qp],6) + std::pow(_antiferrodis_A_y[_qp],6) + std::pow(_antiferrodis_A_z[_qp],6)) + _beta1111[_qp]*(std::pow(_antiferrodis_A_x[_qp],8) + std::pow(_antiferrodis_A_y[_qp],8) + std::pow(_antiferrodis_A_z[_qp],8)) + 
+   _beta112[_qp]*((std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2))*std::pow(_antiferrodis_A_z[_qp],4) + std::pow(_antiferrodis_A_y[_qp],4)*(std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)) + std::pow(_antiferrodis_A_x[_qp],4)*(std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2))) + 
+   _beta1112[_qp]*((std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_y[_qp],2))*std::pow(_antiferrodis_A_z[_qp],6) + std::pow(_antiferrodis_A_y[_qp],6)*(std::pow(_antiferrodis_A_x[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2)) + std::pow(_antiferrodis_A_x[_qp],6)*(std::pow(_antiferrodis_A_y[_qp],2) + std::pow(_antiferrodis_A_z[_qp],2))));
 }

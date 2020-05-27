@@ -47,7 +47,15 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const Real _alpha1, _alpha11, _alpha12, _alpha111, _alpha112, _alpha123, _alpha1111, _alpha1112, _alpha1122, _alpha1123;
-  const Real _len_scale;
+  const MaterialProperty<Real> & _alpha1;
+  const MaterialProperty<Real> & _alpha11;
+  const MaterialProperty<Real> & _alpha12;
+  const MaterialProperty<Real> & _alpha111;
+  const MaterialProperty<Real> & _alpha112;
+  const MaterialProperty<Real> & _alpha123;
+  const MaterialProperty<Real> & _alpha1111;
+  const MaterialProperty<Real> & _alpha1112;
+  const MaterialProperty<Real> & _alpha1122;
+  const MaterialProperty<Real> & _alpha1123;
 };
 #endif //BULKENERGYDERIVATIVEEIGHTH_H

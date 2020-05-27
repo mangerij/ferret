@@ -36,9 +36,6 @@ InputParameters validParams<RotostrictiveCouplingDistortDerivative>()
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredParam<Real>("r11", "the 11 component of rotostrictive coupling tensor");
-  params.addRequiredParam<Real>("r12", "the 12 component of rotostrictive coupling tensor");
-  params.addRequiredParam<Real>("r44", "the 44 component of rotostrictive coupling tensor");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -58,10 +55,9 @@ RotostrictiveCouplingDistortDerivative::RotostrictiveCouplingDistortDerivative(c
    _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
    _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
    _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
-   _r11(getParam<Real>("r11")),
-   _r12(getParam<Real>("r12")),
-   _r44(getParam<Real>("r44")),
-   _len_scale(getParam<Real>("len_scale"))
+   _r11(getMaterialProperty<Real>("r11")),
+   _r12(getMaterialProperty<Real>("r12")),
+   _r44(getMaterialProperty<Real>("r44"))
 {
 }
 
@@ -70,15 +66,15 @@ RotostrictiveCouplingDistortDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_r11*_disp_x_grad[_qp](0) - 2*_r44*((_antiferrodis_A_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2. + (_antiferrodis_A_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.) - _r12*(2*_antiferrodis_A_x[_qp]*_disp_y_grad[_qp](1) + 2*_antiferrodis_A_x[_qp]*_disp_z_grad[_qp](2)));
+    return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_r11[_qp]*_disp_x_grad[_qp](0) - 2*_r44[_qp]*((_antiferrodis_A_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2. + (_antiferrodis_A_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.) - _r12[_qp]*(2*_antiferrodis_A_x[_qp]*_disp_y_grad[_qp](1) + 2*_antiferrodis_A_x[_qp]*_disp_z_grad[_qp](2)));
   }
   else if (_component == 1)
   {
-    return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_r11*_disp_y_grad[_qp](1) - 2*_r44*((_antiferrodis_A_x[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2. + (_antiferrodis_A_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.) - _r12*(2*_antiferrodis_A_y[_qp]*_disp_x_grad[_qp](0) + 2*_antiferrodis_A_y[_qp]*_disp_z_grad[_qp](2)));
+    return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_r11[_qp]*_disp_y_grad[_qp](1) - 2*_r44[_qp]*((_antiferrodis_A_x[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2. + (_antiferrodis_A_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.) - _r12[_qp]*(2*_antiferrodis_A_y[_qp]*_disp_x_grad[_qp](0) + 2*_antiferrodis_A_y[_qp]*_disp_z_grad[_qp](2)));
   }
   else if (_component == 2)
   {
-    return -_test[_i][_qp] * (-(_r12*(2*_antiferrodis_A_z[_qp]*_disp_x_grad[_qp](0) + 2*_antiferrodis_A_z[_qp]*_disp_y_grad[_qp](1))) - 2*_r44*((_antiferrodis_A_x[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2. + (_antiferrodis_A_y[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.) - 2*_antiferrodis_A_z[_qp]*_r11*_disp_z_grad[_qp](2));
+    return -_test[_i][_qp] * (-(_r12[_qp]*(2*_antiferrodis_A_z[_qp]*_disp_x_grad[_qp](0) + 2*_antiferrodis_A_z[_qp]*_disp_y_grad[_qp](1))) - 2*_r44[_qp]*((_antiferrodis_A_x[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2. + (_antiferrodis_A_y[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.) - 2*_antiferrodis_A_z[_qp]*_r11[_qp]*_disp_z_grad[_qp](2));
   }
   else
     return 0.0;
@@ -89,15 +85,15 @@ RotostrictiveCouplingDistortDerivative::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return -_test[_i][_qp] * _phi[_j][_qp] * (-2*_r11*_disp_x_grad[_qp](0) - _r12*(2*_disp_y_grad[_qp](1) + 2*_disp_z_grad[_qp](2)));
+    return -_test[_i][_qp] * _phi[_j][_qp] * (-2*_r11[_qp]*_disp_x_grad[_qp](0) - _r12[_qp]*(2*_disp_y_grad[_qp](1) + 2*_disp_z_grad[_qp](2)));
   }
   else if (_component == 1)
   {
-    return -_test[_i][_qp] * _phi[_j][_qp] * (-2*_r11*_disp_y_grad[_qp](1) - _r12*(2*_disp_x_grad[_qp](0) + 2*_disp_z_grad[_qp](2)));
+    return -_test[_i][_qp] * _phi[_j][_qp] * (-2*_r11[_qp]*_disp_y_grad[_qp](1) - _r12[_qp]*(2*_disp_x_grad[_qp](0) + 2*_disp_z_grad[_qp](2)));
   }
   else if (_component == 2)
   {
-    return -_test[_i][_qp] * _phi[_j][_qp] * (-(_r12*(2*_disp_x_grad[_qp](0) + 2*_disp_y_grad[_qp](1))) - 2*_r11*_disp_z_grad[_qp](2));
+    return -_test[_i][_qp] * _phi[_j][_qp] * (-(_r12[_qp]*(2*_disp_x_grad[_qp](0) + 2*_disp_y_grad[_qp](1))) - 2*_r11[_qp]*_disp_z_grad[_qp](2));
   }
   else
     return 0.0;
@@ -110,23 +106,23 @@ RotostrictiveCouplingDistortDerivative::computeQpOffDiagJacobian(unsigned int jv
   {
     if (jvar == _antiferrodis_A_y_var)
     {
-      return -_test[_i][_qp] * _phi[_j][_qp] * (-(_r44*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
+      return -_test[_i][_qp] * _phi[_j][_qp] * (-(_r44[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return -_test[_i][_qp] * _phi[_j][_qp] * (-(_r44*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0))));
+      return -_test[_i][_qp] * _phi[_j][_qp] * (-(_r44[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0))));
     }
     else if (jvar == _disp_x_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0)*_r11 - 2*((_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1))/2. + (_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0)*_r11[_qp] - 2*((_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1))/2. + (_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_r44[_qp]);
     }
     else if (jvar == _disp_y_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](1)*_r12 - _antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](0)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](1)*_r12[_qp] - _antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](0)*_r44[_qp]);
     }
     else if (jvar == _disp_z_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](2)*_r12 - _antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](0)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](2)*_r12[_qp] - _antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](0)*_r44[_qp]);
     }
     else
     {
@@ -137,23 +133,23 @@ RotostrictiveCouplingDistortDerivative::computeQpOffDiagJacobian(unsigned int jv
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return -_test[_i][_qp] * (-(_r44*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
+      return -_test[_i][_qp] * (-(_r44[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return -_test[_i][_qp] * (-(_r44*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1))));
+      return -_test[_i][_qp] * (-(_r44[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1))));
     }
     else if (jvar == _disp_x_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](0)*_r12 - _antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](1)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](0)*_r12[_qp] - _antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](1)*_r44[_qp]);
     }
     else if (jvar == _disp_y_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1)*_r11 - 2*((_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1)*_r11[_qp] - 2*((_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_r44[_qp]);
     }
     else if (jvar == _disp_z_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](2)*_r12 - _antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](1)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](2)*_r12[_qp] - _antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](1)*_r44[_qp]);
     }
     else
     {
@@ -164,23 +160,23 @@ RotostrictiveCouplingDistortDerivative::computeQpOffDiagJacobian(unsigned int jv
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return -_test[_i][_qp] * (-(_r44*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0))));
+      return -_test[_i][_qp] * (-(_r44[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0))));
     }
     else if (jvar == _antiferrodis_A_y_var)
     {
-      return -_test[_i][_qp] * (-(_r44*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
+      return -_test[_i][_qp] * (-(_r44[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0))));
     }
     else if (jvar == _disp_x_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](0)*_r12 - _antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](2)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](0)*_r12[_qp] - _antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](2)*_r44[_qp]);
     }
     else if (jvar == _disp_y_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](1)*_r12 - _antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](2)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](1)*_r12[_qp] - _antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](2)*_r44[_qp]);
     }
     else if (jvar == _disp_z_var)
     {
-      return -_test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2)*_r11 - 2*((_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1))/2.)*_r44);
+      return -_test[_i][_qp] * (-2*_antiferrodis_A_z[_qp]*_grad_phi[_j][_qp](2)*_r11[_qp] - 2*((_antiferrodis_A_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_antiferrodis_A_y[_qp]*_grad_phi[_j][_qp](1))/2.)*_r44[_qp]);
     }
     else
     {

@@ -48,13 +48,11 @@ private:
   const VariableValue & _antiferrodis_A_x;
   const VariableValue & _antiferrodis_A_y;
   const VariableValue & _antiferrodis_A_z;
-  const Real _C11;
-  const Real _C12;
-  const Real _C44;
-  const Real _R11;
-  const Real _R12;
-  const Real _R44;
-  const Real _len_scale; //dimension unit, eg: 1e-9 for nm
-
+  const MaterialProperty<Real> & _C11;
+  const MaterialProperty<Real> & _C12;
+  const MaterialProperty<Real> & _C44;
+  const MaterialProperty<Real> & _R11;
+  const MaterialProperty<Real> & _R12;
+  const MaterialProperty<Real> & _R44;
 };
 #endif //ROTOSTRICTIVECOUPLINGDISPDERIVATIVE_H
