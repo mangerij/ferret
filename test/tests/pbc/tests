@@ -1,0 +1,9 @@
+[Tests]
+  [./chunk]
+    type = 'Exodiff'
+    input = 'pbc.i'
+    exodiff = 'out_pbc.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]

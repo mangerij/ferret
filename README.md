@@ -1,23 +1,29 @@
 ### We have moved from BitBucket! ###
 
-As of July 23rd, 2019 the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here on GitHub and Ferret business will continue as usual on CIVET (https://civet.inl.gov/).
+As of July 23rd, 2019 the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here on GitHub and Ferret business will continue as usual on the continuous integration and testing serve (CIVET: https://civet.inl.gov/).
 
 Ferret still exists under the open-source GNU License but to access the repository you will need an RSA deploy key registered with our application. We freely provide these keys in order to track repository usage and measure impact. 
 Please contact one of the developers for assistance in generating one.
 
-After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 if you use Ferret.
+After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 in the main text of your paper if you use Ferret. A methods paper is in the works.
 
 ### What is Ferret and how can I compile it? ###
 
-Ferret is an application within the [MOOSE](http://mooseframework.org) framework.
-To build and use Ferret you will need to build MOOSE.
-It might be a good idea to learn a few things about MOOSE, too.
+Ferret is an application within the [MOOSE](http://mooseframework.org) framework. More information is available at our website https://ferretnano.weebly.com/ which is still under-construction. To build and use Ferret you will need to build MOOSE. It might be a good idea to learn a few things about MOOSE, too.
 
-Generally, you will clone Ferret this way:
+Generally, once you have a RSA-deploy key registered with us, you first need to authenticate to Ferret by typing
+```
+ssh -T git@github.com
+```
+Once you have access, you will be able to clone the repository with 
+```
+git clone git@github.com:mangerij/ferret.git
+```
+Those with admin access to the code can clone with a slightly different command
 ```
 git clone https://github.com/mangerij/ferret.git
 ```
-Once MOOSE is built, Ferret can usually be built simply as
+Once MOOSE is built, Ferret can be built simply with
 ```
 cd <ferret>
 ./configure
@@ -42,12 +48,14 @@ make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 ### Additional information: ###
 
 The ./configure step can include additional libraries such as BOOST which will allow compile of MOOSE objects with mathematical special functions.
-Or it can include an advanced boundary element method (BEM) developed primarily by Prof. Xikai Jiang. In order to use the BEM, you need to compile ScalFMM with the following commands
-
+Or it can include an advanced boundary element method (BEM) developed by Prof. Xikai Jiang. In order to use the BEM, you need to compile ScalFMM with the following commands
+```
 cd <ferret>/contrib
 ./build_scalfmm
 ./configure --with-scalfmm=contrib/scalfmm
 make -j2
+```
+and then run the ./configure step as above.
 
 ### Who do I talk to? ###
 
@@ -67,5 +75,4 @@ make -j2
 
 ### Contributing ###
  * If you have an idea for some ferroelectric materials problem and would like to add it to the repository, then please submit a pull request *to the devel branch* with the relevant information. Generally, to submit a pull request, you should *fork* Ferret, type git checkout devel, git fetch origin, git rebase origin/devel, then make the changes/additions and a commit message, type git push. Then submit the pull request on the page (the next steps will be handled automatically).
- * At the moment, please cite Nanoscale, 2017, 9, 1616-1624 if you use Ferret. A methods paper is currently in the works.
  * We have a google group now! https://groups.google.com/forum/#!forum/ferret-users/new
