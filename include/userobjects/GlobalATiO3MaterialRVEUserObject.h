@@ -68,12 +68,12 @@ protected:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-  const Real _C11;
-  const Real _C12;
-  const Real _C44;
-  const Real _Q11;
-  const Real _Q12;
-  const Real _Q44;
+  const MaterialProperty<Real> & _C11;
+  const MaterialProperty<Real> & _C12;
+  const MaterialProperty<Real> & _C44;
+  const MaterialProperty<Real> & _Q11;
+  const MaterialProperty<Real> & _Q12;
+  const MaterialProperty<Real> & _Q44;
 
 };
 
