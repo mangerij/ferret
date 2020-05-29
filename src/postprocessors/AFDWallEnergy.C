@@ -58,5 +58,5 @@ AFDWallEnergy::computeQpIntegral()
   return (0.5*_H11*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_z_grad[_qp](2)))+
     _H12*(_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_y_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](1)*_antiferrodis_A_z_grad[_qp](2)+_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_z_grad[_qp](2))+
     0.5*_H44*(pow(_antiferrodis_A_x_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](0),2)+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](0))+
-	  0.5*_H44P*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0))));
+	  0.5*_H44P*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0)))));
 }

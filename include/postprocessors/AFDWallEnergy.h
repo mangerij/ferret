@@ -40,7 +40,6 @@ protected:
   const VariableGradient& _antiferrodis_A_y_grad;
   const VariableGradient& _antiferrodis_A_z_grad;
   const Real _H110,_H11, _H12, _H44, _H44P;
-  const Real _len_scale;
 };
 
 #endif

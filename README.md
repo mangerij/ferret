@@ -10,7 +10,7 @@ After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 i
 
 ### What is Ferret and how can I compile it? ###
 
-Ferret is an application within the [MOOSE](http://mooseframework.org) framework. More information is available at our website https://ferretnano.weebly.com/ which is still under-construction. To build and use Ferret you will need to build MOOSE. It might be a good idea to learn a few things about MOOSE, too.
+Ferret is an application within the finite element [MOOSE](http://mooseframework.org) framework useful for simulating the ferroic nanostructure. More information is available at our website https://ferretnano.weebly.com/ which is still under-construction. To build and use Ferret you will need to build MOOSE. It might be a good idea to learn a few things about MOOSE, too.
 
 Generally, once you have a RSA-deploy key registered with us, you first need to authenticate to Ferret by typing
 ```
