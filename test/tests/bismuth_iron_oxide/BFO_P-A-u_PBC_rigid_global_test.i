@@ -570,8 +570,16 @@
     execute_on = 'initial timestep_end'
   [../]
   [./FgA]
-    type = AFDWallEnergy
+    type = WallEnergy
     execute_on = 'initial timestep_end'
+    polar_x = antiferrodis_A_x
+    polar_y = antiferrodis_A_y
+    polar_z = antiferrodis_A_z
+    G110 = 0.173
+    G11_G110 = 0.5
+    G12_G110 = 0
+    G44_G110 = 0.5
+    G44P_G110 = 0.5
   [../]
   [./FcPA]
     type = RotoPolarCoupledEnergyEighth

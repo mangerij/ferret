@@ -37,7 +37,6 @@ InputParameters validParams<AFDWallEnergy>()
   params.addRequiredParam<Real>("H12_H110","Ratio of domain wall penalty coefficients");
   params.addRequiredParam<Real>("H44_H110","Ratio of domain wall penalty coefficients");
   params.addRequiredParam<Real>("H44P_H110","Ratio of domain wall penalty coefficients");
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -50,15 +49,14 @@ AFDWallEnergy::AFDWallEnergy(const InputParameters & parameters) :
   _H11(getParam<Real>("H11_H110")*_H110),
   _H12(getParam<Real>("H12_H110")*_H110),
   _H44(getParam<Real>("H44_H110")*_H110),
-  _H44P(getParam<Real>("H44P_H110")*_H110),
-  _len_scale(getParam<Real>("len_scale"))
+  _H44P(getParam<Real>("H44P_H110")*_H110)
 {}
 
 Real
 AFDWallEnergy::computeQpIntegral()
 {
-  return (0.5*_H11*(pow(_antiferrodis_A_x_grad[_qp](0),2)+pow(_antiferrodis_A_y_grad[_qp](1),2)+pow(_antiferrodis_A_z_grad[_qp](2),2))+
+  return (0.5*_H11*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_z_grad[_qp](2)))+
     _H12*(_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_y_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](1)*_antiferrodis_A_z_grad[_qp](2)+_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_z_grad[_qp](2))+
-    0.5*_H44*(pow(_antiferrodis_A_x_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](0),2)+pow(_antiferrodis_A_y_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](1),2)+pow(_antiferrodis_A_x_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](0),2))+
-	  0.5*_H44P*(pow(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0),2)+pow(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1),2)+pow(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0),2)))*_len_scale;
+    0.5*_H44*(pow(_antiferrodis_A_x_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](0),2)+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](0))+
+	  0.5*_H44P*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0)))));
 }

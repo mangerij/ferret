@@ -1,15 +1,16 @@
 ### We have moved from BitBucket! ###
 
-As of July 23rd, 2019 the BitBucket repository is no longer supported or current with the MOOSE master. All official changes will be made here on GitHub and Ferret business will continue as usual on the continuous integration and testing serve (CIVET: https://civet.inl.gov/).
+As of July 23rd, 2019 the BitBucket repository is no longer supported. All official changes will be made here on GitHub and Ferret business will continue as usual.
+The continuous integration and testing server (CIVET: https://civet.inl.gov/) ensures this version is current with the MOOSE master.
 
-Ferret still exists under the open-source GNU License but to access the repository you will need an RSA deploy key registered with our application. We freely provide these keys in order to track repository usage and measure impact. 
+Ferret still exists under the open-source GNU License but to access the repository you will need an RSA deploy key registered with our application. We freely provide these keys in order to track repository usage and measure impact. The deploy key itself allows write-access on request.
 Please contact one of the developers for assistance in generating one.
 
-After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 in the main text of your paper if you use Ferret. A methods paper is in the works.
+After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 in the *main text* of your paper if you use Ferret. A methods paper is in the works. Finally, one more comment about usage: any issues with legacy inputs not running on this version of Ferret should be resolved with corresponding authors of appropriate papers. As this code belongs under GNU licensing, we cannot possibly support all of the custom spin-offs and additions to the code. We wish we could but sometimes cooperation and a mature interest in the open-source approach to science is less than optimal.
 
 ### What is Ferret and how can I compile it? ###
 
-Ferret is an application within the [MOOSE](http://mooseframework.org) framework. More information is available at our website https://ferretnano.weebly.com/ which is still under-construction. To build and use Ferret you will need to build MOOSE. It might be a good idea to learn a few things about MOOSE, too.
+Ferret is an application within the finite element [MOOSE](http://mooseframework.org) framework useful for simulating the ferroic nanostructure. More information is available at our website https://ferretnano.weebly.com/ which is still under-construction. To build and use Ferret you will need to build MOOSE. It might be a good idea to learn a few things about MOOSE, too.
 
 Generally, once you have a RSA-deploy key registered with us, you first need to authenticate to Ferret by typing
 ```
