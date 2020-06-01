@@ -61,7 +61,7 @@ Real
 BulkEnergyDensity::computeValue()
 {
   return (
-    _alpha1 * (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) + std::pow(_polar_z[_qp] ,2))
+    _alpha1 * (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))
   + _alpha11 * (Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_polar_z[_qp]))
     + _alpha12 * (Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp])+
 	      Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp])+
