@@ -17,14 +17,14 @@
    For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
    and be sure to track new changes at github.com/mangerij/ferret
 
-   // Credits to A. Hagerstrom (NIST) for this piece of C++ code 
+   // Credits to A. Hagerstrom (NIST) for this piece of C++ code
 
 **/
 
 #include "CorrelatedRandomFieldIC.h"
 
 #include "SubProblem.h" //need both of these to pull total node number
-#include "MooseMesh.h" 
+#include "MooseMesh.h"
 
 #include "libmesh/point.h"
 #include <cmath>
@@ -32,7 +32,7 @@
 #include "MooseRandom.h"
 
 #include "libmesh/point.h"
-
+#include "libmesh/utility.h"
 /**
 #include <fstream>
 #include <iostream>
@@ -68,7 +68,7 @@ InputParameters validParams<CorrelatedRandomFieldIC>()
   params.addRequiredParam<Real>("Lcorr", "correlation length scale");
 
   MooseEnum dims("1=1 2 3");
-  params.addRequiredParam<MooseEnum>("dim", dims, "The dimension of the mesh to recieve correlated field"); 
+  params.addRequiredParam<MooseEnum>("dim", dims, "The dimension of the mesh to recieve correlated field");
   params.addParam<Real>("xmin", 0.0, "Lower X Coordinate of the generated mesh");
   params.addParam<Real>("ymin", 0.0, "Lower Y Coordinate of the generated mesh");
   params.addParam<Real>("zmin", 0.0, "Lower Z Coordinate of the generated mesh");
@@ -168,18 +168,18 @@ CorrelatedRandomFieldIC::fourierCoeffs()
 {
   int nodes = _Nnodes; //_mesh.n_nodes();
   std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
-  
+
   std::vector<std::vector<std::vector<std::vector<Real>>>> output = std::vector<std::vector<std::vector<std::vector<Real>>>>(2*nodes+1,std::vector<std::vector<std::vector<Real>>>(2*nodes+1,std::vector<std::vector<Real>>(2*nodes+1,std::vector<Real>(2,0))));
-    
+
   Real rand1  = 0.0;
   Real rand2  = 0.0;
-    
+
   Real nrand1  = 0.0;
   Real nrand2  = 0.0;
-    
+
   Real randnorm = 0.0;
   Real amp = 0.0;
-    
+
   RealVectorValue kv(0.0, 0.0, 0.0);
   Real k2 = 0.0;
   if (_dim == 1)
@@ -189,13 +189,13 @@ CorrelatedRandomFieldIC::fourierCoeffs()
     {
       kv(0) = 2.0*libMesh::pi*double(i-nodes)/(_xmax-_xmin);
       k2 = kv(0)*kv(0); //+ kv(1)*kv(1) + kv(2)*kv(2);
-             
-      amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
+
+      amp = norm/(k2 + Utility::pow<2>(1.0/_Lcorr));
       // Box-Muller method for gaussian random numbers
-                
+
       rand1  = (rand()%1000000+1)/1000000.0;
       rand2  = (rand()%1000000+1)/1000000.0;
-                
+
       //construct random numbers with unit variance
       //with unit variance for nrand1^2 + nrand2^2
       nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
@@ -221,13 +221,13 @@ CorrelatedRandomFieldIC::fourierCoeffs()
         kv(1) = 2.0*libMesh::pi*double(j-nodes)/(_ymax-_ymin);
 
         k2 = kv(0)*kv(0) + kv(1)*kv(1);
-             
-        amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
+
+        amp = norm/(k2 + Utility::pow<2>(1.0/_Lcorr));
         // Box-Muller method for gaussian random numbers
-                
+
         rand1  = (rand()%1000000+1)/1000000.0;
         rand2  = (rand()%1000000+1)/1000000.0;
-                
+
         //construct random numbers with unit variance
         //with unit variance for nrand1^2 + nrand2^2
         nrand1 = sqrt(-2.0*std::log(rand1))*cos(2.0*libMesh::pi*rand1)/sqrt(2.0);
@@ -257,10 +257,10 @@ CorrelatedRandomFieldIC::fourierCoeffs()
           kv(2) = 2.0*libMesh::pi*double(k-nodes)/(_zmax-_zmin);
 
           k2 = kv(0)*kv(0) + kv(1)*kv(1) + kv(2)*kv(2);
-             
-          amp = norm/(k2 + std::pow(1.0/_Lcorr,2));
+
+          amp = norm/(k2 + Utility::pow<2>(1.0/_Lcorr));
           // Box-Muller method for gaussian random numbers
-                
+
           rand1  = (rand()%1000000+1)/1000000.0;
           rand2  = (rand()%1000000+1)/1000000.0;
 

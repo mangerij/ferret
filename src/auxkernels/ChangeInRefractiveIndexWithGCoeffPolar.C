@@ -57,7 +57,5 @@ ChangeInRefractiveIndexWithGCoeffPolar::computeValue()
 {
   // the diagonals are related to the B1, B2, B3 terms in rotated indicatrix
   // Likely we will need to load in the dielectric constant representation of the inverse refractive index squared instead of this constant number here.
-  return - 0.5 * std::pow(1.0 / std::pow(_indicatrix[_qp](_index_i, _index_j), 0.5) , 3.0) *  (- _delta_indicatrix[_qp](_index_k, _index_l) - _delta_gPO_tensor[_qp](_index_k, _index_l));
+  return - 0.5 * Utility::pow<3>(1.0 / std::pow(_indicatrix[_qp](_index_i, _index_j), 0.5) ) *  (- _delta_indicatrix[_qp](_index_k, _index_l) - _delta_gPO_tensor[_qp](_index_k, _index_l));
 }
-
-

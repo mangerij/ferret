@@ -65,6 +65,6 @@ ElectrostrictiveCouplingEnergyDensity::ElectrostrictiveCouplingEnergyDensity(con
 Real
 ElectrostrictiveCouplingEnergyDensity::computeValue()
 {
-  return -(-2.0*_q44*((_polar_x[_qp]*_polar_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _q12*((std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2))*_disp_x_grad[_qp](0) + (std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2))*_disp_y_grad[_qp](1) + (std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2))*_disp_z_grad[_qp](2)) - 
-   _q11*(std::pow(_polar_x[_qp],2)*_disp_x_grad[_qp](0) + std::pow(_polar_y[_qp],2)*_disp_y_grad[_qp](1) + std::pow(_polar_z[_qp],2)*_disp_z_grad[_qp](2))) * std::pow(_len_scale,3);
+  return -(-2.0*_q44*((_polar_x[_qp]*_polar_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _q12*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_disp_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_disp_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_disp_z_grad[_qp](2)) -
+   _q11*(Utility::pow<2>(_polar_x[_qp])*_disp_x_grad[_qp](0) + Utility::pow<2>(_polar_y[_qp])*_disp_y_grad[_qp](1) + Utility::pow<2>(_polar_z[_qp])*_disp_z_grad[_qp](2)));
 }

@@ -63,7 +63,7 @@ CalcMagFeCrCo::computeValue()
    }
    else if (tau <= 0.9)
    {
-     return _bohrM*(2.22*_c1[_qp] - 0.01*_c2[_qp] + 1.35*_c3[_qp] - 0.85*_c1[_qp]*_c2[_qp] + (2.4127 + 0.2418*(_c3[_qp]-_c1[_qp]))*_c1[_qp]*_c3[_qp])*(1.0 - (1.0/7.0)*(5.0*std::pow(tau,4.0)+2.0*std::pow(tau,20.0)));
+     return _bohrM*(2.22*_c1[_qp] - 0.01*_c2[_qp] + 1.35*_c3[_qp] - 0.85*_c1[_qp]*_c2[_qp] + (2.4127 + 0.2418*(_c3[_qp]-_c1[_qp]))*_c1[_qp]*_c3[_qp])*(1.0 - (1.0/7.0)*(5.0*Utility::pow<4>(tau)+2.0*Utility::pow<20>(tau)));
    }
    else
      return 0.0;
@@ -77,7 +77,7 @@ CalcMagFeCrCo::computeValue()
    }
    else if (tau <= 0.9)
    {
-     return _bohrM*(2.22*_c1[_qp] - 0.01*_c2[_qp] + 1.35*_c3[_qp] - 0.85*_c1[_qp]*_c2[_qp] + (2.4127 + 0.2418*(_c3[_qp]-_c1[_qp]))*_c1[_qp]*_c3[_qp])*(1.0 - (1.0/7.0)*(5.0*std::pow(tau,4.0)+2.0*std::pow(tau,20.0)));
+     return _bohrM*(2.22*_c1[_qp] - 0.01*_c2[_qp] + 1.35*_c3[_qp] - 0.85*_c1[_qp]*_c2[_qp] + (2.4127 + 0.2418*(_c3[_qp]-_c1[_qp]))*_c1[_qp]*_c3[_qp])*(1.0 - (1.0/7.0)*(5.0*Utility::pow<4>(tau)+2.0*Utility::pow<20>(tau)));
    }
    else
      return 0.0;
@@ -91,7 +91,7 @@ CalcMagFeCrCo::computeValue()
    }
    else if (tau <= 0.9)
    {
-     return _bohrM*(2.22*_c1[_qp] - 0.01*_c2[_qp] + 1.35*_c3[_qp] - 0.85*_c1[_qp]*_c2[_qp] + (2.4127 + 0.2418*(_c3[_qp]-_c1[_qp]))*_c1[_qp]*_c3[_qp])*(1.0 - (1.0/7.0)*(5.0*std::pow(tau,4.0)+2.0*std::pow(tau,20.0)));
+     return _bohrM*(2.22*_c1[_qp] - 0.01*_c2[_qp] + 1.35*_c3[_qp] - 0.85*_c1[_qp]*_c2[_qp] + (2.4127 + 0.2418*(_c3[_qp]-_c1[_qp]))*_c1[_qp]*_c3[_qp])*(1.0 - (1.0/7.0)*(5.0*Utility::pow<4>(tau)+2.0*Utility::pow<20>(tau)));
    }
    else
      return 0.0;

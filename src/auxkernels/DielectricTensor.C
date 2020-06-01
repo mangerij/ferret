@@ -77,55 +77,28 @@ DielectricTensor::computeValue()
 
   if (_first_deriv == 0 && _second_deriv == 0)
   {
-    return 2.0*_alpha1 + 12.0*_alpha11*std::pow(_polar_x[_qp],2.0) + 30.0*_alpha111*std::pow(_polar_x[_qp],4.0) + 2.0*_alpha123*std::pow(_polar_y[_qp],2)*std::pow(_polar_z[_qp],2) + _alpha12*(2*std::pow(_polar_y[_qp],2) + 2*std::pow(_polar_z[_qp],2)) +
-   _alpha112*(2*std::pow(_polar_y[_qp],4) + 2.0*std::pow(_polar_z[_qp],4.0) + 12*std::pow(_polar_x[_qp],2)*(std::pow(_polar_y[_qp],2) + std::pow(_polar_z[_qp],2))) + 2*_electrostrictive_tensor[_qp](0,0,0,0)*_elastic_strain[_qp](0,0) + 2*_electrostrictive_tensor[_qp](0,1,0,0)*_elastic_strain[_qp](0,1) +
-   2*_electrostrictive_tensor[_qp](0,2,0,0)*_elastic_strain[_qp](0,2) + 2*_electrostrictive_tensor[_qp](1,0,0,0)*_elastic_strain[_qp](1,0) + 2*_electrostrictive_tensor[_qp](1,1,0,0)*_elastic_strain[_qp](1,1) +
-   2*_electrostrictive_tensor[_qp](1,2,0,0)*_elastic_strain[_qp](1,2) + 2*_electrostrictive_tensor[_qp](2,0,0,0)*_elastic_strain[_qp](2,0) + 2*_electrostrictive_tensor[_qp](2,1,0,0)*_elastic_strain[_qp](2,1) +
-   2*_electrostrictive_tensor[_qp](2,2,0,0)*_elastic_strain[_qp](2,2);
+    return 0.0;
   }
   else if (_first_deriv == 1 && _second_deriv == 1)
   {
-    return 2.0*_alpha1 + 12.0*_alpha11*std::pow(_polar_y[_qp],2) + 30*_alpha111*std::pow(_polar_y[_qp],4) + 2*_alpha123*std::pow(_polar_x[_qp],2)*std::pow(_polar_z[_qp],2) + _alpha12*(2*std::pow(_polar_x[_qp],2) + 2*std::pow(_polar_z[_qp],2)) +
-   _alpha112*(2.0*std::pow(_polar_x[_qp],4.0) + 2.0*std::pow(_polar_z[_qp],4.0) + 12.0*std::pow(_polar_y[_qp],2)*(std::pow(_polar_x[_qp],2) + std::pow(_polar_z[_qp],2))) + 2*_electrostrictive_tensor[_qp](0,0,1,1)*_elastic_strain[_qp](0,0) + 2*_electrostrictive_tensor[_qp](0,1,1,1)*_elastic_strain[_qp](0,1) +
-   2*_electrostrictive_tensor[_qp](0,2,1,1)*_elastic_strain[_qp](0,2) + 2*_electrostrictive_tensor[_qp](1,0,1,1)*_elastic_strain[_qp](1,0) + 2*_electrostrictive_tensor[_qp](1,1,1,1)*_elastic_strain[_qp](1,1) +
-   2*_electrostrictive_tensor[_qp](1,2,1,1)*_elastic_strain[_qp](1,2) + 2*_electrostrictive_tensor[_qp](2,0,1,1)*_elastic_strain[_qp](2,0) + 2*_electrostrictive_tensor[_qp](2,1,1,1)*_elastic_strain[_qp](2,1) +
-   2*_electrostrictive_tensor[_qp](2,2,1,1)*_elastic_strain[_qp](2,2);
+    return 0.0;
   }
   else if (_first_deriv == 2 && _second_deriv == 2)
   {
-    return 2*_alpha1 + 2*_alpha123*std::pow(_polar_x[_qp],2)*std::pow(_polar_y[_qp],2) + _alpha12*(2*std::pow(_polar_x[_qp],2) + 2*std::pow(_polar_y[_qp],2)) + 12*_alpha11*std::pow(_polar_z[_qp],2) + 30*_alpha111*std::pow(_polar_z[_qp],4) +
-   _alpha112*(2*std::pow(_polar_x[_qp],4) + 2*std::pow(_polar_y[_qp],4) + 12*(std::pow(_polar_x[_qp],2) + std::pow(_polar_y[_qp],2))*std::pow(_polar_z[_qp],2)) + 2*_electrostrictive_tensor[_qp](0,0,2,2)*_elastic_strain[_qp](0,0) + 2*_electrostrictive_tensor[_qp](0,1,2,2)*_elastic_strain[_qp](0,1) +
-   2*_electrostrictive_tensor[_qp](0,2,2,2)*_elastic_strain[_qp](0,2) + 2*_electrostrictive_tensor[_qp](1,0,2,2)*_elastic_strain[_qp](1,0) + 2*_electrostrictive_tensor[_qp](1,1,2,2)*_elastic_strain[_qp](1,1) +
-   2*_electrostrictive_tensor[_qp](1,2,2,2)*_elastic_strain[_qp](1,2) + 2*_electrostrictive_tensor[_qp](2,0,2,2)*_elastic_strain[_qp](2,0) + 2*_electrostrictive_tensor[_qp](2,1,2,2)*_elastic_strain[_qp](2,1) +
-   2*_electrostrictive_tensor[_qp](2,2,2,2)*_elastic_strain[_qp](2,2);
+    return 0.0;
   }
   //shears:
   else if (_first_deriv == 0 && _second_deriv == 1)
   {
-    return 4*_alpha12*_polar_x[_qp]*_polar_y[_qp] + _alpha112*(8*std::pow(_polar_x[_qp],3)*_polar_y[_qp] + 8*_polar_x[_qp]*std::pow(_polar_y[_qp],3)) + 4*_alpha123*_polar_x[_qp]*_polar_y[_qp]*std::pow(_polar_z[_qp],2) + _electrostrictive_tensor[_qp](0,0,0,1)*_elastic_strain[_qp](0,0) +
-   _electrostrictive_tensor[_qp](0,0,1,0)*_elastic_strain[_qp](0,0) + _electrostrictive_tensor[_qp](0,1,0,1)*_elastic_strain[_qp](0,1) + _electrostrictive_tensor[_qp](0,1,1,0)*_elastic_strain[_qp](0,1) + _electrostrictive_tensor[_qp](0,2,0,1)*_elastic_strain[_qp](0,2) +
-   _electrostrictive_tensor[_qp](0,2,1,0)*_elastic_strain[_qp](0,2) + _electrostrictive_tensor[_qp](1,0,0,1)*_elastic_strain[_qp](1,0) + _electrostrictive_tensor[_qp](1,0,1,0)*_elastic_strain[_qp](1,0) + _electrostrictive_tensor[_qp](1,1,0,1)*_elastic_strain[_qp](1,1) +
-   _electrostrictive_tensor[_qp](1,1,1,0)*_elastic_strain[_qp](1,1) + _electrostrictive_tensor[_qp](1,2,0,1)*_elastic_strain[_qp](1,2) + _electrostrictive_tensor[_qp](1,2,1,0)*_elastic_strain[_qp](1,2) + _electrostrictive_tensor[_qp](2,0,0,1)*_elastic_strain[_qp](2,0) +
-   _electrostrictive_tensor[_qp](2,0,1,0)*_elastic_strain[_qp](2,0) + _electrostrictive_tensor[_qp](2,1,0,1)*_elastic_strain[_qp](2,1) + _electrostrictive_tensor[_qp](2,1,1,0)*_elastic_strain[_qp](2,1) + _electrostrictive_tensor[_qp](2,2,0,1)*_elastic_strain[_qp](2,2) +
-   _electrostrictive_tensor[_qp](2,2,1,0)*_elastic_strain[_qp](2,2);
+    return 0.0;
   }
   else if (_first_deriv == 0 && _second_deriv == 2)
   {
-    return 4*_alpha12*_polar_x[_qp]*_polar_z[_qp] + 4*_alpha123*_polar_x[_qp]*std::pow(_polar_y[_qp],2)*_polar_z[_qp] + _alpha112*(8*std::pow(_polar_x[_qp],3)*_polar_z[_qp] + 8*_polar_x[_qp]*std::pow(_polar_z[_qp],3)) + _electrostrictive_tensor[_qp](0,0,0,2)*_elastic_strain[_qp](0,0) +
-   _electrostrictive_tensor[_qp](0,0,2,0)*_elastic_strain[_qp](0,0) + _electrostrictive_tensor[_qp](0,1,0,2)*_elastic_strain[_qp](0,1) + _electrostrictive_tensor[_qp](0,1,2,0)*_elastic_strain[_qp](0,1) + _electrostrictive_tensor[_qp](0,2,0,2)*_elastic_strain[_qp](0,2) +
-   _electrostrictive_tensor[_qp](0,2,2,0)*_elastic_strain[_qp](0,2) + _electrostrictive_tensor[_qp](1,0,0,2)*_elastic_strain[_qp](1,0) + _electrostrictive_tensor[_qp](1,0,2,0)*_elastic_strain[_qp](1,0) + _electrostrictive_tensor[_qp](1,1,0,2)*_elastic_strain[_qp](1,1) +
-   _electrostrictive_tensor[_qp](1,1,2,0)*_elastic_strain[_qp](1,1) + _electrostrictive_tensor[_qp](1,2,0,2)*_elastic_strain[_qp](1,2) + _electrostrictive_tensor[_qp](1,2,2,0)*_elastic_strain[_qp](1,2) + _electrostrictive_tensor[_qp](2,0,0,2)*_elastic_strain[_qp](2,0) +
-   _electrostrictive_tensor[_qp](2,0,2,0)*_elastic_strain[_qp](2,0) + _electrostrictive_tensor[_qp](2,1,0,2)*_elastic_strain[_qp](2,1) + _electrostrictive_tensor[_qp](2,1,2,0)*_elastic_strain[_qp](2,1) + _electrostrictive_tensor[_qp](2,2,0,2)*_elastic_strain[_qp](2,2) +
-   _electrostrictive_tensor[_qp](2,2,2,0)*_elastic_strain[_qp](2,2);
+    return 0.0;
   }
   else if (_first_deriv == 1 && _second_deriv == 2)
   {
-    return 4*_alpha12*_polar_y[_qp]*_polar_z[_qp] + 4*_alpha123*std::pow(_polar_x[_qp],2)*_polar_y[_qp]*_polar_z[_qp] + _alpha112*(8*std::pow(_polar_y[_qp],3)*_polar_z[_qp] + 8*_polar_y[_qp]*std::pow(_polar_z[_qp],3)) + _electrostrictive_tensor[_qp](0,0,1,2)*_elastic_strain[_qp](0,0) +
-   _electrostrictive_tensor[_qp](0,0,2,1)*_elastic_strain[_qp](0,0) + _electrostrictive_tensor[_qp](0,1,1,2)*_elastic_strain[_qp](0,1) + _electrostrictive_tensor[_qp](0,1,2,1)*_elastic_strain[_qp](0,1) + _electrostrictive_tensor[_qp](0,2,1,2)*_elastic_strain[_qp](0,2) +
-   _electrostrictive_tensor[_qp](0,2,2,1)*_elastic_strain[_qp](0,2) + _electrostrictive_tensor[_qp](1,0,1,2)*_elastic_strain[_qp](1,0) + _electrostrictive_tensor[_qp](1,0,2,1)*_elastic_strain[_qp](1,0) + _electrostrictive_tensor[_qp](1,1,1,2)*_elastic_strain[_qp](1,1) +
-   _electrostrictive_tensor[_qp](1,1,2,1)*_elastic_strain[_qp](1,1) + _electrostrictive_tensor[_qp](1,2,1,2)*_elastic_strain[_qp](1,2) + _electrostrictive_tensor[_qp](1,2,2,1)*_elastic_strain[_qp](1,2) + _electrostrictive_tensor[_qp](2,0,1,2)*_elastic_strain[_qp](2,0) +
-   _electrostrictive_tensor[_qp](2,0,2,1)*_elastic_strain[_qp](2,0) + _electrostrictive_tensor[_qp](2,1,1,2)*_elastic_strain[_qp](2,1) + _electrostrictive_tensor[_qp](2,1,2,1)*_elastic_strain[_qp](2,1) + _electrostrictive_tensor[_qp](2,2,1,2)*_elastic_strain[_qp](2,2) +
-   _electrostrictive_tensor[_qp](2,2,2,1)*_elastic_strain[_qp](2,2);
+    return 0.0;
   }
   else
     return 0.0;

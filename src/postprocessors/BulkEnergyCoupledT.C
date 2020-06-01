@@ -65,14 +65,14 @@ Real
 BulkEnergyCoupledT::computeQpIntegral()
 {
   return (
-    _alpha0 * (_temperature[_qp] - _Tc) * (std::pow(_polar_x[_qp], 2) + std::pow(_polar_y[_qp], 2) + std::pow(_polar_z[_qp] ,2))
-  + _alpha11 * (std::pow(_polar_x[_qp], 4) + std::pow(_polar_y[_qp], 4) + std::pow(_polar_z[_qp], 4))
-    + _alpha12 * (std::pow(_polar_x[_qp], 2) * std::pow(_polar_y[_qp], 2)+
-	      std::pow(_polar_y[_qp], 2) * std::pow(_polar_z[_qp], 2)+
-	      std::pow(_polar_x[_qp], 2) * std::pow(_polar_z[_qp], 2))+
-    _alpha111 * (std::pow(_polar_x[_qp], 6) + std::pow(_polar_y[_qp], 6) + std::pow(_polar_z[_qp], 6))+
-    _alpha112 * (std::pow(_polar_x[_qp], 4) * (std::pow(_polar_y[_qp], 2) + std::pow(_polar_z[_qp], 2))
-	      + std::pow(_polar_y[_qp], 4) * (std::pow(_polar_z[_qp], 2) + std::pow(_polar_x[_qp], 2))
-	      + std::pow(_polar_z[_qp], 4) * (std::pow(_polar_x[_qp], 2) + std::pow(_polar_y[_qp], 2)))+
-	  _alpha123 * (pow(_polar_x[_qp], 2) * std::pow(_polar_y[_qp], 2) * std::pow(_polar_z[_qp], 2))) * std::pow(_len_scale,3);
+    _alpha0 * (_temperature[_qp] - _Tc) * (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))
+  + _alpha11 * (Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_polar_z[_qp]))
+    + _alpha12 * (Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp])+
+	      Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp])+
+	      Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_z[_qp]))+
+    _alpha111 * (Utility::pow<6>(_polar_x[_qp]) + Utility::pow<6>(_polar_y[_qp]) + Utility::pow<6>(_polar_z[_qp]))+
+    _alpha112 * (Utility::pow<4>(_polar_x[_qp]) * (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))
+	      + Utility::pow<4>(_polar_y[_qp]) * (Utility::pow<2>(_polar_z[_qp]) + Utility::pow<2>(_polar_x[_qp]))
+	      + Utility::pow<4>(_polar_z[_qp]) * (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp])))+
+	  _alpha123 * (Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp]))) * std::pow(_len_scale,3);
 }
