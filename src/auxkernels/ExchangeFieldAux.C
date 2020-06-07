@@ -29,36 +29,24 @@ InputParameters validParams<ExchangeFieldAux>()
 {
   InputParameters params = validParams<AuxKernel>();
   params.addClassDescription("Computes the exchange field");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addRequiredCoupledVar("magnetic_x", "The x component of the magnetization");
-  params.addRequiredCoupledVar("magnetic_y", "The y component of the magnetization");
-  params.addCoupledVar("magnetic_z", 0.0, "The z component of the magnetization");
-  params.addRequiredParam<Real>("Ae", "Ae");
-  params.addRequiredParam<Real>("Ms", "Ms");
+  params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
+  params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
+  params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization");
   return params;
 }
 
 
 ExchangeFieldAux::ExchangeFieldAux(const InputParameters & parameters) :
   AuxKernel(parameters),
-  _component(getParam<unsigned int>("component")),
-  _magnetic_x_lap(coupledSecond("magnetic_x")),
-  _magnetic_y_lap(coupledSecond("magnetic_y")),
-  _magnetic_z_lap(coupledSecond("magnetic_z")),
-  _Ae(getParam<Real>("Ae")),
-  _Ms(getParam<Real>("Ms"))
+  _mag_x_grad(coupledGradient("mag_x")),
+  _mag_y_grad(coupledGradient("mag_y")),
+  _mag_z_grad(coupledGradient("mag_z")),
+  _Ae(getMaterialProperty<Real>("Ae"))
 {
 }
 
 Real
 ExchangeFieldAux::computeValue()
 {
-  if (_component == 0)
-    return (2.0*_Ae/_Ms)*(_magnetic_x_lap[_qp](0,0)+_magnetic_x_lap[_qp](1,1)+_magnetic_x_lap[_qp](2,2));
-  else if (_component == 1)
-    return (2.0*_Ae/_Ms)*(_magnetic_y_lap[_qp](0,0)+_magnetic_y_lap[_qp](1,1)+_magnetic_y_lap[_qp](2,2));
-  else if (_component == 2)
-    return (2.0*_Ae/_Ms)*(_magnetic_z_lap[_qp](0,0)+_magnetic_z_lap[_qp](1,1)+_magnetic_z_lap[_qp](2,2));
-  else
-    return 0.0;
+  return (_Ae[_qp])*(Utility::pow<2>(_mag_x_grad[_qp](0))+Utility::pow<2>(_mag_x_grad[_qp](1))+Utility::pow<2>(_mag_x_grad[_qp](2))+Utility::pow<2>(_mag_y_grad[_qp](0))+Utility::pow<2>(_mag_y_grad[_qp](1))+Utility::pow<2>(_mag_y_grad[_qp](2))+Utility::pow<2>(_mag_z_grad[_qp](0))+Utility::pow<2>(_mag_z_grad[_qp](1))+Utility::pow<2>(_mag_z_grad[_qp](2)));
 }
