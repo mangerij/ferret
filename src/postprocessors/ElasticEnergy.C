@@ -41,6 +41,12 @@ ElasticEnergy::ElasticEnergy(const InputParameters & parameters) :
   _strain_scale(getParam<Real>("strain_scale")),
   _len_scale(getParam<Real>("len_scale"))
 {
+  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<" Stress-divergence equation:                                              "<<"\n";
+  std::cout<<"                                                                          "<<"\n";
+  std::cout<<"       ∇·[σ]  = 0                                                         "<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";
 }
 
 Real

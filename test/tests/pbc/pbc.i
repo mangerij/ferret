@@ -12,12 +12,6 @@
   zmin = -2.0
   zmax = 2.0
   elem_type = HEX8
-  
-  # Mesh dimensions
-
-  # Note that this is approximately 1 element per 2 nm. 
-
-  # There is one level of adaptive mesh refinement that will refine close to domain walls if needed.
 []
 
 [MeshModifiers]

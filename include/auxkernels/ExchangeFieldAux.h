@@ -40,12 +40,10 @@ protected:
   virtual Real computeValue();
 
 private:
-  const unsigned int _component;
-  const VariableSecond & _magnetic_x_lap;
-  const VariableSecond & _magnetic_y_lap;
-  const VariableSecond & _magnetic_z_lap;
-  const Real _Ae;
-  const Real _Ms;
+  const VariableGradient & _mag_x_grad;
+  const VariableGradient & _mag_y_grad;
+  const VariableGradient & _mag_z_grad;
+  const MaterialProperty<Real> & _Ae;
 };
 
 #endif /* EXCHANGEFIELDAUX_H */
