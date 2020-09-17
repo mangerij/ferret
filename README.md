@@ -57,10 +57,10 @@ Or it can include an advanced boundary element method (BEM) developed by Prof. X
 ```
 cd <ferret>/contrib
 ./build_scalfmm
+cd <ferret>
 ./configure --with-scalfmm=contrib/scalfmm
 make -j2
 ```
-and then run the ./configure step as above.
 
 ### Who do I talk to? ###
 
