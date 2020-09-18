@@ -53,7 +53,7 @@ make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
 ### Additional information: ###
 
 The ./configure step can include additional libraries such as BOOST which will allow compile of MOOSE objects with mathematical special functions.
-Or it can include an advanced boundary element method (BEM) developed by Prof. Xikai Jiang. In order to use the BEM, you need to compile ScalFMM with the following commands
+Or it can include an advanced fast-multipole boundary element method (FMM-BEM) developed by Prof. Xikai Jiang and co-workers. In order to use the BEM, you need to compile ScalFMM with the following commands
 ```
 cd <ferret>/contrib
 ./build_scalfmm
@@ -61,6 +61,11 @@ cd <ferret>
 ./configure --with-scalfmm=contrib/scalfmm
 make -j2
 ```
+
+For compilation of this O(N) solver on supercomputing resources, it is recommended to avoid the ./configure step and manually set the FERRET_HAVE_SCALFMM flag. The generation of the M2L compressors for the FMM-BEM should be done in serial and then can be read on any number of processors. The M2L compressor files do not depend on the mesh, but only the flags of the FMM-BEM method. 
+
+More reading at X. Jiang et al J. Chem. Phys. 145, 064307 (2016).
+
 
 ### Who do I talk to? ###
 
