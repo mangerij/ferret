@@ -1,11 +1,12 @@
 
 [Mesh]
-  file = 6grains.e
-[]
-
-[MeshModifiers]
+  [file]
+    type = FileMeshGenerator
+    file = 6grains.e
+  []
   [./add_side_sets]
-    type = SideSetsFromNormals
+    input = file
+    type = SideSetsFromNormalsGenerator
     normals = '1  0  0
                0  0  1
                0  0  -1'
