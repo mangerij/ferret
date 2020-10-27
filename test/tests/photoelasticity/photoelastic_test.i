@@ -1,11 +1,12 @@
 
 [Mesh]
-  file = 6grains.e
-[]
-
-[MeshModifiers]
+  [file]
+    type = FileMeshGenerator
+    file = 6grains.e
+  []
   [./add_side_sets]
-    type = SideSetsFromNormals
+    input = file
+    type = SideSetsFromNormalsGenerator
     normals = '1  0  0
                0  0  1
                0  0  -1'
@@ -357,7 +358,7 @@
   [../]
   [./photoelastic_tensor_1]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
+    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 0.0
@@ -399,7 +400,7 @@
   [../]
   [./photoelastic_tensor_2]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
+    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 12.0
@@ -442,7 +443,7 @@
   [../]
   [./photoelastic_tensor_3]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
+    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 1.0
@@ -484,7 +485,7 @@
   [../]
   [./photoelastic_tensor_4]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
+    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 100.0
@@ -526,7 +527,7 @@
   [../]
   [./photoelastic_tensor_5]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
+    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 200.0
@@ -568,7 +569,7 @@
   [../]
   [./photoelastic_tensor_6]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!! 
+    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
     # Use BaTiO3, crystal symmetry P4mm.
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 110.0
