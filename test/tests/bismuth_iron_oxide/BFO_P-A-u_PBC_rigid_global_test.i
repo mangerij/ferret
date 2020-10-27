@@ -1,21 +1,21 @@
 [Mesh]
-  type = GeneratedMesh
-  dim = 3
-  nx = 4
-  ny = 4
-  nz = 4
-  xmin = -1.0
-  xmax = 1.0
-  ymin = -1.0
-  ymax = 1.0
-  zmin = -1.0
-  zmax = 1.0
-  elem_type = HEX8
-[]
-
-[MeshModifiers]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = 4
+    ny = 4
+    nz = 4
+    xmin = -1.0
+    xmax = 1.0
+    ymin = -1.0
+    ymax = 1.0
+    zmin = -1.0
+    zmax = 1.0
+    elem_type = HEX8
+  []
   [./cnode]
-    type = AddExtraNodeset
+    input = gen
+    type = ExtraNodesetGenerator
     coord = '0.0 0.0 0.0'
     new_boundary = 100
   [../]
