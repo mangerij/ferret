@@ -19,13 +19,13 @@
 
 **/
 
-#include "MagneticAnisotropyEnergy.h"
+#include "MagneticExcessLLBEnergy.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", MagneticAnisotropyEnergy);
+registerMooseObject("FerretApp", MagneticExcessLLBEnergy);
 
 template<>
-InputParameters validParams<MagneticAnisotropyEnergy>()
+InputParameters validParams<MagneticExcessLLBEnergy>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
@@ -35,22 +35,19 @@ InputParameters validParams<MagneticAnisotropyEnergy>()
   return params;
 }
 
-MagneticAnisotropyEnergy::MagneticAnisotropyEnergy(const InputParameters & parameters) :
+MagneticExcessLLBEnergy::MagneticExcessLLBEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
    _mag_x(coupledValue("mag_x")),
    _mag_y(coupledValue("mag_y")),
    _mag_z(coupledValue("mag_z")),
-   _K1(getMaterialProperty<Real>("K1")),
-   _K2(getMaterialProperty<Real>("K2")),
-   _nx(getMaterialProperty<Real>("nx")),
-   _ny(getMaterialProperty<Real>("ny")),
-   _nz(getMaterialProperty<Real>("nz")),
-   _Ms(getMaterialProperty<Real>("Ms"))
+  _alpha(getMaterialProperty<Real>("alpha")),
+  _g0(getMaterialProperty<Real>("g0")),
+  _alpha_long(getMaterialProperty<Real>("alpha_long"))
 {
 }
 
 Real
-MagneticAnisotropyEnergy::computeQpIntegral()
+MagneticExcessLLBEnergy::computeQpIntegral()
 {
-  return _K1[_qp]*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp])/(_Ms[_qp]*_Ms[_qp]);
+  return ((0.25)*_g0[_qp]*_alpha_long[_qp]*Utility::pow<2>(_mag_x[_qp]*_mag_x[_qp]+_mag_y[_qp]*_mag_y[_qp]+_mag_z[_qp]*_mag_z[_qp]-1.0))/(1.0+_alpha[_qp]*_alpha[_qp]);
 }
