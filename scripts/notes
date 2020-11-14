@@ -1,0 +1,3 @@
+To compile on Hornet, use the submodule procedure to compile PETSc and libMesh within MOOSE. Skip the source ~/.moose-profile step. The bash_rc configuration should suffice.
+
+To compile on Blues, install PETSc directly and then source the moose-profile included in this folder. No bash configration options required, just use the StdEnv.

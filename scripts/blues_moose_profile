@@ -1,0 +1,13 @@
+export PACKAGES_DIR=/home/ac.jmangeri/blues/moose-compilers
+
+export CC=mpicc
+export CXX=mpicxx
+export F90=mpif90
+export F77=mpif77
+export FC=mpif90
+
+export ARCH=gcc
+export PETSC_DIR=$PACKAGES_DIR/petsc-3.13.4/
+
+module load python/3.6.2-q2qwvks
+module load cmake/3.12.2-4zllpyo
