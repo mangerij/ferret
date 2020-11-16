@@ -25,12 +25,6 @@
   alpha112 = 0.61
   alpha123 = -3.67
 
-  G110 = 0.15
-  G11_G110 = 0.6
-  G12_G110 = 0
-  G44_G110 = 0.3
-  G44P_G110 = 0.3
-
   permittivity = 0.5843763
 
   polar_x = polar_x
@@ -41,7 +35,13 @@
   temperature = temperature
 []
 
-
+[Materials]
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
+    prop_values = '0.15 0.6 0.0 0.3 0.3'
+  [../]
+[]
 
 [Variables]
   [./polar_x]

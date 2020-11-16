@@ -31,12 +31,6 @@ InputParameters validParams<WallEnergyDensity>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredParam<Real>("G110","Domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G11_G110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G12_G110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G44_G110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("G44P_G110","Ratio of domain wall penalty coefficients");
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -45,12 +39,11 @@ WallEnergyDensity::WallEnergyDensity(const InputParameters & parameters) :
   _polar_x_grad(coupledGradient("polar_x")),
   _polar_y_grad(coupledGradient("polar_y")),
   _polar_z_grad(coupledGradient("polar_z")),
-  _G110(getParam<Real>("G110")),
-  _G11(getParam<Real>("G11_G110")*_G110),
-  _G12(getParam<Real>("G12_G110")*_G110),
-  _G44(getParam<Real>("G44_G110")*_G110),
-  _G44P(getParam<Real>("G44P_G110")*_G110),
-  _len_scale(getParam<Real>("len_scale"))
+  _G110(getMaterialProperty<Real>("G110")),
+  _G11(getMaterialProperty<Real>("G11_G110")),
+  _G12(getMaterialProperty<Real>("G12_G110")),
+  _G44(getMaterialProperty<Real>("G44_G110")),
+  _G44P(getMaterialProperty<Real>("G44P_G110"))
 {}
 
 Real
@@ -58,8 +51,8 @@ WallEnergyDensity::computeValue()
 {
 //note that 1/2 * G_11 should be here, but the Kernel isn't consistent. TODO: To prevent regolding (at this date, Nov 2020) I will remove here.
 // To remedy this, a factor of 0.5 can be used on input file param G110 and then multiply by the entered input file param G12 by 2.0...
-  return (_G11*(Utility::pow<2>(_polar_x_grad[_qp](0))+Utility::pow<2>(_polar_y_grad[_qp](1))+Utility::pow<2>(_polar_z_grad[_qp](2)))+
-    _G12*(_polar_x_grad[_qp](0)*_polar_y_grad[_qp](1)+_polar_y_grad[_qp](1)*_polar_z_grad[_qp](2)+_polar_x_grad[_qp](0)*_polar_z_grad[_qp](2))+
-    _G44*(pow(_polar_x_grad[_qp](1)+_polar_y_grad[_qp](0),2)+pow(_polar_y_grad[_qp](2)+_polar_z_grad[_qp](1),2)+pow(_polar_x_grad[_qp](2)+_polar_z_grad[_qp](0),2))+
-	  _G44P*(Utility::pow<2>(_polar_x_grad[_qp](1)-_polar_y_grad[_qp](0))+Utility::pow<2>(_polar_y_grad[_qp](2)-_polar_z_grad[_qp](1))+Utility::pow<2>(_polar_x_grad[_qp](2)-_polar_z_grad[_qp](0))))*_len_scale;
+  return _G110[_qp]*((_G11[_qp]*(Utility::pow<2>(_polar_x_grad[_qp](0))+Utility::pow<2>(_polar_y_grad[_qp](1))+Utility::pow<2>(_polar_z_grad[_qp](2)))+
+    _G12[_qp]*(_polar_x_grad[_qp](0)*_polar_y_grad[_qp](1)+_polar_y_grad[_qp](1)*_polar_z_grad[_qp](2)+_polar_x_grad[_qp](0)*_polar_z_grad[_qp](2))+
+    _G44[_qp]*(pow(_polar_x_grad[_qp](1)+_polar_y_grad[_qp](0),2)+pow(_polar_y_grad[_qp](2)+_polar_z_grad[_qp](1),2)+pow(_polar_x_grad[_qp](2)+_polar_z_grad[_qp](0),2))+
+	  _G44P[_qp]*(Utility::pow<2>(_polar_x_grad[_qp](1)-_polar_y_grad[_qp](0))+Utility::pow<2>(_polar_y_grad[_qp](2)-_polar_z_grad[_qp](1))+Utility::pow<2>(_polar_x_grad[_qp](2)-_polar_z_grad[_qp](0)))));
 }

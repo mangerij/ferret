@@ -3,7 +3,7 @@
 #The nonzero polarization gives rise to nonzero surface charges which are handled naturally.
 
 [Mesh]
-  file = sphere_medium_exodus.e
+  file = exodus_sphere3.e
   #block 2  = sphere
   #block 1  = medium
 []

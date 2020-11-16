@@ -70,19 +70,7 @@
   polar_y = polar_y
   polar_z = polar_z
 
-  ############################################
-  ##
-  ## Gradient coefficients (assumed BTO) from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ############################################
 
-  G110 = 1.0
-  G11_G110 = 0.51
-  G12_G110 = -0.02
-  G44_G110 = 0.02
-  G44P_G110 = 0.0
 
   ############################################
   ##
@@ -195,6 +183,23 @@
     variable = fb
   [../]
 []
+
+[Materials]
+  ############################################
+  ##
+  ## Gradient coefficients (assumed BTO) from
+  ## Marton and Hlinka
+  ##    Phys. Rev. B. 74, 104014, (2006)
+  ##
+  ############################################
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
+    prop_values = '1.0 0.51 -0.02 0.02 0.0'
+  [../]
+[]
+
 
 [Kernels]
 

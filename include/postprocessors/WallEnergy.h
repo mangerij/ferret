@@ -39,8 +39,11 @@ protected:
   const VariableGradient& _polar_x_grad;
   const VariableGradient& _polar_y_grad;
   const VariableGradient& _polar_z_grad;
-  const Real _G110,_G11, _G12, _G44, _G44P;
-  const Real _len_scale;
+  const MaterialProperty<Real> & _G110;
+  const MaterialProperty<Real> & _G11;
+  const MaterialProperty<Real> & _G12;
+  const MaterialProperty<Real> & _G44;
+  const MaterialProperty<Real> & _G44P;
 };
 
 #endif

@@ -1,4 +1,10 @@
 
+#############################################################
+# TEMPORARILY DEACTIVATED
+############################################################
+
+
+
 #alpha1 alpha3
 alpha1 = '-0.0827836 -0.250056'
 #alpha11 alpha33
@@ -14,6 +20,7 @@ alpha12_para = '0.0 0.0'
 alpha111_para = 0.0
 alpha112_para = 0.0
 alpha123_para = 0.0
+
 G110 = 0.173
 G11_G110 = 1.6
 G12_G110 = 0
@@ -24,6 +31,8 @@ G11_G110_para = 1.6
 G12_G110_para = 0
 G44_G110_para = 1.6
 G44P_G110_para = 1.6
+
+
 permittivity_electrostatic = 0.0885
 permittivity_electrostatic_para = 0.0885
 
@@ -207,46 +216,49 @@ permitivitty_depol_para = 0.00885
        potential_E_int = potential_E_int
        component = 2
   [../]
+
+G110 = 0.173
+G11_G110 = 1.6
+G12_G110 = 0
+G44_G110 = 1.6
+G44P_G110 = 1.6
+G110_para = 0.173
+G11_G110_para = 1.6
+G12_G110_para = 0
+G44_G110_para = 1.6
+G44P_G110_para = 1.6
+
+
+
+
   [./walled_x_ferro]
-    type = WallEnergyDerivativeAlt
+    type = WallEnergyDerivative
     block = 'ferro_volume'
     variable = FE_polar_x
     polar_x = FE_polar_x
     polar_y = FE_polar_y
     polar_z = FE_polar_z
-    G110 = ${G110}
-    G11_G110 = ${G11_G110}
-    G12_G110 = ${G12_G110}
-    G44_G110 = ${G44_G110}
-    G44P_G110 = ${G44P_G110}
+
     component = 0
   [../]
   [./walled_y_ferro]
-    type = WallEnergyDerivativeAlt
+    type = WallEnergyDerivative
     block = 'ferro_volume'
     variable = FE_polar_y
     polar_x = FE_polar_x
     polar_y = FE_polar_y
     polar_z = FE_polar_z
-    G110 = ${G110}
-    G11_G110 = ${G11_G110}
-    G12_G110 = ${G12_G110}
-    G44_G110 = ${G44_G110}
-    G44P_G110 = ${G44P_G110}
+
     component = 1
   [../]
   [./walled_z_ferro]
-    type = WallEnergyDerivativeAlt
+    type = WallEnergyDerivative
     block = 'ferro_volume'
     variable = FE_polar_z
     polar_x = FE_polar_x
     polar_y = FE_polar_y
     polar_z = FE_polar_z
-    G110 = ${G110}
-    G11_G110 = ${G11_G110}
-    G12_G110 = ${G12_G110}
-    G44_G110 = ${G44_G110}
-    G44P_G110 = ${G44P_G110}
+
     component = 2
   [../]
   [./polar_x_time_ferro]
@@ -362,45 +374,33 @@ permitivitty_depol_para = 0.00885
   [../]
 
   [./walled_xp_para]
-    type = WallEnergyDerivativeAlt
+    type = WallEnergyDerivative
     block = 'para_bottom_volume para_top_volume'
     variable = PE_polar_x
     polar_x = PE_polar_x
     polar_y = PE_polar_y
     polar_z = PE_polar_z
-    G110 = ${G110_para}
-    G11_G110 = ${G11_G110_para}
-    G12_G110 = ${G12_G110_para}
-    G44_G110 = ${G44_G110_para}
-    G44P_G110 = ${G44P_G110_para}
+
     component = 0
   [../]
   [./walled_yp_para]
-    type = WallEnergyDerivativeAlt
+    type = WallEnergyDerivative
     block = 'para_bottom_volume para_top_volume'
     variable = PE_polar_y
     polar_x = PE_polar_x
     polar_y = PE_polar_y
     polar_z = PE_polar_z
-    G110 = ${G110_para}
-    G11_G110 = ${G11_G110_para}
-    G12_G110 = ${G12_G110_para}
-    G44_G110 = ${G44_G110_para}
-    G44P_G110 = ${G44P_G110_para}
+
     component = 1
   [../]
   [./walled_zp_para]
-    type = WallEnergyDerivativeAlt
+    type = WallEnergyDerivative
     block = 'para_bottom_volume para_top_volume'
     variable = PE_polar_z
     polar_x = PE_polar_x
     polar_y = PE_polar_y
     polar_z = PE_polar_z
-    G110 = ${G110_para}
-    G11_G110 = ${G11_G110_para}
-    G12_G110 = ${G12_G110_para}
-    G44_G110 = ${G44_G110_para}
-    G44P_G110 = ${G44P_G110_para}
+
     component = 2
   [../]
 

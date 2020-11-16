@@ -27,12 +27,6 @@
 [GlobalParams]
   len_scale = 1.0
 
-  G110 = 0.173
-  G11_G110 = 0.6
-  G12_G110 = 0
-  G44_G110 = 0.3
-  G44P_G110 = 0.3
-
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -216,6 +210,12 @@
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
     prop_values = '-0.1722883 0.42 0.735 0.26 0.61 -3.67 0 0 0 0'
+  [../]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
+    prop_values = '0.173 0.6 0.0 0.3 0.3'
   [../]
 
   [./mat_C]

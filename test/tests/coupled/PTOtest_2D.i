@@ -18,11 +18,7 @@
   alpha12 = 0.75
   alpha112 = 0.61
   alpha123 = -3.67
-  G110 = 0.173
-  G11_G110 = 0.6
-  G12_G110 = 0
-  G44_G110 = 0.3
-  G44P_G110 = 0.3
+
   polar_x = polar_x
   polar_y = polar_y
   potential_E_int = potential_E_int
@@ -73,6 +69,13 @@
 
 
 [Materials]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
+    prop_values = '0.173 0.6 0.0 0.3 0.3'
+  [../]
+
   [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
    type = ComputeEigenstrain
    block = '0'

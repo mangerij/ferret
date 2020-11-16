@@ -1,9 +1,9 @@
 [Tests]
-  [./bto]
-    type = 'Exodiff'
-    input = 'test_BTO_domain_wall.i'
-    exodiff = 'test.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+ # [./bto]
+ #   type = 'Exodiff'
+ #   input = 'test_BTO_domain_wall.i'
+ #   exodiff = 'test.e'
+ #   max_parallel = 1
+ #   max_threads = 1
+ # [../]
 []

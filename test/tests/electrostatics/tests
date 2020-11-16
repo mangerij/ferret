@@ -13,11 +13,11 @@
     use_old_floor = true
     abs_zero = 1e-5
   [../]
-  [./superlattice]
-    type = 'Exodiff'
-    input = 'Ferro_para_superlattice.i'
-    exodiff = 'out_split_polar.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+  #[./superlattice]
+  #  type = 'Exodiff'
+  #  input = 'Ferro_para_superlattice.i'
+  #  exodiff = 'out_split_polar.e'
+  #  max_parallel = 1
+  #  max_threads = 1
+  #[../]
 []

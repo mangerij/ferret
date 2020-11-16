@@ -33,18 +33,6 @@
   antiferrodis_A_z = antiferrodis_A_z
 
   displacements = 'u_x u_y u_z'
-
-  G110 = 0.173
-  G11_G110 = 0.5
-  G12_G110 = 0
-  G44_G110 = 0.5
-  G44P_G110 = 0.5
-
-  H110 = 0.173
-  H11_H110 = 0.5
-  H12_H110 = 0
-  H44_H110 = 0.5
-  H44P_H110 = 0.5
 []
 
 [Variables]
@@ -371,19 +359,28 @@
   [../]
 
   [./roto_walled_x]
-    type = AFDAntiphaseEnergyDerivative
+    type = WallEnergyDerivative
     variable = antiferrodis_A_x
     component = 0
+    polar_x = antiferrodis_A_x
+    polar_y = antiferrodis_A_y
+    polar_z = antiferrodis_A_z
   [../]
   [./roto_walled_y]
-    type = AFDAntiphaseEnergyDerivative
+    type = WallEnergyDerivative
     variable = antiferrodis_A_y
     component = 1
+    polar_x = antiferrodis_A_x
+    polar_y = antiferrodis_A_y
+    polar_z = antiferrodis_A_z
   [../]
   [./roto_walled_z]
-    type = AFDAntiphaseEnergyDerivative
+    type = WallEnergyDerivative
     variable = antiferrodis_A_z
     component = 2
+    polar_x = antiferrodis_A_x
+    polar_y = antiferrodis_A_y
+    polar_z = antiferrodis_A_z
   [../]
 
   [./roto_dis_coupled_x]

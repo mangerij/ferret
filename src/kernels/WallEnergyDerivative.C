@@ -31,13 +31,7 @@ InputParameters validParams<WallEnergyDerivative>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredParam<Real>("G110", "Domain wall coefficient");
-  params.addRequiredParam<Real>("G11_G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G12_G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G44_G110", "Domain wall coefficient ratio");
-  params.addRequiredParam<Real>("G44P_G110", "Domain wall coefficient ratio");
   ///params.set<bool>("use_displaced_mesh") = false;
-  params.addParam<Real>("len_scale",1.0,"the len_scale of the unit");
   return params;
 }
 
@@ -53,12 +47,11 @@ WallEnergyDerivative::WallEnergyDerivative(const InputParameters & parameters)
   _ii(_component),
   _jj((_component==0)? 1 : (_component==1)? 2: 0),
   _kk((_component==0)? 2 : (_component==1)? 0: 1),
-  _G110(getParam<Real>("G110")),
-  _G11(getParam<Real>("G11_G110") * _G110),
-  _G12(getParam<Real>("G12_G110") * _G110),
-  _G44(getParam<Real>("G44_G110") * _G110),
-  _G44P(getParam<Real>("G44P_G110") * _G110),
-  _len_scale(getParam<Real>("len_scale"))
+  _G110(getMaterialProperty<Real>("G110")),
+  _G11(getMaterialProperty<Real>("G11_G110")),
+  _G12(getMaterialProperty<Real>("G12_G110")),
+  _G44(getMaterialProperty<Real>("G44_G110")),
+  _G44P(getMaterialProperty<Real>("G44P_G110"))
 {
 }
 
@@ -67,20 +60,20 @@ WallEnergyDerivative::computeQpResidual()
 {
   Real Rwall = 0.0;
 
-  Rwall += (_G11 * _polar_i_grad[_qp](_ii) * _grad_test[_i][_qp](_ii) +
-    _G12 * (_polar_j_grad[_qp](_jj) + _polar_k_grad[_qp](_kk)) * _grad_test[_i][_qp](_ii) +
-    _G44 * (_polar_i_grad[_qp](_jj) + _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44 * (_polar_i_grad[_qp](_kk)+_polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk) +
-	   _G44P * (_polar_i_grad[_qp](_jj) - _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44P * (_polar_i_grad[_qp](_kk) - _polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk)) * _len_scale;
+  Rwall += (_G11[_qp] * _polar_i_grad[_qp](_ii) * _grad_test[_i][_qp](_ii) +
+    _G12[_qp] * (_polar_j_grad[_qp](_jj) + _polar_k_grad[_qp](_kk)) * _grad_test[_i][_qp](_ii) +
+    _G44[_qp] * (_polar_i_grad[_qp](_jj) + _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44[_qp] * (_polar_i_grad[_qp](_kk)+_polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk) +
+	   _G44P[_qp] * (_polar_i_grad[_qp](_jj) - _polar_j_grad[_qp](_ii)) * _grad_test[_i][_qp](_jj) + _G44P[_qp] * (_polar_i_grad[_qp](_kk) - _polar_k_grad[_qp](_ii)) * _grad_test[_i][_qp](_kk));
   ///  Moose::out << "\n R_wall-"; std::cout << _component << " = " << Rwall;
-  return Rwall;
+  return _G110[_qp]*Rwall;
 }
 
 Real
 WallEnergyDerivative::computeQpJacobian()
 {
-  return (_G11 * _grad_phi[_j][_qp](_ii) * _grad_test[_i][_qp](_ii) +
-    (_G44 + _G44P) * _grad_phi[_j][_qp](_jj) * _grad_test[_i][_qp](_jj) +
-	  (_G44 + _G44P) * _grad_phi[_j][_qp](_kk) * _grad_test[_i][_qp](_kk)) * _len_scale;
+  return _G110[_qp]*((_G11[_qp] * _grad_phi[_j][_qp](_ii) * _grad_test[_i][_qp](_ii) +
+    (_G44[_qp] + _G44P[_qp]) * _grad_phi[_j][_qp](_jj) * _grad_test[_i][_qp](_jj) +
+	  (_G44[_qp] + _G44P[_qp]) * _grad_phi[_j][_qp](_kk) * _grad_test[_i][_qp](_kk)) );
 }
 
 Real
@@ -90,7 +83,7 @@ WallEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
   if(jvar==_polar_x_var || jvar==_polar_y_var || jvar==_polar_z_var)
   {
     const unsigned int _jj = (jvar==_polar_x_var)? 0: (jvar==_polar_y_var)? 1 : 2;
-    return (_G12 * _grad_phi[_j][_qp](_jj) * _grad_test[_i][_qp](_ii) + (_G44 - _G44P) * _grad_phi[_j][_qp](_ii) * _grad_test[_i][_qp](_jj)) * _len_scale;
+    return _G110[_qp]*((_G12[_qp] * _grad_phi[_j][_qp](_jj) * _grad_test[_i][_qp](_ii) + (_G44[_qp] - _G44P[_qp]) * _grad_phi[_j][_qp](_ii) * _grad_test[_i][_qp](_jj)) );
   }
   else
   {
