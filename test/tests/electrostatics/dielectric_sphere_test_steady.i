@@ -4,7 +4,7 @@
 # provided the medium mesh is large enough.
 
 [Mesh]
-  file = sphere_medium_exodus.e
+  file = exodus_sphere3.e
   #block 2  = sphere
   #block 1  = medium
 []

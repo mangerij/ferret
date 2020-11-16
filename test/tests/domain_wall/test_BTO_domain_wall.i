@@ -91,11 +91,6 @@
   ##
   ############################################
 
-  G110 = 0.5    
-  G11_G110 = 0.51
-  G12_G110 = -0.02
-  G44_G110 = 0.02
-  G44P_G110 = 0.0
 
   polar_x = polar_x
   polar_y = polar_y
@@ -343,6 +338,12 @@
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
     prop_values = '-0.027721 -0.64755 0.323 8.004 4.47 4.91 0.0 0.0 0.0 0.0'
+  [../]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
+    prop_values = '0.5 0.51 -0.02 0.02 0.0'
   [../]
 
   [./mat_C]

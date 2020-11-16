@@ -39,12 +39,6 @@ amplitude = 0.01
   alpha112 = 4.47
   alpha123 = 4.919
 
-  G110 = 1.0
-  G11_G110 = 0.51
-  G12_G110 = 0.02
-  G44_G110 = 0.02
-  G44P_G110 = 0.0
-
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -108,6 +102,14 @@ amplitude = 0.01
     type = ElecFieldAux
     component = 2
     variable = Ez
+  [../]
+[]
+
+[Materials]
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
+    prop_values = '1.0 0.51 0.02 0.02 0.0'
   [../]
 []
 
