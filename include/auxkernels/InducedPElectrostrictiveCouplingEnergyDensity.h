@@ -19,21 +19,21 @@
 
 **/
 
-#ifndef ELECTROSTRICTIVECOUPLINGENERGYDENSITY_H
-#define ELECTROSTRICTIVECOUPLINGENERGYDENSITY_H
+#ifndef INDUCEDPELECTROSTRICTIVECOUPLINGENERGYDENSITY_H
+#define INDUCEDPELECTROSTRICTIVECOUPLINGENERGYDENSITY_H
 
 #include "AuxKernel.h"
 
-class ElectrostrictiveCouplingEnergyDensity;
+class InducedPElectrostrictiveCouplingEnergyDensity;
 
 template<>
-InputParameters validParams<ElectrostrictiveCouplingEnergyDensity>();
+InputParameters validParams<InducedPElectrostrictiveCouplingEnergyDensity>();
 
 
-class ElectrostrictiveCouplingEnergyDensity : public AuxKernel
+class InducedPElectrostrictiveCouplingEnergyDensity : public AuxKernel
 {
 public:
-  ElectrostrictiveCouplingEnergyDensity(const InputParameters & parameters);
+  InducedPElectrostrictiveCouplingEnergyDensity(const InputParameters & parameters);
 
 protected:
   virtual Real computeValue();
@@ -51,6 +51,9 @@ private:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
+  const VariableValue & _induced_polar_x;
+  const VariableValue & _induced_polar_y;
+  const VariableValue & _induced_polar_z;
   const MaterialProperty<Real> & _q11;
   const MaterialProperty<Real> & _q12;
   const MaterialProperty<Real> & _q44;

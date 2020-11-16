@@ -6,11 +6,11 @@
     max_parallel = 1
     max_threads = 1
   [../]
-  [./magnetocrystalline_anisotropy]
-    type = 'Exodiff'
-    input = 'LL_test_anis.i'
-    exodiff = 'out_disk_anis_test.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+#  [./magnetocrystalline_anisotropy]
+#    type = 'Exodiff'
+#    input = 'LL_test_anis.i'
+#    exodiff = 'out_disk_anis_test.e'
+#    max_parallel = 1
+#    max_threads = 1
+#  [../]
 []

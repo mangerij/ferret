@@ -27,16 +27,13 @@ template<>
 InputParameters validParams<ElectrostrictiveCouplingEnergyDensity>()
 {
   InputParameters params = validParams<AuxKernel>();
-  params.addClassDescription("Computes the free energy density of the local electrostrictive coupling. Note: for use with BFO based potentials only.");
+  params.addClassDescription("Computes the free energy density of the local electrostrictive coupling.");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
   params.addCoupledVar("disp_z", "The z component of the displacement");
-  params.addRequiredCoupledVar("polar_x", "The x component of the antiferrodistortive tilt vector");
-  params.addRequiredCoupledVar("polar_y", "The y component of the antiferrodistortive tilt vector");
-  params.addCoupledVar("polar_z", "The z component of the antiferrodistortive tilt vector");
-  params.addRequiredParam<Real>("q11", "The coupling constants");
-  params.addRequiredParam<Real>("q12", "The coupling constants");
-  params.addRequiredParam<Real>("q44", "The coupling constants");
+  params.addRequiredCoupledVar("polar_x", "The x component of the polarization vector");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization vector");
+  params.addCoupledVar("polar_z", "The z component of the polarization vector");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -55,9 +52,9 @@ ElectrostrictiveCouplingEnergyDensity::ElectrostrictiveCouplingEnergyDensity(con
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
-   _q11(getParam<Real>("q11")),
-   _q12(getParam<Real>("q12")),
-   _q44(getParam<Real>("q44")),
+   _q11(getMaterialProperty<Real>("q11")),
+   _q12(getMaterialProperty<Real>("q12")),
+   _q44(getMaterialProperty<Real>("q44")),
   _len_scale(getParam<Real>("len_scale"))
 {
 }
@@ -65,6 +62,7 @@ ElectrostrictiveCouplingEnergyDensity::ElectrostrictiveCouplingEnergyDensity(con
 Real
 ElectrostrictiveCouplingEnergyDensity::computeValue()
 {
-  return -(-2.0*_q44*((_polar_x[_qp]*_polar_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _q12*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_disp_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_disp_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_disp_z_grad[_qp](2)) -
-   _q11*(Utility::pow<2>(_polar_x[_qp])*_disp_x_grad[_qp](0) + Utility::pow<2>(_polar_y[_qp])*_disp_y_grad[_qp](1) + Utility::pow<2>(_polar_z[_qp])*_disp_z_grad[_qp](2)));
+//TODO: This might (likely) be off by a factor of -1.0
+  return -(-2.0*_q44[_qp]*((_polar_x[_qp]*_polar_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _q12[_qp]*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_disp_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_disp_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_disp_z_grad[_qp](2)) -
+   _q11[_qp]*(Utility::pow<2>(_polar_x[_qp])*_disp_x_grad[_qp](0) + Utility::pow<2>(_polar_y[_qp])*_disp_y_grad[_qp](1) + Utility::pow<2>(_polar_z[_qp])*_disp_z_grad[_qp](2)));
 }

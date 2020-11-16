@@ -19,18 +19,21 @@
 
 **/
 
-#include "WallEnergyDensity.h"
+#include "InducedPWallEnergyDensity.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", WallEnergyDensity);
+registerMooseObject("FerretApp", InducedPWallEnergyDensity);
 
 template<>
-InputParameters validParams<WallEnergyDensity>()
+InputParameters validParams<InducedPWallEnergyDensity>()
 {
   InputParameters params = validParams<AuxKernel>();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addRequiredCoupledVar("induced_polar_x", "The x component of the induced polarization");
+  params.addRequiredCoupledVar("induced_polar_y", "The y component of the induced polarization");
+  params.addCoupledVar("induced_polar_z", 0.0, "The z component of the induced polarization");
   params.addRequiredParam<Real>("G110","Domain wall penalty coefficients");
   params.addRequiredParam<Real>("G11_G110","Ratio of domain wall penalty coefficients");
   params.addRequiredParam<Real>("G12_G110","Ratio of domain wall penalty coefficients");
@@ -40,11 +43,14 @@ InputParameters validParams<WallEnergyDensity>()
   return params;
 }
 
-WallEnergyDensity::WallEnergyDensity(const InputParameters & parameters) :
+InducedPWallEnergyDensity::InducedPWallEnergyDensity(const InputParameters & parameters) :
   AuxKernel(parameters),
   _polar_x_grad(coupledGradient("polar_x")),
   _polar_y_grad(coupledGradient("polar_y")),
   _polar_z_grad(coupledGradient("polar_z")),
+  _induced_polar_x_grad(coupledGradient("induced_polar_x")),
+  _induced_polar_y_grad(coupledGradient("induced_polar_y")),
+  _induced_polar_z_grad(coupledGradient("induced_polar_z")),
   _G110(getParam<Real>("G110")),
   _G11(getParam<Real>("G11_G110")*_G110),
   _G12(getParam<Real>("G12_G110")*_G110),
@@ -54,12 +60,9 @@ WallEnergyDensity::WallEnergyDensity(const InputParameters & parameters) :
 {}
 
 Real
-WallEnergyDensity::computeValue()
+InducedPWallEnergyDensity::computeValue()
 {
-//note that 1/2 * G_11 should be here, but the Kernel isn't consistent. TODO: To prevent regolding (at this date, Nov 2020) I will remove here.
-// To remedy this, a factor of 0.5 can be used on input file param G110 and then multiply by the entered input file param G12 by 2.0...
-  return (_G11*(Utility::pow<2>(_polar_x_grad[_qp](0))+Utility::pow<2>(_polar_y_grad[_qp](1))+Utility::pow<2>(_polar_z_grad[_qp](2)))+
-    _G12*(_polar_x_grad[_qp](0)*_polar_y_grad[_qp](1)+_polar_y_grad[_qp](1)*_polar_z_grad[_qp](2)+_polar_x_grad[_qp](0)*_polar_z_grad[_qp](2))+
-    _G44*(pow(_polar_x_grad[_qp](1)+_polar_y_grad[_qp](0),2)+pow(_polar_y_grad[_qp](2)+_polar_z_grad[_qp](1),2)+pow(_polar_x_grad[_qp](2)+_polar_z_grad[_qp](0),2))+
-	  _G44P*(Utility::pow<2>(_polar_x_grad[_qp](1)-_polar_y_grad[_qp](0))+Utility::pow<2>(_polar_y_grad[_qp](2)-_polar_z_grad[_qp](1))+Utility::pow<2>(_polar_x_grad[_qp](2)-_polar_z_grad[_qp](0))))*_len_scale;
+//factors of 2 in this file may different from the kernel or wall energy density itself. TODO: It needs to be carefully checked at a later date. 
+//For now [Nov 2020], we just want an order of magnitude estimate of this term 
+  return _G11*(_polar_x_grad[_qp](0)*_induced_polar_x_grad[_qp](0)+_polar_y_grad[_qp](1)*_induced_polar_y_grad[_qp](1)+_polar_z_grad[_qp](2)*_induced_polar_z_grad[_qp](2))+_G12*(_polar_z_grad[_qp](2)*(_induced_polar_x_grad[_qp](0)+_induced_polar_y_grad[_qp](1))+_polar_y_grad[_qp](1)*(_induced_polar_x_grad[_qp](0)+_induced_polar_z_grad[_qp](2))+_polar_z_grad[_qp](2)*(_induced_polar_y_grad[_qp](1)+_induced_polar_z_grad[_qp](2)))+_G44*((_polar_x_grad[_qp](1)+_polar_y_grad[_qp](0))*(_induced_polar_x_grad[_qp](1)+_induced_polar_y_grad[_qp](0))+(_polar_x_grad[_qp](2)+_polar_z_grad[_qp](0))*(_induced_polar_x_grad[_qp](2)+_induced_polar_z_grad[_qp](0))+(_polar_y_grad[_qp](2)+_polar_z_grad[_qp](1))*(_induced_polar_y_grad[_qp](2)+_induced_polar_z_grad[_qp](1)));
 }
