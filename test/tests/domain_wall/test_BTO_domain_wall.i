@@ -11,73 +11,70 @@
   ############################################
 
 
-
 [Mesh]
+  [gen]
+    ############################################
+    ##
+    ##  Type and dimension of the mesh 
+    ##
+    ############################################
 
-  ############################################
-  ##
-  ##  Type and dimension of the mesh 
-  ##
-  ############################################
+    type = GeneratedMeshGenerator
+    dim = 3
 
-  type = GeneratedMesh
-  dim = 3
+    #############################################
+    ##
+    ##  Grid definition. Note that it should be
+    ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
+    ##
+    #############################################
 
-  #############################################
-  ##
-  ##  Grid definition. Note that it should be
-  ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
-  ##
-  #############################################
+    nx = 2
+    ny = 2
+    nz = 2
 
-  nx = 2
-  ny = 2
-  nz = 2
+    #############################################
+    ##
+    ##   Actual spatial coordinates of mesh. 
+    ##   Jmax - Jmin = nJ/2 for J = x, y, z
+    ##   Units are in nanometers
+    ##
+    #############################################
 
-  #############################################
-  ##
-  ##   Actual spatial coordinates of mesh. 
-  ##   Jmax - Jmin = nJ/2 for J = x, y, z
-  ##   Units are in nanometers
-  ##
-  #############################################
+    xmin = -0.5
+    xmax = 0.5
+    ymin = -0.5
+    ymax = 0.5
+    zmin = -0.5
+    zmax = 0.5
 
-  xmin = -0.5
-  xmax = 0.5
-  ymin = -0.5
-  ymax = 0.5
-  zmin = -0.5
-  zmax = 0.5
+    #############################################
+    ##
+    ##  FE type/order (hexahedral, tetrahedral
+    ##
+    #############################################
 
-  #############################################
-  ##
-  ##  FE type/order (hexahedral, tetrahedral
-  ##
-  #############################################
-
-  elem_type = HEX8
-[]
-
-[MeshModifiers]
-
-  ############################################
-  ##
-  ##   additional boundary sideset (one node) 
-  ##   to zero one of the elastic displacement vectors 
-  ##   vectors and eliminates rigid body translations 
-  ##   from the degrees of freedom
-  ##
-  ##   NOTE: This must conform with the about
-  ##         [Mesh] block settings
-  ##
-  ############################################
-
+    elem_type = HEX8
+  []
   [./cnode]
-    type = AddExtraNodeset
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
     coord = '-0.5 -0.5 -0.5'
     new_boundary = 100
   [../]
-
 []
 
 [GlobalParams]
