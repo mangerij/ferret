@@ -13,6 +13,11 @@
     use_old_floor = true
     abs_zero = 1e-5
   [../]
+  [./die_layer]
+    type = 'Exodiff'
+    input = 'FE_8nmFilm_Die_4nmLayer_U0.i'
+    exodiff = 'out_FE_8nmFilm_Die_4nmLayer_U0.e'
+  [../]
   #[./superlattice]
   #  type = 'Exodiff'
   #  input = 'Ferro_para_superlattice.i'
