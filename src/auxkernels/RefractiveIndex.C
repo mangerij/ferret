@@ -36,7 +36,8 @@ InputParameters validParams<RefractiveIndex>()
   params.addParam<bool>("elasto", false, "If this is true then elastooptic effect will be introduced");
   params.addParam<bool>("polar", false, "If this is true then polaroptic effect will be introduced");
   params.addRequiredCoupledVar("var1", "the change in this refractive index");
-  params.addCoupledVar("var2", 0.0, "the change in this refractive index");
+  params.addCoupledVar("var2", 0.0, "the change in this refractive index due to the second effect");
+  params.addCoupledVar("var3", 0.0, "the change in this refractive index due to the third effect");
   return params;
 }
 
@@ -50,7 +51,8 @@ RefractiveIndex::RefractiveIndex(const InputParameters & parameters) :
    _polar(parameters.get<bool>("polar")),
    _indicatrix(getMaterialProperty<RankTwoTensor>("indicatrix")),
    _var1(coupledValue("var1")),
-   _var2(coupledValue("var2"))
+   _var2(coupledValue("var2")),
+   _var3(coupledValue("var3"))
 {
 }
 
@@ -62,8 +64,16 @@ RefractiveIndex::computeValue()
     return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp];
   else if (_elasto == true && _electro == false && _polar == false)
     return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp];
+  else if (_elasto == false && _electro == false && _polar == true)
+    return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp];
   else if (_elasto == true && _electro == true && _polar == false)
     return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp] + _var2[_qp];
+  else if (_elasto == true && _electro == false && _polar == true)
+    return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp] + _var2[_qp];
+  else if (_elasto == false && _electro == true && _polar == true)
+    return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp] + _var2[_qp];
+  else if (_elasto == true && _electro == true && _polar == true)
+    return std::pow(  (1.0 / ( _indicatrix[_qp](_index_j, _index_k)  ) ), 0.5) + _var1[_qp] + _var2[_qp] + _var3[_qp];
   else
     return 0.0;
 }
