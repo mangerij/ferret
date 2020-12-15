@@ -50,6 +50,7 @@ private:
   const MaterialProperty<RankTwoTensor> & _indicatrix;
   const VariableValue & _var1;
   const VariableValue & _var2;
+  const VariableValue & _var3;
 };
 
 #endif // REFRACTIVEINDEX_H
