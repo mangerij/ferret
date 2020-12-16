@@ -175,4 +175,6 @@ ReworkedRefractiveIndex::computeValue()
     else
       return 0.0;
   }
+  else
+    return 0.0;
 }
