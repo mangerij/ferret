@@ -5,4 +5,18 @@
     exodiff = 'out_6grain_electro.e'
     abs_zero = 2e-2
   [../]
+  [./BTO_EO_PO_test]
+    type = 'Exodiff'
+    input = 'BTO_monodomain_T298K_REF.i'
+    exodiff = 'test_bire.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./BTO_PO_test]
+    type = 'Exodiff'
+    input = 'BTO_monodomain_T298K_REFnoEO.i'
+    exodiff = 'test_bire_no_EO.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
