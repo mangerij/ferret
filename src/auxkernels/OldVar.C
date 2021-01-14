@@ -35,7 +35,7 @@ InputParameters validParams<OldVar>()
 
 
 OldVar::OldVar(const InputParameters & parameters) :
-  AuxKernel(parameters)
+  AuxKernel(parameters), _u_old(uOld())
 {
 }
 
@@ -44,5 +44,3 @@ OldVar::computeValue()
 {
     return _u_old[_qp];
 }
-
-
