@@ -44,19 +44,26 @@ MagnetostaticEnergyCart::MagnetostaticEnergyCart(const InputParameters & paramet
    _mag_x(coupledValue("mag_x")),
    _mag_y(coupledValue("mag_y")),
    _mag_z(coupledValue("mag_z")),
-   _Ms(getMaterialProperty<Real>("Ms"))
+   _Ms(getMaterialProperty<Real>("Ms")),
+   _mu0(getMaterialProperty<Real>("mu0"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<" Magnetostatic Poisson equation:                                          "<<"\n";
   std::cout<<"                                                                          "<<"\n";
-  std::cout<<"       ∇·(∇ΦB)  = μ0 Ms ∇·m                                              "<<"\n";
+  std::cout<<"       ∇·(∇ΦH)  = Ms ∇·m                                                  "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
 }
 
 Real
 MagnetostaticEnergyCart::computeQpIntegral()
 {
-  // -1/2 * M*B = - 1/2 * M*(-gradPotential)
-  return -0.5*_Ms[_qp] * (-_potential_H_int_grad[_qp](0)*_mag_x[_qp]-_potential_H_int_grad[_qp](1)*_mag_y[_qp]-_potential_H_int_grad[_qp](2)*_mag_z[_qp]);
+  // NOTE:
+  //
+  // Zeeman energy not calculated (it is implicitly included in potential_int). If Zeeman energy is needed, one needs to make a transformation in the Kernels 
+  // _potential_H_int[_qp] -> _potential_H_int[_qp] + _potential_H_ext[_qp] and this should be valid. Note that this postprocessor will change!
+  //
+  //    see Exl, Suess, Schefl notes for clear information
+  //
+  return -0.5*_mu0[_qp]*_Ms[_qp] * (-_potential_H_int_grad[_qp](0)*_mag_x[_qp]-_potential_H_int_grad[_qp](1)*_mag_y[_qp]-_potential_H_int_grad[_qp](2)*_mag_z[_qp]);
 }

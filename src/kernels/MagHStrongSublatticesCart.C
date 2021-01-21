@@ -67,7 +67,7 @@ MagHStrongSublatticesCart::MagHStrongSublatticesCart(const InputParameters & par
 Real
 MagHStrongSublatticesCart::computeQpResidual()
 {
-  return -0.5*_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](0)*_mag1_x[_qp]+_grad_test[_i][_qp](1)*_mag1_y[_qp]+_grad_test[_i][_qp](2)*_mag1_z[_qp] + _grad_test[_i][_qp](0)*_mag2_x[_qp]+_grad_test[_i][_qp](1)*_mag2_y[_qp]+_grad_test[_i][_qp](2)*_mag2_z[_qp]);
+  return -0.5*_Ms[_qp]*(_grad_test[_i][_qp](0)*_mag1_x[_qp]+_grad_test[_i][_qp](1)*_mag1_y[_qp]+_grad_test[_i][_qp](2)*_mag1_z[_qp] + _grad_test[_i][_qp](0)*_mag2_x[_qp]+_grad_test[_i][_qp](1)*_mag2_y[_qp]+_grad_test[_i][_qp](2)*_mag2_z[_qp]);
 }
 
 Real
@@ -81,27 +81,27 @@ MagHStrongSublatticesCart::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _mag1_x_var)
   {
-    return -0.5*_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](0)*_phi[_j][_qp]);
+    return -0.5*_Ms[_qp]*(_grad_test[_i][_qp](0)*_phi[_j][_qp]);
   }
   else if (jvar == _mag1_y_var)
   {
-    return -0.5*_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](1)*_phi[_j][_qp]);
+    return -0.5*_Ms[_qp]*(_grad_test[_i][_qp](1)*_phi[_j][_qp]);
   }
   else if (jvar == _mag1_z_var)
   {
-    return -0.5*_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](2)*_phi[_j][_qp]);
+    return -0.5*_Ms[_qp]*(_grad_test[_i][_qp](2)*_phi[_j][_qp]);
   }
   else if (jvar == _mag2_x_var)
   {
-    return -0.5*_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](0)*_phi[_j][_qp]);
+    return -0.5*_Ms[_qp]*(_grad_test[_i][_qp](0)*_phi[_j][_qp]);
   }
   else if (jvar == _mag2_y_var)
   {
-    return -0.5*_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](1)*_phi[_j][_qp]);
+    return -0.5*_Ms[_qp]*(_grad_test[_i][_qp](1)*_phi[_j][_qp]);
   }
   else if (jvar == _mag2_z_var)
   {
-    return -0.5*_Ms[_qp]*_mu0[_qp]*(_grad_test[_i][_qp](2)*_phi[_j][_qp]);
+    return -0.5*_Ms[_qp]*(_grad_test[_i][_qp](2)*_phi[_j][_qp]);
   }
   else
     return 0.0;

@@ -1,7 +1,20 @@
 
 [Mesh]
-  file = exodus_cylS_flat4_brick.e
+  [./fmg]
+    type = FileMeshGenerator
+    file = exodus_pysq_dx1_AnoI.e
+  []
+
+  [central_interface]
+    type = SideSetsBetweenSubdomainsGenerator
+    input = fmg
+    master_block = '1'
+    paired_block = '2'
+    primary_block = '1'
+    new_boundary = '70'
+  []
 []
+
 
 [GlobalParams]
   mag_x = mag_x
@@ -13,8 +26,30 @@
 [Materials]
   [./constants] # Constants used in other material properties
     type = GenericConstantMaterial
-    prop_names = ' alpha    Ae    Ms g0 mu0 alpha_long'
-    prop_values = '0.4  0.013  1.0 0.1761 1256.1 500'
+    prop_names = ' alpha    Ae    Ms    g0     mu0   nx ny nz   long_susc t'
+    prop_values = '0.01    0.013  1.2  221010.0 1256.64   1  0  0          1.0     0'
+  [../]
+  [./a_long]
+    type = GenericFunctionMaterial
+    prop_names = 'alpha_long'
+    prop_values = 'bc_func_1'
+  [../]
+[]
+
+[Functions]
+
+  ##############################
+  ##
+  ## Define the ramping function
+  ## expression to be used
+  ##
+  ##############################
+
+  [./bc_func_1]
+    type = ParsedFunction
+    value = 'st'   #*tanh(sl*t)+1.0'
+    vars = 'st' #sl'
+    vals = '100.0' # 795.775'
   [../]
 []
 
@@ -60,11 +95,6 @@
     order = FIRST
     family = LAGRANGE
     block = '1 2'
-    [./InitialCondition]
-      type = RandomIC
-      min = -5.0
-      max = 5.0
-    [../]
   [../]
 []
 
@@ -80,8 +110,9 @@
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 1.3
-      max = 3.0
+      min = 0.001
+      max = 0.002
+      seed = 2
     [../]
   [../]
   [./polar_theta]
@@ -90,8 +121,9 @@
     block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 0.
-      max = 0.2
+      min = 1.5707
+      max = 1.5708
+      seed = 37
     [../]
   [../]
 
@@ -99,6 +131,22 @@
     order = FIRST
     family = LAGRANGE
     block = '1'
+  [../]
+
+  [./H_x]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '1 2'
+  [../]
+  [./H_y]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '1 2'
+  [../]
+  [./H_z]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '1 2'
   [../]
 []
 
@@ -110,7 +158,29 @@
     vector_y = mag_y
     vector_z = mag_z
     block = '1'
-    execute_on = 'initial linear nonlinear timestep_end'
+    execute_on = 'timestep_end final'
+  [../]
+
+  [./hxo]
+    type = DemagFieldAux
+    component = 0
+    variable = H_x
+    block = '1 2'
+    execute_on = 'timestep_end final'
+  [../]
+  [./hyo]
+    type = DemagFieldAux
+    component = 1
+    variable = H_y
+    block = '1 2'
+    execute_on = 'timestep_end final'
+  [../]
+  [./hzo]
+    type = DemagFieldAux
+    component = 2
+    variable = H_z
+    block = '1 2'
+    execute_on = 'timestep_end final'
   [../]
 []
 
@@ -204,48 +274,72 @@
 
   #---------------------------------------#
   #                                       #
-  #          LLB constraint term          #
+  #          LLB constraint terms         #
   #                                       #
   #---------------------------------------#
 
   [./llb_x]
-   type = LongitudinalLLB
-   variable = mag_x
-   component = 0
-   [../]
+    type = LongitudinalLLB
+    variable = mag_x
+    component = 0
+  [../]
   [./llb_y]
-   type = LongitudinalLLB
-   variable = mag_y
-   component = 1
-   [../]
+    type = LongitudinalLLB
+    variable = mag_y
+    component = 1
+  [../]
 
   [./llb_z]
-   type = LongitudinalLLB
-   variable = mag_z
-   component = 2
-   [../]
+    type = LongitudinalLLB
+    variable = mag_z
+    component = 2
+  [../]
 []
 
 [BCs]
   #---------------------------------------#
   #                                       #
   #  ground the magnetostatic potential   #
-  #  far from the ferromagnetic body      #
+  #  at two boundaries                    #
   #                                       #
   #---------------------------------------#
-  
+
   [./bc_int_pot_boundary]
     type = DirichletBC
     variable = potential_H_int
     value = 0.0
     boundary = '1 2 3 4 5 6'
   [../]
+
+  [./bc_surface_mag_x]
+    type = NeumannBC
+    variable = mag_x
+    value = 0.0
+    boundary = '70'
+  [../]
+  [./bc_surface_mag_y]
+    type = NeumannBC
+    variable = mag_y
+    value = 0.0
+    boundary = '70'
+  [../]
+  [./bc_surface_mag_z]
+    type = NeumannBC
+    variable = mag_z
+    value = 0.0
+    boundary = '70'
+  [../]
 []
 
 [Postprocessors]
+   [./dt]
+     type = TimestepSize
+   [../]
+
   #---------------------------------------#
   #                                       #
-  #             Average |M|               #
+  #       Average |M| and along other     #
+  #       directions                      #
   #                                       #
   #---------------------------------------#
 
@@ -253,7 +347,26 @@
     type = ElementAverageValue
     variable = mag_s
     block = '1'
-    execute_on = 'initial timestep_end'
+    execute_on = 'timestep_end final'
+  [../]
+
+  [./<mx>]
+    type = ElementAverageValue
+    variable = mag_x
+    block = '1'
+    execute_on = 'timestep_end final'
+  [../]
+  [./<my>]
+    type = ElementAverageValue
+    variable = mag_y
+    block = '1'
+    execute_on = 'timestep_end final'
+  [../]
+  [./<mz>]
+    type = ElementAverageValue
+    variable = mag_z
+    block = '1'
+    execute_on = 'timestep_end final'
   [../]
 
   #---------------------------------------#
@@ -265,7 +378,7 @@
 
   [./Fexch]
     type = MagneticExchangeEnergy
-    execute_on = 'initial timestep_end'
+    execute_on = 'timestep_end final'
     block = '1'
   [../]
 
@@ -278,17 +391,54 @@
 
   [./Fdemag]
     type = MagnetostaticEnergyCart
-    execute_on = 'initial timestep_end'
+    execute_on = 'timestep_end final'
     block = '1'
   [../]
 
+  #---------------------------------------#
+  #                                       #
+  #   Calculate excess energy from missed #
+  #   LLB targets                         #
+  #                                       #
+  #---------------------------------------#
+
+  [./Fllb]
+    type = MagneticExcessLLBEnergy
+    execute_on = 'timestep_end final'
+    block = '1'
+  [../]
+
+
+  #---------------------------------------#
+  #                                       #
+  #   add all the energy contributions    #
+  #   and calculate their percent change  #
+  #                                       #
+  #---------------------------------------#
+
   [./Ftot]
     type = LinearCombinationPostprocessor 
-    pp_names = 'Fexch Fdemag'
-    pp_coefs = ' 1 1 ' 
-    execute_on = 'initial timestep_end'
+    pp_names = 'Fexch Fdemag Fllb'
+    pp_coefs = ' 1.0 1.0 1.0' 
+    execute_on = 'timestep_end final'
+  [../]
+
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot
+    dt = dt 
+    execute_on = 'timestep_end final'
   [../]
 []
+
+
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = 'perc_change <= 1.0e-5'
+  [../]
+[]
+
 
 
 [Preconditioning]
@@ -297,41 +447,49 @@
   #            Solver options             #
   #                                       #
   #---------------------------------------#
+
   [./smp]
     type = SMP
     full = true
     petsc_options = '-snes_ksp_ew -snes_converged_reason'
     petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121               1e-8      1e-8      1e-6       lu'
+    petsc_options_value = '    121               1e-10      1e-8      1e-6      bjacobi'
   [../]
 []
 
+#[Debug]
+#   show_var_residual_norms = true
+#[]
+
 [Executioner]
   type = Transient            
-  solve_type = 'NEWTON' #'NEWTON' #'PJFNK'
+  solve_type = 'NEWTON'
   [./TimeIntegrator]
-   type = ImplicitEuler #Heun
+    type = ImplicitEuler
   [../]
- # scheme = 'implicit-euler'   #, explicit-euler, crank-nicolson, bdf2, rk-2"
-  dtmin = 1e-6
-  dtmax = 5.0e-3
+  dtmin = 1e-9
+  dtmax = 1.0e-5
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 18
     growth_factor = 1.3
     cutback_factor = 0.8
-    dt = 1.0e-7
+    dt = 1.0e-8
   [../]
   verbose = true
-  num_steps = 10
+  num_steps = 2
 []
 
 [Outputs]
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = out_test
-    interval = 5
+    file_base = out_magnetostatic_brick
     elemental_as_nodal = true
+    interval = 1
+  [../]
+  [./outCSV]
+    type = CSV
+    file_base = out_magnetostatic_brick
   [../]
 []

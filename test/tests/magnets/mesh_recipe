@@ -1,0 +1,36 @@
+reset
+create brick x 0.04 y 0.04 z 0.04
+create brick x 0.02 y 0.02 z 0.003
+subtract volume 2 from volume 1
+create brick x 0.02 y 0.02 z 0.003
+#imprint tolerant all
+merge surface all with surface all
+compress all
+
+volume 2 size 0.004
+volume 1 size 0.004
+
+surface 1 2 3 4 5 6 size 0.02 #this allows a bias on the volume 3 but then redefines the bias on the external block.
+volume 2 1 scheme tetmesh
+
+mesh volume 1 2
+
+sideset 1 surface 1
+sideset 2 surface 2
+sideset 3 surface 3
+sideset 4 surface 4
+sideset 5 surface 5
+sideset 6 surface 6
+
+sideset 7 surface 7
+sideset 8 surface 8
+sideset 9 surface 9
+sideset 10 surface 10
+sideset 11 surface 11
+sideset 12 surface 12
+
+block 1 volume 2
+block 2 volume 1
+block all element type tetra4
+set large exodus file off
+export Genesis  "./exodus_pysq_dx1_AnoI.e" dimension 3 block all overwrite

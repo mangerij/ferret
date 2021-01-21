@@ -1,16 +1,16 @@
 [Tests]
-#  [./how_do_they_work]
-#    type = 'Exodiff'
-#    input = 'LL_test.i'
-#    exodiff = 'out_test.e'
-#    max_parallel = 1
-#    max_threads = 1
-#  [../]
-#  [./magnetocrystalline_anisotropy]
-#    type = 'Exodiff'
-#    input = 'LL_test_anis.i'
-#    exodiff = 'out_disk_anis_test.e'
-#    max_parallel = 1
-#    max_threads = 1
-#  [../]
+  [./how_do_they_work]
+    type = 'Exodiff'
+    input = 'ringdown.i'
+    exodiff = 'out_ringdown.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./magnetostatic_brick]
+    type = 'Exodiff'
+    input = 'magnetostatic_brick.i'
+    exodiff = 'out_magnetostatic_brick.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
