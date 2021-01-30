@@ -3,9 +3,9 @@
 As of July 23rd, 2019 the BitBucket repository is no longer supported. All official changes will be made here on GitHub and Ferret business will continue as usual.
 The continuous integration, verification, and testing server (CIVET: https://civet.inl.gov/) ensures this version is current with the MOOSE master.
 
-### New Features (Jan 2021) ###
+### New Features (January 2021) ###
 
-Ferret can do handle both ferroelectric phase field and micromagnetic modeling. The new micromagnetic module is based on a Landau-Lifshitz-Bloch approach which can handle finite temperature.
+Ferret can treat both ferroelectric phase field and micromagnetic modeling. Both sectors of phenomenological modeling can be implemented separately or coupled together. The new micromagnetic module is based on a Landau-Lifshitz-Bloch approach which can handle finite temperature simulations. Its details will be included in a forthcoming methods paper.
 
 ### Access and Policy on Use ###
 
