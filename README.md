@@ -75,7 +75,7 @@ More reading at X. Jiang et al J. Chem. Phys. 145, 064307 (2016).
 
 * The following people are contributors to the Ferret project and can be reached by email for help:
 
-* John Mangeri (mangeri@fzu.cz)
+* John Mangeri (john.mangeri@list.lu)
 * Serge Nakhmanson (serge.nakhmanson@uconn.edu)
 * Olle Heinonen (heinonen@anl.gov)
 * Lukasz Kuna (lukasz.kuna@uconn.edu)
