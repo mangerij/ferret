@@ -14,7 +14,7 @@
    You should have received a co_polar_y[_qp] of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/

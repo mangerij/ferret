@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
   std::cout<<"   You should have received a copy of the GNU General Public License      "<<"\n";
   std::cout<<"   along with this program.  If not, see <http://www.gnu.org/licenses/>.  "<<"\n";
 
-  std::cout<<"   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>        "<<"\n";
+  std::cout<<"   For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>        "<<"\n";
   std::cout<<"   and be sure to track new changes at github.com/mangerij/ferret         "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
