@@ -42,6 +42,7 @@ protected:
   const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _g0;
   const MaterialProperty<Real> & _alpha_long;
+  const MaterialProperty<Real> & _mu0;
 
 };
 
