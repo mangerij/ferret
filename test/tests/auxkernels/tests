@@ -1,0 +1,9 @@
+[Tests]
+  [./microforce]
+    type = 'Exodiff'
+    input = 'microforce.i'
+    exodiff = 'out_microforce_test.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]
