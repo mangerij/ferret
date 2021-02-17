@@ -33,6 +33,10 @@
   antiferrodis_A_z = antiferrodis_A_z
 
   displacements = 'u_x u_y u_z'
+
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
 []
 
 [Variables]
@@ -318,25 +322,16 @@
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_x
     component = 0
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
   [./electrostr_polar_coupled_y]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_y
     component = 1
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
   [./electrostr_polar_coupled_z]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_z
     component = 2
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
 
 
@@ -403,25 +398,16 @@
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_x
     component = 0
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
   [./rotostr_dis_coupled_y]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_y
     component = 1
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
   [./rotostr_dis_coupled_z]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_z
     component = 2
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
 
   ###Time dependence
@@ -586,16 +572,10 @@
   [./FcPu]
     type = ElectrostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
   [./FcAu]
     type = RotostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
 
   [./Felu]

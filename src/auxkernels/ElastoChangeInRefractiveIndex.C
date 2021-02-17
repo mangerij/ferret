@@ -33,9 +33,9 @@ InputParameters validParams<ElastoChangeInRefractiveIndex>()
   InputParameters params = validParams<AuxKernel>();
   params.addClassDescription("Calculates the changes to local refractive index due to the elastooptic effect.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding changes in the refractive index's index (0, 1, 2, 3, 4, 5)");
-  params.addRequiredCoupledVar("disp_x", "The x component of the elastic displacement");
-  params.addRequiredCoupledVar("disp_y", "The y component of the elastic displacement");
-  params.addCoupledVar("disp_z", 0.0, "The z component of the elastic displacement");
+  params.addRequiredCoupledVar("u_x", "The x component of the elastic displacement");
+  params.addRequiredCoupledVar("u_y", "The y component of the elastic displacement");
+  params.addCoupledVar("u_z", 0.0, "The z component of the elastic displacement");
   return params;
 }
 
@@ -43,9 +43,9 @@ InputParameters validParams<ElastoChangeInRefractiveIndex>()
 ElastoChangeInRefractiveIndex::ElastoChangeInRefractiveIndex(const InputParameters & parameters) :
   AuxKernel(parameters),
    _component(getParam<unsigned int>("component")),
-   _disp_x_grad(coupledGradient("disp_x")),
-   _disp_y_grad(coupledGradient("disp_y")),
-   _disp_z_grad(coupledGradient("disp_z")),
+   _u_x_grad(coupledGradient("u_x")),
+   _u_y_grad(coupledGradient("u_y")),
+   _u_z_grad(coupledGradient("u_z")),
    _n1(getMaterialProperty<Real>("n1")),
    _n2(getMaterialProperty<Real>("n2")),
    _n3(getMaterialProperty<Real>("n3")),
@@ -67,27 +67,27 @@ ElastoChangeInRefractiveIndex::computeValue()
   //
   if (_component == 0)
   {
-    return - 0.5 * Utility::pow<3>(_n1[_qp]) *  (_p1111[_qp]*_disp_x_grad[_qp](0) + _p1122[_qp]*_disp_y_grad[_qp](1) + _p1122[_qp]*_disp_z_grad[_qp](2));
+    return - 0.5 * Utility::pow<3>(_n1[_qp]) *  (_p1111[_qp]*_u_x_grad[_qp](0) + _p1122[_qp]*_u_y_grad[_qp](1) + _p1122[_qp]*_u_z_grad[_qp](2));
   }
   else if (_component == 1)
   {
-    return - 0.5 * Utility::pow<3>(_n2[_qp]) *  (_p1122[_qp]*_disp_x_grad[_qp](0) + _p1111[_qp]*_disp_y_grad[_qp](1) + _p1122[_qp]*_disp_z_grad[_qp](2));
+    return - 0.5 * Utility::pow<3>(_n2[_qp]) *  (_p1122[_qp]*_u_x_grad[_qp](0) + _p1111[_qp]*_u_y_grad[_qp](1) + _p1122[_qp]*_u_z_grad[_qp](2));
   }
   else if (_component == 2)
   {
-    return - 0.5 * Utility::pow<3>(_n3[_qp]) *  (_p1122[_qp]*_disp_x_grad[_qp](0) + _p1122[_qp]*_disp_y_grad[_qp](1) + _p1111[_qp]*_disp_z_grad[_qp](2));
+    return - 0.5 * Utility::pow<3>(_n3[_qp]) *  (_p1122[_qp]*_u_x_grad[_qp](0) + _p1122[_qp]*_u_y_grad[_qp](1) + _p1111[_qp]*_u_z_grad[_qp](2));
   }
   else if (_component == 3)
   {
-    return - Utility::pow<3>(_n4[_qp]) *  (_p1212[_qp]*_disp_y_grad[_qp](2));
+    return - Utility::pow<3>(_n4[_qp]) *  (_p1212[_qp]*_u_y_grad[_qp](2));
   }
   else if (_component == 4)
   {
-    return - Utility::pow<3>(_n5[_qp]) *  (_p1212[_qp]*_disp_z_grad[_qp](0));
+    return - Utility::pow<3>(_n5[_qp]) *  (_p1212[_qp]*_u_z_grad[_qp](0));
   }
   else if (_component == 5)
   {
-    return - Utility::pow<3>(_n6[_qp]) *  (_p1212[_qp]*_disp_x_grad[_qp](1));
+    return - Utility::pow<3>(_n6[_qp]) *  (_p1212[_qp]*_u_x_grad[_qp](1));
   }
   else
     return 0.0;
