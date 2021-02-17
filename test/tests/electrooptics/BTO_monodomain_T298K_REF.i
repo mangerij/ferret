@@ -82,6 +82,10 @@
   ##
   ##############################################
 
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
+
 []
 
 [Functions]
@@ -390,9 +394,9 @@
     type = ElastoChangeInRefractiveIndex
     component = 0
     variable = den_1
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
+    u_x = u_x
+    u_y = u_y
+    u_z = u_z
     execute_on = 'timestep_end'
   [../]
 
@@ -400,9 +404,9 @@
     type = ElastoChangeInRefractiveIndex
     component = 1
     variable = den_2
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
+    u_x = u_x
+    u_y = u_y
+    u_z = u_z
     execute_on = 'timestep_end'
   [../]
 
@@ -410,9 +414,9 @@
     type = ElastoChangeInRefractiveIndex
     component = 2
     variable = den_3
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
+    u_x = u_x
+    u_y = u_y
+    u_z = u_z
     execute_on = 'timestep_end'
   [../]
 
@@ -688,26 +692,16 @@
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_x
     component = 0
-    disp_x = u_x
-    disp_y = u_y
-    disp_z = u_z
-
   [../]
   [./electrostr_polar_coupled_y]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_y
     component = 1
-    disp_x = u_x
-    disp_y = u_y
-    disp_z = u_z
   [../]
   [./electrostr_polar_coupled_z]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_z
     component = 2
-    disp_x = u_x
-    disp_y = u_y
-    disp_z = u_z
   [../]
 
 
@@ -829,9 +823,6 @@
   [./Fcoupled]
     type = ElectrostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
-    disp_x = disp_x
-    disp_y = disp_y
-    disp_z = disp_z
   [../]
   [./Felec]
     type = ElectrostaticEnergy
