@@ -18,11 +18,18 @@
   [../]
 []
 
+[Materials]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '1.0'
+  [../]
+[]
+
 [Kernels]
   [./diff]
     type = Electrostatics
     variable = phi
-    permittivity = 1.0
   [../]
 []
 
@@ -31,7 +38,6 @@
     type = CoupledDirichletBC
     variable = phi
     boundary = 1
-
     coupled_var = phi1
   [../]
 []

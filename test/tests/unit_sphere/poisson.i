@@ -37,11 +37,18 @@
   [../]
 []
 
+[Materials]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '1.0'
+  [../]
+[]
+
 [Kernels]
   [./diffusion]
      type = Electrostatics
      variable = phi
-     permittivity = 1.0
   [../]
   [./forcing]
     type = PolarElectricEStrong
