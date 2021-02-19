@@ -60,6 +60,6 @@ ElectrostrictiveCouplingEnergy::ElectrostrictiveCouplingEnergy(const InputParame
 Real
 ElectrostrictiveCouplingEnergy::computeQpIntegral()
 {
-  return -(-2.0*_q44[_qp]*((_polar_x[_qp]*_polar_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _q12[_qp]*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_u_z_grad[_qp](2)) - 
+  return -0.5*(-2.0*_q44[_qp]*((_polar_x[_qp]*_polar_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _q12[_qp]*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_u_z_grad[_qp](2)) - 
    _q11[_qp]*(Utility::pow<2>(_polar_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_polar_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_polar_z[_qp])*_u_z_grad[_qp](2)));
 }
