@@ -39,8 +39,8 @@ validParams<GlobalATiO3MaterialRVEUserObject>()
   params.addParam<std::string>("base_name", "Material properties base name");
   params.addCoupledVar("displacements", "The name of the displacement variables");
   params.set<ExecFlagEnum>("execute_on") = EXEC_LINEAR;
-  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
+  params.addCoupledVar("polar_x", 0.0, "The x component of the polarization");
+  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   return params;
 }
