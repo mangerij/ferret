@@ -49,7 +49,7 @@
     multi_app = laplace
   [../]
   [./from_sub2]
-    type = MultiAppAddTransfer
+    type = MultiAppCopyTransfer  #this used to be MultiAppAddTransfer... what happened? Is this important?
     direction = from_multiapp
     source_variable = phi
     variable = phi
