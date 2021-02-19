@@ -40,10 +40,8 @@ protected:
   virtual Real computeQpJacobian();
 
 private:
-  const Real _eps1;
-  const Real _eps2;
-  const Real _eps3;
-  const Real _len_scale;
-
+  const MaterialProperty<Real> & _eps1;
+  const MaterialProperty<Real> & _eps2;
+  const MaterialProperty<Real> & _eps3;
 };
 #endif

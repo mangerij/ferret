@@ -619,6 +619,12 @@
     potential_E_int = potential_E_int
   [../]
 
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '1.0'
+  [../]
+
 []
 
 [Kernels]
@@ -630,7 +636,6 @@
   [./ElectroStats]
     type = Electrostatics
     variable = potential_E_int
-    permittivity = 1
     block = '1 2 3 4 5 6'
   [../]
 []

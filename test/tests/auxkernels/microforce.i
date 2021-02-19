@@ -387,6 +387,12 @@
     Q_mnkl = '-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375'
     C_ijkl = '175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1'
   [../]
+
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.08854187'
+  [../]
 []
 
 
@@ -474,7 +480,6 @@
   [./FE_E_int]
      type = Electrostatics
      variable = potential_E_int
-     permittivity = 0.08854187
   [../]
 
   [./polar_electric_px]

@@ -406,8 +406,20 @@
     C_ijkl = '275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3'
   [../]
 
+  [./permitivitty_1]
+     ###############################################
+     ##
+     ##  so-called background dielectric constant
+     ##  (it encapsulates the motion of core electrons
+     ##  at high frequency) = e_b*e_0 (here we use 
+     ##  e_b = 10), see PRB. 74, 104014, (2006)
+     ##
+     ###############################################
 
-
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.08854187'
+  [../]
 []
 
 
@@ -500,17 +512,6 @@
   [./FE_E_int]
      type = Electrostatics
      variable = potential_E_int
-
-     ###############################################
-     ##
-     ##  so-called background dielectric constant
-     ##  (it encapsulates the motion of core electrons
-     ##  at high frequency) = e_b*e_0 (here we use 
-     ##  e_b = 10), see PRB. 74, 104014, (2006)
-     ##
-     ###############################################
-
-     permittivity = 0.08854187
   [../]
 
   [./polar_electric_px]

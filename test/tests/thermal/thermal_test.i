@@ -25,8 +25,6 @@
   alpha112 = 0.61
   alpha123 = -3.67
 
-  permittivity = 0.5843763
-
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
@@ -203,6 +201,15 @@
   [../]
 
 []
+
+[Materials]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.5843763'
+  [../]
+[]
+
 
 [Preconditioning]
   [./smp]

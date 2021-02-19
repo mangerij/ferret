@@ -36,6 +36,12 @@
     prop_names = 'alpha_long'
     prop_values = 'bc_func_1'
   [../]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'  #dummy variable at the moment since we use the "electrostatics" kernel
+    prop_values = '1.0'
+    block = '1 2'
+  [../]
 []
 
 [Functions]
@@ -263,7 +269,6 @@
     type = Electrostatics
     variable = potential_H_int
     block = '1 2'
-    permittivity = 1.0 #a dummy variable at the moment since we use the "electrostatics" kernel
   [../]
   [./int_bc_pot_lap]
     type = MagHStrongCart

@@ -111,6 +111,22 @@ amplitude = 0.01
     prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
     prop_values = '1.0 0.51 0.02 0.02 0.0'
   [../]
+
+  [./permitivitty_1]
+     ###############################################
+     ##
+     ##  so-called background dielectric constant
+     ##  (it encapsulates the motion of core electrons
+     ##  at high frequency) = e_b*e_0 (here we use 
+     ##  e_b = 10), see PRB. 74, 104014, (2006)
+     ##
+     ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.0637501464'
+  [../]
+
 []
 
 [Kernels]
@@ -165,11 +181,6 @@ amplitude = 0.01
   [./FE_E_int]
      type = Electrostatics
      variable = potential_int
-     permittivity = 0.0637501464
-     #NOTE: This is a static permittivity contribution from core-electrons.
-     #      This effectively screens the electrostatic interactions.
-     #      For BTO, this value is about 7*e_0, where e_0 is the permitivitty of the vacuum.
-     #      See the brief discussion before sec. IV on pp. 4 of Phys. Rev. B. 74, 104014, (2006)
   [../]
   [./polar_electric_px]
      type = PolarElectricPStrong

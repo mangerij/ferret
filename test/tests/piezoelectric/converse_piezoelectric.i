@@ -22,7 +22,6 @@
   displacements = 'u_x u_y u_z'
 []
 
-
 [Variables]
   [./u_x]
     order = FIRST
@@ -116,11 +115,18 @@
   [./FE_E_int]
      type = Electrostatics
      variable = potential_E_int
-     permittivity = 0.0721616
   [../]
   [./strain_charge]
      type = PiezoelectricStrainCharge
      variable = potential_E_int
+  [../]
+[]
+
+[Materials]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.0721616'
   [../]
 []
 

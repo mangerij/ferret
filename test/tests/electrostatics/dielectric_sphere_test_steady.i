@@ -19,16 +19,29 @@
 [Kernels]
   [./E_Ext_block2]
      type = Electrostatics
-     permittivity = 6
      variable = potential
      block = '2'
   [../]
 
   [./E_Ext_block1]
      type = Electrostatics
-     permittivity = 1
      variable = potential
      block = '1'
+  [../]
+[]
+
+[Materials]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '1'
+    block = '1'
+  [../]
+  [./permitivitty_2]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '6'
+    block = '2'
   [../]
 []
 

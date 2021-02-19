@@ -162,6 +162,37 @@
     prop_names = 'chi'
     prop_values = '10.0'   # arbitrary positive value set
   [../]
+
+  ###############################################
+  ##
+  ##  Background dielectric constant of the 
+  ##  dielectric layer. It is isotropic e_d = 208
+  ##  where e_0 = 0.008854187 in Ferret's units
+  ##
+  ##############################################
+
+  [./permitivitty]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '1.84167'
+    block = '1 2'
+  [../]
+
+  [./eps1]
+    ###############################################
+    ##
+    ##  background dielectric constant of the 
+    ##  ferroelectric layer is anisotropic with two
+    ##  components. Note that e_0 is 0.008854187 in 
+    ##  Ferret's native units
+    ##
+    ##############################################
+
+    type = GenericConstantMaterial
+    prop_names = 'eps1 eps2 eps3'
+    prop_values = '3.692195979 1.5450556315 0.0'
+    block = '0'
+  [../]
 []
 
 
@@ -231,35 +262,12 @@
   [./FE_E_int]
     type = AnisotropicElectrostatics
     variable = potential_E_int
-
-    ###############################################
-    ##
-    ##  background dielectric constant of the 
-    ##  ferroelectric layer is anisotropic with two
-    ##  components. Note that e_0 is 0.008854187 in 
-    ##  Ferret's native units
-    ##
-    ##############################################
-
-    eps1 = 3.692195979
-    eps2 = 1.5450556315
-    eps3 = 0.0
     block = '0'
   [../]
 
   [./die_E_int]
     type = Electrostatics
     variable = potential_E_int
-
-    ###############################################
-    ##
-    ##  Background dielectric constant of the 
-    ##  dielectric layer. It is isotropic e_d = 208
-    ##  where e_0 = 0.008854187 in Ferret's units
-    ##
-    ##############################################
-
-    permittivity = 1.84167
     block = '1 2'
   [../]
 
