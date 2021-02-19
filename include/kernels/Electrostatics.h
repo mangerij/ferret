@@ -40,8 +40,7 @@ protected:
   virtual Real computeQpJacobian();
 
 private:
-  const Real _permittivity;
-  const Real _len_scale;
+  const MaterialProperty<Real> & _permittivity;
 
 };
 #endif

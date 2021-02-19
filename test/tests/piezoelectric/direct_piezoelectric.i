@@ -124,6 +124,15 @@
   [../]
 []
 
+[Materials]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.0721616'
+  [../]
+[]
+
+
 
 [AuxKernels]
   [./stress_xx]

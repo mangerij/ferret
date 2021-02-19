@@ -28,19 +28,14 @@ InputParameters validParams<AnisotropicElectrostatics>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
-  params.addRequiredParam<Real>("eps1", "first component of background permitivitty");
-  params.addRequiredParam<Real>("eps2", "second component of background permitivitty");
-  params.addRequiredParam<Real>("eps3", "third component of background permitivitty");
-  params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");
   return params;
 }
 
 AnisotropicElectrostatics::AnisotropicElectrostatics(const InputParameters & parameters)
   :Kernel(parameters),
-   _eps1(getParam<Real>("eps1")),
-   _eps2(getParam<Real>("eps2")),
-   _eps3(getParam<Real>("eps3")),
-   _len_scale(getParam<Real>("len_scale"))
+   _eps1(getMaterialProperty<Real>("eps1")),
+   _eps2(getMaterialProperty<Real>("eps2")),
+   _eps3(getMaterialProperty<Real>("eps3"))
 {
 }
 
@@ -48,7 +43,7 @@ Real
 AnisotropicElectrostatics::computeQpResidual()
 {
   Real Relec = 0.0;
-  Relec += (_eps1 * _grad_u[_qp](0) * _grad_test[_i][_qp](0)+ _eps2 * _grad_u[_qp](1) * _grad_test[_i][_qp](1) +_eps3 * _grad_u[_qp](2) * _grad_test[_i][_qp](2) )* _len_scale;
+  Relec += (_eps1[_qp] * _grad_u[_qp](0) * _grad_test[_i][_qp](0)+ _eps2[_qp] * _grad_u[_qp](1) * _grad_test[_i][_qp](1) +_eps3[_qp] * _grad_u[_qp](2) * _grad_test[_i][_qp](2) );
   ///  Moose::out << "\n R_elec-"; std::cout << " = " << Relec;
   return Relec;
 }
@@ -56,5 +51,5 @@ AnisotropicElectrostatics::computeQpResidual()
 Real
 AnisotropicElectrostatics::computeQpJacobian()
 {
-   return (_eps1 * _grad_phi[_j][_qp](0) * _grad_test[_i][_qp](0)+ _eps2 * _grad_phi[_j][_qp](1) * _grad_test[_i][_qp](1) +_eps3 * _grad_phi[_j][_qp](2) * _grad_test[_i][_qp](2) )* _len_scale;
+   return (_eps1[_qp] * _grad_phi[_j][_qp](0) * _grad_test[_i][_qp](0)+ _eps2[_qp] * _grad_phi[_j][_qp](1) * _grad_test[_i][_qp](1) +_eps3[_qp] * _grad_phi[_j][_qp](2) * _grad_test[_i][_qp](2) );
 }

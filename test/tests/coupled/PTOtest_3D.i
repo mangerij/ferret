@@ -125,6 +125,12 @@
     C_ijkl = '380. 150. 150. 380. 150. 380. 110. 110. 110.'
   [../]
 
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.08854187'
+  [../]
+
 []
 
 
@@ -199,7 +205,6 @@
   [./FE_E_int]
      type = Electrostatics
      variable = potential_E_int
-     permittivity = 0.08854187
   [../]
   [./polar_electric_px]
      type = PolarElectricPStrong
