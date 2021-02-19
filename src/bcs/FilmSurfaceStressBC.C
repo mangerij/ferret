@@ -95,7 +95,7 @@ FilmSurfaceStressBC::computeQpResidual()
   eigenstress_tensor(0, 2) = eigenstress_tensor(2, 0) =
     4.0 * _C44[_qp] * _polar_x[_qp] * _polar_z[_qp] * _Q44[_qp];
 
-  return _test[_i][_qp] * (_stress[_qp](_component,2)+eigenstress_tensor(_component,2));
+  return _test[_i][_qp] * (_stress[_qp](_component,2)+eigenstress_tensor(_component,2)); //maybe needs a minus out front?
 }
 
 Real
