@@ -1,8 +1,15 @@
 [Tests]
-  [./full]
+  [./longitudinal]
     type = 'Exodiff'
-    input = 'BTO_mono_dispersion_A1_def.i'
-    exodiff = 'outBTO_disp_test.e'
+    input = 'perturbBTO_PzEz.i'
+    exodiff = 'out_perturbBTO_PzEz0.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./transverse]
+    type = 'Exodiff'
+    input = 'perturbBTO_PyEz.i'
+    exodiff = 'out_perturbBTO_PyEz0.e'
     max_parallel = 1
     max_threads = 1
   [../]
