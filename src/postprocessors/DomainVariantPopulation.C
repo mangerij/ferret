@@ -30,7 +30,7 @@ InputParameters validParams<DomainVariantPopulation>()
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates the fraction of volume of a given domain population (only works in tetragonal phase at the moment)");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2.0 for z)");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
