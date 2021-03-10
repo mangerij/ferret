@@ -39,9 +39,9 @@ InputParameters validParams<ElectrostaticEnergy>()
 
 ElectrostaticEnergy::ElectrostaticEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _polar_x(coupledValueOld("polar_x")),
-  _polar_y(coupledValueOld("polar_y")),
-  _polar_z(coupledValueOld("polar_z")),
+  _polar_x(coupledValue("polar_x")),
+  _polar_y(coupledValue("polar_y")),
+  _polar_z(coupledValue("polar_z")),
   _potential_E_int_grad(coupledGradient("potential_E_int")),
   _potential_E_ext_grad(coupledGradient("potential_E_ext")),
   _len_scale(getParam<Real>("len_scale"))
