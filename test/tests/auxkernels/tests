@@ -1,8 +1,15 @@
 [Tests]
-  [./microforce]
+  [./microForce]
     type = 'Exodiff'
     input = 'microforce.i'
     exodiff = 'out_microforce_test.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./surfaceBoundCharge]
+    type = 'Exodiff'
+    input = 'surface_charge.i'
+    exodiff = 'out_surface_charge.e'
     max_parallel = 1
     max_threads = 1
   [../]
