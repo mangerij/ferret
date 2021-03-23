@@ -1,7 +1,7 @@
 ### We have moved from BitBucket! ###
 
 As of July 23rd, 2019 the BitBucket repository is no longer supported. All official changes will be made here on GitHub and Ferret business will continue as usual.
-The continuous integration, verification, and testing server (CIVET: https://civet.inl.gov/) ensures this version is current with the MOOSE master.
+The continuous integration, verification, and testing server (CIVET: https://civet.inl.gov/) ensures this version is current with the MOOSE master and that Ferret tests are continuously validated.
 
 ### New Features (January 2021) ###
 
@@ -12,9 +12,9 @@ Ferret can treat both ferroelectric phase field and micromagnetic modeling. Both
 Ferret still exists under the open-source GNU License but to access the repository you will need an RSA deploy key registered with our application. We freely provide these keys in order to track repository usage and measure impact. We can allow write-access on request.
 Please contact one of the developers for assistance in generating one.
 
-After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 in the *main text* of your paper if you use Ferret. A methods paper is in the works which will supercede this requirement in the future. Finally, one more comment about usage: any issues with legacy inputs not running on this version of Ferret should be resolved with corresponding authors of appropriate papers. As this code belongs under GNU licensing, we cannot possibly support all of the custom spin-offs and additions to the code. We wish we could but sometimes mutual cooperation is less than optimal with those who harbor a lack of a mature interest in the open-source approach to science.
+After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 in the *main text* of your paper if you use Ferret. A methods paper is in the works which will supercede this requirement in the future. Finally, one more comment about usage: any issues with legacy inputs not running on this version of Ferret should be resolved with corresponding authors of appropriate papers. The same goes for unofficial Ferret patches that assume old versions of MOOSE. As this code belongs under GNU licensing, we cannot possibly support all of the custom spin-offs and additions to the code. 
 
-Before publishing results with Ferret, we strongly suggest that you update MOOSE and then update Ferret. Make a test in the tests directory representative of your problem and submit a pull-request. This ensures your results will be reproducible on all current and future versions of the entire software stack (Ferret->MOOSE->libMesh->PETSc). You can link to these tests in your papers if you would like to support open science. A final note: assistance from the developers in testing, debugging, upgrading, and using Ferret-related code may constitute a reasonable assumption of co-authorship of any of the Ferret users/developers *and possibly their contributors*. While not strictly required, we still suggest that you clear this up with developers before you submit your manuscript. If you wish to have your paper appear/highlight/quoted on the Ferret website, please send us it after it is published and we will do our best to give you a much deserved spotlight.
+Before publishing results with Ferret, we strongly suggest that you update MOOSE and then update Ferret. Make a test in the /tests directory representative of your problem and submit a pull-request. This ensures your results will be reproducible on all current and future versions of the entire software stack (Ferret->MOOSE->libMesh->PETSc). You can link to these tests in your papers if you would like to support open science. A final note: assistance from the developers in testing, debugging, upgrading, and using Ferret-related code may constitute a reasonable assumption of co-authorship of any of the Ferret users/developers *and possibly their contributors*. While not strictly required, we still suggest that you clear this up with developers before you submit your manuscript. If you wish to have your paper appear/highlight/quoted on the Ferret website, please send us it after it is published and we will do our best to give you a much deserved spotlight.
 
 ### What is Ferret and how can I compile it? ###
 
@@ -32,28 +32,27 @@ Those with admin access to the code can clone with a slightly different command
 ```
 git clone https://github.com/mangerij/ferret.git
 ```
-Once MOOSE is built, Ferret can be built simply with
+Make sure Ferret is cloned in the adjacent to the MOOSE folder. For example if MOOSE is in
+
+```
+~/projects/moose
+```
+
+then Ferret should be
+
+```
+~/projects/ferret
+```
+
+Ferret can be built with
+
 ```
 cd <ferret>
 ./configure
-make METHOD=opt MOOSE_DIR=<moose>
+make
 ```
-or
-```
-make METHOD=opt MOOSE_DIR=<moose> -j 4
-```
-to make the compile go faster.
 
-Here `<ferret>` is the location of the Ferret clone, and `<moose>` is the MOOSE clone.
-Naturally, use an appropriate `METHOD` -- one of those that was used to build MOOSE
-(e.g., `dbg` or `opt`).
 
-If libMesh is built in a non-standard location (i.e., NOT built inside the MOOSE tree 
-using the `<moose>/scripts/update_and_rebuild_libmesh.sh`) then `LIBMESH_DIR` also has 
-to be set:
-```
-make METHOD=opt MOOSE_DIR=<moose> LIBMESH_DIR=<libmesh>
-```
 ### Additional information: ###
 
 The ./configure step can include additional libraries such as BOOST which will allow compile of MOOSE objects with mathematical special functions.
@@ -85,8 +84,7 @@ More reading at X. Jiang et al J. Chem. Phys. 145, 064307 (2016).
 * A semi-updated tutorial and manual exists but is not in the repository at the present time due to its status as work-in-progress. If you would like a copy of it, please contact one of the contributors.
 
 ### MOOSE can be found at http://www.mooseframework.org ###
- * The moose-users list at https://groups.google.com/forum/#!forum/moose-users is a great link for help with MOOSE or new implementations.
+ * The GitHub discussion board for MOOSE (https://github.com/idaholab/moose/discussions) is a great resource for help with MOOSE or new implementations.
 
 ### Contributing ###
- * If you have an idea for some ferroelectric materials problem and would like to add it to the repository, then please submit a pull request *to the devel branch* with the relevant information. Generally, to submit a pull request, you should *fork* Ferret, type git checkout devel, git fetch origin, git rebase origin/devel, then make the changes/additions and a commit message, type git push. Then submit the pull request on the page (the next steps will be handled automatically).
- * We have a google group now! https://groups.google.com/forum/#!forum/ferret-users/new
+ * If you have an idea for a ferroelectric materials problem and would like to add it to the repository, then please submit a pull request *to the devel branch* with the relevant information. Generally, to submit a pull request, you should *fork* Ferret, type git checkout devel, git fetch origin, git rebase origin/devel, then make the changes/additions and a commit message, type git push. Then submit the pull request on the page (the next steps will be handled automatically).
