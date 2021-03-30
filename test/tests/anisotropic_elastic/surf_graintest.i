@@ -288,9 +288,9 @@
     surface_euler_angle_2 = 0.0
     surface_euler_angle_3 = 0.0
 # Surface elastic tensor C_1111, C_1112, C_1122, C_1212, C_1222, C_1211, C_2211, C_2212, C_2222
-    Cs_ijkl = '49.1e-09 0.0e-09 15.1e-09 13.7e-09 0.0e-09 0.0e-09 15.1e-09 0.0e-09 34.9e-09'
+    Cs_ijkl = '49.1e-1 0.0 15.1e-1 13.7e-1 0.0 0.0 15.1e-1 0.0 34.9e-1'
 # Intrinsic surface stress
-    taus = '-1.7e-09'
+    taus = '-1.7e-1'
     component = 0
   [../]
 
@@ -305,7 +305,7 @@
     surface_euler_angle_2 = 0.0
     surface_euler_angle_3 = 0.0
 # Surface elastic tensor C_1111, C_1112, C_1122, C_1212, C_1222, C_1211, C_2211, C_2212, C_2222
-    Cs_ijkl = '49.1e-09 0.0e-09 15.1e-09 13.7e-09 0.0e-09 0.0e-09 15.1e-09 0.0e-09 34.9e-09'
+    Cs_ijkl = '49.1e-1 0.0 15.1e-1 13.7e-1 0.0 0.0 15.1e-1 0.0 34.9e-1'
 # Intrinsic surface stress
     taus = '-1.7e-09'
     component = 1

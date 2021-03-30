@@ -5,5 +5,6 @@
 #    exodiff = 'koala_out.e'
 #    max_parallel = 1
 #    max_threads = 1
+#    abs_zero = 1e-1  #maybe?
 #  [../]
 #[]

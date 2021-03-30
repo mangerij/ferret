@@ -47,8 +47,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.1e-2
+      max = 0.1e-2
       seed = 5
       legacy_generator = true
     [../]
@@ -58,8 +58,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.1e-2
+      max = 0.1e-2
       seed = 5
       legacy_generator = true
     [../]
@@ -69,8 +69,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.1e-2
+      max = 0.1e-2
       seed = 5
       legacy_generator = true
     [../]
@@ -177,13 +177,13 @@
   [./potential_cube5]
     type = DirichletBC
     boundary = 'front'
-    value = 0.0002
+    value = 0.002
     variable = potential_E_int
   [../]
   [./potential_cube6]
     type = DirichletBC
     boundary = 'back'
-    value = 0.0002
+    value = 0.002
     variable = potential_E_int
   [../]
 
