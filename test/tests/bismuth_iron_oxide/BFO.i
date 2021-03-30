@@ -2,21 +2,21 @@
   [gen]
     type = GeneratedMeshGenerator
     dim = 3
-    nx = 4
-    ny = 4
-    nz = 4
-    xmin = -1.0
-    xmax = 1.0
-    ymin = -1.0
-    ymax = 1.0
-    zmin = -1.0
-    zmax = 1.0
+    nx = 3
+    ny = 3
+    nz = 3
+    xmin = -0.5
+    xmax = 0.5
+    ymin = -0.5
+    ymax = 0.5
+    zmin = -0.5
+    zmax = 0.5
     elem_type = HEX8
   []
   [./cnode]
     input = gen
     type = ExtraNodesetGenerator
-    coord = '0.0 0.0 0.0'
+    coord = '-0.5 -0.5 -0.5'
     new_boundary = 100
   [../]
 []
@@ -34,9 +34,7 @@
 
   displacements = 'u_x u_y u_z'
 
-  u_x = u_x
-  u_y = u_y
-  u_z = u_z
+
 []
 
 [Variables]
@@ -55,9 +53,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.08
-      max = 0.09
-      legacy_generator = true
+      min = 0.5
+      max = 0.51
     [../]
   [../]
   [./polar_y]
@@ -65,9 +62,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.08
-      max = 0.09
-      legacy_generator = true
+      min = 0.5
+      max = 0.51
     [../]
   [../]
   [./polar_z]
@@ -75,9 +71,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.08
-      max = 0.09
-      legacy_generator = true
+      min = 0.5
+      max = 0.51
     [../]
   [../]
   [./antiferrodis_A_x]
@@ -85,9 +80,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.08
-      max = 0.09
-      legacy_generator = true
+      min = 7.4
+      max = 7.41
     [../]
   [../]
   [./antiferrodis_A_y]
@@ -95,9 +89,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.08
-      max = 0.09
-      legacy_generator = true
+      min = 7.4
+      max = 7.41
     [../]
   [../]
   [./antiferrodis_A_z]
@@ -105,9 +98,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.08
-      max = 0.09
-      legacy_generator = true
+      min = 7.4
+      max = 7.41
     [../]
   [../]
 []
@@ -151,6 +143,49 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e21]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e02]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e20]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./eigs00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./eigs11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./eigs22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./eigs01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./eigs12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+
 []
 
 [AuxKernels]
@@ -231,6 +266,74 @@
     index_i = 1
     index_j = 1
   [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+
+  [./eigs00]
+    type = LocalBFOEigenstressAux
+    variable = eigs00
+    index_i = 0
+    index_j = 0
+  [../]
+  [./eigs11]
+    type = LocalBFOEigenstressAux
+    variable = eigs11
+    index_i = 1
+    index_j = 1
+  [../]
+  [./eigs22]
+    type = LocalBFOEigenstressAux
+    variable = eigs22
+    index_i = 2
+    index_j = 2
+  [../]
+  [./eigs01]
+    type = LocalBFOEigenstressAux
+    variable = eigs01
+    index_i = 0
+    index_j = 1
+  [../]
+  [./eigs12]
+    type = LocalBFOEigenstressAux
+    variable = eigs12
+    index_i = 1
+    index_j = 2
+  [../]
+
+
 []
 
 [Kernels]
@@ -286,21 +389,6 @@
     component = 2
   [../]
 
-  [./walled_x]
-    type = WallEnergyDerivative
-    variable = polar_x
-    component = 0
-  [../]
-  [./walled_y]
-    type = WallEnergyDerivative
-    variable = polar_y
-    component = 1
-  [../]
-  [./walled_z]
-    type = WallEnergyDerivative
-    variable = polar_z
-    component = 2
-  [../]
 
   [./roto_polar_coupled_x]
     type = RotoPolarCoupledEnergyPolarDerivativeAlt
@@ -317,21 +405,49 @@
     variable = polar_z
     component = 2
   [../]
+  [./roto_dis_coupled_x]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiferrodis_A_x
+    component = 0
+  [../]
+  [./roto_dis_coupled_y]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiferrodis_A_y
+    component = 1
+  [../]
+  [./roto_dis_coupled_z]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiferrodis_A_z
+    component = 2
+  [../]
+
+
+
+
 
   [./electrostr_polar_coupled_x]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_x
     component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
   [../]
   [./electrostr_polar_coupled_y]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_y
     component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
   [../]
   [./electrostr_polar_coupled_z]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_z
     component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
   [../]
 
 
@@ -353,95 +469,33 @@
     component = 2
   [../]
 
-  [./roto_walled_x]
-    type = WallEnergyDerivative
-    variable = antiferrodis_A_x
-    component = 0
-    polar_x = antiferrodis_A_x
-    polar_y = antiferrodis_A_y
-    polar_z = antiferrodis_A_z
-  [../]
-  [./roto_walled_y]
-    type = WallEnergyDerivative
-    variable = antiferrodis_A_y
-    component = 1
-    polar_x = antiferrodis_A_x
-    polar_y = antiferrodis_A_y
-    polar_z = antiferrodis_A_z
-  [../]
-  [./roto_walled_z]
-    type = WallEnergyDerivative
-    variable = antiferrodis_A_z
-    component = 2
-    polar_x = antiferrodis_A_x
-    polar_y = antiferrodis_A_y
-    polar_z = antiferrodis_A_z
-  [../]
-
-  [./roto_dis_coupled_x]
-    type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_x
-    component = 0
-  [../]
-  [./roto_dis_coupled_y]
-    type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_y
-    component = 1
-  [../]
-  [./roto_dis_coupled_z]
-    type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_z
-    component = 2
-  [../]
 
   [./rotostr_dis_coupled_x]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_x
     component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
   [../]
   [./rotostr_dis_coupled_y]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_y
     component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
   [../]
   [./rotostr_dis_coupled_z]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiferrodis_A_z
     component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
   [../]
 
-  ###Time dependence
-  [./polar_x_time]
-    type = TimeDerivativeScaled
-    variable = polar_x
-    time_scale = 1.0
-  [../]
-  [./polar_y_time]
-     type = TimeDerivativeScaled
-     variable=polar_y
-    time_scale = 1.0
-  [../]
-  [./polar_z_time]
-     type = TimeDerivativeScaled
-     variable = polar_z
-    time_scale = 1.0
-  [../]
 
-  [./antiferrodis_A_x_time]
-    type = TimeDerivativeScaled
-    variable = antiferrodis_A_x
-    time_scale = 1.0
-  [../]
-  [./antiferrodis_A_y_time]
-     type = TimeDerivativeScaled
-     variable = antiferrodis_A_y
-    time_scale = 1.0
-  [../]
-  [./antiferrodis_A_z_time]
-     type = TimeDerivativeScaled
-     variable = antiferrodis_A_z
-    time_scale = 1.0
-  [../]
 []
 
 [ScalarKernels]
@@ -456,67 +510,55 @@
   [./Landau_P]
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
-    prop_values = '-3.29328296e-1 7.15515014e-2 8.85202744e-2 -4.44849403e-3 1.96626638e-3 -5.32358548e-2 1.86312506e-4 -4.70479587e-4 9.55233783e-4 3.0759255e-3'
+    prop_values = '-1.09028 0.66802 0.868776 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
   [../]
 
   [./Landau_A]
     type = GenericConstantMaterial
     prop_names = 'beta1 beta11 beta12 beta111 beta112 beta123 beta1111 beta1112 beta1122 beta1123'
-    prop_values = '-3.88826748e-1 9.14933665e-2 1.07046279e-1 -7.73266661e-3 -6.09716685e-3 -6.926e-3 3.961e-4 1.294e-4 9.67e-4 8.115e-4'
+    prop_values = '-5.33957e-3 1.35373e-5 0.0000193349 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
   [../]
 
   [./P_A_couple]
     type = GenericConstantMaterial
-    prop_names = 't1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212 t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222'
-    prop_values = '1.165e-1 1.539e-1 -1.925e-1 4.432e-3 -2.662e-2 -1.695e-2 -2.157e-2 -1.577e-2 -1.133e-2 1.272e-2 1.214e-2 -3.652e-2 4.972e-2 -3.891e-3 -2.554e-2 -1.327e-3 3.663e-3 7.066e-4 1.7e-3 6.133e-3 2.438e-3'
+    prop_names = 't1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212   t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222'
+    prop_values = '0.0048511 6.99618e-3 -1.40134e-2 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
   [../]
-
-  [./grad_P]
-    type = GenericConstantMaterial
-    prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
-    prop_values = '0.173 0.5 0 0.5 0.5'
-  [../]
-
-  [./grad_A]
-    type = GenericConstantMaterial
-    prop_names = 'H110 H11_H110 H12_H110 H44_H110 H44P_H110'
-    prop_values = '0.173 0.5 0 0.5 0.5'
-  [../]
-
   [./mat_C]
     type = GenericConstantMaterial
     prop_names = 'C11 C12 C44'
-    prop_values = '1.762732e-2 9.4905087e-3 5.24373333e-5'
+    prop_values = '114.409 45.5681 28.709'
   [../]
 
   [./mat_Q]
     type = GenericConstantMaterial
-    prop_names = 'Q11 Q12 Q44'
-    prop_values = '-1.35386 0.238295 -4.17474'
+    prop_names = 'Q11 Q12 Q44'   
+    prop_values = '-0.0603836 0.0111246 -0.0175686'
   [../]
 
   [./mat_R]
     type = GenericConstantMaterial
     prop_names = 'R11 R12 R44'
-    prop_values = '-2.35149 1.1143805 3.67475'
+    prop_values = '-0.0000878064 0.0000295306 0.0000627962'
   [../]
 
   [./mat_q]
     type = GenericConstantMaterial
     prop_names = 'q11 q12 q44'
-    prop_values = '-1.93418062e-2 -6.3875442e-3 -8.75649995e-4'
-  [../]
+    prop_values = '-11.7891 -1.94376 -4.03502'   
 
+#the point is the following: use a slightly different definition of Q_ij than Hlinka
+
+  [../]
   [./mat_r]
     type = GenericConstantMaterial
     prop_names = 'r11 r12 r44'
-    prop_values = '-7.7644e-3 1.63357e-3 7.70775329e-4'
+    prop_values = '-0.0147091 0.00144609 0.0144225' 
   [../]
-
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    C_ijkl = '1.762732e-2 9.4905087e-3 9.4905087e-3 1.762732e-2 9.4905087e-3 1.762732e-2 5.24373333e-5 5.24373333e-5 5.24373333e-5'
+    C_ijkl = '114.409 45.5681 45.5681 114.409 45.5681 114.409 28.709 28.709 28.709'
   [../]
 
   [./strain]
@@ -537,9 +579,9 @@
 []
 
 [Postprocessors]
-  [./dt]
-     type = TimestepSize
-  [../]
+  #[./dt]
+  #   type = TimestepSize
+  #[../]
   [./FbP]
     type = BulkEnergyEighth
     execute_on = 'initial timestep_end'
@@ -548,34 +590,21 @@
     type = RotoBulkEnergyEighth
     execute_on = 'initial timestep_end'
   [../]
-  [./FgP]
-    type = WallEnergy
-    execute_on = 'initial timestep_end'
-  [../]
-  [./FgA]
-    type = WallEnergy
-    execute_on = 'initial timestep_end'
-    polar_x = antiferrodis_A_x
-    polar_y = antiferrodis_A_y
-    polar_z = antiferrodis_A_z
-    G110 = 0.173
-    G11_G110 = 0.5
-    G12_G110 = 0
-    G44_G110 = 0.5
-    G44P_G110 = 0.5
-  [../]
-  [./FcPA]
-    type = RotoPolarCoupledEnergyEighth
-    execute_on = 'initial timestep_end'
-  [../]
+
 
   [./FcPu]
     type = ElectrostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
   [../]
   [./FcAu]
     type = RotostrictiveCouplingEnergy
     execute_on = 'initial timestep_end'
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
   [../]
 
   [./Felu]
@@ -584,16 +613,16 @@
   [../]
   [./Ftot]
     type = LinearCombinationPostprocessor
-    pp_names = 'FbP FbA FgP FgA FcPA FcPu FcAu Felu'
-    pp_coefs = ' 1 1 1 1 1 1 1 1'
+    pp_names = 'FbP FbA FcPu FcAu Felu'
+    pp_coefs = ' 1 1 1 1 1'
     execute_on = 'initial timestep_end'
   [../]
-  [./perc_change]
-    type = EnergyRatePostprocessor
-    postprocessor = Ftot
-    execute_on = 'initial timestep_end'
-    dt = dt
-  [../]
+  #[./perc_change]
+  #  type = EnergyRatePostprocessor
+  #  postprocessor = Ftot
+  #  execute_on = 'initial timestep_end'
+  #  dt = dt
+  #[../]
 []
 
 
@@ -606,19 +635,19 @@
   [../]
   # fix center point location
   [./centerfix_x]
-    type = PresetBC
+    type = DirichletBC
     boundary = 100
     variable = u_x
     value = 0
   [../]
   [./centerfix_y]
-    type = PresetBC
+    type = DirichletBC
     boundary = 100
     variable = u_y
     value = 0
   [../]
   [./centerfix_z]
-    type = PresetBC
+    type = DirichletBC
     boundary = 100
     variable = u_z
     value = 0
@@ -630,10 +659,10 @@
     type = GlobalBFOMaterialRVEUserObject
     execute_on = 'Initial Linear Nonlinear'
   [../]
-  [./kill]
-   type = Terminator
-   expression = 'perc_change <= 1.0e-7'
-  [../]
+  #[./kill]
+  # type = Terminator
+  # expression = 'perc_change <= 1.0e-8'
+  #[../]
 []
 
 [Preconditioning]
@@ -641,26 +670,24 @@
     type = SMP
     full = true
     petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121            1e-10          1e-8       1e-8     bjacobi'
+    petsc_options_value = '    121            1e-10          1e-10       1e-8     bjacobi'
   [../]
 []
 
 [Executioner]
-  type = Transient
-  dt = 0.18
-  solve_type = 'NEWTON'
-  line_search = 'bt'
-  scheme = 'bdf2'
-  dtmin = 1e-13
-  dtmax = 0.18
-  num_steps = 4
+  type = Steady
+  #dt = 0.05
+  solve_type = 'PJFNK'
+  #scheme = 'bdf2'
+  #dtmin = 1e-13
+  #dtmax = 10.0
 []
 
 [Outputs]
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = out_global_test
+    file_base = out_bfo
     elemental_as_nodal = true
   [../]
 []

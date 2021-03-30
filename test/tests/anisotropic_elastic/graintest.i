@@ -238,6 +238,7 @@
     variable = disp_x
     boundary = '2 13 15 21 27 28'
     value = 0.0
+    preset = false
   [../]
 
   [./anchor_up_Y]
@@ -245,6 +246,7 @@
     variable = disp_y
     boundary = '2 13 15 21 27 28'
     value = 0.0
+    preset = false
   [../]
 
   [./anchor_up_Z]
@@ -252,6 +254,7 @@
     variable = disp_z
     boundary = '2 13 15 21 27 28'
     value = 0.025
+    preset = false
   [../]
  
   [./anchor_dn_X]
@@ -259,6 +262,7 @@
     variable = disp_x
     boundary = '6 9 18 22 24 29'
     value = 0.0
+    preset = false
   [../]
 
   [./anchor_dn_Y]
@@ -266,6 +270,7 @@
     variable = disp_y
     boundary = '6 9 18 22 24 29'
     value = 0.0
+    preset = false
   [../]
 
   [./anchor_dn_Z]
@@ -273,6 +278,7 @@
     variable = disp_z
     boundary = '6 9 18 22 24 29'
     value = -0.025
+    preset = false
   [../]
 
 []

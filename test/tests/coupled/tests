@@ -5,6 +5,8 @@
     exodiff = 'outPTOchunk_test.e'
     max_parallel = 1
     max_threads = 1
+    use_old_floor = true
+    abs_zero = 1e-5
   [../]
   [./full_2D]
     type = 'Exodiff'
@@ -12,5 +14,7 @@
     exodiff = 'outPTOchunk_test_2D.e'
     max_parallel = 1
     max_threads = 1
+    use_old_floor = true
+    abs_zero = 1e-5
   [../]
 []

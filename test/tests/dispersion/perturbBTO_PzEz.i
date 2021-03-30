@@ -660,7 +660,7 @@ amplitude = 0.001
     full = true
     petsc_options = '-snes_ksp_ew'
     petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided'
-    petsc_options_value = '    160               1e-10      1e-8      1e-6          bjacobi       allreduce'
+    petsc_options_value = '    160               1e-10      1e-8      1e-8          bjacobi       allreduce'
   [../]
 []
 
