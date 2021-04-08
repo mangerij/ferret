@@ -87,7 +87,7 @@
 
 [AuxKernels]
   [./Electric_flux_x]
-    type = Electric_flux
+    type = ElectricFlux
     variable = j_x
     T = T
     ecC = 'ecC'
@@ -96,7 +96,7 @@
     component = 0
   [../]
   [./Electric_flux_y]
-    type = Electric_flux
+    type = ElectricFlux
     variable = j_y
     T = T
     ecC = 'ecC'
@@ -105,7 +105,7 @@
     component = 1
   [../]
   [./Electric_flux_z]
-    type = Electric_flux
+    type = ElectricFlux
     variable = j_z
     T = T
     ecC = 'ecC'
@@ -115,7 +115,7 @@
   [../]
 
   [./Heat_flux_x]
-    type = Heat_flux
+    type = HeatFlux
     variable = q_x
     T = 'T'
     thC = 'thC'
@@ -125,7 +125,7 @@
     component = 0
   [../]
   [./heat_flux_y]
-    type = Heat_flux
+    type = HeatFlux
     variable = q_y
     T = 'T'
     thC = 'thC'
@@ -135,7 +135,7 @@
     component = 1
   [../]
   [./Heat_flux_z]
-    type = Heat_flux
+    type = HeatFlux
     variable = q_z
     T = 'T'
     thC = 'thC'

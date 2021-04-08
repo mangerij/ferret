@@ -67,7 +67,7 @@
   [../]
 
   [./q1_1_x]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC'
@@ -75,7 +75,7 @@
     block = 1
   [../]
   [./q1_1_y]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC'
@@ -83,7 +83,7 @@
     block = 1
   [../]
   [./q1_1_z]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC'
@@ -122,7 +122,7 @@
   [../]
 
   [./q1_2_x]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC'
@@ -130,7 +130,7 @@
     block = 2
   [../]
   [./q1_2_y]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC'
@@ -138,7 +138,7 @@
     block = 2
   [../]
   [./q1_2_z]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC'

@@ -82,21 +82,21 @@
   [../]
 
   [./q1_1_x]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC' ###Constant input parameter
     component = 0
   [../]
   [./q1_1_y]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC' ###Constant input parameter
     component = 1
   [../]
   [./q1_1_z]
-    type = q1
+    type = ThermalDiffusion
     variable = T
     T = 'T'
     thC = 'thC' ###Constant input parameter
@@ -141,7 +141,7 @@
 
 [AuxKernels]
   [./Electric_flux_x]
-    type = Electric_flux
+    type = ElectricFlux
     variable = j_x
     T = T
     ecC = 'ecC'
@@ -150,7 +150,7 @@
     component = 0
   [../]
   [./Electric_flux_y]
-    type = Electric_flux
+    type = ElectricFlux
     variable = j_y
     T = T
     ecC = 'ecC'
@@ -159,7 +159,7 @@
     component = 1
   [../]
   [./Electric_flux_z]
-    type = Electric_flux
+    type = ElectricFlux
     variable = j_y
     T = T
     ecC = 'ecC'
@@ -169,7 +169,7 @@
   [../]
 
   [./Heat_flux_x]
-    type = Heat_flux
+    type = HeatFlux
     variable = q_x
     T = 'T'
     thC = 'thC'
@@ -179,7 +179,7 @@
     component = 0
   [../]
   [./heat_flux_y]
-    type = Heat_flux
+    type = HeatFlux
     variable = q_y
     T = 'T'
     thC = 'thC'
@@ -189,7 +189,7 @@
     component = 1
   [../]
   [./heat_flux_z]
-    type = Heat_flux
+    type = HeatFlux
     variable = q_y
     T = 'T'
     thC = 'thC'
@@ -200,7 +200,7 @@
   [../]
 
   [./zT_value]
-    type = zT_aux
+    type = ZTAux
     variable = zT
     T = 'T'
   [../]
