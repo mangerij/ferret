@@ -40,8 +40,6 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-  // const MaterialProperty<Real> & _ecC;
-  const unsigned int _component;
   const unsigned int _potential_E_int_var;
   const VariableValue & _potential_E_int;
   const VariableGradient & _potential_E_int_grad;
@@ -49,6 +47,5 @@ private:
   const VariableValue & _T;
   const VariableGradient & _T_grad;
   const MaterialProperty<Real> & _sbC;
-  const Real _len_scale;
 };
 #endif
