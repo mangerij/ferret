@@ -38,7 +38,7 @@
   # [../]
 
   ########BLOCK 1
-  [./Seebeck_1_x]
+  [./Seebeck_1]
     type = SeebeckEffect
     variable = potential_E_int
     potential_E_int = 'potential_E_int'
@@ -46,24 +46,6 @@
     sbC = 'sbC'
     block = 1
     component = 0
-  [../]
-  [./Seebeck_1_y]
-    type = SeebeckEffect
-    variable = potential_E_int
-    potential_E_int = 'potential_E_int'
-    T = 'T'
-    sbC = 'sbC'
-    block = 1
-    component = 1
-  [../]
-  [./Seebeck_1_z]
-    type = SeebeckEffect
-    variable = potential_E_int
-    potential_E_int = 'potential_E_int'
-    T = 'T'
-    sbC = 'sbC'
-    block = 1
-    component = 2
   [../]
 
   [./q1_1_x]
@@ -93,32 +75,13 @@
 
 
   ########BLOCK 2
-  [./Seebeck_2_x]
+  [./Seebeck_2]
     type = SeebeckEffect
     variable = potential_E_int
     potential_E_int = 'potential_E_int'
     T = 'T'
     sbC = 'sbC'
     block = 2
-    component = 0
-  [../]
-  [./Seebeck_2_y]
-    type = SeebeckEffect
-    variable = potential_E_int
-    potential_E_int = 'potential_E_int'
-    T = 'T'
-    sbC = 'sbC'
-    block = 2
-    component = 1
-  [../]
-  [./Seebeck_2_z]
-    type = SeebeckEffect
-    variable = potential_E_int
-    potential_E_int = 'potential_E_int'
-    T = 'T'
-    sbC = 'sbC'
-    block = 2
-    component = 2
   [../]
 
   [./q1_2_x]
