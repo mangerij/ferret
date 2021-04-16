@@ -32,11 +32,10 @@ registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_kernel");
 
 //registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_variable");
 //registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_aux_variable");
-//registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_aux_kernel");
-
 
 registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_material");
-//Need to have dependency on bool flags
+
+registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_postprocessor");
 
 template <>
 InputParameters
@@ -56,11 +55,30 @@ validParams<ABO3CoupledPhaseFieldAction>()
                              orders,
                              "Specifies the order of the FE "
                              "shape function to use for the order parameters");*/
+  params.addRequiredParam<std::vector<std::string>>(
+      "alpha_ijkl", "The names of the properties this material will have");
+  params.addRequiredParam<std::vector<Real>>("alpha_ijkl_val", "Landau expansion coefficients");
+  params.addRequiredParam<std::vector<std::string>>(
+      "G_ij", "The names of the properties this material will have");
+  params.addRequiredParam<std::vector<Real>>("G_ij_val", "gradient coefficients");
+  params.addRequiredParam<std::vector<std::string>>(
+      "Q_ij", "The names of the properties this material will have");
+  params.addRequiredParam<std::vector<Real>>("Q_ij_val", "Electrostrictive Q tensor coefficients");
+  params.addRequiredParam<std::vector<std::string>>(
+      "q_ij", "The names of the properties this material will have");
+  params.addRequiredParam<std::vector<Real>>("q_ij_val", "Electrostrictive q tensor coefficients");
+  params.addRequiredParam<std::vector<std::string>>(
+      "C_ij", "The names of the properties this material will have");
+  params.addRequiredParam<std::vector<Real>>("C_ij_val", "Elastic stiffness tensor coefficients");
+  params.addRequiredParam<std::vector<std::string>>(
+      "permittivity", "The names of the properties this material will have");
+  params.addRequiredParam<std::vector<Real>>("permittivity_val", "static (high freq) permitivitty");
   params.addRequiredParam<bool>("coupled_problem","Asks if the problem is coupled (adds the elasticity variables).");
   params.addRequiredParam<bool>("polar_time_dependence","Asks if the polarization is time dependent.");
   params.addParam<bool>("u_time_dependence", false, "Asks if the elastic displacement is time dependent.");
   params.addParam<bool>("phi_time_dependence", false, "Asks if the electrostatic potential is time dependent.");
   params.addParam<bool>("is_renormalized", false, "Asks if the thermodynamic potential is renormalized.");
+  params.addParam<bool>("is_permittivity_anisotropic", false, "Asks if the permittivity is anisotropic.");
   return params;
 }
 
@@ -69,7 +87,8 @@ ABO3CoupledPhaseFieldAction::ABO3CoupledPhaseFieldAction(InputParameters params)
     _polar_time_dependence(getParam<bool>("polar_time_dependence")),
     _u_time_dependence(getParam<bool>("u_time_dependence")),
     _phi_time_dependence(getParam<bool>("phi_time_dependence")),
-    _is_renormalized(getParam<bool>("is_renormalized"))
+    _is_renormalized(getParam<bool>("is_renormalized")),
+    _is_permittivity_anisotropic(getParam<bool>("is_permittivity_anisotropic"))
 {
   // Do some error checking
   if(_coupled_problem==true) 
@@ -100,7 +119,7 @@ ABO3CoupledPhaseFieldAction::act()
 
   if (_current_task == "add_kernel")
   {
-    unsigned int _ord_num = 3;
+    unsigned int _ord_num = 3; //only polar_x polar_y and polar_z will be added in this loop
     for (unsigned int kk = 0; kk < _ord_num; ++kk)
     {
       if(_polar_time_dependence==true)
@@ -183,6 +202,7 @@ ABO3CoupledPhaseFieldAction::act()
       std::string kernel_name = "pees";
       _problem->addKernel("PolarElectricEStrong", kernel_name, params);
     }
+    if (_is_permittivity_anisotropic==false)
     {
       InputParameters params = _factory.getValidParams("Electrostatics");
       params.set<NonlinearVariableName>("variable") = variables[3];
@@ -218,7 +238,58 @@ ABO3CoupledPhaseFieldAction::act()
       }
     }
   }
-  //if (_current_task == "add_material")
-  //{
-  //}
+  if (_current_task == "add_material")
+  //note that these will change in the future because we want consistent Euler angle rotations across every material property
+  {
+    {
+      InputParameters params = _factory.getValidParams("GenericConstantMaterial");  
+
+      params.set<std::vector<std::string>>("prop_names") = getParam<std::vector<std::string>>("alpha_ijkl");
+      params.set<std::vector<Real>>("prop_values") = getParam<std::vector<Real>>("alpha_ijkl_val");
+
+      _problem->addMaterial("GenericConstantMaterial", "Landau_FE_bulk_material", params);
+    }
+    {
+      InputParameters params = _factory.getValidParams("GenericConstantMaterial");
+      params.set<std::vector<std::string>>("prop_names") = getParam<std::vector<std::string>>("G_ij");
+      params.set<std::vector<Real>>("prop_values") = getParam<std::vector<Real>>("G_ij_val");
+
+      _problem->addMaterial("GenericConstantMaterial", "Landau_FE_gradient_material", params);
+    }
+    if (_is_permittivity_anisotropic==false)
+    {
+      InputParameters params = _factory.getValidParams("GenericConstantMaterial");
+      params.set<std::vector<std::string>>("prop_names") = getParam<std::vector<std::string>>("permittivity");
+      params.set<std::vector<Real>>("prop_values") = getParam<std::vector<Real>>("permittivity_val");
+
+      _problem->addMaterial("GenericConstantMaterial", "FE_Poisson_material", params);
+    }
+    if(_coupled_problem==true)
+    {
+      {
+        InputParameters params = _factory.getValidParams("GenericConstantMaterial");
+        params.set<std::vector<std::string>>("prop_names") = getParam<std::vector<std::string>>("Q_ij");
+        params.set<std::vector<Real>>("prop_values") = getParam<std::vector<Real>>("Q_ij_val");
+
+        _problem->addMaterial("GenericConstantMaterial", "FE_Q_ij_material", params);
+      }
+      {
+        InputParameters params = _factory.getValidParams("GenericConstantMaterial");
+        params.set<std::vector<std::string>>("prop_names") = getParam<std::vector<std::string>>("q_ij");
+        params.set<std::vector<Real>>("prop_values") = getParam<std::vector<Real>>("q_ij_val");
+
+        _problem->addMaterial("GenericConstantMaterial", "FE_q_ij_material", params);
+      }
+      {
+        InputParameters params = _factory.getValidParams("GenericConstantMaterial");
+        params.set<std::vector<std::string>>("prop_names") = getParam<std::vector<std::string>>("C_ij");
+        params.set<std::vector<Real>>("prop_values") = getParam<std::vector<Real>>("C_ij_val");
+
+        _problem->addMaterial("GenericConstantMaterial", "FE_C_ij_material", params);
+      }
+    }
+    //if (_current_task == "add_postprocessor")
+    //{
+    //}
+  }
 }

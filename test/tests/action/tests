@@ -1,0 +1,7 @@
+[Tests]
+  [./abo3mat]
+    type = 'Exodiff'
+    input = 'action_test.i'
+    exodiff = 'out_pto-md_action.e'
+  [../]
+[]
