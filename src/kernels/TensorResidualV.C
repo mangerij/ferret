@@ -19,15 +19,15 @@
 
 **/
 
-#include "ResidualV_tensor.h"
+#include "TensorResidualV.h"
 // #include "HeatConduction.h"
 #include "Material.h"
 
-registerMooseObject("FerretApp", ResidualV_tensor);
+registerMooseObject("FerretApp", TensorResidualV);
 
 template <>
 InputParameters
-validParams<ResidualV_tensor>()
+validParams<TensorResidualV>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution due to modified ohm's law");
@@ -40,7 +40,7 @@ validParams<ResidualV_tensor>()
   return params;
 }
 
-ResidualV_tensor::ResidualV_tensor(const InputParameters & parameters)
+TensorResidualV::TensorResidualV(const InputParameters & parameters)
   : Kernel(parameters),
     _component(getParam<unsigned int>("component")),
     _potential_E_int_var(coupled("potential_E_int")),
@@ -56,7 +56,7 @@ ResidualV_tensor::ResidualV_tensor(const InputParameters & parameters)
 }
 
 Real
-ResidualV_tensor::computeQpResidual()
+TensorResidualV::computeQpResidual()
 // include tensor//
 
 {
@@ -79,7 +79,7 @@ ResidualV_tensor::computeQpResidual()
 }
 
 Real
-ResidualV_tensor::computeQpJacobian()
+TensorResidualV::computeQpJacobian()
 
 // include tensor//
 {
@@ -95,7 +95,7 @@ ResidualV_tensor::computeQpJacobian()
 }
 
 Real
-ResidualV_tensor::computeQpOffDiagJacobian(unsigned int jvar)
+TensorResidualV::computeQpOffDiagJacobian(unsigned int jvar)
 // include tensor//
 
 {

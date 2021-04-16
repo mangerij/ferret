@@ -19,22 +19,22 @@
 
 **/
 
-#ifndef RESIDUALV_TENSOR_H
-#define RESIDUALV_TENSOR_H
+#ifndef TENSORRESIDUALT_H
+#define TENSORRESIDUALT_H
 
 #include "Kernel.h"
 #include "Material.h"
 #include "RankTwoTensor.h" //added for tensor calculation
 
-class ResidualV_tensor;
+class TensorResidualT;
 
 template <>
-InputParameters validParams<ResidualV_tensor>();
+InputParameters validParams<TensorResidualT>();
 
-class ResidualV_tensor : public Kernel
+class TensorResidualT : public Kernel
 {
 public:
-  ResidualV_tensor(const InputParameters & parameters);
+  TensorResidualT(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -49,7 +49,8 @@ private:
   const unsigned int _T_var;
   const VariableValue & _T;
   const VariableGradient & _T_grad;
-  const MaterialProperty<RankTwoTensor> & _ecC_tensor; // for tensor inclusion
+  const MaterialProperty<RankTwoTensor> & _thC_tensor; // for tensor inclusion
+  const MaterialProperty<RankTwoTensor> & _ecC_tensor;
   const MaterialProperty<RankTwoTensor> & _sbC_tensor;
   const Real _len_scale;
 };

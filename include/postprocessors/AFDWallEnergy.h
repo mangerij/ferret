@@ -39,7 +39,11 @@ protected:
   const VariableGradient& _antiferrodis_A_x_grad;
   const VariableGradient& _antiferrodis_A_y_grad;
   const VariableGradient& _antiferrodis_A_z_grad;
-  const Real _H110,_H11, _H12, _H44, _H44P;
+  const MaterialProperty<Real> & _H110;
+  const MaterialProperty<Real> & _H11;
+  const MaterialProperty<Real> & _H12;
+  const MaterialProperty<Real> & _H44;
+  const MaterialProperty<Real> & _H44P;
 };
 
 #endif
