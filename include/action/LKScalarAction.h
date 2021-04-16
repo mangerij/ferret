@@ -19,18 +19,27 @@
 
 **/
 
-#ifndef FERRETAPP_H
-#define FERRETAPP_H
+#pragma once
 
-#include "MooseApp.h"
+#include "Action.h"
+#include "libmesh/fe_type.h"
 
-class FerretApp : public MooseApp
+class LKScalarAction : public Action
 {
 public:
+  LKScalarAction(InputParameters params);
   static InputParameters validParams();
-  FerretApp(InputParameters parameters);
-  static void registerApps();
-  static void registerAll(Factory &, ActionFactory &, Syntax &);
+  virtual void act() override;
+
+protected:
+  /// Equation type, transient or steady-state
+  //MooseEnum _type;
+
+  /// FE type for various variables
+  FEType _fe_type;
+
 };
 
-#endif /* FERRETAPP_H */
+template <>
+InputParameters validParams<LKScalarAction>();
+
