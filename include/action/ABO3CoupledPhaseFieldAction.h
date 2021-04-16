@@ -37,6 +37,7 @@ protected:
   const bool _u_time_dependence;
   const bool _phi_time_dependence;
   const bool _is_renormalized;
+  const bool _is_permittivity_anisotropic;
 };
 
 template <>
