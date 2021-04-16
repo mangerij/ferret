@@ -19,75 +19,61 @@
 
 **/
 
-//Base Classes
+#include "AppFactory.h"
 #include "FerretApp.h"
 #include "Moose.h"
-#include "Factory.h"
-#include "AppFactory.h"
 #include "MooseSyntax.h"
+#include "ModulesApp.h"
 
-//Specific Modules
-#include "TensorMechanicsApp.h"
-#include "PhaseFieldApp.h"
-#include "MiscApp.h"
+// Optional dependence on AnotherApp (maybe ScalFMM?)
+//#ifdef ANOTHER_ENABLED
+//#include "AnotherApp.h"
+//#endif
 
-template<>
-InputParameters validParams<FerretApp>()
+InputParameters
+FerretApp::validParams()
 {
-  InputParameters params = validParams<MooseApp>();
+  InputParameters params = MooseApp::validParams();
+  params.set<bool>("error_unused") = false;
   params.set<bool>("use_legacy_uo_initialization") = false;
   params.set<bool>("use_legacy_uo_aux_computation") = false;
+  params.set<bool>("use_legacy_output_syntax") = false;
 
   return params;
 }
 
-FerretApp::FerretApp(const InputParameters & parameters) :
-    MooseApp(parameters)
+// When using the new Registry system, this line is required so that
+// dependent apps know about the MastodonApp label.
+registerKnownLabel("FerretApp");
+
+FerretApp::FerretApp(InputParameters parameters) : MooseApp(parameters)
 {
-  srand(processor_id());
-
-  Moose::registerObjects(_factory);
-  Moose::associateSyntax(_syntax, _action_factory);
-
-  // ModulesApp::registerObjects(_factory);  //uncomment this to activate all modules
-  // ModulesApp::associateSyntax(_syntax, _action_factory);
-
-  TensorMechanicsApp::registerObjects(_factory);
-  TensorMechanicsApp::associateSyntax(_syntax, _action_factory);
-
-  PhaseFieldApp::registerObjects(_factory);
-  PhaseFieldApp::associateSyntax(_syntax, _action_factory);
-
-  MiscApp::registerObjects(_factory);
-  MiscApp::associateSyntax(_syntax, _action_factory);
-
-  FerretApp::registerObjects(_factory);
+  FerretApp::registerAll(_factory, _action_factory, _syntax);
 }
-
-FerretApp::~FerretApp()
-{
-}
-
-// void
-//FerretApp::registerApps()
-//{
-//  registerApp(FerretApp);
-//}
 
 void
 FerretApp::registerApps()
 {
-#undef  registerApp
-#define registerApp(name) AppFactory::instance().reg<name>(#name)
   registerApp(FerretApp);
-#undef  registerApp
-#define registerApp(name) AppFactory::instance().regLegacy<name>(#name)
 }
 
-
-
 void
-FerretApp::registerObjects(Factory & factory)
+FerretApp::registerAll(Factory & factory, ActionFactory & action_factory, Syntax & syntax)
 {
+
   Registry::registerObjectsTo(factory, {"FerretApp"});
+  Registry::registerActionsTo(action_factory, {"FerretApp"});
+  ModulesApp::registerAll(factory, action_factory, syntax);
+//#ifdef ANOTHER_ENABLED
+//  AnotherApp::registerAll(factory, action_factory, syntax);
+//#endif
+
+  syntax.registerActionSyntax("ABO3CoupledPhaseFieldAction", "Ferret/ABO3CoupledPhaseField");
+
+}
+
+extern "C" void
+FerretApp__registerAll(Factory & f, ActionFactory & af, Syntax & s)
+{
+  FerretApp::registerAll(f, af, s);
 }

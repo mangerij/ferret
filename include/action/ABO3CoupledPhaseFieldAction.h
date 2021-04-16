@@ -19,18 +19,26 @@
 
 **/
 
-#ifndef FERRETAPP_H
-#define FERRETAPP_H
+#pragma once
 
-#include "MooseApp.h"
+#include "Action.h"
+#include "libmesh/fe_type.h"
 
-class FerretApp : public MooseApp
+class ABO3CoupledPhaseFieldAction : public Action
 {
 public:
+  ABO3CoupledPhaseFieldAction(InputParameters params);
   static InputParameters validParams();
-  FerretApp(InputParameters parameters);
-  static void registerApps();
-  static void registerAll(Factory &, ActionFactory &, Syntax &);
+  virtual void act() override;
+
+protected:
+  const bool _coupled_problem;
+  const bool _polar_time_dependence;
+  const bool _u_time_dependence;
+  const bool _phi_time_dependence;
+  const bool _is_renormalized;
 };
 
-#endif /* FERRETAPP_H */
+template <>
+InputParameters validParams<ABO3CoupledPhaseFieldAction>();
+
