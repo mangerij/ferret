@@ -50,12 +50,12 @@ LKScalarAction::LKScalarAction(InputParameters params) : Action(params)
 void
 LKScalarAction::act()
 {
-  if (_current_task == "add_scalar_kernel")
+/*  if (_current_task == "add_scalar_kernel")
   {
     unsigned int _ord_num = 12;
     for (unsigned int kk = 0; kk < _ord_num; ++kk)
     {
-      if(_polar_time_dependence==true)
+      //if(_polar_time_dependence==true)
       {
         InputParameters params = _factory.getValidParams("ODETimeDerivative");
         params.set<NonlinearVariableName>("variable") = variables[kk];
@@ -65,6 +65,6 @@ LKScalarAction::act()
         _problem->addKernel("ODETimeDerivative", s_kernel_name, params);
       }
     }
-  }
+  }*/
 }
 
