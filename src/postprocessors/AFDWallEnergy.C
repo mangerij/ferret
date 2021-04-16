@@ -32,11 +32,6 @@ InputParameters validParams<AFDWallEnergy>()
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the polarization");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the polarization");
-  params.addRequiredParam<Real>("H110","Domain wall penalty coefficients");
-  params.addRequiredParam<Real>("H11_H110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("H12_H110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("H44_H110","Ratio of domain wall penalty coefficients");
-  params.addRequiredParam<Real>("H44P_H110","Ratio of domain wall penalty coefficients");
   return params;
 }
 
@@ -45,18 +40,18 @@ AFDWallEnergy::AFDWallEnergy(const InputParameters & parameters) :
   _antiferrodis_A_x_grad(coupledGradient("antiferrodis_A_x")),
   _antiferrodis_A_y_grad(coupledGradient("antiferrodis_A_y")),
   _antiferrodis_A_z_grad(coupledGradient("antiferrodis_A_z")),
-  _H110(getParam<Real>("H110")),
-  _H11(getParam<Real>("H11_H110")*_H110),
-  _H12(getParam<Real>("H12_H110")*_H110),
-  _H44(getParam<Real>("H44_H110")*_H110),
-  _H44P(getParam<Real>("H44P_H110")*_H110)
+  _H110(getMaterialProperty<Real>("H110")),
+  _H11(getMaterialProperty<Real>("H11_H110")),
+  _H12(getMaterialProperty<Real>("H12_H110")),
+  _H44(getMaterialProperty<Real>("H44_H110")),
+  _H44P(getMaterialProperty<Real>("H44P_H110"))
 {}
 
 Real
 AFDWallEnergy::computeQpIntegral()
 {
-  return (0.5*_H11*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_z_grad[_qp](2)))+
-    _H12*(_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_y_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](1)*_antiferrodis_A_z_grad[_qp](2)+_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_z_grad[_qp](2))+
-    0.5*_H44*(pow(_antiferrodis_A_x_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](0),2)+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](0))+
-	  0.5*_H44P*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0)))));
+  return _H110[_qp]*(0.5*_H11[_qp]*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_z_grad[_qp](2)))+
+    _H12[_qp]*(_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_y_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](1)*_antiferrodis_A_z_grad[_qp](2)+_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_z_grad[_qp](2))+
+    0.5*_H44[_qp]*(pow(_antiferrodis_A_x_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](0),2)+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](0))+
+	  0.5*_H44P[_qp]*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0)))));
 }
