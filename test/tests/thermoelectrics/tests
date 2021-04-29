@@ -7,13 +7,15 @@
     max_threads = 1
   [../]
 
-  [./thermocouple-zT]
-    type = 'Exodiff'
-    input = 'case_1_simpleThermocoupleTest_zT.i'
-    exodiff = 'out_simpleTC_type_k.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+  #[./thermocouple-zT]
+  #  type = 'Exodiff'
+  #  input = 'case_1_simpleThermocoupleTest_zT.i'
+  #  exodiff = 'out_simpleTC_type_k.e'
+  #  max_parallel = 1
+  #  max_threads = 1
+  #[../]
+
+#disabled thermocouple-zT temporarily due to problems with Mac compiled Ferret. 
 
   [./thermocouple-int2D]
     type = 'Exodiff'
