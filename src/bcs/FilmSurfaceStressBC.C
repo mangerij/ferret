@@ -30,6 +30,9 @@ InputParameters validParams<FilmSurfaceStressBC>()
   params.addClassDescription(
       "stress free surface condition, testing, only for z direction");
   params.addRequiredParam<int>("component","Which component(0 for x, 1 for y, 2 for z) in traction is used");
+  params.addRequiredCoupledVar("u_x", "The x component of the local displacement");
+  params.addRequiredCoupledVar("u_y", "The y component of the local displacement");
+  params.addCoupledVar("u_z", 0.0, "The z component of the local displacement");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
@@ -39,7 +42,15 @@ InputParameters validParams<FilmSurfaceStressBC>()
 FilmSurfaceStressBC::FilmSurfaceStressBC(const InputParameters & parameters) :
     IntegratedBC(parameters),
     _component(getParam<int>("component")),
-    _stress(getMaterialProperty<RankTwoTensor>(_base_name + "stress")),
+    _u_x_var(coupled("u_x")),
+    _u_y_var(coupled("u_y")),
+    _u_z_var(coupled("u_z")),
+    _polar_x_var(coupled("polar_x")),
+    _polar_y_var(coupled("polar_y")),
+    _polar_z_var(coupled("polar_z")),
+    _u_x_grad(coupledGradient("u_x")),
+    _u_y_grad(coupledGradient("u_y")),
+    _u_z_grad(coupledGradient("u_z")),
     _polar_x(coupledValue("polar_x")),
     _polar_y(coupledValue("polar_y")),
     _polar_z(coupledValue("polar_z")),
@@ -52,54 +63,43 @@ FilmSurfaceStressBC::FilmSurfaceStressBC(const InputParameters & parameters) :
 {
 }
 
+//this is a rather weak boundary condition
+
 Real
 FilmSurfaceStressBC::computeQpResidual()
 {
-  RankTwoTensor eigenstress_tensor;
-
-  eigenstress_tensor(0, 0) =
-    _C11[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q11[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q11[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q11[_qp] +
-    2.0 * _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q12[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp];
-  eigenstress_tensor(1, 1) =
-    _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q11[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q11[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q11[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q12[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q12[_qp] +
-    2.0 * _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp];
-
-  eigenstress_tensor(2, 2) =
-    _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q11[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q11[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q11[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q12[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q12[_qp] +
-    _C11[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
-    _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
-    2.0 * _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp];
-
-  eigenstress_tensor(0, 1) = eigenstress_tensor(1, 0) =
-    4.0 * _C44[_qp] * _polar_x[_qp] * _polar_y[_qp] * _Q44[_qp];
-
-  eigenstress_tensor(1, 2) = eigenstress_tensor(2, 1) =
-    4.0 * _C44[_qp] * _polar_y[_qp] * _polar_z[_qp] * _Q44[_qp];
-
-  eigenstress_tensor(0, 2) = eigenstress_tensor(2, 0) =
-    4.0 * _C44[_qp] * _polar_x[_qp] * _polar_z[_qp] * _Q44[_qp];
-
-  return _test[_i][_qp] * (_stress[_qp](_component,2)+eigenstress_tensor(_component,2)); //maybe needs a minus out front?
+  if (_component == 0)
+  {
+    return _test[_i][_qp] * (_C44[_qp]*(-_polar_x[_qp]*_polar_z[_qp]*_Q44[_qp] + _u_x_grad[_qp](2)) + _C44[_qp]*(-_polar_x[_qp]*_polar_z[_qp]*_Q44[_qp] + _u_z_grad[_qp](0)));
+  }
+  else if (_component == 1)
+  {
+    return _test[_i][_qp] * (_C44[_qp]*(-_polar_y[_qp]*_polar_z[_qp]*_Q44[_qp] + _u_y_grad[_qp](2)) + _C44[_qp]*(-_polar_y[_qp]*_polar_z[_qp]*_Q44[_qp] + _u_z_grad[_qp](1)));
+  }
+  else if (_component == 2)
+  {
+    return _test[_i][_qp] * (_C12[_qp]*(-_polar_x[_qp]*_polar_x[_qp]*_Q11[_qp] - (_polar_y[_qp]*_polar_y[_qp] + _polar_z[_qp]*_polar_z[_qp])*_Q12[_qp] + _u_x_grad[_qp](0)) + 
+ _C12[_qp]*(-_polar_y[_qp]*_polar_y[_qp]*_Q11[_qp] - (_polar_x[_qp]*_polar_x[_qp] + _polar_z[_qp]*_polar_z[_qp])*_Q12[_qp] + _u_z_grad[_qp](2)) + _C11[_qp]*(-_polar_z[_qp]*_polar_z[_qp]*_Q11[_qp] - (_polar_x[_qp]*_polar_x[_qp] + _polar_y[_qp]*_polar_y[_qp])*_Q12[_qp] + _u_z_grad[_qp](2)));
+  }
+  else
+    return 0.0;
 }
-
+  
 Real
 FilmSurfaceStressBC::computeQpJacobian()
 {
-  return 0;
+  if (_component == 0)
+  {
+    return _test[_i][_qp] * _grad_phi[_j][_qp](2) * _C44[_qp];
+  }
+  else if (_component == 1)
+  {
+    return _test[_i][_qp] * _grad_phi[_j][_qp](2) * _C44[_qp];
+  }
+  else if (_component == 2)
+  {
+    return _test[_i][_qp] * _grad_phi[_j][_qp](2) * _C11[_qp];
+  }
+  else
+    return 0.0;
 }

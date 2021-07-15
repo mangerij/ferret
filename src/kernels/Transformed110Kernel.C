@@ -19,13 +19,13 @@
 
 **/
 
-#include "Transformed111Kernel.h"
+#include "Transformed110Kernel.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", Transformed111Kernel);
+registerMooseObject("FerretApp", Transformed110Kernel);
 
 template<>
-InputParameters validParams<Transformed111Kernel>()
+InputParameters validParams<Transformed110Kernel>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates the transformed residual for the local free energy which is an eighth order expansion in the polarization.");
@@ -45,7 +45,7 @@ InputParameters validParams<Transformed111Kernel>()
   return params;
 }
 
-Transformed111Kernel::Transformed111Kernel(const InputParameters & parameters)
+Transformed110Kernel::Transformed110Kernel(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _order_param_x_var(coupled("order_param_x")),
@@ -64,7 +64,7 @@ Transformed111Kernel::Transformed111Kernel(const InputParameters & parameters)
 }
 
 Real
-Transformed111Kernel::computeQpResidual()
+Transformed110Kernel::computeQpResidual()
 
 //
 // TODO: Note that there is no reason this needs to be hardcoded, but this will be the first step. 
@@ -73,41 +73,34 @@ Transformed111Kernel::computeQpResidual()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * (0.40824829046386301637*_fb_x[_qp] - 0.70710678118654752440*_fb_y[_qp] + 
- 0.57735026918962576451*_fb_z[_qp]);
+    return _test[_i][_qp] * (0.0);
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * (0.40824829046386301637*_fb_x[_qp] + 0.70710678118654752440*_fb_y[_qp] + 
- 0.57735026918962576451*_fb_z[_qp]);
+    return _test[_i][_qp] * (0.0);
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (-0.81649658092772603273*_fb_x[_qp] + 0.57735026918962576451*_fb_z[_qp]);
+    return _test[_i][_qp] * (0.0);
   }
   else
     return 0.0;
 }
 
 Real
-Transformed111Kernel::computeQpJacobian()
+Transformed110Kernel::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(_Jb_xx[_qp] - 3.4641016151377545871*_Jb_xy[_qp] + 
-   2.8284271247461900976*_Jb_xz[_qp] + 3.0*_Jb_yy[_qp] - 
-   4.8989794855663561964*_Jb_yz[_qp] + 2.0*_Jb_zz[_qp]));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(_Jb_xx[_qp] + 3.4641016151377545871*_Jb_xy[_qp] + 
-   2.8284271247461900976*_Jb_xz[_qp] + 3.0*_Jb_yy[_qp] + 
-   4.8989794855663561964*_Jb_yz[_qp] + 2.0*_Jb_zz[_qp]));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (0.33333333333333333333*(2.0*_Jb_xx[_qp] - 
-   2.8284271247461900976*_Jb_xz[_qp] + _Jb_zz[_qp]));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
   }
   else
     return 0.0;
@@ -115,19 +108,17 @@ Transformed111Kernel::computeQpJacobian()
 
 
 Real
-Transformed111Kernel::computeQpOffDiagJacobian(unsigned int jvar)
+Transformed110Kernel::computeQpOffDiagJacobian(unsigned int jvar)
 { 
   if (_component == 0)
   {
     if (jvar == _order_param_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (0.16666666666666666667*(_Jb_xx[_qp] + 2.8284271247461900976*_Jb_xz[_qp] - 
-   3.0000000000000000000*_Jb_yy[_qp] + 2.0*_Jb_zz[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] *  (0.0);
     }
     else if (jvar == _order_param_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (0.16666666666666666667*(-2.0*_Jb_xx[_qp] + 
-   3.4641016151377545871*_Jb_xy[_qp] - 1.4142135623730950488*_Jb_xz[_qp] - 2.4494897427831780982*_Jb_yz[_qp] + 2.0*_Jb_zz[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] *  (0.0);
     }
     else
     {
@@ -138,14 +129,11 @@ Transformed111Kernel::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _order_param_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(_Jb_xx[_qp] + 2.8284271247461900976*_Jb_xz[_qp] - 
-   3.0000000000000000000*_Jb_yy[_qp] + 2.0*_Jb_zz[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else if (jvar == _order_param_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(-2.0*_Jb_xx[_qp] - 
-   3.4641016151377545871*_Jb_xy[_qp] - 1.4142135623730950488*_Jb_xz[_qp] + 
-   2.4494897427831780982*_Jb_yz[_qp] + 2.0*_Jb_zz[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else
     {
@@ -156,11 +144,11 @@ Transformed111Kernel::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _order_param_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(-2.0*_Jb_xx[_qp] + 3.4641016151377545871*_Jb_xy[_qp] - 1.4142135623730950488*_Jb_xz[_qp] - 2.4494897427831780982*_Jb_yz[_qp] + 2.0*_Jb_zz[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else if (jvar == _order_param_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(-2.0*_Jb_xx[_qp] - 3.4641016151377545871*_Jb_xy[_qp] - 1.4142135623730950488*_Jb_xz[_qp] + 2.4494897427831780982*_Jb_yz[_qp] + 2.0*_Jb_zz[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else
     {
