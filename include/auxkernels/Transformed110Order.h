@@ -19,40 +19,32 @@
 
 **/
 
-#ifndef TRANSFORMED111KERNEL_H
-#define TRANSFORMED111KERNEL_H
+#ifndef TRANSFORMED110ORDER_H
+#define TRANSFORMED110ORDER_H
 
-#include "Kernel.h"
+#include "AuxKernel.h"
 
-class Transformed111Kernel;
+class Transformed110Order;
 
 template<>
-InputParameters validParams<Transformed111Kernel>();
+InputParameters validParams<Transformed110Order>();
 
-class Transformed111Kernel: public Kernel
+class Transformed110Order: public AuxKernel
 {
 public:
+  Transformed110Order(const InputParameters & parameters);
 
-  Transformed111Kernel(const InputParameters & parameters);
+  virtual ~Transformed110Order() {}
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+    virtual Real computeValue();
 
+private:
+  bool _inverse;
   const unsigned int _component;
-  const unsigned int _order_param_x_var;
-  const unsigned int _order_param_y_var;
-  const unsigned int _order_param_z_var;
-  const VariableValue & _fb_x;
-  const VariableValue & _fb_y;
-  const VariableValue & _fb_z;
-  const VariableValue & _Jb_xx;
-  const VariableValue & _Jb_yy;
-  const VariableValue & _Jb_zz;
-  const VariableValue & _Jb_xy;
-  const VariableValue & _Jb_yz;
-  const VariableValue & _Jb_xz;
-
+  const VariableValue & _order_param_x;
+  const VariableValue & _order_param_y;
+  const VariableValue & _order_param_z;
 };
-#endif //TRANSFORMED111KERNEL_H
+
+#endif // TRANSFORMED110ORDER_H
