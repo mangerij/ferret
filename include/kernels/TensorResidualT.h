@@ -18,22 +18,22 @@
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
-
 #ifndef TENSORRESIDUALT_H
 #define TENSORRESIDUALT_H
 
 #include "Kernel.h"
 #include "Material.h"
-#include "RankTwoTensor.h" //added for tensor calculation
+#include "RankTwoTensor.h"//added for tensor calculation
 
 class TensorResidualT;
 
-template <>
+template<>
 InputParameters validParams<TensorResidualT>();
 
-class TensorResidualT : public Kernel
+class TensorResidualT: public Kernel
 {
 public:
+
   TensorResidualT(const InputParameters & parameters);
 
 protected:
@@ -49,9 +49,10 @@ private:
   const unsigned int _T_var;
   const VariableValue & _T;
   const VariableGradient & _T_grad;
-  const MaterialProperty<RankTwoTensor> & _thC_tensor; // for tensor inclusion
+  const MaterialProperty<RankTwoTensor> & _thC_tensor;//for tensor inclusion
   const MaterialProperty<RankTwoTensor> & _ecC_tensor;
   const MaterialProperty<RankTwoTensor> & _sbC_tensor;
   const Real _len_scale;
+
 };
 #endif

@@ -24,16 +24,17 @@
 
 #include "Kernel.h"
 #include "Material.h"
-#include "RankTwoTensor.h" //added for tensor calculation
+#include "RankTwoTensor.h"//added for tensor calculation
 
 class TensorResidualV;
 
-template <>
+template<>
 InputParameters validParams<TensorResidualV>();
 
-class TensorResidualV : public Kernel
+class TensorResidualV: public Kernel
 {
 public:
+
   TensorResidualV(const InputParameters & parameters);
 
 protected:
@@ -49,8 +50,9 @@ private:
   const unsigned int _T_var;
   const VariableValue & _T;
   const VariableGradient & _T_grad;
-  const MaterialProperty<RankTwoTensor> & _ecC_tensor; // for tensor inclusion
+  const MaterialProperty<RankTwoTensor> & _ecC_tensor;//for tensor inclusion
   const MaterialProperty<RankTwoTensor> & _sbC_tensor;
   const Real _len_scale;
+
 };
 #endif
