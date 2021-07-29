@@ -19,14 +19,14 @@
 
 **/
 
-#include "ResidualT.h"
+#include "HeatFlowElectricT.h"
 #include "Material.h"
 
-registerMooseObject("FerretApp", ResidualT);
+registerMooseObject("FerretApp", HeatFlowElectricT);
 
 template <>
 InputParameters
-validParams<ResidualT>()
+validParams<HeatFlowElectricT>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution due to modified ohm's law");
@@ -35,7 +35,7 @@ validParams<ResidualT>()
   return params;
 }
 
-ResidualT::ResidualT(const InputParameters & parameters)
+HeatFlowElectricT::HeatFlowElectricT(const InputParameters & parameters)
   : Kernel(parameters),
     _potential_E_int_var(coupled("potential_E_int")),
     _potential_E_int(coupledValue("potential_E_int")),
@@ -50,7 +50,7 @@ ResidualT::ResidualT(const InputParameters & parameters)
 }
 
 Real
-ResidualT::computeQpResidual()
+HeatFlowElectricT::computeQpResidual()
 {
   return ((-_grad_test[_i][_qp](0)) * (-_thC[_qp] * _T_grad[_qp](0)) +
           (-_grad_test[_i][_qp](0)) *
@@ -82,7 +82,7 @@ ResidualT::computeQpResidual()
 }
 
 Real
-ResidualT::computeQpJacobian()
+HeatFlowElectricT::computeQpJacobian()
 {
   return ((-_grad_test[_i][_qp](0) *
                (-_ecC[_qp] * _sbC[_qp] * _phi[_j][_qp] * _potential_E_int_grad[_qp](0)) +
@@ -111,7 +111,7 @@ ResidualT::computeQpJacobian()
 }
 
 Real
-ResidualT::computeQpOffDiagJacobian(unsigned int jvar)
+HeatFlowElectricT::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _potential_E_int_var)
   {

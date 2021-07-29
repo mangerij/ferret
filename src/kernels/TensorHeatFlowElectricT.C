@@ -21,13 +21,13 @@
 
 //Code by Dharma Raj Basaula 2021
 
-#include "TensorResidualT.h"
+#include "TensorHeatFlowElectricT.h"
 #include "Material.h"
 
-registerMooseObject("FerretApp", TensorResidualT);
+registerMooseObject("FerretApp", TensorHeatFlowElectricT);
 
 template<>
-InputParameters validParams<TensorResidualT>()
+InputParameters validParams<TensorHeatFlowElectricT>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution due to modified ohm's law");
@@ -38,7 +38,7 @@ InputParameters validParams<TensorResidualT>()
   return params;
 }
 
-TensorResidualT::TensorResidualT(const InputParameters & parameters)
+TensorHeatFlowElectricT::TensorHeatFlowElectricT(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _potential_E_int_var(coupled("potential_E_int")),
@@ -55,7 +55,7 @@ TensorResidualT::TensorResidualT(const InputParameters & parameters)
 }
 
 Real
-TensorResidualT::computeQpResidual()
+TensorHeatFlowElectricT::computeQpResidual()
 //include tensor properties//
 {
   Real sum = 0.0;
@@ -81,7 +81,7 @@ return sum;
 }
 
 Real
-TensorResidualT::computeQpJacobian()
+TensorHeatFlowElectricT::computeQpJacobian()
  //   include tensor properties//
       {
         Real sum = 0.0;
@@ -105,7 +105,7 @@ TensorResidualT::computeQpJacobian()
         }
 
 Real
-TensorResidualT::computeQpOffDiagJacobian(unsigned int jvar)
+TensorHeatFlowElectricT::computeQpOffDiagJacobian(unsigned int jvar)
  // include tensor properties//
 {
   if(jvar == _potential_E_int_var)

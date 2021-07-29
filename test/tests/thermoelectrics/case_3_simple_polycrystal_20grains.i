@@ -35,7 +35,7 @@
 
 [Kernels]
   [./residualV_x]
-  type = ResidualV
+  type = DivCurrentV
   component = 0
   variable = potential_E_int
   T = 'T'
@@ -45,14 +45,14 @@
 [../]
 
 [./residualT_x]
- type = ResidualT
- component = 0
- variable = T
- T = 'T'
- potential_E_int = 'potential_E_int'
- ecC = 'ecC'
- sbC = 'sbC'
- thC = 'thC'
+  type = HeatFlowElectricT
+  component = 0
+  variable = T
+  T = 'T'
+  potential_E_int = 'potential_E_int'
+  ecC = 'ecC'
+  sbC = 'sbC'
+  thC = 'thC'
 [../]
 
 []
@@ -83,78 +83,58 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-  []
+[]
 
 [AuxKernels]
   [./Electric_flux_x]
     type = ElectricFlux
     variable = j_x
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    potential_E_int = potential_E_int
     component = 0
   [../]
   [./Electric_flux_y]
     type = ElectricFlux
     variable = j_y
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    potential_E_int = potential_E_int
     component = 1
   [../]
   [./Electric_flux_z]
     type = ElectricFlux
     variable = j_z
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    potential_E_int = potential_E_int
     component = 2
   [../]
 
   [./Heat_flux_x]
     type = HeatFlux
     variable = q_x
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    T = T
+    potential_E_int = potential_E_int
     component = 0
   [../]
   [./heat_flux_y]
     type = HeatFlux
     variable = q_y
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    T = T
+    potential_E_int = potential_E_int
     component = 1
   [../]
   [./Heat_flux_z]
     type = HeatFlux
     variable = q_z
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
+    T = T
     potential_E_int = 'potential_E_int'
     component = 2
   [../]
-  []
+[]
 
 
   [Materials]
     # same sbC
-   #  [./ThermoelectricProperties1]
-   #   type = GenericConstantMaterial
-   #   prop_names = 'ecC sbC thC'
-   #   prop_values = '8.422e4 1.941e-4 1.612'
-   #   block = '1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20'
-   # [../]
+
    # different sbC
    [./ThermoelectricProperties_1]
     type = GenericConstantMaterial
@@ -276,7 +256,7 @@
     prop_values = '12804.494846512856 -2.9510240438234925e-05 0.24508247082140497'
     block = '20'
   [../]
-  []
+[]
 
 
 [BCs]
@@ -305,24 +285,18 @@
     boundary = 'left'
     value = 0.058
   [../]
-  # [./Periodic]
-  #   [./All]
-  #     auto_direction = 'x y z'
-  #   [../]
-  # [../]
-  []
+[]
 
 [Executioner]
   type = Steady
   solve_type = NEWTON
-  # line_search = none
 []
 
 [Preconditioning]
-[./SMP]
-type = SMP
-full = true
-[../]
+    [./SMP]
+    type = SMP
+    full = true
+  [../]
 []
 
 [Postprocessors]
@@ -337,14 +311,10 @@ full = true
     point = '0 0 0'
     variable = T
   [../]
-  []
+[]
 
 [Outputs]
   exodus = true
   csv = true
   file_base = polycrystal_20grains
 []
-
-[Debug]
-  show_var_residual_norms = true
-  []

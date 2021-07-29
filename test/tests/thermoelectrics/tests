@@ -41,7 +41,11 @@
     max_threads = 1
   [../]
 
-
-
-
+  [./rotated_grains]
+    type = 'Exodiff'
+    input = 'Bi2Te3_polycrystal_20_rotated.i'
+    exodiff = 'out_Bi2Te3_test.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []

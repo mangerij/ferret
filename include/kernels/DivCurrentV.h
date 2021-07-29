@@ -19,23 +19,20 @@
 
 **/
 
-#ifndef TENSORRESIDUALV_H
-#define TENSORRESIDUALV_H
+#ifndef DIVCURRENTV_H
+#define DIVCURRENTV_H
 
 #include "Kernel.h"
-#include "Material.h"
-#include "RankTwoTensor.h"//added for tensor calculation
 
-class TensorResidualV;
+class DivCurrentV;
 
-template<>
-InputParameters validParams<TensorResidualV>();
+template <>
+InputParameters validParams<DivCurrentV>();
 
-class TensorResidualV: public Kernel
+class DivCurrentV : public Kernel
 {
 public:
-
-  TensorResidualV(const InputParameters & parameters);
+  DivCurrentV(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -43,16 +40,13 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-  const unsigned int _component;
   const unsigned int _potential_E_int_var;
   const VariableValue & _potential_E_int;
   const VariableGradient & _potential_E_int_grad;
   const unsigned int _T_var;
   const VariableValue & _T;
   const VariableGradient & _T_grad;
-  const MaterialProperty<RankTwoTensor> & _ecC_tensor;//for tensor inclusion
-  const MaterialProperty<RankTwoTensor> & _sbC_tensor;
-  const Real _len_scale;
-
+  const MaterialProperty<Real> & _ecC;
+  const MaterialProperty<Real> & _sbC;
 };
 #endif

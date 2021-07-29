@@ -1,3 +1,11 @@
+
+  ##########################################
+  ##
+  ##   Example of 3D interface with Peltier
+  ##   cooling/heating phenomena
+  ##   
+  ############################################
+
 [Mesh]
  [gen]
     ############################################
@@ -33,39 +41,13 @@
     input = subdomains
     primary_block = 0
     paired_block = 1
-    # new_boundary = 52
     new_boundary = 'primary0_interface'
   [../]
   [./break_boundary]
     input = film_interface
     type = BreakBoundaryOnSubdomainGenerator
   [../]
-  []
-
-
-# //3d
-# [./subdomain1]
-#     input = gen
-#     type = SubdomainBoundingBoxGenerator
-#     bottom_left = '-0.0007 -0.0007 -0.001524'
-#     top_right = '0.0007 0.0007 0'
-#     block_id = 1
-#     location = INSIDE
-#   [../]
-#   [./interface]
-#     type = SideSetsBetweenSubdomainsGenerator
-#     input = subdomain1
-#     primary_block = '0'
-#     paired_block = '1'
-#     new_boundary = 'primary0_interface'
-#     # new_boundary = 52
-#   [../]
-#   [./break_boundary]
-#     input = interface
-#     type = BreakBoundaryOnSubdomainGenerator
-#   [../]
-# []
-
+[]
 
 [GlobalParams]
   T = T
@@ -126,58 +108,58 @@
     type = ElectricFlux
     variable = j_x
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 0
   [../]
   [./Electric_flux_y]
     type = ElectricFlux
     variable = j_y
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 1
   [../]
   [./Electric_flux_z]
     type = ElectricFlux
     variable = j_y
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 2
   [../]
 
   [./Heat_flux_x]
     type = HeatFlux
     variable = q_x
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    T = T
+    thC = thC
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 0
   [../]
   [./heat_flux_y]
     type = HeatFlux
     variable = q_y
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    T = T
+    thC = thC
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 1
   [../]
   [./heat_flux_z]
     type = HeatFlux
     variable = q_y
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    T = T
+    thC = thC
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 2
   [../]
 []
@@ -185,7 +167,7 @@
 [Kernels]
   ########BLOCK 1
   [./residualV_00]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     T = T
     component = 0
@@ -195,7 +177,7 @@
     sbC = sbC
   [../]
   [./residualT_00]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     T = T
     component = 0
@@ -205,7 +187,7 @@
     sbC = sbC
   [../]
   [./residualV_01]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     T = T
     component = 1
@@ -215,7 +197,7 @@
     sbC = sbC
   [../]
   [./residualT_01]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     T = T
     component = 1
@@ -225,7 +207,7 @@
     sbC = sbC
   [../]
   [./residualV_02]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     T = T
     component = 2
@@ -235,7 +217,7 @@
     sbC = sbC
   [../]
   [./residualT_02]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     T = T
     component = 2
@@ -247,7 +229,7 @@
 
   ########BLOCK 1
   [./residualV_10]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     component = 0
     T = T
@@ -257,7 +239,7 @@
     sbC = sbC
   [../]
   [./residualT_10]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     component = 0
     T = T
@@ -267,7 +249,7 @@
     block = 1
   [../]
   [./residualV_11]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     component = 1
     T = T
@@ -277,7 +259,7 @@
     sbC = sbC
   [../]
   [./residualT_11]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     component = 1
     T = T
@@ -287,7 +269,7 @@
     block = 1
   [../]
   [./residualV_12]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     component = 2
     T = T
@@ -297,7 +279,7 @@
     sbC = sbC
   [../]
   [./residualT_12]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     component = 2
     T = T
