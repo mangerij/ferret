@@ -53,29 +53,30 @@ Transformed111Order::computeValue()
 // TODO: Note that there is no reason this needs to be hardcoded, but this will be the first step. 
 //       in general, this procedure should work for any transformation
 //
+  
   if (_inverse == false)
   {
-  // This takes the op_x, op_y, and op_z components back to the x,y,z orientation [111]->[001].
+  //
+  // P1 = S.Po
+  //
     if (_component == 0)
-      return 0.40824829046386301637*_order_param_x[_qp] + 0.40824829046386301637*_order_param_y[_qp] - 
- 0.81649658092772603273*_order_param_z[_qp];
+      return 0.40824829046386301637*_order_param_x[_qp] + 0.40824829046386301637*_order_param_y[_qp] - 0.81649658092772603273*_order_param_z[_qp];
     else if (_component == 1)
-      return -0.70710678118654752440*_order_param_x[_qp] + 0.70710678118654752440*_order_param_y[_qp];
+      return -0.7071067811865475244*_order_param_x[_qp] + 0.7071067811865475244*_order_param_y[_qp];
     else if (_component == 2)
-      return 0.57735026918962576451*_order_param_x[_qp] + 0.57735026918962576451*_order_param_y[_qp] + 
- 0.57735026918962576451*_order_param_z[_qp];
+      return 0.57735026918962576451*_order_param_x[_qp] + 0.57735026918962576451*_order_param_y[_qp] + 0.57735026918962576451*_order_param_z[_qp];
     else
       return 0.0;
   }
   else if (_inverse == true)
   {
-  // This takes the x, y, and z components back to the op_x,op_y,op_z [111] orientation [001]->[111].
+  //
+  // Po = Inv[S].P1
+  //
     if (_component == 0)
-      return 0.40824829046386301637*_order_param_x[_qp] - 0.70710678118654752440*_order_param_y[_qp] + 
- 0.57735026918962576451*_order_param_z[_qp];
+      return 0.40824829046386301637*_order_param_x[_qp] - 0.7071067811865475244*_order_param_y[_qp] + 0.57735026918962576451*_order_param_z[_qp];
     else if (_component == 1)
-      return 0.40824829046386301637*_order_param_x[_qp] + 0.70710678118654752440*_order_param_y[_qp] + 
- 0.57735026918962576451*_order_param_z[_qp];
+      return 0.40824829046386301637*_order_param_x[_qp] + 0.7071067811865475244*_order_param_y[_qp] + 0.57735026918962576451*_order_param_z[_qp];
     else if (_component == 2)
       return -0.81649658092772603273*_order_param_x[_qp] + 0.57735026918962576451*_order_param_z[_qp];
     else

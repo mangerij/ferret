@@ -33,7 +33,7 @@ InputParameters validParams<RotostrictiveCouplingDispDerivative>()
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
