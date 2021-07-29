@@ -32,7 +32,7 @@ InputParameters validParams<TensorDivCurrentV>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution due to modified ohm's law");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("potential_E_int", "electrical potential");
   params.addRequiredCoupledVar("T", "temperature");
   params.addParam<Real>("len_scale", 1.0, "the length scale of the unit");

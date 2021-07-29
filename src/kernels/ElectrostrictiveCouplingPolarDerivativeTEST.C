@@ -36,16 +36,17 @@ InputParameters validParams<ElectrostrictiveCouplingPolarDerivativeTEST>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredCoupledVar("disp_x", "The x component of the global disp");
-  params.addRequiredCoupledVar("disp_y", "The y component of the global disp");
-  params.addCoupledVar("disp_z", 0.0, "The z component of the global disp");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
+  params.addCoupledVar("g_disp_x", 0.0, "The x component of the global disp");
+  params.addCoupledVar("g_disp_y", 0.0, "The y component of the global disp");
+  params.addCoupledVar("g_disp_z", 0.0, "The z component of the global disp");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   return params;
 }
 
 ElectrostrictiveCouplingPolarDerivativeTEST::ElectrostrictiveCouplingPolarDerivativeTEST(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
+   _eigenstrain(getMaterialProperty<RankTwoTensor>("eigenstrain")),
    _u_x_var(coupled("u_x")),
    _u_y_var(coupled("u_y")),
    _u_z_var(coupled("u_z")),
@@ -55,9 +56,6 @@ ElectrostrictiveCouplingPolarDerivativeTEST::ElectrostrictiveCouplingPolarDeriva
    _u_x_grad(coupledGradient("u_x")),
    _u_y_grad(coupledGradient("u_y")),
    _u_z_grad(coupledGradient("u_z")),
-   _disp_x_grad(coupledGradient("disp_x")),
-   _disp_y_grad(coupledGradient("disp_y")),
-   _disp_z_grad(coupledGradient("disp_z")),
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
@@ -72,15 +70,15 @@ ElectrostrictiveCouplingPolarDerivativeTEST::computeQpResidual()
 {
   if (_component == 0)
   {
-    return -_test[_i][_qp] * (-2*_polar_x[_qp]*_q11[_qp]*(_u_x_grad[_qp](0)-_disp_x_grad[_qp](0)) - 2*_q44[_qp]*((_polar_y[_qp]*((_u_x_grad[_qp](1)-_disp_x_grad[_qp](1)) + (_u_y_grad[_qp](0)-_disp_y_grad[_qp](0))))/2. + (_polar_z[_qp]*((_u_x_grad[_qp](2)-_disp_x_grad[_qp](2)) + (_u_z_grad[_qp](0)-_disp_z_grad[_qp](0))))/2.) - _q12[_qp]*(2*_polar_x[_qp]*(_u_y_grad[_qp](1)-_disp_y_grad[_qp](1)) + 2*_polar_x[_qp]*(_u_z_grad[_qp](2)-_disp_z_grad[_qp](2))));
+    return -0.5*_test[_i][_qp] * (-2*_polar_x[_qp]*_q11[_qp]*(_u_x_grad[_qp](0) + _eigenstrain[_qp](0,0) ) - 2*_q44[_qp]*((_polar_y[_qp]*((_u_x_grad[_qp](1) + _eigenstrain[_qp](0,1) ) + (_u_y_grad[_qp](0) + _eigenstrain[_qp](1,0) )))/2. + (_polar_z[_qp]*((_u_x_grad[_qp](2) + _eigenstrain[_qp](0,2) ) + (_u_z_grad[_qp](0) + _eigenstrain[_qp](2,0) )))/2.) - _q12[_qp]*(2*_polar_x[_qp]*(_u_y_grad[_qp](1) + _eigenstrain[_qp](1,1) ) + 2*_polar_x[_qp]*(_u_z_grad[_qp](2) + _eigenstrain[_qp](2,2) )));
   }
   else if (_component == 1)
   {
-    return -_test[_i][_qp] * (-2*_polar_y[_qp]*_q11[_qp]*(_u_y_grad[_qp](1)-_disp_y_grad[_qp](1)) - 2*_q44[_qp]*((_polar_x[_qp]*((_u_x_grad[_qp](1)-_disp_x_grad[_qp](1)) + (_u_y_grad[_qp](0)-_disp_y_grad[_qp](0))))/2. + (_polar_z[_qp]*((_u_y_grad[_qp](2)-_disp_y_grad[_qp](2)) + (_u_z_grad[_qp](1)-_disp_z_grad[_qp](1))))/2.) - _q12[_qp]*(2*_polar_y[_qp]*(_u_x_grad[_qp](0)-_disp_x_grad[_qp](0)) + 2*_polar_y[_qp]*(_u_z_grad[_qp](2)-_disp_z_grad[_qp](2))));
+    return -0.5*_test[_i][_qp] * (-2*_polar_y[_qp]*_q11[_qp]*(_u_y_grad[_qp](1) + _eigenstrain[_qp](1,1) ) - 2*_q44[_qp]*((_polar_x[_qp]*((_u_x_grad[_qp](1) + _eigenstrain[_qp](0,1) ) + (_u_y_grad[_qp](0) + _eigenstrain[_qp](1,0) )))/2. + (_polar_z[_qp]*((_u_y_grad[_qp](2) + _eigenstrain[_qp](1,2) ) + (_u_z_grad[_qp](1) + _eigenstrain[_qp](2,1) )))/2.) - _q12[_qp]*(2*_polar_y[_qp]*(_u_x_grad[_qp](0) + _eigenstrain[_qp](0,0) ) + 2*_polar_y[_qp]*(_u_z_grad[_qp](2) + _eigenstrain[_qp](2,2) )));
   }
   else if (_component == 2)
   {
-    return -_test[_i][_qp] * (-(_q12[_qp]*(2*_polar_z[_qp]*(_u_x_grad[_qp](0)-_disp_x_grad[_qp](0)) + 2*_polar_z[_qp]*(_u_y_grad[_qp](1)-_disp_y_grad[_qp](1)))) - 2*_q44[_qp]*((_polar_x[_qp]*((_u_x_grad[_qp](2)-_disp_x_grad[_qp](2)) + (_u_z_grad[_qp](0)-_disp_z_grad[_qp](0))))/2. + (_polar_y[_qp]*((_u_y_grad[_qp](2)-_disp_y_grad[_qp](2)) + (_u_z_grad[_qp](1)-_disp_z_grad[_qp](1))))/2.) - 2*_polar_z[_qp]*_q11[_qp]*(_u_z_grad[_qp](2)-_disp_z_grad[_qp](2)));
+    return -0.5*_test[_i][_qp] * (-(_q12[_qp]*(2*_polar_z[_qp]*(_u_x_grad[_qp](0) + _eigenstrain[_qp](0,0) ) + 2*_polar_z[_qp]*(_u_y_grad[_qp](1) + _eigenstrain[_qp](1,1) ))) - 2*_q44[_qp]*((_polar_x[_qp]*((_u_x_grad[_qp](2) + _eigenstrain[_qp](0,2) ) + (_u_z_grad[_qp](0) + _eigenstrain[_qp](2,0) )))/2. + (_polar_y[_qp]*((_u_y_grad[_qp](2) + _eigenstrain[_qp](1,2) ) + (_u_z_grad[_qp](1) + _eigenstrain[_qp](2,1) )))/2.) - 2*_polar_z[_qp]*_q11[_qp]*(_u_z_grad[_qp](2) + _eigenstrain[_qp](2,2) ));
   }
   else
     return 0.0;
@@ -91,15 +89,15 @@ ElectrostrictiveCouplingPolarDerivativeTEST::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return -_test[_i][_qp] * _phi[_j][_qp] * (-2*_q11[_qp]*(_u_x_grad[_qp](0)-_disp_x_grad[_qp](0)) - _q12[_qp]*(2*(_u_y_grad[_qp](1)-_disp_y_grad[_qp](1)) + 2*(_u_z_grad[_qp](2)-_disp_z_grad[_qp](2))));
+    return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-2*_q11[_qp]*(_u_x_grad[_qp](0) + _eigenstrain[_qp](0,0) ) - _q12[_qp]*(2*(_u_y_grad[_qp](1) + _eigenstrain[_qp](1,1) ) + 2*(_u_z_grad[_qp](2) + _eigenstrain[_qp](2,2) )));
   }
   else if (_component == 1)
   {
-    return -_test[_i][_qp] * _phi[_j][_qp] * (-2*_q11[_qp]*(_u_y_grad[_qp](1)-_disp_y_grad[_qp](1)) - _q12[_qp]*(2*(_u_x_grad[_qp](0)-_disp_x_grad[_qp](0)) + 2*(_u_z_grad[_qp](2)-_disp_z_grad[_qp](2))));
+    return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-2*_q11[_qp]*(_u_y_grad[_qp](1) + _eigenstrain[_qp](1,1) ) - _q12[_qp]*(2*(_u_x_grad[_qp](0) + _eigenstrain[_qp](0,0) ) + 2*(_u_z_grad[_qp](2) + _eigenstrain[_qp](2,2) )));
   }
   else if (_component == 2)
   {
-    return -_test[_i][_qp] * _phi[_j][_qp] * (-(_q12[_qp]*(2*(_u_x_grad[_qp](0)-_disp_x_grad[_qp](0)) + 2*(_u_y_grad[_qp](1)-_disp_y_grad[_qp](1)))) - 2*_q11[_qp]*(_u_z_grad[_qp](2)-_disp_z_grad[_qp](2)));
+    return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-(_q12[_qp]*(2*(_u_x_grad[_qp](0) + _eigenstrain[_qp](0,0) ) + 2*(_u_y_grad[_qp](1) + _eigenstrain[_qp](1,1) ))) - 2*_q11[_qp]*(_u_z_grad[_qp](2) + _eigenstrain[_qp](2,2) ));
   }
   else
     return 0.0;
@@ -112,23 +110,23 @@ ElectrostrictiveCouplingPolarDerivativeTEST::computeQpOffDiagJacobian(unsigned i
   {
     if (jvar == _polar_y_var)
     {
-      return -_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](1)-_disp_x_grad[_qp](1)) + (_u_y_grad[_qp](0)-_disp_y_grad[_qp](0)))));
+      return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](1) + _eigenstrain[_qp](0,1) ) + (_u_y_grad[_qp](0) + _eigenstrain[_qp](1,0) ))));
     }
     else if (jvar == _polar_z_var)
     {
-      return -_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](2)-_disp_x_grad[_qp](2)) + (_u_z_grad[_qp](0)-_disp_z_grad[_qp](0)))));
+      return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](2) + _eigenstrain[_qp](0,2) ) + (_u_z_grad[_qp](0) + _eigenstrain[_qp](2,0) ))));
     }
     else if (jvar == _u_x_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_x[_qp]*_grad_phi[_j][_qp](0)*_q11[_qp] - 2*((_polar_y[_qp]*_grad_phi[_j][_qp](1))/2. + (_polar_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_x[_qp]*_grad_phi[_j][_qp](0)*_q11[_qp] - 2*((_polar_y[_qp]*_grad_phi[_j][_qp](1))/2. + (_polar_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_q44[_qp]);
     }
     else if (jvar == _u_y_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_x[_qp]*_grad_phi[_j][_qp](1)*_q12[_qp] - _polar_y[_qp]*_grad_phi[_j][_qp](0)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_x[_qp]*_grad_phi[_j][_qp](1)*_q12[_qp] - _polar_y[_qp]*_grad_phi[_j][_qp](0)*_q44[_qp]);
     }
     else if (jvar == _u_z_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_x[_qp]*_grad_phi[_j][_qp](2)*_q12[_qp] - _polar_z[_qp]*_grad_phi[_j][_qp](0)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_x[_qp]*_grad_phi[_j][_qp](2)*_q12[_qp] - _polar_z[_qp]*_grad_phi[_j][_qp](0)*_q44[_qp]);
     }
     else
     {
@@ -139,23 +137,23 @@ ElectrostrictiveCouplingPolarDerivativeTEST::computeQpOffDiagJacobian(unsigned i
   {
     if (jvar == _polar_x_var)
     {
-      return -_test[_i][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](1)-_disp_x_grad[_qp](1)) + (_u_y_grad[_qp](0)-_disp_y_grad[_qp](0)))));
+      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](1) + _eigenstrain[_qp](0,1) ) + (_u_y_grad[_qp](0) + _eigenstrain[_qp](1,0) ))));
     }
     else if (jvar == _polar_z_var)
     {
-      return -_test[_i][_qp] * (-(_q44[_qp]*((_u_y_grad[_qp](2)-_disp_y_grad[_qp](2)) + (_u_z_grad[_qp](1)-_disp_z_grad[_qp](1)))));
+      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*((_u_y_grad[_qp](2) + _eigenstrain[_qp](1,2) ) + (_u_z_grad[_qp](1) + _eigenstrain[_qp](2,1) ))));
     }
     else if (jvar == _u_x_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_y[_qp]*_grad_phi[_j][_qp](0)*_q12[_qp] - _polar_x[_qp]*_grad_phi[_j][_qp](1)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_y[_qp]*_grad_phi[_j][_qp](0)*_q12[_qp] - _polar_x[_qp]*_grad_phi[_j][_qp](1)*_q44[_qp]);
     }
     else if (jvar == _u_y_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_y[_qp]*_grad_phi[_j][_qp](1)*_q11[_qp] - 2*((_polar_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_polar_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_y[_qp]*_grad_phi[_j][_qp](1)*_q11[_qp] - 2*((_polar_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_polar_z[_qp]*_grad_phi[_j][_qp](2))/2.)*_q44[_qp]);
     }
     else if (jvar == _u_z_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_y[_qp]*_grad_phi[_j][_qp](2)*_q12[_qp] - _polar_z[_qp]*_grad_phi[_j][_qp](1)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_y[_qp]*_grad_phi[_j][_qp](2)*_q12[_qp] - _polar_z[_qp]*_grad_phi[_j][_qp](1)*_q44[_qp]);
     }
     else
     {
@@ -166,23 +164,23 @@ ElectrostrictiveCouplingPolarDerivativeTEST::computeQpOffDiagJacobian(unsigned i
   {
     if (jvar == _polar_x_var)
     {
-      return -_test[_i][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](2)-_disp_x_grad[_qp](2)) + (_u_z_grad[_qp](0)-_disp_z_grad[_qp](0)))));
+      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](2) + _eigenstrain[_qp](0,2) ) + (_u_z_grad[_qp](0) + _eigenstrain[_qp](2,0) ))));
     }
     else if (jvar == _polar_y_var)
     {
-      return -_test[_i][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](1)-_disp_x_grad[_qp](1)) + (_u_y_grad[_qp](0)-_disp_y_grad[_qp](0)))));
+      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*((_u_x_grad[_qp](1) + _eigenstrain[_qp](0,1) ) + (_u_y_grad[_qp](0) + _eigenstrain[_qp](1,0) ))));
     }
     else if (jvar == _u_x_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_z[_qp]*_grad_phi[_j][_qp](0)*_q12[_qp] - _polar_x[_qp]*_grad_phi[_j][_qp](2)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_z[_qp]*_grad_phi[_j][_qp](0)*_q12[_qp] - _polar_x[_qp]*_grad_phi[_j][_qp](2)*_q44[_qp]);
     }
     else if (jvar == _u_y_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_z[_qp]*_grad_phi[_j][_qp](1)*_q12[_qp] - _polar_y[_qp]*_grad_phi[_j][_qp](2)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_z[_qp]*_grad_phi[_j][_qp](1)*_q12[_qp] - _polar_y[_qp]*_grad_phi[_j][_qp](2)*_q44[_qp]);
     }
     else if (jvar == _u_z_var)
     {
-      return -_test[_i][_qp] * (-2*_polar_z[_qp]*_grad_phi[_j][_qp](2)*_q11[_qp] - 2*((_polar_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_polar_y[_qp]*_grad_phi[_j][_qp](1))/2.)*_q44[_qp]);
+      return -0.5*_test[_i][_qp] * (-2*_polar_z[_qp]*_grad_phi[_j][_qp](2)*_q11[_qp] - 2*((_polar_x[_qp]*_grad_phi[_j][_qp](0))/2. + (_polar_y[_qp]*_grad_phi[_j][_qp](1))/2.)*_q44[_qp]);
     }
     else
     {

@@ -31,7 +31,7 @@ InputParameters validParams<SubstratePenalty>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates an energy penalty due to deviating from elastic condition imposed by the substrate");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y.");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("u_x", "The x component of the local elastic displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local elastic displacement");
   params.addCoupledVar("u_z", 0.0, "The z component of the local elastic displacement");

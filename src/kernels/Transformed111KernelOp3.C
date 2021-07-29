@@ -29,7 +29,7 @@ InputParameters validParams<Transformed111KernelOp3>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates the transformed residual for the local free energy which is an eighth order expansion in the polarization.");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2.0 for z)");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("order_param_x", "The x component of the transformed order parameter");
   params.addRequiredCoupledVar("order_param_y", "The y component of the transformed order parameter");
   params.addCoupledVar("order_param_z", 0.0, "The z component of the transformed order parameter");
@@ -71,23 +71,21 @@ Transformed111KernelOp3::computeQpResidual()
 //       in general, this procedure should work for any transformation
 //
 
-
+//
 //     calculate f' = S*f such that f'_(_component) is listed here.
-
+//
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * (0.40824829046386301637*_f_q0[_qp] - 0.7071067811865475244*_f_q1[_qp] + 
-   0.57735026918962576451*_f_q2[_qp]);
+    return _test[_i][_qp] * (0.40824829046386301637*_f_q0[_qp] + 0.40824829046386301637*_f_q1[_qp] - 0.81649658092772603273*_f_q2[_qp]);
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * (0.40824829046386301637*_f_q0[_qp] + 0.7071067811865475244*_f_q1[_qp] + 
-   0.57735026918962576451*_f_q2[_qp]);
+    return _test[_i][_qp] * (-0.7071067811865475244*_f_q0[_qp] + 0.7071067811865475244*_f_q1[_qp]);
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (-0.81649658092772603273*_f_q0[_qp] + 0.57735026918962576451*_f_q2[_qp]);
+    return _test[_i][_qp] * (0.57735026918962576451*_f_q0[_qp] + 0.57735026918962576451*_f_q1[_qp] + 0.57735026918962576451*_f_q2[_qp]);
   }
   else
     return 0.0;
@@ -98,20 +96,15 @@ Transformed111KernelOp3::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(_J_q0q0[_qp] - 3.4641016151377545871*_J_q0q1[_qp] + 
-   2.8284271247461900976*_J_q0q2[_qp] + 3.0*_J_q1q1[_qp] - 
-   4.8989794855663561964*_J_q1q2[_qp] + 2.0*_J_q2q2[_qp]));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(_J_q0q0[_qp] + 2.0*_J_q0q1[_qp] - 4.0*_J_q0q2[_qp] + _J_q1q1[_qp] - 4.0*_J_q1q2[_qp] + 4.0*_J_q2q2[_qp]));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(_J_q0q0[_qp] + 3.4641016151377545871*_J_q0q1[_qp] + 
-   2.8284271247461900976*_J_q0q2[_qp] + 3.0*_J_q1q1[_qp] + 
-   4.8989794855663561964*_J_q1q2[_qp] + 2.0*_J_q2q2[_qp]));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.5*(_J_q0q0[_qp] - 2.0*_J_q0q1[_qp] + _J_q1q1[_qp]));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (0.33333333333333333333*(2.0*_J_q0q0[_qp] - 
-   2.8284271247461900976*_J_q0q2[_qp] + _J_q2q2[_qp]));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.33333333333333333333*(_J_q0q0[_qp] + 2.0*_J_q0q1[_qp] + 2.0*_J_q0q2[_qp] + _J_q1q1[_qp] + 2.0*_J_q1q2[_qp] + _J_q2q2[_qp]));
   }
   else
     return 0.0;
@@ -125,13 +118,11 @@ Transformed111KernelOp3::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _order_param_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (0.16666666666666666667*(_J_q0q0[_qp] + 2.8284271247461900976*_J_q0q2[_qp] - 
-   3.0000000000000000000*_J_q1q1[_qp] + 2.0*_J_q2q2[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] *  (0.28867513459481288225*(-1.*_J_q0q0[_qp] + 2.*_J_q0q2[_qp] + _J_q1q1[_qp] - 2.*_J_q1q2[_qp]));
     }
     else if (jvar == _order_param_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (0.16666666666666666667*(-2.0*_J_q0q0[_qp] + 
-   3.4641016151377545871*_J_q0q1[_qp] - 1.4142135623730950488*_J_q0q2[_qp] - 2.4494897427831780982*_J_q1q2[_qp] + 2.0*_J_q2q2[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] *  (0.23570226039551584147*(_J_q0q0[_qp] + 2.*_J_q0q1[_qp] - 1.*_J_q0q2[_qp] + _J_q1q1[_qp] - 1.*_J_q1q2[_qp] - 2.*_J_q2q2[_qp]));
     }
     else
     {
@@ -142,14 +133,11 @@ Transformed111KernelOp3::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _order_param_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(_J_q0q0[_qp] + 2.8284271247461900976*_J_q0q2[_qp] - 
-   3.0000000000000000000*_J_q1q1[_qp] + 2.0*_J_q2q2[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.28867513459481288225*(-1.*_J_q0q0[_qp] + 2.*_J_q0q2[_qp] + _J_q1q1[_qp] - 2.*_J_q1q2[_qp]));
     }
     else if (jvar == _order_param_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(-2.0*_J_q0q0[_qp] - 
-   3.4641016151377545871*_J_q0q1[_qp] - 1.4142135623730950488*_J_q0q2[_qp] + 
-   2.4494897427831780982*_J_q1q2[_qp] + 2.0*_J_q2q2[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.40824829046386301637*(-1.*_J_q0q0[_qp] - 1.*_J_q0q2[_qp] + _J_q1q1[_qp] + _J_q1q2[_qp]));
     }
     else
     {
@@ -160,11 +148,11 @@ Transformed111KernelOp3::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _order_param_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(-2.0*_J_q0q0[_qp] + 3.4641016151377545871*_J_q0q1[_qp] - 1.4142135623730950488*_J_q0q2[_qp] - 2.4494897427831780982*_J_q1q2[_qp] + 2.0*_J_q2q2[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.23570226039551584147*(_J_q0q0[_qp] + 2.*_J_q0q1[_qp] - 1.*_J_q0q2[_qp] + _J_q1q1[_qp] - 1.*_J_q1q2[_qp] - 2.*_J_q2q2[_qp]));
     }
     else if (jvar == _order_param_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (0.16666666666666666667*(-2.0*_J_q0q0[_qp] - 3.4641016151377545871*_J_q0q1[_qp] - 1.4142135623730950488*_J_q0q2[_qp] + 2.4494897427831780982*_J_q1q2[_qp] + 2.0*_J_q2q2[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.40824829046386301637*(-1.*_J_q0q0[_qp] - 1.*_J_q0q2[_qp] + _J_q1q1[_qp] + _J_q1q2[_qp]));
     }
     else
     {

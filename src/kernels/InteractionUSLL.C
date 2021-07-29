@@ -29,7 +29,7 @@ InputParameters validParams<InteractionUSLL>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution - M$*$H in the total energy, assuming H = - div * potential.");
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for polar, 1 for azimuth)");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("potential_H_int", "The internal magnetic potential variable");
   params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");
   params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");
