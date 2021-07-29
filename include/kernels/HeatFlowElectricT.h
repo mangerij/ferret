@@ -19,20 +19,20 @@
 
 **/
 
-#ifndef RESIDUALV_H
-#define RESIDUALV_H
+#ifndef HEATFLOWELECTRICT_H
+#define HEATFLOWELECTRICT_H
 
 #include "Kernel.h"
 
-class ResidualV;
+class HeatFlowElectricT;
 
 template <>
-InputParameters validParams<ResidualV>();
+InputParameters validParams<HeatFlowElectricT>();
 
-class ResidualV : public Kernel
+class HeatFlowElectricT : public Kernel
 {
 public:
-  ResidualV(const InputParameters & parameters);
+  HeatFlowElectricT(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();
@@ -46,7 +46,11 @@ private:
   const unsigned int _T_var;
   const VariableValue & _T;
   const VariableGradient & _T_grad;
+  // const Real _electrical_conductivity;
+  // const Real _seebeck_coefficient;
+  // const Real _thermal_conductivity;
   const MaterialProperty<Real> & _ecC;
   const MaterialProperty<Real> & _sbC;
+  const MaterialProperty<Real> & _thC;
 };
 #endif

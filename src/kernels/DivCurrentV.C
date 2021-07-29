@@ -19,15 +19,15 @@
 
 **/
 
-#include "ResidualV.h"
+#include "DivCurrentV.h"
 // #include "HeatConduction.h"
 #include "Material.h"
 
-registerMooseObject("FerretApp", ResidualV);
+registerMooseObject("FerretApp", DivCurrentV);
 
 template <>
 InputParameters
-validParams<ResidualV>()
+validParams<DivCurrentV>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution due to modified ohm's law");
@@ -36,7 +36,7 @@ validParams<ResidualV>()
   return params;
 }
 
-ResidualV::ResidualV(const InputParameters & parameters)
+DivCurrentV::DivCurrentV(const InputParameters & parameters)
   : Kernel(parameters),
     _potential_E_int_var(coupled("potential_E_int")),
     _potential_E_int(coupledValue("potential_E_int")),
@@ -50,7 +50,7 @@ ResidualV::ResidualV(const InputParameters & parameters)
 }
 
 Real
-ResidualV::computeQpResidual()
+DivCurrentV::computeQpResidual()
 
 {
   return (((-_grad_test[_i][_qp](0)) * (-_ecC[_qp] * _sbC[_qp] * _T_grad[_qp](0)) +
@@ -62,7 +62,7 @@ ResidualV::computeQpResidual()
 }
 
 Real
-ResidualV::computeQpJacobian()
+DivCurrentV::computeQpJacobian()
 
 {
   return ((-_grad_test[_i][_qp](0)) * (-_ecC[_qp] * _grad_phi[_j][_qp](0)) +
@@ -71,7 +71,7 @@ ResidualV::computeQpJacobian()
 }
 
 Real
-ResidualV::computeQpOffDiagJacobian(unsigned int jvar)
+DivCurrentV::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (jvar == _T_var)
   {

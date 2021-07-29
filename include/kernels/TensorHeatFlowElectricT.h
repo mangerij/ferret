@@ -18,23 +18,23 @@
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
-#ifndef TENSORRESIDUALT_H
-#define TENSORRESIDUALT_H
+#ifndef TENSORHEATFLOWELECTRICT_H
+#define TENSORHEATFLOWELECTRICT_H
 
 #include "Kernel.h"
 #include "Material.h"
 #include "RankTwoTensor.h"//added for tensor calculation
 
-class TensorResidualT;
+class TensorHeatFlowElectricT;
 
 template<>
-InputParameters validParams<TensorResidualT>();
+InputParameters validParams<TensorHeatFlowElectricT>();
 
-class TensorResidualT: public Kernel
+class TensorHeatFlowElectricT: public Kernel
 {
 public:
 
-  TensorResidualT(const InputParameters & parameters);
+  TensorHeatFlowElectricT(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual();

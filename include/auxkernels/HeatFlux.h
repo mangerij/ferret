@@ -29,7 +29,6 @@ private:
   const MaterialProperty<Real> & _ecC;
   const MaterialProperty<Real> & _sbC;
   const unsigned int _component;
-  const Real _len_scale;
 };
 
 #endif

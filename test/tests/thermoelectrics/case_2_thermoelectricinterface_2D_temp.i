@@ -1,3 +1,10 @@
+  ##########################################
+  ##
+  ##   Example of 2D interface with Peltier
+  ##   cooling/heating phenomena
+  ##   
+  ############################################
+
 [Mesh]
  [gen]
     type = GeneratedMeshGenerator
@@ -30,7 +37,6 @@
       input = interface
       type = BreakBoundaryOnSubdomainGenerator
     [../]
-
 []
 
 
@@ -62,9 +68,8 @@
 
 
 [Kernels]
-  ########BLOCK 0
   [./residualV_0]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     T = T
     component = 1
@@ -74,7 +79,7 @@
     sbC = sbC
   [../]
   [./residualT_0]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     T = T
     component = 1
@@ -87,7 +92,7 @@
 
   ########BLOCK 1
   [./residualV_1]
-    type = ResidualV
+    type = DivCurrentV
     variable = potential_E_int
     component = 0
     T = T
@@ -97,7 +102,7 @@
     sbC = sbC
   [../]
   [./residualT_1]
-    type = ResidualT
+    type = HeatFlowElectricT
     variable = T
     component = 0
     T = T
@@ -133,39 +138,39 @@
     type = ElectricFlux
     variable = j_x
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 0
   [../]
   [./Electric_flux_y]
     type = ElectricFlux
     variable = j_y
     T = T
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 1
   [../]
 
   [./Heat_flux_x]
     type = HeatFlux
     variable = q_x
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    T = T
+    thC = thC
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 0
   [../]
   [./heat_flux_y]
     type = HeatFlux
     variable = q_y
-    T = 'T'
-    thC = 'thC'
-    ecC = 'ecC'
-    sbC = 'sbC'
-    potential_E_int = 'potential_E_int'
+    T = T
+    thC = thC
+    ecC = ecC
+    sbC = sbC
+    potential_E_int = potential_E_int
     component = 1
   [../]
 []
@@ -191,11 +196,9 @@
 
 
 [Materials]
-
-#Temperature dependence
   [./ThermoelectricProperties_0]
      type = ThermoelectricMaterial
-     temp = 'T'
+     temp = T
      thC_temperature_function = k_func
      ecC_temperature_function = lam_func
      sbC_temperature_function = eps_func
@@ -203,16 +206,15 @@
     [../]
   [./ThermoelectricProperties_1]
      type = ThermoelectricMaterial
-     temp = 'T'
+     temp = T
      thC_temperature_function = k_func
      ecC_temperature_function = lam_func
      sbC_temperature_function = negative_eps_func
      block = 1
-    [../]
+  [../]
 []
 
 [BCs]
-
   [./side_potential_top]
     type = NeumannBC
     variable = potential_E_int

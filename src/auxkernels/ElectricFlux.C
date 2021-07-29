@@ -12,12 +12,6 @@ validParams<ElectricFlux>()
   params.addClassDescription("Electric potential generated due to heat flux");
   params.addRequiredCoupledVar("T", "temperature");
   params.addRequiredCoupledVar("potential_E_int", "electric potential");
-  params.addParam<MaterialPropertyName>(
-      "ecC",
-      "Electrical Conductivity",
-      "Property name of the electrical conductivity material property");
-  params.addParam<MaterialPropertyName>(
-      "sbC", "Seebeck coefficient", "Property name of the Seebeck coefficient material property");
   params.addRequiredParam<unsigned int>("component",
                                         "An integer corresponding to the direction the variable "
                                         "this kernel acts in. (0 for x, 1 for y, 2 for z)");
