@@ -48,5 +48,5 @@ CorrectionFactorDistortBFOEnergy::CorrectionFactorDistortBFOEnergy(const InputPa
 Real
 CorrectionFactorDistortBFOEnergy::computeQpIntegral()
 {
-  return (_f1[_qp]*(-Utility::pow<4>(_antiferrodis_A_x[_qp]) + _antiferrodis_A_x[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_antiferrodis_A_y[_qp] - Utility::pow<4>(_antiferrodis_A_y[_qp]) + _antiferrodis_A_x[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_antiferrodis_A_z[_qp] + _antiferrodis_A_y[_qp]*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_antiferrodis_A_z[_qp] - Utility::pow<4>(_antiferrodis_A_z[_qp])));
+  return (_f1[_qp]*(-Utility::pow<4>(_antiferrodis_A_x[_qp]) + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp] - Utility::pow<4>(_antiferrodis_A_y[_qp]) + 4.0*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp] + 4.0*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] - Utility::pow<4>(_antiferrodis_A_z[_qp])));
 }
