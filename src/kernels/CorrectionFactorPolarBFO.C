@@ -54,15 +54,15 @@ CorrectionFactorPolarBFO::computeQpResidual()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * (_f0[_qp]*(-4*Utility::pow<3>(_polar_x[_qp]) + 2*_polar_x[_qp]*Utility::pow<2>(_polar_y[_qp]) + 2*_polar_x[_qp]*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * (_f0[_qp]*(-4*Utility::pow<3>(_polar_x[_qp]) + 8*_polar_x[_qp]*Utility::pow<2>(_polar_y[_qp]) + 8*_polar_x[_qp]*Utility::pow<2>(_polar_z[_qp])));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * (_f0[_qp]*(2*Utility::pow<2>(_polar_x[_qp])*_polar_y[_qp] - 4*Utility::pow<3>(_polar_y[_qp]) + 2*_polar_y[_qp]*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * (_f0[_qp]*(8*Utility::pow<2>(_polar_x[_qp])*_polar_y[_qp] - 4*Utility::pow<3>(_polar_y[_qp]) + 8*_polar_y[_qp]*Utility::pow<2>(_polar_z[_qp])));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (_f0[_qp]*(2*Utility::pow<2>(_polar_x[_qp])*_polar_z[_qp] + 2*Utility::pow<2>(_polar_y[_qp])*_polar_z[_qp] - 4*Utility::pow<3>(_polar_z[_qp])));
+    return _test[_i][_qp] * (_f0[_qp]*(8*Utility::pow<2>(_polar_x[_qp])*_polar_z[_qp] + 8*Utility::pow<2>(_polar_y[_qp])*_polar_z[_qp] - 4*Utility::pow<3>(_polar_z[_qp])));
   }
   else
     return 0.0;
@@ -73,15 +73,15 @@ CorrectionFactorPolarBFO::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (_f0[_qp]*(-12*Utility::pow<2>(_polar_x[_qp]) + 2*Utility::pow<2>(_polar_y[_qp]) + 2*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (_f0[_qp]*(-12*Utility::pow<2>(_polar_x[_qp]) + 8*Utility::pow<2>(_polar_y[_qp]) + 8*Utility::pow<2>(_polar_z[_qp])));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (_f0[_qp]*(2*Utility::pow<2>(_polar_x[_qp]) - 12*Utility::pow<2>(_polar_y[_qp]) + 2*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (_f0[_qp]*(8*Utility::pow<2>(_polar_x[_qp]) - 12*Utility::pow<2>(_polar_y[_qp]) + 8*Utility::pow<2>(_polar_z[_qp])));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (_f0[_qp]*(2*Utility::pow<2>(_polar_x[_qp]) + 2*Utility::pow<2>(_polar_y[_qp]) - 12*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (_f0[_qp]*(8*Utility::pow<2>(_polar_x[_qp]) + 8*Utility::pow<2>(_polar_y[_qp]) - 12*Utility::pow<2>(_polar_z[_qp])));
   }
   else
     return 0.0;
@@ -94,11 +94,11 @@ CorrectionFactorPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (4*_f0[_qp]*_polar_x[_qp]*_polar_y[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_x[_qp]*_polar_y[_qp]);
     }
     else if (jvar == _polar_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (4*_f0[_qp]*_polar_x[_qp]*_polar_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_x[_qp]*_polar_z[_qp]);
     }
     else
     {
@@ -109,11 +109,11 @@ CorrectionFactorPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (4*_f0[_qp]*_polar_x[_qp]*_polar_y[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_x[_qp]*_polar_y[_qp]);
     }
     else if (jvar == _polar_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (4*_f0[_qp]*_polar_y[_qp]*_polar_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_y[_qp]*_polar_z[_qp]);
     }
     else
     {
@@ -124,11 +124,11 @@ CorrectionFactorPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_f0[_qp]*_polar_x[_qp]*_polar_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f0[_qp]*_polar_x[_qp]*_polar_z[_qp]);
     }
     else if (jvar == _polar_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (4*_f0[_qp]*_polar_y[_qp]*_polar_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f0[_qp]*_polar_y[_qp]*_polar_z[_qp]);
     }
     else
     {
