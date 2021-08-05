@@ -48,5 +48,5 @@ CorrectionFactorPolarBFOEnergy::CorrectionFactorPolarBFOEnergy(const InputParame
 Real
 CorrectionFactorPolarBFOEnergy::computeQpIntegral()
 {
-  return (_f0[_qp]*(-Utility::pow<4>(_polar_x[_qp]) + 4.0*_polar_x[_qp]*_polar_y[_qp] - Utility::pow<4>(_polar_y[_qp]) + 4.0*_polar_x[_qp]*_polar_z[_qp] + 4.0*_polar_y[_qp]*_polar_z[_qp] - Utility::pow<4>(_polar_z[_qp])));
+  return (_f0[_qp]*(-3*Utility::pow<4>(_polar_x[_qp]) - 3*Utility::pow<4>(_polar_y[_qp]) - 3*_polar_x[_qp]*_polar_y[_qp]*_polar_z[_qp] + Utility::pow<2>(_polar_z[_qp]) - 3*Utility::pow<4>(_polar_z[_qp]) + Utility::pow<2>(_polar_y[_qp])*(1 + 3*Utility::pow<2>(_polar_z[_qp])) + Utility::pow<2>(_polar_x[_qp])*(1 + 3*Utility::pow<2>(_polar_y[_qp]) + 3*Utility::pow<2>(_polar_z[_qp]))));
 }
