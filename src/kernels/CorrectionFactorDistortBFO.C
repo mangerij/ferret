@@ -54,15 +54,15 @@ CorrectionFactorDistortBFO::computeQpResidual()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * (_f1[_qp]*(-4*Utility::pow<3>(_antiferrodis_A_x[_qp]) + 8*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 8*_antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * (_f1[_qp]*(-12*Utility::pow<3>(_antiferrodis_A_x[_qp]) - 3*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp] + _antiferrodis_A_x[_qp]*(2 + 6*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 6*Utility::pow<2>(_antiferrodis_A_z[_qp]))));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * (_f1[_qp]*(8*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp] - 4*Utility::pow<3>(_antiferrodis_A_y[_qp]) + 8*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * (_f1[_qp]*(-12*Utility::pow<3>(_antiferrodis_A_y[_qp]) - 3*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp] + _antiferrodis_A_y[_qp]*(2 + 6*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 6*Utility::pow<2>(_antiferrodis_A_z[_qp]))));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (_f1[_qp]*(8*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 8*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] - 4*Utility::pow<3>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * (_f1[_qp]*(-3*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp] + 6*Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_z[_qp] + 2*(_antiferrodis_A_z[_qp] + 3*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp] - 6*Utility::pow<3>(_antiferrodis_A_z[_qp]))));
   }
   else
     return 0.0;
@@ -73,15 +73,15 @@ CorrectionFactorDistortBFO::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (_f1[_qp]*(-12*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 8*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 8*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (2*_f1[_qp]*(1 - 18*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 3*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 3*Utility::pow<2>(_antiferrodis_A_z[_qp])));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (_f1[_qp]*(8*Utility::pow<2>(_antiferrodis_A_x[_qp]) - 12*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 8*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (2*_f1[_qp]*(1 + 3*Utility::pow<2>(_antiferrodis_A_x[_qp]) - 18*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 3*Utility::pow<2>(_antiferrodis_A_z[_qp])));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (_f1[_qp]*(8*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 8*Utility::pow<2>(_antiferrodis_A_y[_qp]) - 12*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (2*_f1[_qp]*(1 + 3*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 3*Utility::pow<2>(_antiferrodis_A_y[_qp]) - 18*Utility::pow<2>(_antiferrodis_A_z[_qp])));
   }
   else
     return 0.0;
@@ -94,11 +94,11 @@ CorrectionFactorDistortBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (3*_f1[_qp]*(4*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp] - _antiferrodis_A_z[_qp]));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (-3*_f1[_qp]*(_antiferrodis_A_y[_qp] - 4*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]));
     }
     else
     {
@@ -109,11 +109,11 @@ CorrectionFactorDistortBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (3*_f1[_qp]*(4*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp] - _antiferrodis_A_z[_qp]));
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (-3*_f1[_qp]*(_antiferrodis_A_x[_qp] - 4*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]));
     }
     else
     {
@@ -124,11 +124,11 @@ CorrectionFactorDistortBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (-3*_f1[_qp]*(_antiferrodis_A_y[_qp] - 4*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]));
     }
     else if (jvar == _antiferrodis_A_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f1[_qp]*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (-3*_f1[_qp]*(_antiferrodis_A_x[_qp] - 4*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]));
     }
     else
     {
