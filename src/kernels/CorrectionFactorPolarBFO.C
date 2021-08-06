@@ -11,7 +11,7 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU General Public License for more details.
 
-   You should have received a co_polar_y[_qp] of the GNU General Public License
+   You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
@@ -54,15 +54,15 @@ CorrectionFactorPolarBFO::computeQpResidual()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * (_f0[_qp]*(-12*Utility::pow<3>(_polar_x[_qp]) - 3*_polar_y[_qp]*_polar_z[_qp] + _polar_x[_qp]*(2 + 6*Utility::pow<2>(_polar_y[_qp]) + 6*Utility::pow<2>(_polar_z[_qp]))));
+    return _test[_i][_qp] * (-4*_f0[_qp]*(Utility::pow<3>(_polar_x[_qp]) - 2*_polar_x[_qp]*(Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * (_f0[_qp]*(-12*Utility::pow<3>(_polar_y[_qp]) - 3*_polar_x[_qp]*_polar_z[_qp] + _polar_y[_qp]*(2 + 6*Utility::pow<2>(_polar_x[_qp]) + 6*Utility::pow<2>(_polar_z[_qp]))));
+    return _test[_i][_qp] * (-4*_f0[_qp]*_polar_y[_qp]*(-2*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) - 2*Utility::pow<2>(_polar_z[_qp])));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (_f0[_qp]*(-3*_polar_x[_qp]*_polar_y[_qp] + 6*Utility::pow<2>(_polar_x[_qp])*_polar_z[_qp] + 2*(_polar_z[_qp] + 3*Utility::pow<2>(_polar_y[_qp])*_polar_z[_qp] - 6*Utility::pow<3>(_polar_z[_qp]))));
+    return _test[_i][_qp] * (-4*_f0[_qp]*_polar_z[_qp]*(-2*Utility::pow<2>(_polar_x[_qp]) - 2*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])));
   }
   else
     return 0.0;
@@ -73,15 +73,15 @@ CorrectionFactorPolarBFO::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (2*_f0[_qp]*(1 - 18*Utility::pow<2>(_polar_x[_qp]) + 3*Utility::pow<2>(_polar_y[_qp]) + 3*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (4*_f0[_qp]*(-3*Utility::pow<2>(_polar_x[_qp]) + 2*(Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))));
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (2*_f0[_qp]*(1 + 3*Utility::pow<2>(_polar_x[_qp]) - 18*Utility::pow<2>(_polar_y[_qp]) + 3*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (4*_f0[_qp]*(2*Utility::pow<2>(_polar_x[_qp]) - 3*Utility::pow<2>(_polar_y[_qp]) + 2*Utility::pow<2>(_polar_z[_qp])));
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (2*_f0[_qp]*(1 + 3*Utility::pow<2>(_polar_x[_qp]) + 3*Utility::pow<2>(_polar_y[_qp]) - 18*Utility::pow<2>(_polar_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (4*_f0[_qp]*(2*Utility::pow<2>(_polar_x[_qp]) + 2*Utility::pow<2>(_polar_y[_qp]) - 3*Utility::pow<2>(_polar_z[_qp])));
   }
   else
     return 0.0;
@@ -94,11 +94,11 @@ CorrectionFactorPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (3*_f0[_qp]*(4*_polar_x[_qp]*_polar_y[_qp] - _polar_z[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_x[_qp]*_polar_y[_qp]);
     }
     else if (jvar == _polar_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (-3*_f0[_qp]*(_polar_y[_qp] - 4*_polar_x[_qp]*_polar_z[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_x[_qp]*_polar_z[_qp]);
     }
     else
     {
@@ -109,11 +109,11 @@ CorrectionFactorPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (3*_f0[_qp]*(4*_polar_x[_qp]*_polar_y[_qp] - _polar_z[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_x[_qp]*_polar_y[_qp]);
     }
     else if (jvar == _polar_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (-3*_f0[_qp]*(_polar_x[_qp] - 4*_polar_y[_qp]*_polar_z[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f0[_qp]*_polar_y[_qp]*_polar_z[_qp]);
     }
     else
     {
@@ -124,11 +124,11 @@ CorrectionFactorPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _polar_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (-3*_f0[_qp]*(_polar_y[_qp] - 4*_polar_x[_qp]*_polar_z[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f0[_qp]*_polar_x[_qp]*_polar_z[_qp]);
     }
     else if (jvar == _polar_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (-3*_f0[_qp]*(_polar_x[_qp] - 4*_polar_y[_qp]*_polar_z[_qp]));
+      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f0[_qp]*_polar_y[_qp]*_polar_z[_qp]);
     }
     else
     {
