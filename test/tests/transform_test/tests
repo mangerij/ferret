@@ -1,8 +1,15 @@
 [Tests]
-  [./transform]
+  [./base]
     type = 'Exodiff'
-    input = 'BFO_P0A0_transform_test.i'
-    exodiff = 'out_P0A0_transform_test.e'
+    input = 'BFO_P0A0_f.i'
+    exodiff = 'out_P0A0_f.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./transform111]
+    type = 'Exodiff'
+    input = 'BFO_P0A0_transform_kernel_test.i'
+    exodiff = 'out_P0A0_transformed_kernel_test.e'
     max_parallel = 1
     max_threads = 1
   [../]

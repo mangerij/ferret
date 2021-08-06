@@ -6,6 +6,7 @@ xMax = 1.0
 yMax = 1.0
 zMax = 1.0
 
+
 [Mesh]
   [gen]
     type = GeneratedMeshGenerator
@@ -53,13 +54,22 @@ zMax = 1.0
   antiferrodis_A_y = antiferrodis_A_y
   antiferrodis_A_z = antiferrodis_A_z
 
+
 []
 
 
 [Functions]
+  [./constPm]
+    type = ParsedFunction
+    value = -0.54
+  [../]
   [./constPp]
     type = ParsedFunction
     value = 0.54
+  [../]
+  [./constAm]
+    type = ParsedFunction
+    value = -7.37
   [../]
   [./constAp]
     type = ParsedFunction
@@ -120,192 +130,15 @@ zMax = 1.0
 []
 
 [AuxVariables]
-  [./P1_x]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./P1_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./P1_z]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./A1_x]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./A1_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./A1_z]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-
-
-  # Microforces
-
-  [./Fb_x]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./Fb_y]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./Fb_z]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-
-  [./Jb_00]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./Jb_11]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./Jb_22]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-  [./Jb_01]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./Jb_12]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./Jb_02]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-
+  
 []
 
 [AuxKernels]
-  [./p1]
-    type = Transformed111Order
-    variable = P1_x
-    inverse = false
-    component = 0
-    order_param_x = polar_x
-    order_param_y = polar_y
-    order_param_z = polar_z
-  [../]
-  [./p2]
-    type = Transformed111Order
-    variable = P1_y
-    inverse = false
-    component = 1
-    order_param_x = polar_x
-    order_param_y = polar_y
-    order_param_z = polar_z
-  [../]
-  [./p3]
-    type = Transformed111Order
-    variable = P1_z
-    inverse = false
-    component = 2
-    order_param_x = polar_x
-    order_param_y = polar_y
-    order_param_z = polar_z
-  [../]
 
-  [./a1]
-    type = Transformed111Order
-    variable = A1_x
-    inverse = false
-    component = 0
-    order_param_x = antiferrodis_A_x
-    order_param_y = antiferrodis_A_y
-    order_param_z = antiferrodis_A_z
-  [../]
-  [./a2]
-    type = Transformed111Order
-    variable = A1_y
-    inverse = false
-    component = 1
-    order_param_x = antiferrodis_A_x
-    order_param_y = antiferrodis_A_y
-    order_param_z = antiferrodis_A_z
-  [../]
-  [./a3]
-    type = Transformed111Order
-    variable = A1_z
-    inverse = false
-    component = 2
-    order_param_x = antiferrodis_A_x
-    order_param_y = antiferrodis_A_y
-    order_param_z = antiferrodis_A_z
-  [../]
-
-  [./fb1]
-    type = MicroforceBulkEnergy
-    variable = Fb_x
-    component = 0
-    polar_x = P1_x
-    polar_y = P1_y
-    polar_z = P1_z
-  [../]
-  [./fb2]
-    type = MicroforceBulkEnergy
-    variable = Fb_y
-    component = 1
-    polar_x = P1_x
-    polar_y = P1_y
-    polar_z = P1_z
-  [../]
-  [./fb3]
-    type = MicroforceBulkEnergy
-    variable = Fb_z
-    component = 2
-    polar_x = P1_x
-    polar_y = P1_y
-    polar_z = P1_z
-  [../]
-
-
-  [./Jbxx]
-    type = JacobiansBulkEnergy
-    variable = Jb_00
-    index_i = 0
-    index_j = 0
-    polar_x = P1_x
-    polar_y = P1_y
-    polar_z = P1_z
-  [../]
-  [./Jbyy]
-    type = JacobiansBulkEnergy
-    variable = Jb_11
-    index_i = 1
-    index_j = 1
-    polar_x = P1_x
-    polar_y = P1_y
-    polar_z = P1_z
-  [../]
-  [./Jbzz]
-    type = JacobiansBulkEnergy
-    variable = Jb_22
-    index_i = 0
-    index_j = 0
-    polar_x = P1_x
-    polar_y = P1_y
-    polar_z = P1_z
-  [../]
 []
 
 [Kernels]
   ### Operators for the polar field: ###
-
   [./bed_x]
     type = BulkEnergyDerivativeEighth
     variable = polar_x
@@ -372,7 +205,6 @@ zMax = 1.0
     component = 2
   [../]
 
-
   [./polar_x_time]
     type = TimeDerivativeScaled
     variable=polar_x
@@ -410,6 +242,7 @@ zMax = 1.0
     time_scale = 0.01
     block = '0'
   [../]
+
 []
 
 
@@ -445,12 +278,10 @@ zMax = 1.0
     type = RotoBulkEnergyEighth
     execute_on = 'timestep_end'
   [../]
-
   [./FcPA]
     type = RotoPolarCoupledEnergyEighth
     execute_on = 'timestep_end'
   [../]
-
 
   [./Ftot]
     type = LinearCombinationPostprocessor
@@ -469,6 +300,10 @@ zMax = 1.0
     postprocessor = Ftot
     execute_on = 'timestep_end'
     dt = dt
+  [../]
+
+  [./nodes]
+    type = NumNodes
   [../]
 []
 
@@ -495,26 +330,26 @@ zMax = 1.0
     full = true
     petsc_options = '-snes_ksp_ew'
     petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided'
-    petsc_options_value = '    121            1e-8          1e-6       1e-6     bjacobi    allreduce'
+    petsc_options_value = '    121            1e-10          1e-10       1e-6     bjacobi    allreduce'
   [../]
 []
 
 [Executioner]
   type = Transient
-  dt = 0.1
-  solve_type = 'PJFNK'
+  dt = 0.08
+  solve_type = 'NEWTON'
   scheme = 'bdf2'
   dtmin = 1e-13
   dtmax = 10.0
 
-  num_steps = 3
+  num_steps = 10
 []
 
 [Outputs]
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = out_P0A0_transform_test
+    file_base = out_P0A0_f
     elemental_as_nodal = true
   [../]
 []

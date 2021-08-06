@@ -88,29 +88,42 @@ zMax = 1.0
 [GlobalParams]
   len_scale = 1.0
 
+
+  displacements = 'u1_x u1_y u1_z'
 []
 
 
 [Functions]
   [./constPp]
     type = ParsedFunction
-    value = 0.4
+    value = 0.54
   [../]
   [./constAp]
     type = ParsedFunction
-    value = 7.0
+    value = 7.37
   [../]
 []
 
 
 [Variables]
+  [./u1_x]
+  [../]
+  [./u1_y]
+  [../]
+  [./u1_z]
+  [../]
+ # [./global_strain]
+ #   order = SIXTH
+ #   family = SCALAR
+ # [../]
+
   [./P1_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.01e-6
+      max = 0.01e-6
     [../]
   [../]
   [./P1_y]
@@ -118,8 +131,8 @@ zMax = 1.0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.05
-      max = 0.1
+      min = -0.01e-6
+      max = 0.01e-6
     [../]
   [../]
   [./P1_z]
@@ -135,8 +148,8 @@ zMax = 1.0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -0.01e-4
-      max = 0.01e-4
+      min = -0.01e-6
+      max = 0.01e-6
     [../]
   [../]
   [./A1_y]
@@ -144,8 +157,8 @@ zMax = 1.0
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.5
-      max = 1.0
+      min = -0.01e-6
+      max = 0.01e-6
     [../]
   [../]
   [./A1_z]
@@ -159,6 +172,18 @@ zMax = 1.0
 []
 
 [AuxVariables]
+
+    ############################################
+    ##
+    ## Transformed coordinates
+    ##  
+    ##   These follow Po = Inv[S] P1
+    ##   In the AuxKernels that calculate this
+    ##
+    ##   We will flag this as 'inverse = true'
+    ##
+    ############################################
+
   [./Po_x]
     order = FIRST
     family = LAGRANGE
@@ -195,8 +220,6 @@ zMax = 1.0
     ##  
     ############################################
 
- 
-
   [./fbp_p0]
     order = CONSTANT
     family = MONOMIAL
@@ -222,8 +245,6 @@ zMax = 1.0
     order = CONSTANT
     family = MONOMIAL
   [../]
-
-
 
   [./frp_p0]
     order = CONSTANT
@@ -314,13 +335,6 @@ zMax = 1.0
     family = MONOMIAL
     outputs = none
   [../]
-
-
-
-
-
-
-
 
 
   [./Jrp_p0p0]
@@ -430,17 +444,13 @@ zMax = 1.0
     family = MONOMIAL
     outputs = none
   [../]
-
-
-
-
 []
 
 [AuxKernels]
   [./p1]
     type = Transformed111Order
     variable = Po_x
-    inverse = false  # need to check this line carefully...
+    inverse = true
     component = 0
     order_param_x = P1_x
     order_param_y = P1_y
@@ -449,7 +459,7 @@ zMax = 1.0
   [./p2]
     type = Transformed111Order
     variable = Po_y
-    inverse = false
+    inverse = true
     component = 1
     order_param_x = P1_x
     order_param_y = P1_y
@@ -458,7 +468,7 @@ zMax = 1.0
   [./p3]
     type = Transformed111Order
     variable = Po_z
-    inverse = false
+    inverse = true
     component = 2
     order_param_x = P1_x
     order_param_y = P1_y
@@ -468,7 +478,7 @@ zMax = 1.0
   [./a1]
     type = Transformed111Order
     variable = Ao_x
-    inverse = false
+    inverse = true
     component = 0
     order_param_x = A1_x
     order_param_y = A1_y
@@ -477,7 +487,7 @@ zMax = 1.0
   [./a2]
     type = Transformed111Order
     variable = Ao_y
-    inverse = false
+    inverse = true
     component = 1
     order_param_x = A1_x
     order_param_y = A1_y
@@ -486,7 +496,7 @@ zMax = 1.0
   [./a3]
     type = Transformed111Order
     variable = Ao_z
-    inverse = false
+    inverse = true
     component = 2
     order_param_x = A1_x
     order_param_y = A1_y
@@ -593,6 +603,7 @@ zMax = 1.0
     antiferrodis_A_y = Ao_y
     antiferrodis_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
+    outputs = 'none'
   [../]
 
   [./frpa0]
@@ -631,13 +642,6 @@ zMax = 1.0
     antiferrodis_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
-
-
-
-
-
-
-
 
   ##################################################
   ##
@@ -1052,7 +1056,20 @@ zMax = 1.0
 
 []
 
+#[ScalarKernels]
+#  [./global_strain]
+#    type = GlobalStrain
+#    variable = global_strain
+#    global_strain_uo = global_strain_uo
+#  [../]
+#[]
+
 [Kernels]
+
+  [./TensorMechanics]
+  [../]
+
+
   ### Operators for the polar field: ###
 
   [./bed_x]
@@ -1062,9 +1079,11 @@ zMax = 1.0
     order_param_x = P1_x
     order_param_y = P1_y
     order_param_z = P1_z
+
     f_q0 = fbp_p0
     f_q1 = fbp_p1
     f_q2 = fbp_p2
+
     J_q0q0 = Jbp_p0p0
     J_q1q1 = Jbp_p1p1
     J_q2q2 = Jbp_p2p2
@@ -1079,9 +1098,11 @@ zMax = 1.0
     order_param_x = P1_x
     order_param_y = P1_y
     order_param_z = P1_z
+
     f_q0 = fbp_p0
     f_q1 = fbp_p1
     f_q2 = fbp_p2
+
     J_q0q0 = Jbp_p0p0
     J_q1q1 = Jbp_p1p1
     J_q2q2 = Jbp_p2p2
@@ -1096,9 +1117,11 @@ zMax = 1.0
     order_param_x = P1_x
     order_param_y = P1_y
     order_param_z = P1_z
+
     f_q0 = fbp_p0
     f_q1 = fbp_p1
     f_q2 = fbp_p2
+
     J_q0q0 = Jbp_p0p0
     J_q1q1 = Jbp_p1p1
     J_q2q2 = Jbp_p2p2
@@ -1117,9 +1140,11 @@ zMax = 1.0
     order_param_x = A1_x
     order_param_y = A1_y
     order_param_z = A1_z
+
     f_q0 = fba_a0
     f_q1 = fba_a1
     f_q2 = fba_a2
+
     J_q0q0 = Jba_a0a0
     J_q1q1 = Jba_a1a1
     J_q2q2 = Jba_a2a2
@@ -1134,9 +1159,11 @@ zMax = 1.0
     order_param_x = A1_x
     order_param_y = A1_y
     order_param_z = A1_z
+
     f_q0 = fba_a0
     f_q1 = fba_a1
     f_q2 = fba_a2
+
     J_q0q0 = Jba_a0a0
     J_q1q1 = Jba_a1a1
     J_q2q2 = Jba_a2a2
@@ -1151,9 +1178,11 @@ zMax = 1.0
     order_param_x = A1_x
     order_param_y = A1_y
     order_param_z = A1_z
+
     f_q0 = fba_a0
     f_q1 = fba_a1
     f_q2 = fba_a2
+
     J_q0q0 = Jba_a0a0
     J_q1q1 = Jba_a1a1
     J_q2q2 = Jba_a2a2
@@ -1161,10 +1190,6 @@ zMax = 1.0
     J_q1q2 = Jba_a1a2
     J_q0q2 = Jba_a0a2
   [../]
-
-
-
-
 
   [./rpp_x]
     type = Transformed111KernelOp6
@@ -1183,6 +1208,7 @@ zMax = 1.0
     f_q3 = frp_a0
     f_q4 = frp_a1
     f_q5 = frp_a2
+
     J_q0q0 = Jrp_p0p0
     J_q1q1 = Jrp_p1p1
     J_q2q2 = Jrp_p2p2
@@ -1224,6 +1250,7 @@ zMax = 1.0
     f_q3 = frp_a0
     f_q4 = frp_a1
     f_q5 = frp_a2
+
     J_q0q0 = Jrp_p0p0
     J_q1q1 = Jrp_p1p1
     J_q2q2 = Jrp_p2p2
@@ -1265,6 +1292,91 @@ zMax = 1.0
     f_q3 = frp_a0
     f_q4 = frp_a1
     f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+ [./rpa_x]
+    type = Transformed111KernelOp6
+    variable = A1_x
+    component = 3
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+ [./rpa_y]
+    type = Transformed111KernelOp6
+    variable = A1_y
+    component = 4
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
     J_q0q0 = Jrp_p0p0
     J_q1q1 = Jrp_p1p1
     J_q2q2 = Jrp_p2p2
@@ -1290,9 +1402,47 @@ zMax = 1.0
   [../]
 
 
+ [./rpa_z]
+    type = Transformed111KernelOp6
+    variable = A1_z
+    component = 5
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
 
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
 
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
 
+  [../]
 
 
   [./polar_x_time]
@@ -1353,6 +1503,45 @@ zMax = 1.0
     prop_names = 't1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212   t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222'
     prop_values = '0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
   [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = '295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701'
+
+    ########################################################################################
+    ##
+    ## The below Euler rotation below should rotate the [001]-oriented elasticity tensor to 
+    ## the [111]-orientation as it is equivalent to our S matrix. 
+    ## Note that the MOOSE convention is slightly different than Mathematica's so we use 
+    ## three different angles.
+    ## Therefore, all of our strains will be calculated using ComputeSmallStrain in primed 
+    ## coordinates [i.e. e_{||,||}, e_{1,||}, ...]
+    ##
+    ##   ...but then, it is important that our strains talk to our primed variables correctly. 
+    ##
+    ########################################################################################
+
+    euler_angle_1 = 135.0
+    euler_angle_2 = -54.735610317245346   
+    euler_angle_3 = -90.0
+
+  [../]
+
+  [./strain]
+    type = ComputeSmallStrain
+    #global_strain = global_strain
+  [../]
+
+  #[./global_strain]
+  #  type = ComputeGlobalStrain
+  #  scalar_global_strain = global_strain
+  #  global_strain_uo = global_strain_uo
+  #[../]
+
+  [./stress]
+    type = ComputeLinearElasticStress
+  [../]
 []
 
 [Postprocessors]
@@ -1410,6 +1599,12 @@ zMax = 1.0
     antiferrodis_A_z = Ao_z
   [../]
 
+
+  [./Felu]
+    type = ElasticEnergy
+    execute_on = 'timestep_end'
+  [../]
+
   [./Ftoto]
     type = LinearCombinationPostprocessor
     pp_names = 'FbPo FbAo FcPAo'
@@ -1447,12 +1642,43 @@ zMax = 1.0
   [./Periodic]
     [./xy]
       auto_direction = 'x y z'
-      variable = 'P1_x P1_y P1_z A1_x A1_y A1_z'
+      variable = 'u1_x u1_y u1_z P1_x P1_y P1_z A1_x A1_y A1_z'
     [../]
+  [../]
+
+
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u1_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u1_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u1_z
+    value = 0
   [../]
 []
 
 [UserObjects]
+  #[./global_strain_uo]
+  #  type = GlobalBFOMaterialRVEUserObject
+  #  execute_on = 'Initial Linear Nonlinear'
+  #  polar_x = P1_x
+  #  polar_y = P1_y
+  #  polar_z = P1_z
+  #  antiferrodis_A_x = A1_x
+  #  antiferrodis_A_y = A1_y
+  #  antiferrodis_A_z = A1_z
+  #[../]
   [./kill]
    type = Terminator
    expression = 'perc_change <= 5.0e-5'
@@ -1465,19 +1691,19 @@ zMax = 1.0
     full = true
     petsc_options = '-snes_ksp_ew'
     petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided'
-    petsc_options_value = '    121            1e-8          1e-6       1e-6     bjacobi    allreduce'
+    petsc_options_value = '    121            1e-10          1e-10       1e-6     bjacobi    allreduce'
   [../]
 []
 
 [Executioner]
   type = Transient
-  dt = 0.1
+  dt = 0.08
   solve_type = 'NEWTON'
   scheme = 'bdf2'
   dtmin = 1e-13
   dtmax = 10.0
 
-  #num_steps = 3
+  num_steps = 10
 []
 
 [Outputs]
