@@ -11,7 +11,7 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a co_polar_y[_qp] of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
@@ -48,6 +48,6 @@ CorrectionFactorPolarBFOEnergy::CorrectionFactorPolarBFOEnergy(const InputParame
 Real
 CorrectionFactorPolarBFOEnergy::computeQpIntegral()
 {
-  return (-(_f0[_qp]*(Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_x[_qp]) - 4*Utility::pow<2>(_polar_y[_qp])*Utility::pow<2>(_polar_z[_qp]) + Utility::pow<4>(_polar_z[_qp]) - 
-       4*Utility::pow<2>(_polar_x[_qp])*(Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])))));
+  return (_f0[_qp]*(-Utility::pow<6>(_polar_x[_qp]) - Utility::pow<6>(_polar_y[_qp]) + Utility::pow<4>(_polar_y[_qp])*(-1 + Utility::pow<2>(_polar_z[_qp])) - Utility::pow<4>(_polar_z[_qp])*(1 + Utility::pow<2>(_polar_z[_qp])) + Utility::pow<4>(_polar_x[_qp])*(-1 + Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])) + 
+     Utility::pow<2>(_polar_y[_qp])*(Utility::pow<2>(_polar_z[_qp]) + Utility::pow<4>(_polar_z[_qp])) + Utility::pow<2>(_polar_x[_qp])*(Utility::pow<4>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]) + Utility::pow<4>(_polar_z[_qp]) + Utility::pow<2>(_polar_y[_qp])*(1 - 3*Utility::pow<2>(_polar_z[_qp])))));
 }

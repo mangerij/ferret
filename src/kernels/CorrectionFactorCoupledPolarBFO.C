@@ -19,13 +19,13 @@
 
 **/
 
-#include "CorrectionFactorPolarBFO.h"
+#include "CorrectionFactorCoupledPolarBFO.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", CorrectionFactorPolarBFO);
+registerMooseObject("FerretApp", CorrectionFactorCoupledPolarBFO);
 
 template<>
-InputParameters validParams<CorrectionFactorPolarBFO>()
+InputParameters validParams<CorrectionFactorCoupledPolarBFO>()
 {
   InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a correction factor for the local free energy.");
@@ -33,10 +33,13 @@ InputParameters validParams<CorrectionFactorPolarBFO>()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
+  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");
+  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt");
   return params;
 }
 
-CorrectionFactorPolarBFO::CorrectionFactorPolarBFO(const InputParameters & parameters)
+CorrectionFactorPolarBFO::CorrectionFactorCoupledPolarBFO(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _polar_x_var(coupled("polar_x")),
@@ -45,12 +48,18 @@ CorrectionFactorPolarBFO::CorrectionFactorPolarBFO(const InputParameters & param
    _polar_x(coupledValue("polar_x")),
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
-   _f0(getMaterialProperty<Real>("f0"))
+   _antiferrodis_A_x_var(coupled("antiferrodis_A_x")),
+   _antiferrodis_A_y_var(coupled("antiferrodis_A_y")),
+   _antiferrodis_A_z_var(coupled("antiferrodis_A_z")),
+   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
+   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
+   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _c0(getMaterialProperty<Real>("c0"))
 {
 }
 
 Real
-CorrectionFactorPolarBFO::computeQpResidual()
+CorrectionFactorCoupledPolarBFO::computeQpResidual()
 {
   if (_component == 0)
   {
@@ -69,7 +78,7 @@ CorrectionFactorPolarBFO::computeQpResidual()
 }
 
 Real
-CorrectionFactorPolarBFO::computeQpJacobian()
+CorrectionFactorCoupledPolarBFO::computeQpJacobian()
 {
   if (_component == 0)
   {
@@ -88,7 +97,7 @@ CorrectionFactorPolarBFO::computeQpJacobian()
 }
 
 Real
-CorrectionFactorPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
+CorrectionFactorCoupledPolarBFO::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (_component == 0)
   {

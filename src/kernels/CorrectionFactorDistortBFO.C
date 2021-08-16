@@ -11,7 +11,7 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU General Public License for more details.
 
-   You should have received a co_antiferrodis_A_y[_qp] of the GNU General Public License
+   You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
@@ -54,15 +54,15 @@ CorrectionFactorDistortBFO::computeQpResidual()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * (-4*_f1[_qp]*(Utility::pow<3>(_antiferrodis_A_x[_qp]) - 2*_antiferrodis_A_x[_qp]*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))));
+    return _test[_i][_qp] * (0.0);
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * (-4*_f1[_qp]*_antiferrodis_A_y[_qp]*(-2*Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]) - 2*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * (0.0);
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * (-4*_f1[_qp]*_antiferrodis_A_z[_qp]*(-2*Utility::pow<2>(_antiferrodis_A_x[_qp]) - 2*Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * (0.0);
   }
   else
     return 0.0;
@@ -73,15 +73,15 @@ CorrectionFactorDistortBFO::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (4*_f1[_qp]*(-3*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 2*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
   }
   else if (_component == 1)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (4*_f1[_qp]*(2*Utility::pow<2>(_antiferrodis_A_x[_qp]) - 3*Utility::pow<2>(_antiferrodis_A_y[_qp]) + 2*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
   }
   else if (_component == 2)
   {
-    return _test[_i][_qp] * _phi[_j][_qp] * (4*_f1[_qp]*(2*Utility::pow<2>(_antiferrodis_A_x[_qp]) + 2*Utility::pow<2>(_antiferrodis_A_y[_qp]) - 3*Utility::pow<2>(_antiferrodis_A_z[_qp])));
+    return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
   }
   else
     return 0.0;
@@ -94,11 +94,11 @@ CorrectionFactorDistortBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else
     {
@@ -109,11 +109,11 @@ CorrectionFactorDistortBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else if (jvar == _antiferrodis_A_z_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] * (16*_f1[_qp]*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] * (0.0);
     }
     else
     {
@@ -124,11 +124,11 @@ CorrectionFactorDistortBFO::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _antiferrodis_A_x_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f1[_qp]*_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (0.0);
     }
     else if (jvar == _antiferrodis_A_y_var)
     {
-      return _test[_i][_qp] * _phi[_j][_qp] *  (16*_f1[_qp]*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]);
+      return _test[_i][_qp] * _phi[_j][_qp] *  (0.0);
     }
     else
     {
