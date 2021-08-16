@@ -39,7 +39,7 @@ InputParameters validParams<CorrectionFactorCoupledPolarBFO>()
   return params;
 }
 
-CorrectionFactorPolarBFO::CorrectionFactorCoupledPolarBFO(const InputParameters & parameters)
+CorrectionFactorCoupledPolarBFO::CorrectionFactorCoupledPolarBFO(const InputParameters & parameters)
   :Kernel(parameters),
    _component(getParam<unsigned int>("component")),
    _polar_x_var(coupled("polar_x")),
