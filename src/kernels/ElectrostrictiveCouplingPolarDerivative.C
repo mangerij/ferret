@@ -133,11 +133,11 @@ ElectrostrictiveCouplingPolarDerivative::computeQpOffDiagJacobian(unsigned int j
   {
     if (jvar == _polar_x_var)
     {
-      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0))));
+      return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0))));
     }
     else if (jvar == _polar_z_var)
     {
-      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1))));
+      return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1))));
     }
     else if (jvar == _u_x_var)
     {
@@ -160,11 +160,11 @@ ElectrostrictiveCouplingPolarDerivative::computeQpOffDiagJacobian(unsigned int j
   {
     if (jvar == _polar_x_var)
     {
-      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0))));
+      return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0))));
     }
     else if (jvar == _polar_y_var)
     {
-      return -0.5*_test[_i][_qp] * (-(_q44[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0))));
+      return -0.5*_test[_i][_qp] * _phi[_j][_qp] * (-(_q44[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0))));
     }
     else if (jvar == _u_x_var)
     {
