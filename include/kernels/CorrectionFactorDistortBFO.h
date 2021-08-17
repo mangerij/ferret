@@ -41,13 +41,21 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
+  const unsigned int _polar_x_var;
+  const unsigned int _polar_y_var;
+  const unsigned int _polar_z_var;
+  const VariableValue & _polar_x;
+  const VariableValue & _polar_y;
+  const VariableValue & _polar_z;
   const unsigned int _antiferrodis_A_x_var;
   const unsigned int _antiferrodis_A_y_var;
   const unsigned int _antiferrodis_A_z_var;
   const VariableValue & _antiferrodis_A_x;
   const VariableValue & _antiferrodis_A_y;
   const VariableValue & _antiferrodis_A_z;
+  const MaterialProperty<Real> & _f0;
   const MaterialProperty<Real> & _f1;
+  const MaterialProperty<Real> & _c0;
 
 };
 #endif //CORRECTIONFACTORDISTORTBFO_H
