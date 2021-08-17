@@ -29,7 +29,7 @@ InputParameters validParams<CorrectionFactorPolarBFOEnergy>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
-  params.addClassDescription("Calculates an integral whose integrand is the eighth order expansion of the polarization.");
+  params.addClassDescription("Calculates an integral whose integrand is the correction to the local free energy.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");

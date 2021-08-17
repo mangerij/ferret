@@ -11,7 +11,7 @@
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU General Public License for more details.
 
-   You should have received a copy of the GNU General Public License
+   You should have received a co_polar_y[_qp] of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
    For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
@@ -19,35 +19,43 @@
 
 **/
 
-#include "CorrectionFactorDistortBFOEnergy.h"
+#include "CorrectionFactorCoupledBFOEnergy.h"
 #include "libmesh/utility.h"
 
-registerMooseObject("FerretApp", CorrectionFactorDistortBFOEnergy);
+registerMooseObject("FerretApp", CorrectionFactorCoupledBFOEnergy);
 
 template<>
-InputParameters validParams<CorrectionFactorDistortBFOEnergy>()
+InputParameters validParams<CorrectionFactorCoupledBFOEnergy>()
 {
 
   InputParameters params = validParams<ElementIntegralPostprocessor>();
   params.addClassDescription("Calculates an integral whose integrand is the correction to the local free energy.");
+  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt");
   return params;
 }
 
-CorrectionFactorDistortBFOEnergy::CorrectionFactorDistortBFOEnergy(const InputParameters & parameters) :
+CorrectionFactorCoupledBFOEnergy::CorrectionFactorCoupledBFOEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
+  _polar_x(coupledValue("polar_x")),
+  _polar_y(coupledValue("polar_y")),
+  _polar_z(coupledValue("polar_z")),
   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
-  _f1(getMaterialProperty<Real>("f1"))
+  _c0(getMaterialProperty<Real>("c0"))
 {
 }
 
 Real
-CorrectionFactorDistortBFOEnergy::computeQpIntegral()
+CorrectionFactorCoupledBFOEnergy::computeQpIntegral()
 {
   return ((-Utility::pow<6>(_antiferrodis_A_x[_qp]) - Utility::pow<6>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*(-1 + Utility::pow<2>(_antiferrodis_A_z[_qp])) - Utility::pow<4>(_antiferrodis_A_z[_qp])*(1 + Utility::pow<2>(_antiferrodis_A_z[_qp])) + Utility::pow<4>(_antiferrodis_A_x[_qp])*(-1 + Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
-     Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])) + Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*(1 - 3*Utility::pow<2>(_antiferrodis_A_z[_qp]))))*_f1[_qp]);
+     Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])) + Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*(1 - 3*Utility::pow<2>(_antiferrodis_A_z[_qp]))))*_c0[_qp]*
+   (-Utility::pow<6>(_polar_x[_qp]) - Utility::pow<6>(_polar_y[_qp]) + Utility::pow<4>(_polar_y[_qp])*(-1 + Utility::pow<2>(_polar_z[_qp])) - Utility::pow<4>(_polar_z[_qp])*(1 + Utility::pow<2>(_polar_z[_qp])) + Utility::pow<4>(_polar_x[_qp])*(-1 + Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])) + 
+     Utility::pow<2>(_polar_y[_qp])*(Utility::pow<2>(_polar_z[_qp]) + Utility::pow<4>(_polar_z[_qp])) + Utility::pow<2>(_polar_x[_qp])*(Utility::pow<4>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]) + Utility::pow<4>(_polar_z[_qp]) + Utility::pow<2>(_polar_y[_qp])*(1 - 3*Utility::pow<2>(_polar_z[_qp])))));
 }
