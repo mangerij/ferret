@@ -9,8 +9,8 @@ Ferret can treat both ferroelectric phase field and micromagnetic modeling. Both
 
 ### Access and Policy on Use ###
 
-Ferret still exists under the open-source GNU License but to access the repository you will need an RSA deploy key registered with our application. We freely provide these keys in order to track repository usage and measure impact. We can allow write-access on request.
-Please contact one of the developers for assistance in generating one.
+Ferret still exists under the open-source GNU License but to access the repository you will need an RSA deploy key registered with our application or developer-level access. We freely provide these keys in order to track repository usage and measure impact. We can also allow write-access on request.
+Please contact one of the developers in this case.
 
 After obtaining a key, please cite Mangeri et al Nanoscale, 2017, 9, 1616-1624 in the *main text* of your paper if you use Ferret. A methods paper is in the works which will supercede this requirement in the future. Finally, one more comment about usage: any issues with legacy inputs not running on this version of Ferret should be resolved with corresponding authors of appropriate papers. The same goes for unofficial Ferret patches that assume old versions of MOOSE. As this code belongs under GNU licensing, we cannot possibly support all of the custom spin-offs and additions to the code. 
 
