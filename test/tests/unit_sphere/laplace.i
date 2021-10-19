@@ -12,7 +12,7 @@
 []
 
 [AuxVariables]
-  [./phi1]
+  [./phi1]   #the transfer system just puts this here :)
     order = FIRST
     family = LAGRANGE
   [../]

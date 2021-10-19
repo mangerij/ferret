@@ -15,21 +15,16 @@
   solve = false
 []
 
-[Executioner]
-  type = Transient
-  num_steps = 1
-[]
-
 [MultiApps]
   [./poisson]
     type = FullSolveMultiApp
     input_files = poisson.i
-    execute_on = initial
+    #execute_on = 'initial linear nonlinear timestep_begin'
   [../]
   [./laplace]
     type = FullSolveMultiApp
     input_files = laplace.i
-    execute_on = timestep_begin
+    #execute_on = 'initial linear nonlinear timestep_begin'
   [../]
 []
 
@@ -49,13 +44,20 @@
     multi_app = laplace
   [../]
   [./from_sub2]
-    type = MultiAppCopyTransfer  #this used to be MultiAppAddTransfer... what happened? Is this important?
+    type = MultiAppAddTransfer
     direction = from_multiapp
     source_variable = phi
     variable = phi
     multi_app = laplace
+
   [../]
 []
+
+[Executioner]
+  type = Steady
+  num_steps = 1
+[]
+
 
 [Outputs]
   exodus = true
