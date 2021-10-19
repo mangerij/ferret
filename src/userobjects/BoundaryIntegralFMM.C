@@ -107,7 +107,7 @@ BoundaryIntegralFMM::execute()
   // Extract boundary mesh
   BoundaryMesh boundary_mesh(mesh.comm() , dim_boundary);
   mesh.get_boundary_info().sync(boundary_mesh);
-  boundary_mesh.print_info();
+  //  boundary_mesh.print_info();
 
   // Re-partition boundary mesh, before adding EquationSystems
   MetisPartitioner bs_partitioner;
@@ -127,7 +127,7 @@ BoundaryIntegralFMM::execute()
 
   // Get a reference to the EquationSystem
   EquationSystems & bs = _subproblem.es();
-  bs.print_info();
+  // bs.print_info();
 
   // Keep track of which variables are coupled so we know what we depend on
 //  const std::vector<MooseVariable *> & coupled_vars = getCoupledMooseVars();
@@ -278,7 +278,7 @@ BoundaryIntegralFMM::execute()
       Real nunit = sqrt (nx*nx + ny*ny +nz*nz);
       nx = nx / nunit;
       ny = ny / nunit;
-      nz = nz / nunit;
+      nz = nz / nunit; //sign?
 
       // Global dof_indices for this element and variable phi1
       dof_map_bs.dof_indices(elem_bs, dof_indices_phi1, variable_number_phi1);
@@ -401,7 +401,7 @@ BoundaryIntegralFMM::execute()
       // Integral value, only works for smooth surface,
       // minus SIGN get (R_target-R_source) in ScalFMM
       Real bi_value = -global_potential[node_bs->id()]/PI_4
-                      -1./2.*(*boundary_potential.solution)(node_dof_index_phi1);
+                      -1./2.*(*boundary_potential.solution)(node_dof_index_phi1);  //-sign?
       //std::cout << node_bs->id() << ", BI = "<< global_potential[node_bs->id()] << ". bi_value = " << bi_value
       //          << ". Original solution is " << (*boundary_potential.solution)(node_dof_index_phi1) << std::endl;
 
