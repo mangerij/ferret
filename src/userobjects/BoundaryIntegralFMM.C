@@ -22,6 +22,8 @@
 
 
 #include "BoundaryIntegralFMM.h"
+#include <iostream>
+#include <fstream>
 
 // MOOSE headers
 #include "SystemBase.h"
@@ -37,6 +39,7 @@
 #include "libmesh/boundary_mesh.h"
 #include "libmesh/metis_partitioner.h"
 #include "libmesh/boundary_volume_solution_transfer.h"
+#include "libmesh/mesh_tools.h"
 
 // PETSc headers
 #include "petscsys.h"
@@ -107,7 +110,7 @@ BoundaryIntegralFMM::execute()
   // Extract boundary mesh
   BoundaryMesh boundary_mesh(mesh.comm() , dim_boundary);
   mesh.get_boundary_info().sync(boundary_mesh);
-  //  boundary_mesh.print_info();
+  boundary_mesh.print_info();
 
   // Re-partition boundary mesh, before adding EquationSystems
   MetisPartitioner bs_partitioner;
@@ -127,7 +130,7 @@ BoundaryIntegralFMM::execute()
 
   // Get a reference to the EquationSystem
   EquationSystems & bs = _subproblem.es();
-  // bs.print_info();
+  bs.print_info();
 
   // Keep track of which variables are coupled so we know what we depend on
 //  const std::vector<MooseVariable *> & coupled_vars = getCoupledMooseVars();
@@ -278,7 +281,7 @@ BoundaryIntegralFMM::execute()
       Real nunit = sqrt (nx*nx + ny*ny +nz*nz);
       nx = nx / nunit;
       ny = ny / nunit;
-      nz = nz / nunit; //sign?
+      nz = nz / nunit;
 
       // Global dof_indices for this element and variable phi1
       dof_map_bs.dof_indices(elem_bs, dof_indices_phi1, variable_number_phi1);
@@ -381,6 +384,11 @@ BoundaryIntegralFMM::execute()
   // Get contribution from all source points among all processors.
   boundary_mesh.comm().sum(global_potential);
 
+  // Get BoundingBox of the boundary mesh
+  BoundingBox bounding_box = MeshTools::create_bounding_box(boundary_mesh);
+  Point p_min = bounding_box.min();
+  Point p_max = bounding_box.max();
+
   // Reset nd and particle index, assign values to nodes at this processor
   indexPart = 0;
   nd = boundary_mesh.local_nodes_begin();
@@ -388,7 +396,12 @@ BoundaryIntegralFMM::execute()
 
   for ( ; nd != end_nd_local ; ++nd){
       const Node* node_bs = *nd;
- 
+
+      // Node's coordinates.
+      const Real xt = (*node_bs)(0);
+      const Real yt = (*node_bs)(1);
+      const Real zt = (*node_bs)(2);
+
       // Dof_index for each node
       const dof_id_type node_dof_index_phi1 = node_bs->dof_number(system_number,
                                                                   variable_number_phi1,
@@ -398,10 +411,27 @@ BoundaryIntegralFMM::execute()
                                                                   variable_number_phi2,
                                                                   variable_comp_phi2-1);
 
+      // Coefficient depends on solid angle.
+      Real omega;
+
+      // Determine point is on surface, edge or corner of the cuboid.
+      if ( (xt == p_min(0))||(xt == p_max(0)) ){
+         if ( (yt == p_min(1))||(yt == p_max(1)) ){
+            if ( (p_min(2)<zt)&&(zt<p_max(2)) ) {omega=1./4.;} // Edge.
+            else {omega=1./8.;} // Corner.
+         } else {
+            if ( (p_min(2)<zt)&&(zt<p_max(2)) ) {omega=1./2.;} // Surface.
+            else {omega=1./4.;} // Edges.
+         }
+      } else {
+         if ( ((yt == p_min(1))||(yt == p_max(1))) && ((zt == p_min(2))||(zt == p_max(2))) ){omega=1./4.;} // Edge.
+         else {omega=1./2.;} // Surface.
+      }
+
       // Integral value, only works for smooth surface,
       // minus SIGN get (R_target-R_source) in ScalFMM
       Real bi_value = -global_potential[node_bs->id()]/PI_4
-                      -1./2.*(*boundary_potential.solution)(node_dof_index_phi1);  //-sign?
+                      -(1.-omega)*(*boundary_potential.solution)(node_dof_index_phi1);
       //std::cout << node_bs->id() << ", BI = "<< global_potential[node_bs->id()] << ". bi_value = " << bi_value
       //          << ". Original solution is " << (*boundary_potential.solution)(node_dof_index_phi1) << std::endl;
 
