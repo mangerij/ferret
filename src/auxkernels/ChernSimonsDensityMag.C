@@ -22,12 +22,10 @@
 #include "ChernSimonsDensityMag.h"
 registerMooseObject("FerretApp", ChernSimonsDensityMag);
 
-template<>
-
-InputParameters validParams<ChernSimonsDensityMag>()
+InputParameters ChernSimonsDensityMag::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates a topological winding number");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

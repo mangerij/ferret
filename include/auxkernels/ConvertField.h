@@ -24,16 +24,12 @@
 
 #include "AuxKernel.h"
 
-class ConvertField;
-
-template<>
-InputParameters validParams<ConvertField>();
-
-
 class ConvertField : public AuxKernel
 {
 public:
   ConvertField(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ConvertField() {}
 

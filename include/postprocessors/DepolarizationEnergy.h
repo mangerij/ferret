@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class DepolarizationEnergy;
-
-template<>
-InputParameters validParams<DepolarizationEnergy>();
-
 class DepolarizationEnergy : public ElementIntegralPostprocessor
 {
 public:
   DepolarizationEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

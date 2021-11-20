@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class Electrostatics;
-
-template<>
-InputParameters validParams<Electrostatics>();
-
 class Electrostatics: public Kernel
 {
 public:
 
   Electrostatics(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

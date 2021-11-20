@@ -37,11 +37,10 @@ registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_material");
 
 registerMooseAction("FerretApp", ABO3CoupledPhaseFieldAction, "add_postprocessor");
 
-template <>
 InputParameters
-validParams<ABO3CoupledPhaseFieldAction>()
+ABO3CoupledPhaseFieldAction::validParams()
 {
-  InputParameters params = validParams<Action>();
+  InputParameters params = Action::validParams();
   params.addClassDescription("Set up homogeneous or inhomogeneous ferroelectric materials problem. This can be steady-state or time-dependent. The modes of coupling can be to the inhomogeneous strain fields or renormalized in the potential.");
   params.addRequiredParam<std::vector<NonlinearVariableName>>(
       "variables", "Polarization vector components, electrostatic potential, and elastic displacements components");

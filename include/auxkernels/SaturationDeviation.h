@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class SaturationDeviation;
-
-template<>
-InputParameters validParams<SaturationDeviation>();
-
 class SaturationDeviation: public AuxKernel
 {
 public:
   SaturationDeviation(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~SaturationDeviation() {}
 

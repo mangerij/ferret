@@ -24,16 +24,12 @@
 
 #include "Kernel.h"
 
-//Forward Declarations
-class InducedPElectrostrictiveCouplingPolarDerivative;
-
-template<>
-InputParameters validParams<InducedPElectrostrictiveCouplingPolarDerivative>();
-
 class InducedPElectrostrictiveCouplingPolarDerivative: public Kernel
 {
 public:
   InducedPElectrostrictiveCouplingPolarDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

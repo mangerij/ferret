@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class ComputeSeebeckTensorBase;
-
-template <>
-InputParameters validParams<ComputeSeebeckTensorBase>();
-
 /**
  * ComputeSeebeckTensorBase the base class for computing thermal conductivity tensors
  */
@@ -37,6 +32,8 @@ class ComputeSeebeckTensorBase : public Material
 {
 public:
   ComputeSeebeckTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

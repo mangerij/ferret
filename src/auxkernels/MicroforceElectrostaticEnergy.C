@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", MicroforceElectrostaticEnergy);
 
-template<>
-InputParameters validParams<MicroforceElectrostaticEnergy>()
+InputParameters MicroforceElectrostaticEnergy::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Computes the microforce due to the local electrostatic coupling.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization vector");

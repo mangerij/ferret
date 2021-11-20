@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class InteractionUSLL;
-
-template<>
-InputParameters validParams<InteractionUSLL>();
-
 class InteractionUSLL: public Kernel
 {
 public:
 
   InteractionUSLL(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

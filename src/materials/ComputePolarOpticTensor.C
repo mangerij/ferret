@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", ComputePolarOpticTensor);
 
-template<>
-InputParameters validParams<ComputePolarOpticTensor>()
+InputParameters ComputePolarOpticTensor::validParams()
 {
-  InputParameters params = validParams<ComputePolarOpticTensorBase>();
+  InputParameters params = ComputePolarOpticTensorBase::validParams();
   params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor) due to the polar-optic effect.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");

@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", RotopolarCouplingEnergy);
 
-template<>
-InputParameters validParams<RotopolarCouplingEnergy>()
+InputParameters RotopolarCouplingEnergy::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the fourth order coupling energy density between AFD and polarization fields.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ElectrostrictiveEnergyDensity);
 
-template<>
-InputParameters validParams<ElectrostrictiveEnergyDensity>()
+InputParameters ElectrostrictiveEnergyDensity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Computes the free energy density of the local electrostrictive coupling.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

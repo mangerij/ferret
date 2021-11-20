@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", RefractiveIndex);
 
-template<>
-
-InputParameters validParams<RefractiveIndex>()
+InputParameters RefractiveIndex::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<unsigned int>("index_j", "component");
   params.addRequiredParam<unsigned int>("index_k", "component");
   //We'll put some bools here to turn on and off different effects (elasto-, electro-, polar-,...)

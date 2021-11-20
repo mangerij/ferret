@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class PontryaginDensity;
-
-template<>
-InputParameters validParams<PontryaginDensity>();
-
 class PontryaginDensity : public AuxKernel
 {
 public:
   PontryaginDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~PontryaginDensity() {}
 

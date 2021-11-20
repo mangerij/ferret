@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class BulkEnergyPSTO;
-
-template<>
-InputParameters validParams<BulkEnergyPSTO>();
-
 class BulkEnergyPSTO : public ElementIntegralPostprocessor
 {
 public:
   BulkEnergyPSTO(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

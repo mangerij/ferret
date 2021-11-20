@@ -23,11 +23,10 @@
 
 registerMooseObject("FerretApp", LBOBulkEnergy);
 
-template<>
-InputParameters validParams<LBOBulkEnergy>()
+InputParameters LBOBulkEnergy::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over local bulk energy density for LBO-type pseudo-uniaxial ferroelectrics.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

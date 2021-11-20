@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class AFDWallEnergy;
-
-template<>
-InputParameters validParams<AFDWallEnergy>();
-
 class AFDWallEnergy : public ElementIntegralPostprocessor
 {
 public:
   AFDWallEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

@@ -24,11 +24,6 @@
 
 #include "ComputeRankSixLandauTensorBase.h"
 
-class ComputeRotatedRankSixLandauTensorBase;
-
-template<>
-InputParameters validParams<ComputeRotatedRankSixLandauTensorBase>();
-
 /**
  * ComputeRotatedRankSixLandauTensorBase is an intermediate base class that rotates the \alpha_{ijklmn} tensor based on euler angles.
  */
@@ -36,6 +31,8 @@ class ComputeRotatedRankSixLandauTensorBase : public ComputeRankSixLandauTensorB
 {
 public:
   ComputeRotatedRankSixLandauTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

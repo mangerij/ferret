@@ -23,11 +23,10 @@
 
 registerMooseObject("FerretApp", BulkEnergyCoupledT);
 
-template<>
-InputParameters validParams<BulkEnergyCoupledT>()
+InputParameters BulkEnergyCoupledT::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the sixth order free energy density of local polarization coupled to temperature.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

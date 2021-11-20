@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", ComputePolarOpticGCoeffTensor);
 
-template<>
-InputParameters validParams<ComputePolarOpticGCoeffTensor>()
+InputParameters ComputePolarOpticGCoeffTensor::validParams()
 {
-  InputParameters params = validParams<ComputePolarOpticGCoeffTensorBase>();
+  InputParameters params = ComputePolarOpticGCoeffTensorBase::validParams();
   params.addClassDescription("Compute the adjustments to the indicatrix due to the polar-optic effect with gijkl coefficients.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");

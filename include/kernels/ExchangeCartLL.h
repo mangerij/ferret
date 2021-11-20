@@ -24,15 +24,12 @@
 
 #include "Kernel.h"
 
-class ExchangeCartLL;
-
-template<>
-InputParameters validParams<ExchangeCartLL>();
-
 class  ExchangeCartLL: public Kernel
 {
 public:
   ExchangeCartLL(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

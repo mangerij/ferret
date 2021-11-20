@@ -4,10 +4,9 @@
 
 registerMooseObject("FerretApp", ElectricFluxTensor);
 
-template<>
-InputParameters validParams<ElectricFluxTensor> ()
+InputParameters ElectricFluxTensor::validParams()
 {
-InputParameters params = validParams<AuxKernel>();
+InputParameters params = AuxKernel::validParams();
 params.addClassDescription("Electric flux generated");
 params.addRequiredCoupledVar("T", "temperature");
 params.addRequiredCoupledVar("potential_E_int", "electric potential");

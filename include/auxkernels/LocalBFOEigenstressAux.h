@@ -26,13 +26,11 @@
 #include "RankFourTensor.h"
 #include "RankTwoTensor.h"
 
-class LocalBFOEigenstressAux;
-
-template <> InputParameters validParams<LocalBFOEigenstressAux>();
-
 class LocalBFOEigenstressAux : public NodalPatchRecovery {
 public:
   LocalBFOEigenstressAux(const InputParameters &parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

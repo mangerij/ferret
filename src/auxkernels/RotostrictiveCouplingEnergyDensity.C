@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", RotostrictiveCouplingEnergyDensity);
 
-template<>
-InputParameters validParams<RotostrictiveCouplingEnergyDensity>()
+InputParameters RotostrictiveCouplingEnergyDensity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
   params.addCoupledVar("disp_z", 0.0, "The z component of the displacement");

@@ -25,10 +25,9 @@ class ConstField;
 
 registerMooseObject("FerretApp", ConstField);
 
-template<>
-InputParameters validParams<ConstField>()
+InputParameters ConstField::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("This is just a test kernel. It is a residual contribution due to a constant electric field term"
                              " along the z-direction of polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");

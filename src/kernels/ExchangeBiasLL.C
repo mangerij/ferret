@@ -27,10 +27,9 @@
 
 registerMooseObject("FerretApp", ExchangeBiasLL);
 
-template<>
-InputParameters validParams<ExchangeBiasLL>()
+InputParameters ExchangeBiasLL::validParams()
 {
-  InputParameters params = validParams<IntegratedBC>();
+  InputParameters params = IntegratedBC::validParams();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.set<bool>("use_displaced_mesh") = false;
   return params;

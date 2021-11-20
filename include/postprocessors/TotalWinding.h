@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class TotalWinding;
-
-template<>
-InputParameters validParams<TotalWinding>();
-
 class TotalWinding : public ElementIntegralPostprocessor
 {
 public:
   TotalWinding(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

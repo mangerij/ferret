@@ -3,11 +3,10 @@
 #include "RankTwoTensor.h"
 
 registerMooseObject("FerretApp", ComputeThermalConductivityTensor);
-template <>
 InputParameters
-validParams<ComputeThermalConductivityTensor>()
+ComputeThermalConductivityTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedThermalConductivityTensorBase>();
+  InputParameters params = ComputeRotatedThermalConductivityTensorBase::validParams();
   params.addClassDescription("Compute a ThermalConductivity tensor.");
   params.addRequiredParam<std::vector<Real>>("k_ij", "ThermalConductivity tensor for material");
   params.addParam<MooseEnum>("fill_method", RankTwoTensor::fillMethodEnum() = "general", "The fill method");

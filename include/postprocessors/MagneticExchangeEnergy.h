@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class MagneticExchangeEnergy;
-
-template<>
-InputParameters validParams<MagneticExchangeEnergy>();
-
 class MagneticExchangeEnergy : public ElementIntegralPostprocessor
 {
 public:
   MagneticExchangeEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

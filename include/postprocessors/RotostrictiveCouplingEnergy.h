@@ -24,16 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class RotostrictiveCouplingEnergy;
-
-template<>
-InputParameters validParams<RotostrictiveCouplingEnergy>();
-
-
 class RotostrictiveCouplingEnergy : public ElementIntegralPostprocessor
 {
 public:
   RotostrictiveCouplingEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

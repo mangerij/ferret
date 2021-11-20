@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class JacobiansBulkEnergy;
-
-template<>
-InputParameters validParams<JacobiansBulkEnergy>();
-
 class JacobiansBulkEnergy : public AuxKernel
 {
 public:
   JacobiansBulkEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

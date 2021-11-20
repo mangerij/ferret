@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class InPlaneP;
-
-template<>
-InputParameters validParams<InPlaneP>();
-
 class InPlaneP : public AuxKernel
 {
 public:
   InPlaneP(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~InPlaneP() {}
 

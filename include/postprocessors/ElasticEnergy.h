@@ -27,17 +27,12 @@
 #include "ElementIntegralPostprocessor.h"
 #include "ComputeEigenstrain.h"
 
-//Forward Declarations
-class ElasticEnergy;
-
-template<>
-InputParameters validParams<ElasticEnergy>();
-
-
 class ElasticEnergy : public ElementIntegralPostprocessor
 {
 public:
   ElasticEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

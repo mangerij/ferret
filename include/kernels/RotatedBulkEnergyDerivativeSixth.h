@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class RotatedBulkEnergyDerivativeSixth;
-
-template<>
-InputParameters validParams<RotatedBulkEnergyDerivativeSixth>();
-
 class RotatedBulkEnergyDerivativeSixth: public Kernel
 {
 public:
 
   RotatedBulkEnergyDerivativeSixth(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

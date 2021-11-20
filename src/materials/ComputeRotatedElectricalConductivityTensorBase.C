@@ -1,10 +1,9 @@
 #include "ComputeRotatedElectricalConductivityTensorBase.h"
 #include "RotationTensor.h"
-template <>
 InputParameters
-validParams<ComputeRotatedElectricalConductivityTensorBase>()
+ComputeRotatedElectricalConductivityTensorBase::validParams()
 {
-  InputParameters params = validParams<ComputeElectricalConductivityTensorBase>();
+  InputParameters params = ComputeElectricalConductivityTensorBase::validParams();
   params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
   params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
   params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");

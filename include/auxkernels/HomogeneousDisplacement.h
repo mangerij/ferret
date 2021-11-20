@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class HomogeneousDisplacement;
-
-template<>
-InputParameters validParams<HomogeneousDisplacement>();
-
 class HomogeneousDisplacement: public AuxKernel
 {
 public:
   HomogeneousDisplacement(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~HomogeneousDisplacement() {}
 

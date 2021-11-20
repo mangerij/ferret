@@ -40,6 +40,3 @@ protected:
   const bool _is_permittivity_anisotropic;
 };
 
-template <>
-InputParameters validParams<ABO3CoupledPhaseFieldAction>();
-

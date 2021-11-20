@@ -27,10 +27,9 @@
 
 registerMooseObject("FerretApp", ComputeElastoopticTensor);
 
-template<>
-InputParameters validParams<ComputeElastoopticTensor>()
+InputParameters ComputeElastoopticTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedElastoopticTensorBase>();
+  InputParameters params = ComputeRotatedElastoopticTensorBase::validParams();
   params.addClassDescription("Compute a photostrictive tensor.");
   params.addRequiredParam<std::vector<Real> >("P_mnkl", "elasto-optic tensor for material");
   params.addParam<MooseEnum>("fill_method", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");

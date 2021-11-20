@@ -27,11 +27,6 @@
 #include "ComputeDeltaIndicatrixBase.h"
 #include "libmesh/quadrature.h"
 
-class ComputeDeltaIndicatrix;
-
-template<>
-InputParameters validParams<ComputeDeltaIndicatrix>();
-
 /**
  * ComputeDeltaIndicatrix defines an impermeability tensor material object with a given base name.
  */
@@ -39,6 +34,8 @@ class ComputeDeltaIndicatrix : public ComputeDeltaIndicatrixBase
 {
 public:
   ComputeDeltaIndicatrix(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpDeltaIndicatrix();

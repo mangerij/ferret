@@ -24,17 +24,14 @@
 
 #include "InitialCondition.h"
 
-// Forward Declarations
-class FluctuationsIC;
 namespace libMesh { class Point; }
-
-template<>
-InputParameters validParams<FluctuationsIC>();
 
 class FluctuationsIC : public InitialCondition
 {
 public:
   FluctuationsIC(const InputParameters & parameters);
+  static InputParameters validParams();
+
   virtual Real value(const Point & p);
 
 protected:

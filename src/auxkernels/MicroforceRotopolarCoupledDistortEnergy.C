@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", MicroforceRotopolarCoupledDistortEnergy);
 
-template<>
-InputParameters validParams<MicroforceRotopolarCoupledDistortEnergy>()
+InputParameters MicroforceRotopolarCoupledDistortEnergy::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the free energy density dependent on the local polarization field.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");

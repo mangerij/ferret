@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class BulkEnergyEighth;
-
-template<>
-InputParameters validParams<BulkEnergyEighth>();
-
 class BulkEnergyEighth : public ElementIntegralPostprocessor
 {
 public:
   BulkEnergyEighth(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

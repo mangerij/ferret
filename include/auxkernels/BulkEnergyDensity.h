@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class BulkEnergyDensity;
-
-template<>
-InputParameters validParams<BulkEnergyDensity>();
-
 class BulkEnergyDensity : public AuxKernel
 {
 public:
   BulkEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class SDBulkEnergyDerivativeEighth1;
-
-template<>
-InputParameters validParams<SDBulkEnergyDerivativeEighth1>();
-
 class SDBulkEnergyDerivativeEighth1: public Kernel
 {
 public:
 
   SDBulkEnergyDerivativeEighth1(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

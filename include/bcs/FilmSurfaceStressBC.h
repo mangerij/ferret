@@ -26,15 +26,12 @@
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
 
-class FilmSurfaceStressBC;
-
-template<>
-InputParameters validParams<FilmSurfaceStressBC>();
-
 class FilmSurfaceStressBC : public IntegratedBC
 {
 public:
   FilmSurfaceStressBC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

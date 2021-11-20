@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", BandGapAuxTiO2);
 
-template <>
-InputParameters validParams<BandGapAuxTiO2>()
+InputParameters BandGapAuxTiO2::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the changes to local band gap due to the elastic stress fields.");
   params.addParam<Real>("relaxed_energy", 0.0,"relaxed energy");
   params.addParam<Real>("biaxial_stress_rate", 0.0, "biaxial stress rate");

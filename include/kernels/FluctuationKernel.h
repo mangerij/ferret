@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class FluctuationKernel;
-
-template<>
-InputParameters validParams<FluctuationKernel>();
-
 class FluctuationKernel: public Kernel
 {
 public:
 
   FluctuationKernel(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

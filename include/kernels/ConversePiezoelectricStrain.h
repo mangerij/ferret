@@ -26,16 +26,12 @@
 #include "ComputePiezostrictiveTensor.h"
 #include "Material.h"
 
-//Forward Declarations
-class ConversePiezoelectricStrain;
-
-template<>
-InputParameters validParams<ConversePiezoelectricStrain>();
-
 class ConversePiezoelectricStrain: public Kernel
 {
 public:
   ConversePiezoelectricStrain(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

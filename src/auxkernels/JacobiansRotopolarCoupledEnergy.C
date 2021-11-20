@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", JacobiansRotopolarCoupledEnergy);
 
-template<>
-InputParameters validParams<JacobiansRotopolarCoupledEnergy>()
+InputParameters JacobiansRotopolarCoupledEnergy::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the jacobian entries for the rotopolar microforce.");
   params.addRequiredParam<unsigned int>("index_i", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredParam<unsigned int>("index_j", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");

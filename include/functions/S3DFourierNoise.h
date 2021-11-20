@@ -25,11 +25,7 @@
 
 #include "Function.h"
 
-class S3DFourierNoise;
 class FEProblemBase;
-
-template <>
-InputParameters validParams<S3DFourierNoise>();
 
 /**
  * Generate noise using random fourier series coefficients
@@ -38,6 +34,8 @@ class S3DFourierNoise : public Function
 {
 public:
   S3DFourierNoise(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual Real value(Real, const Point & p) const override;
 

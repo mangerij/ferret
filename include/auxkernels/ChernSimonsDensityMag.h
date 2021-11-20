@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class ChernSimonsDensityMag;
-
-template<>
-InputParameters validParams<ChernSimonsDensityMag>();
-
 class ChernSimonsDensityMag : public AuxKernel
 {
 public:
   ChernSimonsDensityMag(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ChernSimonsDensityMag() {}
 

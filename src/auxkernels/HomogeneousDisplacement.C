@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", HomogeneousDisplacement);
 
-template<>
-InputParameters validParams<HomogeneousDisplacement>()
+InputParameters HomogeneousDisplacement::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<unsigned int>("component", "the component of the normalized vector to store");
   params.addRequiredCoupledVar("disp_x", "The x component of the total elastic displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the total elastic displacement");

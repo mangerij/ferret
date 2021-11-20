@@ -29,15 +29,12 @@
 
 #include "Function.h"
 
-class DomainFunc;
-
-template <>
-InputParameters validParams<DomainFunc>();
-
 class DomainFunc : public Function
 {
 public:
   DomainFunc(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual Real value(Real t, const Point & p) const override;
 

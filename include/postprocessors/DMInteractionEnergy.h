@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class DMInteractionEnergy;
-
-template<>
-InputParameters validParams<DMInteractionEnergy>();
-
 class DMInteractionEnergy : public ElementIntegralPostprocessor
 {
 public:
   DMInteractionEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

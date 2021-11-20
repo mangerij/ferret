@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class VectorMag;
-
-template<>
-InputParameters validParams<VectorMag>();
-
 class VectorMag: public AuxKernel
 {
 public:
   VectorMag(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~VectorMag() {}
 

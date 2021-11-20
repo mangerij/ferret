@@ -28,10 +28,9 @@
 
 registerMooseObject("FerretApp", ComputePiezoTensor);
 
-template<>
-InputParameters validParams<ComputePiezoTensor>()
+InputParameters ComputePiezoTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedPiezoTensorBase>();
+  InputParameters params = ComputeRotatedPiezoTensorBase::validParams();
   params.addClassDescription("Compute the converse piezoelectric tensor.");
   params.addParam<bool>("compute_piezostrictive_coeff", false, "compute the piezostrictive coefficients C_ijmn * d_kij");
   params.addRequiredParam<std::vector<Real> >("d_kpq", "piezoelectric tensor for material");

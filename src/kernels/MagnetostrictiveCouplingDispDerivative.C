@@ -26,10 +26,9 @@ class MagnetostrictiveCouplingHeff;
 
 registerMooseObject("FerretApp", MagnetostrictiveCouplingDispDerivative);
 
-template<>
-InputParameters validParams<MagnetostrictiveCouplingDispDerivative>()
+InputParameters MagnetostrictiveCouplingDispDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to the differentiation w.r.t spartial coordinates of the magnetoelastic self-strain"
                              " in the condition for mechanical equilibrium. Note for cubic magnets only.");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");

@@ -23,15 +23,12 @@
 
 #include "AuxKernel.h"
 
-class CurlP;
-
-template<>
-InputParameters validParams<CurlP>();
-
 class CurlP : public AuxKernel
 {
 public:
   CurlP(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~CurlP() {}
 

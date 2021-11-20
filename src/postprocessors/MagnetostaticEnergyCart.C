@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", MagnetostaticEnergyCart);
 
-template<>
-InputParameters validParams<MagnetostaticEnergyCart>()
+InputParameters MagnetostaticEnergyCart::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addRequiredCoupledVar("potential_H_int", "The internal magnetic potential variable");
   params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetization");

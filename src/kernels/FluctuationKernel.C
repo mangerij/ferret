@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", FluctuationKernel);
 
-template<>
-InputParameters validParams<FluctuationKernel>()
+InputParameters FluctuationKernel::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution introducing fluctuations useful in quasi-static hysteretic switching.");
   params.addRequiredCoupledVar("deltaPi", "The magnitude of the fluctuation across the ith component");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");

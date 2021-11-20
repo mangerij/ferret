@@ -23,11 +23,6 @@
 
 #include "ODEKernel.h"
 
-class ScalarRotopolarEnergy;
-
-template <>
-InputParameters validParams<ScalarRotopolarEnergy>();
-
 class ScalarRotopolarEnergy : public ODEKernel
 {
 public:
@@ -35,6 +30,8 @@ public:
    * Constructor
    */
   ScalarRotopolarEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
 

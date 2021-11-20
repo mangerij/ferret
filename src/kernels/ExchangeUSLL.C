@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", ExchangeUSLL);
 
-template<>
-InputParameters validParams<ExchangeUSLL>()
+InputParameters ExchangeUSLL::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for the magnetic anisotropy energy.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_phi, 1 for q_theta).");
   params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");

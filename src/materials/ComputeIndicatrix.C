@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputeIndicatrix);
 
-template<>
-InputParameters validParams<ComputeIndicatrix>()
+InputParameters ComputeIndicatrix::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedIndicatrixBase>();
+  InputParameters params = ComputeRotatedIndicatrixBase::validParams();
   params.addClassDescription("Compute the impermeability tensor, or indicatrix.");
   params.addRequiredParam<Real>("n_a", "alpha refractive index");
   params.addRequiredParam<Real>("n_b", "beta refractive index");

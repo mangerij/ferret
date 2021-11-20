@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", UncoupledGrainBoundaryPhaseIndicator);
 
-template<>
-InputParameters validParams<UncoupledGrainBoundaryPhaseIndicator>()
+InputParameters UncoupledGrainBoundaryPhaseIndicator::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates the residual for the local free energy regarding the GB phase indicator variable");
   params.addRequiredCoupledVar("gbpf", "The grain boundary phase indicator");
   return params;

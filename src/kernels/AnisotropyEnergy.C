@@ -26,10 +26,9 @@ class AnisotropyEnergy;
 
 registerMooseObject("FerretApp", AnisotropyEnergy);
 
-template<>
-InputParameters validParams<AnisotropyEnergy>()
+InputParameters AnisotropyEnergy::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Adds a residual contribution for an arbitrary anisotropy quadratic in the polarization field.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

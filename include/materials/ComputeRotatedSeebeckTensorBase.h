@@ -24,11 +24,6 @@
 
 #include "ComputeSeebeckTensorBase.h"
 
-class ComputeRotatedSeebeckTensorBase;
-
-template <>
-InputParameters validParams<ComputeRotatedSeebeckTensorBase>();
-
 /**
  * ComputeRotatedSeebeckTensorBase is an intermediate base class that rotates the linear Seebeck
  * tensor, k_{ij},  based on euler angles.
@@ -37,6 +32,8 @@ class ComputeRotatedSeebeckTensorBase : public ComputeSeebeckTensorBase
 {
 public:
   ComputeRotatedSeebeckTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

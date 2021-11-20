@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", CorrectionFactorDistortBFOEnergy);
 
-template<>
-InputParameters validParams<CorrectionFactorDistortBFOEnergy>()
+InputParameters CorrectionFactorDistortBFOEnergy::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral whose integrand is the correction to the local free energy.");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");

@@ -24,17 +24,13 @@
 
 #include "Kernel.h"
 
-//Forward Declarations
-class MagnetostrictiveCouplingCubicHeff;
-
-template<>
-InputParameters validParams<MagnetostrictiveCouplingCubicHeff>();
-
 class MagnetostrictiveCouplingCubicHeff: public Kernel
 {
 public:
 
   MagnetostrictiveCouplingCubicHeff(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

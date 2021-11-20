@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", Intensity);
 
-template<>
-
-InputParameters validParams<Intensity>()
+InputParameters Intensity::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("ReE_x", "The (real) x component of the scattered electric field");
   params.addRequiredCoupledVar("ReE_y", "The (real) y component of the scattered electric field");
   params.addRequiredCoupledVar("ReE_z", "The (real) z component of the scattered electric field");

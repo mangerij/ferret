@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class RotoBulkEnergyEighth;
-
-template<>
-InputParameters validParams<RotoBulkEnergyEighth>();
-
 class RotoBulkEnergyEighth : public ElementIntegralPostprocessor
 {
 public:
   RotoBulkEnergyEighth(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

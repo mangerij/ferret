@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", DomainVariantPopulation);
 
-template<>
-InputParameters validParams<DomainVariantPopulation>()
+InputParameters DomainVariantPopulation::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates the fraction of volume of a given domain population (only works in tetragonal phase at the moment)");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");

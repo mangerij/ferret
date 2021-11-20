@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class BulkEnergyDerivativeEighth;
-
-template<>
-InputParameters validParams<BulkEnergyDerivativeEighth>();
-
 class BulkEnergyDerivativeEighth: public Kernel
 {
 public:
 
   BulkEnergyDerivativeEighth(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

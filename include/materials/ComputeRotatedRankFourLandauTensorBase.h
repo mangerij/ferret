@@ -24,11 +24,6 @@
 
 #include "ComputeRankFourLandauTensorBase.h"
 
-class ComputeRotatedRankFourLandauTensorBase;
-
-template<>
-InputParameters validParams<ComputeRotatedRankFourLandauTensorBase>();
-
 /**
  * ComputeRotatedRankFourLandauTensorBase is an intermediate base class that rotates the \alpha_{ij} tensor based on euler angles.
  */
@@ -36,6 +31,8 @@ class ComputeRotatedRankFourLandauTensorBase : public ComputeRankFourLandauTenso
 {
 public:
   ComputeRotatedRankFourLandauTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

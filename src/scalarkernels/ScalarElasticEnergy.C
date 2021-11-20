@@ -23,11 +23,10 @@
 
 registerMooseObject("FerretApp", ScalarElasticEnergy);
 
-template <>
 InputParameters
-validParams<ScalarElasticEnergy>()
+ScalarElasticEnergy::validParams()
 {
-  InputParameters params = validParams<ODEKernel>();
+  InputParameters params = ODEKernel::validParams();
   params.addCoupledVar("e_xx", "variable e_xx coupled into this kernel");
   params.addCoupledVar("e_yy", "variable e_yy coupled into this kernel");
   params.addCoupledVar("e_zz", "variable e_zz coupled into this kernel");

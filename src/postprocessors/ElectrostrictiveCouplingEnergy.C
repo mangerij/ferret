@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", ElectrostrictiveCouplingEnergy);
 
-template<>
-InputParameters validParams<ElectrostrictiveCouplingEnergy>()
+InputParameters ElectrostrictiveCouplingEnergy::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the coupling energy density between the elastic and AFD fields.");
   params.addRequiredCoupledVar("u_x", "The x component of the local displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local displacement");

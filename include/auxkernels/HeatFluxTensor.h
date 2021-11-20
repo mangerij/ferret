@@ -5,15 +5,12 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class HeatFluxTensor;
-
-template<>
-InputParameters validParams<HeatFluxTensor>();
-
 class HeatFluxTensor : public AuxKernel
 {
 public:
 HeatFluxTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 virtual ~HeatFluxTensor() {}
 

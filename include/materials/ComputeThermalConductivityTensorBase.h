@@ -4,11 +4,6 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class ComputeThermalConductivityTensorBase;
-
-template <>
-InputParameters validParams<ComputeThermalConductivityTensorBase>();
-
 /**
  * ComputeThermalConductivityTensorBase the base class for computing thermal conductivity tensors
  */
@@ -16,6 +11,8 @@ class ComputeThermalConductivityTensorBase : public Material
 {
 public:
   ComputeThermalConductivityTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

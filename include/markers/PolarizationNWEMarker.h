@@ -24,15 +24,12 @@
 
 #include "QuadraturePointMarker.h"
 
-class PolarizationNWEMarker;
-
-template<>
-InputParameters validParams<PolarizationNWEMarker>();
-
 class PolarizationNWEMarker : public QuadraturePointMarker
 {
 public:
   PolarizationNWEMarker(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual MarkerValue computeQpMarker() override;

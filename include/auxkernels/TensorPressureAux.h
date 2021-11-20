@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class TensorPressureAux;
-
-template<>
-InputParameters validParams<TensorPressureAux>();
-
-
 class TensorPressureAux : public AuxKernel
 {
 public:
   TensorPressureAux(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~TensorPressureAux() {}
 

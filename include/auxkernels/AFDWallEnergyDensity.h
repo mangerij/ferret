@@ -25,17 +25,13 @@
 #include "AuxKernel.h"
 
 
-//Forward Declarations
-class AFDWallEnergyDensity;
-
-template<>
-InputParameters validParams<AFDWallEnergyDensity>();
-
 class AFDWallEnergyDensity : public AuxKernel
 {
 public:
 
   AFDWallEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

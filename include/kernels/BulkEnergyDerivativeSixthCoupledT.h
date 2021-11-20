@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class BulkEnergyDerivativeSixthCoupledT;
-
-template<>
-InputParameters validParams<BulkEnergyDerivativeSixthCoupledT>();
-
 class BulkEnergyDerivativeSixthCoupledT: public Kernel
 {
 public:
 
   BulkEnergyDerivativeSixthCoupledT(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

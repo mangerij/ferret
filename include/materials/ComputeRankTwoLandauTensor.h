@@ -26,11 +26,6 @@
 #include "ComputeRotatedRankTwoLandauTensorBase.h"
 
 
-class ComputeRankTwoLandauTensor;
-
-template<>
-InputParameters validParams<ComputeRankTwoLandauTensor>();
-
 /**
  * ComputeRankTwoLandauTensor defines the \alpha_{ij} tensor material object with a given base name.
  */
@@ -38,6 +33,8 @@ class ComputeRankTwoLandauTensor : public ComputeRotatedRankTwoLandauTensorBase
 {
 public:
   ComputeRankTwoLandauTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpRankTwoLandauTensor();

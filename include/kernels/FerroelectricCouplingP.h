@@ -26,16 +26,13 @@
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputeEigenstrain.h"
 
-class FerroelectricCouplingP;
-
-template<>
-InputParameters validParams<FerroelectricCouplingP>();
-
 class FerroelectricCouplingP: public Kernel
 {
 public:
 
   FerroelectricCouplingP(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

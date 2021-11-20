@@ -24,15 +24,12 @@
 
 #include "Kernel.h"
 
-class HeatFlowElectricT;
-
-template <>
-InputParameters validParams<HeatFlowElectricT>();
-
 class HeatFlowElectricT : public Kernel
 {
 public:
   HeatFlowElectricT(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

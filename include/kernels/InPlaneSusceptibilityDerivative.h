@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class InPlaneSusceptibilityDerivative;
-
-template<>
-InputParameters validParams<InPlaneSusceptibilityDerivative>();
-
 class InPlaneSusceptibilityDerivative: public Kernel
 {
 public:
 
   InPlaneSusceptibilityDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

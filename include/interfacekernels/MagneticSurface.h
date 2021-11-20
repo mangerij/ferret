@@ -24,15 +24,12 @@
 
 #include "InterfaceKernel.h"
 
-class MagneticSurface;
-
-template<>
-InputParameters validParams<MagneticSurface>();
-
 class MagneticSurface : public InterfaceKernel
 {
 public:
   MagneticSurface(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual(Moose::DGResidualType type);

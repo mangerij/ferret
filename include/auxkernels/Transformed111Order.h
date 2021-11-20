@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class Transformed111Order;
-
-template<>
-InputParameters validParams<Transformed111Order>();
-
 class Transformed111Order: public AuxKernel
 {
 public:
   Transformed111Order(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~Transformed111Order() {}
 

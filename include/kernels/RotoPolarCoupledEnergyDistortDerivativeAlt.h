@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class RotoPolarCoupledEnergyDistortDerivativeAlt;
-
-template<>
-InputParameters validParams<RotoPolarCoupledEnergyDistortDerivativeAlt>();
-
 class RotoPolarCoupledEnergyDistortDerivativeAlt: public Kernel
 {
 public:
 
   RotoPolarCoupledEnergyDistortDerivativeAlt(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

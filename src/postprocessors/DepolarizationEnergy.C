@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", DepolarizationEnergy);
 
-template<>
-InputParameters validParams<DepolarizationEnergy>()
+InputParameters DepolarizationEnergy::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over a fictious depolarization field energy density");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");

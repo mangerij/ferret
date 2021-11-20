@@ -11,16 +11,11 @@
 
 #include "MultiAppTransfer.h"
 
-// Forward declarations
-class MultiAppFieldAddTransfer;
 class MooseVariableFieldBase;
 namespace libMesh
 {
 class DofObject;
 }
-
-template <>
-InputParameters validParams<MultiAppFieldAddTransfer>();
 
 /**
  *  intermediary class that allows variable names as inputs

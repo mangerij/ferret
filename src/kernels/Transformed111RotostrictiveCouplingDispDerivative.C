@@ -26,10 +26,9 @@ class Transformed111RotostrictiveCouplingDispDerivative;
 
 registerMooseObject("FerretApp", Transformed111RotostrictiveCouplingDispDerivative);
 
-template<>
-InputParameters validParams<Transformed111RotostrictiveCouplingDispDerivative>()
+InputParameters Transformed111RotostrictiveCouplingDispDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to the differentiation w.r.t spartial coordinates of the ferroelectric self-strain"
                              " in the condition for mechanical equilibrium. Note for BFO only.");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the tilt");

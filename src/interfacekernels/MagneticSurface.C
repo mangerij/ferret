@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", MagneticSurface);
 
-template<>
-InputParameters validParams<MagneticSurface>()
+InputParameters MagneticSurface::validParams()
 {
-  InputParameters params = validParams<InterfaceKernel>();
+  InputParameters params = InterfaceKernel::validParams();
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_z", "The z component of the constrained magnetic vector");

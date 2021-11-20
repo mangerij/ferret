@@ -6,15 +6,12 @@
 
 // Forward declarations
 class SystemBase;
-class BoundaryIntegralFMM;
-
-template<>
-InputParameters validParams<BoundaryIntegralFMM>();
-
 class BoundaryIntegralFMM : public GeneralUserObject
 {
 public:
   BoundaryIntegralFMM(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual void initialize() override;
 

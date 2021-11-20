@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", CorrectionFactorPolarBFOEnergy);
 
-template<>
-InputParameters validParams<CorrectionFactorPolarBFOEnergy>()
+InputParameters CorrectionFactorPolarBFOEnergy::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral whose integrand is the correction to the local free energy.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

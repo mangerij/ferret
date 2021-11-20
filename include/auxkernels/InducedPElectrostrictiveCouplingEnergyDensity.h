@@ -24,16 +24,12 @@
 
 #include "AuxKernel.h"
 
-class InducedPElectrostrictiveCouplingEnergyDensity;
-
-template<>
-InputParameters validParams<InducedPElectrostrictiveCouplingEnergyDensity>();
-
-
 class InducedPElectrostrictiveCouplingEnergyDensity : public AuxKernel
 {
 public:
   InducedPElectrostrictiveCouplingEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

@@ -25,12 +25,10 @@
 
 registerMooseObject("FerretApp", ChangeInRefractiveIndex);
 
-template<>
-
-InputParameters validParams<ChangeInRefractiveIndex>()
+InputParameters ChangeInRefractiveIndex::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the changes to local refractive index.");
   params.addRequiredParam<unsigned int>("index_i", "first index of the beta vector");
   params.addRequiredParam<unsigned int>("index_j", "second index of the beta vector");

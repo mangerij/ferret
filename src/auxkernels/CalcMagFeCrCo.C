@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", CalcMagFeCrCo);
 
-template<>
-
-InputParameters validParams<CalcMagFeCrCo>()
+InputParameters CalcMagFeCrCo::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates concentration dependent magnetization field");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addCoupledVar("c1", "The first concentration variable");

@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", JacobiansBulkEnergy);
 
-template<>
-InputParameters validParams<JacobiansBulkEnergy>()
+InputParameters JacobiansBulkEnergy::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the free energy density dependent on the local polarization field.");
   params.addRequiredParam<unsigned int>("index_i", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredParam<unsigned int>("index_j", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");

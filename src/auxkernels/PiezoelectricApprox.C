@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", PiezoelectricApprox);
 
-template<>
-InputParameters validParams<PiezoelectricApprox>()
+InputParameters PiezoelectricApprox::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Stores an approximation of the piezoelectric tensor Pz$/$szz");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return params;

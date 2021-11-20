@@ -23,11 +23,10 @@
 
 registerMooseObject("FerretApp", RotoBulkEnergyEighth);
 
-template<>
-InputParameters validParams<RotoBulkEnergyEighth>()
+InputParameters RotoBulkEnergyEighth::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral whose integrand is the eighth order expansion of the AFD fields");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the AFD vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the AFD vector field");

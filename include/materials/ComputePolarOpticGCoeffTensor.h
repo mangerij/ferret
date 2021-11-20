@@ -26,11 +26,6 @@
 #include "RankTwoTensor.h"
 #include "ComputePolarOpticGCoeffTensorBase.h"
 
-class ComputePolarOpticGCoeffTensor;
-
-template<>
-InputParameters validParams<ComputePolarOpticGCoeffTensor>();
-
 /**
  * ComputePolarOpticGCoeffTensor the base class for computing polar-optic adjustments to B_{ij}
  */
@@ -38,6 +33,8 @@ class ComputePolarOpticGCoeffTensor : public ComputePolarOpticGCoeffTensorBase
 {
 public:
   ComputePolarOpticGCoeffTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpPolarOpticGCoeffTensor();

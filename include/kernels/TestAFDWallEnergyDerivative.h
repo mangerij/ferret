@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class TestAFDWallEnergyDerivative;
-
-template<>
-InputParameters validParams<TestAFDWallEnergyDerivative>();
-
 class TestAFDWallEnergyDerivative: public Kernel
 {
 public:
 
   TestAFDWallEnergyDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

@@ -26,11 +26,6 @@
 #include "ComputeRotatedRankFourLandauTensorBase.h"
 
 
-class ComputeRankFourLandauTensor;
-
-template<>
-InputParameters validParams<ComputeRankFourLandauTensor>();
-
 /**
  * ComputeRankFourLandauTensor defines the \alpha_{ijkl} tensor material object with a given base name.
  */
@@ -38,6 +33,8 @@ class ComputeRankFourLandauTensor : public ComputeRotatedRankFourLandauTensorBas
 {
 public:
   ComputeRankFourLandauTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpRankFourLandauTensor();

@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", InPlaneSusceptibilityDerivative);
 
-template<>
-InputParameters validParams<InPlaneSusceptibilityDerivative>()
+InputParameters InPlaneSusceptibilityDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates the residual for the local free energy which is an eighth order expansion in the polarization.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   return params;

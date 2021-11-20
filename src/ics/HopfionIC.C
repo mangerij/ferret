@@ -27,10 +27,9 @@
 
 registerMooseObject("FerretApp", HopfionIC);
 
-template<>
-InputParameters validParams<HopfionIC>()
+InputParameters HopfionIC::validParams()
 {
-  InputParameters params = validParams<InitialCondition>();
+  InputParameters params = InitialCondition::validParams();
   params.addRequiredParam<Real>("Lhopf", "hopfion size value for the twirling pattern");
   params.addRequiredParam<Real>("p0", "spontaneous value");
   params.addRequiredParam<unsigned int>("component", "integer");

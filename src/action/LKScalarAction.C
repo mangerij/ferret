@@ -32,11 +32,10 @@
 registerMooseAction("FerretApp", LKScalarAction, "add_scalar_kernel");
 
 
-template <>
 InputParameters
-validParams<LKScalarAction>()
+LKScalarAction::validParams()
 {
-  InputParameters params = validParams<Action>();
+  InputParameters params = Action::validParams();
   params.addClassDescription("Set up Landau-Khalatnikov ScalarKernels");
   params.addRequiredParam<std::vector<NonlinearVariableName>>(
       "variables", "The names of order parameter and strain tensor components");

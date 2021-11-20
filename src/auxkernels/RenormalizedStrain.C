@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", RenormalizedStrain);
 
-template<>
-
-InputParameters validParams<RenormalizedStrain>()
+InputParameters RenormalizedStrain::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Renormalizes a variable value.");
   params.addRequiredCoupledVar("var1", "value");
   params.addRequiredParam<PostprocessorName>("var2", "scalar to shift by");                

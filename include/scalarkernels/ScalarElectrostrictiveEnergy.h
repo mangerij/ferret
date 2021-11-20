@@ -23,16 +23,13 @@
 
 #include "ODEKernel.h"
 
-class ScalarElectrostrictiveEnergy;
-
-template <>
-InputParameters validParams<ScalarElectrostrictiveEnergy>();
-
 class ScalarElectrostrictiveEnergy : public ODEKernel
 {
 public:
 
   ScalarElectrostrictiveEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
 

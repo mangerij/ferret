@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", RotoPolarCoupledEnergyEighth);
 
-template<>
-InputParameters validParams<RotoPolarCoupledEnergyEighth>()
+InputParameters RotoPolarCoupledEnergyEighth::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the eighth order coupling energy density between AFD and polarization fields.");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the AFD vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the AFD vector field");

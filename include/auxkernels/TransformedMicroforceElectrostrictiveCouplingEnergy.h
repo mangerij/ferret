@@ -24,16 +24,12 @@
 
 #include "AuxKernel.h"
 
-class TransformedMicroforceElectrostrictiveCouplingEnergy;
-
-template<>
-InputParameters validParams<TransformedMicroforceElectrostrictiveCouplingEnergy>();
-
-
 class TransformedMicroforceElectrostrictiveCouplingEnergy : public AuxKernel
 {
 public:
   TransformedMicroforceElectrostrictiveCouplingEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", ElectrostaticEnergy);
 
-template<>
-InputParameters validParams<ElectrostaticEnergy>()
+InputParameters ElectrostaticEnergy::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the P$*$E term.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

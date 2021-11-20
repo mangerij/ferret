@@ -26,10 +26,9 @@
 
 registerMooseObject("FerretApp", LandauMaterialBulkFourthDerivative);
 
-template<>
-InputParameters validParams<LandauMaterialBulkFourthDerivative>()
+InputParameters LandauMaterialBulkFourthDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates the residual for the local free energy which is an fourth order expansion in the polarization.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");

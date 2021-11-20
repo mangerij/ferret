@@ -24,11 +24,6 @@
 
 #include "ComputePiezostrictiveTensorBase.h"
 
-class ComputeRotatedPiezostrictiveTensorBase;
-
-template<>
-InputParameters validParams<ComputeRotatedPiezostrictiveTensorBase>();
-
 /**
  * ComputeRotatedPiezostrictiveTensorBase is an intermediate base class that rotates the linear electrooptic tensor, e_{ijk},  based on euler angles.
  */
@@ -36,6 +31,8 @@ class ComputeRotatedPiezostrictiveTensorBase : public ComputePiezostrictiveTenso
 {
 public:
   ComputeRotatedPiezostrictiveTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

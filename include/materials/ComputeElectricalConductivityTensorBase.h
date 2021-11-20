@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class ComputeElectricalConductivityTensorBase;
-
-template <>
-InputParameters validParams<ComputeElectricalConductivityTensorBase>();
-
 /**
  * ComputeElectricalConductivityTensorBase the base class for computing thermal conductivity tensors
  */
@@ -37,6 +32,8 @@ class ComputeElectricalConductivityTensorBase : public Material
 {
 public:
   ComputeElectricalConductivityTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

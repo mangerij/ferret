@@ -21,10 +21,9 @@
 
 #include "ComputePolarOpticTensorBase.h"
 
-template<>
-InputParameters validParams<ComputePolarOpticTensorBase>()
+InputParameters ComputePolarOpticTensorBase::validParams()
 {
-  InputParameters params = validParams<Material>();
+  InputParameters params = Material::validParams();
   params.addParam<std::string>("base_name", "Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases");
   return params;
 }

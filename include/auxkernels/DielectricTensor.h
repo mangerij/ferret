@@ -25,18 +25,16 @@
 #include "AuxKernel.h"
 #include "ComputeElectrostrictiveTensor.h"
 
-class DielectricTensor;
 template <typename>
 class RankTwoTensorTempl;
 typedef RankTwoTensorTempl<Real> RankTwoTensor;
-
-template<>
-InputParameters validParams<DielectricTensor>();
 
 class DielectricTensor : public AuxKernel
 {
 public:
   DielectricTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

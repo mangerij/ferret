@@ -27,11 +27,6 @@
 #include "PiezostrictiveTensorTools.h"
 #include "ComputeRotatedPiezoTensorBase.h"
 
-class ComputePiezoTensor;
-
-template<>
-InputParameters validParams<ComputePiezoTensor>();
-
 /**
  * ComputeElectroopticTensor defines a linear electrooptic tensor material object with a given base name.
  */
@@ -39,6 +34,8 @@ class ComputePiezoTensor : public ComputeRotatedPiezoTensorBase
 {
 public:
   ComputePiezoTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpPiezoTensor();

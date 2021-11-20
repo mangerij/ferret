@@ -26,11 +26,6 @@
 #include "ComputeRotatedElastoopticTensorBase.h"
 #include "libmesh/quadrature.h"
 
-class ComputeElastoopticTensor;
-
-template<>
-InputParameters validParams<ComputeElastoopticTensor>();
-
 /**
  * ComputePhotostrictiveTensor defines an photostrictive tensor material object with a given base name.
  */
@@ -38,6 +33,8 @@ class ComputeElastoopticTensor : public ComputeRotatedElastoopticTensorBase
 {
 public:
   ComputeElastoopticTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpElastoopticTensor();

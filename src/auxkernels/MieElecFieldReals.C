@@ -33,12 +33,10 @@
 
 registerMooseObject("FerretApp", MieElecFieldReals);
 
-template<>
-
-InputParameters validParams<MieElecFieldReals>()
+InputParameters MieElecFieldReals::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<Real>("a", "radius of the particle");
   params.addRequiredParam<Real>("omega", "angular frequency of the plane wave");
   params.addRequiredParam<Real>("c", "the speed of light");

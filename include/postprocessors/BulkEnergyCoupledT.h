@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class BulkEnergyCoupledT;
-
-template<>
-InputParameters validParams<BulkEnergyCoupledT>();
-
 class BulkEnergyCoupledT : public ElementIntegralPostprocessor
 {
 public:
   BulkEnergyCoupledT(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

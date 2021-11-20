@@ -24,16 +24,12 @@
 
 #include "AuxKernel.h"
 
-class ElasticEnergyDensity;
-
-template<>
-InputParameters validParams<ElasticEnergyDensity>();
-
-
 class ElasticEnergyDensity : public AuxKernel
 {
 public:
   ElasticEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

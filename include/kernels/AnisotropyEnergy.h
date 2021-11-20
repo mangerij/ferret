@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class AnisotropyEnergy;
-
-template<>
-InputParameters validParams<AnisotropyEnergy>();
-
 class AnisotropyEnergy: public Kernel
 {
 public:
 
   AnisotropyEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

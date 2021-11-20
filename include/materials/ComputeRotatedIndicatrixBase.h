@@ -25,11 +25,6 @@
 #include "ComputeIndicatrixBase.h"
 #include "RankTwoTensor.h"
 
-class ComputeRotatedIndicatrixBase;
-
-template<>
-InputParameters validParams<ComputeRotatedIndicatrixBase>();
-
 /**
  * ComputeRotatedIndicatrixBase the base class for computing photostrictive tensors
  */
@@ -37,6 +32,8 @@ class ComputeRotatedIndicatrixBase : public ComputeIndicatrixBase
 {
 public:
   ComputeRotatedIndicatrixBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

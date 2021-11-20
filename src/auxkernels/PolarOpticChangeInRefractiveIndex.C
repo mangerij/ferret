@@ -25,12 +25,10 @@
 
 registerMooseObject("FerretApp", PolarOpticChangeInRefractiveIndex);
 
-template<>
-
-InputParameters validParams<PolarOpticChangeInRefractiveIndex>()
+InputParameters PolarOpticChangeInRefractiveIndex::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the changes to local refractive index due to the polar-optic effect.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding changes in the refractive index's index (0, 1, 2, 3, 4, 5)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");

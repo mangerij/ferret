@@ -24,7 +24,6 @@
 
 #include "IntegratedBC.h"
 
-class SurfaceMechanicsBC;
 template <typename>
 class RankTwoTensorTempl;
 typedef RankTwoTensorTempl<Real> RankTwoTensor;
@@ -32,14 +31,13 @@ template <typename>
 class RankFourTensorTempl;
 typedef RankFourTensorTempl<Real> RankFourTensor;
 
-template<>
-InputParameters validParams<SurfaceMechanicsBC>();
-
 class SurfaceMechanicsBC : public IntegratedBC
 {
 public:
 
   SurfaceMechanicsBC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

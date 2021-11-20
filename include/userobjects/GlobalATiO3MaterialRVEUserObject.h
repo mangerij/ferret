@@ -28,15 +28,12 @@
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
 
-class GlobalATiO3MaterialRVEUserObject;
-
-template <>
-InputParameters validParams<GlobalATiO3MaterialRVEUserObject>();
-
 class GlobalATiO3MaterialRVEUserObject : public ElementUserObject, public GlobalStrainUserObjectInterface
 {
 public:
   GlobalATiO3MaterialRVEUserObject(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   void initialize() override;
   void execute() override;

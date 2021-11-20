@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", DepolEnergy);
 
-template<>
-InputParameters validParams<DepolEnergy>()
+InputParameters DepolEnergy::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to an arbitrary depolarization energy adjustment to the P$*$E term.");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");

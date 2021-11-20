@@ -24,17 +24,14 @@
 
 #include "InitialCondition.h"
 
-// Forward Declarations
-class HopfionIC;
 namespace libMesh { class Point; }
-
-template<>
-InputParameters validParams<HopfionIC>();
 
 class HopfionIC : public InitialCondition
 {
 public:
   HopfionIC(const InputParameters & parameters);
+  static InputParameters validParams();
+
   virtual Real value(const Point & p);
 
 protected:

@@ -26,15 +26,12 @@
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
 
-class StressBC;
-
-template<>
-InputParameters validParams<StressBC>();
-
 class StressBC : public IntegratedBC
 {
 public:
   StressBC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

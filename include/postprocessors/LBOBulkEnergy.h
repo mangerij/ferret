@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class LBOBulkEnergy;
-
-template<>
-InputParameters validParams<LBOBulkEnergy>();
-
 class LBOBulkEnergy : public ElementIntegralPostprocessor
 {
 public:
   LBOBulkEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

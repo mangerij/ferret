@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputeRankSixLandauTensor);
 
-template<>
-InputParameters validParams<ComputeRankSixLandauTensor>()
+InputParameters ComputeRankSixLandauTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedRankSixLandauTensorBase>();
+  InputParameters params = ComputeRotatedRankSixLandauTensorBase::validParams();
   params.addClassDescription("Compute the sextic Landau coefficient tensor.");
   params.addRequiredParam<std::vector<Real> >("a_ijklmn", "Landau tensor for material oriented [001]");
   params.addParam<MooseEnum>("fill_method", RankSixTensor::fillMethodEnum() = "general", "The fill method");

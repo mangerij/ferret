@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", PolarizationComponentValue);
 
-template<>
-InputParameters validParams<PolarizationComponentValue>()
+InputParameters PolarizationComponentValue::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over some chosen component of the polarization squared.");
   params.addRequiredCoupledVar("polar", "Component of the polarization");
   return params;

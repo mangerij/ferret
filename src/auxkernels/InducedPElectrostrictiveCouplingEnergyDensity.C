@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", InducedPElectrostrictiveCouplingEnergyDensity);
 
-template<>
-InputParameters validParams<InducedPElectrostrictiveCouplingEnergyDensity>()
+InputParameters InducedPElectrostrictiveCouplingEnergyDensity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Computes the free energy density of the local (induced) electrostrictive coupling.");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");

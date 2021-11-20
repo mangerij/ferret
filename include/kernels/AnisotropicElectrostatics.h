@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class AnisotropicElectrostatics;
-
-template<>
-InputParameters validParams<AnisotropicElectrostatics>();
-
 class AnisotropicElectrostatics: public Kernel
 {
 public:
 
   AnisotropicElectrostatics(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

@@ -26,11 +26,6 @@
 #include "ComputeRotatedRankSixLandauTensorBase.h"
 
 
-class ComputeRankSixLandauTensor;
-
-template<>
-InputParameters validParams<ComputeRankSixLandauTensor>();
-
 /**
  * ComputeRankSixLandauTensor defines the \alpha_{ijklmn} tensor material object with a given base name.
  */
@@ -38,6 +33,8 @@ class ComputeRankSixLandauTensor : public ComputeRotatedRankSixLandauTensorBase
 {
 public:
   ComputeRankSixLandauTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpRankSixLandauTensor();

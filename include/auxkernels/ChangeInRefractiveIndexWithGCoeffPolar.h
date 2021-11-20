@@ -25,15 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class ChangeInRefractiveIndexWithGCoeffPolar;
-
-template<>
-InputParameters validParams<ChangeInRefractiveIndexWithGCoeffPolar>();
-
 class ChangeInRefractiveIndexWithGCoeffPolar : public AuxKernel
 {
 public:
   ChangeInRefractiveIndexWithGCoeffPolar(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ChangeInRefractiveIndexWithGCoeffPolar() {}
 

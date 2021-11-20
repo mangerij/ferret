@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", WallEnergyDensity);
 
-template<>
-InputParameters validParams<WallEnergyDensity>()
+InputParameters WallEnergyDensity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
