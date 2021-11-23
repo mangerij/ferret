@@ -3,11 +3,10 @@
 #include "RankTwoTensor.h"
 
 registerMooseObject("FerretApp", ComputeSeebeckTensor);
-template <>
 InputParameters
-validParams<ComputeSeebeckTensor>()
+ComputeSeebeckTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedSeebeckTensorBase>();
+  InputParameters params = ComputeRotatedSeebeckTensorBase::validParams();
   params.addClassDescription("Compute a Seebeck tensor.");
   params.addRequiredParam<std::vector<Real>>("a_ij", "Seebeck tensor for material");
   params.addParam<MooseEnum>("fill_method", RankTwoTensor::fillMethodEnum() = "general", "The fill method");

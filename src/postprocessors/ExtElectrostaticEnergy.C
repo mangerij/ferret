@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", ExtElectrostaticEnergy);
 
-template<>
-InputParameters validParams<ExtElectrostaticEnergy>()
+InputParameters ExtElectrostaticEnergy::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over an electrostatic energy contribution 1$/$2$*$E$^$2.");
   params.addRequiredCoupledVar("potential_E_int", "The internal electric potential");
   params.addRequiredParam<Real>("permittivity", "permittivity");

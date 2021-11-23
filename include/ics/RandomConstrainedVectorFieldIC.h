@@ -24,17 +24,14 @@
 
 #include "InitialCondition.h"
 
-// Forward Declarations
-class RandomConstrainedVectorFieldIC;
 namespace libMesh { class Point; }
-
-template<>
-InputParameters validParams<RandomConstrainedVectorFieldIC>();
 
 class RandomConstrainedVectorFieldIC : public InitialCondition
 {
 public:
   RandomConstrainedVectorFieldIC(const InputParameters & parameters);
+  static InputParameters validParams();
+
   virtual Real value(const Point & p);
 
 protected:

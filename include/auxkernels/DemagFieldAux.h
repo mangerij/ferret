@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class DemagFieldAux;
-
-template<>
-InputParameters validParams<DemagFieldAux>();
-
 class DemagFieldAux : public AuxKernel
 {
 public:
   DemagFieldAux(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~DemagFieldAux() {}
 

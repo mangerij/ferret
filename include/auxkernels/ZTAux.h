@@ -25,17 +25,12 @@
 #include "AuxKernel.h"
 
 
-//Forward declarations
-class ZTAux;
-
-template<>
-InputParameters validParams<ZTAux>();
-
-
 class ZTAux : public AuxKernel
 {
 public:
   ZTAux(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ZTAux() {}
 

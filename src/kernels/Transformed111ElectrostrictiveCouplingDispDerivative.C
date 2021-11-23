@@ -26,10 +26,9 @@ class Transformed111ElectrostrictiveCouplingDispDerivative;
 
 registerMooseObject("FerretApp", Transformed111ElectrostrictiveCouplingDispDerivative);
 
-template<>
-InputParameters validParams<Transformed111ElectrostrictiveCouplingDispDerivative>()
+InputParameters Transformed111ElectrostrictiveCouplingDispDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to the differentiation w.r.t spartial coordinates of the ferroelectric self-strain"
                              " in the condition for mechanical equilibrium. Note for BFO only.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");

@@ -25,10 +25,9 @@ class InducedPElectrostrictiveCouplingPolarDerivative;
 
 registerMooseObject("FerretApp", InducedPElectrostrictiveCouplingPolarDerivative);
 
-template<>
-InputParameters validParams<InducedPElectrostrictiveCouplingPolarDerivative>()
+InputParameters InducedPElectrostrictiveCouplingPolarDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to the variation w.r.t polarization of the electrostrictive coupling energy. Note: for BFO only.");
   params.addRequiredCoupledVar("disp_x", "The x component of the elastic displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the elastic displacement");

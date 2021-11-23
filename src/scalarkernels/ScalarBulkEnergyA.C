@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", ScalarBulkEnergyA);
 
-template <>
 InputParameters
-validParams<ScalarBulkEnergyA>()
+ScalarBulkEnergyA::validParams()
 {
-  InputParameters params = validParams<ODEKernel>();
+  InputParameters params = ODEKernel::validParams();
   params.addCoupledVar("antiferrodis_A_x", "variable antiferrodis_A_x coupled into this kernel");
   params.addCoupledVar("antiferrodis_A_y", "variable antiferrodis_A_y coupled into this kernel");
   params.addCoupledVar("antiferrodis_A_z", "variable antiferrodis_A_z coupled into this kernel");

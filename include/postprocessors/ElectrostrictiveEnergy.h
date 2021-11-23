@@ -28,15 +28,12 @@
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputeEigenstrain.h"
 
-class ElectrostrictiveEnergy;
-
-template<>
-InputParameters validParams<ElectrostrictiveEnergy>();
-
 class ElectrostrictiveEnergy : public ElementIntegralPostprocessor
 {
 public:
   ElectrostrictiveEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

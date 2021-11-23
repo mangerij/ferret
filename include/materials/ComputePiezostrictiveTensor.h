@@ -25,11 +25,6 @@
 #include "RankThreeTensor.h"
 #include "ComputeRotatedPiezostrictiveTensorBase.h"
 
-class ComputePiezostrictiveTensor;
-
-template<>
-InputParameters validParams<ComputePiezostrictiveTensor>();
-
 /**
  * ComputePiezostrictiveTensor defines a linear piezostrictive tensor material object with a given base name.
  */
@@ -37,6 +32,8 @@ class ComputePiezostrictiveTensor : public ComputeRotatedPiezostrictiveTensorBas
 {
 public:
   ComputePiezostrictiveTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpPiezostrictiveTensor();

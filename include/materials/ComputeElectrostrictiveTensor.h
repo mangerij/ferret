@@ -27,11 +27,6 @@
 #include "ComputeRotatedElectrostrictiveTensorBase.h"
 #include "libmesh/quadrature.h"
 
-class ComputeElectrostrictiveTensor;
-
-template<>
-InputParameters validParams<ComputeElectrostrictiveTensor>();
-
 /**
  * ComputeElectrostrictiveTensor defines an electrostrictive tensor material object with a given base name.
  */
@@ -39,6 +34,8 @@ class ComputeElectrostrictiveTensor : public ComputeRotatedElectrostrictiveTenso
 {
 public:
   ComputeElectrostrictiveTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpElectrostrictiveTensor();

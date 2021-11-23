@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", PkNorm);
 
-template<>
-InputParameters validParams<PkNorm>()
+InputParameters PkNorm::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<unsigned int>("component", "the component of the normalized vector to store");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

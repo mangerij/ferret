@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class MagHStrong;
-
-template<>
-InputParameters validParams<MagHStrong>();
-
 class MagHStrong: public Kernel
 {
 public:
 
   MagHStrong(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

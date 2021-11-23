@@ -24,17 +24,13 @@
 
 #include "Kernel.h"
 
-//Forward Declarations
-class SubstratePenalty;
-
-template<>
-InputParameters validParams<SubstratePenalty>();
-
 class SubstratePenalty: public Kernel
 {
 public:
 
   SubstratePenalty(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

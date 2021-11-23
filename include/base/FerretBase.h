@@ -27,15 +27,12 @@
 #include "InputParameters.h"
 #include "MooseObject.h"
 
-class FerretBase;
-
-template<>
-InputParameters validParams<FerretBase>();
-
 class FerretBase
 {
  public:
   FerretBase(InputParameters parameters);
+  static InputParameters validParams();
+
  protected:
   std::vector<std::string> _debug_vec;
   std::string              _class;

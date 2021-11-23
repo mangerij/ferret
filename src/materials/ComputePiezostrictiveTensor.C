@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputePiezostrictiveTensor);
 
-template<>
-InputParameters validParams<ComputePiezostrictiveTensor>()
+InputParameters ComputePiezostrictiveTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedPiezostrictiveTensorBase>();
+  InputParameters params = ComputeRotatedPiezostrictiveTensorBase::validParams();
   params.addClassDescription("Compute a piezostrictive tensor.");
   params.addRequiredParam<std::vector<Real> >("e_ijk", "piezostrictive tensor for material");
   params.addParam<MooseEnum>("fill_method", RankThreeTensor::fillMethodEnum() = "general", "The fill method");

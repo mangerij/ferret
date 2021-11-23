@@ -24,16 +24,12 @@
 
 #include "AuxKernel.h"
 
-class ElectrostrictiveCouplingEnergyDensity;
-
-template<>
-InputParameters validParams<ElectrostrictiveCouplingEnergyDensity>();
-
-
 class ElectrostrictiveCouplingEnergyDensity : public AuxKernel
 {
 public:
   ElectrostrictiveCouplingEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

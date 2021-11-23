@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", ElecFieldAux);
 
-template<>
-
-InputParameters validParams<ElecFieldAux>()
+InputParameters ElecFieldAux::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Converts electrostatic potential to the vector electric field.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addCoupledVar("potential_E_int", "The internal electric potential variable");

@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", AFDWallEnergy);
 
-template<>
-InputParameters validParams<AFDWallEnergy>()
+InputParameters AFDWallEnergy::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the computational volume of the free energy density"
                              "corresponding to gradients in the AFD field.");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");

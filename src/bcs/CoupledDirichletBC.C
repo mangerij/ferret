@@ -23,11 +23,10 @@
 
 registerMooseObject("FerretApp", CoupledDirichletBC);
 
-template <>
 InputParameters
-validParams<CoupledDirichletBC>()
+CoupledDirichletBC::validParams()
 {
-  InputParameters params = validParams<NodalBC>();
+  InputParameters params = NodalBC::validParams();
 
   params.addRequiredCoupledVar("coupled_var", "Value on the Boundary");
   return params;

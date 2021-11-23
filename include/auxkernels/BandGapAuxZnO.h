@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class BandGapAuxZnO;
-
-template<>
-InputParameters validParams<BandGapAuxZnO>();
-
-
 class BandGapAuxZnO : public AuxKernel
 {
 public:
   BandGapAuxZnO(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~BandGapAuxZnO() {}
 

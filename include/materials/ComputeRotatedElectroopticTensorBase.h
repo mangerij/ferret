@@ -24,11 +24,6 @@
 
 #include "ComputeElectroopticTensorBase.h"
 
-class ComputeRotatedElectroopticTensorBase;
-
-template<>
-InputParameters validParams<ComputeRotatedElectroopticTensorBase>();
-
 /**
  * ComputeRotatedElectroopticTensorBase is an intermediate base class that rotates the linear electrooptic tensor, r_{ijk},  based on euler angles.
  */
@@ -36,6 +31,8 @@ class ComputeRotatedElectroopticTensorBase : public ComputeElectroopticTensorBas
 {
 public:
   ComputeRotatedElectroopticTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

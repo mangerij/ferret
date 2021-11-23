@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class CorrectionFactorPolarBFO;
-
-template<>
-InputParameters validParams<CorrectionFactorPolarBFO>();
-
 class CorrectionFactorPolarBFO: public Kernel
 {
 public:
 
   CorrectionFactorPolarBFO(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

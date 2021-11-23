@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class PzSq;
-
-template<>
-InputParameters validParams<PzSq>();
-
 class PzSq : public AuxKernel
 {
 public:
   PzSq(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~PzSq() {}
 

@@ -24,15 +24,12 @@
 
 #include "IntegratedBC.h"
 
-class HydrostaticBC;
-
-template<>
-InputParameters validParams<HydrostaticBC>();
-
 class HydrostaticBC : public IntegratedBC
 {
 public:
   HydrostaticBC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankFourTensor.h"
 
-class ComputeElastoopticTensorBase;
-
-template<>
-InputParameters validParams<ComputeElastoopticTensorBase>();
-
 /**
  * ComputeElastoopticTensorBase the base class for computing photostrictive tensors
  */
@@ -37,6 +32,8 @@ class ComputeElastoopticTensorBase : public Material
 {
 public:
   ComputeElastoopticTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

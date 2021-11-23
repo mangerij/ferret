@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankThreeTensor.h"
 
-class ComputeElectroopticTensorBase;
-
-template<>
-InputParameters validParams<ComputeElectroopticTensorBase>();
-
 /**
  * ComputeElectroopticTensorBase the base class for computing photostrictive tensors
  */
@@ -37,6 +32,8 @@ class ComputeElectroopticTensorBase : public Material
 {
 public:
   ComputeElectroopticTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

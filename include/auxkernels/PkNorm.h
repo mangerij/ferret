@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class PkNorm;
-
-template<>
-InputParameters validParams<PkNorm>();
-
 class PkNorm: public AuxKernel
 {
 public:
   PkNorm(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~PkNorm() {}
 

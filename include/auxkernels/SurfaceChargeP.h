@@ -25,15 +25,12 @@
 #include "AuxKernel.h"
 #include "BoundaryCondition.h"
 
-class SurfaceChargeP;
-
-template<>
-InputParameters validParams<SurfaceChargeP>();
-
 class SurfaceChargeP : public AuxKernel
 {
 public:
   SurfaceChargeP(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~SurfaceChargeP() {}
 

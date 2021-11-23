@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankSixTensor.h"
 
-class ComputeRankSixLandauTensorBase;
-
-template<>
-InputParameters validParams<ComputeRankSixLandauTensorBase>();
-
 /**
  * ComputeLandauTensorBase the base class for computing Landau expansion tensors
  */
@@ -37,6 +32,8 @@ class ComputeRankSixLandauTensorBase : public Material
 {
 public:
   ComputeRankSixLandauTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

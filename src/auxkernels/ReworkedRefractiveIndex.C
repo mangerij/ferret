@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", ReworkedRefractiveIndex);
 
-template<>
-
-InputParameters validParams<ReworkedRefractiveIndex>()
+InputParameters ReworkedRefractiveIndex::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the refractive index's Voight index (0, 1, 2, 3, 4, 5)");
   params.addParam<bool>("electro", false, "If this is true then electrooptic effect will be introduced");
   params.addParam<bool>("elasto", false, "If this is true then elastooptic effect will be introduced");

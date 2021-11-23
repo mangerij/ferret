@@ -24,15 +24,12 @@
 
 #include "IntegratedBC.h"
 
-class ExchangeBiasLL;
-
-template<>
-InputParameters validParams<ExchangeBiasLL>();
-
 class ExchangeBiasLL : public IntegratedBC
 {
 public:
   ExchangeBiasLL(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

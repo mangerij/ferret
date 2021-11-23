@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class MagnetostaticEnergyCart;
-
-template<>
-InputParameters validParams<MagnetostaticEnergyCart>();
-
 class MagnetostaticEnergyCart : public ElementIntegralPostprocessor
 {
 public:
   MagnetostaticEnergyCart(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

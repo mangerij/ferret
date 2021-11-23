@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", DemagFieldAux);
 
-template<>
-
-InputParameters validParams<DemagFieldAux>()
+InputParameters DemagFieldAux::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Converts magnetostatic potential to the vector demagnetization field.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addCoupledVar("potential_H_int", "The internal magnetic potential variable");

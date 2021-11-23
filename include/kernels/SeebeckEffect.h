@@ -24,15 +24,12 @@
 
 #include "Kernel.h"
 
-class SeebeckEffect;
-
-template <>
-InputParameters validParams<SeebeckEffect>();
-
 class SeebeckEffect : public Kernel
 {
 public:
   SeebeckEffect(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

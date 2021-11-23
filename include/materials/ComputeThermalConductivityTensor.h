@@ -5,11 +5,6 @@
 #include "ComputeRotatedThermalConductivityTensorBase.h"
 #include "libmesh/quadrature.h"
 
-class ComputeThermalConductivityTensor;
-
-template <>
-InputParameters validParams<ComputeThermalConductivityTensor>();
-
 /**
  * ComputeThermalConductivityTensor defines a linear ThermalConductivity tensor material object with
  * a given base name.
@@ -18,6 +13,8 @@ class ComputeThermalConductivityTensor : public ComputeRotatedThermalConductivit
 {
 public:
   ComputeThermalConductivityTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpThermalConductivityTensor();

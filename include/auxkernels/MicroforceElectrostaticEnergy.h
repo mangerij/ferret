@@ -24,16 +24,12 @@
 
 #include "AuxKernel.h"
 
-class MicroforceElectrostaticEnergy;
-
-template<>
-InputParameters validParams<MicroforceElectrostaticEnergy>();
-
-
 class MicroforceElectrostaticEnergy : public AuxKernel
 {
 public:
   MicroforceElectrostaticEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

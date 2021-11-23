@@ -28,11 +28,10 @@
 
 registerMooseObject("FerretApp", FerretProblem);
 
-template <>
 InputParameters
-validParams<FerretProblem>()
+FerretProblem::validParams()
 {
-  InputParameters params = validParams<FEProblemBase>();
+  InputParameters params = FEProblemBase::validParams();
   params.addRequiredParam<NonlinearVariableName>("polar_var", "Polar angle variable to be prescribed unique on the 0, pi interval.");
   params.addRequiredParam<NonlinearVariableName>("azimuth_phi_var","Azimuthal angle variable to be prescribed unique on the 0, 2 pi interval");
   return params;

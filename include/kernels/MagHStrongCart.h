@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class MagHStrongCart;
-
-template<>
-InputParameters validParams<MagHStrongCart>();
-
 class MagHStrongCart: public Kernel
 {
 public:
 
   MagHStrongCart(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

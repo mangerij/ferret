@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", DielectricTensor);
 
-template<>
-InputParameters validParams<DielectricTensor>()
+InputParameters DielectricTensor::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the local dielectric constant given by the classic (and likely wrong) thermodynamic relation.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

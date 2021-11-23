@@ -25,11 +25,6 @@
 #include "RankThreeTensor.h"
 #include "ComputeRotatedElectroopticTensorBase.h"
 
-class ComputeElectroopticTensor;
-
-template<>
-InputParameters validParams<ComputeElectroopticTensor>();
-
 /**
  * ComputeElectroopticTensor defines a linear electrooptic tensor material object with a given base name.
  */
@@ -37,6 +32,8 @@ class ComputeElectroopticTensor : public ComputeRotatedElectroopticTensorBase
 {
 public:
   ComputeElectroopticTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpElectroopticTensor();

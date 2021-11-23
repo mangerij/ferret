@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class UncoupledGrainBoundaryPhaseIndicator;
-
-template<>
-InputParameters validParams<UncoupledGrainBoundaryPhaseIndicator>();
-
 class UncoupledGrainBoundaryPhaseIndicator: public Kernel
 {
 public:
 
   UncoupledGrainBoundaryPhaseIndicator(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

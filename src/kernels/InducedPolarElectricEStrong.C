@@ -25,10 +25,9 @@ class InducedPolarElectricEStrong;
 
 registerMooseObject("FerretApp", InducedPolarElectricEStrong);
 
-template<>
-InputParameters validParams<InducedPolarElectricEStrong>()
+InputParameters InducedPolarElectricEStrong::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to divP (to be used concomitantly with the electrostatics (Laplace) kernel).");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

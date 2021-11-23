@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class Intensity;
-
-template<>
-InputParameters validParams<Intensity>();
-
-
 class Intensity : public AuxKernel
 {
 public:
   Intensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~Intensity() {}
 

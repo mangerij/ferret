@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class DepolEnergy;
-
-template<>
-InputParameters validParams<DepolEnergy>();
-
 class DepolEnergy: public Kernel
 {
 public:
 
   DepolEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

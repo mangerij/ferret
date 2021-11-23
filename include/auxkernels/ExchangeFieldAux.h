@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class ExchangeFieldAux;
-
-template<>
-InputParameters validParams<ExchangeFieldAux>();
-
 class ExchangeFieldAux : public AuxKernel
 {
 public:
   ExchangeFieldAux(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ExchangeFieldAux() {}
 

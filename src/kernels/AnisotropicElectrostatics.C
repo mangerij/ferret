@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", AnisotropicElectrostatics);
 
-template<>
-InputParameters validParams<AnisotropicElectrostatics>()
+InputParameters AnisotropicElectrostatics::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
   return params;
 }

@@ -27,16 +27,13 @@
 #include "ComputeElectrostrictiveTensor.h"
 #include "ComputeEigenstrain.h"
 
-class ElectrostrictiveEnergyDensity;
-
-template<>
-InputParameters validParams<ElectrostrictiveEnergyDensity>();
-
 class ElectrostrictiveEnergyDensity : public AuxKernel
 {
 public:
 
   ElectrostrictiveEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

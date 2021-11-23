@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputeRankFourLandauTensor);
 
-template<>
-InputParameters validParams<ComputeRankFourLandauTensor>()
+InputParameters ComputeRankFourLandauTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedRankFourLandauTensorBase>();
+  InputParameters params = ComputeRotatedRankFourLandauTensorBase::validParams();
   params.addClassDescription("Compute the quartic Landau coefficient tensor.");
   params.addRequiredParam<std::vector<Real> >("a_ijkl", "Landau tensor for material oriented [001]");
   params.addParam<MooseEnum>("fill_method", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");

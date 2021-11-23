@@ -25,11 +25,10 @@
 
 registerMooseObject("FerretApp", DivCurrentV);
 
-template <>
 InputParameters
-validParams<DivCurrentV>()
+DivCurrentV::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to modified ohm's law");
   params.addRequiredCoupledVar("potential_E_int", "electrical potential");
   params.addRequiredCoupledVar("T", "temperature");

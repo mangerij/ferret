@@ -28,11 +28,10 @@
 
 registerMooseObject("FerretApp", SDFourierNoise);
 
-template <>
 InputParameters
-validParams<SDFourierNoise>()
+SDFourierNoise::validParams()
 {
-  InputParameters params = validParams<Function>();
+  InputParameters params = Function::validParams();
   params.addClassDescription("Generate noise from a fourier series");
   params.addRequiredParam<Real>("lambda",
                                 "Wavelength cut off (set to about twice the interfacial width)");

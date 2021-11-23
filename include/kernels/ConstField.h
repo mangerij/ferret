@@ -24,17 +24,13 @@
 
 #include "Kernel.h"
 
-//Forward Declarations
-class ConstField;
-
-template<>
-InputParameters validParams<ConstField>();
-
 class ConstField: public Kernel
 {
 public:
 
   ConstField(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

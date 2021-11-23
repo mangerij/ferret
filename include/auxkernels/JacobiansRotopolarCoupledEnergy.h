@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class JacobiansRotopolarCoupledEnergy;
-
-template<>
-InputParameters validParams<JacobiansRotopolarCoupledEnergy>();
-
 class JacobiansRotopolarCoupledEnergy : public AuxKernel
 {
 public:
   JacobiansRotopolarCoupledEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

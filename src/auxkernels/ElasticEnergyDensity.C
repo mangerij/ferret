@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", ElasticEnergyDensity);
 
-template<>
-InputParameters validParams<ElasticEnergyDensity>()
+InputParameters ElasticEnergyDensity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Computes the free energy density due to the local elastic interaction");
   return params;
 }

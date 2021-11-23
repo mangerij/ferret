@@ -24,12 +24,10 @@
 
 registerMooseObject("FerretApp", BFOEigenstrain);
 
-template<>
-
-InputParameters validParams<BFOEigenstrain>()
+InputParameters BFOEigenstrain::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<unsigned int>("index_j", "component");
   params.addRequiredParam<unsigned int>("index_k", "component");
   params.addRequiredCoupledVar("antiferrodis_A_x",

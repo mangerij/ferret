@@ -23,15 +23,12 @@
 
 #include "Kernel.h"
 
-class ExchangeUSLL;
-
-template<>
-InputParameters validParams<ExchangeUSLL>();
-
 class  ExchangeUSLL: public Kernel
 {
 public:
   ExchangeUSLL(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

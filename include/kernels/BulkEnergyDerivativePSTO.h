@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class BulkEnergyDerivativePSTO;
-
-template<>
-InputParameters validParams<BulkEnergyDerivativePSTO>();
-
 class BulkEnergyDerivativePSTO: public Kernel
 {
 public:
 
   BulkEnergyDerivativePSTO(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

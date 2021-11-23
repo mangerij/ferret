@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class MagneticExcessLLBEnergy;
-
-template<>
-InputParameters validParams<MagneticExcessLLBEnergy>();
-
 class MagneticExcessLLBEnergy : public ElementIntegralPostprocessor
 {
 public:
   MagneticExcessLLBEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

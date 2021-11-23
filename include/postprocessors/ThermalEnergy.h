@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class ThermalEnergy;
-
-template<>
-InputParameters validParams<ThermalEnergy>();
-
 class ThermalEnergy : public ElementIntegralPostprocessor
 {
 public:
   ThermalEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

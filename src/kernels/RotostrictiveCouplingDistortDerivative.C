@@ -25,10 +25,9 @@ class RotostrictiveCouplingDistortDerivative;
 
 registerMooseObject("FerretApp", RotostrictiveCouplingDistortDerivative);
 
-template<>
-InputParameters validParams<RotostrictiveCouplingDistortDerivative>()
+InputParameters RotostrictiveCouplingDistortDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addRequiredCoupledVar("u_x", "The x component of the local elastic displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local elastic displacement");
   params.addCoupledVar("u_z", 0.0, "The z component of the local elastic displacement");

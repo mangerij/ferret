@@ -26,20 +26,17 @@
 #include "RandomData.h"
 #include "MooseRandom.h"
 
-// Forward Declarations
-class CorrelatedRandomFieldIC;
 namespace libMesh 
 { 
 class Point; 
 }
 
-template<>
-InputParameters validParams<CorrelatedRandomFieldIC>();
-
 class CorrelatedRandomFieldIC : public InitialCondition
 {
 public:
   CorrelatedRandomFieldIC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   void initialSetup() override;
   virtual std::vector<std::vector<std::vector<std::vector<Real>>>> fourierCoeffs();

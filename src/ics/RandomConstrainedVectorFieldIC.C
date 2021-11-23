@@ -26,10 +26,9 @@
 
 registerMooseObject("FerretApp", RandomConstrainedVectorFieldIC);
 
-template<>
-InputParameters validParams<RandomConstrainedVectorFieldIC>()
+InputParameters RandomConstrainedVectorFieldIC::validParams()
 {
-  InputParameters params = validParams<InitialCondition>();
+  InputParameters params = InitialCondition::validParams();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this IC is set. (0 for x, 1 for y, 2.0 for z)");
   params.addRequiredCoupledVar("phi", "The field of random azimuthal angles");
   params.addRequiredCoupledVar("theta", "The field of random polar angles");

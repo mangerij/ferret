@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class InteractionCartLL;
-
-template<>
-InputParameters validParams<InteractionCartLL>();
-
 class InteractionCartLL: public Kernel
 {
 public:
 
   InteractionCartLL(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", MicroforceElectrostrictiveCouplingEnergy);
 
-template<>
-InputParameters validParams<MicroforceElectrostrictiveCouplingEnergy>()
+InputParameters MicroforceElectrostrictiveCouplingEnergy::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Computes the free energy density of the local electrostrictive coupling.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredCoupledVar("u_x", "The x component of the displacement");

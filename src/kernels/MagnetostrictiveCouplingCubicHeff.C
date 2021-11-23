@@ -26,10 +26,9 @@ class MagnetostrictiveCouplingCubicHeff;
 
 registerMooseObject("FerretApp", MagnetostrictiveCouplingCubicHeff);
 
-template<>
-InputParameters validParams<MagnetostrictiveCouplingCubicHeff>()
+InputParameters MagnetostrictiveCouplingCubicHeff::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to the magnetoelectric effective field. Note for cubic magnets only.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");

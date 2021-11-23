@@ -29,10 +29,9 @@
 
 registerMooseObject("FerretApp", SurfaceMechanicsBC);
 
-template<>
-InputParameters validParams<SurfaceMechanicsBC>()
+InputParameters SurfaceMechanicsBC::validParams()
 {
-  InputParameters params = validParams<IntegratedBC>();
+  InputParameters params = IntegratedBC::validParams();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addRequiredParam<std::vector<Real> >("Cs_ijkl", "Surface elastic tensor,  C_1111, C_1112, C_1122, C_1212, C_1222, C_1211, C_2211, C_2212, C_2222"); //read (at most) 9 components of the surface elastic tensor
   params.addRequiredParam<RealVectorValue>("S_k", "Surface euler angle vector,  S_1, S_2, S_3"); //read (at most) 9 components of the surface elastic tensor

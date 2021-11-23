@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class InducedPBulkEnergyDensity;
-
-template<>
-InputParameters validParams<InducedPBulkEnergyDensity>();
-
 class InducedPBulkEnergyDensity : public AuxKernel
 {
 public:
   InducedPBulkEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

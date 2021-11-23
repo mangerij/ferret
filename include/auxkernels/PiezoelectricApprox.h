@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class PiezoelectricApprox;
-
-template<>
-InputParameters validParams<PiezoelectricApprox>();
-
-
 class PiezoelectricApprox : public AuxKernel
 {
 public:
   PiezoelectricApprox(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~PiezoelectricApprox() {}
 

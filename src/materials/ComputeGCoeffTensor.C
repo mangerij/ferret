@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputeGCoeffTensor);
 
-template<>
-InputParameters validParams<ComputeGCoeffTensor>()
+InputParameters ComputeGCoeffTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedGCoeffTensorBase>();
+  InputParameters params = ComputeRotatedGCoeffTensorBase::validParams();
   params.addClassDescription("Compute a polar-optic (g) tensor.");
   params.addRequiredParam<std::vector<Real> >("g_ijkl", "polar-optic tensor for material");
   params.addParam<MooseEnum>("fill_method", RankFourTensor::fillMethodEnum() = "symmetric9", "The fill method");

@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class ElectrostaticEnergy;
-
-template<>
-InputParameters validParams<ElectrostaticEnergy>();
-
 class ElectrostaticEnergy : public ElementIntegralPostprocessor
 {
 public:
   ElectrostaticEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

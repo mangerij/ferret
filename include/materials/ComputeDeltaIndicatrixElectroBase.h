@@ -26,11 +26,6 @@
 #include "RankThreeTensor.h"
 #include "RankTwoTensor.h"
 
-class ComputeDeltaIndicatrixElectroBase;
-
-template<>
-InputParameters validParams<ComputeDeltaIndicatrixElectroBase>();
-
 /**
  * ComputeIndicatrixElectroBase the base class for computing electrooptic tensors
  */
@@ -38,6 +33,8 @@ class ComputeDeltaIndicatrixElectroBase : public Material
 {
 public:
   ComputeDeltaIndicatrixElectroBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", BandGapAuxZnO);
 
-template <>
-InputParameters validParams<BandGapAuxZnO>()
+InputParameters BandGapAuxZnO::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the changes to local band gap due to the elastic strain fields.");
   params.addParam<Real>("relaxed_energy", 0.0,"relaxed energy");
   params.addParam<Real>("biaxial_strain_rate", 0.0, "uniaxial strain rate");

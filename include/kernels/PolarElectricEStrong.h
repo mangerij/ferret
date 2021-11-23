@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class PolarElectricEStrong;
-
-template<>
-InputParameters validParams<PolarElectricEStrong>();
-
 class PolarElectricEStrong: public Kernel
 {
 public:
 
   PolarElectricEStrong(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

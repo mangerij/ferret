@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class WindingNumberDensity;
-
-template<>
-InputParameters validParams<WindingNumberDensity>();
-
 class WindingNumberDensity : public AuxKernel
 {
 public:
   WindingNumberDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

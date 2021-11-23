@@ -25,10 +25,9 @@ class MagHStrongCartFeCrCoAlloy;
 
 registerMooseObject("FerretApp", MagHStrongCartFeCrCoAlloy);
 
-template<>
-InputParameters validParams<MagHStrongCartFeCrCoAlloy>()
+InputParameters MagHStrongCartFeCrCoAlloy::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for bound magnetic charge (div M)");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetic vector");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetic vector");

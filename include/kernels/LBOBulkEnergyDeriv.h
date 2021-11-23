@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class LBOBulkEnergyDeriv;
-
-template<>
-InputParameters validParams<LBOBulkEnergyDeriv>();
-
 class LBOBulkEnergyDeriv: public Kernel
 {
 public:
 
   LBOBulkEnergyDeriv(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

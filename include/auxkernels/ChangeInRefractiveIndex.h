@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class ChangeInRefractiveIndex;
-
-template<>
-InputParameters validParams<ChangeInRefractiveIndex>();
-
-
 class ChangeInRefractiveIndex : public AuxKernel
 {
 public:
   ChangeInRefractiveIndex(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ChangeInRefractiveIndex() {}
 

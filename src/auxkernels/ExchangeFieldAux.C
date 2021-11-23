@@ -23,11 +23,9 @@
 
 registerMooseObject("FerretApp", ExchangeFieldAux);
 
-template<>
-
-InputParameters validParams<ExchangeFieldAux>()
+InputParameters ExchangeFieldAux::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Computes the exchange field");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");

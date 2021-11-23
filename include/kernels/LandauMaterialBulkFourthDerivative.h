@@ -26,16 +26,13 @@
 #include "ComputeRankTwoLandauTensor.h"
 #include "ComputeRankFourLandauTensor.h"
 
-class LandauMaterialBulkFourthDerivative;
-
-template<>
-InputParameters validParams<LandauMaterialBulkFourthDerivative>();
-
 class LandauMaterialBulkFourthDerivative: public Kernel
 {
 public:
 
   LandauMaterialBulkFourthDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

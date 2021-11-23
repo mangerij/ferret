@@ -25,10 +25,9 @@ class MagHStrongSublatticesCart;
 
 registerMooseObject("FerretApp", MagHStrongSublatticesCart);
 
-template<>
-InputParameters validParams<MagHStrongSublatticesCart>()
+InputParameters MagHStrongSublatticesCart::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for bound magnetic charge (div M1 + div M2)");
   params.addRequiredCoupledVar("mag1_x", "The x component of a constrained sublattice magnetic vector");
   params.addRequiredCoupledVar("mag1_y", "The y component of a constrained sublattice magnetic vector");

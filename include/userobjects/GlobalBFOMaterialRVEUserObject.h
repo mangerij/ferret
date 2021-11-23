@@ -28,15 +28,12 @@
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
 
-class GlobalBFOMaterialRVEUserObject;
-
-template <>
-InputParameters validParams<GlobalBFOMaterialRVEUserObject>();
-
 class GlobalBFOMaterialRVEUserObject : public ElementUserObject, public GlobalStrainUserObjectInterface
 {
 public:
   GlobalBFOMaterialRVEUserObject(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   void initialize() override;
   void execute() override;

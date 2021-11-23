@@ -1,10 +1,9 @@
 #include "ComputeRotatedThermalConductivityTensorBase.h"
 #include "RotationTensor.h"
-template <>
 InputParameters
-validParams<ComputeRotatedThermalConductivityTensorBase>()
+ComputeRotatedThermalConductivityTensorBase::validParams()
 {
-  InputParameters params = validParams<ComputeThermalConductivityTensorBase>();
+  InputParameters params = ComputeThermalConductivityTensorBase::validParams();
   params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
   params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
   params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");

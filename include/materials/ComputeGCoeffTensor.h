@@ -26,11 +26,6 @@
 #include "ComputeRotatedGCoeffTensorBase.h"
 #include "libmesh/quadrature.h"
 
-class ComputeGCoeffTensor;
-
-template<>
-InputParameters validParams<ComputeGCoeffTensor>();
-
 /**
  * ComputeGCoeffTensor defines an photostrictive tensor material object with a given base name.
  */
@@ -38,6 +33,8 @@ class ComputeGCoeffTensor : public ComputeRotatedGCoeffTensorBase
 {
 public:
   ComputeGCoeffTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpGCoeffTensor();

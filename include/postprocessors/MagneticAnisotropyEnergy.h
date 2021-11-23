@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class MagneticAnisotropyEnergy;
-
-template<>
-InputParameters validParams<MagneticAnisotropyEnergy>();
-
 class MagneticAnisotropyEnergy : public ElementIntegralPostprocessor
 {
 public:
   MagneticAnisotropyEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

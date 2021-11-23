@@ -25,17 +25,13 @@
 #include "Kernel.h"
 #include "RankTwoTensor.h"
 
-//Forward Declarations
-class PertsevStressCoupling;
-
-template<>
-InputParameters validParams<PertsevStressCoupling>();
-
 class PertsevStressCoupling: public Kernel
 {
 public:
 
   PertsevStressCoupling(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

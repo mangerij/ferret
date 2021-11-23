@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", VectorMag);
 
-template<>
-InputParameters validParams<VectorMag>()
+InputParameters VectorMag::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("vector_x", "The x component of the vector");
   params.addRequiredCoupledVar("vector_y", "The y component of the vector");
   params.addCoupledVar("vector_z", 0.0, "The z component of the vector");

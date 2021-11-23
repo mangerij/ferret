@@ -25,12 +25,10 @@
 
 registerMooseObject("FerretApp", ElastoChangeInRefractiveIndex);
 
-template<>
-
-InputParameters validParams<ElastoChangeInRefractiveIndex>()
+InputParameters ElastoChangeInRefractiveIndex::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the changes to local refractive index due to the elastooptic effect.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding changes in the refractive index's index (0, 1, 2, 3, 4, 5)");
   params.addRequiredCoupledVar("u_x", "The x component of the elastic displacement");

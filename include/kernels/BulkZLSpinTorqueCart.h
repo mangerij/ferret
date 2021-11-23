@@ -24,15 +24,12 @@
 
 #include "Kernel.h"
 
-class BulkZLSpinTorqueCart;
-
-template<>
-InputParameters validParams<BulkZLSpinTorqueCart>();
-
 class  BulkZLSpinTorqueCart: public Kernel
 {
 public:
   BulkZLSpinTorqueCart(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class SDBulkEnergyDensity;
-
-template<>
-InputParameters validParams<SDBulkEnergyDensity>();
-
 class SDBulkEnergyDensity : public AuxKernel
 {
 public:
   SDBulkEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class MicroforceRotopolarCoupledPolarEnergy;
-
-template<>
-InputParameters validParams<MicroforceRotopolarCoupledPolarEnergy>();
-
 class MicroforceRotopolarCoupledPolarEnergy : public AuxKernel
 {
 public:
   MicroforceRotopolarCoupledPolarEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

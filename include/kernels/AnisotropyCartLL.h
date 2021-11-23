@@ -24,15 +24,12 @@
 
 #include "Kernel.h"
 
-class AnisotropyCartLL;
-
-template<>
-InputParameters validParams<AnisotropyCartLL>();
-
 class AnisotropyCartLL: public Kernel
 {
 public:
   AnisotropyCartLL(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

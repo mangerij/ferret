@@ -25,15 +25,12 @@
 #include "Kernel.h"
 #include "Material.h"
 
-class ThermalDiffusion;
-
-template <>
-InputParameters validParams<ThermalDiffusion>();
-
 class ThermalDiffusion : public Kernel
 {
 public:
   ThermalDiffusion(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

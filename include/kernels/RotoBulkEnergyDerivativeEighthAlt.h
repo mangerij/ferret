@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class RotoBulkEnergyDerivativeEighthAlt;
-
-template<>
-InputParameters validParams<RotoBulkEnergyDerivativeEighthAlt>();
-
 class RotoBulkEnergyDerivativeEighthAlt: public Kernel
 {
 public:
 
   RotoBulkEnergyDerivativeEighthAlt(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

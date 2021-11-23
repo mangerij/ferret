@@ -24,15 +24,12 @@
 
 #include "Kernel.h"
 
-class DivCurrentV;
-
-template <>
-InputParameters validParams<DivCurrentV>();
-
 class DivCurrentV : public Kernel
 {
 public:
   DivCurrentV(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

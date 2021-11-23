@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", HydrostaticBC);
 
-template<>
-InputParameters validParams<HydrostaticBC>()
+InputParameters HydrostaticBC::validParams()
 {
-  InputParameters params = validParams<IntegratedBC>();
+  InputParameters params = IntegratedBC::validParams();
   params.addRequiredParam<Real>("pressure","Specify the hydrostatic pressure");
   params.addRequiredParam<int>("component","Component of displacement for BC");
 

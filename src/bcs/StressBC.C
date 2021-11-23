@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", StressBC);
 
-template<>
-InputParameters validParams<StressBC>()
+InputParameters StressBC::validParams()
 {
-    InputParameters params = validParams<IntegratedBC>();
+    InputParameters params = IntegratedBC::validParams();
     params.addRequiredParam<int>("component","Which component(0 for x, 1 for y, 2 for z) in traction is used");
     params.addParam<std::vector<Real> >("boundary_stress", "Boundary stress: s11, s22, s33, s23, s13, s12");
     params.addCoupledVar("boundary_stress_vars", "Variable names for the: s11, s22, s33");

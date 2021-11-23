@@ -25,10 +25,9 @@ class MagHStrong;
 
 registerMooseObject("FerretApp", MagHStrong);
 
-template<>
-InputParameters validParams<MagHStrong>()
+InputParameters MagHStrong::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for bound magnetic charge (div M)");
   params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");
   params.addRequiredCoupledVar("polar_theta", "The polar component of the constrained magnetic vector");

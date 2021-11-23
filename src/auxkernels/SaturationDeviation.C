@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", SaturationDeviation);
 
-template<>
-InputParameters validParams<SaturationDeviation>()
+InputParameters SaturationDeviation::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
   params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization");

@@ -63,10 +63,9 @@ using namespace libMesh;
 
 registerMooseObject("FerretApp", BoundaryIntegralFMM);
 
-template<>
-InputParameters validParams<BoundaryIntegralFMM>()
+InputParameters BoundaryIntegralFMM::validParams()
 {
-  InputParameters params = validParams<GeneralUserObject>();
+  InputParameters params = GeneralUserObject::validParams();
 
   params.set<std::string>("built_by_action") = "add_user_object";
 

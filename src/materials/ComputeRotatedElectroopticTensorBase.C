@@ -22,10 +22,9 @@
 #include "ComputeRotatedElectroopticTensorBase.h"
 #include "RotationTensor.h"
 
-template<>
-InputParameters validParams<ComputeRotatedElectroopticTensorBase>()
+InputParameters ComputeRotatedElectroopticTensorBase::validParams()
 {
-  InputParameters params = validParams<ComputeElectroopticTensorBase>();
+  InputParameters params = ComputeElectroopticTensorBase::validParams();
   params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
   params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
   params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");

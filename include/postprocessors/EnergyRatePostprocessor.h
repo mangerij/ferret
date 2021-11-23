@@ -24,11 +24,6 @@
 
 #include "GeneralPostprocessor.h"
 
-class EnergyRatePostprocessor;
-
-template<>
-InputParameters validParams<EnergyRatePostprocessor>();
-
 /**
  * This postprocessor displays the change in the postprocessor between
  * adjacent timesteps divided by the time step
@@ -38,6 +33,8 @@ InputParameters validParams<EnergyRatePostprocessor>();
  {
  public:
    EnergyRatePostprocessor(const InputParameters & parameters);
+  static InputParameters validParams();
+
    virtual void initialize();
    virtual void execute();
    virtual Real getValue();

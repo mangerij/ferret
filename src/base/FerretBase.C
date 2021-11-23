@@ -21,8 +21,7 @@
 
 #include "FerretBase.h"
 
-template<>
-InputParameters validParams<FerretBase>()
+InputParameters FerretBase::validParams()
 {
   InputParameters params = emptyInputParameters();
   params.addParam<std::vector<std::string> >("Debug", std::vector<std::string>(), "Debug strings");

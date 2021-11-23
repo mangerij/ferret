@@ -23,11 +23,10 @@
 
 registerMooseObject("FerretApp", DMInteractionEnergy);
 
-template<>
-InputParameters validParams<DMInteractionEnergy>()
+InputParameters DMInteractionEnergy::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization vector");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetization vector");

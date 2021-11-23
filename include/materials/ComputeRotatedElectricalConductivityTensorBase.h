@@ -24,11 +24,6 @@
 
 #include "ComputeElectricalConductivityTensorBase.h"
 
-class ComputeRotatedElectricalConductivityTensorBase;
-
-template <>
-InputParameters validParams<ComputeRotatedElectricalConductivityTensorBase>();
-
 /**
  * ComputeRotatedElectricalConductivityTensorBase is an intermediate base class that rotates the
  * linear ElectricalConductivity tensor, g_{ij},  based on euler angles.
@@ -38,6 +33,8 @@ class ComputeRotatedElectricalConductivityTensorBase
 {
 public:
   ComputeRotatedElectricalConductivityTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

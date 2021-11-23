@@ -25,10 +25,9 @@ class MagHStrongCart;
 
 registerMooseObject("FerretApp", MagHStrongCart);
 
-template<>
-InputParameters validParams<MagHStrongCart>()
+InputParameters MagHStrongCart::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for bound magnetic charge (div M)");
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetic vector");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetic vector");

@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", TotalWinding);
 
-template<>
-InputParameters validParams<TotalWinding>()
+InputParameters TotalWinding::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over winding number density.");
   params.addRequiredCoupledVar("q", "The winding number density");
   return params;

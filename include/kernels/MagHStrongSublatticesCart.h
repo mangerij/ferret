@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class MagHStrongSublatticesCart;
-
-template<>
-InputParameters validParams<MagHStrongSublatticesCart>();
-
 class MagHStrongSublatticesCart: public Kernel
 {
 public:
 
   MagHStrongSublatticesCart(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

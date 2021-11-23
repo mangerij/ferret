@@ -24,16 +24,13 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class AnisotropicEnergy;
-
-template<>
-InputParameters validParams<AnisotropicEnergy>();
-
 class AnisotropicEnergy: public ElementIntegralPostprocessor
 {
 public:
 
   AnisotropicEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

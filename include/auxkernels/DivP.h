@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class DivP;
-
-template<>
-InputParameters validParams<DivP>();
-
 class DivP : public AuxKernel
 {
 public:
   DivP(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~DivP() {}
 

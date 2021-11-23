@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class CurlPMag;
-
-template<>
-InputParameters validParams<CurlPMag>();
-
 class CurlPMag : public AuxKernel
 {
 public:
   CurlPMag(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~CurlPMag() {}
 

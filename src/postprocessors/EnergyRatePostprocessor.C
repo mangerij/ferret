@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", EnergyRatePostprocessor);
 
-template<>
-InputParameters validParams<EnergyRatePostprocessor>()
+InputParameters EnergyRatePostprocessor::validParams()
 {
-  InputParameters params = validParams<GeneralPostprocessor>();
+  InputParameters params = GeneralPostprocessor::validParams();
   params.addClassDescription("Calculates the change of a postprocessor divided by the time step.");
   params.addRequiredParam<PostprocessorName>("postprocessor", "The name of the postprocessor used for exit criterion");
   params.addRequiredParam<PostprocessorName>("dt", "The dt postprocessor");

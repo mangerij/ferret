@@ -23,11 +23,10 @@
 
 registerMooseObject("FerretApp", SeebeckEffect);
 
-template <>
 InputParameters
-validParams<SeebeckEffect>()
+SeebeckEffect::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a contribution due to nabla.j = 0");
   params.addParam<MaterialPropertyName>("sbC", "seebeck_coefficient");
   params.addRequiredCoupledVar("potential_E_int", "electrical potential");

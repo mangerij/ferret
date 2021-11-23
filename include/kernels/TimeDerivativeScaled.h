@@ -26,15 +26,12 @@
 #include "libmesh/quadrature.h"
 #include "Assembly.h"
 
-class TimeDerivativeScaled;
-
-template<>
-InputParameters validParams<TimeDerivativeScaled>();
-
 class TimeDerivativeScaled : public TimeKernel
 {
 public:
   TimeDerivativeScaled(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual void computeJacobian();
 

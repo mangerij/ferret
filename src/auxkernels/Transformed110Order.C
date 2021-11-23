@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", Transformed110Order);
 
-template<>
-InputParameters validParams<Transformed110Order>()
+InputParameters Transformed110Order::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<bool>("inverse", "If this is true then inverse transformation is calculated");
   params.addRequiredParam<unsigned int>("component", "the component of the transformed vector to store");
   params.addRequiredCoupledVar("order_param_x", "The x component of the order parameter");

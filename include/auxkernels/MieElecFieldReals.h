@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class MieElecFieldReals;
-
-template<>
-InputParameters validParams<MieElecFieldReals>();
-
-
 class MieElecFieldReals : public AuxKernel
 {
 public:
   MieElecFieldReals(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~MieElecFieldReals() {}
 

@@ -22,12 +22,10 @@
 #include "CurlPMag.h"
 registerMooseObject("FerretApp", CurlPMag);
 
-template<>
-
-InputParameters validParams<CurlPMag>()
+InputParameters CurlPMag::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the magnitude of the local curl of the polarization field.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

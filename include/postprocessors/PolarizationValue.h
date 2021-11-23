@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class PolarizationValue;
-
-template<>
-InputParameters validParams<PolarizationValue>();
-
 class PolarizationValue: public ElementIntegralPostprocessor
 {
 public:
   PolarizationValue(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

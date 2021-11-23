@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class BFOEigenstrain;
-
-template<>
-InputParameters validParams<BFOEigenstrain>();
-
-
 class BFOEigenstrain : public AuxKernel
 {
 public:
   BFOEigenstrain(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~BFOEigenstrain() {}
 

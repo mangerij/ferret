@@ -25,10 +25,9 @@ class Transformed111RotostrictiveCouplingDistortDerivative;
 
 registerMooseObject("FerretApp", Transformed111RotostrictiveCouplingDistortDerivative);
 
-template<>
-InputParameters validParams<Transformed111RotostrictiveCouplingDistortDerivative>()
+InputParameters Transformed111RotostrictiveCouplingDistortDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to the variation w.r.t antiferrodis_Aization of the electrostrictive coupling energy. Note: for cubic parent phase only only.");
   params.addRequiredCoupledVar("u_x", "The x component of the local elastic displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local elastic displacement");

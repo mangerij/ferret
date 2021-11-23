@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankFourTensor.h"
 
-class ComputeElectrostrictiveTensorBase;
-
-template<>
-InputParameters validParams<ComputeElectrostrictiveTensorBase>();
-
 /**
  * ComputeElectrostrictiveTensorBase the base class for computing electrostrictive tensors
  */
@@ -37,6 +32,8 @@ class ComputeElectrostrictiveTensorBase : public Material
 {
 public:
   ComputeElectrostrictiveTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

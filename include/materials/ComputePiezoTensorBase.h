@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankThreeTensor.h"
 
-class ComputePiezoTensorBase;
-
-template<>
-InputParameters validParams<ComputePiezoTensorBase>();
-
 /**
  * ComputePiezoTensorBase the base class for computing photostrictive tensors
  */
@@ -37,6 +32,8 @@ class ComputePiezoTensorBase : public Material
 {
 public:
   ComputePiezoTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

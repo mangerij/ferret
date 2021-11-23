@@ -22,12 +22,10 @@
 #include "DivP.h"
 registerMooseObject("FerretApp", DivP);
 
-template<>
-
-InputParameters validParams<DivP>()
+InputParameters DivP::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates div P");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

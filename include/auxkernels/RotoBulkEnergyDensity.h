@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class RotoBulkEnergyDensity;
-
-template<>
-InputParameters validParams<RotoBulkEnergyDensity>();
-
 class RotoBulkEnergyDensity : public AuxKernel
 {
 public:
   RotoBulkEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

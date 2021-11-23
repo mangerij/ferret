@@ -26,13 +26,11 @@
 #include "RankFourTensor.h"
 #include "RankTwoTensor.h"
 
-class LocalABO3EigenstressAux;
-
-template <> InputParameters validParams<LocalABO3EigenstressAux>();
-
 class LocalABO3EigenstressAux : public NodalPatchRecovery {
 public:
   LocalABO3EigenstressAux(const InputParameters &parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

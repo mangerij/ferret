@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", BulkEnergyEighth);
 
-template<>
-InputParameters validParams<BulkEnergyEighth>()
+InputParameters BulkEnergyEighth::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral whose integrand is the eighth order expansion of the polarization.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class CalcMagFeCrCo;
-
-template<>
-InputParameters validParams<CalcMagFeCrCo>();
-
 class CalcMagFeCrCo : public AuxKernel
 {
 public:
   CalcMagFeCrCo(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~CalcMagFeCrCo() {}
 

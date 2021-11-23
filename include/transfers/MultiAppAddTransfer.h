@@ -11,12 +11,6 @@
 
 #include "MultiAppFieldAddTransfer.h"
 
-// Forward declarations
-class MultiAppAddTransfer;
-
-template <>
-InputParameters validParams<MultiAppAddTransfer>();
-
 /**
  * Add the value to the target domain from the nearest node in the source domain.
  */

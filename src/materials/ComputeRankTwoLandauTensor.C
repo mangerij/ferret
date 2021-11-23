@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputeRankTwoLandauTensor);
 
-template<>
-InputParameters validParams<ComputeRankTwoLandauTensor>()
+InputParameters ComputeRankTwoLandauTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedRankTwoLandauTensorBase>();
+  InputParameters params = ComputeRotatedRankTwoLandauTensorBase::validParams();
   params.addClassDescription("Compute the quadratic Landau coefficient tensor.");
   params.addRequiredParam<std::vector<Real> >("a_ij", "Landau tensor for material oriented [001]");
   //params.addParam<MooseEnum>("fill_method", RankTwoTensor::fillMethodEnum() = "symmetric6", "The fill method");

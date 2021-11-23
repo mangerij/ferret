@@ -22,12 +22,10 @@
 #include "PzSq.h"
 registerMooseObject("FerretApp", PzSq);
 
-template<>
-
-InputParameters validParams<PzSq>()
+InputParameters PzSq::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Stores the squared value of the z-component of the polarization.");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return params;

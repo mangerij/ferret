@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class ComputePolarOpticTensorBase;
-
-template<>
-InputParameters validParams<ComputePolarOpticTensorBase>();
-
 /**
  * ComputePolarOpticTensorBase the base class for computing polar-optic tensors
  */
@@ -37,6 +32,8 @@ class ComputePolarOpticTensorBase : public Material
 {
 public:
   ComputePolarOpticTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

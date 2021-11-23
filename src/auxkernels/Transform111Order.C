@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", Transform111Order);
 
-template<>
-InputParameters validParams<Transform111Order>()
+InputParameters Transform111Order::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<unsigned int>("component", "the component of the transformed vector to store");
   params.addRequiredCoupledVar("order_param_x", "The x component of the order parameter");
   params.addRequiredCoupledVar("order_param_y", "The y component of the order parameter");

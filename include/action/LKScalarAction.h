@@ -40,6 +40,3 @@ protected:
 
 };
 
-template <>
-InputParameters validParams<LKScalarAction>();
-

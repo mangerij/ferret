@@ -5,15 +5,12 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class ElectricFluxTensor;
-
-template<>
-InputParameters validParams<ElectricFluxTensor>();
-
 class ElectricFluxTensor : public AuxKernel
 {
 public:
 ElectricFluxTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 virtual ~ElectricFluxTensor() {}
 

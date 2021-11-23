@@ -22,12 +22,10 @@
 #include "PontryaginDensity.h"
 registerMooseObject("FerretApp", PontryaginDensity);
 
-template<>
-
-InputParameters validParams<PontryaginDensity>()
+InputParameters PontryaginDensity::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");

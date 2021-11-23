@@ -61,10 +61,9 @@ valueHelper(dof_id_type id, MooseRandom & generator, std::map<dof_id_type, Real>
 
 registerMooseObject("FerretApp", CorrelatedRandomFieldIC);
 
-template<>
-InputParameters validParams<CorrelatedRandomFieldIC>()
+InputParameters CorrelatedRandomFieldIC::validParams()
 {
-  InputParameters params = validParams<InitialCondition>();
+  InputParameters params = InitialCondition::validParams();
   params.addRequiredParam<Real>("Lcorr", "correlation length scale");
 
   MooseEnum dims("1=1 2 3");

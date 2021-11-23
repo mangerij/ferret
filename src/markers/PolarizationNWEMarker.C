@@ -26,10 +26,9 @@
 
 registerMooseObject("FerretApp", PolarizationNWEMarker);
 
-template<>
-InputParameters validParams<PolarizationNWEMarker>()
+InputParameters PolarizationNWEMarker::validParams()
 {
-  InputParameters params = validParams<Marker>();
+  InputParameters params = Marker::validParams();
 
   MooseEnum third_state("DONT_MARK=-1 COARSEN DO_NOTHING REFINE", "DONT_MARK");
   params.addParam<MooseEnum>("third_state", third_state, "The Marker state to apply to values falling in-between the coarsen and refine thresholds.");

@@ -24,15 +24,12 @@
 
 #include "Kernel.h"
 
-class SublatticeAFMCoupling;
-
-template<>
-InputParameters validParams<SublatticeAFMCoupling>();
-
 class  SublatticeAFMCoupling: public Kernel
 {
 public:
   SublatticeAFMCoupling(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

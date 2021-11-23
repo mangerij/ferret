@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class MagFieldAux;
-
-template<>
-InputParameters validParams<MagFieldAux>();
-
 class MagFieldAux : public AuxKernel
 {
 public:
   MagFieldAux(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~MagFieldAux() {}
 

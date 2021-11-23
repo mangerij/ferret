@@ -26,11 +26,10 @@
 
 registerMooseObject("FerretApp", Transformed111GlobalBFOMaterialRVEUserObject);
 
-template <>
 InputParameters
-validParams<Transformed111GlobalBFOMaterialRVEUserObject>()
+Transformed111GlobalBFOMaterialRVEUserObject::validParams()
 {
-  InputParameters params = validParams<ElementUserObject>();
+  InputParameters params = ElementUserObject::validParams();
   params.addClassDescription(
       "Global Strain UserObject to provide Residual and diagonal Jacobian entry");
   params.addParam<std::vector<Real>>("applied_stress_tensor",

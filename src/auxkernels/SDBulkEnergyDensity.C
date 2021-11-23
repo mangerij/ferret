@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", SDBulkEnergyDensity);
 
-template<>
-InputParameters validParams<SDBulkEnergyDensity>()
+InputParameters SDBulkEnergyDensity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the free energy density dependent on the local polarization field.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

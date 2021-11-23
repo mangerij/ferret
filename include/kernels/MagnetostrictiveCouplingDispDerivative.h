@@ -24,17 +24,13 @@
 
 #include "Kernel.h"
 
-//Forward Declarations
-class MagnetostrictiveCouplingDispDerivative;
-
-template<>
-InputParameters validParams<MagnetostrictiveCouplingDispDerivative>();
-
 class MagnetostrictiveCouplingDispDerivative: public Kernel
 {
 public:
 
   MagnetostrictiveCouplingDispDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

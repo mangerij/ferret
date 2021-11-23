@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class WallEnergyDensity;
-
-template<>
-InputParameters validParams<WallEnergyDensity>();
-
 class WallEnergyDensity : public AuxKernel
 {
 public:
   WallEnergyDensity(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeValue();

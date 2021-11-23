@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", ComputeDeltaIndicatrix);
 
-template<>
-InputParameters validParams<ComputeDeltaIndicatrix>()
+InputParameters ComputeDeltaIndicatrix::validParams()
 {
-  InputParameters params = validParams<ComputeDeltaIndicatrixBase>();
+  InputParameters params = ComputeDeltaIndicatrixBase::validParams();
   params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor).");
   return params;
 }

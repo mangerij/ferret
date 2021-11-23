@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", ScalarBulkEnergyP);
 
-template <>
 InputParameters
-validParams<ScalarBulkEnergyP>()
+ScalarBulkEnergyP::validParams()
 {
-  InputParameters params = validParams<ODEKernel>();
+  InputParameters params = ODEKernel::validParams();
   params.addCoupledVar("polar_x", "variable polar_x coupled into this kernel");
   params.addCoupledVar("polar_y", "variable polar_y coupled into this kernel");
   params.addCoupledVar("polar_z", "variable polar_z coupled into this kernel");

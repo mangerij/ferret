@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", RotoPolarCoupledEnergyDistortDerivativeAlt);
 
-template<>
-InputParameters validParams<RotoPolarCoupledEnergyDistortDerivativeAlt>()
+InputParameters RotoPolarCoupledEnergyDistortDerivativeAlt::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");

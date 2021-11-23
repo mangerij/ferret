@@ -25,11 +25,6 @@
 #include "RankTwoTensor.h"
 #include "ComputeRotatedSeebeckTensorBase.h"
 
-class ComputeSeebeckTensor;
-
-template <>
-InputParameters validParams<ComputeSeebeckTensor>();
-
 /**
  * ComputeSeebeckTensor defines a linear Seebeck tensor material object with a given base name.
  */
@@ -37,6 +32,8 @@ class ComputeSeebeckTensor : public ComputeRotatedSeebeckTensorBase
 {
 public:
   ComputeSeebeckTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpSeebeckTensor();

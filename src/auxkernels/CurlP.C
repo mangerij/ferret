@@ -22,12 +22,10 @@
 #include "CurlP.h"
 registerMooseObject("FerretApp", CurlP);
 
-template<>
-
-InputParameters validParams<CurlP>()
+InputParameters CurlP::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the local curl of the polarization? TODO: need to fix this...");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

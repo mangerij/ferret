@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class WallEnergy;
-
-template<>
-InputParameters validParams<WallEnergy>();
-
 class WallEnergy : public ElementIntegralPostprocessor
 {
 public:
   WallEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

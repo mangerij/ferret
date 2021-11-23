@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", DomainFunc);
 
-template <>
 InputParameters
-validParams<DomainFunc>()
+DomainFunc::validParams()
 {
-  InputParameters params = validParams<Function>();
+  InputParameters params = Function::validParams();
   params.addRequiredParam<Real>("ax", "Width of ferroelectric");
   params.addRequiredParam<Real>("af", "Thickness of ferroelectric");
   params.addRequiredParam<Real>("min", "Min value for random perturbation of polarization");

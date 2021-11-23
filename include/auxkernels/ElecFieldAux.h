@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class ElecFieldAux;
-
-template<>
-InputParameters validParams<ElecFieldAux>();
-
 class ElecFieldAux : public AuxKernel
 {
 public:
   ElecFieldAux(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ElecFieldAux() {}
 

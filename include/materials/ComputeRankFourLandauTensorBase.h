@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankFourTensor.h"
 
-class ComputeRankFourLandauTensorBase;
-
-template<>
-InputParameters validParams<ComputeRankFourLandauTensorBase>();
-
 /**
  * ComputeLandauTensorBase the base class for computing Landau expansion tensors
  */
@@ -37,6 +32,8 @@ class ComputeRankFourLandauTensorBase : public Material
 {
 public:
   ComputeRankFourLandauTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

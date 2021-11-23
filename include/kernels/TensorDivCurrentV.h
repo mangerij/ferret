@@ -26,16 +26,13 @@
 #include "Material.h"
 #include "RankTwoTensor.h"//added for tensor calculation
 
-class TensorDivCurrentV;
-
-template<>
-InputParameters validParams<TensorDivCurrentV>();
-
 class TensorDivCurrentV: public Kernel
 {
 public:
 
   TensorDivCurrentV(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

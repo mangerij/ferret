@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ZTAux);
 
-template <>
-InputParameters validParams<ZTAux>()
+InputParameters ZTAux::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates thermoelectric figure of merit");
   params.addCoupledVar("T", "Temperature variable in Kelvin");
 

@@ -21,10 +21,9 @@
 
 #include "ComputeRotatedIndicatrixBase.h"
 
-template<>
-InputParameters validParams<ComputeRotatedIndicatrixBase>()
+InputParameters ComputeRotatedIndicatrixBase::validParams()
 {
-  InputParameters params = validParams<ComputeIndicatrixBase>();
+  InputParameters params = ComputeIndicatrixBase::validParams();
   params.addParam<Real>("euler_angle_1", 0.0, "Euler angle in direction 1");
   params.addParam<Real>("euler_angle_2", 0.0, "Euler angle in direction 2");
   params.addParam<Real>("euler_angle_3", 0.0, "Euler angle in direction 3");

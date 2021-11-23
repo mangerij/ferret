@@ -26,15 +26,12 @@
 #include "ComputePiezostrictiveTensor.h"
 #include "Material.h"
 
-class PiezoelectricStrainCharge;
-
-template<>
-InputParameters validParams<PiezoelectricStrainCharge>();
-
 class PiezoelectricStrainCharge: public Kernel
 {
 public:
   PiezoelectricStrainCharge(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

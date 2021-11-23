@@ -24,15 +24,12 @@
 
 #include "FEProblem.h"
 
-class FerretProblem;
-
-template <>
-InputParameters validParams<FerretProblem>();
-
 class FerretProblem : public FEProblem
 {
 public:
   FerretProblem(const InputParameters & params);
+  static InputParameters validParams();
+
   virtual ~FerretProblem();
   virtual void initialSetup();
   virtual bool shouldUpdateSolution();

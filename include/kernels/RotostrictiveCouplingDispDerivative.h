@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class RotostrictiveCouplingDispDerivative;
-
-template<>
-InputParameters validParams<RotostrictiveCouplingDispDerivative>();
-
 class RotostrictiveCouplingDispDerivative: public Kernel
 {
 public:
 
   RotostrictiveCouplingDispDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

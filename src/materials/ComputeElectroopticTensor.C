@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputeElectroopticTensor);
 
-template<>
-InputParameters validParams<ComputeElectroopticTensor>()
+InputParameters ComputeElectroopticTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedElectroopticTensorBase>();
+  InputParameters params = ComputeRotatedElectroopticTensorBase::validParams();
   params.addClassDescription("Compute an electrooptic tensor.");
   params.addRequiredParam<std::vector<Real> >("r_ijk", "electrooptic tensor for material");
   params.addParam<MooseEnum>("fill_method", RankThreeTensor::fillMethodEnum() = "general", "The fill method");

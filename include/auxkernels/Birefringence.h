@@ -23,16 +23,12 @@
 
 #include "AuxKernel.h"
 
-class Birefringence;
-
-template<>
-InputParameters validParams<Birefringence>();
-
-
 class Birefringence : public AuxKernel
 {
 public:
   Birefringence(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~Birefringence() {}
 

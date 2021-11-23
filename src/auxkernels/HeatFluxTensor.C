@@ -4,10 +4,9 @@
 
 registerMooseObject("FerretApp", HeatFluxTensor);
 
-template<>
-InputParameters validParams<HeatFluxTensor> ()
+InputParameters HeatFluxTensor::validParams()
 {
-InputParameters params = validParams<AuxKernel>();
+InputParameters params = AuxKernel::validParams();
 params.addClassDescription("heat flux generated");
 params.addRequiredCoupledVar("T", "temperature");
 params.addRequiredCoupledVar("potential_E_int", "electric potential");

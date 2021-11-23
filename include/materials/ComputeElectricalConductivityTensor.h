@@ -26,11 +26,6 @@
 #include "ComputeRotatedElectricalConductivityTensorBase.h"
 #include "libmesh/quadrature.h"
 
-class ComputeElectricalConductivityTensor;
-
-template <>
-InputParameters validParams<ComputeElectricalConductivityTensor>();
-
 /**
  * ComputeElectricalConductivityTensor defines a linear ElectricalConductivity tensor material
  * object with a given base name.
@@ -39,6 +34,8 @@ class ComputeElectricalConductivityTensor : public ComputeRotatedElectricalCondu
 {
 public:
   ComputeElectricalConductivityTensor(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpElectricalConductivityTensor();

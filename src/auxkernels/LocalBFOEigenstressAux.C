@@ -26,8 +26,8 @@
 
 registerMooseObject("FerretApp", LocalBFOEigenstressAux);
 
-template <> InputParameters validParams<LocalBFOEigenstressAux>() {
-  InputParameters params = validParams<NodalPatchRecovery>();
+InputParameters LocalBFOEigenstressAux::validParams() {
+  InputParameters params = NodalPatchRecovery::validParams();
   params.addClassDescription("Local eigenstress calculation ");
   params.addRequiredCoupledVar("polar_x",
                                "The x component of the polarization");

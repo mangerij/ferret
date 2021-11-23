@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", ComputeDeltaIndicatrixElectro);
 
-template<>
-InputParameters validParams<ComputeDeltaIndicatrixElectro>()
+InputParameters ComputeDeltaIndicatrixElectro::validParams()
 {
-  InputParameters params = validParams<ComputeDeltaIndicatrixElectroBase>();
+  InputParameters params = ComputeDeltaIndicatrixElectroBase::validParams();
   params.addClassDescription("Compute the adjustments to the indicatrix (beta tensor).");
   params.addRequiredCoupledVar("potential_E_int", "The electrostatic potential");
   return params;

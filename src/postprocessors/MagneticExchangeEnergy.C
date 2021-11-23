@@ -24,11 +24,10 @@
 
 registerMooseObject("FerretApp", MagneticExchangeEnergy);
 
-template<>
-InputParameters validParams<MagneticExchangeEnergy>()
+InputParameters MagneticExchangeEnergy::validParams()
 {
 
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the magnetic exchange energy density.");
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");

@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", RotoBulkEnergyDensity);
 
-template<>
-InputParameters validParams<RotoBulkEnergyDensity>()
+InputParameters RotoBulkEnergyDensity::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");

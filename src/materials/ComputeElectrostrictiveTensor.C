@@ -27,10 +27,9 @@
 
 registerMooseObject("FerretApp", ComputeElectrostrictiveTensor);
 
-template<>
-InputParameters validParams<ComputeElectrostrictiveTensor>()
+InputParameters ComputeElectrostrictiveTensor::validParams()
 {
-  InputParameters params = validParams<ComputeRotatedElectrostrictiveTensorBase>();
+  InputParameters params = ComputeRotatedElectrostrictiveTensorBase::validParams();
   params.addClassDescription("Compute an electrostrictive tensor.");
   params.addParam<bool>("compute_electrostrictive_coeff", false, "compute the electrostrictive coefficients Q_mnkl");
   params.addRequiredParam<std::vector<Real> >("Q_mnkl", "electrostrictive tensor for material");

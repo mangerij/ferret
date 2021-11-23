@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", AnisotropicEnergy);
 
-template<>
-InputParameters validParams<AnisotropicEnergy>()
+InputParameters AnisotropicEnergy::validParams()
 {
-  InputParameters params = validParams<ElementIntegralPostprocessor>();
+  InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over an energy density quadratic in the polarization meant to artificially introduce anisotropy.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

@@ -25,10 +25,9 @@
 
 registerMooseObject("FerretApp", TimeDerivativeScaled);
 
-template<>
-InputParameters validParams<TimeDerivativeScaled>()
+InputParameters TimeDerivativeScaled::validParams()
 {
-  InputParameters params = validParams<TimeKernel>();
+  InputParameters params = TimeKernel::validParams();
   params.addParam<bool>("lumping", false, "True for mass matrix lumping, false otherwise");
   params.addParam<Real>("time_scale",1.0,"the time_scale of the unit");
   return params;

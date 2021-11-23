@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class ComputeIndicatrixBase;
-
-template<>
-InputParameters validParams<ComputeIndicatrixBase>();
-
 /**
  * ComputeTensorBase the base class for computing photostrictive tensors
  */
@@ -37,6 +32,8 @@ class ComputeIndicatrixBase : public Material
 {
 public:
   ComputeIndicatrixBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

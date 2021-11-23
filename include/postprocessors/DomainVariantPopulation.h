@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class DomainVariantPopulation;
-
-template<>
-InputParameters validParams<DomainVariantPopulation>();
-
 class DomainVariantPopulation : public ElementIntegralPostprocessor
 {
 public:
   DomainVariantPopulation(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

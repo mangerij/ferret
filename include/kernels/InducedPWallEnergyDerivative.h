@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class InducedPWallEnergyDerivative;
-
-template<>
-InputParameters validParams<InducedPWallEnergyDerivative>();
-
 class InducedPWallEnergyDerivative: public Kernel
 {
 public:
 
   InducedPWallEnergyDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

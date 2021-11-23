@@ -26,10 +26,9 @@
 
 registerMooseObject("FerretApp", FluctuationsIC);
 
-template<>
-InputParameters validParams<FluctuationsIC>()
+InputParameters FluctuationsIC::validParams()
 {
-  InputParameters params = validParams<InitialCondition>();
+  InputParameters params = InitialCondition::validParams();
   params.addRequiredParam<Real>("epsilon", "epsilon value for psudorandom function");
   params.addParam<Real>("base_value", 0.0, "Value that is fluctuated about");
   params.addRequiredParam<Point>("q1", "first q-vector for pseudorandom function");

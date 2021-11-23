@@ -25,10 +25,9 @@ class LBOBulkEnergyDeriv;
 
 registerMooseObject("FerretApp", LBOBulkEnergyDeriv);
 
-template<>
-InputParameters validParams<LBOBulkEnergyDeriv>()
+InputParameters LBOBulkEnergyDeriv::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to local bulk energy of LBO, where B can be Ti, Ta, etc.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

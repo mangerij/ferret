@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", SurfaceChargeP);
 
-template<>
-
-InputParameters validParams<SurfaceChargeP>()
+InputParameters SurfaceChargeP::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params += BoundaryRestrictableRequired::validParams();
   params.addClassDescription("Calculates P*n");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");

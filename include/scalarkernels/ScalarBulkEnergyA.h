@@ -23,16 +23,13 @@
 
 #include "ODEKernel.h"
 
-class ScalarBulkEnergyA;
-
-template <>
-InputParameters validParams<ScalarBulkEnergyA>();
-
 class ScalarBulkEnergyA : public ODEKernel
 {
 public:
 
   ScalarBulkEnergyA(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
 

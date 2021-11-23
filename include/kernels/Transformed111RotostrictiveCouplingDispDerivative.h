@@ -24,17 +24,13 @@
 
 #include "Kernel.h"
 
-//Forward Declarations
-class Transformed111RotostrictiveCouplingDispDerivative;
-
-template<>
-InputParameters validParams<Transformed111RotostrictiveCouplingDispDerivative>();
-
 class Transformed111RotostrictiveCouplingDispDerivative: public Kernel
 {
 public:
 
   Transformed111RotostrictiveCouplingDispDerivative(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

@@ -25,16 +25,13 @@
 #include "Material.h"
 #include "RankTwoTensor.h"//added for tensor calculation
 
-class TensorHeatFlowElectricT;
-
-template<>
-InputParameters validParams<TensorHeatFlowElectricT>();
-
 class TensorHeatFlowElectricT: public Kernel
 {
 public:
 
   TensorHeatFlowElectricT(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

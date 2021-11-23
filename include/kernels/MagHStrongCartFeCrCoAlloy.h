@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class MagHStrongCartFeCrCoAlloy;
-
-template<>
-InputParameters validParams<MagHStrongCartFeCrCoAlloy>();
-
 class MagHStrongCartFeCrCoAlloy: public Kernel
 {
 public:
 
   MagHStrongCartFeCrCoAlloy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

@@ -23,12 +23,10 @@
 
 registerMooseObject("FerretApp", Birefringence);
 
-template<>
-
-InputParameters validParams<Birefringence>()
+InputParameters Birefringence::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Computes the local birefringence.");
   params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
   params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");

@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class SDBulkEnergyEighth;
-
-template<>
-InputParameters validParams<SDBulkEnergyEighth>();
-
 class SDBulkEnergyEighth : public ElementIntegralPostprocessor
 {
 public:
   SDBulkEnergyEighth(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

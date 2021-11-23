@@ -25,11 +25,6 @@
 #include "Material.h"
 #include "RankTwoTensor.h"
 
-class ComputeRankTwoLandauTensorBase;
-
-template<>
-InputParameters validParams<ComputeRankTwoLandauTensorBase>();
-
 /**
  * ComputePiezoTensorBase the base class for computing photostrictive tensors
  */
@@ -37,6 +32,8 @@ class ComputeRankTwoLandauTensorBase : public Material
 {
 public:
   ComputeRankTwoLandauTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual void computeQpProperties();

@@ -25,16 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class RenormalizedStrain;
-
-template<>
-InputParameters validParams<RenormalizedStrain>();
-
-
 class RenormalizedStrain : public AuxKernel
 {
 public:
   RenormalizedStrain(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~RenormalizedStrain() {}
 

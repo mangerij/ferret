@@ -17,12 +17,6 @@
 
 #include "NodalBC.h"
 
-// Forward Declarations
-class CoupledDirichletBC;
-
-template <>
-InputParameters validParams<CoupledDirichletBC>();
-
 /**
  * Implements a coupled Dirichlet BC where u = coupled_var on the boundary.
  */
@@ -34,6 +28,8 @@ public:
    * constructor.
    */
   CoupledDirichletBC(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual() override;

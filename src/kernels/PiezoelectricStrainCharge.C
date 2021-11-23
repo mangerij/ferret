@@ -26,10 +26,9 @@ class PiezoelectricStrainCharge;
 
 registerMooseObject("FerretApp", PiezoelectricStrainCharge);
 
-template<>
-InputParameters validParams<PiezoelectricStrainCharge>()
+InputParameters PiezoelectricStrainCharge::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to a charge arising via piezoelectric coupling in the Poisson equation.");
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");

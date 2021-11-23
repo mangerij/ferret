@@ -24,15 +24,12 @@
 
 #include "ElementIntegralPostprocessor.h"
 
-class CorrectionFactorDistortBFOEnergy;
-
-template<>
-InputParameters validParams<CorrectionFactorDistortBFOEnergy>();
-
 class CorrectionFactorDistortBFOEnergy : public ElementIntegralPostprocessor
 {
 public:
   CorrectionFactorDistortBFOEnergy(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();

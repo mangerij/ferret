@@ -24,11 +24,6 @@
 
 #include "ComputeRankTwoLandauTensorBase.h"
 
-class ComputeRotatedRankTwoLandauTensorBase;
-
-template<>
-InputParameters validParams<ComputeRotatedRankTwoLandauTensorBase>();
-
 /**
  * ComputeRotatedRankTwoLandauTensorBase is an intermediate base class that rotates the \alpha_{ij} tensor based on euler angles.
  */
@@ -36,6 +31,8 @@ class ComputeRotatedRankTwoLandauTensorBase : public ComputeRankTwoLandauTensorB
 {
 public:
   ComputeRotatedRankTwoLandauTensorBase(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   RealVectorValue _Euler_angles;

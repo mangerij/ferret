@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", FilmSurfaceStressBC);
 
-template<>
-InputParameters validParams<FilmSurfaceStressBC>()
+InputParameters FilmSurfaceStressBC::validParams()
 {
-  InputParameters params = validParams<IntegratedBC>();
+  InputParameters params = IntegratedBC::validParams();
   params.addClassDescription(
       "stress free surface condition, testing, only for z direction");
   params.addRequiredParam<int>("component","Which component(0 for x, 1 for y, 2 for z) in traction is used");

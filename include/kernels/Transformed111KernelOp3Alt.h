@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class Transformed111KernelOp3Alt;
-
-template<>
-InputParameters validParams<Transformed111KernelOp3Alt>();
-
 class Transformed111KernelOp3Alt: public Kernel
 {
 public:
 
   Transformed111KernelOp3Alt(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();

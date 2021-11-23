@@ -24,15 +24,12 @@
 
 #include "AuxKernel.h"
 
-class ZCompCurlP;
-
-template<>
-InputParameters validParams<ZCompCurlP>();
-
 class ZCompCurlP : public AuxKernel
 {
 public:
   ZCompCurlP(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~ZCompCurlP() {}
 

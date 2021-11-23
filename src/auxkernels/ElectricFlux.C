@@ -4,11 +4,10 @@
 
 registerMooseObject("FerretApp", ElectricFlux);
 
-template <>
 InputParameters
-validParams<ElectricFlux>()
+ElectricFlux::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Electric potential generated due to heat flux");
   params.addRequiredCoupledVar("T", "temperature");
   params.addRequiredCoupledVar("potential_E_int", "electric potential");

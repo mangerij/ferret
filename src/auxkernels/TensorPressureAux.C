@@ -23,10 +23,9 @@
 
 registerMooseObject("FerretApp", TensorPressureAux);
 
-template<>
-InputParameters validParams<TensorPressureAux>()
+InputParameters TensorPressureAux::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the value of the hydrostatic stress (which is 1/3 the minus of the stress tensor trace).");
   return params;
 }

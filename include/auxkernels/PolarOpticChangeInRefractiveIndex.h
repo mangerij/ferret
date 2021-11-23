@@ -25,15 +25,12 @@
 #include "AuxKernel.h"
 #include "RankTwoTensor.h"
 
-class PolarOpticChangeInRefractiveIndex;
-
-template<>
-InputParameters validParams<ChangeInRefractiveIndex>();
-
 class PolarOpticChangeInRefractiveIndex : public AuxKernel
 {
 public:
   PolarOpticChangeInRefractiveIndex(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
   virtual ~PolarOpticChangeInRefractiveIndex() {}
 

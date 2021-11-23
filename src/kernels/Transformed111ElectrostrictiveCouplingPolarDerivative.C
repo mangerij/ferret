@@ -25,10 +25,9 @@ class Transformed111ElectrostrictiveCouplingPolarDerivative;
 
 registerMooseObject("FerretApp", Transformed111ElectrostrictiveCouplingPolarDerivative);
 
-template<>
-InputParameters validParams<Transformed111ElectrostrictiveCouplingPolarDerivative>()
+InputParameters Transformed111ElectrostrictiveCouplingPolarDerivative::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to the variation w.r.t polarization of the electrostrictive coupling energy. Note: for cubic parent phase only only.");
   params.addRequiredCoupledVar("u_x", "The x component of the local elastic displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local elastic displacement");
