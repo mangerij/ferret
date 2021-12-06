@@ -24,9 +24,10 @@
 
 registerMooseObject("FerretApp", LongitudinalLLB);
 
-InputParameters LongitudinalLLB::validParams()
+template<>
+InputParameters validParams<LongitudinalLLB>()
 {
-  InputParameters params = Kernel::validParams();
+  InputParameters params = validParams<Kernel>();
   params.addClassDescription("Calculates a residual contribution for the magnetic anisotropy energy.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetic vector");
@@ -46,7 +47,6 @@ LongitudinalLLB::LongitudinalLLB(const InputParameters & parameters)
   _mag_z(coupledValue("mag_z")),
   _alpha(getMaterialProperty<Real>("alpha")),
   _g0(getMaterialProperty<Real>("g0")),
-  _Ae(getMaterialProperty<Real>("Ae")),
   _Ms(getMaterialProperty<Real>("Ms")),
   _mu0(getMaterialProperty<Real>("mu0")),
   _alpha_long(getMaterialProperty<Real>("alpha_long"))
