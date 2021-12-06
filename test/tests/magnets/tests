@@ -14,6 +14,14 @@
     max_threads = 1
   [../]
 
+
+  [./AFMR]
+    type = 'Exodiff'
+    input = 'AFMR_MnF2_ex.i'
+    exodiff = 'out_AFMR_ex.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 #disabled magnets.how_do_they_work temporarily due to problems with Mac compiled Ferret. 
 
 []

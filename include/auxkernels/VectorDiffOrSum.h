@@ -18,39 +18,30 @@
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
+#ifndef VECTORDIFFORSUM_H
+#define VECTORDIFFORSUM_H
 
-#ifndef LONGITUDINALLLB_H
-#define LONGITUDINALLLB_H
+#include "AuxKernel.h"
 
-#include "Kernel.h"
-
-class LongitudinalLLB;
+class VectorDiffOrSum;
 
 template<>
-InputParameters validParams<LongitudinalLLB>();
+InputParameters validParams<VectorDiffOrSum>();
 
-class  LongitudinalLLB: public Kernel
+class VectorDiffOrSum : public AuxKernel
 {
 public:
-  LongitudinalLLB(const InputParameters & parameters);
+  VectorDiffOrSum(const InputParameters & parameters);
+
+  virtual ~VectorDiffOrSum() {}
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  virtual Real computeValue();
 
-  const unsigned int _component;
-  const unsigned int _mag_x_var;
-  const unsigned int _mag_y_var;
-  const unsigned int _mag_z_var;
-  const VariableValue & _mag_x;
-  const VariableValue & _mag_y;
-  const VariableValue & _mag_z;
-  const MaterialProperty<Real> &_alpha;
-  const MaterialProperty<Real> &  _g0;
-  const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
-  const MaterialProperty<Real> & _alpha_long;
-
+private:
+  const VariableValue & _var1;
+  const VariableValue & _var2;
+  const unsigned int _diffOrSum;
 };
-#endif //LONGITUDINALLLB_H
+
+#endif
