@@ -24,16 +24,13 @@
 
 #include "Kernel.h"
 
-class UniaxialAFMSublattice;
-
-template<>
-InputParameters validParams<UniaxialAFMSublattice>();
-
 class UniaxialAFMSublattice: public Kernel
 {
 public:
 
   UniaxialAFMSublattice(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();
