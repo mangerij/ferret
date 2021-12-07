@@ -23,16 +23,12 @@
 
 #include "AuxKernel.h"
 
-class VectorDiffOrSum;
-
-template<>
-InputParameters validParams<VectorDiffOrSum>();
-
 class VectorDiffOrSum : public AuxKernel
 {
 public:
   VectorDiffOrSum(const InputParameters & parameters);
 
+  static InputParameters validParams();
   virtual ~VectorDiffOrSum() {}
 
 protected:

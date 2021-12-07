@@ -24,15 +24,13 @@
 
 #include "Kernel.h"
 
-class LongitudinalLLB;
-
-template<>
-InputParameters validParams<LongitudinalLLB>();
-
-class  LongitudinalLLB: public Kernel
+class LongitudinalLLB: public Kernel
 {
 public:
+
   LongitudinalLLB(const InputParameters & parameters);
+
+  static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();
