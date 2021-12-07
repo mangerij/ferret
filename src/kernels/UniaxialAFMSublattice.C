@@ -24,10 +24,9 @@
 
 registerMooseObject("FerretApp", UniaxialAFMSublattice);
 
-template<>
-InputParameters validParams<UniaxialAFMSublattice>()
+InputParameters UniaxialAFMSublattice::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for an uniaxial AFM sublattice");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredParam<unsigned int>("mag_sub", "An integer corresponding to the sublattice this Kernel acts on");
