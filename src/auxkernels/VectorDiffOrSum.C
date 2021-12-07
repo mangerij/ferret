@@ -22,12 +22,10 @@
 #include "VectorDiffOrSum.h"
 registerMooseObject("FerretApp", VectorDiffOrSum);
 
-template<>
-
-InputParameters validParams<VectorDiffOrSum>()
+InputParameters VectorDiffOrSum::validParams()
 
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates the difference or sum of a variable");
   params.addRequiredCoupledVar("var1", "The first variable");
   params.addRequiredCoupledVar("var2", "The second variable");
