@@ -565,14 +565,6 @@ zMax = 0.01
     variable = SSMag_z
     execute_on = 'initial timestep_end final'
   [../]
-
-
-
-  [./elapsed]
-    type = PerfGraphData
-    section_name = "Root"  # for profiling the problem
-    data_type = total
-  [../]
 []
 
 
