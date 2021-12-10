@@ -46,7 +46,6 @@ MagHStrongCart::MagHStrongCart(const InputParameters & parameters)
    _mag_x_grad(coupledGradient("mag_x")),
    _mag_y_grad(coupledGradient("mag_y")),
    _mag_z_grad(coupledGradient("mag_z")),
-   _mu0(getMaterialProperty<Real>("mu0")),
    _Ms(getMaterialProperty<Real>("Ms"))
 {
 }
