@@ -47,7 +47,6 @@ private:
   const VariableGradient & _mag_x_grad;
   const VariableGradient & _mag_y_grad;
   const VariableGradient & _mag_z_grad;
-  const MaterialProperty<Real> & _mu0;
   const MaterialProperty<Real> & _Ms;
 
 };
