@@ -50,7 +50,7 @@ RandomConstrainedVectorFieldIC::value(const Point & p)
 {
   if (_component == 0)
   {
-    return _M0s*std::cos(_phi[_qp]) * std::sin(_theta[_qp]); //0.999? should this be _M0????
+    return _M0s*std::cos(_phi[_qp]) * std::sin(_theta[_qp]);
   }
   else if (_component == 1)
   {

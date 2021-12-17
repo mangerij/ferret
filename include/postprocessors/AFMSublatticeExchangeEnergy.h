@@ -19,30 +19,31 @@
 
 **/
 
-#ifndef DMINTERACTIONENERGY_H
-#define DMINTERACTIONENERGY_H
+#ifndef AFMSUBLATTICEEXCHANGEENERGY_H
+#define AFMSUBLATTICEEXCHANGEENERGY_H
 
 #include "ElementIntegralPostprocessor.h"
 
-class DMInteractionEnergy : public ElementIntegralPostprocessor
+class AFMSublatticeExchangeEnergy : public ElementIntegralPostprocessor
 {
 public:
-  DMInteractionEnergy(const InputParameters & parameters);
+  AFMSublatticeExchangeEnergy(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();
 
-  const VariableValue& _mag_x;
-  const VariableValue& _mag_y;
-  const VariableValue& _mag_z;
-  const VariableValue& _antiferrodis_A_x;
-  const VariableValue& _antiferrodis_A_y;
-  const VariableValue& _antiferrodis_A_z;
-  const Real _hD;
-  const Real _chiP;
-  const Real _len_scale;
+  const VariableValue & _mag1_x;
+  const VariableValue & _mag1_y;
+  const VariableValue & _mag1_z;
+  const VariableValue & _mag2_x;
+  const VariableValue & _mag2_y;
+  const VariableValue & _mag2_z;
+  const MaterialProperty<Real> & _g0;
+  const MaterialProperty<Real> & _Ms;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _De;
 
 };
 
