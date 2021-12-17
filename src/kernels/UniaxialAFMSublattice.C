@@ -33,9 +33,9 @@ InputParameters UniaxialAFMSublattice::validParams()
   params.addRequiredCoupledVar("mag1_x", "The x component of the constrained 1st sublattice magnetization vector");
   params.addRequiredCoupledVar("mag1_y", "The y component of the constrained 1st sublattice magnetization vector");
   params.addRequiredCoupledVar("mag1_z", "The z component of the constrained 1st sublattice magnetization vector");
-  params.addRequiredCoupledVar("mag2_x", "The x component of the constrained 2nd sublattice magnetization vector");
-  params.addRequiredCoupledVar("mag2_y", "The y component of the constrained 2nd sublattice magnetization vector");
-  params.addRequiredCoupledVar("mag2_z", "The z component of the constrained 2nd sublattice magnetization vector");
+  params.addCoupledVar("mag2_x", 0.0, "The x component of the constrained 2nd sublattice magnetization vector");
+  params.addCoupledVar("mag2_y", 0.0, "The y component of the constrained 2nd sublattice magnetization vector");
+  params.addCoupledVar("mag2_z", 0.0, "The z component of the constrained 2nd sublattice magnetization vector");
   return params;
 }
 
