@@ -19,36 +19,24 @@
 
 **/
 
-#ifndef AFMSUBLATTICEEXCHANGE_H
-#define AFMSUBLATTICEEXCHANGE_H
+#ifndef AFMHOMOGENEOUSSUBLATTICEEXCHANGEENERGY_H
+#define AFMHOMOGENEOUSSUBLATTICEEXCHANGEENERGY_H
 
-#include "Kernel.h"
+#include "ElementIntegralPostprocessor.h"
 
-class AFMSublatticeExchange: public Kernel
+class AFMHomogeneousSublatticeExchangeEnergy : public ElementIntegralPostprocessor
 {
 public:
-
-  AFMSublatticeExchange(const InputParameters & parameters);
+  AFMHomogeneousSublatticeExchangeEnergy(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  virtual Real computeQpIntegral();
 
-private:
-  const unsigned int _component;
-  const unsigned int _mag_sub;
-  const unsigned int _mag1_x_var;
-  const unsigned int _mag1_y_var;
-  const unsigned int _mag1_z_var;
   const VariableValue & _mag1_x;
   const VariableValue & _mag1_y;
   const VariableValue & _mag1_z;
-  const unsigned int _mag2_x_var;
-  const unsigned int _mag2_y_var;
-  const unsigned int _mag2_z_var;
   const VariableValue & _mag2_x;
   const VariableValue & _mag2_y;
   const VariableValue & _mag2_z;
@@ -56,5 +44,7 @@ private:
   const MaterialProperty<Real> & _Ms;
   const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _De;
+
 };
-#endif //AFMSUBLATTICEEXCHANGE_H
+
+#endif

@@ -53,5 +53,5 @@ AngleBetweenTwoVectors::AngleBetweenTwoVectors(const InputParameters & parameter
 Real
 AngleBetweenTwoVectors::computeValue()
 {
-  return (_var1x[_qp]*_var2x[_qp] + _var1y[_qp]*_var2y[_qp] + _var1z[_qp]*_var2z[_qp])/(std::sqrt(Utility::pow<2>(_var1x[_qp]) + Utility::pow<2>(_var1y[_qp]) + Utility::pow<2>(_var1z[_qp]))*std::sqrt(Utility::pow<2>(_var2x[_qp]) + Utility::pow<2>(_var2y[_qp]) + Utility::pow<2>(_var2z[_qp])));
+  return 180.0 - (180.0/3.14159265359)*std::acos((_var1x[_qp]*_var2x[_qp] + _var1y[_qp]*_var2y[_qp] + _var1z[_qp]*_var2z[_qp])/(std::sqrt(Utility::pow<2>(_var1x[_qp]) + Utility::pow<2>(_var1y[_qp]) + Utility::pow<2>(_var1z[_qp]))*std::sqrt(Utility::pow<2>(_var2x[_qp]) + Utility::pow<2>(_var2y[_qp]) + Utility::pow<2>(_var2z[_qp]))));
 }

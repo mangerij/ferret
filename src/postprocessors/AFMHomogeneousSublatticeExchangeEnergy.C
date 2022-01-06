@@ -19,11 +19,11 @@
 
 **/
 
-#include "AFMSublatticeExchangeEnergy.h"
+#include "AFMHomogeneousSublatticeExchangeEnergy.h"
 
-registerMooseObject("FerretApp", AFMSublatticeExchangeEnergy);
+registerMooseObject("FerretApp", AFMHomogeneousSublatticeExchangeEnergy);
 
-InputParameters AFMSublatticeExchangeEnergy::validParams()
+InputParameters AFMHomogeneousSublatticeExchangeEnergy::validParams()
 {
 
   InputParameters params = ElementIntegralPostprocessor::validParams();
@@ -40,7 +40,7 @@ InputParameters AFMSublatticeExchangeEnergy::validParams()
   return params;
 }
 
-AFMSublatticeExchangeEnergy::AFMSublatticeExchangeEnergy(const InputParameters & parameters) :
+AFMHomogeneousSublatticeExchangeEnergy::AFMHomogeneousSublatticeExchangeEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
    _mag1_x(coupledValue("mag1_x")),
    _mag1_y(coupledValue("mag1_y")),
@@ -56,7 +56,7 @@ AFMSublatticeExchangeEnergy::AFMSublatticeExchangeEnergy(const InputParameters &
 }
 
 Real
-AFMSublatticeExchangeEnergy::computeQpIntegral()
+AFMHomogeneousSublatticeExchangeEnergy::computeQpIntegral()
 {
-  return (_De[_qp]*(4*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp]) - Utility::pow<2>(_mag1_z[_qp] - _mag2_z[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])*Utility::pow<4>(_Ms[_qp])))/(4.0*Utility::pow<2>(_Ms[_qp]));
+  return 4.0*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]);
 }

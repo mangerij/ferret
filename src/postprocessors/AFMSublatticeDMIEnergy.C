@@ -61,6 +61,5 @@ AFMSublatticeDMIEnergy::AFMSublatticeDMIEnergy(const InputParameters & parameter
 Real
 AFMSublatticeDMIEnergy::computeQpIntegral()
 {
-  return (_D0[_qp]*(2.0*_antiferrodis_A_z[_qp]*(_mag1_y[_qp]*_mag2_x[_qp] - _mag1_x[_qp]*_mag2_y[_qp]) - _antiferrodis_A_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_z[_qp] - _mag2_z[_qp]) + _antiferrodis_A_x[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] - _mag2_z[_qp]) + _antiferrodis_A_y[_qp]*(_mag1_x[_qp] - _mag2_x[_qp])*(_mag1_z[_qp] + _mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]) - 
-       _antiferrodis_A_x[_qp]*(_mag1_y[_qp] - _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp])*Utility::pow<2>(_Ms[_qp])))/Utility::pow<2>(_Ms[_qp]);
+  return  8.0*_D0[_qp]*(_antiferrodis_A_z[_qp]*_mag1_y[_qp]*_mag2_x[_qp] - _antiferrodis_A_y[_qp]*_mag1_z[_qp]*_mag2_x[_qp] - _antiferrodis_A_z[_qp]*_mag1_x[_qp]*_mag2_y[_qp] + _antiferrodis_A_x[_qp]*_mag1_z[_qp]*_mag2_y[_qp] + _antiferrodis_A_y[_qp]*_mag1_x[_qp]*_mag2_z[_qp] - _antiferrodis_A_x[_qp]*_mag1_y[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]);;
 }

@@ -1,22 +1,17 @@
 /*
    This file is part of FERRET, an add-on module for MOOSE
-
    FERRET is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) af(1) later version.
-
    This program is distributed in the hope that it will be useful,
    but WITHOUT Af(1) WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU General Public License for more details.
-
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
    For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
    and be sure to track new changes at github.com/mangerij/ferret
-
 **/
 
 #include "AFMSublatticeAnisotropy.h"
@@ -53,8 +48,7 @@ AFMSublatticeAnisotropy::AFMSublatticeAnisotropy(const InputParameters & paramet
   _alpha(getMaterialProperty<Real>("alpha")),
   _K1(getMaterialProperty<Real>("K1")),
   _g0(getMaterialProperty<Real>("g0")),
-  _Ms(getMaterialProperty<Real>("Ms")),
-  _mu0(getMaterialProperty<Real>("mu0"))
+  _Ms(getMaterialProperty<Real>("Ms"))
 {
 }
 
