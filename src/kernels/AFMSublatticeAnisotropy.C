@@ -24,9 +24,13 @@ InputParameters AFMSublatticeAnisotropy::validParams()
   InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for the magnetic anisotropy energy.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
-  params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetic vector");
-  params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetic vector");
-  params.addRequiredCoupledVar("mag_z", "The z component of the constrained magnetic vector");
+  params.addRequiredParam<unsigned int>("mag_sub", "An integer corresponding to the sublattice this Kernel acts on");
+  params.addRequiredCoupledVar("mag1_x", "The x component of the constrained 1st sublattice magnetization vector");
+  params.addRequiredCoupledVar("mag1_y", "The y component of the constrained 1st sublattice magnetization vector");
+  params.addRequiredCoupledVar("mag1_z", "The z component of the constrained 1st sublattice magnetization vector");
+  params.addCoupledVar("mag2_x", 0.0, "The x component of the constrained 2nd sublattice magnetization vector");
+  params.addCoupledVar("mag2_y", 0.0, "The y component of the constrained 2nd sublattice magnetization vector");
+  params.addCoupledVar("mag2_z", 0.0, "The z component of the constrained 2nd sublattice magnetization vector");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
@@ -36,12 +40,19 @@ InputParameters AFMSublatticeAnisotropy::validParams()
 AFMSublatticeAnisotropy::AFMSublatticeAnisotropy(const InputParameters & parameters)
   :Kernel(parameters),
   _component(getParam<unsigned int>("component")),
-  _mag_x_var(coupled("mag_x")),
-  _mag_y_var(coupled("mag_y")),
-  _mag_z_var(coupled("mag_z")),
-  _mag_x(coupledValue("mag_x")),
-  _mag_y(coupledValue("mag_y")),
-  _mag_z(coupledValue("mag_z")),
+  _mag_sub(getParam<unsigned int>("mag_sub")),
+  _mag1_x_var(coupled("mag1_x")),
+  _mag1_y_var(coupled("mag1_y")),
+  _mag1_z_var(coupled("mag1_z")),
+  _mag2_x_var(coupled("mag2_x")),
+  _mag2_y_var(coupled("mag2_y")),
+  _mag2_z_var(coupled("mag2_z")),
+  _mag1_x(coupledValue("mag1_x")),
+  _mag1_y(coupledValue("mag1_y")),
+  _mag1_z(coupledValue("mag1_z")),
+  _mag2_x(coupledValue("mag2_x")),
+  _mag2_y(coupledValue("mag2_y")),
+  _mag2_z(coupledValue("mag2_z")),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
@@ -55,26 +66,49 @@ AFMSublatticeAnisotropy::AFMSublatticeAnisotropy(const InputParameters & paramet
 Real
 AFMSublatticeAnisotropy::computeQpResidual()
 {
-  if (_component == 0)
+  if (_mag_sub == 0)
   {
     RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
     RealVectorValue f = w/std::sqrt(w*w);
-    return -(2.0*_g0[_qp]*_K1[_qp]*(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1) + _mag_z[_qp]*f(2))*(-(_mag_z[_qp]*f(1)) + _mag_y[_qp]*f(2) + _alpha[_qp]*_Ms[_qp]*(-(Utility::pow<2>(_mag_y[_qp])*f(0)) + _mag_x[_qp]*_mag_y[_qp]*f(1) + _mag_z[_qp]*(-(_mag_z[_qp]*f(0)) + _mag_x[_qp]*f(2))))*_test[_i][_qp])/
-   ((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+    if (_component == 0)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2))*
+     (-(_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(0)) + _mag1_y[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) + _mag1_z[_qp]*(-f(1) + _alpha[_qp]*_mag1_x[_qp]*f(2)))*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 1)
+    {
+      return (-2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2))*
+     (_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(1) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) - _mag1_z[_qp]*(f(0) + _alpha[_qp]*_mag1_y[_qp]*f(2)))*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 2)
+    {
+      return (-2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2))*
+     (_mag1_y[_qp]*(f(0) - _alpha[_qp]*_mag1_z[_qp]*f(1)) + _alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*f(2) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_z[_qp]*f(0)) - f(1) + _alpha[_qp]*_mag1_x[_qp]*f(2)))*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else
+      return 0.0;
   }
-  else if (_component == 1)
+  else if (_mag_sub == 1)
   {
     RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
     RealVectorValue f = w/std::sqrt(w*w);
-    return -(2.0*_g0[_qp]*_K1[_qp]*(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1) + _mag_z[_qp]*f(2))*(-(_mag_z[_qp]*f(1)) + _mag_y[_qp]*f(2) + _alpha[_qp]*_Ms[_qp]*(-(Utility::pow<2>(_mag_y[_qp])*f(0)) + _mag_x[_qp]*_mag_y[_qp]*f(1) + _mag_z[_qp]*(-(_mag_z[_qp]*f(0)) + _mag_x[_qp]*f(2))))*_test[_i][_qp])/
-   ((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
-  }
-  else if (_component == 2)
-  {
-    RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-    RealVectorValue f = w/std::sqrt(w*w);
-    return -(2.0*_g0[_qp]*_K1[_qp]*(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1) + _mag_z[_qp]*f(2))*(-(_mag_z[_qp]*f(1)) + _mag_y[_qp]*f(2) + _alpha[_qp]*_Ms[_qp]*(-(Utility::pow<2>(_mag_y[_qp])*f(0)) + _mag_x[_qp]*_mag_y[_qp]*f(1) + _mag_z[_qp]*(-(_mag_z[_qp]*f(0)) + _mag_x[_qp]*f(2))))*_test[_i][_qp])/
-   ((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+    if (_component == 0)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2))*
+     (-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(0)) + _mag2_y[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(-f(1) + _alpha[_qp]*_mag2_x[_qp]*f(2)))*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 1)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2))*
+     (-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(1)) - _mag2_x[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(f(0) + _alpha[_qp]*_mag2_y[_qp]*f(2)))*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 2)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(-(_mag2_y[_qp]*f(0)) + _mag2_x[_qp]*f(1) + _alpha[_qp]*_mag2_z[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1)) - _alpha[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2))*
+     _test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else
+      return 0.0;
   }
   else
     return 0.0;
@@ -83,28 +117,49 @@ AFMSublatticeAnisotropy::computeQpResidual()
 Real
 AFMSublatticeAnisotropy::computeQpJacobian()
 {
-  if (_component == 0)
+  if (_mag_sub == 0)
   {
     RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
     RealVectorValue f = w/std::sqrt(w*w);
-    return -(2.0*_g0[_qp]*_K1[_qp]*(-(_mag_z[_qp]*f(0)*f(1)) + _mag_y[_qp]*f(0)*f(2) + _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_y[_qp])*(-Utility::pow<2>(f(0)) + Utility::pow<2>(f(1))) + 2.0*_mag_y[_qp]*f(1)*(_mag_x[_qp]*f(0) + _mag_z[_qp]*f(2)) + 
-          _mag_z[_qp]*(-(_mag_z[_qp]*Utility::pow<2>(f(0))) + 2.0*_mag_x[_qp]*f(0)*f(2) + _mag_z[_qp]*Utility::pow<2>(f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+    if (_component == 0)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(_alpha[_qp]*(_mag1_y[_qp]*f(1) + _mag1_z[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(0)*(-(_mag1_z[_qp]*f(1)) + _mag1_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag1_y[_qp])*f(0)) + _mag1_x[_qp]*_mag1_y[_qp]*f(1) + _mag1_z[_qp]*(-(_mag1_z[_qp]*f(0)) + _mag1_x[_qp]*f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 1)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(_alpha[_qp]*(_mag1_x[_qp]*f(0) + _mag1_z[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) - 
+       f(1)*(_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(1) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) - _mag1_z[_qp]*(f(0) + _alpha[_qp]*_mag1_y[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 2)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(-(_mag1_y[_qp]*f(0)*f(2)) + _mag1_x[_qp]*f(1)*f(2) + _alpha[_qp]*((_mag1_x[_qp]*f(0) + _mag1_y[_qp]*f(1))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1)) + (2*_mag1_z[_qp] + _mag2_z[_qp])*(_mag1_x[_qp]*f(0) + _mag1_y[_qp]*f(1))*f(2) - 
+          (Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*Utility::pow<2>(f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else
+      return 0.0;
   }
-  else if (_component == 1)
+  else if (_mag_sub == 1)
   {
     RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
     RealVectorValue f = w/std::sqrt(w*w);
-    return -(2.0*_g0[_qp]*_K1[_qp]*(-(_mag_z[_qp]*Utility::pow<2>(f(1))) + _mag_x[_qp]*f(0)*f(2) + 2*_mag_y[_qp]*f(1)*f(2) + _mag_z[_qp]*Utility::pow<2>(f(2)) + 
-       _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_x[_qp])*f(0)*f(1) - f(0)*(3*Utility::pow<2>(_mag_y[_qp])*f(1) + Utility::pow<2>(_mag_z[_qp])*f(1) + 2*_mag_y[_qp]*_mag_z[_qp]*f(2)) + 
-          2.0*_mag_x[_qp]*(-(_mag_y[_qp]*Utility::pow<2>(f(0))) + _mag_y[_qp]*Utility::pow<2>(f(1)) + _mag_z[_qp]*f(1)*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
-  }
-  else if (_component == 2)
-  {
-    RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-    RealVectorValue f = w/std::sqrt(w*w);
-    return -(2.0*_g0[_qp]*_K1[_qp]*(-((2*_alpha[_qp]*_Ms[_qp]*_mag_z[_qp]*f(0) + f(1))*(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1))) - 2.0*_mag_z[_qp]*f(1)*f(2) + 
-       _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_x[_qp])*f(0) - (Utility::pow<2>(_mag_y[_qp]) + 3*Utility::pow<2>(_mag_z[_qp]))*f(0) + 2.0*_mag_x[_qp]*_mag_y[_qp]*f(1))*f(2) + (_mag_y[_qp] + 2.0*_alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*_mag_z[_qp])*Utility::pow<2>(f(2)))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+    if (_component == 0)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(_alpha[_qp]*(_mag2_y[_qp]*f(1) + _mag2_z[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(0)*(-(_mag2_z[_qp]*f(1)) + _mag2_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag2_y[_qp])*f(0)) + _mag2_x[_qp]*_mag2_y[_qp]*f(1) + _mag2_z[_qp]*(-(_mag2_z[_qp]*f(0)) + _mag2_x[_qp]*f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 1)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(_alpha[_qp]*(_mag2_x[_qp]*f(0) + _mag2_z[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(1)*(-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(1)) - _mag2_x[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(f(0) + _alpha[_qp]*_mag2_y[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else if (_component == 2)
+    {
+      return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(f(2)*(-(_mag2_y[_qp]*f(0)) + _mag2_x[_qp]*f(1) + _alpha[_qp]*_mag2_z[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1)) - _alpha[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*f(2)) + 
+       _alpha[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+    }
+    else
+      return 0.0;
   }
   else
     return 0.0;
@@ -113,72 +168,181 @@ AFMSublatticeAnisotropy::computeQpJacobian()
 Real
 AFMSublatticeAnisotropy::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if (_component == 0)
+  if (_mag_sub == 0)
   {
-    if (jvar == _mag_y_var)
+    RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
+    RealVectorValue f = w/std::sqrt(w*w);
+    if (_component == 0)
     {
-      RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-      RealVectorValue f = w/std::sqrt(w*w);
-      return -(2.0*_g0[_qp]*_K1[_qp]*(-(_mag_z[_qp]*Utility::pow<2>(f(1))) + _mag_x[_qp]*f(0)*f(2) + 2*_mag_y[_qp]*f(1)*f(2) + _mag_z[_qp]*Utility::pow<2>(f(2)) + 
-       _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_x[_qp])*f(0)*f(1) - f(0)*(3.0*Utility::pow<2>(_mag_y[_qp])*f(1) + Utility::pow<2>(_mag_z[_qp])*f(1) + 2.0*_mag_y[_qp]*_mag_z[_qp]*f(2)) + 
-          2.0*_mag_x[_qp]*(-(_mag_y[_qp]*Utility::pow<2>(f(0))) + _mag_y[_qp]*Utility::pow<2>(f(1)) + _mag_z[_qp]*f(1)*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+      if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((-2*_alpha[_qp]*_mag1_y[_qp]*f(0) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(1)*(-(_mag1_z[_qp]*f(1)) + _mag1_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag1_y[_qp])*f(0)) + _mag1_x[_qp]*_mag1_y[_qp]*f(1) + _mag1_z[_qp]*(-(_mag1_z[_qp]*f(0)) + _mag1_x[_qp]*f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((-2*_alpha[_qp]*_mag1_z[_qp]*f(0) - f(1) + _alpha[_qp]*_mag1_x[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(2)*(-(_mag1_z[_qp]*f(1)) + _mag1_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag1_y[_qp])*f(0)) + _mag1_x[_qp]*_mag1_y[_qp]*f(1) + _mag1_z[_qp]*(-(_mag1_z[_qp]*f(0)) + _mag1_x[_qp]*f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(0)*(-(_mag1_z[_qp]*f(1)) + _mag1_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag1_y[_qp])*f(0)) + _mag1_x[_qp]*_mag1_y[_qp]*f(1) + _mag1_z[_qp]*(-(_mag1_z[_qp]*f(0)) + _mag1_x[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(1)*(-(_mag1_z[_qp]*f(1)) + _mag1_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag1_y[_qp])*f(0)) + _mag1_x[_qp]*_mag1_y[_qp]*f(1) + _mag1_z[_qp]*(-(_mag1_z[_qp]*f(0)) + _mag1_x[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(2)*(-(_mag1_z[_qp]*f(1)) + _mag1_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag1_y[_qp])*f(0)) + _mag1_x[_qp]*_mag1_y[_qp]*f(1) + _mag1_z[_qp]*(-(_mag1_z[_qp]*f(0)) + _mag1_x[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else
+        return 0.0;
     }
-    else if (jvar == _mag_z_var)
+    else if (_component == 1)
     {
-      RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-      RealVectorValue f = w/std::sqrt(w*w);
-      return -(2.0*_g0[_qp]*_K1[_qp]*(-((2*_alpha[_qp]*_Ms[_qp]*_mag_z[_qp]*f(0) + f(1))*(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1))) - 2.0*_mag_z[_qp]*f(1)*f(2) + 
-       _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_x[_qp])*f(0) - (Utility::pow<2>(_mag_y[_qp]) + 3*Utility::pow<2>(_mag_z[_qp]))*f(0) + 2.0*_mag_x[_qp]*_mag_y[_qp]*f(1))*f(2) + (_mag_y[_qp] + 2.0*_alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*_mag_z[_qp])*Utility::pow<2>(f(2)))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+      if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(-((-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + 2*_alpha[_qp]*_mag1_x[_qp]*f(1) + f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2))) - 
+       f(0)*(_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(1) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) - _mag1_z[_qp]*(f(0) + _alpha[_qp]*_mag1_y[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((f(0) - 2*_alpha[_qp]*_mag1_z[_qp]*f(1) + _alpha[_qp]*_mag1_y[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) - 
+       f(2)*(_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(1) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) - _mag1_z[_qp]*(f(0) + _alpha[_qp]*_mag1_y[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_x_var)
+      {
+        return (-2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(0)*(_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(1) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) - _mag1_z[_qp]*(f(0) + _alpha[_qp]*_mag1_y[_qp]*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_y_var)
+      {
+        return (-2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(1)*(_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(1) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) - _mag1_z[_qp]*(f(0) + _alpha[_qp]*_mag1_y[_qp]*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (-2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(2)*(_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*f(1) + _mag1_x[_qp]*(-(_alpha[_qp]*_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*f(1) + f(2)) - _mag1_z[_qp]*(f(0) + _alpha[_qp]*_mag1_y[_qp]*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else
+        return 0.0;
+    }
+    else if (_component == 2)
+    {
+      if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(f(0)*(-(_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*f(0) + _mag1_x[_qp]*f(1) + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*f(1) - _alpha[_qp]*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*f(2)) + 
+       (_alpha[_qp]*_mag1_z[_qp]*f(0) + f(1) - 2*_alpha[_qp]*_mag1_x[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(f(1)*(-(_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*f(0) + _mag1_x[_qp]*f(1) + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*f(1) - _alpha[_qp]*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*f(2)) - 
+       (f(0) - _alpha[_qp]*_mag1_z[_qp]*f(1) + 2*_alpha[_qp]*_mag1_y[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(0)*(-(_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*f(0) + _mag1_x[_qp]*f(1) + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*f(1) - _alpha[_qp]*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*f(2))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(1)*(-(_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*f(0) + _mag1_x[_qp]*f(1) + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*f(1) - _alpha[_qp]*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*f(2))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(2)*(-(_mag1_y[_qp]*f(0)) + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*f(0) + _mag1_x[_qp]*f(1) + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*f(1) - _alpha[_qp]*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*f(2))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else
+        return 0.0;
     }
     else
-    {
       return 0.0;
-    }
   }
-  else if (_component == 1)
+  else if (_mag_sub == 1)
   {
-    if (jvar == _mag_x_var)
+    RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
+    RealVectorValue f = w/std::sqrt(w*w);
+    if (_component == 0)
     {
-      RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-      RealVectorValue f = w/std::sqrt(w*w);
-      return -(2.0*_g0[_qp]*_K1[_qp]*(-(_mag_z[_qp]*f(0)*f(1)) + _mag_y[_qp]*f(0)*f(2) + _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_y[_qp])*(-Utility::pow<2>(f(0)) + Utility::pow<2>(f(1))) + 2.0*_mag_y[_qp]*f(1)*(_mag_x[_qp]*f(0) + _mag_z[_qp]*f(2)) + 
-          _mag_z[_qp]*(-(_mag_z[_qp]*Utility::pow<2>(f(0))) + 2.0*_mag_x[_qp]*f(0)*f(2) + _mag_z[_qp]*Utility::pow<2>(f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+      if (jvar == _mag2_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((-2*_alpha[_qp]*_mag2_y[_qp]*f(0) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(1)*(-(_mag2_z[_qp]*f(1)) + _mag2_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag2_y[_qp])*f(0)) + _mag2_x[_qp]*_mag2_y[_qp]*f(1) + _mag2_z[_qp]*(-(_mag2_z[_qp]*f(0)) + _mag2_x[_qp]*f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((-2*_alpha[_qp]*_mag2_z[_qp]*f(0) - f(1) + _alpha[_qp]*_mag2_x[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(2)*(-(_mag2_z[_qp]*f(1)) + _mag2_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag2_y[_qp])*f(0)) + _mag2_x[_qp]*_mag2_y[_qp]*f(1) + _mag2_z[_qp]*(-(_mag2_z[_qp]*f(0)) + _mag2_x[_qp]*f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(0)*(-(_mag2_z[_qp]*f(1)) + _mag2_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag2_y[_qp])*f(0)) + _mag2_x[_qp]*_mag2_y[_qp]*f(1) + _mag2_z[_qp]*(-(_mag2_z[_qp]*f(0)) + _mag2_x[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(1)*(-(_mag2_z[_qp]*f(1)) + _mag2_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag2_y[_qp])*f(0)) + _mag2_x[_qp]*_mag2_y[_qp]*f(1) + _mag2_z[_qp]*(-(_mag2_z[_qp]*f(0)) + _mag2_x[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(2)*(-(_mag2_z[_qp]*f(1)) + _mag2_y[_qp]*f(2) + _alpha[_qp]*(-(Utility::pow<2>(_mag2_y[_qp])*f(0)) + _mag2_x[_qp]*_mag2_y[_qp]*f(1) + _mag2_z[_qp]*(-(_mag2_z[_qp]*f(0)) + _mag2_x[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else
+        return 0.0;
     }
-    else if (jvar == _mag_z_var)
+    else if (_component == 1)
     {
-      RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-      RealVectorValue f = w/std::sqrt(w*w);
-      return -(2.0*_g0[_qp]*_K1[_qp]*(-((2.0*_alpha[_qp]*_Ms[_qp]*_mag_z[_qp]*f(0) + f(1))*(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1))) - 2*_mag_z[_qp]*f(1)*f(2) + 
-       _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_x[_qp])*f(0) - (Utility::pow<2>(_mag_y[_qp]) + 3.0*Utility::pow<2>(_mag_z[_qp]))*f(0) + 2*_mag_x[_qp]*_mag_y[_qp]*f(1))*f(2) + (_mag_y[_qp] + 2.0*_alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*_mag_z[_qp])*Utility::pow<2>(f(2)))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
+      if (jvar == _mag2_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((_alpha[_qp]*_mag2_y[_qp]*f(0) - 2*_alpha[_qp]*_mag2_x[_qp]*f(1) - f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(0)*(-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(1)) - _mag2_x[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(f(0) + _alpha[_qp]*_mag2_y[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*((f(0) - 2*_alpha[_qp]*_mag2_z[_qp]*f(1) + _alpha[_qp]*_mag2_y[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)) + 
+       f(2)*(-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(1)) - _mag2_x[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(f(0) + _alpha[_qp]*_mag2_y[_qp]*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(0)*(-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(1)) - _mag2_x[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(f(0) + _alpha[_qp]*_mag2_y[_qp]*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(1)*(-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(1)) - _mag2_x[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(f(0) + _alpha[_qp]*_mag2_y[_qp]*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(2)*(-(_alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*f(1)) - _mag2_x[_qp]*(-(_alpha[_qp]*_mag2_y[_qp]*f(0)) + _alpha[_qp]*_mag2_x[_qp]*f(1) + f(2)) + _mag2_z[_qp]*(f(0) + _alpha[_qp]*_mag2_y[_qp]*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else
+        return 0.0;
+    }
+    else if (_component == 2)
+    {
+      if (jvar == _mag2_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(f(0)*(-(_mag2_y[_qp]*f(0)) + _mag2_x[_qp]*f(1) + _alpha[_qp]*_mag2_z[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1)) - _alpha[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*f(2)) + 
+       (_alpha[_qp]*_mag2_z[_qp]*f(0) + f(1) - 2*_alpha[_qp]*_mag2_x[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag2_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*(f(1)*(-(_mag2_y[_qp]*f(0)) + _mag2_x[_qp]*f(1) + _alpha[_qp]*_mag2_z[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1)) - _alpha[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*f(2)) + 
+       (-f(0) + _alpha[_qp]*_mag2_z[_qp]*f(1) - 2*_alpha[_qp]*_mag2_y[_qp]*f(2))*((_mag1_x[_qp] + _mag2_x[_qp])*f(0) + (_mag1_y[_qp] + _mag2_y[_qp])*f(1) + (_mag1_z[_qp] + _mag2_z[_qp])*f(2)))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(0)*(-(_mag2_y[_qp]*f(0)) + _mag2_x[_qp]*f(1) + _alpha[_qp]*_mag2_z[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1)) - _alpha[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*f(2))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(1)*(-(_mag2_y[_qp]*f(0)) + _mag2_x[_qp]*f(1) + _alpha[_qp]*_mag2_z[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1)) - _alpha[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*f(2))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*_K1[_qp]*_Ms[_qp]*f(2)*(-(_mag2_y[_qp]*f(0)) + _mag2_x[_qp]*f(1) + _alpha[_qp]*_mag2_z[_qp]*(_mag2_x[_qp]*f(0) + _mag2_y[_qp]*f(1)) - _alpha[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*f(2))*_phi[_j][_qp]*_test[_i][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
+      }
+      else
+        return 0.0;
     }
     else
-    {
       return 0.0;
-    }
-  }
-  else if (_component == 2)
-  {
-    if (jvar == _mag_x_var)
-    {
-      RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-      RealVectorValue f = w/std::sqrt(w*w);
-      return -(2.0*_g0[_qp]*_K1[_qp]*(-(_mag_z[_qp]*f(0)*f(1)) + _mag_y[_qp]*f(0)*f(2) + _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_y[_qp])*(-Utility::pow<2>(f(0)) + Utility::pow<2>(f(1))) + 2*_mag_y[_qp]*f(1)*(_mag_x[_qp]*f(0) + _mag_z[_qp]*f(2)) + 
-          _mag_z[_qp]*(-(_mag_z[_qp]*Utility::pow<2>(f(0))) + 2*_mag_x[_qp]*f(0)*f(2) + _mag_z[_qp]*Utility::pow<2>(f(2)))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
-    }
-    else if (jvar == _mag_y_var)
-    {
-      RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
-      RealVectorValue f = w/std::sqrt(w*w);
-      return -(2.0*_g0[_qp]*_K1[_qp]*(-(_mag_z[_qp]*Utility::pow<2>(f(1))) + _mag_x[_qp]*f(0)*f(2) + 2*_mag_y[_qp]*f(1)*f(2) + _mag_z[_qp]*Utility::pow<2>(f(2)) + 
-       _alpha[_qp]*_Ms[_qp]*(Utility::pow<2>(_mag_x[_qp])*f(0)*f(1) - f(0)*(3*Utility::pow<2>(_mag_y[_qp])*f(1) + Utility::pow<2>(_mag_z[_qp])*f(1) + 2.0*_mag_y[_qp]*_mag_z[_qp]*f(2)) + 
-          2.0*_mag_x[_qp]*(-(_mag_y[_qp]*Utility::pow<2>(f(0))) + _mag_y[_qp]*Utility::pow<2>(f(1)) + _mag_z[_qp]*f(1)*f(2))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<3>(_Ms[_qp]));
-    }
-    else
-    {
-      return 0.0;
-    }
   }
   else
     return 0.0;
