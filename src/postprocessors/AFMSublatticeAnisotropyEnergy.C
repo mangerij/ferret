@@ -50,5 +50,5 @@ AFMSublatticeAnisotropyEnergy::computeQpIntegral()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
   RealVectorValue f = w/std::sqrt(w*w);
-  return _K1[_qp]*Utility::pow<2>(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1) + _mag_z[_qp]*f(2))*(_Ms[_qp]*_Ms[_qp]);
+  return -_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1) + _mag_z[_qp]*f(2))*(_Ms[_qp]*_Ms[_qp]);
 }

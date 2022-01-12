@@ -19,37 +19,27 @@
 
 **/
 
-#ifndef EXCHANGECARTLL_H
-#define EXCHANGECARTLL_H
+#ifndef AFMEXCHANGESTIFFNESSENERGY_H
+#define AFMEXCHANGESTIFFNESSENERGY_H
 
-#include "Kernel.h"
+#include "ElementIntegralPostprocessor.h"
 
-class  ExchangeCartLL: public Kernel
+class AFMExchangeStiffnessEnergy : public ElementIntegralPostprocessor
 {
 public:
-  ExchangeCartLL(const InputParameters & parameters);
+  AFMExchangeStiffnessEnergy(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  virtual Real computeQpResidual();
-  virtual Real computeQpJacobian();
-  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+  virtual Real computeQpIntegral();
 
-  const unsigned int _component;
-  const unsigned int _mag_x_var;
-  const unsigned int _mag_y_var;
-  const unsigned int _mag_z_var;
-  const VariableValue & _mag_x;
-  const VariableValue & _mag_y;
-  const VariableValue & _mag_z;
-  const VariableGradient & _mag_x_grad;
-  const VariableGradient & _mag_y_grad;
-  const VariableGradient & _mag_z_grad;
-  const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
+  const VariableGradient & _Neel_L_x_grad;
+  const VariableGradient & _Neel_L_y_grad;
+  const VariableGradient & _Neel_L_z_grad;
   const MaterialProperty<Real> & _Ae;
   const MaterialProperty<Real> & _Ms;
 
 };
-#endif //EXCHANGECARTLL_H
+
+#endif
