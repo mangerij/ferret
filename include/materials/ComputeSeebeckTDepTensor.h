@@ -19,24 +19,31 @@
 
 **/
 
-#ifndef COMPUTEROTATEDSEEBECKTENSORBASE_H
-#define COMPUTEROTATEDSEEBECKTENSORBASE_H
+#ifndef COMPUTESEEBECKTDEPTENSOR_H
+#define COMPUTESEEBECKTDEPTENSOR_H
 
-#include "ComputeSeebeckTensorBase.h"
+#include "RankTwoTensor.h"
+#include "ComputeRotatedSeebeckTensorBase.h"
 
 /**
- * ComputeRotatedSeebeckTensorBase is an intermediate base class that rotates the linear Seebeck
- * tensor, k_{ij},  based on euler angles.
+ * ComputeSeebeckTensor defines a linear Seebeck tensor material object with a given base name.
  */
-class ComputeRotatedSeebeckTensorBase : public ComputeSeebeckTensorBase
+class ComputeSeebeckTDepTensor : public ComputeRotatedSeebeckTensorBase
 {
 public:
-  ComputeRotatedSeebeckTensorBase(const InputParameters & parameters);
+  ComputeSeebeckTDepTensor(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  RealVectorValue _Euler_angles;
+  virtual void computeQpSeebeckTensor();
+
+  /// Individual material information
+  const VariableValue & _T;
+
+  RankTwoTensor _asbij;
+  RankTwoTensor _bsbij;
+  RankTwoTensor _csbij;
 };
 
-#endif // COMPUTEROTATEDSEEBECKTENSORBASE_H
+#endif // COMPUTESEEBECKTDEPTENSOR_H

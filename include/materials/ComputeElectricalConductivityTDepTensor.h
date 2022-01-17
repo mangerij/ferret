@@ -19,24 +19,33 @@
 
 **/
 
-#ifndef COMPUTEROTATEDSEEBECKTENSORBASE_H
-#define COMPUTEROTATEDSEEBECKTENSORBASE_H
+#ifndef COMPUTEELECTRICALCONDUCTIVITYTDEPTENSOR_H
+#define COMPUTEELECTRICALCONDUCTIVITYTDEPTENSOR_H
 
-#include "ComputeSeebeckTensorBase.h"
+#include "RankTwoTensor.h"
+#include "ComputeRotatedElectricalConductivityTensorBase.h"
+#include "libmesh/quadrature.h"
 
 /**
- * ComputeRotatedSeebeckTensorBase is an intermediate base class that rotates the linear Seebeck
- * tensor, k_{ij},  based on euler angles.
+ * ComputeElectricalConductivityTensor defines a linear ElectricalConductivity tensor material
+ * object with a given base name.
  */
-class ComputeRotatedSeebeckTensorBase : public ComputeSeebeckTensorBase
+class ComputeElectricalConductivityTDepTensor : public ComputeRotatedElectricalConductivityTensorBase
 {
 public:
-  ComputeRotatedSeebeckTensorBase(const InputParameters & parameters);
+  ComputeElectricalConductivityTDepTensor(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  RealVectorValue _Euler_angles;
+  virtual void computeQpElectricalConductivityTensor();
+
+  /// Individual material information
+  const VariableValue & _T;
+
+  RankTwoTensor _asgij;
+  RankTwoTensor _bsgij;
+  RankTwoTensor _csgij;
 };
 
-#endif // COMPUTEROTATEDSEEBECKTENSORBASE_H
+#endif // COMPUTEELECTRICALCONDUCTIVITYTDEPTENSOR_H

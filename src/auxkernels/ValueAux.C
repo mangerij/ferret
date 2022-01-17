@@ -14,29 +14,32 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <mangeri@fzu.cz>
+   For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
 
-#ifndef COMPUTEROTATEDSEEBECKTENSORBASE_H
-#define COMPUTEROTATEDSEEBECKTENSORBASE_H
+#include "ValueAux.h"
+registerMooseObject("FerretApp", ValueAux);
 
-#include "ComputeSeebeckTensorBase.h"
+InputParameters ValueAux::validParams()
 
-/**
- * ComputeRotatedSeebeckTensorBase is an intermediate base class that rotates the linear Seebeck
- * tensor, k_{ij},  based on euler angles.
- */
-class ComputeRotatedSeebeckTensorBase : public ComputeSeebeckTensorBase
 {
-public:
-  ComputeRotatedSeebeckTensorBase(const InputParameters & parameters);
+  InputParameters params = AuxKernel::validParams();
+  params.addClassDescription("Stores a variable as an Aux field");
+  params.addRequiredCoupledVar("var1", "The first variable");
+  return params;
+}
 
-  static InputParameters validParams();
 
-protected:
-  RealVectorValue _Euler_angles;
-};
+ValueAux::ValueAux(const InputParameters & parameters) :
+  AuxKernel(parameters),
+   _var1(coupledValue("var1"))
+{
+}
 
-#endif // COMPUTEROTATEDSEEBECKTENSORBASE_H
+Real
+ValueAux::computeValue()
+{
+  return _var1[_qp];
+}
