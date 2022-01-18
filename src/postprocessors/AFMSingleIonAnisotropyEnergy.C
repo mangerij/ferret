@@ -19,11 +19,11 @@
 
 **/
 
-#include "AFMSublatticeDMIEnergy.h"
+#include "AFMSingleIonAnisotropyEnergy.h"
 
-registerMooseObject("FerretApp", AFMSublatticeDMIEnergy);
+registerMooseObject("FerretApp", AFMSingleIonAnisotropyEnergy);
 
-InputParameters AFMSublatticeDMIEnergy::validParams()
+InputParameters AFMSingleIonAnisotropyEnergy::validParams()
 {
 
   InputParameters params = ElementIntegralPostprocessor::validParams();
@@ -34,13 +34,10 @@ InputParameters AFMSublatticeDMIEnergy::validParams()
   params.addCoupledVar("mag2_x", 0.0, "The x component of the constrained 2nd sublattice magnetization vector");
   params.addCoupledVar("mag2_y", 0.0, "The y component of the constrained 2nd sublattice magnetization vector");
   params.addCoupledVar("mag2_z", 0.0, "The z component of the constrained 2nd sublattice magnetization vector");
-  params.addCoupledVar("antiferrodis_A_x", 0.0, "The x component of the antiferrodistortive tilt vector");
-  params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive tilt vector");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
   return params;
 }
 
-AFMSublatticeDMIEnergy::AFMSublatticeDMIEnergy(const InputParameters & parameters) :
+AFMSingleIonAnisotropyEnergy::AFMSingleIonAnisotropyEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
    _mag1_x(coupledValue("mag1_x")),
    _mag1_y(coupledValue("mag1_y")),
@@ -48,16 +45,14 @@ AFMSublatticeDMIEnergy::AFMSublatticeDMIEnergy(const InputParameters & parameter
    _mag2_x(coupledValue("mag2_x")),
    _mag2_y(coupledValue("mag2_y")),
    _mag2_z(coupledValue("mag2_z")),
-   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
-   _Ms(getMaterialProperty<Real>("Ms")),
-   _D0(getMaterialProperty<Real>("D0"))
+   _K1c(getMaterialProperty<Real>("K1c")),
+   _K2c(getMaterialProperty<Real>("K2c"))
 {
 }
 
 Real
-AFMSublatticeDMIEnergy::computeQpIntegral()
+AFMSingleIonAnisotropyEnergy::computeQpIntegral()
 {
-  return  8.0*_D0[_qp]*(_antiferrodis_A_z[_qp]*_mag1_y[_qp]*_mag2_x[_qp] - _antiferrodis_A_y[_qp]*_mag1_z[_qp]*_mag2_x[_qp] - _antiferrodis_A_z[_qp]*_mag1_x[_qp]*_mag2_y[_qp] + _antiferrodis_A_x[_qp]*_mag1_z[_qp]*_mag2_y[_qp] + _antiferrodis_A_y[_qp]*_mag1_x[_qp]*_mag2_z[_qp] - _antiferrodis_A_x[_qp]*_mag1_y[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]);
+  return _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_z[_qp])*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp])*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp]) + 2.0*_mag1_z[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*_mag2_z[_qp] + 
+      (Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*Utility::pow<2>(_mag2_z[_qp]) + Utility::pow<2>(_mag1_y[_qp])*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + 2.0*_mag1_y[_qp]*_mag2_y[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + Utility::pow<2>(_mag1_x[_qp])*(Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + 2.0*_mag1_x[_qp]*_mag2_x[_qp]*(Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])));
 }
