@@ -45,9 +45,6 @@ protected:
   const VariableValue & _mag2_x;
   const VariableValue & _mag2_y;
   const VariableValue & _mag2_z;
-  const VariableValue & _polar_x;
-  const VariableValue & _polar_y;
-  const VariableValue & _polar_z;
   const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _K1c;
   const MaterialProperty<Real> & _K2c;
