@@ -31,9 +31,6 @@ InputParameters AFMSingleIonAnisotropy::validParams()
   params.addCoupledVar("mag2_x", 0.0, "The x component of the constrained 2nd sublattice magnetization vector");
   params.addCoupledVar("mag2_y", 0.0, "The y component of the constrained 2nd sublattice magnetization vector");
   params.addCoupledVar("mag2_z", 0.0, "The z component of the constrained 2nd sublattice magnetization vector");
-  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
-  params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
   return params;
 }
 
@@ -53,9 +50,6 @@ AFMSingleIonAnisotropy::AFMSingleIonAnisotropy(const InputParameters & parameter
   _mag2_x(coupledValue("mag2_x")),
   _mag2_y(coupledValue("mag2_y")),
   _mag2_z(coupledValue("mag2_z")),
-  _polar_x(coupledValue("polar_x")),
-  _polar_y(coupledValue("polar_y")),
-  _polar_z(coupledValue("polar_z")),
   _alpha(getMaterialProperty<Real>("alpha")),
   _K1c(getMaterialProperty<Real>("K1c")),
   _K2c(getMaterialProperty<Real>("K2c")),
@@ -71,21 +65,30 @@ AFMSingleIonAnisotropy::computeQpResidual()
   {
     if (_component == 0)
     {
-      return (-2*_g0[_qp]*((_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]))*_mag1_z[_qp]*(-Utility::pow<3>(_mag1_y[_qp]) + _mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp])) + 
-       _alpha[_qp]*_mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp])*Utility::pow<2>(_mag1_z[_qp])*(-2*Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag1_y[_qp]) + Utility::pow<4>(_mag1_z[_qp]) - Utility::pow<2>(_mag1_x[_qp])*(Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])))))*_test[_i][_qp])
-    /((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _mag1_z[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 1)
     {
-      return (-2*_g0[_qp]*(_mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]))*(_mag1_x[_qp] - _mag1_z[_qp])*_mag1_z[_qp]*(_mag1_x[_qp] + _mag1_z[_qp]) + _alpha[_qp]*_mag1_y[_qp]*
-        (_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*Utility::pow<2>(_mag1_z[_qp])*(Utility::pow<2>(_mag1_x[_qp]) - 2*Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag1_x[_qp]) - Utility::pow<2>(_mag1_x[_qp])*Utility::pow<2>(_mag1_y[_qp]) - Utility::pow<2>(_mag1_y[_qp])*Utility::pow<2>(_mag1_z[_qp]) + Utility::pow<4>(_mag1_z[_qp]))))*_test[_i][_qp]
-     )/((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-(_mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp])) + 
+       _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 2)
     {
-      return (-2*_g0[_qp]*(_mag1_y[_qp]*(-Utility::pow<3>(_mag1_x[_qp]) + _mag1_x[_qp]*Utility::pow<2>(_mag1_y[_qp]))*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp])) + 
-       _alpha[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*Utility::pow<2>(_mag1_y[_qp])*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) - 2*Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag1_x[_qp]) + Utility::pow<4>(_mag1_y[_qp]) - (Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*Utility::pow<2>(_mag1_z[_qp]))))*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-(_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp])) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _mag1_x[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else
       return 0.0;
@@ -94,21 +97,30 @@ AFMSingleIonAnisotropy::computeQpResidual()
   {
     if (_component == 0)
     {
-      return (-2*_g0[_qp]*((_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_x[_qp]))*_mag2_z[_qp]*(-Utility::pow<3>(_mag2_y[_qp]) + _mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp])) + 
-       _alpha[_qp]*_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(-2*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag2_y[_qp]) + Utility::pow<4>(_mag2_z[_qp]) - Utility::pow<2>(_mag2_x[_qp])*(Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])))))*_test[_i][_qp])
-    /((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       (_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 1)
     {
-      return (-2*_g0[_qp]*(_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_y[_qp]))*(_mag2_x[_qp] - _mag2_z[_qp])*_mag2_z[_qp]*(_mag2_x[_qp] + _mag2_z[_qp]) + _alpha[_qp]*_mag2_y[_qp]*
-        (_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_z[_qp])*(Utility::pow<2>(_mag2_x[_qp]) - 2*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag2_x[_qp]) - Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp]) - Utility::pow<2>(_mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp]) + Utility::pow<4>(_mag2_z[_qp]))))*_test[_i][_qp]
-     )/((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-(_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp])) + 
+       _alpha[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       (_mag1_x[_qp] + _mag2_x[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 2)
     {
-      return (-2*_g0[_qp]*(_mag2_y[_qp]*(-Utility::pow<3>(_mag2_x[_qp]) + _mag2_x[_qp]*Utility::pow<2>(_mag2_y[_qp]))*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_z[_qp])) + 
-       _alpha[_qp]*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) - 2*Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag2_x[_qp]) + Utility::pow<4>(_mag2_y[_qp]) - (Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*Utility::pow<2>(_mag2_z[_qp]))))*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-(_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp])) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _mag2_x[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       (_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else
       return 0.0;
@@ -124,21 +136,30 @@ AFMSingleIonAnisotropy::computeQpJacobian()
   {
     if (_component == 0)
     {
-      return (-2*_g0[_qp]*(2*_K2c[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(-Utility::pow<3>(_mag1_y[_qp]) + _mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp])) + _alpha[_qp]*_mag1_x[_qp]*(-4*_K2c[_qp]*_mag1_x[_qp]*Utility::pow<2>(_mag1_y[_qp])*Utility::pow<2>(_mag1_z[_qp]) - 2*_K1c[_qp]*_mag1_x[_qp]*(Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]))) + 
-       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp])*Utility::pow<2>(_mag1_z[_qp])*(-2*Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag1_y[_qp]) + Utility::pow<4>(_mag1_z[_qp]) - Utility::pow<2>(_mag1_x[_qp])*(Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])))))*_phi[_j][_qp]*_test[_i][_qp])
-    /((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(2.0*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _alpha[_qp]*_mag1_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 1)
     {
-      return (-2*_g0[_qp]*(2*_K2c[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] - _mag1_z[_qp])*_mag1_z[_qp]*(_mag1_x[_qp] + _mag1_z[_qp]) + _alpha[_qp]*_mag1_y[_qp]*(-4*_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*_mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp]) + _K1c[_qp]*(-2*Utility::pow<2>(_mag1_x[_qp])*_mag1_y[_qp] - 2*_mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp]))) + 
-       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*Utility::pow<2>(_mag1_z[_qp])*(Utility::pow<2>(_mag1_x[_qp]) - 2*Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag1_x[_qp]) - Utility::pow<2>(_mag1_x[_qp])*Utility::pow<2>(_mag1_y[_qp]) - Utility::pow<2>(_mag1_y[_qp])*Utility::pow<2>(_mag1_z[_qp]) + Utility::pow<4>(_mag1_z[_qp]))))
-      *_phi[_j][_qp]*_test[_i][_qp])/((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-2.0*_mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 2)
     {
-      return (-2*_g0[_qp]*(2*_K2c[_qp]*_mag1_y[_qp]*(-Utility::pow<3>(_mag1_x[_qp]) + _mag1_x[_qp]*Utility::pow<2>(_mag1_y[_qp]))*_mag1_z[_qp] + _alpha[_qp]*_mag1_z[_qp]*(-4*_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*Utility::pow<2>(_mag1_y[_qp])*_mag1_z[_qp] - 2*_K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*_mag1_z[_qp]) + 
-       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*Utility::pow<2>(_mag1_y[_qp])*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) - 2*Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag1_x[_qp]) + Utility::pow<4>(_mag1_y[_qp]) - (Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*Utility::pow<2>(_mag1_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-(_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 2.0*_mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag1_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else
       return 0.0;
@@ -147,21 +168,30 @@ AFMSingleIonAnisotropy::computeQpJacobian()
   {
     if (_component == 0)
     {
-      return (-2*_g0[_qp]*(2*_K2c[_qp]*_mag2_x[_qp]*_mag2_z[_qp]*(-Utility::pow<3>(_mag2_y[_qp]) + _mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp])) + _alpha[_qp]*_mag2_x[_qp]*(-4*_K2c[_qp]*_mag2_x[_qp]*Utility::pow<2>(_mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp]) - 2*_K1c[_qp]*_mag2_x[_qp]*(Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp]))) + 
-       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(-2*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag2_y[_qp]) + Utility::pow<4>(_mag2_z[_qp]) - Utility::pow<2>(_mag2_x[_qp])*(Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])))))*_phi[_j][_qp]*_test[_i][_qp])
-    /((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(2.0*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _alpha[_qp]*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 1)
     {
-      return (-2*_g0[_qp]*(2*_K2c[_qp]*_mag2_x[_qp]*_mag2_y[_qp]*(_mag2_x[_qp] - _mag2_z[_qp])*_mag2_z[_qp]*(_mag2_x[_qp] + _mag2_z[_qp]) + _alpha[_qp]*_mag2_y[_qp]*(-4*_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*_mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp]) + _K1c[_qp]*(-2*Utility::pow<2>(_mag2_x[_qp])*_mag2_y[_qp] - 2*_mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp]))) + 
-       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_z[_qp])*(Utility::pow<2>(_mag2_x[_qp]) - 2*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag2_x[_qp]) - Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp]) - Utility::pow<2>(_mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp]) + Utility::pow<4>(_mag2_z[_qp]))))
-      *_phi[_j][_qp]*_test[_i][_qp])/((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-2.0*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else if (_component == 2)
     {
-      return (-2*_g0[_qp]*(2*_K2c[_qp]*_mag2_y[_qp]*(-Utility::pow<3>(_mag2_x[_qp]) + _mag2_x[_qp]*Utility::pow<2>(_mag2_y[_qp]))*_mag2_z[_qp] + _alpha[_qp]*_mag2_z[_qp]*(-4*_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*_mag2_z[_qp] - 2*_K1c[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*_mag2_z[_qp]) + 
-       _alpha[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) - 2*Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(Utility::pow<4>(_mag2_x[_qp]) + Utility::pow<4>(_mag2_y[_qp]) - (Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*Utility::pow<2>(_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      return (2.0*_g0[_qp]*(-(_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 2.0*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
     }
     else
       return 0.0;
@@ -179,15 +209,45 @@ AFMSingleIonAnisotropy::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_y_var)
       {
-        return (-2*_g0[_qp]*((_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]))*_mag1_z[_qp]*(-3*Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])) + _alpha[_qp]*_mag1_x[_qp]*
-        (_K1c[_qp]*(-2*Utility::pow<2>(_mag1_x[_qp])*_mag1_y[_qp] + 4*Utility::pow<3>(_mag1_y[_qp])) + 2*_K2c[_qp]*Utility::pow<3>(_mag1_y[_qp])*Utility::pow<2>(_mag1_z[_qp]) + 2*_K2c[_qp]*_mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp])*(-2*Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(2.0*_mag1_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       (_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       2.0*_alpha[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else if (jvar == _mag1_z_var)
       {
-        return (-2*_g0[_qp]*(2*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]))*_mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp]) + (_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]))*(-Utility::pow<3>(_mag1_y[_qp]) + _mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp])) + 
-       _alpha[_qp]*_mag1_x[_qp]*(2*_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp])*Utility::pow<3>(_mag1_z[_qp]) + 2*_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp])*_mag1_z[_qp]*(-2*Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(-2*Utility::pow<2>(_mag1_x[_qp])*_mag1_z[_qp] + 4*Utility::pow<3>(_mag1_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       (_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       2.0*_alpha[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_x_var)
+      {
+        return (2.0*_g0[_qp]*(2.0*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_y_var)
+      {
+        return (2.0*_g0[_qp]*(2.0*_mag1_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (2.0*_g0[_qp]*(_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]))*_phi[_j][_qp]*_test[_i][_qp])/
+   ((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else
         return 0.0;
@@ -196,15 +256,44 @@ AFMSingleIonAnisotropy::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_x_var)
       {
-        return (-2*_g0[_qp]*(_mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]))*(_mag1_x[_qp] - _mag1_z[_qp])*_mag1_z[_qp] + _mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]))*_mag1_z[_qp]*(_mag1_x[_qp] + _mag1_z[_qp]) + (_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]))*(_mag1_x[_qp] - _mag1_z[_qp])*_mag1_z[_qp]*(_mag1_x[_qp] + _mag1_z[_qp]) + 
-       _alpha[_qp]*_mag1_y[_qp]*(_K1c[_qp]*(4*Utility::pow<3>(_mag1_x[_qp]) - 2*_mag1_x[_qp]*Utility::pow<2>(_mag1_y[_qp])) + 2*_K2c[_qp]*Utility::pow<3>(_mag1_x[_qp])*Utility::pow<2>(_mag1_z[_qp]) + 2*_K2c[_qp]*_mag1_x[_qp]*Utility::pow<2>(_mag1_z[_qp])*(Utility::pow<2>(_mag1_x[_qp]) - 2*Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-2.0*_mag1_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       (_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else if (jvar == _mag1_z_var)
       {
-        return (-2*_g0[_qp]*(_mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]))*(_mag1_x[_qp] - _mag1_z[_qp])*_mag1_z[_qp] + _mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]))*(_mag1_x[_qp] - _mag1_z[_qp])*(_mag1_x[_qp] + _mag1_z[_qp]) - _mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]))*_mag1_z[_qp]*(_mag1_x[_qp] + _mag1_z[_qp]) + 
-       _alpha[_qp]*_mag1_y[_qp]*(2*_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*Utility::pow<3>(_mag1_z[_qp]) + 2*_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*_mag1_z[_qp]*(Utility::pow<2>(_mag1_x[_qp]) - 2*Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(-2*Utility::pow<2>(_mag1_y[_qp])*_mag1_z[_qp] + 4*Utility::pow<3>(_mag1_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-(_mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) + 
+       _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*_mag1_z[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       (_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_x_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_mag1_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_y_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (2.0*_g0[_qp]*(-(_mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) + 
+       _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_z[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else
         return 0.0;
@@ -213,15 +302,43 @@ AFMSingleIonAnisotropy::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_x_var)
       {
-        return (-2*_g0[_qp]*(_mag1_y[_qp]*(-3*Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]))*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp])) + _alpha[_qp]*_mag1_z[_qp]*
-        (2*_K2c[_qp]*Utility::pow<3>(_mag1_x[_qp])*Utility::pow<2>(_mag1_y[_qp]) + 2*_K2c[_qp]*_mag1_x[_qp]*Utility::pow<2>(_mag1_y[_qp])*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) - 2*Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(4*Utility::pow<3>(_mag1_x[_qp]) - 2*_mag1_x[_qp]*Utility::pow<2>(_mag1_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_mag1_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       (_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else if (jvar == _mag1_y_var)
       {
-        return (-2*_g0[_qp]*(2*_mag1_x[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp])) + (-Utility::pow<3>(_mag1_x[_qp]) + _mag1_x[_qp]*Utility::pow<2>(_mag1_y[_qp]))*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp])) + 
-       _alpha[_qp]*_mag1_z[_qp]*(2*_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*Utility::pow<3>(_mag1_y[_qp]) + 2*_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp])*_mag1_y[_qp]*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]) - 2*Utility::pow<2>(_mag1_z[_qp])) + _K1c[_qp]*(4*Utility::pow<3>(_mag1_y[_qp]) - 2*_mag1_y[_qp]*Utility::pow<2>(_mag1_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*_mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + _mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag1_z[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       (_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_x_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_mag1_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       _mag1_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_y_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _mag1_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag2_z_var)
+      {
+        return (2.0*_g0[_qp]*(-(_alpha[_qp]*Utility::pow<2>(_mag1_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag1_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 2.0*_mag1_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_mag1_y[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else
         return 0.0;
@@ -235,15 +352,39 @@ AFMSingleIonAnisotropy::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_y_var)
       {
-        return (-2*_g0[_qp]*((_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_x[_qp]))*_mag2_z[_qp]*(-3*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])) + _alpha[_qp]*_mag2_x[_qp]*
-        (_K1c[_qp]*(-2*Utility::pow<2>(_mag2_x[_qp])*_mag2_y[_qp] + 4*Utility::pow<3>(_mag2_y[_qp])) + 2*_K2c[_qp]*Utility::pow<3>(_mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp]) + 2*_K2c[_qp]*_mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp])*(-2*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(2.0*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + (_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + _alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_x[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else if (jvar == _mag2_z_var)
       {
-        return (-2*_g0[_qp]*(2*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_x[_qp]))*_mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp]) + (_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_x[_qp]))*(-Utility::pow<3>(_mag2_y[_qp]) + _mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp])) + 
-       _alpha[_qp]*_mag2_x[_qp]*(2*_K2c[_qp]*Utility::pow<2>(_mag2_y[_qp])*Utility::pow<3>(_mag2_z[_qp]) + 2*_K2c[_qp]*Utility::pow<2>(_mag2_y[_qp])*_mag2_z[_qp]*(-2*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(-2*Utility::pow<2>(_mag2_x[_qp])*_mag2_z[_qp] + 4*Utility::pow<3>(_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + _alpha[_qp]*_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp] + 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*Utility::pow<2>(_mag2_z[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - (_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*(2.0*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       2.0*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - _alpha[_qp]*Utility::pow<2>(_mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*(2.0*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - _mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*(_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + _alpha[_qp]*_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp] + 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*Utility::pow<2>(_mag2_z[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else
         return 0.0;
@@ -252,15 +393,39 @@ AFMSingleIonAnisotropy::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_x_var)
       {
-        return (-2*_g0[_qp]*(_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_y[_qp]))*(_mag2_x[_qp] - _mag2_z[_qp])*_mag2_z[_qp] + _mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_y[_qp]))*_mag2_z[_qp]*(_mag2_x[_qp] + _mag2_z[_qp]) + (_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_y[_qp]))*(_mag2_x[_qp] - _mag2_z[_qp])*_mag2_z[_qp]*(_mag2_x[_qp] + _mag2_z[_qp]) + 
-       _alpha[_qp]*_mag2_y[_qp]*(_K1c[_qp]*(4*Utility::pow<3>(_mag2_x[_qp]) - 2*_mag2_x[_qp]*Utility::pow<2>(_mag2_y[_qp])) + 2*_K2c[_qp]*Utility::pow<3>(_mag2_x[_qp])*Utility::pow<2>(_mag2_z[_qp]) + 2*_K2c[_qp]*_mag2_x[_qp]*Utility::pow<2>(_mag2_z[_qp])*(Utility::pow<2>(_mag2_x[_qp]) - 2*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-2.0*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - (_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + _mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))
+      *_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else if (jvar == _mag2_z_var)
       {
-        return (-2*_g0[_qp]*(_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_y[_qp]))*(_mag2_x[_qp] - _mag2_z[_qp])*_mag2_z[_qp] + _mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_y[_qp]))*(_mag2_x[_qp] - _mag2_z[_qp])*(_mag2_x[_qp] + _mag2_z[_qp]) - _mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_y[_qp]))*_mag2_z[_qp]*(_mag2_x[_qp] + _mag2_z[_qp]) + 
-       _alpha[_qp]*_mag2_y[_qp]*(2*_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*Utility::pow<3>(_mag2_z[_qp]) + 2*_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*_mag2_z[_qp]*(Utility::pow<2>(_mag2_x[_qp]) - 2*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(-2*Utility::pow<2>(_mag2_y[_qp])*_mag2_z[_qp] + 4*Utility::pow<3>(_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-(_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) + _alpha[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp] - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       _alpha[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       (_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + _mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       2.0*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - _alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_z[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*(-(_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) + _alpha[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*_mag2_z[_qp] - 
+       2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag2_z[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else
         return 0.0;
@@ -269,15 +434,41 @@ AFMSingleIonAnisotropy::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_x_var)
       {
-        return (-2*_g0[_qp]*(_mag2_y[_qp]*(-3*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_z[_qp])) + _alpha[_qp]*_mag2_z[_qp]*
-        (2*_K2c[_qp]*Utility::pow<3>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp]) + 2*_K2c[_qp]*_mag2_x[_qp]*Utility::pow<2>(_mag2_y[_qp])*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) - 2*Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(4*Utility::pow<3>(_mag2_x[_qp]) - 2*_mag2_x[_qp]*Utility::pow<2>(_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + (_mag1_y[_qp] + _mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       _mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else if (jvar == _mag2_y_var)
       {
-        return (-2*_g0[_qp]*(2*_mag2_x[_qp]*Utility::pow<2>(_mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_z[_qp])) + (-Utility::pow<3>(_mag2_x[_qp]) + _mag2_x[_qp]*Utility::pow<2>(_mag2_y[_qp]))*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag2_z[_qp])) + 
-       _alpha[_qp]*_mag2_z[_qp]*(2*_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*Utility::pow<3>(_mag2_y[_qp]) + 2*_K2c[_qp]*Utility::pow<2>(_mag2_x[_qp])*_mag2_y[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]) - 2*Utility::pow<2>(_mag2_z[_qp])) + _K1c[_qp]*(4*Utility::pow<3>(_mag2_y[_qp]) - 2*_mag2_y[_qp]*Utility::pow<2>(_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/
-   ((1 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*Utility::pow<2>(_mag2_y[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*_alpha[_qp]*_mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + _mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + 
+       _alpha[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) - 
+       (_mag1_x[_qp] + _mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*_test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_x_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 
+       2.0*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*_alpha[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) - 
+       _mag2_y[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_y_var)
+      {
+        return (2.0*_g0[_qp]*(-2.0*_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*Utility::pow<2>(_mag2_y[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp])) + 
+       _mag2_x[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))) + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp]+_mag2_z[_qp]))))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
+      }
+      else if (jvar == _mag1_z_var)
+      {
+        return (2.0*_g0[_qp]*(-(_alpha[_qp]*Utility::pow<2>(_mag2_x[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp])))) - 
+       _alpha[_qp]*Utility::pow<2>(_mag2_y[_qp])*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]) + Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))) + 2.0*_mag2_x[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*(_mag1_y[_qp] + _mag2_y[_qp])*(_mag1_z[_qp] + _mag2_z[_qp]) - 
+       2.0*(_mag1_x[_qp] + _mag2_x[_qp])*_mag2_y[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp]+_mag2_x[_qp]))*_mag2_y[_qp]*(_mag1_y[_qp] + _mag2_y[_qp])*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]) + 2.0*_alpha[_qp]*_mag2_x[_qp]*(_mag1_x[_qp] + _mag2_x[_qp])*(_K1c[_qp] + _K2c[_qp]*Utility::pow<2>(_mag1_y[_qp]+_mag2_y[_qp]))*_mag2_z[_qp]*(_mag1_z[_qp] + _mag2_z[_qp]))*_phi[_j][_qp]*
+     _test[_i][_qp])/((1.0 + Utility::pow<2>(_alpha[_qp]))*_Ms[_qp]);
       }
       else
         return 0.0;
