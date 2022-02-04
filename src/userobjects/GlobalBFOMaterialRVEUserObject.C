@@ -38,9 +38,9 @@ GlobalBFOMaterialRVEUserObject::validParams()
   params.addParam<std::string>("base_name", "Material properties base name");
   params.addCoupledVar("displacements", "The name of the displacement variables");
   params.set<ExecFlagEnum>("execute_on") = EXEC_LINEAR;
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addCoupledVar("antiferrodis_A_z", 0.0,  "The z component of the afd vector field");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the afd vector field");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the afd vector field");
+  params.addCoupledVar("antiphase_A_z", 0.0,  "The z component of the afd vector field");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
@@ -56,9 +56,9 @@ GlobalBFOMaterialRVEUserObject::GlobalBFOMaterialRVEUserObject(const InputParame
     _ndisp(coupledComponents("displacements")),
     _disp_var(_ndisp),
     _periodic_dir(),
-    _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-    _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-    _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+    _antiphase_A_x(coupledValue("antiphase_A_x")),
+    _antiphase_A_y(coupledValue("antiphase_A_y")),
+    _antiphase_A_z(coupledValue("antiphase_A_z")),
     _polar_x(coupledValue("polar_x")),
     _polar_y(coupledValue("polar_y")),
     _polar_z(coupledValue("polar_z")),
@@ -117,14 +117,14 @@ GlobalBFOMaterialRVEUserObject::execute()
         _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
         _C11[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
         _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11[_qp] +
-        2.0 * _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp];
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11[_qp] +
+        2.0 * _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp];
 
     eigenstress_tensor(1, 1) =
         _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q11[_qp] +
@@ -135,14 +135,14 @@ GlobalBFOMaterialRVEUserObject::execute()
         2.0 * _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
         _C11[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
         _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        2.0 * _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp];
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        2.0 * _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp];
 
     eigenstress_tensor(2, 2) =
         _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q11[_qp] +
@@ -153,26 +153,26 @@ GlobalBFOMaterialRVEUserObject::execute()
         _C11[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
         _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
         2.0 * _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        2.0 * _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp];
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        2.0 * _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp];
 
     eigenstress_tensor(0, 1) = eigenstress_tensor(1, 0) =
         4.0 * _C44[_qp] * _polar_x[_qp] * _polar_y[_qp] * _Q44[_qp] +
-        4.0 * _C44[_qp] * _antiferrodis_A_x[_qp] * _antiferrodis_A_y[_qp] * _R44[_qp];
+        4.0 * _C44[_qp] * _antiphase_A_x[_qp] * _antiphase_A_y[_qp] * _R44[_qp];
 
     eigenstress_tensor(1, 2) = eigenstress_tensor(2, 1) =
         4.0 * _C44[_qp] * _polar_y[_qp] * _polar_z[_qp] * _Q44[_qp] +
-        4.0 * _C44[_qp] * _antiferrodis_A_y[_qp] * _antiferrodis_A_z[_qp] * _R44[_qp];
+        4.0 * _C44[_qp] * _antiphase_A_y[_qp] * _antiphase_A_z[_qp] * _R44[_qp];
 
     eigenstress_tensor(0, 2) = eigenstress_tensor(2, 0) =
         4.0 * _C44[_qp] * _polar_x[_qp] * _polar_z[_qp] * _Q44[_qp] +
-        4.0 * _C44[_qp] * _antiferrodis_A_x[_qp] * _antiferrodis_A_z[_qp] * _R44[_qp];
+        4.0 * _C44[_qp] * _antiphase_A_x[_qp] * _antiphase_A_z[_qp] * _R44[_qp];
 
     // residual, integral of stress components
     _residual += _JxW[_qp] * _coord[_qp] * (_stress[_qp] - _applied_stress_tensor + eigenstress_tensor);

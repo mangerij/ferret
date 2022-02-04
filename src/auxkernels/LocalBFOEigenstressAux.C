@@ -34,9 +34,9 @@ InputParameters LocalBFOEigenstressAux::validParams() {
   params.addRequiredCoupledVar("polar_y",
                                "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addCoupledVar("antiferrodis_A_z", 0.0,  "The z component of the afd vector field");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the afd vector field");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the afd vector field");
+  params.addCoupledVar("antiphase_A_z", 0.0,  "The z component of the afd vector field");
   params.addRequiredRangeCheckedParam<unsigned int>(
       "index_i", "index_i >= 0 & index_i <= 2",
       "The index i of ij for the tensor to output (0, 1, 2)");
@@ -54,9 +54,9 @@ LocalBFOEigenstressAux::LocalBFOEigenstressAux(
       _polar_x(coupledValue("polar_x")),
       _polar_y(coupledValue("polar_y")),
       _polar_z(coupledValue("polar_z")),
-      _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-      _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-      _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+      _antiphase_A_x(coupledValue("antiphase_A_x")),
+      _antiphase_A_y(coupledValue("antiphase_A_y")),
+      _antiphase_A_z(coupledValue("antiphase_A_z")),
       _C11(getMaterialProperty<Real>("C11")),
       _C12(getMaterialProperty<Real>("C12")),
       _C44(getMaterialProperty<Real>("C44")),
@@ -82,14 +82,14 @@ Real LocalBFOEigenstressAux::computeValue() {
       _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
       _C11[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
       _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11[_qp] +
-        2.0 * _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp];
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11[_qp] +
+        2.0 * _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp];
 
   eigenstress_tensor(1, 1) =
       _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q11[_qp] +
@@ -100,14 +100,14 @@ Real LocalBFOEigenstressAux::computeValue() {
       2.0 * _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
       _C11[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
       _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        2.0 * _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp];
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        2.0 * _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp];
 
   eigenstress_tensor(2, 2) =
       _C12[_qp] * Utility::pow<2>(_polar_x[_qp]) * _Q11[_qp] +
@@ -119,26 +119,26 @@ Real LocalBFOEigenstressAux::computeValue() {
       _C12[_qp] * Utility::pow<2>(_polar_y[_qp]) * _Q12[_qp] +
       2.0 * _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
         2.0 * _C12[_qp] * Utility::pow<2>(_polar_z[_qp]) * _Q12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12[_qp] +
-        _C11[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        _C12[_qp] * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12[_qp] +
-        2.0 * _C12[_qp] * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12[_qp];
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12[_qp] +
+        _C11[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        _C12[_qp] * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12[_qp] +
+        2.0 * _C12[_qp] * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12[_qp];
 
   eigenstress_tensor(0, 1) = eigenstress_tensor(1, 0) =
       4.0 * _C44[_qp] * _polar_x[_qp] * _polar_y[_qp] * _Q44[_qp] +
-        4.0 * _C44[_qp] * _antiferrodis_A_x[_qp] * _antiferrodis_A_y[_qp] * _R44[_qp];
+        4.0 * _C44[_qp] * _antiphase_A_x[_qp] * _antiphase_A_y[_qp] * _R44[_qp];
 
   eigenstress_tensor(1, 2) = eigenstress_tensor(2, 1) =
       4.0 * _C44[_qp] * _polar_y[_qp] * _polar_z[_qp] * _Q44[_qp] +
-        4.0 * _C44[_qp] * _antiferrodis_A_y[_qp] * _antiferrodis_A_z[_qp] * _R44[_qp];
+        4.0 * _C44[_qp] * _antiphase_A_y[_qp] * _antiphase_A_z[_qp] * _R44[_qp];
 
   eigenstress_tensor(0, 2) = eigenstress_tensor(2, 0) =
       4.0 * _C44[_qp] * _polar_x[_qp] * _polar_z[_qp] * _Q44[_qp] +
-        4.0 * _C44[_qp] * _antiferrodis_A_x[_qp] * _antiferrodis_A_z[_qp] * _R44[_qp];
+        4.0 * _C44[_qp] * _antiphase_A_x[_qp] * _antiphase_A_z[_qp] * _R44[_qp];
 
   if (_i == 0 & _j == 0)
     return eigenstress_tensor(0, 0);

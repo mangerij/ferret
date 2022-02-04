@@ -50,9 +50,9 @@ zMax = 1.0
   polar_y = polar_y
   polar_z = polar_z
 
-  antiferrodis_A_x = antiferrodis_A_x
-  antiferrodis_A_y = antiferrodis_A_y
-  antiferrodis_A_z = antiferrodis_A_z
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
 
 
 []
@@ -103,7 +103,7 @@ zMax = 1.0
       function = constPp
     [../]
   [../]
-  [./antiferrodis_A_x]
+  [./antiphase_A_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -111,7 +111,7 @@ zMax = 1.0
       function = constAp
     [../]
   [../]
-  [./antiferrodis_A_y]
+  [./antiphase_A_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -119,7 +119,7 @@ zMax = 1.0
       function = constAp
     [../]
   [../]
-  [./antiferrodis_A_z]
+  [./antiphase_A_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -172,17 +172,17 @@ zMax = 1.0
   [../]
   [./roto_dis_coupled_x]
     type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_x
+    variable = antiphase_A_x
     component = 0
   [../]
   [./roto_dis_coupled_y]
     type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_y
+    variable = antiphase_A_y
     component = 1
   [../]
   [./roto_dis_coupled_z]
     type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_z
+    variable = antiphase_A_z
     component = 2
   [../]
 
@@ -191,17 +191,17 @@ zMax = 1.0
 
   [./rbed_x]
     type = RotoBulkEnergyDerivativeEighthAlt
-    variable = antiferrodis_A_x
+    variable = antiphase_A_x
     component = 0
   [../]
   [./rbed_y]
     type = RotoBulkEnergyDerivativeEighthAlt
-    variable = antiferrodis_A_y
+    variable = antiphase_A_y
     component = 1
   [../]
   [./rbed_z]
     type = RotoBulkEnergyDerivativeEighthAlt
-    variable = antiferrodis_A_z
+    variable = antiphase_A_z
     component = 2
   [../]
 
@@ -226,19 +226,19 @@ zMax = 1.0
 
   [./a_x_time]
     type = TimeDerivativeScaled
-    variable = antiferrodis_A_x
+    variable = antiphase_A_x
     time_scale = 0.01
     block = '0'
   [../]
   [./a_y_time]
     type = TimeDerivativeScaled
-    variable = antiferrodis_A_y
+    variable = antiphase_A_y
     time_scale = 0.01
     block = '0'
   [../]
   [./a_z_time]
     type = TimeDerivativeScaled
-    variable = antiferrodis_A_z
+    variable = antiphase_A_z
     time_scale = 0.01
     block = '0'
   [../]
@@ -312,7 +312,7 @@ zMax = 1.0
   [./Periodic]
     [./xy]
       auto_direction = 'x y z'
-      variable = 'polar_x polar_y polar_z antiferrodis_A_x antiferrodis_A_y antiferrodis_A_z'
+      variable = 'polar_x polar_y polar_z antiphase_A_x antiphase_A_y antiphase_A_z'
     [../]
   [../]
 []

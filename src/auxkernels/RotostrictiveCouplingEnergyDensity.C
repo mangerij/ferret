@@ -29,9 +29,9 @@ InputParameters RotostrictiveCouplingEnergyDensity::validParams()
   params.addRequiredCoupledVar("disp_x", "The x component of the displacement");
   params.addRequiredCoupledVar("disp_y", "The y component of the displacement");
   params.addCoupledVar("disp_z", 0.0, "The z component of the displacement");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt vector");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase tilt vector");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase tilt vector");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the antiphase tilt vector");
   params.addRequiredParam<Real>("r11", "The coupling constants");
   params.addRequiredParam<Real>("r12", "The coupling constants");
   params.addRequiredParam<Real>("r44", "The coupling constants");
@@ -44,15 +44,15 @@ RotostrictiveCouplingEnergyDensity::RotostrictiveCouplingEnergyDensity(const Inp
    _disp_x_var(coupled("disp_x")),
    _disp_y_var(coupled("disp_y")),
    _disp_z_var(coupled("disp_z")),
-   _antiferrodis_A_x_var(coupled("antiferrodis_A_x")),
-   _antiferrodis_A_y_var(coupled("antiferrodis_A_y")),
-   _antiferrodis_A_z_var(coupled("antiferrodis_A_z")),
+   _antiphase_A_x_var(coupled("antiphase_A_x")),
+   _antiphase_A_y_var(coupled("antiphase_A_y")),
+   _antiphase_A_z_var(coupled("antiphase_A_z")),
    _disp_x_grad(coupledGradient("disp_x")),
    _disp_y_grad(coupledGradient("disp_y")),
    _disp_z_grad(coupledGradient("disp_z")),
-   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _antiphase_A_x(coupledValue("antiphase_A_x")),
+   _antiphase_A_y(coupledValue("antiphase_A_y")),
+   _antiphase_A_z(coupledValue("antiphase_A_z")),
    _r11(getParam<Real>("r11")),
    _r12(getParam<Real>("r12")),
    _r44(getParam<Real>("r44")),
@@ -63,6 +63,6 @@ RotostrictiveCouplingEnergyDensity::RotostrictiveCouplingEnergyDensity(const Inp
 Real
 RotostrictiveCouplingEnergyDensity::computeValue()
 {
-  return -(-2.0*_r44*((_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _r12*((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_disp_x_grad[_qp](0) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_disp_y_grad[_qp](1) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*_disp_z_grad[_qp](2)) - 
-   _r11*(Utility::pow<2>(_antiferrodis_A_x[_qp])*_disp_x_grad[_qp](0) + Utility::pow<2>(_antiferrodis_A_y[_qp])*_disp_y_grad[_qp](1) + Utility::pow<2>(_antiferrodis_A_z[_qp])*_disp_z_grad[_qp](2))) * std::pow(_len_scale,3);
+  return -(-2.0*_r44*((_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*(_disp_x_grad[_qp](1) + _disp_y_grad[_qp](0)))/2.0 + (_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*(_disp_x_grad[_qp](2) + _disp_z_grad[_qp](0)))/2.0 + (_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*(_disp_y_grad[_qp](2) + _disp_z_grad[_qp](1)))/2.0) - _r12*((Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_disp_x_grad[_qp](0) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_disp_y_grad[_qp](1) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*_disp_z_grad[_qp](2)) - 
+   _r11*(Utility::pow<2>(_antiphase_A_x[_qp])*_disp_x_grad[_qp](0) + Utility::pow<2>(_antiphase_A_y[_qp])*_disp_y_grad[_qp](1) + Utility::pow<2>(_antiphase_A_z[_qp])*_disp_z_grad[_qp](2))) * std::pow(_len_scale,3);
 }

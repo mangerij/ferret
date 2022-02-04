@@ -34,9 +34,9 @@ public:
 protected:
   virtual Real computeValue();
   const unsigned int _component;
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
   const MaterialProperty<Real> & _beta1;
   const MaterialProperty<Real> & _beta11;
   const MaterialProperty<Real> & _beta12;

@@ -543,27 +543,27 @@ zMax = 1.0
     type = MicroforceRotoBulkEnergy
     variable = fba_a0
     component = 0
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./fbaa2]
     type = MicroforceRotoBulkEnergy
     variable = fba_a1
     component = 1
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./fbaa3]
     type = MicroforceRotoBulkEnergy
     variable = fba_a2
     component = 2
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
 
@@ -575,9 +575,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./frpp1]
@@ -587,9 +587,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./frpp2]
@@ -599,9 +599,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
     outputs = 'none'
   [../]
@@ -613,9 +613,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./frpa1]
@@ -625,9 +625,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./frpa2]
@@ -637,9 +637,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
 
@@ -719,9 +719,9 @@ zMax = 1.0
     variable = Jba_a0a0
     index_i = 0
     index_j = 0
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jbaa1a1]
@@ -729,9 +729,9 @@ zMax = 1.0
     variable = Jba_a1a1
     index_i = 1
     index_j = 1
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jbaa2a2]
@@ -739,9 +739,9 @@ zMax = 1.0
     variable = Jba_a2a2
     index_i = 2
     index_j = 2
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jbaa0a1]
@@ -749,9 +749,9 @@ zMax = 1.0
     variable = Jba_a0a1
     index_i = 0
     index_j = 1
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jbaa1a2]
@@ -759,9 +759,9 @@ zMax = 1.0
     variable = Jba_a1a2
     index_i = 1
     index_j = 2
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jbaa0a2]
@@ -769,9 +769,9 @@ zMax = 1.0
     variable = Jba_a0a2
     index_i = 0
     index_j = 2
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
 
@@ -786,9 +786,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp1p1]
@@ -799,9 +799,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp2p2]
@@ -812,9 +812,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpa0a0]
@@ -825,9 +825,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpa1a1]
@@ -838,9 +838,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpa2a2]
@@ -851,9 +851,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
 
@@ -865,9 +865,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp1p2]
@@ -878,9 +878,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp0p2]
@@ -891,9 +891,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp0a0]
@@ -904,9 +904,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp0a1]
@@ -917,9 +917,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp0a2]
@@ -930,9 +930,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
 
@@ -944,9 +944,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp1a1]
@@ -957,9 +957,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp1a2]
@@ -970,9 +970,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp2a0]
@@ -983,9 +983,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp2a1]
@@ -996,9 +996,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpp2a2]
@@ -1009,9 +1009,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpa0a1]
@@ -1022,9 +1022,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpa0a2]
@@ -1035,9 +1035,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
   [./Jrpa1a2]
@@ -1048,9 +1048,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
   [../]
 
@@ -1566,16 +1566,16 @@ zMax = 1.0
   [./FbA1]
     type = RotoBulkEnergyEighth
     execute_on = 'timestep_end'
-    antiferrodis_A_x = A1_x
-    antiferrodis_A_y = A1_y
-    antiferrodis_A_z = A1_z
+    antiphase_A_x = A1_x
+    antiphase_A_y = A1_y
+    antiphase_A_z = A1_z
   [../]
   [./FbAo]
     type = RotoBulkEnergyEighth
     execute_on = 'timestep_end'
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
   [../]
 
   [./FcPA1]
@@ -1584,9 +1584,9 @@ zMax = 1.0
     polar_x = P1_x
     polar_y = P1_y
     polar_z = P1_z
-    antiferrodis_A_x = A1_x
-    antiferrodis_A_y = A1_y
-    antiferrodis_A_z = A1_z
+    antiphase_A_x = A1_x
+    antiphase_A_y = A1_y
+    antiphase_A_z = A1_z
   [../]
   [./FcPAo]
     type = RotoPolarCoupledEnergyEighth
@@ -1594,9 +1594,9 @@ zMax = 1.0
     polar_x = Po_x
     polar_y = Po_y
     polar_z = Po_z
-    antiferrodis_A_x = Ao_x
-    antiferrodis_A_y = Ao_y
-    antiferrodis_A_z = Ao_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
   [../]
 
 
@@ -1675,9 +1675,9 @@ zMax = 1.0
   #  polar_x = P1_x
   #  polar_y = P1_y
   #  polar_z = P1_z
-  #  antiferrodis_A_x = A1_x
-  #  antiferrodis_A_y = A1_y
-  #  antiferrodis_A_z = A1_z
+  #  antiphase_A_x = A1_x
+  #  antiphase_A_y = A1_y
+  #  antiphase_A_z = A1_z
   #[../]
   [./kill]
    type = Terminator

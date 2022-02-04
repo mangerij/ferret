@@ -32,9 +32,9 @@ InputParameters RotostrictiveCouplingEnergy::validParams()
   params.addRequiredCoupledVar("u_x", "The x component of the local elastic displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local elastic displacement");
   params.addCoupledVar("u_z", 0.0, "The z component of the local elastic displacement");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt vector");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt vector");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase tilt vector");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase tilt vector");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the antiphase tilt vector");
   params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
@@ -44,15 +44,15 @@ RotostrictiveCouplingEnergy::RotostrictiveCouplingEnergy(const InputParameters &
    _u_x_var(coupled("u_x")),
    _u_y_var(coupled("u_y")),
    _u_z_var(coupled("u_z")),
-   _antiferrodis_A_x_var(coupled("antiferrodis_A_x")),
-   _antiferrodis_A_y_var(coupled("antiferrodis_A_y")),
-   _antiferrodis_A_z_var(coupled("antiferrodis_A_z")),
+   _antiphase_A_x_var(coupled("antiphase_A_x")),
+   _antiphase_A_y_var(coupled("antiphase_A_y")),
+   _antiphase_A_z_var(coupled("antiphase_A_z")),
    _u_x_grad(coupledGradient("u_x")),
    _u_y_grad(coupledGradient("u_y")),
    _u_z_grad(coupledGradient("u_z")),
-   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _antiphase_A_x(coupledValue("antiphase_A_x")),
+   _antiphase_A_y(coupledValue("antiphase_A_y")),
+   _antiphase_A_z(coupledValue("antiphase_A_z")),
    _r11(getMaterialProperty<Real>("r11")),
    _r12(getMaterialProperty<Real>("r12")),
    _r44(getMaterialProperty<Real>("r44")),
@@ -63,7 +63,7 @@ RotostrictiveCouplingEnergy::RotostrictiveCouplingEnergy(const InputParameters &
 Real
 RotostrictiveCouplingEnergy::computeQpIntegral()
 {
-  return _energy_scale*(-(-2.0*_r44[_qp]*((_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _r12[_qp]*((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*_u_z_grad[_qp](2)) - 
-   _r11[_qp]*(Utility::pow<2>(_antiferrodis_A_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_antiferrodis_A_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_antiferrodis_A_z[_qp])*_u_z_grad[_qp](2))));
+  return _energy_scale*(-(-2.0*_r44[_qp]*((_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _r12[_qp]*((Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*_u_z_grad[_qp](2)) - 
+   _r11[_qp]*(Utility::pow<2>(_antiphase_A_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_antiphase_A_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_antiphase_A_z[_qp])*_u_z_grad[_qp](2))));
 
 }
