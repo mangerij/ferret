@@ -19,32 +19,45 @@
 
 **/
 
-#ifndef AFMHOMOGENEOUSSUBLATTICEEXCHANGEENERGY_H
-#define AFMHOMOGENEOUSSUBLATTICEEXCHANGEENERGY_H
+#ifndef AFMINTERACTIONCARTLL_H
+#define AFMINTERACTIONCARTLL_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "Kernel.h"
 
-class AFMHomogeneousSublatticeExchangeEnergy : public ElementIntegralPostprocessor
+class AFMInteractionCartLL: public Kernel
 {
 public:
-  AFMHomogeneousSublatticeExchangeEnergy(const InputParameters & parameters);
+
+  AFMInteractionCartLL(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  virtual Real computeQpIntegral();
+  virtual Real computeQpResidual();
+  virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
+private:
+  const unsigned int _component;
+  const unsigned int _mag_sub;
+  const unsigned int _potential_H_int_var;
+  const VariableValue & _potential_H_int;
+  const VariableGradient & _potential_H_int_grad;
+  const unsigned int _mag1_x_var;
+  const unsigned int _mag1_y_var;
+  const unsigned int _mag1_z_var;
   const VariableValue & _mag1_x;
   const VariableValue & _mag1_y;
   const VariableValue & _mag1_z;
+  const unsigned int _mag2_x_var;
+  const unsigned int _mag2_y_var;
+  const unsigned int _mag2_z_var;
   const VariableValue & _mag2_x;
   const VariableValue & _mag2_y;
   const VariableValue & _mag2_z;
+  const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _g0;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _De;
-  const Real _energy_scale;
+  const MaterialProperty<Real> & _mu0;
 };
-
-#endif
+#endif //AFMINTERACTIONCARTLL_H

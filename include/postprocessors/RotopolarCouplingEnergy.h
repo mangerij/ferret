@@ -42,7 +42,7 @@ protected:
   const VariableValue& _antiferrodis_A_z;
   const Real _t11, _t12, _t44;
   const Real _len_scale;
-
+  //const Real _energy_scale;
 };
 
 #endif

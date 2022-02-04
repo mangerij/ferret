@@ -36,6 +36,7 @@ protected:
   const VariableValue & _polar_z;
   const MaterialProperty<Real> & _K1;
   const MaterialProperty<Real> & _Ms;
+  const Real _energy_scale;
 };
 
 #endif

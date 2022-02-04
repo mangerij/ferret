@@ -31,6 +31,7 @@ InputParameters AFDWallEnergy::validParams()
   params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
   params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the polarization");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the polarization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -43,14 +44,15 @@ AFDWallEnergy::AFDWallEnergy(const InputParameters & parameters) :
   _H11(getMaterialProperty<Real>("H11_H110")),
   _H12(getMaterialProperty<Real>("H12_H110")),
   _H44(getMaterialProperty<Real>("H44_H110")),
-  _H44P(getMaterialProperty<Real>("H44P_H110"))
+  _H44P(getMaterialProperty<Real>("H44P_H110")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {}
 
 Real
 AFDWallEnergy::computeQpIntegral()
 {
-  return _H110[_qp]*(0.5*_H11[_qp]*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_z_grad[_qp](2)))+
+  return _energy_scale*(_H110[_qp]*(0.5*_H11[_qp]*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_z_grad[_qp](2)))+
     _H12[_qp]*(_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_y_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](1)*_antiferrodis_A_z_grad[_qp](2)+_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_z_grad[_qp](2))+
     0.5*_H44[_qp]*(pow(_antiferrodis_A_x_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](0),2)+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](0))+
-	  0.5*_H44P[_qp]*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0)))));
+	  0.5*_H44P[_qp]*(Utility::pow<2>(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0))+Utility::pow<2>(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1))+Utility::pow<2>(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0))))));
 }

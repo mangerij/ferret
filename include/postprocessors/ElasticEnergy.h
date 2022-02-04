@@ -42,6 +42,7 @@ private:
   const MaterialProperty<RankTwoTensor> & _stress;
   const Real _strain_scale;
   const Real _len_scale;
+  const Real _energy_scale;
 };
 
 #endif

@@ -29,6 +29,7 @@ InputParameters AFMSublatticeAnisotropyEnergy::validParams()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addRequiredCoupledVar("polar_z", "The z component of the polarization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -41,7 +42,8 @@ AFMSublatticeAnisotropyEnergy::AFMSublatticeAnisotropyEnergy(const InputParamete
    _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")),
    _K1(getMaterialProperty<Real>("K1")),
-   _Ms(getMaterialProperty<Real>("Ms"))
+   _Ms(getMaterialProperty<Real>("Ms")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
@@ -50,5 +52,5 @@ AFMSublatticeAnisotropyEnergy::computeQpIntegral()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
   RealVectorValue f = w/std::sqrt(w*w);
-  return -_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1) + _mag_z[_qp]*f(2))*(_Ms[_qp]*_Ms[_qp]);
+  return _energy_scale*(-_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*f(0) + _mag_y[_qp]*f(1) + _mag_z[_qp]*f(2)));//*(_Ms[_qp]*_Ms[_qp]);
 }

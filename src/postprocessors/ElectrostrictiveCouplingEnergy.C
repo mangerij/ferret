@@ -33,6 +33,7 @@ InputParameters ElectrostrictiveCouplingEnergy::validParams()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization vector");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization vector");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization vector");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -52,13 +53,14 @@ ElectrostrictiveCouplingEnergy::ElectrostrictiveCouplingEnergy(const InputParame
    _polar_z(coupledValue("polar_z")),
    _q11(getMaterialProperty<Real>("q11")),
    _q12(getMaterialProperty<Real>("q12")),
-   _q44(getMaterialProperty<Real>("q44"))
+   _q44(getMaterialProperty<Real>("q44")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 ElectrostrictiveCouplingEnergy::computeQpIntegral()
 {
-  return -0.5*(-2.0*_q44[_qp]*((_polar_x[_qp]*_polar_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _q12[_qp]*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_u_z_grad[_qp](2)) - 
-   _q11[_qp]*(Utility::pow<2>(_polar_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_polar_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_polar_z[_qp])*_u_z_grad[_qp](2)));
+  return _energy_scale*(-0.5*(-2.0*_q44[_qp]*((_polar_x[_qp]*_polar_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _q12[_qp]*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_u_z_grad[_qp](2)) - 
+   _q11[_qp]*(Utility::pow<2>(_polar_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_polar_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_polar_z[_qp])*_u_z_grad[_qp](2))));
 }

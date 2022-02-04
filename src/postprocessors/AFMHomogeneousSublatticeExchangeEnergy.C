@@ -37,6 +37,7 @@ InputParameters AFMHomogeneousSublatticeExchangeEnergy::validParams()
   params.addCoupledVar("antiferrodis_A_x", 0.0, "The x component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -51,12 +52,13 @@ AFMHomogeneousSublatticeExchangeEnergy::AFMHomogeneousSublatticeExchangeEnergy(c
    _g0(getMaterialProperty<Real>("g0")),
    _Ms(getMaterialProperty<Real>("Ms")),
    _alpha(getMaterialProperty<Real>("alpha")),
-   _De(getMaterialProperty<Real>("De"))
+   _De(getMaterialProperty<Real>("De")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 AFMHomogeneousSublatticeExchangeEnergy::computeQpIntegral()
 {
-  return 4.0*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]);
+  return _energy_scale*(4.0*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]));
 }

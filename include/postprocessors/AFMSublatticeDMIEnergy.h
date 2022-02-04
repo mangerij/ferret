@@ -45,7 +45,7 @@ protected:
   const VariableValue & _antiferrodis_A_z;
   const MaterialProperty<Real> & _Ms;
   const MaterialProperty<Real> & _D0;
-
+  const Real _energy_scale;
 };
 
 #endif

@@ -66,6 +66,7 @@ protected:
   const MaterialProperty<Real> & _t2611222222;
   const MaterialProperty<Real> & _t4411111111;
   const MaterialProperty<Real> & _t4411112222;
+  const Real _energy_scale;
 };
 
 #endif

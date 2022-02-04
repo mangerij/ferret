@@ -2,7 +2,7 @@
    This file is part of FERRET, an add-on module for MOOSE
 
    FERRET is free software: you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
+   it under the ter___Ms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
@@ -19,30 +19,24 @@
 
 **/
 
-#ifndef AFMSINGLEIONANISOTROPYENERGY_H
-#define AFMSINGLEIONANISOTROPYENERGY_H
+//* This file is modified from part of the MOOSE framework
+//* https://www.mooseframework.org
+//*
+//* All rights reserved, see COPYRIGHT for full restrictions
+//* https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//*
+//* Licensed under LGPL 2.1, please see LICENSE for details
+//* https://www.gnu.org/licenses/lgpl-2.1.html
 
-#include "ElementIntegralPostprocessor.h"
+#include "LocalConservedUniformNoise.h"
 
-class AFMSingleIonAnisotropyEnergy : public ElementIntegralPostprocessor
+registerMooseObject("FerretApp", LocalConservedUniformNoise);
+
+InputParameters
+LocalConservedUniformNoise::validParams()
 {
-public:
-  AFMSingleIonAnisotropyEnergy(const InputParameters & parameters);
-
-  static InputParameters validParams();
-
-protected:
-  virtual Real computeQpIntegral();
-
-  const VariableValue & _mag1_x;
-  const VariableValue & _mag1_y;
-  const VariableValue & _mag1_z;
-  const VariableValue & _mag2_x;
-  const VariableValue & _mag2_y;
-  const VariableValue & _mag2_z;
-  const MaterialProperty<Real> & _K1c;
-  const MaterialProperty<Real> & _K2c;
-  const Real _energy_scale;
-};
-
-#endif
+  auto params = LocalConservedNoiseBase::validParams();
+  params.addClassDescription(
+      "Uniformly distributed random number noise provider for the ConservedLangevinNoise kernel.");
+  return params;
+}

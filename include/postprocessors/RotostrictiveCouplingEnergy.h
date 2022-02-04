@@ -50,6 +50,7 @@ private:
   const MaterialProperty<Real> & _r11;
   const MaterialProperty<Real> & _r12;
   const MaterialProperty<Real> & _r44;
+  const Real _energy_scale;
 };
 
 #endif
