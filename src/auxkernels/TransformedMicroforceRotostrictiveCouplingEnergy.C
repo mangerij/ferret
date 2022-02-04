@@ -31,9 +31,9 @@ InputParameters TransformedMicroforceRotostrictiveCouplingEnergy::validParams()
   params.addRequiredCoupledVar("u1_x", "The x component of the transformed displacement");
   params.addRequiredCoupledVar("u1_y", "The y component of the transformed displacement");
   params.addCoupledVar("u1_z", "The z component of the transformed displacement");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodis vector");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodis vector");
-  params.addCoupledVar("antiferrodis_A_z", "The z component of the antiferrodis vector");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase vector");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase vector");
+  params.addCoupledVar("antiphase_A_z", "The z component of the antiphase vector");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
   return params;
 }
@@ -44,15 +44,15 @@ TransformedMicroforceRotostrictiveCouplingEnergy::TransformedMicroforceRotostric
    _u1_x_var(coupled("u1_x")),
    _u1_y_var(coupled("u1_y")),
    _u1_z_var(coupled("u1_z")),
-   _antiferrodis_A_x_var(coupled("antiferrodis_A_x")),
-   _antiferrodis_A_y_var(coupled("antiferrodis_A_y")),
-   _antiferrodis_A_z_var(coupled("antiferrodis_A_z")),
+   _antiphase_A_x_var(coupled("antiphase_A_x")),
+   _antiphase_A_y_var(coupled("antiphase_A_y")),
+   _antiphase_A_z_var(coupled("antiphase_A_z")),
    _u1_x_grad(coupledGradient("u1_x")),
    _u1_y_grad(coupledGradient("u1_y")),
    _u1_z_grad(coupledGradient("u1_z")),
-   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _antiphase_A_x(coupledValue("antiphase_A_x")),
+   _antiphase_A_y(coupledValue("antiphase_A_y")),
+   _antiphase_A_z(coupledValue("antiphase_A_z")),
    _r11(getMaterialProperty<Real>("r11")),
    _r12(getMaterialProperty<Real>("r12")),
    _r44(getMaterialProperty<Real>("r44")),
@@ -67,20 +67,20 @@ TransformedMicroforceRotostrictiveCouplingEnergy::computeValue()
 {
   if (_component == 0)
   {
-   return 0.5*(-0.6666666666666666667*_antiferrodis_A_z[_qp]*_r44[_qp]*(4.*_u1_x_grad[_qp](0) - 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 
+   return 0.5*(-0.6666666666666666667*_antiphase_A_z[_qp]*_r44[_qp]*(4.*_u1_x_grad[_qp](0) - 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 
       2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) - 4.*_u1_z_grad[_qp](2)) + 
-   1.3333333333333333333*_antiferrodis_A_y[_qp]*_r44[_qp]*(_u1_x_grad[_qp](0) - 3.*_u1_y_grad[_qp](1) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 2.*_u1_z_grad[_qp](2)) + 
-   0.33333333333333333333*_antiferrodis_A_x[_qp]*_r11[_qp]*(_u1_x_grad[_qp](0) - 1.7320508075688772935*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 3.*_u1_y_grad[_qp](1) + 
+   1.3333333333333333333*_antiphase_A_y[_qp]*_r44[_qp]*(_u1_x_grad[_qp](0) - 3.*_u1_y_grad[_qp](1) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 2.*_u1_z_grad[_qp](2)) + 
+   0.33333333333333333333*_antiphase_A_x[_qp]*_r11[_qp]*(_u1_x_grad[_qp](0) - 1.7320508075688772935*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 3.*_u1_y_grad[_qp](1) + 
       1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) + 2.*_u1_z_grad[_qp](2)) + 
-   0.33333333333333333333*_antiferrodis_A_x[_qp]*_r12[_qp]*(5.*_u1_x_grad[_qp](0) + 1.7320508075688772935*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 3.*_u1_y_grad[_qp](1) - 
+   0.33333333333333333333*_antiphase_A_x[_qp]*_r12[_qp]*(5.*_u1_x_grad[_qp](0) + 1.7320508075688772935*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 3.*_u1_y_grad[_qp](1) - 
       1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) + 4.*_u1_z_grad[_qp](2)));
   }
   else if (_component == 1)
   {
-    return 0.5*(-0.6666666666666666667*_antiferrodis_A_z[_qp]*_r44[_qp]*(4.*_u1_x_grad[_qp](0) + 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 
+    return 0.5*(-0.6666666666666666667*_antiphase_A_z[_qp]*_r44[_qp]*(4.*_u1_x_grad[_qp](0) + 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 
       2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) - 4.*_u1_z_grad[_qp](2)) + 
-   1.3333333333333333333*_antiferrodis_A_x[_qp]*_r44[_qp]*(_u1_x_grad[_qp](0) - 3.*_u1_y_grad[_qp](1) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 2.*_u1_z_grad[_qp](2)) + 
-   0.33333333333333333333*_antiferrodis_A_y[_qp]*(_r11[_qp]*(_u1_x_grad[_qp](0) + 1.7320508075688772935*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 3.*_u1_y_grad[_qp](1) + 
+   1.3333333333333333333*_antiphase_A_x[_qp]*_r44[_qp]*(_u1_x_grad[_qp](0) - 3.*_u1_y_grad[_qp](1) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 2.*_u1_z_grad[_qp](2)) + 
+   0.33333333333333333333*_antiphase_A_y[_qp]*(_r11[_qp]*(_u1_x_grad[_qp](0) + 1.7320508075688772935*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 3.*_u1_y_grad[_qp](1) + 
          1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) + 2.*_u1_z_grad[_qp](2)) + 
       _r12[_qp]*(5.*_u1_x_grad[_qp](0) - 1.7320508075688772935*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 3.*_u1_y_grad[_qp](1) - 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 
          2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) + 4.*_u1_z_grad[_qp](2))));
@@ -90,10 +90,10 @@ TransformedMicroforceRotostrictiveCouplingEnergy::computeValue()
     return 0.0;
   }
   else
-    return 0.5*(-0.6666666666666666667*_antiferrodis_A_y[_qp]*_r44[_qp]*(4.*_u1_x_grad[_qp](0) + 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 
+    return 0.5*(-0.6666666666666666667*_antiphase_A_y[_qp]*_r44[_qp]*(4.*_u1_x_grad[_qp](0) + 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 
       2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) - 4.*_u1_z_grad[_qp](2)) + 
-   0.6666666666666666667*_antiferrodis_A_x[_qp]*_r44[_qp]*(-4.*_u1_x_grad[_qp](0) + 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) - 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 
+   0.6666666666666666667*_antiphase_A_x[_qp]*_r44[_qp]*(-4.*_u1_x_grad[_qp](0) + 3.4641016151377545871*(_u1_x_grad[_qp](1) + _u1_y_grad[_qp](0)) - 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) - 
       2.4494897427831780982*(_u1_y_grad[_qp](2) + _u1_z_grad[_qp](1)) + 4.*_u1_z_grad[_qp](2)) + 
-   0.6666666666666666667*_antiferrodis_A_z[_qp]*(_r11[_qp]*(2.*_u1_x_grad[_qp](0) - 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + _u1_z_grad[_qp](2)) + 
+   0.6666666666666666667*_antiphase_A_z[_qp]*(_r11[_qp]*(2.*_u1_x_grad[_qp](0) - 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + _u1_z_grad[_qp](2)) + 
       _r12[_qp]*(_u1_x_grad[_qp](0) + 3.*_u1_y_grad[_qp](1) + 1.4142135623730950488*(_u1_x_grad[_qp](2) + _u1_z_grad[_qp](0)) + 2.*_u1_z_grad[_qp](2))));
 }

@@ -32,9 +32,9 @@ InputParameters CorrectionFactorCoupledBFOEnergy::validParams()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase tilt");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase tilt");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the antiphase tilt");
   return params;
 }
 
@@ -43,9 +43,9 @@ CorrectionFactorCoupledBFOEnergy::CorrectionFactorCoupledBFOEnergy(const InputPa
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
-  _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-  _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-  _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+  _antiphase_A_x(coupledValue("antiphase_A_x")),
+  _antiphase_A_y(coupledValue("antiphase_A_y")),
+  _antiphase_A_z(coupledValue("antiphase_A_z")),
   _c0(getMaterialProperty<Real>("c0"))
 {
 }
@@ -53,8 +53,8 @@ CorrectionFactorCoupledBFOEnergy::CorrectionFactorCoupledBFOEnergy(const InputPa
 Real
 CorrectionFactorCoupledBFOEnergy::computeQpIntegral()
 {
-  return ((-Utility::pow<6>(_antiferrodis_A_x[_qp]) - Utility::pow<6>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*(-1 + Utility::pow<2>(_antiferrodis_A_z[_qp])) - Utility::pow<4>(_antiferrodis_A_z[_qp])*(1 + Utility::pow<2>(_antiferrodis_A_z[_qp])) + Utility::pow<4>(_antiferrodis_A_x[_qp])*(-1 + Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
-     Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])) + Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*(1 - 3*Utility::pow<2>(_antiferrodis_A_z[_qp]))))*_c0[_qp]*
+  return ((-Utility::pow<6>(_antiphase_A_x[_qp]) - Utility::pow<6>(_antiphase_A_y[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp])*(-1 + Utility::pow<2>(_antiphase_A_z[_qp])) - Utility::pow<4>(_antiphase_A_z[_qp])*(1 + Utility::pow<2>(_antiphase_A_z[_qp])) + Utility::pow<4>(_antiphase_A_x[_qp])*(-1 + Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])) + 
+     Utility::pow<2>(_antiphase_A_y[_qp])*(Utility::pow<2>(_antiphase_A_z[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp])) + Utility::pow<2>(_antiphase_A_x[_qp])*(Utility::pow<4>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*(1 - 3*Utility::pow<2>(_antiphase_A_z[_qp]))))*_c0[_qp]*
    (-Utility::pow<6>(_polar_x[_qp]) - Utility::pow<6>(_polar_y[_qp]) + Utility::pow<4>(_polar_y[_qp])*(-1 + Utility::pow<2>(_polar_z[_qp])) - Utility::pow<4>(_polar_z[_qp])*(1 + Utility::pow<2>(_polar_z[_qp])) + Utility::pow<4>(_polar_x[_qp])*(-1 + Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])) + 
      Utility::pow<2>(_polar_y[_qp])*(Utility::pow<2>(_polar_z[_qp]) + Utility::pow<4>(_polar_z[_qp])) + Utility::pow<2>(_polar_x[_qp])*(Utility::pow<4>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]) + Utility::pow<4>(_polar_z[_qp]) + Utility::pow<2>(_polar_y[_qp])*(1 - 3*Utility::pow<2>(_polar_z[_qp])))));
 }

@@ -28,9 +28,9 @@
   polar_y = polar_y
   polar_z = polar_z
 
-  antiferrodis_A_x = antiferrodis_A_x
-  antiferrodis_A_y = antiferrodis_A_y
-  antiferrodis_A_z = antiferrodis_A_z
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
 
   displacements = 'u_x u_y u_z'
 
@@ -75,7 +75,7 @@
       max = 0.51
     [../]
   [../]
-  [./antiferrodis_A_x]
+  [./antiphase_A_x]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -84,7 +84,7 @@
       max = 7.41
     [../]
   [../]
-  [./antiferrodis_A_y]
+  [./antiphase_A_y]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -93,7 +93,7 @@
       max = 7.41
     [../]
   [../]
-  [./antiferrodis_A_z]
+  [./antiphase_A_z]
     order = FIRST
     family = LAGRANGE
     [./InitialCondition]
@@ -407,17 +407,17 @@
   [../]
   [./roto_dis_coupled_x]
     type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_x
+    variable = antiphase_A_x
     component = 0
   [../]
   [./roto_dis_coupled_y]
     type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_y
+    variable = antiphase_A_y
     component = 1
   [../]
   [./roto_dis_coupled_z]
     type = RotoPolarCoupledEnergyDistortDerivativeAlt
-    variable = antiferrodis_A_z
+    variable = antiphase_A_z
     component = 2
   [../]
 
@@ -455,24 +455,24 @@
 
   [./rbed_x]
     type = RotoBulkEnergyDerivativeEighthAlt
-    variable = antiferrodis_A_x
+    variable = antiphase_A_x
     component = 0
   [../]
   [./rbed_y]
     type = RotoBulkEnergyDerivativeEighthAlt
-    variable = antiferrodis_A_y
+    variable = antiphase_A_y
     component = 1
   [../]
   [./rbed_z]
     type = RotoBulkEnergyDerivativeEighthAlt
-    variable = antiferrodis_A_z
+    variable = antiphase_A_z
     component = 2
   [../]
 
 
   [./rotostr_dis_coupled_x]
     type = RotostrictiveCouplingDistortDerivative
-    variable = antiferrodis_A_x
+    variable = antiphase_A_x
     component = 0
   u_x = disp_x
   u_y = disp_y
@@ -480,7 +480,7 @@
   [../]
   [./rotostr_dis_coupled_y]
     type = RotostrictiveCouplingDistortDerivative
-    variable = antiferrodis_A_y
+    variable = antiphase_A_y
     component = 1
   u_x = disp_x
   u_y = disp_y
@@ -488,7 +488,7 @@
   [../]
   [./rotostr_dis_coupled_z]
     type = RotostrictiveCouplingDistortDerivative
-    variable = antiferrodis_A_z
+    variable = antiphase_A_z
     component = 2
   u_x = disp_x
   u_y = disp_y
@@ -630,7 +630,7 @@
   [./Periodic]
     [./xy]
       auto_direction = 'x y z'
-      variable = 'u_x u_y u_z polar_x polar_y polar_z antiferrodis_A_x antiferrodis_A_y antiferrodis_A_z'
+      variable = 'u_x u_y u_z polar_x polar_y polar_z antiphase_A_x antiphase_A_y antiphase_A_z'
     [../]
   [../]
   # fix center point location

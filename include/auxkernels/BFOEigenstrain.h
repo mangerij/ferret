@@ -41,9 +41,9 @@ private:
   const unsigned int _index_j;
   const unsigned int _index_k;
 
-  const VariableValue &_antiferrodis_A_x;
-  const VariableValue &_antiferrodis_A_y;
-  const VariableValue &_antiferrodis_A_z;
+  const VariableValue &_antiphase_A_x;
+  const VariableValue &_antiphase_A_y;
+  const VariableValue &_antiphase_A_z;
   const VariableValue &_polar_x;
   const VariableValue &_polar_y;
   const VariableValue &_polar_z;

@@ -41,9 +41,9 @@ protected:
   const VariableValue &_polar_x;
   const VariableValue &_polar_y;
   const VariableValue &_polar_z;
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
   const MaterialProperty<Real> &_C11;
   const MaterialProperty<Real> &_C12;
   const MaterialProperty<Real> &_C44;

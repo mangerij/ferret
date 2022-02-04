@@ -40,9 +40,9 @@ protected:
   const VariableValue & _mag2_x;
   const VariableValue & _mag2_y;
   const VariableValue & _mag2_z;
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
   const MaterialProperty<Real> & _Ms;
   const MaterialProperty<Real> & _D0;
   const Real _energy_scale;

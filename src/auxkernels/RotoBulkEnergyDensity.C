@@ -26,9 +26,9 @@ registerMooseObject("FerretApp", RotoBulkEnergyDensity);
 InputParameters RotoBulkEnergyDensity::validParams()
 {
   InputParameters params = AuxKernel::validParams();
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the afd vector field");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the afd vector field");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the afd vector field");
   params.addRequiredParam<Real>("beta1", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta11", "The coefficients of the Landau expansion");
   params.addRequiredParam<Real>("beta12", "The coefficients of the Landau expansion");
@@ -45,9 +45,9 @@ InputParameters RotoBulkEnergyDensity::validParams()
 
 RotoBulkEnergyDensity::RotoBulkEnergyDensity(const InputParameters & parameters) :
   AuxKernel(parameters),
-   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _antiphase_A_x(coupledValue("antiphase_A_x")),
+   _antiphase_A_y(coupledValue("antiphase_A_y")),
+   _antiphase_A_z(coupledValue("antiphase_A_z")),
    _beta1(getParam<Real>("beta1")),
    _beta11(getParam<Real>("beta11")),
    _beta12(getParam<Real>("beta12")),
@@ -65,7 +65,7 @@ RotoBulkEnergyDensity::RotoBulkEnergyDensity(const InputParameters & parameters)
 Real
 RotoBulkEnergyDensity::computeValue()
 {
-  return (_beta123*Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + _beta1*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])) + _beta12*(Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])) + _beta11*(Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])) + _beta1123*(Utility::pow<6>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + _beta1122*(Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_antiferrodis_A_z[_qp])) + _beta111*(Utility::pow<6>(_antiferrodis_A_x[_qp]) + Utility::pow<6>(_antiferrodis_A_y[_qp]) + Utility::pow<6>(_antiferrodis_A_z[_qp])) + _beta1111*(Utility::pow<8>(_antiferrodis_A_x[_qp]) + Utility::pow<8>(_antiferrodis_A_y[_qp]) + Utility::pow<8>(_antiferrodis_A_z[_qp])) + 
-   _beta112*((Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<4>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])) + Utility::pow<4>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))) + 
-   _beta1112*((Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<6>(_antiferrodis_A_z[_qp]) + Utility::pow<6>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])) + Utility::pow<6>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])))) * std::pow(_len_scale,3);
+  return (_beta123*Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<2>(_antiphase_A_z[_qp]) + _beta1*(Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])) + _beta12*(Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_antiphase_A_z[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<2>(_antiphase_A_z[_qp])) + _beta11*(Utility::pow<4>(_antiphase_A_x[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp])) + _beta1123*(Utility::pow<6>(_antiphase_A_x[_qp])*Utility::pow<2>(_antiphase_A_z[_qp]) + Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<4>(_antiphase_A_y[_qp])*Utility::pow<2>(_antiphase_A_z[_qp]) + Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<4>(_antiphase_A_z[_qp])) + _beta1122*(Utility::pow<4>(_antiphase_A_x[_qp])*Utility::pow<4>(_antiphase_A_y[_qp]) + Utility::pow<4>(_antiphase_A_x[_qp])*Utility::pow<4>(_antiphase_A_z[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp])*Utility::pow<4>(_antiphase_A_z[_qp])) + _beta111*(Utility::pow<6>(_antiphase_A_x[_qp]) + Utility::pow<6>(_antiphase_A_y[_qp]) + Utility::pow<6>(_antiphase_A_z[_qp])) + _beta1111*(Utility::pow<8>(_antiphase_A_x[_qp]) + Utility::pow<8>(_antiphase_A_y[_qp]) + Utility::pow<8>(_antiphase_A_z[_qp])) + 
+   _beta112*((Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*Utility::pow<4>(_antiphase_A_z[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp])*(Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])) + Utility::pow<4>(_antiphase_A_x[_qp])*(Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))) + 
+   _beta1112*((Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*Utility::pow<6>(_antiphase_A_z[_qp]) + Utility::pow<6>(_antiphase_A_y[_qp])*(Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])) + Utility::pow<6>(_antiphase_A_x[_qp])*(Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])))) * std::pow(_len_scale,3);
 }

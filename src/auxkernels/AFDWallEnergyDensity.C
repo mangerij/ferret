@@ -26,10 +26,10 @@ registerMooseObject("FerretApp", AFDWallEnergyDensity);
 InputParameters AFDWallEnergyDensity::validParams()
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates the free energy density due to the local gradients in the antiferrodistortive vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the afd vector field");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the afd vector field");
+  params.addClassDescription("Calculates the free energy density due to the local gradients in the antiphasetortive vector field");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase tilt vector field");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase tilt vector field");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the antiphase tilt vector field");
   params.addRequiredParam<Real>("H110","antiphase penalty coefficients");
   params.addRequiredParam<Real>("H11_H110","Ratio of antiphase penalty coefficients");
   params.addRequiredParam<Real>("H12_H110","Ratio of antiphase penalty coefficients");
@@ -41,9 +41,9 @@ InputParameters AFDWallEnergyDensity::validParams()
 
 AFDWallEnergyDensity::AFDWallEnergyDensity(const InputParameters & parameters) :
   AuxKernel(parameters),
-  _antiferrodis_A_x_grad(coupledGradient("antiferrodis_A_x")),
-  _antiferrodis_A_y_grad(coupledGradient("antiferrodis_A_y")),
-  _antiferrodis_A_z_grad(coupledGradient("antiferrodis_A_z")),
+  _antiphase_A_x_grad(coupledGradient("antiphase_A_x")),
+  _antiphase_A_y_grad(coupledGradient("antiphase_A_y")),
+  _antiphase_A_z_grad(coupledGradient("antiphase_A_z")),
   _H110(getParam<Real>("H110")),
   _H11(getParam<Real>("H11_H110")*_H110),
   _H12(getParam<Real>("H12_H110")*_H110),
@@ -55,7 +55,7 @@ AFDWallEnergyDensity::AFDWallEnergyDensity(const InputParameters & parameters) :
 Real
 AFDWallEnergyDensity::computeValue()
 {
-  return (0.5*_H11*(pow(_antiferrodis_A_x_grad[_qp](0),2)+pow(_antiferrodis_A_y_grad[_qp](1),2.0)+pow(_antiferrodis_A_z_grad[_qp](2),2.0))+
-    _H12*(_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_y_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](1)*_antiferrodis_A_z_grad[_qp](2)+_antiferrodis_A_x_grad[_qp](0)*_antiferrodis_A_z_grad[_qp](2))+
-    0.5*_H44*(pow(_antiferrodis_A_x_grad[_qp](1)+_antiferrodis_A_y_grad[_qp](0),2.0)+pow(_antiferrodis_A_y_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](1),2.0)+pow(_antiferrodis_A_x_grad[_qp](2)+_antiferrodis_A_z_grad[_qp](0),2.0))+ 0.5*_H44P*(pow(_antiferrodis_A_x_grad[_qp](1)-_antiferrodis_A_y_grad[_qp](0),2)+pow(_antiferrodis_A_y_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](1),2.0)+pow(_antiferrodis_A_x_grad[_qp](2)-_antiferrodis_A_z_grad[_qp](0),2)))*_len_scale;
+  return (0.5*_H11*(pow(_antiphase_A_x_grad[_qp](0),2)+pow(_antiphase_A_y_grad[_qp](1),2.0)+pow(_antiphase_A_z_grad[_qp](2),2.0))+
+    _H12*(_antiphase_A_x_grad[_qp](0)*_antiphase_A_y_grad[_qp](1)+_antiphase_A_y_grad[_qp](1)*_antiphase_A_z_grad[_qp](2)+_antiphase_A_x_grad[_qp](0)*_antiphase_A_z_grad[_qp](2))+
+    0.5*_H44*(pow(_antiphase_A_x_grad[_qp](1)+_antiphase_A_y_grad[_qp](0),2.0)+pow(_antiphase_A_y_grad[_qp](2)+_antiphase_A_z_grad[_qp](1),2.0)+pow(_antiphase_A_x_grad[_qp](2)+_antiphase_A_z_grad[_qp](0),2.0))+ 0.5*_H44P*(pow(_antiphase_A_x_grad[_qp](1)-_antiphase_A_y_grad[_qp](0),2)+pow(_antiphase_A_y_grad[_qp](2)-_antiphase_A_z_grad[_qp](1),2.0)+pow(_antiphase_A_x_grad[_qp](2)-_antiphase_A_z_grad[_qp](0),2)))*_len_scale;
 }

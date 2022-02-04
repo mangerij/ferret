@@ -52,12 +52,12 @@ private:
   const VariableValue & _mag2_x;
   const VariableValue & _mag2_y;
   const VariableValue & _mag2_z;
-  const unsigned int _antiferrodis_A_x_var;
-  const unsigned int _antiferrodis_A_y_var;
-  const unsigned int _antiferrodis_A_z_var;
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
+  const unsigned int _antiphase_A_x_var;
+  const unsigned int _antiphase_A_y_var;
+  const unsigned int _antiphase_A_z_var;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
   const MaterialProperty<Real> & _g0;
   const MaterialProperty<Real> & _Ms;
   const MaterialProperty<Real> & _alpha;

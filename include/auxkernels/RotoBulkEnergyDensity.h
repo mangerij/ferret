@@ -33,9 +33,9 @@ public:
 
 protected:
   virtual Real computeValue();
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
   const Real _beta1, _beta11, _beta12, _beta111, _beta112,_beta123, _beta1111, _beta1112, _beta1122, _beta1123;
   const Real _len_scale;
 };

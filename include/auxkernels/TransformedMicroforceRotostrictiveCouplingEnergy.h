@@ -39,15 +39,15 @@ private:
   const unsigned int _u1_x_var;  // note that this is slightly different than other transformed 
   const unsigned int _u1_y_var;  // objects. We will set P = S^{-1} P' with the aux system but
   const unsigned int _u1_z_var;  // then u' = u' explicitly
-  const unsigned int _antiferrodis_A_x_var;
-  const unsigned int _antiferrodis_A_y_var;
-  const unsigned int _antiferrodis_A_z_var;
+  const unsigned int _antiphase_A_x_var;
+  const unsigned int _antiphase_A_y_var;
+  const unsigned int _antiphase_A_z_var;
   const VariableGradient & _u1_x_grad;
   const VariableGradient & _u1_y_grad;
   const VariableGradient & _u1_z_grad;
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
   const MaterialProperty<Real> & _r11;
   const MaterialProperty<Real> & _r12;
   const MaterialProperty<Real> & _r44;

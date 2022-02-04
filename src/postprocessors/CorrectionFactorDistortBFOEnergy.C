@@ -29,17 +29,17 @@ InputParameters CorrectionFactorDistortBFOEnergy::validParams()
 
   InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral whose integrand is the correction to the local free energy.");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the antiferrodistortive tilt");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the antiferrodistortive tilt");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase tilt");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase tilt");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the antiphase tilt");
   return params;
 }
 
 CorrectionFactorDistortBFOEnergy::CorrectionFactorDistortBFOEnergy(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-  _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-  _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-  _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+  _antiphase_A_x(coupledValue("antiphase_A_x")),
+  _antiphase_A_y(coupledValue("antiphase_A_y")),
+  _antiphase_A_z(coupledValue("antiphase_A_z")),
   _f1(getMaterialProperty<Real>("f1"))
 {
 }
@@ -47,6 +47,6 @@ CorrectionFactorDistortBFOEnergy::CorrectionFactorDistortBFOEnergy(const InputPa
 Real
 CorrectionFactorDistortBFOEnergy::computeQpIntegral()
 {
-  return ((-Utility::pow<6>(_antiferrodis_A_x[_qp]) - Utility::pow<6>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*(-1 + Utility::pow<2>(_antiferrodis_A_z[_qp])) - Utility::pow<4>(_antiferrodis_A_z[_qp])*(1 + Utility::pow<2>(_antiferrodis_A_z[_qp])) + Utility::pow<4>(_antiferrodis_A_x[_qp])*(-1 + Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])) + 
-     Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])) + Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*(1 - 3*Utility::pow<2>(_antiferrodis_A_z[_qp]))))*_f1[_qp]);
+  return ((-Utility::pow<6>(_antiphase_A_x[_qp]) - Utility::pow<6>(_antiphase_A_y[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp])*(-1 + Utility::pow<2>(_antiphase_A_z[_qp])) - Utility::pow<4>(_antiphase_A_z[_qp])*(1 + Utility::pow<2>(_antiphase_A_z[_qp])) + Utility::pow<4>(_antiphase_A_x[_qp])*(-1 + Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])) + 
+     Utility::pow<2>(_antiphase_A_y[_qp])*(Utility::pow<2>(_antiphase_A_z[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp])) + Utility::pow<2>(_antiphase_A_x[_qp])*(Utility::pow<4>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*(1 - 3*Utility::pow<2>(_antiphase_A_z[_qp]))))*_f1[_qp]);
 }
