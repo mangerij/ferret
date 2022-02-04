@@ -39,6 +39,7 @@ protected:
   const VariableGradient & _potential_E_int_grad;   //for internal potential
   const VariableGradient & _potential_E_ext_grad;   //for external potential
   const Real _len_scale;
+  const Real _energy_scale;
 };
 
 #endif

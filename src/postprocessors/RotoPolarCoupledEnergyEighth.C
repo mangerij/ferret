@@ -35,6 +35,7 @@ InputParameters RotoPolarCoupledEnergyEighth::validParams()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -72,14 +73,15 @@ RotoPolarCoupledEnergyEighth::RotoPolarCoupledEnergyEighth(const InputParameters
    _t6211111122(getMaterialProperty<Real>("t6211111122")),
    _t2611222222(getMaterialProperty<Real>("t2611222222")),
    _t4411111111(getMaterialProperty<Real>("t4411111111")),
-   _t4411112222(getMaterialProperty<Real>("t4411112222"))
+   _t4411112222(getMaterialProperty<Real>("t4411112222")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 RotoPolarCoupledEnergyEighth::computeQpIntegral()
 {
-  return (Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t1111[_qp] + 
+  return _energy_scale*((Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t1111[_qp] + 
    ((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_polar_z[_qp]))*_t1122[_qp] + (_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_x[_qp]*_polar_z[_qp] + _antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_polar_y[_qp]*_polar_z[_qp])*_t1212[_qp] + 
    (Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24111111[_qp] + 
    (Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24111122[_qp] + 
@@ -96,5 +98,5 @@ RotoPolarCoupledEnergyEighth::computeQpIntegral()
    (_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*Utility::pow<2>(_polar_x[_qp])*_polar_y[_qp]*_polar_z[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_x[_qp]*Utility::pow<2>(_polar_y[_qp])*_polar_z[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp]*Utility::pow<2>(_polar_z[_qp]))*_t42123312[_qp] + (Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])*Utility::pow<4>(_polar_z[_qp]))*_t4411111111[_qp] + 
    ((Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]))*Utility::pow<4>(_polar_x[_qp]) + (Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]))*Utility::pow<4>(_polar_y[_qp]) + (Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp]))*Utility::pow<4>(_polar_z[_qp]))*_t4411112222[_qp] + 
    (Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<6>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<6>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<6>(_polar_z[_qp]))*_t6211111111[_qp] + 
-   ((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<6>(_polar_x[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<6>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<6>(_polar_z[_qp]))*_t6211111122[_qp];
+   ((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<6>(_polar_x[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<6>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<6>(_polar_z[_qp]))*_t6211111122[_qp]);
 }

@@ -34,6 +34,7 @@ InputParameters AFMSingleIonAnisotropyEnergy::validParams()
   params.addCoupledVar("mag2_x", 0.0, "The x component of the constrained 2nd sublattice magnetization vector");
   params.addCoupledVar("mag2_y", 0.0, "The y component of the constrained 2nd sublattice magnetization vector");
   params.addCoupledVar("mag2_z", 0.0, "The z component of the constrained 2nd sublattice magnetization vector");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -46,13 +47,14 @@ AFMSingleIonAnisotropyEnergy::AFMSingleIonAnisotropyEnergy(const InputParameters
    _mag2_y(coupledValue("mag2_y")),
    _mag2_z(coupledValue("mag2_z")),
    _K1c(getMaterialProperty<Real>("K1c")),
-   _K2c(getMaterialProperty<Real>("K2c"))
+   _K2c(getMaterialProperty<Real>("K2c")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 AFMSingleIonAnisotropyEnergy::computeQpIntegral()
 {
-  return _K2c[_qp]*Utility::pow<2>(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_z[_qp])*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp])*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp]) + 2.0*_mag1_z[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*_mag2_z[_qp] + 
-      (Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*Utility::pow<2>(_mag2_z[_qp]) + Utility::pow<2>(_mag1_y[_qp])*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + 2.0*_mag1_y[_qp]*_mag2_y[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + Utility::pow<2>(_mag1_x[_qp])*(Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + 2.0*_mag1_x[_qp]*_mag2_x[_qp]*(Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])));
+  return _energy_scale*(_K2c[_qp]*Utility::pow<2>(_mag1_x[_qp] + _mag2_x[_qp])*Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp])*Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp]) + _K1c[_qp]*(Utility::pow<2>(_mag1_z[_qp])*Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp])*Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_x[_qp])*Utility::pow<2>(_mag2_y[_qp]) + 2.0*_mag1_z[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*_mag2_z[_qp] + 
+      (Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp]))*Utility::pow<2>(_mag2_z[_qp]) + Utility::pow<2>(_mag1_y[_qp])*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + 2.0*_mag1_y[_qp]*_mag2_y[_qp]*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + Utility::pow<2>(_mag1_x[_qp])*(Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp])) + 2.0*_mag1_x[_qp]*_mag2_x[_qp]*(Utility::pow<2>(_mag1_y[_qp] + _mag2_y[_qp]) + Utility::pow<2>(_mag1_z[_qp] + _mag2_z[_qp]))));
 }

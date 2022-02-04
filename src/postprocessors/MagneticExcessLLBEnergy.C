@@ -31,6 +31,7 @@ InputParameters MagneticExcessLLBEnergy::validParams()
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetization");
   params.addCoupledVar("mag_z", 0.0, "The z component of the constrained magnetization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -42,12 +43,13 @@ MagneticExcessLLBEnergy::MagneticExcessLLBEnergy(const InputParameters & paramet
   _alpha(getMaterialProperty<Real>("alpha")),
   _g0(getMaterialProperty<Real>("g0")),
   _alpha_long(getMaterialProperty<Real>("alpha_long")),
-  _mu0(getMaterialProperty<Real>("mu0"))
+  _mu0(getMaterialProperty<Real>("mu0")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 MagneticExcessLLBEnergy::computeQpIntegral()
 {
-  return ((0.25)*_mu0[_qp]*(_g0[_qp]*_alpha_long[_qp]*Utility::pow<2>(_mag_x[_qp]*_mag_x[_qp]+_mag_y[_qp]*_mag_y[_qp]+_mag_z[_qp]*_mag_z[_qp]-1.0))/(1.0+_alpha[_qp]*_alpha[_qp]));
+  return _energy_scale*((0.25)*_mu0[_qp]*(_g0[_qp]*_alpha_long[_qp]*Utility::pow<2>(_mag_x[_qp]*_mag_x[_qp]+_mag_y[_qp]*_mag_y[_qp]+_mag_z[_qp]*_mag_z[_qp]-1.0))/(1.0+_alpha[_qp]*_alpha[_qp]));
 }

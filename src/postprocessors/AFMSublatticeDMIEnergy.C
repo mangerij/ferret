@@ -37,6 +37,7 @@ InputParameters AFMSublatticeDMIEnergy::validParams()
   params.addCoupledVar("antiferrodis_A_x", 0.0, "The x component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_y", 0.0, "The y component of the antiferrodistortive tilt vector");
   params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the antiferrodistortive tilt vector");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -52,12 +53,13 @@ AFMSublatticeDMIEnergy::AFMSublatticeDMIEnergy(const InputParameters & parameter
    _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
    _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
    _Ms(getMaterialProperty<Real>("Ms")),
-   _D0(getMaterialProperty<Real>("D0"))
+   _D0(getMaterialProperty<Real>("D0")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 AFMSublatticeDMIEnergy::computeQpIntegral()
 {
-  return  8.0*_D0[_qp]*(_antiferrodis_A_z[_qp]*_mag1_y[_qp]*_mag2_x[_qp] - _antiferrodis_A_y[_qp]*_mag1_z[_qp]*_mag2_x[_qp] - _antiferrodis_A_z[_qp]*_mag1_x[_qp]*_mag2_y[_qp] + _antiferrodis_A_x[_qp]*_mag1_z[_qp]*_mag2_y[_qp] + _antiferrodis_A_y[_qp]*_mag1_x[_qp]*_mag2_z[_qp] - _antiferrodis_A_x[_qp]*_mag1_y[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]);
+  return  _energy_scale*(8.0*_D0[_qp]*(_antiferrodis_A_z[_qp]*_mag1_y[_qp]*_mag2_x[_qp] - _antiferrodis_A_y[_qp]*_mag1_z[_qp]*_mag2_x[_qp] - _antiferrodis_A_z[_qp]*_mag1_x[_qp]*_mag2_y[_qp] + _antiferrodis_A_x[_qp]*_mag1_z[_qp]*_mag2_y[_qp] + _antiferrodis_A_y[_qp]*_mag1_x[_qp]*_mag2_z[_qp] - _antiferrodis_A_x[_qp]*_mag1_y[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]));
 }

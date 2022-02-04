@@ -33,6 +33,7 @@ InputParameters MagnetostaticEnergyCart::validParams()
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetization");
   params.addCoupledVar("mag_z", 0.0, "The z component of the constrained magnetization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -44,7 +45,8 @@ MagnetostaticEnergyCart::MagnetostaticEnergyCart(const InputParameters & paramet
    _mag_y(coupledValue("mag_y")),
    _mag_z(coupledValue("mag_z")),
    _Ms(getMaterialProperty<Real>("Ms")),
-   _mu0(getMaterialProperty<Real>("mu0"))
+   _mu0(getMaterialProperty<Real>("mu0")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
@@ -58,5 +60,5 @@ Real
 MagnetostaticEnergyCart::computeQpIntegral()
 {
   // -1/2 * M*B = - 1/2 * M*(-gradPotential)
-  return -0.5*_mu0[_qp]*_Ms[_qp] * (-_potential_H_int_grad[_qp](0)*_mag_x[_qp]-_potential_H_int_grad[_qp](1)*_mag_y[_qp]-_potential_H_int_grad[_qp](2)*_mag_z[_qp]);
+  return _energy_scale*(-0.5*_mu0[_qp]*_Ms[_qp] * (-_potential_H_int_grad[_qp](0)*_mag_x[_qp]-_potential_H_int_grad[_qp](1)*_mag_y[_qp]-_potential_H_int_grad[_qp](2)*_mag_z[_qp]));
 }

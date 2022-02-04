@@ -30,6 +30,7 @@ InputParameters WallEnergy::validParams()
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -42,7 +43,8 @@ WallEnergy::WallEnergy(const InputParameters & parameters) :
   _G11(getMaterialProperty<Real>("G11_G110")),
   _G12(getMaterialProperty<Real>("G12_G110")),
   _G44(getMaterialProperty<Real>("G44_G110")),
-  _G44P(getMaterialProperty<Real>("G44P_G110"))
+  _G44P(getMaterialProperty<Real>("G44P_G110")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
@@ -58,7 +60,7 @@ WallEnergy::WallEnergy(const InputParameters & parameters) :
 Real
 WallEnergy::computeQpIntegral()
 {
-  return _G110[_qp]*(0.5*_G11[_qp]*
+  return _energy_scale*_G110[_qp]*(0.5*_G11[_qp]*
                    (
                     pow(_polar_x_grad[_qp](0),2)+pow(_polar_y_grad[_qp](1),2)+pow(_polar_z_grad[_qp](2),2)
                    )
