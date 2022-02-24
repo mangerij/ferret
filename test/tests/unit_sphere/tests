@@ -1,0 +1,7 @@
+[Tests]
+  [electro_test]
+    type = 'RunApp'
+    input = 'koala.i'
+    required_submodule = 'scalfmm'
+  []
+[]
