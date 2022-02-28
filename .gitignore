@@ -62,28 +62,19 @@ traceout*.txt
 *.txt
 *.bib.bak
 *.out
+*.json
 .depend
 
-# Allow .e files in gold directories (7 levels)
-!/gold/*.e
-!/*/gold/*.e
-!/*/*/gold/*.e
-!/*/*/*/gold/*.e
-!/*/*/*/*/gold/*.e
-!/*/*/*/*/*/gold/*.e
-!/*/*/*/*/*/*/gold/*.e
-!/*/*/*/*/*/*/*/gold/*.e
-
-
-# Allow .csv files in gold directories (7 levels)
-!/gold/*.csv
-!/*/gold/*.csv
-!/*/*/gold/*.csv
-!/*/*/*/gold/*.csv
-!/*/*/*/*/gold/*.csv
-!/*/*/*/*/*/gold/*.csv
-!/*/*/*/*/*/*/gold/*.csv
-!/*/*/*/*/*/*/*/gold/*.csv
+# Allow certain files in gold directories
+!**/gold/*.e
+!**/gold/*.e-s*
+!**/gold/*.csv
+!**/gold/*.csv.*
+!**/gold/*.vtk
+!**/gold/*.vtu
+!**/gold/*.pvtu
+!**/gold/*.xml*
+!**/gold/*.json*
 
 # Seriously, What is a ".ravenaux" file?
 *.ravenaux

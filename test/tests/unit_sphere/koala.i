@@ -31,25 +31,21 @@
 [Transfers]
   [./from_sub]
     type = MultiAppCopyTransfer
-    direction = from_multiapp
     source_variable = phi
     variable = phi
-    multi_app = poisson
+    from_multi_app = poisson
   [../]
   [./to_sub]
     type = MultiAppCopyTransfer
-    direction = to_multiapp
     source_variable = phi
     variable = phi1
-    multi_app = laplace
+    to_multi_app = laplace
   [../]
   [./from_sub2]
     type = MultiAppAddTransfer
-    direction = from_multiapp
     source_variable = phi
     variable = phi
-    multi_app = laplace
-
+    from_multi_app = laplace
   [../]
 []
 
