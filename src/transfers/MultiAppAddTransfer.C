@@ -45,18 +45,18 @@ MultiAppAddTransfer::execute()
 
   if (_current_direction == TO_MULTIAPP)
   {
-    FEProblemBase & from_problem = _to_multi_app->problemBase();
-    for (unsigned int i = 0; i < _to_multi_app->numGlobalApps(); i++)
-      if (_to_multi_app->hasLocalApp(i))
-        transfer(_to_multi_app->appProblemBase(i), from_problem);
+    FEProblemBase & from_problem = _multi_app->problemBase();
+    for (unsigned int i = 0; i < _multi_app->numGlobalApps(); i++)
+      if (_multi_app->hasLocalApp(i))
+        transfer(_multi_app->appProblemBase(i), from_problem);
   }
 
   else if (_current_direction == FROM_MULTIAPP)
   {
-    FEProblemBase & to_problem = _from_multi_app->problemBase();
-    for (unsigned int i = 0; i < _from_multi_app->numGlobalApps(); i++)
-      if (_from_multi_app->hasLocalApp(i))
-        transfer(to_problem, _from_multi_app->appProblemBase(i));
+    FEProblemBase & to_problem = _multi_app->problemBase();
+    for (unsigned int i = 0; i < _multi_app->numGlobalApps(); i++)
+      if (_multi_app->hasLocalApp(i))
+        transfer(to_problem, _multi_app->appProblemBase(i));
   }
 
   _console << "Finished MultiAppAddTransfer " << name() << std::endl;
