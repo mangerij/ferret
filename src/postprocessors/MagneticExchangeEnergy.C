@@ -32,6 +32,7 @@ InputParameters MagneticExchangeEnergy::validParams()
   params.addRequiredCoupledVar("mag_x", "The x component of the magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the magnetization");
   params.addCoupledVar("mag_z", 0.0, "The z component of the magnetization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and aJ");
   return params;
 }
 
@@ -41,7 +42,8 @@ MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameter
   _mag_y_grad(coupledGradient("mag_y")),
   _mag_z_grad(coupledGradient("mag_z")),
   _Ae(getMaterialProperty<Real>("Ae")),
-  _mu0(getMaterialProperty<Real>("mu0"))
+  _mu0(getMaterialProperty<Real>("mu0")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
@@ -59,5 +61,5 @@ MagneticExchangeEnergy::MagneticExchangeEnergy(const InputParameters & parameter
 Real
 MagneticExchangeEnergy::computeQpIntegral()
 {
-  return _mu0[_qp]*((_Ae[_qp])*(Utility::pow<2>(_mag_x_grad[_qp](0))+Utility::pow<2>(_mag_x_grad[_qp](1))+Utility::pow<2>(_mag_x_grad[_qp](2))+Utility::pow<2>(_mag_y_grad[_qp](0))+Utility::pow<2>(_mag_y_grad[_qp](1))+Utility::pow<2>(_mag_y_grad[_qp](2))+Utility::pow<2>(_mag_z_grad[_qp](0))+Utility::pow<2>(_mag_z_grad[_qp](1))+Utility::pow<2>(_mag_z_grad[_qp](2))));
+  return _energy_scale*(_mu0[_qp]*((_Ae[_qp])*(Utility::pow<2>(_mag_x_grad[_qp](0))+Utility::pow<2>(_mag_x_grad[_qp](1))+Utility::pow<2>(_mag_x_grad[_qp](2))+Utility::pow<2>(_mag_y_grad[_qp](0))+Utility::pow<2>(_mag_y_grad[_qp](1))+Utility::pow<2>(_mag_y_grad[_qp](2))+Utility::pow<2>(_mag_z_grad[_qp](0))+Utility::pow<2>(_mag_z_grad[_qp](1))+Utility::pow<2>(_mag_z_grad[_qp](2)))));
 }
