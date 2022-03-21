@@ -26,8 +26,8 @@ InputParameters AFMSublatticeAnisotropyAltEnergy::validParams()
   params.addRequiredCoupledVar("mag1_x", "The x component of the constrained magnetization");
   params.addRequiredCoupledVar("mag1_y", "The y component of the constrained magnetization");
   params.addCoupledVar("mag1_z", 0.0, "The z component of the constrained magnetization");
-  params.addRequiredCoupledVar("mag2_x", "The x component of the constrained magnetization");
-  params.addRequiredCoupledVar("mag2_y", "The y component of the constrained magnetization");
+  params.addCoupledVar("mag2_x", 0.0, "The x component of the constrained magnetization");
+  params.addCoupledVar("mag2_y", 0.0, "The y component of the constrained magnetization");
   params.addCoupledVar("mag2_z", 0.0, "The z component of the constrained magnetization");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

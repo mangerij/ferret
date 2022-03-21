@@ -60,5 +60,5 @@ AFMHomogeneousSublatticeExchangeEnergy::AFMHomogeneousSublatticeExchangeEnergy(c
 Real
 AFMHomogeneousSublatticeExchangeEnergy::computeQpIntegral()
 {
-  return _energy_scale*(4.0*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp])*Utility::pow<2>(_Ms[_qp]));
+  return _energy_scale*(4.0*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp]));
 }
