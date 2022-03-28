@@ -260,8 +260,9 @@ amplitude = 0.001
   [../]
 
   [./cEy]
-    type = ElecFieldAux
+    type = QuasistaticFieldAux
     component = 2
+    potential_int = potential_E_int
     variable = Ez
   [../]
 

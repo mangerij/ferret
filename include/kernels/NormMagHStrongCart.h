@@ -19,27 +19,34 @@
 
 **/
 
-#ifndef ELECFIELDAUX_H
-#define ELECFIELDAUX_H
+#ifndef NORMMAGHSTRONGCART_H
+#define NORMMAGHSTRONGCART_H
 
-#include "AuxKernel.h"
+#include "Kernel.h"
 
-class ElecFieldAux : public AuxKernel
+class NormMagHStrongCart: public Kernel
 {
 public:
-  ElecFieldAux(const InputParameters & parameters);
+
+  NormMagHStrongCart(const InputParameters & parameters);
 
   static InputParameters validParams();
 
-  virtual ~ElecFieldAux() {}
-
 protected:
-  virtual Real computeValue();
+  virtual Real computeQpResidual();
+  virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
 private:
-  const unsigned int _component;
-  const VariableGradient & _potential_E_int_grad;
-  const VariableGradient & _potential_E_ext_grad;
-};
+  const unsigned int _mag_x_var;
+  const unsigned int _mag_y_var;
+  const unsigned int _mag_z_var;
+  const VariableValue & _mag_x;
+  const VariableValue & _mag_y;
+  const VariableValue & _mag_z;
+  const VariableGradient & _mag_x_grad;
+  const VariableGradient & _mag_y_grad;
+  const VariableGradient & _mag_z_grad;
 
-#endif /* ELECFIELDAUX_H */
+};
+#endif //NORMMAGHSTRONGCART_H

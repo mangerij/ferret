@@ -391,8 +391,9 @@ a1temp = -0.172197
   [../]
 
   [./ez]
-    type = ElecFieldAux
+    type = QuasistaticFieldAux
     variable = Ez
+    potential_int = potential_E_int
     component = 2
   [../]
 []
