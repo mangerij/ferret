@@ -80,7 +80,7 @@
   [../]
 
   [./polar_x_electric_E]
-     type=PolarElectricEStrong
+     type = PolarElectricEStrong
      variable = potential
      block = '1'
   [../]
@@ -88,25 +88,25 @@
 
 [AuxKernels]
   [./Ex]
-    type = ElecFieldAux
+    type = QuasistaticFieldAux
     variable = E_x
     block = '1 2'
     component = 0
-    potential_ext = potential
+    potential_int = potential
   [../]
   [./Ey]
-    type = ElecFieldAux
+    type = QuasistaticFieldAux
     variable = E_y
     block = '1 2'
     component = 1
-    potential_ext = potential
+    potential_int = potential
   [../]  
   [./Ez]
-    type = ElecFieldAux
+    type = QuasistaticFieldAux
     variable = E_z
     block = '1 2'
     component = 2
-    potential_ext = potential
+    potential_int = potential
   [../]
 
 []
