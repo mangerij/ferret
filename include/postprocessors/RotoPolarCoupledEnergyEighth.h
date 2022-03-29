@@ -33,12 +33,12 @@ public:
 
 protected:
   virtual Real computeQpIntegral();
-  const unsigned int _antiferrodis_A_x_var;
-  const unsigned int _antiferrodis_A_y_var;
-  const unsigned int _antiferrodis_A_z_var;
-  const VariableValue & _antiferrodis_A_x;
-  const VariableValue & _antiferrodis_A_y;
-  const VariableValue & _antiferrodis_A_z;
+  const unsigned int _antiphase_A_x_var;
+  const unsigned int _antiphase_A_y_var;
+  const unsigned int _antiphase_A_z_var;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
   const unsigned int _polar_x_var;
   const unsigned int _polar_y_var;
   const unsigned int _polar_z_var;
@@ -66,6 +66,7 @@ protected:
   const MaterialProperty<Real> & _t2611222222;
   const MaterialProperty<Real> & _t4411111111;
   const MaterialProperty<Real> & _t4411112222;
+  const Real _energy_scale;
 };
 
 #endif

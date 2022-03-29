@@ -30,11 +30,11 @@ InputParameters BFOEigenstrain::validParams()
   InputParameters params = AuxKernel::validParams();
   params.addRequiredParam<unsigned int>("index_j", "component");
   params.addRequiredParam<unsigned int>("index_k", "component");
-  params.addRequiredCoupledVar("antiferrodis_A_x",
+  params.addRequiredCoupledVar("antiphase_A_x",
                                "The x component of the afd vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_y",
+  params.addRequiredCoupledVar("antiphase_A_y",
                                "The y component of the afd vector field");
-  params.addCoupledVar("antiferrodis_A_z", 0.0,
+  params.addCoupledVar("antiphase_A_z", 0.0,
                        "The z component of the afd vector field");
   params.addRequiredCoupledVar("polar_x",
                                "The x component of the polarization");
@@ -67,9 +67,9 @@ BFOEigenstrain::BFOEigenstrain(const InputParameters & parameters) :
   AuxKernel(parameters),
    _index_j(getParam<unsigned int>("index_j")),
    _index_k(getParam<unsigned int>("index_k")),
-   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _antiphase_A_x(coupledValue("antiphase_A_x")),
+   _antiphase_A_y(coupledValue("antiphase_A_y")),
+   _antiphase_A_z(coupledValue("antiphase_A_z")),
    _polar_x(coupledValue("polar_x")), _polar_y(coupledValue("polar_y")),
    _polar_z(coupledValue("polar_z")), _C11(getParam<Real>("C11")),
    _C12(getParam<Real>("C12")), _C44(getParam<Real>("C44")),
@@ -88,17 +88,17 @@ BFOEigenstrain::computeValue()
     if (_index_k == 0)
     { 
       //_strain[_qp](0,0) + 
-      return Utility::pow<2>(_polar_x[_qp])*_Q11 + Utility::pow<2>(_polar_y[_qp])*_Q12 + Utility::pow<2>(_polar_z[_qp])*_Q12 + Utility::pow<2>(_antiferrodis_A_x[_qp])*_R11 + Utility::pow<2>(_antiferrodis_A_y[_qp])*_R12 + Utility::pow<2>(_antiferrodis_A_z[_qp])*_R12;
+      return Utility::pow<2>(_polar_x[_qp])*_Q11 + Utility::pow<2>(_polar_y[_qp])*_Q12 + Utility::pow<2>(_polar_z[_qp])*_Q12 + Utility::pow<2>(_antiphase_A_x[_qp])*_R11 + Utility::pow<2>(_antiphase_A_y[_qp])*_R12 + Utility::pow<2>(_antiphase_A_z[_qp])*_R12;
     }
     else if (_index_k == 1)
     {
       return _strain[_qp](0,1) + 4.0 * _C44 * _polar_x[_qp] * _polar_y[_qp] * _Q44 
-             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_y[_qp] * _R44;
+             + 4.0 * _C44 * _antiphase_A_x[_qp] * _antiphase_A_y[_qp] * _R44;
     }
     else if (_index_k == 2)
     {
       return _strain[_qp](0,2) + 4.0 * _C44 * _polar_x[_qp] * _polar_z[_qp] * _Q44 
-             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_z[_qp] * _R44;
+             + 4.0 * _C44 * _antiphase_A_x[_qp] * _antiphase_A_z[_qp] * _R44;
     }
     else 
       return 0.0;
@@ -108,7 +108,7 @@ BFOEigenstrain::computeValue()
     if (_index_k == 0)
     {
       return _strain[_qp](1,0) + 4.0 * _C44 * _polar_x[_qp] * _polar_y[_qp] * _Q44 
-             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_y[_qp] * _R44;
+             + 4.0 * _C44 * _antiphase_A_x[_qp] * _antiphase_A_y[_qp] * _R44;
     }
     else if (_index_k == 1)
     {
@@ -120,19 +120,19 @@ BFOEigenstrain::computeValue()
         2.0 * _C12 * Utility::pow<2>(_polar_y[_qp]) * _Q12 +
         _C11 * Utility::pow<2>(_polar_z[_qp]) * _Q12 +
         _C12 * Utility::pow<2>(_polar_z[_qp]) * _Q12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12 +
-        2.0 * _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12;
+        _C12 * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11 +
+        _C11 * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11 +
+        _C12 * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11 +
+        _C11 * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12 +
+        _C12 * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12 +
+        2.0 * _C12 * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12 +
+        _C11 * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12 +
+        _C12 * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12;
     }
     else if (_index_k == 2)
     {
       return _strain[_qp](1,2) + 4.0 * _C44 * _polar_y[_qp] * _polar_z[_qp] * _Q44 
-             + 4.0 * _C44 * _antiferrodis_A_y[_qp] * _antiferrodis_A_z[_qp] * _R44;
+             + 4.0 * _C44 * _antiphase_A_y[_qp] * _antiphase_A_z[_qp] * _R44;
     }
     else 
       return 0.0;
@@ -142,12 +142,12 @@ BFOEigenstrain::computeValue()
     if (_index_k == 0)
     {
       return _strain[_qp](2,0) + 4.0 * _C44 * _polar_x[_qp] * _polar_z[_qp] * _Q44 
-             + 4.0 * _C44 * _antiferrodis_A_x[_qp] * _antiferrodis_A_z[_qp] * _R44;
+             + 4.0 * _C44 * _antiphase_A_x[_qp] * _antiphase_A_z[_qp] * _R44;
     }
     else if (_index_k == 1)
     {
       return _strain[_qp](2,1) + 4.0 * _C44 * _polar_y[_qp] * _polar_z[_qp] * _Q44 
-             + 4.0 * _C44 * _antiferrodis_A_y[_qp] * _antiferrodis_A_z[_qp] * _R44;
+             + 4.0 * _C44 * _antiphase_A_y[_qp] * _antiphase_A_z[_qp] * _R44;
     }
     else if (_index_k == 2)
     {
@@ -159,14 +159,14 @@ BFOEigenstrain::computeValue()
         _C11 * Utility::pow<2>(_polar_y[_qp]) * _Q12 +
         _C12 * Utility::pow<2>(_polar_y[_qp]) * _Q12 +
         2.0 * _C12 * Utility::pow<2>(_polar_z[_qp]) * _Q12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R11 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R11 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R11 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_x[_qp]) * _R12 +
-        _C11 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
-        _C12 * Utility::pow<2>(_antiferrodis_A_y[_qp]) * _R12 +
-        2.0 * _C12 * Utility::pow<2>(_antiferrodis_A_z[_qp]) * _R12;
+        _C12 * Utility::pow<2>(_antiphase_A_x[_qp]) * _R11 +
+        _C12 * Utility::pow<2>(_antiphase_A_y[_qp]) * _R11 +
+        _C11 * Utility::pow<2>(_antiphase_A_z[_qp]) * _R11 +
+        _C11 * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12 +
+        _C12 * Utility::pow<2>(_antiphase_A_x[_qp]) * _R12 +
+        _C11 * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12 +
+        _C12 * Utility::pow<2>(_antiphase_A_y[_qp]) * _R12 +
+        2.0 * _C12 * Utility::pow<2>(_antiphase_A_z[_qp]) * _R12;
     }
     else 
       return 0.0;

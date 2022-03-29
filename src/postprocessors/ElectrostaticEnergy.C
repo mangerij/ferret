@@ -33,6 +33,7 @@ InputParameters ElectrostaticEnergy::validParams()
   params.addRequiredCoupledVar("potential_E_int", "The internal electric potential");
   params.addCoupledVar("potential_E_ext", 0.0, "The external electric potential");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -43,7 +44,8 @@ ElectrostaticEnergy::ElectrostaticEnergy(const InputParameters & parameters) :
   _polar_z(coupledValue("polar_z")),
   _potential_E_int_grad(coupledGradient("potential_E_int")),
   _potential_E_ext_grad(coupledGradient("potential_E_ext")),
-  _len_scale(getParam<Real>("len_scale"))
+  _len_scale(getParam<Real>("len_scale")),
+  _energy_scale(getParam<Real>("energy_scale"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
@@ -58,5 +60,5 @@ ElectrostaticEnergy::computeQpIntegral()
 {
   RealVectorValue P;
   P(0) = _polar_x[_qp]; P(1) = _polar_y[_qp]; P(2) = _polar_z[_qp];
-  return (0.5 * P * _potential_E_int_grad[_qp]) * std::pow(_len_scale, 2.0) + (P * _potential_E_ext_grad[_qp]) * std::pow(_len_scale, 2.0);
+  return _energy_scale*((0.5 * P * _potential_E_int_grad[_qp]) * std::pow(_len_scale, 2.0) + (P * _potential_E_ext_grad[_qp]) * std::pow(_len_scale, 2.0));
 }

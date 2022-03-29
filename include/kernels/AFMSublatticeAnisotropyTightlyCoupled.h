@@ -14,15 +14,15 @@
    and be sure to track new changes at github.com/mangerij/ferret
 **/
 
-#ifndef AFMSUBLATTICEANISOTROPYCF_H
-#define AFMSUBLATTICEANISOTROPYCF_H
+#ifndef AFMSUBLATTICEANISOTROPYTIGHTLYCOUPLED_H
+#define AFMSUBLATTICEANISOTROPYTIGHTLYCOUPLED_H
 
 #include "Kernel.h"
 
-class AFMSublatticeAnisotropyCF: public Kernel
+class AFMSublatticeAnisotropyTightlyCoupled: public Kernel
 {
 public:
-  AFMSublatticeAnisotropyCF(const InputParameters & parameters);
+  AFMSublatticeAnisotropyTightlyCoupled(const InputParameters & parameters);
 
   static InputParameters validParams();
 
@@ -32,18 +32,28 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
-  const unsigned int _mag_x_var;
-  const unsigned int _mag_y_var;
-  const unsigned int _mag_z_var;
-  const VariableValue & _mag_x;
-  const VariableValue & _mag_y;
-  const VariableValue & _mag_z;
+  const unsigned int _mag_sub;
+  const unsigned int _mag1_x_var;
+  const unsigned int _mag1_y_var;
+  const unsigned int _mag1_z_var;
+  const unsigned int _mag2_x_var;
+  const unsigned int _mag2_y_var;
+  const unsigned int _mag2_z_var;
+  const unsigned int _polar_x_var;
+  const unsigned int _polar_y_var;
+  const unsigned int _polar_z_var;
+  const VariableValue & _mag1_x;
+  const VariableValue & _mag1_y;
+  const VariableValue & _mag1_z;
+  const VariableValue & _mag2_x;
+  const VariableValue & _mag2_y;
+  const VariableValue & _mag2_z;
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
   const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _K2;
+  const MaterialProperty<Real> & _K1;
   const MaterialProperty<Real> & _g0;
   const MaterialProperty<Real> & _Ms;
 };
-#endif //AFMSUBLATTICEANISOTROPYCF_H
+#endif //AFMSUBLATTICEANISOTROPYTIGHTLYCOUPLED_H

@@ -31,6 +31,7 @@ InputParameters AFMExchangeStiffnessEnergy::validParams()
   params.addRequiredCoupledVar("Neel_L_x", "The x component of the AFM Neel vector");
   params.addRequiredCoupledVar("Neel_L_y", "The y component of the AFM Neel vector");
   params.addRequiredCoupledVar("Neel_L_z", "The z component of the AFM Neel vector");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and aJ");
   return params;
 }
 
@@ -40,12 +41,13 @@ AFMExchangeStiffnessEnergy::AFMExchangeStiffnessEnergy(const InputParameters & p
    _Neel_L_y_grad(coupledGradient("Neel_L_y")),
    _Neel_L_z_grad(coupledGradient("Neel_L_z")),
    _Ae(getMaterialProperty<Real>("Ae")),
-   _Ms(getMaterialProperty<Real>("Ms"))
+   _Ms(getMaterialProperty<Real>("Ms")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 AFMExchangeStiffnessEnergy::computeQpIntegral()
 {
-  return _Ae[_qp]*_Ms[_qp]*(_Neel_L_x_grad[_qp](0)*_Neel_L_x_grad[_qp](0)+_Neel_L_x_grad[_qp](1)*_Neel_L_x_grad[_qp](1)+_Neel_L_x_grad[_qp](2)*_Neel_L_x_grad[_qp](2)+_Neel_L_y_grad[_qp](0)*_Neel_L_y_grad[_qp](0)+_Neel_L_y_grad[_qp](1)*_Neel_L_y_grad[_qp](1)+_Neel_L_y_grad[_qp](2)*_Neel_L_y_grad[_qp](2)+_Neel_L_z_grad[_qp](0)*_Neel_L_z_grad[_qp](0)+_Neel_L_z_grad[_qp](1)*_Neel_L_z_grad[_qp](1)+_Neel_L_z_grad[_qp](2)*_Neel_L_z_grad[_qp](2));
+  return _energy_scale*(_Ae[_qp]*(_Neel_L_x_grad[_qp](0)*_Neel_L_x_grad[_qp](0)+_Neel_L_x_grad[_qp](1)*_Neel_L_x_grad[_qp](1)+_Neel_L_x_grad[_qp](2)*_Neel_L_x_grad[_qp](2)+_Neel_L_y_grad[_qp](0)*_Neel_L_y_grad[_qp](0)+_Neel_L_y_grad[_qp](1)*_Neel_L_y_grad[_qp](1)+_Neel_L_y_grad[_qp](2)*_Neel_L_y_grad[_qp](2)+_Neel_L_z_grad[_qp](0)*_Neel_L_z_grad[_qp](0)+_Neel_L_z_grad[_qp](1)*_Neel_L_z_grad[_qp](1)+_Neel_L_z_grad[_qp](2)*_Neel_L_z_grad[_qp](2)));
 }

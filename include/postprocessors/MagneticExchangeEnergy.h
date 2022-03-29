@@ -39,6 +39,7 @@ protected:
   const VariableGradient & _mag_z_grad;
   const MaterialProperty<Real> & _Ae;
   const MaterialProperty<Real> & _mu0;
+  const Real _energy_scale;
 };
 
 #endif

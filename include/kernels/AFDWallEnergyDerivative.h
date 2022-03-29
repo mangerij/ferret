@@ -40,12 +40,12 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
-  const unsigned int _antiferrodis_A_x_var;
-  const unsigned int _antiferrodis_A_y_var;
-  const unsigned int _antiferrodis_A_z_var;
-  const VariableGradient & _antiferrodis_A_i_grad;
-  const VariableGradient & _antiferrodis_A_j_grad;
-  const VariableGradient & _antiferrodis_A_k_grad;
+  const unsigned int _antiphase_A_x_var;
+  const unsigned int _antiphase_A_y_var;
+  const unsigned int _antiphase_A_z_var;
+  const VariableGradient & _antiphase_A_i_grad;
+  const VariableGradient & _antiphase_A_j_grad;
+  const VariableGradient & _antiphase_A_k_grad;
   const unsigned int _ii, _jj, _kk;
   const MaterialProperty<Real> & _H110;
   const MaterialProperty<Real> & _H11;

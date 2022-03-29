@@ -19,27 +19,30 @@
 
 **/
 
-#ifndef ELECFIELDAUX_H
-#define ELECFIELDAUX_H
+#ifndef AFMSINGLEIONANISOTROPYENERGY_H
+#define AFMSINGLEIONANISOTROPYENERGY_H
 
-#include "AuxKernel.h"
+#include "ElementIntegralPostprocessor.h"
 
-class ElecFieldAux : public AuxKernel
+class AFMSingleIonAnisotropyEnergy : public ElementIntegralPostprocessor
 {
 public:
-  ElecFieldAux(const InputParameters & parameters);
+  AFMSingleIonAnisotropyEnergy(const InputParameters & parameters);
 
   static InputParameters validParams();
 
-  virtual ~ElecFieldAux() {}
-
 protected:
-  virtual Real computeValue();
+  virtual Real computeQpIntegral();
 
-private:
-  const unsigned int _component;
-  const VariableGradient & _potential_E_int_grad;
-  const VariableGradient & _potential_E_ext_grad;
+  const VariableValue & _mag1_x;
+  const VariableValue & _mag1_y;
+  const VariableValue & _mag1_z;
+  const VariableValue & _mag2_x;
+  const VariableValue & _mag2_y;
+  const VariableValue & _mag2_z;
+  const MaterialProperty<Real> & _K1c;
+  const MaterialProperty<Real> & _K2c;
+  const Real _energy_scale;
 };
 
-#endif /* ELECFIELDAUX_H */
+#endif

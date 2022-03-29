@@ -29,23 +29,24 @@ InputParameters RotoPolarCoupledEnergyEighth::validParams()
 
   InputParameters params = ElementIntegralPostprocessor::validParams();
   params.addClassDescription("Calculates an integral over the eighth order coupling energy density between AFD and polarization fields.");
-  params.addRequiredCoupledVar("antiferrodis_A_x", "The x component of the AFD vector field");
-  params.addRequiredCoupledVar("antiferrodis_A_y", "The y component of the AFD vector field");
-  params.addCoupledVar("antiferrodis_A_z", 0.0, "The z component of the AFD vector field");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the AFD vector field");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the AFD vector field");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the AFD vector field");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
 RotoPolarCoupledEnergyEighth::RotoPolarCoupledEnergyEighth(const InputParameters & parameters) :
   ElementIntegralPostprocessor(parameters),
-   _antiferrodis_A_x_var(coupled("antiferrodis_A_x")),
-   _antiferrodis_A_y_var(coupled("antiferrodis_A_y")),
-   _antiferrodis_A_z_var(coupled("antiferrodis_A_z")),
-   _antiferrodis_A_x(coupledValue("antiferrodis_A_x")),
-   _antiferrodis_A_y(coupledValue("antiferrodis_A_y")),
-   _antiferrodis_A_z(coupledValue("antiferrodis_A_z")),
+   _antiphase_A_x_var(coupled("antiphase_A_x")),
+   _antiphase_A_y_var(coupled("antiphase_A_y")),
+   _antiphase_A_z_var(coupled("antiphase_A_z")),
+   _antiphase_A_x(coupledValue("antiphase_A_x")),
+   _antiphase_A_y(coupledValue("antiphase_A_y")),
+   _antiphase_A_z(coupledValue("antiphase_A_z")),
    _polar_x_var(coupled("polar_x")),
    _polar_y_var(coupled("polar_y")),
    _polar_z_var(coupled("polar_z")),
@@ -72,29 +73,30 @@ RotoPolarCoupledEnergyEighth::RotoPolarCoupledEnergyEighth(const InputParameters
    _t6211111122(getMaterialProperty<Real>("t6211111122")),
    _t2611222222(getMaterialProperty<Real>("t2611222222")),
    _t4411111111(getMaterialProperty<Real>("t4411111111")),
-   _t4411112222(getMaterialProperty<Real>("t4411112222"))
+   _t4411112222(getMaterialProperty<Real>("t4411112222")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
 }
 
 Real
 RotoPolarCoupledEnergyEighth::computeQpIntegral()
 {
-  return (Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t1111[_qp] + 
-   ((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_polar_z[_qp]))*_t1122[_qp] + (_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_x[_qp]*_polar_z[_qp] + _antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_polar_y[_qp]*_polar_z[_qp])*_t1212[_qp] + 
-   (Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24111111[_qp] + 
-   (Utility::pow<2>(_antiferrodis_A_x[_qp])*(Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*(Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24111122[_qp] + 
-   ((Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + (Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_polar_z[_qp]))*_t24112222[_qp] + 
-   (Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24112233[_qp] + 
-   (Utility::pow<3>(_antiferrodis_A_z[_qp])*(_antiferrodis_A_x[_qp]*_polar_x[_qp] + _antiferrodis_A_y[_qp]*_polar_y[_qp])*_polar_z[_qp] + Utility::pow<3>(_antiferrodis_A_y[_qp])*_polar_y[_qp]*(_antiferrodis_A_x[_qp]*_polar_x[_qp] + _antiferrodis_A_z[_qp]*_polar_z[_qp]) + Utility::pow<3>(_antiferrodis_A_x[_qp])*_polar_x[_qp]*(_antiferrodis_A_y[_qp]*_polar_y[_qp] + _antiferrodis_A_z[_qp]*_polar_z[_qp]))*_t24121112[_qp] + (_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*Utility::pow<2>(_antiferrodis_A_z[_qp])*_polar_x[_qp]*_polar_y[_qp] + _antiferrodis_A_x[_qp]*Utility::pow<2>(_antiferrodis_A_y[_qp])*_antiferrodis_A_z[_qp]*_polar_x[_qp]*_polar_z[_qp] + Utility::pow<2>(_antiferrodis_A_x[_qp])*_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_polar_y[_qp]*_polar_z[_qp])*_t24121233[_qp] + 
-   (Utility::pow<6>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<6>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<6>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t2611111111[_qp] + 
-   ((Utility::pow<6>(_antiferrodis_A_y[_qp]) + Utility::pow<6>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + (Utility::pow<6>(_antiferrodis_A_x[_qp]) + Utility::pow<6>(_antiferrodis_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<6>(_antiferrodis_A_x[_qp]) + Utility::pow<6>(_antiferrodis_A_y[_qp]))*Utility::pow<2>(_polar_z[_qp]))*_t2611222222[_qp] + 
-   (Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<4>(_polar_z[_qp]))*_t42111111[_qp] + 
-   ((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<4>(_polar_x[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<4>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<4>(_polar_z[_qp]))*_t42111122[_qp] + 
-   ((_antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_x[_qp] + _antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_polar_y[_qp])*Utility::pow<3>(_polar_z[_qp]) + Utility::pow<3>(_polar_x[_qp])*(_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_y[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_z[_qp]) + Utility::pow<3>(_polar_y[_qp])*(_antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_x[_qp] + _antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*_polar_z[_qp]))*_t42111212[_qp] + 
-   (Utility::pow<2>(_antiferrodis_A_z[_qp])*(Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*Utility::pow<2>(_polar_z[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_y[_qp])*(Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp])) + Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_x[_qp])*(Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])))*_t42112211[_qp] + 
-   (Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<2>(_polar_x[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<2>(_polar_x[_qp])*Utility::pow<2>(_polar_z[_qp]) + Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<2>(_polar_y[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t42112233[_qp] + 
-   (_antiferrodis_A_y[_qp]*_antiferrodis_A_z[_qp]*Utility::pow<2>(_polar_x[_qp])*_polar_y[_qp]*_polar_z[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_z[_qp]*_polar_x[_qp]*Utility::pow<2>(_polar_y[_qp])*_polar_z[_qp] + _antiferrodis_A_x[_qp]*_antiferrodis_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp]*Utility::pow<2>(_polar_z[_qp]))*_t42123312[_qp] + (Utility::pow<4>(_antiferrodis_A_x[_qp])*Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp])*Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp])*Utility::pow<4>(_polar_z[_qp]))*_t4411111111[_qp] + 
-   ((Utility::pow<4>(_antiferrodis_A_y[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]))*Utility::pow<4>(_polar_x[_qp]) + (Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_z[_qp]))*Utility::pow<4>(_polar_y[_qp]) + (Utility::pow<4>(_antiferrodis_A_x[_qp]) + Utility::pow<4>(_antiferrodis_A_y[_qp]))*Utility::pow<4>(_polar_z[_qp]))*_t4411112222[_qp] + 
-   (Utility::pow<2>(_antiferrodis_A_x[_qp])*Utility::pow<6>(_polar_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp])*Utility::pow<6>(_polar_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp])*Utility::pow<6>(_polar_z[_qp]))*_t6211111111[_qp] + 
-   ((Utility::pow<2>(_antiferrodis_A_y[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<6>(_polar_x[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_z[_qp]))*Utility::pow<6>(_polar_y[_qp]) + (Utility::pow<2>(_antiferrodis_A_x[_qp]) + Utility::pow<2>(_antiferrodis_A_y[_qp]))*Utility::pow<6>(_polar_z[_qp]))*_t6211111122[_qp];
+  return _energy_scale*((Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t1111[_qp] + 
+   ((Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*Utility::pow<2>(_polar_z[_qp]))*_t1122[_qp] + (_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp] + _antiphase_A_x[_qp]*_antiphase_A_z[_qp]*_polar_x[_qp]*_polar_z[_qp] + _antiphase_A_y[_qp]*_antiphase_A_z[_qp]*_polar_y[_qp]*_polar_z[_qp])*_t1212[_qp] + 
+   (Utility::pow<4>(_antiphase_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24111111[_qp] + 
+   (Utility::pow<2>(_antiphase_A_x[_qp])*(Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*(Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*Utility::pow<2>(_antiphase_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24111122[_qp] + 
+   ((Utility::pow<4>(_antiphase_A_y[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + (Utility::pow<4>(_antiphase_A_x[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<4>(_antiphase_A_x[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp]))*Utility::pow<2>(_polar_z[_qp]))*_t24112222[_qp] + 
+   (Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<2>(_antiphase_A_z[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_antiphase_A_z[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t24112233[_qp] + 
+   (Utility::pow<3>(_antiphase_A_z[_qp])*(_antiphase_A_x[_qp]*_polar_x[_qp] + _antiphase_A_y[_qp]*_polar_y[_qp])*_polar_z[_qp] + Utility::pow<3>(_antiphase_A_y[_qp])*_polar_y[_qp]*(_antiphase_A_x[_qp]*_polar_x[_qp] + _antiphase_A_z[_qp]*_polar_z[_qp]) + Utility::pow<3>(_antiphase_A_x[_qp])*_polar_x[_qp]*(_antiphase_A_y[_qp]*_polar_y[_qp] + _antiphase_A_z[_qp]*_polar_z[_qp]))*_t24121112[_qp] + (_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_polar_x[_qp]*_polar_y[_qp] + _antiphase_A_x[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_antiphase_A_z[_qp]*_polar_x[_qp]*_polar_z[_qp] + Utility::pow<2>(_antiphase_A_x[_qp])*_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*_polar_y[_qp]*_polar_z[_qp])*_t24121233[_qp] + 
+   (Utility::pow<6>(_antiphase_A_x[_qp])*Utility::pow<2>(_polar_x[_qp]) + Utility::pow<6>(_antiphase_A_y[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<6>(_antiphase_A_z[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t2611111111[_qp] + 
+   ((Utility::pow<6>(_antiphase_A_y[_qp]) + Utility::pow<6>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_x[_qp]) + (Utility::pow<6>(_antiphase_A_x[_qp]) + Utility::pow<6>(_antiphase_A_z[_qp]))*Utility::pow<2>(_polar_y[_qp]) + (Utility::pow<6>(_antiphase_A_x[_qp]) + Utility::pow<6>(_antiphase_A_y[_qp]))*Utility::pow<2>(_polar_z[_qp]))*_t2611222222[_qp] + 
+   (Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<4>(_polar_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<4>(_polar_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])*Utility::pow<4>(_polar_z[_qp]))*_t42111111[_qp] + 
+   ((Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<4>(_polar_x[_qp]) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<4>(_polar_y[_qp]) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*Utility::pow<4>(_polar_z[_qp]))*_t42111122[_qp] + 
+   ((_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*_polar_x[_qp] + _antiphase_A_y[_qp]*_antiphase_A_z[_qp]*_polar_y[_qp])*Utility::pow<3>(_polar_z[_qp]) + Utility::pow<3>(_polar_x[_qp])*(_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_polar_y[_qp] + _antiphase_A_x[_qp]*_antiphase_A_z[_qp]*_polar_z[_qp]) + Utility::pow<3>(_polar_y[_qp])*(_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_polar_x[_qp] + _antiphase_A_y[_qp]*_antiphase_A_z[_qp]*_polar_z[_qp]))*_t42111212[_qp] + 
+   (Utility::pow<2>(_antiphase_A_z[_qp])*(Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*Utility::pow<2>(_polar_z[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<2>(_polar_y[_qp])*(Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp])) + Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_polar_x[_qp])*(Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])))*_t42112211[_qp] + 
+   (Utility::pow<2>(_antiphase_A_z[_qp])*Utility::pow<2>(_polar_x[_qp])*Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<2>(_polar_x[_qp])*Utility::pow<2>(_polar_z[_qp]) + Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<2>(_polar_y[_qp])*Utility::pow<2>(_polar_z[_qp]))*_t42112233[_qp] + 
+   (_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*Utility::pow<2>(_polar_x[_qp])*_polar_y[_qp]*_polar_z[_qp] + _antiphase_A_x[_qp]*_antiphase_A_z[_qp]*_polar_x[_qp]*Utility::pow<2>(_polar_y[_qp])*_polar_z[_qp] + _antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_polar_x[_qp]*_polar_y[_qp]*Utility::pow<2>(_polar_z[_qp]))*_t42123312[_qp] + (Utility::pow<4>(_antiphase_A_x[_qp])*Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp])*Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp])*Utility::pow<4>(_polar_z[_qp]))*_t4411111111[_qp] + 
+   ((Utility::pow<4>(_antiphase_A_y[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp]))*Utility::pow<4>(_polar_x[_qp]) + (Utility::pow<4>(_antiphase_A_x[_qp]) + Utility::pow<4>(_antiphase_A_z[_qp]))*Utility::pow<4>(_polar_y[_qp]) + (Utility::pow<4>(_antiphase_A_x[_qp]) + Utility::pow<4>(_antiphase_A_y[_qp]))*Utility::pow<4>(_polar_z[_qp]))*_t4411112222[_qp] + 
+   (Utility::pow<2>(_antiphase_A_x[_qp])*Utility::pow<6>(_polar_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp])*Utility::pow<6>(_polar_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp])*Utility::pow<6>(_polar_z[_qp]))*_t6211111111[_qp] + 
+   ((Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<6>(_polar_x[_qp]) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*Utility::pow<6>(_polar_y[_qp]) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*Utility::pow<6>(_polar_z[_qp]))*_t6211111122[_qp]);
 }

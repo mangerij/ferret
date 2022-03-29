@@ -19,32 +19,34 @@
 
 **/
 
-#include "ElecFieldAux.h"
+#include "QuasistaticFieldAux.h"
 
-registerMooseObject("FerretApp", ElecFieldAux);
+registerMooseObject("FerretApp", QuasistaticFieldAux);
 
-InputParameters ElecFieldAux::validParams()
+InputParameters QuasistaticFieldAux::validParams()
 
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Converts electrostatic potential to the vector electric field.");
+  params.addClassDescription("Converts potential to the vector field.");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addCoupledVar("potential_E_int", "The internal electric potential variable");
-  params.addCoupledVar("potential_E_ext", "The external electric potential variable");
+  params.addCoupledVar("potential_int", "The internal potential variable");
+  params.addCoupledVar("potential_ext", "The external potential variable");
+  params.addParam<Real>("conversion_factor", 1.0, "conversion factor if needed");
   return params;
 }
 
 
-ElecFieldAux::ElecFieldAux(const InputParameters & parameters) :
+QuasistaticFieldAux::QuasistaticFieldAux(const InputParameters & parameters) :
   AuxKernel(parameters),
    _component(getParam<unsigned int>("component")),
-   _potential_E_int_grad(coupledGradient("potential_E_int")),
-   _potential_E_ext_grad(coupledGradient("potential_E_ext"))
+   _potential_int_grad(coupledGradient("potential_int")),
+   _potential_ext_grad(coupledGradient("potential_ext")),
+   _conversion_factor(getParam<Real>("conversion_factor"))
 {
 }
 
 Real
-ElecFieldAux::computeValue()
+QuasistaticFieldAux::computeValue()
 {
-    return - _potential_E_int_grad[_qp](_component) - _potential_E_ext_grad[_qp](_component);
+    return -_conversion_factor*(_potential_int_grad[_qp](_component) - _potential_ext_grad[_qp](_component));
 }

@@ -109,7 +109,7 @@ BoundaryIntegralFMM::execute()
   // Extract boundary mesh
   BoundaryMesh boundary_mesh(mesh.comm() , dim_boundary);
   mesh.get_boundary_info().sync(boundary_mesh);
-  boundary_mesh.print_info();
+  //boundary_mesh.print_info();
 
   // Re-partition boundary mesh, before adding EquationSystems
   MetisPartitioner bs_partitioner;
@@ -129,7 +129,7 @@ BoundaryIntegralFMM::execute()
 
   // Get a reference to the EquationSystem
   EquationSystems & bs = _subproblem.es();
-  bs.print_info();
+  //bs.print_info();
 
   // Keep track of which variables are coupled so we know what we depend on
 //  const std::vector<MooseVariable *> & coupled_vars = getCoupledMooseVars();

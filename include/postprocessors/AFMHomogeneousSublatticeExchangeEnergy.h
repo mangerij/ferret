@@ -44,7 +44,7 @@ protected:
   const MaterialProperty<Real> & _Ms;
   const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _De;
-
+  const Real _energy_scale;
 };
 
 #endif

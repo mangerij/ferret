@@ -30,6 +30,7 @@ InputParameters ElasticEnergy::validParams()
   params.addClassDescription("Calculates an integral over the elastic energy density. Note this file also exists in tensor mechanics.");
   params.addParam<Real>("strain_scale", 1.0, "the strain_scale");
   params.addParam<Real>("len_scale", 1.0, "the len_scale of the unit");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and J");
   return params;
 }
 
@@ -38,7 +39,8 @@ ElasticEnergy::ElasticEnergy(const InputParameters & parameters) :
   _elastic_strain(getMaterialProperty<RankTwoTensor>("elastic_strain")),
   _stress(getMaterialProperty<RankTwoTensor>("stress")),
   _strain_scale(getParam<Real>("strain_scale")),
-  _len_scale(getParam<Real>("len_scale"))
+  _len_scale(getParam<Real>("len_scale")),
+   _energy_scale(getParam<Real>("energy_scale"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";
@@ -52,5 +54,5 @@ Real
 ElasticEnergy::computeQpIntegral()
 {
   Real scaling = _len_scale*_len_scale*_len_scale*_strain_scale;
-  return scaling*0.5*_stress[_qp].doubleContraction(_elastic_strain[_qp]);
+  return _energy_scale*(scaling*0.5*_stress[_qp].doubleContraction(_elastic_strain[_qp]));
 }
