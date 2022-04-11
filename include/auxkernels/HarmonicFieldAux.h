@@ -42,6 +42,7 @@ private:
   const Real _frequency;
   const Real _tshift;
   const Real _ton;
+  const Real _toff;
 };
 
 #endif // HARMONICFIELDAUX_H

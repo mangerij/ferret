@@ -32,6 +32,7 @@ InputParameters HarmonicFieldAux::validParams()
   params.addRequiredParam<Real>("frequency", "frequency of the field");
   params.addParam<Real>("tshift", 0.0, "shift of the field");
   params.addParam<Real>("ton", 0.0, "switch on time of the field");
+  params.addParam<Real>("toff", 0.0, "switch off time of the field");
   return params;
 }
 
@@ -42,14 +43,18 @@ HarmonicFieldAux::HarmonicFieldAux(const InputParameters & parameters) :
    _correction(getParam<Real>("correction")),
    _frequency(getParam<Real>("frequency")),
    _tshift(getParam<Real>("tshift")),
-   _ton(getParam<Real>("ton"))
+   _ton(getParam<Real>("ton")),
+   _toff(getParam<Real>("toff"))
 {
 }
 
 Real
 HarmonicFieldAux::computeValue()
 {
-  if (_t > _ton)
+  /*Moose::out << "\n time = "; std::cout << _t;
+  Moose::out << "\n field turns on at "; std::cout << _ton;
+  Moose::out << "\n field turns off at "; std::cout << _toff;*/
+  if (_t > _ton && _t < _toff)
   {
     return _amplitude*_correction*std::sin(_frequency*(_t+_tshift));
   }
