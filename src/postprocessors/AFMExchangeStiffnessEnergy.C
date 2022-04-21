@@ -31,7 +31,7 @@ InputParameters AFMExchangeStiffnessEnergy::validParams()
   params.addRequiredCoupledVar("Neel_L_x", "The x component of the AFM Neel vector");
   params.addRequiredCoupledVar("Neel_L_y", "The y component of the AFM Neel vector");
   params.addRequiredCoupledVar("Neel_L_z", "The z component of the AFM Neel vector");
-  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV and aJ");
+  params.addParam<Real>("energy_scale", 1.0, "the energy scale, useful for transition between eV to/from aJ");
   return params;
 }
 
@@ -49,5 +49,8 @@ AFMExchangeStiffnessEnergy::AFMExchangeStiffnessEnergy(const InputParameters & p
 Real
 AFMExchangeStiffnessEnergy::computeQpIntegral()
 {
+
+//Note that this is natively given in 1/1000 aJ since Neel L is normalized. To convert to eV, we use energy_scale = 0.0187245.
+
   return _energy_scale*(_Ae[_qp]*(_Neel_L_x_grad[_qp](0)*_Neel_L_x_grad[_qp](0)+_Neel_L_x_grad[_qp](1)*_Neel_L_x_grad[_qp](1)+_Neel_L_x_grad[_qp](2)*_Neel_L_x_grad[_qp](2)+_Neel_L_y_grad[_qp](0)*_Neel_L_y_grad[_qp](0)+_Neel_L_y_grad[_qp](1)*_Neel_L_y_grad[_qp](1)+_Neel_L_y_grad[_qp](2)*_Neel_L_y_grad[_qp](2)+_Neel_L_z_grad[_qp](0)*_Neel_L_z_grad[_qp](0)+_Neel_L_z_grad[_qp](1)*_Neel_L_z_grad[_qp](1)+_Neel_L_z_grad[_qp](2)*_Neel_L_z_grad[_qp](2)));
 }

@@ -60,5 +60,8 @@ AFMHomogeneousSublatticeExchangeEnergy::AFMHomogeneousSublatticeExchangeEnergy(c
 Real
 AFMHomogeneousSublatticeExchangeEnergy::computeQpIntegral()
 {
-  return _energy_scale*(4.0*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp]));
+
+// This term is special... De must be in units of pg*nm^4/(*aC^2) for this to be in units of energy. Energy scale of 0.00624151 will be in eV
+
+  return _energy_scale*(4.0*_De[_qp]*_Ms[_qp]*_Ms[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp]));
 }
