@@ -19,16 +19,16 @@
 
 **/
 
-#ifndef LONGITUDINALLLB_H
-#define LONGITUDINALLLB_H
+#ifndef AFMSUBLATTICEDMINTERACTION_H
+#define AFMSUBLATTICEDMINTERACTION_H
 
 #include "Kernel.h"
 
-class LongitudinalLLB: public Kernel
+class AFMSublatticeDMInteraction: public Kernel
 {
 public:
 
-  LongitudinalLLB(const InputParameters & parameters);
+  AFMSublatticeDMInteraction(const InputParameters & parameters);
 
   static InputParameters validParams();
 
@@ -37,16 +37,26 @@ protected:
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
+private:
   const unsigned int _component;
-  const unsigned int _mag_x_var;
-  const unsigned int _mag_y_var;
-  const unsigned int _mag_z_var;
-  const VariableValue & _mag_x;
-  const VariableValue & _mag_y;
-  const VariableValue & _mag_z;
+  const unsigned int _mag_sub;
+  const unsigned int _mag1_x_var;
+  const unsigned int _mag1_y_var;
+  const unsigned int _mag1_z_var;
+  const VariableValue & _mag1_x;
+  const VariableValue & _mag1_y;
+  const VariableValue & _mag1_z;
+  const unsigned int _mag2_x_var;
+  const unsigned int _mag2_y_var;
+  const unsigned int _mag2_z_var;
+  const VariableValue & _mag2_x;
+  const VariableValue & _mag2_y;
+  const VariableValue & _mag2_z;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
+  const MaterialProperty<Real> & _g0mu0Ms;
   const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
-  const MaterialProperty<Real> & _alpha_long;
-
+  const MaterialProperty<Real> & _D0;
 };
-#endif //LONGITUDINALLLB_H
+#endif //AFMSUBLATTICEDMINTERACTION_H

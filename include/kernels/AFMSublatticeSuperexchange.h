@@ -19,27 +19,41 @@
 
 **/
 
-#ifndef MAGNETICEXCESSLLBENERGY_H
-#define MAGNETICEXCESSLLBENERGY_H
+#ifndef AFMSUBLATTICESUPEREXCHANGE_H
+#define AFMSUBLATTICESUPEREXCHANGE_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "Kernel.h"
 
-class MagneticExcessLLBEnergy : public ElementIntegralPostprocessor
+class AFMSublatticeSuperexchange: public Kernel
 {
 public:
-  MagneticExcessLLBEnergy(const InputParameters & parameters);
+
+  AFMSublatticeSuperexchange(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  virtual Real computeQpIntegral();
-  const VariableValue & _mag_x;
-  const VariableValue & _mag_y;
-  const VariableValue & _mag_z;
-  const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
-  const MaterialProperty<Real> & _alpha_long;
-  const Real _energy_scale;
-};
+  virtual Real computeQpResidual();
+  virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-#endif
+private:
+  const unsigned int _component;
+  const unsigned int _mag_sub;
+  const unsigned int _mag1_x_var;
+  const unsigned int _mag1_y_var;
+  const unsigned int _mag1_z_var;
+  const VariableValue & _mag1_x;
+  const VariableValue & _mag1_y;
+  const VariableValue & _mag1_z;
+  const unsigned int _mag2_x_var;
+  const unsigned int _mag2_y_var;
+  const unsigned int _mag2_z_var;
+  const VariableValue & _mag2_x;
+  const VariableValue & _mag2_y;
+  const VariableValue & _mag2_z;
+  const MaterialProperty<Real> & _g0mu0Ms;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _De;
+};
+#endif //AFMSUBLATTICESUPEREXCHANGE_H

@@ -19,26 +19,28 @@
 
 **/
 
-#ifndef MAGNETICEXCESSLLBENERGY_H
-#define MAGNETICEXCESSLLBENERGY_H
+#ifndef AFMSUBLATTICESUPEREXCHANGEENERGY_H
+#define AFMSUBLATTICESUPEREXCHANGEENERGY_H
 
 #include "ElementIntegralPostprocessor.h"
 
-class MagneticExcessLLBEnergy : public ElementIntegralPostprocessor
+class AFMSublatticeSuperexchangeEnergy : public ElementIntegralPostprocessor
 {
 public:
-  MagneticExcessLLBEnergy(const InputParameters & parameters);
+  AFMSublatticeSuperexchangeEnergy(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();
-  const VariableValue & _mag_x;
-  const VariableValue & _mag_y;
-  const VariableValue & _mag_z;
-  const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
-  const MaterialProperty<Real> & _alpha_long;
+
+  const VariableValue & _mag1_x;
+  const VariableValue & _mag1_y;
+  const VariableValue & _mag1_z;
+  const VariableValue & _mag2_x;
+  const VariableValue & _mag2_y;
+  const VariableValue & _mag2_z;
+  const MaterialProperty<Real> & _De;
   const Real _energy_scale;
 };
 

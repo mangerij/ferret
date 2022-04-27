@@ -19,26 +19,29 @@
 
 **/
 
-#ifndef MAGNETICEXCESSLLBENERGY_H
-#define MAGNETICEXCESSLLBENERGY_H
+#ifndef AFMSINGLEIONCUBICANISOTROPYENERGY_H
+#define AFMSINGLEIONCUBICANISOTROPYENERGY_H
 
 #include "ElementIntegralPostprocessor.h"
 
-class MagneticExcessLLBEnergy : public ElementIntegralPostprocessor
+class AFMSingleIonCubicAnisotropyEnergy : public ElementIntegralPostprocessor
 {
 public:
-  MagneticExcessLLBEnergy(const InputParameters & parameters);
+  AFMSingleIonCubicAnisotropyEnergy(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
   virtual Real computeQpIntegral();
+
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
-  const MaterialProperty<Real> & _alpha_long;
+  const VariableValue & _antiphase_A_x;
+  const VariableValue & _antiphase_A_y;
+  const VariableValue & _antiphase_A_z;
+  const MaterialProperty<Real> & _K1c;
+  const MaterialProperty<Real> & _Kt;
   const Real _energy_scale;
 };
 
