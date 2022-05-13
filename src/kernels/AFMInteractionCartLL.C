@@ -61,8 +61,7 @@ AFMInteractionCartLL::AFMInteractionCartLL(const InputParameters & parameters)
    _mag2_z(coupledValue("mag2_z")),
    _alpha(getMaterialProperty<Real>("alpha")),
    _g0(getMaterialProperty<Real>("g0")),
-   _Ms(getMaterialProperty<Real>("Ms")),
-   _mu0(getMaterialProperty<Real>("mu0"))
+   _Ms(getMaterialProperty<Real>("Ms"))
 {
 }
 
@@ -74,15 +73,15 @@ AFMInteractionCartLL::computeQpResidual()
   {
     if (_component == 0)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] - _potential_H_int_grad[_qp](1)*_mag1_z[_qp] + _potential_H_int_grad[_qp](2)*(_mag1_y[_qp] + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](0)*(Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] - _potential_H_int_grad[_qp](1)*_mag1_z[_qp] + _potential_H_int_grad[_qp](2)*(_mag1_y[_qp] + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](0)*(Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 1)
     {
-      return (_g0[_qp]*(_potential_H_int_grad[_qp](0)*(_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp] + _mag1_z[_qp]) + _potential_H_int_grad[_qp](2)*(-_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](1)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](0)*(_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp] + _mag1_z[_qp]) + _potential_H_int_grad[_qp](2)*(-_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](1)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 2)
     {
-      return (_g0[_qp]*(-(_potential_H_int_grad[_qp](0)*_mag1_y[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](2)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp])) + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_x[_qp]*_mag1_z[_qp] + _potential_H_int_grad[_qp](1)*(_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(-(_potential_H_int_grad[_qp](0)*_mag1_y[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](2)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp])) + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_x[_qp]*_mag1_z[_qp] + _potential_H_int_grad[_qp](1)*(_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else
       return 0.0;
@@ -91,15 +90,15 @@ AFMInteractionCartLL::computeQpResidual()
   {
     if (_component == 0)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] - _potential_H_int_grad[_qp](1)*_mag2_z[_qp] + _potential_H_int_grad[_qp](2)*(_mag2_y[_qp] + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](0)*(Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] - _potential_H_int_grad[_qp](1)*_mag2_z[_qp] + _potential_H_int_grad[_qp](2)*(_mag2_y[_qp] + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](0)*(Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 1)
     {
-      return (_g0[_qp]*(_potential_H_int_grad[_qp](0)*(_alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp] + _mag2_z[_qp]) + _potential_H_int_grad[_qp](2)*(-_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](1)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](0)*(_alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp] + _mag2_z[_qp]) + _potential_H_int_grad[_qp](2)*(-_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](1)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 2)
     {
-      return (_g0[_qp]*(-(_potential_H_int_grad[_qp](0)*_mag2_y[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](2)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp])) + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_x[_qp]*_mag2_z[_qp] + _potential_H_int_grad[_qp](1)*(_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(-(_potential_H_int_grad[_qp](0)*_mag2_y[_qp]) - _alpha[_qp]*_potential_H_int_grad[_qp](2)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp])) + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_x[_qp]*_mag2_z[_qp] + _potential_H_int_grad[_qp](1)*(_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else
       return 0.0;
@@ -115,15 +114,15 @@ AFMInteractionCartLL::computeQpJacobian()
   {
     if (_component == 0)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 1)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 2)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else
       return 0.0;
@@ -132,15 +131,15 @@ AFMInteractionCartLL::computeQpJacobian()
   {
     if (_component == 0)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 1)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 2)
     {
-      return (_g0[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+      return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else
       return 0.0;
@@ -158,11 +157,11 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_y_var)
       {
-        return (_g0[_qp]*(_potential_H_int_grad[_qp](2) + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](2) + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_z_var)
       {
-        return (_g0[_qp]*(-_potential_H_int_grad[_qp](1) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-_potential_H_int_grad[_qp](1) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_x_var)
       {
@@ -178,7 +177,7 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
       }
       else if (jvar == _potential_H_int_var)
       {
-        return (_g0[_qp]*(_alpha[_qp]*_grad_phi[_j][_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] - _grad_phi[_j][_qp](1)*_mag1_z[_qp] + _grad_phi[_j][_qp](2)*(_mag1_y[_qp] + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](0)*(Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_grad_phi[_j][_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] - _grad_phi[_j][_qp](1)*_mag1_z[_qp] + _grad_phi[_j][_qp](2)*(_mag1_y[_qp] + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](0)*(Utility::pow<2>(_mag1_y[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else
         return 0.0;
@@ -187,11 +186,11 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_x_var)
       {
-        return (_g0[_qp]*(-_potential_H_int_grad[_qp](2) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-_potential_H_int_grad[_qp](2) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_z_var)
       {
-        return (_g0[_qp]*(_potential_H_int_grad[_qp](0) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_y[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](0) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_y[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_x_var)
       {
@@ -207,7 +206,7 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
       }
       else if (jvar == _potential_H_int_var)
       {
-        return (_g0[_qp]*(_grad_phi[_j][_qp](0)*(_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp] + _mag1_z[_qp]) + _grad_phi[_j][_qp](2)*(-_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](1)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_grad_phi[_j][_qp](0)*(_alpha[_qp]*_mag1_x[_qp]*_mag1_y[_qp] + _mag1_z[_qp]) + _grad_phi[_j][_qp](2)*(-_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](1)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else
         return 0.0;
@@ -216,11 +215,11 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_x_var)
       {
-        return (_g0[_qp]*(_potential_H_int_grad[_qp](1) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](1) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_y_var)
       {
-        return (_g0[_qp]*(-_potential_H_int_grad[_qp](0) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-_potential_H_int_grad[_qp](0) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag1_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag1_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_x_var)
       {
@@ -236,7 +235,7 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
       }
       else if (jvar == _potential_H_int_var)
       {
-        return (_g0[_qp]*(-(_grad_phi[_j][_qp](0)*_mag1_y[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](2)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp])) + _alpha[_qp]*_grad_phi[_j][_qp](0)*_mag1_x[_qp]*_mag1_z[_qp] + _grad_phi[_j][_qp](1)*(_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-(_grad_phi[_j][_qp](0)*_mag1_y[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](2)*(Utility::pow<2>(_mag1_x[_qp]) + Utility::pow<2>(_mag1_y[_qp])) + _alpha[_qp]*_grad_phi[_j][_qp](0)*_mag1_x[_qp]*_mag1_z[_qp] + _grad_phi[_j][_qp](1)*(_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else
         return 0.0;
@@ -250,11 +249,11 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_y_var)
       {
-        return (_g0[_qp]*(_potential_H_int_grad[_qp](2) + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](2) + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_z_var)
       {
-        return (_g0[_qp]*(-_potential_H_int_grad[_qp](1) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-_potential_H_int_grad[_qp](1) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_x[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_x_var)
       {
@@ -270,7 +269,7 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
       }
       else if (jvar == _potential_H_int_var)
       {
-        return (_g0[_qp]*(_alpha[_qp]*_grad_phi[_j][_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] - _grad_phi[_j][_qp](1)*_mag2_z[_qp] + _grad_phi[_j][_qp](2)*(_mag2_y[_qp] + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](0)*(Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_alpha[_qp]*_grad_phi[_j][_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] - _grad_phi[_j][_qp](1)*_mag2_z[_qp] + _grad_phi[_j][_qp](2)*(_mag2_y[_qp] + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](0)*(Utility::pow<2>(_mag2_y[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else
         return 0.0;
@@ -279,11 +278,11 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_x_var)
       {
-        return (_g0[_qp]*(-_potential_H_int_grad[_qp](2) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-_potential_H_int_grad[_qp](2) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_y[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_z_var)
       {
-        return (_g0[_qp]*(_potential_H_int_grad[_qp](0) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_y[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](0) + _alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_y[_qp] - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_x_var)
       {
@@ -299,7 +298,7 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
       }
       else if (jvar == _potential_H_int_var)
       {
-        return (_g0[_qp]*(_grad_phi[_j][_qp](0)*(_alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp] + _mag2_z[_qp]) + _grad_phi[_j][_qp](2)*(-_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](1)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_grad_phi[_j][_qp](0)*(_alpha[_qp]*_mag2_x[_qp]*_mag2_y[_qp] + _mag2_z[_qp]) + _grad_phi[_j][_qp](2)*(-_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](1)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_z[_qp])))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else
         return 0.0;
@@ -308,11 +307,11 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_x_var)
       {
-        return (_g0[_qp]*(_potential_H_int_grad[_qp](1) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(_potential_H_int_grad[_qp](1) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_x[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](0)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_y_var)
       {
-        return (_g0[_qp]*(-_potential_H_int_grad[_qp](0) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-_potential_H_int_grad[_qp](0) - 2.0*_alpha[_qp]*_potential_H_int_grad[_qp](2)*_mag2_y[_qp] + _alpha[_qp]*_potential_H_int_grad[_qp](1)*_mag2_z[_qp])*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_x_var)
       {
@@ -328,7 +327,7 @@ AFMInteractionCartLL::computeQpOffDiagJacobian(unsigned int jvar)
       }
       else if (jvar == _potential_H_int_var)
       {
-        return (_g0[_qp]*(-(_grad_phi[_j][_qp](0)*_mag2_y[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](2)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp])) + _alpha[_qp]*_grad_phi[_j][_qp](0)*_mag2_x[_qp]*_mag2_z[_qp] + _grad_phi[_j][_qp](1)*(_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
+        return (_g0[_qp]*_Ms[_qp]*(-(_grad_phi[_j][_qp](0)*_mag2_y[_qp]) - _alpha[_qp]*_grad_phi[_j][_qp](2)*(Utility::pow<2>(_mag2_x[_qp]) + Utility::pow<2>(_mag2_y[_qp])) + _alpha[_qp]*_grad_phi[_j][_qp](0)*_mag2_x[_qp]*_mag2_z[_qp] + _grad_phi[_j][_qp](1)*(_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]))*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else
         return 0.0;

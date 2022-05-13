@@ -58,6 +58,5 @@ private:
   const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _g0;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
 };
 #endif //AFMINTERACTIONCARTLL_H
