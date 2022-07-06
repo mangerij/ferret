@@ -61,7 +61,6 @@ computeProductQ(const RankFourTensor & Cijkl, const RankFourTensor & Qmnkl, cons
       for(unsigned int k = 0; k < 3; ++k)
         for(unsigned int l = 0; l < 3; ++l)
         {
-          Real sum = 0.0;
           for(unsigned int m = 0; m < 3; ++m)
             for(unsigned int n = 0; n < 3; ++n)
               for(unsigned int r = 0; r < 3; ++r)

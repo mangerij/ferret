@@ -125,9 +125,6 @@ public:
   /// Print the rank six tensor
   void print(std::ostream & stm = Moose::out) const;
 
-  /// copies values from a into this tensor
-  RankSixTensor & operator=(const RankSixTensor & a);
-
   /// C_ijklmn*a_mn
   RankFourTensor operator*(const RankFourTensor & a) const;
 
@@ -285,7 +282,6 @@ RankSixTensor::rotate(const T & R)
             for (unsigned int n = 0; n < N; ++n)
             {
               Real sum = 0.0;
-              int index2 = 0;
               for (unsigned int r = 0; r < N; ++r)
               {
                 Real a = R(i, r);

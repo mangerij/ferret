@@ -39,9 +39,9 @@ public:
   void execute() override;
   void threadJoin(const UserObject & uo) override;
   void finalize() override;
-  virtual const RankTwoTensor & getResidual() const;
-  virtual const RankFourTensor & getJacobian() const;
-  virtual const VectorValue<bool> & getPeriodicDirections() const;
+  virtual const RankTwoTensor & getResidual() const override;
+  virtual const RankFourTensor & getJacobian() const override;
+  virtual const VectorValue<bool> & getPeriodicDirections() const override;
 
   /**
    * Calculate additional applied stresses

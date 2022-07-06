@@ -46,7 +46,7 @@ RandomConstrainedVectorFieldIC::RandomConstrainedVectorFieldIC(const InputParame
 }
 
 Real
-RandomConstrainedVectorFieldIC::value(const Point & p)
+RandomConstrainedVectorFieldIC::value(const Point & /* p */)
 {
   if (_component == 0)
   {

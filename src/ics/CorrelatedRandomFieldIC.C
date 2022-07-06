@@ -165,9 +165,7 @@ CorrelatedRandomFieldIC::generateRandom()
 std::vector<std::vector<std::vector<std::vector<Real>>>>
 CorrelatedRandomFieldIC::fourierCoeffs()
 {
-  int nodes = _Nnodes; //_mesh.n_nodes();
-  std::array<Real, LIBMESH_DIM> L = {{_xmax - _xmin, _dim > 1 ? _ymax - _ymin : 0, _dim > 2 ? _zmax - _zmin : 0}};
-
+  unsigned int nodes = _Nnodes; //_mesh.n_nodes();
   std::vector<std::vector<std::vector<std::vector<Real>>>> output = std::vector<std::vector<std::vector<std::vector<Real>>>>(2*nodes+1,std::vector<std::vector<std::vector<Real>>>(2*nodes+1,std::vector<std::vector<Real>>(2*nodes+1,std::vector<Real>(2,0))));
 
   Real rand1  = 0.0;
@@ -176,7 +174,6 @@ CorrelatedRandomFieldIC::fourierCoeffs()
   Real nrand1  = 0.0;
   Real nrand2  = 0.0;
 
-  Real randnorm = 0.0;
   Real amp = 0.0;
 
   RealVectorValue kv(0.0, 0.0, 0.0);
@@ -278,8 +275,6 @@ CorrelatedRandomFieldIC::fourierCoeffs()
       }
     }
   }
-  else
-    Real norm = 0.0;
   return output;
 }
 

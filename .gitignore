@@ -7,6 +7,7 @@
 *-opt
 *-dbg
 *-oprof
+*-devel
 *.e
 *.nav
 *.log
@@ -19,6 +20,7 @@
 *.gitignore*
 *.vrb
 *.jou
+*.json
 *.pyc
 *.mod
 *.e.*
