@@ -26,9 +26,9 @@
 #include "RandomData.h"
 #include "MooseRandom.h"
 
-namespace libMesh 
-{ 
-class Point; 
+namespace libMesh
+{
+class Point;
 }
 
 class CorrelatedRandomFieldIC : public InitialCondition
@@ -42,7 +42,7 @@ public:
   virtual std::vector<std::vector<std::vector<std::vector<Real>>>> fourierCoeffs();
 
   virtual Real evaluate(const Point & p, std::vector<std::vector<std::vector<std::vector<Real>>>> output);
-  virtual Real value(const Point & p);
+  virtual Real value(const Point & p) override;
 
 protected:
   /**
