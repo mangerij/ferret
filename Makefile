@@ -23,9 +23,9 @@ include $(FRAMEWORK_DIR)/moose.mk
 
 ################################## MODULES ####################################
 TENSOR_MECHANICS := yes
-HEAT_CONDUCTION := yes
 PHASE_FIELD := yes
 MISC := yes
+ELECTROMAGNETICS := yes
 include           $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
 
@@ -42,5 +42,5 @@ include            $(FRAMEWORK_DIR)/app.mk
 ###############################################################################
 # Additional special case targets should be added here
 app_INCLUDES += 
-app_INCLUDES += 
+app_INCLUDES += -Icontrib/scalfmm/Install/include
 
