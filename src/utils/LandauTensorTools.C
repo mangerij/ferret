@@ -22,7 +22,7 @@
 #include "MooseTypes.h"
 #include "RankTwoTensor.h"
 #include "RankFourTensor.h"
-#include "RankSixTensor.h"
+//#include "RankSixTensor.h"
 //#include "RankEightTensor.h"
 
 namespace LandauTensorTools
@@ -56,7 +56,7 @@ landauFourProduct(const RankFourTensor & aijkl, const RealVectorValue & p)
   return sum;
 }
 
-Real
+/*Real
 landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p)
 {
   Real sum = 0.0;
@@ -70,7 +70,7 @@ landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p)
               sum += aijklmn(i, j, k, l, m, n) * p(i) * p(j) * p(k) * p(l) * p(m) * p(n);
             }
   return sum;
-}
+}*/
 
 //Real
 //landauEightProduct(const RankEightTensor & aijklmnrs, const RealVectorValue & p)
