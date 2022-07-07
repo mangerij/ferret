@@ -28,14 +28,14 @@ typedef RankTwoTensorTempl<Real> RankTwoTensor;
 template <typename>
 class RankFourTensorTempl;
 typedef RankFourTensorTempl<Real> RankFourTensor;
-class RankSixTensor;
+//class RankSixTensor;
 //class RankEightTensor;
 
 namespace LandauTensorTools
 {
   Real landauTwoProduct(const RankTwoTensor & aij, const RealVectorValue & p);
   Real landauFourProduct(const RankFourTensor & aijkl, const RealVectorValue & p);
-  Real landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p);
+ // Real landauSixProduct(const RankSixTensor & aijklmn, const RealVectorValue & p);
   Real landauTwoProductDerivative(const RankTwoTensor & aij, unsigned int k, const RealVectorValue & p);
   Real landauFourProductDerivative(const RankFourTensor & aijkl, unsigned int m, const RealVectorValue & p);
 //  Real landauSixProductDerivative(const RankSixTensor & aijklmn, unsigned int m, const RealVectorValue & p);
