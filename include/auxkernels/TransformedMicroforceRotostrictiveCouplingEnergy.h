@@ -20,7 +20,7 @@
 **/
 
 #ifndef TRANSFORMEDMICROFORCEROTOSTRICTIVECOUPLINGENERGY_H
-#define TRANFORMEDMICROFORCEROTOSTRICTIVECOUPLINGENERGY_H
+#define TRANSFORMEDMICROFORCEROTOSTRICTIVECOUPLINGENERGY_H
 
 #include "AuxKernel.h"
 
@@ -36,7 +36,7 @@ protected:
 
 private:
   const unsigned int _component;
-  const unsigned int _u1_x_var;  // note that this is slightly different than other transformed 
+  const unsigned int _u1_x_var;  // note that this is slightly different than other transformed
   const unsigned int _u1_y_var;  // objects. We will set P = S^{-1} P' with the aux system but
   const unsigned int _u1_z_var;  // then u' = u' explicitly
   const unsigned int _antiphase_A_x_var;

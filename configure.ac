@@ -5,7 +5,7 @@ define([AC_CACHE_LOAD], )
 define([AC_CACHE_SAVE], )
 
 AC_INIT
-AC_CONFIG_HEADER([include/base/FerretConfig.h:include/base/FerretConfig.h.in])
+AC_CONFIG_HEADER([include/base/FerretConfig.h])
 AC_CONFIG_FILES(Makefile)
 
 # Compute the canonical target system type variable "target", and its
