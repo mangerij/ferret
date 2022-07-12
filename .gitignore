@@ -19,6 +19,7 @@
 *.so
 *.gitignore*
 *.vrb
+.jit*/*
 *.jou
 *.json
 *.pyc
@@ -34,6 +35,8 @@
 *.plist*
 *.bbl
 *.blg
+*.save
+*.save*
 *.spl
 *.idx
 traceout*.txt
