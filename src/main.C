@@ -43,15 +43,15 @@ int main(int argc, char *argv[])
   std::shared_ptr<MooseApp> app = AppFactory::createAppShared("FerretApp", argc, argv);
 
   std::cout<<"   .-.                                                          ___       "<<"\n";
-  std::cout<<"  /    \                                                        (   )     "<<"\n";
+  std::cout<<"  /    \\                                                       (   )     "<<"\n";
   std::cout<<"  | .`. ;      .--.      ___           ___            .--.      | |_      "<<"\n";
-  std::cout<<"  | |(___)    /    \     (   )         (   )          /    \     (   __)  "<<"\n";
-  std::cout<<"  | |_       |  .-. ;    | ' .-. ;     | ' .-. ;    |  .-. ;    | |       "<<"\n"; 
-  std::cout<<" (   __)     |  | | |    |  / (___)    |  / (___)   |  | | |    | | ___   "<<"\n"; 
+  std::cout<<"  | |(___)    /    \\    (   )         (   )          /    \\    (   __)  "<<"\n";
+  std::cout<<"  | |_       |  .-. ;    | ' .-. ;     | ' .-. ;    |  .-. ;    | |       "<<"\n";
+  std::cout<<" (   __)     |  | | |    |  / (___)    |  / (___)   |  | | |    | | ___   "<<"\n";
   std::cout<<"  | |        |  |/  |    | |           | |          |  |/  |    | |(   )  "<<"\n";
-  std::cout<<"  | |        |  ' _.'    | |           | |          |  ' _.'    | | | |   "<<"\n"; 
-  std::cout<<"  | |        |  .'.-.    | |           | |          |  .'.-.    | ' | |   "<<"\n"; 
-  std::cout<<"  | |        '  `-' /    | |           | |          '  `-' /    ' `-' ;   "<<"\n";  
+  std::cout<<"  | |        |  ' _.'    | |           | |          |  ' _.'    | | | |   "<<"\n";
+  std::cout<<"  | |        |  .'.-.    | |           | |          |  .'.-.    | ' | |   "<<"\n";
+  std::cout<<"  | |        '  `-' /    | |           | |          '  `-' /    ' `-' ;   "<<"\n";
   std::cout<<" (___)        `.__.'    (___)         (___)          `.__.'      `.__.    "<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"            ...a MOOSE package for simulating the ferroic nanostructure   "<<"\n";
@@ -70,11 +70,11 @@ int main(int argc, char *argv[])
   std::cout<<"   but WITHOUT ANY WARRANTY; without even the implied warranty of         "<<"\n";
   std::cout<<"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the           "<<"\n";
   std::cout<<"   GNU General Public License for more details.                           "<<"\n";
- 
+
   std::cout<<"   You should have received a copy of the GNU General Public License      "<<"\n";
   std::cout<<"   along with this program.  If not, see <http://www.gnu.org/licenses/>.  "<<"\n";
 
-  std::cout<<"   For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>        "<<"\n";
+  std::cout<<"   For help with FERRET please contact J. Mangeri <john.mangeri@list.lu>  "<<"\n";
   std::cout<<"   and be sure to track new changes at github.com/mangerij/ferret         "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
   std::cout<<"                                                                          "<<"\n";

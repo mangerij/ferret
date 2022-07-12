@@ -90,7 +90,7 @@ InducedPWallEnergyDerivative::computeQpJacobian()
 }
 
 Real
-InducedPWallEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
+InducedPWallEnergyDerivative::computeQpOffDiagJacobian(unsigned int /* jvar */)
 {
   return 0.0;
 }
