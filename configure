@@ -1745,7 +1745,7 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-ac_config_headers="$ac_config_headers include/base/FerretConfig.h:include/base/FerretConfig.h.in"
+ac_config_headers="$ac_config_headers include/base/FerretConfig.h"
 
 ac_config_files="$ac_config_files Makefile"
 
@@ -3146,7 +3146,7 @@ cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
 for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
-    "include/base/FerretConfig.h") CONFIG_HEADERS="$CONFIG_HEADERS include/base/FerretConfig.h:include/base/FerretConfig.h.in" ;;
+    "include/base/FerretConfig.h") CONFIG_HEADERS="$CONFIG_HEADERS include/base/FerretConfig.h" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
