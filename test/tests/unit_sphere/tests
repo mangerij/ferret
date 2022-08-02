@@ -2,6 +2,6 @@
   [electro_test]
     type = 'RunApp'
     input = 'koala.i'
-    required_submodule = 'scalfmm'
+    required_submodule = 'ScalFMM'
   []
 []

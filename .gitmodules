@@ -1,0 +1,3 @@
+[submodule "ScalFMM"]
+	path = ScalFMM
+	url = https://gitlab.inria.fr/solverstack/ScalFMM.git
