@@ -29,8 +29,8 @@ InputParameters MagFieldAux::validParams()
   InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Converts polar and azimuthal solution variables to the locally saturated magnetization vector");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)");
-  params.addCoupledVar("polar_theta", "The polar angle variable");
-  params.addCoupledVar("azimuth_phi", "The azimuthal angle variable");
+  params.addCoupledVar("polar_th", "The polar angle variable");
+  params.addCoupledVar("azimuthal_ph", "The azimuthal angle variable");
   return params;
 }
 
@@ -38,8 +38,8 @@ InputParameters MagFieldAux::validParams()
 MagFieldAux::MagFieldAux(const InputParameters & parameters) :
   AuxKernel(parameters),
    _component(getParam<unsigned int>("component")),
-  _azimuth_phi(coupledValue("azimuth_phi")),
-  _polar_theta(coupledValue("polar_theta"))
+  _azimuthal_ph(coupledValue("azimuthal_ph")),
+  _polar_th(coupledValue("polar_th"))
 {
 }
 
@@ -48,15 +48,15 @@ MagFieldAux::computeValue()
 {
   if (_component == 0)
   {
-   return std::sin(_polar_theta[_qp]) * std::cos(_azimuth_phi[_qp]);
+   return std::sin(_polar_th[_qp]) * std::cos(_azimuthal_ph[_qp]);
   }
   else if (_component == 1)
   {
-    return std::sin(_polar_theta[_qp]) * std::sin(_azimuth_phi[_qp]);
+    return std::sin(_polar_th[_qp]) * std::sin(_azimuthal_ph[_qp]);
   }
   else if (_component == 2)
   {
-    return std::cos(_polar_theta[_qp]);
+    return std::cos(_polar_th[_qp]);
   }
   else
     return 0.0;

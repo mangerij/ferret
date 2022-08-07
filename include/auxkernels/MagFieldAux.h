@@ -38,8 +38,8 @@ protected:
 
 private:
   const unsigned int _component;
-  const VariableValue & _azimuth_phi;
-  const VariableValue & _polar_theta;
+  const VariableValue & _azimuthal_ph;
+  const VariableValue & _polar_th;
 };
 
 #endif /* MAGFIELDAUX_H */
