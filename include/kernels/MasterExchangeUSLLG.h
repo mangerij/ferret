@@ -19,28 +19,34 @@
 
 **/
 
-#ifndef MAGNETOSTATICENERGYUS_H
-#define MAGNETOSTATICENERGYUS_H
+#ifndef MASTEREXCHANGEUSLLG_H
+#define MASTEREXCHANGEUSLLG_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "Kernel.h"
 
-class MagnetostaticEnergyUS : public ElementIntegralPostprocessor
+class  MasterExchangeUSLLG: public Kernel
 {
 public:
-  MagnetostaticEnergyUS(const InputParameters & parameters);
+  MasterExchangeUSLLG(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  virtual Real computeQpIntegral();
-  const VariableGradient & _potential_H_int_grad;
-  const VariableGradient & _potential_H_ext_grad;
-  const VariableValue & _azimuthal_ph;
+  virtual Real computeQpResidual();
+  virtual Real computeQpJacobian();
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+
+  const unsigned int _component;
+  const unsigned int _polar_th_var;
+  const unsigned int _azimuthal_ph_var;
   const VariableValue & _polar_th;
+  const VariableValue & _azimuthal_ph;
+  const VariableGradient & _polar_th_grad;
+  const VariableGradient & _azimuthal_ph_grad;
+  const MaterialProperty<Real> & _alpha;
+  const MaterialProperty<Real> & _g0;
+  const MaterialProperty<Real> & _Ae;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
-  const Real _energy_scale;
 
 };
-
-#endif
+#endif //MASTEREXCHANGEUSLLG_H
