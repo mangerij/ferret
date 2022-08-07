@@ -19,28 +19,26 @@
 
 **/
 
-#ifndef MAGNETOSTATICENERGYUS_H
-#define MAGNETOSTATICENERGYUS_H
+#ifndef MAGNETICEXCHANGEENERGYDENSITYCART_H
+#define MAGNETICEXCHANGEENERGYDENSITYCART_H
 
-#include "ElementIntegralPostprocessor.h"
+#include "AuxKernel.h"
 
-class MagnetostaticEnergyUS : public ElementIntegralPostprocessor
+class MagneticExchangeEnergyDensityCart : public AuxKernel
 {
 public:
-  MagnetostaticEnergyUS(const InputParameters & parameters);
+  MagneticExchangeEnergyDensityCart(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
-  virtual Real computeQpIntegral();
-  const VariableGradient & _potential_H_int_grad;
-  const VariableGradient & _potential_H_ext_grad;
-  const VariableValue & _azimuthal_ph;
-  const VariableValue & _polar_th;
+  virtual Real computeValue();
+  const VariableGradient & _mag_x_grad;
+  const VariableGradient & _mag_y_grad;
+  const VariableGradient & _mag_z_grad;
+  const MaterialProperty<Real> & _Ae;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
   const Real _energy_scale;
-
 };
 
-#endif
+#endif // MAGNETICEXCHANGEENERGYDENSITYCART_H

@@ -29,17 +29,17 @@ InputParameters MagHStrong::validParams()
 {
   InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution for bound magnetic charge (div M)");
-  params.addRequiredCoupledVar("azimuth_phi", "The azimuthal component of the constrained magnetic vector");
-  params.addRequiredCoupledVar("polar_theta", "The polar component of the constrained magnetic vector");
+  params.addRequiredCoupledVar("azimuthal_ph", "The azimuthal component of the constrained magnetic vector");
+  params.addRequiredCoupledVar("polar_th", "The polar component of the constrained magnetic vector");
   return params;
 }
 
 MagHStrong::MagHStrong(const InputParameters & parameters)
   :Kernel(parameters),
-   _azimuth_phi_var(coupled("azimuth_phi")),
-   _polar_theta_var(coupled("polar_theta")),
-   _azimuth_phi(coupledValue("azimuth_phi")),
-   _polar_theta(coupledValue("polar_theta")),
+   _azimuthal_ph_var(coupled("azimuthal_ph")),
+   _polar_th_var(coupled("polar_th")),
+   _azimuthal_ph(coupledValue("azimuthal_ph")),
+   _polar_th(coupledValue("polar_th")),
    _mu0(getMaterialProperty<Real>("mu0")),
    _Ms(getMaterialProperty<Real>("Ms"))
 {
@@ -48,7 +48,7 @@ MagHStrong::MagHStrong(const InputParameters & parameters)
 Real
 MagHStrong::computeQpResidual()
 {
-  return -_mu0[_qp]*(_Ms[_qp]*(_grad_test[_i][_qp](2)*std::cos(_polar_theta[_qp])+(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp])+_grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp])));
+  return -_mu0[_qp]*(_Ms[_qp]*(_grad_test[_i][_qp](2)*std::cos(_polar_th[_qp])+(_grad_test[_i][_qp](0)*std::cos(_azimuthal_ph[_qp])+_grad_test[_i][_qp](1)*std::sin(_azimuthal_ph[_qp]))*std::sin(_polar_th[_qp])));
 }
 Real
 MagHStrong::computeQpJacobian()
@@ -59,13 +59,13 @@ MagHStrong::computeQpJacobian()
 Real
 MagHStrong::computeQpOffDiagJacobian(unsigned int jvar)
 {
-  if (jvar == _polar_theta_var)
+  if (jvar == _polar_th_var)
   {
-    return -_mu0[_qp]*_Ms[_qp]*_phi[_j][_qp]*(_grad_test[_i][_qp](0)*std::cos(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp])+_grad_test[_i][_qp](1)*std::sin(_azimuth_phi[_qp])*std::cos(_polar_theta[_qp])-_grad_test[_i][_qp](2)*std::sin(_polar_theta[_qp]));
+    return -_mu0[_qp]*_Ms[_qp]*_phi[_j][_qp]*(_grad_test[_i][_qp](0)*std::cos(_azimuthal_ph[_qp])*std::cos(_polar_th[_qp])+_grad_test[_i][_qp](1)*std::sin(_azimuthal_ph[_qp])*std::cos(_polar_th[_qp])-_grad_test[_i][_qp](2)*std::sin(_polar_th[_qp]));
   }
-  else if (jvar == _azimuth_phi_var)
+  else if (jvar == _azimuthal_ph_var)
   {
-    return -_mu0[_qp]*_Ms[_qp]*_phi[_j][_qp]*((_grad_test[_i][_qp](1)*std::cos(_azimuth_phi[_qp]))-_grad_test[_i][_qp](0)*std::sin(_azimuth_phi[_qp]))*std::sin(_polar_theta[_qp]);
+    return -_mu0[_qp]*_Ms[_qp]*_phi[_j][_qp]*((_grad_test[_i][_qp](1)*std::cos(_azimuthal_ph[_qp]))-_grad_test[_i][_qp](0)*std::sin(_azimuthal_ph[_qp]))*std::sin(_polar_th[_qp]);
   }
   else
     return 0.0;
