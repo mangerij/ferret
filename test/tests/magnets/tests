@@ -7,14 +7,13 @@
   #  max_threads = 1
   #[../]
 
-  #[./magnetic_brick]
-  #  type = 'Exodiff'
-  #  input = 'magnetostatic_brick.i'
-  #  exodiff = 'out_magnetostatic_brick.e'
-  #  max_parallel = 1
-  #  max_threads = 1
-  #[../]
-
+  [./load_oomf_sol]
+    type = 'Exodiff'
+    input = 'Sstate_gen-Py_OOMF.i'
+    exodiff = 'out_Sstate_gen-Py_111_OOMF.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 
   #[./AFMR]
   #  type = 'Exodiff'
