@@ -33,8 +33,8 @@ public:
 
 protected:
   virtual Real computeValue();
-  const VariableValue & _polar_th;
   const VariableValue & _azimuthal_ph;
+  const VariableValue & _polar_th;
   const VariableGradient & _polar_th_grad;
   const VariableGradient & _azimuthal_ph_grad;
   const MaterialProperty<Real> & _Ae;
