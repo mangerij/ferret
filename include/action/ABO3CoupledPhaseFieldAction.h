@@ -27,7 +27,7 @@
 class ABO3CoupledPhaseFieldAction : public Action
 {
 public:
-  ABO3CoupledPhaseFieldAction(InputParameters params);
+  ABO3CoupledPhaseFieldAction(const InputParameters & params);
   static InputParameters validParams();
   virtual void act() override;
 
@@ -39,4 +39,3 @@ protected:
   const bool _is_renormalized;
   const bool _is_permittivity_anisotropic;
 };
-
