@@ -42,7 +42,7 @@ LKScalarAction::validParams()
   return params;
 }
 
-LKScalarAction::LKScalarAction(InputParameters params) : Action(params)
+LKScalarAction::LKScalarAction(const InputParameters & params) : Action(params)
 {
 }
 
@@ -66,4 +66,3 @@ LKScalarAction::act()
     }
   }*/
 }
-

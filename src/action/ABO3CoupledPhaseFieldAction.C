@@ -81,23 +81,24 @@ ABO3CoupledPhaseFieldAction::validParams()
   return params;
 }
 
-ABO3CoupledPhaseFieldAction::ABO3CoupledPhaseFieldAction(InputParameters params) : Action(params),
-    _coupled_problem(getParam<bool>("coupled_problem")),
-    _polar_time_dependence(getParam<bool>("polar_time_dependence")),
-    _u_time_dependence(getParam<bool>("u_time_dependence")),
-    _phi_time_dependence(getParam<bool>("phi_time_dependence")),
-    _is_renormalized(getParam<bool>("is_renormalized")),
-    _is_permittivity_anisotropic(getParam<bool>("is_permittivity_anisotropic"))
+ABO3CoupledPhaseFieldAction::ABO3CoupledPhaseFieldAction(const InputParameters & params)
+    : Action(params),
+      _coupled_problem(getParam<bool>("coupled_problem")),
+      _polar_time_dependence(getParam<bool>("polar_time_dependence")),
+      _u_time_dependence(getParam<bool>("u_time_dependence")),
+      _phi_time_dependence(getParam<bool>("phi_time_dependence")),
+      _is_renormalized(getParam<bool>("is_renormalized")),
+      _is_permittivity_anisotropic(getParam<bool>("is_permittivity_anisotropic"))
 {
   // Do some error checking
-  if(_coupled_problem==true) 
+  if(_coupled_problem==true)
   {
     std::vector<NonlinearVariableName> variables =
       getParam<std::vector<NonlinearVariableName>>("variables");
     if (variables.size() != 7)
       mooseError("There should be 7 variables for the coupled problem.");
   }
-  else if (_coupled_problem==false) 
+  else if (_coupled_problem==false)
   {
     std::vector<NonlinearVariableName> variables =
       getParam<std::vector<NonlinearVariableName>>("variables");
@@ -179,7 +180,7 @@ ABO3CoupledPhaseFieldAction::act()
 
         std::string kernel_name = "ecpd_" + Moose::stringify(kk);
         _problem->addKernel("ElectrostrictiveCouplingPolarDerivative", kernel_name, params);
-      } 
+      }
     }
     if(_phi_time_dependence==true)
     {
@@ -241,7 +242,7 @@ ABO3CoupledPhaseFieldAction::act()
   //note that these will change in the future because we want consistent Euler angle rotations across every material property
   {
     {
-      InputParameters params = _factory.getValidParams("GenericConstantMaterial");  
+      InputParameters params = _factory.getValidParams("GenericConstantMaterial");
 
       params.set<std::vector<std::string>>("prop_names") = getParam<std::vector<std::string>>("alpha_ijkl");
       params.set<std::vector<Real>>("prop_values") = getParam<std::vector<Real>>("alpha_ijkl_val");

@@ -27,7 +27,7 @@
 class LKScalarAction : public Action
 {
 public:
-  LKScalarAction(InputParameters params);
+  LKScalarAction(const InputParameters & params);
   static InputParameters validParams();
   virtual void act() override;
 
@@ -39,4 +39,3 @@ protected:
   FEType _fe_type;
 
 };
-
