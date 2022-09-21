@@ -18,18 +18,18 @@
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
-#ifndef SPINPOLCURRENT_H
-#define SPINPOLCURRENT_H
+#ifndef AFMSPINCURRENTMMDOT_H
+#define AFMSPINCURRENTMMDOT_H
 
 #include "AuxKernel.h"
 
-class SpinPolCurrent : public AuxKernel
+class AFMSpinCurrentMMdot : public AuxKernel
 {
 public:
-  SpinPolCurrent(const InputParameters & parameters);
+  AFMSpinCurrentMMdot(const InputParameters & parameters);
 
   static InputParameters validParams();
-  virtual ~SpinPolCurrent() {}
+  virtual ~AFMSpinCurrentMMdot() {}
 
 protected:
   virtual Real computeValue();
