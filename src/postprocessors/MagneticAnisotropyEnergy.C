@@ -43,14 +43,14 @@ MagneticAnisotropyEnergy::MagneticAnisotropyEnergy(const InputParameters & param
    _K2(getMaterialProperty<Real>("K2")),
    _nx(getMaterialProperty<Real>("nx")),
    _ny(getMaterialProperty<Real>("ny")),
-   _nz(getMaterialProperty<Real>("nz")),
-   _Ms(getMaterialProperty<Real>("Ms")),
-   _mu0(getMaterialProperty<Real>("mu0"))
+   _nz(getMaterialProperty<Real>("nz"))//,
+//   _Ms(getMaterialProperty<Real>("Ms"))//,
+ //  _mu0(getMaterialProperty<Real>("mu0"))
 {
 }
 
 Real
 MagneticAnisotropyEnergy::computeQpIntegral()
 {
-  return _mu0[_qp]*_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp])/(_Ms[_qp]*_Ms[_qp]);
+  return _K1[_qp]*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp]);
 }
