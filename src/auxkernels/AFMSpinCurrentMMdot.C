@@ -19,10 +19,10 @@
 
 **/
 
-#include "SpinPolCurrent.h"
-registerMooseObject("FerretApp", SpinPolCurrent);
+#include "AFMSpinCurrentMMdot.h"
+registerMooseObject("FerretApp", AFMSpinCurrentMMdot);
 
-InputParameters SpinPolCurrent::validParams()
+InputParameters AFMSpinCurrentMMdot::validParams()
 
 {
   InputParameters params = AuxKernel::validParams();
@@ -39,7 +39,7 @@ InputParameters SpinPolCurrent::validParams()
 }
 
 
-SpinPolCurrent::SpinPolCurrent(const InputParameters & parameters) :
+AFMSpinCurrentMMdot::AFMSpinCurrentMMdot(const InputParameters & parameters) :
   AuxKernel(parameters),
    _mag_x(coupledValue("mag_x")),
    _mag_y(coupledValue("mag_y")),
@@ -53,7 +53,7 @@ SpinPolCurrent::SpinPolCurrent(const InputParameters & parameters) :
 }
 
 Real
-SpinPolCurrent::computeValue()
+AFMSpinCurrentMMdot::computeValue()
 {
   if (_component == 0)
   {
