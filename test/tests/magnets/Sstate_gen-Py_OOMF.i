@@ -94,7 +94,7 @@ alphadef = 1.0
   [./constants] 
     type = GenericConstantMaterial
     prop_names = ' alpha           g0mu0Ms        g0       permittivity Ae      Ms   mu0'
-    prop_values = '${alphadef}     34989.1     17680.8       1.0        13.0   -1.0  1.0'
+    prop_values = '${alphadef}     34989.1     17680.8       1.0        13.0   1.0  1.0'
   [../]
 
 #NOTE: g0 is g*mu0*Ms/2 as defined by Hertel 

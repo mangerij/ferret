@@ -60,5 +60,5 @@ Real
 MagnetostaticEnergyCart::computeQpIntegral()
 {
   // -1/2 * M*B = - 1/2 * M*(-gradPotential)
-  return _energy_scale*(-0.5*_mu0[_qp]*_Ms[_qp] * (-_potential_H_int_grad[_qp](0)*_mag_x[_qp]-_potential_H_int_grad[_qp](1)*_mag_y[_qp]-_potential_H_int_grad[_qp](2)*_mag_z[_qp]));
+  return _energy_scale*(0.5*_mu0[_qp]*_Ms[_qp] * (-_potential_H_int_grad[_qp](0)*_mag_x[_qp]-_potential_H_int_grad[_qp](1)*_mag_y[_qp]-_potential_H_int_grad[_qp](2)*_mag_z[_qp]));
 }
