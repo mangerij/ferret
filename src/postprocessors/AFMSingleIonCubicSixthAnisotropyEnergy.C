@@ -55,5 +55,5 @@ AFMSingleIonCubicSixthAnisotropyEnergy::AFMSingleIonCubicSixthAnisotropyEnergy(c
 Real
 AFMSingleIonCubicSixthAnisotropyEnergy::computeQpIntegral()
 {
-  return _energy_scale*((_K1c[_qp] + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_Kt[_qp])*(Utility::pow<2>(_mag_y[_qp])*Utility::pow<2>(_mag_z[_qp])*Utility::pow<2>(_mag_x[_qp])));
+  return -_energy_scale*((_K1c[_qp] + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_Kt[_qp])*(Utility::pow<2>(_mag_y[_qp])*Utility::pow<2>(_mag_z[_qp])*Utility::pow<2>(_mag_x[_qp])));
 }

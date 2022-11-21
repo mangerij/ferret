@@ -57,5 +57,5 @@ AFMSublatticeSuperexchangeEnergy::AFMSublatticeSuperexchangeEnergy(const InputPa
 Real
 AFMSublatticeSuperexchangeEnergy::computeQpIntegral()
 {
-  return _energy_scale*(-4*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp]));
+  return -_energy_scale*(-4*_De[_qp]*(_mag1_x[_qp]*_mag2_x[_qp] + _mag1_y[_qp]*_mag2_y[_qp] + _mag1_z[_qp]*_mag2_z[_qp]));
 }
