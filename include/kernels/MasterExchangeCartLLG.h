@@ -50,6 +50,7 @@ protected:
   const MaterialProperty<Real> & _g0;
   const MaterialProperty<Real> & _Ae;
   const MaterialProperty<Real> & _Ms;
+  const MaterialProperty<Real> & _mu0;
 
 };
 #endif //MASTEREXCHANGECARTLLG_H
