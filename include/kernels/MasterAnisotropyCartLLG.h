@@ -48,8 +48,9 @@ protected:
   const MaterialProperty<Real> & _nx;
   const MaterialProperty<Real> & _ny;
   const MaterialProperty<Real> & _nz;
-  const MaterialProperty<Real> & _g0;
+  const Real & _g0;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
+  const Real & _mu0;
+  const Real & _Hscale;
 };
 #endif //MASTERANISOTROPYCARTLLG_H

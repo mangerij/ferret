@@ -42,7 +42,6 @@ MasterMagneticExchangeEnergy::MasterMagneticExchangeEnergy(const InputParameters
   _mag_y_grad(coupledGradient("mag_y")),
   _mag_z_grad(coupledGradient("mag_z")),
   _Ae(getMaterialProperty<Real>("Ae")),
-  _Ms(getMaterialProperty<Real>("Ms")),
   _energy_scale(getParam<Real>("energy_scale"))
 {
   std::cout<<"__________________________________________________________________________"<<"\n";
@@ -61,5 +60,5 @@ MasterMagneticExchangeEnergy::MasterMagneticExchangeEnergy(const InputParameters
 Real
 MasterMagneticExchangeEnergy::computeQpIntegral()
 {
-  return _energy_scale*_Ms[_qp]*_Ms[_qp]*(((_Ae[_qp])*(Utility::pow<2>(_mag_x_grad[_qp](0))+Utility::pow<2>(_mag_x_grad[_qp](1))+Utility::pow<2>(_mag_x_grad[_qp](2))+Utility::pow<2>(_mag_y_grad[_qp](0))+Utility::pow<2>(_mag_y_grad[_qp](1))+Utility::pow<2>(_mag_y_grad[_qp](2))+Utility::pow<2>(_mag_z_grad[_qp](0))+Utility::pow<2>(_mag_z_grad[_qp](1))+Utility::pow<2>(_mag_z_grad[_qp](2)))));
+  return _energy_scale*_Ae[_qp]*(Utility::pow<2>(_mag_x_grad[_qp](0))+Utility::pow<2>(_mag_x_grad[_qp](1))+Utility::pow<2>(_mag_x_grad[_qp](2))+Utility::pow<2>(_mag_y_grad[_qp](0))+Utility::pow<2>(_mag_y_grad[_qp](1))+Utility::pow<2>(_mag_y_grad[_qp](2))+Utility::pow<2>(_mag_z_grad[_qp](0))+Utility::pow<2>(_mag_z_grad[_qp](1))+Utility::pow<2>(_mag_z_grad[_qp](2)));
 }

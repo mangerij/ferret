@@ -81,6 +81,11 @@ alphadef = 1.0
   mag_z = mag_z
 
   potential_H_int = potential_H_int
+
+
+  mu0 = 1.0
+  Hscale = 1.0
+  g0 = 17680.8
 []
 
 [Materials]
@@ -93,8 +98,8 @@ alphadef = 1.0
 
   [./constants] 
     type = GenericConstantMaterial
-    prop_names = ' alpha           g0mu0Ms        g0       permittivity Ae      Ms   mu0'
-    prop_values = '${alphadef}     34989.1     17680.8       1.0        13.0   1.0  1.0'
+    prop_names = ' alpha           g0mu0Ms           permittivity Ae      Ms   '
+    prop_values = '${alphadef}     34989.1        1.0        13.0   1.0  '
   [../]
 
 #NOTE: g0 is g*mu0*Ms/2 as defined by Hertel 
@@ -275,28 +280,19 @@ alphadef = 1.0
   #---------------------------------------#
   
   [./dllg_x_exch]
-    type = ExchangeCartLL
+    type = MasterExchangeCartLLG
     variable = mag_x
     component = 0
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
   [../]
   [./dllg_y_exch]
-    type = ExchangeCartLL
+    type = MasterExchangeCartLLG
     variable = mag_y
     component = 1
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
   [../]
   [./dllg_z_exch]
-    type = ExchangeCartLL
+    type = MasterExchangeCartLLG
     variable = mag_z
     component = 2
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
   [../]
 
   #---------------------------------------#
