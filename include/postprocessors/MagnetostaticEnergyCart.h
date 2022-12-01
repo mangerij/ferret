@@ -39,7 +39,7 @@ protected:
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
+  const Real & _mu0;
   const Real _energy_scale;
 
 };

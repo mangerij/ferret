@@ -1,47 +1,115 @@
 
+
+  ##############################
+  ##
+  ## UNITS:
+  ##    
+  ##   gamma = (2.2101*10^5 ) m/C
+  ##
+  ## NOTE:
+  ##   gamma*Hscale = 1/ns
+  ##
+  ##   coefficients given in (pg/nm*ns) 
+  ##   which is equivalent to an energy/vol
+  ##
+  ##   Effective fields are 1/(mu0*Ms)*coeff
+  ##   which gives units of aC/(nm*mus)
+  ##
+  ##   Energies are natively printed in units 
+  ##    of 0.160218 pg nm^2 / mus^2 
+  ##    or 1.60218*10^{-22} J
+  ##    or 0.001 eV
+  ##
+  ##############################
+
+################
+#
+#  LLG alpha:
+#
+################
+
+alphadef = 0.02
+
+
 [Mesh]
-  [./fmg]
-    type = FileMeshGenerator
-    file = exodus_pysq_dx1_AnoI.e
-  []
-
-  uniform_refine = 1
-
-  [central_interface]
-    type = SideSetsBetweenSubdomainsGenerator
-    input = fmg
-    master_block = '1'
-    paired_block = '2'
-    primary_block = '1'
-    new_boundary = '70'
-  []
-[]
+  [./mesh]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = 50
+    ny = 50
+    nz = 10
+    xmin = -50
+    xmax = 50
+    ymin = -50
+    ymax = 50
+    zmin = -10
+    zmax = 10
+  [../]  
+  [./vacuum_box]
+    type = SubdomainBoundingBoxGenerator
+    input = mesh
+    bottom_left = '-50 -50 -10'
+    top_right = '50 50 10'
+    block_id = 2
+    block_name = vacuum 
+  [../]
+  [./brick]
+    type = SubdomainBoundingBoxGenerator
+    input = vacuum_box
+    bottom_left = '-10 -10 -1.5'
+    top_right = '10 10 1.5'
+    block_id = 1
+    block_name = brick
+  [../]
+[../]
 
 
 [GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
   mag_z = mag_z
+
   potential_H_int = potential_H_int
+    
+  Hscale = 0.004519239
+  g0 = 1.0
+  mu0 = 1.256637e-06
+
 []
 
 [Materials]
-  [./constants] # Constants used in other material properties
+  ############################################################################
+  ##
+  ##       material constants used.
+  ##
+  ############################################################################
+
+  [./constants] 
     type = GenericConstantMaterial
-    prop_names = ' alpha    Ae    Ms    g0     mu0   nx ny nz   long_susc t'
-    prop_values = '0.01    0.013  1.2  221010.0 1256.64   1  0  0          1.0     0'
+    prop_names = ' alpha                 Ae      Ms   permittivity'
+    prop_values = '${alphadef}          1.3e-05  1.2  1.'
+    block = '1'
   [../]
+
   [./a_long]
     type = GenericFunctionMaterial
     prop_names = 'alpha_long'
     prop_values = 'bc_func_1'
+    block = '1' 
   [../]
-  [./permitivitty_1]
+ [./constantsv]
     type = GenericConstantMaterial
-    prop_names = 'permittivity'  #dummy variable at the moment since we use the "electrostatics" kernel
-    prop_values = '1.0'
-    block = '1 2'
+    prop_names = ' alpha                Ae      Ms  permittivity'
+    prop_values = '1                   1.e-05   0.  1. '
+    block = '2'
   [../]
+  [./a_longv]
+    type = GenericFunctionMaterial
+    prop_names = 'alpha_long'
+    prop_values = 'bc_func_1'
+    block = '2'
+  [../]
+
 []
 
 [Functions]
@@ -55,9 +123,9 @@
 
   [./bc_func_1]
     type = ParsedFunction
-    value = 'st'   #*tanh(sl*t)+1.0'
-    vars = 'st' #sl'
-    vals = '100.0' # 795.775'
+    value = 'st'
+    vars = 'st'
+    vals = '1.e3'  #3?
   [../]
 []
 
@@ -89,7 +157,7 @@
   [./mag_z]
     order = FIRST
     family = LAGRANGE
-    block = '1'
+    block= '1'
     [./InitialCondition]
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
@@ -115,22 +183,20 @@
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
-    block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 0.2
-      max = 0.22
+      min = 0.
+      max = 0.01
       seed = 2
     [../]
   [../]
   [./polar_theta]
     order = FIRST
     family = LAGRANGE
-    block = '1'
     [./InitialCondition]
       type = RandomIC
-      min = 0.7
-      max = 0.72
+      min = 1.5708
+      max = 1.5709
       seed = 37
     [../]
   [../]
@@ -138,25 +204,34 @@
   [./mag_s]
     order = FIRST
     family = LAGRANGE
-    block = '1'
   [../]
 
   [./H_x]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1 2'
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = ConstantIC
+      value = 1.0
+    [../]
   [../]
   [./H_y]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1 2'
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = ConstantIC
+      value = 1.0
+    [../]
   [../]
   [./H_z]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '1 2'
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = ConstantIC
+      value = 1.0
+    [../]
   [../]
 []
+
 
 [AuxKernels]
   [./mag_mag]
@@ -165,32 +240,11 @@
     vector_x = mag_x
     vector_y = mag_y
     vector_z = mag_z
+    execute_on = 'initial timestep_end final'
     block = '1'
-    execute_on = 'timestep_end final'
-  [../]
-
-  [./hxo]
-    type = DemagFieldAux
-    component = 0
-    variable = H_x
-    block = '1 2'
-    execute_on = 'timestep_end final'
-  [../]
-  [./hyo]
-    type = DemagFieldAux
-    component = 1
-    variable = H_y
-    block = '1 2'
-    execute_on = 'timestep_end final'
-  [../]
-  [./hzo]
-    type = DemagFieldAux
-    component = 2
-    variable = H_z
-    block = '1 2'
-    execute_on = 'timestep_end final'
   [../]
 []
+
 
 [Kernels]
   #---------------------------------------#
@@ -217,47 +271,79 @@
 
   #---------------------------------------#
   #                                       #
-  #          Magnetic exchange            #
+  #    Local magnetic exchange            #
   #                                       #
   #---------------------------------------#
-
+  
   [./dllg_x_exch]
-    type = ExchangeCartLL
+    type = MasterExchangeCartLLG
     variable = mag_x
     component = 0
+    block = '1'
   [../]
   [./dllg_y_exch]
-    type = ExchangeCartLL
+    type = MasterExchangeCartLLG
     variable = mag_y
     component = 1
+    block = '1'
   [../]
   [./dllg_z_exch]
-    type = ExchangeCartLL
+    type = MasterExchangeCartLLG
     variable = mag_z
     component = 2
+    block = '1'
   [../]
 
   #---------------------------------------#
   #                                       #
-  #         demagnetization field         #
+  #    demagnetization field              #
   #                                       #
   #---------------------------------------#
 
   [./d_HM_x]
-    type = InteractionCartLL
+    type = MasterInteractionCartLLG
     variable = mag_x
     component = 0
+    block = '1'
   [../]
   [./d_HM_y]
-    type = InteractionCartLL
+    type = MasterInteractionCartLLG
     variable = mag_y
     component = 1
+    block = '1'
   [../]
   [./d_HM_z]
-    type = InteractionCartLL
+    type = MasterInteractionCartLLG
     variable = mag_z
     component = 2
+    block = '1'
   [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          LLB constraint terms         #
+  #                                       #
+  #---------------------------------------#
+
+#  [./llb1_x]
+#    type = MasterLongitudinalLLB
+#    variable = mag_x
+#    component = 0
+#    block = '1'
+#  [../]
+#  [./llb1_y]
+#    type = MasterLongitudinalLLB
+#    variable = mag_y
+#    component = 1
+#    block = '1'
+#  [../]
+#
+#  [./llb1_z]
+#    type = MasterLongitudinalLLB
+#    variable = mag_z
+#    component = 2
+#    block = '1'
+#  [../]
 
   #---------------------------------------#
   #                                       #
@@ -274,67 +360,16 @@
     type = MagHStrongCart
     variable = potential_H_int
     block = '1'
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #          LLB constraint terms         #
-  #                                       #
-  #---------------------------------------#
-
-  [./llb_x]
-    type = LongitudinalLLB
-    variable = mag_x
-    component = 0
-  [../]
-  [./llb_y]
-    type = LongitudinalLLB
-    variable = mag_y
-    component = 1
-  [../]
-
-  [./llb_z]
-    type = LongitudinalLLB
-    variable = mag_z
-    component = 2
-  [../]
 []
 
 [BCs]
-  #---------------------------------------#
-  #                                       #
-  #  ground the magnetostatic potential   #
-  #  at two boundaries                    #
-  #                                       #
-  #---------------------------------------#
-
-  [./bc_int_pot_boundary]
+  [./vacuum_box]
     type = DirichletBC
+    value = 0.
     variable = potential_H_int
-    value = 0.0
-    boundary = '1 2 3 4 5 6'
-  [../]
-
-  [./bc_surface_mag_x]
-    type = NeumannBC
-    variable = mag_x
-    value = 0.0
-    boundary = '70'
-  [../]
-  [./bc_surface_mag_y]
-    type = NeumannBC
-    variable = mag_y
-    value = 0.0
-    boundary = '70'
-  [../]
-  [./bc_surface_mag_z]
-    type = NeumannBC
-    variable = mag_z
-    value = 0.0
-    boundary = '70'
+    boundary = '0 1 2 3 4 5'
   [../]
 []
 
@@ -345,35 +380,34 @@
 
   #---------------------------------------#
   #                                       #
-  #       Average |M| and along other     #
-  #       directions                      #
+  #     Average M = |m|                   #
   #                                       #
   #---------------------------------------#
 
-  [./<M>]
+  [./M1]
     type = ElementAverageValue
     variable = mag_s
+    execute_on = 'initial timestep_end final'
     block = '1'
-    execute_on = 'timestep_end final'
   [../]
 
   [./<mx>]
     type = ElementAverageValue
     variable = mag_x
+    execute_on = 'initial timestep_end final'
     block = '1'
-    execute_on = 'timestep_end final'
   [../]
   [./<my>]
     type = ElementAverageValue
     variable = mag_y
+    execute_on = 'initial timestep_end final'
     block = '1'
-    execute_on = 'timestep_end final'
   [../]
   [./<mz>]
     type = ElementAverageValue
     variable = mag_z
+    execute_on = 'initial timestep_end final'
     block = '1'
-    execute_on = 'timestep_end final'
   [../]
 
   #---------------------------------------#
@@ -384,8 +418,9 @@
   #---------------------------------------#
 
   [./Fexch]
-    type = MagneticExchangeEnergy
-    execute_on = 'timestep_end final'
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.  #converts results to eV
+    execute_on = 'initial timestep_end final'
     block = '1'
   [../]
 
@@ -398,9 +433,11 @@
 
   [./Fdemag]
     type = MagnetostaticEnergyCart
-    execute_on = 'timestep_end final'
+    energy_scale = 1.  #converts results to eV
+    execute_on = 'initial timestep_end final'
     block = '1'
   [../]
+
 
   #---------------------------------------#
   #                                       #
@@ -409,12 +446,14 @@
   #                                       #
   #---------------------------------------#
 
-  [./Fllb]
+  [./Fllb1]
     type = MagneticExcessLLBEnergy
-    execute_on = 'timestep_end final'
+    mag_x = mag_x
+    mag_y = mag_y
+    mag_z = mag_z
+    execute_on = 'initial timestep_end final'
     block = '1'
   [../]
-
 
   #---------------------------------------#
   #                                       #
@@ -425,9 +464,9 @@
 
   [./Ftot]
     type = LinearCombinationPostprocessor 
-    pp_names = 'Fexch Fdemag Fllb'
-    pp_coefs = ' 1.0 1.0 1.0' 
-    execute_on = 'timestep_end final'
+    pp_names = 'Fexch Fdemag'
+    pp_coefs = ' 1.0 1.0'
+    execute_on = 'initial timestep_end final'
   [../]
 
   [./perc_change]
@@ -438,17 +477,48 @@
   [../]
 []
 
-
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = 'perc_change <= 1.0e-5'
+    expression = 'perc_change <= 1.0e-8'
   [../]
+  [mag]
+    type = RenormalizeVector
+    v = 'mag_x mag_y mag_z'
+    norm = 1
+    execute_on = 'TIMESTEP_END'
+#    force_praux = true
+  []
 []
 
-
-
 [Preconditioning]
+    active = smp
+ [./muPBP]
+    type = PBP
+    solve_order = 'mag_x mag_y mag_z potential_H_int'
+    preconditioner = 'AMG ILU'
+    off_diag_row = 'mag_x mag_y mag_z'
+    off_diag_column = 'mag_x mag_y mag_z'
+ [../]
+ [./muFSP]
+    type = FSP
+    topsplit = 'magpot'
+    [./magpot]
+      splitting = 'mag pot'
+      splitting_type = additive
+    [../]
+    [./mag]
+      vars = 'mag_x mag_y mag_z'
+    petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -pc_sub_type '
+    petsc_options_value = '    40               1e-20      1e-6      1e-6     bjacobi  ilu'
+    [../]
+    [./pot]
+      vars = potential_H_int
+      petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -pc_sub_type '
+      petsc_options_value = '    40               1e-12      1e-6      1e-6     bjacobi ilu'
+    [../]
+  [../]
+
   #---------------------------------------#
   #                                       #
   #            Solver options             #
@@ -458,45 +528,49 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_ksp_ew -snes_converged_reason'
     petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121               1e-10      1e-8      1e-6      bjacobi'
+    petsc_options_value = '    40               1e-8      1e-8      1e-4      bjacobi' 
   [../]
 []
-
-#[Debug]
-#   show_var_residual_norms = true
-#[]
 
 [Executioner]
   type = Transient            
   solve_type = 'NEWTON'
+#  num_grids = 8
+
   [./TimeIntegrator]
-    type = ImplicitEuler
+    type = NewmarkBeta #LStableDirk4 #NewmarkBeta
   [../]
-  dtmin = 1e-10
-  dtmax = 1.0e-5
+
+  dtmin = 1.e-5
+  dtmax = 2.e-3
+  end_time = 5.
+  automatic_scaling = true
+
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 18
-    growth_factor = 1.3
-    cutback_factor = 0.8
-    dt = 1.0e-9
+    optimal_iterations = 15  #usually 10
+    iteration_window = 2
+    linear_iteration_ratio = 1000
+    dt = 1.e-4
+    growth_factor = 1.1
+    cutback_factor = 0.75
   [../]
-  verbose = true
-  num_steps = 15
-[]
+  num_steps = 20
+[../]
+
+
 
 [Outputs]
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = out_ringdown
+    file_base = ringdown
     elemental_as_nodal = true
-    interval = 1
+    interval = 10
   [../]
   [./outCSV]
     type = CSV
-    file_base = out_ringdown
+    file_base = ringdown
   [../]
 []

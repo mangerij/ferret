@@ -45,7 +45,7 @@ protected:
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
   const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
+  const Real & _g0;
   const MaterialProperty<Real> & _alpha_long;
 
 };

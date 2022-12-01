@@ -1,11 +1,11 @@
 [Tests]
-  #[./how_do_they_work]
-  #  type = 'Exodiff'
-  #  input = 'ringdown.i'
-  #  exodiff = 'out_ringdown.e'
-  #  max_parallel = 1
-  #  max_threads = 1
-  #[../]
+  [./ringdown]
+    type = 'Exodiff'
+    input = 'ringdown.i'
+    exodiff = 'ringdown.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 
   [./load_oomf_sol]
     type = 'Exodiff'

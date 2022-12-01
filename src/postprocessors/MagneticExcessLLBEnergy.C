@@ -41,7 +41,6 @@ MagneticExcessLLBEnergy::MagneticExcessLLBEnergy(const InputParameters & paramet
   _mag_y(coupledValue("mag_y")),
   _mag_z(coupledValue("mag_z")),
   _alpha(getMaterialProperty<Real>("alpha")),
-  _g0(getMaterialProperty<Real>("g0")),
   _alpha_long(getMaterialProperty<Real>("alpha_long")),
   _energy_scale(getParam<Real>("energy_scale"))
 {
@@ -50,5 +49,5 @@ MagneticExcessLLBEnergy::MagneticExcessLLBEnergy(const InputParameters & paramet
 Real
 MagneticExcessLLBEnergy::computeQpIntegral()
 {
-  return _energy_scale*((0.25)*(_g0[_qp]*_alpha_long[_qp]*Utility::pow<2>(_mag_x[_qp]*_mag_x[_qp]+_mag_y[_qp]*_mag_y[_qp]+_mag_z[_qp]*_mag_z[_qp]-1.0))/(1.0+_alpha[_qp]*_alpha[_qp]));
+  return _energy_scale*((0.25)*(_alpha_long[_qp]*Utility::pow<2>(_mag_x[_qp]*_mag_x[_qp]+_mag_y[_qp]*_mag_y[_qp]+_mag_z[_qp]*_mag_z[_qp]-1.0))/(1.0+_alpha[_qp]*_alpha[_qp]));
 }

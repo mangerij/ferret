@@ -51,10 +51,11 @@ private:
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
   const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
+  const Real & _g0;
   const MaterialProperty<Real> & _Ms;
   const VariableValue &  _Hext_x;
   const VariableValue &  _Hext_y;
   const VariableValue &  _Hext_z;
+  const Real & _Hscale;
 };
 #endif //MASTERINTERACTIONCARTLLGHCONST_H

@@ -47,10 +47,11 @@ protected:
   const VariableGradient & _mag_y_grad;
   const VariableGradient & _mag_z_grad;
   const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _g0;
+  const Real & _g0;
   const MaterialProperty<Real> & _Ae;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
+  const Real & _mu0;
+  const Real & _Hscale;
 
 };
 #endif //MASTEREXCHANGECARTLLG_H
