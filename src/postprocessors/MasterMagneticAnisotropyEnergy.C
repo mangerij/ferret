@@ -52,5 +52,5 @@ MasterMagneticAnisotropyEnergy::MasterMagneticAnisotropyEnergy(const InputParame
 Real
 MasterMagneticAnisotropyEnergy::computeQpIntegral()
 {
-  return -_energy_scale*_K1[_qp]*Utility::pow<2>(_Ms[_qp])*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp]);
+  return -_energy_scale*_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp]);
 }
