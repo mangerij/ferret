@@ -1,11 +1,13 @@
 [Tests]
-  [./ringdown]
-    type = 'Exodiff'
-    input = 'ringdown.i'
-    exodiff = 'ringdown.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+  #[./ringdown]
+  #  type = 'Exodiff'
+  #  input = 'ringdown.i'
+  #  exodiff = 'ringdown.e'
+  #  max_parallel = 1
+  #  max_threads = 1
+  #[../]
+  #
+  #disabled until RenormalizeVector UO is merged to framework.
 
   [./load_oomf_sol]
     type = 'Exodiff'
@@ -14,28 +16,5 @@
     max_parallel = 1
     max_threads = 1
   [../]
-
-  #[./AFMR]
-  #  type = 'Exodiff'
-  #  input = 'AFMR_MnF2_ex.i'
-  #  exodiff = 'out_AFMR_ex.e'
-  #  max_parallel = 1
-  #  max_threads = 1
-  #[../]
-
-  #[./how_do_they_work]
-  #  type = 'Exodiff'
-  #  input = 'mag_brick.i'
-  #  exodiff = 'out_mag_brick.e'
-  #  max_parallel = 1
-  #  max_threads = 1
-  #[../]
-
-#disabled magnets.how_do_they_work temporarily due to problems with Mac compiled Ferret.
-
-#disabled all magnetic tests due to some issues with factors of Ms (fixed now but tests need regold)
-
-#again disable magnetic test...
- 
 
 []
