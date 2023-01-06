@@ -1,0 +1,38 @@
+Content:
+    - ${ROOT_DIR}/doc/content
+    - ${MOOSE_DIR}/framework/doc/content
+    - ${MOOSE_DIR}/modules/tensor_mechanics/doc/content
+    - ${MOOSE_DIR}/modules/phase_field/doc/content
+    - ${MOOSE_DIR}/modules/misc/doc/content
+    - ${MOOSE_DIR}/modules/electromagnetics/doc/content
+    # - specific_files:
+    #     root_dir: ${ROOT_DIR}/any/content/location/
+    #     content:
+    #         - samplefile1.txt
+    #         - samplefile2.txt
+
+Renderer:
+    type: MooseDocs.base.MaterializeRenderer
+
+Extensions:
+    MooseDocs.extensions.navigation:
+        name: Ferret
+        repo: https://github.com/mangerij/ferret
+        menu:
+            Documentation:
+                Ferret-only Code Syntax: syntax/ferret_only_syntax.md
+                Complete Code Syntax: syntax/index.md
+    MooseDocs.extensions.appsyntax:
+        executable: ${ROOT_DIR}
+        remove:
+            framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
+        unregister:
+            framework: !include ${MOOSE_DIR}/framework/doc/unregister.yml
+    MooseDocs.extensions.common:
+        shortcuts:
+            framework: !include ${MOOSE_DIR}/framework/doc/globals.yml
+    MooseDocs.extensions.acronym:
+        acronyms: !include ${MOOSE_DIR}/framework/doc/acronyms.yml
+    MooseDocs.extensions.bibtex:
+        duplicates: # allows removal of duplicate bibliography warnings when pulling from multiple content sources
+            - kim_phase-field_1999
