@@ -1,0 +1,23 @@
+# PontryaginDensity
+
+!alert construction title=Undocumented Class
+The PontryaginDensity has not been documented. The content listed below should be used as a starting point for
+documenting the class, which includes the typical automatic documentation associated with a
+MooseObject; however, what is contained is ultimately determined by what is necessary to make the
+documentation clear for users.
+
+!syntax description /AuxKernels/PontryaginDensity
+
+## Overview
+
+!! Replace these lines with information regarding the PontryaginDensity object.
+
+## Example Input File Syntax
+
+!! Describe and include an example of how to use the PontryaginDensity object.
+
+!syntax parameters /AuxKernels/PontryaginDensity
+
+!syntax inputs /AuxKernels/PontryaginDensity
+
+!syntax children /AuxKernels/PontryaginDensity
