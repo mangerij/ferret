@@ -108,8 +108,6 @@
     type = ElectricFlux
     variable = j_x
     T = T
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 0
   [../]
@@ -117,8 +115,6 @@
     type = ElectricFlux
     variable = j_y
     T = T
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 1
   [../]
@@ -126,8 +122,6 @@
     type = ElectricFlux
     variable = j_y
     T = T
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 2
   [../]
@@ -136,9 +130,6 @@
     type = HeatFlux
     variable = q_x
     T = T
-    thC = thC
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 0
   [../]
@@ -146,9 +137,6 @@
     type = HeatFlux
     variable = q_y
     T = T
-    thC = thC
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 1
   [../]
@@ -156,9 +144,6 @@
     type = HeatFlux
     variable = q_y
     T = T
-    thC = thC
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 2
   [../]
@@ -170,122 +155,74 @@
     type = DivCurrentV
     variable = potential_E_int
     T = T
-    component = 0
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_00]
     type = HeatFlowElectricT
     variable = T
     T = T
-    component = 0
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualV_01]
     type = DivCurrentV
     variable = potential_E_int
     T = T
-    component = 1
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_01]
     type = HeatFlowElectricT
     variable = T
     T = T
-    component = 1
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualV_02]
     type = DivCurrentV
     variable = potential_E_int
     T = T
-    component = 2
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_02]
     type = HeatFlowElectricT
     variable = T
     T = T
-    component = 2
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
 
   ########BLOCK 1
   [./residualV_10]
     type = DivCurrentV
     variable = potential_E_int
-    component = 0
     T = T
     block = 1
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_10]
     type = HeatFlowElectricT
     variable = T
-    component = 0
     T = T
-    ecC = ecC
-    thC = thC
-    sbC = sbC
     block = 1
   [../]
   [./residualV_11]
     type = DivCurrentV
     variable = potential_E_int
-    component = 1
     T = T
     block = 1
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_11]
     type = HeatFlowElectricT
     variable = T
-    component = 1
     T = T
-    ecC = ecC
-    thC = thC
-    sbC = sbC
     block = 1
   [../]
   [./residualV_12]
     type = DivCurrentV
     variable = potential_E_int
-    component = 2
     T = T
     block = 1
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_12]
     type = HeatFlowElectricT
     variable = T
-    component = 2
     T = T
-    ecC = ecC
-    thC = thC
-    sbC = sbC
     block = 1
   [../]
 []

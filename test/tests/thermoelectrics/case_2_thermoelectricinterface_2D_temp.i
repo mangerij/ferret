@@ -41,7 +41,6 @@
 
 
 [GlobalParams]
-  T = T
   potential_E_int = potential_E_int
 []
 
@@ -72,21 +71,13 @@
     type = DivCurrentV
     variable = potential_E_int
     T = T
-    component = 1
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_0]
     type = HeatFlowElectricT
     variable = T
     T = T
-    component = 1
     block = 0
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
 
 
@@ -97,18 +88,11 @@
     component = 0
     T = T
     block = 1
-    ecC = ecC
-    thC = thC
-    sbC = sbC
   [../]
   [./residualT_1]
     type = HeatFlowElectricT
     variable = T
-    component = 0
     T = T
-    ecC = ecC
-    thC = thC
-    sbC = sbC
     block = 1
   [../]
 []
@@ -138,8 +122,6 @@
     type = ElectricFlux
     variable = j_x
     T = T
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 0
   [../]
@@ -147,8 +129,6 @@
     type = ElectricFlux
     variable = j_y
     T = T
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 1
   [../]
@@ -157,9 +137,6 @@
     type = HeatFlux
     variable = q_x
     T = T
-    thC = thC
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 0
   [../]
@@ -167,9 +144,6 @@
     type = HeatFlux
     variable = q_y
     T = T
-    thC = thC
-    ecC = ecC
-    sbC = sbC
     potential_E_int = potential_E_int
     component = 1
   [../]

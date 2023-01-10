@@ -12,8 +12,6 @@
 
 
 [GlobalParams]
-  T = T
-  potential_E_int = potential_E_int
 []
 
 [Variables]
@@ -46,7 +44,6 @@
     T = T
     sbC = sbC
     block = 1
-    component = 0
   [../]
 
   [./q1_1_x]
@@ -128,7 +125,6 @@
   [./ThermoelectricProperties_chromel]
     type = ThermoelectricMaterial
     thC = 1.4
-    electrical_conductivity = 8.422e4
     sbC_temperature_function = chromel_seebeck
     temp = T
     block = 1
@@ -136,7 +132,6 @@
   [./ThermoelectricProperties_alumel]
     type = ThermoelectricMaterial
     thC = 6.5
-    electrical_conductivity = 8.422e2
     sbC_temperature_function = alumel_seebeck
     temp = T
     block = 2

@@ -36,23 +36,16 @@
 [Kernels]
   [./residualV_x]
   type = DivCurrentV
-  component = 0
   variable = potential_E_int
   T = 'T'
   potential_E_int = 'potential_E_int'
-  ecC = 'ecC'
-  sbC = 'sbC'
 [../]
 
 [./residualT_x]
   type = HeatFlowElectricT
-  component = 0
   variable = T
   T = 'T'
   potential_E_int = 'potential_E_int'
-  ecC = 'ecC'
-  sbC = 'sbC'
-  thC = 'thC'
 [../]
 
 []

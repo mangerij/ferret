@@ -586,12 +586,10 @@
     [./xy1]
       auto_direction = 'x y z'
       variable = 'u_x u_y u_z polar_x polar_y polar_z potential_E_int'
-      block = '1'
     [../]
     [./xy2]
       auto_direction = 'x y z'
       variable = 'u_x u_y u_z potential_E_int'
-      block = '3'
     [../]
   [../]
 

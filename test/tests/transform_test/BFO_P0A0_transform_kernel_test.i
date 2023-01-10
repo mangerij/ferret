@@ -603,7 +603,6 @@ zMax = 1.0
     antiphase_A_y = Ao_y
     antiphase_A_z = Ao_z
     execute_on = 'INITIAL LINEAR NONLINEAR'
-    outputs = 'none'
   [../]
 
   [./frpa0]

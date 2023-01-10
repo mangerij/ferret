@@ -19,7 +19,6 @@
   n_a = 2.91
   n_b = 2.91
   n_g = 3.27
-  potential_E_int = potential_E_int
 []
 
 
