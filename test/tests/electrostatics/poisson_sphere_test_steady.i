@@ -12,7 +12,6 @@
   polar_x = polar_x
   polar_y = polar_y
   polar_z = polar_z
-  potential_E_int = potential
 []
 
 

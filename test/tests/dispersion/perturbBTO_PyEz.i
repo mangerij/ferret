@@ -413,7 +413,6 @@ amplitude = 1e-3
   #Elastic problem
   [./TensorMechanics]
     use_displaced_mesh = false
-    eigenstrain_name = eigenstrain
   [../]
 
   [./bed_x]

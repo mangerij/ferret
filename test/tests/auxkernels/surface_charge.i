@@ -110,8 +110,6 @@
   ##                seconds, and attocoulombs
   ##
   ##############################################
-
-  vol = vol
   
   u_x = u_x
   u_y = u_y
