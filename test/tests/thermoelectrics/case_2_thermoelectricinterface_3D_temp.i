@@ -50,7 +50,6 @@
 []
 
 [GlobalParams]
-  T = T
   potential_E_int = potential_E_int
 []
 
