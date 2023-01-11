@@ -85,7 +85,6 @@
   [./residualV_1]
     type = DivCurrentV
     variable = potential_E_int
-    component = 0
     T = T
     block = 1
   [../]
