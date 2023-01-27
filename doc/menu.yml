@@ -1,0 +1,32 @@
+Getting Started:
+  Install FERRET: getting_started/install.md
+  Update FERRET: getting_started/update.md
+  Running FERRET: getting_started/running.md
+  Visualization Tools: getting_started/paraview.md
+  Browse the documentation locally: getting_started/docs.md
+
+Theory:
+  Phase Field Method of Ferroelectricity (FE):   theory/intro_LGD.md
+  Micromagnetic Simulations:   theory/intro_LLG.md
+  Piezoelectricity:   theory/intro_piezo.md
+  Thermoelectric Phenomena:   theory/intro_thermo.md
+  Optical Properties:   theory/intro_optical.md
+  Polycrystalline Methods (block restriction):   theory/intro_poly.md
+
+Tutorials:
+  Multidomain (FE): tutorials/FE_phase_field_multi_domain.md
+  Multidomain with elasticity (FE): tutorials/FE_phase_field_multi_domain_elasticity.md
+
+EU Horizon2020-IF: 
+  Background and model: MSCA_EU_Horizon2020_Results/horizon2020_results1.md
+  Summary of key results: MSCA_EU_Horizon2020_Results/horizon2020_results2.md
+  Examples (polar domain walls): MSCA_EU_Horizon2020_Results/horizon2020_results2.md
+  Examples (dynamics and switching): MSCA_EU_Horizon2020_Results/horizon2020_results2.md
+
+Publication Highlights: publication_highlights/publication_highlights.md
+
+Documentation:
+  Complete syntax: syntax/index.md
+  FERRET syntax: syntax/ferret_only_syntax.md
+
+Contact and Contribute: contribute/index.md

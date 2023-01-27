@@ -12,27 +12,30 @@ Content:
     #         - samplefile2.txt
 
 Renderer:
-    type: MooseDocs.base.MaterializeRenderer
+  type:                            MooseDocs.base.MaterializeRenderer
+  favicon:                         media/raccoon_icon.png
 
 Extensions:
-    MooseDocs.extensions.navigation:
-        name: Ferret
-        repo: https://github.com/mangerij/ferret
-        menu:
-            Documentation:
-                Ferret-only Code Syntax: syntax/ferret_only_syntax.md
-                Complete Code Syntax: syntax/index.md
-    MooseDocs.extensions.appsyntax:
-        executable: ${ROOT_DIR}
-        remove:
-            framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
-        unregister:
-            framework: !include ${MOOSE_DIR}/framework/doc/unregister.yml
-    MooseDocs.extensions.common:
-        shortcuts:
-            framework: !include ${MOOSE_DIR}/framework/doc/globals.yml
-    MooseDocs.extensions.acronym:
-        acronyms: !include ${MOOSE_DIR}/framework/doc/acronyms.yml
-    MooseDocs.extensions.bibtex:
-        duplicates: # allows removal of duplicate bibliography warnings when pulling from multiple content sources
-            - kim_phase-field_1999
+  MooseDocs.extensions.navigation:
+    name:                          "Ferret"
+    repo:                          https://github.com/mangerij/ferret
+    google-cse:                    008852834041008754713:g3ilnhhbbj9
+    breadcrumbs:                   False
+    scrollspy:                     False
+    menu:                          !include ${ROOT_DIR}/doc/menu.yml
+  MooseDocs.extensions.katex:
+    macros:                        !include ${ROOT_DIR}/doc/katex.macros.yml
+  MooseDocs.extensions.appsyntax:
+    executable: ${ROOT_DIR}
+    remove:
+      framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
+    unregister:
+      framework: !include ${MOOSE_DIR}/framework/doc/unregister.yml
+  MooseDocs.extensions.common:
+    shortcuts:
+      framework: !include ${MOOSE_DIR}/framework/doc/globals.yml
+  MooseDocs.extensions.acronym:
+    acronyms: !include ${MOOSE_DIR}/framework/doc/acronyms.yml
+  MooseDocs.extensions.bibtex:
+    duplicates: # allows removal of duplicate bibliography warnings when pulling from multiple content sources
+      - kim_phase-field_1999
