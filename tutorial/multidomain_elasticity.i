@@ -27,6 +27,19 @@
 []
 
 [Variables]
+  [./u_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
   [./polar_x]
     order = FIRST
     family = LAGRANGE
@@ -194,6 +207,81 @@
     block = '0'
   [../]
 
+##################################################
+  ##=
+  ## NOTE: Sign convention in Ferret for the 
+  ##        electrostrictive coeff. is multiplied by
+  ##        an overall factor of (-1)
+  ##
+  ##################################################
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = 'Q11 Q12 Q44'
+    prop_values = '-0.089 0.026 -0.03375'
+    block = '0 1'
+  [../]
+
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = 'q11 q12 q44'
+    prop_values = '-11.4 -0.01438 -7.5'
+  [../]
+
+  [./eigen_strain]
+    type = ComputeEigenstrain
+    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
+    eigen_base = '1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0'
+    eigenstrain_name = eigenstrain
+    prefactor = 0.0
+  [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+
+   ###############################################
+   ##=
+   ## symmetric9 fill_method is (default)
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##
+   ###############################################
+    block = '0'
+    C_ijkl = '175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1'
+  [../]
+
+
+  [./elasticity_tensor_2]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    block = '1'
+   ###############################################
+   ##=
+   ## symmetric9 fill_method is (default)
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
+   ##
+   ###############################################
+
+    C_ijkl = '275.0 119.4 119.4 275.0 119.4 275.0 83.1 83.1 83.1'
+  [../]
+
+
+  [./strain_1]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
   [./permitivitty_1]
 
     ###############################################
@@ -211,6 +299,7 @@
     prop_values = '0.08854187'
   [../]
 []
+
 
 [BCs]
 

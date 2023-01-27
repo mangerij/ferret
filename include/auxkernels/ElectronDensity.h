@@ -19,31 +19,28 @@
 
 **/
 
-#include "Birefringence.h"
+#ifndef ELECTRONDENSITY_H
+#define ELECTRONDENSITY_H
 
-registerMooseObject("FerretApp", Birefringence);
+#include "AuxKernel.h"
 
-InputParameters Birefringence::validParams()
-
+class ElectronDensity: public AuxKernel
 {
-  InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Computes the difference between refractive indices (birefringence).");
-  params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
-  params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");
-  return params;
-}
+public:
+  ElectronDensity(const InputParameters & parameters);
+  static InputParameters validParams();
+  virtual ~ElectronDensity() {}
 
-Birefringence::Birefringence(const InputParameters & parameters) :
-  AuxKernel(parameters),
-  _var1(coupledValue("per1")),
-  _var2(coupledValue("per2"))
-{
-}
+protected:
+  virtual Real computeValue();
 
-Real
-Birefringence::computeValue()
-{
-  return _var2[_qp] - _var1[_qp];
-}
+private:
+  const Real _Ec;
+  const Real _Nc;
+  const Real _T;
+  const Real _Kb;
+  const Real _q;
+  const VariableValue & _potential_E_int;
 
-
+};
+#endif //ELECTRONDENSITY_H

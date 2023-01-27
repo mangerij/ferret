@@ -28,7 +28,7 @@ InputParameters AngleBetweenTwoVectors::validParams()
 
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates the angle between two vectors");
+  params.addClassDescription("Useful calculation of the angle between two vectors");
   params.addRequiredCoupledVar("var1x", "The first component of the first vector");
   params.addRequiredCoupledVar("var1y", "The second component of the first vector");
   params.addRequiredCoupledVar("var1z", "The third component of the first vector");

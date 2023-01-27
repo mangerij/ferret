@@ -19,31 +19,32 @@
 
 **/
 
-#include "Birefringence.h"
+#include "ThermoelectricZTAux.h"
 
-registerMooseObject("FerretApp", Birefringence);
+registerMooseObject("FerretApp", ThermoelectricZTAux);
 
-InputParameters Birefringence::validParams()
-
+InputParameters ThermoelectricZTAux::validParams()
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Computes the difference between refractive indices (birefringence).");
-  params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
-  params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");
+  params.addClassDescription("Calculates thermoelectric figure of merit");
+  params.addCoupledVar("T", "Temperature variable in Kelvin");
+
   return params;
 }
 
-Birefringence::Birefringence(const InputParameters & parameters) :
+ThermoelectricZTAux::ThermoelectricZTAux(const InputParameters & parameters) :
   AuxKernel(parameters),
-  _var1(coupledValue("per1")),
-  _var2(coupledValue("per2"))
+  _T_var(coupled("T")),
+  _T(coupledValue("T")),
+  _T_grad(coupledGradient("T")),
+  _ecC(getMaterialProperty<Real>("ecC")),
+  _sbC(getMaterialProperty<Real>("sbC")),
+  _thC(getMaterialProperty<Real>("thC"))
 {
 }
 
 Real
-Birefringence::computeValue()
+ThermoelectricZTAux::computeValue()
 {
-  return _var2[_qp] - _var1[_qp];
+    return _ecC[_qp] * _sbC[_qp] * _sbC[_qp]  / _thC[_qp] * _T[_qp];
 }
-
-

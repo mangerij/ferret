@@ -27,7 +27,7 @@ InputParameters AFMSingleIonCubicSixthAnisotropyEnergyDensity::validParams()
 {
 
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).");
+  params.addClassDescription("Calculates the energy density due to corrections of single-ion environment of the sixth order in the spin.");
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained 1st sublattice magnetization vector");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained 1st sublattice magnetization vector");
   params.addRequiredCoupledVar("mag_z", "The z component of the constrained 1st sublattice magnetization vector");

@@ -3,14 +3,15 @@
     type = 'Exodiff'
     input = 'BFO_P0A0.i'
     exodiff = 'BFO_P0A0.e'
-    max_parallel = 1
-    max_threads = 1
   [../]
   [./PAdw]
     type = 'Exodiff'
     input = 'BFO_dwP1A1_100.i'
     exodiff = 'BFO_dwP1A1_100.e'
-    max_parallel = 1
-    max_threads = 1
+  [../]
+  [./magRing]
+    type = 'Exodiff'
+    input = 'BFO_P0A0_mRD.i'
+    exodiff = 'out_BFO_P0A0_mRD.e'
   [../]
 []

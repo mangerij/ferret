@@ -27,7 +27,7 @@ registerMooseObject("FerretApp", BulkEnergyDensity);
 InputParameters BulkEnergyDensity::validParams()
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates the free energy density dependent on the local polarization field.");
+  params.addClassDescription("Calculates the free energy density from the bulk energy (up to eighth order)");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
