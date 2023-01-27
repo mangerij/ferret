@@ -19,33 +19,38 @@
 
 **/
 
-#ifndef SUBSTRATEPENALTY_H
-#define SUBSTRATEPENALTY_H
+#ifndef AFDWALL2ENERGYDERIVATIVE_H
+#define AFDWALL2ENERGYDERIVATIVE_H
 
 #include "Kernel.h"
 
-class SubstratePenalty: public Kernel
+class AFDWall2EnergyDerivative: public Kernel
 {
 public:
 
-  SubstratePenalty(const InputParameters & parameters);
+  AFDWall2EnergyDerivative(const InputParameters & parameters);
 
   static InputParameters validParams();
 
 protected:
   virtual Real computeQpResidual();
+
   virtual Real computeQpJacobian();
 
-private:
+  virtual Real computeQpOffDiagJacobian(unsigned int jvar);
+
   const unsigned int _component;
-  const PostprocessorValue & _aveexx;
-  const PostprocessorValue & _aveeyy;
-  const VariableGradient & _u_x_grad;
-  const VariableGradient & _u_y_grad;
-  const VariableGradient & _u_z_grad;
-  const MaterialProperty<Real> & _K;
-  const MaterialProperty<Real> & _e0xx;
-  const MaterialProperty<Real> & _e0yy;
+  const unsigned int _antiphase_A_x_var;
+  const unsigned int _antiphase_A_y_var;
+  const unsigned int _antiphase_A_z_var;
+  const VariableGradient & _antiphase_A_x_grad;
+  const VariableGradient & _antiphase_A_y_grad;
+  const VariableGradient & _antiphase_A_z_grad;
+  const MaterialProperty<Real> & _H110;
+  const MaterialProperty<Real> & _H11;
+  const MaterialProperty<Real> & _H12;
+  const MaterialProperty<Real> & _H44;
+  const MaterialProperty<Real> & _H44P;
 
 };
-#endif //SUBSTRATEPENALTY_H
+#endif //TESTAFDWALLENERGYDERIVATIVE_H

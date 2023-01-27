@@ -1,11 +1,11 @@
 [Tests]
-  [./thermocouple-case1]
-    type = 'Exodiff'
-    input = 'case_1_thermocouple_validation.i'
-    exodiff = 'out_thermocouple_concept.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+  #[./thermocouple-case1]
+  #  type = 'Exodiff'
+  #  input = 'case_1_thermocouple_validation.i'
+  #  exodiff = 'out_thermocouple_concept.e'
+  #  max_parallel = 1
+  #  max_threads = 1
+  #[../]
 
   #[./thermocouple-zT]
   #  type = 'Exodiff'
@@ -16,6 +16,7 @@
   #[../]
 
 #disabled thermocouple-zT temporarily due to problems with Mac compiled Ferret. 
+#disabled thermocouple-case1 due to taking too long for CIVET.
 
   [./thermocouple-int2D]
     type = 'Exodiff'
