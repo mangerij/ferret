@@ -19,22 +19,22 @@
 
 **/
 
-#include "TestWallEnergyDerivative.h"
+#include "Wall2EnergyDerivative.h"
 
-registerMooseObject("FerretApp", TestWallEnergyDerivative);
+registerMooseObject("FerretApp", Wall2EnergyDerivative);
 
-InputParameters TestWallEnergyDerivative::validParams()
+InputParameters Wall2EnergyDerivative::validParams()
 {
   InputParameters params = Kernel::validParams();
-  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
+  params.addClassDescription("Calculates a residual contribution due to the variation w.r.t polarization of the gradient energy. This Kernel needs to be used in conjunction with WallEnergyDerivative!");
+  params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in OP space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  ///params.set<bool>("use_displaced_mesh") = false;
   return params;
 }
 
-TestWallEnergyDerivative::TestWallEnergyDerivative(const InputParameters & parameters)
+Wall2EnergyDerivative::Wall2EnergyDerivative(const InputParameters & parameters)
   :Kernel(parameters),
   _component(getParam<unsigned int>("component")),
   _polar_x_var(coupled("polar_x")),
@@ -52,7 +52,7 @@ TestWallEnergyDerivative::TestWallEnergyDerivative(const InputParameters & param
 }
 
 Real
-TestWallEnergyDerivative::computeQpResidual()
+Wall2EnergyDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
@@ -77,7 +77,7 @@ TestWallEnergyDerivative::computeQpResidual()
 }
 
 Real
-TestWallEnergyDerivative::computeQpJacobian()
+Wall2EnergyDerivative::computeQpJacobian()
 {
   if (_component == 0)
   {
@@ -99,7 +99,7 @@ TestWallEnergyDerivative::computeQpJacobian()
 }
 
 Real
-TestWallEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
+Wall2EnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (_component == 0)
   {
