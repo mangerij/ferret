@@ -19,31 +19,31 @@
 
 **/
 
-#include "Birefringence.h"
+#ifndef ISOTROPICTEMATERIALELECFLUX_H
+#define ISOTROPICTEMATERIALELECFLUX_H
 
-registerMooseObject("FerretApp", Birefringence);
+#include "AuxKernel.h"
+#include "Material.h"
+#include "RankTwoTensor.h"
 
-InputParameters Birefringence::validParams()
-
+class IsotropicTEMaterialElecFlux : public AuxKernel
 {
-  InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Computes the difference between refractive indices (birefringence).");
-  params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
-  params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");
-  return params;
-}
+public:
+  IsotropicTEMaterialElecFlux(const InputParameters & parameters);
+  static InputParameters validParams();
+  virtual ~IsotropicTEMaterialElecFlux() {}
 
-Birefringence::Birefringence(const InputParameters & parameters) :
-  AuxKernel(parameters),
-  _var1(coupledValue("per1")),
-  _var2(coupledValue("per2"))
-{
-}
+protected:
+  virtual Real computeValue();
 
-Real
-Birefringence::computeValue()
-{
-  return _var2[_qp] - _var1[_qp];
-}
+private:
+  const VariableValue & _T;
+  const VariableGradient & _T_grad;
+  const VariableValue & _potential_E_int;
+  const VariableGradient & _potential_E_int_grad;
+  const MaterialProperty<Real> & _ecC;
+  const MaterialProperty<Real> & _sbC;
+  const unsigned int _component;
+};
 
-
+#endif

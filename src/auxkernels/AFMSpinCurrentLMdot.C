@@ -26,7 +26,7 @@ InputParameters AFMSpinCurrentLMdot::validParams()
 
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates the cross product of L with dm/dt");
+  params.addClassDescription("Calculates the AFM spin current component corresponding to the cross product of L with dm/dt");
   params.addRequiredCoupledVar("Neel_L_x", "The x component of the Neel order");
   params.addRequiredCoupledVar("Neel_L_y", "The y component of the Neel order");
   params.addRequiredCoupledVar("Neel_L_z", "The z component of the Neel order");

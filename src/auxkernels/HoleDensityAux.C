@@ -19,31 +19,36 @@
 
 **/
 
-#include "Birefringence.h"
+#include "HoleDensityAux.h"
+registerMooseObject("FerretApp", HoleDensityAux);
 
-registerMooseObject("FerretApp", Birefringence);
-
-InputParameters Birefringence::validParams()
+InputParameters HoleDensityAux::validParams()
 
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Computes the difference between refractive indices (birefringence).");
-  params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
-  params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");
+  params.addRequiredParam<Real>("Ev", "Property name of the conduction band energy (J)");
+  params.addRequiredParam<Real>("Nv", "Effective DOS of the conduction band (T=298)");
+  params.addRequiredParam<Real>("T", "temperature (K)");
+  params.addRequiredParam<Real>("Kb", "Boltzmann Constant (aJ/K)");
+  params.addRequiredParam<Real>("q", "eV (aJ)");
+  params.addRequiredCoupledVar("potential_E_int","E");
   return params;
 }
 
-Birefringence::Birefringence(const InputParameters & parameters) :
+
+HoleDensityAux::HoleDensityAux(const InputParameters & parameters) :
   AuxKernel(parameters),
-  _var1(coupledValue("per1")),
-  _var2(coupledValue("per2"))
+  _Ev(getParam<Real>("Ev")),
+  _Nv(getParam<Real>("Nv")),
+  _T(getParam<Real>("T")),
+  _Kb(getParam<Real>("Kb")),
+  _q(getParam<Real>("q")),
+  _potential_E_int(coupledValue("potential_E_int"))
 {
 }
 
 Real
-Birefringence::computeValue()
+HoleDensityAux::computeValue()
 {
-  return _var2[_qp] - _var1[_qp];
+  return (_Nv * std::exp((( _Ev - (_q * _potential_E_int[_qp])) / (_Kb * _T))));
 }
-
-

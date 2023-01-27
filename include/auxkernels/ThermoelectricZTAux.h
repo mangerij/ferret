@@ -19,31 +19,30 @@
 
 **/
 
-#include "Birefringence.h"
+#ifndef THERMOELECTRICZTAUX_H
+#define THERMOELECTRICZTAUX_H
 
-registerMooseObject("FerretApp", Birefringence);
+#include "AuxKernel.h"
 
-InputParameters Birefringence::validParams()
 
+class ThermoelectricZTAux : public AuxKernel
 {
-  InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Computes the difference between refractive indices (birefringence).");
-  params.addRequiredCoupledVar("per1", "first perpendicular direction to propagation");
-  params.addRequiredCoupledVar("per2", "second perpendicular direction to propagation");
-  return params;
-}
+public:
+  ThermoelectricZTAux(const InputParameters & parameters);
 
-Birefringence::Birefringence(const InputParameters & parameters) :
-  AuxKernel(parameters),
-  _var1(coupledValue("per1")),
-  _var2(coupledValue("per2"))
-{
-}
+  static InputParameters validParams();
 
-Real
-Birefringence::computeValue()
-{
-  return _var2[_qp] - _var1[_qp];
-}
+  virtual ~ThermoelectricZTAux() {}
 
+protected:
+  virtual Real computeValue();
 
+private:
+  const unsigned int _T_var;
+  const VariableValue & _T;
+  const VariableGradient & _T_grad;
+  const MaterialProperty<Real> & _ecC;
+  const MaterialProperty<Real> & _sbC;
+  const MaterialProperty<Real> & _thC;
+};
+#endif

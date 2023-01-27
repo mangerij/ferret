@@ -28,7 +28,7 @@ InputParameters
 ComputeElectricalConductivityTensor::validParams()
 {
   InputParameters params = ComputeRotatedElectricalConductivityTensorBase::validParams();
-  params.addClassDescription("Compute a ElectricalConductivity tensor.");
+  params.addClassDescription("Store an electric conductivity tensor");
   params.addRequiredParam<std::vector<Real>>("g_ij", "ElectricalConductivity tensor for material");
   params.addParam<MooseEnum>("fill_method", RankTwoTensor::fillMethodEnum() = "general", "The fill method");
   return params;

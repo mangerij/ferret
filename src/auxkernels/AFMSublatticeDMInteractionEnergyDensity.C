@@ -27,7 +27,7 @@ InputParameters AFMSublatticeDMInteractionEnergyDensity::validParams()
 {
 
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).");
+  params.addClassDescription("Calculates the DM interaction free energy density (coupling AFD and magnetic ordering).");
   params.addRequiredCoupledVar("mag1_x", "The x component of the constrained 1st sublattice magnetization vector");
   params.addRequiredCoupledVar("mag1_y", "The y component of the constrained 1st sublattice magnetization vector");
   params.addRequiredCoupledVar("mag1_z", "The z component of the constrained 1st sublattice magnetization vector");

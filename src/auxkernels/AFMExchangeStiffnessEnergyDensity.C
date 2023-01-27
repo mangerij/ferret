@@ -27,7 +27,7 @@ InputParameters AFMExchangeStiffnessEnergyDensity::validParams()
 {
 
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).");
+  params.addClassDescription("Calculates the energy density due to inhomogeneous AFM exchange stiffness.");
   params.addRequiredCoupledVar("Neel_L_x", "The x component of the AFM Neel vector");
   params.addRequiredCoupledVar("Neel_L_y", "The y component of the AFM Neel vector");
   params.addRequiredCoupledVar("Neel_L_z", "The z component of the AFM Neel vector");

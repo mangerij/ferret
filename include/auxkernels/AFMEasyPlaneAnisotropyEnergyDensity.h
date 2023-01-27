@@ -23,7 +23,6 @@ class AFMEasyPlaneAnisotropyEnergyDensity : public AuxKernel
 {
 public:
   AFMEasyPlaneAnisotropyEnergyDensity(const InputParameters & parameters);
-
   static InputParameters validParams();
 
 protected:
@@ -38,4 +37,4 @@ protected:
   const Real _energy_scale;
 };
 
-#endif
+#endif // AFMEASYPLANEANISOTROPYENERGYDENSITY_H

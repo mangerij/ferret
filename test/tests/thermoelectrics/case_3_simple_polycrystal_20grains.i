@@ -80,21 +80,21 @@
 
 [AuxKernels]
   [./Electric_flux_x]
-    type = ElectricFlux
+    type = IsotropicTEMaterialElecFlux
     variable = j_x
     T = T
     potential_E_int = potential_E_int
     component = 0
   [../]
   [./Electric_flux_y]
-    type = ElectricFlux
+    type = IsotropicTEMaterialElecFlux
     variable = j_y
     T = T
     potential_E_int = potential_E_int
     component = 1
   [../]
   [./Electric_flux_z]
-    type = ElectricFlux
+    type = IsotropicTEMaterialElecFlux
     variable = j_z
     T = T
     potential_E_int = potential_E_int
@@ -102,21 +102,21 @@
   [../]
 
   [./Heat_flux_x]
-    type = HeatFlux
+    type = IsotropicTEMaterialHeatFlux
     variable = q_x
     T = T
     potential_E_int = potential_E_int
     component = 0
   [../]
   [./heat_flux_y]
-    type = HeatFlux
+    type = IsotropicTEMaterialHeatFlux
     variable = q_y
     T = T
     potential_E_int = potential_E_int
     component = 1
   [../]
   [./Heat_flux_z]
-    type = HeatFlux
+    type = IsotropicTEMaterialHeatFlux
     variable = q_z
     T = T
     potential_E_int = 'potential_E_int'

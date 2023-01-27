@@ -28,7 +28,7 @@ InputParameters
 ComputeElectricalConductivityTDepTensor::validParams()
 {
   InputParameters params = ComputeRotatedElectricalConductivityTensorBase::validParams();
-  params.addClassDescription("Compute a ElectricalConductivity tensor.");
+  params.addClassDescription("Store a temperature dependent electrical conductivity tensor.");
   params.addRequiredParam<std::vector<Real>>("asg_ij", "ElectricalConductivity tensor for material");
   params.addRequiredParam<std::vector<Real>>("bsg_ij", "ElectricalConductivity tensor for material");
   params.addRequiredParam<std::vector<Real>>("csg_ij", "ElectricalConductivity tensor for material");

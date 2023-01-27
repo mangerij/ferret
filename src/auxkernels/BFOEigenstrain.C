@@ -28,37 +28,24 @@ InputParameters BFOEigenstrain::validParams()
 
 {
   InputParameters params = AuxKernel::validParams();
+  params.addClassDescription("Calculates the eigenstrain in BFO arising from roto- and electrostrictive coupling.");
   params.addRequiredParam<unsigned int>("index_j", "component");
   params.addRequiredParam<unsigned int>("index_k", "component");
-  params.addRequiredCoupledVar("antiphase_A_x",
-                               "The x component of the afd vector field");
-  params.addRequiredCoupledVar("antiphase_A_y",
-                               "The y component of the afd vector field");
-  params.addCoupledVar("antiphase_A_z", 0.0,
-                       "The z component of the afd vector field");
-  params.addRequiredCoupledVar("polar_x",
-                               "The x component of the polarization");
-  params.addRequiredCoupledVar("polar_y",
-                               "The y component of the polarization");
+  params.addRequiredCoupledVar("antiphase_A_x", "The x component of the afd vector field");
+  params.addRequiredCoupledVar("antiphase_A_y", "The y component of the afd vector field");
+  params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the afd vector field");
+  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
+  params.addRequiredCoupledVar("polar_y", "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
-  params.addRequiredParam<Real>("C11",
-                                "the 11 component of elastic stiffness tensor");
-  params.addRequiredParam<Real>("C12",
-                                "the 12 component of elastic stiffness tensor");
-  params.addRequiredParam<Real>("C44",
-                                "the 44 component of elastic stiffness tensor");
-  params.addRequiredParam<Real>(
-      "Q11", "the 11 component of electrostrictive coupling tensor");
-  params.addRequiredParam<Real>(
-      "Q12", "the 12 component of electrostrictive coupling tensor");
-  params.addRequiredParam<Real>(
-      "Q44", "the 44 component of electrostrictive coupling tensor");
-  params.addRequiredParam<Real>(
-      "R11", "the 11 component of rotostrictive coupling tensor");
-  params.addRequiredParam<Real>(
-      "R12", "the 12 component of rotostrictive coupling tensor");
-  params.addRequiredParam<Real>(
-      "R44", "the 44 component of rotostrictive coupling tensor");
+  params.addRequiredParam<Real>("C11", "the 11 component of elastic stiffness tensor");
+  params.addRequiredParam<Real>("C12", "the 12 component of elastic stiffness tensor");
+  params.addRequiredParam<Real>("C44", "the 44 component of elastic stiffness tensor");
+  params.addRequiredParam<Real>("Q11", "the 11 component of electrostrictive coupling tensor");
+  params.addRequiredParam<Real>("Q12", "the 12 component of electrostrictive coupling tensor");
+  params.addRequiredParam<Real>("Q44", "the 44 component of electrostrictive coupling tensor");
+  params.addRequiredParam<Real>("R11", "the 11 component of rotostrictive coupling tensor");
+  params.addRequiredParam<Real>("R12", "the 12 component of rotostrictive coupling tensor");
+  params.addRequiredParam<Real>("R44", "the 44 component of rotostrictive coupling tensor");
   return params;
 }
 
@@ -87,7 +74,6 @@ BFOEigenstrain::computeValue()
   {
     if (_index_k == 0)
     { 
-      //_strain[_qp](0,0) + 
       return Utility::pow<2>(_polar_x[_qp])*_Q11 + Utility::pow<2>(_polar_y[_qp])*_Q12 + Utility::pow<2>(_polar_z[_qp])*_Q12 + Utility::pow<2>(_antiphase_A_x[_qp])*_R11 + Utility::pow<2>(_antiphase_A_y[_qp])*_R12 + Utility::pow<2>(_antiphase_A_z[_qp])*_R12;
     }
     else if (_index_k == 1)

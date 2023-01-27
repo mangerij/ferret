@@ -26,7 +26,7 @@ registerMooseObject("FerretApp", AFDWallEnergyDensity);
 InputParameters AFDWallEnergyDensity::validParams()
 {
   InputParameters params = AuxKernel::validParams();
-  params.addClassDescription("Calculates the free energy density due to the local gradients in the antiphasetortive vector field");
+  params.addClassDescription("Calculates the free energy density due to the local gradients in the antiphase tilt vector field");
   params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase tilt vector field");
   params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase tilt vector field");
   params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the antiphase tilt vector field");
