@@ -27,7 +27,7 @@ registerMooseObject("FerretApp", MasterInteractionCartLLG);
 InputParameters MasterInteractionCartLLG::validParams()
 {
   InputParameters params = Kernel::validParams();
-  params.addClassDescription("Calculates a residual contribution - M$*$H in the total energy, assuming H = - div * potential.");
+  params.addClassDescription("Calculates the $\mathcal{R}$ contribution (due to energy -$\mathbf{M}\cdot\mathbf{M}$), assuming $\mathbf{H} = - $\nabla\cdot\Phi_\mathrm{H}$ .");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("potential_H_int", "The internal magnetic potential variable");
   params.addCoupledVar("potential_H_ext", 0.0, "The external magnetic potential variable");

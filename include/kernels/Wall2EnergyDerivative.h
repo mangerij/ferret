@@ -19,15 +19,16 @@
 
 **/
 
-#ifndef ANISOTROPYUSLLG_H
-#define ANISOTROPYUSLLG_H
+#ifndef WALL2ENERGYDERIVATIVE_H
+#define WALL2ENERGYDERIVATIVE_H
 
 #include "Kernel.h"
 
-class AnisotropyUSLLG: public Kernel
+class Wall2EnergyDerivative: public Kernel
 {
 public:
-  AnisotropyUSLLG(const InputParameters & parameters);
+
+  Wall2EnergyDerivative(const InputParameters & parameters);
 
   static InputParameters validParams();
 
@@ -37,18 +38,17 @@ protected:
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
   const unsigned int _component;
-  const unsigned int _polar_th_var;
-  const unsigned int _azimuthal_ph_var;
-  const VariableValue & _polar_th;
-  const VariableValue & _azimuthal_ph;
-  const MaterialProperty<Real> & _alpha;
-  const MaterialProperty<Real> & _K1;
-  //const MaterialProperty<Real> & _K2;
-  const MaterialProperty<Real> & _nx;
-  const MaterialProperty<Real> & _ny;
-  const MaterialProperty<Real> & _nz;
-  const MaterialProperty<Real> & _g0;
-  const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _mu0;
+  const unsigned int _polar_x_var;
+  const unsigned int _polar_y_var;
+  const unsigned int _polar_z_var;
+  const VariableGradient & _polar_x_grad;
+  const VariableGradient & _polar_y_grad;
+  const VariableGradient & _polar_z_grad;
+  const MaterialProperty<Real> & _G110;
+  const MaterialProperty<Real> & _G11;
+  const MaterialProperty<Real> & _G12;
+  const MaterialProperty<Real> & _G44;
+  const MaterialProperty<Real> & _G44P;
+
 };
-#endif //ANISOTROPYUSLLG_H
+#endif //WALL2ENERGYDERIVATIVE_H
