@@ -470,6 +470,21 @@
      variable = polar_z
      component = 2
   [../]
+  [./wall2ed_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./wall2ed_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./wall2ed_z]
+     type = Wall2EnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
 
   [./electrostr_ux]
     type = ElectrostrictiveCouplingDispDerivative

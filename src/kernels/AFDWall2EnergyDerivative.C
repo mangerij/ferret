@@ -19,22 +19,21 @@
 
 **/
 
-#include "TestAFDWallEnergyDerivative.h"
+#include "AFDWall2EnergyDerivative.h"
 
-registerMooseObject("FerretApp", TestAFDWallEnergyDerivative);
+registerMooseObject("FerretApp", AFDWall2EnergyDerivative);
 
-InputParameters TestAFDWallEnergyDerivative::validParams()
+InputParameters AFDWall2EnergyDerivative::validParams()
 {
   InputParameters params = Kernel::validParams();
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("antiphase_A_x", "The x component of the antiphase_Aization");
   params.addRequiredCoupledVar("antiphase_A_y", "The y component of the antiphase_Aization");
   params.addCoupledVar("antiphase_A_z", 0.0, "The z component of the antiphase_Aization");
-  ///params.set<bool>("use_displaced_mesh") = false;
   return params;
 }
 
-TestAFDWallEnergyDerivative::TestAFDWallEnergyDerivative(const InputParameters & parameters)
+AFDWall2EnergyDerivative::AFDWall2EnergyDerivative(const InputParameters & parameters)
   :Kernel(parameters),
   _component(getParam<unsigned int>("component")),
   _antiphase_A_x_var(coupled("antiphase_A_x")),
@@ -52,7 +51,7 @@ TestAFDWallEnergyDerivative::TestAFDWallEnergyDerivative(const InputParameters &
 }
 
 Real
-TestAFDWallEnergyDerivative::computeQpResidual()
+AFDWall2EnergyDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
@@ -77,7 +76,7 @@ TestAFDWallEnergyDerivative::computeQpResidual()
 }
 
 Real
-TestAFDWallEnergyDerivative::computeQpJacobian()
+AFDWall2EnergyDerivative::computeQpJacobian()
 {
   if (_component == 0)
   {
@@ -99,7 +98,7 @@ TestAFDWallEnergyDerivative::computeQpJacobian()
 }
 
 Real
-TestAFDWallEnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
+AFDWall2EnergyDerivative::computeQpOffDiagJacobian(unsigned int jvar)
 {
   if (_component == 0)
   {

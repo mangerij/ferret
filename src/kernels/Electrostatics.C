@@ -26,7 +26,7 @@ registerMooseObject("FerretApp", Electrostatics);
 InputParameters Electrostatics::validParams()
 {
   InputParameters params = Kernel::validParams();
-  params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
+  params.addClassDescription("Calculates a residual contribution due to div*Phi = 0");
   return params;
 }
 

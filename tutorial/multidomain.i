@@ -97,7 +97,13 @@
 []
 
 [Kernels]
-  #Bulk energy density
+
+  #---------------------------------------#
+  #                                       #
+  #     Bulk (homogeneous) free energy    #
+  #                                       #
+  #---------------------------------------#
+
   [./bed_x]
     type = BulkEnergyDerivativeEighth
     variable = polar_x
@@ -114,7 +120,12 @@
     component = 2
   [../]
 
-  ##Wall energy penalty
+  #---------------------------------------#
+  #                                       #
+  #     Gradient free energy              #
+  #                                       #
+  #---------------------------------------#
+
   [./walled_x]
     type = WallEnergyDerivative
     variable = polar_x
@@ -132,22 +143,27 @@
   [../]
 
   [./walled2_x]
-    type = TestWallEnergyDerivative
+    type = Wall2EnergyDerivative
     variable = polar_x
     component = 0
   [../]
   [./walled2_y]
-    type = TestWallEnergyDerivative
+    type = Wall2EnergyDerivative
     variable = polar_y
     component = 1
   [../]
   [./walled2_z]
-    type = TestWallEnergyDerivative
+    type = Wall2EnergyDerivative
     variable = polar_z
     component = 2
   [../]
 
-  ##Electrostatics
+  #---------------------------------------#
+  #                                       #
+  #     Poissons equation and P*E         #
+  #                                       #
+  #---------------------------------------#
+
   [./polar_x_electric_E]
     type = PolarElectricEStrong
     variable = potential_int
@@ -173,7 +189,12 @@
     component = 2
   [../]
 
-  ##Time dependence
+  #---------------------------------------#
+  #                                       #
+  #     Time dependence of Pj             #
+  #                                       #
+  #---------------------------------------#
+
   [./polar_x_time]
     type = TimeDerivativeScaled
     variable=polar_x
@@ -229,10 +250,10 @@
 []
 
 [UserObjects]
- [./kill]
-  type = Terminator
-  expression = 'perc_change <= 1.0e-4'
- [../]
+  [./kill]
+    type = Terminator
+    expression = 'perc_change <= 1.0e-4'
+  [../]
 []
 
 [Preconditioning]
