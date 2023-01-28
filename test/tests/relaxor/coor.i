@@ -219,17 +219,17 @@
   #########################################
 
   [./bed_x]
-    type = SDBulkEnergyDerivativeEighth
+    type = InhomogeneousBulkEnergyDerivP
     variable = polar_x
     component = 0
   [../]
   [./bed_y]
-    type = SDBulkEnergyDerivativeEighth
+    type = InhomogeneousBulkEnergyDerivP
     variable = polar_y
     component = 1
   [../]
   [./bed_z]
-    type = SDBulkEnergyDerivativeEighth
+    type = InhomogeneousBulkEnergyDerivP
     variable = polar_z
     component = 2
   [../]
@@ -319,19 +319,6 @@
   ##
   ##############################
 
-#  [./front_pot]
-#    type = FunctionDirichletBC
-#    variable = potential_int
-#    boundary = 'top'
-#    function = bc_func_1
-#  [../]
-#  [./back_pot]
-#    type = DirichletBC
-#    variable = potential_int
-#    boundary = 'bottom'
-#    value = 0.0
-#  [../]
-
   [./top_pot]
     type = DirichletBC
     variable = potential_int
@@ -357,35 +344,13 @@
 []
 
 [Postprocessors]
-  #[./avePy]
-  #  type = ElementAverageValue
-  #  variable = polar_y
-  #  execute_on = 'initial timestep_end'
-  #[../]
-  #[./cPs]
-  #  type = ElementAverageValue
-  #  variable = Ps
-  #  execute_on = 'initial timestep_end'
-  #[../]
-  #[./Ea]
-  #  type = ElementAverageValue
-  #  variable = Ey
-  #  execute_on = 'initial timestep_end'
-  #[../]
-  #[./inducedP]
-  #  type = LinearCombinationPostprocessor
-  #  pp_names = 'avePy cPs'
-  #  pp_coefs = ' 1 -1'
-  #  execute_on = 'initial timestep_end'
-  #[../]
-
   [./Fgrad]
     type = WallEnergy
     execute_on = 'initial timestep_end'
   [../]
 
   [./Fsdbulk]
-    type = SDBulkEnergyEighth
+    type = InhomogeneousBulkEnergy
     execute_on = 'initial timestep_end'
     block = '0'
   [../]

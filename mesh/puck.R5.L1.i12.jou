@@ -1,9 +1,0 @@
-#!python
-cubit.cmd('create Cylinder height 1 radius 5 ')
-cubit.cmd('Sideset 1 surface 2  ')
-cubit.cmd('Sideset 2 surface 3  ')
-cubit.cmd('Sideset 3 surface 1  ')
-cubit.cmd('volume 1 interval 12 ')
-cubit.cmd('volume 1 scheme Map')
-cubit.cmd('mesh volume 1')
-cubit.cmd('export mesh \'puck.R5.L1.i12.e\' overwrite')
