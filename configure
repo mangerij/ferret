@@ -3468,7 +3468,7 @@ do
   :[FHL]*:*);;
   :L* | :C*:*) as_fn_error $? "invalid tag \`$ac_tag'" "$LINENO" 5;;
   :[FH]-) ac_tag=-:-;;
-  :[FH]*) ac_tag=$ac_tag:$ac_tag.in;;
+  :[FH]*) ac_tag=$ac_tag:$ac_tag;;
   esac
   ac_save_IFS=$IFS
   IFS=:
