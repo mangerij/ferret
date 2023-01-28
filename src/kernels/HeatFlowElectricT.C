@@ -51,33 +51,10 @@ HeatFlowElectricT::HeatFlowElectricT(const InputParameters & parameters)
 Real
 HeatFlowElectricT::computeQpResidual()
 {
-  return ((-_grad_test[_i][_qp](0)) * (-_thC[_qp] * _T_grad[_qp](0)) +
-          (-_grad_test[_i][_qp](0)) *
-              (-_ecC[_qp] * _sbC[_qp] * _sbC[_qp] * _T[_qp] * _T_grad[_qp](0)) +
-          (-_grad_test[_i][_qp](0)) *
-              (-_ecC[_qp] * _sbC[_qp] * _T[_qp] * _potential_E_int_grad[_qp](0)) +
-          _test[_i][_qp] *
-              (-_ecC[_qp] * _potential_E_int_grad[_qp](0) * _potential_E_int_grad[_qp](0)) +
-          _test[_i][_qp] *
-              (-_ecC[_qp] * _sbC[_qp] * _T_grad[_qp](0) * _potential_E_int_grad[_qp](0))) +
-         ((-_grad_test[_i][_qp](1)) * (-_thC[_qp] * _T_grad[_qp](1)) +
-          (-_grad_test[_i][_qp](1)) *
-              (-_ecC[_qp] * _sbC[_qp] * _sbC[_qp] * _T[_qp] * _T_grad[_qp](1)) +
-          (-_grad_test[_i][_qp](1)) *
-              (-_ecC[_qp] * _sbC[_qp] * _T[_qp] * _potential_E_int_grad[_qp](1)) +
-          _test[_i][_qp] *
-              (-_ecC[_qp] * _potential_E_int_grad[_qp](1) * _potential_E_int_grad[_qp](1)) +
-          _test[_i][_qp] *
-              (-_ecC[_qp] * _sbC[_qp] * _T_grad[_qp](1) * _potential_E_int_grad[_qp](1))) +
-         ((-_grad_test[_i][_qp](2)) * (-_thC[_qp] * _T_grad[_qp](2)) +
-          (-_grad_test[_i][_qp](2)) *
-              (-_ecC[_qp] * _sbC[_qp] * _sbC[_qp] * _T[_qp] * _T_grad[_qp](2)) +
-          (-_grad_test[_i][_qp](2)) *
-              (-_ecC[_qp] * _sbC[_qp] * _T[_qp] * _potential_E_int_grad[_qp](2)) +
-          _test[_i][_qp] *
-              (-_ecC[_qp] * _potential_E_int_grad[_qp](2) * _potential_E_int_grad[_qp](2)) +
-          _test[_i][_qp] *
-              (-_ecC[_qp] * _sbC[_qp] * _T_grad[_qp](2) * _potential_E_int_grad[_qp](2)));
+  return ((-_grad_test[_i][_qp](0)) * (-_thC[_qp] * _T_grad[_qp](0)) + (-_grad_test[_i][_qp](0)) * (-_ecC[_qp] * _sbC[_qp] * _sbC[_qp] * _T[_qp] * _T_grad[_qp](0)) + (-_grad_test[_i][_qp](0)) * (-_ecC[_qp] * _sbC[_qp] * _T[_qp] * _potential_E_int_grad[_qp](0)) + _test[_i][_qp] * (-_ecC[_qp] * _potential_E_int_grad[_qp](0) * _potential_E_int_grad[_qp](0)) + _test[_i][_qp] * (-_ecC[_qp] * _sbC[_qp] * _T_grad[_qp](0) * _potential_E_int_grad[_qp](0))) + ((-_grad_test[_i][_qp](1)) * (-_thC[_qp] * _T_grad[_qp](1)) + (-_grad_test[_i][_qp](1)) * (-_ecC[_qp] * _sbC[_qp] * _sbC[_qp] * _T[_qp] * _T_grad[_qp](1)) + (-_grad_test[_i][_qp](1)) * (-_ecC[_qp] * _sbC[_qp] * _T[_qp] * _potential_E_int_grad[_qp](1)) + _test[_i][_qp] * (-_ecC[_qp] * _potential_E_int_grad[_qp](1) * _potential_E_int_grad[_qp](1)) +
+          _test[_i][_qp] * (-_ecC[_qp] * _sbC[_qp] * _T_grad[_qp](1) * _potential_E_int_grad[_qp](1))) + ((-_grad_test[_i][_qp](2)) * (-_thC[_qp] * _T_grad[_qp](2)) +
+          (-_grad_test[_i][_qp](2)) * (-_ecC[_qp] * _sbC[_qp] * _sbC[_qp] * _T[_qp] * _T_grad[_qp](2)) + (-_grad_test[_i][_qp](2)) * (-_ecC[_qp] * _sbC[_qp] * _T[_qp] * _potential_E_int_grad[_qp](2)) +
+          _test[_i][_qp] * (-_ecC[_qp] * _potential_E_int_grad[_qp](2) * _potential_E_int_grad[_qp](2)) + _test[_i][_qp] * (-_ecC[_qp] * _sbC[_qp] * _T_grad[_qp](2) * _potential_E_int_grad[_qp](2)));
 }
 
 Real
