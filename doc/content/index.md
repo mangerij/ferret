@@ -26,13 +26,6 @@ A benchmark problem of a piezoelectric element. Here the elastic strain field is
 Evolution of the ferroelectric polarization in a lead-titanate nanoparticle (diameter below 20 nm). The rings correspond to lines of constant flux of the polarization.
 !card-end!
 
-!card! media/magnetic_ringdown.png title=Antiferromagnetic ringdown
-Example of antiferromagnetic ringdown in bismuth iron oxide
-!card-end!
-
-!card! media/Efield_control_AFM.mp4 title=Dynamic electric field control of antiferromagnetism
-Electric field control of $\mathrm{BiFeO}_3$ antiferromagnetism: green (polarization), red (weak magnetic moment), cyan/yellow (AFM sublattice)
-!card-end!
 
 !gallery-end!
 
