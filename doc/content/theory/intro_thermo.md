@@ -1,5 +1,8 @@
 # Constitutive theory of thermoelectrics
 
+!alert construction title=Documentation in-progress
+This section requires some work before it will be finalized online. Please contact the developers if you need assistance with this aspect of the module
+
 Thermoelectric materials are characterized by coupled, or interdependent conduction of heat and electricity. When heat is flowing in a thermoelectric material, an electric current arises. The converse effect also happens when a voltage is applied thus changing the temperature. The static governing equations of a thermoelectric material are given by, 
 
 \begin{equation}

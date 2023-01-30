@@ -15,13 +15,10 @@ Theory:
 
 Tutorials:
   Multidomain (FE): tutorials/FE_phase_field_multi_domain.md
-  Multidomain with elasticity (FE): tutorials/FE_phase_field_multi_domain_elasticity.md
 
 EU Horizon2020-IF: 
   Background and model: MSCA_EU_Horizon2020_Results/horizon2020_results1.md
   Summary of key results: MSCA_EU_Horizon2020_Results/horizon2020_results2.md
-  Examples (polar domain walls): MSCA_EU_Horizon2020_Results/horizon2020_results2.md
-  Examples (dynamics and switching): MSCA_EU_Horizon2020_Results/horizon2020_results2.md
 
 Publication Highlights: publication_highlights/publication_highlights.md
 
