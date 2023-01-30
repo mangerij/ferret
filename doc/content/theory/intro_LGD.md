@@ -1,5 +1,8 @@
 # Phase field method of ferroelectrics
 
+!alert construction title=Documentation in-progress
+This section requires some work before it will be finalized online. Please contact the developers if you need assistance with this aspect of the module
+
 !media media/fig1_doublewell.png style=display:block;margin:auto;width:50%; caption=Left; conventional double well energy surface of a ferroelectric below $T_C$. Right; Nonzero $P_s$ as a function of temperature.  id=fig1_doublewell
 
 The ferroelectric (FE) phase field method utilizes a thermodynamic approach to describe the FE phase transition. Within this theoretical description, these materials are characterized by the onset of a primary order parameter that becomes nonzero below a critical Curie temperature $T_C$. In the case of canonical FEs such as $\mathrm{PbTiO}_3$ or $\mathrm{BaTiO}_3$, the primary order parameter is the electric dipole moment. In both of these compounds, below $T_C$, the material symmetry is lowered from cubic to tetragonal. The ionic displacements (the relative off-centering the Ti atom) give rise, spontaneously, to a net nonzero polarization or $\mathbf{P}_s$. 
