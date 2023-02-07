@@ -27,6 +27,4 @@ A benchmark problem of a piezoelectric element. Here the elastic strain field is
 !card! media/stream_trace_pto.mp4 title=Evolution of confined polarization topology of in a nanosphere
 Evolution of the ferroelectric polarization in a lead-titanate nanoparticle (diameter below 20 nm). The rings correspond to lines of constant flux of the polarization.
 !card-end!
-
-
 !gallery-end!

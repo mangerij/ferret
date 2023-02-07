@@ -13,7 +13,7 @@ Content:
 
 Renderer:
   type:                            MooseDocs.base.MaterializeRenderer
-  favicon:                         media/raccoon_icon.png
+  # favicon:                         media/ferret_icon.png
 
 Extensions:
   MooseDocs.extensions.navigation:
