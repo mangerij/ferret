@@ -6,7 +6,9 @@
 
 # A parallel finite-element code for evaluating ferroic nanostructures and electronic properties at mesoscale class=center style=font-weight:200;font-size:250%
 
-The FERRET module is based on the Multiphysics Object Oriented Simulation Environment (MOOSE) developed at Idaho National Laboratory which was open-sourced to the general public under the GNU license in 2014. MOOSE allows for rapid application development sweeping many of the challenges of scientific grade computing software under the "hood". We strongly suggest interested parties to visit [MOOSE](mooseframework.inl.gov/) to learn more. FERRET was initially developed (at the University of Connecticut in collaboration with scientists at Argonne National Laboratory and Idaho National Laboratory) as an application to simulate coupled polar-elastic domain topology of ferroelectric materials. It has since expanded to include ferromagnet and antiferromagnetic materials (along with multiferroics), piezoelectric compounds, and recently thermoelectric phenomena. The scope remains the same - provide the community with an open-source tool that can leverage the advanced software framework of MOOSE which is flexible (it can be modified and added to) and is well-tested.
+The FERRET module is based on the Multiphysics Object Oriented Simulation Environment (MOOSE). MOOSE is developed and maintained at Idaho National Laboratory and was open-sourced to the general public under the GNU license in 2014. MOOSE allows for rapid application development sweeping many of the challenges of scientific grade computing software under the "hood". We strongly suggest interested parties to visit [MOOSE](mooseframework.inl.gov/) to learn more.
+
+FERRET was initially developed (at the University of Connecticut in collaboration with scientists at Argonne National Laboratory and Idaho National Laboratory) as an application to simulate coupled polar-elastic domain topology of ferroelectric materials. It has since expanded to include ferromagnet and antiferromagnetic materials (along with multiferroics), piezoelectric compounds, and recently thermoelectric phenomena. The scope remains the same - provide the community with an open-source tool that can leverage the advanced software framework of MOOSE to investigate electronic device-relevant problems at the nanoscale.
 
 !gallery! large=6
 
@@ -28,5 +30,3 @@ Evolution of the ferroelectric polarization in a lead-titanate nanoparticle (dia
 
 
 !gallery-end!
-
-
