@@ -1,8 +1,12 @@
 # Contact
 
-The lead developer of FERRET is
+The developers of FERRET are
+
 
 - John Mangeri: john.m.mangeri@gmail.com
+- Olle Heinonen: olle.heinonen@seagate.com
+- Lukasz Kuna: lukasz.kuna.ctr@nrl.navy.mil
+- Serge Nakhmanson: serge.nakhmanson@uconn.edu
 
 # Contribute
 
