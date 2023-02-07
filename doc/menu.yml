@@ -16,8 +16,11 @@ Theory:
 Tutorials:
   Multidomain (FE): tutorials/FE_phase_field_multi_domain.md
   Magnetic ringdown: tutorials/magnetic_ringdown.md
+  Antiferromagnetic ringdown: tutorials/AFM_ringdown.md
+  Piezoelectric actuation: tutorials/piezoelectric.md
+  Polycrystalline thermoelectric transport: tutorials/thermoelectric.md
 
-EU Horizon2020-IF: 
+EU Horizon2020-IF:
   Background and model: MSCA_EU_Horizon2020_Results/horizon2020_results1.md
   Summary of key results: MSCA_EU_Horizon2020_Results/horizon2020_results2.md
 
