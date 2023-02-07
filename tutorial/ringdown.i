@@ -168,20 +168,6 @@ alphadef = 0.02
   [../]
 []
 
-
-[AuxKernels]
-  [./mag_mag]
-    type = VectorMag
-    variable = mag_s
-    vector_x = mag_x
-    vector_y = mag_y
-    vector_z = mag_z
-    execute_on = 'initial timestep_end final'
-    block = '1'
-  [../]
-[]
-
-
 [Kernels]
   #---------------------------------------#
   #                                       #
@@ -424,6 +410,18 @@ alphadef = 0.02
     type = PerfGraphData
     section_name = "Root"  # for profiling the problem
     data_type = total
+  [../]
+[]
+
+[AuxKernels]
+  [./mag_mag]
+    type = VectorMag
+    variable = mag_s
+    vector_x = mag_x
+    vector_y = mag_y
+    vector_z = mag_z
+    execute_on = 'initial timestep_end final'
+    block = '1'
   [../]
 []
 
