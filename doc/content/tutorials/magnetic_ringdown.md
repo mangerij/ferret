@@ -1,6 +1,6 @@
 !include tutorials/tutorial_header.md
 
-# Tutorial 2: Ferromagnetic ringdown
+# Tutorial 3: Ferromagnetic ringdown
 
 This tutorial (and others) covers the basic usage of the micromagnetics implemented in FERRET. This simple problem is for solving the time-dependent LLG equation with exchange and demagnetizing field phenomena. We consider a magnetic body with a geometry $(20\times 20\times 3)$ which we define with the Mesh block.
 

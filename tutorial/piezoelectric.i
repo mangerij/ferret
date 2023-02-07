@@ -122,15 +122,6 @@
   [../]
 []
 
-[Materials]
-  [./permitivitty_1]
-    type = GenericConstantMaterial
-    prop_names = 'permittivity'
-    prop_values = '0.0721616'
-  [../]
-[]
-
-
 [AuxKernels]
   [./stress_xx]
     type = RankTwoAux
@@ -234,6 +225,11 @@
     type = ComputePiezostrictiveTensor
     fill_method = general
     e_ijk = '0 0 -0.00415 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.00415 0 -0.00415 0 -0.005 0 0 0 -0.005 0 0 0 0.0124'
+  [../]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = 'permittivity'
+    prop_values = '0.0721616'
   [../]
 []
 
