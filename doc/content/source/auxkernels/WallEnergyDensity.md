@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the WallEnergyDensity object.
+Computes the local free energy density due to gradients in $\mathbf{P}$,
+
+\begin{equation}
+  \begin{aligned}
+  &f_\mathrm{\nabla P} = \frac{G_{11}}{2}  \left( P_{x,x}^2 + P_{y,y}^2 + P_{z,z}^2 \right) \\
+  &+  G_{12}  \left(P_{x,x} P_{y,y} + P_{y,y} P_{z,z} + P_{x,x} P_{z,z} \right) \\ 
+  &+ \frac{G_{44}}{2} \left[\left(P_{x,y} + P_{y,x} \right)^2+ \left(P_{y,z} + P_{z,y} \right)^2 + \left(P_{x,z} + P_{z,x}\right)^2\right].
+  \end{aligned}
+\end{equation}
 
 ## Example Input File Syntax
 

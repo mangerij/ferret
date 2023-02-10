@@ -10,7 +10,7 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the VectorDiffOrSum object.
+Computes the sum or difference between two variables if the flag diffOrSum is 0 or 1 respectively.
 
 ## Example Input File Syntax
 

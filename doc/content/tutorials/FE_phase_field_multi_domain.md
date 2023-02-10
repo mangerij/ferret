@@ -13,7 +13,7 @@ Consider a computational domain with a geometry $(30\times 30\times 6)$ which we
          link=False
          language=python
 
-In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through Materials, Kernels, or other MOOSE objects. For this problem, the length scale is introduced through the units in the Materials objects that connect to the Kernels. Ferret uses a special base units system for a number of problems. This reduces the load quite extensively on the PETSc solvers to iterate the problem.
+In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through `Materials`, `Kernels`, or other MOOSE objects. For this problem, the length scale is introduced through the units in the `Materials` objects that connect to the `Kernels`. Ferret uses a special base units system for a number of problems. This reduces the load quite extensively on the PETSc solvers to iterate the problem.
 
 In the total free energy density, we include the bulk free energy density,
 
@@ -50,16 +50,16 @@ which has variational derivatives of the total free energy,
 \end{aligned}
 \end{equation}
 
-The computations of the two relevant energy terms are introduced through a number of Kernels in the input files as below.
+The computations of the two relevant energy terms are introduced through a number of `Kernels` in the input files as below.
 
 !listing tutorial/multidomain.i
          block=Kernels
          link=False
          language=python
 
-We need one Kernel for each variable ($P_x, P_y, P_z$, and $\Phi_\mathrm{E}$). The computation of Eq. \ref{varderiv} is split into three Kernel contributions for each of the three components of $\mathbf{P}$. The Ferret Syntax page details the algebra needed to turn these terms (BulkEnergyDerivativeEighth, WallEnergyDerivative, and Wall2EnergyDerivative) into weak forms.
+We need one Kernel for each variable ($P_x, P_y, P_z$, and $\Phi_\mathrm{E}$). The computation of Eq. \ref{varderiv} is split into three Kernel contributions for each of the three components of $\mathbf{P}$. The FERRET Syntax page details the algebra needed to turn these terms ([`BulkEnergyDerivativeEighth`](source/kernels/BulkEnergyDerivativeEighth.md), [`WallEnergyDerivative`](source/kernels/WallEnergyDerivative.md), and [`Wall2EnergyDerivative`](source/kernels/Wall2EnergyDerivative.md)) into weak forms.
 
-The reader will notice that we also have included terms related to the free energy due to an applied field $-\mathbf{P}\cdot\mathbf{E}$ in PolarElectricPStrong and also terms related to the coupling to the electric field. The Poisson equation for our system reads,
+The reader will notice that we also have included terms related to the free energy due to an applied field $-\mathbf{P}\cdot\mathbf{E}$ in [`PolarElectricPStrong`](source/kernels/PolarElectricPStrong.md) and also terms related to the coupling to the electric field. The Poisson equation for our system reads,
 
 \begin{equation}\label{poisson}
 \begin{aligned}
@@ -67,14 +67,14 @@ The reader will notice that we also have included terms related to the free ener
 \end{aligned}
 \end{equation}
 
-which is satisfied at every step of the time evolution. The left hand side is computed by Electrostatics and the right hand side computed by PolarElectricPStrong. Note that $\epsilon_b$ corresponds to a background dielectric strength which is assigned to high frequency (core) electrons. Next, we have the time derivatives of $P_x, P_y$, and $P_z$ with TimeDerivativeScaled. We implement some reduction of input file length by using the GlobalParams block.
+which is satisfied at every step of the time evolution. The left hand side is computed by Electrostatics and the right hand side computed by [`PolarElectricPStrong`](source/kernels/PolarElectricPStrong.md). Note that $\epsilon_b$ corresponds to a background dielectric strength which is assigned to high frequency (core) electrons. Next, we have the time derivatives of $P_x, P_y$, and $P_z$ with [`TimeDerivativeScaled`](source/kernels/TimeDerivativeScaled.md). We implement some reduction of input file length by using the `GlobalParams` block.
 
 !listing tutorial/multidomain.i
          block=GlobalParams
          link=False
          language=python
 
-which adds these lines automatically in the relevant Kernel and Materials objects. To seed the relevant materials coefficients to the problem, we use the Materials system in MOOSE,
+which adds these lines automatically in the relevant `Kernel` and `Materials` objects. To seed the relevant materials coefficients to the problem, we use the Materials system in MOOSE,
 
 !listing tutorial/multidomain.i
          block=Materials
@@ -85,7 +85,7 @@ In this problem, the boundary conditions are left empty. This is equivalently kn
 
 !media media/ferret-tut1.png style=display:block;margin:auto;width:50%; caption=Classic flux-closure domain pattern solution to the first tutorial.  id=fig-ferret_tut1
 
-A few other Ferret and MOOSE objects exist in the input file. We use the Postprocessors system to track various aspects of the simulation.
+A few other FERRET and MOOSE objects exist in the input file. We use the `Postprocessors` system to track various aspects of the simulation.
 
 !listing tutorial/multidomain.i
          block=Postprocessors
@@ -111,7 +111,7 @@ The Terminator located in the UserObjects block
 
 which tracks when the postprocessed value $r$ is less than $10^{-4}$. This is a useful tool to end the simulation when the suspected ground state has been reached. In general, this value $10^{-8} < r < 10^{-4}$ seems to be sufficient for these types of problems.
 
-Finally, we share our PETSc and Executioner options that seem to be the most efficient for polar domain prediction problems.
+Finally, we share our PETSc and `Executioner` options that seem to be the most efficient for polar domain prediction problems.
 
 !listing tutorial/multidomain.i
          block=Preconditioning

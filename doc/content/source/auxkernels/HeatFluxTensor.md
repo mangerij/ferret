@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the HeatFluxTensor object.
+Computes the $m^\mathrm{th}$ component of the heat flux vector $\mathbf{q}$ (dependent on tensor quantities),
+
+\begin{equation}
+  \begin{aligned}
+    q_m = \left(\Sigma_{i,j} \kappa_{ij} \frac{\partial T}{\partial x_m} + \Sigma_{i,j,k} S_{ij} \gamma_{jk} T \frac{\partial \Phi_\mathrm{E}}{\partial x_m} + \Sigma_{i,j,k,l} S_{ij} S_{jk} \gamma_{kl} T \frac{\partial T}{\partial x_m} \right)
+  \end{aligned}
+\end{equation}
+
+The tensor components $\kappa_{ij}, S_{ij}$, and $\gamma_{ij}$ correspond to the thermal conductivity, Seebeck, and electrical conductivity respectively which require information of the material crystallographic directions.
 
 ## Example Input File Syntax
 
