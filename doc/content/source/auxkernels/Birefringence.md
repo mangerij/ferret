@@ -10,7 +10,7 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the Birefringence object.
+Computes the difference between refractive indices $n_1$ and $n_2$ where $1$ and $2$ denote user-defined directions.
 
 ## Example Input File Syntax
 

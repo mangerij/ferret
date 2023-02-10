@@ -10,7 +10,13 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the ElasticEnergyDensity object.
+Computes the elastic energy density locally due to
+
+\begin{equation}
+  \begin{aligned}
+    f_\mathrm{elastic} = \frac{1}{2} \sigma_{kl} \varepsilon_{kl} = \frac{1}{2} C_{ijkl} \varepsilon_{ij} \varepsilon_{kl}.
+  \end{aligned}
+\end{equation}
 
 ## Example Input File Syntax
 

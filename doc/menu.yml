@@ -11,7 +11,6 @@ Theory:
   Piezoelectricity:   theory/intro_piezo.md
   Thermoelectric Phenomena:   theory/intro_thermo.md
   Optical Properties:   theory/intro_optical.md
-  Polycrystalline Methods (block restriction):   theory/intro_poly.md
 
 Tutorials:
   Multidomain (FE): tutorials/FE_phase_field_multi_domain.md

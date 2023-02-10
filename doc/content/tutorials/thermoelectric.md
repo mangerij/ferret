@@ -2,4 +2,6 @@
 
 # Tutorial 6: Polycrystalline thermoelectric transport
 
-This tutorial covers the basic usage of the thermoelectricity in a polycrystal implemented in FERRET.
+This tutorial covers the basic usage of the thermoelectric transport in a polycrystal.
+
+We start by considering our geometry.

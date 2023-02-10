@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the FluctuationKernel object.
+Introduces a residual contribution of the form
+
+\begin{equation}
+  \begin{aligned}
+    -\left(\psi_h, \Delta \pi \right) = 0
+  \end{aligned}
+\end{equation}
+
+where $\psi_h$ is the test function and $\Delta \pi$ is a small number. This can be applied to any variable to introduce fluctuations on the order of $\Delta \pi$ which can be useful in quasi-static hysteresis calculations.
 
 ## Example Input File Syntax
 

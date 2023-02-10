@@ -29,7 +29,7 @@ Typically, this last assumption is usually what is applicable to experiments inv
     \Delta B_{ij} = r_{ijk} E_k + \pi_{ijkl} \sigma_{kl}
 \end{equation}
 
-where $r_{ijk}$ and $\pi_{ijkl}$ is the electrooptic and photoelastic tensors. Typical orders of magnitude of $r_{ijk}$ and $\pi_{ijkl}$ are $10^{-12}$ m/V and m/N respectively. The quantity $\sigma_{kl}$ is the stress tensor components but the change of the indicatrix can also be expressed in terms of strain $\varepsilon_{rs}$,
+where $r_{ijk}$ and $\pi_{ijkl}$ is the electrooptic and photoelastic tensors. Typical orders of magnitude and units of $r_{ijk}$ and $\pi_{ijkl}$ are $10^{-12}$ m/V and $10^{-12}$ m/N respectively. The quantity $\sigma_{kl}$ is the elastic stress tensor component. The relative change of the indicatrix relationship can also be expressed in terms of strain $\varepsilon_{rs}$,
 
 \begin{equation}
     \Delta B_{ij} = r_{ijk} E_k + \pi_{ijkl} C_{klrs} \varepsilon_{rs}
@@ -53,14 +53,11 @@ with $B_{0} = 1/n_0^2$. After deformation, by using the above expressions for $\
 
 Note that if the crystal symmetry before deformation is cubic symmetry of $\bar{4}3m, 432$, or $m3m$, then $\pi_{12} = \pi_{13}$ and the resulting indicatrix relationship is $n_x = n_y \neq n_z$ as in Fig. \ref{fig_indicatrix}. However, if the cubic symmetry is $23$ or $m3$, then $\pi_{12} \neq \pi_{13}$ resulting in $n_x \neq n_y \neq n_z$ which has much consequence on an observed birefringence.
 
-In principle any symmetry crystal is allowed in FERRET simulations and that these expressions also work for inhomogeneously applied fields breaking the symmetry locally leading to spatially varying refractive indices.
+In principle any symmetry crystal can be investigated in FERRET simulations and that these expressions also work for inhomogeneously applied fields breaking the symmetry locally leading to spatially varying refractive indices.
 
-Another example of possible postprocessing ability in FERRET is to compute the relative changes in the refractive index due to the ferroelectric phase transition.
+Another example of possible postprocessing ability in FERRET is to compute the relative changes in the refractive index due to the ferroelectric phase transition. Similar to an applied stress which breaks the symmetry leading to birefringence, the onset of the electric polarization moment arising from a structural distortion of the ionic lattice also breaks the symmetry. In the case of canonical perovskite ferroelectric (FE) $\mathrm{BaTiO}_3$, the symmetry initially goes from cubic $(m3m)$ to tetragonal $(4mm)$ as the temperature is lowered below the Curie temperature $T_C$. We consult the work of [!cite](Bernasconi1995) for a description.
 
-
-Similarly to a stress which breaks the symmetry, the onset of the electric polarization moment arising from a structural distortion of the ionic lattice also breaks the symmetry. In the case of canonical perovskite ferroelectric (FE) $\mathrm{BaTiO}_3$, the symmetry initially goes from cubic $(m3m)$ to tetragonal $(4mm)$ as the temperature is lowered below the Curie temperature $T_C$. We consult the work of [!cite](Bernasconi1995) for a description.
-
-The spontaneous polarization $P_S$ entires into the relative changes to the indicatrix coefficients via,
+The spontaneous polarization $P_S$ enters into the relative changes to the indicatrix coefficients via,
 
 \begin{equation}
 \begin{aligned}
@@ -71,6 +68,6 @@ The spontaneous polarization $P_S$ entires into the relative changes to the indi
 
 where $\varepsilon_{ij}$ is the spontaneous strain arising from the phase transition. One can appreciate here that both the polarization and the elastic field adjust the refractive indices leading to a birefringence $(n_1 = n_2 \neq n_3)$. The parameters $(g_{ijkl})$ are known as the polar-optic coefficients in units of $10^{-2}$ $\mathrm{m}^4$ $\mathrm{C}^{-2}$. These materials constants have been shown to be strongly temperature dependent (as is for $P_S$) as well as dependent on the wavelength of light $\lambda_0$. Using room temperature values of $P_S$ and $\lambda_0 = 633$ nm, we have $n_3^{-2} - n_1^{-2} \approx 10^{-1}$ due to the FE phase transition.
 
-For low frequency electric fields, the ionic structure of the polarization should respond which would introduce additional higher order modulations to the relative refractive index changes. Note that this means that this postprocessing feature is very limited in terms of the situations that it can be applied to. For weak EM fields however, and at frequencies of the visible spectrum, the polarization is fixed in space time. We should also mention that the values of $g_{ijkl}$ are not known for many ferroelectric materials but they should be able to be computed from first-principles methodology or measured carefully as in the case of $\mathrm{BaTiO}_3$ in the cited work.
+For low frequency electric fields, the ionic structure of the polarization should respond which would introduce higher order terms to the relative refractive index changes - i.e $n^\mathrm{th}$ order susceptibilities in the context of nonlinear optics. This means that this postprocessing feature is very limited in terms of the physical situations that it can be applied to. For weak EM fields however, and at frequencies of the visible spectrum, the FE polarization is expected to be fixed in time. We should also mention that the values of $g_{ijkl}$ are not known for many FE materials but they should be able to be computed from first-principles methodology or measured carefully as in the case of $\mathrm{BaTiO}_3$ in the cited work.
 
-As the birefringence is one way to observe and measure the domain topology, we provide this feature in FERRET for users. By first using the phase field method to calculate the ground state structure (in arbitrary 3D geometries), the local refractive indices can then be computed with this approach. We provide an example in our tutorials listed on this website and we aim to expand this capability in the future to handle lower symmetries and other FE materials such as those displaying magnetic order (multiferroics).
+As the birefringence is one way to observe and measure the domain topology, we provide this feature in FERRET for users. By first using the phase field method to calculate the ground state structure (in arbitrary 3D geometries), the local refractive indices can then be computed within this approach. We aim to provide an example in our tutorials listed on this website (in construction) and we plan to expand this capability in the future to handle lower symmetries and other FE materials such as those displaying magnetic order (multiferroics).

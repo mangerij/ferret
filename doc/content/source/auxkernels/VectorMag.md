@@ -10,7 +10,7 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the VectorMag object.
+Calculates the magnitude of a vector $v$ with $|\mathbf{v}| = \sqrt{\mathbf{v}\cdot\mathbf{v}}$.
 
 ## Example Input File Syntax
 
