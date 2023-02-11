@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeDeltaIndicatrixElectro object.
+Computes the change of the indicatrix components $\Delta B_{ij}$ due to,
+
+\begin{equation}
+  \begin{aligned}
+    \Delta B_{ij} = r_{ijk} E_k,
+  \end{aligned}
+\end{equation}
+
+where $r_{ijk}$ is the electrooptic tensor of rank three. The variable $E_k$ is the component of the electric field related to the electrostatic potential $\Phi_\mathrm{E}$ via $\mathbf{E} = - \nabla \Phi_\mathrm{E}$ which is calculated with the appropriate Laplace or Poisson equation `Kernels`.
 
 ## Example Input File Syntax
 

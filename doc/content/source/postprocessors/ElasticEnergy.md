@@ -1,16 +1,19 @@
 # ElasticEnergy
 
-!alert construction title=Undocumented Class
-The ElasticEnergy has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Postprocessors/ElasticEnergy
 
 ## Overview
 
-!! Replace these lines with information regarding the ElasticEnergy object.
+Computes the elastic energy of the simulation box (volume $\Omega$) due to
+
+\begin{equation}
+  \begin{aligned}
+    F_\mathrm{elastic} &= \int\limits_\Omega \left\{ \frac{1}{2} \sigma_{kl} \varepsilon_{kl} \right\}\\
+    &= \int\limits_\Omega \left\{\frac{1}{2} C_{ijkl} \varepsilon_{ij} \varepsilon_{kl} \right\}.
+  \end{aligned}
+\end{equation}
+
+where $\sigma_{kl}$ and $\varepsilon_{kl}$ is the elastic stress and strain tensor component respectively. Shown here is an equivalent expression involving the elastic stiffness tensor $C_{ijkl}$ of rank four.
 
 ## Example Input File Syntax
 

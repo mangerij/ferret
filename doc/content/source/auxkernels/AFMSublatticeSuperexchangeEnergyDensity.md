@@ -1,16 +1,18 @@
 # AFMSublatticeSuperexchangeEnergyDensity
 
-!alert construction title=Undocumented Class
-The AFMSublatticeSuperexchangeEnergyDensity has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /AuxKernels/AFMSublatticeSuperexchangeEnergyDensity
 
 ## Overview
 
-!! Replace these lines with information regarding the AFMSublatticeSuperexchangeEnergyDensity object.
+Computes the free energy density due to the short-range superexchange interaction,
+
+\begin{equation}
+  \begin{aligned}
+    f_\mathrm{super} = D_e \left(\mathbf{L}^2 - \mathbf{m}^2\right)
+  \end{aligned}
+\end{equation}
+
+where $D_e$ is the coupling coefficient driving collinearity of the two sublattices $\mathbf{m}_1$ and $\mathbf{m}_2$. The quantities $\mathbf{L}$ and $\mathbf{m}$ are the antiferromagnetic Néel and total magnetization vectors respectively. Their definitions are $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$ and $\mathbf{m} = \mathbf{m}_1 - \mathbf{m}_2$.
 
 ## Example Input File Syntax
 

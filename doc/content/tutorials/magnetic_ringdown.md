@@ -1,6 +1,6 @@
 !include tutorials/tutorial_header.md
 
-# Tutorial 3: Ferromagnetic ringdown
+# Tutorial 4: Ferromagnetic ringdown
 
 This tutorial (and others) covers the basic usage of the micromagnetics implemented in FERRET. This simple problem is for solving the time-dependent LLG equation with exchange stiffness and demagnetizing field phenomena in a permalloy magnet. The total energy density of the system is written as
 

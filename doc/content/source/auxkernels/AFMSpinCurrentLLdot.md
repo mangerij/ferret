@@ -26,7 +26,7 @@ where $\epsilon_{ijk}$ is the Levi-Civita pseudo-tensor and $f$ is a factor that
   \end{aligned}
 \end{equation}
 
-as described in [!cite](Cheng2014).
+as described in [!cite](Cheng2014). The vectors $\mathbf{L}$ and $\mathbf{m}$ are the antiferromagnetic Néel and total magnetization vectors respectively.
 
 ## Example Input File Syntax
 

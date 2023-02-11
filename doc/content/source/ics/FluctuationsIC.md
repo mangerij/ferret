@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the FluctuationsIC object.
+Useful `ICs` function for benchmarking purposes. Typically in numerical simulations, the randomness of a function is prescribed by a random number generator which can depend on the processors. This IC allows for a pseudo-random function which will be the same on any machine.
+
+\begin{equation}
+  \begin{aligned}
+ \delta_\eta = \cos{q_1 x - 4}\sin{q_1 y} + \cos{q_2 x} \cos{q_2 y} + ...
+  \end{aligned}
+\end{equation}
+
+
 
 ## Example Input File Syntax
 

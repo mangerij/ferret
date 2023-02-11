@@ -10,7 +10,7 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the BoundaryIntegralFMM object.
+Boundary integral using the fast-multiple method.
 
 ## Example Input File Syntax
 

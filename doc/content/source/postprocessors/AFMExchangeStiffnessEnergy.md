@@ -1,16 +1,18 @@
 # AFMExchangeStiffnessEnergy
 
-!alert construction title=Undocumented Class
-The AFMExchangeStiffnessEnergy has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Postprocessors/AFMExchangeStiffnessEnergy
 
 ## Overview
 
-!! Replace these lines with information regarding the AFMExchangeStiffnessEnergy object.
+Computes the free energy in the simulation box (volume $\Omega$) due to the long-range exchange interactions in the antiferromagnet,
+
+\begin{equation}
+  \begin{aligned}
+    F_\mathrm{\nabla L} = \int\limits_\Omega \left\{ A_e \left[\left(\nabla L_x\right)^2 + \left(\nabla L_y\right)^2 \left(\nabla L_z\right)^2\right] \right\}.
+  \end{aligned}
+\end{equation}
+
+The quantity $\mathbf{L}$ is the antiferromagnetic Néel vector along with coupling constant $A_e$.
 
 ## Example Input File Syntax
 

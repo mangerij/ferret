@@ -20,4 +20,4 @@ In principle, this type of calculation can be generalized to any ferroic materia
 
 run time 1864 secs on 8 processors
 
-TEST: 
+TEST:

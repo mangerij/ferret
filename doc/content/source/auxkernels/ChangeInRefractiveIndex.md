@@ -10,7 +10,16 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the ChangeInRefractiveIndex object.
+Computes the change in the refractive indices,
+
+\begin{equation}
+  \begin{aligned}
+    \Delta n_{ij} = - \frac{1}{2} B_{ij}^3 \Delta B_{kl}.
+  \end{aligned}
+\end{equation}
+
+where $\Delta B_{ij}$ is the change in the indicatrix. The above expression does not use index summation so typically one picks $i = k$ and $j = l$.
+
 
 ## Example Input File Syntax
 

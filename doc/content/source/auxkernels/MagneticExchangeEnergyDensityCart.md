@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the MagneticExchangeEnergyDensityCart object.
+Computes the magnetic free energy density due to the exchange interaction as,
+
+\begin{equation}
+  \begin{aligned}
+  f_\mathrm{exch} = A_e M_s^2 \left\{\left(\nabla m_x\right)^2 + \left(\nabla m_y\right)^2 + \left(\nabla m_z\right)^2\right\}
+  \end{aligned}
+\end{equation}
+
+where $M_s$ is the saturation magnetization density and $A_e$ is the exchange stiffness constant.
 
 ## Example Input File Syntax
 

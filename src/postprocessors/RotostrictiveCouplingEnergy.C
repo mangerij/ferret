@@ -28,7 +28,7 @@ InputParameters RotostrictiveCouplingEnergy::validParams()
 {
 
   InputParameters params = ElementIntegralPostprocessor::validParams();
-  params.addClassDescription("Calculates an integral over the coupling free energy density between the AFD and elastic fields.");
+  params.addClassDescription("Calculates a volume integral over the rotostrictive coupling free energy density.");
   params.addRequiredCoupledVar("u_x", "The x component of the local elastic displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local elastic displacement");
   params.addCoupledVar("u_z", 0.0, "The z component of the local elastic displacement");
@@ -63,7 +63,7 @@ RotostrictiveCouplingEnergy::RotostrictiveCouplingEnergy(const InputParameters &
 Real
 RotostrictiveCouplingEnergy::computeQpIntegral()
 {
-  return _energy_scale*(-0.5*(-2.0*_r44[_qp]*((_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*(_u_x_grad[_qp](2) + 
-_u_z_grad[_qp](0)))/2.0 + (_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _r12[_qp]*((Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*_u_z_grad[_qp](2)) - 
+  return _energy_scale*(-0.5*(-2.0*_r44[_qp]*((_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*(_u_x_grad[_qp](2) +
+_u_z_grad[_qp](0)))/2.0 + (_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _r12[_qp]*((Utility::pow<2>(_antiphase_A_y[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_antiphase_A_x[_qp]) + Utility::pow<2>(_antiphase_A_y[_qp]))*_u_z_grad[_qp](2)) -
    _r11[_qp]*(Utility::pow<2>(_antiphase_A_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_antiphase_A_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_antiphase_A_z[_qp])*_u_z_grad[_qp](2))));
 }

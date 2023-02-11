@@ -13,8 +13,9 @@ Theory:
   Optical Properties:   theory/intro_optical.md
 
 Tutorials:
-  Multidomain (FE): tutorials/FE_phase_field_multi_domain.md
+  Multidomain ferroelectric: tutorials/FE_phase_field_multi_domain.md
   Ferroelectric domain wall: tutorials/ferroelectric_domain_wall.md
+  Multidomain ferroelectric with elastic coupling: tutorials/FE_phase_field_multi_domain_coupled.md
   Magnetic ringdown: tutorials/magnetic_ringdown.md
   Antiferromagnetic ringdown: tutorials/AFM_ringdown.md
   Piezoelectric actuation: tutorials/piezoelectric.md
