@@ -1,16 +1,18 @@
 # MagneticExcessLLBEnergy
 
-!alert construction title=Undocumented Class
-The MagneticExcessLLBEnergy has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Postprocessors/MagneticExcessLLBEnergy
 
 ## Overview
 
-!! Replace these lines with information regarding the MagneticExcessLLBEnergy object.
+Useful tracker of the Landau-Lifshitz-Bloch implementation where,
+
+\begin{equation}
+  \begin{aligned}
+    F_\mathrm{excess} = \int\limits_\Omega d^3 \mathbf{r} \left\{\frac{1}{4} \left(\frac{\tilde{\alpha}_{LLB}}{1+\alpha^2}\right)\left(|\mathbf{m}| - 1\right) \right\}
+  \end{aligned}
+\end{equation}
+
+is computed in the simulation box (volume $\Omega$). This `Postprocessor` tracks the deviations of the normalized magnetization vector $\mathbf{m}$ from unity. The energy here is arbitrary (and unitless) but can be cast into real units by using the prefactor `energy`$\_$`scale` included in the object input parameters.
 
 ## Example Input File Syntax
 

@@ -10,7 +10,23 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the SphericalCoordinateVector object.
+Computes the spherical coordinates of a vector $\mathbf{v}$ in radians with,
+
+\begin{equation}
+  \begin{aligned}
+    \phi = \tan{\left(\frac{v_y}{v_x}\right)}
+  \end{aligned}
+\end{equation}
+
+and
+
+\begin{equation}
+  \begin{aligned}
+    \theta = \cos^{-1}{\left(\frac{v_z}{v_x^2+v_y^2+v_z^2}\right)}
+  \end{aligned}
+\end{equation}
+
+where $\phi$ and $\theta$ are the azimuthal and polar angles respectively.
 
 ## Example Input File Syntax
 

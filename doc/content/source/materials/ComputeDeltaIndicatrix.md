@@ -10,7 +10,23 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeDeltaIndicatrix object.
+Computes the change of the indicatrix components $\Delta B_{ij}$ due to,
+
+\begin{equation}
+  \begin{aligned}
+    \Delta B_{ij} = p_{ijkl} \varepsilon_{kl},
+  \end{aligned}
+\end{equation}
+
+where $p_{ijkl}$ is the elastooptic tensor related to the photoelastic tensor via $\pi_{ijmn}$ via the relationship
+
+\begin{equation}
+  \begin{aligned}
+    p_{ijkl} = \pi_{ijmn} C_{mnkl}
+  \end{aligned}
+\end{equation}
+
+with $C_{mnkl}$ the elastic stiffness tensor. The variable $\varepsilon_{ij}$ is the linear elastic strain tensor as computed by `TensorMechanics`.
 
 ## Example Input File Syntax
 

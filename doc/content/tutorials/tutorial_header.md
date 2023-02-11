@@ -1,9 +1,10 @@
 # List of tutorials
 
-- [1. Multidomain (FE)](tutorials/FE_phase_field_multi_domain.md)
+- [1. Multidomain ferroelectric](tutorials/FE_phase_field_multi_domain.md)
 - [2. Ferroelectric domain wall](tutorials/ferroelectric_domain_wall.md)
+- [3. Multidomain ferroelectric with elastic coupling](tutorials/FE_phase_field_multi_domain_coupled.md)
 - [3. Magnetic ringdown](tutorials/magnetic_ringdown.md)
-- [4. AFM ringdown](tutorials/AFM_ringdown.md)
+- [4. Antiferromagnetic ringdown](tutorials/AFM_ringdown.md)
 - [5. Piezoelectric actuation](tutorials/piezoelectric.md)
 - [6. Polycrystalline thermoelectric transport](tutorials/thermoelectric.md)
 

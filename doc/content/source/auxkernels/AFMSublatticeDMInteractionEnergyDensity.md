@@ -1,16 +1,18 @@
 # AFMSublatticeDMInteractionEnergyDensity
 
-!alert construction title=Undocumented Class
-The AFMSublatticeDMInteractionEnergyDensity has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /AuxKernels/AFMSublatticeDMInteractionEnergyDensity
 
 ## Overview
 
-!! Replace these lines with information regarding the AFMSublatticeDMInteractionEnergyDensity object.
+Computes the free energy density due to the Dzyaloshinskii–Moriya interaction (DMI),
+
+\begin{equation}
+  \begin{aligned}
+    f_\mathrm{DMI} = 4 D_0 \mathbf{A} \cdot \left( \mathbf{L} \times \mathbf{m}\right)
+  \end{aligned}
+\end{equation}
+
+where $\mathbf{A}$, $\mathbf{L}$, and $\mathbf{m}$ are the oxygen octahedral antiphase tilts (see $\mathrm{BiFeO}_3$), antiferromagnetic Néel, and total magnetization vectors. The quantity $D_0$ is the DMI coupling strength in units of energy density divided by units of $\mathbf{A}$. The factor of $4$ is our convention and the quantities $\mathbf{L}$ and $\mathbf{m}$ as assumed to be normalized such that $|\mathbf{L}|+|\mathbf{m}| = 2$ with $|\mathbf{L}| \gg |\mathbf{m}|$. By setting $\mathbf{A}$ to some other vector relevant to the problem, this can be generalized to other antiferromagnets.
 
 ## Example Input File Syntax
 

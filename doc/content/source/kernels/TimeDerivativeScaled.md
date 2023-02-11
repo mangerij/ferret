@@ -1,16 +1,18 @@
 # TimeDerivativeScaled
 
-!alert construction title=Undocumented Class
-The TimeDerivativeScaled has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Kernels/TimeDerivativeScaled
 
 ## Overview
 
-!! Replace these lines with information regarding the TimeDerivativeScaled object.
+Computes the time derivative of a variable $v$,
+
+\begin{equation}
+  \begin{aligned}
+    \gamma \frac{\partial v}{\partial t}
+  \end{aligned}
+\end{equation}
+
+where $\gamma$ is an optional input file parameter to scale the time.
 
 ## Example Input File Syntax
 

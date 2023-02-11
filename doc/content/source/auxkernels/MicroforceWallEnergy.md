@@ -10,7 +10,13 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the MicroforceWallEnergy object.
+Computes the microforce due to the gradient free energy density $f_\mathrm{grad}$,
+
+\begin{equation}
+  \begin{aligned}
+    \frac{\delta f_\mathrm{grad}}{\delta \mathbf{P}} = \frac{\partial f_\mathrm{grad}}{\partial \mathbf{P}} - \frac{\partial}{\partial \mathbf{r}}\cdot \left(\frac{\partial f_\mathrm{grad}}{\partial \left(\frac{\partial \mathbf{P}}{\partial \mathbf{r}}}\right)\right)
+  \end{aligned}
+\end{equation}
 
 ## Example Input File Syntax
 

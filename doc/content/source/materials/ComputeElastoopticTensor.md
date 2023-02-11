@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeElastoopticTensor object.
+Stores the elastooptic tensor components $p_{ijkl}$. The tensor may be rotated via,
+
+\begin{equation}
+  \begin{aligned}
+    \tilde{p}_{ijkl} = R_{i\alpha} R_{j\beta} R_{k \gamma} R_{l\delta} p_{\alpha\beta\gamma\delta}.
+  \end{aligned}
+\end{equation}
+
+with the internal `RotationTensor` operation in MOOSE utils. The rotation operator $R_{ij}$ accepts Euler angles in the standard Bunge sequence ($\mathbf{ZXZ}$).
 
 ## Example Input File Syntax
 

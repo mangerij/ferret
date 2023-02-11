@@ -10,7 +10,7 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the QuasistaticFieldAux object.
+Computes the electric field due to $\mathbf{E} = -K \nabla \Phi_\mathrm{E}$. An optional conversion factor $K$ can be used to change the units that are output.
 
 ## Example Input File Syntax
 

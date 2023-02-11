@@ -1,6 +1,6 @@
 !include tutorials/tutorial_header.md
 
-# Tutorial 1a: Multidomain state of a FE block
+# Tutorial 1: Multidomain state of a FE block
 
 This tutorial (and others) covers the basic usage of the ferroelectric phase field method implemented in FERRET.
 

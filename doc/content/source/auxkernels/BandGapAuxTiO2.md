@@ -10,7 +10,15 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the BandGapAuxTiO2 object.
+Calculates a simple band gap shift due to stress tensor components $\sigma_{xx}$ and $\sigma_{zz}$,
+
+\begin{equation}
+  \begin{aligned}
+    E_g = E_g^0 + a \sigma_{xx} + b \sigma_{zz}
+  \end{aligned}
+\end{equation}
+
+where $E_g^0$ is the unstressed value and $a$ and $b$ are coupling constants determined by deformation potential theory.
 
 ## Example Input File Syntax
 

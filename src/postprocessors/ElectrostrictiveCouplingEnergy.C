@@ -26,7 +26,7 @@ registerMooseObject("FerretApp", ElectrostrictiveCouplingEnergy);
 InputParameters ElectrostrictiveCouplingEnergy::validParams()
 {
   InputParameters params = ElementIntegralPostprocessor::validParams();
-  params.addClassDescription("Calculates an integral over the coupling energy density between the elastic and AFD fields.");
+  params.addClassDescription("Calculates a volume integral over the electrostrictive coupling energy density.");
   params.addRequiredCoupledVar("u_x", "The x component of the local displacement");
   params.addRequiredCoupledVar("u_y", "The y component of the local displacement");
   params.addCoupledVar("u_z", 0.0, "The z component of the local displacement");
@@ -61,6 +61,6 @@ ElectrostrictiveCouplingEnergy::ElectrostrictiveCouplingEnergy(const InputParame
 Real
 ElectrostrictiveCouplingEnergy::computeQpIntegral()
 {
-  return _energy_scale*(-0.5*(-2.0*_q44[_qp]*((_polar_x[_qp]*_polar_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _q12[_qp]*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_u_z_grad[_qp](2)) - 
+  return _energy_scale*(-0.5*(-2.0*_q44[_qp]*((_polar_x[_qp]*_polar_y[_qp]*(_u_x_grad[_qp](1) + _u_y_grad[_qp](0)))/2.0 + (_polar_x[_qp]*_polar_z[_qp]*(_u_x_grad[_qp](2) + _u_z_grad[_qp](0)))/2.0 + (_polar_y[_qp]*_polar_z[_qp]*(_u_y_grad[_qp](2) + _u_z_grad[_qp](1)))/2.0) - _q12[_qp]*((Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_x_grad[_qp](0) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]))*_u_y_grad[_qp](1) + (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]))*_u_z_grad[_qp](2)) -
    _q11[_qp]*(Utility::pow<2>(_polar_x[_qp])*_u_x_grad[_qp](0) + Utility::pow<2>(_polar_y[_qp])*_u_y_grad[_qp](1) + Utility::pow<2>(_polar_z[_qp])*_u_z_grad[_qp](2))));
 }

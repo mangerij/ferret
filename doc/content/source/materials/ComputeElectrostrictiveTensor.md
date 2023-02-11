@@ -10,7 +10,23 @@ documentation clear for users.
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeElectrostrictiveTensor object.
+Calculates the electrostrictive tensor components $q_{ijkl}$. Here,
+
+\begin{equation}
+  \begin{aligned}
+      q_{ijkl} = C_{ijmn} Q_{mnkl}.
+  \end{aligned}
+\end{equation}
+
+with $C_{ijmn}$ and $Q_{mnkl}$ are the elastic stiffness and electrostictive coefficients respectively. The $q_{ijkl}$ tensor may be rotated via,
+
+\begin{equation}
+  \begin{aligned}
+    \tilde{q}_{ijkl} = R_{i\alpha} R_{j\beta} R_{k \gamma} R_{l\delta} q_{\alpha\beta\gamma\delta}.
+  \end{aligned}
+\end{equation}
+
+with the internal `RotationTensor` operation in MOOSE utils. The rotation operator $R_{ij}$ accepts Euler angles in the standard Bunge sequence ($\mathbf{ZXZ}$).
 
 ## Example Input File Syntax
 

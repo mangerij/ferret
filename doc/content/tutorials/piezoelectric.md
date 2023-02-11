@@ -1,6 +1,6 @@
 !include tutorials/tutorial_header.md
 
-# Tutorial 5: Piezoelectric actuation
+# Tutorial 6: Piezoelectric actuation
 
 This tutorial covers the basic usage of the piezoelectric coupling implemented in FERRET.
 
@@ -8,7 +8,7 @@ In the linear limit, the constitutive governing equation for piezoelectricity is
 
 \begin{equation}
   \begin{aligned}
-    \frac{\partial}{\partial x_j} \left(C_{ijkl} \varepsilon_{kl} + d_{klm} E_m\right) = 0,
+    \frac{\partial}{\partial x_j} \left[C_{ijkl} \left( \varepsilon_{kl} + d_{klm} E_m\right)\right] = 0,
   \end{aligned}
 \end{equation}
 
