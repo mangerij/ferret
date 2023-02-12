@@ -1,16 +1,18 @@
 # ComputeThermalConductivityTensor
 
-!alert construction title=Undocumented Class
-The ComputeThermalConductivityTensor has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ComputeThermalConductivityTensor
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeThermalConductivityTensor object.
+Computes (and stores) the thermal conductivity tensor $\kappa_{ij}$ at each quadrature point in the finite element mesh. The orientation of the tensor can be rotated via,
+
+\begin{equation}
+  \begin{aligned}
+    \tilde{\kappa}_{ij} = R_{i\beta}R_{j\gamma} \kappa_{\beta\gamma}
+  \end{aligned}
+\end{equation}
+
+for some arbitrary rotation matrices $R_{ij}$ using the internal `RotationTensor` operation in MOOSE utils. The rotation operator $R_{ij}$ accepts Euler angles in the standard Bunge sequence ($\mathbf{ZXZ}$).
 
 ## Example Input File Syntax
 

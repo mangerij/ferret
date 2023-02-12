@@ -1,16 +1,19 @@
 # ComputeGCoeffTensor
 
-!alert construction title=Undocumented Class
-The ComputeGCoeffTensor has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ComputeGCoeffTensor
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeGCoeffTensor object.
+Computes (and stores) a polar-optic coefficient tensor at each quadrature point of the finite element mesh which can be rotated,
+
+\begin{equation}
+  \begin{aligned}
+    \tilde{g}_{ijkl} = R_{i\beta} R_{j\gamma} R_{k\delta} R_{l\eta} g_{\beta\gamma\delta\eta}
+  \end{aligned}
+\end{equation}
+
+with some arbitrary rotation matrices $R_{ij}$.
+
 
 ## Example Input File Syntax
 

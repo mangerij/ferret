@@ -1,16 +1,18 @@
 # ComputeSeebeckTensor
 
-!alert construction title=Undocumented Class
-The ComputeSeebeckTensor has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ComputeSeebeckTensor
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeSeebeckTensor object.
+Computes (and stores) the Seebeck tensor $S_{ij}$ at each quadrature point in the finite element mesh. The orientation of the tensor can be rotated via,
+
+\begin{equation}
+  \begin{aligned}
+    \tilde{S}_{ij} = R_{i\beta}R_{j\gamma} S_{\beta\gamma}
+  \end{aligned}
+\end{equation}
+
+for some arbitrary rotation matrices $R_{ij}$ using the internal `RotationTensor` operation in MOOSE utils. The rotation operator $R_{ij}$ accepts Euler angles in the standard Bunge sequence ($\mathbf{ZXZ}$).
 
 ## Example Input File Syntax
 

@@ -1,16 +1,10 @@
 # ThermoelectricMaterial
 
-!alert construction title=Undocumented Class
-The ThermoelectricMaterial has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ThermoelectricMaterial
 
 ## Overview
 
-!! Replace these lines with information regarding the ThermoelectricMaterial object.
+Uses the automatic differentation (AD) system to compute derivatives with respect to temperature $T$ of the materials coefficients $S_{ij}(T)$, $\sigma_{ij}(T)$, and $\kappa_{ij}(T)$. These tensors are defined in `ComputeSeebeckTDepTensor`, `ComputeElectricalConductivityTDepTensor`, and `ComputeThermalConductivityTDepTensor`. We should emphasize that typically in the literature, the nomenclature for the electrical conductivity tensor is $\sigma_{ij}$ but this is not to be confused with the linear elastic stress tensor.
 
 ## Example Input File Syntax
 

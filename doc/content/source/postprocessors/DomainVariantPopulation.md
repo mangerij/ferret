@@ -1,16 +1,18 @@
 # DomainVariantPopulation
 
-!alert construction title=Undocumented Class
-The DomainVariantPopulation has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Postprocessors/DomainVariantPopulation
 
 ## Overview
 
-!! Replace these lines with information regarding the DomainVariantPopulation object.
+Computes the fraction of the domain variation population in the compuational box of volume $\Omega$,
+
+\begin{equation}
+  \begin{aligned}
+     \xi_j = \frac{1}{\Omega}\int\limits_\Omega d^3\mathbf{r} \left\{ \frac{|P_j|}{\sqrt{P_x^2 + P_y^2 + P_z^2}} \right\}.
+  \end{aligned}
+\end{equation}
+
+This expression is only valid for tetragonal ferroelectrics but we plan to generalize this to orthorhombic and rhombohedral symmetries in the future.
 
 ## Example Input File Syntax
 

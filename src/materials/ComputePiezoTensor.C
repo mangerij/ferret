@@ -64,7 +64,7 @@ ComputePiezoTensor::ComputePiezoTensor(const InputParameters & parameters) :
 void
 ComputePiezoTensor::computeQpPiezoTensor()
 {
-  ///Assign a photostrictive tensor at a given quad point. This will be reworked eventually for constant _qp.
+  ///Assign the tensor at a given quad point. This will be reworked eventually for constant _qp.
   _piezo_tensor[_qp] = _dkpq;
   if (_compute_piezostrictive_coeff == true)
     _piezostrictive_tensor[_qp] = _Dkij;

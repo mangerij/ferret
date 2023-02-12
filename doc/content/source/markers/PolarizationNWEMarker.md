@@ -1,16 +1,10 @@
 # PolarizationNWEMarker
 
-!alert construction title=Undocumented Class
-The PolarizationNWEMarker has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Adaptivity/Markers/PolarizationNWEMarker
 
 ## Overview
 
-!! Replace these lines with information regarding the PolarizationNWEMarker object.
+Useful `Adaptivity` `Marker` allows for refinement and coarsening based on the values of the expected order parameter magnitude. Typically, in a ground state calculation (i.e. a film), the default values of the `Adaptivity` system will refine too much when $\mathbf{P}$ is near zero (the `ICs` of the calculation). This is a disadvantage because we are only concerned with refinment of the domain walls and coarsening of the homogeneous regions. The user can then control when the refinement and coarsening begins - which is dependent on the material's saturation polarization $P_s$.
 
 ## Example Input File Syntax
 

@@ -1,16 +1,10 @@
 # ComputePiezoTensor
 
-!alert construction title=Undocumented Class
-The ComputePiezoTensor has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ComputePiezoTensor
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputePiezoTensor object.
+Computes the tensor contraction of $d_{jkl} C_{klmn}$ and assigns it to every quadrature point in the finite element mesh.
 
 ## Example Input File Syntax
 

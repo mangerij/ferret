@@ -1,16 +1,18 @@
 # MasterMagneticExchangeEnergy
 
-!alert construction title=Undocumented Class
-The MasterMagneticExchangeEnergy has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Postprocessors/MasterMagneticExchangeEnergy
 
 ## Overview
 
-!! Replace these lines with information regarding the MasterMagneticExchangeEnergy object.
+Computes the free energy of the simulation box (volume $\Omega$) corresponding to magnetic exchange stiffness,
+
+\begin{equation}
+  \begin{aligned}
+    F_\mathrm{exch} = \int\limits_\Omega d^3\mathbf{r} \, A_e \,\left\{  \left(\frac{\partial m_x}{\partial x}\right)^2 + \left(\frac{\partial m_x}{\partial y}\right)^2 + \left(\frac{\partial m_x}{\partial z}\right)^2 + \left(\frac{\partial m_y}{\partial x}\right)^2 + \left(\frac{\partial m_y}{\partial y}\right)^2 + \left(\frac{\partial m_y}{\partial z}\right)^2 + \left(\frac{\partial m_z}{\partial x}\right)^2 + \left(\frac{\partial m_z}{\partial y}\right)^2 + \left(\frac{\partial m_z}{\partial z}\right)^2\right\}
+  \end{aligned}
+\end{equation}
+
+where $\mathbf{m}$ is the normalized magnetization. The units of the energy are given by units of $A_e$ but an optional input parameter flag `energy`$\_$`scale` is provided allowing to quickly convert the postprocessed units.
 
 ## Example Input File Syntax
 

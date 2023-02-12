@@ -1,16 +1,10 @@
 # Birefringence
 
-!alert construction title=Undocumented Class
-The Birefringence has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /AuxKernels/Birefringence
 
 ## Overview
 
-Computes the difference between refractive indices $n_1$ and $n_2$ where $1$ and $2$ denote user-defined directions.
+Computes the difference between refractive indices $n_1(\mathbf{r})$ and $n_2(\mathbf{r})$ where $1$ and $2$ denote user-defined directions. Since this is an `AuxKernel`, these quantites are computed locally and can modulate in the simulation box if there are inhomogeneous fields (i.e. electric or elastic) that cause variations.
 
 ## Example Input File Syntax
 

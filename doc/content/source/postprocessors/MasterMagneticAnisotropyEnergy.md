@@ -1,16 +1,19 @@
 # MasterMagneticAnisotropyEnergy
 
-!alert construction title=Undocumented Class
-The MasterMagneticAnisotropyEnergy has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
 
 !syntax description /Postprocessors/MasterMagneticAnisotropyEnergy
 
 ## Overview
 
-!! Replace these lines with information regarding the MasterMagneticAnisotropyEnergy object.
+Computes the free energy of the simulation box (volume $\Omega$) corresponding to magnetocrystalline anisotropy,
+
+\begin{equation}
+  \begin{aligned}
+    F_\mathrm{anis} = - \int\limits_\Omega d^3\mathbf{r} \,\, K_1  \, \left( \mathbf{m} \cdot \mathbf{w} \right)^2
+  \end{aligned}
+\end{equation}
+
+where $\mathbf{m}$ is the normalized magnetization vector and $K_1$ the anisotropy constant. The vector $\mathbf{w}$ is the normalized director of the anisotropy. Typically, this is denoted as $\mathbf{n}$ in the literature but in order to avoid confusion with the commonly referred surface normal in the MOOSE code, we choose $\mathbf{w}$. The units of the energy are given by units of $K_{1}$ but an optional input parameter flag `energy`$\_$`scale` is provided allowing to quickly convert the postprocessed units.
 
 ## Example Input File Syntax
 
