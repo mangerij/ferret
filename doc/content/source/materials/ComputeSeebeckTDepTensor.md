@@ -1,16 +1,18 @@
 # ComputeSeebeckTDepTensor
 
-!alert construction title=Undocumented Class
-The ComputeSeebeckTDepTensor has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ComputeSeebeckTDepTensor
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeSeebeckTDepTensor object.
+Computes a temperature dependent Seebeck tensor $S_{ij}(T)$,
+
+\begin{equation}
+  \begin{aligned}
+    S_{ij}(T) = a_{ij}^S + b_{ij}^S T + c_{ij}^S T^2
+  \end{aligned}
+\end{equation}
+
+where $T$ is the temperature and $a_{ij}^S, b_{ij}^S$, and $c_{ij}^S$ are coupling tensor coefficients of rank four. They are seeded via `fillFromInputVector` which requires nine entries.
 
 ## Example Input File Syntax
 

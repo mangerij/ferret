@@ -1,16 +1,18 @@
 # AFMTotalEnergyDensity
 
-!alert construction title=Undocumented Class
-The AFMTotalEnergyDensity has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /AuxKernels/AFMTotalEnergyDensity
 
 ## Overview
 
-!! Replace these lines with information regarding the AFMTotalEnergyDensity object.
+Computes the sum of the energy densities relevant for the antiferromagnetic (AFM) ferroelectric (i.e. $\mathrm{BiFeO}_3$),
+
+\begin{equation}
+  \begin{aligned}
+    f_\mathrm{total} &=  f_\mathrm{super} + f_\mathrm{DMI} + f_\mathrm{easy} + f_\mathrm{anis} + f_\mathrm{exch}
+  \end{aligned}
+\end{equation}
+
+where $f_\mathrm{super}$, $f_\mathrm{DMI}$, $f_\mathrm{easy}$, $f_\mathrm{anis}$, and $f_\mathrm{exch}$ are the short-range superexchange, Dzyaloshinskii–Moriya interaction, easy-plane anisotropy, weak in-plane anisotropy, and long-range AFM exchange.
 
 ## Example Input File Syntax
 

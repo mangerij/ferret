@@ -1,16 +1,18 @@
 # ComputeIndicatrix
 
-!alert construction title=Undocumented Class
-The ComputeIndicatrix has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ComputeIndicatrix
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeIndicatrix object.
+Computes the indicatrix components
+
+\begin{equation}
+  \begin{aligned}
+    \tilde{B}_{ij} = R_{i\beta}R_{j\gamma} B_{\beta\gamma} = R_{i\beta}R_{j\gamma} \frac{1}{n_i n_j}
+  \end{aligned}
+\end{equation}
+
+with an option to rotate due to a rotation operator $R_{ij}$. The rotation operator $R_{ij}$ accepts Euler angles in the standard Bunge sequence ($\mathbf{ZXZ}$). Currently, this implementation only accepts diagonal (principle) values for the refractive indices $n_1 = n_a$, $n_2 = n_b$ $n_3 = n_g$. We plan to generalize this further at a later date.
 
 ## Example Input File Syntax
 

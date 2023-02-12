@@ -1,16 +1,18 @@
 # ComputeThermalConductivityTDepTensor
 
-!alert construction title=Undocumented Class
-The ComputeThermalConductivityTDepTensor has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Materials/ComputeThermalConductivityTDepTensor
 
 ## Overview
 
-!! Replace these lines with information regarding the ComputeThermalConductivityTDepTensor object.
+Computes a temperature dependent thermal conductivity tensor $\kappa_{ij}(T)$,
+
+\begin{equation}
+  \begin{aligned}
+    \kappa_{ij}(T) = a_{ij}^\kappa + b_{ij}^\kappa T + c_{ij}^\kappa T^2
+  \end{aligned}
+\end{equation}
+
+where $T$ is the temperature and $a_{ij}^\kappa, b_{ij}^\kappa$, and $c_{ij}^\kappa$ are coupling tensor coefficients of rank four. They are seeded via `fillFromInputVector` which requires nine entries.
 
 ## Example Input File Syntax
 

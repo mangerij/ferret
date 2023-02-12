@@ -1,11 +1,5 @@
 # ConversePiezoelectricStrain
 
-!alert construction title=Undocumented Class
-The ConversePiezoelectricStrain has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Kernels/ConversePiezoelectricStrain
 
 ## Overview
@@ -34,7 +28,7 @@ Using integration by parts and substituting $E_m = - \partial \Phi_\mathrm{E} / 
   \end{aligned}
 \end{equation}
 
-Note that this shows that the `TensorMechanics` `Action` system automatically sets up and handles the first term in the above equation (corresponding to the `StressDivergence` `Kernel`). Therefore, one needs `TensorMechanics` active in the `Kernels` block of their input files. We should also note that we perform the tensor contraction of $C_{ijkl} d_{klm}$ outside of `ConversePiezoelectricStrain` in the `Materials` object `ComputePiezostrictiveTensor`. Due to the properties of the test function, the surface terms $\langle . \rangle$ vanish and we are left with the residual contribution to $u_i$ due to the converse piezoelectric strain,
+Note that this shows that the `TensorMechanics` `Action` system automatically sets up and handles the first term in the above equation (corresponding to the `StressDivergence` `Kernel`). Therefore, one needs `TensorMechanics` active in the `Kernels` block of their input files. We should also note that we perform the tensor contraction of $C_{ijkl} d_{klm}$ outside of `ConversePiezoelectricStrain` in the `Materials` object `ComputePiezoTensor`. Due to the properties of the test function, the surface terms $\langle . \rangle$ vanish and we are left with the residual contribution to $u_i$ due to the converse piezoelectric strain,
 
 \begin{equation}
   \begin{aligned}

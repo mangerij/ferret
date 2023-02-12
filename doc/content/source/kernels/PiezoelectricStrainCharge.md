@@ -38,7 +38,34 @@ If $\epsilon_b$ does not depend on space (as is usually the case), we can rewrit
   \end{aligned}
 \end{equation}
 
-The surface terms $\langle . \rangle$ vanish due to the properties of the test function. Note that the `Electrostatics` must be included in the `Kernels` block of the input file in order for this term to couple properly to $\Phi_\mathrm{E}$.
+The surface terms $\langle . \rangle$ vanish due to the properties of the test function. Note that the `Electrostatics` must be included in the `Kernels` block of the input file in order for this term to couple properly to $\Phi_\mathrm{E}$. This leaves us with the residual contribution for $\Phi_\mathrm{E}$,
+
+\begin{equation}
+  \begin{aligned}
+     \mathcal{R}_{\Phi_\mathrm{E}} = - \left(\frac{\partial \psi_h}{\partial x_j}, d_{jkl} \sigma_{kl} \right).
+  \end{aligned}
+\end{equation}
+
+The contraction of $d_{jkl}\sigma_{kl} = d_{jkl} C_{klmn} \varepsilon_{mn}$ is handled by the `ComputePiezoTensor` object. The on-diagonal jacobian contributions corresponding to,
+
+\begin{equation}
+  \begin{aligned}
+    \mathcal{J}_{\Phi_\mathrm{E},\Phi_\mathrm{E}} = \frac{\partial \mathcal{R}_{\Phi_\mathrm{E}}}{\partial \Phi_\mathrm{E}} = 0
+  \end{aligned}
+\end{equation}
+
+since this term does not explicitly depend on $\Phi_\mathrm{E}$. The off-diagonal jacobian components,
+
+\begin{equation}
+  \begin{aligned}
+    \mathcal{J}_{\Phi_\mathrm{E}, u_\beta} &= -\frac{\partial}{\partial u_j }\left(\frac{\partial \psi_h}{\partial x_j}, d_{jkl} \sigma_{kl} \right) \\
+    &= -\frac{\partial}{\partial u_\beta}\left(\frac{\partial \psi_h}{\partial x_j}, d_{jkl} C_{klmn} \varepsilon_{mn} \right)\\
+    &= -\frac{1}{2}\frac{\partial}{\partial u_\beta }\left(\frac{\partial \psi_h}{\partial x_j}, d_{jkl} C_{klmn} \left[\frac{\partial u_m}{\partial x_n}+\frac{\partial u_n}{\partial x_n}\right] \right) \\
+    &= -\frac{1}{2}\left(\frac{\partial \psi_h}{\partial x_j}, d_{jkl} C_{kl\beta\beta} \left[\frac{\partial \phi}{\partial x_n}+\frac{\partial \phi}{\partial x_n}\right] \right) \\
+  \end{aligned}
+\end{equation}
+
+using the relationship $\partial u_j / \partial u_\beta =\delta_{j\beta} \phi$ with $\phi$ the test function and $\delta_{j\beta}$ the Kronecker product.
 
 ## Example Input File Syntax
 
