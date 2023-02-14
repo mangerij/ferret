@@ -1,16 +1,18 @@
 # RotostrictiveCouplingDispDerivative
 
-!alert construction title=Undocumented Class
-The RotostrictiveCouplingDispDerivative has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Kernels/RotostrictiveCouplingDispDerivative
 
 ## Overview
 
-!! Replace these lines with information regarding the RotostrictiveCouplingDispDerivative object.
+We now consider the condition for mechanical equilibrium. In addition to the electric polarization, $\mathbf{P}$, there are ferroelectrics where secondary structural order parameters condense below the phase transition temperature. In the case of $\mathrm{BiFeO}_3$, the oxygen octahedral tilt cages can generate a contribution to the total spontaneous strain,
+
+\begin{equation}
+  \begin{aligned}
+    \varepsilon_{ij}^\mathrm{eig,A} = R_{ijkl} A_k A_l,
+  \end{aligned}
+\end{equation}
+
+where $R_{ijkl}$ is the rotostrictive coefficient tensor and $\mathbf{A}$ is the order parameter associated with the antiphase tilts.
 
 ## Example Input File Syntax
 
