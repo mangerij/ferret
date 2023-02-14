@@ -23,10 +23,10 @@
 
 registerMooseObject("FerretApp", CarrierInt);
 
-template<>
-InputParameters validParams<CarrierInt>()
+InputParameters
+CarrierInt::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
   params.addRequiredParam<Real>("ni", "intrinsic carriers");
   return params;

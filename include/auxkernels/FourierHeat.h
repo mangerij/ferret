@@ -6,14 +6,13 @@
 
 class FourierHeat;
 
-template<>
-InputParameters validParams<FourierHeat>();
-
 class FourierHeat: public AuxKernel
 {
 public:
 
 FourierHeat(const InputParameters & parameters);
+
+static InputParameters validParams();
 
 virtual ~FourierHeat() {}
 
