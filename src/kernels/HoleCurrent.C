@@ -24,10 +24,10 @@
 
 registerMooseObject("FerretApp", HoleCurrent);
 
-template<>
-InputParameters validParams<HoleCurrent>()
+InputParameters
+HoleCurrent::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
   params.addRequiredParam<Real>("Ev", "Property name of the Conduction band energy(J)");
   params.addRequiredParam<Real>("Nv", "Effective DOS of the conduction band(T=298)");
