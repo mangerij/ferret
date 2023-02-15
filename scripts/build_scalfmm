@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd scalfmm; cd ../scalfmm
+cd ../ScalFMM
 git submodule init
 git submodule update
 mkdir build
