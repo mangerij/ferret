@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd ../ScalFMM
+git submodule init
+git submodule update
+mkdir build
+cd build
+cmake .. -DSCALFMM_USE_MPI=ON -DSCALFMM_USE_FFT=OFF -DSCALFMM_USE_BLAS=OFF -DCMAKE_INSTALL_PREFIX=../Install
+make
+make install
