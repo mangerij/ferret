@@ -23,10 +23,10 @@
 
 registerMooseObject("FerretApp", ElecCurrent);
 
-template<>
-InputParameters validParams<ElecCurrent>()
+InputParameters
+ElecCurrent::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
   params.addRequiredParam<Real>("mun", "electron mobility");
   params.addRequiredParam<Real>("Nc","Effective DOS of the conduction band(T=298)");

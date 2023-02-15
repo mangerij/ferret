@@ -24,10 +24,10 @@
 
 registerMooseObject("FerretApp", FourierHeat);
 
-template<>
-InputParameters validParams<FourierHeat>()
+InputParameters
+FourierHeat::validParams()
 {
-  InputParameters params = validParams<AuxKernel>();
+  InputParameters params = AuxKernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to k*deltaT = 0");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction the variable this kernel acts in. (0 for x, 1 for y, 2 for z)");
   params.addParam<MaterialPropertyName>("thC", "Thermal Conductivity", "Property name of the thermal conductivity material property");

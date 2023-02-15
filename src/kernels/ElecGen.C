@@ -23,10 +23,10 @@
 
 registerMooseObject("FerretApp", ElecGen);
 
-template<>
-InputParameters validParams<ElecGen>()
+InputParameters
+ElecGen::validParams()
 {
-  InputParameters params = validParams<Kernel>();
+  InputParameters params = Kernel::validParams();
   params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
   params.addRequiredParam<Real>("Ec", "Property name of the Conduction band energy(J)");
   params.addRequiredParam<Real>("Nc","Effective DOS of the conduction band(T=298)");
