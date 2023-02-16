@@ -6,7 +6,7 @@ FERRET leverages the integration of multiple high-quality open-source scientific
 - MOOSE is built upon [libMesh](http://libmesh.github.io/), a C++ FEM library, to utilize its FEM basics.
 - Both MOOSE and libMesh rely on many other tools, such as [PETSc](https://www.mcs.anl.gov/petsc/).
 
-Therefore, it can be complicated to get FERRET to work -especially on a high-performance computing (HPC) cluster. 
+Therefore, it can be complicated to get FERRET to work -especially on a high-performance computing (HPC) cluster.
 
 Fortunately, the installation process has been thoroughly tested for many different operating systems and HPC configurations. The installation process can be summarized in the following steps,
 each of which should only take a handful of commands.
@@ -61,13 +61,15 @@ where `N` is the number of processors you want to use to compile FERRET in paral
 The ./configure step can include additional libraries such as BOOST which will allow compile of MOOSE objects with mathematical special functions. Or it can include an advanced fast-multipole boundary element method (FMM-BEM) developed by Prof. Xikai Jiang and co-workers. In order to use the BEM, you need to compile ScalFMM with the following commands
 
 ```bash
-cd <ferret>/contrib
-./build_scalfmm
+cd <ferret>/scripts
+sh ./build_scalfmm_local
+(may encounter an error)
+sh ./build_scalfmm_local
 cd <ferret>
-./configure --with-scalfmm=contrib/scalfmm
+./configure --with-scalfmm=ScalFMM
 make -j2
 ```
 
 For compilation of this $O(\mathrm{N})$ solver on supercomputing resources, it is recommended to avoid the ./configure step and manually set the FERRET_HAVE_SCALFMM flag. The generation of the M2L compressors for the FMM-BEM should be done in serial and then can be read on any number of processors. The M2L compressor files do not depend on the mesh, but only the flags of the FMM-BEM method.
 
-This is an experimental feature. More reading at [!cite](Jiang2016).
+This is an experimental feature at the moment and we plan to extend this capability further. More reading at [!cite](Jiang2016).
