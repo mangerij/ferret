@@ -1,13 +1,10 @@
 # Phase field method of ferroelectrics
 
-!alert construction title=Documentation in-progress
-This section requires some work before it will be finalized online. Please contact the developers if you need assistance with this aspect of the module
-
 !media media/fig1_doublewell.png style=display:block;margin:auto;width:50%; caption=Left; conventional double well energy surface of a ferroelectric below $T_C$. Right; Nonzero $P_s$ as a function of temperature.  id=fig1_doublewell
 
 The ferroelectric (FE) phase field method utilizes a thermodynamic approach to describe the FE phase transition. Within this theoretical description, these materials are characterized by the onset of a primary order parameter that becomes nonzero below a critical Curie temperature $T_C$. In the case of canonical FEs such as $\mathrm{PbTiO}_3$ or $\mathrm{BaTiO}_3$, the primary order parameter is the electric dipole moment. In both of these compounds, below $T_C$, the material symmetry is lowered from cubic to tetragonal. The ionic displacements (the relative off-centering the Ti atom) give rise, spontaneously, to a net nonzero polarization or $\mathbf{P}_s$.
 
-To describe this transition, the quasi-dynamical Landau-Gilbert-Devonshire (LGD) equation can be evolved to search for ground states of the system,
+To describe this transition, the time-dependent Landau-Ginzburg-Devonshire (TDLGD) equation can be evolved to search for ground states of the system,
 
 \begin{equation}\label{LGD}
   \begin{aligned}
@@ -25,9 +22,7 @@ In thin film samples, these domain orientations depend strongly on temperature o
   \end{aligned}
 \end{equation}
 
-where the electric field is defined in the usual way $\mathbf{E} = - \nabla \Phi_\mathrm{E}$.
-
-If the system has a strong dependence on elastic fields (as is the case for most ferroelectrics), then mechanical equilibrium can be sought be solving
+where the electric field is defined in the usual way $\mathbf{E} = - \nabla \Phi_\mathrm{E}$. If the system has a strong dependence on elastic fields (as is the case for most ferroelectrics), then mechanical equilibrium can be sought be solving
 
 \begin{equation}\label{stressdiv}
   \begin{aligned}
@@ -39,23 +34,20 @@ where $\sigma_{ij}$ is the total stress tensor and $\partial / \partial x_j$ den
 
 \begin{equation}\label{totalenergy}
   \begin{aligned}
-    f = f_\mathrm{bulk} + f_\mathrm{grad} + f_\mathrm{elastic} + f_\mathrm{elec} + f_\mathrm{electrostrict} + ...,
+    f = f_\mathrm{bulk} + f_\mathrm{\nabla P} + f_\mathrm{elastic} + f_\mathrm{elec} + f_\mathrm{electrostr} + ...,
   \end{aligned}
 \end{equation}
 
-with $f_\mathrm{bulk}$ the bulk double well potential density, $f_\mathrm{grad}$ the gradient energy density penalty for formation of domain walls, $f_\mathrm{elastic}$ linear elastic energy density, $f_\mathrm{elec}$ interaction energy density for the inclusion of an internal or external field, $f_\mathrm{electrostric}$ the electrostrictive energy density coupling between the dipole moment and the strain fields. All of these terms can be expanded up to arbitrary order depending on the material symmetry and need for accuracy of predicted spontaneous order parameter values.
+with $f_\mathrm{bulk}$ the bulk double well potential density, $f_\mathrm{\nabla P}$ the gradient energy density penalty for formation of domain walls, $f_\mathrm{elastic}$ linear elastic energy density, $f_\mathrm{elec}$ interaction energy density for the inclusion of an internal or external field, $f_\mathrm{electrostr}$ the electrostrictive energy density coupling between the dipole moment and the strain fields. All of these terms can be expanded up to arbitrary order depending on the material symmetry and need for accuracy of predicted spontaneous order parameter values.
 
 For the gradient energy density, one typically uses the lowest-order Lifshitz invariants as described in [!cite](Cao1990) and [!cite](Hlinka2006),
 
-\begin{equation}\label{lifshitz}
-  \begin{aligned}
-    f_\mathrm{grad} &=\frac{1}{2} G_{11}  \left\{ \left(\frac{\partial P_x}{\partial x} \right)^2 + \left(\frac{\partial P_y}{\partial y} \right)^2+\left(\frac{\partial P_z}{\partial z} \right)^2 \right\} +  G_{12}  \left\{\left(\frac{\partial P_x}{\partial x} \right)\left(\frac{\partial P_y}{\partial y} \right) + \left(\frac{\partial P_y}{\partial y} \right)\left(\frac{\partial P_z}{\partial z} \right) + \left(\frac{\partial P_x}{\partial x} \right)\left(\frac{\partial P_z}{\partial z} \right)\right\} \\
+\begin{equation}
+  \begin{aligned}&f_\mathrm{\nabla P} = \frac{G_{11}}{2}  \left( P_{x,x}^2 + P_{y,y}^2 + P_{z,z}^2 \right) +  G_{12}  \left(P_{x,x} P_{y,y} + P_{y,y} P_{z,z} + P_{x,x} P_{z,z} \right) + \frac{G_{44}}{2} \left[\left(P_{x,y} + P_{y,x} \right)^2+ \left(P_{y,z} + P_{z,y} \right)^2 + \left(P_{x,z} + P_{z,x}\right)^2\right]
   \end{aligned}
 \end{equation}
 
-which requires knowledge of $G_{ij}$. Higher order terms are possible although not generally neccessary to describe the domain wall structure in bulk or thin film.
 
-
-For canonical perovskites, there is a good understanding of the values of these parameters.
+which requires knowledge of $G_{ij}$ (material specific). Higher order terms are possible although not generally necessary to describe the domain wall structure in bulk or thin film. For canonical perovskites, there is a good understanding of the values of these parameters along with the bulk expansion coefficients $\alpha_{ijk...}$. A typical relaxation of the TDLGD equation is provided below which shows the resulting flux-closure structure along with the time dependence of each of the energy terms as the energy is minimized.
 
 !media media/time_evol.png style=display:block;margin:auto;width:50%; caption=Time evolution of the ferroelectric energy for a small block of material - competition arises from the formation of interfacial regions (domain walls) and the bulk energy which prefers aligned polar states.  id=time_evol

@@ -171,6 +171,187 @@
   [../]
 []
 
+[Kernels]
+
+  ###############################################
+  ##
+  ## Physical Kernel operators
+  ## to enforce TDLGD evolution 
+  ##
+  ###############################################
+
+
+  #Elastic problem
+  [./TensorMechanics]
+    use_displaced_mesh = false
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+    block = '0'
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+    block = '0'
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+    block = '0'
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+    block = '0'
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+    block = '0'
+  [../]
+  [./walled_z]
+    type = WallEnergyDerivative
+    variable = polar_z
+    component = 2
+    block = '0'
+  [../]
+
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+    block = '0'
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+    block = '0'
+  [../]
+  [./walled2_z]
+    type = Wall2EnergyDerivative
+    variable = polar_z
+    component = 2
+    block = '0'
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+    block = '0'
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+    block = '0'
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+    block = '0'
+  [../]
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+    block = '0'
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+    block = '0'
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+    block = '0'
+  [../]
+
+
+  [./polar_x_electric_E]
+    type = PolarElectricEStrong
+    variable = potential_E_int
+    block = '0'
+  [../]
+  [./FE_E_int]
+    type = Electrostatics
+    variable = potential_E_int
+    block = '0 1'
+  [../]
+
+  [./polar_electric_px]
+    type = PolarElectricPStrong
+    variable = polar_x
+    component = 0
+    block = '0'
+  [../]
+  [./polar_electric_py]
+    type = PolarElectricPStrong
+    variable = polar_y
+    component = 1
+    block = '0'
+  [../]
+  [./polar_electric_pz]
+    type = PolarElectricPStrong
+    variable = polar_z
+    component = 2
+    block = '0'
+  [../]
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable=polar_x
+    time_scale = 1.0
+    block = '0'
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable = polar_y
+    time_scale = 1.0
+    block = '0'
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+    block = '0'
+  [../]
+
+  [./u_x_time]
+    type = TimeDerivativeScaled
+    variable = u_x
+    time_scale = 1.0
+  [../]
+  [./u_y_time]
+    type = TimeDerivativeScaled
+    variable = u_y
+    time_scale = 1.0
+  [../]
+  [./u_z_time]
+    type = TimeDerivativeScaled
+    variable = u_z
+    time_scale = 1.0
+  [../]
+
+[]
+
+
+
 [AuxVariables]
 
   ######################################
@@ -537,167 +718,6 @@
     prop_names = 'permittivity'
     prop_values = '0.08854187'
   [../]
-[]
-
-
-[Kernels]
-
-  ###############################################
-  ##
-  ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
-  ##
-  ###############################################
-
-
-  #Elastic problem
-  [./TensorMechanics]
-    use_displaced_mesh = false
-    eigenstrain_names = eigenstrain
-  [../]
-
-  [./bed_x]
-    type = BulkEnergyDerivativeEighth
-    variable = polar_x
-    component = 0
-    block = '0'
-  [../]
-  [./bed_y]
-    type = BulkEnergyDerivativeEighth
-    variable = polar_y
-    component = 1
-    block = '0'
-  [../]
-  [./bed_z]
-    type = BulkEnergyDerivativeEighth
-    variable = polar_z
-    component = 2
-    block = '0'
-  [../]
-
-  [./walled_x]
-    type = WallEnergyDerivative
-    variable = polar_x
-    component = 0
-    block = '0'
-  [../]
-  [./walled_y]
-    type = WallEnergyDerivative
-    variable = polar_y
-    component = 1
-    block = '0'
-  [../]
-  [./walled_z]
-    type = WallEnergyDerivative
-    variable = polar_z
-    component = 2
-    block = '0'
-  [../]
-
-  [./electrostr_ux]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_x
-    component = 0
-    block = '0'
-  [../]
-  [./electrostr_uy]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_y
-    component = 1
-    block = '0'
-  [../]
-  [./electrostr_uz]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_z
-    component = 2
-    block = '0'
-  [../]
-
-  [./electrostr_polar_coupled_x]
-    type = ElectrostrictiveCouplingPolarDerivative
-    variable = polar_x
-    component = 0
-    block = '0'
-  [../]
-  [./electrostr_polar_coupled_y]
-    type = ElectrostrictiveCouplingPolarDerivative
-    variable = polar_y
-    component = 1
-    block = '0'
-  [../]
-  [./electrostr_polar_coupled_z]
-    type = ElectrostrictiveCouplingPolarDerivative
-    variable = polar_z
-    component = 2
-    block = '0'
-  [../]
-
-
-  [./polar_x_electric_E]
-    type = PolarElectricEStrong
-    variable = potential_E_int
-    block = '0'
-  [../]
-  [./FE_E_int]
-    type = Electrostatics
-    variable = potential_E_int
-    block = '0 1'
-  [../]
-
-  [./polar_electric_px]
-    type = PolarElectricPStrong
-    variable = polar_x
-    component = 0
-    block = '0'
-  [../]
-  [./polar_electric_py]
-    type = PolarElectricPStrong
-    variable = polar_y
-    component = 1
-    block = '0'
-  [../]
-  [./polar_electric_pz]
-    type = PolarElectricPStrong
-    variable = polar_z
-    component = 2
-    block = '0'
-  [../]
-
-  [./polar_x_time]
-    type = TimeDerivativeScaled
-    variable=polar_x
-    time_scale = 1.0
-    block = '0'
-  [../]
-  [./polar_y_time]
-    type = TimeDerivativeScaled
-    variable = polar_y
-    time_scale = 1.0
-    block = '0'
-  [../]
-  [./polar_z_time]
-    type = TimeDerivativeScaled
-    variable = polar_z
-    time_scale = 1.0
-    block = '0'
-  [../]
-
-  [./u_x_time]
-    type = TimeDerivativeScaled
-    variable = u_x
-    time_scale = 1.0
-  [../]
-  [./u_y_time]
-    type = TimeDerivativeScaled
-    variable = u_y
-    time_scale = 1.0
-  [../]
-  [./u_z_time]
-    type = TimeDerivativeScaled
-    variable = u_z
-    time_scale = 1.0
-  [../]
-
 []
 
 

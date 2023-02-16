@@ -1,9 +1,6 @@
 # Constitutive theory of thermoelectrics
 
-!alert construction title=Documentation in-progress
-This section requires some work before it will be finalized online. Please contact the developers if you need assistance with this aspect of the module
-
-Thermoelectric materials are characterized by coupled, or interdependent conduction of heat and electricity. When heat is flowing in a thermoelectric material, an electric current arises. The converse effect also happens when a voltage is applied thus changing the temperature. The static governing equations of a thermoelectric material are given by, 
+Thermoelectric materials are characterized by coupled, or interdependent conduction of heat and electricity. When heat is flowing in a thermoelectric material, an electric current arises. The converse effect also happens when a voltage is applied thus generating a heat flow. The static governing equations of a thermoelectric material are given by,
 
 \begin{equation}
   \begin{aligned}
@@ -11,7 +8,7 @@ Thermoelectric materials are characterized by coupled, or interdependent conduct
   \end{aligned}
 \end{equation}
 
-and 
+and
 
 \begin{equation}
   \begin{aligned}
@@ -19,7 +16,7 @@ and
   \end{aligned}
 \end{equation}
 
-where 
+where
 
 \begin{equation}
   \begin{aligned}
@@ -27,7 +24,7 @@ where
   \end{aligned}
 \end{equation}
 
-and 
+and
 
 \begin{equation}
   \begin{aligned}
@@ -35,6 +32,12 @@ and
   \end{aligned}
 \end{equation}
 
-The tensor components $\kappa_{ij}, S_{ij}$, and $\gamma_{ij}$ correspond to the thermal conductivity, Seebeck, and electrical conductivity respectively which require information of the material crystallographic directions. 
+The tensor components $\kappa_{ij}, S_{ij}$, and $\gamma_{ij}$ correspond to the thermal conductivity, Seebeck, and electrical conductivity tensors respectively which require information of the material crystallographic orientations. Within our block-restricted polycrystal approach, this allows for the thermoelectric properties to be evaluated in a computational box with a \textit{real} grain structure by rotating the tensors via,
 
-Within our block-restricted polycrystal approach, this allows for the thermoelectric properties to be evaluated in a computational box with a \textit{real} grain structure. More details of this method can be found in the recent work of Basuala et al Acta Materialia 228, 117743 (2022) published using FERRET. 
+\begin{equation}
+  \begin{aligned}
+    \tilde{A}_{ij} = R_{i\alpha}R_{j\beta} A_{\alpha \beta}
+  \end{aligned}
+\end{equation}
+
+where $A_{ij}$ is a second rank tensors and $R_{ij}$ is a rotation operator using the internal `RotationTensor` operation in MOOSE utils. The rotation operator $R_{ij}$ accepts Euler angles in the standard Bunge sequence ($\mathbf{ZXZ}$). More details of this method can be found in the recent work of [!cite](Basuala2022) published recently using FERRET. We aim to expand this capability by introducing material specific grain boundary conductivities that can be parameterized by first-principles calculations.

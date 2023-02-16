@@ -44,12 +44,12 @@ to find the ground state with $\Gamma_P = 1$ (arbitrary time scale). We also sol
 
 \begin{equation}
   \begin{aligned}
-    \nabla \cdot \epsilon_b \nabla \Phi_\mathrm{E} &= \nabla \cdot \mathbf{P},
-    \frac{\partial \sigma_{ij}}{\partial x_j} &= 0.
+    \nabla \cdot \epsilon_b \nabla \Phi_\mathrm{E} &= \nabla \cdot \mathbf{P},\\
+    \frac{\partial \sigma_{ij}}{\partial x_j} &= 0,
   \end{aligned}
 \end{equation}
 
-The variational derivatives of the total free energy density yield residual and jacobian contributions that are computed within the `Kernels` block,
+with $\epsilon_b$ a background dielectric permittivity. The variational derivatives of the total free energy density yield residual and jacobian contributions that are computed within the `Kernels` block,
 
 !listing tutorial/ferroelectric_domain_wall.i
          block=Kernels
@@ -92,7 +92,7 @@ We utilize the `GlobalStrain` system implemented in MOOSE to ensure periodicity 
   \end{aligned}
 \end{equation}
 
-with $\Omega$ the computational volume. We find a set of global displacement vectors `disp_x, disp_y, disp_z` (see `AuxKernels`) such that the above condition is satisfied. In the input file, we see a number of objects that allow for this additional system,
+with $\Omega$ the computational volume. We find a set of global displacement vectors `disp_x, disp_y, disp_z` (see `AuxKernels`) such that the above condition is satisfied (see [!cite](Biswas2020) for more description of the method). In the input file, we see a number of objects that allow for this additional system,
 
 !listing tutorial/ferroelectric_domain_wall.i
          block=ScalarKernels
@@ -106,10 +106,17 @@ and
          link=False
          language=python
 
-An interested user may click the hyperlink [`GlobalATiO3MaterialRVEUserObject`](source/userobjects/GlobalATiO3MaterialRVEUserObject.md) to see our implementation specific to BTO. This problem also has a number of `AuxVariables` to store the elastic strain and global displacement fields. Finally, it should be noted that in the `UserObjects` block, we also include a `Terminator` object which kills the problem when the relative change of the total energy between adjacent time steps is less than $1\times 10^{-6}$. After the problem is solved, a typical output can be viewed in ParaView as below.
+An interested user may click the hyperlink [`GlobalATiO3MaterialRVEUserObject`](source/userobjects/GlobalATiO3MaterialRVEUserObject.md) to see our implementation specific to BTO. The `UserObjects` also works the the `BCs` block,
+
+!listing tutorial/ferroelectric_domain_wall.i
+         block=BCs
+         link=False
+         language=python
+
+which ensures the appropriate periodicity along the long direction of the box. We find that setting periodicity along the $y$ and $z$ directions does not influence the system variables and is a redundant BC. This problem also has a number of `AuxVariables` to store the elastic strain and global displacement fields. Finally, it should be noted that in the `UserObjects` block, we also include a `Terminator` object which kills the problem when the relative change of the total energy between adjacent time steps is less than $1\times 10^{-6}$. After the problem is solved, a typical output can be viewed in ParaView as below.
 
 !media media/DW_prof.png style=display:block;margin:auto;width:50%; caption=Top: $P_z$ across the DW region. Bottom: Variation of $\varepsilon_{xx}$ and $\varepsilon_{yy}$ along the same arclength ($x$) in nanometers.   id=fig-ferret_tut2
 
-showing the thickness of the DW region along with the variations of the spontaneous strains $\varepsilon_{xx}$ and $\varepsilon_{yy}$. The resulting order parameters in the homogeneous region are $P_s = P_z = 0.26523$ $\mathrm{C}/\mathrm{m}^2$, and normal strains $\varepsilon_{zz} = 7.6485\times 10^{3}$ and $\varepsilon_{xx} = \varepsilon_{yy} = -3.12893 \times 10^{-3}$ which is in good agreement with the results of [!cite](Hlinka2006).
+showing the thickness of the DW region along with the variations of the spontaneous strains $\varepsilon_{xx}$ and $\varepsilon_{yy}$. The resulting order parameters in the homogeneous region are $P_s = P_z = 0.26523$ $\mathrm{C}/\mathrm{m}^2$, and normal strains $\varepsilon_{zz} = 7.6485\times 10^{3}$ and $\varepsilon_{xx} = \varepsilon_{yy} = -3.12893 \times 10^{-3}$ which is in good agreement with the results of [!cite](Hlinka2006). The thickness which can be calculated by fitting a $tanh(x)$ profile agrees well with the calculations from [!cite](Marton2010) which highlights a number of a different BTO DWs.
 
-In principle, this type of calculation can be generalized to any ferroic material (i.e. ferromagnets) to study the DW textures of order parameters in the presence of additional couplings (for example magnetoelasticity or the flexoelectric coupling to gradients in the strain field). The wall clock time of this problem is 316.8 secs on 6 processors.
+In principle, this type of calculation can be generalized to any ferroic material (i.e. ferromagnets or multiferroics) to study the DW textures of order parameters in the presence of additional couplings (for example magnetoelasticity or the flexoelectric coupling to gradients in the strain field). The wall clock time of this problem is 316.8 secs on 6 processors.

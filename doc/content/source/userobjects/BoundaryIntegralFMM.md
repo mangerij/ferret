@@ -10,7 +10,7 @@ documentation clear for users.
 
 ## Overview
 
-Boundary integral using the fast-multiple method.
+This UserObject computes a boundary integral using the fast-multiple method.
 
 ## Example Input File Syntax
 
