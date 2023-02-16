@@ -58,4 +58,4 @@ Finally we have some optional `AuxVariables` that are computed in
 
 which are stored (i.e. stresses and strains) to be viewed in the output. Some possible outputs of this tutorial problem could look like the figure below using ParaView.
 
-!media media/piezo_tutorial.png style=display:block;margin:auto;width:60%; caption=Top: Warped ($\mathbf{u}$ x100) Filter showing the modulation of the displacement vectors under the applied electric field. Bottom: $\sigma_{xx}$ and $\sigma_{zz} components as a function of time during the actuation. id=piezo_tutorial
+!media media/piezo_tutorial.png style=display:block;margin:auto;width:60%; caption=Top: Warped ($\mathbf{u}$ x100) Filter showing the modulation of the displacement vectors under the applied electric field. Bottom: $\sigma_{xx}$ and $\sigma_{zz}$ components as a function of time during the actuation. id=piezo_tutorial

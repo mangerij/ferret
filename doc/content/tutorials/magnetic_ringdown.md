@@ -6,11 +6,11 @@ This tutorial (and others) covers the basic usage of the micromagnetics implemen
 
 \begin{equation}
   \begin{aligned}
-    f_\mathrm{total} = f_\mathrm{exchange} + f_\mathrm{magnetostatic}
+    f_\mathrm{total} = f_\mathrm{exch} + f_\mathrm{magnetostatic}
   \end{aligned}
 \end{equation}
 
-where $f_\mathrm{exchange} = A_e M_s^2 \left(\nabla \cdot \mathrm{m}\right)^2$ and $f_\mathrm{magnetostatic} = M_s \mathbf{m}\cdot \Phi_\mathrm{H}$. The coefficient $A_e$ is the exchange stiffness parameter and $M_s$ the saturation magnetization density.
+where $f_\mathrm{exch} = A_e \mathbf{m}\cdot \nabla^2 \mathrm{m}2$ and $f_\mathrm{magnetostatic} = -\mathbf{M}\cdot\mathbf{H} = M_s \mathbf{m}\cdot \Phi_\mathrm{H}$. The coefficient $A_e$ is the exchange stiffness parameter, $M_s$ the saturation magnetization density, and $\Phi_\mathrm{H}$ the magnetostatic potential.
 
 We consider a magnetic body with a geometry $(20\times 20\times 3)$ which we define with the `Mesh` block.
 
@@ -19,9 +19,7 @@ We consider a magnetic body with a geometry $(20\times 20\times 3)$ which we def
          link=False
          language=python
 
-In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through Materials, Kernels, or other MOOSE objects. More on this later in this tutorial. Note that the total computational domain is $(50\times 50\times 20)$. The remaining area is defined as a vacuum block which acts as a numerical resource in order to solve for the demagnetizing field far from the magnetic body. In principle, we should take the $r\to \infty$ limit which is impossible in a numerical simulation so this area is used must be large enough such that the field from the magnetic body goes to zero.
-
-We use the MOOSE object `SubdomainBoundingBoxGenerator` to split the mesh into two blocks. In this problem,
+In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through Materials, Kernels, or other MOOSE objects. More on this later in this tutorial. Note that the total computational domain is $(50\times 50\times 20)$. The remaining area is defined as a vacuum block which acts as a numerical resource in order to solve for the demagnetizing field far from the magnetic body. In principle, we should take the $r\to \infty$ limit which is impossible in a numerical simulation so the volume that is used must be large enough such that the field from the magnetic body naturally goes to zero. We suggest that if the vacuum block approach is used, one should likely test a number of distances to ensure the expected $1/r^3$ dependence of the demagnetizing field. We use the MOOSE object `SubdomainBoundingBoxGenerator` to split the mesh into two blocks. In this problem,
 
 !listing tutorial/ringdown.i
          block=Variables
@@ -45,16 +43,14 @@ with $\mathbf{H} = - (1 / \mu_0) \delta F /\delta \mathbf{M}$. The LLG-LLB equat
          link=False
          language=python
 
-where [`MasterExchangeCartLLG`](source/kernels/MasterExchangeCartLLG.md) handles the terms involving the exchange stiffness energy density, [`MasterInteractionCartLLG`](source/kernels/MasterInteractionCartLLG.md) involves the interaction with the demagnetizing or applied magnetic fields, [`MasterLongitudinalLLB`](source/kernels/MasterLongitudinalLLB.md) is the longitudinal restoring term from the LLB approximation. Finally, we have  [`MagHStrongCart`](source/kernels/MagHStrongCart.md) and [`Electrostatics`](source/kernels/Electrostatics.md) (the Laplace equation LHS $\nabla^2 \Phi_\mathrm{H}$) for the magnetostatic Poisson equation solved at every time step.
-
-The `Materials` block,
+where [`MasterExchangeCartLLG`](source/kernels/MasterExchangeCartLLG.md) handles the terms involving the exchange stiffness energy density, [`MasterInteractionCartLLG`](source/kernels/MasterInteractionCartLLG.md) involves the interaction with the demagnetizing or applied magnetic fields, [`MasterLongitudinalLLB`](source/kernels/MasterLongitudinalLLB.md) is the longitudinal restoring term from the LLB approximation. Finally, we have  [`MagHStrongCart`](source/kernels/MagHStrongCart.md) and [`Electrostatics`](source/kernels/Electrostatics.md) (the Laplace equation LHS $\nabla^2 \Phi_\mathrm{H}$) for the magnetostatic Poisson equation solved at every time step. The user can click these hyperlinks to see the weak-form algebra necessary to construct the `Kernel` objects. The `Materials` block,
 
 !listing tutorial/ringdown.i
          block=Materials
          link=False
          language=python
 
-shows the coefficients we will use. Some comments here are also warranted.
+shows the coefficients we will use. Note that $H_\mathrm{scale}$ is provided
 
 A possible output of this tutorial problem using ParaView is provided below
 
