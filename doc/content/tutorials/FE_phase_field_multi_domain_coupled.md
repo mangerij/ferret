@@ -70,7 +70,7 @@ Poisson equation:
 
 Mechanical equilibrium:
 
-- `TensorMechanics` (MOOSE `Action`) for $\partial \sigma_{ij} / \partial x_j$
+- `TensorMechanics` (MOOSE `Action`) for $\partial \sigma_{ij} / \partial x_j = 0$
 - [`ElectrostrictiveCouplingDispDerivative`](source/kernels/ElectrostrictiveCouplingDispDerivative.md)
 
 for the different objects. Next, we define the boundary conditions on $\mathbf{P}$, $\mathbf{u}$ and $\Phi_\mathrm{E}$,
@@ -80,7 +80,7 @@ for the different objects. Next, we define the boundary conditions on $\mathbf{P
          link=False
          language=python
 
-where $x$ and $y$ are the lateral directions of the FE film. We utilize the `GlobalStrain` system implemented in MOOSE to ensure periodicity of the strain tensor components along the long direction of the box ($i = x, j = x$). This introduces a `ScalarKernel`,
+where $x$ and $y$ are the lateral directions of the FE film. We utilize the `GlobalStrain` system implemented in MOOSE to ensure periodicity of the strain tensor components along the periodic boundaries. This introduces a `ScalarKernel`,
 
 \begin{equation}
   \begin{aligned}

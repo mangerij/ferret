@@ -1,16 +1,17 @@
 # TensorPressureAux
 
-!alert construction title=Undocumented Class
-The TensorPressureAux has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /AuxKernels/TensorPressureAux
 
 ## Overview
 
-!! Replace these lines with information regarding the TensorPressureAux object.
+Calculates the trace of the stress tensor $\sigma_{ij}$ (hydrostatic pressure) according to
+
+\begin{equation}
+  \begin{aligned}
+    p &= - \frac{1}{3} tr(\sigma_{ij}) \\
+      &= - \frac{1}{3} \left\{\sigma_{xx} + \sigma_{yy} + \sigma_{zz}\right\} \\
+  \end{aligned}
+\end{equation}
 
 ## Example Input File Syntax
 

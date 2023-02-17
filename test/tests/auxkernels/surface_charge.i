@@ -269,28 +269,6 @@
 
   ######################################
   ##
-  ##  Eigenstress tensor components
-  ##
-  ######################################
-
-  [./eigs00]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '0'
-  [../]
-  [./eigs11]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '0'
-  [../]
-  [./eigs22]
-    order = CONSTANT
-    family = MONOMIAL
-    block = '0'
-  [../]
-
-  ######################################
-  ##
   ##  divP and surf charge
   ##
   ######################################
@@ -427,26 +405,6 @@
     index_i = 2
     index_j = 2
   [../]
-
-  [./eigs00]
-    type = LocalABO3EigenstressAux
-    variable = eigs00
-    index_i = 0
-    index_j = 0
-  [../]
-  [./eigs11]
-    type = LocalABO3EigenstressAux
-    variable = eigs11
-    index_i = 1
-    index_j = 1
-  [../]
-  [./eigs22]
-    type = LocalABO3EigenstressAux
-    variable = eigs22
-    index_i = 2
-    index_j = 2
-  [../]
-
 
   [./divP]
     type = DivP
