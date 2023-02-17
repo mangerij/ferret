@@ -74,7 +74,7 @@ Poisson equation:
 
 Mechanical equilibrium:
 
-- `TensorMechanics` (MOOSE `Action`) for $\partial \sigma_{ij} / \partial x_j$
+- `TensorMechanics` (MOOSE `Action`) for $\partial \sigma_{ij} / \partial x_j = 0$
 - [`ElectrostrictiveCouplingDispDerivative`](source/kernels/ElectrostrictiveCouplingDispDerivative.md)
 
 for the different objects. Note that the `Materials` block via
@@ -92,7 +92,7 @@ We utilize the `GlobalStrain` system implemented in MOOSE to ensure periodicity 
   \end{aligned}
 \end{equation}
 
-with $\Omega$ the computational volume. We find a set of global displacement vectors `disp_x, disp_y, disp_z` (see `AuxKernels`) such that the above condition is satisfied (see [!cite](Biswas2020) for more description of the method). In the input file, we see a number of objects that allow for this additional system,
+with $\Omega$ the computational volume. We find a set of global displacement vectors `disp_x, disp_y, disp_z` (see `AuxKernels`) such that the above condition is satisfied (see [!cite](Biswas2020) for an extended description of the method). In the input file, we see a number of objects that allow for this additional system,
 
 !listing tutorial/ferroelectric_domain_wall.i
          block=ScalarKernels

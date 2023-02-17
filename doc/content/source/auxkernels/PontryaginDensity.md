@@ -1,16 +1,18 @@
 # PontryaginDensity
 
-!alert construction title=Undocumented Class
-The PontryaginDensity has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /AuxKernels/PontryaginDensity
 
 ## Overview
 
-!! Replace these lines with information regarding the PontryaginDensity object.
+The topological invariant,
+
+\begin{equation}
+  \begin{aligned}
+   p = \frac{1}{4\pi} \mathbf{P}\cdot\nabla \times \mathbf{P}
+  \end{aligned}
+\end{equation}
+
+is calculated where $\mathbf{P}$ is the electric polarization vector.
 
 ## Example Input File Syntax
 

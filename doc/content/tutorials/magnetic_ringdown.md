@@ -10,7 +10,7 @@ This tutorial (and others) covers the basic usage of the micromagnetics implemen
   \end{aligned}
 \end{equation}
 
-where $f_\mathrm{exch} = A_e \mathbf{m}\cdot \nabla^2 \mathrm{m}2$ and $f_\mathrm{magnetostatic} = -\mathbf{M}\cdot\mathbf{H} = M_s \mathbf{m}\cdot \Phi_\mathrm{H}$. The coefficient $A_e$ is the exchange stiffness parameter, $M_s$ the saturation magnetization density, and $\Phi_\mathrm{H}$ the magnetostatic potential.
+where $f_\mathrm{exch} = A_e \mathbf{m}\cdot \nabla^2 \mathrm{m}$ and $f_\mathrm{magnetostatic} = -\mathbf{M}\cdot\mathbf{H} = M_s \mathbf{m}\cdot \Phi_\mathrm{H}$. The coefficient $A_e$ is the exchange stiffness parameter, $M_s$ the saturation magnetization density, and $\Phi_\mathrm{H}$ the magnetostatic potential.
 
 We consider a magnetic body with a geometry $(20\times 20\times 3)$ which we define with the `Mesh` block.
 

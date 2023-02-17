@@ -229,21 +229,6 @@ a1temp = -0.172197
     family = MONOMIAL
   [../]
 
-
-  [./eigs00]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./eigs11]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./eigs22]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-
-
   [./Ez]
     order = CONSTANT
     family = MONOMIAL
@@ -366,26 +351,6 @@ a1temp = -0.172197
     type = RankTwoAux
     variable = s22
     rank_two_tensor = stress
-    index_i = 2
-    index_j = 2
-  [../]
-
-
-  [./eigs00]
-    type = LocalABO3EigenstressAux
-    variable = eigs00
-    index_i = 0
-    index_j = 0
-  [../]
-  [./eigs11]
-    type = LocalABO3EigenstressAux
-    variable = eigs11
-    index_i = 1
-    index_j = 1
-  [../]
-  [./eigs22]
-    type = LocalABO3EigenstressAux
-    variable = eigs22
     index_i = 2
     index_j = 2
   [../]

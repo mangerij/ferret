@@ -1,16 +1,18 @@
 # ChangeInRefractiveIndexWithGCoeffPolar
 
-!alert construction title=Undocumented Class
-The ChangeInRefractiveIndexWithGCoeffPolar has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /AuxKernels/ChangeInRefractiveIndexWithGCoeffPolar
 
 ## Overview
 
-!! Replace these lines with information regarding the ChangeInRefractiveIndexWithGCoeffPolar object.
+Computes the change in the refractive indices,
+
+\begin{equation}
+  \begin{aligned}
+    \Delta n_{ij} = \frac{1}{2} B_{ij}^3 \left[\Delta B_{kl} + \Delta B_{kl}(\mathbf{P})\right].
+  \end{aligned}
+\end{equation}
+
+where $\Delta B_{ij}$ is the change in the indicatrix (i.e. due to elastooptic effects) and $\Delta B_{ij}(\mathbf{P})$ is due to a polar phase transition. The above expression does not use index summation so typically one picks $i = k$ and $j = l$. NOTE: unsure why we have a minus sign here, will change this soon.
 
 ## Example Input File Syntax
 

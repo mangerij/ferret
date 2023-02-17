@@ -1,6 +1,6 @@
 # Constitutive theory of piezoelectric materials
 
-Within FERRET/MOOSE we have implemented the governing equations of piezoelectrics which allows the user to simulate strongly coupled electromechanical phenomena. For a linear piezoelectric material, the stress-divergence equation for mechanical equilibrium reads
+Within FERRET/MOOSE we have implemented the governing equations of piezoelectrics which allows the user to simulate strongly coupled anisotropic electromechanical phenomena. For a linear piezoelectric material, the stress-divergence equation for mechanical equilibrium reads
 
 \begin{equation}
   \begin{aligned}
@@ -8,7 +8,7 @@ Within FERRET/MOOSE we have implemented the governing equations of piezoelectric
   \end{aligned}
 \end{equation}
 
-where $C_{ijkl}, \varepsilon_{kl},$ and $E_m$ are the components of the elastic stiffness tensor, elastic strain tensor, and electric field. The direct piezoeletric coefficient $d_{klm}$ is of rank three. Note that the strain tensor is defined in the usual way, $\varepsilon_{kl} = \frac{1}{2} \left( \frac{\partial u_k}{\partial x_l} + \frac{\partial u_l}{\partial x_k} \right).$
+where $C_{ijkl}, \varepsilon_{kl},$ and $E_m$ are the components of the elastic stiffness tensor, elastic strain tensor, and electric field. The direct piezoeletric coefficient $d_{klm}$ is of rank three. Note that the strain tensor is defined in the usual way, $\varepsilon_{kl} = \frac{1}{2} \left( \frac{\partial u_k}{\partial x_l} + \frac{\partial u_l}{\partial x_k} \right)$.
 
 Additionally, the Poisson equation also includes contributions from the (converse piezo) strain-charge,
 
@@ -21,7 +21,6 @@ Additionally, the Poisson equation also includes contributions from the (convers
  with $\sigma_{kl}$ being the components of the elastic stress tensor. With sufficient choice of materials parameters, Equations (1) and (2) can be solved self-consistently under arbitrary mechanical loads or applied electric fields to yield the static configuration of the electrostatic potential and elastic displacements $\mathbf{u}.$
 
 Equations (1) and (2) can be cast dynamically, to simulate piezeoelectric actuation in real time. This is done by setting the LHS of the first equation to be equal to $\partial u_i / \partial t$. The time scale can be set by a prefactor.
-
 
 Another possible use of this implementation is to rotate all of the tensorial coefficients grain-wise leading to calculations of a polycrystalline piezoelectric. Within our block-restricted polycrystal approach, this allows for the piezoelectric properties to be evaluated in a computational box with a \textit{real} grain structure by rotating the tensors via,
 
