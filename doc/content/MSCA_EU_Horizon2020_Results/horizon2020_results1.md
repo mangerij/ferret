@@ -53,7 +53,7 @@ coupled to the direction of the antiphase tilts $\mathbf{A}$ which acts to cant 
 
 A schematic of the spin order is shown in Fig. 2 (left) easy-plane anisotropy of $\mathbf{m}_\eta$ relative to $\mathbf{P}$ direction and (right) DMI-induced canting in the easy-plane (shown as cyan circles). The quantities $\mathbf{L}$ and $\mathbf{m}$ are defined such that $|\mathbf{L}| + |\mathbf{m}| = 1$ with, in general, $|\mathbf{L}| \gg |\mathbf{m}|$ reflecting the presence of a strong AFM coupling between the sublattices but with a weak noncollinearity in $\mathbf{m}_1$ and $\mathbf{m}_2$. The total weak magnetization is $\mathbf{M} = M_s \mathbf{m}$ where $M_s$ is the saturation magnetization density of the Fe sublattice ($\approx 4.0 \mu$ B/Fe) [!cite](Dixit2015).
 
-We aim to solve the couple dynamic equation system,
+We solve the couple dynamic equation system,
 
 \begin{equation}\label{eqn:TDLG}
   \begin{aligned}

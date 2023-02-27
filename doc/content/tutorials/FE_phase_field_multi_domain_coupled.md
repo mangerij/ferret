@@ -19,7 +19,10 @@ for the bulk, elastic, gradient, electrostrictive, and electrostatic free energi
          link=False
          language=python
 
-where $n_x, n_y,$ and $n_z$ are chosen accordingly such that the mesh spacing $\Delta = 1.0$ nm. In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through `Materials`, `Kernels`, or other MOOSE objects. For this problem, the length scale is introduced through the units in the `Materials` objects that connect to the `Kernels`. Note that this discretization is around the upper bound for these types of calculations since the thickness of the PTO wall is about $\Delta$. We use `SubdomainBoundingBoxGenerator` and `SideSetsBetweenSubdomainsGenerator` objects from MOOSE to split the rectilinear computational volume into two `block`s where the film sits on top of the substrate. For this example input file, we let the FE film have a thickness of 20 nm. This is a canonical problem in FE phase field problems (see [!cite](Li2001)) as it allows one to predict the domain topology as a function of temperature and an epitaxial strain. We should note that the epitaxial strain coupling is still not implemented in FERRET but this capability will be introduced in the future. As such, we just consider a free standing film.
+where $n_x, n_y,$ and $n_z$ are chosen accordingly such that the mesh spacing $\Delta = 1.0$ nm. In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through `Materials`, `Kernels`, or other MOOSE objects. For this problem, the length scale is introduced through the units in the `Materials` objects that connect to the `Kernels`. Note that this discretization is around the upper bound for these types of calculations since the thickness of the PTO wall is about $\Delta$. We use `SubdomainBoundingBoxGenerator` and `SideSetsBetweenSubdomainsGenerator` objects from MOOSE to split the rectilinear computational volume into two `block`s where the film sits on top of the substrate. For this example input file, we let the FE film have a thickness of 20 nm. This is a canonical problem in FE phase field problems (see [!cite](Li2001)) as it allows one to predict the domain topology as a function of temperature and film thickness.
+
+!alert note title=Before you proceed
+We should note that the epitaxial strain coupling is not yet implemented in FERRET but this capability will be introduced in the future. As such, we just consider a free standing stress-free film.
 
 The `Variables` block sets the `ICs` for $\langle \mathbf{P} \rangle = 0$ where the amplitude is set to be random fluctuations near 0
 
@@ -98,4 +101,7 @@ with $\Omega$ the computational volume. We find a set of global displacement vec
 are visualized below using ParaView Filters for colormaps of $|\mathbf{P}|$ and white Glyphs for the $\mathbf{P}$ directors.
 
 
-If we use the BTO `Materials` coefficients at room temperature which correspond to (in Voight notation) $C{11} = $, ... we have the below output.
+If we use the BTO `Materials` coefficients at room temperature, we have the below output.
+
+
+Both input files are provided in the tutorial folder in the FERRET root directory.
