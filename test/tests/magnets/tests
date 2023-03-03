@@ -17,4 +17,11 @@
     max_threads = 1
   [../]
 
+  [./slab.pml]
+    type = 'Exodiff'
+    input = 'slab_PML_small.i'
+    exodiff = 'slab_PML_small.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
