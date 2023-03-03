@@ -10,7 +10,7 @@ FERRET exists under the GNU General Public License. As such, it is *permissible*
    !media media/fork_button.jpg
           style=width:300px;padding:auto;
 
-3. After the forking process is done, you should be able to find your fork under your GitHub account, i.e. `https://github.com/YourGitHubUsername/raccoon`.
+3. After the forking process is done, you should be able to find your fork under your GitHub account, i.e. `https://github.com/YourGitHubUsername/ferret`.
 
 #### Create a local clone of your fork
 

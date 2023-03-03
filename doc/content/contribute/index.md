@@ -8,7 +8,7 @@ The developers of FERRET are
 
 We ask that you cite [!cite](Mangeri2017) if you use FERRET. A corresponding BibTeX entry is:
 
-```tex
+```
 @article{Mangeri2017,
   title={Topological phase transformations and intrinsic size effects in ferroelectric nanoparticles},
   author={Mangeri, John and Espinal, Yomery and Jokisaari, Andrea and Alpay, S. Pamir and Nakhmanson, Serge and Heinonen, Olle},
