@@ -20,8 +20,7 @@ along with the equation for mechanical equilibrium for the elastic strain field 
 
 \begin{equation}
   \begin{aligned}
-    \frac{\partial \sigma_{ij}}{\partial x_j} &= 0 \\
-    &= \frac{\partial}{\partial x_j}\left[C_{ijkl} \left(\varepsilon_{kl} + Q_{klmn} P_m P_n + R_{klmn} A_m A_n \right)\right],
+    \frac{\partial \sigma_{ij}}{\partial x_j} = \frac{\partial}{\partial x_j}\left[C_{ijkl} \left(\varepsilon_{kl} + Q_{klmn} P_m P_n + R_{klmn} A_m A_n \right)\right] = 0,
   \end{aligned}
 \end{equation}
 
@@ -57,13 +56,13 @@ To find the possible magnetic states in this material, we evolve the Landau-Lifs
 
 where $\mathbf{P}$ and $\mathbf{A}$ are held fixed corresponding to one of the possible eight-fold degenerate domain directions. This approximation for evaluation of ground states is suitable since the magnetic system does not appreciably influence the relaxation dynamics of the polarization since the work required to move ions (i.e. those relative displacements corresponding to $\mathbf{P}$ and $\mathbf{A}$) is much larger than those to reorient the spins on the Fe sites. The constant $\gamma$ corresponds to the electron gyromagnetic factor equal to $2.2101\times10^5$ rad. m A${}^{-1}$ s ${}^{-1}$, $\alpha$ the Gilbert damping, and $\tilde\alpha_\parallel$ the longitudinal damping constant from the LLB approximation. The effective fields are defined as $\mathbf{H}_\eta = - \mu_0^{-1} M_s^{-1} \delta f / \delta \mathbf{m}_\eta$ with $\mu_0$ the permeability of vacuum. The saturation magnetization density of the BFO sublattices is $M_s = 4.0$ $\mu$B/Fe [!cite](Dixit2015). We set $\alpha = 0.01$ and $\tilde\alpha_\parallel = 10^2$ and ringdown the magnetic system to an energy minimum.
 
-The below figure details the ringdown behavior of the sample. Here, we also look for homogeneous spins (no domain walls or texture in the $\mathbf{m}_\eta$ field).
+The below figure details the ringdown behavior of the numerical sample. Here, we also look for homogeneous spins (no domain walls or texture in the $\mathbf{m}_\eta$ field).
 
-Importantly, this analysis allowed to parameterize the DMI coupling at our level of theory, which leads to the non-vanishing moment of $\mathbf{m} = \mathbf{m}_1 + \mathbf{m}_2$.
+!media media/ringdown_abc.png style=display:block;margin:auto;width:100%; caption=Ringdown time dependence of Left: components of selected $\mathbf{m}_\eta$. Center: easy-plane angle $\theta_\eta = \cos^{-1}{(\mathbf{m}_\eta\cdot\hat{\mathbf{P}})}$ and Right: canted moment angle $\phi^\mathrm{WFM} = \cos^{-1}{(\mathbf{m}_1\cdot \mathbf{m}_2)}$.  id=fig_ringdown_abc
 
-By tracking the angle of the canted moment $\phi^\mathrm{WFM} = \cos^{-1}{\left(\mathbf{m}_1 \cdot \mathbf{m}_2 \right)}$ as a function of the strength of the DMI coupling, $D_0$, we can identify good agreement ($\phi^\mathrm{WFM} \approx 1.22^\circ$) with the available literature.
+Importantly, this analysis allowed us to parameterize the DMI coupling at our level of theory, which leads to the non-vanishing moment of $\mathbf{m} = (\mathbf{m}_1 + \mathbf{m}_2)/2$. By tracking the angle of the canted moment $\phi^\mathrm{WFM} = \cos^{-1}{\left(\mathbf{m}_1 \cdot \mathbf{m}_2 \right)}$ as a function of the strength of the DMI coupling, $D_0$, we can identify good agreement ($\phi^\mathrm{WFM} \approx 1.22^\circ$) with the available literature corresponding to $\mathbf{M} = M_s\mathbf{m} = 0.03 \mu$B/f.u..
 
-By selecting initial conditions corresponding to the six-fold possible orientations of the spin sublattice system, the below table can be obtained yielding 48 different orientations of the the Neel order $\mathbf{L} = \left(\mathbf{m}_1 - \mathbf{m}_2\right) / 2$ and total magnetization $\mathbf{m} = \left(\mathbf{m}_1 + \mathbf{m}_2\right) / 2$ dependent on the 8 possible orientations of $(\mathbf{P}\uparrow\uparrow\mathbf{A})$.
+By selecting initial conditions corresponding to the six-fold possible orientations of the spin sublattice system, the below table can be obtained yielding 48 different orientations of the the Neel order $\mathbf{L} = \left(\mathbf{m}_1 - \mathbf{m}_2\right) / 2$ and total magnetization $\mathbf{m}$ dependent on the 8 possible orientations of $(\mathbf{P}\uparrow\uparrow\mathbf{A})$.
 
 !equation
 \begin{array}{c|cccccccc}
@@ -71,6 +70,8 @@ By selecting initial conditions corresponding to the six-fold possible orientati
 \hline
  & & & & & & & & \\
  (\mathbf{P}\uparrow\uparrow\mathbf{A}): & [111] & [\bar{1}11] & [1\bar{1}\bar{1}] & [\bar{1}\bar{1}\bar{1}] & [1\bar{1}1] & [11\bar{1}] & [\bar{1}\bar{1}1] & [\bar{1}1\bar{1}] \\
+ \hline
+ & & & & & & & & \\
 \mathbf{L} \simeq & [\bar{1}10] & [101] & [101] & [\bar{1}10] & [110] & [\bar{1}10] & [\bar{1}10] & [110] \\
 & [\bar{1}01] & [110] & [110] & [\bar{1}01] & [011] & [011] & [011] & [011] \\
 & [0\bar{1}1] & [01\bar{1}] & [01\bar{1}] & [0\bar{1}1] & [\bar{1}01] & [101] & [101] & [\bar{1}01] \\
@@ -111,17 +112,33 @@ A comma in the subscript denotes a partial derivative with respect to the specif
 
 For example, consider the 2/1 (100) DW which is a commonly observed domain boundary observed in experiments. In this notation, it is indicated that, for the $2/1$ DW, two components of $\mathbf{P}$ and one component of $\mathbf{A}$ vary across the boundary whose plane normal is (100) whereis for the $3/0$ DW, $\mathbf{P}$ undergoes a full reversal where $\mathbf{A}$ is approximately unchanged across the (110)-oriented boundary plane. We label the pairs of the domains characterizing the DW as $\mathbf{P}^\mathrm{I}/\mathbf{A}^\mathrm{I}$ and $\mathbf{P}^\mathrm{II}/\mathbf{A}^\mathrm{II}$ in the Table below.
 
-After seeding a sin(x) profile for the initial state of $\mathbf{P}$ and $\mathbf{A}$ corresponding to the expected DW configuration, a typical profile of the order parameters and strain can be obtained as shown below.
+After seeding a sin(x) profile for the initial state of $\mathbf{P}$ and $\mathbf{A}$ corresponding to the expected DW configuration, a typical profile of the order parameters and strain can be obtained as shown below for the $2/1 [100]$ DW.
 
-FIG 21
+!media media/dw_21_prof.png style=display:block;margin:auto;width:30%; caption=Different components of $\mathbf{P}$ and $\mathbf{A}$ across the $2/1 [100]$ domain wall.  id=fig_dw_21_prof
 
-We compute the DW energy with $F_\mathrm{DW} = \left(F - F_0\right)/\left(N S\right)$ where $F_0$ is the corresponding monodomain energy density from the fourth-order potential integrated over the computational volume. The energy $F$ is computed from the solution that contains the DW profile with the number of DWs in the simulation box being $N$ and $S$ the surface area of the DW plane.
+We compute the DW energy with $F_\mathrm{DW} = \left(F - F_0\right)/\left(N S\right)$ where $F_0$ is the corresponding monodomain energy density from the fourth-order potential integrated over the computational volume. The energy $F$ is computed from the solution that contains the DW profile with the number of DWs in the simulation box being $N$ and $S$ the surface area of the DW plane. Therefore, $F_\mathrm{DW}$ can be computed as a function of $G_{ij}, H_{ij}$ for each wall. This allowed us to separate different contributions of the gradient coefficients. We extend this type of analysis iteratively throughout the possible DWs so that we can converge our set of coefficients yielding reasonable $F_\mathrm{DW}$ values comparable to DFT; importantly, capturing the energy hierarchy predicted (by [!cite](Dieguez2013)) for metastable walls.
 
-The agreement with DFT is shown in the below Table
+The energy hierarchy as compared to results from DFT is shown in the below Table
 
+!equation
+\begin{array}{ccccc}
+\hline
+\hline
+ & & & & & \\
+\textbf{P}^\mathrm{I}/\mathbf{A}^\mathrm{I} & \mathrm{Type} & \mathrm{DW} & \textbf{P}^\mathrm{II}/\mathbf{A}^\mathrm{II} & F_\mathrm{DW}^{(\mathrm{DFT})} & F_\mathrm{DW}^{(\mathrm{FEM})}  \\
+ & & & & & \\
+ \hline
+[111]/[111] & 0/0 & - & [111]/[111] & - & -  \\
+[111]/[111] & 0/3 & (100) & [111]/[\bar{1}\bar{1}\bar{1}] & 227 & 293  \\
+[111]/[111] & 1/1 & (100) & [11\bar{1}]/[11\bar{1}] & 151 & 162 \\
+[111]/[111] & 1/2 & (100) & [11\bar{1}]/[\bar{1}\bar{1}1] & 147 & 159  \\
+[111]/[111] & 2/1 & (100) & [1\bar{1}\bar{1}]/[\bar{1}11] & 62 & 60  \\
+[111]/[111] & 2/2 & (100) & [1\bar{1}\bar{1}]/[1\bar{1}\bar{1}] & 319 & 314 \\
+[1\bar{1}1]/[1\bar{1}1] & 3/0 & (110) & [\bar{1}1\bar{1}]/[1\bar{1}1] & 74 & 78 \\
+[1\bar{1}1]/[1\bar{1}1] & 3/3 & (110) & [\bar{1}1\bar{1}]/[\bar{1}1\bar{1}] & 255 & 263 \\
+\end{array}
 
-
-To reproduce the profiles of a 2/1 (100) DW, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex3.md).
+To reproduce the profiles of a 2/1 (100) DW, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex3.md). Other domain walls are easily obtained by switching out the `ICs`.
 
 # Domain walls in magnetization
 
@@ -129,12 +146,41 @@ To generate these results, one needs the following input files. This is detailed
 
 # Magnetoelectric switching simulations
 
+A considerable demand in AFM spintronics is to find an adequate approach to manipulate the spin order with external stimulii. In the case of noncollinear AFM BFO, the magnetization is quite weak leading to a challenge of using a uniform applied field through the Zeeman interaction. However, since BFO also displays an intrinsic electric dipole moment, it has been proposed to use an electric field to manipulate and control the magnetic texture. The technological benefits to the prospect of electric field control of magnetism has been considered for some time. While low-frequency deterministic switching of $\mathbf{P}$ has been experimentally demonstrated\cite{Heron2014}, the dynamical processes of the coupled polar-spin order at higher frequencies is still a topic of research. We highlight one such use of our modeling effort for the case of ME switching (i.e. using an electric field to switch $\mathbf{m}$).
+
+We now consider a fully-dynamical simulation where all system variables $\mathbf{P},\mathbf{A},\mathbf{u},\Phi_\mathrm{E},\mathbf{m}_1$, and $\mathbf{m}_2$ depend on time. As we are now interested in real dynamics, the time relaxation constants $\Gamma_P = 200$ $\mathrm{F}\mathrm{m}^{-1}\mathrm{s}^{-1}$ and $\Gamma_A = 83188$ $\mathrm{deg}^2\mathrm{m}^{3}\mathrm{J}^{-1} \mathrm{s}^{-1}$ in Eq.~(\ref{eqn:TDLG}) are chosen and estimated from Ref. INSERT. For our switching simulations, our initial condition of the $\mathbf{P}\uparrow\uparrow\mathbf{A}$ system is along the $[111]$ direction and \emph{homogeneous}. Since this is a homogeneous calculation, this can be considered the macrospin limit of Eq. (\ref{eqn:LLG_LLB}) as there is no domain nucleation of $\mathbf{m}$ which can be set along one of the six directions listed for the $[111]$ orientation of $\mathbf{P}$ in the above Table listing the $\mathbf{m}$ states. Since the dynamics of the AFM order are in general very fast ($100$s of GHz to THz regime), we introduce a time stepping constraint on the evolution of Eq. (\ref{eqn:LLG_LLB}) for dt $ < 0.1$ ps to ensure numerical convergence. There is no spin dissipation from conduction electrons in BFO due to its insulating nature. Therefore, we choose $\alpha$ of order $10^{-3}$ which is a reasonable assumption for BFO and other magnetic insulators.
+
+
 To generate these results, one needs the following input files. This is detailed in our examples page here.
 
 # Spin wave transport across the multiferroic domain boundary
 
+The field of spintronics relies on the generation, control, and read-out of traveling packets of spin (see [!cite](Hirohata2020)). In AFMs, the spin precessional processes can occur at low energy and additionally ultrafast frequencies (THz and above) thus leading to competitive advantages in information processing design as compared to standard CMOS technology (see [!cite](Jungwirth2016)). The basic concept of wave transmission and reflection phenomena is key to understanding how to optimize spin wave transport in these systems. Recently, [!cite](Parsonet2022) established non-volatile control of thermal magnon transport in BFO using electric fields. Their work demonstrates that the $109^\circ$ FE DWs act as a barrier to spin transport across a length-scale comprising many 100s of nm and impede the detected magnon signal useful for the device.
+
+We investigated this particular scenario mesoscopically by leveraging our model described in the previous sections. We consider the two of the commonly observed DWs in BFO experiments, the $109^\circ$ 2/1 and $71^\circ$ 1/1 (100)-oriented walls. There is a large relative difference in energies between the lattice and spin contribution  (i.e. $|f_\mathrm{latt}| \gg |f_\mathrm{sp} + f_\mathrm{MP}|$). This suggests that any application of an external magnetic field $\mathbf{H}_\mathrm{appl}$ should not appreciably influence the $\mathbf{P}$ and $\mathbf{A}$ subsystem. Therefore, we fix (in time) these order parameters in this section. We couple $\mathbf{H}_\mathrm{appl}$ to act on the weak moment through the Zeeman free energy density,
+
+\begin{equation}\label{eqn:Zeeman}
+  \begin{aligned}
+    f_\mathrm{Zeeman} = -\mathbf{m}\cdot\mathbf{H}_\mathrm{appl}
+  \end{aligned}
+\end{equation}
+
+and add it to the total free energy of the spin configuration. In order to perturb the system, we consider gaussian spin wave beams generated by a field of the form [!cite](Gruszecki2015),
+
+\begin{equation}\label{eqn:perturb}
+  \begin{aligned}
+  \mathbf{H}_\mathrm{appl} &= H_0 \, \mathrm{sinc}[k_0 (x-x_0)] \, e^{-p_0(x-x_0)^2} \mathrm{sinc}[\omega_0 (t-t_0)] \,\mathbf{h}
+  \end{aligned}
+\end{equation}
+
+where field amplitude $H_0 = 184$ kOe, excitation location $x_0$, gaussian intensity profile parameter $p_0 = 0.16$ $\mathrm{nm}^{-2}$, and $k_0 = 10$ $\mathrm{nm}^{-1}$ control the perturbation distribution in spacetime. The director $\mathbf{h}$ orients the magnetic field with respect to $\mathbf{m}$. Finally, we cut-off the pulse at $t_0 = 1$ ps and excite the spin waves at a frequency $\omega_0$. Eq.~(\ref{eqn:LLG_LLB}) is evolved with $\alpha = 0$ and Eq~(\ref{eqn:perturb}).
+
+We enforce periodicity in our computational volume along the $x, y, z$ for the $\mathbf{m}_1$ and $\mathbf{m}_2$ variables. The time-integration of Eq.~(\ref{eqn:LLG_LLB}) is set for $dt < 2$ fs time steps to ensure numerical convergence for the fast AFM dynamics in the system. We verify that our calculations are in the linear limit by adjusting the $H_0$ and determining that the perturbed amplitudes of $\mathbf{m}_\eta$ scale linearly. Finally, we monitor the system total free energy $F_\mathrm{sp} + F_\mathrm{ME}$ and $|\mathbf{m}_\eta|$ (via the LLB term) and verify that they are constant to within floating point accuracy for all time in our $\alpha = 0$ simulation.
+
+
 To generate these results, one needs the following input files. This is detailed in our examples page here.
 
 
-This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the Luxembourg Institute of Science and Technology under the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) call.
+This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
+
 !media media/euflag.png style=display:block;margin-left:auto;margin-right:auto;width:12%;

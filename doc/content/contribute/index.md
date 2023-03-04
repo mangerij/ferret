@@ -19,6 +19,7 @@ We ask that you cite [!cite](Mangeri2017) if you use FERRET. A corresponding Bib
   publisher={Royal Chemical Society}
 }
 ```
+
 A methods and benchmarking publication is in the works which will supersede this request in the future. We invite the community to contribute to this effort. You may contact one of the developers if you are interested. It also should be mentioned that you should also quote the relevant MOOSE papers in your publication if you use certain MOOSE objects or protocols (which you are). See [here](https://mooseframework.inl.gov/citing.html).
 
 # Contribute
@@ -33,6 +34,6 @@ There are many aspects of ferroics or other electronic phenomena (i.e. piezo- an
 
 # Thank you!
 
-A special thanks for all of the collaborators/co-authors of the various [`projects`](publication_highlights/publication_highlights.md) using FERRET.
+A special thanks to all of the collaborators/co-authors of the various [projects](publication_highlights/publication_highlights.md) using FERRET.
 
-We also would like to thank the code contributors and developers from Idaho National Laboratory (INL) for their continued support.
+We also would like to thank the code contributors and developers from [Idaho National Laboratory](https://inl.gov/) for their continued support.
