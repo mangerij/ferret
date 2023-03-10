@@ -120,7 +120,7 @@ MagneticPMLCart::computeQpResidual()
          {
 	 const Real gamma = (_deltasyplus + _deltapyplus)/_deltasyplus;
          const Real xi = (_q_point[_qp](1)-_y0pmlplus)/_deltawyplus;
-         const Real dudx = (1.+1./(gamma-xi))*_deltapyplus/(_deltawyplus*(gamma-xi));
+         const Real dudx = 1.+_deltapyplus/_deltawyplus*(xi/(gamma-xi))*((2.*gamma-1.)/(gamma-1.));
          return _permittivity[_qp] * _grad_u[_qp] * _grad_test[_i][_qp]/dudx;
          }
 	 else
@@ -129,7 +129,8 @@ MagneticPMLCart::computeQpResidual()
 	 {
 	   const Real gamma = (_deltasyminus + _deltapyminus)/_deltasyminus;
 	   const Real xi = -(_q_point[_qp](1)-_y0pmlminus)/_deltawyminus;
-	   const Real dudx = (1.+1./(gamma-xi))*_deltapyminus/(_deltawyminus*(gamma-xi));
+//	   const Real dudx = 1.+_deltapyminus/_deltawyminus*(xi/(gamma-xi))*((2.*gamma-xi)/(gamma-xi));
+           const Real dudx = 1.+_deltapyminus/_deltawyminus*(1./(gamma-xi)*(1.+xi/(gamma-xi))-1./gamma);
 	   return _permittivity[_qp] * _grad_u[_qp] * _grad_test[_i][_qp]/dudx;
           }
 	   else
@@ -192,7 +193,7 @@ MagneticPMLCart::computeQpJacobian()
          {
 	 const Real gamma = (_deltasyplus + _deltapyplus)/_deltasyplus;
          const Real xi = (_q_point[_qp](1)-_y0pmlplus)/_deltawyplus;
-         const Real dudx = (1.+1./(gamma-xi))*_deltapyplus/(_deltawyplus*(gamma-xi));
+         const Real dudx =  1.+_deltapyplus/_deltawyplus*(xi/(gamma-xi))*((2.*gamma-1.)/(gamma-1.));
          return _permittivity[_qp] * _grad_phi[_j][_qp] * _grad_test[_i][_qp]/dudx;
          }
 	 else */
@@ -200,7 +201,8 @@ MagneticPMLCart::computeQpJacobian()
 	 {
       	   const Real gamma = (_deltasyminus + _deltapyminus)/_deltasyminus;
            const Real xi = -(_q_point[_qp](1)-_y0pmlminus)/_deltawyminus;
-           const Real dudx = (1.+1./(gamma-xi))*_deltapyminus/(_deltawyminus*(gamma-xi));
+//           const Real  dudx = 1.+_deltapyminus/_deltawyminus*(xi/(gamma-xi))*((2.*gamma-xi)/(gamma-xi));
+           const Real dudx = 1.+_deltapyminus/_deltawyminus*(1./(gamma-xi)*(1.+xi/(gamma-xi))-1./gamma);
 	   return _permittivity[_qp] * _grad_phi[_j][_qp] * _grad_test[_i][_qp]/dudx;
           }
          else

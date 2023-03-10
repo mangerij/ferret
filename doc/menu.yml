@@ -17,7 +17,7 @@ Tutorials:
   Ferroelectric domain wall: tutorials/ferroelectric_domain_wall.md
   Ferroelectric thin film: tutorials/FE_phase_field_multi_domain_coupled.md
   Magnetic ringdown: tutorials/magnetic_ringdown.md
-  Antiferromagnetic ringdown: tutorials/AFM_ringdown.md
+  Antiferromagnetic dynamics: tutorials/AFM_dynamics.md
   Piezoelectric actuation: tutorials/piezoelectric.md
   Polycrystalline thermoelectric transport: tutorials/thermoelectric.md
 

@@ -60,4 +60,4 @@ which are stored (i.e. stresses and strains) to be viewed in the output. Some po
 
 !media media/piezo_tutorial.png style=display:block;margin:auto;width:60%; caption=Top: Warped ($\mathbf{u}$ x100) Filter showing the modulation of the displacement vectors under the applied electric field. Bottom: $\sigma_{xx}$ and $\sigma_{zz}$ components as a function of time during the actuation. id=piezo_tutorial
 
-!content pagination previous=tutorials/AFM_ringdown.md next=tutorials/thermoelectric.md
+!content pagination previous=tutorials/AFM_dynamics.md next=tutorials/thermoelectric.md

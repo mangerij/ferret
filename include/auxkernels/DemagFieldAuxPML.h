@@ -42,7 +42,7 @@ private:
   const Real &   _deltapyminus;
   const Real &   _deltawyminus;
   const Real &   _y0pmlminus;
-  const VariableGradient & _potential_H_int_grad;
+  const VariableGradient & _phi1_grad;
   const VariableGradient & _potential_H_ext_grad;
 };
 

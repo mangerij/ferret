@@ -1,3 +1,4 @@
+
 [GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
@@ -8,24 +9,24 @@
   g0 = 1.0
   Hscale = 0.004519239
   mu0 = 1.256637e-06
-  y0pmlminus = -15
+  y0pmlminus = -25
   deltasyminus = 1.0e04
   deltawyminus = 5
-  deltapyminus = 2.
+  deltapyminus = 0.1
 []
 
-alphadef = 0.05
+alphadef = 0.02
 
 [Mesh]
   [./mesh]
     type = GeneratedMeshGenerator
     dim = 3
-    nx = 40
-    ny = 70
-    nz = 20
-    xmin = -20
-    xmax = 20
-    ymin = -20
+    nx = 25
+    ny = 43
+    nz = 5
+    xmin = -50
+    xmax = 50
+    ymin = -35
     ymax = 50
     zmin = -10
     zmax = 10
@@ -33,7 +34,7 @@ alphadef = 0.05
   [./infinite_domain]
     type = SubdomainBoundingBoxGenerator
     input = mesh
-    bottom_left = '-50 -20 -10'
+    bottom_left = '-50 -35 -10'
     top_right = '50 50 10'
     block_id = 3
     block_name = infinite_domain 
@@ -41,7 +42,7 @@ alphadef = 0.05
   [./vacuum_box]
     type = SubdomainBoundingBoxGenerator
     input = infinite_domain
-    bottom_left = '-50 -15 -10'
+    bottom_left = '-50 -25 -10'
     top_right = '50 50 10'
     block_id = 2
     block_name = vacuum 
@@ -80,12 +81,15 @@ alphadef = 0.05
     block = '1'
   [../]
 
-  [./a_long]
+#NOTE: g0 is g*mu0*Ms/2 as defined by Hertel 
+#alpha is chosen to be 1.0 as in the muMag paper
+
+ [./a_long]
     type = GenericFunctionMaterial
     prop_names = 'alpha_long'
     prop_values = 'bc_func_1'
     block = '1' 
-  [../]
+ [../]
  [./constantsv]
     type = GenericConstantMaterial
     prop_names = ' permittivity'
@@ -109,6 +113,7 @@ alphadef = 0.05
     vars = 'st'
     vals = '1.e1'  #3?
   [../]
+
 []
 
 [Variables]
@@ -132,7 +137,7 @@ alphadef = 0.05
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 1
     [../]
   [../]
@@ -144,23 +149,30 @@ alphadef = 0.05
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 2
     [../]
   [../]
   [./potential_H_int]
     order = FIRST
     family = LAGRANGE
-    block = '3 1 2'
+    block = '1 2'
+  [../]
+  [./phi2]
+   order = FIRST
+   family = LAGRANGE
+   block = 3
   [../]
 []
 
 [AuxVariables]
+
   #--------------------------------------------#
   #                                            #
   #  field to seed IC that obeys constraint    #
   #                                            #
   #--------------------------------------------#
+
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
@@ -192,7 +204,12 @@ alphadef = 0.05
   [./H_y]
     order = FIRST
     family = MONOMIAL
-    block = '1 2 3'
+    block = '1 2'
+  [../]
+  [./H_y_v]
+    order = FIRST
+    family = MONOMIAL
+    block = '3'
   [../]
 []
 
@@ -215,9 +232,10 @@ alphadef = 0.05
   [../]
   [./Hy_id]
     type = DemagFieldAuxPML
-    variable = H_y
+    phi1 = phi2
+    variable = H_y_v
     component = 1
-    block = 3
+    block = '3'
   [../]
 []
 
@@ -348,20 +366,42 @@ alphadef = 0.05
   [../]
   [./infinite_domain]
     type = MagneticPMLCart
-    variable = potential_H_int
+    variable = phi2
     component = 1
-    block = 'infinite_domain'
+    block = '3'
   [../]    
 
+[]
+
+[InterfaceKernels]
+  [./PML_boundary]
+    type = InterfaceEquality
+    variable = potential_H_int
+    boundary = id_boundary
+    neighbor_var = potential_H_int
+    permittivity_neighbor = 1.
+  [../]
 []
 
 [BCs]
   [./vacuum_box]
     type = DirichletBC
+    variable = phi2
+    value = 0.
+    boundary = 'bottom'
+  [../]
+  [./other_boundaries]
+    type = DirichletBC
     variable = potential_H_int
     value = 0.
-    boundary = 'front back top bottom left right'
+    boundary = 'left right front back top '
   [../]
+  [./boundarydirichlet]
+    type = CoupledDirichletBC
+    variable = phi2
+    coupled_var = potential_H_int
+    boundary = id_boundary
+  []    
 []
 
 [Postprocessors]
@@ -486,6 +526,8 @@ alphadef = 0.05
 
   [./smp]
     type = SMP #FDP
+#     petsc_options_iname = ' -pc_type -mat_fd_coloring_err -mat_fd_type'
+#     petsc_options_value = 'lu   1.e-06   ds'
     full = true
     petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -sub_pc_type '
     petsc_options_value = '    100               1e-12      1e-9      1e-8     bjacobi   ilu'
@@ -520,16 +562,21 @@ alphadef = 0.05
 
 [Outputs]
   print_linear_residuals = false
+  [pgraph]
+  type = PerfGraphOutput
+  execute_on = final
+  level = 2
+[] 
   [./out]
     type = Exodus
-    file_base = slab_PML_small
+    file_base = slab_PML_small_25_002
     elemental_as_nodal = true
     interval = 1
     execute_on = 'initial timestep_end'
   [../]
   [./outCSV]
     type = CSV
-    file_base = slab_PML_small
+    file_base = slab_PML_small_25_002
     interval = 1
   [../]
 []
