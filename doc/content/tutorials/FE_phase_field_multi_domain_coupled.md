@@ -2,7 +2,7 @@
 
 # Tutorial 3: Ferroelectric thin film
 
-This tutorial (and others) covers the basic usage of the ferroelectric (FE) phase field method implemented in FERRET. This specific example focuses on the thin film problem for $\mathrm{PbTiO}_3$ (PTO) or $\mathrm{BaTiO}_3$ (BTO) where periodicity is enforced along $x,y$ and $z$ corresponds to the film/substrate interface plane normal.
+This tutorial (and others) covers the basic usage of the ferroelectric (FE) phase field method implemented in FERRET. This specific example focuses on the thin film problem for $\mathrm{PbTiO}_3$ (PTO) or $\mathrm{BaTiO}_3$ (BTO) where periodicity is enforced along $x,y$ and $z$ corresponds to the film/substrate interface plane normal. We consider the calculation to be at room temperature.
 
 As in Tutorial 2, we use the fully-coupled problem with electrostrictive free energy density. The total free energy density for this simulation can be written as,
 
@@ -83,7 +83,7 @@ for the different objects. Next, we define the boundary conditions on $\mathbf{P
          link=False
          language=python
 
-where $x$ and $y$ are the lateral directions of the FE film. We utilize the `GlobalStrain` system implemented in MOOSE to ensure periodicity of the strain tensor components along the periodic boundaries. This introduces a `ScalarKernel`,
+where $x$ and $y$ are the lateral directions of the FE film. We utilize the [`GlobalStrain`](https://mooseframework.inl.gov/syntax/Modules/TensorMechanics/GlobalStrain/) system implemented in MOOSE to ensure periodicity of the strain tensor components along the periodic boundaries. This introduces a `ScalarKernel`,
 
 \begin{equation}
   \begin{aligned}
@@ -98,11 +98,14 @@ with $\Omega$ the computational volume. We find a set of global displacement vec
          link=False
          language=python
 
-are visualized below using ParaView Filters for colormaps of $|\mathbf{P}|$ and white Glyphs for the $\mathbf{P}$ directors.
+are visualized below using ParaView Filters for colormaps of $|\mathbf{P}|$ and white arrow Glyphs for the $\mathbf{P}$ directors.
 
-!media media/tut_film.png style=display:block;margin:auto;width:50%; caption=$|\mathbf{P}|$ across the film sample in 3D. The Glyph filter provides the arrows corresponding to the polar director.   id=fig-ferret_tut3
+!media media/tut_film.png style=display:block;margin:auto;width:50%; caption=$|\mathbf{P}|$ across the PTO film sample in 3D. The Glyph filter provides the arrows corresponding to the polar director.   id=fig-ferret_tut3
 
 If we use the BTO `Materials` coefficients at room temperature, we have the below output.
 
+!media media/tut_film2.png style=display:block;margin:auto;width:50%; caption=$|\mathbf{P}|$ across the BTO film sample in 3D. The Glyph filter provides the arrows corresponding to the polar director.   id=fig-ferret_tut4
 
-Both input files are provided in the tutorial folder in the FERRET root directory.
+In each of the calculations, the boundary condition on $\Phi_\mathrm{E}$ is open-circuit (free) at the surface of the thin film. This leads to a strong electrostatic action to form in-plane domains. Both input files are provided in the tutorial folder in the FERRET root directory.
+
+!content pagination previous=tutorials/ferroelectric_domain_wall.md next=tutorials/magnetic_ringdown.md

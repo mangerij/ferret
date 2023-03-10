@@ -55,3 +55,5 @@ shows the coefficients we will use. Note that $H_\mathrm{scale}$ is provided
 A possible output of this tutorial problem using ParaView is provided below
 
 !media media/ringdown_tut.png style=display:block;margin:auto;width:65%; caption=Left: Magnetic $\mathbf{m}$ (normalized) texture in glyphs and the color map showing the contrast of the demagnetizing potential $\Phi_\mathrm{H}$ at the conclusion of the ringdown. The vacuum block is shown as slightly transparent. Top Right: $\mathbf{m}$ components as a function of time during the ringdown. Bottom Right: Total energy as a function of time. id=mag_tutorial
+
+!content pagination previous=tutorials/FE_phase_field_multi_domain_coupled.md next=tutorials/AFM_ringdown.md
