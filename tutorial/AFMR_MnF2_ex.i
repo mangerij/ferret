@@ -26,25 +26,6 @@ zMax = 0.01
     zmax = ${zMax}
     elem_type = HEX8
   []
-  [./cnode]
-    input = gen
-
-    ############################################
-    ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
-
-    type = ExtraNodesetGenerator
-    coord = '0.0 0.0 0.0'
-    new_boundary = 100
-  [../]
 []
 
 [GlobalParams]
@@ -63,8 +44,6 @@ zMax = 0.01
     prop_names = ' H0         Ms        g0          He        Ha      '
     prop_values = '8.0e-5    1.0      2.8e9      0.000526     8.2e-6      '
   [../]
-
-
   [./constants] # Constants used in other material properties
     type = GenericConstantMaterial
     prop_names = ' alpha     mu0   nx ny nz   long_susc t'
@@ -82,7 +61,7 @@ zMax = 0.01
 
   ##############################
   ##
-  ## Define the ramping function
+  ## Define the alpha_long
   ## expression to be used
   ##
   ##############################
@@ -187,8 +166,8 @@ zMax = 0.01
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 0.000001
-      max = 0.000002
+      min = 0.0001
+      max = 0.0002
       seed = 37
     [../]
   [../]
@@ -208,8 +187,8 @@ zMax = 0.01
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 3.141590
-      max = 3.141591
+      min = 3.1415
+      max = 3.1416
       seed = 37
     [../]
   [../]
@@ -250,6 +229,145 @@ zMax = 0.01
     family = LAGRANGE
   [../]
 []
+
+[Kernels]
+  #---------------------------------------#
+  #                                       #
+  #          Time dependence              #
+  #                                       #
+  #---------------------------------------#
+
+  [./mag1_x_time]
+    type = TimeDerivative
+    variable = mag1_x
+  [../]
+  [./mag1_y_time]
+    type = TimeDerivative
+    variable = mag1_y
+  [../]
+  [./mag1_z_time]
+    type = TimeDerivative
+    variable = mag1_z
+  [../]
+
+  [./mag2_x_time]
+    type = TimeDerivative
+    variable = mag2_x
+  [../]
+  [./mag2_y_time]
+    type = TimeDerivative
+    variable = mag2_y
+  [../]
+  [./mag2_z_time]
+    type = TimeDerivative
+    variable = mag2_z
+  [../]
+
+
+  #---------------------------------------#
+  #                                       #
+  #     AFM resonance kernel terms        #
+  #                                       #
+  #---------------------------------------#
+
+  [./afmr1_x]
+    type = UniaxialAFMSublattice
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afmr1_y]
+    type = UniaxialAFMSublattice
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afmr1_z]
+    type = UniaxialAFMSublattice
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+
+  [./afmr2_x]
+    type = UniaxialAFMSublattice
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afmr2_y]
+    type = UniaxialAFMSublattice
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afmr2_z]
+    type = UniaxialAFMSublattice
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          LLB constraint terms         #
+  #                                       #
+  #---------------------------------------#
+
+  [./llb1_x]
+    type = LongitudinalLLB
+    variable = mag1_x
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 0
+  [../]
+  [./llb1_y]
+    type = LongitudinalLLB
+    variable = mag1_y
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 1
+  [../]
+
+  [./llb1_z]
+    type = LongitudinalLLB
+    variable = mag1_z
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 2
+  [../]
+
+  [./llb2_x]
+    type = LongitudinalLLB
+    variable = mag2_x
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 0
+  [../]
+  [./llb2_y]
+    type = LongitudinalLLB
+    variable = mag2_y
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 1
+  [../]
+
+  [./llb2_z]
+    type = LongitudinalLLB
+    variable = mag2_z
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 2
+  [../]
+[]
+
 
 [AuxKernels]
   [./mag1_mag]

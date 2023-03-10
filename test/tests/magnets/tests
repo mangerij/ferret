@@ -20,7 +20,7 @@
   [./slab.pml]
     type = 'Exodiff'
     input = 'slab_PML_small.i'
-    exodiff = 'slab_PML_small.e'
+    exodiff = 'slab_PML_small_25_002.e'
     max_parallel = 1
     max_threads = 1
   [../]

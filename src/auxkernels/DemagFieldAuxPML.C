@@ -33,7 +33,7 @@ InputParameters DemagFieldAuxPML::validParams()
   params.addParam<Real>("deltapyminus",1., "pole distance");
   params.addParam<Real>("deltawyminus",1.,"distance to be scaled (dimensionfull");
   params.addParam<Real>("y0pmlminus",-1., "position at which scaling will start");	
-  params.addCoupledVar("potential_H_int", "The internal magnetic potential variable");
+  params.addCoupledVar("phi1", "The internal magnetic potential variable");
   params.addCoupledVar("potential_H_ext", "The external magnetic potential variable (disabled for now)");
   return params;
 }
@@ -46,7 +46,7 @@ DemagFieldAuxPML::DemagFieldAuxPML(const InputParameters & parameters) :
    _deltapyminus(getParam<Real>("deltapyminus")),
    _deltawyminus(getParam<Real>("deltawyminus")),
   _y0pmlminus(getParam<Real>("y0pmlminus")),
-   _potential_H_int_grad(coupledGradient("potential_H_int")),
+   _phi1_grad(coupledGradient("phi1")),
    _potential_H_ext_grad(coupledGradient("potential_H_ext"))
 {
 }
@@ -61,8 +61,9 @@ DemagFieldAuxPML::computeValue()
 	 {
 	   const Real gamma = (_deltasyminus + _deltapyminus)/_deltasyminus;
 	   const Real xi = -(_q_point[_qp](1)-_y0pmlminus)/_deltawyminus;
-	   const Real dudx = (1.+1./(gamma-xi))*_deltapyminus/(_deltawyminus*(gamma-xi));
-           return - _potential_H_int_grad[_qp](_component)/dudx - _potential_H_ext_grad[_qp](_component);
+//	   const Real dudx = 1.+_deltapyminus/_deltawyminus*(xi/(gamma-xi))*((2.*gamma-xi)/(gamma-xi));
+           const Real dudx = 1.+_deltapyminus/_deltawyminus*(1./(gamma-xi)*(1.+xi/(gamma-xi))-1./gamma);
+           return - _phi1_grad[_qp](_component)/dudx - _potential_H_ext_grad[_qp](_component);
 	  }
          else
 	   return 0.0;
