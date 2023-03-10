@@ -1,3 +1,5 @@
+!config navigation breadcrumbs=False
+
 # Results (Model)
 
 !alert construction title=Documentation in-progress
@@ -24,7 +26,7 @@ along with the equation for mechanical equilibrium for the elastic strain field 
   \end{aligned}
 \end{equation}
 
-where $Q_{ijkl}$ and $R_{ijkl}$ are the electrostrictive and rotostrictive coefficient tensors with $\mathbf{P}$ and $\mathbf{A}$ the order parameters associated with the spontaneous polarization and antiphase tilting of the oxygen octahedral cages. The mechanical equilibrium equation is assumed to be satisfied for every time step which is a reasonable approximation for the elastic strains that arise during domain evolution. The total free energy density, $f$ corresponds to the fourth-order coupled potential parameterized by the DFT work detailed [!cite](Fedorova2022). We set $\Gamma_P = \Gamma_A$ to unity for these calculations since we are only interested in the final state. Initial conditions are set such that $\mathbf{P}$ and $\mathbf{A}$ are small quantities near zero and the boundary conditions (periodic) are both chosen to produce a homogeneous solution with $\mathbf{P}$ and $\mathbf{A}$ parallel ($\mathbf{P}\uparrow\uparrow\mathbf{A}$). The magnitudes are $P_s = |\mathbf{P}| = 0.945 \,\,\mathrm{C}/\mathrm{m}^2$  and $A_s = |\mathbf{A}| = 13.398^\circ$. The spontaneous \emph{homogeneous} normal and shear strain values are listed as rows with $\varepsilon_n = 1.308\times10^{-2}$ and $\varepsilon_s = 2.95\times10^{-3}$ respectively. The eight-fold domain variant symmetry is found in the pseudocubic reference frame corresponding to the below table.
+where $Q_{ijkl}$ and $R_{ijkl}$ are the electrostrictive and rotostrictive coefficient tensors with $\mathbf{P}$ and $\mathbf{A}$ the order parameters associated with the spontaneous polarization and antiphase tilting of the oxygen octahedral cages. The mechanical equilibrium equation is assumed to be satisfied for every time step which is a reasonable approximation for the elastic strains that arise during domain evolution. The total free energy density, $f$ corresponds to the fourth-order coupled potential parameterized by the DFT work detailed [!cite](Fedorova2022). We set $\Gamma_P = \Gamma_A$ to unity for these calculations since we are only interested in the final state. Initial conditions are set such that $\mathbf{P}$ and $\mathbf{A}$ are small quantities near zero and the boundary conditions (periodic) are both chosen to produce a homogeneous solution with $\mathbf{P}$ and $\mathbf{A}$ parallel ($\mathbf{P}\uparrow\uparrow\mathbf{A}$). The magnitudes of the structural order parameters are $P_s = |\mathbf{P}| = 0.945 \,\,\mathrm{C}/\mathrm{m}^2$  and $A_s = |\mathbf{A}| = 13.398^\circ$. The spontaneous $homogeneous$ normal and shear strain values are listed as rows with $\varepsilon_n = 1.308\times10^{-2}$ and $\varepsilon_s = 2.95 \times 10^{-3}$ respectively. The eight-fold domain variant symmetry is found in the pseudocubic reference frame corresponding to the below table.
 
 !equation
 \begin{array}{c|cccccccc}
@@ -88,11 +90,11 @@ By selecting initial conditions corresponding to the six-fold possible orientati
  & [\bar{2}11] & [211] & [\bar{2}\bar{1}\bar{1}] & [2\bar{1}\bar{1}] & [121] & [\bar{1}21] & [1\bar{2}\bar{1}] & [\bar{1}\bar{2}\bar{1}] \\
 \end{array}
 
-To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex2.md).
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md).
 
 # Structural domain walls
 
-The lowest-order invariants of gradients in the structural fields is,
+The lowest-order invariants of gradients in the structural fields are,
 
 \begin{equation}\label{eqn:gradP}
   \begin{aligned}
@@ -112,9 +114,9 @@ A comma in the subscript denotes a partial derivative with respect to the specif
 
 For example, consider the 2/1 (100) DW which is a commonly observed domain boundary observed in experiments. In this notation, it is indicated that, for the $2/1$ DW, two components of $\mathbf{P}$ and one component of $\mathbf{A}$ vary across the boundary whose plane normal is (100) whereis for the $3/0$ DW, $\mathbf{P}$ undergoes a full reversal where $\mathbf{A}$ is approximately unchanged across the (110)-oriented boundary plane. We label the pairs of the domains characterizing the DW as $\mathbf{P}^\mathrm{I}/\mathbf{A}^\mathrm{I}$ and $\mathbf{P}^\mathrm{II}/\mathbf{A}^\mathrm{II}$ in the Table below.
 
-After seeding a sin(x) profile for the initial state of $\mathbf{P}$ and $\mathbf{A}$ corresponding to the expected DW configuration, a typical profile of the order parameters and strain can be obtained as shown below for the $2/1 [100]$ DW.
+After seeding a sin(x) profile for the initial state of $\mathbf{P}$ and $\mathbf{A}$ corresponding to the expected DW configuration, a typical profile of the order parameters and strain can be obtained as shown below for the $2/1 [100]$ DW when relaxing the time-dependent Landau-Ginzburg equations - Eqs. (\ref{eqn:TDLGD}).
 
-!media media/dw_21_prof.png style=display:block;margin:auto;width:30%; caption=Different components of $\mathbf{P}$ and $\mathbf{A}$ across the $2/1 [100]$ domain wall.  id=fig_dw_21_prof
+!media media/tut_21_DW.png style=display:block;margin:auto;width:47%; caption=Different components of $\mathbf{P}$ and $\mathbf{A}$ across the $2/1 [100]$ domain wall.  id=fig_dw_21_prof
 
 We compute the DW energy with $F_\mathrm{DW} = \left(F - F_0\right)/\left(N S\right)$ where $F_0$ is the corresponding monodomain energy density from the fourth-order potential integrated over the computational volume. The energy $F$ is computed from the solution that contains the DW profile with the number of DWs in the simulation box being $N$ and $S$ the surface area of the DW plane. Therefore, $F_\mathrm{DW}$ can be computed as a function of $G_{ij}, H_{ij}$ for each wall. This allowed us to separate different contributions of the gradient coefficients. We extend this type of analysis iteratively throughout the possible DWs so that we can converge our set of coefficients yielding reasonable $F_\mathrm{DW}$ values comparable to DFT; importantly, capturing the energy hierarchy predicted (by [!cite](Dieguez2013)) for metastable walls.
 
@@ -138,20 +140,55 @@ The energy hierarchy as compared to results from DFT is shown in the below Table
 [1\bar{1}1]/[1\bar{1}1] & 3/3 & (110) & [\bar{1}1\bar{1}]/[\bar{1}1\bar{1}] & 255 & 263 \\
 \end{array}
 
-To reproduce the profiles of a 2/1 (100) DW, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex3.md). Other domain walls are easily obtained by switching out the `ICs`.
+To reproduce the profiles of a 2/1 (100) DW, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex2.md). Other domain walls are easily obtained by switching out the `ICs`.
 
 # Domain walls in magnetization
 
-To generate these results, one needs the following input files. This is detailed in our examples page here.
+After we obtained the structural DW profile, the two sublattice LLG-LLB equation,
+
+\begin{equation}\label{eqn:LLG}
+  \begin{aligned}
+    \frac{\partial \mathbf{M}_\eta}{\partial t} = -\gamma \mathbf{M}_\eta\times \mathbf{H} - \frac{1}{M_s} \left(\frac{\gamma \alpha}{1+\alpha^2}\right) \mathbf{M}_\eta \times \mathbf{M}_\eta \times \mathbf{H},
+  \end{aligned}
+\end{equation}
+
+is relaxed with large $\alpha$ to find the ground states of $\mathbf{M}_\eta$ in the presence of the FE domain boundary. In this equation, $\gamma$ is the electron gyromagnetic ratio and,
+
+\begin{equation}\label{eqn:eff}
+  \begin{aligned}
+    \mathbf{H}_\eta = - \frac{\delta f}{\mu_0 M_s \delta \mathbf{m}_\eta},
+  \end{aligned}
+\end{equation
+
+is the effective field which is calculated locally by variational derivatives of the free energy density. We include a non-local exchange free energy density contribution,
+
+\begin{equation}
+  \begin{aligned}
+    f_\mathrm{\nabla L} = A_e \left[\left(\nabla L_x\right)^2 + \left(\nabla L_y\right)^2 + \left(\nabla L_z\right)^2\right].
+  \end{aligned}
+\end{equation}
+
+where $A_e = 3 \times 10^{-7}$ ergs/cm as proposed in the work of INSERT. The resulting magnetization texture is shown below.
+
+!media media/tut_11_DW.png style=display:block;margin:auto;width:47%; caption=Different components of $\mathbf{m}$ across the $1/1 [100]$ domain wall.  id=fig_dw_11_mag
+
+Here, we see in black that the component that does not switch has a slight bending indicating a small rotation. Since the $\mathbf{A}$ vector switches by $71^\circ$, this forces the weak magnetization moment $\mathbf{m} = (\mathbf{m}_1 + \mathbf{m}_2) / 2$ to also rotate by $71^\circ$.
+
+To generate these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex3.md).  Other domain walls are easily obtained by switching out the `ICs` for $\mathbf{m}_\eta$ or choosing different starting DWs of the $\mathbf{P}$ and $\mathbf{A}$ subsystem.
 
 # Magnetoelectric switching simulations
 
-A considerable demand in AFM spintronics is to find an adequate approach to manipulate the spin order with external stimulii. In the case of noncollinear AFM BFO, the magnetization is quite weak leading to a challenge of using a uniform applied field through the Zeeman interaction. However, since BFO also displays an intrinsic electric dipole moment, it has been proposed to use an electric field to manipulate and control the magnetic texture. The technological benefits to the prospect of electric field control of magnetism has been considered for some time. While low-frequency deterministic switching of $\mathbf{P}$ has been experimentally demonstrated\cite{Heron2014}, the dynamical processes of the coupled polar-spin order at higher frequencies is still a topic of research. We highlight one such use of our modeling effort for the case of ME switching (i.e. using an electric field to switch $\mathbf{m}$).
+A considerable demand in AFM spintronics is to find an adequate approach to manipulate the spin order with external stimulii. In the case of noncollinear AFM BFO, the magnetization is quite weak leading to a challenge of using a uniform applied field through the Zeeman interaction. However, since BFO also displays an intrinsic electric dipole moment, it has been proposed to use an electric field to manipulate and control the magnetic texture. The technological benefits to the prospect of electric field control of magnetism has been considered for some time. While low-frequency deterministic switching of $\mathbf{P}$ has been experimentally demonstrated\cite{Heron2014}, the dynamical processes of the coupled polar-spin order at higher frequencies is still a topic of research. We highlight one such use of our modeling effort for the case of ME switching (i.e. using an electric field to switch $\left\{\mathbf{L},\mathbf{m}\right\}$).
 
-We now consider a fully-dynamical simulation where all system variables $\mathbf{P},\mathbf{A},\mathbf{u},\Phi_\mathrm{E},\mathbf{m}_1$, and $\mathbf{m}_2$ depend on time. As we are now interested in real dynamics, the time relaxation constants $\Gamma_P = 200$ $\mathrm{F}\mathrm{m}^{-1}\mathrm{s}^{-1}$ and $\Gamma_A = 83188$ $\mathrm{deg}^2\mathrm{m}^{3}\mathrm{J}^{-1} \mathrm{s}^{-1}$ in Eq.~(\ref{eqn:TDLG}) are chosen and estimated from Ref. INSERT. For our switching simulations, our initial condition of the $\mathbf{P}\uparrow\uparrow\mathbf{A}$ system is along the $[111]$ direction and \emph{homogeneous}. Since this is a homogeneous calculation, this can be considered the macrospin limit of Eq. (\ref{eqn:LLG_LLB}) as there is no domain nucleation of $\mathbf{m}$ which can be set along one of the six directions listed for the $[111]$ orientation of $\mathbf{P}$ in the above Table listing the $\mathbf{m}$ states. Since the dynamics of the AFM order are in general very fast ($100$s of GHz to THz regime), we introduce a time stepping constraint on the evolution of Eq. (\ref{eqn:LLG_LLB}) for dt $ < 0.1$ ps to ensure numerical convergence. There is no spin dissipation from conduction electrons in BFO due to its insulating nature. Therefore, we choose $\alpha$ of order $10^{-3}$ which is a reasonable assumption for BFO and other magnetic insulators.
+We consider a fully-dynamical simulation where all system variables $\mathbf{P},\mathbf{A},\mathbf{u},\Phi_\mathrm{E},\mathbf{m}_1$, and $\mathbf{m}_2$ depend on time. As we are now interested in real dynamics, the time relaxation constants $\Gamma_P = 200$ $\mathrm{F}\mathrm{m}^{-1}\mathrm{s}^{-1}$ and $\Gamma_A = 83188$ $\mathrm{deg}^2\mathrm{m}^{3}\mathrm{J}^{-1} \mathrm{s}^{-1}$ in Eq.~(\ref{eqn:TDLG}) are chosen and estimated from Ref. INSERT. Since the dynamics of the AFM order are in general very fast ($100$s of GHz to THz regime), we introduce a time stepping constraint on the evolution of Eq. (\ref{eqn:LLG_LLB}) for dt $ < 0.1$ ps to ensure numerical convergence. To switch the $z$ component of $\mathbf{P}$, we choose our electric field to be $\mathbf{E}(\omega) = \langle 0,0,E_0 \sin{\left(\omega t\right)}\rangle$ with $E_0 = -1800$ MV/m. We select an \textbf{E} frequency of $\omega = 600$ MHz. The field is abruptly turned off after $\mathbf{P}$ has switched in order to facilitate only one switching event for analysis. The initial state is homogeneous $\mathbf{P}\uparrow\uparrow\mathbf{A}$ along $[111]$ with $\mathbf{L}||[\bar{1}01]$ and $\mathbf{m}||[1\bar{1}1]$ as one of the possibilities listed in the above Table of possible magnetic ground states.
 
+In our paper, we investigated the dependence of the switching trajectories on the Gilbert damping $\alpha$ which for magnetic insulators (and BFO) is postulated to be on the order of $10^{-3}$. Shown below in the figure, the choice of $\alpha$ strongly influences the final states of $\mathbf{L}$ despite having very similar ringdown profiles in the vicinity of the $\mathbf{P}$ switching event.
 
-To generate these results, one needs the following input files. This is detailed in our examples page here.
+!media media/tut_SW.png style=display:block;margin:auto;width:67%; caption=Homogeneous switching with Left: $\alpha = 0.003$ and Right: $\alpha = 0.01$. The dynamics of the Neel vector $\mathbf{L}$ are acquired using a time-dependent electric field at frequency $\omega = 600$ MHz.  id=fig_sw
+
+Not shown here is the time dependence of the weak magnetization $\mathbf{m}$ which also switches in both cases (see article).
+
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex4.md). Other switching trajectories are easily obtained by changing the `ICs` for $\mathbf{m}_\eta$ and orientations of $\mathbf{E}$.
 
 # Spin wave transport across the multiferroic domain boundary
 
@@ -173,14 +210,18 @@ and add it to the total free energy of the spin configuration. In order to pertu
   \end{aligned}
 \end{equation}
 
-where field amplitude $H_0 = 184$ kOe, excitation location $x_0$, gaussian intensity profile parameter $p_0 = 0.16$ $\mathrm{nm}^{-2}$, and $k_0 = 10$ $\mathrm{nm}^{-1}$ control the perturbation distribution in spacetime. The director $\mathbf{h}$ orients the magnetic field with respect to $\mathbf{m}$. Finally, we cut-off the pulse at $t_0 = 1$ ps and excite the spin waves at a frequency $\omega_0$. Eq.~(\ref{eqn:LLG_LLB}) is evolved with $\alpha = 0$ and Eq~(\ref{eqn:perturb}).
+where field amplitude $H_0 = 184$ kOe, excitation location $x_0$, gaussian intensity profile parameter $p_0 = 0.16$ $\mathrm{nm}^{-2}$, and $k_0 = 10$ $\mathrm{nm}^{-1}$ control the perturbation distribution in spacetime. The director $\mathbf{h}$ orients the magnetic field with respect to $\mathbf{m}$. Finally, we cut-off the pulse at $t_0 = 1$ ps and excite the spin waves at a frequency $\omega_0$. Eq. (\ref{eqn:LLG_LLB}) is evolved with $\alpha = 0$ and Eq. (\ref{eqn:perturb}).
 
-We enforce periodicity in our computational volume along the $x, y, z$ for the $\mathbf{m}_1$ and $\mathbf{m}_2$ variables. The time-integration of Eq.~(\ref{eqn:LLG_LLB}) is set for $dt < 2$ fs time steps to ensure numerical convergence for the fast AFM dynamics in the system. We verify that our calculations are in the linear limit by adjusting the $H_0$ and determining that the perturbed amplitudes of $\mathbf{m}_\eta$ scale linearly. Finally, we monitor the system total free energy $F_\mathrm{sp} + F_\mathrm{ME}$ and $|\mathbf{m}_\eta|$ (via the LLB term) and verify that they are constant to within floating point accuracy for all time in our $\alpha = 0$ simulation.
+We enforce periodicity in our computational volume along the $x, y, z$ for the $\mathbf{m}_1$ and $\mathbf{m}_2$ variables. The time-integration of Eq.~(\ref{eqn:LLG_LLB}) is set for $dt < 2$ fs time steps to ensure numerical convergence for the fast AFM dynamics in the system. We verify that our calculations are in the linear limit by adjusting the $H_0$ and determining that the perturbed amplitudes of $\mathbf{m}_\eta$ scale linearly. Finally, we monitor the system total free energy $F_\mathrm{sp} + F_\mathrm{ME}$ and $|\mathbf{m}_\eta|$ (via the LLB term) and verify that they are both constant for all time in our $\alpha = 0$ simulation.
 
+In the below video, we plot the excess energy as as a function of the arclength (perpendicular) to the DW in nanometers. The animation shows the time dependence of the spin wave package as it hits the DW located at 22 nm.
 
-To generate these results, one needs the following input files. This is detailed in our examples page here.
+!media media/sw_ex.mp4 style=display:block;margin:auto;width:67%; caption=Spin wave transport through the 2/1 (100) FE domain boundary. The color map on the Gylphs is set for $m_y = m_z$ which changes sign across the DW. The right image is a plot along the arclength $[100]$ of the components of $\mathbf{m}$. id=fig_sw_ex
 
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex5.md). Other spin wave transport calculations can be set up by changing the initial perturbing field or changing the `ICs` for $\{\mathbf{P},\mathbf{A},\mathbf{m}_\eta\}$ corresponding to any of the DWs described above.
 
 This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
 
 !media media/euflag.png style=display:block;margin-left:auto;margin-right:auto;width:12%;
+
+!content pagination previous=MSCA_EU_Horizon2020_Results/horizon2020_results1.md next=MSCA_EU_Horizon2020_Results/horizon2020_ex1.md

@@ -125,4 +125,6 @@ and
          link=False
          language=python
 
-These flags can be optimized to lead to less wall clock times but this is a subject of future work and we encourage potential Ferret users to help our community in this endeavor.
+These flags can be optimized to lead to less wall clock times but this is a subject of future work.
+
+!content pagination next=tutorials/ferroelectric_domain_wall.md

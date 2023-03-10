@@ -1,6 +1,6 @@
 # Micromagnetic theory of ferromagnets
 
-The micromagnetic approach to modeling magnetic systems is similar to the phase field method in the sense that a continuum description of an order parameter is provided. In ferromagnets, below the critical temperature, the spins order forming a nonzero and net spin magnetization $\mathbf{M}$ [!cite](StohrBook). Additionally, the spins respond to a specific symmetry characterized by the presence (or absence) of magnetocrystalline anisotropy. This drives the tendency to form ordered domains but competitions from the ferromagnetic exchange or the demagnetizing fields (internal or external) can favor other spin textures such as vortices, spin cycloids, or skymrions. To predict the magnetic ground states (and/or their dynamics), the Landau-Lifshitz-Gilbert (LLG) equation is used,
+The micromagnetic approach to modeling magnetic systems is similar to the phase field method in the sense that a continuum description of an order parameter is provided. In ferromagnets, below the critical temperature, the spins order forming a nonzero and net spin magnetization $\mathbf{M}$ - see [!cite](StohrBook). Additionally, the spins respond to a specific symmetry characterized by the presence (or absence) of magnetocrystalline anisotropy. This drives the tendency to form ordered domains but competitions from the ferromagnetic exchange or the demagnetizing fields (internal or external) can favor other spin textures such as vortices, spin cycloids, or skymrions. To predict the magnetic ground states (and/or their dynamics), the Landau-Lifshitz-Gilbert (LLG) equation is used,
 
 \begin{equation}\label{LLG}
   \begin{aligned}
@@ -22,7 +22,7 @@ in which the latter term provides a longitudinal restoring force to $\mathbf{m}$
 
 # Micromagnetic theory for antiferromagnets
 
-If the material is an antiferromagnet, then the spin system forms two sublattices $(\mathbf{M}_1, \mathbf{M}_2)$ whose interaction is mediated by a short-range (typically nearest-neighbor) exchange. To simulate an antiferromagnet in the micromagnetic level of theory, we have the two-sublattice LLG equation,
+If the material is an antiferromagnet, then the spin system forms two sublattices $(\mathbf{M}_1, \mathbf{M}_2)$ whose interaction is mediated by a short-range (typically nearest-neighbor) exchange. To simulate an antiferromagnet at the micromagnetic level of theory, we have the two-sublattice LLG equation,
 
 \begin{equation}
   \begin{aligned}
@@ -30,4 +30,4 @@ If the material is an antiferromagnet, then the spin system forms two sublattice
   \end{aligned}
 \end{equation}
 
-where $\eta = 1, 2$. In a collinear antiferromagnet, the total net magnetization, $\mathbf{M} = \mathbf{M}_1 + \mathbf{M}_2$, is zero indicating that the spin sublattices perfectly compensating each other. However, under a field, this symmetry is broken leading to resonance phenomena due to the conservative term. As mentioned before, one can choose to use the LLB equation or let the modulus be renormalized at every time step for $\mathbf{M}_\eta$.
+where $\eta = 1, 2$. In a collinear antiferromagnet, the total net magnetization, $\mathbf{M} = \mathbf{M}_1 + \mathbf{M}_2$, is zero indicating that the spin sublattices perfectly compensating each other. However, under a field, this symmetry is broken leading to resonance phenomena due to the conservative term. As mentioned before, one can choose to use the LLB equation or let the modulus be renormalized at every time step for $\mathbf{M}_\eta$ by a MOOSE userobject.
