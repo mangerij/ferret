@@ -10,16 +10,16 @@ This tutorial (and others) covers the basic usage of the micromagnetics implemen
   \end{aligned}
 \end{equation}
 
-where $f_\mathrm{exch} = A_e \mathbf{m}\cdot \nabla^2 \mathrm{m}$ and $f_\mathrm{magnetostatic} = -\mathbf{M}\cdot\mathbf{H} = M_s \mathbf{m}\cdot \Phi_\mathrm{H}$. The coefficient $A_e$ is the exchange stiffness parameter, $M_s$ the saturation magnetization density, and $\Phi_\mathrm{H}$ the magnetostatic potential.
+where $f_\mathrm{exch} = A_e \mathbf{m}\cdot \nabla^2 \mathbf{m}$ and $f_\mathrm{magnetostatic} = -\mathbf{M}\cdot\mathbf{H} = M_s \mathbf{m}\cdot \Phi_\mathrm{H}$. The coefficient $A_e$ is the exchange stiffness parameter, $M_s$ the saturation magnetization density, and $\Phi_\mathrm{H}$ the magnetostatic potential.
 
-We consider a magnetic body with a geometry $(20\times 20\times 3)$ which we define with the `Mesh` block.
+We consider a magnetic body with a geometry which we define with the `Mesh` block.
 
 !listing tutorial/ringdown.i
          block=Mesh
          link=False
          language=python
 
-In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through Materials, Kernels, or other MOOSE objects. More on this later in this tutorial. Note that the total computational domain is $(50\times 50\times 20)$. The remaining area is defined as a vacuum block which acts as a numerical resource in order to solve for the demagnetizing field far from the magnetic body. In principle, we should take the $r\to \infty$ limit which is impossible in a numerical simulation so the volume that is used must be large enough such that the field from the magnetic body naturally goes to zero. We suggest that if the vacuum block approach is used, one should likely test a number of distances to ensure the expected $1/r^3$ dependence of the demagnetizing field. We use the MOOSE object `SubdomainBoundingBoxGenerator` to split the mesh into two blocks. In this problem,
+In general, the geometry defined in the 'Mesh' block *never* carries units. The length scale is introduced through Materials, Kernels, or other MOOSE objects. More on this later in this tutorial. Note that the total computational domain is $(100\times 100\times 20)$. The remaining area is defined as a vacuum block which acts as a numerical resource in order to solve for the demagnetizing field far from the magnetic body. In principle, we should take the $r\to \infty$ limit which is impossible in a numerical simulation so the volume that is used must be large enough such that the field from the magnetic body naturally goes to zero. We suggest that if the vacuum block approach is used, one should likely test a number of distances to ensure the expected $1/r^3$ dependence of the demagnetizing field. We use the MOOSE object `SubdomainBoundingBoxGenerator` to split the mesh into two blocks. In this problem,
 
 !listing tutorial/ringdown.i
          block=Variables
@@ -50,9 +50,7 @@ where [`MasterExchangeCartLLG`](source/kernels/MasterExchangeCartLLG.md) handles
          link=False
          language=python
 
-shows the coefficients we will use. Note that $H_\mathrm{scale}$ is provided
-
-A possible output of this tutorial problem using ParaView is provided below
+shows the coefficients we will use. Note that $H_\mathrm{scale}$ is provided to change the time scale of the problem into nanoseconds. A possible visualization output of this tutorial problem using ParaView is provided below
 
 !media media/ringdown_tut.png style=display:block;margin:auto;width:65%; caption=Left: Magnetic $\mathbf{m}$ (normalized) texture in glyphs and the color map showing the contrast of the demagnetizing potential $\Phi_\mathrm{H}$ at the conclusion of the ringdown. The vacuum block is shown as slightly transparent. Top Right: $\mathbf{m}$ components as a function of time during the ringdown. Bottom Right: Total energy as a function of time. id=mag_tutorial
 
