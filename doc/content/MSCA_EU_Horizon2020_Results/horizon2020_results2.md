@@ -44,7 +44,7 @@ where $Q_{ijkl}$ and $R_{ijkl}$ are the electrostrictive and rotostrictive coeff
 
 Note that $(\mathbf{P} \uparrow \downarrow \mathbf{A})$ is also a possible minimized energy solution of the thermodynamic potential $f$. Due to the symmetry of the electrostrictive and rotostrictive coupling terms, the table is left invariant under full reversal of $\mathbf{A}$. The free energy density of the eight-fold domain possibilities is -15.5653 $\mathrm{eV}\cdot\mathrm{nm}^{-3}$.
 
-To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md).
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md) for more details on the input file.
 
 # Antiferromagnetic ringdown (homogeneous spin state)
 
@@ -90,7 +90,7 @@ By selecting initial conditions corresponding to the six-fold possible orientati
  & [\bar{2}11] & [211] & [\bar{2}\bar{1}\bar{1}] & [2\bar{1}\bar{1}] & [121] & [\bar{1}21] & [1\bar{2}\bar{1}] & [\bar{1}\bar{2}\bar{1}] \\
 \end{array}
 
-To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md).
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md) for details on the input file.
 
 # Structural domain walls
 
