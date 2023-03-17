@@ -1,10 +1,11 @@
 
-Dedef = 3.0
-D0def = 0.01
-K1def = -0.2
-K1cdef = -0.01
-Ktdef = -0.0001
-alphadef = 0.01
+Dedef = 3.7551
+D0def = 0.003
+K1def = -5.0068
+K1cdef = -0.0550748
+Ktdef = -0.00365997
+
+alphadef = 0.1
 
 [Mesh]
   [fileload]
@@ -584,6 +585,22 @@ alphadef = 0.01
     type = TimestepSize
   [../]
 
+  [./ph]
+    type = ElementAverageValue
+    execute_on = 'initial timestep_end final'
+    variable = ph
+  [../]
+  [./th1]
+    type = ElementAverageValue
+    execute_on = 'initial timestep_end final'
+    variable = th1
+  [../]
+  [./th2]
+    type = ElementAverageValue
+    execute_on = 'initial timestep_end final'
+    variable = th2
+  [../]
+
   [./FafmSLexch]
     type = AFMSublatticeSuperexchangeEnergy
     execute_on = 'initial timestep_end final'
@@ -671,12 +688,19 @@ alphadef = 0.01
     dt = dt 
     execute_on = 'timestep_end final'
   [../]
+
+
+  [./elapsed]
+    type = PerfGraphData
+    section_name = "Root"  # for profiling the problem
+    data_type = total
+  [../]
 []
 
 [UserObjects]
   [./kill]
     type = Terminator
-    expression = 'perc_change <= 1.0e-8'
+    expression = 'perc_change <= 1.0e-5'
   [../]
 []
 
@@ -698,7 +722,7 @@ alphadef = 0.01
   [../]
 
   dtmin = 1e-18
-  dtmax = 1.25e-7
+  dtmax = 1.0e-6
 
   [./TimeStepper]
     type = IterationAdaptiveDT
@@ -706,8 +730,6 @@ alphadef = 0.01
     linear_iteration_ratio = 100
     dt = 1e-8
   [../]
-
-  num_steps = 20
 []
 
 [Outputs]
@@ -716,7 +738,7 @@ alphadef = 0.01
     type = Exodus
     file_base = out_BFO_P0A0_mRD
     elemental_as_nodal = true
-    interval = 2
+    interval = 4
   [../]
 []
 

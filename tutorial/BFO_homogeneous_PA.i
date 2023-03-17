@@ -1,10 +1,10 @@
-Nx = 5
-Ny = 5
-Nz = 5
+Nx = 3
+Ny = 3
+Nz = 3
 
-xMax = 2.0
-yMax = 2.0
-zMax = 2.0
+xMax = 1.0
+yMax = 1.0
+zMax = 1.0
 
 g11 = 12e-3
 g12 = -3.0e-3
@@ -71,19 +71,19 @@ h44 = 0.8e-3
 [Functions]
   [./constPm]
     type = ParsedFunction
-    value = -0.54
+    value = -0.50
   [../]
   [./constPp]
     type = ParsedFunction
-    value = 0.54
+    value = 0.50
   [../]
   [./constAm]
     type = ParsedFunction
-    value = -7.37
+    value = -7.1
   [../]
   [./constAp]
     type = ParsedFunction
-    value = 7.37
+    value = 7.1
   [../]
 []
 
@@ -151,183 +151,6 @@ h44 = 0.8e-3
   [./potential_E_int]
     order = FIRST
     family = LAGRANGE
-  [../]
-[]
-
-
-[AuxVariables]
-  [./disp_x]
-  [../]
-  [./disp_y]
-  [../]
-  [./disp_z]
-  [../]
-  [./s00]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./s01]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./s10]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./s11]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e00]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e01]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e10]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e11]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e22]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e12]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e21]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e02]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-  [./e20]
-    order = CONSTANT
-    family = MONOMIAL
-  [../]
-[]
-
-[AuxKernels]
-  [./disp_x]
-    type = GlobalDisplacementAux
-    variable = disp_x
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 0
-  [../]
-  [./disp_y]
-    type = GlobalDisplacementAux
-    variable = disp_y
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 1
-  [../]
-  [./disp_z]
-    type = GlobalDisplacementAux
-    variable = disp_z
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 2
-  [../]
-  [./s00]
-    type = RankTwoAux
-    variable = s00
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 0
-  [../]
-  [./s01]
-    type = RankTwoAux
-    variable = s01
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 1
-  [../]
-  [./s10]
-    type = RankTwoAux
-    variable = s10
-    rank_two_tensor = stress
-    index_i = 1
-    index_j = 0
-  [../]
-  [./s11]
-    type = RankTwoAux
-    variable = s11
-    rank_two_tensor = stress
-    index_i = 1
-    index_j = 1
-  [../]
-  [./e00]
-    type = RankTwoAux
-    variable = e00
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 0
-  [../]
-  [./e01]
-    type = RankTwoAux
-    variable = e01
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 1
-  [../]
-  [./e10]
-    type = RankTwoAux
-    variable = e10
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 0
-  [../]
-  [./e11]
-    type = RankTwoAux
-    variable = e11
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 1
-  [../]
-  [./e12]
-    type = RankTwoAux
-    variable = e12
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 2
-  [../]
-  [./e21]
-    type = RankTwoAux
-    variable = e21
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 1
-  [../]
-  [./e20]
-    type = RankTwoAux
-    variable = e20
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 0
-  [../]
-  [./e02]
-    type = RankTwoAux
-    variable = e02
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 2
-  [../]
-  [./e22]
-    type = RankTwoAux
-    variable = e22
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 2
   [../]
 []
 
@@ -635,8 +458,182 @@ h44 = 0.8e-3
     variable = u_z
     time_scale = 1.0
   [../]
+[]
 
+[AuxVariables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./s00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e21]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e02]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e20]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
 
+[AuxKernels]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
 []
 
 [ScalarKernels]
@@ -888,14 +885,11 @@ h44 = 0.8e-3
     type = IterationAdaptiveDT
     optimal_iterations = 25  #usually 10
     linear_iteration_ratio = 100
-    dt = 0.08
+    dt = 0.001
     growth_factor = 1.1
   [../]
-
-  num_steps = 2
 []
 
-#=
 [Outputs]
   print_linear_residuals = false
   perf_graph_live = false
