@@ -103,6 +103,12 @@ Note that $(\mathbf{P} \uparrow \downarrow \mathbf{A})$ is also a possible minim
 
 # Homogeneous spin order
 
+For this example, please consult `BFO_P0A0_mRD.i` in the tutorials subdirectory. We consider the output of the previous simulation $\{\mathbf{P},\mathbf{A}\}$ as an initial condition to find the homogeneous spin ground state. To do this, we use the following `Mesh` and `Variables` blocks, 
+
+Our variables to solve for are the set of sublattice magnetizations $\{\mathbf{m}_1, \mathbf{m}_2\}$ with postprocessed outputs $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$ and $\mathbf{m} = \mathbf{m}_1 + \mathbf{m}_2$. Note that the conventional factor of 2 is missing from the output of these calculations.
+
+
+
 This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
 
 !media media/euflag.png style=display:block;margin-left:auto;margin-right:auto;width:12%;
