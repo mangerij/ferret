@@ -5,7 +5,11 @@
 !alert construction title=Documentation in-progress
 This section will have information that will be available when the review process is complete for the main publication encompassing this work. Please contact the developers if you need assistance with this aspect of the module.
 
-This page details how to obtain inhomogeneous solutions of BFO for the structural order (i.e. FE DWs).
+This page details how to obtain inhomogeneous solutions of BFO for the structural order (i.e. FE DWs). The relevant input file is `BFO_dwP1A1_100.i` located in the FERRET tutorials subdirectory. The name of the input file is already suggestive, as it identifies that one component of $\mathbf{P}$ and one component $\mathbf{A} will switch indicating that this is for the 1/1 DW (see our article on arXiv for more description of this notation). The DW plane is oriented with the plane normal along [100], hence this is a 1/1 (100) DW.
+
+
+
+This calculation runs in 68.3 seconds on 6 processors.
 
 
 This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
