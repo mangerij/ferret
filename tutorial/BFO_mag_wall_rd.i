@@ -435,7 +435,6 @@ sDW = 23.53
     component = 2
   [../]
 
-
   #---------------------------------------#
   #                                       #
   #     AFM sublattice DMI                #
@@ -804,52 +803,6 @@ sDW = 23.53
     execute_on = 'initial timestep_end final'
   [../]
 
-
-  [./smallSignalMag_dt_x]
-    type = ADTimeDerivativeAux
-    variable = dSSMag_dt_x
-    functor = SSMag_x
-    factor = 1
-#    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_dt_y]
-    type = ADTimeDerivativeAux
-    variable = dSSMag_dt_y
-    functor = SSMag_y
-    factor = 1
-#    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_dt_z]
-    type = ADTimeDerivativeAux
-    variable = dSSMag_dt_z
-    functor = SSMag_z
-    factor = 1
-#    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./L_dt_x]
-    type = ADTimeDerivativeAux
-    variable = dL_dt_x
-    functor = Neel_L_x
-    factor = 1
- #   execute_on = 'initial timestep_end final'
-  [../]
-  [./L_dt_y]
-    type = ADTimeDerivativeAux
-    variable = dL_dt_y
-    functor = Neel_L_y
-    factor = 1
- #   execute_on = 'initial timestep_end final'
-  [../]
-  [./L_dt_z]
-    type = ADTimeDerivativeAux
-    variable = dL_dt_z
-    functor = Neel_L_z
-    factor = 1
- #   execute_on = 'initial timestep_end final'
-  [../]
-#
-
   [./phc]
     type = AngleBetweenTwoVectors
     variable = ph
@@ -974,8 +927,8 @@ sDW = 23.53
   #---------------------------------------#
   #                                       #
   #  periodic magnetization distribution  #
-  #     =                                  #
-  #--------------------------=-------------#
+  #                                       #
+  #---------------------------------------#
 
   [./Periodic]
     [./x]
@@ -1024,8 +977,6 @@ sDW = 23.53
     variable = Neel_L_z
     execute_on = 'initial timestep_end final'
   [../]
-
-#
 
   [./<m1x>]
     type = ElementAverageValue
@@ -1108,7 +1059,6 @@ sDW = 23.53
     Neel_L_y = Neel_L_y
     Neel_L_z = Neel_L_z
   [../]
-
 
   #---------------------------------------#
   #                                       #
@@ -1219,7 +1169,7 @@ sDW = 23.53
   #---------------------------------------#
   #                                       #
   #            Solver options             #
-  #           =                            #
+  #                                       #
   #---------------------------------------#
 
   [./smp]
@@ -1265,4 +1215,3 @@ sDW = 23.53
     file_base = out_BFO_P111bA111b-P111bA111b_m1
   [../]
 []
-#===
