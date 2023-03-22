@@ -1,7 +1,7 @@
 
 
   ##############################
-  ###
+  ##
   ## UNITS:
   ##
   ##   gamma = (2.2101*10^5 / 2 pi) m/C
@@ -18,7 +18,7 @@
   ##    of 0.160218 pg nm^2 / mus^2 
   ##    or 1.60218*10^{-22} J
   ##    or 0.001 eV
-  ##==
+  ##
   ##############################
 
 
@@ -356,243 +356,6 @@ sDW = 23.53
   [../]
 
 []
-
-
-[AuxKernels]
-  [./mag1_mag]
-    type = VectorMag
-    variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./mag2_mag]
-    type = VectorMag
-    variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-
-  [./Neel_Lx]
-    type = VectorDiffOrSum
-    variable = Neel_L_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Ly]
-    type = VectorDiffOrSum
-    variable = Neel_L_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Lz]
-    type = VectorDiffOrSum
-    variable = Neel_L_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./smallSignalMag_x]
-    type = VectorDiffOrSum
-    variable = SSMag_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_y]
-    type = VectorDiffOrSum
-    variable = SSMag_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_z]
-    type = VectorDiffOrSum
-    variable = SSMag_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-
-
-  [./smallSignalMag_dt_x]
-    type = ADTimeDerivativeAux
-    variable = dSSMag_dt_x
-    functor = SSMag_x
-    factor = 1
-#    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_dt_y]
-    type = ADTimeDerivativeAux
-    variable = dSSMag_dt_y
-    functor = SSMag_y
-    factor = 1
-#    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_dt_z]
-    type = ADTimeDerivativeAux
-    variable = dSSMag_dt_z
-    functor = SSMag_z
-    factor = 1
-#    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./L_dt_x]
-    type = ADTimeDerivativeAux
-    variable = dL_dt_x
-    functor = Neel_L_x
-    factor = 1
- #   execute_on = 'initial timestep_end final'
-  [../]
-  [./L_dt_y]
-    type = ADTimeDerivativeAux
-    variable = dL_dt_y
-    functor = Neel_L_y
-    factor = 1
- #   execute_on = 'initial timestep_end final'
-  [../]
-  [./L_dt_z]
-    type = ADTimeDerivativeAux
-    variable = dL_dt_z
-    functor = Neel_L_z
-    factor = 1
- #   execute_on = 'initial timestep_end final'
-  [../]
-#
-
-  [./phc]
-    type = AngleBetweenTwoVectors
-    variable = ph
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = mag2_x
-    var2y = mag2_y
-    var2z = mag2_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th1c]
-    type = AngleBetweenTwoVectors
-    variable = th1
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th2c]
-    type = AngleBetweenTwoVectors
-    variable = th2
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          Energy density               #
-  #                                       #
-  #---------------------------------------#
-
-  [./cEdmi]
-    type = AFMSublatticeDMInteractionEnergyDensity
-    variable = Edmi
-    execute_on = 'initial timestep_end final'
-    energy_scale = -6241.51
-  [../]
-  [./cEsupexch]
-    type = AFMSublatticeSuperexchangeEnergyDensity
-    variable = Esupexch
-    execute_on = 'initial timestep_end final'
-    energy_scale = 6241.51
-  [../]
-  [./cEnlexch]
-    type = AFMExchangeStiffnessEnergyDensity
-    variable = Enlexch
-    Neel_L_x = Neel_L_x
-    Neel_L_y = Neel_L_y
-    Neel_L_z = Neel_L_z
-    execute_on = 'initial timestep_end final'
-    energy_scale = 6241.51
-  [../]
-
-  [./cEepa1]
-    type = AFMEasyPlaneAnisotropyEnergyDensity
-    variable = Eepa1
-    execute_on = 'initial timestep_end final'
-    mag_x = mag1_x
-    mag_y = mag1_y
-    mag_z = mag1_z
-    energy_scale = 6241.51
-  [../]
-  [./cEepa2]
-    type = AFMEasyPlaneAnisotropyEnergyDensity
-    variable = Eepa2
-    execute_on = 'initial timestep_end final'
-    mag_x = mag2_x
-    mag_y = mag2_y
-    mag_z = mag2_z
-    energy_scale = 6241.51
-  [../]
-  [./cEca1]
-    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
-    variable = Eca1
-    execute_on = 'initial timestep_end final'
-    mag_x = mag1_x
-    mag_y = mag1_y
-    mag_z = mag1_z
-    energy_scale = 6241.51
-  [../]
-  [./cEca2]
-    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
-    variable = Eca2
-    execute_on = 'initial timestep_end final'
-    mag_x = mag2_x
-    mag_y = mag2_y
-    mag_z = mag2_z
-    energy_scale = 6241.51
-  [../]
-
-  [./cEdtot]
-    type = AFMTotalEnergyDensity
-    variable = Etot
-    execute_on = 'initial timestep_end final'
-    Edmi = Edmi
-    Esupexch = Esupexch
-    Enlexch = Enlexch
-    Eepa1 = Eepa1
-    Eepa2 = Eepa2
-    Eca1 = Eca1
-    Eca2 = Eca2
-  [../]
-
-[]
-
 
 [Kernels]
   #---------------------------------------#
@@ -969,6 +732,244 @@ sDW = 23.53
   [../]
 []
 
+
+
+[AuxKernels]
+  [./mag1_mag]
+    type = VectorMag
+    variable = mag1_s
+    vector_x = mag1_x
+    vector_y = mag1_y
+    vector_z = mag1_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./mag2_mag]
+    type = VectorMag
+    variable = mag2_s
+    vector_x = mag2_x
+    vector_y = mag2_y
+    vector_z = mag2_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+
+  [./Neel_Lx]
+    type = VectorDiffOrSum
+    variable = Neel_L_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Ly]
+    type = VectorDiffOrSum
+    variable = Neel_L_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Lz]
+    type = VectorDiffOrSum
+    variable = Neel_L_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./smallSignalMag_x]
+    type = VectorDiffOrSum
+    variable = SSMag_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_y]
+    type = VectorDiffOrSum
+    variable = SSMag_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_z]
+    type = VectorDiffOrSum
+    variable = SSMag_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+
+
+  [./smallSignalMag_dt_x]
+    type = ADTimeDerivativeAux
+    variable = dSSMag_dt_x
+    functor = SSMag_x
+    factor = 1
+#    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_dt_y]
+    type = ADTimeDerivativeAux
+    variable = dSSMag_dt_y
+    functor = SSMag_y
+    factor = 1
+#    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_dt_z]
+    type = ADTimeDerivativeAux
+    variable = dSSMag_dt_z
+    functor = SSMag_z
+    factor = 1
+#    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./L_dt_x]
+    type = ADTimeDerivativeAux
+    variable = dL_dt_x
+    functor = Neel_L_x
+    factor = 1
+ #   execute_on = 'initial timestep_end final'
+  [../]
+  [./L_dt_y]
+    type = ADTimeDerivativeAux
+    variable = dL_dt_y
+    functor = Neel_L_y
+    factor = 1
+ #   execute_on = 'initial timestep_end final'
+  [../]
+  [./L_dt_z]
+    type = ADTimeDerivativeAux
+    variable = dL_dt_z
+    functor = Neel_L_z
+    factor = 1
+ #   execute_on = 'initial timestep_end final'
+  [../]
+#
+
+  [./phc]
+    type = AngleBetweenTwoVectors
+    variable = ph
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = mag2_x
+    var2y = mag2_y
+    var2z = mag2_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th1c]
+    type = AngleBetweenTwoVectors
+    variable = th1
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th2c]
+    type = AngleBetweenTwoVectors
+    variable = th2
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          Energy density               #
+  #                                       #
+  #---------------------------------------#
+
+  [./cEdmi]
+    type = AFMSublatticeDMInteractionEnergyDensity
+    variable = Edmi
+    execute_on = 'initial timestep_end final'
+    energy_scale = -6241.51
+  [../]
+  [./cEsupexch]
+    type = AFMSublatticeSuperexchangeEnergyDensity
+    variable = Esupexch
+    execute_on = 'initial timestep_end final'
+    energy_scale = 6241.51
+  [../]
+  [./cEnlexch]
+    type = AFMExchangeStiffnessEnergyDensity
+    variable = Enlexch
+    Neel_L_x = Neel_L_x
+    Neel_L_y = Neel_L_y
+    Neel_L_z = Neel_L_z
+    execute_on = 'initial timestep_end final'
+    energy_scale = 6241.51
+  [../]
+
+  [./cEepa1]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa1
+    execute_on = 'initial timestep_end final'
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEepa2]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa2
+    execute_on = 'initial timestep_end final'
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca1]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca1
+    execute_on = 'initial timestep_end final'
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca2]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca2
+    execute_on = 'initial timestep_end final'
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+
+  [./cEdtot]
+    type = AFMTotalEnergyDensity
+    variable = Etot
+    execute_on = 'initial timestep_end final'
+    Edmi = Edmi
+    Esupexch = Esupexch
+    Enlexch = Enlexch
+    Eepa1 = Eepa1
+    Eepa2 = Eepa2
+    Eca1 = Eca1
+    Eca2 = Eca2
+  [../]
+
+[]
+
+
 [BCs]
   #---------------------------------------#
   #                                       #
@@ -1255,13 +1256,13 @@ sDW = 23.53
   print_linear_residuals = false
   [./out]
     type = Exodus
-    file_base = out_BFOMDL_P111bA111b-P111bA111b_L_m1
+    file_base = out_BFO_P111bA111b-P111bA111b_m1
     elemental_as_nodal = true
     interval = 20
   [../]
   [./outCSV]
     type = CSV
-    file_base = out_BFOMDL_P111bA111b-P111bA111b_L_m1
+    file_base = out_BFO_P111bA111b-P111bA111b_m1
   [../]
 []
 #===

@@ -6,8 +6,21 @@ This page details how to obtain spin wave transport across the multiferroic doma
 
 The initial condition is a fixed $\{\mathbf{P},\mathbf{A}\} configuration with a corresponding relaxed $\{\mathbf{L},\mathbf{m}\}$ ground state. We load in the `Exodus` file from the previous example in the `Mesh` block,
 
+
+
+
+A visualization of the spin wave traveling through the DW region is provided below from `ParaView`,
+
+!media media/sw_ex_page.mp4 style=display:block;margin:auto;width:67%; caption=Spin wave transport through the 1/1 (100) FE domain boundary. The plotted variables are the components of the weak net magnetization $m_k$. id=fig_sw_ex_page
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
 
 !media media/euflag.png style=display:block;margin-left:auto;margin-right:auto;width:12%;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 !content pagination previous=MSCA_EU_Horizon2020_Results/horizon2020_ex4.md

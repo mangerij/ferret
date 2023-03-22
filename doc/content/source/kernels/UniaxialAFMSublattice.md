@@ -58,7 +58,7 @@ Therefore,
 
 \begin{equation}
   \begin{aligned}
-    \mathcal{R}_{m_{\eta k}} &= -\frac{\gamma}{\mu_0} \left(\psi_h, \epsilon_{ijk} m_{i\eta} \left\[- H_0 \delta_{zj} + H_\mathrm{E} \delta_{\beta j} m_{\eta \beta} - H_\mathrm{A} \delta_{zj} m_{\eta z}\right\] \right)\\
+    \mathcal{R}_{m_{\eta k}} &= -\frac{\gamma}{\mu_0} \left(\psi_h, \epsilon_{ijk} m_{i\eta} \left\{- H_0 \delta_{zj} + H_\mathrm{E} \delta_{\beta j} m_{\eta \beta} - H_\mathrm{A} \delta_{zj} m_{\eta z}\right\} \right)\\
   \end{aligned}
 \end{equation}
 
