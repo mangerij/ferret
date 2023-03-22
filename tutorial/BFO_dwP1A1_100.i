@@ -235,121 +235,6 @@ h44 = 0.8e-3
   [../]
 []
 
-[AuxKernels]
-  [./disp_x]
-    type = GlobalDisplacementAux
-    variable = disp_x
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 0
-  [../]
-  [./disp_y]
-    type = GlobalDisplacementAux
-    variable = disp_y
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 1
-  [../]
-  [./disp_z]
-    type = GlobalDisplacementAux
-    variable = disp_z
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 2
-  [../]
-  [./s00]
-    type = RankTwoAux
-    variable = s00
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 0
-  [../]
-  [./s01]
-    type = RankTwoAux
-    variable = s01
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 1
-  [../]
-  [./s10]
-    type = RankTwoAux
-    variable = s10
-    rank_two_tensor = stress
-    index_i = 1
-    index_j = 0
-  [../]
-  [./s11]
-    type = RankTwoAux
-    variable = s11
-    rank_two_tensor = stress
-    index_i = 1
-    index_j = 1
-  [../]
-  [./e00]
-    type = RankTwoAux
-    variable = e00
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 0
-  [../]
-  [./e01]
-    type = RankTwoAux
-    variable = e01
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 1
-  [../]
-  [./e10]
-    type = RankTwoAux
-    variable = e10
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 0
-  [../]
-  [./e11]
-    type = RankTwoAux
-    variable = e11
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 1
-  [../]
-  [./e12]
-    type = RankTwoAux
-    variable = e12
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 2
-  [../]
-  [./e21]
-    type = RankTwoAux
-    variable = e21
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 1
-  [../]
-  [./e20]
-    type = RankTwoAux
-    variable = e20
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 0
-  [../]
-  [./e02]
-    type = RankTwoAux
-    variable = e02
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 2
-  [../]
-  [./e22]
-    type = RankTwoAux
-    variable = e22
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 2
-  [../]
-[]
-
 [Kernels]
   [./TensorMechanics]
   [../]
@@ -654,8 +539,122 @@ h44 = 0.8e-3
     variable = u_z
     time_scale = 1.0
   [../]
+[]
 
 
+[AuxKernels]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
 []
 
 [ScalarKernels]
@@ -722,9 +721,6 @@ h44 = 0.8e-3
     type = GenericConstantMaterial
     prop_names = 'q11 q12 q44'
     prop_values = '-30.4162 -5.01496 -10.4105'   
-
-#the point is the following: use a slightly different definition of Q_ij than Hlinka
-
   [../]
   [./mat_r]
     type = GenericConstantMaterial

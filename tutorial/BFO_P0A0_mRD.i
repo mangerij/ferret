@@ -47,7 +47,7 @@ alphadef = 0.1
   [./constants] 
     type = GenericConstantMaterial
     prop_names = ' alpha           De       D0             g0mu0Ms      g0          K1         K1c      Kt     permittivity '
-    prop_values = '${alphadef}   ${Dedef} ${D0def}      1000.0      1000.0     ${K1def}  ${K1cdef} ${Ktdef}     1.0     '
+    prop_values = '${alphadef}   ${Dedef} ${D0def}     48291.9      48291.9      ${K1def}  ${K1cdef} ${Ktdef}     1.0     '
   [../]
 
   [./a_long]
@@ -722,14 +722,15 @@ alphadef = 0.1
   [../]
 
   dtmin = 1e-18
-  dtmax = 1.0e-6
+  dtmax = 1.0e-8
 
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 10  #usually 10
     linear_iteration_ratio = 100
-    dt = 1e-8
+    dt = 1e-9
   [../]
+  num_steps = 10000
 []
 
 [Outputs]
