@@ -2,10 +2,7 @@
 
 # H2020-MSCA-IF-2019, Example: ME switching
 
-!alert construction title=Documentation in-progress
-This section will have information that will be available when the review process is complete for the main publication encompassing this work. Please contact the developers if you need assistance with this aspect of the module.
-
-This page details how to obtain ME switching trajectories in FERRET. We use an electric field to switch $\mathbf{P}$ explicitly in a fully-time dependent simulation. The magnetization follows $\mathbf{P}$ since changing $\mathbf{P}$ (and $\mathbf{A}$) corresponds to a drastic change in the magnetic energy surface.
+This page details how to obtain ME switching trajectories in FERRET. We use an electric field to switch $\mathbf{P}$ explicitly in a fully-time dependent simulation. The magnetization follows $\mathbf{P}$ since any change in $\mathbf{P}$ (and $\mathbf{A}$) corresponds to a drastic change in the magnetic energy, $f_\mathrm{MP}$, that couples to the structural distortions.
 
 This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
 

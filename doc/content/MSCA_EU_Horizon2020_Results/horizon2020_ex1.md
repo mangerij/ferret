@@ -157,7 +157,7 @@ Each of these contributions to the effective fields $\mathbf{H}$ contain differe
          link=False
          language=python
 
-seeds the values of these quantities for $f_\mathrm{mag}$ (note that they are set at the top of the input file for ease of use). This is because the MOOSE `Parser` reads in `${quantity}` from the out-of-block definition `quantity = something`. The definition for `alpha_long` corresponds to that of $\tilde\alpha_\parallel$ and we set it with a constant `ParsedFunction`. It could be defined the same way as the other materials coefficients but we leave this as an option for the user in case they want to give $\tilde\alpha_\parallel$ some functional dependence (on time or space for example).
+seeds the values of these quantities for $f_\mathrm{mag}$ (note that they are set at the top of the input file for ease of use). This is because the MOOSE `Parser` reads in `${quantity}` from the out-of-block definition `quantity = something`. The definition for `alpha_long` corresponds to that of $\tilde\alpha_\parallel$ and we set it with a constant `ParsedFunction`. It could be defined the same way as the other materials coefficients but we leave this as an option for the user in case they want to give $\tilde\alpha_\parallel$ some functional dependence (on time or space for example). We use the value of $\gamma$ or $\gamma / \mu_0 M_s$ is set here where the units are given in nanometers microseconds over picograms.
 
 The `Kernels` block is used to initialize the partial differential equation and computes the residual and jacobian contributions for each component of the sublattices,
 
@@ -175,7 +175,7 @@ One can see the derivations of the residual and jacobian entries for the `Kernel
 
 where we have used the [NewmarkBeta](https://mooseframework.inl.gov/source/timeintegrators/NewmarkBeta.html) time integration method. We find that this is most numerically stable for AFM ringdown problems. The simulation runs fairly quickly (400 seconds) on 4 processors, stepping through a few thousands of time steps to ringdown $\mathbf{m}_\eta$. A visualization of the components of $\mathbf{m}_\eta$ from the `ParaView` filter `PlotGlobalVariablesOverTime` is provided in the below figure.
 
-!media media/tut_AFM_BFO.png style=display:block;margin:auto;width:60%; caption=Angular quantities $\phi^\mathrm{WFM}, \theta_1,$ and $\theta_2$ during ringdown. id=tut_AFM_ground
+!media media/tut_ringdown.png style=display:block;margin:auto;width:60%; caption=Angular quantities $\phi^\mathrm{WFM}, \theta_1,$ and $\theta_2$ during ringdown. id=tut_AFM_ground
 
 By setting the initial condition of $\mathbf{m}_\eta$ in different directions, one can obtain the below table for the eight-fold orientations of $\mathbf{P}\uparrow \mathbf{A}$.
 
