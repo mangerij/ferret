@@ -383,38 +383,30 @@ h44 = 0.8e-3
     component = 2
   [../]
 
-
-
-
-
   [./electrostr_polar_coupled_x]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_x
     component = 0
-  u_x = disp_x
-  u_y = disp_y
-  u_z = disp_z
-
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
   [../]
   [./electrostr_polar_coupled_y]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_y
     component = 1
-  u_x = disp_x
-  u_y = disp_y
-  u_z = disp_z
-
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
   [../]
   [./electrostr_polar_coupled_z]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_z
     component = 2
-  u_x = disp_x
-  u_y = disp_y
-  u_z = disp_z
-
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
   [../]
-
 
   #Operators for the AFD field
 
@@ -438,53 +430,50 @@ h44 = 0.8e-3
     type = RotostrictiveCouplingDistortDerivative
     variable = antiphase_A_x
     component = 0
-  u_x = disp_x
-  u_y = disp_y
-  u_z = disp_z
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
   [../]
   [./rotostr_dis_coupled_y]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiphase_A_y
     component = 1
-  u_x = disp_x
-  u_y = disp_y
-  u_z = disp_z
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
   [../]
   [./rotostr_dis_coupled_z]
     type = RotostrictiveCouplingDistortDerivative
     variable = antiphase_A_z
     component = 2
-  u_x = disp_x
-  u_y = disp_y
-  u_z = disp_z
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
   [../]
-
 
   [./polar_x_electric_E]
-     type = PolarElectricEStrong
-     variable = potential_E_int
+    type = PolarElectricEStrong
+    variable = potential_E_int
   [../]
   [./FE_E_int]
-     type = Electrostatics
-     variable = potential_E_int
+    type = Electrostatics
+    variable = potential_E_int
   [../]
   [./polar_electric_px]
-     type = PolarElectricPStrong
-     variable = polar_x
-     component = 0
+    type = PolarElectricPStrong
+    variable = polar_x
+    component = 0
   [../]
   [./polar_electric_py]
-     type = PolarElectricPStrong
-     variable = polar_y
-     component = 1
+    type = PolarElectricPStrong
+    variable = polar_y
+    component = 1
   [../]
   [./polar_electric_pz]
-     type = PolarElectricPStrong
-     variable = polar_z
-     component = 2
+    type = PolarElectricPStrong
+    variable = polar_z
+    component = 2
   [../]
-
-
 
   [./polar_x_time]
     type = TimeDerivativeScaled
@@ -684,39 +673,32 @@ h44 = 0.8e-3
     prop_values = '0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
   [../]
 
-
   [./Landau_G]
     type = GenericConstantMaterial
     prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
     prop_values = '1.0 ${g11} ${g12} ${g44} 0.0'
   [../]
-
   [./Landau_H]
     type = GenericConstantMaterial
     prop_names = 'H110 H11_H110 H12_H110 H44_H110 H44P_H110'
     prop_values = '1.0 ${h11} ${h12} ${h44} 0.0'
   [../]
 
-
-
   [./mat_C]
     type = GenericConstantMaterial
     prop_names = 'C11 C12 C44'
     prop_values = '295.179 117.567 74.0701'
   [../]
-
   [./mat_Q]
     type = GenericConstantMaterial
     prop_names = 'Q11 Q12 Q44'   
     prop_values = '-0.0603833 0.0111245 -0.0175686'
   [../]
-
   [./mat_R]
     type = GenericConstantMaterial
     prop_names = 'R11 R12 R44'
     prop_values = '-0.0000878064 0.0000295306 0.0000627962'
   [../]
-
   [./mat_q]
     type = GenericConstantMaterial
     prop_names = 'q11 q12 q44'
@@ -733,12 +715,10 @@ h44 = 0.8e-3
     C_ijkl = '295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701'
   [../]
 
-
   [./strain]
     type = ComputeSmallStrain
     global_strain = global_strain
   [../]
-
   [./global_strain]
     type = ComputeGlobalStrain
     scalar_global_strain = global_strain
@@ -904,7 +884,6 @@ h44 = 0.8e-3
   dtmin = 1e-13
   dtmax = 10.0
 
-
   [./TimeStepper]
     type = IterationAdaptiveDT
     optimal_iterations = 25  #usually 10
@@ -916,7 +895,6 @@ h44 = 0.8e-3
   num_steps = 1000
 []
 
-#=
 [Outputs]
   print_linear_residuals = false
   perf_graph_live = false

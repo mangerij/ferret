@@ -51,14 +51,13 @@ where `N` is the number of processors you want to use to compile FERRET in paral
 > +\[Optional\]+ To make sure FERRET is working properly, run the regression tests:
 >
 > ```bash
-> ./run_tests -j N
+>  ./run_tests -j N
 > ```
-
 
 ### Step 4 (optional): Compile with ScalFMM to use the fast-multipole boundary element method
 
 
-The ./configure step can include additional libraries such as BOOST which will allow compile of MOOSE objects with mathematical special functions. Or it can include an advanced fast-multipole boundary element method (FMM-BEM) developed by Prof. Xikai Jiang and co-workers. In order to use the BEM, you need to compile ScalFMM with the following commands
+The `./configure` step can include additional libraries such as BOOST which will allow compile of MOOSE objects with mathematical special functions. Or it can include an advanced fast-multipole boundary element method (FMM-BEM) developed by Prof. Xikai Jiang and co-workers. In order to use the BEM, you need to compile ScalFMM with the following commands
 
 ```bash
 cd <ferret>/scripts
@@ -70,6 +69,6 @@ cd <ferret>
 make -j2
 ```
 
-For compilation of this $O(\mathrm{N})$ solver on supercomputing resources, it is recommended to avoid the ./configure step and manually set the FERRET_HAVE_SCALFMM flag. The generation of the M2L compressors for the FMM-BEM should be done in serial and then can be read on any number of processors. The M2L compressor files do not depend on the mesh, but only the flags of the FMM-BEM method.
+For compilation of this $O(\mathrm{N})$ solver on supercomputing resources, it is recommended to avoid the `./configure` step and manually set the `FERRET_HAVE_SCALFMM` flag. The generation of the M2L compressors for the FMM-BEM should be done in serial and then can be read on any number of processors. The `M2L` compressor files do not depend on the `Mesh`, but only the flags of the FMM-BEM method.
 
 This is an experimental feature at the moment and we plan to extend this capability further. More reading at [!cite](Jiang2016).

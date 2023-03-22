@@ -40,7 +40,14 @@ We select an initial condition with the `FunctionIC` and `ParsedFunction` classe
          link=False
          language=python
 
-with $x$ being the long direction of the computational volume. Relaxation of $\mathbf{m}_\eta$ with this mesh takes around 5260 seconds on 6 processors. We supply the reader with the output of this mesh file if needed. The DW profile of $\mathbf{m}$ can be visualized in `ParaView` by using the `PlotOverLine` filter and could like the below figure,
+with $x$ being the long direction of the computational volume. Relaxation of $\mathbf{m}_\eta$ with this mesh takes around 5260 seconds on 6 processors. We supply the reader with the output of this mesh file if needed. The `Executioner` options,
+
+!listing tutorial/BFO_mag_wall_rd.i
+         block=Executioner
+         link=False
+         language=python
+
+sets the time integration method as `NewmarkBeta` with an upper limit of $dt = 0.1$ ps. The DW profile of $\mathbf{m}$ can be visualized in `ParaView` by using the `PlotOverLine` filter and could like the below figure,
 
 !media media/tut_mag_DW.png style=display:block;margin:auto;width:60%; caption=Components of $\mathbf{m}$ across the 1/1 (100) DW. The net magnetization switches by $71^\circ$. id=tut_mag_DW
 

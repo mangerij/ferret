@@ -11,10 +11,6 @@ Ktdef = -0.00365997
 
 alphadef = 0.0
 
-#ampd = 0.5            #=increase to make amplitude of pulse larger
-#pulsewidth = 0.8     #increase to make width smaller, 0.09 is nice if just gaussian
-#xdist = 30.0
-
 sfreq = 5.0e6
 
 pulseloc = 15.0
@@ -25,17 +21,6 @@ pulseloc = 15.0
     file = out_BFO_P111A111-P111bA111b_m1.e
     use_for_exodus_restart = true
   []
-  #[scale]=
-  #  type = TransformGenerator
-  #  input = fileload
-  #  transform = SCALE
-  #  vector_value = '1e-3 1e-3 1e-3'  # convert to microns. A better unit for micromagnetics
-  #[]
- 
-#uniform_refine = 1
-
-#=note we have to go back to nanometers because the wFM moment is very small
-# and we don't want to be adding/dividing/and multiplying by 1e-9 everywhere
 []
 
 
@@ -69,10 +54,6 @@ pulseloc = 15.0
     prop_values = ' ${Dedef} ${D0def}         48291.9      48291.9     ${K1def}  ${K1cdef} ${Ktdef}     1.0        0.75    1.0'
   [../]
 
-#note that Ae is artificially scaled down by a factor of 100...=
-
-#Ms is also not cast as a saturization density (and also a factor of 2 is divided)
-
   [./a_long]
     type = GenericFunctionMaterial
     prop_names = 'alpha_long'
@@ -87,14 +68,6 @@ pulseloc = 15.0
 []
 
 [Functions]
-
-  ##############################
-  ##==
-  ## Define the ramping function
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
     value = 'st'
@@ -102,33 +75,26 @@ pulseloc = 15.0
     vals = '1e5'
   [../]
 
-  [./zerop]
-    type = ParsedFunction
-    value = '0.0'
-  [../]
-
   [./pulse1]
     type = ParsedFunction
     vars = 't0 t1 A'
     vals = '0.0 100.0 0.707107'
-    value = 'if(t < t1, 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6)), if(t > t1, 0.0, 0.0))'
+    value = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
   [../]
 
   [./pulse2]
     type = ParsedFunction
     vars = 't0 t1 A'
     vals = '0.0 100.0 0.707107'
-    value = 'if(t < t1, 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6)), if(t > t1, 0.0, 0.0))'
+    value = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
   [../]
-
 
   [./pulse3]
     type = ParsedFunction
     vars = 't0 t1 A'
     vals = '0.0 100.0 0.707107'
-    value = 'if(t < t1, 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6)), if(t > t1, 0.0, 0.0))'
+    value = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
   [../]
-
 []
 
 [Variables]
@@ -168,11 +134,6 @@ pulseloc = 15.0
     family = LAGRANGE
     initial_from_file_var = mag2_z
     initial_from_file_timestep = 'LATEST'
-  [../]
-
-  [./potential_H_int]
-    order = FIRST
-    family = LAGRANGE
   [../]
 []
 
@@ -358,240 +319,7 @@ pulseloc = 15.0
     family = MONOMIAL
   [../]
 
-
 []
-
-
-[AuxKernels]
-
-  [./hx]
-    type = FunctionAux
-    variable = H_x
-    function = pulse1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./hy]
-    type = FunctionAux
-    variable = H_y
-    function = pulse2
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./hz]
-    type = FunctionAux
-    variable = H_z
-    function = pulse3
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./mag1_mag]
-    type = VectorMag
-    variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./mag2_mag]
-    type = VectorMag
-    variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./Neel_Lx]
-    type = VectorDiffOrSum
-    variable = Neel_L_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Ly]
-    type = VectorDiffOrSum
-    variable = Neel_L_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Lz]
-    type = VectorDiffOrSum
-    variable = Neel_L_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./smallSignalMag_x]
-    type = VectorDiffOrSum
-    variable = SSMag_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_y]
-    type = VectorDiffOrSum
-    variable = SSMag_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_z]
-    type = VectorDiffOrSum
-    variable = SSMag_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./phc]
-    type = AngleBetweenTwoVectors
-    variable = ph
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = mag2_x
-    var2y = mag2_y
-    var2z = mag2_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th1c]
-    type = AngleBetweenTwoVectors
-    variable = th1
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th2c]
-    type = AngleBetweenTwoVectors
-    variable = th2
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          Energy density               #
-  #                                       #
-  #---------------------------------------#
-
-  [./cEdmi]
-    type = AFMSublatticeDMInteractionEnergyDensity
-    variable = Edmi
-    execute_on = 'initial timestep_end final'
-    energy_scale = -6241.51
-  [../]
-  [./cEsupexch]
-    type = AFMSublatticeSuperexchangeEnergyDensity
-    variable = Esupexch
-    execute_on = 'initial timestep_end final'
-    energy_scale = 6241.51
-  [../]
-  [./cEnlexch]
-    type = AFMExchangeStiffnessEnergyDensity
-    variable = Enlexch
-    Neel_L_x = Neel_L_x
-    Neel_L_y = Neel_L_y
-    Neel_L_z = Neel_L_z
-    execute_on = 'initial timestep_end final'
-    energy_scale = 6241.51
-  [../]
-
-  [./cEepa1]
-    type = AFMEasyPlaneAnisotropyEnergyDensity
-    variable = Eepa1
-    execute_on = 'initial timestep_end final'
-    mag_x = mag1_x
-    mag_y = mag1_y
-    mag_z = mag1_z
-    energy_scale = 6241.51
-  [../]
-  [./cEepa2]
-    type = AFMEasyPlaneAnisotropyEnergyDensity
-    variable = Eepa2
-    execute_on = 'initial timestep_end final'
-    mag_x = mag2_x
-    mag_y = mag2_y
-    mag_z = mag2_z
-    energy_scale = 6241.51
-  [../]
-  [./cEca1]
-    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
-    variable = Eca1
-    execute_on = 'initial timestep_end final'
-    mag_x = mag1_x
-    mag_y = mag1_y
-    mag_z = mag1_z
-    energy_scale = 6241.51
-  [../]
-  [./cEca2]
-    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
-    variable = Eca2
-    execute_on = 'initial timestep_end final'
-    mag_x = mag2_x
-    mag_y = mag2_y
-    mag_z = mag2_z
-    energy_scale = 6241.51
-  [../]
-
-  [./cEdtot]
-    type = AFMTotalEnergyDensity
-    variable = Etot
-    execute_on = 'initial timestep_end final'
-    Edmi = Edmi
-    Esupexch = Esupexch
-    Enlexch = Enlexch
-    Eepa1 = Eepa1
-    Eepa2 = Eepa2
-    Eca1 = Eca1
-    Eca2 = Eca2
-  [../]
-
-  [./ct0Edtot]
-    type = AFMTotalEnergyDensity
-    variable = t0Etot
-    execute_on = 'initial'
-    Edmi = Edmi
-    Esupexch = Esupexch
-    Enlexch = Enlexch
-    Eepa1 = Eepa1
-    Eepa2 = Eepa2
-    Eca1 = Eca1
-    Eca2 = Eca2
-  [../]
-
-  [./excessEdtot]
-    type = VectorDiffOrSum
-    variable = excessEtot
-    diffOrSum = 0
-    var1 = Etot
-    var2 = t0Etot
-    execute_on = 'initial timestep_end final'
-  [../]
-
-[]
-
 
 [Kernels]
   #---------------------------------------#
@@ -760,7 +488,6 @@ pulseloc = 15.0
     mag_sub = 1
     component = 2
   [../]
-
 
   #---------------------------------------#
   #                                       #
@@ -1010,26 +737,245 @@ pulseloc = 15.0
     mag_sub = 1
     component = 2
   [../]
+[]
 
-  [./int_pot_lap]
-    type = Electrostatics
-    variable = potential_H_int
+
+[AuxKernels]
+
+  [./hx]
+    type = FunctionAux
+    variable = H_x
+    function = pulse1
+    execute_on = 'initial timestep_end final'
   [../]
-#  [./int_bc_pot_lap]
-#    type = MagHStrongCart
-#    variable = potential_H_int
-#    mag_x = SSMag_x
-#    mag_y = SSMag_y
-#    mag_z = SSMag_z
-#  [../]
+  [./hy]
+    type = FunctionAux
+    variable = H_y
+    function = pulse2
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./hz]
+    type = FunctionAux
+    variable = H_z
+    function = pulse3
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./mag1_mag]
+    type = VectorMag
+    variable = mag1_s
+    vector_x = mag1_x
+    vector_y = mag1_y
+    vector_z = mag1_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./mag2_mag]
+    type = VectorMag
+    variable = mag2_s
+    vector_x = mag2_x
+    vector_y = mag2_y
+    vector_z = mag2_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./Neel_Lx]
+    type = VectorDiffOrSum
+    variable = Neel_L_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Ly]
+    type = VectorDiffOrSum
+    variable = Neel_L_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Lz]
+    type = VectorDiffOrSum
+    variable = Neel_L_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./smallSignalMag_x]
+    type = VectorDiffOrSum
+    variable = SSMag_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_y]
+    type = VectorDiffOrSum
+    variable = SSMag_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_z]
+    type = VectorDiffOrSum
+    variable = SSMag_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./phc]
+    type = AngleBetweenTwoVectors
+    variable = ph
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = mag2_x
+    var2y = mag2_y
+    var2z = mag2_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th1c]
+    type = AngleBetweenTwoVectors
+    variable = th1
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th2c]
+    type = AngleBetweenTwoVectors
+    variable = th2
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          Energy density               #
+  #                                       #
+  #---------------------------------------#
+
+  [./cEdmi]
+    type = AFMSublatticeDMInteractionEnergyDensity
+    variable = Edmi
+    execute_on = 'initial timestep_end final'
+    energy_scale = -6241.51
+  [../]
+  [./cEsupexch]
+    type = AFMSublatticeSuperexchangeEnergyDensity
+    variable = Esupexch
+    execute_on = 'initial timestep_end final'
+    energy_scale = 6241.51
+  [../]
+  [./cEnlexch]
+    type = AFMExchangeStiffnessEnergyDensity
+    variable = Enlexch
+    Neel_L_x = Neel_L_x
+    Neel_L_y = Neel_L_y
+    Neel_L_z = Neel_L_z
+    execute_on = 'initial timestep_end final'
+    energy_scale = 6241.51
+  [../]
+
+  [./cEepa1]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa1
+    execute_on = 'initial timestep_end final'
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEepa2]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa2
+    execute_on = 'initial timestep_end final'
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca1]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca1
+    execute_on = 'initial timestep_end final'
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca2]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca2
+    execute_on = 'initial timestep_end final'
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+
+  [./cEdtot]
+    type = AFMTotalEnergyDensity
+    variable = Etot
+    execute_on = 'initial timestep_end final'
+    Edmi = Edmi
+    Esupexch = Esupexch
+    Enlexch = Enlexch
+    Eepa1 = Eepa1
+    Eepa2 = Eepa2
+    Eca1 = Eca1
+    Eca2 = Eca2
+  [../]
+
+  [./ct0Edtot]
+    type = AFMTotalEnergyDensity
+    variable = t0Etot
+    execute_on = 'initial'
+    Edmi = Edmi
+    Esupexch = Esupexch
+    Enlexch = Enlexch
+    Eepa1 = Eepa1
+    Eepa2 = Eepa2
+    Eca1 = Eca1
+    Eca2 = Eca2
+  [../]
+
+  [./excessEdtot]
+    type = VectorDiffOrSum
+    variable = excessEtot
+    diffOrSum = 0
+    var1 = Etot
+    var2 = t0Etot
+    execute_on = 'initial timestep_end final'
+  [../]
 
 []
+
 
 [BCs]
   #---------------------------------------#
   #                                       #
   #  periodic magnetization distribution  #
-  #                   =                    #
+  #                                       #
   #---------------------------------------#
 
   [./Periodic]
@@ -1080,20 +1026,20 @@ pulseloc = 15.0
     mag2_y = mag2_y
     mag2_z = mag2_z
     energy_scale = 6241.51
-
   [../]
+
   [./FafmSLdmi]
     type = AFMSublatticeDMInteractionEnergy
     execute_on = 'initial timestep_end final'
     energy_scale = -6241.51
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   Calculate excess energy from missed #
-  #   LLB targets                         #
-  #                                       #
-  #---------------------------------------#
+  #----------------------------------------#
+  #                                        #
+  #   Calculate excess energy from missed  #
+  #   LLB targets                          #
+  #                                        #
+  #----------------------------------------#
 
   [./Fllb1]
     type = MagneticExcessLLBEnergy
@@ -1177,7 +1123,6 @@ pulseloc = 15.0
     dt = dt 
     execute_on = 'timestep_end final'
   [../]
-
   [./elapsed]
     type = PerfGraphData
     section_name = "Root"  # for profiling the problem
@@ -1191,22 +1136,18 @@ pulseloc = 15.0
   #                                       #
   #---------------------------------------#
 
-
   [./p1_excessEtot]
     type = PointValue
     variable = excessEtot
     point = '4.95 0.5 0.5'
     execute_on = 'initial timestep_end final'
   [../]
-
   [./p2_excessEtot]
     type = PointValue
     variable = excessEtot
     point = '11.0 0.5 0.5'
     execute_on = 'initial timestep_end final'
   [../]
-
-
   [./DW_excessEtot]
     type = PointValue
     variable = excessEtot
@@ -1214,15 +1155,11 @@ pulseloc = 15.0
     execute_on = 'initial timestep_end final'
   [../]
 
-
 []
 
 
 [UserObjects]
-  #[./kill]
-  #  type = Terminator
-  #  expression = 'perc_change <= 1.0e-12'
-  #[../]
+
 []
 
 
@@ -1261,26 +1198,23 @@ pulseloc = 15.0
     growth_factor = 1.1
   [../]
 
-
   num_steps = 541
   end_time = 3.5e-5
 []
 
 [Outputs]
   print_linear_residuals = false
-  #console = false
 
   [./out]
     execute_on = 'timestep_end'
     type = Exodus
-    file_base = out_BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7DWxyz
+    file_base = out_BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7
     elemental_as_nodal = true
     interval = 5
   [../]
   [./outCSV]
     type = CSV
     execute_on = 'timestep_end'
-    file_base = out_BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7DWxyz
+    file_base = out_BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7
   [../]
 []
-#=

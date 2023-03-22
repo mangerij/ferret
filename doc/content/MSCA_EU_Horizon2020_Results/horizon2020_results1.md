@@ -2,22 +2,17 @@
 
 # H2020-MSCA-IF-2019
 
-!alert construction title=Documentation in-progress
-This section will have information that will be available when the review process is complete for the main publication encompassing this work. Please contact the developers if you need assistance with this aspect of the module.
-
 In the framework of the Marie-Curie individual fellowship - [H2020-MSCA-IF-2019](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) - call, this additional page was added to the FERRET website in order to disseminate results of [Project SCALES - 897614](https://cordis.europa.eu/project/id/897614) to the general public and the technical audience. We will discuss background and the modeling effort, summarize our key findings, and provide examples of how to reproduce representative results obtained during the funding period which are described in detail within our article [!cite](Mangeri2023) currently on the arXiv preprint server and under review.
 
 # Background
 
-The project proposal submitted in 2019 encapsulated the main idea of developing a new continuum approach for simulations of multiferroic compounds. Multiferroics are a class of materials which display both an electric and magnetic ordering below their critical phase transition temperature. Specifically, we use the perovskite $\mathrm{BiFeO}_3$ (BFO) as our material workhorse. BFO displays both ferroelectricity and antiferromagnetism at room temperature, leading to a host of possible applications from beyond-CMOS logic gates, tunneling magnetoresistant spintronic valves, THz radiation emitters, enhanced piezoelectric elements, ultrafast acoustic modulators, to linear electrooptical components. We refer the reader to INSERT for an excellent review of the properties of BFO along with its technological applications.
+The project (submitted in September, 2019) proposed developing a continuum approach for simulations of multiferroic compounds. Multiferroics are a class of materials which display both an electric and magnetic ordering below their critical phase transition temperature. Specifically, we use the perovskite $\mathrm{BiFeO}_3$ (BFO) as our material workhorse. BFO displays both ferroelectricity and antiferromagnetism at room temperature, leading to a host of possible applications from beyond-CMOS logic gates, tunneling magnetoresistant spintronic valves, THz radiation emitters, enhanced piezoelectric elements, ultrafast acoustic modulators, to linear electrooptical components. We refer the reader to [!cite](Fiebig2016) for an excellent review of multiferroics, including BFO, along with its technological applications. As miniaturization is a significant concern for next generation electronic device design, the thicknesses of multiferroic films synthesized for these applications are in the range of a few 10’s of nm to a few µm's. This length-scale criterion places limits of the types of theoretical methodologies that can be used to study and predict properties. This was the motivation, in the context of SCALES, to develop a continuum approach.
 
 To study these materials at the device-relevant scale, we proposed to couple the phase field method for ferroelectrics with the micromagnetic approach. Both of these methodologies utilize a "coarse-grained" description of order parameters. Both approaches are phenomenological in origin and have been shown to describe well the theoretical picture of ferroelectric and ferromagnetic materials respectively.  Typically, this is challenging because the energy of the magnetic order tends to be many orders of magnitude lower than the structural distortions. Incidentally, this leads to different time and length scales which accompany the structural or magnetic phase transitions. The idea was to have, self-consistently on the same time and length scale, a model for both electric and magnetic order unlocking the magnetoelectric properties in both static or dynamic configurations. This allowed us to investigate some applications of the model corresponding to magnetoelectric switching and also spin-wave transport across the multiferroic domain boundaries.
 
 We leveraged the Multiphysics Object Oriented Simulation Environment (MOOSE) framework which is open-source software convenient for rapid model development with advanced features. [MOOSE](https://mooseframework.inl.gov/) is developed and maintained at Idaho National Laboratory in the United States. We implement our models of BFO within FERRET (this website), an open-source add-on module (part of the MOOSE ecosystem of applications). See the [landing page](index.md) for more information on FERRET.
 
-Stay tuned for an update!
-
-# Properties of $\mathrm{BiFeO}_3$ and coupled model
+# Properties and coupled polar-magnetic model
 
 We consider a zero temperature limit free energy density functional defined as a sum of Landau-type energy density from the structural distortions of the lattice ($f_\mathrm{latt}$), the magnetic energy density due to the nominally collinear spin subsystem ($f_\mathrm{sp}$), and a coupling between the electric and magnetic order parameters ($f_\mathrm{MP}$) in single crystal BFO.
 
@@ -39,9 +34,7 @@ A homogeneous strain arises below the structural phase transition temperature wh
   \end{aligned}
 \end{equation}
 
-The variable $u_i$ is the component of the elastic displacement vector $\mathbf{u}$ which accompanies the ferroelectric phase transition in this material (sometimes called spontaneous or ferroelastic strain).
-
-For the spin subsystem, BFO is an antiferromagnet with anti-aligned spins at first-neighboring Fe sites (G-type) leading to two distinct sublattices $\mathbf{m}_1$ and $\mathbf{m}_2$. The quantity $\mathbf{L}$ is the AFM N\'{e}el vector which we define as $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$. The magnetic orientation is of the easy-plane variety, whose plane normal is the polar director. We propose that the presence of the antisymmetric Dzhaloshinksii-Moriya interaction (DMI) introduces a free energy density term of the form,
+The variable $u_i$ is the component of the elastic displacement vector $\mathbf{u}$ which accompanies the ferroelectric phase transition in this material (sometimes called spontaneous or ferroelastic strain). For the spin subsystem, BFO is an antiferromagnet with anti-aligned spins at first-neighboring Fe sites (G-type) leading to two distinct sublattices $\mathbf{m}_1$ and $\mathbf{m}_2$. The quantity $\mathbf{L}$ is the AFM N\'{e}el vector which we define as $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$. The magnetic orientation is of the easy-plane variety, whose plane normal is the polar director. We propose that the presence of the antisymmetric Dzhaloshinksii-Moriya interaction (DMI) introduces a free energy density term of the form,
 
 \begin{equation}\label{eqn:dmi}
   \begin{aligned}
@@ -72,7 +65,7 @@ for the structural order ($\{\mathbf{P},\mathbf{A}\}$) and
   \end{aligned}
 \end{equation}
 
-for the spin system. Here, $\Gamma_P, \Gamma_A$ are a relaxation coefficients related to the time scales involved in the phase transition. The coeffiicent $\alpha$ is a phenomenological damping constant which if made nonzero (and positive) drives the magnetic system to the ground state.
+for the spin system. Here, $\Gamma_P, \Gamma_A$ are a relaxation coefficients related to the time scales involved in the structural phase transition. The coeffiicent $\alpha$ is a phenomenological damping constant which if made nonzero (and positive) drives the magnetic system to the ground state.
 
 A detailed description of our model is shared in the preprint on arXiv at [!cite](Mangeri2023).
 

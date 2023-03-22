@@ -1,7 +1,6 @@
 
 ##see J. Appl. Phys. 126, 151101 (2019);
 
-
 Nx = 2
 Ny = 2
 Nz = 2
@@ -58,14 +57,6 @@ zMax = 0.01
 []
 
 [Functions]
-
-  ##############################
-  ##
-  ## Define the alpha_long
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
     value = 'st'
@@ -93,7 +84,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi1
       theta = polar_theta1
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 1
     [../]
   [../]
@@ -104,7 +95,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi1
       theta = polar_theta1
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 2
     [../]
   [../]
@@ -116,7 +107,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi2
       theta = polar_theta2
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 0
     [../]
   [../]
@@ -127,7 +118,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi2
       theta = polar_theta2
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 1
     [../]
   [../]
@@ -138,7 +129,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi2
       theta = polar_theta2
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 2
     [../]
   [../]
@@ -146,11 +137,13 @@ zMax = 0.01
 []
 
 [AuxVariables]
+
   #--------------------------------------------#
   #                                            #
   #  field to seed IC that obeys constraint    #
   #                                            #
   #--------------------------------------------#
+
   [./azimuth_phi1]
     order = FIRST
     family = LAGRANGE
@@ -215,7 +208,6 @@ zMax = 0.01
     family = LAGRANGE
   [../]
 
-
   [./SSMag_x]
     order = FIRST
     family = LAGRANGE
@@ -263,7 +255,6 @@ zMax = 0.01
     variable = mag2_z
   [../]
 
-
   #---------------------------------------#
   #                                       #
   #     AFM resonance kernel terms        #
@@ -288,7 +279,6 @@ zMax = 0.01
     mag_sub = 0
     component = 2
   [../]
-
 
   [./afmr2_x]
     type = UniaxialAFMSublattice
@@ -474,7 +464,6 @@ zMax = 0.01
     variable = mag2_z
   [../]
 
-
   #---------------------------------------#
   #                                       #
   #     AFM resonance kernel terms        #
@@ -499,7 +488,6 @@ zMax = 0.01
     mag_sub = 0
     component = 2
   [../]
-
 
   [./afmr2_x]
     type = UniaxialAFMSublattice
@@ -592,7 +580,6 @@ zMax = 0.01
       variable = 'mag1_x mag1_y mag1_z mag2_x mag2_y mag2_z'
     [../]
   [../]
-
 []
 
 [Postprocessors]
@@ -617,7 +604,6 @@ zMax = 0.01
     variable = mag2_s
     execute_on = 'initial timestep_end final'
   [../]
-
 
   [./<m1x>]
     type = ElementAverageValue
@@ -650,7 +636,6 @@ zMax = 0.01
     variable = mag2_z
     execute_on = 'initial timestep_end final'
   [../]
-
 
   [./<Lx>]
     type = ElementAverageValue
