@@ -37,18 +37,53 @@ Here, $\Gamma_P, \Gamma_A$ are a relaxation coefficients related to the time sca
   \end{aligned}
 \end{equation}
 
-which facilitates a reversal of the $P_z$ component. This means we expect the transition of $\mathbf{P}$ to go from $[111]$ to $[11\bar{1}]$ orientation. For this problem, we use the input file `BFO_P111_TO_P111b_switch_m1_a1.i` located in the tutorials subdirectory. The `Exodus` input that we use corresponds to that of the second simulation in Example 1 (a fully relaxed polar-magnetic solution). We load this via the `Mesh` block,
+which facilitates a reversal of the $P_z$ component. This means we expect the transition of $\mathbf{P}$ to go from $[111]$ to $[11\bar{1}]$ orientation. For this problem, we use the input file `BFO_P111_TO_P111b_switch_m1_a1.i` located in the tutorials subdirectory. The `Exodus` input that we use corresponds to that of the second simulation in Example 1 (a fully relaxed polar-magnetic solution). We load this output as an input via the `Mesh` block,
 
-INSERT
+!listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
+         block=Mesh
+         link=False
+         language=python
 
-The `Kernels` are both the ones due to structural evolution (TDLGD) along with the ones from micromagnetic evolution (LLG-LLB). They are listed in the following lengthy block,
+with corresponding flags in the `Variables` block,
 
-INSERT
+!listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
+         block=Variables
+         link=False
+         language=python
+
+The `Kernels` are due to structural evolution (TDLGD) along with the ones from micromagnetic evolution (LLG-LLB). They are listed in the following lengthy block,
+
+!listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
+         block=Kernels
+         link=False
+         language=python
+
+We compute a number of postprocessed quantities in the `AuxKernels` block,
+
+!listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
+         block=AuxKernels
+         link=False
+         language=python
+
+For example, we compute $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$ and $\mathbf{m} = \mathbf{m}_1 + \mathbf{m}_2$ with `VectorDiffOrSum`. We also compute other values such as, i.e., the angular quantities $\phi^\mathrm{WFM} = \cos^{-1}{\left(\mathbf{m}_1 \cdot \mathbf{m}_2\right)}$ and $\theta_\eta = \cos^{-1}{\left(\mathbf{m}_\eta \cdot \hat{\mathbf{P}}\right)}$. Note that we use the convention that $|\mathbf{L}| + |\mathbf{m}| = 2$ instead of unity. . The `Materials` block, assigns values to our coefficients,
+
+!listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
+         block=Materials
+         link=False
+         language=python
+
+where we have used units of `nanometers`, `microseconds`, `attocoulombs`, and `picograms`. This sets the time and length scale in this type of problem. The `Executioner` block, chooses flags for the time integration and numerical solve,
+
+!listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
+         block=Executioner
+         link=False
+         language=python
 
 A possible visualization of the output using ParaView is provided below,
 
 !media media/tut_ME_sw.png style=display:block;margin:auto;width:67%; caption=Homogeneous switching at $\alpha = 0.003$ with Top: Neel vector switching and Bottom: net magnetization switching. These dynamics are acquired using a time-dependent electric field at frequency $\omega = 600$ MHz.  id=fig_ME_sw
 
+The wall clock time for this problem is 62.37 seconds on 6 processors using the [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) distribution of MOOSE. Note that other switching trajectories can be obtained by switching out the initial `Exodus` file - for example, choosing different six-fold ${\mathbf{L},\mathbf{m}}$ orientation or by selecting a different $\mathbf{E}$ orientation.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

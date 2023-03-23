@@ -101,7 +101,7 @@ Note that the `DirichletBC` condition $\mathbf{u} = 0$ is set so there are no tr
 
 Note that $(\mathbf{P} \uparrow \downarrow \mathbf{A})$ are also possible minimized energy solutions of the thermodynamic potential $f$. Due to the symmetry of the electrostrictive and rotostrictive coupling terms, the table is left invariant under full reversal of $\mathbf{A}$. The free energy density of the eight-fold domain possibilities is -15.5653 $\mathrm{eV}\cdot\mathrm{nm}^{-3}$.
 
-This simulation runs in 18.23 seconds on 4 processors.
+This simulation runs in 18.23 seconds on 4 processors using the [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) distribution of MOOSE.
 
 # Homogeneous spin order
 
@@ -173,7 +173,7 @@ One can see the derivations of the residual and jacobian entries for the `Kernel
          link=False
          language=python
 
-where we have used the [NewmarkBeta](https://mooseframework.inl.gov/source/timeintegrators/NewmarkBeta.html) time integration method. We find that this is most numerically stable for AFM ringdown problems. The simulation runs fairly quickly (400 seconds) on 4 processors, stepping through a few thousands of time steps to ringdown $\mathbf{m}_\eta$. A visualization of the components of $\mathbf{m}_\eta$ from the `ParaView` filter `PlotGlobalVariablesOverTime` is provided in the below figure.
+where we have used the [NewmarkBeta](https://mooseframework.inl.gov/source/timeintegrators/NewmarkBeta.html) time integration method. We find that this is most numerically stable for AFM ringdown problems. The simulation runs fairly quickly (400 seconds) on 4 processors using the [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) distribution of MOOSE, stepping through a few thousands of time steps to ringdown $\mathbf{m}_\eta$. A visualization of the components of $\mathbf{m}_\eta$ from the `ParaView` filter `PlotGlobalVariablesOverTime` is provided in the below figure.
 
 !media media/tut_ringdown.png style=display:block;margin:auto;width:60%; caption=Angular quantities $\phi^\mathrm{WFM}, \theta_1,$ and $\theta_2$ during ringdown. id=tut_AFM_ground
 

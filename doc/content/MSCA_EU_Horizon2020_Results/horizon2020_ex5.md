@@ -59,7 +59,7 @@ with the `NewmarkBeta` time integration method and an upper limit of $dt = 50$ f
 
 !media media/sw_ex_page.mp4 style=display:block;margin:auto;width:67%; caption=Animation of spin wave transport through the 1/1 (100) FE domain boundary. The plotted variables are the components of the weak net magnetization $m_k$. id=fig_sw_ex_page
 
-Different spin waves can be generate by changing the definitions of the `ParsedFunctions`.
+This problem has a wall-clock time of 276.46 seconds on 6 processors using the [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) distribution of MOOSE. Different spin waves can be generate by changing the definitions of the `ParsedFunctions`.
 
 
 

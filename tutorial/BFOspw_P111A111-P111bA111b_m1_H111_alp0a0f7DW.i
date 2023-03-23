@@ -1,18 +1,4 @@
-
-Dedef = 3.7551
-
-D0def = 0.003
-
-K1def = -5.0068
-
-K1cdef = -0.0550748
-
-Ktdef = -0.00365997
-
-alphadef = 0.0
-
 sfreq = 5.0e6
-
 pulseloc = 15.0
 
 [Mesh]
@@ -50,8 +36,8 @@ pulseloc = 15.0
 [Materials]
   [./constants] # Constants used in other material properties
     type = GenericConstantMaterial
-    prop_names = '         De       D0             g0mu0Ms   g0          K1         K1c      Kt     permittivity    Ae     Ms'
-    prop_values = ' ${Dedef} ${D0def}         48291.9      48291.9     ${K1def}  ${K1cdef} ${Ktdef}     1.0        0.75    1.0'
+    prop_names = '     De       D0         g0mu0Ms        g0          K1         K1c      Kt     permittivity    Ae     Ms'
+    prop_values = '  3.7551    0.003       48291.9      48291.9     -5.0068  -0.0550748 -0.00365997     1.0        0.75    1.0'
   [../]
 
   [./a_long]
@@ -62,7 +48,7 @@ pulseloc = 15.0
   [./alpha]
     type = GenericFunctionMaterial
     prop_names = 'alpha'
-    prop_values = '${alphadef}'
+    prop_values = '0.0'
   [../]
 
 []

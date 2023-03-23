@@ -40,7 +40,7 @@ We select an initial condition with the `FunctionIC` and `ParsedFunction` classe
          link=False
          language=python
 
-with $x$ being the long direction of the computational volume. Relaxation of $\mathbf{m}_\eta$ with this mesh takes around 5260 seconds on 6 processors. We supply the reader with the output of this mesh file if needed. The `Executioner` options,
+with $x$ being the long direction of the computational volume. Relaxation of $\mathbf{m}_\eta$ with this mesh takes around 5260 seconds on 6 processors using the [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) distribution of MOOSE. We supply the reader with the output of this mesh file if needed. The `Executioner` options,
 
 !listing tutorial/BFO_mag_wall_rd.i
          block=Executioner
