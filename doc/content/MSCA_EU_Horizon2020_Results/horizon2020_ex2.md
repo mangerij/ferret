@@ -102,7 +102,7 @@ where we implement the backwards- finite difference time integration `bdf2` and 
 
 !media media/tut_FE_DW.png style=display:block;margin:auto;width:60%; caption=Left: components of $\mathbf{A}$, Middle: $\mathbf{P}$, and Right: the strain tensor $\varepsilon_{ij}$ across the DW. id=tut_FE_DW
 
-This calculation runs in 68.3 seconds on 6 processors. Other DWs can be obtained by switching out the relevant `Mesh` and `Function` blocks accordingly.
+This calculation runs in 68.3 seconds on 6 processors using the [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) distribution of MOOSE. Other DWs can be obtained by switching out the relevant `Mesh` and `Function` blocks accordingly.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

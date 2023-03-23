@@ -1,19 +1,12 @@
 
-Dedef = 3.7551
-D0def = 0.003
-K1def = -5.0068
-K1cdef = -0.00550748
-Ktdef = -0.000365997
 
 alphadef = 0.003
 
-endtdef = 0.005
+endtdef = 0.00223
 
 efreq = 600
 
 Eadef = -1.8e3
-
-#0.8e3 with potential
 
 [Mesh]
   [fileload]
@@ -21,16 +14,6 @@ Eadef = -1.8e3
     file = out_BFOMDL_P111A111_m1.e
     use_for_exodus_restart = true
   []
-  #[scale]
-  #  type = TransformGenerator
-  #  input = fileload
-  #  transform = SCALE
-  #  vector_value = '1e-3 1e-3 1e-3'  # convert to microns. A better unit for micromagnetics
-  #[]
-
-
-#note we have to go back to nanometers because the wFM moment is very small
-# and we don't want to be adding/dividing/and multiplying by 1e-9 everywhere
 []
 
 
@@ -70,18 +53,12 @@ Eadef = -1.8e3
   [../]
 []
 
-  #########################################
-  ##
-  ##  g0 = 1000*g0  not sure why this is...
-  ##
-  #########################################
-
 [Materials]
 
   [./constants] # Constants used in other material properties
     type = GenericConstantMaterial
-    prop_names = '   alpha          De       D0           g0mu0Ms        g0            K1        K1c      Kt     '
-    prop_values = '${alphadef}   ${Dedef} ${D0def}       48291.9      48291.9      ${K1def}  ${K1cdef} ${Ktdef} '
+    prop_names = '  alpha      De       D0          g0mu0Ms        g0           K1        K1c      Kt     '
+    prop_values = '0.003     3.7551    0.003       48291.9      48291.9      -5.0068  -0.00550748 -0.000365997 '
   [../]
 
   [./a_long]
@@ -409,283 +386,6 @@ Eadef = -1.8e3
   [./sublat2_th]
     order = FIRST
     family = LAGRANGE
-  [../]
-#
-[]
-
-[AuxKernels]
-
-  [./mag1_mag]
-    type = VectorMag
-    variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./mag2_mag]
-    type = VectorMag
-    variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-
-  [./Neel_Lx]
-    type = VectorDiffOrSum
-    variable = Neel_L_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Ly]
-    type = VectorDiffOrSum
-    variable = Neel_L_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Lz]
-    type = VectorDiffOrSum
-    variable = Neel_L_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./smallSignalMag_x]
-    type = VectorDiffOrSum
-    variable = SSMag_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_y]
-    type = VectorDiffOrSum
-    variable = SSMag_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_z]
-    type = VectorDiffOrSum
-    variable = SSMag_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-
-
-  [./phc]
-    type = AngleBetweenTwoVectors
-    variable = ph
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = mag2_x
-    var2y = mag2_y
-    var2z = mag2_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th1c]
-    type = AngleBetweenTwoVectors
-    variable = th1
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th2c]
-    type = AngleBetweenTwoVectors
-    variable = th2
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-
-  [./disp_x]
-    type = GlobalDisplacementAux
-    variable = disp_x
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 0
-  [../]
-  [./disp_y]
-    type = GlobalDisplacementAux
-    variable = disp_y
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 1
-  [../]
-  [./disp_z]
-    type = GlobalDisplacementAux
-    variable = disp_z
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
-    component = 2
-  [../]
-  [./s00]
-    type = RankTwoAux
-    variable = s00
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 0
-  [../]
-  [./s01]
-    type = RankTwoAux
-    variable = s01
-    rank_two_tensor = stress
-    index_i = 0
-    index_j = 1
-  [../]
-  [./s10]
-    type = RankTwoAux
-    variable = s10
-    rank_two_tensor = stress
-    index_i = 1
-    index_j = 0
-  [../]
-  [./s11]
-    type = RankTwoAux
-    variable = s11
-    rank_two_tensor = stress
-    index_i = 1
-    index_j = 1
-  [../]
-  [./e00]
-    type = RankTwoAux
-    variable = e00
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 0
-  [../]
-  [./e01]
-    type = RankTwoAux
-    variable = e01
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 1
-  [../]
-  [./e10]
-    type = RankTwoAux
-    variable = e10
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 0
-  [../]
-  [./e11]
-    type = RankTwoAux
-    variable = e11
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 1
-  [../]
-  [./e12]
-    type = RankTwoAux
-    variable = e12
-    rank_two_tensor = total_strain
-    index_i = 1
-    index_j = 2
-  [../]
-  [./e21]
-    type = RankTwoAux
-    variable = e21
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 1
-  [../]
-  [./e20]
-    type = RankTwoAux
-    variable = e20
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 0
-  [../]
-  [./e02]
-    type = RankTwoAux
-    variable = e02
-    rank_two_tensor = total_strain
-    index_i = 0
-    index_j = 2
-  [../]
-  [./e22]
-    type = RankTwoAux
-    variable = e22
-    rank_two_tensor = total_strain
-    index_i = 2
-    index_j = 2
-  [../]
-
-  [./ez]
-    type = HarmonicFieldAux
-    variable = E_z
-    amplitude = ${Eadef}
-    correction = 1.0
-    frequency = ${efreq}
-    tshift = 0.0
-    ton = 0.0
-    toff = 0.000944
-    execute_on = 'initial timestep_end final'
-  [../]
-
-
-  [./mcsublat1_phi]
-    type = SphericalCoordinateVector
-    variable = sublat1_phi
-    component = 0
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./mcsublat1_th]
-    type = SphericalCoordinateVector
-    variable = sublat1_th
-    component = 1
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./mcsublat2_phi]
-    type = SphericalCoordinateVector
-    variable = sublat2_phi
-    component = 0
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./mcsublat2_th]
-    type = SphericalCoordinateVector
-    variable = sublat2_th
-    component = 1
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
-    execute_on = 'initial timestep_end final'
   [../]
 []
 
@@ -1176,6 +876,283 @@ Eadef = -1.8e3
     variable = antiphase_A_z
     time_scale = 0.00005
     block = '0'
+  [../]
+[]
+
+
+[AuxKernels]
+
+  [./mag1_mag]
+    type = VectorMag
+    variable = mag1_s
+    vector_x = mag1_x
+    vector_y = mag1_y
+    vector_z = mag1_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./mag2_mag]
+    type = VectorMag
+    variable = mag2_s
+    vector_x = mag2_x
+    vector_y = mag2_y
+    vector_z = mag2_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+
+  [./Neel_Lx]
+    type = VectorDiffOrSum
+    variable = Neel_L_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Ly]
+    type = VectorDiffOrSum
+    variable = Neel_L_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Lz]
+    type = VectorDiffOrSum
+    variable = Neel_L_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./smallSignalMag_x]
+    type = VectorDiffOrSum
+    variable = SSMag_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_y]
+    type = VectorDiffOrSum
+    variable = SSMag_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_z]
+    type = VectorDiffOrSum
+    variable = SSMag_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+
+
+  [./phc]
+    type = AngleBetweenTwoVectors
+    variable = ph
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = mag2_x
+    var2y = mag2_y
+    var2z = mag2_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th1c]
+    type = AngleBetweenTwoVectors
+    variable = th1
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th2c]
+    type = AngleBetweenTwoVectors
+    variable = th2
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+
+  [./ez]
+    type = HarmonicFieldAux
+    variable = E_z
+    amplitude = ${Eadef}
+    correction = 1.0
+    frequency = ${efreq}
+    tshift = 0.0
+    ton = 0.0
+    toff = 0.000944
+    execute_on = 'initial timestep_end final'
+  [../]
+
+
+  [./mcsublat1_phi]
+    type = SphericalCoordinateVector
+    variable = sublat1_phi
+    component = 0
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./mcsublat1_th]
+    type = SphericalCoordinateVector
+    variable = sublat1_th
+    component = 1
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./mcsublat2_phi]
+    type = SphericalCoordinateVector
+    variable = sublat2_phi
+    component = 0
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./mcsublat2_th]
+    type = SphericalCoordinateVector
+    variable = sublat2_th
+    component = 1
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    execute_on = 'initial timestep_end final'
   [../]
 []
 
