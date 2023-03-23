@@ -2,9 +2,10 @@
 
 The developers of FERRET are
 
-- John Mangeri: john.m.mangeri@gmail.com
-- Olle Heinonen: olle.heinonen@seagate.com
-- Lukasz Kuna: lukasz.kuna.ctr@nrl.navy.mil
+- Dr. [John Mangeri](https://scholar.google.com/citations?user=0RiauUkAAAAJ&hl=en): john.m.mangeri@gmail.com
+- Dr. [Olle Heinonen](https://scholar.google.com/citations?user=BAbP3q8AAAAJ&hl=en): olle.heinonen@seagate.com
+- Dr. [Lukasz Kuna](https://scholar.google.com/citations?user=j0QV0jYAAAAJ&hl=en): lukasz.kuna.ctr@nrl.navy.mil
+- Dr. [Serge Nakhmanson](https://scholar.google.com/citations?user=xOFS6p4AAAAJ&hl=en): serge.nakhmanson@uconn.edu
 
 We ask that you cite [!cite](Mangeri2017) if you use FERRET for the ferroelectric phase field method. A corresponding BibTeX entry is:
 
@@ -20,18 +21,33 @@ We ask that you cite [!cite](Mangeri2017) if you use FERRET for the ferroelectri
 }
 ```
 
-If you use the micromagnetic or multiferroic phase field simulation capability, please cite
+If you use the micromagnetic or multiferroic phase field simulation capability, please cite:
 
 ```
 @article{Mangeri2023,
-  title={},
+  title={A coupled polar-magnetic continuum model for multiferroic $\mathrm{BiFeO}_3$},
   author={Mangeri, John and Graf, Monica and Biswas, Sudipta and Rodrigues, Davi and Heinonen, Olle and Iniguez, Jorge},
   year={2023},
   publisher={arXiv}
 }
 ```
 
-A methods and benchmarking publication is in the works which will supersede this request in the future. We invite the community to contribute to this effort. You may contact one of the developers if you are interested. It should be mentioned that you should quote the relevant MOOSE papers in your publication if you use certain MOOSE objects or protocols (which you are). Please see [here](https://mooseframework.inl.gov/citing.html).
+If you use the Fast-multipole boundary element method (FMM-BEM, ScalFMM), please cite:
+
+```
+@article{Jiang2016,
+  title={An O(N) and parallel approach to integral problems by a kernel-independent fast multipole method: Application to polarization and magnetization of interacting particles},
+  author={Jiang, X. and Li, J. and Zhao, X. and Qin, J. and Karpeev, D. and Hernandez-Ortiz, J. and de Pablo, J. J. and Heinonen, O.},
+  year={2016},
+  volume={145},
+  eid={064307},
+  publisher={J. Chem. Phys.}
+}
+```
+
+A methods and benchmarking publication is in the works which will supersede some of these requests in the future. We invite the community to contribute to this effort. You may contact one of the developers if you are interested.
+
+It should be mentioned that you should quote the relevant MOOSE papers in your publication if you use certain MOOSE objects or protocols (which you are). Please see [here](https://mooseframework.inl.gov/citing.html).
 
 # Contribute
 
@@ -47,4 +63,4 @@ There are many aspects of ferroics or other electronic phenomena (i.e. piezo- an
 
 A special thanks to all of the collaborators/co-authors of the various [projects](publication_highlights/publication_highlights.md) using FERRET.
 
-We also would like to thank the code contributors and developers from [Idaho National Laboratory](https://inl.gov/) for their continued support.
+We also would like to thank the code contributors and developers from [Idaho National Laboratory](https://inl.gov/) for their continued support. A special thanks to MOOSE team member [Dr. Casey Icenhour](https://github.com/cticenhour) for help with the documentation on this website.

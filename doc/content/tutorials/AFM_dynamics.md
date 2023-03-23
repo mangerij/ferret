@@ -2,9 +2,6 @@
 
 # Tutorial 5: Antiferromagnetic dynamics
 
-!alert construction title=To be finished
-The tutorial for antiferromagnetic dynamics has not been completed and uploaded to the website. We expect to do this in the near future.
-
 This tutorial covers the basic implementation of antiferromagnetic (AFM) dynamics implemented in FERRET. We refer the reader to the first example in [!cite](Rezende2019) which considers the unaxial AFM material $\mathrm{MnF}_2$. The magnetic ion is $\mathrm{Mn}$ leading to two sublattices arranged collinearly. The free energy density is,
 
 \begin{equation}

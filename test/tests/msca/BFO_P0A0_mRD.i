@@ -40,7 +40,6 @@ alphadef = 0.01
   ##
   ##       material constants used.
   ##
-  ##
   ############################################################################
 
   [./constants] 
@@ -58,14 +57,6 @@ alphadef = 0.01
 []
 
 [Functions]
-
-  ##############################
-  ##
-  ## Define the ramping function
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
     value = 'st'

@@ -133,211 +133,6 @@ alphadef = 0.1
   [../]
 []
 
-[AuxVariables]
-  [./mag1_s]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./mag2_s]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-
-  [./Neel_L_x]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./Neel_L_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./Neel_L_z]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-
-
-  [./SSMag_x]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./SSMag_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./SSMag_z]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-
-
-  [./antiphase_A_x]
-    order = FIRST
-    family = LAGRANGE
-    initial_from_file_var = antiphase_A_x
-    initial_from_file_timestep = 'LATEST'
-  [../]
-  [./antiphase_A_y]
-    order = FIRST
-    family = LAGRANGE
-    initial_from_file_var = antiphase_A_y
-    initial_from_file_timestep = 'LATEST'
-  [../]
-  [./antiphase_A_z]
-    order = FIRST
-    family = LAGRANGE
-    initial_from_file_var = antiphase_A_z
-    initial_from_file_timestep = 'LATEST'
-  [../]
-
-
-  [./polar_x]
-    order = FIRST
-    family = LAGRANGE
-    initial_from_file_var = polar_x
-    initial_from_file_timestep = 'LATEST'
-  [../]
-  [./polar_y]
-    order = FIRST
-    family = LAGRANGE
-    initial_from_file_var = polar_y
-    initial_from_file_timestep = 'LATEST'
-  [../]
-  [./polar_z]
-    order = FIRST
-    family = LAGRANGE
-    initial_from_file_var = polar_z
-    initial_from_file_timestep = 'LATEST'
-  [../]
-
-  [./ph]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-
-  [./th1]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./th2]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-[]
-
-
-[AuxKernels]
-  [./mag1_mag]
-    type = VectorMag
-    variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./mag2_mag]
-    type = VectorMag
-    variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
-    execute_on = 'initial timestep_end final'
-  [../]
-
-
-  [./Neel_Lx]
-    type = VectorDiffOrSum
-    variable = Neel_L_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Ly]
-    type = VectorDiffOrSum
-    variable = Neel_L_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./Neel_Lz]
-    type = VectorDiffOrSum
-    variable = Neel_L_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 0
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./smallSignalMag_x]
-    type = VectorDiffOrSum
-    variable = SSMag_x
-    var1 = mag1_x
-    var2 = mag2_x
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_y]
-    type = VectorDiffOrSum
-    variable = SSMag_y
-    var1 = mag1_y
-    var2 = mag2_y
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-  [./smallSignalMag_z]
-    type = VectorDiffOrSum
-    variable = SSMag_z
-    var1 = mag1_z
-    var2 = mag2_z
-    diffOrSum = 1
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./phc]
-    type = AngleBetweenTwoVectors
-    variable = ph
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = mag2_x
-    var2y = mag2_y
-    var2z = mag2_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th1c]
-    type = AngleBetweenTwoVectors
-    variable = th1
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-  [./th2c]
-    type = AngleBetweenTwoVectors
-    variable = th2
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
-    var2x = polar_x
-    var2y = polar_y
-    var2z = polar_z
-
-    execute_on = 'initial timestep_end final'
-  [../]
-
-[]
-
-
 [Kernels]
 
   [./mag1_x_time]
@@ -570,6 +365,213 @@ alphadef = 0.1
     component = 2
   [../]
 []
+
+
+[AuxVariables]
+  [./mag1_s]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./mag2_s]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./Neel_L_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Neel_L_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Neel_L_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+
+  [./SSMag_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./SSMag_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./SSMag_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+
+  [./antiphase_A_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_x
+    initial_from_file_timestep = 'LATEST'
+  [../]
+  [./antiphase_A_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_y
+    initial_from_file_timestep = 'LATEST'
+  [../]
+  [./antiphase_A_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_z
+    initial_from_file_timestep = 'LATEST'
+  [../]
+
+
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_x
+    initial_from_file_timestep = 'LATEST'
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_y
+    initial_from_file_timestep = 'LATEST'
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_z
+    initial_from_file_timestep = 'LATEST'
+  [../]
+
+  [./ph]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./th1]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./th2]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[AuxKernels]
+  [./mag1_mag]
+    type = VectorMag
+    variable = mag1_s
+    vector_x = mag1_x
+    vector_y = mag1_y
+    vector_z = mag1_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./mag2_mag]
+    type = VectorMag
+    variable = mag2_s
+    vector_x = mag2_x
+    vector_y = mag2_y
+    vector_z = mag2_z
+    execute_on = 'initial timestep_end final'
+  [../]
+
+
+  [./Neel_Lx]
+    type = VectorDiffOrSum
+    variable = Neel_L_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Ly]
+    type = VectorDiffOrSum
+    variable = Neel_L_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./Neel_Lz]
+    type = VectorDiffOrSum
+    variable = Neel_L_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 0
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./smallSignalMag_x]
+    type = VectorDiffOrSum
+    variable = SSMag_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_y]
+    type = VectorDiffOrSum
+    variable = SSMag_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+  [./smallSignalMag_z]
+    type = VectorDiffOrSum
+    variable = SSMag_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 1
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./phc]
+    type = AngleBetweenTwoVectors
+    variable = ph
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = mag2_x
+    var2y = mag2_y
+    var2z = mag2_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th1c]
+    type = AngleBetweenTwoVectors
+    variable = th1
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+  [./th2c]
+    type = AngleBetweenTwoVectors
+    variable = th2
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = 'initial timestep_end final'
+  [../]
+
+[]
+
+
 
 [BCs]
   [./Periodic]

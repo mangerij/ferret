@@ -119,9 +119,9 @@ and `AuxVariables` blocks,
          link=False
          language=python
 
-where we use (i.e. for vector component $P_z$) `initial_from_file_var = polar_z` and `initial_from_file_timestep = 'LATEST'` as code flags to load in the values of `polar_z` and others at the latest timestep from the Exodus output `BFO_P0A0.e`. In this sense, we have changed $\{\mathbf{P},\mathbf{A}\}$ to be an AuxVariable class instead of a Variable since they will be fixed for the duration of the evolution of the spins. Our variables to solve for are the set of sublattice magnetizations $\{\mathbf{m}_1, \mathbf{m}_2\}$ with postprocessed outputs $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$ and $\mathbf{m} = \mathbf{m}_1 + \mathbf{m}_2$. Note that the conventional factor of 2 is missing from the output of these calculations.
+where we use (i.e. for vector component $P_z$) `initial_from_file_var = polar_z` and `initial_from_file_timestep = 'LATEST'` as code flags to load in the values of `polar_z` and others at the latest timestep from the Exodus output `BFO_P0A0.e`. In this sense, we have changed $\{\mathbf{P},\mathbf{A}\}$ to be an AuxVariable class instead of a Variable since they will be fixed for the duration of the evolution of the spins. Our variables to solve for are the set of sublattice magnetizations $\{\mathbf{m}_1, \mathbf{m}_2\}$ with postprocessed outputs of the Néel vector $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$ and net (weak) magnetization $\mathbf{m} = \mathbf{m}_1 + \mathbf{m}_2$. Note that the conventional factor of 2 is missing from the output of these calculations.
 
-This problem considers the evolution of the Landau-Lifshitz-Gilbert (Bloch) equation for the two sublattices,
+This problem considers the evolution of the normalized Landau-Lifshitz-Gilbert (Bloch) equation for the two sublattices,
 
 \begin{equation}\label{eqn:LLG_LLB}
   \begin{aligned}
