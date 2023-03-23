@@ -44,11 +44,11 @@ where $Q_{ijkl}$ and $R_{ijkl}$ are the electrostrictive and rotostrictive coeff
 
 Note that $(\mathbf{P} \uparrow \downarrow \mathbf{A})$ is also a possible minimized energy solution of the thermodynamic potential $f$. Due to the symmetry of the electrostrictive and rotostrictive coupling terms, the table is left invariant under full reversal of $\mathbf{A}$. The free energy density of the eight-fold domain possibilities is -15.5653 $\mathrm{eV}\cdot\mathrm{nm}^{-3}$.
 
-To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md) for more details on the input file.
+To reproduce these results, we refer the reader [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md) for more details on the input file and the documentation to reproduce these results.
 
 # Antiferromagnetic ringdown (homogeneous spin state)
 
-To find the possible magnetic states in this material, we evolve the Landau-Lifshitz-Bloch (LLB) equation,
+To find the possible magnetic states in this material, we evolve the normalized two-sublattice Landau-Lifshitz-Bloch (LLB) equation,
 
 \begin{equation}\label{eqn:LLG_LLB}
   \begin{aligned}
@@ -56,15 +56,15 @@ To find the possible magnetic states in this material, we evolve the Landau-Lifs
   \end{aligned}
 \end{equation}
 
-where $\mathbf{P}$ and $\mathbf{A}$ are held fixed corresponding to one of the possible eight-fold degenerate domain directions. This approximation for evaluation of ground states is suitable since the magnetic system does not appreciably influence the relaxation dynamics of the polarization since the work required to move ions (i.e. those relative displacements corresponding to $\mathbf{P}$ and $\mathbf{A}$) is much larger than those to reorient the spins on the Fe sites. The constant $\gamma$ corresponds to the electron gyromagnetic factor equal to $2.2101\times10^5$ rad. m A${}^{-1}$ s ${}^{-1}$, $\alpha$ the Gilbert damping, and $\tilde\alpha_\parallel$ the longitudinal damping constant from the LLB approximation. The effective fields are defined as $\mathbf{H}_\eta = - \mu_0^{-1} M_s^{-1} \delta f / \delta \mathbf{m}_\eta$ with $\mu_0$ the permeability of vacuum. The saturation magnetization density of the BFO sublattices is $M_s = 4.0$ $\mu$B/Fe [!cite](Dixit2015). We set $\alpha = 0.01$ and $\tilde\alpha_\parallel = 10^2$ and ringdown the magnetic system to an energy minimum.
+where $\mathbf{P}$ and $\mathbf{A}$ are held fixed corresponding to one of the possible eight-fold degenerate domain directions. This approximation for evaluation of ground states is suitable since the magnetic system does not appreciably influence the relaxation dynamics of the polarization since the work required to move ions (i.e. those relative displacements corresponding to $\mathbf{P}$ and $\mathbf{A}$) is much larger than those to reorient the spins on the Fe sites. The constant $\gamma$ corresponds to the electron gyromagnetic factor equal to $2.2101\times10^5$ rad. m A${}^{-1}$ s ${}^{-1}$, $\alpha$ the Gilbert damping, and $\tilde\alpha_\parallel$ the longitudinal damping constant from the LLB approximation. The effective fields are defined as $\mathbf{H}_\eta = - \mu_0^{-1} M_s^{-1} \delta f / \delta \mathbf{m}_\eta$ with $\mu_0$ the permeability of vacuum. The saturation magnetization density of the BFO sublattices ($\eta = 1,2$) is $M_s = 4.0$ $\mu$B/Fe [!cite](Dixit2015). We set $\alpha = 0.01$ and $\tilde\alpha_\parallel = 10^2$ and ringdown the magnetic system to an energy minimum.
 
-The below figure details the ringdown behavior of the numerical sample. Here, we also look for homogeneous spins (no domain walls or texture in the $\mathbf{m}_\eta$ field).
+The below figure details the numerical ringdown behavior of the sublattices $\mathbf{m}_\eta$. Here, we also look for homogeneous spins (no domain walls or texture in the $\mathbf{m}_\eta$ field).
 
 !media media/ringdown_abc.png style=display:block;margin:auto;width:100%; caption=Ringdown time dependence of Left: components of selected $\mathbf{m}_\eta$. Center: easy-plane angle $\theta_\eta = \cos^{-1}{(\mathbf{m}_\eta\cdot\hat{\mathbf{P}})}$ and Right: canted moment angle $\phi^\mathrm{WFM} = \cos^{-1}{(\mathbf{m}_1\cdot \mathbf{m}_2)}$.  id=fig_ringdown_abc
 
 Importantly, this analysis allowed us to parameterize the DMI coupling at our level of theory, which leads to the non-vanishing moment of $\mathbf{m} = (\mathbf{m}_1 + \mathbf{m}_2)/2$. By tracking the angle of the canted moment $\phi^\mathrm{WFM} = \cos^{-1}{\left(\mathbf{m}_1 \cdot \mathbf{m}_2 \right)}$ as a function of the strength of the DMI coupling, $D_0$, we can identify good agreement ($\phi^\mathrm{WFM} \approx 1.22^\circ$) with the available literature corresponding to $\mathbf{M} = M_s\mathbf{m} = 0.03 \mu$B/f.u..
 
-By selecting initial conditions corresponding to the six-fold possible orientations of the spin sublattice system, the below table can be obtained yielding 48 different orientations of the the Neel order $\mathbf{L} = \left(\mathbf{m}_1 - \mathbf{m}_2\right) / 2$ and total magnetization $\mathbf{m}$ dependent on the 8 possible orientations of $(\mathbf{P}\uparrow\uparrow\mathbf{A})$.
+By selecting initial conditions corresponding to the six-fold possible orientations of the spin sublattice system, the below table can be obtained yielding 48 different orientations of the the Néel order $\mathbf{L} = \left(\mathbf{m}_1 - \mathbf{m}_2\right) / 2$ and total magnetization $\mathbf{m}$ dependent on the 8 possible orientations of $(\mathbf{P}\uparrow\uparrow\mathbf{A})$.
 
 !equation
 \begin{array}{c|cccccccc}
@@ -90,7 +90,7 @@ By selecting initial conditions corresponding to the six-fold possible orientati
  & [\bar{2}11] & [211] & [\bar{2}\bar{1}\bar{1}] & [2\bar{1}\bar{1}] & [121] & [\bar{1}21] & [1\bar{2}\bar{1}] & [\bar{1}\bar{2}\bar{1}] \\
 \end{array}
 
-To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md) for details on the input file.
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex1.md) for details on the simulation (input/output).
 
 # Structural domain walls
 
@@ -110,11 +110,11 @@ and
   \end{aligned}
 \end{equation}
 
-A comma in the subscript denotes a partial derivative with respect to the specified spatial directions. In order to study the domain wall topology involving spatial variations of $\mathbf{P}$, $\mathbf{A}$, and strain, a good parameter set estimate of the gradient coefficients $(G_{11}, H_{11}, ...)$ is needed. To achieve this, we consult DFT calculations reported in [!cite](Dieguez2013). It was shown that an assortment of different metastable (along with low energy) domain walls form an energetic hierarchy. This was advantageous for our work, as we were allowed to seperate the computation (fitting) of various $(G_{11}, H_{11}, ...)$ due to only certain terms in the gradient energy density expressions being identified as primary contributions to the DW energy.
+A comma in the subscript denotes a partial derivative with respect to a specified spatial direction. In order to study the domain wall topology involving spatial variations of $\mathbf{P}$, $\mathbf{A}$, and strain, a good parameter set estimate of the gradient coefficients $(G_{11}, H_{11}, ...)$ is needed. To achieve this, we consult DFT calculations reported in [!cite](Dieguez2013). It was shown that an assortment of different metastable (along with low energy) domain walls form an energetic hierarchy. This was advantageous for our work, as we were allowed to seperate the computation (fitting) of various $(G_{11}, H_{11}, ...)$ due to only certain terms in the gradient energy density expressions being identified as primary contributions to the DW energy.
 
 For example, consider the 2/1 (100) DW which is a commonly observed domain boundary observed in experiments. In this notation, it is indicated that, for the $2/1$ DW, two components of $\mathbf{P}$ and one component of $\mathbf{A}$ vary across the boundary whose plane normal is (100) whereis for the $3/0$ DW, $\mathbf{P}$ undergoes a full reversal where $\mathbf{A}$ is approximately unchanged across the (110)-oriented boundary plane. We label the pairs of the domains characterizing the DW as $\mathbf{P}^\mathrm{I}/\mathbf{A}^\mathrm{I}$ and $\mathbf{P}^\mathrm{II}/\mathbf{A}^\mathrm{II}$ in the Table below.
 
-After seeding a sin(x) profile for the initial state of $\mathbf{P}$ and $\mathbf{A}$ corresponding to the expected DW configuration, a typical profile of the order parameters and strain can be obtained as shown below for the $2/1 [100]$ DW when relaxing the time-dependent Landau-Ginzburg equations - Eqs. (\ref{eqn:TDLGD}).
+After seeding a $sin(x)$ profile for the initial state of $\mathbf{P}$ and $\mathbf{A}$ corresponding to the expected DW configuration, a typical profile of the order parameters and strain can be obtained as shown below for the $2/1 [100]$ DW when relaxing the time-dependent Landau-Ginzburg equations - Eqs. (\ref{eqn:TDLGD}).
 
 !media media/tut_21_DW.png style=display:block;margin:auto;width:47%; caption=Different components of $\mathbf{P}$ and $\mathbf{A}$ across the $2/1 [100]$ domain wall.  id=fig_dw_21_prof
 
