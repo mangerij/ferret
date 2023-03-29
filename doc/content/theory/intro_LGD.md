@@ -26,7 +26,7 @@ where the electric field is defined in the usual way $\mathbf{E} = - \nabla \Phi
 
 \begin{equation}\label{stressdiv}
   \begin{aligned}
-    \frac{\sigma_{ij}}{\partial x_j} = 0,
+    \frac{\partial \sigma_{ij}}{\partial x_j} = 0,
   \end{aligned}
 \end{equation}
 
