@@ -1,16 +1,18 @@
 # AFMHomogeneousSublatticeExchangeEnergy
 
-!alert construction title=Undocumented Class
-The AFMHomogeneousSublatticeExchangeEnergy has not been documented. The content listed below should be used as a starting point for
-documenting the class, which includes the typical automatic documentation associated with a
-MooseObject; however, what is contained is ultimately determined by what is necessary to make the
-documentation clear for users.
-
 !syntax description /Postprocessors/AFMHomogeneousSublatticeExchangeEnergy
 
 ## Overview
 
-!! Replace these lines with information regarding the AFMHomogeneousSublatticeExchangeEnergy object.
+Computes the free energy in the simulation box (volume $\Omega$) due to the short-range sublattice exchange energy between two sublattice magnetizations $\{\mathbf{m}_1, \mathbf{m}_2\}$ in an antiferromagnet corresponding to,
+
+\begin{equation}
+  \begin{aligned}
+    F_\mathrm{exch} &= \int\limits_\Omega d^3 \mathbf{r} \, 4 D_e \left[ \mathbf{L}^2 - \mathbf{m}^2 \right],
+  \end{aligned}
+\end{equation}
+
+where $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$ and $\mathbf{m} = \mathbf{m}_1 + \mathbf{m}_2$. Note that we do not use the conventional factor of 2 in these definitions but they can be evaluated after or during the simulation.
 
 ## Example Input File Syntax
 

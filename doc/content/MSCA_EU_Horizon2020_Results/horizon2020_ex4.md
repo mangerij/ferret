@@ -58,7 +58,39 @@ The `Kernels` are due to structural evolution (TDLGD) along with the ones from m
          link=False
          language=python
 
-We compute a number of postprocessed quantities in the `AuxKernels` block,
+For example, [ElectrostrictiveCouplingDispDerivative](source/kernels/ElectrostrictiveCouplingDispDerivative.md) and [RotostrictiveCouplingDispDerivative](source/kernels/RotostrictiveCouplingDispDerivative.md) correspond to the RHS of the mechanical equilibrium condition,
+
+\begin{equation}
+  \begin{aligned}
+    \frac{\partial \sigma_{ij}}{\partial x_j} = \frac{\partial}{\partial x_j}\left[C_{ijkl} \left(\varepsilon_{kl} + Q_{klmn} P_m P_n + R_{klmn} A_m A_n \right)\right] = 0.
+  \end{aligned}
+\end{equation}
+
+The `Kernel` [AFMEasyPlaneAnisotropySC](source/kernels/AFMEasyPlaneAnisotropySC.md) corresponds to the RHS of,
+
+\begin{equation}\label{eqn:LLG2}
+  \begin{aligned}
+    \frac{\partial \mathbf{M}_\eta}{\partial t} = -\left(\frac{\gamma}{1+\alpha^2}\right)\mathbf{M}_\eta\times \mathbf{H}_\eta^\mathrm{easy-plane} - \frac{1}{M_s} \left(\frac{\gamma \alpha}{1+\alpha^2}\right) \mathbf{M}_\eta \times \left(\mathbf{M}_\eta \times \mathbf{H}_\eta^\mathrm{easy-plane}\right).
+  \end{aligned}
+\end{equation}
+
+where $\mathbf{H}_\eta^\mathrm{easy-plane}$ is the effective field due to the free energy density term responsible for easy-plane magnetic anisotropy,
+
+\begin{equation}\label{eqn:easy}
+  \begin{aligned}
+    f_\mathrm{easy-plane} = K_1 \left(\textbf{m}_\eta \cdot \hat{\mathbf{P}}\right)^2
+  \end{aligned}
+\end{equation}
+
+which we compute as
+
+\begin{equation}\label{eqn:easyeff}
+  \begin{aligned}
+    \mathbf{H}_\eta^\mathrm{easy-plane} = -\mu_0^{-1} M_s^{-1} \frac{\delta \left[ K_1 \left(\textbf{m}_\eta \cdot \hat{\mathbf{P}}\right)^2\right]}{\delta \mathbf{m}_\eta}
+  \end{aligned}
+\end{equation}
+
+The suffix `SC` in the name of this object corresponds to a strongly-coupled situation. This means that for variational derivatives with respect to $\mathbf{P}$, this object also contributes non-zero residual contributions (i.e. in the time dependence of $\mathbf{P}$. We refer the reader to our `Syntax` page for a extensive list of the `Kernels` in FERRET regarding this problem. We also evaluate a number of postprocessed quantities in the `AuxKernels` block,
 
 !listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
          block=AuxKernels
@@ -72,7 +104,7 @@ For example, we compute $\mathbf{L} = \mathbf{m}_1 - \mathbf{m}_2$ and $\mathbf{
          link=False
          language=python
 
-where we have used units of `nanometers`, `microseconds`, `attocoulombs`, and `picograms`. This sets the time and length scale in this type of problem. The `Executioner` block, chooses flags for the time integration and numerical solve,
+where we have used units of `nanometers`, `microseconds`, `attocoulombs`, and `picograms`. This sets the time and length scales in this problem. The `Executioner` block, chooses flags for the time integration and numerical solve,
 
 !listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
          block=Executioner

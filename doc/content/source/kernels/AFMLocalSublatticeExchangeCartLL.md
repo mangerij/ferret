@@ -17,12 +17,12 @@ The quantity $\mathbf{L}$ is the antiferromagnetic Néel vector along with coupl
 \begin{equation}
   \begin{aligned}
     f_\mathrm{\nabla L} &= A_e \left[\left(\nabla L_x\right)^2 + \left(\nabla L_y\right)^2 \left(\nabla L_z\right)^2\right] \\
-    &= \frac{A_e}{4} \left\{\left(\nabla m_{1,x}\right)^2 + \left(\nabla m_{1,y}\right)^2 \left(\nabla m_{1,z}\right)^2 + \left(\nabla m_{2,x}\right)^2 + \left(\nabla m_{2,y}\right)^2 \left(\nabla m_{2,z}\right)^2\right\} \\ \nonumber
+    &= \frac{A_e}{4} \left\{\left(\nabla m_{1,x}\right)^2 + \left(\nabla m_{1,y}\right)^2 \left(\nabla m_{1,z}\right)^2 + \left(\nabla m_{2,x}\right)^2 + \left(\nabla m_{2,y}\right)^2 \left(\nabla m_{2,z}\right)^2\right\} \\
     &- 2 A_e \left(\frac{\partial m_{1,i}}{\partial x_j}\right)\left(\frac{\partial m_{2,i}}{\partial x_j}\right).
   \end{aligned}
 \end{equation}
 
-So we can separate this free energy density contribution into two distinct Kernels with the first being due to a standard expression in micromagnetics and the second being a cross-term that arises because of the coupling between the sublattices. The Landau-Lifshitz-Gilbert (LLG) equation for our two sublattice system is,
+So we can separate this free energy density contribution into two distinct `Kernels` with the first being due to a standard expression in micromagnetics and the second being a cross-term that arises because of the coupling between the sublattices. The Landau-Lifshitz-Gilbert (LLG) equation for our two sublattice system is,
 
 \begin{equation}\label{eqn:LLG_LLB}
   \begin{aligned}

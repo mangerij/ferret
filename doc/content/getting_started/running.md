@@ -4,12 +4,12 @@
 
 Before running any model, it is important to understand what a "model" means in MOOSE. In the MOOSE ecosystem, the source code and the configuration of your model are separated.
 
-The source codes of your model are written in C++, and they are compiled into an executable file. In FERRET the executable is called `ferret-opt`.
+The source codes of your model are written in `C++`, and they are compiled into an executable file. In FERRET the executable is called `ferret-opt`.
 
 The configurations of your model are written in Hit format, and they are called "input files" with a `.i` extension. While your models may work for a wide variety of problems, an input file typically contains configurations for a *specific* problem. An input file may contain information about mesh, variables, weak form, constitutive models, boundary conditions, initial conditions, postprocessors, and so on.
 
 !alert tip title=No hard-coding!
-We highly recommend you to follow this idea of separating the model from its parameters. As this allows for more general code, less code duplication, maximum modularity/reusability, and minimum maintenance cost. And even better, it is suggested you use the automatic differentation tools within MOOSE to eliminate the need for complicated algebra required to generate the residual and jacobian terms. However, this particular advice was rather lost as FERRET was developed :)
+We highly recommend you to follow this idea of separating the model from its parameters. As this allows for more general code, less code duplication, maximum modularity/reusability, and minimum maintenance cost. And even better, it is suggested you use the automatic differentation tools within MOOSE to eliminate the need for complicated algebra required to generate the residual and jacobian terms. However, this particular advice was rather lost as FERRET was developed. :)
 
 ## Command line interface
 
