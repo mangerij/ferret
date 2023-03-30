@@ -33,7 +33,7 @@ In this problem, we consider a computational geometry
          link=False
          language=python
 
- The finite element mesh discretization schema is chosen to be quadrilateral elements `HEX8`. In general, the geometry defined in the `Mesh` block *never* carries units. The length scale is introduced through `Materials`, `Kernels`, or other MOOSE objects. We seed the materials coefficients $C_{ijkl}$ and $d_{ijk}$ through the following block,
+ The finite element mesh discretization schema is chosen to be quadrilateral elements `HEX8`. In general, the geometry defined in the `Mesh` block *never* carries units. The length scale is introduced through `Materials`, `Kernels`, or other MOOSE `Objects`. We seed the materials coefficients $C_{ijkl}$ and $d_{ijk}$ through the following block,
 
 !listing tutorial/piezoelectric.i
          block=Materials

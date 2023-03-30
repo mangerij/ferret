@@ -145,7 +145,7 @@ After we obtained the structural DW profile, the two sublattice LLG-LLB equation
 
 \begin{equation}\label{eqn:LLG}
   \begin{aligned}
-    \frac{\partial \mathbf{M}_\eta}{\partial t} = -\gamma \mathbf{M}_\eta\times \mathbf{H} - \frac{1}{M_s} \left(\frac{\gamma \alpha}{1+\alpha^2}\right) \mathbf{M}_\eta \times \mathbf{M}_\eta \times \mathbf{H},
+    \frac{\partial \mathbf{M}_\eta}{\partial t} = -\frac{\gamma}{1+\alpha^2} \mathbf{M}_\eta\times \mathbf{H}_\eta - \frac{1}{M_s} \left(\frac{\gamma \alpha}{1+\alpha^2}\right) \mathbf{M}_\eta \times \mathbf{M}_\eta \times \mathbf{H}_\eta,
   \end{aligned}
 \end{equation}
 
@@ -153,7 +153,7 @@ is relaxed with large $\alpha$ to find the ground states of $\mathbf{M}_\eta$ in
 
 \begin{equation}\label{eqn:eff}
   \begin{aligned}
-    \mathbf{H}_\eta = - \frac{\delta f}{\mu_0 M_s \delta \mathbf{m}_\eta},
+    \mathbf{H}_\eta = - \frac{1}{\mu_0 M_s}\frac{\delta f}{\delta \mathbf{m}_\eta},
   \end{aligned}
 \end{equation
 
@@ -165,7 +165,7 @@ is the effective field which is calculated locally by variational derivatives of
   \end{aligned}
 \end{equation}
 
-where $A_e = 3 \times 10^{-7}$ ergs/cm as proposed in the work of INSERT. The resulting magnetization texture is shown below.
+where $A_e = 3 \times 10^{-7}$ ergs/cm as proposed in the work of [!cite](Agbelele2017). The resulting magnetization texture is shown below.
 
 !media media/tut_11_DW.png style=display:block;margin:auto;width:47%; caption=Different components of $\mathbf{m}$ across the $1/1 [100]$ domain wall.  id=fig_dw_11_mag
 
@@ -175,21 +175,21 @@ To generate these results, we refer the reader to our examples documentation [he
 
 # Magnetoelectric switching simulations
 
-A considerable demand in AFM spintronics is to find an adequate approach to manipulate the spin order with external stimulii. In the case of noncollinear AFM BFO, the magnetization is quite weak leading to a challenge of using a uniform applied field through the Zeeman interaction. However, since BFO also displays an intrinsic electric dipole moment, it has been proposed to use an electric field to manipulate and control the magnetic texture. The technological benefits to the prospect of electric field control of magnetism has been considered for some time. While low-frequency deterministic switching of $\mathbf{P}$ has been experimentally demonstrated\cite{Heron2014}, the dynamical processes of the coupled polar-spin order at higher frequencies is still a topic of research. We highlight one such use of our modeling effort for the case of ME switching (i.e. using an electric field to switch $\left\{\mathbf{L},\mathbf{m}\right\}$).
+In AFM spintronics, it is important to find ways to control the spin order using external stimuli. However, when dealing with noncollinear AFM BFO, the magnetization is weak, making it difficult to use a uniform applied field through the Zeeman interaction. To overcome this challenge, an electric field can be used to manipulate and control the magnetic texture since BFO has an intrinsic electric dipole moment. The potential benefits of electric field control of magnetism have been studied for some time, and while low-frequency deterministic switching of $\mathbf{P}$ has been demonstrated in the work of [!cite](Heron2014), the dynamic processes of the coupled polar-spin order at higher frequencies still require further research. This study focuses on the use of modeling to investigate ME switching, which involves using an electric field to switch $\left{\mathbf{L},\mathbf{m}\right}$.
 
-We consider a fully-dynamical simulation where all system variables $\mathbf{P},\mathbf{A},\mathbf{u},\Phi_\mathrm{E},\mathbf{m}_1$, and $\mathbf{m}_2$ depend on time. As we are now interested in real dynamics, the time relaxation constants $\Gamma_P = 200$ $\mathrm{F}\mathrm{m}^{-1}\mathrm{s}^{-1}$ and $\Gamma_A = 83188$ $\mathrm{deg}^2\mathrm{m}^{3}\mathrm{J}^{-1} \mathrm{s}^{-1}$ in Eq.~(\ref{eqn:TDLG}) are chosen and estimated from Ref. INSERT. Since the dynamics of the AFM order are in general very fast ($100$s of GHz to THz regime), we introduce a time stepping constraint on the evolution of Eq. (\ref{eqn:LLG_LLB}) for dt $ < 0.1$ ps to ensure numerical convergence. To switch the $z$ component of $\mathbf{P}$, we choose our electric field to be $\mathbf{E}(\omega) = \langle 0,0,E_0 \sin{\left(\omega t\right)}\rangle$ with $E_0 = -1800$ MV/m. We select an \textbf{E} frequency of $\omega = 600$ MHz. The field is abruptly turned off after $\mathbf{P}$ has switched in order to facilitate only one switching event for analysis. The initial state is homogeneous $\mathbf{P}\uparrow\uparrow\mathbf{A}$ along $[111]$ with $\mathbf{L}||[\bar{1}01]$ and $\mathbf{m}||[1\bar{1}1]$ as one of the possibilities listed in the above Table of possible magnetic ground states.
+We consider a fully-dynamical simulation where all system variables $\mathbf{P},\mathbf{A},\mathbf{u},\Phi_\mathrm{E},\mathbf{m}_1$, and $\mathbf{m}_2$ depend on time. The dynamics of the AFM order are in general very fast ($100$s of GHz to THz regime), therefore, we introduce a numerical constraint on the time steps for the evolution of Eq. (\ref{eqn:LLG_LLB}) of dt $ < 0.1$ ps. To switch the $z$ component of $\mathbf{P}$, we choose our electric field to be $\mathbf{E}(\omega) = \langle 0,0, E_0 \sin{\left(\omega t\right)}\rangle$. We select an $\mathbf{E}$ frequency of $\omega = 600$ MHz. The field is abruptly turned off after $\mathbf{P}$ has switched in order to facilitate only one switching event for analysis. The initial state is homogeneous $\mathbf{P}\uparrow\uparrow\mathbf{A}$ along $[111]$ with $\mathbf{L}||[\bar{1}01]$ and $\mathbf{m}||[1\bar{1}1]$ as one of the possibilities listed in the above Table of possible magnetic ground states.
 
-In our paper, we investigated the dependence of the switching trajectories on the Gilbert damping $\alpha$ which for magnetic insulators (and BFO) is postulated to be on the order of $10^{-3}$. Shown below in the figure, the choice of $\alpha$ strongly influences the final states of $\mathbf{L}$ despite having very similar ringdown profiles in the vicinity of the $\mathbf{P}$ switching event.
+In our paper, we investigated the dependence of the switching trajectories on the Gilbert damping $\alpha$ which for magnetic insulators (and BFO) is postulated to be on the order of $10^{-3}$. Shown in the below figure, the choice of $\alpha$ strongly influences the final states of $\mathbf{L}$ despite having very similar ringdown profiles in the vicinity of the $\mathbf{P}$ switching event.
 
 !media media/tut_SW.png style=display:block;margin:auto;width:67%; caption=Homogeneous switching with Left: $\alpha = 0.003$ and Right: $\alpha = 0.01$. The dynamics of the Neel vector $\mathbf{L}$ are acquired using a time-dependent electric field at frequency $\omega = 600$ MHz.  id=fig_sw
 
 Not shown here is the time dependence of the weak magnetization $\mathbf{m}$ which also switches in both cases (see article).
 
-To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex4.md). Other switching trajectories are easily obtained by changing the `ICs` for $\mathbf{m}_\eta$ and orientations of $\mathbf{E}$.
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex4.md). Other switching trajectories are readily obtained by changing the `ICs` for $\mathbf{m}_\eta$ and orientations of $\mathbf{E}$.
 
 # Spin wave transport across the multiferroic domain boundary
 
-The field of spintronics relies on the generation, control, and read-out of traveling packets of spin (see [!cite](Hirohata2020)). In AFMs, the spin precessional processes can occur at low energy and additionally ultrafast frequencies (THz and above) thus leading to competitive advantages in information processing design as compared to standard CMOS technology (see [!cite](Jungwirth2016)). The basic concept of wave transmission and reflection phenomena is key to understanding how to optimize spin wave transport in these systems. Recently, [!cite](Parsonet2022) established non-volatile control of thermal magnon transport in BFO using electric fields. Their work demonstrates that the $109^\circ$ FE DWs act as a barrier to spin transport across a length-scale comprising many 100s of nm and impede the detected magnon signal useful for the device.
+Spintronics involves creating, managing, and detecting spin packets, which are important for information processing (see [!cite](Hirohata2020)). In AFMs, spin precessional processes occur at low energies and very high frequencies, offering advantages over standard CMOS technology(see [!cite](Jungwirth2016)). Understanding wave transmission and reflection is important for optimizing spin wave transport in these systems. A recent study from [!cite](Parsonet2022) has shown that thermal magnon transport in BFO can be controlled using electric fields. The study found that the $109^\circ$ FE DWs act as a barrier to spin transport over a length-scale of several hundred nanometers, hindering the detected magnon signal that is useful for the device.
 
 We investigated this particular scenario mesoscopically by leveraging our model described in the previous sections. We consider the two of the commonly observed DWs in BFO experiments, the $109^\circ$ 2/1 and $71^\circ$ 1/1 (100)-oriented walls. There is a large relative difference in energies between the lattice and spin contribution  (i.e. $|f_\mathrm{latt}| \gg |f_\mathrm{sp} + f_\mathrm{MP}|$). This suggests that any application of an external magnetic field $\mathbf{H}_\mathrm{appl}$ should not appreciably influence the $\mathbf{P}$ and $\mathbf{A}$ subsystem. Therefore, we fix (in time) these order parameters in this section. We couple $\mathbf{H}_\mathrm{appl}$ to act on the weak moment through the Zeeman free energy density,
 
@@ -199,7 +199,7 @@ We investigated this particular scenario mesoscopically by leveraging our model 
   \end{aligned}
 \end{equation}
 
-and add it to the total free energy of the spin configuration. In order to perturb the system, we consider gaussian spin wave beams generated by a field of the form [!cite](Gruszecki2015),
+and add it to the total free energy of the spin configuration. To generate spin waves, we consider gaussian perturbations generated by the following field form (see [!cite](Gruszecki2015)),
 
 \begin{equation}\label{eqn:perturb}
   \begin{aligned}
