@@ -40,10 +40,20 @@ Substituting the expression for $\mathbf{H}_\eta^\mathrm{aniso}$ and writing the
 
 \begin{equation}
   \begin{aligned}
-    \mathcal{R}_{m_{k\eta}} = \frac{\gamma}{\mu_0 M_s (1+\alpha^2)}\left(\psi_h, \epsilon_{ijk} m_{i\eta} \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} \right) + \frac{\gamma \alpha}{\mu_0 M_s \left(1+\alpha^2\right)} \left(\psi_h, \epsilon_{ijl}\epsilon_{lnk} m_{i\eta} m_{j\eta} \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} \right).
+    \mathcal{R}_{m_{k\eta}} = \frac{\gamma}{\mu_0 M_s (1+\alpha^2)}\left\{\left(\psi_h, \epsilon_{ijk} m_{i\eta} \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} \right) + \alpha \left(\psi_h, \epsilon_{ijl}\epsilon_{lnk} m_{i\eta} m_{j\eta} \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} \right)\right\}.
   \end{aligned}
 \end{equation}
 
+The on- and off-diagonal jacobian entries are given by,
+
+\begin{equation}
+  \begin{aligned}
+    \mathcal{J}_{m_{k\eta},m_{\beta\eta}} &= \frac{\partial \mathcal{R}_{m_{k\eta}}}{\partial m_{\beta\eta}} = \frac{\gamma}{\mu_0 M_s (1+\alpha^2)} \frac{\partial}{\partial m_{\beta\eta}} \left\{\left(\psi_h, \epsilon_{ijk} m_{i\eta} \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} \right) + \alpha \left(\psi_h, \epsilon_{ijl}\epsilon_{lnk} m_{i\eta} m_{j\eta} \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} \right)\right\} \\
+    &=  \frac{\gamma}{\mu_0 M_s (1+\alpha^2)} \left\{\left(\psi_h, \epsilon_{ijk} \left[ \delta_{i\beta} \phi \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} + m_{i\eta} \frac{\partial^2 f_\mathrm{aniso}}{\partial m_{k\eta}\partial m_{\beta\eta}} \right] \right) + \alpha \left(\psi_h, \epsilon_{ijl}\epsilon_{lnk} \left[ \delta_{i\beta} \phi m_{j\eta} \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} + m_{i\eta} \delta_{j\beta} \phi \frac{\partial f_\mathrm{aniso}}{\partial m_{k\eta}} + m_{i\eta} m_{j\eta} \frac{\partial^2 f_\mathrm{aniso}}{\partial m_{k\eta}\partial m_{\beta\eta}} \right]\right)\right\}
+  \end{aligned}
+\end{equation}
+
+where $\phi$ is the shape function of the finite element method and where if $k = \beta$, we have the on-diagonal contributions and if $k \neq \beta$ we have the off-diagonal contributions. Note that also, since $f_\mathrm{aniso}$ does not have cross-coupling between the sublattices (as is the case of other `Kernels` such as [AFMHomogeneousSublatticeExchange](source/kernels/AFMHomogeneousSublatticeExchange.md)), then further off-diagonal components ($\mathcal{J}_{m_{k\eta},m_{\beta\xi}}$) where $\eta \neq \xi$ are zeroed.
 
 ## Example Input File Syntax
 

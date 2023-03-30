@@ -16,7 +16,7 @@ where $\hat{\mathbf{P}}$ is the director of the electric polarization field and 
 
 \begin{equation}
   \begin{aligned}
-    H_{k\eta}^\mathrm{easy-plane} &= - \frac{1}{\mu_0 M_s} \frac{\delta f_\mathrm{easy-plane}}{\delta m_k}\\
+    H_{k\eta}^\mathrm{easy-plane} &= - \frac{1}{\mu_0 M_s} \frac{\delta f_\mathrm{easy-plane}}{\delta m_{k\eta}}\\
     &= - \frac{2}{\mu_0 M_s} \hat{P}_k (m_{j\eta} \hat{P}_j)^2 \\
   \end{aligned}
 \end{equation}
@@ -25,7 +25,7 @@ The effective field is evaluated at every time step of the two sublattice LLG-LL
 
 \begin{equation}\label{LLG}
   \begin{aligned}
-    \frac{\partial \mathbf{m}}{\partial t} = -\frac{\gamma}{(1+\alpha^2)} \mathbf{m}\times \mathbf{H} - \frac{\gamma \alpha}{1+\alpha^2} \mathbf{m} \times \mathbf{m}\times \mathbf{H},
+    \frac{\partial \mathbf{m}_\eta}{\partial t} = -\frac{\gamma}{(1+\alpha^2)} \mathbf{m}_\eta\times \mathbf{H}_\eta - \frac{\gamma \alpha}{1+\alpha^2} \mathbf{m}_\eta \times \mathbf{m}_\eta\times \mathbf{H}_\eta,
   \end{aligned}
 \end{equation}
 

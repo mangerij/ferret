@@ -27,7 +27,7 @@ InputParameters
 CarrierInt::validParams()
 {
   InputParameters params = Kernel::validParams();
-  params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
+  params.addClassDescription("Calculates a residual contribution due to free carriers");
   params.addRequiredParam<Real>("ni", "intrinsic carriers");
   return params;
 }

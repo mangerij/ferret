@@ -4,7 +4,7 @@ The micromagnetic approach to modeling magnetic systems is similar to the phase 
 
 \begin{equation}\label{LLG}
   \begin{aligned}
-    \frac{\partial \mathbf{M}}{\partial t} = -\gamma \mathbf{M}\times \mathbf{H} - \frac{1}{M_s} \frac{\gamma \alpha}{1+\alpha^2} \mathbf{M} \times \mathbf{M}\times \mathbf{H}
+    \frac{\partial \mathbf{M}}{\partial t} = -\frac{\gamma}{1+\alpha^2} \mathbf{M}\times \mathbf{H} - \frac{1}{M_s} \frac{\gamma \alpha}{1+\alpha^2} \mathbf{M} \times \mathbf{M}\times \mathbf{H}
   \end{aligned}
 \end{equation}
 
@@ -14,7 +14,7 @@ There are two possible numerical resources within the FERRET/MOOSE ecosystem to 
 
 \begin{equation}\label{LLG-LLB}
   \begin{aligned}
-    \frac{\partial \mathbf{M}}{\partial t} = -\gamma \mathbf{M}\times \mathbf{H} - \frac{1}{M_s} \frac{\gamma \alpha}{1+\alpha^2} \mathbf{M} \times \mathbf{M}\times \mathbf{H} - \frac{\gamma \alpha_\mathrm{LLB}}{1+\alpha^2} \left(m^2 - 1\right) \mathbf{m}
+    \frac{\partial \mathbf{M}}{\partial t} = -\frac{\gamma}{1+\alpha^2} \mathbf{M}\times \mathbf{H} - \frac{1}{M_s} \frac{\gamma \alpha}{1+\alpha^2} \mathbf{M} \times \mathbf{M}\times \mathbf{H} - \frac{\gamma \alpha_\mathrm{LLB}}{1+\alpha^2} \left(m^2 - 1\right) \mathbf{m}
   \end{aligned}
 \end{equation}
 
@@ -22,12 +22,12 @@ in which the latter term provides a longitudinal restoring force to $\mathbf{m}$
 
 # Micromagnetic theory for antiferromagnets
 
-If the material is an antiferromagnet, then the spin system forms two sublattices $(\mathbf{M}_1, \mathbf{M}_2)$ whose interaction is mediated by a short-range (typically nearest-neighbor) exchange. To simulate an antiferromagnet at the micromagnetic level of theory, we have the two-sublattice LLG equation,
+If the material is an antiferromagnet, then the spin system forms two sublattices $(\mathbf{M}_1, \mathbf{M}_2)$ whose interaction is mediated by a short-range (typically nearest- or next-nearest-neighbor) exchange. To simulate an antiferromagnet at the micromagnetic level of theory, we have the two-sublattice LLG equation,
 
 \begin{equation}
   \begin{aligned}
-    \frac{\partial \mathbf{M}_\eta}{\partial t} = -\gamma \mathbf{M}_\eta\times \mathbf{H} - \frac{1}{M_s} \frac{\gamma \alpha}{1+\alpha^2} \mathbf{M}_\eta \times \mathbf{M}_\eta \times \mathbf{H},
+    \frac{\partial \mathbf{M}_\eta}{\partial t} = -\frac{\gamma}{1+\alpha^2} \mathbf{M}_\eta\times \mathbf{H} - \frac{1}{M_s} \frac{\gamma \alpha}{1+\alpha^2} \mathbf{M}_\eta \times \mathbf{M}_\eta \times \mathbf{H},
   \end{aligned}
 \end{equation}
 
-where $\eta = 1, 2$. In a collinear antiferromagnet, the total net magnetization, $\mathbf{M} = \mathbf{M}_1 + \mathbf{M}_2$, is zero indicating that the spin sublattices perfectly compensating each other. However, under a field, this symmetry is broken leading to resonance phenomena due to the conservative term. As mentioned before, one can choose to use the LLB equation or let the modulus be renormalized at every time step for $\mathbf{M}_\eta$ by a MOOSE userobject.
+where $\eta = 1, 2$. In a collinear antiferromagnet, the total net magnetization, $\mathbf{M} = \mathbf{M}_1 + \mathbf{M}_2$, is zero indicating that the spin sublattices perfectly compensating each other. However, under a field, this symmetry is broken leading to resonance phenomena due to the conservative term. As mentioned before, one can choose to use the LLB equation or let the modulus be renormalized at every time step for $\mathbf{M}_\eta$ by a MOOSE `UserObject`.

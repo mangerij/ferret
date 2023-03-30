@@ -27,7 +27,7 @@ InputParameters
 CarrierCon::validParams()
 {
   InputParameters params = Kernel::validParams();
-  params.addClassDescription("Calculates a residual contribution due to nabla squared Phi = 0");
+  params.addClassDescription("Calculates a residual contribution due to free carriers");
   params.addRequiredParam<Real>("Ev", "Valence band energy");
   params.addRequiredParam<Real>("Ec", "Conduction band energy");
   params.addRequiredParam<Real>("Nv","Effective DOS of the valence band(T=298)");
