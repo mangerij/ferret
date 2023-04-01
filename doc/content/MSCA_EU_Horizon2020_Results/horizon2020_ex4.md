@@ -1,6 +1,6 @@
 !config navigation breadcrumbs=False
 
-# H2020-MSCA-IF-2019, Example: ME switching
+# H2020-MSCA-IF-2020, Example: ME switching
 
 This page details how to obtain ME switching trajectories in FERRET. We use an electric field to switch $\mathbf{P}$ explicitly in a fully-time dependent simulation. The magnetization follows $\mathbf{P}$ since any change in $\mathbf{P}$ (and $\mathbf{A}$) corresponds to a drastic change in the magnetic energy, $f_\mathrm{MP}$, that couples to the structural distortions.
 
@@ -58,7 +58,7 @@ The `Kernels` are due to structural evolution (TDLGD) along with the ones from m
          link=False
          language=python
 
-For example, [ElectrostrictiveCouplingDispDerivative](source/kernels/ElectrostrictiveCouplingDispDerivative.md) and [RotostrictiveCouplingDispDerivative](source/kernels/RotostrictiveCouplingDispDerivative.md) correspond to the RHS of the mechanical equilibrium condition,
+For example, [ElectrostrictiveCouplingDispDerivative](source/kernels/ElectrostrictiveCouplingDispDerivative.md) and [RotostrictiveCouplingDispDerivative](source/kernels/RotostrictiveCouplingDispDerivative.md) correspond to the terms in the mechanical equilibrium condition involving $Q_{klmn}$ and $R_{klmn}$ respectively,
 
 \begin{equation}
   \begin{aligned}
@@ -90,7 +90,7 @@ which we compute as
   \end{aligned}
 \end{equation}
 
-The suffix `SC` in the name of this object corresponds to a strongly-coupled situation. This means that for variational derivatives with respect to $\mathbf{P}$, this object also contributes non-zero residual contributions (i.e. in the time dependence of $\mathbf{P}$. We refer the reader to our `Syntax` page for a extensive list of the `Kernels` in FERRET regarding this problem. We also evaluate a number of postprocessed quantities in the `AuxKernels` block,
+The suffix `SC` in the name of this object corresponds to a strongly-coupled situation. This means that this object contributes non-zero jacobian contributions for $\mathbf{P}$. We refer the reader to our `Syntax` page for a extensive list of the `Kernels` in FERRET regarding this problem. We also evaluate a number of postprocessed quantities in the `AuxKernels` block,
 
 !listing tutorial/BFO_P111_TO_P111b_switch_m1_a1.i
          block=AuxKernels

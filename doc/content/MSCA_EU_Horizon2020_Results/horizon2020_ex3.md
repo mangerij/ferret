@@ -1,6 +1,6 @@
 !config navigation breadcrumbs=False
 
-# H2020-MSCA-IF-2019, Example: magnetic DWs
+# H2020-MSCA-IF-2020, Example: magnetic DWs
 
 This page details how to obtain the magnetic textures in the presence of a FE domain boundary. We relax the Landau-Lifshitz-Bloch equation in the presence of large damping ($\alpha = 0.8$),
 

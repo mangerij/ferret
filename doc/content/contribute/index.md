@@ -25,10 +25,10 @@ If you use the micromagnetic or multiferroic phase field simulation capability, 
 
 ```
 @article{Mangeri2023,
-  title={A coupled polar-magnetic continuum model for multiferroic $\mathrm{BiFeO}_3$},
-  author={Mangeri, John and Graf, Monica and Biswas, Sudipta and Rodrigues, Davi and Heinonen, Olle and Iniguez, Jorge},
+  title={A coupled magneto-structural continuum model for multiferroic $\mathrm{BiFeO}_3$},
+  author={Mangeri, John and Rodrigues, Davi and Biswas, Sudipta and Graf, Monica and Heinonen, Olle and Iniguez, Jorge},
   year={2023},
-  publisher={arXiv}
+  publisher={to appear on arXiv}
 }
 ```
 
