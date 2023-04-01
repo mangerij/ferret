@@ -1,4 +1,4 @@
-Getting Started:
+Get Started:
   Install FERRET: getting_started/install.md
   Update FERRET: getting_started/update.md
   Running FERRET: getting_started/running.md
@@ -21,7 +21,7 @@ Tutorials:
   Piezoelectric actuation: tutorials/piezoelectric.md
   Polycrystalline thermoelectric transport: tutorials/thermoelectric.md
 
-EU Horizon2020-IF:
+MSCA2020:
   Background and model: MSCA_EU_Horizon2020_Results/horizon2020_results1.md
   Summary of key results: MSCA_EU_Horizon2020_Results/horizon2020_results2.md
   Example (ground states): MSCA_EU_Horizon2020_Results/horizon2020_ex1.md
@@ -30,10 +30,10 @@ EU Horizon2020-IF:
   Example (ME switching): MSCA_EU_Horizon2020_Results/horizon2020_ex4.md
   Example (spin wave transport): MSCA_EU_Horizon2020_Results/horizon2020_ex5.md
 
-Publication Highlights: publication_highlights/publication_highlights.md
+Highlights: publication_highlights/publication_highlights.md
 
 Documentation:
   Complete syntax: syntax/index.md
   FERRET syntax: syntax/ferret_only_syntax.md
 
-Contact/Contribute: contribute/index.md
+Contact: contribute/index.md
