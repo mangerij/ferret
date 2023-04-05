@@ -1,6 +1,6 @@
 !config navigation breadcrumbs=False
 
-# H2020-MSCA-IF-2020, Example: ME switching
+# H2020-MSCA-IF-2019, Example: ME switching
 
 This page details how to obtain ME switching trajectories in FERRET. We use an electric field to switch $\mathbf{P}$ explicitly in a fully-time dependent simulation. The magnetization follows $\mathbf{P}$ since any change in $\mathbf{P}$ (and $\mathbf{A}$) corresponds to a drastic change in the magnetic energy, $f_\mathrm{MP}$, that couples to the structural distortions.
 

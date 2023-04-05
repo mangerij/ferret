@@ -1,6 +1,6 @@
 !config navigation breadcrumbs=False
 
-# H2020-MSCA-IF-2020, Example: spin wave transport
+# H2020-MSCA-IF-2019, Example: spin wave transport
 
 This page details how to obtain spin wave transport across the multiferroic domain boundary. In order to perform this calculation, one needs the information from two other examples (first relax the FE DW, then get the relaxed magnetic DW in the presence of the FE domain boundary). These are handled in Example 2 and 3 of the MSCA tutorials respectively.
 

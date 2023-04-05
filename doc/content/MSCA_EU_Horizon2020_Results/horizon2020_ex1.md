@@ -1,6 +1,6 @@
 !config navigation breadcrumbs=False
 
-# H2020-MSCA-IF-2020, Example: ground states
+# H2020-MSCA-IF-2019, Example: ground states
 
 This page details how to obtain homogeneous solutions of BFO for the structural and spin order. The first calculation (`BFO_homogeneous_PA.i`) determines the polarization $\mathbf{P}$ and antiphase octahedral cage tilt vectors $\mathbf{A}$ along with the coupled elastic strain tensor components $\varepsilon_{ij}$ computed from the elastic displacement variable $\mathbf{u}$.
 

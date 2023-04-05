@@ -1,6 +1,6 @@
 !config navigation breadcrumbs=False
 
-# H2020-MSCA-IF-2020, Example: FE DWs
+# H2020-MSCA-IF-2019, Example: FE DWs
 
 This page details how to obtain inhomogeneous solutions of BFO for the structural order (i.e. FE DWs). The relevant input file is `BFO_dwP1A1_100.i` located in the FERRET tutorials subdirectory. The name of the input file is already suggestive, as it identifies that one component of $\mathbf{P}$ and one component $\mathbf{A}$ will switch indicating that this is for the 1/1 DW (see [!cite](Mangeri2023) on arXiv for more description of this notation). The DW plane is oriented $(100)$ which suggests the plane normal is along $x$. The 1/1 $(100)$-oriented DW only has large gradients in the components of $\partial A_z / \partial x$ and $\partial P_z / \partial x$. As such, we can simulate this DW profile in quasi 1D with the following `Mesh` block,
 

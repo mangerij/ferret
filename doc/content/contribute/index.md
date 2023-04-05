@@ -28,7 +28,7 @@ If you use the micromagnetic or multiferroic phase field simulation capability, 
   title={A coupled magneto-structural continuum model for multiferroic $\mathrm{BiFeO}_3$},
   author={Mangeri, John and Rodrigues, Davi and Biswas, Sudipta and Graf, Monica and Heinonen, Olle and Iniguez, Jorge},
   year={2023},
-  publisher={to appear on arXiv}
+  publisher={arXiv:2304.00270}
 }
 ```
 
@@ -63,4 +63,6 @@ There are many aspects of ferroics or other electronic phenomena (i.e. piezo- an
 
 A special thanks to all of the collaborators/co-authors of the various [projects](publication_highlights/publication_highlights.md) using FERRET.
 
-We also would like to thank the code contributors and developers from [Idaho National Laboratory](https://inl.gov/) for their continued support. A special thanks to MOOSE team member [Dr. Casey Icenhour](https://github.com/cticenhour) for help with the documentation on this website.
+We also would like to thank the code contributors and developers from [Idaho National Laboratory](https://inl.gov/) for their continued supportc.
+
+A particular recognition to MOOSE team member [Dr. Casey Icenhour](https://github.com/cticenhour) for help with the documentation of this website.

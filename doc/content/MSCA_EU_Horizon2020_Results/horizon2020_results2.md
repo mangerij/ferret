@@ -1,6 +1,6 @@
 !config navigation breadcrumbs=False
 
-# Results (Model)
+# H2020-MSCA-IF-2019, Results (Model)
 
 The goals of the project were to first develop a model for $\mathrm{BiFeO}_3$ BFO that couples the electric polarization, oxygen octahedral cage antiphase tilt structure, and the magnetization suitable for evaluating the multiferroic domain topology and dynamics. The first task that we had was to parameterize the energy penalty for the formation of domain walls (DWs) against predictions from density functional theory (DFT). Once this was accomplished, we were able to capture the inhomogeneous magnetic order in the presence of the structural DWs. This concludes our investigation of the ground states and development of the model. Next we used it in two different simulations corresponding to fully-coupled dynamical switching along with spin wave transport through the multiferroic domain boundary. We summarize each of these pillars of the project below. We refer the reader to the previous page for some definitions of the properties of BFO.
 
