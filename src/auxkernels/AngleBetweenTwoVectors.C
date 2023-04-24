@@ -35,6 +35,7 @@ InputParameters AngleBetweenTwoVectors::validParams()
   params.addRequiredCoupledVar("var2x", "The first component of the second vector");
   params.addRequiredCoupledVar("var2y", "The second component of the second vector");
   params.addRequiredCoupledVar("var2z", "The third component of the second vector");
+  params.addParam<Real>("adjust_angle", 180.0, "adjust angle quantity, default 180 degrees");
   return params;
 }
 
@@ -46,12 +47,13 @@ AngleBetweenTwoVectors::AngleBetweenTwoVectors(const InputParameters & parameter
    _var1z(coupledValue("var1z")),
    _var2x(coupledValue("var2x")),
    _var2y(coupledValue("var2y")),
-   _var2z(coupledValue("var2z"))
+   _var2z(coupledValue("var2z")),
+   _adjust_angle(getParam<Real>("adjust_angle"))
 {
 }
 
 Real
 AngleBetweenTwoVectors::computeValue()
 {
-  return 180.0 - (180.0/3.14159265359)*std::acos((_var1x[_qp]*_var2x[_qp] + _var1y[_qp]*_var2y[_qp] + _var1z[_qp]*_var2z[_qp])/(std::sqrt(Utility::pow<2>(_var1x[_qp]) + Utility::pow<2>(_var1y[_qp]) + Utility::pow<2>(_var1z[_qp]))*std::sqrt(Utility::pow<2>(_var2x[_qp]) + Utility::pow<2>(_var2y[_qp]) + Utility::pow<2>(_var2z[_qp]))));
+  return _adjust_angle - (180.0/3.14159265359)*std::acos((_var1x[_qp]*_var2x[_qp] + _var1y[_qp]*_var2y[_qp] + _var1z[_qp]*_var2z[_qp])/(std::sqrt(Utility::pow<2>(_var1x[_qp]) + Utility::pow<2>(_var1y[_qp]) + Utility::pow<2>(_var1z[_qp]))*std::sqrt(Utility::pow<2>(_var2x[_qp]) + Utility::pow<2>(_var2y[_qp]) + Utility::pow<2>(_var2z[_qp]))));
 }

@@ -41,6 +41,7 @@ private:
   const VariableValue & _var2x;
   const VariableValue & _var2y;
   const VariableValue & _var2z;
+  const Real _adjust_angle;
 
 };
 
