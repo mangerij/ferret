@@ -16,7 +16,7 @@
 *.snm
 *.csv
 *.dylib
-*.so
+*.so*
 *.gitignore*
 *.vrb
 .jit*/*
@@ -69,6 +69,8 @@ traceout*.txt
 *.out
 *.json
 .depend
+*.in
+ferret.yaml
 
 # Allow certain files in gold directories
 !**/gold/*.e
