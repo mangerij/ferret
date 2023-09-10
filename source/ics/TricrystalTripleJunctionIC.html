@@ -1,0 +1,250 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>TricrystalTripleJunctionIC | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="59d881ff-5eaa-4f70-8565-9cbd91e65c73" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ae292bf3-5eae-4169-bff9-c3598f6633bf" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6637a074-6dc4-41d3-82d5-fb87d578f996" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ef7a6f90-0621-4637-a13b-605904bcffcf" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="3f597bc4-60ed-473f-b581-5d23789df942" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="f684fcb0-73ed-415e-8ec0-9a7aefdfce38"><i class="material-icons">menu</i></a><ul class="sidenav" id="f684fcb0-73ed-415e-8ec0-9a7aefdfce38"><li><a href="#!" class="dropdown-trigger" data-target="ca60f431-f7a5-471c-b6b7-b5b97ef4d7bf" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="85bebd11-aa3b-46ff-815d-40040887b7cf" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="9181cde1-4574-46a8-966b-9f603417385a" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c7f947a8-6a00-42e9-9f84-02705aa04421" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="ef5a40d8-0941-4ea4-991e-b8f447ad5295" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="59d881ff-5eaa-4f70-8565-9cbd91e65c73"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="ae292bf3-5eae-4169-bff9-c3598f6633bf"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="6637a074-6dc4-41d3-82d5-fb87d578f996"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="ef7a6f90-0621-4637-a13b-605904bcffcf"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="3f597bc4-60ed-473f-b581-5d23789df942"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="ca60f431-f7a5-471c-b6b7-b5b97ef4d7bf"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="85bebd11-aa3b-46ff-815d-40040887b7cf"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="9181cde1-4574-46a8-966b-9f603417385a"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="c7f947a8-6a00-42e9-9f84-02705aa04421"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="ef5a40d8-0941-4ea4-991e-b8f447ad5295"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="08d3b8e9-ffa9-46d0-86ad-1e52812aeb29" data-section-level="1" data-section-text="TricrystalTripleJunctionIC"><h1 id="tricrystaltriplejunctionic">TricrystalTripleJunctionIC</h1><p>Tricrystal with a triple junction</p><section id="4d9a28a7-7a36-4284-a4be-45cb4959229c" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>This initial condition (ICs) sets the variable values to represent a grain structure with three grains coming together at a triple junction. The initial triple junction angles are set by the user.</p><p>Note that the grains are created with sharp interfaces.</p></section><section id="856748a7-382a-4a81-af0d-e67de4f182a6" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[GlobalParams]
+  # Parameters used by several kernels that are defined globally to simplify input file
+  op_num = 3 # Number of order parameters used
+  var_name_base = gr # base name of grains
+  v = &#x27;gr0 gr1 gr2&#x27; # Names of the grains
+  theta1 = 135 # Angle the first grain makes at the triple junction
+  theta2 = 100 # Angle the second grain makes at the triple junction
+  length_scale = 1.0e-9 # Length scale in nm
+  time_scale = 1.0e-9 # Time scale in ns
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#358416bb-8216-4535-bbe7-3da70497cb0b">(../moose/modules/phase_field/test/tests/initial_conditions/TricrystalTripleJunctionIC.i)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[ICs]
+  [gr0_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr0
+    op_index = 1
+  []
+  [gr1_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr1
+    op_index = 2
+  []
+  [gr2_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr2
+    op_index = 3
+  []
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#d60a0617-7fc9-42a2-85fd-f8791f981872">(../moose/modules/phase_field/test/tests/initial_conditions/TricrystalTripleJunctionIC.i)</a></section><section id="d8c6d395-af0a-4629-96da-ba3ed2839c92" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="5b9528c5-bbc2-40e7-858b-3294ebdb134f" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">op_index</span><span class="moose-parameter-header-description">Index for the current grain order parameter</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Index for the current grain order parameter</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">op_num</span><span class="moose-parameter-header-description">Number of grain order parameters</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of grain order parameters</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The variable this initial condition is supposed to provide values for.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>VariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The variable this initial condition is supposed to provide values for.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="5fd88981-ceab-4b02-9bc5-d25f69b2e340" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">junction</span><span class="moose-parameter-header-description">The point where the triple junction is located. Default is the center of the mesh</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::Point</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The point where the triple junction is located. Default is the center of the mesh</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">theta1</span><span class="moose-parameter-header-default">135</span><span class="moose-parameter-header-description">Angle of first grain at triple junction in degrees</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>135</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Angle of first grain at triple junction in degrees</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">theta2</span><span class="moose-parameter-header-default">135</span><span class="moose-parameter-header-description">Angle of second grain at triple junction in degrees</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>135</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Angle of second grain at triple junction in degrees</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="9dad2aea-29b7-44f4-a5a2-f32507850a1b" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">ignore_uo_dependency</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">When set to true, a UserObject retrieved by this IC will not be executed before the this IC</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When set to true, a UserObject retrieved by this IC will not be executed before the this IC</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="358416bb-8216-4535-bbe7-3da70497cb0b"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/initial_conditions/TricrystalTripleJunctionIC.i)</h4><pre class="moose-pre"><code class="language-text"># This simulation tests the TricrystalTripleJunctionIC
+
+[Mesh]
+  # Mesh block. Meshes can be read in or automatically generated.
+  type = GeneratedMesh
+  dim = 2 # Problem dimension
+  nx = 11 # Number of elements in the x direction
+  ny = 11 # Number of elements in the y direction
+  xmax = 1001 # Maximum x-coordinate of mesh
+  xmin = 0 # Minimum x-coordinate of mesh
+  ymax = 1001 # Maximum y-coordinate of mesh
+  ymin = 0 # Minimum y-coordinate of mesh
+  elem_type = QUAD4 # Type of elements used in the mesh
+  uniform_refine = 3
+[]
+
+[GlobalParams]
+  # Parameters used by several kernels that are defined globally to simplify input file
+  op_num = 3 # Number of order parameters used
+  var_name_base = gr # base name of grains
+  v = &#x27;gr0 gr1 gr2&#x27; # Names of the grains
+  theta1 = 135 # Angle the first grain makes at the triple junction
+  theta2 = 100 # Angle the second grain makes at the triple junction
+  length_scale = 1.0e-9 # Length scale in nm
+  time_scale = 1.0e-9 # Time scale in ns
+[]
+
+[Variables]
+  [gr0]
+  []
+  [gr1]
+  []
+  [gr2]
+  []
+[]
+
+[ICs]
+  [gr0_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr0
+    op_index = 1
+  []
+  [gr1_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr1
+    op_index = 2
+  []
+  [gr2_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr2
+    op_index = 3
+  []
+[]
+
+[AuxVariables]
+  [bnds]
+    # Variable used to visualize the grain boundaries in the simulation
+    order = FIRST
+    family = LAGRANGE
+  []
+[]
+
+[Kernels]
+  # Kernels block where the kernels defining the residual equations are set up
+  [PolycrystalKernel]
+    # Custom action creating all necessary kernels for grain growth.  All input parameters are up in GlobalParams
+  []
+[]
+
+[AuxKernels]
+  # AuxKernel block, defining the equations used to calculate the auxvars
+  [bnds_aux]
+    # AuxKernel that calculates the GB term
+    type = BndsCalcAux
+    variable = bnds
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [material]
+    # Material properties
+    type = GBEvolution
+    T = 450 # Constant temperature of the simulation (for mobility calculation)
+    wGB = 14 # Width of the diffuse GB
+    GBmob0 = 2.5e-6 #m^4(Js) for copper from Schoenfelder1997
+    Q = 0.23 #eV for copper from Schoenfelder1997
+    GBenergy = 0.708 #J/m^2 from Schoenfelder1997
+  []
+[]
+
+[Postprocessors]
+  # Scalar postprocessors
+  [grain_tracker]
+    type = FauxGrainTracker
+  []
+[]
+
+[Executioner]
+  type = Transient
+  num_steps = 1
+[]
+
+[Outputs]
+  exodus = true # Outputs to the Exodus file format
+  execute_on = &#x27;final&#x27;
+[]
+
+[Problem]
+  solve = false
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="d60a0617-7fc9-42a2-85fd-f8791f981872"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/initial_conditions/TricrystalTripleJunctionIC.i)</h4><pre class="moose-pre"><code class="language-text"># This simulation tests the TricrystalTripleJunctionIC
+
+[Mesh]
+  # Mesh block. Meshes can be read in or automatically generated.
+  type = GeneratedMesh
+  dim = 2 # Problem dimension
+  nx = 11 # Number of elements in the x direction
+  ny = 11 # Number of elements in the y direction
+  xmax = 1001 # Maximum x-coordinate of mesh
+  xmin = 0 # Minimum x-coordinate of mesh
+  ymax = 1001 # Maximum y-coordinate of mesh
+  ymin = 0 # Minimum y-coordinate of mesh
+  elem_type = QUAD4 # Type of elements used in the mesh
+  uniform_refine = 3
+[]
+
+[GlobalParams]
+  # Parameters used by several kernels that are defined globally to simplify input file
+  op_num = 3 # Number of order parameters used
+  var_name_base = gr # base name of grains
+  v = &#x27;gr0 gr1 gr2&#x27; # Names of the grains
+  theta1 = 135 # Angle the first grain makes at the triple junction
+  theta2 = 100 # Angle the second grain makes at the triple junction
+  length_scale = 1.0e-9 # Length scale in nm
+  time_scale = 1.0e-9 # Time scale in ns
+[]
+
+[Variables]
+  [gr0]
+  []
+  [gr1]
+  []
+  [gr2]
+  []
+[]
+
+[ICs]
+  [gr0_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr0
+    op_index = 1
+  []
+  [gr1_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr1
+    op_index = 2
+  []
+  [gr2_IC]
+    type = TricrystalTripleJunctionIC
+    variable = gr2
+    op_index = 3
+  []
+[]
+
+[AuxVariables]
+  [bnds]
+    # Variable used to visualize the grain boundaries in the simulation
+    order = FIRST
+    family = LAGRANGE
+  []
+[]
+
+[Kernels]
+  # Kernels block where the kernels defining the residual equations are set up
+  [PolycrystalKernel]
+    # Custom action creating all necessary kernels for grain growth.  All input parameters are up in GlobalParams
+  []
+[]
+
+[AuxKernels]
+  # AuxKernel block, defining the equations used to calculate the auxvars
+  [bnds_aux]
+    # AuxKernel that calculates the GB term
+    type = BndsCalcAux
+    variable = bnds
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [material]
+    # Material properties
+    type = GBEvolution
+    T = 450 # Constant temperature of the simulation (for mobility calculation)
+    wGB = 14 # Width of the diffuse GB
+    GBmob0 = 2.5e-6 #m^4(Js) for copper from Schoenfelder1997
+    Q = 0.23 #eV for copper from Schoenfelder1997
+    GBenergy = 0.708 #J/m^2 from Schoenfelder1997
+  []
+[]
+
+[Postprocessors]
+  # Scalar postprocessors
+  [grain_tracker]
+    type = FauxGrainTracker
+  []
+[]
+
+[Executioner]
+  type = Transient
+  num_steps = 1
+[]
+
+[Outputs]
+  exodus = true # Outputs to the Exodus file format
+  execute_on = &#x27;final&#x27;
+[]
+
+[Problem]
+  solve = false
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

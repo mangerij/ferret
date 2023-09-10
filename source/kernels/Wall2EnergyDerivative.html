@@ -1,0 +1,6419 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Wall 2 EnergyDerivative | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="5f08fbfa-42da-4208-a583-16b5ce5f841a" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5f02d64e-7a06-4320-8d0d-4d7ab36a37df" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a3399fc4-e619-47c5-bb20-2d071fca0ba7" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4d49e807-0267-41df-8c6c-3ad4e80568a2" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="1006c3db-e45d-479e-9281-96068c985794" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="3cf295b2-ff16-4bb5-8832-8da79e34bad1"><i class="material-icons">menu</i></a><ul class="sidenav" id="3cf295b2-ff16-4bb5-8832-8da79e34bad1"><li><a href="#!" class="dropdown-trigger" data-target="6b59e9b4-3555-4ad3-9aca-b107e1c6d594" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d6c57991-a328-40ec-8cfc-3746f7dfcd82" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="229dcfac-61d9-46b2-920c-1d9f8bf67d5f" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="7dde3f4b-9f52-401e-9af6-5a16d5762cb5" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="9d16e28c-5190-49c4-8fd0-6a337c6178ea" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="5f08fbfa-42da-4208-a583-16b5ce5f841a"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="5f02d64e-7a06-4320-8d0d-4d7ab36a37df"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="a3399fc4-e619-47c5-bb20-2d071fca0ba7"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="4d49e807-0267-41df-8c6c-3ad4e80568a2"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="1006c3db-e45d-479e-9281-96068c985794"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="6b59e9b4-3555-4ad3-9aca-b107e1c6d594"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="d6c57991-a328-40ec-8cfc-3746f7dfcd82"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="229dcfac-61d9-46b2-920c-1d9f8bf67d5f"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="7dde3f4b-9f52-401e-9af6-5a16d5762cb5"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="9d16e28c-5190-49c4-8fd0-6a337c6178ea"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="d4777135-931d-4016-b63a-b2ab40c495f2" data-section-level="1" data-section-text="Wall 2 EnergyDerivative"><h1 id="wall-2-energyderivative">Wall2EnergyDerivative</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The Wall2EnergyDerivative has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Calculates a residual contribution due to the variation w.r.t polarization of the gradient energy. This Kernel needs to be used in conjunction with WallEnergyDerivative!</p><section id="02b2ca96-3db0-44a1-b9fe-7f94e8af286f" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="62014989-5b00-4805-b044-0dec3d760a2d" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="3a9bcef4-c2e4-4676-a6c4-fe3162e92fd9" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="98303850-665f-48f3-86dc-030ca380f6fa" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding to the direction in OP space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding to the direction in OP space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_x</span><span class="moose-parameter-header-description">The x component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_y</span><span class="moose-parameter-header-description">The y component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this residual object operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this residual object operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="3efc56c5-761c-4357-bc6c-df9ee54d87e9" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The displacements</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The displacements</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_z</span><span class="moose-parameter-header-description">The z component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="0d6b63d3-cca7-4dba-9d02-822cfc8f453e" data-section-level="3" data-section-text="Tagging Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">absolute_value_vector_tags</span><span class="moose-parameter-header-description">The tags for the vectors this residual object should fill with the absolute value of the residual contribution</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tags for the vectors this residual object should fill with the absolute value of the residual contribution</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, system</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, time</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section><section id="8befb8c6-5765-4d61-ac01-413067726e52" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="5e29c06c-e1c6-4fe9-b3e3-8c1e84a16f06" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#5ab65482-c262-4e96-b90b-0dffdbe5a28e">(test/tests/msca/BFO_dwP1A1_100.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#cccd263b-5058-46df-8161-74696ab46f0d">(test/tests/domain_wall/test_BTO_domain_wall.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#4e7e439c-61c9-4466-b0b9-181f3b6a238e">(tutorial/film.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#b0eb80bd-998b-4475-a669-407484ce745f">(test/tests/msca/BFO_P0A0.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#548d207c-3341-4107-b83f-68333c46a7db">(tutorial/ferroelectric_domain_wall.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#bfe10309-87d2-4b78-a105-da402d25eb7a">(tutorial/multidomain.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#0ac3a256-c1b8-478c-9a4c-8e64b171c54f">(tutorial/BFO_dwP1A1_100.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#cd88aba2-14d6-4e96-8111-fc17f569cd46">(tutorial/BFO_homogeneous_PA.i)</a></li></ul></section></section><div class="moose-modal modal" id="5ab65482-c262-4e96-b90b-0dffdbe5a28e"><div class="modal-content"><h4>(test/tests/msca/BFO_dwP1A1_100.i)</h4><pre class="moose-pre"><code class="language-text">Nx = 100
+Ny = 1
+Nz = 1
+
+xMax = 9.42477796076938
+yMax = 1.0
+zMax = 1.0
+
+freq = 0.2122065907891938
+
+g11 = 12e-3
+g12 = -3.0e-3
+g44 = 3.0e-3
+
+h11 = 2.0e-4
+h12 = -0.2e-3
+h44 = 0.8e-3
+
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = ${Nx}
+    ny = ${Ny}
+    nz = ${Nz}
+    xmin = 0.0
+    xmax = ${xMax}
+    ymin = 0.0
+    ymax = ${yMax}
+    zmin = 0.0
+    zmax = ${zMax}
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;0.0 0.0 0.0&#x27;
+    new_boundary = 100
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+  potential_E_int = potential_E_int
+[]
+
+
+[Functions]
+  [./stripeP1]
+    type = ParsedFunction
+    value = 0.54*cos(${freq}*(x))
+  [../]
+  [./stripeP2]
+    type = ParsedFunction
+    value = -0.54*cos(${freq}*(x))
+  [../]
+  [./stripeA1]
+    type = ParsedFunction
+    value = 7.37*cos(${freq}*(x))
+  [../]
+  [./stripeA2]
+    type = ParsedFunction
+    value = -7.37*cos(${freq}*(x))
+  [../]
+
+  [./constPm]
+    type = ParsedFunction
+    value = -0.54
+  [../]
+  [./constPp]
+    type = ParsedFunction
+    value = 0.54
+  [../]
+  [./constAm]
+    type = ParsedFunction
+    value = -7.37
+  [../]
+  [./constAp]
+    type = ParsedFunction
+    value = 7.37
+  [../]
+[]
+
+
+[Variables]
+  [./u_x]
+  [../]
+  [./u_y]
+  [../]
+  [./u_z]
+  [../]
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripeP1
+    [../]
+  [../]
+  [./antiphase_A_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripeA1
+    [../]
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[AuxVariables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./s00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e21]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e02]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e20]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+[]
+
+[Kernels]
+  [./TensorMechanics]
+  [../]
+
+  [./rotostr_ux]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./rotostr_uy]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./rotostr_uz]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  ### Operators for the polar field: ###
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled2_z]
+     type = Wall2EnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+
+  [./walled_a_x]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled_a_y]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled_a_z]
+     type = AFDWallEnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./walled2_a_x]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled2_a_y]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled2_a_z]
+     type = AFDWall2EnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./roto_polar_coupled_x]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_x
+    component = 0
+  [../]
+  [./roto_polar_coupled_y]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_y
+    component = 1
+  [../]
+  [./roto_polar_coupled_z]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_z
+    component = 2
+  [../]
+  [./roto_dis_coupled_x]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./roto_dis_coupled_y]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./roto_dis_coupled_z]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+
+
+
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+
+
+  #Operators for the AFD field
+
+  [./rbed_x]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./rbed_y]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./rbed_z]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+  [./rotostr_dis_coupled_x]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_x
+    component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_y]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_y
+    component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_z]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_z
+    component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+
+
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+
+
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable=polar_x
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable=polar_y
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+
+  [./a_x_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_x
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_y_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_y
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_z_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_z
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+
+  [./u_x_time]
+    type = TimeDerivativeScaled
+    variable = u_x
+    time_scale = 1.0
+  [../]
+  [./u_y_time]
+    type = TimeDerivativeScaled
+    variable = u_y
+    time_scale = 1.0
+  [../]
+  [./u_z_time]
+    type = TimeDerivativeScaled
+    variable = u_z
+    time_scale = 1.0
+  [../]
+
+
+[]
+
+[ScalarKernels]
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+[]
+
+[Materials]
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-2.81296 1.72351 2.24147 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./Landau_A]
+    type = GenericConstantMaterial
+    prop_names = &#x27;beta1 beta11 beta12 beta111 beta112 beta123 beta1111 beta1112 beta1122 beta1123&#x27;
+    prop_values = &#x27;-0.0137763 0.0000349266 0.0000498846 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./P_A_couple]
+    type = GenericConstantMaterial
+    prop_names = &#x27;t1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212   t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222&#x27;
+    prop_values = &#x27;0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;1.0 ${g11} ${g12} ${g44} 0.0&#x27;
+  [../]
+
+  [./Landau_H]
+    type = GenericConstantMaterial
+    prop_names = &#x27;H110 H11_H110 H12_H110 H44_H110 H44P_H110&#x27;
+    prop_values = &#x27;1.0 ${h11} ${h12} ${h44} 0.0&#x27;
+  [../]
+
+
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;295.179 117.567 74.0701&#x27;
+  [../]
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;   
+    prop_values = &#x27;-0.0603833 0.0111245 -0.0175686&#x27;
+  [../]
+
+  [./mat_R]
+    type = GenericConstantMaterial
+    prop_names = &#x27;R11 R12 R44&#x27;
+    prop_values = &#x27;-0.0000878064 0.0000295306 0.0000627962&#x27;
+  [../]
+
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;-30.4162 -5.01496 -10.4105&#x27;   
+
+#the point is the following: use a slightly different definition of Q_ij than Hlinka
+
+  [../]
+  [./mat_r]
+    type = GenericConstantMaterial
+    prop_names = &#x27;r11 r12 r44&#x27;
+    prop_values = &#x27;-0.0379499 0.00373096 0.0372105&#x27; 
+  [../]
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701&#x27;
+  [../]
+
+
+  [./strain]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./stress]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./permitivitty_1]
+
+    ###############################################
+    ##
+    ##  so-called background dielectric constant
+    ##  (it encapsulates the motion of core electrons
+    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  e_b = 10), see PRB. 74, 104014, (2006)
+    ##
+    ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+
+[]
+
+[Postprocessors]
+  [./dt]
+     type = TimestepSize
+  [../]
+  [./FbP]
+    type = BulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FbA]
+    type = RotoBulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPA]
+    type = RotoPolarCoupledEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgP]
+    type = WallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgA]
+    type = AFDWallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPu]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./FcAu]
+    type = RotostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+
+  [./Felu]
+    type = ElasticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./Fele]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;FbP FbA FgP FgA FcPA FcPu FcAu Felu Fele&#x27;
+    pp_coefs = &#x27; 1 1 1 1 1 1 1 1 1&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  
+    ##########################################
+    #
+    # NOTE: Ferret output is in attojoules
+    #
+    ##########################################
+  [../]
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot
+    execute_on = &#x27;timestep_end&#x27;
+    dt = dt
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./x]
+      auto_direction = &#x27;x&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z antiphase_A_x antiphase_A_y antiphase_A_z&#x27;
+    [../]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;potential_E_int&#x27;
+    [../]
+  [../]
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+
+[UserObjects]
+  [./global_strain_uo]
+    type = GlobalBFOMaterialRVEUserObject
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  [../]
+  [./kill]
+   type = Terminator
+   expression = &#x27;perc_change &lt;= 5.0e-7&#x27;
+  [../]
+[]
+
+#=
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided&#x27;
+    petsc_options_value = &#x27;    121            1e-8          1e-7       1e-6     bjacobi    allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;bdf2&#x27;
+  dtmin = 1e-13
+  dtmax = 10.0
+
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 25  #usually 10
+    linear_iteration_ratio = 100
+    dt = 0.08
+    growth_factor = 1.1
+  [../]
+
+  num_steps = 3
+[]
+
+#=
+[Outputs]
+  print_linear_residuals = false
+  perf_graph_live = false
+  [./out]
+    type = Exodus
+    file_base = BFO_dwP1A1_100
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="cccd263b-5058-46df-8161-74696ab46f0d"><div class="modal-content"><h4>(test/tests/domain_wall/test_BTO_domain_wall.i)</h4><pre class="moose-pre"><code class="language-text">
+  ############################################
+  ##
+  ##  to use this file, scale up size and add
+  ##  the functionIC to the polar field for the 
+  ##  appropriate wall
+  ##  current Nov 2020 tests benchmark this
+  ##  within 10% of FFT calculations using the 
+  ##  same functional
+  ##
+  ############################################
+
+
+[Mesh]
+  [gen]
+    ############################################
+    ##
+    ##  Type and dimension of the mesh 
+    ##
+    ############################################
+
+    type = GeneratedMeshGenerator
+    dim = 3
+
+    #############################################
+    ##
+    ##  Grid definition. Note that it should be
+    ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
+    ##
+    #############################################
+
+    nx = 2
+    ny = 2
+    nz = 2
+
+    #############################################
+    ##
+    ##   Actual spatial coordinates of mesh. 
+    ##   Jmax - Jmin = nJ/2 for J = x, y, z
+    ##   Units are in nanometers
+    ##
+    #############################################
+
+    xmin = -0.5
+    xmax = 0.5
+    ymin = -0.5
+    ymax = 0.5
+    zmin = -0.5
+    zmax = 0.5
+
+    #############################################
+    ##
+    ##  FE type/order (hexahedral, tetrahedral
+    ##
+    #############################################
+
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;-0.5 -0.5 -0.5&#x27;
+    new_boundary = 100
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  ############################################
+  ##
+  ## Gradient coefficients from
+  ## Marton and Hlinka
+  ##    Phys. Rev. B. 74, 104014, (2006)
+  ##
+  ############################################
+
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_E_int = potential_E_int
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+
+  ##############################################
+  ##
+  ##  IMPORTANT(!): Units in Ferret are nm, kg,
+  ##                seconds, and attocoulombs
+  ##
+  ##############################################
+
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
+[]
+
+[Functions]
+  [./stripe1]
+    type = ParsedFunction
+    value = 0.01*cos(0.08975979010256552*(x))
+  [../]
+[]
+
+
+[Variables]
+
+  #################################
+  ##
+  ##  Variable definitions
+  ##    P, u, phi, e^global_ij  
+  ##  and their initial conditions
+  ##
+  #################################
+
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+    [../]
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./u_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[AuxVariables]
+
+  ######################################
+  ##
+  ##  Auxiarilly variable definitions
+  ##   (can be intermediate variables 
+  ##   or for postprocessed quantities) 
+  ##  
+  ######################################
+
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+
+  ######################################
+  ##
+  ##  Auxiarilly Kernel definitions
+  ##   (can be intermediate &quot;operations&quot; 
+  ##   or for postprocessed quantities) 
+  ##  
+  ######################################
+
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+    use_displaced_mesh = false
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+    use_displaced_mesh = false
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+    use_displaced_mesh = false
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+[]
+
+[ScalarKernels]
+
+  ######################################
+  ##
+  ##  Necessary for PBC system
+  ##  
+  ######################################
+
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+    use_displaced_mesh = false
+  [../]
+[]
+
+[Materials]
+
+  #################################################
+  ##
+  ## Bulk free energy and electrostrictive
+  ## coefficients gleaned from
+  ## Marton and Hlinka
+  ##    Phys. Rev. B. 74, 104014, (2006)
+  ##
+  ## NOTE1: there might be some Legendre transforms
+  ##        depending on what approach you use
+  ##        -i.e. inhomogeneous strain vs 
+  ##            homogeneous strain [renormalized]
+  ##
+  ## NOTE2: Sign convention in Ferret for the 
+  ##        electrostrictive coeff. is multiplied by
+  ##        an overall factor of (-1)
+  ##
+  ##################################################
+
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-0.027721 -0.64755 0.323 8.004 4.47 4.91 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.5 0.51 -0.02 0.02 0.0&#x27;
+  [../]
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;275.0 179.0 54.3&#x27;
+  [../]
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;
+    prop_values = &#x27;-0.11 0.045 -0.029&#x27;
+  [../]
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;-14.2 0.74 -1.57&#x27;
+  [../]
+
+  [./eigen_strain]
+    type = ComputeEigenstrain
+    eigen_base = &#x27;0. 0 0 0 0 0 0 0 0&#x27;
+    eigenstrain_name = eigenstrain
+    prefactor = 0.0
+  [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+
+    ###############################################
+    ##
+    ## symmetric9 fill_method is (default)
+    ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+    ##
+    ###############################################
+
+    C_ijkl = &#x27;275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./slab_ferroelectric]
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = &#x27;-0.11 0.045 0.045 -0.11 0.045 -0.11 -0.029 -0.029 -0.029&#x27;
+    C_ijkl = &#x27;275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3&#x27;
+  [../]
+
+  [./permitivitty_1]
+     ###############################################
+     ##
+     ##  so-called background dielectric constant
+     ##  (it encapsulates the motion of core electrons
+     ##  at high frequency) = e_b*e_0 (here we use 
+     ##  e_b = 10), see PRB. 74, 104014, (2006)
+     ##
+     ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+[]
+
+
+[Kernels]
+
+  ###############################################
+  ##
+  ## Physical Kernel operators
+  ## to enforce TDLGD evolution 
+  ##
+  ###############################################
+
+
+  #Elastic problem
+  [./TensorMechanics]
+    use_displaced_mesh = false
+  [../]
+
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  [./wall2ed_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./wall2ed_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./wall2ed_z]
+     type = Wall2EnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+  [../]
+
+
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable=polar_x
+     time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable=polar_y
+     time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+     variable = polar_z
+     time_scale = 1.0
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z&#x27;
+    [../]
+  [../]
+
+  [./boundary_grounding]
+    type = DirichletBC
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    variable = potential_E_int
+    value = 0.0
+  [../]
+
+
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+[Postprocessors]
+
+  ###############################################
+  ##
+  ##  Postprocessors (integrations over the 
+  ##  computational domain) to calculate the total energy
+  ##  decomposed into linear combinations of the
+  ##  different physics.
+  ##
+  ###############################################
+
+  [./Fbulk]
+    type = BulkEnergyEighth
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Fwall]
+    type = WallEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Felastic]
+    type = ElasticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+    use_displaced_mesh = false
+  [../]
+  [./Fcoupled]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Felec]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftotal]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;Fbulk Fwall Fcoupled Felec&#x27;
+    pp_coefs = &#x27; 1 1 1 1&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = Ftotal
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+[]
+
+[UserObjects]
+
+  ###############################################
+  ##
+  ##  GlobalStrain system to enforce periodicity 
+  ##  in the anisotropic strain field 
+  ##
+  ###############################################
+
+  [./global_strain_uo]
+    type = GlobalATiO3MaterialRVEUserObject
+    use_displaced_mesh = false
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  [../]
+
+  ###############################################
+  ##
+  ##  terminator to end energy evolution when the energy difference 
+  ##  between subsequent time steps is lower than 5e-6
+  ##
+  ##  NOTE: can fail if the time step is small
+  ##
+  ###############################################
+
+  [./kill]
+    type = Terminator
+    expression = &#x27;perc_change &lt;= 1.0e-6&#x27;
+   [../]
+[]
+
+[Preconditioning]
+
+  ###############################################
+  ##
+  ##  Numerical preconditioning/solver options
+  ##
+  ###############################################
+
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided&#x27;
+    petsc_options_value = &#x27;    160               1e-8      1e-8      1e-8          bjacobi       allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+
+  ##########################################
+  ##
+  ##  Time integration/solver options
+  ##
+  ##########################################
+
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  dtmin = 1e-13
+
+  ###########################################
+  ##
+  ##  dtmax is material dependent!
+  ##  for PTO is about 0.8 but BTO more like 3-10
+  ##
+  ###########################################
+
+  dtmax = 3.0
+
+  l_max_its = 200
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 8
+    cutback_factor = 0.75
+    linear_iteration_ratio = 1000
+    dt = 0.3
+  [../]
+  verbose = true
+  num_steps = 4
+[]
+
+[Outputs]
+
+  ###############################################
+  ##
+  ##  Output options
+  ##
+  ###############################################
+
+  print_linear_residuals = false
+  perf_graph = false
+
+  [./out]
+    type = Exodus
+    file_base = test
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4e7e439c-61c9-4466-b0b9-181f3b6a238e"><div class="modal-content"><h4>(tutorial/film.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  [gen]
+    ############################################
+    ##
+    ##  Type and dimension of the mesh 
+    ##
+    ############################################
+
+    type = GeneratedMeshGenerator
+    dim = 3
+
+    nx = 32
+    ny = 32
+    nz = 30
+
+    xmin = -16.0
+    xmax = 16.0
+    ymin = -16.0
+    ymax = 16.0
+    zmin = -10.0
+    zmax = 20.0
+
+    #############################################
+    ##
+    ##  FE type/order (hexahedral, tetrahedral
+    ##
+    #############################################
+
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;-16.0 -16.0 -10.0&#x27;
+    new_boundary = 100
+  [../]
+
+  [subdomains]
+    type = SubdomainBoundingBoxGenerator
+    input = cnode
+    bottom_left = &#x27;-16.0 -16.0 -10.0&#x27;
+    block_id = 1
+    top_right = &#x27;16.0 16.0 0&#x27;
+    location = INSIDE
+  []
+  [film_interface]
+    type = SideSetsBetweenSubdomainsGenerator
+    input = subdomains
+    primary_block = 0
+    paired_block = 1
+    new_boundary = 52
+  []
+  [film_surface]
+    type = SideSetsFromNormalsGenerator
+    input = film_interface
+    normals = &#x27;0  0  1&#x27;
+    fixed_normal = true
+    new_boundary = &#x27;107&#x27;
+  []
+  [substrate_bottom]
+    type = SideSetsFromNormalsGenerator
+    input = film_surface
+    normals = &#x27;0  0  -1&#x27;
+    fixed_normal = true
+    new_boundary = &#x27;108&#x27;
+  []
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_E_int = potential_E_int
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+  ##############################################
+  ##=
+  ##  IMPORTANT(!): Units in Ferret are nm, kg,
+  ##                seconds, and attocoulombs
+  ##
+  ##############################################
+
+  vol = vol
+  
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
+[]
+
+[Variables]
+
+  #################################
+  ##
+  ##  Variable definitions
+  ##    P, u, phi, e^global_ij  
+  ##  and their initial conditions
+  ##
+  #################################
+
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -1e-2
+      max = 1e-2
+    [../]
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -1e-2
+      max = 1e-2
+    [../]
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -1e-2
+      max = 1e-2
+    [../]
+    block = &#x27;0&#x27;
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;0 1&#x27;
+  [../]
+
+  [./u_x]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;0 1&#x27;
+  [../]
+  [./u_y]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;0 1&#x27;
+  [../]
+  [./u_z]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;0 1&#x27;
+  [../]
+[]
+
+[Kernels]
+
+  ###############################################
+  ##
+  ## Physical Kernel operators
+  ## to enforce TDLGD evolution 
+  ##
+  ###############################################
+
+
+  #Elastic problem
+  [./TensorMechanics]
+    use_displaced_mesh = false
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+    block = &#x27;0&#x27;
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+    block = &#x27;0&#x27;
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+    block = &#x27;0&#x27;
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+    block = &#x27;0&#x27;
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+    block = &#x27;0&#x27;
+  [../]
+  [./walled_z]
+    type = WallEnergyDerivative
+    variable = polar_z
+    component = 2
+    block = &#x27;0&#x27;
+  [../]
+
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+    block = &#x27;0&#x27;
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+    block = &#x27;0&#x27;
+  [../]
+  [./walled2_z]
+    type = Wall2EnergyDerivative
+    variable = polar_z
+    component = 2
+    block = &#x27;0&#x27;
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+    block = &#x27;0&#x27;
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+    block = &#x27;0&#x27;
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+    block = &#x27;0&#x27;
+  [../]
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+    block = &#x27;0&#x27;
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+    block = &#x27;0&#x27;
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+    block = &#x27;0&#x27;
+  [../]
+
+
+  [./polar_x_electric_E]
+    type = PolarElectricEStrong
+    variable = potential_E_int
+    block = &#x27;0&#x27;
+  [../]
+  [./FE_E_int]
+    type = Electrostatics
+    variable = potential_E_int
+    block = &#x27;0 1&#x27;
+  [../]
+
+  [./polar_electric_px]
+    type = PolarElectricPStrong
+    variable = polar_x
+    component = 0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_electric_py]
+    type = PolarElectricPStrong
+    variable = polar_y
+    component = 1
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_electric_pz]
+    type = PolarElectricPStrong
+    variable = polar_z
+    component = 2
+    block = &#x27;0&#x27;
+  [../]
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable=polar_x
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable = polar_y
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+
+  [./u_x_time]
+    type = TimeDerivativeScaled
+    variable = u_x
+    time_scale = 1.0
+  [../]
+  [./u_y_time]
+    type = TimeDerivativeScaled
+    variable = u_y
+    time_scale = 1.0
+  [../]
+  [./u_z_time]
+    type = TimeDerivativeScaled
+    variable = u_z
+    time_scale = 1.0
+  [../]
+
+[]
+
+
+
+[AuxVariables]
+
+  ######################################
+  ##
+  ##  Auxiarilly variable definitions
+  ##   (can be intermediate variables 
+  ##   or for postprocessed quantities) 
+  ##  
+  ######################################
+
+
+  ######################################
+  ##
+  ##  Global displacements
+  ##
+  ######################################
+
+  [./disp_x]
+    block = &#x27;0 1&#x27;
+  [../]
+  [./disp_y]
+    block = &#x27;0 1&#x27;
+  [../]
+  [./disp_z]
+    block = &#x27;0 1&#x27;
+  [../]
+
+######################################
+  ##
+  ##  Stress/strain tensor components
+  ##
+  ######################################
+
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+
+  [./s00]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./s01]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./s10]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./s11]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./s12]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./s22]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+
+  [./E_x]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./E_y]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+  [./E_z]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;0 1&#x27;
+  [../]
+
+[]
+
+[AuxKernels]
+
+  ######################################
+  ##
+  ##  Auxiarilly Kernel definitions
+  ##   (can be intermediate &quot;operations&quot; 
+  ##   or for postprocessed quantities) 
+  ##  
+  ######################################
+
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+    use_displaced_mesh = false
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+    use_displaced_mesh = false
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+    use_displaced_mesh = false
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s12]
+    type = RankTwoAux
+    variable = s12
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 2
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./s22]
+    type = RankTwoAux
+    variable = s22
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+  [../]
+
+[]
+
+[ScalarKernels]
+
+  ######################################
+  ##
+  ##  Necessary for PBC system
+  ##  
+  ######################################
+
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+    use_displaced_mesh = false
+  [../]
+[]
+
+[Materials]
+
+  #################################################
+  ##
+  ## Landau coefficients from Li et al (2001)
+  ##
+  ##################################################
+
+  [./Landau_P_FE]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-0.1722883 -0.073 0.75 0.26 0.61 -3.67 0.0 0.0 0.0 0.0&#x27;
+    block = &#x27;0&#x27;
+  [../]
+
+  [./Landau_P_substr]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;10.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+    block = &#x27;1&#x27;
+  [../]
+
+  [./Landau_G_FE]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.173 0.6 0.0 0.3 0.3&#x27;
+    block = &#x27;0&#x27;
+  [../]
+
+  [./mat_C_FE]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;175.0 79.4 111.1&#x27;
+    block = &#x27;0&#x27;
+  [../]
+  [./mat_C_sub]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;220.0 34.4 161.1&#x27;
+    block = &#x27;1&#x27;
+  [../]
+
+  ##################################################
+  ##=
+  ## NOTE: Sign convention in Ferret for the 
+  ##        electrostrictive coeff. is multiplied by
+  ##        an overall factor of (-1)
+  ##
+  ##################################################
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;
+    prop_values = &#x27;-0.089 0.026 -0.03375&#x27;
+    block = &#x27;0 1&#x27;
+  [../]
+
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;-11.4 0.01438 -7.5&#x27;
+  [../]
+
+  [./eigen_strain]
+    type = ComputeEigenstrain
+    # eigen_base = &#x27;exx exy exz eyx eyy eyz ezx ezy ezz&#x27;
+    eigen_base = &#x27;1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0&#x27;
+    eigenstrain_name = eigenstrain
+    prefactor = 0.0
+  [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+
+   ###############################################
+   ##
+   ## symmetric9 fill_method is (default)
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##
+   ###############################################
+
+    C_ijkl = &#x27;175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./permitivitty_1]
+
+    ###############################################
+    ##
+    ##  so-called background dielectric constant
+    ##  (it encapsulates the motion of core electrons
+    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  e_b = 10), see PRB. 74, 104014, (2006)
+    ##
+    ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./xy]
+      auto_direction = &#x27;x y&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z potential_E_int&#x27;
+    [../]
+  [../]
+
+
+
+  [./boundary_interface_grounding]
+    type = DirichletBC
+    boundary = &#x27;52&#x27;
+    variable = potential_E_int
+    value = 0.0
+  [../]
+
+
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = &#x27;108&#x27;
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = &#x27;108&#x27;
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = &#x27;108&#x27;
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+[Postprocessors]
+
+  ###############################################
+  ##=
+  ##  Postprocessors (integrations over the 
+  ##  computational domain) to calculate the total 
+  ##  energy decomposed into linear combinations of 
+  ##  the different physics.
+  ##
+  ###############################################
+
+  [./Fbulk]
+    type = BulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+    block = &#x27;0&#x27;
+  [../]
+  [./Fwall]
+    type = WallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    block = &#x27;0&#x27;
+  [../]
+  [./Felastic]
+    type = ElasticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    use_displaced_mesh = false
+    block = &#x27;0&#x27;
+  [../]
+  [./Fcoupled]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    block = &#x27;0&#x27;
+  [../]
+  [./Felec]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    block = &#x27;0&#x27;
+  [../]
+  [./Ftotal]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;Fbulk Fwall Fcoupled Felec&#x27;
+    pp_coefs = &#x27;0.160218 0.160218 0.160218 0.160218&#x27; #converted to eV
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./vol]
+    type = VolumePostprocessor
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+
+  [./px]
+    type = DomainVariantPopulation
+    execute_on = &#x27;timestep_end&#x27;
+    component = 0
+    block = &#x27;0&#x27;
+  [../]
+  [./py]
+    type = DomainVariantPopulation
+    execute_on = &#x27;timestep_end&#x27;
+    component = 1
+    block = &#x27;0&#x27;
+  [../]
+  [./pz]
+    type = DomainVariantPopulation
+    execute_on = &#x27;timestep_end&#x27;
+    component = 2
+    block = &#x27;0&#x27;
+  [../]
+
+
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = Ftotal
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./elapsed]
+    type = PerfGraphData
+    section_name = &quot;Root&quot;  # for profiling the problem [on]
+    data_type = total
+  [../]
+
+[]
+
+[UserObjects]
+
+  ###############################################
+  ##
+  ##  GlobalStrain system to enforce periodicity 
+  ##  in the anisotropic strain field 
+  ##
+  ###############################################
+
+  [./global_strain_uo]
+    type = GlobalATiO3MaterialRVEUserObject
+    use_displaced_mesh = false
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+    applied_stress_tensor = &#x27;2.1 2.1 1.9056 0.0 0.0 0.0&#x27;
+    block = &#x27;0&#x27;
+  [../]
+
+  ###############################################
+  ##
+  ##  terminator to end energy evolution when the energy difference 
+  ##  between subsequent time steps is lower than 5e-6
+  ##
+  ##  NOTE: can fail if the time step is small
+  ##
+  ###############################################
+
+  [./kill]
+    type = Terminator
+    expression = &#x27;perc_change &lt;= 5.0e-4&#x27;
+   [../]
+[]
+
+[Preconditioning]
+
+  ###############################################
+  ##
+  ##  Numerical preconditioning/solver options
+  ##
+  ###############################################
+
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided&#x27;
+    petsc_options_value = &#x27;    80             1e-8        1e-6      1e-5       bjacobi      allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+
+  ##########################################
+  ##
+  ##  Time integ=ration/solver options
+  ##
+  ##########################################
+
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;bdf2&#x27;
+  dtmin = 1e-13
+  dtmax = 0.6
+
+  l_max_its = 200
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 6
+    growth_factor = 1.2
+    cutback_factor = 0.75
+    linear_iteration_ratio = 1000
+    dt = 0.6
+  [../]
+  verbose = true
+  nl_max_its = 20
+[]
+
+[Outputs]
+
+  ###############################################
+  ##==
+  ##  Output options
+  ##
+  ###############################################
+
+  print_linear_residuals = false
+  perf_graph = false
+
+  [./out]
+    type = Exodus
+    file_base = out_PTOfilm_e12_T298K_E0_E0
+    elemental_as_nodal = true
+    interval = 1
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="b0eb80bd-998b-4475-a669-407484ce745f"><div class="modal-content"><h4>(test/tests/msca/BFO_P0A0.i)</h4><pre class="moose-pre"><code class="language-text">Nx = 5
+Ny = 5
+Nz = 5
+
+xMax = 2.0
+yMax = 2.0
+zMax = 2.0
+
+g11 = 12e-3
+g12 = -3.0e-3
+g44 = 3.0e-3
+
+h11 = 2.0e-4
+h12 = -0.2e-3
+h44 = 0.8e-3
+
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = ${Nx}
+    ny = ${Ny}
+    nz = ${Nz}
+    xmin = 0.0
+    xmax = ${xMax}
+    ymin = 0.0
+    ymax = ${yMax}
+    zmin = 0.0
+    zmax = ${zMax}
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;0.0 0.0 0.0&#x27;
+    new_boundary = 100
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+  potential_E_int = potential_E_int
+[]
+
+
+[Functions]
+  [./constPm]
+    type = ParsedFunction
+    value = -0.54
+  [../]
+  [./constPp]
+    type = ParsedFunction
+    value = 0.54
+  [../]
+  [./constAm]
+    type = ParsedFunction
+    value = -7.37
+  [../]
+  [./constAp]
+    type = ParsedFunction
+    value = 7.37
+  [../]
+[]
+
+
+[Variables]
+  [./u_x]
+  [../]
+  [./u_y]
+  [../]
+  [./u_z]
+  [../]
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPm
+    [../]
+  [../]
+  [./antiphase_A_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAm
+    [../]
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[AuxVariables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./s00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e21]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e02]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e20]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+[]
+
+[Kernels]
+  [./TensorMechanics]
+  [../]
+
+  [./rotostr_ux]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./rotostr_uy]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./rotostr_uz]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  ### Operators for the polar field: ###
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled2_z]
+     type = Wall2EnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+
+  [./walled_a_x]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled_a_y]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled_a_z]
+     type = AFDWallEnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./walled2_a_x]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled2_a_y]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled2_a_z]
+     type = AFDWall2EnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./roto_polar_coupled_x]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_x
+    component = 0
+  [../]
+  [./roto_polar_coupled_y]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_y
+    component = 1
+  [../]
+  [./roto_polar_coupled_z]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_z
+    component = 2
+  [../]
+  [./roto_dis_coupled_x]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./roto_dis_coupled_y]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./roto_dis_coupled_z]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+
+
+
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+
+
+  #Operators for the AFD field
+
+  [./rbed_x]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./rbed_y]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./rbed_z]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+  [./rotostr_dis_coupled_x]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_x
+    component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_y]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_y
+    component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_z]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_z
+    component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+
+
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+
+
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable=polar_x
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable=polar_y
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+
+  [./a_x_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_x
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_y_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_y
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_z_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_z
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+
+  [./u_x_time]
+    type = TimeDerivativeScaled
+    variable = u_x
+    time_scale = 1.0
+  [../]
+  [./u_y_time]
+    type = TimeDerivativeScaled
+    variable = u_y
+    time_scale = 1.0
+  [../]
+  [./u_z_time]
+    type = TimeDerivativeScaled
+    variable = u_z
+    time_scale = 1.0
+  [../]
+
+
+[]
+
+[ScalarKernels]
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+[]
+
+[Materials]
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-2.81296 1.72351 2.24147 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./Landau_A]
+    type = GenericConstantMaterial
+    prop_names = &#x27;beta1 beta11 beta12 beta111 beta112 beta123 beta1111 beta1112 beta1122 beta1123&#x27;
+    prop_values = &#x27;-0.0137763 0.0000349266 0.0000498846 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./P_A_couple]
+    type = GenericConstantMaterial
+    prop_names = &#x27;t1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212   t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222&#x27;
+    prop_values = &#x27;0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;1.0 ${g11} ${g12} ${g44} 0.0&#x27;
+  [../]
+
+  [./Landau_H]
+    type = GenericConstantMaterial
+    prop_names = &#x27;H110 H11_H110 H12_H110 H44_H110 H44P_H110&#x27;
+    prop_values = &#x27;1.0 ${h11} ${h12} ${h44} 0.0&#x27;
+  [../]
+
+
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;295.179 117.567 74.0701&#x27;
+  [../]
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;   
+    prop_values = &#x27;-0.0603833 0.0111245 -0.0175686&#x27;
+  [../]
+
+  [./mat_R]
+    type = GenericConstantMaterial
+    prop_names = &#x27;R11 R12 R44&#x27;
+    prop_values = &#x27;-0.0000878064 0.0000295306 0.0000627962&#x27;
+  [../]
+
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;-30.4162 -5.01496 -10.4105&#x27;   
+
+#the point is the following: use a slightly different definition of Q_ij than Hlinka
+
+  [../]
+  [./mat_r]
+    type = GenericConstantMaterial
+    prop_names = &#x27;r11 r12 r44&#x27;
+    prop_values = &#x27;-0.0379499 0.00373096 0.0372105&#x27; 
+  [../]
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701&#x27;
+  [../]
+
+
+  [./strain]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./stress]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./permitivitty_1]
+
+    ###############################################
+    ##
+    ##  so-called background dielectric constant
+    ##  (it encapsulates the motion of core electrons
+    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  e_b = 10), see PRB. 74, 104014, (2006)
+    ##
+    ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+
+[]
+
+[Postprocessors]
+  [./dt]
+     type = TimestepSize
+  [../]
+  [./FbP]
+    type = BulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FbA]
+    type = RotoBulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPA]
+    type = RotoPolarCoupledEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgP]
+    type = WallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgA]
+    type = AFDWallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPu]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./FcAu]
+    type = RotostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+
+  [./Felu]
+    type = ElasticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./Fele]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;FbP FbA FgP FgA FcPA FcPu FcAu Felu Fele&#x27;
+    pp_coefs = &#x27; 1 1 1 1 1 1 1 1 1&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  
+    ##########################################
+    #
+    # NOTE: Ferret output is in attojoules
+    #
+    ##########################################
+  [../]
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot
+    execute_on = &#x27;timestep_end&#x27;
+    dt = dt
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./x]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z antiphase_A_x antiphase_A_y antiphase_A_z&#x27;
+    [../]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;potential_E_int&#x27;
+    [../]
+  [../]
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+
+[UserObjects]
+  [./global_strain_uo]
+    type = GlobalBFOMaterialRVEUserObject
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  [../]
+  [./kill]
+   type = Terminator
+   expression = &#x27;perc_change &lt;= 5.0e-7&#x27;
+  [../]
+[]
+
+#=
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided&#x27;
+    petsc_options_value = &#x27;    121            1e-8          1e-7       1e-6     bjacobi    allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;bdf2&#x27;
+  dtmin = 1e-13
+  dtmax = 10.0
+
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 25  #usually 10
+    linear_iteration_ratio = 100
+    dt = 0.08
+    growth_factor = 1.1
+  [../]
+
+  num_steps = 2
+[]
+
+#=
+[Outputs]
+  print_linear_residuals = false
+  perf_graph_live = false
+  [./out]
+    type = Exodus
+    file_base = BFO_P0A0
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="548d207c-3341-4107-b83f-68333c46a7db"><div class="modal-content"><h4>(tutorial/ferroelectric_domain_wall.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  [gen]
+    ############################################
+    ##
+    ##  Type and dimension of the mesh 
+    ##
+    ############################################
+
+    type = GeneratedMeshGenerator
+    dim = 3
+
+    nx = 480
+    ny = 1
+    nz = 1
+
+
+    xmin = -60.0
+    xmax = 60.0
+    ymin = -0.25
+    ymax = 0.25
+    zmin = -0.25
+    zmax = 0.25
+
+    #############################################
+    ##
+    ##  FE type/order (hexahedral, tetrahedral
+    ##
+    #############################################
+
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;-60.0 -0.25 -0.25&#x27;
+    new_boundary = 100
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_E_int = potential_E_int
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+
+  ##############################################
+  ##
+  ##  IMPORTANT(!): Units in Ferret are nm, kg,
+  ##                seconds, and attocoulombs
+  ##
+  ##############################################
+
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
+[]
+
+[Functions]
+  [./stripe1]
+    type = ParsedFunction
+    value = 0.1*cos(0.05235987755*(x))  #2pi/L = 0.10471975512
+  [../]
+[]
+
+
+[Variables]
+
+  #################################
+  ##
+  ##  Variable definitions
+  ##    P, u, phi, e^global_ij  
+  ##  and their initial conditions
+  ##
+  #################################
+
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = &#x27;stripe1&#x27;
+    [../]
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./u_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[Kernels]
+
+  ###############################################
+  ##
+  ## Physical Kernel operators
+  ## to enforce TDLGD evolution 
+  ##
+  ###############################################
+
+
+  #Elastic problem
+  [./TensorMechanics]
+    use_displaced_mesh = false
+  [../]
+
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled2_z]
+     type = Wall2EnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+  [../]
+
+
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable=polar_x
+     time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable=polar_y
+     time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+     variable = polar_z
+     time_scale = 1.0
+  [../]
+[]
+
+
+
+[AuxVariables]
+
+  ######################################
+  ##
+  ##  Auxiarilly variable definitions
+  ##   (can be intermediate variables 
+  ##   or for postprocessed quantities) 
+  ##  
+  ######################################
+
+
+  ######################################
+  ##
+  ##  Global displacements
+  ##
+  ######################################
+
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+
+  ######################################
+  ##
+  ##  Stress/strain tensor components
+  ##
+  ######################################
+
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./s00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+
+  ######################################
+  ##
+  ##  Auxiarilly Kernel definitions
+  ##   (can be intermediate &quot;operations&quot; 
+  ##   or for postprocessed quantities) 
+  ##  
+  ######################################
+
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+    use_displaced_mesh = false
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+    use_displaced_mesh = false
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+    use_displaced_mesh = false
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s12]
+    type = RankTwoAux
+    variable = s12
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 2
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./s22]
+    type = RankTwoAux
+    variable = s22
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+  [../]
+[]
+
+[ScalarKernels]
+
+  ######################################
+  ##
+  ##  Necessary for PBC system
+  ##  
+  ######################################
+
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+    use_displaced_mesh = false
+  [../]
+[]
+
+[Materials]
+
+  #################################################
+  ##
+  ## Bulk free energy and electrostrictive
+  ## coefficients gleaned from
+  ## Marton and Hlinka
+  ##    Phys. Rev. B. 74, 104014, (2006)
+  ##
+  ## NOTE: there might be some Legendre transforms
+  ##        depending on what approach you use
+  ##        -i.e. inhomogeneous strain vs 
+  ##            homogeneous strain [renormalized]
+  ##
+  ##################################################
+
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-0.027721 -0.64755 0.323 8.004 4.47 4.91 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  ############################################
+  ##
+  ## Gradient coefficients from
+  ## Marton and Hlinka
+  ##    Phys. Rev. B. 74, 104014, (2006)
+  ##
+  ############################################
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.5 0.51 -0.02 0.02 0.0&#x27;
+  [../]
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;275.0 179.0 54.3&#x27;
+  [../]
+
+  ##################################################
+  ##
+  ## NOTE: Sign convention in Ferret for the 
+  ##        electrostrictive coeff. is multiplied by
+  ##        an overall factor of (-1)
+  ##
+  ##################################################
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;
+    prop_values = &#x27;0.11 -0.045 0.029&#x27;
+  [../]
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;14.2 -0.74 1.57&#x27;
+  [../]
+
+  [./eigen_strain]
+    type = ComputeEigenstrain
+    eigen_base = &#x27;0. 0 0 0 0 0 0 0 0&#x27;
+    eigenstrain_name = eigenstrain
+    prefactor = 0.0
+  [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+
+   ###############################################
+   ##
+   ## symmetric9 fill_method is (default)
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##
+   ###############################################
+
+    C_ijkl = &#x27;275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./slab_ferroelectric]
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = &#x27;0.11 -0.045 -0.045 0.11 -0.045 0.11 0.029 0.029 0.029&#x27;
+    C_ijkl = &#x27;275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3&#x27;
+  [../]
+
+  [./permitivitty_1]
+
+    ###############################################
+    ##
+    ##  so-called background dielectric constant
+    ##  (it encapsulates the motion of core electrons
+    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  e_b = 10), see PRB. 74, 104014, (2006)
+    ##
+    ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+[]
+
+
+
+[BCs]
+  [./Periodic]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z potential_E_int&#x27;
+    [../]
+  [../]
+
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+[Postprocessors]
+
+  ###############################################
+  ##
+  ##  Postprocessors (integrations over the 
+  ##  computational domain) to calculate the total
+  ##  energy decomposed into linear combinations 
+  ##  of the different physics.
+  ##
+  ###############################################
+
+  [./Fb]
+    type = BulkEnergyEighth
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Fw]
+    type = WallEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Fela]
+    type = ElasticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+    use_displaced_mesh = false
+  [../]
+  [./Fc]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Fele]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;Fb Fw Fc Fele&#x27;
+    pp_coefs = &#x27; 1 1 1 1&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = Ftot
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+[]
+
+[UserObjects]
+
+  ###############################################
+  ##
+  ##  GlobalStrain system to enforce periodicity 
+  ##  in the anisotropic strain field 
+  ##
+  ###############################################
+
+  [./global_strain_uo]
+    type = GlobalATiO3MaterialRVEUserObject
+    use_displaced_mesh = false
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  [../]
+
+  ###############################################
+  ##
+  ##  terminator to end energy evolution when the 
+  ##  energy difference between subsequent time
+  ##  steps is lower than 1e-6
+  ##
+  ##  NOTE: can fail if the time step is small
+  ##
+  ###############################################
+
+  [./kill]
+    type = Terminator
+    expression = &#x27;perc_change &lt;= 1.0e-6&#x27;
+   [../]
+[]
+
+[Preconditioning]
+
+  ###############################################
+  ##
+  ##  Numerical preconditioning/solver options
+  ##
+  ###############################################
+
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided&#x27;
+    petsc_options_value = &#x27;    160               1e-10      1e-8      1e-6          bjacobi       allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+
+  ##########################################
+  ##
+  ##  Time integration/solver options
+  ##
+  ##########################################
+
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  dtmin = 1e-13
+
+  ###########################################
+  ##
+  ##  dtmax is material dependent!
+  ##  for PTO is about 0.8 but BTO more like 3-10
+  ##
+  ###########################################
+
+  dtmax = 3.0
+
+  l_max_its = 200
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 8
+    cutback_factor = 0.75
+    growth_factor = 1.2
+    linear_iteration_ratio = 1000
+    dt = 0.3
+  [../]
+  verbose = true
+[]
+
+
+
+[Outputs]
+
+  ############################################
+  ##
+  ##  Output options
+  ##
+  ############################################
+
+  print_linear_residuals = false
+  perf_graph = false
+
+  [./out]
+    type = Exodus
+    file_base = out_ferroelectric_domain_wall
+    elemental_as_nodal = true
+    execute_on = &#x27;timestep_end&#x27;
+    interval = 2
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="bfe10309-87d2-4b78-a105-da402d25eb7a"><div class="modal-content"><h4>(tutorial/multidomain.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 32
+  ny = 32
+  nz = 6
+  xmin = -15
+  xmax = 15
+  ymin = -15
+  ymax = 15
+  zmin = -2
+  zmax = 2
+  elem_type = HEX8
+[]
+
+
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  potential_E_int = potential_int
+[]
+
+[Variables]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.0001
+      max = 0.0001
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.0001
+      max = 0.0001
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.0001
+      max = 0.0001
+    [../]
+  [../]
+
+  [./potential_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+
+  #---------------------------------------#
+  #                                       #
+  #     Bulk (homogeneous) free energy    #
+  #                                       #
+  #---------------------------------------#
+
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #     Gradient free energy              #
+  #                                       #
+  #---------------------------------------#
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+    type = WallEnergyDerivative
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled2_z]
+    type = Wall2EnergyDerivative
+    variable = polar_z
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #     Poissons equation and P*E         #
+  #                                       #
+  #---------------------------------------#
+
+  [./polar_x_electric_E]
+    type = PolarElectricEStrong
+    variable = potential_int
+  [../]
+  [./FE_E_int]
+    type = Electrostatics
+    variable = potential_int
+  [../]
+
+  [./polar_electric_px]
+    type = PolarElectricPStrong
+    variable = polar_x
+    component = 0
+  [../]
+  [./polar_electric_py]
+    type = PolarElectricPStrong
+    variable = polar_y
+    component = 1
+  [../]
+  [./polar_electric_pz]
+    type = PolarElectricPStrong
+    variable = polar_z
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #     Time dependence of Pj             #
+  #                                       #
+  #---------------------------------------#
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable=polar_x
+    time_scale = 1.0
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable=polar_y
+    time_scale = 1.0
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+  [../]
+[]
+
+[Materials]
+
+  ## Use coefficients for lead-titanate in this convienient unit system (aC, kg, sec, nm)
+
+  [./Landau_P_FE]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-0.1722883 -0.073 0.75 0.26 0.61 -3.67 0.0 0.0 0.0 0.0&#x27;
+    block = &#x27;0&#x27;
+  [../]
+  [./Landau_G_FE]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.173 0.6 0.0 0.3 0.3&#x27;
+    block = &#x27;0&#x27;
+  [../]
+
+  [./permitivitty_1]
+
+    ###############################################
+    ##
+    ##  so-called background dielectric constant
+    ##  (it encapsulates the motion of core electrons
+    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  e_b = 10), see PRB. 74, 104014, (2006)
+    ##  This does not influence results much.
+    ##
+    ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+[]
+
+[BCs]
+
+[]
+
+[Postprocessors]
+  [./avePz]
+    type = ElementAverageValue
+    variable = polar_z
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FbP]
+    type = BulkEnergyEighth
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./FgP]
+    type = WallEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;FbP FgP&#x27;
+    pp_coefs = &#x27; 1 1&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  
+    ##########################################
+    #
+    # NOTE: Ferret output is in attojoules
+    #
+    ##########################################
+  [../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = Ftot
+  [../]
+[]
+
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = &#x27;perc_change &lt;= 1.0e-4&#x27;
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    120               1e-10      1e-8     1e-4    bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  dtmax = 0.7
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    execute_on = &#x27;timestep_end&#x27;
+    file_base = out_multidomain
+    elemental_as_nodal = true
+    interval = 1
+  [../]
+  [./outcsv]
+    type = CSV
+    file_base = out_multidomain
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="0ac3a256-c1b8-478c-9a4c-8e64b171c54f"><div class="modal-content"><h4>(tutorial/BFO_dwP1A1_100.i)</h4><pre class="moose-pre"><code class="language-text">Nx = 250
+Ny = 1
+Nz = 1
+
+xMax = 31.41592653589793
+yMax = 1.0
+zMax = 1.0
+
+freq = 0.2
+
+g11 = 12e-3
+g12 = -3.0e-3
+g44 = 3.0e-3
+
+h11 = 2.0e-4
+h12 = -0.2e-3
+h44 = 0.8e-3
+
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = ${Nx}
+    ny = ${Ny}
+    nz = ${Nz}
+    xmin = 0.0
+    xmax = ${xMax}
+    ymin = 0.0
+    ymax = ${yMax}
+    zmin = 0.0
+    zmax = ${zMax}
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;0.0 0.0 0.0&#x27;
+    new_boundary = 100
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+  potential_E_int = potential_E_int
+[]
+
+
+[Functions]
+  [./stripeP1]
+    type = ParsedFunction
+    value = 0.54*cos(${freq}*(x))
+  [../]
+  [./stripeP2]
+    type = ParsedFunction
+    value = -0.54*cos(${freq}*(x))
+  [../]
+  [./stripeA1]
+    type = ParsedFunction
+    value = 7.37*cos(${freq}*(x))
+  [../]
+  [./stripeA2]
+    type = ParsedFunction
+    value = -7.37*cos(${freq}*(x))
+  [../]
+
+  [./constPm]
+    type = ParsedFunction
+    value = -0.54
+  [../]
+  [./constPp]
+    type = ParsedFunction
+    value = 0.54
+  [../]
+  [./constAm]
+    type = ParsedFunction
+    value = -7.37
+  [../]
+  [./constAp]
+    type = ParsedFunction
+    value = 7.37
+  [../]
+[]
+
+
+[Variables]
+  [./u_x]
+  [../]
+  [./u_y]
+  [../]
+  [./u_z]
+  [../]
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripeP1
+    [../]
+  [../]
+  [./antiphase_A_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripeA1
+    [../]
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[AuxVariables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./s00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e21]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e02]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e20]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./TensorMechanics]
+  [../]
+
+  [./rotostr_ux]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./rotostr_uy]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./rotostr_uz]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  ### Operators for the polar field: ###
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled2_z]
+     type = Wall2EnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+
+  [./walled_a_x]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled_a_y]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled_a_z]
+     type = AFDWallEnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./walled2_a_x]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled2_a_y]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled2_a_z]
+     type = AFDWall2EnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./roto_polar_coupled_x]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_x
+    component = 0
+  [../]
+  [./roto_polar_coupled_y]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_y
+    component = 1
+  [../]
+  [./roto_polar_coupled_z]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_z
+    component = 2
+  [../]
+  [./roto_dis_coupled_x]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./roto_dis_coupled_y]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./roto_dis_coupled_z]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+
+  #Operators for the AFD field
+
+  [./rbed_x]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./rbed_y]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./rbed_z]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+  [./rotostr_dis_coupled_x]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_x
+    component = 0
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_y]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_y
+    component = 1
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_z]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_z
+    component = 2
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+
+  [./polar_x_electric_E]
+    type = PolarElectricEStrong
+    variable = potential_E_int
+  [../]
+  [./FE_E_int]
+    type = Electrostatics
+    variable = potential_E_int
+  [../]
+  [./polar_electric_px]
+    type = PolarElectricPStrong
+    variable = polar_x
+    component = 0
+  [../]
+  [./polar_electric_py]
+    type = PolarElectricPStrong
+    variable = polar_y
+    component = 1
+  [../]
+  [./polar_electric_pz]
+    type = PolarElectricPStrong
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable=polar_x
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable=polar_y
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+
+  [./a_x_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_x
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_y_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_y
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_z_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_z
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+
+  [./u_x_time]
+    type = TimeDerivativeScaled
+    variable = u_x
+    time_scale = 1.0
+  [../]
+  [./u_y_time]
+    type = TimeDerivativeScaled
+    variable = u_y
+    time_scale = 1.0
+  [../]
+  [./u_z_time]
+    type = TimeDerivativeScaled
+    variable = u_z
+    time_scale = 1.0
+  [../]
+[]
+
+
+[AuxKernels]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+[]
+
+[ScalarKernels]
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+[]
+
+[Materials]
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-2.81296 1.72351 2.24147 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./Landau_A]
+    type = GenericConstantMaterial
+    prop_names = &#x27;beta1 beta11 beta12 beta111 beta112 beta123 beta1111 beta1112 beta1122 beta1123&#x27;
+    prop_values = &#x27;-0.0137763 0.0000349266 0.0000498846 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./P_A_couple]
+    type = GenericConstantMaterial
+    prop_names = &#x27;t1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212   t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222&#x27;
+    prop_values = &#x27;0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;1.0 ${g11} ${g12} ${g44} 0.0&#x27;
+  [../]
+  [./Landau_H]
+    type = GenericConstantMaterial
+    prop_names = &#x27;H110 H11_H110 H12_H110 H44_H110 H44P_H110&#x27;
+    prop_values = &#x27;1.0 ${h11} ${h12} ${h44} 0.0&#x27;
+  [../]
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;295.179 117.567 74.0701&#x27;
+  [../]
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;   
+    prop_values = &#x27;-0.0603833 0.0111245 -0.0175686&#x27;
+  [../]
+  [./mat_R]
+    type = GenericConstantMaterial
+    prop_names = &#x27;R11 R12 R44&#x27;
+    prop_values = &#x27;-0.0000878064 0.0000295306 0.0000627962&#x27;
+  [../]
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;-30.4162 -5.01496 -10.4105&#x27;   
+  [../]
+  [./mat_r]
+    type = GenericConstantMaterial
+    prop_names = &#x27;r11 r12 r44&#x27;
+    prop_values = &#x27;-0.0379499 0.00373096 0.0372105&#x27; 
+  [../]
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701&#x27;
+  [../]
+
+  [./strain]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+  [../]
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./stress]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./permitivitty_1]
+
+    ###############################################
+    ##
+    ##  so-called background dielectric constant
+    ##  (it encapsulates the motion of core electrons
+    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  e_b = 10), see PRB. 74, 104014, (2006)
+    ##
+    ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+
+[]
+
+[Postprocessors]
+  [./dt]
+     type = TimestepSize
+  [../]
+  [./FbP]
+    type = BulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FbA]
+    type = RotoBulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPA]
+    type = RotoPolarCoupledEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgP]
+    type = WallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgA]
+    type = AFDWallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPu]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./FcAu]
+    type = RotostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+
+  [./Felu]
+    type = ElasticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./Fele]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;FbP FbA FgP FgA FcPA FcPu FcAu Felu Fele&#x27;
+    pp_coefs = &#x27; 1 1 1 1 1 1 1 1 1&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  
+    ##########################################
+    #
+    # NOTE: Ferret output is in attojoules
+    #
+    ##########################################
+  [../]
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot
+    execute_on = &#x27;timestep_end&#x27;
+    dt = dt
+  [../]
+
+  [./elapsed]
+    type = PerfGraphData
+    section_name = &quot;Root&quot;  # for profiling the problem
+    data_type = total
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./x]
+      auto_direction = &#x27;x&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z antiphase_A_x antiphase_A_y antiphase_A_z&#x27;
+    [../]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;potential_E_int&#x27;
+    [../]
+  [../]
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+
+[UserObjects]
+  [./global_strain_uo]
+    type = GlobalBFOMaterialRVEUserObject
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  [../]
+  [./kill]
+   type = Terminator
+   expression = &#x27;perc_change &lt;= 5.0e-7&#x27;
+  [../]
+[]
+
+#=
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided&#x27;
+    petsc_options_value = &#x27;    121            1e-8          1e-7       1e-6     bjacobi    allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;bdf2&#x27;
+  dtmin = 1e-13
+  dtmax = 10.0
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 25  #usually 10
+    linear_iteration_ratio = 100
+    dt = 0.08
+    growth_factor = 1.1
+  [../]
+
+  num_steps = 1000
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  perf_graph_live = false
+  [./out]
+    type = Exodus
+    file_base = BFO_dwP1A1_100
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="cd88aba2-14d6-4e96-8111-fc17f569cd46"><div class="modal-content"><h4>(tutorial/BFO_homogeneous_PA.i)</h4><pre class="moose-pre"><code class="language-text">Nx = 3
+Ny = 3
+Nz = 3
+
+xMax = 1.0
+yMax = 1.0
+zMax = 1.0
+
+g11 = 12e-3
+g12 = -3.0e-3
+g44 = 3.0e-3
+
+h11 = 2.0e-4
+h12 = -0.2e-3
+h44 = 0.8e-3
+
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = ${Nx}
+    ny = ${Ny}
+    nz = ${Nz}
+    xmin = 0.0
+    xmax = ${xMax}
+    ymin = 0.0
+    ymax = ${yMax}
+    zmin = 0.0
+    zmax = ${zMax}
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;0.0 0.0 0.0&#x27;
+    new_boundary = 100
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+  potential_E_int = potential_E_int
+[]
+
+
+[Functions]
+  [./constPm]
+    type = ParsedFunction
+    value = -0.50
+  [../]
+  [./constPp]
+    type = ParsedFunction
+    value = 0.50
+  [../]
+  [./constAm]
+    type = ParsedFunction
+    value = -7.1
+  [../]
+  [./constAp]
+    type = ParsedFunction
+    value = 7.1
+  [../]
+[]
+
+
+[Variables]
+  [./u_x]
+  [../]
+  [./u_y]
+  [../]
+  [./u_z]
+  [../]
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPm
+    [../]
+  [../]
+  [./antiphase_A_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+  [./antiphase_A_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAm
+    [../]
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./TensorMechanics]
+  [../]
+
+  [./rotostr_ux]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./rotostr_uy]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./rotostr_uz]
+    type = RotostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  ### Operators for the polar field: ###
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  [./walled2_x]
+    type = Wall2EnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled2_y]
+    type = Wall2EnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled2_z]
+     type = Wall2EnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+
+  [./walled_a_x]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled_a_y]
+    type = AFDWallEnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled_a_z]
+     type = AFDWallEnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./walled2_a_x]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./walled2_a_y]
+    type = AFDWall2EnergyDerivative
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./walled2_a_z]
+     type = AFDWall2EnergyDerivative
+     variable = antiphase_A_z
+     component = 2
+  [../]
+
+  [./roto_polar_coupled_x]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_x
+    component = 0
+  [../]
+  [./roto_polar_coupled_y]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_y
+    component = 1
+  [../]
+  [./roto_polar_coupled_z]
+    type = RotoPolarCoupledEnergyPolarDerivativeAlt
+    variable = polar_z
+    component = 2
+  [../]
+  [./roto_dis_coupled_x]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./roto_dis_coupled_y]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./roto_dis_coupled_z]
+    type = RotoPolarCoupledEnergyDistortDerivativeAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+
+
+
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+
+  [../]
+
+
+  #Operators for the AFD field
+
+  [./rbed_x]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_x
+    component = 0
+  [../]
+  [./rbed_y]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_y
+    component = 1
+  [../]
+  [./rbed_z]
+    type = RotoBulkEnergyDerivativeEighthAlt
+    variable = antiphase_A_z
+    component = 2
+  [../]
+
+  [./rotostr_dis_coupled_x]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_x
+    component = 0
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_y]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_y
+    component = 1
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+  [./rotostr_dis_coupled_z]
+    type = RotostrictiveCouplingDistortDerivative
+    variable = antiphase_A_z
+    component = 2
+  u_x = disp_x
+  u_y = disp_y
+  u_z = disp_z
+  [../]
+
+
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+
+
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable=polar_x
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable=polar_y
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = polar_z
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+
+  [./a_x_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_x
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_y_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_y
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_z_time]
+    type = TimeDerivativeScaled
+    variable = antiphase_A_z
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+
+  [./u_x_time]
+    type = TimeDerivativeScaled
+    variable = u_x
+    time_scale = 1.0
+  [../]
+  [./u_y_time]
+    type = TimeDerivativeScaled
+    variable = u_y
+    time_scale = 1.0
+  [../]
+  [./u_z_time]
+    type = TimeDerivativeScaled
+    variable = u_z
+    time_scale = 1.0
+  [../]
+[]
+
+[AuxVariables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./s00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./s11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e21]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e02]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e20]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+  [../]
+  [./s00]
+    type = RankTwoAux
+    variable = s00
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+  [../]
+  [./s01]
+    type = RankTwoAux
+    variable = s01
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+  [../]
+  [./s10]
+    type = RankTwoAux
+    variable = s10
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 0
+  [../]
+  [./s11]
+    type = RankTwoAux
+    variable = s11
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e21]
+    type = RankTwoAux
+    variable = e21
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 1
+  [../]
+  [./e20]
+    type = RankTwoAux
+    variable = e20
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 0
+  [../]
+  [./e02]
+    type = RankTwoAux
+    variable = e02
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 2
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+[]
+
+[ScalarKernels]
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+[]
+
+[Materials]
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-2.81296 1.72351 2.24147 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./Landau_A]
+    type = GenericConstantMaterial
+    prop_names = &#x27;beta1 beta11 beta12 beta111 beta112 beta123 beta1111 beta1112 beta1122 beta1123&#x27;
+    prop_values = &#x27;-0.0137763 0.0000349266 0.0000498846 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./P_A_couple]
+    type = GenericConstantMaterial
+    prop_names = &#x27;t1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212   t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222&#x27;
+    prop_values = &#x27;0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;1.0 ${g11} ${g12} ${g44} 0.0&#x27;
+  [../]
+
+  [./Landau_H]
+    type = GenericConstantMaterial
+    prop_names = &#x27;H110 H11_H110 H12_H110 H44_H110 H44P_H110&#x27;
+    prop_values = &#x27;1.0 ${h11} ${h12} ${h44} 0.0&#x27;
+  [../]
+
+
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;295.179 117.567 74.0701&#x27;
+  [../]
+
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;   
+    prop_values = &#x27;-0.0603833 0.0111245 -0.0175686&#x27;
+  [../]
+
+  [./mat_R]
+    type = GenericConstantMaterial
+    prop_names = &#x27;R11 R12 R44&#x27;
+    prop_values = &#x27;-0.0000878064 0.0000295306 0.0000627962&#x27;
+  [../]
+
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;-30.4162 -5.01496 -10.4105&#x27;   
+
+#the point is the following: use a slightly different definition of Q_ij than Hlinka
+
+  [../]
+  [./mat_r]
+    type = GenericConstantMaterial
+    prop_names = &#x27;r11 r12 r44&#x27;
+    prop_values = &#x27;-0.0379499 0.00373096 0.0372105&#x27; 
+  [../]
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701&#x27;
+  [../]
+
+
+  [./strain]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./stress]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./permitivitty_1]
+
+    ###############################################
+    ##
+    ##  so-called background dielectric constant
+    ##  (it encapsulates the motion of core electrons
+    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  e_b = 10), see PRB. 74, 104014, (2006)
+    ##
+    ###############################################
+
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+
+[]
+
+[Postprocessors]
+  [./dt]
+     type = TimestepSize
+  [../]
+  [./FbP]
+    type = BulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FbA]
+    type = RotoBulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPA]
+    type = RotoPolarCoupledEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgP]
+    type = WallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FgA]
+    type = AFDWallEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./FcPu]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+  [./FcAu]
+    type = RotostrictiveCouplingEnergy
+    execute_on = &#x27;timestep_end&#x27;
+    u_x = disp_x
+    u_y = disp_y
+    u_z = disp_z
+  [../]
+
+  [./Felu]
+    type = ElasticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./Fele]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;FbP FbA FgP FgA FcPA FcPu FcAu Felu Fele&#x27;
+    pp_coefs = &#x27; 1 1 1 1 1 1 1 1 1&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  
+    ##########################################
+    #
+    # NOTE: Ferret output is in attojoules
+    #
+    ##########################################
+  [../]
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot
+    execute_on = &#x27;timestep_end&#x27;
+    dt = dt
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./x]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z antiphase_A_x antiphase_A_y antiphase_A_z&#x27;
+    [../]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;potential_E_int&#x27;
+    [../]
+  [../]
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+
+[UserObjects]
+  [./global_strain_uo]
+    type = GlobalBFOMaterialRVEUserObject
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  [../]
+  [./kill]
+   type = Terminator
+   expression = &#x27;perc_change &lt;= 5.0e-7&#x27;
+  [../]
+[]
+
+#=
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided&#x27;
+    petsc_options_value = &#x27;    121            1e-8          1e-7       1e-6     bjacobi    allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;bdf2&#x27;
+  dtmin = 1e-13
+  dtmax = 10.0
+
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 25  #usually 10
+    linear_iteration_ratio = 100
+    dt = 0.001
+    growth_factor = 1.1
+  [../]
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  perf_graph_live = false
+  [./out]
+    type = Exodus
+    file_base = BFO_P0A0
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

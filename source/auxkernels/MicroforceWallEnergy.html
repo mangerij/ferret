@@ -1,0 +1,647 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>MicroforceWallEnergy | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="e68d03d8-96bf-4a28-b577-07ba746f1497" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a9851ffb-5929-43e8-95c1-98bbca791a24" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="146de78f-5187-40d6-9e28-7ee0a2f21bb3" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c97329fd-fd34-45f1-83fb-d481b76b4b0f" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="3840a342-4a91-4ad0-9375-3a9508ffbb85" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="5f056e56-704c-42aa-9697-3b37a7f8951d"><i class="material-icons">menu</i></a><ul class="sidenav" id="5f056e56-704c-42aa-9697-3b37a7f8951d"><li><a href="#!" class="dropdown-trigger" data-target="b044288b-63c9-4a4b-b9fb-242bd1622322" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a26ea12b-247c-434e-879e-b644491c0de4" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4e0373bd-076f-4891-9d56-56c2d76d9a6c" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b0afc92e-59eb-4db2-8e37-f3f8e755e9fd" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="f9393032-a6e4-4c32-9a47-76d94996581f" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="e68d03d8-96bf-4a28-b577-07ba746f1497"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="a9851ffb-5929-43e8-95c1-98bbca791a24"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="146de78f-5187-40d6-9e28-7ee0a2f21bb3"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="c97329fd-fd34-45f1-83fb-d481b76b4b0f"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="3840a342-4a91-4ad0-9375-3a9508ffbb85"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="b044288b-63c9-4a4b-b9fb-242bd1622322"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="a26ea12b-247c-434e-879e-b644491c0de4"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="4e0373bd-076f-4891-9d56-56c2d76d9a6c"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="b0afc92e-59eb-4db2-8e37-f3f8e755e9fd"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="f9393032-a6e4-4c32-9a47-76d94996581f"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="8f078745-aed9-4d63-864a-752fb9c7ac6c" data-section-level="1" data-section-text="MicroforceWallEnergy"><h1 id="microforcewallenergy">MicroforceWallEnergy</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The MicroforceWallEnergy has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p></p><section id="6ad9a54f-1e66-4331-875f-b9a86de77441" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Computes the microforce due to the gradient free energy density <span class="moose-katex-inline-equation" id="moose-equation-278f116a-1616-4435-941c-ed4c4a7f2323"><script>var element = document.getElementById("moose-equation-278f116a-1616-4435-941c-ed4c4a7f2323");katex.render("f_\\mathrm{grad}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-1a743357-ba77-4c53-8c94-345ff7120b81"></span><script>var element = document.getElementById("moose-equation-1a743357-ba77-4c53-8c94-345ff7120b81");katex.render("  \\begin{aligned}     \\frac{\\delta f_\\mathrm{grad}}{\\delta \\mathbf{P}} = \\frac{\\partial f_\\mathrm{grad}}{\\partial \\mathbf{P}} - \\frac{\\partial}{\\partial \\mathbf{r}}\\cdot \\left(\\frac{\\partial f_\\mathrm{grad}}{\\partial \\left(\\frac{\\partial \\mathbf{P}}{\\partial \\mathbf{r}}}\\right)\\right)   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p></section><section id="bfbc7abd-1a80-4f28-859a-55d9eef6492d" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="0343bed2-6020-4e8d-8af9-c55d5095cc76" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="730bf12b-ee83-45ea-8f60-6f0477c20bbc" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_x</span><span class="moose-parameter-header-description">The x component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_y</span><span class="moose-parameter-header-description">The y component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this object applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>AuxVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this object applies to</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="2b2d2558-28e0-49cb-8aaa-325b1ba27050" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">check_boundary_restricted</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_z</span><span class="moose-parameter-header-description">The z component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="c39403bc-fc83-421d-b525-71ebfcfa3795" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="31d64f04-049d-489f-bd7b-85f81ce17137" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#d4fcfe65-48c4-4575-9666-f230359ba6fa">(test/tests/auxkernels/microforce.i)</a></li></ul></section></section><div class="moose-modal modal" id="d4fcfe65-48c4-4575-9666-f230359ba6fa"><div class="modal-content"><h4>(test/tests/auxkernels/microforce.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = 4
+    ny = 4
+    nz = 4
+    xmin = -6.0
+    xmax = 6.0
+    ymin = -6.0
+    ymax = 6.0
+    zmin = -2.0
+    zmax = 2.0
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+    type = ExtraNodesetGenerator
+    coord = &#x27;-6.0 -6.0 -2.0&#x27;
+    new_boundary = 100
+  [../]
+
+  # additional boundary sideset (one node) to zero one of the elastic displacement vectors - eliminates rigid body translations from the degrees of freedom
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_E_int = potential_E_int
+
+  displacements = &#x27;u_x u_y u_z&#x27;
+
+  u_x = u_x
+  u_y = u_y
+  u_z = u_z
+
+[]
+
+
+
+[Variables]
+  [./global_strain]
+    order = SIXTH
+    family = SCALAR
+  [../]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 6
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 6
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 6
+    [../]
+  [../]
+
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./u_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[AuxVariables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./e00]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e01]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e10]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e11]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e12]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./e22]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./Fb_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Fb_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Fb_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./Felstr_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Felstr_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Felstr_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./Felec_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Felec_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Felec_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./Fw_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Fw_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Fw_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+  [./disp_x]
+    type = GlobalDisplacementAux
+    variable = disp_x
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 0
+    use_displaced_mesh = false
+  [../]
+  [./disp_y]
+    type = GlobalDisplacementAux
+    variable = disp_y
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 1
+    use_displaced_mesh = false
+  [../]
+  [./disp_z]
+    type = GlobalDisplacementAux
+    variable = disp_z
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+    component = 2
+    use_displaced_mesh = false
+  [../]
+  [./e00]
+    type = RankTwoAux
+    variable = e00
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 0
+  [../]
+  [./e01]
+    type = RankTwoAux
+    variable = e01
+    rank_two_tensor = total_strain
+    index_i = 0
+    index_j = 1
+  [../]
+  [./e10]
+    type = RankTwoAux
+    variable = e10
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 0
+  [../]
+  [./e12]
+    type = RankTwoAux
+    variable = e12
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 2
+  [../]
+  [./e11]
+    type = RankTwoAux
+    variable = e11
+    rank_two_tensor = total_strain
+    index_i = 1
+    index_j = 1
+  [../]
+  [./e22]
+    type = RankTwoAux
+    variable = e22
+    rank_two_tensor = total_strain
+    index_i = 2
+    index_j = 2
+  [../]
+
+  [./fbx]
+    type = MicroforceBulkEnergy
+    variable = Fb_x
+    component = 0
+  [../]
+  [./fby]
+    type = MicroforceBulkEnergy
+    variable = Fb_y
+    component = 1
+  [../]
+  [./fbz]
+    type = MicroforceBulkEnergy
+    variable = Fb_z
+    component = 2
+  [../]
+
+  [./felstrx]
+    type = MicroforceElectrostrictiveCouplingEnergy
+    variable = Felstr_x
+    component = 0
+  [../]
+  [./felstry]
+    type = MicroforceElectrostrictiveCouplingEnergy
+    variable = Felstr_y
+    component = 1
+  [../]
+  [./felstrz]
+    type = MicroforceElectrostrictiveCouplingEnergy
+    variable = Felstr_z
+    component = 2
+  [../]
+
+  [./felecx]
+    type = MicroforceElectrostaticEnergy
+    variable = Felec_x
+    component = 0
+  [../]
+  [./felecy]
+    type = MicroforceElectrostaticEnergy
+    variable = Felec_y
+    component = 1
+  [../]
+  [./felecz]
+    type = MicroforceElectrostaticEnergy
+    variable = Felec_z
+    component = 2
+  [../]
+
+  [./fwx]
+    type = MicroforceWallEnergy
+    variable = Fw_x
+    component = 0
+  [../]
+  [./fwy]
+    type = MicroforceWallEnergy
+    variable = Fw_y
+    component = 1
+  [../]
+  [./fwz]
+    type = MicroforceWallEnergy
+    variable = Fw_z
+    component = 2
+  [../]
+[]
+
+[ScalarKernels]
+  [./global_strain]
+    type = GlobalStrain
+    variable = global_strain
+    global_strain_uo = global_strain_uo
+    use_displaced_mesh = false
+  [../]
+[]
+
+[Materials]
+
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-0.1722883 0.42 0.735 0.26 0.61 -3.67 0 0 0 0&#x27;
+  [../]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.173 0.6 0.0 0.3 0.3&#x27;
+  [../]
+
+  [./mat_C]
+    type = GenericConstantMaterial
+    prop_names = &#x27;C11 C12 C44&#x27;
+    prop_values = &#x27;175 79.4 111.1&#x27;
+  [../]
+  [./mat_Q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Q11 Q12 Q44&#x27;
+    prop_values = &#x27;-0.089 0.026 -0.03375&#x27;
+  [../]
+  [./mat_q]
+    type = GenericConstantMaterial
+    prop_names = &#x27;q11 q12 q44&#x27;
+    prop_values = &#x27;-11.4 -0.01438 -7.5&#x27;
+  [../]
+
+  [./eigen_strain]
+    type = ComputeEigenstrain
+    eigen_base = &#x27;0. 0 0 0 0 0 0 0 0&#x27;
+    eigenstrain_name = eigenstrain
+    prefactor = 0.0
+  [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+    eigenstrain_names = eigenstrain
+  [../]
+
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./global_strain]
+    type = ComputeGlobalStrain
+    scalar_global_strain = global_strain
+    global_strain_uo = global_strain_uo
+  [../]
+
+  [./slab_ferroelectric]
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = &#x27;-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375&#x27;
+    C_ijkl = &#x27;175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1&#x27;
+  [../]
+
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+[]
+
+
+[Kernels]
+
+  #note below we use a strain-renormalized functional for lead titanate (this is different than the stress-free functionals typically used)
+  # they are related by a Legendre transformation
+
+  #Elastic problem
+  [./TensorMechanics]
+    use_displaced_mesh = false
+  [../]
+
+  [./bed_x]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_x
+    component = 0
+
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeEighth
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+  [./electrostr_ux]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_x
+    component = 0
+
+  [../]
+  [./electrostr_uy]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_y
+    component = 1
+  [../]
+  [./electrostr_uz]
+    type = ElectrostrictiveCouplingDispDerivative
+    variable = u_z
+    component = 2
+  [../]
+
+  [./electrostr_polar_coupled_x]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./electrostr_polar_coupled_y]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./electrostr_polar_coupled_z]
+    type = ElectrostrictiveCouplingPolarDerivative
+    variable = polar_z
+    component = 2
+  [../]
+
+
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable=polar_x
+     time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable=polar_y
+     time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+     variable = polar_z
+     time_scale = 1.0
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;u_x u_y u_z polar_x polar_y polar_z potential_E_int&#x27;
+    [../]
+  [../]
+
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u_z
+    value = 0
+  [../]
+[]
+
+[Postprocessors]
+  [./Fbulk]
+    type = BulkEnergyEighth
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Fwall]
+    type = WallEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Felastic]
+    type = ElasticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+    use_displaced_mesh = false
+  [../]
+  [./Fcoupled]
+    type = ElectrostrictiveCouplingEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Felec]
+    type = ElectrostaticEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Ftotal]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;Fbulk Fwall Fcoupled Felec&#x27;
+    pp_coefs = &#x27; 1 1 1 1&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = Ftotal
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  #[./elapsed]
+  #  type = PerfGraphData
+  #  section_name = &quot;Root&quot;
+  #  data_type = total
+  #[../]
+  #[./nodes]
+  #  type = NumNodes
+  #[../]
+[]
+
+[UserObjects]
+  [./global_strain_uo]
+    type = GlobalATiO3MaterialRVEUserObject
+    use_displaced_mesh = false
+    execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  [../]
+  [./kill]
+    type = Terminator
+    expression = &#x27;perc_change &lt;= 1.0e-6&#x27;
+   [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided&#x27;
+    petsc_options_value = &#x27;    160               1e-8      1e-8      1e-8          bjacobi       allreduce&#x27;
+  [../]
+[]
+
+#[Debug]
+#  show_var_residual_norms = true
+#[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  dtmin = 1e-13
+  dtmax = 0.8
+  l_max_its = 200
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 8
+    cutback_factor = 0.75
+    linear_iteration_ratio = 1000
+    dt = 0.3
+  [../]
+  num_steps = 10
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  perf_graph = true
+  [./out]
+    type = Exodus
+    file_base = out_microforce_test
+    elemental_as_nodal = true
+    interval = 1
+  [../]
+  [./outCSV]
+    type = CSV
+    file_base = out_microforce_test
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

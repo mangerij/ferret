@@ -1,0 +1,1024 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Cavity Pressure Action | Ferret</title><link href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../../media/framework/github-logo.png" class="github-mark"></img><img src="../../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="87d0b193-80d3-4122-9105-5de8542bc206" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="972cbe62-c8d6-4ad4-adde-33729b9b8e33" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="2b4f6032-e8fe-4f49-b026-294ff284fa20" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="42c0be67-6f88-44e8-a7c6-be397a78afe6" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="5dc7a2bf-01bc-48d9-9b02-317311dfe4cb" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="601c1241-770a-456d-84bb-321012eb1033"><i class="material-icons">menu</i></a><ul class="sidenav" id="601c1241-770a-456d-84bb-321012eb1033"><li><a href="#!" class="dropdown-trigger" data-target="7ab98b51-eaf3-4790-bfdf-3090c52f53d3" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d798b251-5bd8-4259-93e0-43791171c455" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ddcd60bd-5f77-4392-8df8-3abf075ce25f" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="97df080a-ef67-4100-aafb-8ccf99096ecd" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a6c29a2d-2902-4110-9f2f-492aac985ef8" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="87d0b193-80d3-4122-9105-5de8542bc206"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="972cbe62-c8d6-4ad4-adde-33729b9b8e33"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="2b4f6032-e8fe-4f49-b026-294ff284fa20"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="42c0be67-6f88-44e8-a7c6-be397a78afe6"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="5dc7a2bf-01bc-48d9-9b02-317311dfe4cb"><li><a href="../../index.html">Complete syntax</a></li><li><a href="../../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="7ab98b51-eaf3-4790-bfdf-3090c52f53d3"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="d798b251-5bd8-4259-93e0-43791171c455"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="ddcd60bd-5f77-4392-8df8-3abf075ce25f"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="97df080a-ef67-4100-aafb-8ccf99096ecd"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a6c29a2d-2902-4110-9f2f-492aac985ef8"><li><a href="../../index.html">Complete syntax</a></li><li><a href="../../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="b0dc5c41-bf08-4fd2-a672-3491476a8061" data-section-level="1" data-section-text="Cavity Pressure Action"><h1 id="cavity-pressure-action">Cavity Pressure Action</h1><section id="85959adc-2d08-4fe5-b74c-66347ac75e5c" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p>The <code>CavityPressure</code> Action system is used to calculate the pressure from an ideal gas trapped within an internal volume.</p><p>The pressure in the cavity is computed based on the ideal gas law, <span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-597bf5b7-4931-4703-b59f-a7b1e73b1e9d"></span><span class="moose-katex-equation-number">(1)</span><script>var element = document.getElementById("moose-equation-597bf5b7-4931-4703-b59f-a7b1e73b1e9d");katex.render("     P=\\frac{nRT}{V}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> where <span class="moose-katex-inline-equation" id="moose-equation-d485893f-83b0-44dc-ae60-bc810eb3ebd8"><script>var element = document.getElementById("moose-equation-d485893f-83b0-44dc-ae60-bc810eb3ebd8");katex.render("P", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the internal pressure, <span class="moose-katex-inline-equation" id="moose-equation-0ea222c3-bfc3-420f-aab0-faf0aea9b1ef"><script>var element = document.getElementById("moose-equation-0ea222c3-bfc3-420f-aab0-faf0aea9b1ef");katex.render("n", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the moles of gas, <span class="moose-katex-inline-equation" id="moose-equation-7e30edd4-0e93-42c5-b9d9-b70647181dc8"><script>var element = document.getElementById("moose-equation-7e30edd4-0e93-42c5-b9d9-b70647181dc8");katex.render("R", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the ideal gas constant, <span class="moose-katex-inline-equation" id="moose-equation-c8cd9bda-a505-495c-8054-9a3bf6fcbd3e"><script>var element = document.getElementById("moose-equation-c8cd9bda-a505-495c-8054-9a3bf6fcbd3e");katex.render("T", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the temperature, and <span class="moose-katex-inline-equation" id="moose-equation-053ca3d7-7554-48dc-a798-503ac988972c"><script>var element = document.getElementById("moose-equation-053ca3d7-7554-48dc-a798-503ac988972c");katex.render("V", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the volume of the cavity.</p><p>The moles of gas, the temperature, and the cavity volume in <a href="#moose-equation-597bf5b7-4931-4703-b59f-a7b1e73b1e9d">Eq. (1)</a> are free to change with time.  The moles of gas <span class="moose-katex-inline-equation" id="moose-equation-13a4eff3-c226-471a-b797-1ccb6182977e"><script>var element = document.getElementById("moose-equation-13a4eff3-c226-471a-b797-1ccb6182977e");katex.render("n", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> at any time is the original amount of gas (computed based on original pressure, temperature, and volume) plus the amount in the cavity due to any gas injected during the simulation.</p></section><section id="34a2e616-28d8-438b-bfa4-773dafd94de5" data-section-level="2" data-section-text="Constructed MooseObjects"><h2 id="constructed-mooseobjects">Constructed MooseObjects</h2><p>The Cavity Pressure Action system consists of three separate actions, listed in the Associated Actions block below, which are all created within the same block.</p><div class="card moose-float"><div class="card-content"><p class="moose-caption"><span class="moose-caption-heading">Table 1: </span><span class="moose-caption-text" id="cavity_pressure_action_table">Correspondence Among Action Functionality and MooseObjects for the <code>CavityPressure</code> Action</span></p><div form="['center', 'center', 'center']" recursive class="moose-table-div"><table><thead><tr><th style=";text-align:center">Functionality</th><th style=";text-align:center">Replaced Classes</th><th style=";text-align:center">Associated Parameters</th></tr></thead><tbody><tr><td style=";text-align:center">Calculation of the initial moles quantity</td><td style=";text-align:center"><a href="../../../source/userobjects/CavityPressureUserObject.html">CavityPressureUserObject</a></td><td style=";text-align:center"><code>volume</code>: the name of the internal volume postprocessor</td></tr></tbody><tbody><tr><td style=";text-align:center"><code>R</code>: the universal gas constant</td></tr></tbody><tbody><tr><td style=";text-align:center"><code>temperature</code> : the name of the average temperature postprocessor</td></tr></tbody><tbody><tr><td style=";text-align:center">Store the value of the initial moles</td><td style=";text-align:center"><a href="../../../source/postprocessors/CavityPressurePostprocessor.html">CavityPressurePostprocessor</a></td><td style=";text-align:center"><code>output_initial_moles</code>: the postprocessor name to used to report the initial moles of gas</td></tr></tbody><tbody><tr><td style=";text-align:center">Calculation of the current internal pressure</td><td style=";text-align:center"><a href="../../../source/userobjects/CavityPressureUserObject.html">CavityPressureUserObject</a></td><td style=";text-align:center"><code>output</code>: the name of the cavity pressure postprocessor</td></tr></tbody><tbody><tr><td style=";text-align:center">Store the internal pressure value</td><td style=";text-align:center"><a href="../../../source/postprocessors/CavityPressurePostprocessor.html">CavityPressurePostprocessor</a></td><td style=";text-align:center"><code>output</code>: the name of the cavity pressure postprocessor</td></tr></tbody><tbody><tr><td style=";text-align:center">Apply the calculated internal pressure traction</td><td style=";text-align:center"><a href="../../../source/bcs/Pressure.html">Pressure</a></td><td style=";text-align:center"><code>boundary</code>: the list of boundary IDs to which the pressure should be applied</td></tr></tbody><tbody><tr><td style=";text-align:center"><code>displacements</code> : a string of the displacement variables to which the Pressure BC should be applied</td></tr></tbody></table></div></div></div></section><section id="91d99f96-5281-4a8e-acee-997ae5dae2df" data-section-level="2" data-section-text="Example Input Syntax"><h2 id="example-input-syntax">Example Input Syntax</h2><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[./CavityPressure]
+  [./1]
+    boundary = 100
+    initial_pressure = 100
+    material_input = materialInput
+    R = 8.314472
+    temperature = aveTempInterior
+    volume = internalVolume
+    startup_time = 0.5
+    output = ppress
+    save_in = &#x27;pressure_residual_x pressure_residual_y pressure_residual_z&#x27;
+  [../]
+[../]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#35c5663a-a18b-4214-85d2-23f2cdfe0ddf">(../moose/modules/combined/test/tests/cavity_pressure/3d.i)</a><p>Postprocessors for both the average temperature and the internal volume are also required for the Cavity Pressure Action system. Note that the name of the postprocessors correspond to the arguments for the parameters <code>temperature</code> and <code>internal_volume</code> in the <code>CavityPressure</code> block.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[./aveTempInterior]
+  type = SideAverageValue
+  boundary = 100
+  variable = temp
+  execute_on = &#x27;initial linear&#x27;
+[../]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#842a14fa-5377-49b9-9eee-30a18ebf90b7">(../moose/modules/combined/test/tests/cavity_pressure/3d.i)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[./internalVolume]
+  type = InternalVolume
+  boundary = 100
+  execute_on = &#x27;initial linear&#x27;
+[../]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#3c99f0c5-1d28-4441-8920-74d926a952ff">(../moose/modules/combined/test/tests/cavity_pressure/3d.i)</a></section><section id="a1efc660-60cc-461b-8284-3f3e6ac57da7" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="af2fd54f-65df-4a83-ad95-f1e6e51d5cff" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundary IDs from the mesh where the pressure will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundary IDs from the mesh where the pressure will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The nonlinear displacement variables</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The nonlinear displacement variables</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="ffd33968-0829-4402-9e8c-1f075739d071" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">active</span><span class="moose-parameter-header-default">__all__ </span><span class="moose-parameter-header-description">If specified only the blocks named will be visited and made active</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>__all__ </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified only the blocks named will be visited and made active</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inactive</span><span class="moose-parameter-header-description">If specified blocks matching these identifiers will be skipped.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified blocks matching these identifiers will be skipped.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">output</span><span class="moose-parameter-header-description">The name to use for the cavity pressure value</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name to use for the cavity pressure value</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">Auxiliary variables to save the displacement residuals</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Auxiliary variables to save the displacement residuals</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_automatic_differentiation</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Flag to use automatic differentiation (AD) objects when possible</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Flag to use automatic differentiation (AD) objects when possible</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether to use displaced mesh in the boundary condition</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to use displaced mesh in the boundary condition</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section></section><section id="9aede9dd-b182-4721-b221-44a2e32af0be" data-section-level="2" data-section-text="Associated Actions"><h2 id="associated-actions">Associated Actions</h2></section><section id="c0aecedc-5b08-4f6f-a731-e205a61c0343" data-section-level="2" data-section-text="Available Actions"><h2 id="available-actions">Available Actions</h2><ul class="moose-syntax-list collection with-header"><li class="collection-header">Tensor Mechanics App</li><li class="collection-item"><a href="../../../source/actions/CavityPressureAction.html">CavityPressureAction</a>Action to setup cavity pressure boundary condition</li><li class="collection-item"><a href="../../../source/actions/CavityPressurePPAction.html">CavityPressurePPAction</a>This Action creates a CavityPressurePostprocessor.</li><li class="collection-item"><a href="../../../source/actions/CavityPressureUOAction.html">CavityPressureUOAction</a>Action to add user objects for cavity pressure</li></ul></section></section><div class="moose-modal modal" id="35c5663a-a18b-4214-85d2-23f2cdfe0ddf"><div class="modal-content"><h4>(../moose/modules/combined/test/tests/cavity_pressure/3d.i)</h4><pre class="moose-pre"><code class="language-text">#
+# Cavity Pressure Test
+#
+# This test is designed to compute an internal pressure based on
+#   p = n * R * T / V
+# where
+#   p is the pressure
+#   n is the amount of material in the volume (moles)
+#   R is the universal gas constant
+#   T is the temperature
+#   V is the volume
+#
+# The mesh is composed of one block (1) with an interior cavity of volume 8.
+#   Block 2 sits in the cavity and has a volume of 1.  Thus, the total
+#   initial volume is 7.
+# The test adjusts n, T, and V in the following way:
+#   n =&gt; n0 + alpha * t
+#   T =&gt; T0 + beta * t
+#   V =&gt; V0 + gamma * t
+# with
+#   alpha = n0
+#   beta = T0 / 2
+#   gamma = - (0.003322259...) * V0
+#   T0 = 240.54443866068704
+#   V0 = 7
+#   n0 = f(p0)
+#   p0 = 100
+#   R = 8.314472 J * K^(-1) * mol^(-1)
+#
+# So, n0 = p0 * V0 / R / T0 = 100 * 7 / 8.314472 / 240.544439
+#        = 0.35
+#
+# The parameters combined at t = 1 gives p = 301.
+#
+
+[GlobalParams]
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+  volumetric_locking_correction = true
+[]
+
+[Mesh]
+  file = 3d.e
+[]
+
+[Functions]
+  [./displ_positive]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 0.0029069767441859684&#x27;
+  [../]
+  [./displ_negative]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 -0.0029069767441859684&#x27;
+  [../]
+  [./temp1]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;1 1.5&#x27;
+    scale_factor = 240.54443866068704
+  [../]
+  [./material_input_function]
+    type = PiecewiseLinear
+    x = &#x27;0    1&#x27;
+    y = &#x27;0 0.35&#x27;
+  [../]
+[]
+
+[Variables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./temp]
+    initial_condition = 240.54443866068704
+  [../]
+  [./material_input]
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure_residual_x]
+  [../]
+  [./pressure_residual_y]
+  [../]
+  [./pressure_residual_z]
+  [../]
+  [./stress_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_xy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./TensorMechanics]
+    use_displaced_mesh = true
+  [../]
+  [./heat]
+    type = Diffusion
+    variable = temp
+    use_displaced_mesh = true
+  [../]
+  [./material_input_dummy]
+    type = Diffusion
+    variable = material_input
+    use_displaced_mesh = true
+  [../]
+[]
+
+[AuxKernels]
+  [./stress_xx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+    variable = stress_xx
+  [../]
+  [./stress_yy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+    variable = stress_yy
+  [../]
+  [./stress_zz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+    variable = stress_zz
+  [../]
+  [./stress_xy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+    variable = stress_xy
+  [../]
+  [./stress_yz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 2
+    variable = stress_yz
+  [../]
+  [./stress_zx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 0
+    variable = stress_zx
+  [../]
+[]
+
+[BCs]
+  [./no_x_exterior]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;7 8&#x27;
+    value = 0.0
+  [../]
+  [./no_y_exterior]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;9 10&#x27;
+    value = 0.0
+  [../]
+  [./no_z_exterior]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;11 12&#x27;
+    value = 0.0
+  [../]
+  [./prescribed_left]
+    type = FunctionDirichletBC
+    variable = disp_x
+    boundary = 13
+    function = displ_positive
+  [../]
+  [./prescribed_right]
+    type = FunctionDirichletBC
+    variable = disp_x
+    boundary = 14
+    function = displ_negative
+  [../]
+  [./no_y]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;15 16&#x27;
+    value = 0.0
+  [../]
+  [./no_z]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;17 18&#x27;
+    value = 0.0
+  [../]
+  [./no_x_interior]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;1 2&#x27;
+    value = 0.0
+  [../]
+  [./no_y_interior]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;3 4&#x27;
+    value = 0.0
+  [../]
+  [./no_z_interior]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;5 6&#x27;
+    value = 0.0
+  [../]
+  [./temperatureInterior]
+    type = FunctionDirichletBC
+    boundary = 100
+    function = temp1
+    variable = temp
+  [../]
+  [./MaterialInput]
+    type = FunctionDirichletBC
+    boundary = &#x27;100 13 14 15 16&#x27;
+    function = material_input_function
+    variable = material_input
+  [../]
+  [./CavityPressure]
+    [./1]
+      boundary = 100
+      initial_pressure = 100
+      material_input = materialInput
+      R = 8.314472
+      temperature = aveTempInterior
+      volume = internalVolume
+      startup_time = 0.5
+      output = ppress
+      save_in = &#x27;pressure_residual_x pressure_residual_y pressure_residual_z&#x27;
+    [../]
+  [../]
+[]
+
+[Materials]
+  [./elast_tensor1]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e1
+    poissons_ratio = 0
+    block = 1
+  [../]
+  [./strain1]
+    type = ComputeFiniteStrain
+    block = 1
+  [../]
+  [./stress1]
+    type = ComputeFiniteStrainElasticStress
+    block = 1
+  [../]
+  [./elast_tensor2]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e6
+    poissons_ratio = 0
+    block = 2
+  [../]
+  [./strain2]
+    type = ComputeFiniteStrain
+    block = 2
+  [../]
+  [./stress2]
+    type = ComputeFiniteStrainElasticStress
+    block = 2
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+
+  petsc_options_iname = &#x27;-pc_type -sub_pc_type&#x27;
+  petsc_options_value = &#x27;asm       lu&#x27;
+
+  nl_rel_tol = 1e-12
+  l_tol = 1e-12
+
+  l_max_its = 20
+
+  dt = 0.5
+  end_time = 1.0
+[]
+
+[Postprocessors]
+  [./internalVolume]
+    type = InternalVolume
+    boundary = 100
+    execute_on = &#x27;initial linear&#x27;
+  [../]
+  [./aveTempInterior]
+    type = SideAverageValue
+    boundary = 100
+    variable = temp
+    execute_on = &#x27;initial linear&#x27;
+  [../]
+  [./materialInput]
+    type = SideAverageValue
+    boundary = &#x27;7 8 9 10 11 12&#x27;
+    variable = material_input
+    execute_on = linear
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="842a14fa-5377-49b9-9eee-30a18ebf90b7"><div class="modal-content"><h4>(../moose/modules/combined/test/tests/cavity_pressure/3d.i)</h4><pre class="moose-pre"><code class="language-text">#
+# Cavity Pressure Test
+#
+# This test is designed to compute an internal pressure based on
+#   p = n * R * T / V
+# where
+#   p is the pressure
+#   n is the amount of material in the volume (moles)
+#   R is the universal gas constant
+#   T is the temperature
+#   V is the volume
+#
+# The mesh is composed of one block (1) with an interior cavity of volume 8.
+#   Block 2 sits in the cavity and has a volume of 1.  Thus, the total
+#   initial volume is 7.
+# The test adjusts n, T, and V in the following way:
+#   n =&gt; n0 + alpha * t
+#   T =&gt; T0 + beta * t
+#   V =&gt; V0 + gamma * t
+# with
+#   alpha = n0
+#   beta = T0 / 2
+#   gamma = - (0.003322259...) * V0
+#   T0 = 240.54443866068704
+#   V0 = 7
+#   n0 = f(p0)
+#   p0 = 100
+#   R = 8.314472 J * K^(-1) * mol^(-1)
+#
+# So, n0 = p0 * V0 / R / T0 = 100 * 7 / 8.314472 / 240.544439
+#        = 0.35
+#
+# The parameters combined at t = 1 gives p = 301.
+#
+
+[GlobalParams]
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+  volumetric_locking_correction = true
+[]
+
+[Mesh]
+  file = 3d.e
+[]
+
+[Functions]
+  [./displ_positive]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 0.0029069767441859684&#x27;
+  [../]
+  [./displ_negative]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 -0.0029069767441859684&#x27;
+  [../]
+  [./temp1]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;1 1.5&#x27;
+    scale_factor = 240.54443866068704
+  [../]
+  [./material_input_function]
+    type = PiecewiseLinear
+    x = &#x27;0    1&#x27;
+    y = &#x27;0 0.35&#x27;
+  [../]
+[]
+
+[Variables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./temp]
+    initial_condition = 240.54443866068704
+  [../]
+  [./material_input]
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure_residual_x]
+  [../]
+  [./pressure_residual_y]
+  [../]
+  [./pressure_residual_z]
+  [../]
+  [./stress_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_xy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./TensorMechanics]
+    use_displaced_mesh = true
+  [../]
+  [./heat]
+    type = Diffusion
+    variable = temp
+    use_displaced_mesh = true
+  [../]
+  [./material_input_dummy]
+    type = Diffusion
+    variable = material_input
+    use_displaced_mesh = true
+  [../]
+[]
+
+[AuxKernels]
+  [./stress_xx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+    variable = stress_xx
+  [../]
+  [./stress_yy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+    variable = stress_yy
+  [../]
+  [./stress_zz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+    variable = stress_zz
+  [../]
+  [./stress_xy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+    variable = stress_xy
+  [../]
+  [./stress_yz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 2
+    variable = stress_yz
+  [../]
+  [./stress_zx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 0
+    variable = stress_zx
+  [../]
+[]
+
+[BCs]
+  [./no_x_exterior]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;7 8&#x27;
+    value = 0.0
+  [../]
+  [./no_y_exterior]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;9 10&#x27;
+    value = 0.0
+  [../]
+  [./no_z_exterior]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;11 12&#x27;
+    value = 0.0
+  [../]
+  [./prescribed_left]
+    type = FunctionDirichletBC
+    variable = disp_x
+    boundary = 13
+    function = displ_positive
+  [../]
+  [./prescribed_right]
+    type = FunctionDirichletBC
+    variable = disp_x
+    boundary = 14
+    function = displ_negative
+  [../]
+  [./no_y]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;15 16&#x27;
+    value = 0.0
+  [../]
+  [./no_z]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;17 18&#x27;
+    value = 0.0
+  [../]
+  [./no_x_interior]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;1 2&#x27;
+    value = 0.0
+  [../]
+  [./no_y_interior]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;3 4&#x27;
+    value = 0.0
+  [../]
+  [./no_z_interior]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;5 6&#x27;
+    value = 0.0
+  [../]
+  [./temperatureInterior]
+    type = FunctionDirichletBC
+    boundary = 100
+    function = temp1
+    variable = temp
+  [../]
+  [./MaterialInput]
+    type = FunctionDirichletBC
+    boundary = &#x27;100 13 14 15 16&#x27;
+    function = material_input_function
+    variable = material_input
+  [../]
+  [./CavityPressure]
+    [./1]
+      boundary = 100
+      initial_pressure = 100
+      material_input = materialInput
+      R = 8.314472
+      temperature = aveTempInterior
+      volume = internalVolume
+      startup_time = 0.5
+      output = ppress
+      save_in = &#x27;pressure_residual_x pressure_residual_y pressure_residual_z&#x27;
+    [../]
+  [../]
+[]
+
+[Materials]
+  [./elast_tensor1]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e1
+    poissons_ratio = 0
+    block = 1
+  [../]
+  [./strain1]
+    type = ComputeFiniteStrain
+    block = 1
+  [../]
+  [./stress1]
+    type = ComputeFiniteStrainElasticStress
+    block = 1
+  [../]
+  [./elast_tensor2]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e6
+    poissons_ratio = 0
+    block = 2
+  [../]
+  [./strain2]
+    type = ComputeFiniteStrain
+    block = 2
+  [../]
+  [./stress2]
+    type = ComputeFiniteStrainElasticStress
+    block = 2
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+
+  petsc_options_iname = &#x27;-pc_type -sub_pc_type&#x27;
+  petsc_options_value = &#x27;asm       lu&#x27;
+
+  nl_rel_tol = 1e-12
+  l_tol = 1e-12
+
+  l_max_its = 20
+
+  dt = 0.5
+  end_time = 1.0
+[]
+
+[Postprocessors]
+  [./internalVolume]
+    type = InternalVolume
+    boundary = 100
+    execute_on = &#x27;initial linear&#x27;
+  [../]
+  [./aveTempInterior]
+    type = SideAverageValue
+    boundary = 100
+    variable = temp
+    execute_on = &#x27;initial linear&#x27;
+  [../]
+  [./materialInput]
+    type = SideAverageValue
+    boundary = &#x27;7 8 9 10 11 12&#x27;
+    variable = material_input
+    execute_on = linear
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="3c99f0c5-1d28-4441-8920-74d926a952ff"><div class="modal-content"><h4>(../moose/modules/combined/test/tests/cavity_pressure/3d.i)</h4><pre class="moose-pre"><code class="language-text">#
+# Cavity Pressure Test
+#
+# This test is designed to compute an internal pressure based on
+#   p = n * R * T / V
+# where
+#   p is the pressure
+#   n is the amount of material in the volume (moles)
+#   R is the universal gas constant
+#   T is the temperature
+#   V is the volume
+#
+# The mesh is composed of one block (1) with an interior cavity of volume 8.
+#   Block 2 sits in the cavity and has a volume of 1.  Thus, the total
+#   initial volume is 7.
+# The test adjusts n, T, and V in the following way:
+#   n =&gt; n0 + alpha * t
+#   T =&gt; T0 + beta * t
+#   V =&gt; V0 + gamma * t
+# with
+#   alpha = n0
+#   beta = T0 / 2
+#   gamma = - (0.003322259...) * V0
+#   T0 = 240.54443866068704
+#   V0 = 7
+#   n0 = f(p0)
+#   p0 = 100
+#   R = 8.314472 J * K^(-1) * mol^(-1)
+#
+# So, n0 = p0 * V0 / R / T0 = 100 * 7 / 8.314472 / 240.544439
+#        = 0.35
+#
+# The parameters combined at t = 1 gives p = 301.
+#
+
+[GlobalParams]
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+  volumetric_locking_correction = true
+[]
+
+[Mesh]
+  file = 3d.e
+[]
+
+[Functions]
+  [./displ_positive]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 0.0029069767441859684&#x27;
+  [../]
+  [./displ_negative]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 -0.0029069767441859684&#x27;
+  [../]
+  [./temp1]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;1 1.5&#x27;
+    scale_factor = 240.54443866068704
+  [../]
+  [./material_input_function]
+    type = PiecewiseLinear
+    x = &#x27;0    1&#x27;
+    y = &#x27;0 0.35&#x27;
+  [../]
+[]
+
+[Variables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+  [./temp]
+    initial_condition = 240.54443866068704
+  [../]
+  [./material_input]
+  [../]
+[]
+
+[AuxVariables]
+  [./pressure_residual_x]
+  [../]
+  [./pressure_residual_y]
+  [../]
+  [./pressure_residual_z]
+  [../]
+  [./stress_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_xy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[Kernels]
+  [./TensorMechanics]
+    use_displaced_mesh = true
+  [../]
+  [./heat]
+    type = Diffusion
+    variable = temp
+    use_displaced_mesh = true
+  [../]
+  [./material_input_dummy]
+    type = Diffusion
+    variable = material_input
+    use_displaced_mesh = true
+  [../]
+[]
+
+[AuxKernels]
+  [./stress_xx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+    variable = stress_xx
+  [../]
+  [./stress_yy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+    variable = stress_yy
+  [../]
+  [./stress_zz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+    variable = stress_zz
+  [../]
+  [./stress_xy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+    variable = stress_xy
+  [../]
+  [./stress_yz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 2
+    variable = stress_yz
+  [../]
+  [./stress_zx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 0
+    variable = stress_zx
+  [../]
+[]
+
+[BCs]
+  [./no_x_exterior]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;7 8&#x27;
+    value = 0.0
+  [../]
+  [./no_y_exterior]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;9 10&#x27;
+    value = 0.0
+  [../]
+  [./no_z_exterior]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;11 12&#x27;
+    value = 0.0
+  [../]
+  [./prescribed_left]
+    type = FunctionDirichletBC
+    variable = disp_x
+    boundary = 13
+    function = displ_positive
+  [../]
+  [./prescribed_right]
+    type = FunctionDirichletBC
+    variable = disp_x
+    boundary = 14
+    function = displ_negative
+  [../]
+  [./no_y]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;15 16&#x27;
+    value = 0.0
+  [../]
+  [./no_z]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;17 18&#x27;
+    value = 0.0
+  [../]
+  [./no_x_interior]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;1 2&#x27;
+    value = 0.0
+  [../]
+  [./no_y_interior]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;3 4&#x27;
+    value = 0.0
+  [../]
+  [./no_z_interior]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;5 6&#x27;
+    value = 0.0
+  [../]
+  [./temperatureInterior]
+    type = FunctionDirichletBC
+    boundary = 100
+    function = temp1
+    variable = temp
+  [../]
+  [./MaterialInput]
+    type = FunctionDirichletBC
+    boundary = &#x27;100 13 14 15 16&#x27;
+    function = material_input_function
+    variable = material_input
+  [../]
+  [./CavityPressure]
+    [./1]
+      boundary = 100
+      initial_pressure = 100
+      material_input = materialInput
+      R = 8.314472
+      temperature = aveTempInterior
+      volume = internalVolume
+      startup_time = 0.5
+      output = ppress
+      save_in = &#x27;pressure_residual_x pressure_residual_y pressure_residual_z&#x27;
+    [../]
+  [../]
+[]
+
+[Materials]
+  [./elast_tensor1]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e1
+    poissons_ratio = 0
+    block = 1
+  [../]
+  [./strain1]
+    type = ComputeFiniteStrain
+    block = 1
+  [../]
+  [./stress1]
+    type = ComputeFiniteStrainElasticStress
+    block = 1
+  [../]
+  [./elast_tensor2]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e6
+    poissons_ratio = 0
+    block = 2
+  [../]
+  [./strain2]
+    type = ComputeFiniteStrain
+    block = 2
+  [../]
+  [./stress2]
+    type = ComputeFiniteStrainElasticStress
+    block = 2
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+
+  petsc_options_iname = &#x27;-pc_type -sub_pc_type&#x27;
+  petsc_options_value = &#x27;asm       lu&#x27;
+
+  nl_rel_tol = 1e-12
+  l_tol = 1e-12
+
+  l_max_its = 20
+
+  dt = 0.5
+  end_time = 1.0
+[]
+
+[Postprocessors]
+  [./internalVolume]
+    type = InternalVolume
+    boundary = 100
+    execute_on = &#x27;initial linear&#x27;
+  [../]
+  [./aveTempInterior]
+    type = SideAverageValue
+    boundary = 100
+    variable = temp
+    execute_on = &#x27;initial linear&#x27;
+  [../]
+  [./materialInput]
+    type = SideAverageValue
+    boundary = &#x27;7 8 9 10 11 12&#x27;
+    variable = material_input
+    execute_on = linear
+  [../]
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../../js/init.js"></script><script type="text/javascript" src="../../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../../js/sqa_moose.js"></script>

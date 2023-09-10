@@ -1,0 +1,500 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>ScalarElasticEnergy | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="33e08527-4b48-4073-ae40-8c937a6f0508" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="dce345d6-4b82-4da3-b20a-23d9d810b2ff" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ed39c013-8426-4c62-aa78-186137270d58" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="99348f85-62b6-4e45-a3cd-e92d5136ea77" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="f7428722-ad85-47a9-b8ff-b580fde5eaeb" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="547d702f-193c-4417-91cf-476b483e1be3"><i class="material-icons">menu</i></a><ul class="sidenav" id="547d702f-193c-4417-91cf-476b483e1be3"><li><a href="#!" class="dropdown-trigger" data-target="2eb14b82-f957-45d6-a4b6-da52c67dee15" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f8a9d52d-300e-415d-8f89-1eb64901286d" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e19f67e6-88ff-4367-8f4a-694e7ea5834b" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3ea1224f-57c3-40ea-8b1c-d00d6ccf3002" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="6143649a-052e-4486-b734-ca5e6b69f986" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="33e08527-4b48-4073-ae40-8c937a6f0508"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="dce345d6-4b82-4da3-b20a-23d9d810b2ff"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="ed39c013-8426-4c62-aa78-186137270d58"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="99348f85-62b6-4e45-a3cd-e92d5136ea77"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="f7428722-ad85-47a9-b8ff-b580fde5eaeb"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="2eb14b82-f957-45d6-a4b6-da52c67dee15"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="f8a9d52d-300e-415d-8f89-1eb64901286d"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="e19f67e6-88ff-4367-8f4a-694e7ea5834b"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="3ea1224f-57c3-40ea-8b1c-d00d6ccf3002"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="6143649a-052e-4486-b734-ca5e6b69f986"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="c92d4042-7023-4403-bd2d-ec23762dd17f" data-section-level="1" data-section-text="ScalarElasticEnergy"><h1 id="scalarelasticenergy">ScalarElasticEnergy</h1><p></p><section id="10f88dd0-9a0a-40c9-abae-fd49ca79a23f" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Sets up the RHS of the coupled Landau-Khalatnikov equation. Since we are working with <code>ScalarKernels</code>, this is effectively a single grid point, or homogeneous calculation. In the context of micromagnetics, this is the macrospin analog for ferroelectrics. This object concerns the elastic energy contribution from the spontaneous strains (in the case of <span class="moose-katex-inline-equation" id="moose-equation-c13bd9b9-1bc0-4be0-aa4d-643201e7b8be"><script>var element = document.getElementById("moose-equation-c13bd9b9-1bc0-4be0-aa4d-643201e7b8be");katex.render("\\mathrm{BiFeO}_3", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>),</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-9f6b4a49-4fec-4d93-86c2-0488b262657f"></span><script>var element = document.getElementById("moose-equation-9f6b4a49-4fec-4d93-86c2-0488b262657f");katex.render("  \\begin{aligned}      \\frac{\\partial \\varepsilon_{ij}}{\\partial t} = - \\Gamma_u \\frac{\\delta f_\\mathrm{elastic}}{\\delta \\varepsilon_{ij}}   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>Ignoring the LHS and working in index notation,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-b8d289f2-53ba-4fb0-b6ee-7a80818f77a3"></span><script>var element = document.getElementById("moose-equation-b8d289f2-53ba-4fb0-b6ee-7a80818f77a3");katex.render("  \\begin{aligned}      - \\Gamma_u \\frac{\\delta f_\\mathrm{elastic}}{\\delta \\varepsilon_{ij}} &= - \\Gamma_u \\frac{1}{2} \\frac{\\partial}{\\partial \\varepsilon_{ij}} \\left( C_{ijkl}\\varepsilon_{ij}\\varepsilon_{kl}\\right) \\\\   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>In Voight notation, many of these terms vanish due to symmetry of the parent phase. The tensor <span class="moose-katex-inline-equation" id="moose-equation-4be842ef-d263-47b4-8fa2-a56dd0828d13"><script>var element = document.getElementById("moose-equation-4be842ef-d263-47b4-8fa2-a56dd0828d13");katex.render("C_{ijkl}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the elastic stiffness matrix. Note that as opposed to a spatially dependent calculation, the strain tensor is assumed to be constant in space. This leads to our approximation that <span class="moose-katex-inline-equation" id="moose-equation-d1d80d11-ad55-412b-ad1a-08b35f571325"><script>var element = document.getElementById("moose-equation-d1d80d11-ad55-412b-ad1a-08b35f571325");katex.render("\\varepsilon_{ij}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is a variable in this calculation as opposed to a postprocessed quantity depending on the elastic displacement vector <span class="moose-katex-inline-equation" id="moose-equation-430e8073-2729-48b7-b6c6-d892b4108b16"><script>var element = document.getElementById("moose-equation-430e8073-2729-48b7-b6c6-d892b4108b16");katex.render("\\mathbf{u}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>.</p></section><section id="7f959eff-6e76-4e04-aa5a-11c88cbcb89a" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="27d47038-aadd-4672-8d12-295cd52e902a" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="3a974047-12da-4bb5-b5e9-c917f28e2d75" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding to the direction the variable this kernel acts in. (0 for xx, 1 for yy, 2 for zz, 3 for xy, 4 for yz, 5 for zx)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding to the direction the variable this kernel acts in. (0 for xx, 1 for yy, 2 for zz, 3 for xy, 4 for yz, 5 for zx)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this residual object operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this residual object operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="6e23a6af-6b5d-4eef-ba81-9a927ddf3818" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">C11</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the first coefficient</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the first coefficient</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">C12</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the second coefficient</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the second coefficient</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">C44</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the third coefficient</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the third coefficient</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">G</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the time constant</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the time constant</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">e_xx</span><span class="moose-parameter-header-description">variable e_xx coupled into this kernel</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>variable e_xx coupled into this kernel</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">e_xy</span><span class="moose-parameter-header-description">variable e_xy coupled into this kernel</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>variable e_xy coupled into this kernel</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">e_yy</span><span class="moose-parameter-header-description">variable e_yy coupled into this kernel</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>variable e_yy coupled into this kernel</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">e_yz</span><span class="moose-parameter-header-description">variable e_yz coupled into this kernel</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>variable e_yz coupled into this kernel</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">e_zx</span><span class="moose-parameter-header-description">variable e_zx coupled into this kernel</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>variable e_zx coupled into this kernel</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">e_zz</span><span class="moose-parameter-header-description">variable e_zz coupled into this kernel</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>variable e_zz coupled into this kernel</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="a98bf115-76f8-42c3-869b-cb9d077574df" data-section-level="3" data-section-text="Tagging Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">absolute_value_vector_tags</span><span class="moose-parameter-header-description">The tags for the vectors this residual object should fill with the absolute value of the residual contribution</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tags for the vectors this residual object should fill with the absolute value of the residual contribution</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, system</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, time</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section><section id="7c944f35-cae1-4d9d-b510-dc4ded83f4e1" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="09e8b7a6-4307-46fe-8fee-6917965d0653" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#14c626d5-3638-4c4a-9a88-074a71a9a31c">(test/tests/landau_khalatnikov/LK_full_test.i)</a></li></ul></section></section><div class="moose-modal modal" id="14c626d5-3638-4c4a-9a88-074a71a9a31c"><div class="modal-content"><h4>(test/tests/landau_khalatnikov/LK_full_test.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  xmin = 0
+  xmax = 1
+  ymin = 0
+  ymax = 1
+  nx = 10
+  ny = 10
+  elem_type = QUAD4
+[]
+
+
+[GlobalParams]
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  antiferrodis_A_x = antiferrodis_A_x
+  antiferrodis_A_y = antiferrodis_A_y
+  antiferrodis_A_z = antiferrodis_A_z
+
+  e_xx = e_xx
+  e_yy = e_yy
+  e_zz = e_zz
+  e_xy = e_xy
+  e_yz = e_yz
+  e_zx = e_zx
+
+  Ap = -1.09028
+  Bp = 6.68020e-1
+  Cp = -4.67264e-1
+
+  Ar = -5.33957e-3
+  Br = 1.35373e-5
+  Cr = -7.73973e-6
+
+  Bpr = 6.99618e-3
+  Cpr = -2.14508e-3
+  Cprp = -1.40134e-2
+
+  C11 = 114.409
+  C12 = 45.5681
+  C44 = 28.709
+
+  q11 = -5.89457
+  q12 = -0.971881
+  q44 = -2.01751
+
+  r11 = -7.35454e-3
+  r12 = 7.23046e-4
+  r44 = 7.21126e-3
+
+  G = 1.0
+[]
+
+
+[Variables]
+  [./diffused]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+
+  # ODE variables
+  [./polar_x]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.4
+  [../]
+  [./polar_y]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.4
+  [../]
+  [./polar_z]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.4
+  [../]
+  [./antiferrodis_A_x]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 7.0
+  [../]
+  [./antiferrodis_A_y]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 7.0
+  [../]
+  [./antiferrodis_A_z]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 7.0
+  [../]
+
+  [./e_xx]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.001
+  [../]
+  [./e_yy]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.001
+  [../]
+  [./e_zz]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.001
+  [../]
+
+  [./e_xy]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.0001
+  [../]
+  [./e_yz]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.0001
+  [../]
+  [./e_zx]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 0.0001
+  [../]
+
+
+[]
+
+[Kernels]
+  [./td]
+    type = TimeDerivative
+    variable = diffused
+  [../]
+  [./diff]
+    type = Diffusion
+    variable = diffused
+  [../]
+[]
+
+[ScalarKernels]
+  [./td_px]
+    type = ODETimeDerivative
+    variable = polar_x
+  [../]
+  [./td_py]
+    type = ODETimeDerivative
+    variable = polar_y
+  [../]
+  [./td_pz]
+    type = ODETimeDerivative
+    variable = polar_z
+  [../]
+
+  [./td_Ax]
+    type = ODETimeDerivative
+    variable = antiferrodis_A_x
+  [../]
+  [./td_Ay]
+    type = ODETimeDerivative
+    variable = antiferrodis_A_y
+  [../]
+  [./td_Az]
+    type = ODETimeDerivative
+    variable = antiferrodis_A_z
+  [../]
+
+  [./td_exx]
+    type = ODETimeDerivative
+    variable = e_xx
+  [../]
+  [./td_eyy]
+    type = ODETimeDerivative
+    variable = e_yy
+  [../]
+  [./td_ezz]
+    type = ODETimeDerivative
+    variable = e_zz
+  [../]
+
+  [./td_exy]
+    type = ODETimeDerivative
+    variable = e_xy
+  [../]
+  [./td_eyz]
+    type = ODETimeDerivative
+    variable = e_yz
+  [../]
+  [./td_ezx]
+    type = ODETimeDerivative
+    variable = e_zx
+  [../]
+
+
+  [./bulk_px]
+    type = ScalarBulkEnergyP
+    variable = polar_x
+    component = 0
+  [../]
+  [./bulk_py]
+    type = ScalarBulkEnergyP
+    variable = polar_y
+    component = 1
+  [../]
+  [./bulk_pz]
+    type = ScalarBulkEnergyP
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./bulk_Ax]
+    type = ScalarBulkEnergyA
+    variable = antiferrodis_A_x
+    component = 0
+  [../]
+  [./bulk_Ay]
+    type = ScalarBulkEnergyA
+    variable = antiferrodis_A_y
+    component = 1
+  [../]
+  [./bulk_Az]
+    type = ScalarBulkEnergyA
+    variable = antiferrodis_A_z
+    component = 2
+  [../]
+
+
+  [./roto_Px]
+    type = ScalarRotopolarEnergy
+    variable = polar_x
+    component = 0
+  [../]
+  [./roto_Py]
+    type = ScalarRotopolarEnergy
+    variable = polar_y
+    component = 1
+  [../]
+  [./roto_Pz]
+    type = ScalarRotopolarEnergy
+    variable = polar_z
+    component = 2
+  [../]
+  [./roto_Ax]
+    type = ScalarRotopolarEnergy
+    variable = antiferrodis_A_x
+    component = 3
+  [../]
+  [./roto_Ay]
+    type = ScalarRotopolarEnergy
+    variable = antiferrodis_A_y
+    component = 4
+  [../]
+  [./roto_Az]
+    type = ScalarRotopolarEnergy
+    variable = antiferrodis_A_z
+    component = 5
+  [../]
+
+  [./estric_Px]
+    type = ScalarElectrostrictiveEnergy
+    variable = polar_x
+    component = 0
+  [../]
+  [./estric_Py]
+    type = ScalarElectrostrictiveEnergy
+    variable = polar_y
+    component = 1
+  [../]
+  [./estric_Pz]
+    type = ScalarElectrostrictiveEnergy
+    variable = polar_z
+    component = 2
+  [../]
+
+  [./estric_exx]
+    type = ScalarElectrostrictiveEnergy
+    variable = e_xx
+    component = 3
+  [../]
+  [./estric_eyy]
+    type = ScalarElectrostrictiveEnergy
+    variable = e_yy
+    component = 4
+  [../]
+  [./estric_ezz]
+    type = ScalarElectrostrictiveEnergy
+    variable = e_zz
+    component = 5
+  [../]
+  [./estric_exy]
+    type = ScalarElectrostrictiveEnergy
+    variable = e_xy
+    component = 6
+  [../]
+  [./estric_eyz]
+    type = ScalarElectrostrictiveEnergy
+    variable = e_yz
+    component = 7
+  [../]
+  [./estric_ezx]
+    type = ScalarElectrostrictiveEnergy
+    variable = e_zx
+    component = 8
+  [../]
+
+
+  [./rstric_Ax]
+    type = ScalarRotostrictiveEnergy
+    variable = antiferrodis_A_x
+    component = 0
+  [../]
+  [./rstric_Ay]
+    type = ScalarRotostrictiveEnergy
+    variable = antiferrodis_A_y
+    component = 1
+  [../]
+  [./rstric_Az]
+    type = ScalarRotostrictiveEnergy
+    variable = antiferrodis_A_z
+    component = 2
+  [../]
+
+  [./rstric_exx]
+    type = ScalarRotostrictiveEnergy
+    variable = e_xx
+    component = 3
+  [../]
+  [./rstric_eyy]
+    type = ScalarRotostrictiveEnergy
+    variable = e_yy
+    component = 4
+  [../]
+  [./rstric_ezz]
+    type = ScalarRotostrictiveEnergy
+    variable = e_zz
+    component = 5
+  [../]
+  [./rstric_exy]
+    type = ScalarRotostrictiveEnergy
+    variable = e_xy
+    component = 6
+  [../]
+  [./rstric_eyz]
+    type = ScalarRotostrictiveEnergy
+    variable = e_yz
+    component = 7
+  [../]
+  [./rstric_ezx]
+    type = ScalarRotostrictiveEnergy
+    variable = e_zx
+    component = 8
+  [../]
+
+  [./elast_exx]
+    type = ScalarElasticEnergy
+    variable = e_xx
+    component = 0
+  [../]
+  [./elast_eyy]
+    type = ScalarElasticEnergy
+    variable = e_yy
+    component = 1
+  [../]
+  [./elast_ezz]
+    type = ScalarElasticEnergy
+    variable = e_zz
+    component = 2
+  [../]
+  [./elast_exy]
+    type = ScalarElasticEnergy
+    variable = e_xy
+    component = 3
+  [../]
+  [./elast_eyz]
+    type = ScalarElasticEnergy
+    variable = e_yz
+    component = 4
+  [../]
+  [./elast_exz]
+    type = ScalarElasticEnergy
+    variable = e_zx
+    component = 5
+  [../]
+
+[]
+
+
+[BCs]
+  [./right]
+    type = DirichletBC
+    variable = diffused
+    boundary = 1
+    value = 0.0
+  [../]
+
+  [./left]
+    type = DirichletBC
+    variable = diffused
+    boundary = 0
+    value = 1.0
+  [../]
+[]
+
+[Postprocessors]
+  [./Px]
+    type = ScalarVariable
+    variable = polar_x
+    execute_on = timestep_end
+  [../]
+  [./Py]
+    type = ScalarVariable
+    variable = polar_y
+    execute_on = timestep_end
+  [../]
+  [./Pz]
+    type = ScalarVariable
+    variable = polar_z
+    execute_on = timestep_end
+  [../]
+
+  [./Ax]
+    type = ScalarVariable
+    variable = antiferrodis_A_x
+    execute_on = timestep_end
+  [../]
+  [./Ay]
+    type = ScalarVariable
+    variable = antiferrodis_A_y
+    execute_on = timestep_end
+  [../]
+  [./Az]
+    type = ScalarVariable
+    variable = antiferrodis_A_z
+    execute_on = timestep_end
+  [../]
+
+
+  [./exx]
+    type = ScalarVariable
+    variable = e_xx
+    execute_on = timestep_end
+  [../]
+  [./eyy]
+    type = ScalarVariable
+    variable = e_yy
+    execute_on = timestep_end
+  [../]
+  [./ezz]
+    type = ScalarVariable
+    variable = e_zz
+    execute_on = timestep_end
+  [../]
+
+  [./exy]
+    type = ScalarVariable
+    variable = e_xy
+    execute_on = timestep_end
+  [../]
+  [./eyz]
+    type = ScalarVariable
+    variable = e_yz
+    execute_on = timestep_end
+  [../]
+  [./ezx]
+    type = ScalarVariable
+    variable = e_zx
+    execute_on = timestep_end
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121            1e-8          1e-8       1e-6     bjacobi&#x27;
+  [../]
+[]
+
+
+[Executioner]
+  type = Transient
+  start_time = 0
+  dt = 0.1
+
+  #Preconditioned JFNK (default)
+  solve_type = &#x27;PJFNK&#x27;
+  num_steps = 50
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_full_LK
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

@@ -1,0 +1,144 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>LibtorchArtificialNeuralNetParameters | Ferret</title><link href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../../media/framework/github-logo.png" class="github-mark"></img><img src="../../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="e80df8fa-3621-446e-a104-f3ef678498a0" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3bd60c75-2d8b-43fb-baf6-8509b4f01f7f" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4bcb30ef-56b2-4b3f-81ba-7aa072446a09" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d2335ecf-3cd1-4b43-88c4-ec60d75be1ad" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="439db7af-94cc-4c98-9981-47f9ca0ff5f0" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="e64cbff4-83be-45ce-a55d-0fc6f20a3cd7"><i class="material-icons">menu</i></a><ul class="sidenav" id="e64cbff4-83be-45ce-a55d-0fc6f20a3cd7"><li><a href="#!" class="dropdown-trigger" data-target="e9c8ae42-854c-4106-a9ee-baad1727a468" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="fd9d78f6-fcea-45ad-84fa-723bc8cd0728" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="2ff2e687-4640-4feb-8544-a61bc30ffaed" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4253fbe5-5aa6-4b7d-b84e-818a82e58a78" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="935fdd86-7f51-47e8-aeb8-9e4260440b56" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="e80df8fa-3621-446e-a104-f3ef678498a0"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="3bd60c75-2d8b-43fb-baf6-8509b4f01f7f"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="4bcb30ef-56b2-4b3f-81ba-7aa072446a09"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="d2335ecf-3cd1-4b43-88c4-ec60d75be1ad"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="439db7af-94cc-4c98-9981-47f9ca0ff5f0"><li><a href="../../../syntax/index.html">Complete syntax</a></li><li><a href="../../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="e9c8ae42-854c-4106-a9ee-baad1727a468"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="fd9d78f6-fcea-45ad-84fa-723bc8cd0728"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="2ff2e687-4640-4feb-8544-a61bc30ffaed"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="4253fbe5-5aa6-4b7d-b84e-818a82e58a78"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="935fdd86-7f51-47e8-aeb8-9e4260440b56"><li><a href="../../../syntax/index.html">Complete syntax</a></li><li><a href="../../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="4471fd76-7dcb-4e06-ba56-bc1864077424" data-section-level="1" data-section-text="LibtorchArtificialNeuralNetParameters"><h1 id="libtorchartificialneuralnetparameters">LibtorchArtificialNeuralNetParameters</h1><section id="e681d049-424a-4786-97ba-d977b8c47e6b" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Converts the parameters of a <a href="../utils/LibtorchArtificialNeuralNet.html">LibtorchArtificialNeuralNet</a> within a <a href="../controls/LibtorchNeuralNetControl.html">LibtorchNeuralNetControl</a> into a vector which can be used for the visalization of the evolution of different parameters over the simulation.</p></section><section id="bd092ba6-9879-42b9-ba28-c6ad0ff428c0" data-section-level="2" data-section-text="Example Syntax"><h2 id="example-syntax">Example Syntax</h2><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Reporters]
+  inactive = &#x27;nn_parameters&#x27;
+  [T_reporter]
+    type = AccumulateReporter
+    reporters = &#x27;T_max/value control_value/value&#x27;
+    outputs = csv_out
+  []
+  [nn_parameters]
+    type = LibtorchArtificialNeuralNetParameters
+    control_name = src_control
+    execute_on = FINAL
+    outputs = json_out
+  []
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#955fbae3-1143-4cf1-bb17-67a05b636d4e">(../moose/test/tests/controls/libtorch_nn_control/read_control.i)</a><div class="card moose-alert moose-alert-warning"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">warning</i><span class="moose-alert-title-brand">warning</span></div><div class="card-content"><div class="moose-alert-content"><p>The detailed documentation of this object is only available when Moose is compiled with Libtorch. For instructions on how to compile Moose with Libtorch, visit the general installation webpage or click here.</p></div></div></div></section></section><div class="moose-modal modal" id="955fbae3-1143-4cf1-bb17-67a05b636d4e"><div class="modal-content"><h4>(../moose/test/tests/controls/libtorch_nn_control/read_control.i)</h4><pre class="moose-pre"><code class="language-text">pi = 3.14159265359
+period = 0.25
+diff_coeff = 0.5
+cp = 1.0
+
+[Functions]
+  [src_func]
+    type = ParsedFunction
+    value = &quot;sin(${pi}/${period}*t)&quot;
+  []
+[]
+
+[Mesh]
+  [msh]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 20
+    xmin = -0.5
+    xmax = 0.5
+    ny = 20
+    ymin = -0.5
+    ymax = 0.5
+  []
+  [source_domain]
+    type = ParsedSubdomainMeshGenerator
+    input = msh
+    combinatorial_geometry = &#x27;(x&lt;0.2 &amp; x&gt;-0.2) &amp; (y&lt;0.2 &amp; y&gt;-0.2)&#x27;
+    block_id = 1
+  []
+[]
+
+[Variables]
+  [T]
+    initial_condition = 1
+  []
+[]
+
+[Kernels]
+  [diffusion]
+    type = CoefDiffusion
+    variable = T
+    coef = ${diff_coeff}
+  []
+  [source]
+    type = BodyForce
+    variable = T
+    function = src_func
+    block = 1
+  []
+  [anti_source]
+    type = BodyForce
+    variable = T
+    value = 0
+    block = 1
+  []
+  [time_deriv]
+    type = CoefTimeDerivative
+    Coefficient = ${cp}
+    variable = T
+  []
+[]
+
+[BCs]
+  [neumann_rest]
+    type = NeumannBC
+    variable = T
+    boundary = &#x27;left right top bottom&#x27;
+    value = 0
+  []
+[]
+
+[Executioner]
+  type = Transient
+  num_steps = 25
+  dt = 0.1
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_abs_tol = 1e-12
+  line_search = &#x27;none&#x27;
+[]
+
+[Postprocessors]
+  [T_max]
+    type = NodalExtremeValue
+    variable = T
+    execute_on = &#x27;INITIAL TIMESTEP_END&#x27;
+  []
+  [control_value]
+    type = LibtorchControlValuePostprocessor
+    control_name = src_control
+    execute_on = &#x27;INITIAL TIMESTEP_END&#x27;
+  []
+[]
+
+[Controls]
+  [src_control]
+    type = LibtorchNeuralNetControl
+    parameters = &quot;Kernels/anti_source/value&quot;
+    responses = &#x27;T_max&#x27;
+  []
+[]
+
+[Reporters]
+  inactive = &#x27;nn_parameters&#x27;
+  [T_reporter]
+    type = AccumulateReporter
+    reporters = &#x27;T_max/value control_value/value&#x27;
+    outputs = csv_out
+  []
+  [nn_parameters]
+    type = LibtorchArtificialNeuralNetParameters
+    control_name = src_control
+    execute_on = FINAL
+    outputs = json_out
+  []
+[]
+
+[Outputs]
+  [csv_out]
+    type = CSV
+    execute_on = FINAL
+  []
+  [json_out]
+    type = JSON
+    execute_on = FINAL
+    execute_system_information_on = NONE
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../../js/init.js"></script><script type="text/javascript" src="../../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../../js/sqa_moose.js"></script>

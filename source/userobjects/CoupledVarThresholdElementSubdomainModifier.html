@@ -1,0 +1,413 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>CoupledVarThresholdElementSubdomainModifier | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="96b17210-ec3f-452b-8b63-c7fddc0f0aed" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b79616e0-cd15-4d30-9e71-82a5a09cdb36" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e42635d5-cec2-47d1-8a3f-e6a5da8e0568" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="baea264b-8f61-419d-84ff-8d41d2ac9919" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="5af8cdd4-0159-4495-ac60-d97e5d7af7d3" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="7ab5e7e7-a549-4243-8c3f-c5658b4efb2c"><i class="material-icons">menu</i></a><ul class="sidenav" id="7ab5e7e7-a549-4243-8c3f-c5658b4efb2c"><li><a href="#!" class="dropdown-trigger" data-target="7f7d1c2d-c2b0-4d6a-a5f2-bfcbb7ab8895" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="20bf3993-9721-44ea-8d1e-b7b7edb39ae8" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c90e7dcc-79c5-46ba-9832-35d27c0fb272" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="0c4691e4-d2da-4d55-95df-f735c3d9b7a2" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="8718a7f0-1f93-40ff-8b36-f952607f44e6" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="96b17210-ec3f-452b-8b63-c7fddc0f0aed"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="b79616e0-cd15-4d30-9e71-82a5a09cdb36"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="e42635d5-cec2-47d1-8a3f-e6a5da8e0568"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="baea264b-8f61-419d-84ff-8d41d2ac9919"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="5af8cdd4-0159-4495-ac60-d97e5d7af7d3"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="7f7d1c2d-c2b0-4d6a-a5f2-bfcbb7ab8895"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="20bf3993-9721-44ea-8d1e-b7b7edb39ae8"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="c90e7dcc-79c5-46ba-9832-35d27c0fb272"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="0c4691e4-d2da-4d55-95df-f735c3d9b7a2"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="8718a7f0-1f93-40ff-8b36-f952607f44e6"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="23b80c09-4505-4542-987f-be8498c4a421" data-section-level="1" data-section-text="CoupledVarThresholdElementSubdomainModifier"><h1 id="coupledvarthresholdelementsubdomainmodifier">CoupledVarThresholdElementSubdomainModifier</h1><p>Modify element subdomain ID. This userobject only runs on the undisplaced mesh, and it will modify both the undisplaced and the displaced mesh.</p><section id="3aac9956-e65d-4934-b3cb-78fd5ea6c521" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>The <code>CoupledVarThresholdElementSubdomainModifier</code> can model</p><ul class="browser-default"><li><p>Element death (with applications in ablation, fracture, etc.); </p></li><li><p>Element activation (with applications in additive manufacturing, sintering, solidification, etc.); </p></li><li><p>Moving interface (with applications in metal oxidation, phase transformation, melt pool, etc.).</p></li></ul><p>The <code>CoupledVarThresholdElementSubdomainModifier</code> changes the element subdomain based on the given criterion. It also handles the corresponding</p><ul class="browser-default"><li><p>Moving boundary/interface nodeset/sideset modification, </p></li><li><p>Solution initialization, and </p></li><li><p>Stateful material property initialization,</p></li></ul><p>all of which are demonstrated using the following example.</p><p>Consider a unit square domain, and an auxiliary variable defined by the function <span class="moose-katex-inline-equation" id="moose-equation-1b980007-8134-413a-8995-f97281a484a8"><script>var element = document.getElementById("moose-equation-1b980007-8134-413a-8995-f97281a484a8");katex.render("\\phi(x,y,t) = (x-t)^2+y^2-0.5^2", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. The function represents a signed-distance function of a circle of radius <span class="moose-katex-inline-equation" id="moose-equation-b782d746-55cb-4777-9cdb-cba6173fc974"><script>var element = document.getElementById("moose-equation-b782d746-55cb-4777-9cdb-cba6173fc974");katex.render("0.5", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> whose center is moving along the x-axis towards right.</p><p>Initially, the domain is decomposed by a vertical line <span class="moose-katex-inline-equation" id="moose-equation-9a6c87d2-9372-475b-8620-529d26b39c9b"><script>var element = document.getElementById("moose-equation-9a6c87d2-9372-475b-8620-529d26b39c9b");katex.render("x=0.25", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. The elements on the left side of the vertical line have subdomain ID of 1, and the elements on the right side have subdomain ID of 2. The <code>CoupledVarThresholdElementSubdomainModifier</code> is used to change the subdomain ID from 2 to 1 for elements within the circle.</p></section><section id="8f0eeaba-3793-4b5b-8a67-c5aa7a381da9" data-section-level="2" data-section-text="Reversible vs . irreversible modification"><h2 id="reversible-vs-irreversible-modification">Reversible vs. irreversible modification</h2><p>If the <code>CoupledVarThresholdElementSubdomainModifier</code> is applied onto the entire domain, and the parameter <code>complement_subdomain_id</code> is set to 2, then the subdomain ID of all elements outside the circle will be set to 2:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">  [moving_circle]
+    type = CoupledVarThresholdElementSubdomainModifier
+    coupled_var = &#x27;phi&#x27;
+    criterion_type = BELOW
+    threshold = 0
+    subdomain_id = 1
+    complement_subdomain_id = 2
+    moving_boundary_name = moving_boundary
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#b4b94e0b-4fe4-4598-a112-f0b279d27718">(../moose/test/tests/userobjects/element_subdomain_modifier/reversible.i)</a><div class="card moose-float" style="float:center;width:100%;"><div class="card-content"><picture class="materialboxed moose-image"><img src="../../media/userobjects/esm_reversible.jpg"></img></picture><p class="moose-caption"><span class="moose-caption-text">The result of a reversible element subdomain modifier at three different time steps</span></p></div></div><p>However, in many applications, e.g. element death and activation, the equivalent movement of element subdomains is not reversible. In this case, omitting the parameter <code>complement_subdomain_id</code> will make the subdomain modification irreversible:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">  [moving_circle]
+    type = CoupledVarThresholdElementSubdomainModifier
+    coupled_var = &#x27;phi&#x27;
+    block = 2
+    criterion_type = BELOW
+    threshold = 0
+    subdomain_id = 1
+    moving_boundary_name = moving_boundary
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#61e2db85-caa1-41cf-8394-1f5888ec1107">(../moose/test/tests/userobjects/element_subdomain_modifier/block_restricted.i)</a><div class="card moose-float" style="float:center;width:100%;"><div class="card-content"><picture class="materialboxed moose-image"><img src="../../media/userobjects/esm_irreversible.jpg"></img></picture><p class="moose-caption"><span class="moose-caption-text">The result of an irreversible element subdomain modifier at three different time steps</span></p></div></div></section><section id="f31bde40-2a0d-444e-9be8-38a42386d04a" data-section-level="2" data-section-text="Moving boundary / interface nodeset / sideset modification"><h2 id="moving-boundary-interface-nodeset-sideset-modification">Moving boundary/interface nodeset/sideset modification</h2><p>The change of element subdomains will alter the definition of certain sidesets and nodesets. The <code>CoupledVarThresholdElementSubdomainModifier</code> optionally takes the parameter <code>moving_boundary_name</code> to help modify the corresponding sideset/nodeset. If the boundary provided through the <code>moving_boundary_name</code> parameter already exists, the modifier will attempt to modify the provided sideset/nodeset whenever an element changes subdomain. If the boundary does not exist, the modifier will create a sideset and a nodeset with the provided name.</p><div class="card moose-float" style="float:center;width:100%;"><div class="card-content"><picture class="materialboxed moose-image"><img src="../../media/userobjects/esm_sideset.jpg"></img></picture><p class="moose-caption"><span class="moose-caption-text">The evolving sideset (green) at three different time steps</span></p></div></div><div class="card moose-float" style="float:center;width:100%;"><div class="card-content"><picture class="materialboxed moose-image"><img src="../../media/userobjects/esm_nodeset.jpg"></img></picture><p class="moose-caption"><span class="moose-caption-text">The evolving nodeset (green) at three different time steps</span></p></div></div><p>Nodal and integrated BCs can be applied on the moving boundary.</p></section><section id="5f75a7fc-94a2-400d-8051-174aa13adc31" data-section-level="2" data-section-text="Solution initialization"><h2 id="solution-initialization">Solution initialization</h2><p>Depending on the physics, one may or may not want to initialize the solution when an element and its related nodes change subdomain. The parameter <code>apply_initial_conditions</code> defaults to true and determines whether the initial conditions should be re-evaluated.</p><p>Suppose initially there is an auxiliary variable <span class="moose-katex-inline-equation" id="moose-equation-444d0222-f675-4275-9d3f-745a972f0831"><script>var element = document.getElementById("moose-equation-444d0222-f675-4275-9d3f-745a972f0831");katex.render("u=1", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> everywhere inside the domain, and the variable value in subdomain 1 (blue) doubles at each time step:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[AuxVariables]
+  [u]
+    [InitialCondition]
+      type = ConstantIC
+      value = 1
+    []
+  []
+  [phi]
+  []
+
+  # for the &#x27;displaced&#x27; test only
+  inactive = &#x27;disp_x disp_y&#x27;
+  [disp_x]
+  []
+  [disp_y]
+  []
+[]
+
+[AuxKernels]
+  [phi]
+    type = FunctionAux
+    variable = phi
+    function = moving_circle
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+  [double_u]
+    type = StatefulAux
+    variable = u
+    coupled = u
+    block = 1
+  []
+[]
+
+[Postprocessors]
+  # for the &#x27;subdomain_caching&#x27; test only
+  active = &#x27;&#x27;
+  [average]
+    type = SideAverageValue
+    variable = u
+    boundary = bottom
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#d02777db-0010-4cc6-92e1-e06abba2c2db">(../moose/test/tests/userobjects/element_subdomain_modifier/initial_condition.i)</a><div class="card moose-float" style="float:center;width:100%;"><div class="card-content"><picture class="materialboxed moose-image"><img src="../../media/userobjects/esm_ic.jpg"></img></picture><p class="moose-caption"><span class="moose-caption-text">The auxiliary variable <span class="moose-katex-inline-equation" id="moose-equation-cd645045-9fe2-42b0-b838-486e0733aed4"><script>var element = document.getElementById("moose-equation-cd645045-9fe2-42b0-b838-486e0733aed4");katex.render("u", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> at three different time steps</span></p></div></div></section><section id="b7d1aee6-927f-4c1f-b84a-5c2d8dae0836" data-section-level="2" data-section-text="Stateful material property initialization"><h2 id="stateful-material-property-initialization">Stateful material property initialization</h2><p>Similarly, all stateful material properties will be re-initialized when an element changes subdomain. Suppose initially the diffusivity is <span class="moose-katex-inline-equation" id="moose-equation-d343f382-5c3a-44bd-99e1-3dbf5cef533f"><script>var element = document.getElementById("moose-equation-d343f382-5c3a-44bd-99e1-3dbf5cef533f");katex.render("0.5", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> everywhere, and the diffusivity doubles at each time step:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Materials]
+  [stateful]
+    type = StatefulMaterial
+    initial_diffusivity = 0.5
+    multiplier = 2
+    block = 1
+    outputs = exodus
+  []
+  [non_stateful]
+    type = GenericConstantMaterial
+    prop_names = &#x27;diffusivity&#x27;
+    prop_values = &#x27;0.5&#x27;
+    block = 2
+    outputs = exodus
+  []
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2e680322-0300-43b3-b377-b071f2333e15">(../moose/test/tests/userobjects/element_subdomain_modifier/stateful_property.i)</a><div class="card moose-float" style="float:center;width:100%;"><div class="card-content"><picture class="materialboxed moose-image"><img src="../../media/userobjects/esm_material.jpg"></img></picture><p class="moose-caption"><span class="moose-caption-text">The diffusivity at three different time steps</span></p></div></div></section><section id="bd00bc73-c532-4a32-8990-bb2ff4391840" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="edb2d006-5008-4fcc-b266-72d466dad56d" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">coupled_var</span><span class="moose-parameter-header-description">Coupled variable whose value is used in the criterion</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Coupled variable whose value is used in the criterion</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">subdomain_id</span><span class="moose-parameter-header-description">The subdomain ID of the element when the criterion is met</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned short</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The subdomain ID of the element when the criterion is met</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">threshold</span><span class="moose-parameter-header-description">The value above (or below) which to change the element subdomain</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The value above (or below) which to change the element subdomain</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="04fca943-4c82-45b1-b093-bad379fbec7f" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">apply_initial_conditions</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether to apply initial conditions on the moved nodes and elements</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to apply initial conditions on the moved nodes and elements</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">complement_moving_boundary_name</span><span class="moose-parameter-header-description">Boundary that associated with the unmoved domain when neighbor element(s) is moved. A boundary with the provided name will be created if not already exists on the mesh.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundary that associated with the unmoved domain when neighbor element(s) is moved. A boundary with the provided name will be created if not already exists on the mesh.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">complement_subdomain_id</span><span class="moose-parameter-header-description">The subdomain ID of the element when the criterion is not met. If not provided, the element subdomain ID will not be modified if the criterion is not met.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned short</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The subdomain ID of the element when the criterion is not met. If not provided, the element subdomain ID will not be modified if the criterion is not met.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">criterion_type</span><span class="moose-parameter-header-default">ABOVE</span><span class="moose-parameter-header-description">Criterion to use for the threshold</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>ABOVE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>BELOW, EQUAL, ABOVE</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Criterion to use for the threshold</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">moving_boundary_name</span><span class="moose-parameter-header-description">Boundary to modify when an element is moved. A boundary with the provided name will be created if not already exists on the mesh.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundary to modify when an element is moved. A boundary with the provided name will be created if not already exists on the mesh.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="d8bb2120-c6d4-4b87-8d1f-8cdb89dc6906" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execution_order_group</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_postaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in POSTAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in POSTAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preic</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREIC during initial setup</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREIC during initial setup</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="b4b94e0b-4fe4-4598-a112-f0b279d27718"><div class="modal-content"><h4>(../moose/test/tests/userobjects/element_subdomain_modifier/reversible.i)</h4><pre class="moose-pre"><code class="language-text">[Problem]
+  solve = false
+[]
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 16
+    ny = 16
+  []
+  [left]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;gen&#x27;
+    block_id = 1
+    bottom_left = &#x27;0 0 0&#x27;
+    top_right = &#x27;0.25 1 1&#x27;
+  []
+  [right]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;left&#x27;
+    block_id = 2
+    bottom_left = &#x27;0.25 0 0&#x27;
+    top_right = &#x27;1 1 1&#x27;
+  []
+[]
+
+[UserObjects]
+  [moving_circle]
+    type = CoupledVarThresholdElementSubdomainModifier
+    coupled_var = &#x27;phi&#x27;
+    criterion_type = BELOW
+    threshold = 0
+    subdomain_id = 1
+    complement_subdomain_id = 2
+    moving_boundary_name = moving_boundary
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Functions]
+  [moving_circle]
+    type = ParsedFunction
+    expression = &#x27;(x-t)^2+(y)^2-0.5^2&#x27;
+  []
+[]
+
+[AuxVariables]
+  [phi]
+    [InitialCondition]
+      type = FunctionIC
+      function = moving_circle
+    []
+  []
+[]
+
+[AuxKernels]
+  [phi]
+    type = FunctionAux
+    variable = phi
+    function = moving_circle
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.3
+  num_steps = 3
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="61e2db85-caa1-41cf-8394-1f5888ec1107"><div class="modal-content"><h4>(../moose/test/tests/userobjects/element_subdomain_modifier/block_restricted.i)</h4><pre class="moose-pre"><code class="language-text">[Problem]
+  solve = false
+[]
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 16
+    ny = 16
+  []
+  [left]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;gen&#x27;
+    block_id = 1
+    bottom_left = &#x27;0 0 0&#x27;
+    top_right = &#x27;0.25 1 1&#x27;
+  []
+  [right]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;left&#x27;
+    block_id = 2
+    bottom_left = &#x27;0.25 0 0&#x27;
+    top_right = &#x27;1 1 1&#x27;
+  []
+[]
+
+[UserObjects]
+  [moving_circle]
+    type = CoupledVarThresholdElementSubdomainModifier
+    coupled_var = &#x27;phi&#x27;
+    block = 2
+    criterion_type = BELOW
+    threshold = 0
+    subdomain_id = 1
+    moving_boundary_name = moving_boundary
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Functions]
+  [moving_circle]
+    type = ParsedFunction
+    expression = &#x27;(x-t)^2+(y)^2-0.5^2&#x27;
+  []
+[]
+
+[AuxVariables]
+  [phi]
+  []
+[]
+
+[AuxKernels]
+  [phi]
+    type = FunctionAux
+    variable = phi
+    function = moving_circle
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+  num_steps = 3
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="d02777db-0010-4cc6-92e1-e06abba2c2db"><div class="modal-content"><h4>(../moose/test/tests/userobjects/element_subdomain_modifier/initial_condition.i)</h4><pre class="moose-pre"><code class="language-text">[Problem]
+  solve = false
+[]
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 16
+    ny = 16
+  []
+  [left]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;gen&#x27;
+    block_id = 1
+    bottom_left = &#x27;0 0 0&#x27;
+    top_right = &#x27;0.25 1 1&#x27;
+  []
+  [right]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;left&#x27;
+    block_id = 2
+    bottom_left = &#x27;0.25 0 0&#x27;
+    top_right = &#x27;1 1 1&#x27;
+  []
+[]
+
+[UserObjects]
+  [moving_circle]
+    type = CoupledVarThresholdElementSubdomainModifier
+    coupled_var = &#x27;phi&#x27;
+    block = 2
+    criterion_type = BELOW
+    threshold = 0
+    subdomain_id = 1
+    moving_boundary_name = moving_boundary
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Functions]
+  [moving_circle]
+    type = ParsedFunction
+    expression = &#x27;(x-t)^2+(y)^2-0.5^2&#x27;
+  []
+[]
+
+[AuxVariables]
+  [u]
+    [InitialCondition]
+      type = ConstantIC
+      value = 1
+    []
+  []
+  [phi]
+  []
+
+  # for the &#x27;displaced&#x27; test only
+  inactive = &#x27;disp_x disp_y&#x27;
+  [disp_x]
+  []
+  [disp_y]
+  []
+[]
+
+[AuxKernels]
+  [phi]
+    type = FunctionAux
+    variable = phi
+    function = moving_circle
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+  [double_u]
+    type = StatefulAux
+    variable = u
+    coupled = u
+    block = 1
+  []
+[]
+
+[Postprocessors]
+  # for the &#x27;subdomain_caching&#x27; test only
+  active = &#x27;&#x27;
+  [average]
+    type = SideAverageValue
+    variable = u
+    boundary = bottom
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+  num_steps = 3
+[]
+
+[Outputs]
+  [out]
+    type = Exodus
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2e680322-0300-43b3-b377-b071f2333e15"><div class="modal-content"><h4>(../moose/test/tests/userobjects/element_subdomain_modifier/stateful_property.i)</h4><pre class="moose-pre"><code class="language-text">[Problem]
+  solve = false
+[]
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 16
+    ny = 16
+  []
+  [left]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;gen&#x27;
+    block_id = 1
+    bottom_left = &#x27;0 0 0&#x27;
+    top_right = &#x27;0.25 1 1&#x27;
+  []
+  [right]
+    type = SubdomainBoundingBoxGenerator
+    input = &#x27;left&#x27;
+    block_id = 2
+    bottom_left = &#x27;0.25 0 0&#x27;
+    top_right = &#x27;1 1 1&#x27;
+  []
+[]
+
+[UserObjects]
+  [moving_circle]
+    type = CoupledVarThresholdElementSubdomainModifier
+    coupled_var = &#x27;phi&#x27;
+    block = 2
+    criterion_type = BELOW
+    threshold = 0
+    subdomain_id = 1
+    moving_boundary_name = moving_boundary
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Functions]
+  [moving_circle]
+    type = ParsedFunction
+    expression = &#x27;(x-t)^2+(y)^2-0.5^2&#x27;
+  []
+[]
+
+[AuxVariables]
+  [phi]
+  []
+[]
+
+[AuxKernels]
+  [phi]
+    type = FunctionAux
+    variable = phi
+    function = moving_circle
+    execute_on = &#x27;INITIAL TIMESTEP_BEGIN&#x27;
+  []
+[]
+
+[Materials]
+  [stateful]
+    type = StatefulMaterial
+    initial_diffusivity = 0.5
+    multiplier = 2
+    block = 1
+    outputs = exodus
+  []
+  [non_stateful]
+    type = GenericConstantMaterial
+    prop_names = &#x27;diffusivity&#x27;
+    prop_values = &#x27;0.5&#x27;
+    block = 2
+    outputs = exodus
+  []
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+  num_steps = 3
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

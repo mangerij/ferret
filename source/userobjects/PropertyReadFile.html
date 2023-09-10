@@ -1,0 +1,623 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>PropertyReadFile | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="371c0606-c882-41aa-94bc-d196660e0563" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="9b812a4b-311c-45e7-bee1-e1f63116efd7" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="145c36d1-bb39-4d7f-b6e6-4e03fc0ed1ef" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="079dfa95-d7bd-4841-832d-8c778152daf9" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="3177950e-710c-4c65-8ce6-283d022ed547" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="0d9de573-452d-4a74-8b6c-7f883598e304"><i class="material-icons">menu</i></a><ul class="sidenav" id="0d9de573-452d-4a74-8b6c-7f883598e304"><li><a href="#!" class="dropdown-trigger" data-target="4f67b6d0-fc28-4cf7-a391-eb73611f4a39" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="7c646dea-d7ed-477f-93a4-ed703060486b" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="753a216c-72c0-482a-9bdf-b039f0b586a6" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="97bc5b9c-1452-4f99-ae69-addb745c6dc0" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="5a3c9100-c25f-4cce-8037-09d436ab2d0a" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="371c0606-c882-41aa-94bc-d196660e0563"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="9b812a4b-311c-45e7-bee1-e1f63116efd7"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="145c36d1-bb39-4d7f-b6e6-4e03fc0ed1ef"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="079dfa95-d7bd-4841-832d-8c778152daf9"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="3177950e-710c-4c65-8ce6-283d022ed547"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="4f67b6d0-fc28-4cf7-a391-eb73611f4a39"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="7c646dea-d7ed-477f-93a4-ed703060486b"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="753a216c-72c0-482a-9bdf-b039f0b586a6"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="97bc5b9c-1452-4f99-ae69-addb745c6dc0"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="5a3c9100-c25f-4cce-8037-09d436ab2d0a"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="a4de9410-5de7-4b81-ac65-3082a54c0fd2" data-section-level="1" data-section-text="PropertyReadFile"><h1 id="propertyreadfile">PropertyReadFile</h1><p>User Object to read property data from an external file and assign to elements.</p><p>This user object may load data sorted in four different ways. The read modes are toggled using the <a href="#e86bc249-34d3-4360-a45f-52fa5a073d26" class="moose-modal-link modal-trigger">&quot;read_type&quot;</a> parameter.</p><ul class="browser-default"><li><p>In <strong>element</strong> mode, the file read contains <a href="#c5fc5c03-c6ff-4706-8aad-87c8f1e19da4" class="moose-modal-link modal-trigger">&quot;nprop&quot;</a> values for each element in the mesh. </p></li><li><p>In <strong>grain</strong>/<strong>voronoi</strong> mode, a Voronoi tessellation with <a href="#dffd8c1e-6dae-4ea4-872a-198fa7d0a096" class="moose-modal-link modal-trigger">&quot;nvoronoi&quot;</a> random centers is either created randomly or read from the first columns of the <code>CSV</code> file, depending on the <a href="#9c662f8f-8926-4f28-a9f6-ab6b7b237c5c" class="moose-modal-link modal-trigger">&quot;use_random_voronoi&quot;</a> parameter. The file read should still contain <a href="#aefa7c12-7a26-4a41-9827-da7e23862dde" class="moose-modal-link modal-trigger">&quot;nprop&quot;</a> columns, even though 1-3 columns may be used for the Voronoi tesselation positions. </p></li><li><p>In <strong>block</strong> mode, the file read contains <a href="#6d6ae62b-a8f9-4679-bb64-414c59f27c6f" class="moose-modal-link modal-trigger">&quot;nprop&quot;</a> values for each block in the mesh. <a href="#5fff5285-4ab1-4ee9-92a3-5adcac3647e6" class="moose-modal-link modal-trigger">&quot;nblock&quot;</a> is the number of blocks in the mesh. </p></li><li><p>In <strong>node</strong> mode, the file read contains <a href="#0359b89c-1599-4dd0-bd9b-11438f267c41" class="moose-modal-link modal-trigger">&quot;nprop&quot;</a> values for each node in the mesh.</p></li></ul><div class="card moose-alert moose-alert-warning"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">warning</i><span class="moose-alert-title-brand">warning:</span>Data ordering</div><div class="card-content"><div class="moose-alert-content"><p>For the <code>element</code> (<code>block</code> and <code>node</code> respectively) modes, both the elements (blocks and nodes respectively) in the mesh and the data in the <code>CSV</code> file must be ordered consecutively. The element (block and node respectively) IDs must be contiguous and usually start from 1.</p></div></div></div><p>The <a href="#af52abd0-483b-4c95-b667-69095423555d" class="moose-modal-link modal-trigger">&quot;use_zero_based_block_indexing&quot;</a> parameter indicates whether the block numbers start with zero (<code>true</code>) or one (<code>false</code>).</p><section id="692d8ae1-4942-4aed-9323-3c5db2eeae73" data-section-level="2" data-section-text="Object use"><h2 id="object-use">Object use</h2><p>Values can be queried from the object by passing in a property ID and an element pointer. In <strong>element</strong> mode a direct lookup from the data table based on element ID is performed. In <strong>grain</strong> mode the centroid of the passed in element is taken and the grain ID is determined as the ID of the Voronoi center closest to the element centroid.</p><p>An example of a MOOSE object using the <code>PropertyReadFile</code> is the <a href="../functions/PiecewiseConstantFromCSV.html">PiecewiseConstantFromCSV</a> function.</p></section><section id="980f72b1-039c-4e08-9550-f6f2fd3f7274" data-section-level="2" data-section-text="Example input syntax"><h2 id="example-input-syntax">Example input syntax</h2><p>In this example input file, the <code>PropertyReadFile</code> user object is used to load data from a CSV file then a <a href="../functions/PiecewiseConstantFromCSV.html">PiecewiseConstantFromCSV</a> function and a <a href="../ics/FunctionIC.html">FunctionIC</a> are used to populate a field with this data. This is done for each <a href="#cc2fc7e7-0e48-4aa6-bdc7-51a32d02f7a1" class="moose-modal-link modal-trigger">&quot;read_type&quot;</a>.</p><ul class="browser-default"><li><p>Data sorted by element</p></li></ul><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[reader_element]
+  type = PropertyReadFile
+  prop_file_name = &#x27;data_element.csv&#x27;
+  read_type = &#x27;element&#x27;
+  nprop = 3 # number of columns in CSV
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#1705e6f3-e678-4321-a7e2-234c36c6caee">(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-text">0,0,0.1
+0,0,0.8
+0,0,0.4
+0,0,0.9
+0,0,1
+1,0,1.1
+1,0,2.1
+1,0,3.1
+1,0,17.1
+1,0,24
+1,0,10
+1,0,0.1
+1,0,11
+1,0,17
+1,0,1.8
+1,0,-1
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#33d38d7f-11a8-4a7a-9a08-c8417462f1ae">(../moose/test/tests/functions/piecewise_constant_from_csv/data_element.csv)</a><ul class="browser-default"><li><p>Data sorted by nearest-neighbor</p></li></ul><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[reader_nearest]
+  type = PropertyReadFile
+  prop_file_name = &#x27;data_nearest.csv&#x27;
+  read_type = &#x27;voronoi&#x27;
+  nprop = 3
+  nvoronoi = 3
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2cea4f1c-066b-4ab5-b64f-56e3ba6b69bc">(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-text">1,0,0.1
+0,0.8,4
+2,3.1,7
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#3cd88d82-d524-4451-b3c5-da8b6bca0cdb">(../moose/test/tests/functions/piecewise_constant_from_csv/data_nearest.csv)</a><ul class="browser-default"><li><p>Data sorted by block</p></li></ul><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[reader_block]
+  type = PropertyReadFile
+  prop_file_name = &#x27;data_nearest.csv&#x27;
+  read_type = &#x27;block&#x27;
+  nprop = 3
+  nblock = 3
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#4a262f98-aae7-4632-af09-a8e159a02f17">(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</a><div class="card moose-alert moose-alert-note"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">comment</i><span class="moose-alert-title-brand">note</span></div><div class="card-content"><div class="moose-alert-content"><p>In this example, the same CSV file as the nearest neighbor case is used. It is however processed and used differently.</p></div></div></div><ul class="browser-default"><li><p>Data sorted by node</p></li></ul><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[reader_node]
+  type = PropertyReadFile
+  prop_file_name = &#x27;data_node.csv&#x27;
+  read_type = &#x27;node&#x27;
+  nprop = 3 # number of columns in CSV
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#6a6292ae-59ce-4bc8-9c19-8a8da8c15a6b">(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-text">0,0,0.1
+0,0,0.8
+0,0,0.4
+0,0,0.9
+0,0,1
+1,0,1.1
+1,0,2.1
+1,0,3.1
+1,0,17.1
+1,0,24
+1,0,10
+1,0,0.1
+1,0,11
+1,0,17
+1,0,1.8
+1,0,-1
+1,0,17.1
+1,0,24
+1,0,10
+1,0,0.1
+1,0,11
+1,0,17
+1,0,1.8
+1,0,-1
+1,0,-3
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#8dc7d3f3-5fe6-4678-aac8-79f2fb6004d8">(../moose/test/tests/functions/piecewise_constant_from_csv/data_node.csv)</a></section><section id="73098d84-ab46-4a59-8431-3236247f73d7" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="985a1652-52c9-4e32-afaf-a3fe30ee3dd7" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">nprop</span><span class="moose-parameter-header-description">Number of tabulated property values</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of tabulated property values</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_file_name</span><span class="moose-parameter-header-description">Name of the property file name</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>FileName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the property file name</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">read_type</span><span class="moose-parameter-header-description">Type of property distribution: element:by element node: by node voronoi:nearest neighbor / voronoi grain structure block:by mesh block grain: deprecated, use voronoi</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>element, voronoi, block, node, grain</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Type of property distribution: element:by element node: by node voronoi:nearest neighbor / voronoi grain structure block:by mesh block grain: deprecated, use voronoi</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="71ca4519-7663-45db-aa5c-d8fc82970a99" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">nblock</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Number of blocks</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of blocks</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">nvoronoi</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Number of voronoi tesselations/grains/nearest neighbor regions</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of voronoi tesselations/grains/nearest neighbor regions</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">rand_seed</span><span class="moose-parameter-header-default">2000</span><span class="moose-parameter-header-description">random seed</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>2000</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>random seed</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">rve_type</span><span class="moose-parameter-header-default">none</span><span class="moose-parameter-header-description">Periodic or non-periodic grain distribution: Default is non-periodic</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>periodic, none</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Periodic or non-periodic grain distribution: Default is non-periodic</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_random_voronoi</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Wether to generate random positions for the Voronoi tesselation</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Wether to generate random positions for the Voronoi tesselation</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_zero_based_block_indexing</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Are the blocks numbered starting at zero?</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Are the blocks numbered starting at zero?</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="a2442907-f192-4327-9c08-0333a02f41ad" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execution_order_group</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_postaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in POSTAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in POSTAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preic</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREIC during initial setup</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREIC during initial setup</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="8024b78a-8501-48d8-b1b7-521bfce2c194" data-section-level="2" data-section-text="References"><h2 id="references">References</h2>No citations exist within this document.</section></section><div class="moose-modal modal" id="e86bc249-34d3-4360-a45f-52fa5a073d26"><div class="modal-content"><h4>read_type</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>element, voronoi, block, node, grain</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Type of property distribution: element:by element node: by node voronoi:nearest neighbor / voronoi grain structure block:by mesh block grain: deprecated, use voronoi</p></div></div><div class="moose-modal modal" id="c5fc5c03-c6ff-4706-8aad-87c8f1e19da4"><div class="modal-content"><h4>nprop</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of tabulated property values</p></div></div><div class="moose-modal modal" id="dffd8c1e-6dae-4ea4-872a-198fa7d0a096"><div class="modal-content"><h4>nvoronoi</h4><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of voronoi tesselations/grains/nearest neighbor regions</p></div></div><div class="moose-modal modal" id="9c662f8f-8926-4f28-a9f6-ab6b7b237c5c"><div class="modal-content"><h4>use_random_voronoi</h4><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Wether to generate random positions for the Voronoi tesselation</p></div></div><div class="moose-modal modal" id="aefa7c12-7a26-4a41-9827-da7e23862dde"><div class="modal-content"><h4>nprop</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of tabulated property values</p></div></div><div class="moose-modal modal" id="6d6ae62b-a8f9-4679-bb64-414c59f27c6f"><div class="modal-content"><h4>nprop</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of tabulated property values</p></div></div><div class="moose-modal modal" id="5fff5285-4ab1-4ee9-92a3-5adcac3647e6"><div class="modal-content"><h4>nblock</h4><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of blocks</p></div></div><div class="moose-modal modal" id="0359b89c-1599-4dd0-bd9b-11438f267c41"><div class="modal-content"><h4>nprop</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of tabulated property values</p></div></div><div class="moose-modal modal" id="af52abd0-483b-4c95-b667-69095423555d"><div class="modal-content"><h4>use_zero_based_block_indexing</h4><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Are the blocks numbered starting at zero?</p></div></div><div class="moose-modal modal" id="cc2fc7e7-0e48-4aa6-bdc7-51a32d02f7a1"><div class="modal-content"><h4>read_type</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>element, voronoi, block, node, grain</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Type of property distribution: element:by element node: by node voronoi:nearest neighbor / voronoi grain structure block:by mesh block grain: deprecated, use voronoi</p></div></div><div class="moose-modal modal" id="1705e6f3-e678-4321-a7e2-234c36c6caee"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  allow_renumbering = false
+  [cmg]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;1.5 2.4 0.1&#x27;
+    dy = &#x27;1.3 0.9&#x27;
+    ix = &#x27;2 1 1&#x27;
+    iy = &#x27;1 3&#x27;
+    subdomain_id = &#x27;0 1 1
+                    2 2 2&#x27;
+  []
+[]
+
+[Variables]
+  [u]
+  []
+[]
+
+[UserObjects]
+  [reader_element]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_element.csv&#x27;
+    read_type = &#x27;element&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_node]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_node.csv&#x27;
+    read_type = &#x27;node&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_nearest]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;voronoi&#x27;
+    nprop = 3
+    nvoronoi = 3
+  []
+  [reader_block]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;block&#x27;
+    nprop = 3
+    nblock = 3
+  []
+[]
+
+[Functions]
+  [element]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_element&#x27;
+    read_type = &#x27;element&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [node]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_node&#x27;
+    read_type = &#x27;node&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [nearest]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [block]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_block&#x27;
+    read_type = &#x27;block&#x27;
+    column_number = &#x27;2&#x27;
+  []
+[]
+
+[ICs]
+  active = &#x27;element&#x27;
+  [element]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;element&#x27;
+  []
+  [node]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;node&#x27;
+  []
+  [nearest]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;nearest&#x27;
+  []
+  [block]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;block&#x27;
+  []
+[]
+
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = u
+  []
+[]
+
+[BCs]
+  [unity]
+    type = DirichletBC
+    variable = u
+    boundary = &#x27;left bottom&#x27;
+    value = 1
+  []
+[]
+
+[Problem]
+  solve = false
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 0.1
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="33d38d7f-11a8-4a7a-9a08-c8417462f1ae"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/data_element.csv)</h4><pre class="moose-pre"><code class="language-text">0,0,0.1
+0,0,0.8
+0,0,0.4
+0,0,0.9
+0,0,1
+1,0,1.1
+1,0,2.1
+1,0,3.1
+1,0,17.1
+1,0,24
+1,0,10
+1,0,0.1
+1,0,11
+1,0,17
+1,0,1.8
+1,0,-1
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2cea4f1c-066b-4ab5-b64f-56e3ba6b69bc"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  allow_renumbering = false
+  [cmg]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;1.5 2.4 0.1&#x27;
+    dy = &#x27;1.3 0.9&#x27;
+    ix = &#x27;2 1 1&#x27;
+    iy = &#x27;1 3&#x27;
+    subdomain_id = &#x27;0 1 1
+                    2 2 2&#x27;
+  []
+[]
+
+[Variables]
+  [u]
+  []
+[]
+
+[UserObjects]
+  [reader_element]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_element.csv&#x27;
+    read_type = &#x27;element&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_node]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_node.csv&#x27;
+    read_type = &#x27;node&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_nearest]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;voronoi&#x27;
+    nprop = 3
+    nvoronoi = 3
+  []
+  [reader_block]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;block&#x27;
+    nprop = 3
+    nblock = 3
+  []
+[]
+
+[Functions]
+  [element]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_element&#x27;
+    read_type = &#x27;element&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [node]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_node&#x27;
+    read_type = &#x27;node&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [nearest]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [block]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_block&#x27;
+    read_type = &#x27;block&#x27;
+    column_number = &#x27;2&#x27;
+  []
+[]
+
+[ICs]
+  active = &#x27;element&#x27;
+  [element]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;element&#x27;
+  []
+  [node]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;node&#x27;
+  []
+  [nearest]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;nearest&#x27;
+  []
+  [block]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;block&#x27;
+  []
+[]
+
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = u
+  []
+[]
+
+[BCs]
+  [unity]
+    type = DirichletBC
+    variable = u
+    boundary = &#x27;left bottom&#x27;
+    value = 1
+  []
+[]
+
+[Problem]
+  solve = false
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 0.1
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="3cd88d82-d524-4451-b3c5-da8b6bca0cdb"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/data_nearest.csv)</h4><pre class="moose-pre"><code class="language-text">1,0,0.1
+0,0.8,4
+2,3.1,7
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4a262f98-aae7-4632-af09-a8e159a02f17"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  allow_renumbering = false
+  [cmg]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;1.5 2.4 0.1&#x27;
+    dy = &#x27;1.3 0.9&#x27;
+    ix = &#x27;2 1 1&#x27;
+    iy = &#x27;1 3&#x27;
+    subdomain_id = &#x27;0 1 1
+                    2 2 2&#x27;
+  []
+[]
+
+[Variables]
+  [u]
+  []
+[]
+
+[UserObjects]
+  [reader_element]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_element.csv&#x27;
+    read_type = &#x27;element&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_node]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_node.csv&#x27;
+    read_type = &#x27;node&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_nearest]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;voronoi&#x27;
+    nprop = 3
+    nvoronoi = 3
+  []
+  [reader_block]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;block&#x27;
+    nprop = 3
+    nblock = 3
+  []
+[]
+
+[Functions]
+  [element]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_element&#x27;
+    read_type = &#x27;element&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [node]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_node&#x27;
+    read_type = &#x27;node&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [nearest]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [block]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_block&#x27;
+    read_type = &#x27;block&#x27;
+    column_number = &#x27;2&#x27;
+  []
+[]
+
+[ICs]
+  active = &#x27;element&#x27;
+  [element]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;element&#x27;
+  []
+  [node]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;node&#x27;
+  []
+  [nearest]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;nearest&#x27;
+  []
+  [block]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;block&#x27;
+  []
+[]
+
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = u
+  []
+[]
+
+[BCs]
+  [unity]
+    type = DirichletBC
+    variable = u
+    boundary = &#x27;left bottom&#x27;
+    value = 1
+  []
+[]
+
+[Problem]
+  solve = false
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 0.1
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="6a6292ae-59ce-4bc8-9c19-8a8da8c15a6b"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  allow_renumbering = false
+  [cmg]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;1.5 2.4 0.1&#x27;
+    dy = &#x27;1.3 0.9&#x27;
+    ix = &#x27;2 1 1&#x27;
+    iy = &#x27;1 3&#x27;
+    subdomain_id = &#x27;0 1 1
+                    2 2 2&#x27;
+  []
+[]
+
+[Variables]
+  [u]
+  []
+[]
+
+[UserObjects]
+  [reader_element]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_element.csv&#x27;
+    read_type = &#x27;element&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_node]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_node.csv&#x27;
+    read_type = &#x27;node&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_nearest]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;voronoi&#x27;
+    nprop = 3
+    nvoronoi = 3
+  []
+  [reader_block]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;block&#x27;
+    nprop = 3
+    nblock = 3
+  []
+[]
+
+[Functions]
+  [element]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_element&#x27;
+    read_type = &#x27;element&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [node]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_node&#x27;
+    read_type = &#x27;node&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [nearest]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [block]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_block&#x27;
+    read_type = &#x27;block&#x27;
+    column_number = &#x27;2&#x27;
+  []
+[]
+
+[ICs]
+  active = &#x27;element&#x27;
+  [element]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;element&#x27;
+  []
+  [node]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;node&#x27;
+  []
+  [nearest]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;nearest&#x27;
+  []
+  [block]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;block&#x27;
+  []
+[]
+
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = u
+  []
+[]
+
+[BCs]
+  [unity]
+    type = DirichletBC
+    variable = u
+    boundary = &#x27;left bottom&#x27;
+    value = 1
+  []
+[]
+
+[Problem]
+  solve = false
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 0.1
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="8dc7d3f3-5fe6-4678-aac8-79f2fb6004d8"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/data_node.csv)</h4><pre class="moose-pre"><code class="language-text">0,0,0.1
+0,0,0.8
+0,0,0.4
+0,0,0.9
+0,0,1
+1,0,1.1
+1,0,2.1
+1,0,3.1
+1,0,17.1
+1,0,24
+1,0,10
+1,0,0.1
+1,0,11
+1,0,17
+1,0,1.8
+1,0,-1
+1,0,17.1
+1,0,24
+1,0,10
+1,0,0.1
+1,0,11
+1,0,17
+1,0,1.8
+1,0,-1
+1,0,-3
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

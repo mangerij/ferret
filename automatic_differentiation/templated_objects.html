@@ -1,0 +1,505 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Supporting both AD and non AD variables through templating | Ferret</title><link href="../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../media/framework/github-logo.png" class="github-mark"></img><img src="../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="fa92a8ae-b49b-4cdc-af30-188210e7a99f" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3783ca20-fe3a-49b4-9719-85f45536b996" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f1e1f88b-8c3c-4d70-abfe-73a306002a81" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a8dd6274-c4fb-486e-8ff4-adbd01fd56d8" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="d6ae9836-9e0b-4247-a42a-c748195fdb7e" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="77c1133c-b9ad-4af0-9403-023f9948dc24"><i class="material-icons">menu</i></a><ul class="sidenav" id="77c1133c-b9ad-4af0-9403-023f9948dc24"><li><a href="#!" class="dropdown-trigger" data-target="a2eefd20-a162-4688-b9f8-cde54fda6268" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="34e9f7f1-afd4-4e64-9ef0-a5d20bbfdd18" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="37bf2ce8-ba29-4a43-b183-689cf915c4d8" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="0a57fac7-2f56-42aa-9741-068ebf412ad5" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="41dcb228-c3ed-4bdc-9e2d-eb9ab1d8f822" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="fa92a8ae-b49b-4cdc-af30-188210e7a99f"><li><a href="../getting_started/install.html">Install FERRET</a></li><li><a href="../getting_started/update.html">Update FERRET</a></li><li><a href="../getting_started/running.html">Running FERRET</a></li><li><a href="../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="3783ca20-fe3a-49b4-9719-85f45536b996"><li><a href="../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="f1e1f88b-8c3c-4d70-abfe-73a306002a81"><li><a href="../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="a8dd6274-c4fb-486e-8ff4-adbd01fd56d8"><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="d6ae9836-9e0b-4247-a42a-c748195fdb7e"><li><a href="../syntax/index.html">Complete syntax</a></li><li><a href="../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="a2eefd20-a162-4688-b9f8-cde54fda6268"><li><a href="../getting_started/install.html">Install FERRET</a></li><li><a href="../getting_started/update.html">Update FERRET</a></li><li><a href="../getting_started/running.html">Running FERRET</a></li><li><a href="../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="34e9f7f1-afd4-4e64-9ef0-a5d20bbfdd18"><li><a href="../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="37bf2ce8-ba29-4a43-b183-689cf915c4d8"><li><a href="../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="0a57fac7-2f56-42aa-9741-068ebf412ad5"><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="41dcb228-c3ed-4bdc-9e2d-eb9ab1d8f822"><li><a href="../syntax/index.html">Complete syntax</a></li><li><a href="../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="1f85e84e-e35b-4ce1-b99d-cb00ae643057" data-section-level="1" data-section-text="Supporting both AD and non - AD variables through templating"><h1 id="supporting-both-ad-and-non-ad-variables-through-templating">Supporting both AD and non-AD variables through templating</h1><p>There are a large number of classes that were written before the <span class="tooltipped" data-tooltip="automatic differentiation" data-position="top" data-delay="50">AD</span> system was available that cannot leverage the AD system, and cannot therefore be used with the <a href="../finite_volumes/fv_design.html">finite volume (FV)</a> system which is AD-only.</p><p>To avoid duplicating classes that a user may wish to use with the FV system, classes can be generalized to allow use with both AD and non-AD variables through templating.</p><p>These classes are templated on a bool <code>is_ad</code>, which is <code>true</code> for AD variables, and <code>false</code> for non-AD variables. Several templated methods for coupling variables and declaring/getting material properties of any type are available, such as</p><pre class="moose-pre"><code class="language-text">
+coupledGenericValue&lt;is_ad&gt;(var_name)
+declareGenericMaterialProperty&lt;T, is_ad&gt;(mat_prop)
+getGenericMaterialProperty&lt;T, is_ad&gt;(mat_prop)
+</code></pre><p>The following examples in the framework demonstrate how to template a class to use both AD and non-AD variables and material properties.</p><section id="aa7b5c79-795f-4eac-a3e1-72049855528b" data-section-level="2" data-section-text="Materials"><h2 id="materials">Materials</h2><p>Consider the <a href="../source/materials/GenericConstantMaterial.html">GenericConstantMaterial.md</a> material. The header file defines a templated class <code>GenericConstantMaterialTempl&lt;is_ad&gt;</code> with a material property of <code>GenericMaterialProperty&lt;Real, is_ad</code> which evaluates to the correct type depending on the value of <code>is_ad</code>.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">
+#pragma once
+
+#include &quot;Material.h&quot;
+
+/**
+ * This material automatically declares as material properties whatever is passed to it
+ * through the parameters &#x27;prop_names&#x27; and uses the values from &#x27;prop_values&#x27; as the values
+ * for those properties.
+ *
+ * This is not meant to be used in a production capacity... and instead is meant to be used
+ * during development phases for ultimate flexibility.
+ */
+template &lt;bool is_ad&gt;
+class GenericConstantMaterialTempl : public Material
+{
+public:
+  static InputParameters validParams();
+
+  GenericConstantMaterialTempl(const InputParameters &amp; parameters);
+
+protected:
+  virtual void initQpStatefulProperties() override;
+  virtual void computeQpProperties() override;
+
+  const std::vector&lt;std::string&gt; &amp; _prop_names;
+  const std::vector&lt;Real&gt; &amp; _prop_values;
+
+  unsigned int _num_props;
+
+  std::vector&lt;GenericMaterialProperty&lt;Real, is_ad&gt; *&gt; _properties;
+};
+
+typedef GenericConstantMaterialTempl&lt;false&gt; GenericConstantMaterial;
+typedef GenericConstantMaterialTempl&lt;true&gt; ADGenericConstantMaterial;
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#3c040a6e-e9d1-4acd-bfd8-630db13c1e97">(../moose/framework/include/materials/GenericConstantMaterial.h)</a><p>Note the <code>typedef</code>&#x27;s at the end of the header: when <code>GenericConstantMaterial</code> is used in an input file, this class is instantiated with <code>is_ad = false</code>, while when <code>ADGenericConstantMaterial</code> is used, <code>is_ad = true</code>.</p><p>The corresponding source file with templated methods is</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">
+#include &quot;GenericConstantMaterial.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, GenericConstantMaterial);
+registerMooseObject(&quot;MooseApp&quot;, ADGenericConstantMaterial);
+
+template &lt;bool is_ad&gt;
+InputParameters
+GenericConstantMaterialTempl&lt;is_ad&gt;::validParams()
+{
+  InputParameters params = Material::validParams();
+  params.addClassDescription(
+      &quot;Declares material properties based on names and values prescribed by input parameters.&quot;);
+  params.addRequiredParam&lt;std::vector&lt;std::string&gt;&gt;(
+      &quot;prop_names&quot;, &quot;The names of the properties this material will have&quot;);
+  params.addRequiredParam&lt;std::vector&lt;Real&gt;&gt;(&quot;prop_values&quot;,
+                                             &quot;The values associated with the named properties&quot;);
+  params.set&lt;MooseEnum&gt;(&quot;constant_on&quot;) = &quot;SUBDOMAIN&quot;;
+  params.declareControllable(&quot;prop_values&quot;);
+  return params;
+}
+
+template &lt;bool is_ad&gt;
+GenericConstantMaterialTempl&lt;is_ad&gt;::GenericConstantMaterialTempl(
+    const InputParameters &amp; parameters)
+  : Material(parameters),
+    _prop_names(getParam&lt;std::vector&lt;std::string&gt;&gt;(&quot;prop_names&quot;)),
+    _prop_values(getParam&lt;std::vector&lt;Real&gt;&gt;(&quot;prop_values&quot;))
+{
+  unsigned int num_names = _prop_names.size();
+  unsigned int num_values = _prop_values.size();
+
+  if (num_names != num_values)
+    mooseError(
+        &quot;Number of prop_names must match the number of prop_values for a GenericConstantMaterial!&quot;);
+
+  _num_props = num_names;
+
+  _properties.resize(num_names);
+
+  for (unsigned int i = 0; i &lt; _num_props; i++)
+    _properties[i] = &amp;declareGenericProperty&lt;Real, is_ad&gt;(_prop_names[i]);
+}
+
+template &lt;bool is_ad&gt;
+void
+GenericConstantMaterialTempl&lt;is_ad&gt;::initQpStatefulProperties()
+{
+  computeQpProperties();
+}
+
+template &lt;bool is_ad&gt;
+void
+GenericConstantMaterialTempl&lt;is_ad&gt;::computeQpProperties()
+{
+  for (unsigned int i = 0; i &lt; _num_props; i++)
+    (*_properties[i])[_qp] = _prop_values[i];
+}
+
+template class GenericConstantMaterialTempl&lt;false&gt;;
+template class GenericConstantMaterialTempl&lt;true&gt;;
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2fe62e39-05c6-4cca-81e4-dbc41bd5a467">(../moose/framework/src/materials/GenericConstantMaterial.C)</a><p>Note that both <code>GenericConstantMaterial</code> and <code>ADGenericConstantMaterial</code> are registered to the app, and the material property is declared using the templated <code>declareGenericMaterialProperty&lt;T, is_ad&gt;(mat_prop)</code>.</p></section><section id="5e0a2227-afcb-4a50-b526-47276485be81" data-section-level="2" data-section-text="Kernels"><h2 id="kernels">Kernels</h2><p>Other classes can be templated in a similar fashion. Consider a <a href="../source/kernels/BodyForce.html">Kernel</a> example. In this case, the class is derived from the <code>GenericKernel</code> base class, to ensure that the <code>computeQpResidual()</code> method returns the correct type for both AD and non-AD variables (note that it is of type <code>GenericReal&lt;is_ad&gt;</code>). Otherwise, the basic concept is the same as before.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">
+#pragma once
+
+#include &quot;GenericKernel.h&quot;
+
+class Function;
+
+/**
+ * This kernel implements a generic functional
+ * body force term:
+ * $ - c \cdof f \cdot \phi_i $
+ *
+ * The coefficient and function both have defaults
+ * equal to 1.0.
+ */
+template &lt;bool is_ad&gt;
+class BodyForceTempl : public GenericKernel&lt;is_ad&gt;
+{
+public:
+  static InputParameters validParams();
+
+  BodyForceTempl(const InputParameters &amp; parameters);
+
+protected:
+  virtual GenericReal&lt;is_ad&gt; computeQpResidual() override;
+
+  /// Scale factor
+  const Real &amp; _scale;
+
+  /// Optional function value
+  const Function &amp; _function;
+
+  /// Optional Postprocessor value
+  const PostprocessorValue &amp; _postprocessor;
+
+  // AD/non-AD version of the quadrature point coordinates
+  const MooseArray&lt;MooseADWrapper&lt;Point, is_ad&gt;&gt; * _generic_q_point;
+
+  usingGenericKernelMembers;
+};
+
+typedef BodyForceTempl&lt;false&gt; BodyForce;
+typedef BodyForceTempl&lt;true&gt; ADBodyForce;
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#b1680363-adff-419a-8a53-0245db631904">(../moose/framework/include/kernels/BodyForce.h)</a><p>The corresponding source file is</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">
+#include &quot;BodyForce.h&quot;
+
+// MOOSE
+#include &quot;Function.h&quot;
+#include &quot;Assembly.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, BodyForce);
+registerMooseObject(&quot;MooseApp&quot;, ADBodyForce);
+
+template &lt;bool is_ad&gt;
+InputParameters
+BodyForceTempl&lt;is_ad&gt;::validParams()
+{
+  InputParameters params = GenericKernel&lt;is_ad&gt;::validParams();
+  params.addClassDescription(&quot;Demonstrates the multiple ways that scalar values can be introduced &quot;
+                             &quot;into kernels, e.g. (controllable) constants, functions, and &quot;
+                             &quot;postprocessors. Implements the weak form $(\\psi_i, -f)$.&quot;);
+  params.addParam&lt;Real&gt;(&quot;value&quot;, 1.0, &quot;Coefficient to multiply by the body force term&quot;);
+  params.addParam&lt;FunctionName&gt;(&quot;function&quot;, &quot;1&quot;, &quot;A function that describes the body force&quot;);
+  params.addParam&lt;PostprocessorName&gt;(
+      &quot;postprocessor&quot;, 1, &quot;A postprocessor whose value is multiplied by the body force&quot;);
+  params.declareControllable(&quot;value&quot;);
+  return params;
+}
+
+template &lt;bool is_ad&gt;
+BodyForceTempl&lt;is_ad&gt;::BodyForceTempl(const InputParameters &amp; parameters)
+  : GenericKernel&lt;is_ad&gt;(parameters),
+    _scale(this-&gt;template getParam&lt;Real&gt;(&quot;value&quot;)),
+    _function(getFunction(&quot;function&quot;)),
+    _postprocessor(getPostprocessorValue(&quot;postprocessor&quot;)),
+    _generic_q_point(this-&gt;_use_displaced_mesh ? &amp;this-&gt;_assembly.template genericQPoints&lt;is_ad&gt;()
+                                               : nullptr)
+{
+}
+
+template &lt;bool is_ad&gt;
+GenericReal&lt;is_ad&gt;
+BodyForceTempl&lt;is_ad&gt;::computeQpResidual()
+{
+  if (_generic_q_point)
+    return -_test[_i][_qp] * _scale * _postprocessor *
+           _function.value(_t, (*_generic_q_point)[_qp]);
+  else
+    return -_test[_i][_qp] * _scale * _postprocessor * _function.value(_t, _q_point[_qp]);
+}
+
+template class BodyForceTempl&lt;false&gt;;
+template class BodyForceTempl&lt;true&gt;;
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#e9f43ff8-6acb-4941-a1d4-79040f1a868b">(../moose/framework/src/kernels/BodyForce.C)</a><p>One important observation in this case is that this class (<code>BodyForcdeTempl</code>) derives from a templated base class (<code>GenericKernel&lt;is_ad</code>). This is slightly more complicated than the material example above. Members of the base class are not available in this derived class without including them with the <code>using</code> declaration in the header file (<code>usingGenericKernelMembers</code>), which is defined in the <code>GenericKernel</code> header</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">
+#pragma once
+
+#include &quot;Kernel.h&quot;
+#include &quot;ADKernel.h&quot;
+
+template &lt;bool is_ad&gt;
+class GenericKernel : public Kernel
+{
+public:
+  static InputParameters validParams() { return Kernel::validParams(); };
+  GenericKernel(const InputParameters &amp; parameters) : Kernel(parameters) {}
+};
+
+template &lt;&gt;
+class GenericKernel&lt;true&gt; : public ADKernel
+{
+public:
+  static InputParameters validParams() { return ADKernel::validParams(); };
+  GenericKernel(const InputParameters &amp; parameters) : ADKernel(parameters) {}
+};
+
+#define usingGenericKernelMembers                                                                  \
+  usingFunctionInterfaceMembers;                                                                   \
+  usingPostprocessorInterfaceMembers;                                                              \
+  usingMooseObjectMembers;                                                                         \
+  usingTransientInterfaceMembers;                                                                  \
+  usingTaggingInterfaceMembers;                                                                    \
+  usingBlockRestrictableMembers;                                                                   \
+  using GenericKernel&lt;is_ad&gt;::_qp;                                                                 \
+  using GenericKernel&lt;is_ad&gt;::_i;                                                                  \
+  using GenericKernel&lt;is_ad&gt;::_j;                                                                  \
+  using GenericKernel&lt;is_ad&gt;::_u;                                                                  \
+  using GenericKernel&lt;is_ad&gt;::_phi;                                                                \
+  using GenericKernel&lt;is_ad&gt;::_test;                                                               \
+  using GenericKernel&lt;is_ad&gt;::_q_point;                                                            \
+  using GenericKernel&lt;is_ad&gt;::_var;                                                                \
+  using GenericKernel&lt;is_ad&gt;::_name;                                                               \
+  using GenericKernel&lt;is_ad&gt;::getVar;                                                              \
+  using Coupleable::coupled;                                                                       \
+  using Coupleable::coupledComponents
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#3c3d08e4-a730-48f2-8cc3-4a9bcaf805bc">(../moose/framework/include/kernels/GenericKernel.h)</a><p>In addition, templated methods used in a class derived from a templated base class (like in example above) must be prefixed with <code>this-&gt;template</code> to avoid compiler ambiguity, for example, the use of <code>getParam&lt;T&gt;</code> in the <code>BodyForce</code> kernel above</p><pre class="moose-pre" style="max-height:350px;"><code class="language-None">_scale(this-&gt;template getParam&lt;Real&gt;(&quot;value&quot;)),</code></pre></section></section><div class="moose-modal modal" id="3c040a6e-e9d1-4acd-bfd8-630db13c1e97"><div class="modal-content"><h4>(../moose/framework/include/materials/GenericConstantMaterial.h)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#pragma once
+
+#include &quot;Material.h&quot;
+
+/**
+ * This material automatically declares as material properties whatever is passed to it
+ * through the parameters &#x27;prop_names&#x27; and uses the values from &#x27;prop_values&#x27; as the values
+ * for those properties.
+ *
+ * This is not meant to be used in a production capacity... and instead is meant to be used
+ * during development phases for ultimate flexibility.
+ */
+template &lt;bool is_ad&gt;
+class GenericConstantMaterialTempl : public Material
+{
+public:
+  static InputParameters validParams();
+
+  GenericConstantMaterialTempl(const InputParameters &amp; parameters);
+
+protected:
+  virtual void initQpStatefulProperties() override;
+  virtual void computeQpProperties() override;
+
+  const std::vector&lt;std::string&gt; &amp; _prop_names;
+  const std::vector&lt;Real&gt; &amp; _prop_values;
+
+  unsigned int _num_props;
+
+  std::vector&lt;GenericMaterialProperty&lt;Real, is_ad&gt; *&gt; _properties;
+};
+
+typedef GenericConstantMaterialTempl&lt;false&gt; GenericConstantMaterial;
+typedef GenericConstantMaterialTempl&lt;true&gt; ADGenericConstantMaterial;
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2fe62e39-05c6-4cca-81e4-dbc41bd5a467"><div class="modal-content"><h4>(../moose/framework/src/materials/GenericConstantMaterial.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;GenericConstantMaterial.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, GenericConstantMaterial);
+registerMooseObject(&quot;MooseApp&quot;, ADGenericConstantMaterial);
+
+template &lt;bool is_ad&gt;
+InputParameters
+GenericConstantMaterialTempl&lt;is_ad&gt;::validParams()
+{
+  InputParameters params = Material::validParams();
+  params.addClassDescription(
+      &quot;Declares material properties based on names and values prescribed by input parameters.&quot;);
+  params.addRequiredParam&lt;std::vector&lt;std::string&gt;&gt;(
+      &quot;prop_names&quot;, &quot;The names of the properties this material will have&quot;);
+  params.addRequiredParam&lt;std::vector&lt;Real&gt;&gt;(&quot;prop_values&quot;,
+                                             &quot;The values associated with the named properties&quot;);
+  params.set&lt;MooseEnum&gt;(&quot;constant_on&quot;) = &quot;SUBDOMAIN&quot;;
+  params.declareControllable(&quot;prop_values&quot;);
+  return params;
+}
+
+template &lt;bool is_ad&gt;
+GenericConstantMaterialTempl&lt;is_ad&gt;::GenericConstantMaterialTempl(
+    const InputParameters &amp; parameters)
+  : Material(parameters),
+    _prop_names(getParam&lt;std::vector&lt;std::string&gt;&gt;(&quot;prop_names&quot;)),
+    _prop_values(getParam&lt;std::vector&lt;Real&gt;&gt;(&quot;prop_values&quot;))
+{
+  unsigned int num_names = _prop_names.size();
+  unsigned int num_values = _prop_values.size();
+
+  if (num_names != num_values)
+    mooseError(
+        &quot;Number of prop_names must match the number of prop_values for a GenericConstantMaterial!&quot;);
+
+  _num_props = num_names;
+
+  _properties.resize(num_names);
+
+  for (unsigned int i = 0; i &lt; _num_props; i++)
+    _properties[i] = &amp;declareGenericProperty&lt;Real, is_ad&gt;(_prop_names[i]);
+}
+
+template &lt;bool is_ad&gt;
+void
+GenericConstantMaterialTempl&lt;is_ad&gt;::initQpStatefulProperties()
+{
+  computeQpProperties();
+}
+
+template &lt;bool is_ad&gt;
+void
+GenericConstantMaterialTempl&lt;is_ad&gt;::computeQpProperties()
+{
+  for (unsigned int i = 0; i &lt; _num_props; i++)
+    (*_properties[i])[_qp] = _prop_values[i];
+}
+
+template class GenericConstantMaterialTempl&lt;false&gt;;
+template class GenericConstantMaterialTempl&lt;true&gt;;
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="b1680363-adff-419a-8a53-0245db631904"><div class="modal-content"><h4>(../moose/framework/include/kernels/BodyForce.h)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#pragma once
+
+#include &quot;GenericKernel.h&quot;
+
+class Function;
+
+/**
+ * This kernel implements a generic functional
+ * body force term:
+ * $ - c \cdof f \cdot \phi_i $
+ *
+ * The coefficient and function both have defaults
+ * equal to 1.0.
+ */
+template &lt;bool is_ad&gt;
+class BodyForceTempl : public GenericKernel&lt;is_ad&gt;
+{
+public:
+  static InputParameters validParams();
+
+  BodyForceTempl(const InputParameters &amp; parameters);
+
+protected:
+  virtual GenericReal&lt;is_ad&gt; computeQpResidual() override;
+
+  /// Scale factor
+  const Real &amp; _scale;
+
+  /// Optional function value
+  const Function &amp; _function;
+
+  /// Optional Postprocessor value
+  const PostprocessorValue &amp; _postprocessor;
+
+  // AD/non-AD version of the quadrature point coordinates
+  const MooseArray&lt;MooseADWrapper&lt;Point, is_ad&gt;&gt; * _generic_q_point;
+
+  usingGenericKernelMembers;
+};
+
+typedef BodyForceTempl&lt;false&gt; BodyForce;
+typedef BodyForceTempl&lt;true&gt; ADBodyForce;
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="e9f43ff8-6acb-4941-a1d4-79040f1a868b"><div class="modal-content"><h4>(../moose/framework/src/kernels/BodyForce.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;BodyForce.h&quot;
+
+// MOOSE
+#include &quot;Function.h&quot;
+#include &quot;Assembly.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, BodyForce);
+registerMooseObject(&quot;MooseApp&quot;, ADBodyForce);
+
+template &lt;bool is_ad&gt;
+InputParameters
+BodyForceTempl&lt;is_ad&gt;::validParams()
+{
+  InputParameters params = GenericKernel&lt;is_ad&gt;::validParams();
+  params.addClassDescription(&quot;Demonstrates the multiple ways that scalar values can be introduced &quot;
+                             &quot;into kernels, e.g. (controllable) constants, functions, and &quot;
+                             &quot;postprocessors. Implements the weak form $(\\psi_i, -f)$.&quot;);
+  params.addParam&lt;Real&gt;(&quot;value&quot;, 1.0, &quot;Coefficient to multiply by the body force term&quot;);
+  params.addParam&lt;FunctionName&gt;(&quot;function&quot;, &quot;1&quot;, &quot;A function that describes the body force&quot;);
+  params.addParam&lt;PostprocessorName&gt;(
+      &quot;postprocessor&quot;, 1, &quot;A postprocessor whose value is multiplied by the body force&quot;);
+  params.declareControllable(&quot;value&quot;);
+  return params;
+}
+
+template &lt;bool is_ad&gt;
+BodyForceTempl&lt;is_ad&gt;::BodyForceTempl(const InputParameters &amp; parameters)
+  : GenericKernel&lt;is_ad&gt;(parameters),
+    _scale(this-&gt;template getParam&lt;Real&gt;(&quot;value&quot;)),
+    _function(getFunction(&quot;function&quot;)),
+    _postprocessor(getPostprocessorValue(&quot;postprocessor&quot;)),
+    _generic_q_point(this-&gt;_use_displaced_mesh ? &amp;this-&gt;_assembly.template genericQPoints&lt;is_ad&gt;()
+                                               : nullptr)
+{
+}
+
+template &lt;bool is_ad&gt;
+GenericReal&lt;is_ad&gt;
+BodyForceTempl&lt;is_ad&gt;::computeQpResidual()
+{
+  if (_generic_q_point)
+    return -_test[_i][_qp] * _scale * _postprocessor *
+           _function.value(_t, (*_generic_q_point)[_qp]);
+  else
+    return -_test[_i][_qp] * _scale * _postprocessor * _function.value(_t, _q_point[_qp]);
+}
+
+template class BodyForceTempl&lt;false&gt;;
+template class BodyForceTempl&lt;true&gt;;
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="3c3d08e4-a730-48f2-8cc3-4a9bcaf805bc"><div class="modal-content"><h4>(../moose/framework/include/kernels/GenericKernel.h)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#pragma once
+
+#include &quot;Kernel.h&quot;
+#include &quot;ADKernel.h&quot;
+
+template &lt;bool is_ad&gt;
+class GenericKernel : public Kernel
+{
+public:
+  static InputParameters validParams() { return Kernel::validParams(); };
+  GenericKernel(const InputParameters &amp; parameters) : Kernel(parameters) {}
+};
+
+template &lt;&gt;
+class GenericKernel&lt;true&gt; : public ADKernel
+{
+public:
+  static InputParameters validParams() { return ADKernel::validParams(); };
+  GenericKernel(const InputParameters &amp; parameters) : ADKernel(parameters) {}
+};
+
+#define usingGenericKernelMembers                                                                  \
+  usingFunctionInterfaceMembers;                                                                   \
+  usingPostprocessorInterfaceMembers;                                                              \
+  usingMooseObjectMembers;                                                                         \
+  usingTransientInterfaceMembers;                                                                  \
+  usingTaggingInterfaceMembers;                                                                    \
+  usingBlockRestrictableMembers;                                                                   \
+  using GenericKernel&lt;is_ad&gt;::_qp;                                                                 \
+  using GenericKernel&lt;is_ad&gt;::_i;                                                                  \
+  using GenericKernel&lt;is_ad&gt;::_j;                                                                  \
+  using GenericKernel&lt;is_ad&gt;::_u;                                                                  \
+  using GenericKernel&lt;is_ad&gt;::_phi;                                                                \
+  using GenericKernel&lt;is_ad&gt;::_test;                                                               \
+  using GenericKernel&lt;is_ad&gt;::_q_point;                                                            \
+  using GenericKernel&lt;is_ad&gt;::_var;                                                                \
+  using GenericKernel&lt;is_ad&gt;::_name;                                                               \
+  using GenericKernel&lt;is_ad&gt;::getVar;                                                              \
+  using Coupleable::coupled;                                                                       \
+  using Coupleable::coupledComponents
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../js/init.js"></script><script type="text/javascript" src="../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../js/sqa_moose.js"></script>

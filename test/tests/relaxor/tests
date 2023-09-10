@@ -1,9 +1,0 @@
-[Tests]
-  #[./coor_field]
-  #  type = 'Exodiff'
-  #  input = 'coor.i'
-  #  exodiff = 'out_test.e'
-  #  max_parallel = 1
-  #  max_threads = 1
-  #[../]
-[]

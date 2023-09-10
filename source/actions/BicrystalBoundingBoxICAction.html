@@ -1,0 +1,119 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>BicrystalBoundingBoxICAction | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="3c0a76aa-c14f-4cc0-9a09-c9f46346398d" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="fd64623a-d79b-4a4c-bc36-35b8cbdfd80e" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="745abb0f-8349-43d3-b8ef-0c05d15989ca" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="be0963e3-7d71-428b-85fa-2611065265e0" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="568443eb-b3e1-493e-be4b-5c482b7c5448" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="231d4bd7-537f-4387-8086-0e86d3efd832"><i class="material-icons">menu</i></a><ul class="sidenav" id="231d4bd7-537f-4387-8086-0e86d3efd832"><li><a href="#!" class="dropdown-trigger" data-target="cb63355a-d263-4c17-82f0-7ae1ce3dbda2" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f4b8c938-6684-48a6-8ebe-8fa092906d04" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e9d29a10-7efd-424c-a38f-72d391aca6dd" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="205eb422-8ad2-42a9-8b92-fb068d1a1a0a" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="028d59be-de68-4fd0-8e2a-aaa13b41b69b" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="3c0a76aa-c14f-4cc0-9a09-c9f46346398d"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="fd64623a-d79b-4a4c-bc36-35b8cbdfd80e"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="745abb0f-8349-43d3-b8ef-0c05d15989ca"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="be0963e3-7d71-428b-85fa-2611065265e0"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="568443eb-b3e1-493e-be4b-5c482b7c5448"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="cb63355a-d263-4c17-82f0-7ae1ce3dbda2"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="f4b8c938-6684-48a6-8ebe-8fa092906d04"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="e9d29a10-7efd-424c-a38f-72d391aca6dd"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="205eb422-8ad2-42a9-8b92-fb068d1a1a0a"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="028d59be-de68-4fd0-8e2a-aaa13b41b69b"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="628304e7-bbb3-489d-9617-eb6daccb3e57" data-section-level="1" data-section-text="BicrystalBoundingBoxICAction"><h1 id="bicrystalboundingboxicaction">BicrystalBoundingBoxICAction</h1><p>Constructs a bicrystal, where one grain is on the inside of the box and the other grain is the outside of the box</p><section id="72125827-cdab-474b-ad7b-986cc6205fba" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>This action creates the initial conditions (ICs) for the two order parameters used to represent a bicrystal. It creates a grain structure with the first grain represented by a rectangle (2D) or rectangular prism (3D) embedded in the second grain. One common use is to create a bicrystal with a single straight grain boundary between the two grains.</p><p>The action creates two ICs with the <a href="../ics/BoundingBoxIC.html">BoundingBoxIC</a>, one for each order parameter. Each are defined with the same bounding box coordinates, but for the first order parameter <code>inside = 1.0</code> and <code>outside = 0.0</code> and for the second <code>inside = 0.0</code> and <code>outside = 1.0</code>.</p></section><section id="c7556bbe-4717-4052-8d7c-374184458f7b" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p>The <code>BicrystalBoundingBoxICAction</code> is accessed through the <code>ICs/PolycrystalICs</code> block, as shown below.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[ICs]
+  [./PolycrystalICs]
+    [./BicrystalBoundingBoxIC]
+      x1 = 0
+      y1 = 0
+      x2 = 500
+      y2 = 1000
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#9b4ad29e-682d-4757-975b-7c9d24db6e2f">(../moose/modules/phase_field/test/tests/grain_growth/boundingbox.i)</a></section><section id="60132af0-4662-478f-90a8-b0ed978048ff" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="1a627a18-8931-4f9b-b82f-d355b2161ec2" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">op_num</span><span class="moose-parameter-header-description">Number of grains, should be 2</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of grains, should be 2</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">var_name_base</span><span class="moose-parameter-header-description">specifies the base name of the variables</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>specifies the base name of the variables</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">x1</span><span class="moose-parameter-header-description">The x coordinate of the lower left-hand corner of the box</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x coordinate of the lower left-hand corner of the box</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">x2</span><span class="moose-parameter-header-description">The x coordinate of the upper right-hand corner of the box</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x coordinate of the upper right-hand corner of the box</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">y1</span><span class="moose-parameter-header-description">The y coordinate of the lower left-hand corner of the box</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y coordinate of the lower left-hand corner of the box</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">y2</span><span class="moose-parameter-header-description">The y coordinate of the upper right-hand corner of the box</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y coordinate of the upper right-hand corner of the box</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="4fa27d69-1f37-40bb-a4d2-0f4da3b5ee54" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">active</span><span class="moose-parameter-header-default">__all__ </span><span class="moose-parameter-header-description">If specified only the blocks named will be visited and made active</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>__all__ </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified only the blocks named will be visited and made active</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">Block restriction for the initial condition</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Block restriction for the initial condition</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inactive</span><span class="moose-parameter-header-description">If specified blocks matching these identifiers will be skipped.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified blocks matching these identifiers will be skipped.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">z1</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The z coordinate of the lower left-hand corner of the box</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z coordinate of the lower left-hand corner of the box</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">z2</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The z coordinate of the upper right-hand corner of the box</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z coordinate of the upper right-hand corner of the box</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="9b4ad29e-682d-4757-975b-7c9d24db6e2f"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/grain_growth/boundingbox.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+  nz = 0
+  xmin = 0
+  xmax = 1000
+  ymin = 0
+  ymax = 1000
+  zmin = 0
+  zmax = 0
+  elem_type = QUAD4
+  uniform_refine = 2
+[]
+
+[GlobalParams]
+  op_num = 2
+  var_name_base = gr
+[]
+
+[Variables]
+  [./PolycrystalVariables]
+  [../]
+[]
+
+[ICs]
+  [./PolycrystalICs]
+    [./BicrystalBoundingBoxIC]
+      x1 = 0
+      y1 = 0
+      x2 = 500
+      y2 = 1000
+    [../]
+  [../]
+[]
+
+[AuxVariables]
+  [./bnds]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./PolycrystalKernel]
+  [../]
+[]
+
+[AuxKernels]
+  [./BndsCalc]
+    type = BndsCalcAux
+    variable = bnds
+  [../]
+[]
+
+[Materials]
+  [./Copper]
+    type = GBEvolution
+    T = 500 # K
+    wGB = 60 # nm
+    GBmob0 = 2.5e-6 # m^4/(Js) from Schoenfelder 1997
+    Q = 0.23 # Migration energy in eV
+    GBenergy = 0.708 # GB energy in J/m^2
+  [../]
+[]
+
+[Postprocessors]
+  [./gr1area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr1
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = bdf2
+  solve_type = NEWTON
+
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27;hypre boomeramg 31&#x27;
+
+  l_tol = 1.0e-4
+  l_max_its = 30
+  nl_max_its = 20
+  nl_rel_tol = 1.0e-9
+  start_time = 0.0
+  num_steps = 10
+  dt = 80.0
+  [./Adaptivity]
+    initial_adaptivity = 2
+    refine_fraction = 0.8
+    coarsen_fraction = 0.05
+    max_h_level = 2
+  [../]
+[]
+
+[Outputs]
+  execute_on = &#x27;timestep_end&#x27;
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

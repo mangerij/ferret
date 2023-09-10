@@ -1,0 +1,183 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>PiecewiseConstantFromCSV | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="a3c8526e-4730-4100-a448-a13b34ac8522" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d8771f7d-34c4-4a72-8797-b0bb3675b803" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1ade19eb-6f58-44ec-b5ab-0a3f524b50d7" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="cfa62a5b-1408-49af-8855-57ea79087b5a" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="9c968d56-a0eb-4eee-83e5-a95e761e4891" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="54e5edf0-b25d-4fe0-be2d-469f21ad1a9c"><i class="material-icons">menu</i></a><ul class="sidenav" id="54e5edf0-b25d-4fe0-be2d-469f21ad1a9c"><li><a href="#!" class="dropdown-trigger" data-target="ea52261a-6d85-4940-94ce-fc735f26fc19" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="2f445560-c450-41ef-948e-f3939390faf7" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b6b11512-138e-40c2-8d4f-f128cbc20a20" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="59b7f3f5-7054-49a6-94a8-c69efd3cfe6b" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="7fc63fb3-6385-4574-8679-e920468d2abc" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="a3c8526e-4730-4100-a448-a13b34ac8522"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="d8771f7d-34c4-4a72-8797-b0bb3675b803"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="1ade19eb-6f58-44ec-b5ab-0a3f524b50d7"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="cfa62a5b-1408-49af-8855-57ea79087b5a"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="9c968d56-a0eb-4eee-83e5-a95e761e4891"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="ea52261a-6d85-4940-94ce-fc735f26fc19"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="2f445560-c450-41ef-948e-f3939390faf7"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="b6b11512-138e-40c2-8d4f-f128cbc20a20"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="59b7f3f5-7054-49a6-94a8-c69efd3cfe6b"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="7fc63fb3-6385-4574-8679-e920468d2abc"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="3b24352a-9797-4d93-8dfc-99dfc968ac69" data-section-level="1" data-section-text="PiecewiseConstantFromCSV"><h1 id="piecewiseconstantfromcsv">PiecewiseConstantFromCSV</h1><p>Uses data read from CSV to assign values</p><section id="fa0acc09-7e08-4b07-8ef1-580e72a18ed5" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p>The <code>PiecewiseConstantFromCSV</code> function is used to load data from a CSV file into a function. The <a href="../userobjects/PropertyReadFile.html">PropertyReadFile</a> user object takes care of reading the CSV file, and the function queries information from it.</p><p>It can assume CSV data</p><ul class="browser-default"><li><p>is sorted by element-id, in which case, when the function is evaluated at a point, it will locate the element containing it then return the value for that element in the CSV file </p></li><li><p>is sorted by blocks, in which case, when the function is evaluated at a point, it will locate the element containing it then return the value for that element&#x27;s block in the CSV file </p></li><li><p>defines an interpolation grid, in which case the function will locate the closest point in that interpolation grid, then return the value for that point in the CSV file</p></li></ul><p>For the latter case, the first columns of the CSV data must define the coordinates of each point forming the interpolation grid. The number of columns used to define these coordinates must match the dimension of the mesh.</p><div class="card moose-alert moose-alert-note"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">comment</i><span class="moose-alert-title-brand">note</span></div><div class="card-content"><div class="moose-alert-content"><p>When use data by block or by element, if there is multiple possibilities for the element to choose from, for example at a node, the element with the lowest ID will be used.</p></div></div></div></section><section id="7aa99a8d-f3a3-4d24-bfaf-6fdfc1f14686" data-section-level="2" data-section-text="Example Input Syntax"><h2 id="example-input-syntax">Example Input Syntax</h2><p>In this example, we display three options for using CSV data to compute a function over an unstructured mesh:</p><ul class="browser-default"><li><p>the <code>element</code> function, using the <code>reader_element</code> user object, assumes the CSV file is sorted by element ID, and returns the value of the element containing each point </p></li><li><p>the <code>nearest</code> function, using the <code>reader_nearest</code> user object, finds the closest point defined in the CSV file, and returns the corresponding value </p></li><li><p>the <code>block</code> function, using the <code>reader_block</code> user object, assumes the data in the CSV file is sorted by block, and returns the value corresponding to the block containing each point</p></li></ul><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Functions]
+  [element]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_element&#x27;
+    read_type = &#x27;element&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [node]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_node&#x27;
+    read_type = &#x27;node&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [nearest]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [block]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_block&#x27;
+    read_type = &#x27;block&#x27;
+    column_number = &#x27;2&#x27;
+  []
+[]
+
+[UserObjects]
+  [reader_element]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_element.csv&#x27;
+    read_type = &#x27;element&#x27;
+    nprop = 3 # number of columns in CSV
+  []
+  [reader_node]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_node.csv&#x27;
+    read_type = &#x27;node&#x27;
+    nprop = 3 # number of columns in CSV
+  []
+  [reader_nearest]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;voronoi&#x27;
+    nprop = 3
+    nvoronoi = 3
+  []
+  [reader_block]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;block&#x27;
+    nprop = 3
+    nblock = 3
+  []
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#cd143c75-2e25-4223-9a17-8feceebe8732">(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</a></section><section id="c0ade88f-3f45-4484-a33d-5b61c16beb54" data-section-level="2" data-section-text="Other functions which may read data from CSV"><h2 id="other-functions-which-may-read-data-from-csv">Other functions which may read data from CSV</h2><p>These functions read spatial data from CSV, e.g. data that is sorted by location not node, element or block.</p><ul class="browser-default"><li><p><a href="PiecewiseConstant.html">PiecewiseConstant</a> (1D or time dependence) </p></li><li><p><a href="PiecewiseLinear.html">PiecewiseLinear</a> and <a href="CoarsenedPiecewiseLinear.html">CoarsenedPiecewiseLinear</a> (1D or time dependence) </p></li><li><p><a href="PiecewiseBilinear.html">PiecewiseBilinear</a> (2D) </p></li><li><p><a href="PiecewiseMulticonstant.html">PiecewiseMulticonstant</a> (1D to 4D) </p></li><li><p><a href="PiecewiseMultilinear.html">PiecewiseMultilinear</a> (1D to 4D) </p></li><li><p><a href="Axisymmetric2D3DSolutionFunction.html">Axisymmetric2D3DSolutionFunction</a></p></li></ul></section><section id="28604f6c-b8dc-47df-89db-84492368d84c" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="2a3e7e6e-2e56-4439-843b-b28a31252713" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">column_number</span><span class="moose-parameter-header-description">The column number (0-indexing) for the desired data in the CSV</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The column number (0-indexing) for the desired data in the CSV</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">read_prop_user_object</span><span class="moose-parameter-header-description">The PropertyReadFile GeneralUserObject to read element specific property values from file</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>UserObjectName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The PropertyReadFile GeneralUserObject to read element specific property values from file</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">read_type</span><span class="moose-parameter-header-description">Organization of data in the CSV file: element:by element node: by node voronoi:nearest neighbor / voronoi tesselation structure block:by mesh block</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>element, voronoi, block, node</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Organization of data in the CSV file: element:by element node: by node voronoi:nearest neighbor / voronoi tesselation structure block:by mesh block</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="710b7a3e-a71c-4b35-8083-1e7732512cc7" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">ghost_layers</span><span class="moose-parameter-header-default">1</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned short</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"></p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="6088e7d5-22e1-4686-a5ef-96826fbc2a1e" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="cd143c75-2e25-4223-9a17-8feceebe8732"><div class="modal-content"><h4>(../moose/test/tests/functions/piecewise_constant_from_csv/piecewise_constant.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  allow_renumbering = false
+  [cmg]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;1.5 2.4 0.1&#x27;
+    dy = &#x27;1.3 0.9&#x27;
+    ix = &#x27;2 1 1&#x27;
+    iy = &#x27;1 3&#x27;
+    subdomain_id = &#x27;0 1 1
+                    2 2 2&#x27;
+  []
+[]
+
+[Variables]
+  [u]
+  []
+[]
+
+[UserObjects]
+  [reader_element]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_element.csv&#x27;
+    read_type = &#x27;element&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_node]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_node.csv&#x27;
+    read_type = &#x27;node&#x27;
+    nprop = 3  # number of columns in CSV
+  []
+  [reader_nearest]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;voronoi&#x27;
+    nprop = 3
+    nvoronoi = 3
+  []
+  [reader_block]
+    type = PropertyReadFile
+    prop_file_name = &#x27;data_nearest.csv&#x27;
+    read_type = &#x27;block&#x27;
+    nprop = 3
+    nblock = 3
+  []
+[]
+
+[Functions]
+  [element]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_element&#x27;
+    read_type = &#x27;element&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [node]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_node&#x27;
+    read_type = &#x27;node&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [nearest]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;2&#x27;
+  []
+  [block]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_block&#x27;
+    read_type = &#x27;block&#x27;
+    column_number = &#x27;2&#x27;
+  []
+[]
+
+[ICs]
+  active = &#x27;element&#x27;
+  [element]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;element&#x27;
+  []
+  [node]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;node&#x27;
+  []
+  [nearest]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;nearest&#x27;
+  []
+  [block]
+    type = FunctionIC
+    variable = &#x27;u&#x27;
+    function = &#x27;block&#x27;
+  []
+[]
+
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = u
+  []
+[]
+
+[BCs]
+  [unity]
+    type = DirichletBC
+    variable = u
+    boundary = &#x27;left bottom&#x27;
+    value = 1
+  []
+[]
+
+[Problem]
+  solve = false
+[]
+
+[Executioner]
+  type = Transient
+  end_time = 0.1
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

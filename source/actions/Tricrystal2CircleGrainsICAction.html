@@ -1,0 +1,256 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Tricrystal 2 CircleGrainsICAction | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="02a9c35f-c4cf-4a8f-803c-9e1dd6dfc211" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1a837b8b-b354-4373-93ed-3cd729a1c23e" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="be8a9869-7d0e-4449-94bf-79975065a7c6" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8dfb2f81-9474-4cf9-af99-e99b84194105" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="15b31320-79a7-402f-8ea4-0a0363cc23f7" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="888b5a0a-11d4-431e-8ac3-76cea748f84e"><i class="material-icons">menu</i></a><ul class="sidenav" id="888b5a0a-11d4-431e-8ac3-76cea748f84e"><li><a href="#!" class="dropdown-trigger" data-target="b190572c-f672-48ef-a0bd-dc068dd9ebb9" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="faedca3a-1356-4684-82cf-a8d983f72254" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5e226869-ad14-411e-8f49-b9be94573d35" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="107c6d4a-c799-43a3-a86b-aee5cfaa3247" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="e70664a2-6100-42e8-9810-21617b27bd49" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="02a9c35f-c4cf-4a8f-803c-9e1dd6dfc211"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="1a837b8b-b354-4373-93ed-3cd729a1c23e"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="be8a9869-7d0e-4449-94bf-79975065a7c6"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="8dfb2f81-9474-4cf9-af99-e99b84194105"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="15b31320-79a7-402f-8ea4-0a0363cc23f7"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="b190572c-f672-48ef-a0bd-dc068dd9ebb9"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="faedca3a-1356-4684-82cf-a8d983f72254"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="5e226869-ad14-411e-8f49-b9be94573d35"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="107c6d4a-c799-43a3-a86b-aee5cfaa3247"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="e70664a2-6100-42e8-9810-21617b27bd49"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="bcd52056-7376-4ab6-b61f-65b91bb3444f" data-section-level="1" data-section-text="Tricrystal 2 CircleGrainsICAction"><h1 id="tricrystal-2-circlegrainsicaction">Tricrystal2CircleGrainsICAction</h1><p></p><section id="2eff7fb6-2d20-4713-bd36-3714f37314fb" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>This action creates the initial conditions (ICs) for the three order parameters used to represent a tricrystal. It creates a grain structure with the second and third grains represented by circles (2D) or spheres (3D) embedded in the first grain.</p><p>The action creates the three ICs with the <a href="../ics/Tricrystal2CircleGrainsIC.html">Tricrystal2CircleGrainsIC</a>.</p></section><section id="6f973ab4-3bc3-4248-a154-c27a88ca4c4b" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p>The <code>Tricrystal2CircleGrainsICAction</code> is accessed through the <code>ICs/PolycrystalICs</code> block, as shown below.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[GlobalParams]
+  op_num = 3
+  var_name_base = gr
+  wGB = 100
+  length_scale = 1.0e-9
+  time_scale = 1.0e-9
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#e344d6e9-678c-4c1f-b341-41057e3f5a68">(../moose/modules/phase_field/test/tests/GBAnisotropy/test1.i)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[ICs]
+  [./PolycrystalICs]
+    [./Tricrystal2CircleGrainsIC]
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2f323ff3-cd03-426c-8ab9-3b956c71181c">(../moose/modules/phase_field/test/tests/GBAnisotropy/test1.i)</a></section><section id="e40a0e93-ff1e-426f-bd69-e9c2e4c5bf78" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="25abae10-f2d6-44d2-8483-8c99a44b738d" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">op_num</span><span class="moose-parameter-header-description">number of order parameters to create</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>number of order parameters to create</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">var_name_base</span><span class="moose-parameter-header-description">specifies the base name of the variables</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>specifies the base name of the variables</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="3fd300c9-4aff-4555-a86c-5de95fd5a941" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">active</span><span class="moose-parameter-header-default">__all__ </span><span class="moose-parameter-header-description">If specified only the blocks named will be visited and made active</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>__all__ </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified only the blocks named will be visited and made active</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">Block restriction for the initial condition</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Block restriction for the initial condition</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inactive</span><span class="moose-parameter-header-description">If specified blocks matching these identifiers will be skipped.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified blocks matching these identifiers will be skipped.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="e344d6e9-678c-4c1f-b341-41057e3f5a68"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/GBAnisotropy/test1.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 60
+  ny = 30
+  nz = 0
+  xmin = 0
+  xmax = 1000
+  ymin = 0
+  ymax = 600
+  zmin = 0
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[GlobalParams]
+  op_num = 3
+  var_name_base = gr
+  wGB = 100
+  length_scale = 1.0e-9
+  time_scale = 1.0e-9
+[]
+
+[Variables]
+  [./PolycrystalVariables]
+  [../]
+[]
+
+[ICs]
+  [./PolycrystalICs]
+    [./Tricrystal2CircleGrainsIC]
+    [../]
+  [../]
+[]
+
+[AuxVariables]
+  [./bnds]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./unique_grains]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./var_indices]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./PolycrystalKernel]
+  [../]
+[]
+
+[AuxKernels]
+  [./bnds_aux]
+    type = BndsCalcAux
+    variable = bnds
+    execute_on = timestep_end
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./top_bottom]
+      auto_direction = &#x27;x y&#x27;
+    [../]
+  [../]
+[]
+
+[Materials]
+  [./CuGrGranisotropic]
+    type = GBAnisotropy
+    T = 600 # K
+
+    # molar_volume_value = 7.11e-6 #Units:m^3/mol
+    Anisotropic_GB_file_name = anisotropy_mobility.txt   # anisotropy_energy.txt
+    inclination_anisotropy = false # true
+  [../]
+[]
+
+[Postprocessors]
+  [./dt]
+    # Outputs the current time step
+    type = TimestepSize
+  [../]
+
+  [./gr1_area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr1
+  [../]
+  [./gr2_area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr2
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = bdf2
+
+  #Preconditioned JFNK (default)
+  solve_type = &#x27;PJFNK&#x27;
+
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27;hypre boomeramg 31&#x27;
+
+  l_max_its = 30
+  l_tol = 1e-4
+  nl_max_its = 40
+  nl_rel_tol = 1e-9
+
+  num_steps = 1
+  dt = 10.0
+[]
+
+[Outputs]
+  execute_on = &#x27;timestep_end&#x27;
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2f323ff3-cd03-426c-8ab9-3b956c71181c"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/GBAnisotropy/test1.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 60
+  ny = 30
+  nz = 0
+  xmin = 0
+  xmax = 1000
+  ymin = 0
+  ymax = 600
+  zmin = 0
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[GlobalParams]
+  op_num = 3
+  var_name_base = gr
+  wGB = 100
+  length_scale = 1.0e-9
+  time_scale = 1.0e-9
+[]
+
+[Variables]
+  [./PolycrystalVariables]
+  [../]
+[]
+
+[ICs]
+  [./PolycrystalICs]
+    [./Tricrystal2CircleGrainsIC]
+    [../]
+  [../]
+[]
+
+[AuxVariables]
+  [./bnds]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./unique_grains]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./var_indices]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./PolycrystalKernel]
+  [../]
+[]
+
+[AuxKernels]
+  [./bnds_aux]
+    type = BndsCalcAux
+    variable = bnds
+    execute_on = timestep_end
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./top_bottom]
+      auto_direction = &#x27;x y&#x27;
+    [../]
+  [../]
+[]
+
+[Materials]
+  [./CuGrGranisotropic]
+    type = GBAnisotropy
+    T = 600 # K
+
+    # molar_volume_value = 7.11e-6 #Units:m^3/mol
+    Anisotropic_GB_file_name = anisotropy_mobility.txt   # anisotropy_energy.txt
+    inclination_anisotropy = false # true
+  [../]
+[]
+
+[Postprocessors]
+  [./dt]
+    # Outputs the current time step
+    type = TimestepSize
+  [../]
+
+  [./gr1_area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr1
+  [../]
+  [./gr2_area]
+    type = ElementIntegralVariablePostprocessor
+    variable = gr2
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = bdf2
+
+  #Preconditioned JFNK (default)
+  solve_type = &#x27;PJFNK&#x27;
+
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type -ksp_gmres_restart&#x27;
+  petsc_options_value = &#x27;hypre boomeramg 31&#x27;
+
+  l_max_its = 30
+  l_tol = 1e-4
+  nl_max_its = 40
+  nl_rel_tol = 1e-9
+
+  num_steps = 1
+  dt = 10.0
+[]
+
+[Outputs]
+  execute_on = &#x27;timestep_end&#x27;
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

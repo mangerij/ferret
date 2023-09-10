@@ -1,0 +1,279 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Periodic System | Ferret</title><link href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../../media/framework/github-logo.png" class="github-mark"></img><img src="../../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="c0d2183a-74dc-4e3b-90b0-ae93e8874e89" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="888f22d3-3a09-414e-8f99-59cbdf665be2" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="fc94a307-ddc6-4a80-a2e8-c18c8d52fca5" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5f02c360-7d73-484b-abf0-a067985219ac" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="8d9073c5-cf31-4fc0-b4bd-261ce18dc9ce" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="c9589480-761a-4911-9354-1c68b66ca6d3"><i class="material-icons">menu</i></a><ul class="sidenav" id="c9589480-761a-4911-9354-1c68b66ca6d3"><li><a href="#!" class="dropdown-trigger" data-target="6f6fec8b-2d79-4c13-98a9-a74fd48c2f59" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="12645e0f-e10d-4fd4-856d-b66e723524b0" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4e6a9fc4-7791-4ae4-b8d6-7601e9be41ff" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f47e5b47-4e05-4759-85dd-c7cd1c07d855" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="3c545c9c-39fd-4f40-b3e7-3385d00f99d8" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="c0d2183a-74dc-4e3b-90b0-ae93e8874e89"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="888f22d3-3a09-414e-8f99-59cbdf665be2"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="fc94a307-ddc6-4a80-a2e8-c18c8d52fca5"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="5f02c360-7d73-484b-abf0-a067985219ac"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="8d9073c5-cf31-4fc0-b4bd-261ce18dc9ce"><li><a href="../../index.html">Complete syntax</a></li><li><a href="../../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="6f6fec8b-2d79-4c13-98a9-a74fd48c2f59"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="12645e0f-e10d-4fd4-856d-b66e723524b0"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="4e6a9fc4-7791-4ae4-b8d6-7601e9be41ff"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f47e5b47-4e05-4759-85dd-c7cd1c07d855"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="3c545c9c-39fd-4f40-b3e7-3385d00f99d8"><li><a href="../../index.html">Complete syntax</a></li><li><a href="../../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="23328361-81af-4912-b070-a81f454c0c89" data-section-level="1" data-section-text="Periodic System"><h1 id="periodic-system">Periodic System</h1><p>Periodic boundary conditions enforce value constraints on separate boundaries in the mesh. This capability is useful for modeling quasi-infinite domains and systems with conserved quantities.</p><p>MOOSE has full support for Periodic BCs in</p><ul class="browser-default"><li><p>1D, 2D, and 3D. </p></li><li><p>With mesh adaptivity. </p></li><li><p>Can be restricted to specific variables.</p></li></ul><p>Arbitrary translation vectors and arbitrary mapping transformations between boundaries are also supported for defining periodicity.</p><section id="e509a9e6-c172-4b4a-aa21-9296f7e777ab" data-section-level="2" data-section-text="Automatic Periodic Boundary Detection ( recommended )"><h2 id="automatic-periodic-boundary-detection-recommended">Automatic Periodic Boundary Detection (recommended)</h2><p>In this example, periodic boundary conditions are set on variable <code>u</code> in the X and Y axis directions. The boundaries that are matched on all sides of the system are automatically detected, due to using the <a href="#52c4e113-a9c5-49b1-a03a-eeab64c27edd" class="moose-modal-link modal-trigger">&quot;auto_direction&quot;</a> parameter.</p><div class="card moose-alert moose-alert-note"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">comment</i><span class="moose-alert-title-brand">note</span></div><div class="card-content"><div class="moose-alert-content"><p>The automatic detection of the boundaries to match is only available in the X, Y and Z axis directions.</p></div></div></div><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[BCs]
+  [./Periodic]
+    [./all]
+      variable = u
+      auto_direction = &#x27;x y&#x27;
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#f7127425-b7c4-4f58-a292-74ead8aa6309">(../moose/test/tests/bcs/periodic/auto_periodic_bc_test.i)</a></section><section id="cfeedcf6-8e4a-424b-a396-c8ca2850b9eb" data-section-level="2" data-section-text="Translation Periodic Boundaries"><h2 id="translation-periodic-boundaries">Translation Periodic Boundaries</h2><p>In this example, periodic boundary conditions are set on variable <code>u</code> in the X and Y axis directions, using the exact distance for the translation needed to go from one periodic boundary to the other. The boundaries are also explicitly specified using the <a href="#bf1dc276-bd8b-4b26-8e9d-6629673a5613" class="moose-modal-link modal-trigger">&quot;primary&quot;</a> and <a href="#72b1f6a2-b21e-42e5-b8e7-75e52f579ea2" class="moose-modal-link modal-trigger">&quot;secondary&quot;</a> parameters.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[BCs]
+  [./Periodic]
+    [./x]
+      variable = u
+      primary = 3
+      secondary = 1
+      translation = &#x27;40 0 0&#x27;
+    [../]
+
+    [./y]
+      variable = u
+      primary = 0
+      secondary = 2
+      translation = &#x27;0 40 0&#x27;
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#c23a1c91-9544-4e0b-9a71-5166cd0ef636">(../moose/test/tests/bcs/periodic/periodic_bc_test.i)</a></section><section id="d7eb1819-67db-4882-bfa6-99de546c980b" data-section-level="2" data-section-text="Function Transform Periodic Boundaries"><h2 id="function-transform-periodic-boundaries">Function Transform Periodic Boundaries</h2><p>In this example, periodic boundary conditions are set on variable <code>u</code> in arbitrary non-matching directions, using the mapping functions to go from one boundary to the other. The transformation to go from the primary to the secondary is given by a <a href="../../Functions/index.html">Function</a> using the <a href="#f44ca675-d354-4575-871f-8041bdecce05" class="moose-modal-link modal-trigger">&quot;transform_func&quot;</a> parameter, and in the other direction the <a href="#82e3a173-15f9-49d7-8e43-d6a3897bab92" class="moose-modal-link modal-trigger">&quot;inv_transform_func&quot;</a> parameter. The boundaries are also explicitly specified using the <a href="#fc2bcffb-3df0-41f5-9c8a-ed877e4e76dc" class="moose-modal-link modal-trigger">&quot;primary&quot;</a> and <a href="#f0e81c61-365e-4748-9d00-587a21d8a0ce" class="moose-modal-link modal-trigger">&quot;secondary&quot;</a> parameters.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Functions]
+  [./tr_x]
+    type = ParsedFunction
+    expression = -x*cos(pi/3)
+  [../]
+
+  [./tr_y]
+    type = ParsedFunction
+    expression = x*sin(pi/3)
+  [../]
+
+  [./itr_x]
+    type = ParsedFunction
+    expression = -x/cos(pi/3)
+  [../]
+
+  [./itr_y]
+    type = ParsedFunction
+    expression = 0
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./x]
+      primary = 1
+      secondary = 4
+      transform_func = &#x27;tr_x tr_y&#x27;
+      inv_transform_func = &#x27;itr_x itr_y&#x27;
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#ceaa098d-cd1e-486b-aabf-f516d006632f">(../moose/test/tests/bcs/periodic/trapezoid.i)</a></section><section id="054bfd9a-7a51-422d-a176-c994d31f2d47" data-section-level="2" data-section-text="Available Actions"><h2 id="available-actions">Available Actions</h2><ul class="moose-syntax-list collection with-header"><li class="collection-header">Moose App</li><li class="collection-item"><a href="../../../source/actions/AddPeriodicBCAction.html">AddPeriodicBCAction</a>Action that adds periodic boundary conditions</li></ul></section></section><div class="moose-modal modal" id="52c4e113-a9c5-49b1-a03a-eeab64c27edd"><div class="modal-content"><h4>auto_direction</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If using a generated mesh, you can specifiy just the dimension(s) you want to mark as periodic</p></div></div><div class="moose-modal modal" id="f7127425-b7c4-4f58-a292-74ead8aa6309"><div class="modal-content"><h4>(../moose/test/tests/bcs/periodic/auto_periodic_bc_test.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 50
+  ny = 50
+  nz = 0
+  xmax = 40
+  ymax = 40
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[Variables]
+  active = &#x27;u&#x27;
+
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[AuxVariables]
+  [./periodic_dist]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  active = &#x27;diff forcing dot&#x27;
+
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+
+  [./forcing]
+    type = GaussContForcing
+    variable = u
+  [../]
+
+  [./dot]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[AuxKernels]
+  [./periodic_dist]
+    type = PeriodicDistanceAux
+    variable = periodic_dist
+    point = &#x27;4 6 0&#x27;
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./all]
+      variable = u
+      auto_direction = &#x27;x y&#x27;
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 1
+  num_steps = 20
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  execute_on = &#x27;timestep_end&#x27;
+  file_base = out_auto
+  exodus = true
+[]
+
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="bf1dc276-bd8b-4b26-8e9d-6629673a5613"><div class="modal-content"><h4>primary</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundary ID associated with the primary boundary.</p></div></div><div class="moose-modal modal" id="72b1f6a2-b21e-42e5-b8e7-75e52f579ea2"><div class="modal-content"><h4>secondary</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundary ID associated with the secondary boundary.</p></div></div><div class="moose-modal modal" id="c23a1c91-9544-4e0b-9a71-5166cd0ef636"><div class="modal-content"><h4>(../moose/test/tests/bcs/periodic/periodic_bc_test.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 50
+  ny = 50
+  nz = 0
+  xmax = 40
+  ymax = 40
+  zmax = 0
+  elem_type = QUAD4
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+
+  [./forcing]
+    type = GaussContForcing
+    variable = u
+  [../]
+
+  [./dot]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./x]
+      variable = u
+      primary = 3
+      secondary = 1
+      translation = &#x27;40 0 0&#x27;
+    [../]
+
+    [./y]
+      variable = u
+      primary = 0
+      secondary = 2
+      translation = &#x27;0 40 0&#x27;
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 1
+  num_steps = 20
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  execute_on = &#x27;timestep_end&#x27;
+  file_base = out
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="f44ca675-d354-4575-871f-8041bdecce05"><div class="modal-content"><h4>transform_func</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Functions that specify the transformation</p></div></div><div class="moose-modal modal" id="82e3a173-15f9-49d7-8e43-d6a3897bab92"><div class="modal-content"><h4>inv_transform_func</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Functions that specify the inverse transformation</p></div></div><div class="moose-modal modal" id="fc2bcffb-3df0-41f5-9c8a-ed877e4e76dc"><div class="modal-content"><h4>primary</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundary ID associated with the primary boundary.</p></div></div><div class="moose-modal modal" id="f0e81c61-365e-4748-9d00-587a21d8a0ce"><div class="modal-content"><h4>secondary</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>BoundaryName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundary ID associated with the secondary boundary.</p></div></div><div class="moose-modal modal" id="ceaa098d-cd1e-486b-aabf-f516d006632f"><div class="modal-content"><h4>(../moose/test/tests/bcs/periodic/trapezoid.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  file = trapezoid.e
+  uniform_refine = 1
+[]
+
+[Functions]
+  [./tr_x]
+    type = ParsedFunction
+    expression = -x*cos(pi/3)
+  [../]
+
+  [./tr_y]
+    type = ParsedFunction
+    expression = x*sin(pi/3)
+  [../]
+
+  [./itr_x]
+    type = ParsedFunction
+    expression = -x/cos(pi/3)
+  [../]
+
+  [./itr_y]
+    type = ParsedFunction
+    expression = 0
+  [../]
+[]
+
+[Variables]
+  [./u]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+
+  [./forcing]
+    type = GaussContForcing
+    variable = u
+    x_center = 2
+    y_center = -1
+    x_spread = 0.25
+    y_spread = 0.5
+  [../]
+
+  [./dot]
+    type = TimeDerivative
+    variable = u
+  [../]
+[]
+
+[BCs]
+  [./Periodic]
+    [./x]
+      primary = 1
+      secondary = 4
+      transform_func = &#x27;tr_x tr_y&#x27;
+      inv_transform_func = &#x27;itr_x itr_y&#x27;
+    [../]
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.5
+  num_steps = 6
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  execute_on = &#x27;timestep_end&#x27;
+  file_base = out_trapezoid
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../../js/init.js"></script><script type="text/javascript" src="../../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../../js/sqa_moose.js"></script>

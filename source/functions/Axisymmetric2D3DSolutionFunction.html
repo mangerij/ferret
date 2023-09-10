@@ -1,0 +1,195 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Axisymmetric 2 D 3 DSolutionFunction | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="8c4cd24d-7fe1-49fa-977f-e219cbacfb33" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e8987153-397c-40b3-88eb-46e7c6406968" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="955b45e9-b2b7-4927-a40b-8d0f116225f0" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="bef2fc1d-93c3-457f-890d-85a907955712" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="9028fa21-51dd-4fe8-9ef6-425f4c1f7abf" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="d3f32955-d19d-4cd2-9b3c-54a9d14e67c6"><i class="material-icons">menu</i></a><ul class="sidenav" id="d3f32955-d19d-4cd2-9b3c-54a9d14e67c6"><li><a href="#!" class="dropdown-trigger" data-target="486ca931-2a74-441e-9f83-c9105b6f4738" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="26e0fc4a-39b4-4ee0-a5ae-355bee60ff16" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1f1e05f4-5203-42e3-856c-e08a82b31558" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ef974970-b39b-4f04-904a-e2ca2a4c228a" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="42a2342d-762a-4be3-9de4-8cb0d61df40b" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="8c4cd24d-7fe1-49fa-977f-e219cbacfb33"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="e8987153-397c-40b3-88eb-46e7c6406968"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="955b45e9-b2b7-4927-a40b-8d0f116225f0"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="bef2fc1d-93c3-457f-890d-85a907955712"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="9028fa21-51dd-4fe8-9ef6-425f4c1f7abf"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="486ca931-2a74-441e-9f83-c9105b6f4738"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="26e0fc4a-39b4-4ee0-a5ae-355bee60ff16"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="1f1e05f4-5203-42e3-856c-e08a82b31558"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="ef974970-b39b-4f04-904a-e2ca2a4c228a"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="42a2342d-762a-4be3-9de4-8cb0d61df40b"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="3c85570f-80a3-4c32-95e4-db761c2aec7d" data-section-level="1" data-section-text="Axisymmetric 2 D 3 DSolutionFunction"><h1 id="axisymmetric-2-d-3-dsolutionfunction">Axisymmetric2D3DSolutionFunction</h1><p>Function for reading a 2D axisymmetric solution from file and mapping it to a 3D Cartesian model</p><p>The 2D solution is likely to be the output of a 2D-RZ calculation, which we want to compare to a full 3D model. This is useful for assessing the validity of the 2D-RZ geometric approximation.</p><p>The axis of symmetry for the original 2D axisymmetric calculation and for mapping this 2D axisymmetric calculation into the 3D space can both be specified.</p><section id="4480caa0-c914-4c92-9f7c-bda679f1570a" data-section-level="2" data-section-text="Example input syntax"><h2 id="example-input-syntax">Example input syntax</h2><p>In this example, three <code>Axisymmetric2D3DSolutionFunction</code> are used to load results for a 2D axisymmetric simulation in a 3D mechanics simulation. These results are then used in the <code>BCs</code> block to impose a displacement on a boundary, and in a temperature variable using a <a href="../auxkernels/FunctionAux.html">FunctionAux</a>.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Functions]
+  [./soln_func_temp]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;temp&#x27;
+  [../]
+  [./soln_func_disp_x]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;disp_x disp_y&#x27;
+    component = 0
+  [../]
+  [./soln_func_disp_y]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;disp_x disp_y&#x27;
+    component = 1
+  [../]
+  [./soln_func_disp_z]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;disp_x disp_y&#x27;
+    component = 2
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#057f079f-13a9-4a52-aab3-b582e04d2458">(../moose/modules/combined/test/tests/axisymmetric_2d3d_solution_function/3dy.i)</a></section><section id="5d198db3-14ee-438d-9149-903bf8b101c3" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="169a4405-ba2c-4555-93ae-a1188e81e0e9" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">solution</span><span class="moose-parameter-header-description">The SolutionUserObject to extract data from.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>UserObjectName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The SolutionUserObject to extract data from.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="2e4ecde6-2fab-45f4-a172-5c84620ff4ea" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">2d_axis_point1</span><span class="moose-parameter-header-default">0 0 0</span><span class="moose-parameter-header-description">Start point for axis of symmetry for the 2d model</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0 0 0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Start point for axis of symmetry for the 2d model</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">2d_axis_point2</span><span class="moose-parameter-header-default">0 1 0</span><span class="moose-parameter-header-description">End point for axis of symmetry for the 2d model</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0 1 0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>End point for axis of symmetry for the 2d model</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">3d_axis_point1</span><span class="moose-parameter-header-default">0 0 0</span><span class="moose-parameter-header-description">Start point for axis of symmetry for the 3d model</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0 0 0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Start point for axis of symmetry for the 3d model</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">3d_axis_point2</span><span class="moose-parameter-header-default">0 1 0</span><span class="moose-parameter-header-description">End point for axis of symmetry for the 3d model</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0 1 0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>End point for axis of symmetry for the 3d model</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">add_factor</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Add this value (b) to the solution (x): ax+b, where a is the 'scale_factor'</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Add this value (b) to the solution (x): ax+b, where a is the 'scale_factor'</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">axial_dimension_ratio</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">Ratio of the axial dimension in the 3d model to that in the 2d model. Optionally permits the 3d model to be larger than the 2d model in that dimension, and scales vector solutions in that direction by this factor.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Ratio of the axial dimension in the 3d model to that in the 2d model. Optionally permits the 3d model to be larger than the 2d model in that dimension, and scales vector solutions in that direction by this factor.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">Component of the variable to be computed if it is a vector</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Component of the variable to be computed if it is a vector</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">from_variables</span><span class="moose-parameter-header-description">The names of the variables in the file that are to be extracted, in x, y order if they are vector components</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The names of the variables in the file that are to be extracted, in x, y order if they are vector components</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">scale_factor</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">Scale factor (a) to be applied to the solution (x): ax+b, where b is the 'add_factor'</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Scale factor (a) to be applied to the solution (x): ax+b, where b is the 'add_factor'</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="a9db21fe-333a-459a-bced-46782c70d51e" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="057f079f-13a9-4a52-aab3-b582e04d2458"><div class="modal-content"><h4>(../moose/modules/combined/test/tests/axisymmetric_2d3d_solution_function/3dy.i)</h4><pre class="moose-pre"><code class="language-text">[GlobalParams]
+  order = FIRST
+  family = LAGRANGE
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+[]
+
+[Mesh]
+  file = 3dy.e
+[]
+
+[Variables]
+  [./disp_x]
+  [../]
+  [./disp_y]
+  [../]
+  [./disp_z]
+  [../]
+[]
+
+[AuxVariables]
+  [./temp]
+  [../]
+  [./hoop_stress]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[UserObjects]
+  [./soln]
+    type = SolutionUserObject
+    mesh = 2d_out.e
+    system_variables = &#x27;disp_x disp_y temp&#x27;
+  [../]
+[]
+
+[Functions]
+  [./soln_func_temp]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;temp&#x27;
+  [../]
+  [./soln_func_disp_x]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;disp_x disp_y&#x27;
+    component = 0
+  [../]
+  [./soln_func_disp_y]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;disp_x disp_y&#x27;
+    component = 1
+  [../]
+  [./soln_func_disp_z]
+    type = Axisymmetric2D3DSolutionFunction
+    solution = soln
+    from_variables = &#x27;disp_x disp_y&#x27;
+    component = 2
+  [../]
+[]
+
+[Modules/TensorMechanics/Master]
+  [./all]
+    volumetric_locking_correction = true
+    add_variables  = true
+    incremental = true
+    strain = FINITE
+    eigenstrain_names = thermal_expansion
+    generate_output = &#x27;stress_xx stress_yy stress_zz vonmises_stress hydrostatic_stress&#x27;
+  [../]
+[]
+
+[AuxKernels]
+  [./t_soln_aux]
+    type = FunctionAux
+    variable = temp
+    block = &#x27;1 2&#x27;
+    function = soln_func_temp
+  [../]
+  [./hoop_stress]
+    type = RankTwoScalarAux
+    rank_two_tensor = stress
+    variable = hoop_stress
+    scalar_type = HoopStress
+    execute_on = timestep_end
+  [../]
+[]
+
+[BCs]
+  [./x_soln_bc]
+    type = FunctionDirichletBC
+    variable = disp_x
+    preset = false
+    boundary = &#x27;1 2&#x27;
+    function = soln_func_disp_x
+  [../]
+  [./y_soln_bc]
+    type = FunctionDirichletBC
+    variable = disp_y
+    preset = false
+    boundary = &#x27;1 2&#x27;
+    function = soln_func_disp_y
+  [../]
+  [./z_soln_bc]
+    type = FunctionDirichletBC
+    variable = disp_z
+    preset = false
+    boundary = &#x27;1 2&#x27;
+    function = soln_func_disp_z
+  [../]
+[]
+
+[Materials]
+  [./elasticity_tensor]
+    type = ComputeIsotropicElasticityTensor
+    block = &#x27;1 2&#x27;
+    youngs_modulus = 193.05e9
+    poissons_ratio = 0.3
+  [../]
+
+  [./stress]
+    type = ComputeFiniteStrainElasticStress
+    block = &#x27;1 2&#x27;
+  [../]
+
+  [./thermal_expansion]
+    type = ComputeThermalExpansionEigenstrain
+    block = &#x27;1 2&#x27;
+    thermal_expansion_coeff = 13e-6
+    stress_free_temperature = 295.00
+    temperature = temp
+    eigenstrain_name = thermal_expansion
+  [../]
+
+  [./density]
+    type = Density
+    block = &#x27;1&#x27;
+    density = 8000.0
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+
+  petsc_options = &#x27;-ksp_snes_ew&#x27;
+  petsc_options_iname = &#x27;-ksp_gmres_restart -pc_type -pc_hypre_type -pc_hypre_boomeramg_max_iter&#x27;
+  petsc_options_value = &#x27; 201                hypre    boomeramg      4&#x27;
+  line_search = &#x27;none&#x27;
+  l_max_its = 25
+  nl_max_its = 20
+  nl_rel_tol = 1e-10
+  l_tol = 1e-2
+
+  start_time = 0.0
+  dt = 1
+  end_time = 1
+  dtmin = 1
+[]
+
+[Outputs]
+  file_base = 3dy_out
+  exodus = true
+  [./console]
+    type = Console
+    max_rows = 25
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

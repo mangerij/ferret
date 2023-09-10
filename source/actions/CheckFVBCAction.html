@@ -1,0 +1,122 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>CheckFVBCAction | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="a54e20e5-9f79-4c51-8027-bb468cf3df82" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e58d882a-46f1-456e-8c86-02643f77d90c" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d0c43297-8d6a-4f5c-ba95-c3a3e15aaecc" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="97da312d-f43a-48fb-a920-afc3583dc01d" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="b5ca2a8d-783a-4bae-8687-0f715c37c154" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="84383725-87d9-4f9a-bdaa-ba0fc46e35d2"><i class="material-icons">menu</i></a><ul class="sidenav" id="84383725-87d9-4f9a-bdaa-ba0fc46e35d2"><li><a href="#!" class="dropdown-trigger" data-target="a5e98e32-b5a3-43b6-af64-f12e1725c43d" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="dea72eca-ae93-4ec5-b933-e7850ebbd4bf" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="40fa834e-b929-4743-98ca-5f36cdb34846" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="7c253bc9-e582-4fd4-b132-429b739638c3" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="64729837-3e91-4b58-b247-6a8e258cac1d" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="a54e20e5-9f79-4c51-8027-bb468cf3df82"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="e58d882a-46f1-456e-8c86-02643f77d90c"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="d0c43297-8d6a-4f5c-ba95-c3a3e15aaecc"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="97da312d-f43a-48fb-a920-afc3583dc01d"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="b5ca2a8d-783a-4bae-8687-0f715c37c154"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="a5e98e32-b5a3-43b6-af64-f12e1725c43d"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="dea72eca-ae93-4ec5-b933-e7850ebbd4bf"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="40fa834e-b929-4743-98ca-5f36cdb34846"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="7c253bc9-e582-4fd4-b132-429b739638c3"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="64729837-3e91-4b58-b247-6a8e258cac1d"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="e6fca097-b3e9-4339-9366-5db6d1c310e6" data-section-level="1" data-section-text="CheckFVBCAction"><h1 id="checkfvbcaction">CheckFVBCAction</h1><p>Check that boundary conditions are defined correctly for finite volume problems.</p><p>Checking the integrity of finite volume boundary conditions can be requested in the <code>[Problem]</code> block as shown below.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Problem]
+  fv_bcs_integrity_check = false
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#c48d6a9a-05e1-49fe-82bc-4ce43db042a4">(../moose/test/tests/fvkernels/mms/advective-outflow/kt-limited-advection.i)</a><p>More information about finite volume boundary conditions may be found on the <a href="../../syntax/FVBCs/index.html">FVBCs syntax documentation</a>.</p><section id="b6682f5d-7202-46a4-bbe5-a220d734270b" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">active</span><span class="moose-parameter-header-default">__all__ </span><span class="moose-parameter-header-description">If specified only the blocks named will be visited and made active</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>__all__ </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified only the blocks named will be visited and made active</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inactive</span><span class="moose-parameter-header-description">If specified blocks matching these identifiers will be skipped.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified blocks matching these identifiers will be skipped.</p></div></li></ul></section></section><div class="moose-modal modal" id="c48d6a9a-05e1-49fe-82bc-4ce43db042a4"><div class="modal-content"><h4>(../moose/test/tests/fvkernels/mms/advective-outflow/kt-limited-advection.i)</h4><pre class="moose-pre"><code class="language-text">a=1.1
+c=343
+max_abs_eig=${fparse c + a}
+
+[Mesh]
+  [./gen_mesh]
+    type = GeneratedMeshGenerator
+    dim = 1
+    xmin = 0.1
+    xmax = 1.1
+    nx = 2
+  [../]
+[]
+
+[Problem]
+  fv_bcs_integrity_check = false
+[]
+
+[ICs]
+  [u]
+    type = FunctionIC
+    variable = u
+    function = exact
+  []
+[]
+
+[Variables]
+  [./u]
+    two_term_boundary_expansion = true
+    type = MooseVariableFVReal
+  [../]
+[]
+
+[FVKernels]
+  [./advection_u]
+    type = FVKTLimitedAdvection
+    variable = u
+    velocity = &#x27;${a} 0 0&#x27;
+    limiter = &#x27;vanLeer&#x27;
+    max_abs_eig = ${max_abs_eig}
+    add_artificial_diff = true
+  [../]
+  [body_u]
+    type = FVBodyForce
+    variable = u
+    function = &#x27;forcing&#x27;
+  []
+[]
+
+[FVBCs]
+  [left_u]
+    type = FVFunctionNeumannBC
+    boundary = &#x27;left&#x27;
+    function = &#x27;advection&#x27;
+    variable = u
+  []
+  [diri_left]
+    type = FVFunctionDirichletBC
+    boundary = &#x27;left&#x27;
+    function = &#x27;exact&#x27;
+    variable = u
+  []
+  [right]
+    type = FVConstantScalarOutflowBC
+    variable = u
+    velocity = &#x27;${a} 0 0&#x27;
+    boundary = &#x27;right&#x27;
+  []
+[]
+
+[Functions]
+  [exact]
+    type = ParsedFunction
+    expression = &#x27;cos(x)&#x27;
+  []
+  [advection]
+    type = ParsedFunction
+    expression = &#x27;${a} * cos(x)&#x27;
+  []
+  [forcing]
+    type = ParsedFunction
+    expression = &#x27;-${a} * sin(x)&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  petsc_options_iname = &#x27;-snes_linesearch_minlambda&#x27;
+  petsc_options_value = &#x27;1e-3&#x27;
+  nl_abs_tol = 1e-9
+[]
+
+[Outputs]
+  file_base = &#x27;kt-limited-advection_out&#x27;
+  [csv]
+    type = CSV
+    execute_on = &#x27;final&#x27;
+  []
+  [exo]
+    type = Exodus
+    execute_on = &#x27;final&#x27;
+  []
+[]
+
+[Postprocessors]
+  [./L2u]
+    type = ElementL2Error
+    variable = u
+    function = exact
+    outputs = &#x27;console csv&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [h]
+    type = AverageElementSize
+    outputs = &#x27;console csv&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

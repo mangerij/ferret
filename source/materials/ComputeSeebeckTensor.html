@@ -1,0 +1,680 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>ComputeSeebeckTensor | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="c1efd543-87de-491c-adf5-8b7be89bdd62" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6b79d81d-e151-4f2f-a499-84fc8229acc7" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1c4fee6d-756e-4aa6-9fbc-30268741a8a2" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="9a2bf153-328c-43e6-902f-edfcf7d63515" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="632b1aac-6534-4689-952f-3304e49abf16" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="7179cbc3-ce03-4009-aa3f-d7785ccc0d8a"><i class="material-icons">menu</i></a><ul class="sidenav" id="7179cbc3-ce03-4009-aa3f-d7785ccc0d8a"><li><a href="#!" class="dropdown-trigger" data-target="0044e241-3d86-45eb-b804-608342f2e4b2" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ec92af75-bbdb-43bb-81ac-2edc115f40fc" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c2f6327b-5d61-4ef7-a523-27a9af67f02d" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f1f5ab67-4578-4e66-9e62-24341957db65" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="4d677591-cccb-4a2b-a8b9-d4b12ed993a4" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="c1efd543-87de-491c-adf5-8b7be89bdd62"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="6b79d81d-e151-4f2f-a499-84fc8229acc7"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="1c4fee6d-756e-4aa6-9fbc-30268741a8a2"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="9a2bf153-328c-43e6-902f-edfcf7d63515"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="632b1aac-6534-4689-952f-3304e49abf16"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="0044e241-3d86-45eb-b804-608342f2e4b2"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="ec92af75-bbdb-43bb-81ac-2edc115f40fc"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="c2f6327b-5d61-4ef7-a523-27a9af67f02d"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f1f5ab67-4578-4e66-9e62-24341957db65"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="4d677591-cccb-4a2b-a8b9-d4b12ed993a4"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="75809cea-3dd8-4921-b90a-7cd58d7ec2b3" data-section-level="1" data-section-text="ComputeSeebeckTensor"><h1 id="computeseebecktensor">ComputeSeebeckTensor</h1><p>Compute a Seebeck tensor.</p><section id="5ebc43d3-1224-4366-b7f0-74f366982450" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Computes (and stores) the Seebeck tensor <span class="moose-katex-inline-equation" id="moose-equation-4c136c1f-762b-4247-8586-51669c41d29f"><script>var element = document.getElementById("moose-equation-4c136c1f-762b-4247-8586-51669c41d29f");katex.render("S_{ij}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> at each quadrature point in the finite element mesh. The orientation of the tensor can be rotated via,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-988e2472-10dd-4774-a0d8-5a2b6e87e75f"></span><script>var element = document.getElementById("moose-equation-988e2472-10dd-4774-a0d8-5a2b6e87e75f");katex.render("  \\begin{aligned}     \\tilde{S}_{ij} = R_{i\\beta}R_{j\\gamma} S_{\\beta\\gamma}   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>for some arbitrary rotation matrices <span class="moose-katex-inline-equation" id="moose-equation-c4eeea21-fd53-452f-a9ac-74d25d847799"><script>var element = document.getElementById("moose-equation-c4eeea21-fd53-452f-a9ac-74d25d847799");katex.render("R_{ij}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> using the internal <code>RotationTensor</code> operation in MOOSE utils. The rotation operator <span class="moose-katex-inline-equation" id="moose-equation-2f91ab72-46d5-45f3-856a-5e7b67d4a09e"><script>var element = document.getElementById("moose-equation-2f91ab72-46d5-45f3-856a-5e7b67d4a09e");katex.render("R_{ij}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> accepts Euler angles in the standard Bunge sequence (<span class="moose-katex-inline-equation" id="moose-equation-d4d0e6fa-3b02-4496-a26d-479a1f7e0dcc"><script>var element = document.getElementById("moose-equation-d4d0e6fa-3b02-4496-a26d-479a1f7e0dcc");katex.render("\\mathbf{ZXZ}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>).</p></section><section id="5a6fb679-fe69-4ddc-b74c-718986989bd3" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="a4035114-d069-407e-ad99-807af0cbc1dc" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="1d8f3af2-528a-4c16-8422-8d812b1b82b6" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">a_ij</span><span class="moose-parameter-header-description">Seebeck tensor for material</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Seebeck tensor for material</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="9c2e2ca8-9c8a-4405-8ef5-256e5ad219de" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">base_name</span><span class="moose-parameter-header-description">Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_1</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 1</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 1</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_2</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 2</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 2</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_3</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 3</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 3</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">fill_method</span><span class="moose-parameter-header-default">general</span><span class="moose-parameter-header-description">The fill method</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>general</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>autodetect, isotropic1, diagonal3, symmetric6, general</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The fill method</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="19bc5aac-029a-4673-88fa-7ce4937761bd" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="b9723ff4-a5d0-4273-b85f-ca20792c2da4" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section></section><section id="7515cdd6-889d-4626-8f2b-5040a4780b15" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#6aef4202-793f-492e-a3f5-b6d7a993e312">(test/tests/thermoelectrics/Bi2Te3_polycrystal_20_rotated.i)</a></li></ul></section></section><div class="moose-modal modal" id="6aef4202-793f-492e-a3f5-b6d7a993e312"><div class="modal-content"><h4>(test/tests/thermoelectrics/Bi2Te3_polycrystal_20_rotated.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  [./basic_mesh]
+    type = FileMeshGenerator
+    file = 20g.e
+  []
+
+  [./add_sidesets]
+    type = SideSetsFromNormalsGenerator
+    input = basic_mesh
+    normals = &#x27;1  0  0
+              -1  0  0
+               0  1  0
+               0 -1  0
+               0  0  1
+               0  0 -1&#x27;
+    fixed_normal = true
+    new_boundary = &#x27;right left front back top bottom&#x27;
+    variance = 0.5
+  [../]
+[]
+
+[Variables]
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 1
+  [../]
+  [./T]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 273
+  [../]
+  []
+
+[Kernels]
+  [./residualV_x]
+    type = TensorDivCurrentV
+    component = 0
+    variable = potential_E_int
+    T = T
+    potential_E_int = potential_E_int
+  [../]
+
+  [./residualT_x]
+    type = TensorHeatFlowElectricT
+    component = 0
+    variable = T
+    T = T
+    potential_E_int = potential_E_int
+  [../]
+[]
+
+[AuxVariables]
+  [./j_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./j_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./j_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./q_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./q_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./q_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  []
+
+[AuxKernels]
+  [./Electric_flux_x]
+    type = ElectricFluxTensor
+    variable = j_x
+    T = T
+    potential_E_int = potential_E_int
+    component = 0
+  [../]
+  [./Electric_flux_y]
+    type = ElectricFluxTensor
+    variable = j_y
+    T = T
+    potential_E_int = potential_E_int
+    component = 1
+  [../]
+  [./Electric_flux_z]
+    type = ElectricFluxTensor
+    variable = j_z
+    T = T
+    potential_E_int = potential_E_int
+    component = 2
+  [../]
+
+  [./Heat_flux_x]
+    type = HeatFluxTensor
+    variable = q_x
+    T = T
+    potential_E_int = potential_E_int
+    component = 0
+  [../]
+  [./heat_flux_y]
+    type = HeatFluxTensor
+    variable = q_y
+    T = T
+    potential_E_int = potential_E_int
+    component = 1
+  [../]
+  [./Heat_flux_z]
+    type = HeatFluxTensor
+    variable = q_z
+    T = T
+    potential_E_int = potential_E_int
+    component = 2
+  [../]
+[]
+
+
+[Materials]
+  [./thermal_conductivity_tensor1]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = 0.0
+    euler_angle_2 = 0
+    euler_angle_3 = 0
+    block  = &#x27;1&#x27;
+  [../]
+  [./thermal_conductivity_tensor2]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 0.0
+    euler_angle_2 = 15
+    euler_angle_3 = 30
+    block  = &#x27;2&#x27;
+  [../]
+  [./thermal_conductivity_tensor3]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 0.0
+    euler_angle_2 = -15
+    euler_angle_3 = -30
+    block  = &#x27;3&#x27;
+  [../]
+  [./thermal_conductivity_tensor4]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 0
+    euler_angle_2 = 45
+    euler_angle_3 = 60
+    block  = &#x27;4&#x27;
+  [../]
+  [./thermal_conductivity_tensor5]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = 0
+    euler_angle_2 = -45
+    euler_angle_3 = -60
+    block  = &#x27;5&#x27;
+  [../]
+  [./thermal_conductivity_tensor6]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 15
+    euler_angle_2 = 30
+    euler_angle_3 = 60
+    block  = &#x27;6&#x27;
+  [../]
+  [./thermal_conductivity_tensor7]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -15
+    euler_angle_2 = -30
+    euler_angle_3 = -60
+    block  = &#x27;7&#x27;
+  [../]
+  [./thermal_conductivity_tensor8]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 20
+    euler_angle_2 = 40
+    euler_angle_3 = 80
+    block  = &#x27;8&#x27;
+  [../]
+  [./thermal_conductivity_tensor9]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = -20
+    euler_angle_2 = -40
+    euler_angle_3 = -80
+    block  = &#x27;9&#x27;
+  [../]
+  [./thermal_conductivity_tensor10]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 30
+    euler_angle_2 = 45
+    euler_angle_3 = 60
+    block  = &#x27;10&#x27;
+  [../]
+  [./thermal_conductivity_tensor11]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -30
+    euler_angle_2 = -45
+    euler_angle_3 = -60
+    block  = &#x27;11&#x27;
+  [../]
+  [./thermal_conductivity_tensor12]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 45
+    euler_angle_2 = 60
+    euler_angle_3 = 90
+    block  = &#x27;12&#x27;
+  [../]
+  [./thermal_conductivity_tensor13]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = -45
+    euler_angle_2 = -60
+    euler_angle_3 = -90
+    block  = &#x27;13&#x27;
+  [../]
+  [./thermal_conductivity_tensor14]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 50
+    euler_angle_2 = 75
+    euler_angle_3 = 100
+    block  = &#x27;14&#x27;
+  [../]
+  [./thermal_conductivity_tensor15]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -50
+    euler_angle_2 = -75
+    euler_angle_3 = -100
+    block  = &#x27;15&#x27;
+  [../]
+  [./thermal_conductivity_tensor16]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 10
+    euler_angle_2 = 20
+    euler_angle_3 = 30
+    block  = &#x27;16&#x27;
+  [../]
+  [./thermal_conductivity_tensor17]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = -10
+    euler_angle_2 = -20
+    euler_angle_3 = -30
+    block  = &#x27;17&#x27;
+  [../]
+  [./thermal_conductivity_tensor18]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 30
+    euler_angle_2 = 60
+    euler_angle_3 = 90
+    block  = &#x27;18&#x27;
+  [../]
+  [./thermal_conductivity_tensor19]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -30
+    euler_angle_2 = -60
+    euler_angle_3 = -90
+    block  = &#x27;19&#x27;
+  [../]
+  [./thermal_conductivity_tensor20]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 90
+    euler_angle_2 = 90
+    euler_angle_3 = 0
+    block  = &#x27;20&#x27;
+  [../]
+  [./electrical_conductivity_tensor1]
+    type = ComputeElectricalConductivityTensor
+    g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+    euler_angle_1 = 0.0
+    euler_angle_2 = 0
+    euler_angle_3 = 0
+    block  = &#x27;1&#x27;
+  [../]
+   [./electrical_conductivity_tensor2]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 15
+     euler_angle_3 = 30
+     block  = &#x27;2&#x27;
+   [../]
+   [./electrical_conductivity_tensor3]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -15
+     euler_angle_3 = -30
+     block  = &#x27;3&#x27;
+   [../]
+   [./electrical_conductivity_tensor4]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;4&#x27;
+   [../]
+   [./electrical_conductivity_tensor5]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;5&#x27;
+   [../]
+   [./electrical_conductivity_tensor6]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 15
+     euler_angle_2 = 30
+     euler_angle_3 = 60
+     block  = &#x27;6&#x27;
+   [../]
+   [./electrical_conductivity_tensor7]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -15
+     euler_angle_2 = -30
+     euler_angle_3 = -60
+     block  = &#x27;7&#x27;
+   [../]
+   [./electrical_conductivity_tensor8]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 20
+     euler_angle_2 = 40
+     euler_angle_3 = 80
+     block  = &#x27;8&#x27;
+   [../]
+   [./electrical_conductivity_tensor9]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -20
+     euler_angle_2 = -40
+     euler_angle_3 = -80
+     block  = &#x27;9&#x27;
+   [../]
+   [./electrical_conductivity_tensor10]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;10&#x27;
+   [../]
+   [./electrical_conductivity_tensor11]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;11&#x27;
+   [../]
+   [./electrical_conductivity_tensor12]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 45
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;12&#x27;
+   [../]
+   [./electrical_conductivity_tensor13]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -45
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;13&#x27;
+   [../]
+   [./electrical_conductivity_tensor14]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 50
+     euler_angle_2 = 75
+     euler_angle_3 = 100
+     block  = &#x27;14&#x27;
+   [../]
+   [./electrical_conductivity_tensor15]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -50
+     euler_angle_2 = -75
+     euler_angle_3 = -100
+     block  = &#x27;15&#x27;
+   [../]
+   [./electrical_conductivity_tensor16]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 10
+     euler_angle_2 = 20
+     euler_angle_3 = 30
+     block  = &#x27;16&#x27;
+   [../]
+   [./electrical_conductivity_tensor17]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -10
+     euler_angle_2 = -20
+     euler_angle_3 = -30
+     block  = &#x27;17&#x27;
+   [../]
+   [./electrical_conductivity_tensor18]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;18&#x27;
+   [../]
+   [./electrical_conductivity_tensor19]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;19&#x27;
+   [../]
+   [./electrical_conductivity_tensor20]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 90
+     euler_angle_2 = 90
+     euler_angle_3 = 0
+     block  = &#x27;20&#x27;
+   [../]
+
+
+
+   [./seebeck_tensor1]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 0
+     euler_angle_3 = 0
+     block  = &#x27;1&#x27;
+   [../]
+   [./seebeck_tensor2]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 15
+     euler_angle_3 = 30
+     block  = &#x27;2&#x27;
+   [../]
+   [./seebeck_tensor3]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -15
+     euler_angle_3 = -30
+     block  = &#x27;3&#x27;
+   [../]
+   [./seebeck_tensor4]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;4&#x27;
+   [../]
+   [./seebeck_tensor5]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;5&#x27;
+   [../]
+   [./seebeck_tensor6]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 15
+     euler_angle_2 = 30
+     euler_angle_3 = 60
+     block  = &#x27;6&#x27;
+   [../]
+   [./seebeck_tensor7]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -15
+     euler_angle_2 = -30
+     euler_angle_3 = -60
+     block  = &#x27;7&#x27;
+   [../]
+   [./seebeck_tensor8]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 20
+     euler_angle_2 = 40
+     euler_angle_3 = 80
+     block  = &#x27;8&#x27;
+   [../]
+   [./seebeck_tensor9]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -20
+     euler_angle_2 = -40
+     euler_angle_3 = -80
+     block  = &#x27;9&#x27;
+   [../]
+   [./seebeck_tensor10]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;10&#x27;
+   [../]
+   [./seebeck_tensor11]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;11&#x27;
+   [../]
+   [./seebeck_tensor12]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 45
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;12&#x27;
+   [../]
+   [./seebeck_tensor13]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -45
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;13&#x27;
+   [../]
+   [./seebeck_tensor14]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 50
+     euler_angle_2 = 75
+     euler_angle_3 = 100
+     block  = &#x27;14&#x27;
+   [../]
+   [./seebeck_tensor15]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -50
+     euler_angle_2 = -75
+     euler_angle_3 = -100
+     block  = &#x27;15&#x27;
+   [../]
+   [./seebeck_tensor16]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 10
+     euler_angle_2 = 20
+     euler_angle_3 = 30
+     block  = &#x27;16&#x27;
+   [../]
+   [./seebeck_tensor17]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -10
+     euler_angle_2 = -20
+     euler_angle_3 = -30
+     block  = &#x27;17&#x27;
+   [../]
+   [./seebeck_tensor18]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;18&#x27;
+   [../]
+   [./seebeck_tensor19]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;19&#x27;
+   [../]
+   [./seebeck_tensor20]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 90
+     euler_angle_2 = 90
+     euler_angle_3 = 0
+     block  = &#x27;20&#x27;
+   [../]
+ []
+
+
+[BCs]
+  [./sideset_1T]
+    type = DirichletBC
+    variable = T
+    boundary = &#x27;left&#x27;
+    value = 273
+  [../]
+  [./sideset_2T]
+    type = DirichletBC
+    variable = T
+    boundary = &#x27;right&#x27;
+    value = 273
+  [../]
+
+  [./sideset_1V]
+    type = DirichletBC
+    variable = potential_E_int
+    boundary = &#x27;right&#x27;
+    value = 0
+  [../]
+  [./sideset_2V]
+    type = DirichletBC
+    variable = potential_E_int
+    boundary = &#x27;left&#x27;
+    value = 0.05
+  [../]
+[]
+
+[Postprocessors]
+  [./potential_x]
+    type = PointValue
+    point = &#x27;0 0 0&#x27;
+    variable = potential_E_int
+  [../]
+
+  [./T]
+    type = PointValue
+    point = &#x27;0 0 0&#x27;
+    variable = T
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided&#x27;
+    petsc_options_value = &#x27;    160               1e-10      1e-8      1e-6          bjacobi       allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_Bi2Te3_test
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

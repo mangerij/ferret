@@ -1,0 +1,684 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Postprocessor System | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="f3f77dbe-a032-43ee-9e05-b98ef4cab05d" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="82ab7abb-4ac8-49f0-9546-4901aa56477c" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="238ef8b5-4b62-4ac4-829e-0a8f67f9c24e" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="dc9d7fee-a4d6-4b50-8a3e-e5970c788824" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="41ef4ee6-6ef2-45f8-9ef6-94171d0d3882" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="d2136bd1-c521-4ea7-a6ff-697c895492e6"><i class="material-icons">menu</i></a><ul class="sidenav" id="d2136bd1-c521-4ea7-a6ff-697c895492e6"><li><a href="#!" class="dropdown-trigger" data-target="52e0a986-27a4-49fd-9e34-badf2bdfcd3d" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a82c4763-3fad-43e1-bf11-7897e6b7e54f" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="7c7b40df-e0b2-48a2-b318-7a2fb9cea411" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1e6a7430-d1ea-4aa5-ad64-54d582fbcc3a" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="508c87a5-161a-4ec4-81b4-546fd9d4b1ae" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="f3f77dbe-a032-43ee-9e05-b98ef4cab05d"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="82ab7abb-4ac8-49f0-9546-4901aa56477c"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="238ef8b5-4b62-4ac4-829e-0a8f67f9c24e"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="dc9d7fee-a4d6-4b50-8a3e-e5970c788824"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="41ef4ee6-6ef2-45f8-9ef6-94171d0d3882"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="52e0a986-27a4-49fd-9e34-badf2bdfcd3d"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="a82c4763-3fad-43e1-bf11-7897e6b7e54f"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="7c7b40df-e0b2-48a2-b318-7a2fb9cea411"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="1e6a7430-d1ea-4aa5-ad64-54d582fbcc3a"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="508c87a5-161a-4ec4-81b4-546fd9d4b1ae"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="be168b1b-7875-4200-95cd-676178bf13ad" data-section-level="1" data-section-text="Postprocessor System"><h1 id="postprocessor-system">Postprocessor System</h1><p>A postprocessor is an object that computes a single scalar (<code>Real</code>) value, such as a value sampled from the solution at a point in the domain, or an integral/average over some subdomain or boundary. This value may be used purely for output purposes, or it may be retrieved by other systems via the <code>getPostprocessorValue</code> method, which is available in most MOOSE objects. Furthermore, postprocessors are also <a href="../Functors/index.html">functors</a>, which allows them to be retrieved into various objects via the <code>getFunctor&lt;Real&gt;</code> method.</p><p>MOOSE includes a large number of postprocessors within the framework, the complete list is provided in <a href="index.html#available-objects">Available Objects list</a> section.</p><div class="card moose-alert moose-alert-note"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">comment</i><span class="moose-alert-title-brand">note</span></div><div class="card-content"><div class="moose-alert-content"><p>The <a href="../Reporters/index.html">Reporter System</a> is a newer, more flexible system for computing aggregate values. It is recommended that new objects for aggregate calculations use the Reporter system.</p></div></div></div><section id="33d9c241-8572-4f66-a1e1-01a3037bd650" data-section-level="2" data-section-text="Example Input File"><h2 id="example-input-file">Example Input File</h2><p>The following input file snippet demonstrates the use of the <a href="../../source/postprocessors/ElementExtremeValue.html">ElementExtremeValue</a> to compute the minimum and maximum of the solution variable &quot;u&quot;.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Postprocessors]
+  [max]
+    type = ElementExtremeValue
+    variable = u
+  []
+  [min]
+    type = ElementExtremeValue
+    variable = u
+    value_type = min
+  []
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#a2e2f481-4ac0-4532-afc3-3391de2ee379">(../moose/test/tests/postprocessors/element_extreme_value/element_extreme_value.i)</a><p>This snippet is a part of a test that may be executed using the MOOSE test application as follows.</p><pre class="moose-pre"><code class="language-bash">
+cd ~/projects/moose/test
+make -j8
+cd tests/postprocessors/element_extreme_value
+~/projects/moose/test/moose_test-opt -i element_extreme_value.i
+</code></pre><p>The data from this calculation is reported in the terminal output by default and if <a href="../../source/outputs/Exodus.html">Exodus</a> output is enabled the values will automatically be included in the output file. It is also possible to export the data to a comma separated value (csv) file by enabling the <a href="../../source/outputs/CSV.html">CSV</a> object within the <a href="../Outputs/index.html">Outputs</a> block.</p><pre class="moose-pre"><code class="language-bash">
+Postprocessor Values:
++----------------+----------------+----------------+
+| time           | max            | min            |
++----------------+----------------+----------------+
+|   0.000000e+00 |   0.000000e+00 |   0.000000e+00 |
+|   1.000000e+00 |   9.788675e-01 |   2.113249e-02 |
++----------------+----------------+----------------+
+</code></pre></section><section id="599e99ac-f515-47c3-9bf6-6764a391ced9" data-section-level="2" data-section-text="Coupling Example Code"><h2 id="coupling-example-code">Coupling Example Code</h2><p>The values computed within a Postprocessor object may be used within other objects that inherit from the <a href="../../source/interfaces/PostprocessorInterface.html">PostprocessorInterface</a>, which is nearly every system within MOOSE. For example, the the <a href="../../source/bcs/PostprocessorNeumannBC.html">PostprocessorNeumannBC</a> object allows for a Neumann boundary condition to be set to a value computed from a postprocessor; this object will be used as example to demonstrate how coupling is performed.</p><p>To understand how the coupling is coded it is beneficial to first see how the coupling is defined via the input file. The following input file snippet shows that a <a href="../../source/postprocessors/PointValue.html">PointValue</a> postprocessor is created and named &quot;right_pp&quot; and the <a href="../../source/bcs/PostprocessorNeumannBC.html">PostprocessorNeumannBC</a> uses this value to set the boundary condition.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Postprocessors]
+  [right_pp]
+    type = PointValue
+    point = &#x27;0.5 0.5 0&#x27;
+    variable = aux
+    execute_on = &#x27;initial&#x27;
+  []
+[]
+
+[BCs]
+  [left]
+    type = DirichletBC
+    variable = u
+    boundary = left
+    value = 0
+  []
+  [right]
+    type = PostprocessorNeumannBC
+    variable = u
+    boundary = right
+    postprocessor = right_pp
+  []
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#9626ee92-1cd3-45d8-aaef-7c9f3488ad37">(../moose/test/tests/bcs/pp_neumann/pp_neumann.i)</a><p>This first step of coding this type of coupling begins by adding the necessary input file syntax to the object that requires a postprocessor value, PostprocessorNeumannBC in this example. In all MOOSE objects input file syntax is governed by the validParams function of an object. To add the ability to couple a postprocessor, simply add a new parameter using the <code>PostprocessorName</code> type, as shown below. Notice, that the add parameters call includes a default value that makes the use of the postprocessor optional.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">
+#include &quot;PostprocessorNeumannBC.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, PostprocessorNeumannBC);
+
+InputParameters
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#1916c9ff-5e42-40b7-8943-33ebd5c98bac">(../moose/framework/src/bcs/PostprocessorNeumannBC.C)</a><p>The actual postprocessor value must be assigned to a member variable of the class, thus in the header a member variable must be created, which should always be a constant reference to a <code>PostprocessorValue</code> type. Since this is a reference it must be initialized, this occurs in the source file by calling the <code>getPostprocessorValue</code> method and providing the name used in the validParams function. The following snippets show declaration of the reference in the header and the initialization of this reference in the source file.  The <code>_value</code> member variable is then available for use anywhere inside the object, for the case of the boundary condition it is utilized in the computation of the residual.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">  const PostprocessorValue &amp; _value;
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#3788fce7-101d-4701-8715-d3ab36b3b166">(../moose/framework/include/bcs/PostprocessorNeumannBC.h)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">PostprocessorNeumannBC::validParams()
+{
+  InputParameters params = IntegratedBC::validParams();
+  params.addClassDescription(
+      &quot;Neumann boundary condition with value prescribed by a Postprocessor value.&quot;);
+  params.addParam&lt;PostprocessorName&gt;(
+      &quot;postprocessor&quot;, 0.0, &quot;The postprocessor to use for value of the gradient on the boundary.&quot;);
+  return params;
+}
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#3d8750a3-8280-4486-b652-d46858f2af56">(../moose/framework/src/bcs/PostprocessorNeumannBC.C)</a><section id="6de0b1d0-ee15-4c2b-a470-bdd9f9e3342a" data-section-level="3" data-section-text="Coupling to other values"><h3 id="coupling-to-other-values">Coupling to other values</h3><p>Just as Postprocessor values can be used in other objects, Postprocessors themselves can couple to Functions and Scalar Variables. See the following example that couples a scalar variable into a Postprocessor:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Postprocessors]
+  [./totalFlux]
+    type = ScalarCoupledPostprocessor
+    variable = u
+    coupled_scalar = scalar_variable
+    boundary = left
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#4d0dd18e-93c4-4525-b74b-4d74c55c71a7">(../moose/test/tests/postprocessors/scalar_coupled_postprocessor/scalar_coupled_postprocessor_test.i)</a></section></section><section id="0171a0a5-3d87-49b9-93b6-c4781cc7a012" data-section-level="2" data-section-text="Creating a Object Postprocessor"><h2 id="creating-a-object">Creating a <code>Postprocessor</code> Object</h2><p>In general, every Postprocessor object has two methods that must be defined &quot;execute&quot; and &quot;getValue&quot;.</p><p>First, consider the execute method. This method is called by MOOSE at different time depending on the type of postprocessor object. Therefore, when creating a Postprocessor object the new object should inherit from one of the following C++ classes:</p><ul class="browser-default"><li><p><strong>GeneralPostprocessor</strong>: &quot;execute&quot; is called once on each execution flag. </p></li><li><p><strong>NodalPostprocessor</strong>: &quot;execute&quot; is called for each <strong>node</strong> within the mesh on each execution flag. </p></li><li><p><strong>ElementalPostprocessor</strong>: &quot;execute&quot; is called for each <strong>element</strong> within the mesh on each execution  flag. </p></li><li><p><strong>InternalSidePostprocessor</strong>: &quot;execute&quot; is called for each <strong>side</strong>, that is not on a boundary,  within the mesh on each execution flag. </p></li><li><p><strong>SidePostprocessor</strong>: &quot;execute&quot; is called for each <strong>side</strong>, that is on a boundary, within the mesh  on each execution flag.</p></li></ul><p>The use of execution flags is discussed in the <a href="index.html#execute-on">Execute On</a> section.</p><p>The getValue method is responsible for returning the value of the postprocessor object, this value is what is used by all objects that are coupled to the postprocessor. In some cases the necessary communication is performed within this method, but in general this following is preferred.</p><section id="3d30501c-32cb-4b3b-89ef-2fe23576969a" data-section-level="3" data-section-text="Parallel Considerations"><h3 id="parallel-considerations">Parallel Considerations</h3><p>When creating a postprocessor it is often necessary to perform some parallel communication to ensure that the value being computed is correct across processes and threads. Three additional methods exists for making this process as simple as possible.</p><ul class="browser-default"><li><p><code>initialize</code>: This is called prior to the execution of the postprocessor and should be used  to setup the object to be in a known state. It is important to point out that execution  in this context includes all calls to the execute method. For example, for a <code>NodalPostprocessor</code>  object the initialize method is called and then the execute method is called for all nodes. </p></li><li><p><code>finalize</code>: This is called after the execution of the postprocessor and is intended to perform  communication to prepare the object for the call to the getValue method. </p></li><li><p><code>threadJoin</code>: This is called after the execution of the postprocessor and is intended to perform  aggregation for shared memory parallelism.</p></li></ul><p>To understand the use of these methods the <a href="../../source/postprocessors/AverageNodalVariableValue.html">AverageNodalVariableValue</a> postprocessor shall be used as an example. As the name suggests this postprocessor computes the average of the value of a variable at the nodes. To perform this calculation the variable values from each node are summed as is the number of values within the execute method. Then the getValue method returns the average by returning the sum divided by the count. The following snippet shows the these two methods: the <code>_u[_qp]</code> is the value of the variable at the current node that comes from a shared base class and  <code>_sum</code> and <code>_n</code> are a member variables defined within class for performing the calculation.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">void
+AverageNodalVariableValue::execute()
+{
+  _sum += _u[_qp];
+  _n++;
+}
+
+Real
+AverageNodalVariableValue::getValue() const
+{
+  return _sum / _n;
+}
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#20f6f1a6-095f-436a-bbf1-7e27f9b0e6b4">(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</a><p>In parallel, the calls to the execute method occur on each process or thread on a subset of the domain, in this case nodes. Therefore, the computed values must be combined to get the actual summations required to compute the average value. The first step is to setup the state of this calculation within the initialize method, which in this example sets the <code>_sum</code> and <code>_n</code> member variables to zero.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">void
+AverageNodalVariableValue::initialize()
+{
+  _sum = 0;
+  _n = 0;
+}
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#45cdc8ba-7957-478e-94a6-61b2d193a481">(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</a><p>After the aforementioned execute method is called for each node the computed values for <code>_sum</code> and <code>_n</code> must be aggregated from across processes to the root processes. For this problem a gather operation is required to collect the values computed on all processes to the root process. This is accomplished via the <code>gatherSum</code> method.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">void
+AverageNodalVariableValue::finalize()
+{
+  gatherSum(_sum);
+  gatherSum(_n);
+}
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#fc29413e-af4a-4c45-9981-ae6ed3a4dc57">(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</a><p>Of course, the type of communication necessary depends on the calculation being performed. The <a href="../../source/userobjects/UserObject.html">UserObject</a> base class includes helper methods for common parallel communications functions.</p><p>The initialize and finalize methods are utilized to aggregate for message passing (MPI) based parallelism. For shared memory parallelism the theadJoin method is used. This method is called, like finalize, after execution is complete and includes a single argument. This argument is a reference to a UserObject, which is a base class of Postprocessor objects. The purpose of this method is to enable the aggregation for the Postprocessor objects that were executed on other threads to the object on the root thread. For the AverageNodalVariableValue postprocessor the values for <code>_sum</code> and <code>_n</code> on the root process object are updated to include the these same values from the other threads.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">void
+AverageNodalVariableValue::threadJoin(const UserObject &amp; y)
+{
+  const AverageNodalVariableValue &amp; pps = static_cast&lt;const AverageNodalVariableValue &amp;&gt;(y);
+  _sum += pps._sum;
+  _n += pps._n;
+}
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#1391253d-1715-4e8d-93ff-332ba19b7624">(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</a></section></section><section id="8fdafcf1-7078-4997-be06-dde6981e5098" data-section-level="2" data-section-text="Execute On ..."><h2 id="execute-on">Execute On...</h2><p>Postprocessor objects inherit from the <a href="../../source/interfaces/SetupInterface.html">SetupInterface (execute_on)</a> that allows the objects to execute and varying and multiple times during a simulation, such as during initialization and at the end of each time step. Refer to the <a href="../../source/interfaces/SetupInterface.html">SetupInterface (execute_on)</a> for additional information.</p></section><section id="ccdbce20-7a1f-4cfc-b800-32b955725bdd" data-section-level="2" data-section-text="Using Old and Older values"><h2 id="using-old-and-older-values">Using Old and Older values</h2><p>MOOSE maintains previously computed values in the postprocessor system for using lagged information in a computation. Both the previous time step&#x27;s value and the value computed two steps back may be retrieved. One reason you might use older values is to break cyclic dependencies. MOOSE does not consider a dependence on an old value when considering the order of evaluation among objects with dependencies.</p></section><section id="49e2ec3b-d3dc-42a9-ac0f-ebefb122886a" data-section-level="2" data-section-text="Available Objects"><h2 id="available-objects">Available Objects</h2><ul class="moose-syntax-list collection with-header"><li class="collection-header">Moose App</li><li class="collection-item"><a href="../../source/postprocessors/ElementAverageMaterialProperty.html">ADElementAverageMaterialProperty</a>Computes the average of a material property over a volume.</li><li class="collection-item"><a href="../../source/postprocessors/ElementExtremeFunctorValue.html">ADElementExtremeFunctorValue</a>Finds either the min or max elemental value of a variable over the domain.</li><li class="collection-item"><a href="../../source/postprocessors/ElementExtremeMaterialProperty.html">ADElementExtremeMaterialProperty</a>Determines the minimum or maximum of a material property over a volume.</li><li class="collection-item"><a href="../../source/postprocessors/ElementIntegralFunctorPostprocessor.html">ADElementIntegralFunctorPostprocessor</a>Computes a volume integral of the specified functor</li><li class="collection-item"><a href="../../source/postprocessors/ElementIntegralMaterialProperty.html">ADElementIntegralMaterialProperty</a>Compute the integral of the material property over the domain</li><li class="collection-item"><a href="../../source/postprocessors/ElementL2FunctorError.html">ADElementL2FunctorError</a>Computes L2 error between an &#x27;approximate&#x27; functor and an &#x27;exact&#x27; functor</li><li class="collection-item"><a href="../../source/postprocessors/InterfaceDiffusiveFluxAverage.html">ADInterfaceDiffusiveFluxAverage</a>Computes the diffusive flux on the interface.</li><li class="collection-item"><a href="../../source/postprocessors/InterfaceDiffusiveFluxIntegral.html">ADInterfaceDiffusiveFluxIntegral</a>Computes the diffusive flux on the interface.</li><li class="collection-item"><a href="../../source/postprocessors/SideAdvectiveFluxIntegral.html">ADSideAdvectiveFluxIntegral</a>Computes the volumetric advected quantity through a sideset.</li><li class="collection-item"><a href="../../source/postprocessors/SideAverageMaterialProperty.html">ADSideAverageMaterialProperty</a>Computes the average of a material property over a side set.</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxAverage.html">ADSideDiffusiveFluxAverage</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxIntegral.html">ADSideDiffusiveFluxIntegral</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxAverage.html">ADSideFluxAverage</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxIntegral.html">ADSideFluxIntegral</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideIntegralFunctorPostprocessor.html">ADSideIntegralFunctorPostprocessor</a>Computes a surface integral of the specified functor, using the single-sided face argument, which usually means that the functor will be evaluated from a single side of the surface, not interpolated between both sides.</li><li class="collection-item"><a href="../../source/postprocessors/SideIntegralMaterialProperty.html">ADSideIntegralMaterialProperty</a>Compute the integral of a scalar material property component over the domain.</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxIntegral.html">ADSideVectorDiffusivityFluxIntegral</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/AreaPostprocessor.html">AreaPostprocessor</a>Computes the &quot;area&quot; or dimension - 1 &quot;volume&quot; of a given boundary or boundaries in your mesh.</li><li class="collection-item"><a href="../../source/postprocessors/AverageElementSize.html">AverageElementSize</a>Computes the average element size.</li><li class="collection-item"><a href="../../source/postprocessors/AverageNodalVariableValue.html">AverageNodalVariableValue</a>Computes the average value of a field by sampling all nodal solutions on the domain or within a subdomain</li><li class="collection-item"><a href="../../source/postprocessors/AxisymmetricCenterlineAverageValue.html">AxisymmetricCenterlineAverageValue</a>Computes the average value of a variable on a sideset located along the centerline of an axisymmetric model.</li><li class="collection-item"><a href="../../source/postprocessors/ChangeOverFixedPointPostprocessor.html">ChangeOverFixedPointPostprocessor</a>Computes the change or relative change in a post-processor value over a single or multiple fixed point iterations</li><li class="collection-item"><a href="../../source/postprocessors/ChangeOverTimePostprocessor.html">ChangeOverTimePostprocessor</a>Computes the change or relative change in a post-processor value over a timestep or the entire transient</li><li class="collection-item"><a href="../../source/postprocessors/ChangeOverTimestepPostprocessor.html">ChangeOverTimestepPostprocessor</a>Computes the change or relative change in a post-processor value over a timestep or the entire transient</li><li class="collection-item"><a href="../../source/postprocessors/ConstantPostprocessor.html">ConstantPostprocessor</a>Postprocessor that holds a constant value</li><li class="collection-item"><a href="../../source/postprocessors/CumulativeValuePostprocessor.html">CumulativeValuePostprocessor</a>Creates a cumulative sum of a Postprocessor value with time.</li><li class="collection-item"><a href="../../source/postprocessors/DifferencePostprocessor.html">DifferencePostprocessor</a>Computes the difference between two postprocessors</li><li class="collection-item"><a href="../../source/postprocessors/ElementArrayL2Norm.html">ElementArrayL2Norm</a>Evaluates L2-norm of a component of an array variable</li><li class="collection-item"><a href="../../source/postprocessors/ElementAverageMaterialProperty.html">ElementAverageMaterialProperty</a>Computes the average of a material property over a volume.</li><li class="collection-item"><a href="../../source/postprocessors/ElementAverageSecondTimeDerivative.html">ElementAverageSecondTimeDerivative</a>Computes the element averaged second derivative of variable</li><li class="collection-item"><a href="../../source/postprocessors/ElementAverageTimeDerivative.html">ElementAverageTimeDerivative</a>Computes a volume integral of the time derivative of a given variable</li><li class="collection-item"><a href="../../source/postprocessors/ElementAverageValue.html">ElementAverageValue</a>Computes the volumetric average of a variable</li><li class="collection-item"><a href="../../source/postprocessors/ElementExtremeFunctorValue.html">ElementExtremeFunctorValue</a>Finds either the min or max elemental value of a variable over the domain.</li><li class="collection-item"><a href="../../source/postprocessors/ElementExtremeMaterialProperty.html">ElementExtremeMaterialProperty</a>Determines the minimum or maximum of a material property over a volume.</li><li class="collection-item"><a href="../../source/postprocessors/ElementExtremeValue.html">ElementExtremeValue</a>Finds either the min or max elemental value of a variable over the domain.</li><li class="collection-item"><a href="../../source/postprocessors/ElementH1Error.html">ElementH1Error</a>Computes the H1 error between a variable and a function</li><li class="collection-item"><a href="../../source/postprocessors/ElementH1SemiError.html">ElementH1SemiError</a>Returns the gradient difference norm part of the H1 error</li><li class="collection-item"><a href="../../source/postprocessors/ElementIntegralArrayVariablePostprocessor.html">ElementIntegralArrayVariablePostprocessor</a>Integral of one component of an array variable.</li><li class="collection-item"><a href="../../source/postprocessors/ElementIntegralFunctorPostprocessor.html">ElementIntegralFunctorPostprocessor</a>Computes a volume integral of the specified functor</li><li class="collection-item"><a href="../../source/postprocessors/ElementIntegralMaterialProperty.html">ElementIntegralMaterialProperty</a>Compute the integral of the material property over the domain</li><li class="collection-item"><a href="../../source/postprocessors/ElementIntegralVariablePostprocessor.html">ElementIntegralVariablePostprocessor</a>Computes a volume integral of the specified variable</li><li class="collection-item"><a href="../../source/postprocessors/ElementL1Error.html">ElementL1Error</a>Computes L1 error between an elemental field variable and an analytical function.</li><li class="collection-item"><a href="../../source/postprocessors/ElementL2Difference.html">ElementL2Difference</a>Computes the element-wise L2 difference between the current variable and a coupled variable.</li><li class="collection-item"><a href="../../source/postprocessors/ElementL2Error.html">ElementL2Error</a>Computes L2 error between a field variable and an analytical function</li><li class="collection-item"><a href="../../source/postprocessors/ElementL2FunctorError.html">ElementL2FunctorError</a>Computes L2 error between an &#x27;approximate&#x27; functor and an &#x27;exact&#x27; functor</li><li class="collection-item"><a href="../../source/postprocessors/ElementL2Norm.html">ElementL2Norm</a>Computes a volume integral of the specified variable</li><li class="collection-item"><a href="../../source/postprocessors/ElementSidesL2Norm.html">ElementSidesL2Norm</a>Computes the L2 norm of a variable over element sides.</li><li class="collection-item"><a href="../../source/postprocessors/ElementVectorL2Error.html">ElementVectorL2Error</a>Computes the Vector L2 difference of up to three variables simultaneously (normally x, y, z)</li><li class="collection-item"><a href="../../source/postprocessors/ElementW1pError.html">ElementW1pError</a>Computes the W1p norm of the difference between a variable and an analytic solution, as a function</li><li class="collection-item"><a href="../../source/postprocessors/ElementalVariableValue.html">ElementalVariableValue</a>Outputs an elemental variable value at a particular location</li><li class="collection-item"><a href="../../source/postprocessors/EmptyPostprocessor.html">EmptyPostprocessor</a>A postprocessor object that returns a value of zero.</li><li class="collection-item"><a href="../../source/postprocessors/FindValueOnLine.html">FindValueOnLine</a>Find a specific target value along a sampling line. The variable values along the line should change monotonically. The target value is searched using a bisection algorithm.</li><li class="collection-item"><a href="../../source/postprocessors/FunctionElementAverage.html">FunctionElementAverage</a>Computes the average of a function over a volume.</li><li class="collection-item"><a href="../../source/postprocessors/FunctionElementIntegral.html">FunctionElementIntegral</a>Integrates a function over elements</li><li class="collection-item"><a href="../../source/postprocessors/FunctionSideAverage.html">FunctionSideAverage</a>Computes the average of a function over a boundary.</li><li class="collection-item"><a href="../../source/postprocessors/FunctionSideIntegral.html">FunctionSideIntegral</a>Computes the integral of a function over a boundary.</li><li class="collection-item"><a href="../../source/postprocessors/FunctionValuePostprocessor.html">FunctionValuePostprocessor</a>Computes the value of a supplied function at a single point (scalable)</li><li class="collection-item"><a href="../../source/postprocessors/GreaterThanLessThanPostprocessor.html">GreaterThanLessThanPostprocessor</a>Count number of DOFs of a non-linear variable that are greater than or less than a given threshold</li><li class="collection-item"><a href="../../source/postprocessors/InterfaceAverageVariableValuePostprocessor.html">InterfaceAverageVariableValuePostprocessor</a>Computes the average value of a variable on an interface. Note that this cannot be used on the centerline of an axisymmetric model.</li><li class="collection-item"><a href="../../source/postprocessors/InterfaceDiffusiveFluxAverage.html">InterfaceDiffusiveFluxAverage</a>Computes the diffusive flux on the interface.</li><li class="collection-item"><a href="../../source/postprocessors/InterfaceDiffusiveFluxIntegral.html">InterfaceDiffusiveFluxIntegral</a>Computes the diffusive flux on the interface.</li><li class="collection-item"><a href="../../source/postprocessors/InterfaceIntegralVariableValuePostprocessor.html">InterfaceIntegralVariableValuePostprocessor</a>Add access to variables and their gradient on an interface.</li><li class="collection-item"><a href="../../source/postprocessors/InternalSideIntegralVariablePostprocessor.html">InternalSideIntegralVariablePostprocessor</a>Computes an integral on internal sides of the specified variable</li><li class="collection-item"><a href="../../source/postprocessors/LinearCombinationPostprocessor.html">LinearCombinationPostprocessor</a>Computes a linear combination between an arbitrary number of post-processors</li><li class="collection-item"><a href="../../source/postprocessors/MemoryUsage.html">MemoryUsage</a>Memory usage statistics for the running simulation.</li><li class="collection-item"><a href="../../source/postprocessors/NearestNodeNumber.html">NearestNodeNumber</a>Outputs the nearest node number to a point</li><li class="collection-item"><a href="../../source/postprocessors/NodalExtremeValue.html">NodalExtremeValue</a>Finds either the min or max elemental value of a variable over the domain.</li><li class="collection-item"><a href="../../source/postprocessors/NodalL2Error.html">NodalL2Error</a>The L2-norm of the difference between a variable and a function computed at nodes.</li><li class="collection-item"><a href="../../source/postprocessors/NodalL2Norm.html">NodalL2Norm</a>Computes the nodal L2-norm of the coupled variable, which is defined by summing the square of its value at every node and taking the square root.</li><li class="collection-item"><a href="../../source/postprocessors/NodalMaxValue.html">NodalMaxValue</a>Computes the maximum (over all the nodal values) of a variable.</li><li class="collection-item"><a href="../../source/postprocessors/NodalMaxValueId.html">NodalMaxValueId</a>Finds the node id with the maximum nodal value across all postprocessors.</li><li class="collection-item"><a href="../../source/postprocessors/NodalMaxValueId.html">NodalProxyMaxValue</a>Finds the node id with the maximum nodal value across all postprocessors.</li><li class="collection-item"><a href="../../source/postprocessors/NodalSum.html">NodalSum</a>Computes the sum of all of the nodal values of the specified variable. Note: This object sets the default &quot;unique_node_execute&quot; flag to true to avoid double counting nodes between shared blocks.</li><li class="collection-item"><a href="../../source/postprocessors/NodalVariableValue.html">NodalVariableValue</a>Outputs values of a nodal variable at a particular location</li><li class="collection-item"><a href="../../source/postprocessors/NumDOFs.html">NumDOFs</a>Return the number of Degrees of freedom from either the NL, Aux or both systems.</li><li class="collection-item"><a href="../../source/postprocessors/NumElems.html">NumElems</a>Return the number of active or total elements in the simulation.</li><li class="collection-item"><a href="../../source/postprocessors/NumFailedTimeSteps.html">NumFailedTimeSteps</a>Collects the number of failed time steps from the time stepper.</li><li class="collection-item"><a href="../../source/postprocessors/NumFixedPointIterations.html">NumFixedPointIterations</a>Returns the number of fixed point iterations taken by the executioner.</li><li class="collection-item"><a href="../../source/postprocessors/NumLinearIterations.html">NumLinearIterations</a>Compute the number of linear iterations.</li><li class="collection-item"><a href="../../source/postprocessors/NumNodes.html">NumNodes</a>Returns the total number of nodes in a simulation (works with DistributedMesh)</li><li class="collection-item"><a href="../../source/postprocessors/NumNonlinearIterations.html">NumNonlinearIterations</a>Outputs the number of nonlinear iterations</li><li class="collection-item"><a href="../../source/postprocessors/NumFixedPointIterations.html">NumPicardIterations</a>Returns the number of fixed point iterations taken by the executioner.</li><li class="collection-item"><a href="../../source/postprocessors/NumPositions.html">NumPositions</a>Return the number of Positions from a Positions object.</li><li class="collection-item"><a href="../../source/postprocessors/NumRelationshipManagers.html">NumRelationshipManagers</a>Return the number of relationship managers active.</li><li class="collection-item"><a href="../../source/postprocessors/NumResidualEvaluations.html">NumResidualEvaluations</a>Returns the total number of residual evaluations performed.</li><li class="collection-item"><a href="../../source/postprocessors/NumVars.html">NumVars</a>Return the number of variables from either the NL, Aux, or both systems.</li><li class="collection-item"><a href="../../source/postprocessors/ParsedPostprocessor.html">ParsedPostprocessor</a>Computes a parsed expression with post-processors</li><li class="collection-item"><a href="../../source/postprocessors/PercentChangePostprocessor.html">PercentChangePostprocessor</a>Computes the percent change of a postprocessor value compared to the value at the previous timestep.</li><li class="collection-item"><a href="../../source/postprocessors/PerfGraphData.html">PerfGraphData</a>Retrieves performance information about a section from the PerfGraph.</li><li class="collection-item"><a href="../../source/postprocessors/PointValue.html">PointValue</a>Compute the value of a variable at a specified location</li><li class="collection-item"><a href="../../source/postprocessors/PostprocessorComparison.html">PostprocessorComparison</a>Compares two post-processors and produces a boolean value</li><li class="collection-item"><a href="../../source/postprocessors/Receiver.html">Receiver</a>Reports the value stored in this processor, which is usually filled in by another object. The Receiver does not compute its own value.</li><li class="collection-item"><a href="../../source/postprocessors/RelativeDifferencePostprocessor.html">RelativeDifferencePostprocessor</a>Computes the absolute value of the relative difference between 2 post-processor values.</li><li class="collection-item"><a href="../../source/postprocessors/RelativeSolutionDifferenceNorm.html">RelativeSolutionDifferenceNorm</a>Computes the relative norm of the solution difference of two consecutive time steps.</li><li class="collection-item"><a href="../../source/postprocessors/Residual.html">Residual</a>Report the non-linear residual.</li><li class="collection-item"><a href="../../source/postprocessors/ScalarL2Error.html">ScalarL2Error</a>Compute L2 error of a scalar variable using analytic function.</li><li class="collection-item"><a href="../../source/postprocessors/ScalarVariable.html">ScalarVariable</a>Returns the value of a scalar variable as a postprocessor value.</li><li class="collection-item"><a href="../../source/postprocessors/ScalePostprocessor.html">ScalePostprocessor</a>Scales a post-processor by a value</li><li class="collection-item"><a href="../../source/postprocessors/SideAdvectiveFluxIntegral.html">SideAdvectiveFluxIntegral</a>Computes the volumetric advected quantity through a sideset.</li><li class="collection-item"><a href="../../source/postprocessors/SideAverageMaterialProperty.html">SideAverageMaterialProperty</a>Computes the average of a material property over a side set.</li><li class="collection-item"><a href="../../source/postprocessors/SideAverageValue.html">SideAverageValue</a>Computes the average value of a variable on a sideset. Note that this cannot be used on the centerline of an axisymmetric model.</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxAverage.html">SideDiffusiveFluxAverage</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxIntegral.html">SideDiffusiveFluxIntegral</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideExtremeValue.html">SideExtremeValue</a>Finds either the min or max variable value of a variable over a boundary.</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxAverage.html">SideFluxAverage</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxIntegral.html">SideFluxIntegral</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/SideIntegralFunctorPostprocessor.html">SideIntegralFunctorPostprocessor</a>Computes a surface integral of the specified functor, using the single-sided face argument, which usually means that the functor will be evaluated from a single side of the surface, not interpolated between both sides.</li><li class="collection-item"><a href="../../source/postprocessors/SideIntegralMaterialProperty.html">SideIntegralMaterialProperty</a>Compute the integral of a scalar material property component over the domain.</li><li class="collection-item"><a href="../../source/postprocessors/SideIntegralVariablePostprocessor.html">SideIntegralVariablePostprocessor</a>Computes a surface integral of the specified variable</li><li class="collection-item"><a href="../../source/postprocessors/SideDiffusiveFluxIntegral.html">SideVectorDiffusivityFluxIntegral</a>Computes the integral of the diffusive flux over the specified boundary</li><li class="collection-item"><a href="../../source/postprocessors/TimeExtremeValue.html">TimeExtremeValue</a>A postprocessor for reporting the extreme value of another postprocessor over time.</li><li class="collection-item"><a href="../../source/postprocessors/TimeIntegratedPostprocessor.html">TimeIntegratedPostprocessor</a>Integrate a Postprocessor value over time using trapezoidal rule.</li><li class="collection-item"><a href="../../source/postprocessors/TimePostprocessor.html">TimePostprocessor</a>Reports the current time</li><li class="collection-item"><a href="../../source/postprocessors/TimestepSize.html">TimestepSize</a>Reports the timestep size</li><li class="collection-item"><a href="../../source/postprocessors/TimeIntegratedPostprocessor.html">TotalVariableValue</a>Integrate a Postprocessor value over time using trapezoidal rule.</li><li class="collection-item"><a href="../../source/postprocessors/VariableInnerProduct.html">VariableInnerProduct</a>Computes a volume integral of the specified variable</li><li class="collection-item"><a href="../../source/postprocessors/VariableResidual.html">VariableResidual</a>Computes the L2 norm of the residual of a single variable in the solution vector.</li><li class="collection-item"><a href="../../source/postprocessors/VectorPostprocessorComparison.html">VectorPostprocessorComparison</a>Compares two vector post-processors of equal size and produces a boolean value</li><li class="collection-item"><a href="../../source/postprocessors/VectorPostprocessorComponent.html">VectorPostprocessorComponent</a>Returns the value of the specified component of a VectorPostprocessor</li><li class="collection-item"><a href="../../source/postprocessors/VectorPostprocessorReductionValue.html">VectorPostprocessorReductionValue</a>Takes a VectorPostprocessor and performs a reduction operation on it (max, min, sum, average) and stores as postprocessor.</li><li class="collection-item"><a href="../../source/postprocessors/VolumePostprocessor.html">VolumePostprocessor</a>Computes the volume of a specified block</li><li class="collection-header">Tensor Mechanics App</li><li class="collection-item"><a href="../../source/postprocessors/Mass.html">ADMass</a>Computes a volume integral of the specified variable</li><li class="collection-item"><a href="../../source/postprocessors/MaterialTensorAverage.html">ADMaterialTensorAverage</a>Computes the average of a RankTwoTensor component over a volume.</li><li class="collection-item"><a href="../../source/postprocessors/MaterialTensorIntegral.html">ADMaterialTensorIntegral</a>This postprocessor computes an element integral of a component of a material tensor as specified by the user-supplied indices</li><li class="collection-item"><a href="../../source/postprocessors/SidesetReaction.html">ADSidesetReaction</a>Computes the integrated reaction force in a user-specified direction on a sideset from the surface traction</li><li class="collection-item"><a href="../../source/postprocessors/AsymptoticExpansionHomogenizationElasticConstants.html">AsymptoticExpansionHomogenizationElasticConstants</a>Postprocessor for asymptotic expansion homogenization for elasticity</li><li class="collection-item"><a href="../../source/postprocessors/CavityPressurePostprocessor.html">CavityPressurePostprocessor</a>Interfaces with the CavityPressureUserObject to store the initial number of moles of a gas contained within an internal volume.</li><li class="collection-item"><a href="../../source/postprocessors/CrackFrontData.html">CrackFrontData</a>Determines which nodes are along the crack front</li><li class="collection-item"><a href="../../source/postprocessors/CriticalTimeStep.html">CriticalTimeStep</a>Computes and reports the critical time step for the explicit solver.</li><li class="collection-item"><a href="../../source/postprocessors/Mass.html">Mass</a>Computes a volume integral of the specified variable</li><li class="collection-item"><a href="../../source/postprocessors/MaterialTensorAverage.html">MaterialTensorAverage</a>Computes the average of a RankTwoTensor component over a volume.</li><li class="collection-item"><a href="../../source/postprocessors/MaterialTensorIntegral.html">MaterialTensorIntegral</a>This postprocessor computes an element integral of a component of a material tensor as specified by the user-supplied indices</li><li class="collection-item"><a href="../../source/postprocessors/MaterialTimeStepPostprocessor.html">MaterialTimeStepPostprocessor</a>This postprocessor estimates a timestep that reduces the increment change in a material property below a given threshold.</li><li class="collection-item"><a href="../../source/postprocessors/NormalBoundaryDisplacement.html">NormalBoundaryDisplacement</a>This postprocessor computes the normal displacement on a given set of boundaries.</li><li class="collection-item"><a href="../../source/postprocessors/PolarMomentOfInertia.html">PolarMomentOfInertia</a>Compute the polar moment of inertia of a sideset w.r.t. a point and a direction</li><li class="collection-item"><a href="../../source/postprocessors/SidesetReaction.html">SidesetReaction</a>Computes the integrated reaction force in a user-specified direction on a sideset from the surface traction</li><li class="collection-item"><a href="../../source/postprocessors/TorqueReaction.html">TorqueReaction</a>TorqueReaction calculates the torque in 2D and 3Dabout a user-specified axis of rotation centeredat a user-specified origin.</li><li class="collection-header">Phase Field App</li><li class="collection-item"><a href="../../source/postprocessors/AverageGrainVolume.html">AverageGrainVolume</a>Calculate average grain area in a polycrystal</li><li class="collection-item"><a href="../../source/postprocessors/DiscreteNucleationData.html">DiscreteNucleationData</a>Output diagnostic data on a DiscreteNucleationInserter</li><li class="collection-item"><a href="../../source/postprocessors/DiscreteNucleationTimeStep.html">DiscreteNucleationTimeStep</a>Return a time step limit for nucleation event to be used by IterationAdaptiveDT</li><li class="collection-item"><a href="../../source/postprocessors/FauxGrainTracker.html">FauxGrainTracker</a>Fake grain tracker object for cases where the number of grains is equal to the number of order parameters.</li><li class="collection-item"><a href="../../source/userobjects/FauxPolycrystalVoronoi.html">FauxPolycrystalVoronoi</a>Random Voronoi tessellation polycrystal when the number of order parameters equal to the number of grains</li><li class="collection-item"><a href="../../source/postprocessors/FeatureFloodCount.html">FeatureFloodCount</a>The object is able to find and count &quot;connected components&quot; in any solution field or number of solution fields. A primary example would be to count &quot;bubbles&quot;.</li><li class="collection-item"><a href="../../source/postprocessors/FeatureVolumeFraction.html">FeatureVolumeFraction</a></li><li class="collection-item"><a href="../../source/postprocessors/GrainBoundaryArea.html">GrainBoundaryArea</a>Calculate total grain boundary length in 2D and area in 3D</li><li class="collection-item"><a href="../../source/postprocessors/GrainTracker.html">GrainTracker</a>Grain Tracker object for running reduced order parameter simulations without grain coalescence.</li><li class="collection-item"><a href="../../source/postprocessors/GrainTrackerElasticity.html">GrainTrackerElasticity</a>Grain Tracker object for running reduced order parameter simulations without grain coalescence.</li><li class="collection-item"><a href="../../source/postprocessors/PFCElementEnergyIntegral.html">PFCElementEnergyIntegral</a></li><li class="collection-item"><a href="../../source/userobjects/PolycrystalCircles.html">PolycrystalCircles</a>Polycrystal circles generated from a vector input or read from a file</li><li class="collection-item"><a href="../../source/userobjects/PolycrystalEBSD.html">PolycrystalEBSD</a>Object for setting up a polycrystal structure from an EBSD Datafile</li><li class="collection-item"><a href="../../source/userobjects/PolycrystalHex.html">PolycrystalHex</a>Perturbed hexagonal polycrystal</li><li class="collection-item"><a href="../../source/userobjects/PolycrystalVoronoi.html">PolycrystalVoronoi</a>Random Voronoi tessellation polycrystal (used by PolycrystalVoronoiAction)</li><li class="collection-item"><a href="../../source/postprocessors/WeightedVariableAverage.html">WeightedVariableAverage</a>Average a variable value using a weight mask given by a material property.</li><li class="collection-header">Ferret App</li><li class="collection-item"><a href="../../source/postprocessors/AFDWallEnergy.html">AFDWallEnergy</a>Calculates an integral over the computational volume of the free energy density due to afd vector field gradientscorresponding to gradients in the AFD field.</li><li class="collection-item"><a href="../../source/postprocessors/AFMEasyPlaneAnisotropyEnergy.html">AFMEasyPlaneAnisotropyEnergy</a></li><li class="collection-item"><a href="../../source/postprocessors/AFMExchangeStiffnessEnergy.html">AFMExchangeStiffnessEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMHomogeneousSublatticeExchangeEnergy.html">AFMHomogeneousSublatticeExchangeEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMSingleIonAnisotropyAltEnergy.html">AFMSingleIonAnisotropyAltEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMSingleIonAnisotropyEnergy.html">AFMSingleIonAnisotropyEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMSingleIonCubicAnisotropyEnergy.html">AFMSingleIonCubicAnisotropyEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMSingleIonCubicSixthAnisotropyEnergy.html">AFMSingleIonCubicSixthAnisotropyEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMSublatticeAnisotropyAltEnergy.html">AFMSublatticeAnisotropyAltEnergy</a></li><li class="collection-item"><a href="../../source/postprocessors/AFMSublatticeAnisotropyEnergy.html">AFMSublatticeAnisotropyEnergy</a></li><li class="collection-item"><a href="../../source/postprocessors/AFMSublatticeDMIEnergy.html">AFMSublatticeDMIEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMSublatticeDMInteractionEnergy.html">AFMSublatticeDMInteractionEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/AFMSublatticeSuperexchangeEnergy.html">AFMSublatticeSuperexchangeEnergy</a>Calculates an integral over the DM interaction free energy density (coupling AFD and magnetic ordering).</li><li class="collection-item"><a href="../../source/postprocessors/BulkEnergy.html">BulkEnergy</a>Calculates an integral over the local sixth order energy density.</li><li class="collection-item"><a href="../../source/postprocessors/BulkEnergyCoupledT.html">BulkEnergyCoupledT</a>Calculates an integral over the sixth order free energy density of local polarization coupled to temperature.</li><li class="collection-item"><a href="../../source/postprocessors/BulkEnergyEighth.html">BulkEnergyEighth</a>Calculates an integral whose integrand is the eighth order expansion of the polarization.</li><li class="collection-item"><a href="../../source/postprocessors/DepolarizationEnergy.html">DepolarizationEnergy</a>Calculates an integral over a fictious depolarization field energy density</li><li class="collection-item"><a href="../../source/postprocessors/DomainVariantPopulation.html">DomainVariantPopulation</a>Calculates the fraction of volume of a given domain population (only works in tetragonal phase at the moment)</li><li class="collection-item"><a href="../../source/postprocessors/ElasticEnergy.html">ElasticEnergy</a>Calculates an integral over the elastic energy density. Note this file also exists in tensor mechanics.</li><li class="collection-item"><a href="../../source/postprocessors/ElectrostaticEnergy.html">ElectrostaticEnergy</a>Calculates an integral over the P<span class="moose-katex-inline-equation" id="moose-equation-978f3a0c-0d15-4540-92b9-3465d4cd43c5"><script>var element = document.getElementById("moose-equation-978f3a0c-0d15-4540-92b9-3465d4cd43c5");katex.render("*", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>E term.</li><li class="collection-item"><a href="../../source/postprocessors/ElectrostrictiveCouplingEnergy.html">ElectrostrictiveCouplingEnergy</a>Calculates a volume integral over the electrostrictive coupling energy density.</li><li class="collection-item"><a href="../../source/postprocessors/ElectrostrictiveEnergy.html">ElectrostrictiveEnergy</a>Calculates an integral whose integrand is the electrostrictive energy</li><li class="collection-item"><a href="../../source/postprocessors/EnergyRatePostprocessor.html">EnergyRatePostprocessor</a>Calculates the change of a postprocessor divided by the time step.</li><li class="collection-item"><a href="../../source/postprocessors/InhomogeneousBulkEnergy.html">InhomogeneousBulkEnergy</a>Calculates an integral whose integrand is the free energy density corresponding to the disordered materials coefficients.</li><li class="collection-item"><a href="../../source/postprocessors/MagneticAnisotropyEnergy.html">MagneticAnisotropyEnergy</a></li><li class="collection-item"><a href="../../source/postprocessors/MagneticExcessLLBEnergy.html">MagneticExcessLLBEnergy</a></li><li class="collection-item"><a href="../../source/postprocessors/MagnetostaticEnergyCart.html">MagnetostaticEnergyCart</a></li><li class="collection-item"><a href="../../source/postprocessors/MasterMagneticAnisotropyEnergy.html">MasterMagneticAnisotropyEnergy</a></li><li class="collection-item"><a href="../../source/postprocessors/MasterMagneticExchangeEnergy.html">MasterMagneticExchangeEnergy</a>Calculates an integral over the magnetic exchange energy density.</li><li class="collection-item"><a href="../../source/postprocessors/MasterMagneticZeemanEnergyCart.html">MasterMagneticZeemanEnergyCart</a>Calculates a volume integral over the Zeeman interaction energy.</li><li class="collection-item"><a href="../../source/postprocessors/RotoBulkEnergyEighth.html">RotoBulkEnergyEighth</a>Calculates an integral whose integrand is the eighth order expansion of the AFD fields</li><li class="collection-item"><a href="../../source/postprocessors/RotoPolarCoupledEnergyEighth.html">RotoPolarCoupledEnergyEighth</a>Calculates an integral over the eighth order coupling energy density between AFD and polarization fields.</li><li class="collection-item"><a href="../../source/postprocessors/RotopolarCouplingEnergy.html">RotopolarCouplingEnergy</a>Calculates an integral over the fourth order coupling energy density between AFD and polarization fields.</li><li class="collection-item"><a href="../../source/postprocessors/RotostrictiveCouplingEnergy.html">RotostrictiveCouplingEnergy</a>Calculates a volume integral over the rotostrictive coupling free energy density.</li><li class="collection-item"><a href="../../source/postprocessors/WallEnergy.html">WallEnergy</a>Calculates an integral over the Ginzburg term.</li><li class="collection-header">Electromagnetics App</li><li class="collection-item"><a href="../../source/postprocessors/ReflectionCoefficient.html">ReflectionCoefficient</a>CURRENTLY ONLY FOR 1D PLANE WAVE SOLVES. Calculate power reflection coefficient for impinging wave on a surface. Assumes that wave of form F = F_incoming + R*F_reflected</li><li class="collection-header">Misc App</li><li class="collection-item"><a href="../../source/postprocessors/InternalVolume.html">InternalVolume</a>Computes the volume of an enclosed area by performing an integral over a user-supplied boundary.</li></ul></section><section id="ae67e5a9-bd7e-4cd5-bbc5-525f38ced576" data-section-level="2" data-section-text="Available Actions"><h2 id="available-actions">Available Actions</h2><ul class="moose-syntax-list collection with-header"><li class="collection-header">Moose App</li><li class="collection-item"><a href="../../source/actions/AddPostprocessorAction.html">AddPostprocessorAction</a>Add a Postprocessor object to the simulation.</li></ul></section></section><div class="moose-modal modal" id="a2e2f481-4ac0-4532-afc3-3391de2ee379"><div class="modal-content"><h4>(../moose/test/tests/postprocessors/element_extreme_value/element_extreme_value.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+[]
+
+[Variables]
+  [u]
+  []
+[]
+
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = u
+  []
+[]
+
+[BCs]
+  [left]
+    type = DirichletBC
+    variable = u
+    boundary = left
+    value = 0
+  []
+  [right]
+    type = DirichletBC
+    variable = u
+    boundary = right
+    value = 1
+  []
+[]
+
+[Postprocessors]
+  [max]
+    type = ElementExtremeValue
+    variable = u
+  []
+  [min]
+    type = ElementExtremeValue
+    variable = u
+    value_type = min
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = PJFNK
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type&#x27;
+  petsc_options_value = &#x27;hypre boomeramg&#x27;
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="9626ee92-1cd3-45d8-aaef-7c9f3488ad37"><div class="modal-content"><h4>(../moose/test/tests/bcs/pp_neumann/pp_neumann.i)</h4><pre class="moose-pre"><code class="language-text"># NOTE: This file is used within the documentation, so please do not change names within the file
+# without checking that associated documentation is not affected, see syntax/Postprocessors/index.md.
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 10
+  ny = 10
+[]
+
+[Variables]
+  [u]
+  []
+[]
+
+[AuxVariables]
+  [aux]
+    initial_condition = 5
+  []
+[]
+
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = u
+  []
+[]
+
+[BCs]
+  [left]
+    type = DirichletBC
+    variable = u
+    boundary = left
+    value = 0
+  []
+  [right]
+    type = PostprocessorNeumannBC
+    variable = u
+    boundary = right
+    postprocessor = right_pp
+  []
+[]
+
+[Postprocessors]
+  [right_pp]
+    type = PointValue
+    point = &#x27;0.5 0.5 0&#x27;
+    variable = aux
+    execute_on = &#x27;initial&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = &#x27;PJFNK&#x27;
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type&#x27;
+  petsc_options_value = &#x27;hypre boomeramg&#x27;
+[]
+
+[Outputs]
+  execute_on = &#x27;timestep_end&#x27;
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="1916c9ff-5e42-40b7-8943-33ebd5c98bac"><div class="modal-content"><h4>(../moose/framework/src/bcs/PostprocessorNeumannBC.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;PostprocessorNeumannBC.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, PostprocessorNeumannBC);
+
+InputParameters
+PostprocessorNeumannBC::validParams()
+{
+  InputParameters params = IntegratedBC::validParams();
+  params.addClassDescription(
+      &quot;Neumann boundary condition with value prescribed by a Postprocessor value.&quot;);
+  params.addParam&lt;PostprocessorName&gt;(
+      &quot;postprocessor&quot;, 0.0, &quot;The postprocessor to use for value of the gradient on the boundary.&quot;);
+  return params;
+}
+
+PostprocessorNeumannBC::PostprocessorNeumannBC(const InputParameters &amp; parameters)
+  : IntegratedBC(parameters), _value(getPostprocessorValue(&quot;postprocessor&quot;))
+{
+}
+
+Real
+PostprocessorNeumannBC::computeQpResidual()
+{
+  return -_test[_i][_qp] * _value;
+}
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="3788fce7-101d-4701-8715-d3ab36b3b166"><div class="modal-content"><h4>(../moose/framework/include/bcs/PostprocessorNeumannBC.h)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#pragma once
+
+#include &quot;IntegratedBC.h&quot;
+
+/**
+ * Implements a constant Neumann BC where grad(u) is a equal to a postprocessor on the boundary.
+ * Uses the term produced from integrating the diffusion operator by parts.
+ */
+class PostprocessorNeumannBC : public IntegratedBC
+{
+public:
+  /**
+   * Factory constructor, takes parameters so that all derived classes can be built using the same
+   * constructor.
+   */
+  static InputParameters validParams();
+
+  PostprocessorNeumannBC(const InputParameters &amp; parameters);
+
+protected:
+  virtual Real computeQpResidual() override;
+
+  /// Value of grad(u) on the boundary.
+  const PostprocessorValue &amp; _value;
+};
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="3d8750a3-8280-4486-b652-d46858f2af56"><div class="modal-content"><h4>(../moose/framework/src/bcs/PostprocessorNeumannBC.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;PostprocessorNeumannBC.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, PostprocessorNeumannBC);
+
+InputParameters
+PostprocessorNeumannBC::validParams()
+{
+  InputParameters params = IntegratedBC::validParams();
+  params.addClassDescription(
+      &quot;Neumann boundary condition with value prescribed by a Postprocessor value.&quot;);
+  params.addParam&lt;PostprocessorName&gt;(
+      &quot;postprocessor&quot;, 0.0, &quot;The postprocessor to use for value of the gradient on the boundary.&quot;);
+  return params;
+}
+
+PostprocessorNeumannBC::PostprocessorNeumannBC(const InputParameters &amp; parameters)
+  : IntegratedBC(parameters), _value(getPostprocessorValue(&quot;postprocessor&quot;))
+{
+}
+
+Real
+PostprocessorNeumannBC::computeQpResidual()
+{
+  return -_test[_i][_qp] * _value;
+}
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4d0dd18e-93c4-4525-b74b-4d74c55c71a7"><div class="modal-content"><h4>(../moose/test/tests/postprocessors/scalar_coupled_postprocessor/scalar_coupled_postprocessor_test.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 5
+  ny = 5
+  xmax = 1
+  ymax = 1
+  elem_type = QUAD4
+[]
+
+[Variables]
+  [./u]
+    initial_condition = 1
+  [../]
+  [./scalar_variable]
+    family = SCALAR
+    order = FIRST
+    initial_condition = 2
+  [../]
+[]
+
+[Kernels]
+  [./diff]
+    type = Diffusion
+    variable = u
+  [../]
+[]
+
+[ScalarKernels]
+  [./td1]
+    type = ODETimeDerivative
+    variable = scalar_variable
+  [../]
+[]
+
+[BCs]
+  [./leftDirichlet]
+      type = DirichletBC
+      variable = u
+      boundary = &#x27;left&#x27;
+      value = 1
+  [../]
+  [./rightDirichlet]
+      type = DirichletBC
+      variable = u
+      boundary = &#x27;right&#x27;
+      value = 0
+  [../]
+[]
+
+[Postprocessors]
+  [./totalFlux]
+    type = ScalarCoupledPostprocessor
+    variable = u
+    coupled_scalar = scalar_variable
+    boundary = left
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 1
+  num_steps = 1
+  solve_type = JFNK
+  l_max_its = 30
+  l_tol = 1e-6
+  nl_max_its = 20
+  nl_rel_tol = 1e-5
+[]
+
+[Outputs]
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="20f6f1a6-095f-436a-bbf1-7e27f9b0e6b4"><div class="modal-content"><h4>(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;AverageNodalVariableValue.h&quot;
+#include &quot;MooseMesh.h&quot;
+#include &quot;SubProblem.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, AverageNodalVariableValue);
+
+InputParameters
+AverageNodalVariableValue::validParams()
+{
+  InputParameters params = NodalVariablePostprocessor::validParams();
+
+  params.addClassDescription(&quot;Computes the average value of a field by sampling all nodal &quot;
+                             &quot;solutions on the domain or within a subdomain&quot;);
+  return params;
+}
+
+AverageNodalVariableValue::AverageNodalVariableValue(const InputParameters &amp; parameters)
+  : NodalVariablePostprocessor(parameters), _sum(0), _n(0)
+{
+}
+
+// doco-init-start
+void
+AverageNodalVariableValue::initialize()
+{
+  _sum = 0;
+  _n = 0;
+}
+// doco-init-end
+
+// doco-execute-get-start
+void
+AverageNodalVariableValue::execute()
+{
+  _sum += _u[_qp];
+  _n++;
+}
+
+Real
+AverageNodalVariableValue::getValue() const
+{
+  return _sum / _n;
+}
+// doco-execute-get-end
+
+// doco-final-start
+void
+AverageNodalVariableValue::finalize()
+{
+  gatherSum(_sum);
+  gatherSum(_n);
+}
+// doco-final-end
+
+// doco-thread-start
+void
+AverageNodalVariableValue::threadJoin(const UserObject &amp; y)
+{
+  const AverageNodalVariableValue &amp; pps = static_cast&lt;const AverageNodalVariableValue &amp;&gt;(y);
+  _sum += pps._sum;
+  _n += pps._n;
+}
+// doco-thread-end
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="45cdc8ba-7957-478e-94a6-61b2d193a481"><div class="modal-content"><h4>(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;AverageNodalVariableValue.h&quot;
+#include &quot;MooseMesh.h&quot;
+#include &quot;SubProblem.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, AverageNodalVariableValue);
+
+InputParameters
+AverageNodalVariableValue::validParams()
+{
+  InputParameters params = NodalVariablePostprocessor::validParams();
+
+  params.addClassDescription(&quot;Computes the average value of a field by sampling all nodal &quot;
+                             &quot;solutions on the domain or within a subdomain&quot;);
+  return params;
+}
+
+AverageNodalVariableValue::AverageNodalVariableValue(const InputParameters &amp; parameters)
+  : NodalVariablePostprocessor(parameters), _sum(0), _n(0)
+{
+}
+
+// doco-init-start
+void
+AverageNodalVariableValue::initialize()
+{
+  _sum = 0;
+  _n = 0;
+}
+// doco-init-end
+
+// doco-execute-get-start
+void
+AverageNodalVariableValue::execute()
+{
+  _sum += _u[_qp];
+  _n++;
+}
+
+Real
+AverageNodalVariableValue::getValue() const
+{
+  return _sum / _n;
+}
+// doco-execute-get-end
+
+// doco-final-start
+void
+AverageNodalVariableValue::finalize()
+{
+  gatherSum(_sum);
+  gatherSum(_n);
+}
+// doco-final-end
+
+// doco-thread-start
+void
+AverageNodalVariableValue::threadJoin(const UserObject &amp; y)
+{
+  const AverageNodalVariableValue &amp; pps = static_cast&lt;const AverageNodalVariableValue &amp;&gt;(y);
+  _sum += pps._sum;
+  _n += pps._n;
+}
+// doco-thread-end
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="fc29413e-af4a-4c45-9981-ae6ed3a4dc57"><div class="modal-content"><h4>(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;AverageNodalVariableValue.h&quot;
+#include &quot;MooseMesh.h&quot;
+#include &quot;SubProblem.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, AverageNodalVariableValue);
+
+InputParameters
+AverageNodalVariableValue::validParams()
+{
+  InputParameters params = NodalVariablePostprocessor::validParams();
+
+  params.addClassDescription(&quot;Computes the average value of a field by sampling all nodal &quot;
+                             &quot;solutions on the domain or within a subdomain&quot;);
+  return params;
+}
+
+AverageNodalVariableValue::AverageNodalVariableValue(const InputParameters &amp; parameters)
+  : NodalVariablePostprocessor(parameters), _sum(0), _n(0)
+{
+}
+
+// doco-init-start
+void
+AverageNodalVariableValue::initialize()
+{
+  _sum = 0;
+  _n = 0;
+}
+// doco-init-end
+
+// doco-execute-get-start
+void
+AverageNodalVariableValue::execute()
+{
+  _sum += _u[_qp];
+  _n++;
+}
+
+Real
+AverageNodalVariableValue::getValue() const
+{
+  return _sum / _n;
+}
+// doco-execute-get-end
+
+// doco-final-start
+void
+AverageNodalVariableValue::finalize()
+{
+  gatherSum(_sum);
+  gatherSum(_n);
+}
+// doco-final-end
+
+// doco-thread-start
+void
+AverageNodalVariableValue::threadJoin(const UserObject &amp; y)
+{
+  const AverageNodalVariableValue &amp; pps = static_cast&lt;const AverageNodalVariableValue &amp;&gt;(y);
+  _sum += pps._sum;
+  _n += pps._n;
+}
+// doco-thread-end
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="1391253d-1715-4e8d-93ff-332ba19b7624"><div class="modal-content"><h4>(../moose/framework/src/postprocessors/AverageNodalVariableValue.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#include &quot;AverageNodalVariableValue.h&quot;
+#include &quot;MooseMesh.h&quot;
+#include &quot;SubProblem.h&quot;
+
+registerMooseObject(&quot;MooseApp&quot;, AverageNodalVariableValue);
+
+InputParameters
+AverageNodalVariableValue::validParams()
+{
+  InputParameters params = NodalVariablePostprocessor::validParams();
+
+  params.addClassDescription(&quot;Computes the average value of a field by sampling all nodal &quot;
+                             &quot;solutions on the domain or within a subdomain&quot;);
+  return params;
+}
+
+AverageNodalVariableValue::AverageNodalVariableValue(const InputParameters &amp; parameters)
+  : NodalVariablePostprocessor(parameters), _sum(0), _n(0)
+{
+}
+
+// doco-init-start
+void
+AverageNodalVariableValue::initialize()
+{
+  _sum = 0;
+  _n = 0;
+}
+// doco-init-end
+
+// doco-execute-get-start
+void
+AverageNodalVariableValue::execute()
+{
+  _sum += _u[_qp];
+  _n++;
+}
+
+Real
+AverageNodalVariableValue::getValue() const
+{
+  return _sum / _n;
+}
+// doco-execute-get-end
+
+// doco-final-start
+void
+AverageNodalVariableValue::finalize()
+{
+  gatherSum(_sum);
+  gatherSum(_n);
+}
+// doco-final-end
+
+// doco-thread-start
+void
+AverageNodalVariableValue::threadJoin(const UserObject &amp; y)
+{
+  const AverageNodalVariableValue &amp; pps = static_cast&lt;const AverageNodalVariableValue &amp;&gt;(y);
+  _sum += pps._sum;
+  _n += pps._n;
+}
+// doco-thread-end
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

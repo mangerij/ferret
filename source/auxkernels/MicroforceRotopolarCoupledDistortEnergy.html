@@ -1,0 +1,1716 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>MicroforceRotopolarCoupledDistortEnergy | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="338b29b2-aae8-46c6-a321-e99e73f240aa" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3e2fd980-8466-4533-bef7-6c1df4110deb" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f468aaeb-b0a4-4e3a-b05c-f9fec5076f02" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a538fe98-e15d-422a-aeae-d5e3fc8745d7" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="c69d5682-ba7f-482b-9b94-ad67dda4c787" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="883773e7-b675-482b-be71-7ce6a1ff2d2e"><i class="material-icons">menu</i></a><ul class="sidenav" id="883773e7-b675-482b-be71-7ce6a1ff2d2e"><li><a href="#!" class="dropdown-trigger" data-target="d8947df1-80f6-4418-8532-3a9c6285d753" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d3203299-ae88-4e94-91b5-795a4f3deaa8" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d19e42e6-2fe7-4d08-b345-016b8ba46947" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5dad523b-aeef-4a2f-8425-047b04654487" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="5b952767-9b91-4993-9e9f-2de88a70ac12" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="338b29b2-aae8-46c6-a321-e99e73f240aa"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="3e2fd980-8466-4533-bef7-6c1df4110deb"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="f468aaeb-b0a4-4e3a-b05c-f9fec5076f02"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="a538fe98-e15d-422a-aeae-d5e3fc8745d7"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="c69d5682-ba7f-482b-9b94-ad67dda4c787"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="d8947df1-80f6-4418-8532-3a9c6285d753"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="d3203299-ae88-4e94-91b5-795a4f3deaa8"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="d19e42e6-2fe7-4d08-b345-016b8ba46947"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="5dad523b-aeef-4a2f-8425-047b04654487"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="5b952767-9b91-4993-9e9f-2de88a70ac12"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="55a4cf32-1ab1-4f54-9e86-35ed3063d5b5" data-section-level="1" data-section-text="MicroforceRotopolarCoupledDistortEnergy"><h1 id="microforcerotopolarcoupleddistortenergy">MicroforceRotopolarCoupledDistortEnergy</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The MicroforceRotopolarCoupledDistortEnergy has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Calculates the free energy density dependent on the local polarization field.</p><section id="d0d77464-4102-449f-871b-b860cdf67f5b" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="8e31fe1d-f377-4050-af9e-f73b7b05e214" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="95c8f941-6ef3-43f6-905b-550403456baa" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="b3ca2cb7-9481-46c3-8a98-353c0e46c274" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">antiphase_A_x</span><span class="moose-parameter-header-description">The x component of the antiphase tilt</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the antiphase tilt</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">antiphase_A_y</span><span class="moose-parameter-header-description">The y component of the antiphase tilt</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the antiphase tilt</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding to the direction the variable this auxkernel acts in. (0 for x, 1 for y, 2 for z)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_x</span><span class="moose-parameter-header-description">The x component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_y</span><span class="moose-parameter-header-description">The y component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this object applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>AuxVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this object applies to</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="3761d678-1e5a-445d-9937-5b05c03cfe3c" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">antiphase_A_z</span><span class="moose-parameter-header-description">The z component of the antiphase tilt</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the antiphase tilt</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">check_boundary_restricted</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_z</span><span class="moose-parameter-header-description">The z component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="ef9fd5e2-6dc4-4852-a29a-d1b4703f196c" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="14856f45-bca4-4454-83de-2c19d9c17e90" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#483fde8f-ac71-4969-939d-26664a5654e5">(test/tests/transform_test/BFO_P0A0_transform_kernel_test.i)</a></li></ul></section></section><div class="moose-modal modal" id="483fde8f-ac71-4969-939d-26664a5654e5"><div class="modal-content"><h4>(test/tests/transform_test/BFO_P0A0_transform_kernel_test.i)</h4><pre class="moose-pre"><code class="language-text">Nx = 3
+Ny = 3
+Nz = 3
+
+xMax = 1.0
+yMax = 1.0
+zMax = 1.0
+
+    ############################################
+    ##
+    ##   This input file aims to solve the BFO
+    ##   problem where one of the components of 
+    ##   the order parameters is aligned along 
+    ##   [111] || global z
+    ##
+    ##   As such, all of the residuals and
+    ##   jacobians need to be transformed (rotated)
+    ##   This will be done in general at a later date
+    ##   However, since this the Aux system is used
+    ##   extensively to do this, indices will appear
+    ##   as p0,p1,p2,a0,a1,a2,u0,u1,u2 which indicate
+    ##   derivatives w.r.t the components of various
+    ##   order parameters in the transformed coords.
+    ##   
+    ##   Indices of microforces and jacobians
+    ##   will also have bp, br, rp, els, ros, sels, sros
+    ##   which denote the bulk polar, bulk roto, rotopolar, 
+    ##   electrostrictive, rotostrictive, 
+    ##   stress- electrostrictive, and stress- rotostrictive 
+    ##   terms.
+    ##
+    ##   i.e, Jbp_p0p0 corresoponds to the on-diagonal
+    ##   jacobian associated with the bulk energy for the
+    ##   polarization.
+    ## 
+    ##   any instance of 1_x,1_y,1_z will denote the current 
+    ##   global cartesian coordinate system which is
+    ##   orthonormal and defined by the S matrix.
+    ##
+    ##   any instance of o_x,o_y,o_z denote the original
+    ##   cartesian coordinate system.
+    ##
+    ##   i.e, P1 = S Po =&gt; Po = S^{-1} P1
+    ##
+    ##   Finally, some indices are q0,q1,q2,q3,
+    ##   which follow q = &lt;p0,p1,p2,a0,a1,a2,u0,u1,u2&gt;
+    ##   ordering.
+    ##
+    ##
+    ############################################
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = ${Nx}
+    ny = ${Ny}
+    nz = ${Nz}
+    xmin = 0.0
+    xmax = ${xMax}
+    ymin = 0.0
+    ymax = ${yMax}
+    zmin = 0.0
+    zmax = ${zMax}
+    elem_type = HEX8
+  []
+  [./cnode]
+    input = gen
+
+    ############################################
+    ##
+    ##   additional boundary sideset (one node) 
+    ##   to zero one of the elastic displacement vectors 
+    ##   vectors and eliminates rigid body translations 
+    ##   from the degrees of freedom
+    ##
+    ##   NOTE: This must conform with the about
+    ##         [Mesh] block settings
+    ##
+    ############################################
+
+    type = ExtraNodesetGenerator
+    coord = &#x27;0.0 0.0 0.0&#x27;
+    new_boundary = 100
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+
+  displacements = &#x27;u1_x u1_y u1_z&#x27;
+[]
+
+
+[Functions]
+  [./constPp]
+    type = ParsedFunction
+    value = 0.54
+  [../]
+  [./constAp]
+    type = ParsedFunction
+    value = 7.37
+  [../]
+[]
+
+
+[Variables]
+  [./u1_x]
+  [../]
+  [./u1_y]
+  [../]
+  [./u1_z]
+  [../]
+ # [./global_strain]
+ #   order = SIXTH
+ #   family = SCALAR
+ # [../]
+
+  [./P1_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-6
+      max = 0.01e-6
+    [../]
+  [../]
+  [./P1_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-6
+      max = 0.01e-6
+    [../]
+  [../]
+  [./P1_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constPp
+    [../]
+  [../]
+  [./A1_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-6
+      max = 0.01e-6
+    [../]
+  [../]
+  [./A1_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-6
+      max = 0.01e-6
+    [../]
+  [../]
+  [./A1_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = constAp
+    [../]
+  [../]
+[]
+
+[AuxVariables]
+
+    ############################################
+    ##
+    ## Transformed coordinates
+    ##  
+    ##   These follow Po = Inv[S] P1
+    ##   In the AuxKernels that calculate this
+    ##
+    ##   We will flag this as &#x27;inverse = true&#x27;
+    ##
+    ############################################
+
+  [./Po_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Po_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Po_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Ao_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Ao_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Ao_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+
+    ############################################
+    ##
+    ## Microforces
+    ##  
+    ##  We have bulk energy P, bulk energy A 
+    ##  and a RP coupling.
+    ##  This means we should have 3+3+6 forces. 
+    ##  
+    ############################################
+
+  [./fbp_p0]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./fbp_p1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./fbp_p2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./fba_a0]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./fba_a1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./fba_a2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./frp_p0]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./frp_p1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./frp_p2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./frp_a0]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./frp_a1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./frp_a2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+
+
+  [./Jbp_p0p0]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jbp_p1p1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jbp_p2p2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+
+  [./Jbp_p0p1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jbp_p1p2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jbp_p0p2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+
+  [./Jba_a0a0]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jba_a1a1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jba_a2a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jba_a0a1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jba_a1a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jba_a0a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+
+
+  [./Jrp_p0p0]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p1p1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p2p2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p0p1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p1p2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p0p2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+
+  [./Jrp_a0a0]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_a1a1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_a2a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_a0a1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_a1a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_a0a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+
+  [./Jrp_p0a0]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p0a1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p0a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p1a0]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p1a1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p1a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p2a0]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p2a1]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+  [./Jrp_p2a2]
+    order = CONSTANT
+    family = MONOMIAL
+    outputs = none
+  [../]
+[]
+
+[AuxKernels]
+  [./p1]
+    type = Transformed111Order
+    variable = Po_x
+    inverse = true
+    component = 0
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+  [../]
+  [./p2]
+    type = Transformed111Order
+    variable = Po_y
+    inverse = true
+    component = 1
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+  [../]
+  [./p3]
+    type = Transformed111Order
+    variable = Po_z
+    inverse = true
+    component = 2
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+  [../]
+
+  [./a1]
+    type = Transformed111Order
+    variable = Ao_x
+    inverse = true
+    component = 0
+    order_param_x = A1_x
+    order_param_y = A1_y
+    order_param_z = A1_z
+  [../]
+  [./a2]
+    type = Transformed111Order
+    variable = Ao_y
+    inverse = true
+    component = 1
+    order_param_x = A1_x
+    order_param_y = A1_y
+    order_param_z = A1_z
+  [../]
+  [./a3]
+    type = Transformed111Order
+    variable = Ao_z
+    inverse = true
+    component = 2
+    order_param_x = A1_x
+    order_param_y = A1_y
+    order_param_z = A1_z
+  [../]
+
+  ##################################################
+  ##
+  ##
+  ##   Microforces
+  ##
+  ##
+  ##################################################
+
+  [./fbpp1]
+    type = MicroforceBulkEnergy
+    variable = fbp_p0
+    component = 0
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./fbpp2]
+    type = MicroforceBulkEnergy
+    variable = fbp_p1
+    component = 1
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./fbpp3]
+    type = MicroforceBulkEnergy
+    variable = fbp_p2
+    component = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+  [./fbaa1]
+    type = MicroforceRotoBulkEnergy
+    variable = fba_a0
+    component = 0
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./fbaa2]
+    type = MicroforceRotoBulkEnergy
+    variable = fba_a1
+    component = 1
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./fbaa3]
+    type = MicroforceRotoBulkEnergy
+    variable = fba_a2
+    component = 2
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+
+  [./frpp0]
+    type = MicroforceRotopolarCoupledPolarEnergy
+    variable = frp_p0
+    component = 0
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./frpp1]
+    type = MicroforceRotopolarCoupledPolarEnergy
+    variable = frp_p1
+    component = 1
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./frpp2]
+    type = MicroforceRotopolarCoupledPolarEnergy
+    variable = frp_p2
+    component = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+  [./frpa0]
+    type = MicroforceRotopolarCoupledDistortEnergy
+    variable = frp_a0
+    component = 0
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./frpa1]
+    type = MicroforceRotopolarCoupledDistortEnergy
+    variable = frp_a1
+    component = 1
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./frpa2]
+    type = MicroforceRotopolarCoupledDistortEnergy
+    variable = frp_a2
+    component = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+  ##################################################
+  ##
+  ##
+  ##   Jacobians
+  ##
+  ##
+  ##################################################
+
+
+  [./Jbpp0p0]
+    type = JacobiansBulkEnergy
+    variable = Jbp_p0p0
+    index_i = 0
+    index_j = 0
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbpp1p1]
+    type = JacobiansBulkEnergy
+    variable = Jbp_p1p1
+    index_i = 1
+    index_j = 1
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbpp2p2]
+    type = JacobiansBulkEnergy
+    variable = Jbp_p2p2
+    index_i = 2
+    index_j = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbpp0p1]
+    type = JacobiansBulkEnergy
+    variable = Jbp_p0p1
+    index_i = 0
+    index_j = 1
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbpp1p2]
+    type = JacobiansBulkEnergy
+    variable = Jbp_p1p2
+    index_i = 1
+    index_j = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbpp0p2]
+    type = JacobiansBulkEnergy
+    variable = Jbp_p0p2
+    index_i = 0
+    index_j = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+
+  [./Jbaa0a0]
+    type = JacobiansRotoBulkEnergy
+    variable = Jba_a0a0
+    index_i = 0
+    index_j = 0
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbaa1a1]
+    type = JacobiansRotoBulkEnergy
+    variable = Jba_a1a1
+    index_i = 1
+    index_j = 1
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbaa2a2]
+    type = JacobiansRotoBulkEnergy
+    variable = Jba_a2a2
+    index_i = 2
+    index_j = 2
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbaa0a1]
+    type = JacobiansRotoBulkEnergy
+    variable = Jba_a0a1
+    index_i = 0
+    index_j = 1
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbaa1a2]
+    type = JacobiansRotoBulkEnergy
+    variable = Jba_a1a2
+    index_i = 1
+    index_j = 2
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jbaa0a2]
+    type = JacobiansRotoBulkEnergy
+    variable = Jba_a0a2
+    index_i = 0
+    index_j = 2
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+
+
+
+  [./Jrpp0p0]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p0p0
+    index_i = 0
+    index_j = 0
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp1p1]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p1p1
+    index_i = 1
+    index_j = 1
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp2p2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p2p2
+    index_i = 2
+    index_j = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpa0a0]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_a0a0
+    index_i = 3
+    index_j = 3
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpa1a1]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_a1a1
+    index_i = 4
+    index_j = 4
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpa2a2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_a2a2
+    index_i = 5
+    index_j = 5
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+  [./Jrpp0p1]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p0p1
+    index_i = 0
+    index_j = 1
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp1p2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p1p2
+    index_i = 1
+    index_j = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp0p2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p0p2
+    index_i = 0
+    index_j = 2
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp0a0]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p0a0
+    index_i = 0
+    index_j = 3
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp0a1]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p0a1
+    index_i = 0
+    index_j = 4
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp0a2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p0a2
+    index_i = 0
+    index_j = 5
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+  [./Jrpp1a0]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p1a0
+    index_i = 1
+    index_j = 3
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp1a1]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p1a1
+    index_i = 1
+    index_j = 4
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp1a2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p1a2
+    index_i = 1
+    index_j = 5
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp2a0]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p2a0
+    index_i = 2
+    index_j = 3
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp2a1]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p2a1
+    index_i = 2
+    index_j = 4
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpp2a2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_p2a2
+    index_i = 2
+    index_j = 5
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpa0a1]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_a0a1
+    index_i = 3
+    index_j = 4
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpa0a2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_a0a2
+    index_i = 3
+    index_j = 5
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+  [./Jrpa1a2]
+    type = JacobiansRotopolarCoupledEnergy
+    variable = Jrp_a1a2
+    index_i = 4
+    index_j = 5
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+    execute_on = &#x27;INITIAL LINEAR NONLINEAR&#x27;
+  [../]
+
+[]
+
+#[ScalarKernels]
+#  [./global_strain]
+#    type = GlobalStrain
+#    variable = global_strain
+#    global_strain_uo = global_strain_uo
+#  [../]
+#[]
+
+[Kernels]
+
+  [./TensorMechanics]
+  [../]
+
+
+  ### Operators for the polar field: ###
+
+  [./bed_x]
+    type = Transformed111KernelOp3
+    variable = P1_x
+    component = 0
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+
+    f_q0 = fbp_p0
+    f_q1 = fbp_p1
+    f_q2 = fbp_p2
+
+    J_q0q0 = Jbp_p0p0
+    J_q1q1 = Jbp_p1p1
+    J_q2q2 = Jbp_p2p2
+    J_q0q1 = Jbp_p0p1
+    J_q1q2 = Jbp_p1p2
+    J_q0q2 = Jbp_p0p2
+  [../]
+  [./bed_y]
+    type = Transformed111KernelOp3
+    variable = P1_y
+    component = 1
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+
+    f_q0 = fbp_p0
+    f_q1 = fbp_p1
+    f_q2 = fbp_p2
+
+    J_q0q0 = Jbp_p0p0
+    J_q1q1 = Jbp_p1p1
+    J_q2q2 = Jbp_p2p2
+    J_q0q1 = Jbp_p0p1
+    J_q1q2 = Jbp_p1p2
+    J_q0q2 = Jbp_p0p2
+  [../]
+  [./bed_z]
+    type = Transformed111KernelOp3
+    variable = P1_z
+    component = 2
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+
+    f_q0 = fbp_p0
+    f_q1 = fbp_p1
+    f_q2 = fbp_p2
+
+    J_q0q0 = Jbp_p0p0
+    J_q1q1 = Jbp_p1p1
+    J_q2q2 = Jbp_p2p2
+    J_q0q1 = Jbp_p0p1
+    J_q1q2 = Jbp_p1p2
+    J_q0q2 = Jbp_p0p2
+  [../]
+
+
+  # Operators for the AFD field
+
+  [./rbed_x]
+    type = Transformed111KernelOp3
+    variable = A1_x
+    component = 0
+    order_param_x = A1_x
+    order_param_y = A1_y
+    order_param_z = A1_z
+
+    f_q0 = fba_a0
+    f_q1 = fba_a1
+    f_q2 = fba_a2
+
+    J_q0q0 = Jba_a0a0
+    J_q1q1 = Jba_a1a1
+    J_q2q2 = Jba_a2a2
+    J_q0q1 = Jba_a0a1
+    J_q1q2 = Jba_a1a2
+    J_q0q2 = Jba_a0a2
+  [../]
+  [./rbed_y]
+    type = Transformed111KernelOp3
+    variable = A1_y
+    component = 1
+    order_param_x = A1_x
+    order_param_y = A1_y
+    order_param_z = A1_z
+
+    f_q0 = fba_a0
+    f_q1 = fba_a1
+    f_q2 = fba_a2
+
+    J_q0q0 = Jba_a0a0
+    J_q1q1 = Jba_a1a1
+    J_q2q2 = Jba_a2a2
+    J_q0q1 = Jba_a0a1
+    J_q1q2 = Jba_a1a2
+    J_q0q2 = Jba_a0a2
+  [../]
+  [./rbed_z]
+    type = Transformed111KernelOp3
+    variable = A1_z
+    component = 2
+    order_param_x = A1_x
+    order_param_y = A1_y
+    order_param_z = A1_z
+
+    f_q0 = fba_a0
+    f_q1 = fba_a1
+    f_q2 = fba_a2
+
+    J_q0q0 = Jba_a0a0
+    J_q1q1 = Jba_a1a1
+    J_q2q2 = Jba_a2a2
+    J_q0q1 = Jba_a0a1
+    J_q1q2 = Jba_a1a2
+    J_q0q2 = Jba_a0a2
+  [../]
+
+  [./rpp_x]
+    type = Transformed111KernelOp6
+    variable = P1_x
+    component = 0
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+  [./rpp_y]
+    type = Transformed111KernelOp6
+    variable = P1_y
+    component = 1
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+  [./rpp_z]
+    type = Transformed111KernelOp6
+    variable = P1_z
+    component = 2
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+ [./rpa_x]
+    type = Transformed111KernelOp6
+    variable = A1_x
+    component = 3
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+ [./rpa_y]
+    type = Transformed111KernelOp6
+    variable = A1_y
+    component = 4
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+
+ [./rpa_z]
+    type = Transformed111KernelOp6
+    variable = A1_z
+    component = 5
+    order_param_x = P1_x
+    order_param_y = P1_y
+    order_param_z = P1_z
+    order_param2_x = A1_x
+    order_param2_y = A1_y
+    order_param2_z = A1_z
+
+    f_q0 = frp_p0
+    f_q1 = frp_p1
+    f_q2 = frp_p2
+    f_q3 = frp_a0
+    f_q4 = frp_a1
+    f_q5 = frp_a2
+
+    J_q0q0 = Jrp_p0p0
+    J_q1q1 = Jrp_p1p1
+    J_q2q2 = Jrp_p2p2
+    J_q3q3 = Jrp_a0a0
+    J_q4q4 = Jrp_a1a1
+    J_q5q5 = Jrp_a2a2
+    J_q0q1 = Jrp_p0p1
+    J_q1q2 = Jrp_p1p2
+    J_q0q2 = Jrp_p0p2
+    J_q0q3 = Jrp_p0a0
+    J_q0q4 = Jrp_p0a1
+    J_q0q5 = Jrp_p0a2
+    J_q1q3 = Jrp_p1a0
+    J_q1q4 = Jrp_p1a1
+    J_q1q5 = Jrp_p1a2
+    J_q2q3 = Jrp_p2a0
+    J_q2q4 = Jrp_p1a1
+    J_q2q5 = Jrp_p1a2
+    J_q3q4 = Jrp_a0a1
+    J_q3q5 = Jrp_a0a2
+    J_q4q5 = Jrp_a1a2
+
+  [../]
+
+
+  [./polar_x_time]
+    type = TimeDerivativeScaled
+    variable = P1_x
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_y_time]
+    type = TimeDerivativeScaled
+    variable = P1_y
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+  [./polar_z_time]
+    type = TimeDerivativeScaled
+    variable = P1_z
+    time_scale = 1.0
+    block = &#x27;0&#x27;
+  [../]
+
+  [./a_x_time]
+    type = TimeDerivativeScaled
+    variable = A1_x
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_y_time]
+    type = TimeDerivativeScaled
+    variable = A1_y
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+  [./a_z_time]
+    type = TimeDerivativeScaled
+    variable = A1_z
+    time_scale = 0.01
+    block = &#x27;0&#x27;
+  [../]
+[]
+
+
+[Materials]
+  [./Landau_P]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    prop_values = &#x27;-2.81296 1.72351 2.24147 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./Landau_A]
+    type = GenericConstantMaterial
+    prop_names = &#x27;beta1 beta11 beta12 beta111 beta112 beta123 beta1111 beta1112 beta1122 beta1123&#x27;
+    prop_values = &#x27;-0.0137763 0.0000349266 0.0000498846 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./P_A_couple]
+    type = GenericConstantMaterial
+    prop_names = &#x27;t1111 t1122 t1212 t42111111 t24111111 t42111122 t24112222 t42112233 t24112233 t42112211 t24111122 t42111212   t42123312 t24121112 t24121233 t6211111111 t2611111111 t6211111122 t2611222222 t4411111111 t4411112222&#x27;
+    prop_values = &#x27;0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0&#x27;
+  [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701&#x27;
+
+    ########################################################################################
+    ##
+    ## The below Euler rotation below should rotate the [001]-oriented elasticity tensor to 
+    ## the [111]-orientation as it is equivalent to our S matrix. 
+    ## Note that the MOOSE convention is slightly different than Mathematica&#x27;s so we use 
+    ## three different angles.
+    ## Therefore, all of our strains will be calculated using ComputeSmallStrain in primed 
+    ## coordinates [i.e. e_{||,||}, e_{1,||}, ...]
+    ##
+    ##   ...but then, it is important that our strains talk to our primed variables correctly. 
+    ##
+    ########################################################################################
+
+    euler_angle_1 = 135.0
+    euler_angle_2 = -54.735610317245346   
+    euler_angle_3 = -90.0
+
+  [../]
+
+  [./strain]
+    type = ComputeSmallStrain
+    #global_strain = global_strain
+  [../]
+
+  #[./global_strain]
+  #  type = ComputeGlobalStrain
+  #  scalar_global_strain = global_strain
+  #  global_strain_uo = global_strain_uo
+  #[../]
+
+  [./stress]
+    type = ComputeLinearElasticStress
+  [../]
+[]
+
+[Postprocessors]
+  [./dt]
+     type = TimestepSize
+  [../]
+  [./FbP1]
+    type = BulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+    polar_x = P1_x
+    polar_y = P1_y
+    polar_z = P1_z
+  [../]
+
+  [./FbPo]
+    type = BulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+  [../]
+  [./FbA1]
+    type = RotoBulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+    antiphase_A_x = A1_x
+    antiphase_A_y = A1_y
+    antiphase_A_z = A1_z
+  [../]
+  [./FbAo]
+    type = RotoBulkEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+  [../]
+
+  [./FcPA1]
+    type = RotoPolarCoupledEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+    polar_x = P1_x
+    polar_y = P1_y
+    polar_z = P1_z
+    antiphase_A_x = A1_x
+    antiphase_A_y = A1_y
+    antiphase_A_z = A1_z
+  [../]
+  [./FcPAo]
+    type = RotoPolarCoupledEnergyEighth
+    execute_on = &#x27;timestep_end&#x27;
+    polar_x = Po_x
+    polar_y = Po_y
+    polar_z = Po_z
+    antiphase_A_x = Ao_x
+    antiphase_A_y = Ao_y
+    antiphase_A_z = Ao_z
+  [../]
+
+
+  [./Felu]
+    type = ElasticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+
+  [./Ftoto]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;FbPo FbAo FcPAo&#x27;
+    pp_coefs = &#x27; 1 1 1&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  
+    ##########################################
+    #
+    # NOTE: Ferret output is in attojoules
+    #
+    ##########################################
+  [../]
+  [./Ftot1]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;FbP1 FbA1 FcPA1&#x27;
+    pp_coefs = &#x27; 1 1 1&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  
+    ##########################################
+    #
+    # NOTE: Ferret output is in attojoules
+    #
+    ##########################################
+  [../]
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot1
+    execute_on = &#x27;timestep_end&#x27;
+    dt = dt
+  [../]
+[]
+
+
+[BCs]
+  [./Periodic]
+    [./xy]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;u1_x u1_y u1_z P1_x P1_y P1_z A1_x A1_y A1_z&#x27;
+    [../]
+  [../]
+
+
+  # fix center point location
+  [./centerfix_x]
+    type = DirichletBC
+    boundary = 100
+    variable = u1_x
+    value = 0
+  [../]
+  [./centerfix_y]
+    type = DirichletBC
+    boundary = 100
+    variable = u1_y
+    value = 0
+  [../]
+  [./centerfix_z]
+    type = DirichletBC
+    boundary = 100
+    variable = u1_z
+    value = 0
+  [../]
+[]
+
+[UserObjects]
+  #[./global_strain_uo]
+  #  type = GlobalBFOMaterialRVEUserObject
+  #  execute_on = &#x27;Initial Linear Nonlinear&#x27;
+  #  polar_x = P1_x
+  #  polar_y = P1_y
+  #  polar_z = P1_z
+  #  antiphase_A_x = A1_x
+  #  antiphase_A_y = A1_y
+  #  antiphase_A_z = A1_z
+  #[../]
+  [./kill]
+   type = Terminator
+   expression = &#x27;perc_change &lt;= 5.0e-5&#x27;
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided&#x27;
+    petsc_options_value = &#x27;    121            1e-10          1e-10       1e-6     bjacobi    allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.08
+  solve_type = &#x27;NEWTON&#x27;
+  scheme = &#x27;bdf2&#x27;
+  dtmin = 1e-13
+  dtmax = 10.0
+
+  num_steps = 10
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_P0A0_transformed_kernel_test
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

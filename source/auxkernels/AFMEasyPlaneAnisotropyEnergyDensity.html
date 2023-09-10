@@ -1,0 +1,2424 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>AFMEasyPlaneAnisotropyEnergyDensity | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="a144c5ef-4d38-40e3-896f-87e9ae784290" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c1c3a79c-1160-4bcb-ba9d-ce510438e32c" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="97ca0f38-130a-4b57-b21b-8a6bd26c3432" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="04f76904-dac8-4b11-9a75-5b76d3cac6bd" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="c5ace9c8-aee2-442a-9ce0-882f2cce6383" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="d8c9fa6d-03ea-4a7e-8f68-1cd5e87de9c0"><i class="material-icons">menu</i></a><ul class="sidenav" id="d8c9fa6d-03ea-4a7e-8f68-1cd5e87de9c0"><li><a href="#!" class="dropdown-trigger" data-target="b9337cf5-f37b-48c4-b152-f6762f47b464" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="792817fe-9f6a-49d1-b6bb-278d46d0cbaa" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="076e2837-dec8-47fb-b298-f9479efe5272" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e3997693-7de4-486b-bb6e-c5b9bf50eca8" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="ca1b3a10-ce95-43e0-9dbf-e953d445334b" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="a144c5ef-4d38-40e3-896f-87e9ae784290"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="c1c3a79c-1160-4bcb-ba9d-ce510438e32c"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="97ca0f38-130a-4b57-b21b-8a6bd26c3432"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="04f76904-dac8-4b11-9a75-5b76d3cac6bd"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="c5ace9c8-aee2-442a-9ce0-882f2cce6383"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="b9337cf5-f37b-48c4-b152-f6762f47b464"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="792817fe-9f6a-49d1-b6bb-278d46d0cbaa"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="076e2837-dec8-47fb-b298-f9479efe5272"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="e3997693-7de4-486b-bb6e-c5b9bf50eca8"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="ca1b3a10-ce95-43e0-9dbf-e953d445334b"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="e6802db6-ca6a-4dd7-9051-dd6ccc8b50ca" data-section-level="1" data-section-text="AFMEasyPlaneAnisotropyEnergyDensity"><h1 id="afmeasyplaneanisotropyenergydensity">AFMEasyPlaneAnisotropyEnergyDensity</h1><p>Calculates the free energy density due easy-plane (or easy-axis) anisotropy</p><section id="85913293-775a-4f07-8f20-34a66acdad38" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Computes the free energy density due to magnetic anisotropy in the ferroelectric antiferromagnet <span class="moose-katex-inline-equation" id="moose-equation-1752ab94-0ddc-4add-a55b-d19a03ea1a26"><script>var element = document.getElementById("moose-equation-1752ab94-0ddc-4add-a55b-d19a03ea1a26");katex.render("\\mathrm{BiFeO}_3", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> corresponding to</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-e6b8b664-005c-43a9-9443-4b7d7e401f3f"></span><script>var element = document.getElementById("moose-equation-e6b8b664-005c-43a9-9443-4b7d7e401f3f");katex.render("  \\begin{aligned}     f_\\mathrm{easy} = \\sum\\limits_{\\eta = 1}^2 K_1 \\left(\\textbf{m}_\\eta \\cdot \\hat{\\mathbf{P}}\\right)^2   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>where <span class="moose-katex-inline-equation" id="moose-equation-fa0a886c-efd7-4984-b9a5-f4c6b1ede9a4"><script>var element = document.getElementById("moose-equation-fa0a886c-efd7-4984-b9a5-f4c6b1ede9a4");katex.render("\\mathbf{m}_\\eta", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> are the magnetic sublattices <span class="moose-katex-inline-equation" id="moose-equation-b2c4d660-9a8b-49b6-863e-199e3d66a394"><script>var element = document.getElementById("moose-equation-b2c4d660-9a8b-49b6-863e-199e3d66a394");katex.render("\\eta = 1,2", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-6f34e4de-1245-4917-96bf-3ff6f1a05708"><script>var element = document.getElementById("moose-equation-6f34e4de-1245-4917-96bf-3ff6f1a05708");katex.render("K_1 < 0", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> the anisotropy constant. The vector <span class="moose-katex-inline-equation" id="moose-equation-c2e1c96e-a8a7-45e3-87a9-ef5c056accfe"><script>var element = document.getElementById("moose-equation-c2e1c96e-a8a7-45e3-87a9-ef5c056accfe");katex.render("\\hat{\\mathbf{P}}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the normalized director of the ferroelectric polarization.</p></section><section id="40718349-3a15-474e-838a-b6128cb282c3" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="a0924173-f6e8-41f4-abd7-f397a634551b" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="3e8e03f9-c611-4a68-8943-02bdfab634bd" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">mag_x</span><span class="moose-parameter-header-description">The x component of the constrained magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the constrained magnetization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_y</span><span class="moose-parameter-header-description">The y component of the constrained magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the constrained magnetization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_x</span><span class="moose-parameter-header-description">The x component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_y</span><span class="moose-parameter-header-description">The y component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_z</span><span class="moose-parameter-header-description">The z component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this object applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>AuxVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this object applies to</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="f761eef4-4fb2-4f34-b80f-f11474b63b78" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">check_boundary_restricted</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">energy_scale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the energy scale, useful for transition between eV and J</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the energy scale, useful for transition between eV and J</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_z</span><span class="moose-parameter-header-description">The z component of the constrained magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the constrained magnetization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="d3acdf29-3f8f-4ace-a375-9835b2c2df41" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="f94d9ac9-29d7-41c8-ac7a-d9391b66097d" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#900b7ed3-fb92-44f4-941e-945e5e4ce071">(tutorial/BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7DW.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#49d2ccbc-a732-47e6-9e6e-1a1799424838">(tutorial/BFO_mag_wall_rd.i)</a></li></ul></section></section><div class="moose-modal modal" id="900b7ed3-fb92-44f4-941e-945e5e4ce071"><div class="modal-content"><h4>(tutorial/BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7DW.i)</h4><pre class="moose-pre"><code class="language-text">sfreq = 5.0e6
+pulseloc = 15.0
+
+[Mesh]
+  [fileload]
+    type = FileMeshGenerator
+    file = out_BFO_P111A111-P111bA111b_m1.e
+    use_for_exodus_restart = true
+  []
+[]
+
+
+[GlobalParams]
+  mag1_x = mag1_x
+  mag1_y = mag1_y
+  mag1_z = mag1_z
+
+  mag2_x = mag2_x
+  mag2_y = mag2_y
+  mag2_z = mag2_z
+
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  H_x = H_x
+  H_y = H_y
+  H_z = H_z
+  
+[]
+
+[Materials]
+  [./constants] # Constants used in other material properties
+    type = GenericConstantMaterial
+    prop_names = &#x27;     De       D0         g0mu0Ms        g0          K1         K1c      Kt     permittivity    Ae     Ms&#x27;
+    prop_values = &#x27;  3.7551    0.003       48291.9      48291.9     -5.0068  -0.0550748 -0.00365997     1.0        0.75    1.0&#x27;
+  [../]
+
+  [./a_long]
+    type = GenericFunctionMaterial
+    prop_names = &#x27;alpha_long&#x27;
+    prop_values = &#x27;bc_func_1&#x27;
+  [../]
+  [./alpha]
+    type = GenericFunctionMaterial
+    prop_names = &#x27;alpha&#x27;
+    prop_values = &#x27;0.0&#x27;
+  [../]
+
+[]
+
+[Functions]
+  [./bc_func_1]
+    type = ParsedFunction
+    value = &#x27;st&#x27;
+    vars = &#x27;st&#x27;
+    vals = &#x27;1e5&#x27;
+  [../]
+
+  [./pulse1]
+    type = ParsedFunction
+    vars = &#x27;t0 t1 A&#x27;
+    vals = &#x27;0.0 100.0 0.707107&#x27;
+    value = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
+  [../]
+
+  [./pulse2]
+    type = ParsedFunction
+    vars = &#x27;t0 t1 A&#x27;
+    vals = &#x27;0.0 100.0 0.707107&#x27;
+    value = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
+  [../]
+
+  [./pulse3]
+    type = ParsedFunction
+    vars = &#x27;t0 t1 A&#x27;
+    vals = &#x27;0.0 100.0 0.707107&#x27;
+    value = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
+  [../]
+[]
+
+[Variables]
+  [./mag1_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = mag1_x
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./mag1_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = mag1_y
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./mag1_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = mag1_z
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+
+  [./mag2_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = mag2_x
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./mag2_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = mag2_y
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./mag2_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = mag2_z
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+[]
+
+[AuxVariables]
+  [./mag1_s]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./mag2_s]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./Neel_L_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Neel_L_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Neel_L_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./SSMag_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./SSMag_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./SSMag_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./antiphase_A_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_x
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./antiphase_A_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_y
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./antiphase_A_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_z
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_x
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_y
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_z
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+
+
+  #############################################################
+  ##
+  ##  other angles
+  ##
+  ###########################################################
+
+  [./ph]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./th1]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./th2]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./H_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = pulse1
+    [../]
+  [../]
+  [./H_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = pulse2
+    [../]
+  [../]
+  [./H_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = pulse3
+    [../]
+  [../]
+
+  ##############################
+  ##                          ##
+  ##  Initial energy density  ##
+  ##                          ##
+  ##############################
+
+  [./t0Etot]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+
+  ######################
+  ##                  ##
+  ##  Energy density  ##
+  ##                  ##
+  ######################
+
+  [./Edmi]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Esupexch]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Enlexch]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eepa1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eepa2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eca1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eca2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Etot]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  #############################
+  ##                         ##
+  ##  Excess energy density  ##
+  ##                         ##
+  #############################
+
+  [./excessEtot]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+[]
+
+[Kernels]
+  #---------------------------------------#
+  #                                       #
+  #          Time dependence              #
+  #                                       #
+  #---------------------------------------#
+
+  [./mag1_x_time]
+    type = TimeDerivative
+    variable = mag1_x
+  [../]
+  [./mag1_y_time]
+    type = TimeDerivative
+    variable = mag1_y
+  [../]
+  [./mag1_z_time]
+    type = TimeDerivative
+    variable = mag1_z
+  [../]
+
+  [./mag2_x_time]
+    type = TimeDerivative
+    variable = mag2_x
+  [../]
+  [./mag2_y_time]
+    type = TimeDerivative
+    variable = mag2_y
+  [../]
+  [./mag2_z_time]
+    type = TimeDerivative
+    variable = mag2_z
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #     AFM sublattice exchange           #
+  #                                       #
+  #---------------------------------------#
+
+  [./afmex1_x]
+    type = AFMSublatticeSuperexchange
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afmex1_y]
+    type = AFMSublatticeSuperexchange
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afmex1_z]
+    type = AFMSublatticeSuperexchange
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./afmex2_x]
+    type = AFMSublatticeSuperexchange
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afmex2_y]
+    type = AFMSublatticeSuperexchange
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afmex2_z]
+    type = AFMSublatticeSuperexchange
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+
+  #---------------------------------------#
+  #                                       #
+  #     AFM sublattice DMI                #
+  #                                       #
+  #---------------------------------------#
+
+  [./afmdmi1_x]
+    type = AFMSublatticeDMInteraction
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afmdmi1_y]
+    type = AFMSublatticeDMInteraction
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afmdmi1_z]
+    type = AFMSublatticeDMInteraction
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./afmdmi2_x]
+    type = AFMSublatticeDMInteraction
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afmdmi2_y]
+    type = AFMSublatticeDMInteraction
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afmdmi2_z]
+    type = AFMSublatticeDMInteraction
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Magnetocrystalline anisotropy for   #
+  #   the AFM sublattice in easy-plane    #
+  #                                       #
+  #---------------------------------------#
+
+  [./afma1_x]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afma1_y]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afma1_z]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+
+  [./afma2_x]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afma2_y]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afma2_z]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Single-ion anisotropy environment   #
+  #   for the AFM sublattice in the       #
+  #   degenerate easy-plane               #
+  #                                       #
+  #---------------------------------------#
+
+  [./afmsia1_x]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afmsia1_y]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afmsia1_z]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./afmsia2_x]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afmsia2_y]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afmsia2_z]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          LLB constraint terms         #
+  #                                       #
+  #---------------------------------------#
+
+  [./llb1_x]
+    type = LongitudinalLLB
+    variable = mag1_x
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 0
+  [../]
+  [./llb1_y]
+    type = LongitudinalLLB
+    variable = mag1_y
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 1
+  [../]
+
+  [./llb1_z]
+    type = LongitudinalLLB
+    variable = mag1_z
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 2
+  [../]
+
+  [./llb2_x]
+    type = LongitudinalLLB
+    variable = mag2_x
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 0
+  [../]
+  [./llb2_y]
+    type = LongitudinalLLB
+    variable = mag2_y
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 1
+  [../]
+
+  [./llb2_z]
+    type = LongitudinalLLB
+    variable = mag2_z
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #    Local magnetic exchange            #
+  #                                       #
+  #---------------------------------------#
+  
+  [./dllg1_x_exch]
+    type = ExchangeCartLL
+    variable = mag1_x
+    component = 0
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  [../]
+  [./dllg1_y_exch]
+    type = ExchangeCartLL
+    variable = mag1_y
+    component = 1
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  [../]
+  [./dllg1_z_exch]
+    type = ExchangeCartLL
+    variable = mag1_z
+    component = 2
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  [../]
+
+  [./dllg2_x_exch]
+    type = ExchangeCartLL
+    variable = mag2_x
+    component = 0
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  [../]
+  [./dllg2_y_exch]
+    type = ExchangeCartLL
+    variable = mag2_y
+    component = 1
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  [../]
+  [./dllg2_z_exch]
+    type = ExchangeCartLL
+    variable = mag2_z
+    component = 2
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #    Local AFM magnetic exchange        #
+  #           (Local-term)                #
+  #---------------------------------------#
+  
+  [./dllg1afm_x_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./dllg1afm_y_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./dllg1afm_z_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./dllg2afm_x_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./dllg2afm_y_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./dllg2afm_z_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+
+  #---------------------------------------#
+  #                                       #
+  #    Interaction with demag and         #
+  #    applied field                      #
+  #                                       #
+  #---------------------------------------#
+  
+  [./dllg1_x_int]
+    type = AFMInteractionCartLLHConst
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./dllg1_y_int]
+    type = AFMInteractionCartLLHConst
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./dllg1_z_int]
+    type = AFMInteractionCartLLHConst
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+  [./dllg2_x_int]
+    type = AFMInteractionCartLLHConst
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./dllg2_y_int]
+    type = AFMInteractionCartLLHConst
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./dllg2_z_int]
+    type = AFMInteractionCartLLHConst
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+[]
+
+
+[AuxKernels]
+
+  [./hx]
+    type = FunctionAux
+    variable = H_x
+    function = pulse1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./hy]
+    type = FunctionAux
+    variable = H_y
+    function = pulse2
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./hz]
+    type = FunctionAux
+    variable = H_z
+    function = pulse3
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./mag1_mag]
+    type = VectorMag
+    variable = mag1_s
+    vector_x = mag1_x
+    vector_y = mag1_y
+    vector_z = mag1_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./mag2_mag]
+    type = VectorMag
+    variable = mag2_s
+    vector_x = mag2_x
+    vector_y = mag2_y
+    vector_z = mag2_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./Neel_Lx]
+    type = VectorDiffOrSum
+    variable = Neel_L_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 0
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./Neel_Ly]
+    type = VectorDiffOrSum
+    variable = Neel_L_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 0
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./Neel_Lz]
+    type = VectorDiffOrSum
+    variable = Neel_L_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 0
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./smallSignalMag_x]
+    type = VectorDiffOrSum
+    variable = SSMag_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./smallSignalMag_y]
+    type = VectorDiffOrSum
+    variable = SSMag_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./smallSignalMag_z]
+    type = VectorDiffOrSum
+    variable = SSMag_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./phc]
+    type = AngleBetweenTwoVectors
+    variable = ph
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = mag2_x
+    var2y = mag2_y
+    var2z = mag2_z
+
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./th1c]
+    type = AngleBetweenTwoVectors
+    variable = th1
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./th2c]
+    type = AngleBetweenTwoVectors
+    variable = th2
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          Energy density               #
+  #                                       #
+  #---------------------------------------#
+
+  [./cEdmi]
+    type = AFMSublatticeDMInteractionEnergyDensity
+    variable = Edmi
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = -6241.51
+  [../]
+  [./cEsupexch]
+    type = AFMSublatticeSuperexchangeEnergyDensity
+    variable = Esupexch
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = 6241.51
+  [../]
+  [./cEnlexch]
+    type = AFMExchangeStiffnessEnergyDensity
+    variable = Enlexch
+    Neel_L_x = Neel_L_x
+    Neel_L_y = Neel_L_y
+    Neel_L_z = Neel_L_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = 6241.51
+  [../]
+
+  [./cEepa1]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa1
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEepa2]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa2
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca1]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca1
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca2]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca2
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+
+  [./cEdtot]
+    type = AFMTotalEnergyDensity
+    variable = Etot
+    execute_on = &#x27;initial timestep_end final&#x27;
+    Edmi = Edmi
+    Esupexch = Esupexch
+    Enlexch = Enlexch
+    Eepa1 = Eepa1
+    Eepa2 = Eepa2
+    Eca1 = Eca1
+    Eca2 = Eca2
+  [../]
+
+  [./ct0Edtot]
+    type = AFMTotalEnergyDensity
+    variable = t0Etot
+    execute_on = &#x27;initial&#x27;
+    Edmi = Edmi
+    Esupexch = Esupexch
+    Enlexch = Enlexch
+    Eepa1 = Eepa1
+    Eepa2 = Eepa2
+    Eca1 = Eca1
+    Eca2 = Eca2
+  [../]
+
+  [./excessEdtot]
+    type = VectorDiffOrSum
+    variable = excessEtot
+    diffOrSum = 0
+    var1 = Etot
+    var2 = t0Etot
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+[]
+
+
+[BCs]
+  #---------------------------------------#
+  #                                       #
+  #  periodic magnetization distribution  #
+  #                                       #
+  #---------------------------------------#
+
+  [./Periodic]
+    [./xyz]
+      auto_direction = &#x27;x y z&#x27;
+      variable = &#x27;mag1_x mag1_y mag1_z mag2_x mag2_y mag2_z&#x27;
+    [../]
+  [../]
+[]
+
+[Postprocessors]
+   [./dt]
+     type = TimestepSize
+   [../]
+
+  #---------------------------------------#
+  #                                       #
+  #     Average Mk = |m_k| and along      # 
+  #     other directions                  #
+  #                                       #
+  #---------------------------------------#
+
+  [./M1]
+    type = ElementAverageValue
+    variable = mag1_s
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./M2]
+    type = ElementAverageValue
+    variable = mag2_s
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Calculate exchange energy of        #
+  #   the magnetic body                   #
+  #                                       #
+  #---------------------------------------#
+
+  [./FafmSLexch]
+    type = AFMSublatticeSuperexchangeEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag1_x = mag1_x
+    mag1_y = mag1_y
+    mag1_z = mag1_z
+    mag2_x = mag2_x
+    mag2_y = mag2_y
+    mag2_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+
+  [./FafmSLdmi]
+    type = AFMSublatticeDMInteractionEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = -6241.51
+  [../]
+
+  #----------------------------------------#
+  #                                        #
+  #   Calculate excess energy from missed  #
+  #   LLB targets                          #
+  #                                        #
+  #----------------------------------------#
+
+  [./Fllb1]
+    type = MagneticExcessLLBEnergy
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./Fllb2]
+    type = MagneticExcessLLBEnergy
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Calculate the anisotropy energy     #
+  #                                       #
+  #---------------------------------------#
+
+  [./Fa1]
+    type = AFMEasyPlaneAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./Fa2]
+    type = AFMEasyPlaneAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+
+  [./Fsia1]
+    type = AFMSingleIonCubicSixthAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./Fsia2]
+    type = AFMSingleIonCubicSixthAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   add all the energy contributions    #
+  #   and calculate their percent change  #
+  #                                       #
+  #---------------------------------------#
+
+  [./Ftot]
+    type = LinearCombinationPostprocessor 
+    pp_names = &#x27;FafmSLexch FafmSLdmi Fa1 Fa2 Fsia1 Fsia2&#x27;
+    pp_coefs = &#x27; 1.0 1.0 1.0 1.0 1.0 1.0&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./FtotLLB]
+    type = LinearCombinationPostprocessor 
+    pp_names = &#x27;Fllb1 Fllb2&#x27;
+    pp_coefs = &#x27; 1.0 1.0&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot
+    dt = dt 
+    execute_on = &#x27;timestep_end final&#x27;
+  [../]
+  [./elapsed]
+    type = PerfGraphData
+    section_name = &quot;Root&quot;  # for profiling the problem
+    data_type = total
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   PointValue postprocessors of the    #
+  #   excess energy                       #
+  #                                       #
+  #---------------------------------------#
+
+  [./p1_excessEtot]
+    type = PointValue
+    variable = excessEtot
+    point = &#x27;4.95 0.5 0.5&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./p2_excessEtot]
+    type = PointValue
+    variable = excessEtot
+    point = &#x27;11.0 0.5 0.5&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./DW_excessEtot]
+    type = PointValue
+    variable = excessEtot
+    point = &#x27;7.95 0.5 0.5&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+[]
+
+
+[UserObjects]
+
+[]
+
+
+[Preconditioning]
+
+  #---------------------------------------#
+  #                                       #
+  #            Solver options             #
+  #                                       #
+  #---------------------------------------#
+
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27; -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type &#x27;
+    petsc_options_value = &#x27;    250               1e-7      1e-6      1e-4     bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient            
+  solve_type = &#x27;NEWTON&#x27;
+
+  [./TimeIntegrator]
+    type = NewmarkBeta
+  [../]
+
+  dtmin = 1e-18
+  dtmax = 5.0e-8
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 25  #usually 10
+    linear_iteration_ratio = 100
+    dt = 1e-8
+    growth_factor = 1.1
+  [../]
+
+  num_steps = 541
+  end_time = 3.5e-5
+[]
+
+[Outputs]
+  print_linear_residuals = false
+
+  [./out]
+    execute_on = &#x27;timestep_end&#x27;
+    type = Exodus
+    file_base = out_BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7
+    elemental_as_nodal = true
+    interval = 5
+  [../]
+  [./outCSV]
+    type = CSV
+    execute_on = &#x27;timestep_end&#x27;
+    file_base = out_BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="49d2ccbc-a732-47e6-9e6e-1a1799424838"><div class="modal-content"><h4>(tutorial/BFO_mag_wall_rd.i)</h4><pre class="moose-pre"><code class="language-text">
+
+  ##############################
+  ##
+  ## UNITS:
+  ##
+  ##   gamma = (2.2101*10^5 / 2 pi) m/C
+  ##
+  ##   gamma/(mu*0Ms) = 48291.9 nm*mus/pg
+  ##
+  ##   coefficients given in (pg/nm*mus) 
+  ##   which is equivalent to an energy/vol
+  ##
+  ##   Effective fields are 1/(mu0*Ms)*coeff
+  ##   which gives units of aC/(nm*mus)
+  ##
+  ##   Energies are natively printed in units 
+  ##    of 0.160218 pg nm^2 / mus^2 
+  ##    or 1.60218*10^{-22} J
+  ##    or 0.001 eV
+  ##
+  ##############################
+
+
+Dedef = 3.7551
+
+D0def = 0.003
+
+K1def = -5.0068
+
+K1cdef = -0.0550748
+
+Ktdef = -0.00365997
+
+alphadef = 0.8
+
+#freq = 0.2
+
+corr = 0.0005
+dwid = 0.5
+
+hamp = 0.35355339059327373
+fDW = 7.88
+sDW = 23.53
+
+[Mesh]
+  [fileload]
+    type = FileMeshGenerator
+    file = BFO_dwP1A1_100_ref.e
+    use_for_exodus_restart = true
+  []
+[]
+
+
+[GlobalParams]
+  mag1_x = mag1_x
+  mag1_y = mag1_y
+  mag1_z = mag1_z
+
+  mag2_x = mag2_x
+  mag2_y = mag2_y
+  mag2_z = mag2_z
+
+  antiphase_A_x = antiphase_A_x
+  antiphase_A_y = antiphase_A_y
+  antiphase_A_z = antiphase_A_z
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+
+[]
+
+[Materials]
+  ############################################################################
+  ##==
+  ##       material constants used.
+  ##
+  ##
+  ############################################################################
+
+  [./constants] 
+    type = GenericConstantMaterial
+    prop_names = &#x27; alpha           De       D0             g0mu0Ms      g0          K1         K1c      Kt     permittivity Ae     Ms &#x27;
+    prop_values = &#x27;${alphadef}   ${Dedef} ${D0def}      48291.9      48291.9     ${K1def}  ${K1cdef} ${Ktdef}     1.0      0.75    1.0 &#x27;
+  [../]
+
+  [./a_long]
+    type = GenericFunctionMaterial
+    prop_names = &#x27;alpha_long&#x27;
+    prop_values = &#x27;bc_func_1&#x27;
+  [../]
+
+[]
+
+[Functions]
+
+  ##############################
+  ##
+  ## Define the ramping function
+  ## expression to be used
+  ##==
+  ##############################
+
+  [./bc_func_1]
+    type = ParsedFunction
+    value = &#x27;st&#x27;
+    vars = &#x27;st&#x27;
+    vals = &#x27;1e8&#x27;
+  [../]
+
+
+  [./stripem1x]
+    type = ParsedFunction
+    value = &#x27;if(x &lt; 15.707963267948966,(${hamp}+${corr})*tanh(${dwid}*(x-${fDW}))+${hamp},-(${hamp}+${corr})*tanh(${dwid}*(x-${sDW}))+${hamp})&#x27;
+  [../]
+
+  [./stripem1y]
+    type = ParsedFunction
+    value = &#x27;if(x &lt; 15.707963267948966,-(2*${hamp}+${corr})*tanh(${dwid}*(x-${fDW})),(2*${hamp}+${corr})*tanh(${dwid}*(x-${sDW})))&#x27;
+  [../]
+  [./stripem1z]
+    type = ParsedFunction
+    value = &#x27;if(x &lt; 15.707963267948966,-(${hamp}+${corr})*tanh(${dwid}*(x-${fDW}))+${hamp},(${hamp}+${corr})*tanh(${dwid}*(x-${sDW}))+${hamp})&#x27;
+  [../]
+
+  [./stripem2x]
+    type = ParsedFunction
+    value = &#x27;if(x &lt; 15.707963267948966,-(${hamp}-${corr})*tanh(${dwid}*(x-${fDW}))-${hamp},(${hamp}-${corr})*tanh(${dwid}*(x-${sDW}))-${hamp})&#x27;
+  [../]
+  [./stripem2y]
+    type = ParsedFunction
+    value = &#x27;if(x &lt; 15.707963267948966,(2*${hamp}-${corr})*tanh(${dwid}*(x-${fDW})),-(2*${hamp}-${corr})*tanh(${dwid}*(x-${sDW})))&#x27;
+  [../]
+  [./stripem2z]
+    type = ParsedFunction
+    value = &#x27;if(x &lt; 15.707963267948966,(${hamp}-${corr})*tanh(${dwid}*(x-${fDW}))-${hamp},-(${hamp}-${corr})*tanh(${dwid}*(x-${sDW}))-${hamp})&#x27;
+  [../]
+[]
+#==
+
+[Variables]
+  [./mag1_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripem1x
+    [../]
+  [../]
+  [./mag1_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripem1y
+    [../]
+  [../]
+  [./mag1_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripem1z
+    [../]
+  [../]
+
+  [./mag2_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripem2x
+    [../]
+  [../]
+  [./mag2_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripem2y
+    [../]
+  [../]
+  [./mag2_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = stripem2z
+    [../]
+  [../]
+[]
+
+[AuxVariables]
+
+  [./mag1_s]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./mag2_s]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./Neel_L_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Neel_L_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./Neel_L_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+
+  [./SSMag_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./SSMag_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./SSMag_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+
+  [./antiphase_A_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_x
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./antiphase_A_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_y
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./antiphase_A_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = antiphase_A_z
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+
+
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_x
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_y
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    initial_from_file_var = polar_z
+    initial_from_file_timestep = &#x27;LATEST&#x27;
+  [../]
+
+  [./dSSMag_dt_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./dSSMag_dt_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./dSSMag_dt_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./dL_dt_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./dL_dt_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./dL_dt_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  #############################################################
+  ##
+  ##  other angles
+  ##
+  ###########################################################
+
+  [./ph]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./th1]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./th2]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  ######################
+  ##                  ##
+  ##  Energy density  ##
+  ##                  ##
+  ######################
+
+  [./Edmi]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Esupexch]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Enlexch]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eepa1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eepa2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eca1]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Eca2]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./Etot]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+[]
+
+[Kernels]
+  #---------------------------------------#
+  #                                       #
+  #          Time dependence              #
+  #                                       #
+  #---------------------------------------#
+
+  [./mag1_x_time]
+    type = TimeDerivative
+    variable = mag1_x
+  [../]
+  [./mag1_y_time]
+    type = TimeDerivative
+    variable = mag1_y
+  [../]
+  [./mag1_z_time]
+    type = TimeDerivative
+    variable = mag1_z
+  [../]
+
+  [./mag2_x_time]
+    type = TimeDerivative
+    variable = mag2_x
+  [../]
+  [./mag2_y_time]
+    type = TimeDerivative
+    variable = mag2_y
+  [../]
+  [./mag2_z_time]
+    type = TimeDerivative
+    variable = mag2_z
+  [../]
+
+
+  #---------------------------------------#
+  #                                       #
+  #     AFM sublattice exchange           #
+  #                                       #
+  #---------------------------------------#
+
+  [./afmex1_x]
+    type = AFMSublatticeSuperexchange
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afmex1_y]
+    type = AFMSublatticeSuperexchange
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afmex1_z]
+    type = AFMSublatticeSuperexchange
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./afmex2_x]
+    type = AFMSublatticeSuperexchange
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afmex2_y]
+    type = AFMSublatticeSuperexchange
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afmex2_z]
+    type = AFMSublatticeSuperexchange
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #     AFM sublattice DMI                #
+  #                                       #
+  #---------------------------------------#
+
+  [./afmdmi1_x]
+    type = AFMSublatticeDMInteraction
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afmdmi1_y]
+    type = AFMSublatticeDMInteraction
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afmdmi1_z]
+    type = AFMSublatticeDMInteraction
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./afmdmi2_x]
+    type = AFMSublatticeDMInteraction
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afmdmi2_y]
+    type = AFMSublatticeDMInteraction
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afmdmi2_z]
+    type = AFMSublatticeDMInteraction
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Magnetocrystalline anisotropy for   #
+  #   the AFM sublattice in easy-plane    #
+  #                                       #
+  #---------------------------------------#
+
+  [./afma1_x]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afma1_y]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afma1_z]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+
+  [./afma2_x]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afma2_y]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afma2_z]
+    type = AFMEasyPlaneAnisotropy
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+
+  #---------------------------------------#
+  #                                       #
+  #   Single-ion anisotropy environment   #
+  #   for the AFM sublattice in the       #
+  #   degenerate easy-plane               #
+  #                                       #
+  #---------------------------------------#
+
+  [./afmsia1_x]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./afmsia1_y]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./afmsia1_z]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./afmsia2_x]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./afmsia2_y]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./afmsia2_z]
+    type = AFMSingleIonCubicSixthAnisotropy
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          LLB constraint terms         #
+  #                                       #
+  #---------------------------------------#
+
+  [./llb1_x]
+    type = LongitudinalLLB
+    variable = mag1_x
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 0
+  [../]
+  [./llb1_y]
+    type = LongitudinalLLB
+    variable = mag1_y
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 1
+  [../]
+
+  [./llb1_z]
+    type = LongitudinalLLB
+    variable = mag1_z
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    component = 2
+  [../]
+
+  [./llb2_x]
+    type = LongitudinalLLB
+    variable = mag2_x
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 0
+  [../]
+  [./llb2_y]
+    type = LongitudinalLLB
+    variable = mag2_y
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 1
+  [../]
+
+  [./llb2_z]
+    type = LongitudinalLLB
+    variable = mag2_z
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    component = 2
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #    Local magnetic exchange            #
+  #                                       #
+  #---------------------------------------#
+  
+  [./dllg1_x_exch]
+    type = ExchangeCartLL
+    variable = mag1_x
+    component = 0
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  [../]
+  [./dllg1_y_exch]
+    type = ExchangeCartLL
+    variable = mag1_y
+    component = 1
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  [../]
+  [./dllg1_z_exch]
+    type = ExchangeCartLL
+    variable = mag1_z
+    component = 2
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  [../]
+
+  [./dllg2_x_exch]
+    type = ExchangeCartLL
+    variable = mag2_x
+    component = 0
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  [../]
+  [./dllg2_y_exch]
+    type = ExchangeCartLL
+    variable = mag2_y
+    component = 1
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  [../]
+  [./dllg2_z_exch]
+    type = ExchangeCartLL
+    variable = mag2_z
+    component = 2
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  [../]
+
+  #---------------------------------------#
+  #                                       #=
+  #    Local AFM magnetic exchange        #
+  #           (Local-term)                #
+  #---------------------------------------#
+  
+  [./dllg1afm_x_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  [../]
+  [./dllg1afm_y_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  [../]
+  [./dllg1afm_z_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  [../]
+
+  [./dllg2afm_x_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  [../]
+  [./dllg2afm_y_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  [../]
+  [./dllg2afm_z_exch]
+    type = AFMLocalSublatticeExchangeCartLL
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  [../]
+[]
+
+
+
+[AuxKernels]
+  [./mag1_mag]
+    type = VectorMag
+    variable = mag1_s
+    vector_x = mag1_x
+    vector_y = mag1_y
+    vector_z = mag1_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./mag2_mag]
+    type = VectorMag
+    variable = mag2_s
+    vector_x = mag2_x
+    vector_y = mag2_y
+    vector_z = mag2_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+
+  [./Neel_Lx]
+    type = VectorDiffOrSum
+    variable = Neel_L_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 0
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./Neel_Ly]
+    type = VectorDiffOrSum
+    variable = Neel_L_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 0
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./Neel_Lz]
+    type = VectorDiffOrSum
+    variable = Neel_L_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 0
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./smallSignalMag_x]
+    type = VectorDiffOrSum
+    variable = SSMag_x
+    var1 = mag1_x
+    var2 = mag2_x
+    diffOrSum = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./smallSignalMag_y]
+    type = VectorDiffOrSum
+    variable = SSMag_y
+    var1 = mag1_y
+    var2 = mag2_y
+    diffOrSum = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./smallSignalMag_z]
+    type = VectorDiffOrSum
+    variable = SSMag_z
+    var1 = mag1_z
+    var2 = mag2_z
+    diffOrSum = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./phc]
+    type = AngleBetweenTwoVectors
+    variable = ph
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = mag2_x
+    var2y = mag2_y
+    var2z = mag2_z
+
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./th1c]
+    type = AngleBetweenTwoVectors
+    variable = th1
+    var1x = mag1_x
+    var1y = mag1_y
+    var1z = mag1_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./th2c]
+    type = AngleBetweenTwoVectors
+    variable = th2
+    var1x = mag2_x
+    var1y = mag2_y
+    var1z = mag2_z
+    var2x = polar_x
+    var2y = polar_y
+    var2z = polar_z
+
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #          Energy density               #
+  #                                       #
+  #---------------------------------------#
+
+  [./cEdmi]
+    type = AFMSublatticeDMInteractionEnergyDensity
+    variable = Edmi
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = -6241.51
+  [../]
+  [./cEsupexch]
+    type = AFMSublatticeSuperexchangeEnergyDensity
+    variable = Esupexch
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = 6241.51
+  [../]
+  [./cEnlexch]
+    type = AFMExchangeStiffnessEnergyDensity
+    variable = Enlexch
+    Neel_L_x = Neel_L_x
+    Neel_L_y = Neel_L_y
+    Neel_L_z = Neel_L_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = 6241.51
+  [../]
+
+  [./cEepa1]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa1
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEepa2]
+    type = AFMEasyPlaneAnisotropyEnergyDensity
+    variable = Eepa2
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca1]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca1
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 6241.51
+  [../]
+  [./cEca2]
+    type = AFMSingleIonCubicSixthAnisotropyEnergyDensity
+    variable = Eca2
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 6241.51
+  [../]
+
+  [./cEdtot]
+    type = AFMTotalEnergyDensity
+    variable = Etot
+    execute_on = &#x27;initial timestep_end final&#x27;
+    Edmi = Edmi
+    Esupexch = Esupexch
+    Enlexch = Enlexch
+    Eepa1 = Eepa1
+    Eepa2 = Eepa2
+    Eca1 = Eca1
+    Eca2 = Eca2
+  [../]
+
+[]
+
+
+[BCs]
+  #---------------------------------------#
+  #                                       #
+  #  periodic magnetization distribution  #
+  #                                       #
+  #---------------------------------------#
+
+  [./Periodic]
+    [./x]
+      auto_direction = &#x27;x&#x27;
+      variable = &#x27;mag1_x mag1_y mag1_z mag2_x mag2_y mag2_z&#x27;
+    [../]
+  [../]
+
+[]
+
+[Postprocessors]
+   [./dt]
+     type = TimestepSize
+   [../]
+
+  #---------------------------------------#
+  #                                       #
+  #     Average Mk = |m_k| and along      # 
+  #     other directions                  #
+  #                                       #
+  #---------------------------------------#
+
+  [./M1]
+    type = ElementAverageValue
+    variable = mag1_s
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./M2]
+    type = ElementAverageValue
+    variable = mag2_s
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./&lt;Lx&gt;]
+    type = ElementAverageValue
+    variable = Neel_L_x
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;Ly&gt;]
+    type = ElementAverageValue
+    variable = Neel_L_y
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;Lz&gt;]
+    type = ElementAverageValue
+    variable = Neel_L_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./&lt;m1x&gt;]
+    type = ElementAverageValue
+    variable = mag1_x
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;m1y&gt;]
+    type = ElementAverageValue
+    variable = mag1_y
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;m1z&gt;]
+    type = ElementAverageValue
+    variable = mag1_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./&lt;m2x&gt;]
+    type = ElementAverageValue
+    variable = mag2_x
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;m2y&gt;]
+    type = ElementAverageValue
+    variable = mag2_y
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;m2z&gt;]
+    type = ElementAverageValue
+    variable = mag2_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./&lt;ph&gt;]
+    type = ElementAverageValue
+    variable = ph
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;th1&gt;]
+    type = ElementAverageValue
+    variable = th1
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;th2&gt;]
+    type = ElementAverageValue
+    variable = th2
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Calculate exchange energy of        #
+  #   the magnetic body                   #
+  #                                       #
+  #---------------------------------------#
+
+  [./FafmSLexch]
+    type = AFMSublatticeSuperexchangeEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag1_x = mag1_x
+    mag1_y = mag1_y
+    mag1_z = mag1_z
+    mag2_x = mag2_x
+    mag2_y = mag2_y
+    mag2_z = mag2_z
+    energy_scale = 0.001
+
+  [../]
+  [./FafmSLdmi]
+    type = AFMSublatticeDMInteractionEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = 0.001
+  [../]
+
+  [./FexchS]
+    type = AFMExchangeStiffnessEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    energy_scale = 0.001
+    Neel_L_x = Neel_L_x
+    Neel_L_y = Neel_L_y
+    Neel_L_z = Neel_L_z
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Calculate excess energy from missed #
+  #   LLB targets                         #
+  #                                       #
+  #---------------------------------------#
+
+  [./Fllb1]
+    type = MagneticExcessLLBEnergy
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./Fllb2]
+    type = MagneticExcessLLBEnergy
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   Calculate the anisotropy energy     #
+  #                                       #
+  #---------------------------------------#
+
+  [./Fa1]
+    type = AFMEasyPlaneAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 0.001
+  [../]
+  [./Fa2]
+    type = AFMEasyPlaneAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 0.001
+  [../]
+
+  [./Fsia1]
+    type = AFMSingleIonCubicSixthAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+    energy_scale = 0.001
+  [../]
+  [./Fsia2]
+    type = AFMSingleIonCubicSixthAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+    energy_scale = 0.001
+  [../]
+
+  #---------------------------------------#
+  #                                       #
+  #   add all the energy contributions    #
+  #   and calculate their percent change  #
+  #                                       #
+  #---------------------------------------#
+
+  [./Ftot]
+    type = LinearCombinationPostprocessor 
+    pp_names = &#x27;FafmSLexch FafmSLdmi Fa1 Fa2 Fsia1 Fsia2 FexchS&#x27;
+    pp_coefs = &#x27; 1.0 1.0 1.0 1.0 1.0 1.0 1.0&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./FtotLLB]
+    type = LinearCombinationPostprocessor 
+    pp_names = &#x27;Fllb1 Fllb2&#x27;
+    pp_coefs = &#x27; 1.0 1.0&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./perc_change]
+    type = EnergyRatePostprocessor
+    postprocessor = Ftot
+    dt = dt 
+    execute_on = &#x27;timestep_end final&#x27;
+  [../]
+
+  [./elapsed]
+    type = PerfGraphData
+    section_name = &quot;Root&quot;  # for profiling the problem
+    data_type = total
+  [../]
+[]
+
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = &#x27;perc_change &lt;= 1.0e-8&#x27;
+  [../]
+[]
+
+[Preconditioning]
+
+  #---------------------------------------#
+  #                                       #
+  #            Solver options             #
+  #                                       #
+  #---------------------------------------#
+
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27; -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type &#x27;
+    petsc_options_value = &#x27;    250               1e-8      1e-8      1e-5     bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+
+  [./TimeIntegrator]
+    type = NewmarkBeta
+  [../]
+
+  dtmin = 1e-18
+  dtmax = 1e-7
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 25  #usually 10
+    linear_iteration_ratio = 100
+    dt = 1e-9
+    growth_factor = 1.1
+  [../]
+
+  num_steps = 18001
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_BFO_P111bA111b-P111bA111b_m1
+    elemental_as_nodal = true
+    interval = 20
+  [../]
+  [./outCSV]
+    type = CSV
+    file_base = out_BFO_P111bA111b-P111bA111b_m1
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

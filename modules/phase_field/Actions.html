@@ -1,0 +1,246 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Custom Phase Field Actions | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="9b492bc8-6a4b-44ce-b5f8-3e2ceb64efa0" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="2723f3f0-bdac-4134-b077-cca19be25a27" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8babe417-3ccc-4b32-93de-11a4dcb4aef2" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="00ebb66a-d472-4110-8344-46622b0f9a84" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="5904f865-d7e3-4fd7-83d4-3826952187c8" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="a49d60d6-c820-4747-ab44-eeb410eb63f9"><i class="material-icons">menu</i></a><ul class="sidenav" id="a49d60d6-c820-4747-ab44-eeb410eb63f9"><li><a href="#!" class="dropdown-trigger" data-target="3add2ae4-2ced-4c45-b053-bc60016838d2" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6353a34d-b9f7-4d64-b829-e1efd7d7165e" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="17c649a8-bd49-4853-873a-5544cba5c368" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c0f17508-4a8e-4227-b8e6-e2cd5df758fc" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="e992ff87-1aab-4836-a24b-f0f3ea34e99b" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="9b492bc8-6a4b-44ce-b5f8-3e2ceb64efa0"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="2723f3f0-bdac-4134-b077-cca19be25a27"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="8babe417-3ccc-4b32-93de-11a4dcb4aef2"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="00ebb66a-d472-4110-8344-46622b0f9a84"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="5904f865-d7e3-4fd7-83d4-3826952187c8"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="3add2ae4-2ced-4c45-b053-bc60016838d2"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="6353a34d-b9f7-4d64-b829-e1efd7d7165e"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="17c649a8-bd49-4853-873a-5544cba5c368"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="c0f17508-4a8e-4227-b8e6-e2cd5df758fc"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="e992ff87-1aab-4836-a24b-f0f3ea34e99b"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="9d88120b-cc57-4cc2-81bf-d90029344203" data-section-level="1" data-section-text="Custom Phase Field Actions"><h1 id="custom-phase-field-actions">Custom Phase Field Actions</h1><p>To simplify the formation of input files that use standard Allen-Cahn and Cahn-Hilliard equations, custom actions have been created that automatically create conserved and nonconserved phase field field variables and all the corresponding kernels. Additional kernels can still be added using standard MOOSE syntax.</p><p>The actions are in the phase field block, under the modules block. Nonconserved variables are created using <a href="../../source/actions/NonconservedAction.html">NonconservedAction</a>. For an example, see</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Modules]
+  [./PhaseField]
+    [./Nonconserved]
+      [./eta]
+        free_energy = F
+        kappa = 2.0
+        mobility = 1.0
+        variable_mobility = false
+      [../]
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#74dc4536-6288-40d0-8f43-13c68fb521d6">(../moose/modules/phase_field/test/tests/actions/Nonconserved_1var.i)</a><p>Conserved variables are created using <a href="../../source/actions/ConservedAction.html">ConservedAction</a>. For an example, See</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Modules]
+  [./PhaseField]
+    [./Conserved]
+      [./cv]
+        solve_type = REVERSE_SPLIT
+        free_energy = F
+        kappa = 2.0
+        mobility = 1.0
+      [../]
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#ac38332d-cb83-4fbe-a7a4-8cc0886183cf">(../moose/modules/phase_field/test/tests/actions/conserved_split_1var.i)</a><p>and</p><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Modules]
+  [./PhaseField]
+    [./Conserved]
+      [./cv]
+        solve_type = direct
+        free_energy = F
+        kappa = 2.0
+        mobility = 1.0
+      [../]
+    [../]
+  [../]
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#f64da592-dfe5-4cf8-8916-da5207f1cb05">(../moose/modules/phase_field/test/tests/actions/conserved_direct_1var.i)</a><section id="92e7541f-3b04-4eda-b035-6d313b52b76b" data-section-level="2" data-section-text="See also"><h2 id="see-also">See also</h2><ul class="browser-default"><li><p><a href="FAQ">Phase Field FAQ</a> - Frequently asked questions for MOOSE phase-field models.</p></li></ul></section></section><div class="moose-modal modal" id="74dc4536-6288-40d0-8f43-13c68fb521d6"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/actions/Nonconserved_1var.i)</h4><pre class="moose-pre"><code class="language-text">#
+# Test the parsed function free enery Allen-Cahn Bulk kernel
+#
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 40
+  ny = 40
+  xmax = 40
+  ymax = 40
+  elem_type = QUAD
+[]
+
+[Modules]
+  [./PhaseField]
+    [./Nonconserved]
+      [./eta]
+        free_energy = F
+        kappa = 2.0
+        mobility = 1.0
+        variable_mobility = false
+      [../]
+    [../]
+  [../]
+[]
+
+[ICs]
+  [./InitialCondition]
+    type = SmoothCircleIC
+    variable = eta
+    x1 = 20.0
+    y1 = 20.0
+    radius = 6.0
+    invalue = 0.9
+    outvalue = 0.1
+    int_width = 3.0
+  [../]
+[]
+
+[Materials]
+  [./free_energy]
+    type = DerivativeParsedMaterial
+    property_name = F
+    coupled_variables = &#x27;eta&#x27;
+    expression = &#x27;2 * eta^2 * (1-eta)^2 - 0.2*eta&#x27;
+    derivative_order = 2
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = &#x27;bdf2&#x27;
+
+  solve_type = &#x27;NEWTON&#x27;
+
+  l_max_its = 15
+  l_tol = 1.0e-4
+
+  nl_max_its = 10
+  nl_rel_tol = 1.0e-11
+
+  num_steps = 10
+  dt = 1.0
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="ac38332d-cb83-4fbe-a7a4-8cc0886183cf"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/actions/conserved_split_1var.i)</h4><pre class="moose-pre"><code class="language-text">#
+# Test the conserved action with split solve and 1 variable
+#
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 50
+  ny = 50
+  xmax = 50
+  ymax = 50
+  elem_type = QUAD
+[]
+
+[Modules]
+  [./PhaseField]
+    [./Conserved]
+      [./cv]
+        solve_type = REVERSE_SPLIT
+        free_energy = F
+        kappa = 2.0
+        mobility = 1.0
+      [../]
+    [../]
+  [../]
+[]
+
+[ICs]
+  [./InitialCondition]
+    type = CrossIC
+    x1 = 5.0
+    y1 = 5.0
+    x2 = 45.0
+    y2 = 45.0
+    variable = cv
+  [../]
+[]
+
+[Materials]
+  [./free_energy]
+    type = DerivativeParsedMaterial
+    property_name = F
+    coupled_variables = &#x27;cv&#x27;
+    expression = &#x27;(1-cv)^2 * (1+cv)^2&#x27;
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = &#x27;bdf2&#x27;
+
+  solve_type = &#x27;NEWTON&#x27;
+
+  l_max_its = 30
+  l_tol = 1.0e-5
+  nl_max_its = 10
+  nl_rel_tol = 1.0e-12
+
+  start_time = 0.0
+  num_steps = 5
+  dt = 0.7
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="f64da592-dfe5-4cf8-8916-da5207f1cb05"><div class="modal-content"><h4>(../moose/modules/phase_field/test/tests/actions/conserved_direct_1var.i)</h4><pre class="moose-pre"><code class="language-text">#
+# Test consreved action for direct solve
+#
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 16
+  ny = 16
+  xmax = 50
+  ymax = 50
+  elem_type = QUAD
+[]
+
+[Modules]
+  [./PhaseField]
+    [./Conserved]
+      [./cv]
+        solve_type = direct
+        free_energy = F
+        kappa = 2.0
+        mobility = 1.0
+      [../]
+    [../]
+  [../]
+[]
+
+[ICs]
+  [./InitialCondition]
+    type = CrossIC
+    x1 = 5.0
+    y1 = 5.0
+    x2 = 45.0
+    y2 = 45.0
+    variable = cv
+  [../]
+[]
+
+[Materials]
+  [./free_energy]
+    type = DerivativeParsedMaterial
+    property_name = F
+    coupled_variables = &#x27;cv&#x27;
+    expression = &#x27;(1-cv)^2 * (1+cv)^2&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  scheme = &#x27;bdf2&#x27;
+
+  solve_type = &#x27;NEWTON&#x27;
+
+  l_max_its = 30
+  l_tol = 1.0e-4
+  nl_max_its = 10
+  nl_rel_tol = 1.0e-10
+
+  start_time = 0.0
+  num_steps = 5
+  dt = 0.7
+[]
+
+[Outputs]
+  [./out]
+    type = Exodus
+    refinements = 2
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

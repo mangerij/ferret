@@ -1,0 +1,382 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>VectorPostprocessorInterface | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="888b454c-eada-4c5d-a545-14eb446c3347" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="78306bd3-24a8-45c4-b725-bf4ee14ec8f8" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="94a0cd19-46c1-4bab-93f7-f49136901f8c" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4796060e-cfd4-4055-b89f-d93589cf3efb" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="7e591348-6048-46ad-b5e2-e820011e203f" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="a1711c23-8e4b-4a65-af96-4181ede1dbc9"><i class="material-icons">menu</i></a><ul class="sidenav" id="a1711c23-8e4b-4a65-af96-4181ede1dbc9"><li><a href="#!" class="dropdown-trigger" data-target="b33d2ba4-e0f0-45eb-92b5-580a93dc9325" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="90713045-6871-40e3-8937-61bc1a0e1438" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="cb8fb906-b35c-44d7-8d0b-e8c96076426c" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="15d9dd06-27d4-4159-a887-4ad85abb6359" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a6e43eb5-e72d-4699-ab68-212c4917dd4a" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="888b454c-eada-4c5d-a545-14eb446c3347"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="78306bd3-24a8-45c4-b725-bf4ee14ec8f8"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="94a0cd19-46c1-4bab-93f7-f49136901f8c"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="4796060e-cfd4-4055-b89f-d93589cf3efb"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="7e591348-6048-46ad-b5e2-e820011e203f"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="b33d2ba4-e0f0-45eb-92b5-580a93dc9325"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="90713045-6871-40e3-8937-61bc1a0e1438"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="cb8fb906-b35c-44d7-8d0b-e8c96076426c"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="15d9dd06-27d4-4159-a887-4ad85abb6359"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a6e43eb5-e72d-4699-ab68-212c4917dd4a"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="31ba134d-5f34-46fb-9d4a-0a86e0337b66" data-section-level="1" data-section-text="VectorPostprocessorInterface"><h1 id="vectorpostprocessorinterface">VectorPostprocessorInterface</h1><p>The VectorPostprocessorInterface defines the methods used for retrieving references to <a href="../../syntax/VectorPostprocessors/index.html">VectorPostprocessor</a> values. Many objects in MOOSE support the retrieval of these references for use in calculations.</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">  /**
+   * Retrieve the value of a VectorPostprocessor
+   * @param param_name The name of the VectorPostprocessor parameter (see below)
+   * @param vector_name The name of the particular vector you want.
+   * @param need_broadcast Whether or not this object requires the vector to
+   * be replicated in parallel
+   * @return A reference to the desired value
+   *
+   * The name required by this method is the name that is hard-coded into
+   * your source code. For example, if you have a Kernel that requires
+   * a VectorPostprocessor you may have an input file with &quot;pp = my_pp&quot;, this function
+   * requires the &quot;pp&quot; name as input (see .../moose_test/functions/VectorPostprocessorFunction.C)
+   *
+   * see getVectorPostprocessorValueOld getVectorPostprocessorValueByName
+   * getVectorPostprocessorValueOldByName
+   */
+  const VectorPostprocessorValue &amp; getVectorPostprocessorValue(const std::string &amp; param_name,
+                                                               const std::string &amp; vector_name,
+                                                               bool needs_broadcast) const;
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#3d00f99e-d269-431b-a1cd-f169cdd23f5f">(../moose/framework/include/vectorpostprocessors/VectorPostprocessorInterface.h)</a></section><div class="moose-modal modal" id="3d00f99e-d269-431b-a1cd-f169cdd23f5f"><div class="modal-content"><h4>(../moose/framework/include/vectorpostprocessors/VectorPostprocessorInterface.h)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://www.mooseframework.org
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+#pragma once
+
+// MOOSE includes
+#include &quot;MooseTypes.h&quot;
+
+// Forward Declarations
+class FEProblemBase;
+class InputParameters;
+class MooseObject;
+template &lt;typename T&gt;
+class VectorPostprocessorContext;
+
+class VectorPostprocessorInterface
+{
+public:
+  static InputParameters validParams();
+
+  /**
+   * Constructor
+   *
+   * @param broadcast_by_default Set to true if the system inheriting from this interface always
+   * needs the VPPs to be broadcast
+   */
+  VectorPostprocessorInterface(const MooseObject * moose_object, bool broadcast_by_default = false);
+
+  /**
+   * This class has virtual methods, so it needs a virtual dtor.
+   */
+  virtual ~VectorPostprocessorInterface() = default;
+
+  /**
+   * DEPRECATED: Use the new version where you need to specify whether or
+   * not the vector must be broadcast
+   *
+   * Retrieve the value of a VectorPostprocessor
+   * @param param_name The name of the VectorPostprocessor parameter (see below)
+   * @param vector_name The name of the particular vector you want.
+   * @return A reference to the desired value
+   *
+   * The name required by this method is the name that is hard-coded into
+   * your source code. For example, if you have a Kernel that requires
+   * a VectorPostprocessor you may have an input file with &quot;pp = my_pp&quot;, this function
+   * requires the &quot;pp&quot; name as input (see .../moose_test/functions/VectorPostprocessorFunction.C)
+   *
+   * see getVectorPostprocessorValueOld getVectorPostprocessorValueByName
+   * getVectorPostprocessorValueOldByName
+   */
+  const VectorPostprocessorValue &amp;
+  getVectorPostprocessorValue(const std::string &amp; param_name,
+                              const std::string &amp; vector_name) const;
+
+  /**
+   * DEPRECATED: Use the new version where you need to specify whether or
+   * not the vector must be broadcast
+   *
+   * Retrieve the value of the VectorPostprocessor
+   * @param name VectorPostprocessor name (see below)
+   * @param vector_name The name of the particular vector you want.
+   * @return A reference to the desired value
+   *
+   * The name required by this method is the name defined in the input file. For example,
+   * if you have a Kernel that requires a VectorPostprocessor you may have an input file with
+   * &quot;pp = my_pp&quot;, this method requires the &quot;my_pp&quot; name as input
+   * (see .../moose_test/functions/VectorPostprocessorFunction.C)
+   *
+   * see getVectorPostprocessorValue getVectorPostprocessorValueOldByName
+   * getVectorPostprocessorValueByName
+   */
+  const VectorPostprocessorValue &amp;
+  getVectorPostprocessorValueByName(const VectorPostprocessorName &amp; name,
+                                    const std::string &amp; vector_name) const;
+
+  /**
+   * DEPRECATED: Use the new version where you need to specify whether or
+   * not the vector must be broadcast
+   *
+   * Retrieve the old value of a VectorPostprocessor
+   * @param param_name The name of the VectorPostprocessor parameter
+   * @param vector_name The name of the particular vector you want.
+   * @return The value of the VectorPostprocessor
+   *
+   * see getVectorPostprocessorValue
+   */
+  const VectorPostprocessorValue &amp;
+  getVectorPostprocessorValueOld(const std::string &amp; param_name,
+                                 const std::string &amp; vector_name) const;
+
+  /**
+   * DEPRECATED: Use the new version where you need to specify whether or
+   * not the vector must be broadcast
+   *
+   * Retrieve the old value of a VectorPostprocessor
+   * @param name The name of the VectorPostprocessor
+   * @param vector_name The name of the particular vector you want.
+   * @return The value of the VectorPostprocessor
+   *
+   * If within the validParams for the object the addVectorPostprocessorParam was called this method
+   * will retun a reference to the default value specified in the call to the
+   * addVectorPostprocessorParam
+   * function if the postVectorPostprocessor does not exist.
+   *
+   * see getVectorPostprocessorValueByName
+   */
+  const VectorPostprocessorValue &amp;
+  getVectorPostprocessorValueOldByName(const VectorPostprocessorName &amp; name,
+                                       const std::string &amp; vector_name) const;
+
+  // doco-normal-methods-begin
+  /**
+   * Retrieve the value of a VectorPostprocessor
+   * @param param_name The name of the VectorPostprocessor parameter (see below)
+   * @param vector_name The name of the particular vector you want.
+   * @param need_broadcast Whether or not this object requires the vector to
+   * be replicated in parallel
+   * @return A reference to the desired value
+   *
+   * The name required by this method is the name that is hard-coded into
+   * your source code. For example, if you have a Kernel that requires
+   * a VectorPostprocessor you may have an input file with &quot;pp = my_pp&quot;, this function
+   * requires the &quot;pp&quot; name as input (see .../moose_test/functions/VectorPostprocessorFunction.C)
+   *
+   * see getVectorPostprocessorValueOld getVectorPostprocessorValueByName
+   * getVectorPostprocessorValueOldByName
+   */
+  const VectorPostprocessorValue &amp; getVectorPostprocessorValue(const std::string &amp; param_name,
+                                                               const std::string &amp; vector_name,
+                                                               bool needs_broadcast) const;
+  // doco-normal-methods-end
+
+  /**
+   * Retrieve the value of the VectorPostprocessor
+   * @param name VectorPostprocessor name (see below)
+   * @param vector_name The name of the particular vector you want.
+   * @param need_broadcast Whether or not this object requires the vector to
+   * be replicated in parallel
+   * @return A reference to the desired value
+   *
+   * The name required by this method is the name defined in the input file. For example,
+   * if you have a Kernel that requires a VectorPostprocessor you may have an input file with
+   * &quot;pp = my_pp&quot;, this method requires the &quot;my_pp&quot; name as input
+   * (see .../moose_test/functions/VectorPostprocessorFunction.C)
+   *
+   * see getVectorPostprocessorValue getVectorPostprocessorValueOldByName
+   * getVectorPostprocessorValueByName
+   */
+  const VectorPostprocessorValue &amp;
+  getVectorPostprocessorValueByName(const VectorPostprocessorName &amp; name,
+                                    const std::string &amp; vector_name,
+                                    bool needs_broadcast) const;
+
+  /**
+   * Retrieve the old value of a VectorPostprocessor
+   * @param param_name The name of the VectorPostprocessor parameter
+   * @param vector_name The name of the particular vector you want.
+   * @param need_broadcast Whether or not this object requires the vector to
+   * be replicated in parallel
+   * @return The value of the VectorPostprocessor
+   *
+   * see getVectorPostprocessorValue
+   */
+  const VectorPostprocessorValue &amp; getVectorPostprocessorValueOld(const std::string &amp; param_name,
+                                                                  const std::string &amp; vector_name,
+                                                                  bool needs_broadcast) const;
+
+  /**
+   * Retrieve the old value of a VectorPostprocessor
+   * @param name The name of the VectorPostprocessor
+   * @param vector_name The name of the particular vector you want.
+   * @param need_broadcast Whether or not this object requires the vector to
+   * be replicated in parallel
+   * @return The value of the VectorPostprocessor
+   *
+   * If within the validParams for the object the addVectorPostprocessorParam was called this method
+   * will retun a reference to the default value specified in the call to the
+   * addVectorPostprocessorParam
+   * function if the postVectorPostprocessor does not exist.
+   *
+   * see getVectorPostprocessorValueByName
+   */
+  const VectorPostprocessorValue &amp;
+  getVectorPostprocessorValueOldByName(const VectorPostprocessorName &amp; name,
+                                       const std::string &amp; vector_name,
+                                       bool needs_broadcast) const;
+
+  /**
+   * Return the scatter value for the post processor
+   *
+   * This is only valid when you expec the vector to be of lenghth &quot;num_procs&quot;
+   * In that case - this will return a reference to a value that will be _this_ processor&#x27;s value
+   * from that vector
+   *
+   * @param param_name The name of the parameter holding the vpp name
+   * @param vector_name The name of the vector
+   * @return The reference to the current scatter value
+   */
+  const ScatterVectorPostprocessorValue &amp;
+  getScatterVectorPostprocessorValue(const std::string &amp; param_name,
+                                     const std::string &amp; vector_name) const;
+
+  /**
+   * Return the scatter value for the post processor
+   *
+   * This is only valid when you expec the vector to be of lenghth &quot;num_procs&quot;
+   * In that case - this will return a reference to a value that will be _this_ processor&#x27;s value
+   * from that vector
+   *
+   * @param name The name of the VectorPostprocessor
+   * @param vector_name The name of the vector
+   * @return The reference to the current scatter value
+   */
+  const ScatterVectorPostprocessorValue &amp;
+  getScatterVectorPostprocessorValueByName(const VectorPostprocessorName &amp; name,
+                                           const std::string &amp; vector_name) const;
+
+  /**
+   * Return the old scatter value for the post processor
+   *
+   * This is only valid when you expec the vector to be of lenghth &quot;num_procs&quot;
+   * In that case - this will return a reference to a value that will be _this_ processor&#x27;s
+   * value from that vector
+   *
+   * @param param_name The name of the parameter holding the vpp name
+   * @param vector_name The name of the vector
+   * @return The reference to the old scatter value
+   */
+  const ScatterVectorPostprocessorValue &amp;
+  getScatterVectorPostprocessorValueOld(const std::string &amp; param_name,
+                                        const std::string &amp; vector_name) const;
+
+  /**
+   * Return the old scatter value for the post processor
+   *
+   * This is only valid when you expect the vector to be of length &quot;num_procs&quot;
+   * In that case - this will return a reference to a value that will be _this_ processor&#x27;s
+   * value from that vector
+   *
+   * @param name The name of the VectorPostprocessor
+   * @param vector_name The name of the vector
+   * @return The reference to the old scatter value
+   */
+  const ScatterVectorPostprocessorValue &amp;
+  getScatterVectorPostprocessorValueOldByName(const VectorPostprocessorName &amp; name,
+                                              const std::string &amp; vector_name) const;
+
+  /**
+   * Determine if the VectorPostprocessor data exists by parameter
+   * @param param_name The name of the VectorPostprocessor parameter
+   * @param vector_name The vector name within the VectorPostprocessor
+   * @return True if the VectorPostprocessor data exists
+   *
+   * @see hasVectorPostprocessorByName getVectorPostprocessorValue
+   */
+  bool hasVectorPostprocessor(const std::string &amp; param_name,
+                              const std::string &amp; vector_name) const;
+
+  /**
+   * Determine if the VectorPostprocessor data exists by name
+   * @param name The name of the VectorPostprocessor
+   * @param vector_name The vector name within the VectorPostprocessor
+   * @return True if the VectorPostprocessor data exists
+   *
+   * @see hasVectorPostprocessor getVectorPostprocessorValueByName
+   */
+  bool hasVectorPostprocessorByName(const VectorPostprocessorName &amp; name,
+                                    const std::string &amp; vector_name) const;
+
+  /**
+   * Determine if the VectorPostprocessor exists by parameter
+   * @param name The name of the VectorPostprocessor parameter
+   * @return True if the VectorPostprocessor exists
+   */
+  bool hasVectorPostprocessor(const std::string &amp; param_name) const;
+
+  /**
+   * Determine if the VectorPostprocessor exists by name
+   * @param name The name of the VectorPostprocessor
+   * @return True if the VectorPostprocessor exists
+   */
+  bool hasVectorPostprocessorByName(const VectorPostprocessorName &amp; name) const;
+
+  ///@{
+  /**
+   * Return true if the VectorPostprocessor is marked with parallel_type as DISTRIBUTED
+   */
+  bool isVectorPostprocessorDistributed(const std::string &amp; param_name) const;
+  bool isVectorPostprocessorDistributedByName(const VectorPostprocessorName &amp; name) const;
+  ///@}
+
+  /**
+   * Get the name of a VectorPostprocessor associated with a parameter.
+   * @param param_name The name of the VectorPostprocessor parameter
+   * @return The name of the given VectorPostprocessor
+   */
+  const VectorPostprocessorName &amp; getVectorPostprocessorName(const std::string &amp; param_name) const;
+
+protected:
+  /**
+   * Helper for deriving classes to override to add dependencies when a VectorPostprocessor is
+   * requested.
+   */
+  virtual void
+  addVectorPostprocessorDependencyHelper(const VectorPostprocessorName &amp; /* name */) const
+  {
+  }
+
+private:
+  /**
+   * Helper function for extracting VPP data from ReporterData object
+   */
+  const VectorPostprocessorValue &amp;
+  getVectorPostprocessorByNameHelper(const VectorPostprocessorName &amp; name,
+                                     const std::string &amp; vector_name,
+                                     bool broadcast,
+                                     std::size_t t_index) const;
+
+  /**
+   * Helper for getting the VPP context that handles scatter values
+   */
+  const VectorPostprocessorContext&lt;VectorPostprocessorValue&gt; &amp;
+  getVectorPostprocessorContextByNameHelper(const VectorPostprocessorName &amp; name,
+                                            const std::string &amp; vector_name) const;
+
+  ///@{
+  /**
+   * Helpers for &quot;possibly&quot; checking if a vpp exists. This is only able to check for
+   * existance after all vpps have been added (after the task creating them has
+   * been called). If called before said task, this will do nothing, hence the
+   * &quot;possibly&quot;. This allows us to have errors reported directly by the object
+   * requesting the vpp instead of through a system with less context.
+   */
+  void possiblyCheckHasVectorPostprocessor(const std::string &amp; param_name,
+                                           const std::string &amp; vector_name) const;
+  void possiblyCheckHasVectorPostprocessorByName(const VectorPostprocessorName &amp; name,
+                                                 const std::string &amp; vector_name) const;
+  ///@}
+
+  /**
+   * @returns True if all vpps have been added (the task associated with adding them is complete)
+   */
+  bool vectorPostprocessorsAdded() const;
+
+  /// Whether or not to force broadcasting by default
+  const bool _broadcast_by_default;
+
+  /// The MooseObject that uses this interface
+  const MooseObject &amp; _vpi_moose_object;
+
+  /// Reference the FEProblemBase class
+  const FEProblemBase &amp; _vpi_feproblem;
+
+  /// Thread ID
+  const THREAD_ID _vpi_tid;
+};
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

@@ -1,0 +1,232 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Step 4 a Volumetric locking | Ferret</title><link href="../../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../../../contrib/plotly/plotly.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../../../media/framework/github-logo.png" class="github-mark"></img><img src="../../../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="b915aff0-f86f-4dd5-92a2-cb089ab221f9" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5c522bc6-7ffe-44be-8751-d5e7a9871846" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="26677a7c-8ec5-4a3c-b2c4-a1e778164120" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ec752085-c15f-48d8-88ac-c34d3d339a53" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="63865a27-0656-47a0-a5c8-4a44c2107d2e" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="9f811f51-7b81-412a-be81-917775131bee"><i class="material-icons">menu</i></a><ul class="sidenav" id="9f811f51-7b81-412a-be81-917775131bee"><li><a href="#!" class="dropdown-trigger" data-target="6067c229-4fca-427e-9d68-7a8f24c70d73" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="11de2f30-b987-4d77-b0b4-47b0a2d1a53b" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="07aff7b4-d4cd-4668-a6df-14f0a74aca6d" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="95ed0821-aaff-4fc7-8d1c-465ce2be4856" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="00fea744-94df-479b-abfe-4dfc81834ae2" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="b915aff0-f86f-4dd5-92a2-cb089ab221f9"><li><a href="../../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="5c522bc6-7ffe-44be-8751-d5e7a9871846"><li><a href="../../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="26677a7c-8ec5-4a3c-b2c4-a1e778164120"><li><a href="../../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="ec752085-c15f-48d8-88ac-c34d3d339a53"><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="63865a27-0656-47a0-a5c8-4a44c2107d2e"><li><a href="../../../../syntax/index.html">Complete syntax</a></li><li><a href="../../../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="6067c229-4fca-427e-9d68-7a8f24c70d73"><li><a href="../../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="11de2f30-b987-4d77-b0b4-47b0a2d1a53b"><li><a href="../../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="07aff7b4-d4cd-4668-a6df-14f0a74aca6d"><li><a href="../../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="95ed0821-aaff-4fc7-8d1c-465ce2be4856"><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="00fea744-94df-479b-abfe-4dfc81834ae2"><li><a href="../../../../syntax/index.html">Complete syntax</a></li><li><a href="../../../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="ea42ea4f-de03-4dc7-827f-49e017d65764" data-section-level="1" data-section-text="Step 4 a - Volumetric locking"><h1 id="step-4-a-volumetric-locking">Step 4a - Volumetric locking</h1><blockquote><p>Keep the postprocessing modifications from the previous question, set the <a href="#9e64bae8-fbc6-4860-a079-bc8444d57b01" class="moose-modal-link modal-trigger">&quot;poissons_ratio&quot;</a> of the cantilevers to <code>0.49</code>. Then add and modify the following parameters</p><ul class="browser-default"><li><p><a href="#c106ba31-60b9-4147-9fcf-59e75501ac7d" class="moose-modal-link modal-trigger">&quot;uniform_refine&quot;</a> in the <code>[Mesh]</code> block </p></li><li><p><a href="#708fa37d-34ab-4908-ac4d-633c47ec613d" class="moose-modal-link modal-trigger">&quot;volumetric_locking_correction&quot;</a> in the tensor mechanics master action block </p></li><li><p><a href="#e1b7753f-843a-4af1-9623-d89e5bebfab7" class="moose-modal-link modal-trigger">&quot;elem_type&quot;</a> in the <code>GeneratedMeshGenerator</code> blocks</p></li></ul><p>For convenience all those parameters may be listed under <code>[GlobalParams]</code> instead. Compare first order QUAD4 elements to second order QUAD8 elements, compare the cantilever deflection with and without volumetric locking correction (with QUAD4 elements), and compare the result for different levels of uniform refinement (1, 2, 3, 4).</p></blockquote><pre class="moose-pre" style="max-height:350px;"><code class="language-text">#
+# We study the effects of volumetric locking
+# https://mooseframework.inl.gov/modules/tensor_mechanics/tutorials/introduction/answer04b.html
+#
+
+[GlobalParams]
+  displacements = &#x27;disp_x disp_y&#x27;
+  # elem_type applies to the GeneratedMeshGenerator blocks
+  elem_type = QUAD4
+  # volumetric_locking_correction applies to the TensorMechanics Master action
+  volumetric_locking_correction = false
+  # uniform_refine applies to the final mesh
+  uniform_refine = 0
+[]
+
+[Mesh]
+  [generated1]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 5
+    ny = 15
+    xmin = -0.6
+    xmax = -0.1
+    ymax = 5
+    bias_y = 0.9
+    boundary_name_prefix = pillar1
+  []
+  [generated2]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 4
+    ny = 15
+    xmin = 0.1
+    xmax = 0.6
+    ymax = 5
+    bias_y = 0.9
+    boundary_name_prefix = pillar2
+    boundary_id_offset = 4
+  []
+  [collect_meshes]
+    type = MeshCollectionGenerator
+    inputs = &#x27;generated1 generated2&#x27;
+  []
+[]
+
+[Modules/TensorMechanics/Master]
+  [all]
+    add_variables = true
+    strain = FINITE
+  []
+[]
+
+[BCs]
+  [bottom_x]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;pillar1_bottom pillar2_bottom&#x27;
+    value = 0
+  []
+  [bottom_y]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;pillar1_bottom pillar2_bottom&#x27;
+    value = 0
+  []
+  [Pressure]
+    [sides]
+      boundary = &#x27;pillar1_left pillar2_right&#x27;
+      function = 1e4*t
+    []
+  []
+[]
+
+[Materials]
+  [elasticity]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e9
+    # near incopmpressible material
+    poissons_ratio = 0.49
+  []
+  [stress]
+    type = ComputeFiniteStrainElasticStress
+  []
+[]
+
+[Postprocessors]
+  [x_deflection]
+    type = NodalExtremeValue
+    value_type = max
+    variable = disp_x
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  line_search = none
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  end_time = 5
+  dt = 0.5
+  [Predictor]
+    type = SimplePredictor
+    scale = 1
+  []
+[]
+
+[Outputs]
+  exodus = true
+  csv = true
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#a9e4f1c4-6cfb-4d41-94c7-1160135d4046">(../moose/modules/tensor_mechanics/tutorials/introduction/mech_step04a.i)</a><p>We can run the various combinations of first/second order elements, active/deactivated volumetric locking correction, and levels of refinement and plot the resulting data.</p><p>Note that you can override input file parameters from the command line! That means you can run all the cases plotted below using these commands:</p><pre class="moose-pre"><code class="language-text">
+../../tensor_mechanics-opt -i mech_step04a.i GlobalParams/elem_type=QUAD4
+../../tensor_mechanics-opt -i mech_step04a.i GlobalParams/elem_type=QUAD4 GlobalParams/volumetric_locking_correction=true
+mpirun -n 4 ../../tensor_mechanics-opt -i mech_step04a.i GlobalParams/elem_type=QUAD4 GlobalParams/volumetric_locking_correction=true GlobalParams/uniform_refine=1
+mpirun -n 4 ../../tensor_mechanics-opt -i mech_step04a.i GlobalParams/elem_type=QUAD8
+mpirun -n 8 ../../tensor_mechanics-opt -i mech_step04a.i GlobalParams/elem_type=QUAD4 GlobalParams/volumetric_locking_correction=true GlobalParams/uniform_refine=4
+mpirun -n 8 ../../tensor_mechanics-opt -i mech_step04a.i GlobalParams/elem_type=QUAD8 GlobalParams/uniform_refine=2
+</code></pre><div id="d65dbac7-d457-4e32-a4c5-d86b975529f4"></div><script>div = document.getElementById('d65dbac7-d457-4e32-a4c5-d86b975529f4');
+Plotly.plot(div, [{'x': [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'y': [0.0, 0.012297557746208, 0.024599992602543, 0.036907158654046, 0.049218909800504, 0.061535099761101, 0.073855582079212, 0.086180210127172, 0.098508837111067, 0.11084131607555, 0.12317749990864], 'name': 'QUAD4'}, {'x': [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'y': [0.0, 0.021384512916666, 0.042781782730663, 0.064191101648472, 0.085611760585222, 0.10704304922261, 0.12848425606777, 0.1499346685122, 0.17139357289095, 0.19286025454192, 0.21433399786539], 'name': 'QUAD4 + volumetric locking correction'}, {'x': [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'y': [0.0, 0.025980241948164, 0.051978049020957, 0.077992266340977, 0.10402173675443, 0.13006530093618, 0.15612179749739, 0.1821900630933, 0.2082689325313, 0.2343572388794, 0.26045381280635], 'name': 'QUAD4 + volumetric locking correction + 1x refined'}, {'x': [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'y': [0.0, 0.025589093864284, 0.05119563282622, 0.076818475850263, 0.10245647963567, 0.12810849870985, 0.15377338552523, 0.17944999055589, 0.20513716239479, 0.23083374711374, 0.25653859103719], 'name': 'QUAD8'}, {'x': [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'y': [0.0, 0.028423505022903, 0.056867312053567, 0.08532998978869, 0.1138101040149, 0.14230621773907, 0.17081689132304, 0.19934068261827, 0.22787614710086, 0.25642183704174, 0.28497630514449], 'name': 'QUAD4 + volumetric locking correction + 4x refined'}, {'x': [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], 'y': [0.0, 0.02803496726704, 0.056089857227362, 0.084163290305322, 0.1122538841367, 0.14036025368994, 0.16848101139175, 0.19661476725264, 0.22476012899275, 0.25291570216821, 0.28108009029795], 'name': 'QUAD8 + 2x refined'}], {'xaxis': {'title': 'Time'}, 'yaxis': {'title': 'Maximum x displacement'}, 'title': 'Cantilever deflection'});
+</script><p>The point here is to make you aware that volumetric locking can occur in first order elements with certain material properties. It can be alleviated through</p><ul class="browser-default"><li><p>Refinement </p></li><li><p>Use of higher order elements (QUAD8) </p></li><li><p>Use of volumetric locking correction</p></li></ul><p>Users are encouraged to carefully check their results through convergence studies. </p></section><div class="moose-modal modal" id="9e64bae8-fbc6-4860-a079-bc8444d57b01"><div class="modal-content"><h4>poissons_ratio</h4><p class="moose-parameter-description-default"><span>Default:</span>-1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Poisson's ratio for the material.</p></div></div><div class="moose-modal modal" id="c106ba31-60b9-4147-9fcf-59e75501ac7d"><div class="modal-content"><h4>uniform_refine</h4><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Specify the level of uniform refinement applied to the initial mesh</p></div></div><div class="moose-modal modal" id="708fa37d-34ab-4908-ac4d-633c47ec613d"><div class="modal-content"><h4>volumetric_locking_correction</h4><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Flag to correct volumetric locking</p></div></div><div class="moose-modal modal" id="e1b7753f-843a-4af1-9623-d89e5bebfab7"><div class="modal-content"><h4>elem_type</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>EDGE, EDGE2, EDGE3, EDGE4, QUAD, QUAD4, QUAD8, QUAD9, TRI3, TRI6, HEX, HEX8, HEX20, HEX27, TET4, TET10, PRISM6, PRISM15, PRISM18, PYRAMID5, PYRAMID13, PYRAMID14</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The type of element from libMesh to generate (default: linear element for requested dimension)</p></div></div><div class="moose-modal modal" id="a9e4f1c4-6cfb-4d41-94c7-1160135d4046"><div class="modal-content"><h4>(../moose/modules/tensor_mechanics/tutorials/introduction/mech_step04a.i)</h4><pre class="moose-pre"><code class="language-text">#
+# We study the effects of volumetric locking
+# https://mooseframework.inl.gov/modules/tensor_mechanics/tutorials/introduction/answer04b.html
+#
+
+[GlobalParams]
+  displacements = &#x27;disp_x disp_y&#x27;
+  # elem_type applies to the GeneratedMeshGenerator blocks
+  elem_type = QUAD4
+  # volumetric_locking_correction applies to the TensorMechanics Master action
+  volumetric_locking_correction = false
+  # uniform_refine applies to the final mesh
+  uniform_refine = 0
+[]
+
+[Mesh]
+  [generated1]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 5
+    ny = 15
+    xmin = -0.6
+    xmax = -0.1
+    ymax = 5
+    bias_y = 0.9
+    boundary_name_prefix = pillar1
+  []
+  [generated2]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 4
+    ny = 15
+    xmin = 0.1
+    xmax = 0.6
+    ymax = 5
+    bias_y = 0.9
+    boundary_name_prefix = pillar2
+    boundary_id_offset = 4
+  []
+  [collect_meshes]
+    type = MeshCollectionGenerator
+    inputs = &#x27;generated1 generated2&#x27;
+  []
+[]
+
+[Modules/TensorMechanics/Master]
+  [all]
+    add_variables = true
+    strain = FINITE
+  []
+[]
+
+[BCs]
+  [bottom_x]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;pillar1_bottom pillar2_bottom&#x27;
+    value = 0
+  []
+  [bottom_y]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;pillar1_bottom pillar2_bottom&#x27;
+    value = 0
+  []
+  [Pressure]
+    [sides]
+      boundary = &#x27;pillar1_left pillar2_right&#x27;
+      function = 1e4*t
+    []
+  []
+[]
+
+[Materials]
+  [elasticity]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 1e9
+    # near incopmpressible material
+    poissons_ratio = 0.49
+  []
+  [stress]
+    type = ComputeFiniteStrainElasticStress
+  []
+[]
+
+[Postprocessors]
+  [x_deflection]
+    type = NodalExtremeValue
+    value_type = max
+    variable = disp_x
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  line_search = none
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  end_time = 5
+  dt = 0.5
+  [Predictor]
+    type = SimplePredictor
+    scale = 1
+  []
+[]
+
+[Outputs]
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../../../js/init.js"></script><script type="text/javascript" src="../../../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../../../js/sqa_moose.js"></script>

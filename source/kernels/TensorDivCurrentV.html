@@ -1,0 +1,680 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>TensorDivCurrentV | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="b418b6dc-ae3c-498e-bdc1-25015caa5a34" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="04c9f187-5dd3-42b5-b124-bb25ff7544ee" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d8ae7de8-b2b2-4d7c-aa04-e73aee74c6af" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5ee6453e-ba4f-4d2b-8ca2-e66acf5c256c" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="7987f1c4-8299-4d02-ade0-ead1d6d24ded" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="e747a0a3-66b2-4daf-beed-6f8036de9e80"><i class="material-icons">menu</i></a><ul class="sidenav" id="e747a0a3-66b2-4daf-beed-6f8036de9e80"><li><a href="#!" class="dropdown-trigger" data-target="ef9aa840-c853-4fad-93b6-fa5fc892ad4b" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="93b17331-4947-4dfb-a34b-635716f2f69b" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="2f3890c6-db8f-4049-a877-9eb556440627" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="84d0253a-d821-406d-80eb-762849e9b01c" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="baae02a5-1ec8-4133-9d41-1dd0ca9c4b11" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="b418b6dc-ae3c-498e-bdc1-25015caa5a34"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="04c9f187-5dd3-42b5-b124-bb25ff7544ee"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="d8ae7de8-b2b2-4d7c-aa04-e73aee74c6af"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="5ee6453e-ba4f-4d2b-8ca2-e66acf5c256c"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="7987f1c4-8299-4d02-ade0-ead1d6d24ded"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="ef9aa840-c853-4fad-93b6-fa5fc892ad4b"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="93b17331-4947-4dfb-a34b-635716f2f69b"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="2f3890c6-db8f-4049-a877-9eb556440627"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="84d0253a-d821-406d-80eb-762849e9b01c"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="baae02a5-1ec8-4133-9d41-1dd0ca9c4b11"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="b46de169-6581-48e8-937e-f56e882c9338" data-section-level="1" data-section-text="TensorDivCurrentV"><h1 id="tensordivcurrentv">TensorDivCurrentV</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The TensorDivCurrentV has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Calculates a residual contribution due to modified ohm&#x27;s law</p><section id="64b8fdc1-5a93-4248-b8d9-22bd563d93fb" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="7c293b11-b338-4cc6-8c3d-7596f3592729" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="cce95082-6902-446f-a144-6e849c072c4e" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="42987032-cb1e-4f74-b9f9-810173d01ce5" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">T</span><span class="moose-parameter-header-description">temperature</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>temperature</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">potential_E_int</span><span class="moose-parameter-header-description">electrical potential</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>electrical potential</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this residual object operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this residual object operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="acf31812-0e5b-42cd-85a9-2426dbe587a5" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The displacements</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The displacements</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">len_scale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the length scale of the unit</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the length scale of the unit</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="87cc3162-4492-4058-b2d2-4494ae70705e" data-section-level="3" data-section-text="Tagging Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">absolute_value_vector_tags</span><span class="moose-parameter-header-description">The tags for the vectors this residual object should fill with the absolute value of the residual contribution</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tags for the vectors this residual object should fill with the absolute value of the residual contribution</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, system</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, time</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section><section id="e103ec54-4be0-4803-9cb0-d29e6982d52c" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="01741b15-a4a7-4532-91df-7a723ad95062" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#1b8431b5-abf6-4b9a-8294-44657913bb8b">(test/tests/thermoelectrics/Bi2Te3_polycrystal_20_rotated.i)</a></li></ul></section></section><div class="moose-modal modal" id="1b8431b5-abf6-4b9a-8294-44657913bb8b"><div class="modal-content"><h4>(test/tests/thermoelectrics/Bi2Te3_polycrystal_20_rotated.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  [./basic_mesh]
+    type = FileMeshGenerator
+    file = 20g.e
+  []
+
+  [./add_sidesets]
+    type = SideSetsFromNormalsGenerator
+    input = basic_mesh
+    normals = &#x27;1  0  0
+              -1  0  0
+               0  1  0
+               0 -1  0
+               0  0  1
+               0  0 -1&#x27;
+    fixed_normal = true
+    new_boundary = &#x27;right left front back top bottom&#x27;
+    variance = 0.5
+  [../]
+[]
+
+[Variables]
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 1
+  [../]
+  [./T]
+    order = FIRST
+    family = LAGRANGE
+    initial_condition = 273
+  [../]
+  []
+
+[Kernels]
+  [./residualV_x]
+    type = TensorDivCurrentV
+    component = 0
+    variable = potential_E_int
+    T = T
+    potential_E_int = potential_E_int
+  [../]
+
+  [./residualT_x]
+    type = TensorHeatFlowElectricT
+    component = 0
+    variable = T
+    T = T
+    potential_E_int = potential_E_int
+  [../]
+[]
+
+[AuxVariables]
+  [./j_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./j_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./j_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+
+  [./q_x]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./q_y]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./q_z]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  []
+
+[AuxKernels]
+  [./Electric_flux_x]
+    type = ElectricFluxTensor
+    variable = j_x
+    T = T
+    potential_E_int = potential_E_int
+    component = 0
+  [../]
+  [./Electric_flux_y]
+    type = ElectricFluxTensor
+    variable = j_y
+    T = T
+    potential_E_int = potential_E_int
+    component = 1
+  [../]
+  [./Electric_flux_z]
+    type = ElectricFluxTensor
+    variable = j_z
+    T = T
+    potential_E_int = potential_E_int
+    component = 2
+  [../]
+
+  [./Heat_flux_x]
+    type = HeatFluxTensor
+    variable = q_x
+    T = T
+    potential_E_int = potential_E_int
+    component = 0
+  [../]
+  [./heat_flux_y]
+    type = HeatFluxTensor
+    variable = q_y
+    T = T
+    potential_E_int = potential_E_int
+    component = 1
+  [../]
+  [./Heat_flux_z]
+    type = HeatFluxTensor
+    variable = q_z
+    T = T
+    potential_E_int = potential_E_int
+    component = 2
+  [../]
+[]
+
+
+[Materials]
+  [./thermal_conductivity_tensor1]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = 0.0
+    euler_angle_2 = 0
+    euler_angle_3 = 0
+    block  = &#x27;1&#x27;
+  [../]
+  [./thermal_conductivity_tensor2]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 0.0
+    euler_angle_2 = 15
+    euler_angle_3 = 30
+    block  = &#x27;2&#x27;
+  [../]
+  [./thermal_conductivity_tensor3]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 0.0
+    euler_angle_2 = -15
+    euler_angle_3 = -30
+    block  = &#x27;3&#x27;
+  [../]
+  [./thermal_conductivity_tensor4]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 0
+    euler_angle_2 = 45
+    euler_angle_3 = 60
+    block  = &#x27;4&#x27;
+  [../]
+  [./thermal_conductivity_tensor5]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = 0
+    euler_angle_2 = -45
+    euler_angle_3 = -60
+    block  = &#x27;5&#x27;
+  [../]
+  [./thermal_conductivity_tensor6]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 15
+    euler_angle_2 = 30
+    euler_angle_3 = 60
+    block  = &#x27;6&#x27;
+  [../]
+  [./thermal_conductivity_tensor7]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -15
+    euler_angle_2 = -30
+    euler_angle_3 = -60
+    block  = &#x27;7&#x27;
+  [../]
+  [./thermal_conductivity_tensor8]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 20
+    euler_angle_2 = 40
+    euler_angle_3 = 80
+    block  = &#x27;8&#x27;
+  [../]
+  [./thermal_conductivity_tensor9]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = -20
+    euler_angle_2 = -40
+    euler_angle_3 = -80
+    block  = &#x27;9&#x27;
+  [../]
+  [./thermal_conductivity_tensor10]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 30
+    euler_angle_2 = 45
+    euler_angle_3 = 60
+    block  = &#x27;10&#x27;
+  [../]
+  [./thermal_conductivity_tensor11]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -30
+    euler_angle_2 = -45
+    euler_angle_3 = -60
+    block  = &#x27;11&#x27;
+  [../]
+  [./thermal_conductivity_tensor12]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 45
+    euler_angle_2 = 60
+    euler_angle_3 = 90
+    block  = &#x27;12&#x27;
+  [../]
+  [./thermal_conductivity_tensor13]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = -45
+    euler_angle_2 = -60
+    euler_angle_3 = -90
+    block  = &#x27;13&#x27;
+  [../]
+  [./thermal_conductivity_tensor14]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 50
+    euler_angle_2 = 75
+    euler_angle_3 = 100
+    block  = &#x27;14&#x27;
+  [../]
+  [./thermal_conductivity_tensor15]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -50
+    euler_angle_2 = -75
+    euler_angle_3 = -100
+    block  = &#x27;15&#x27;
+  [../]
+  [./thermal_conductivity_tensor16]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 10
+    euler_angle_2 = 20
+    euler_angle_3 = 30
+    block  = &#x27;16&#x27;
+  [../]
+  [./thermal_conductivity_tensor17]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;#Bi2Te3-mp-568390
+    euler_angle_1 = -10
+    euler_angle_2 = -20
+    euler_angle_3 = -30
+    block  = &#x27;17&#x27;
+  [../]
+  [./thermal_conductivity_tensor18]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 30
+    euler_angle_2 = 60
+    euler_angle_3 = 90
+    block  = &#x27;18&#x27;
+  [../]
+  [./thermal_conductivity_tensor19]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = -30
+    euler_angle_2 = -60
+    euler_angle_3 = -90
+    block  = &#x27;19&#x27;
+  [../]
+  [./thermal_conductivity_tensor20]
+    type = ComputeThermalConductivityTensor
+    k_ij = &#x27;2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524&#x27;
+    euler_angle_1 = 90
+    euler_angle_2 = 90
+    euler_angle_3 = 0
+    block  = &#x27;20&#x27;
+  [../]
+  [./electrical_conductivity_tensor1]
+    type = ComputeElectricalConductivityTensor
+    g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+    euler_angle_1 = 0.0
+    euler_angle_2 = 0
+    euler_angle_3 = 0
+    block  = &#x27;1&#x27;
+  [../]
+   [./electrical_conductivity_tensor2]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 15
+     euler_angle_3 = 30
+     block  = &#x27;2&#x27;
+   [../]
+   [./electrical_conductivity_tensor3]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -15
+     euler_angle_3 = -30
+     block  = &#x27;3&#x27;
+   [../]
+   [./electrical_conductivity_tensor4]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;4&#x27;
+   [../]
+   [./electrical_conductivity_tensor5]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;5&#x27;
+   [../]
+   [./electrical_conductivity_tensor6]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 15
+     euler_angle_2 = 30
+     euler_angle_3 = 60
+     block  = &#x27;6&#x27;
+   [../]
+   [./electrical_conductivity_tensor7]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -15
+     euler_angle_2 = -30
+     euler_angle_3 = -60
+     block  = &#x27;7&#x27;
+   [../]
+   [./electrical_conductivity_tensor8]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 20
+     euler_angle_2 = 40
+     euler_angle_3 = 80
+     block  = &#x27;8&#x27;
+   [../]
+   [./electrical_conductivity_tensor9]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -20
+     euler_angle_2 = -40
+     euler_angle_3 = -80
+     block  = &#x27;9&#x27;
+   [../]
+   [./electrical_conductivity_tensor10]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;10&#x27;
+   [../]
+   [./electrical_conductivity_tensor11]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;11&#x27;
+   [../]
+   [./electrical_conductivity_tensor12]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 45
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;12&#x27;
+   [../]
+   [./electrical_conductivity_tensor13]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -45
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;13&#x27;
+   [../]
+   [./electrical_conductivity_tensor14]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 50
+     euler_angle_2 = 75
+     euler_angle_3 = 100
+     block  = &#x27;14&#x27;
+   [../]
+   [./electrical_conductivity_tensor15]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -50
+     euler_angle_2 = -75
+     euler_angle_3 = -100
+     block  = &#x27;15&#x27;
+   [../]
+   [./electrical_conductivity_tensor16]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 10
+     euler_angle_2 = 20
+     euler_angle_3 = 30
+     block  = &#x27;16&#x27;
+   [../]
+   [./electrical_conductivity_tensor17]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -10
+     euler_angle_2 = -20
+     euler_angle_3 = -30
+     block  = &#x27;17&#x27;
+   [../]
+   [./electrical_conductivity_tensor18]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;18&#x27;
+   [../]
+   [./electrical_conductivity_tensor19]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;19&#x27;
+   [../]
+   [./electrical_conductivity_tensor20]
+     type = ComputeElectricalConductivityTensor
+     g_ij = &#x27;2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4&#x27;#mp-568390
+     euler_angle_1 = 90
+     euler_angle_2 = 90
+     euler_angle_3 = 0
+     block  = &#x27;20&#x27;
+   [../]
+
+
+
+   [./seebeck_tensor1]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 0
+     euler_angle_3 = 0
+     block  = &#x27;1&#x27;
+   [../]
+   [./seebeck_tensor2]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 15
+     euler_angle_3 = 30
+     block  = &#x27;2&#x27;
+   [../]
+   [./seebeck_tensor3]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -15
+     euler_angle_3 = -30
+     block  = &#x27;3&#x27;
+   [../]
+   [./seebeck_tensor4]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;4&#x27;
+   [../]
+   [./seebeck_tensor5]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 0.0
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;5&#x27;
+   [../]
+   [./seebeck_tensor6]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 15
+     euler_angle_2 = 30
+     euler_angle_3 = 60
+     block  = &#x27;6&#x27;
+   [../]
+   [./seebeck_tensor7]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -15
+     euler_angle_2 = -30
+     euler_angle_3 = -60
+     block  = &#x27;7&#x27;
+   [../]
+   [./seebeck_tensor8]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 20
+     euler_angle_2 = 40
+     euler_angle_3 = 80
+     block  = &#x27;8&#x27;
+   [../]
+   [./seebeck_tensor9]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -20
+     euler_angle_2 = -40
+     euler_angle_3 = -80
+     block  = &#x27;9&#x27;
+   [../]
+   [./seebeck_tensor10]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 45
+     euler_angle_3 = 60
+     block  = &#x27;10&#x27;
+   [../]
+   [./seebeck_tensor11]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -45
+     euler_angle_3 = -60
+     block  = &#x27;11&#x27;
+   [../]
+   [./seebeck_tensor12]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 45
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;12&#x27;
+   [../]
+   [./seebeck_tensor13]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -45
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;13&#x27;
+   [../]
+   [./seebeck_tensor14]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 50
+     euler_angle_2 = 75
+     euler_angle_3 = 100
+     block  = &#x27;14&#x27;
+   [../]
+   [./seebeck_tensor15]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -50
+     euler_angle_2 = -75
+     euler_angle_3 = -100
+     block  = &#x27;15&#x27;
+   [../]
+   [./seebeck_tensor16]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 10
+     euler_angle_2 = 20
+     euler_angle_3 = 30
+     block  = &#x27;16&#x27;
+   [../]
+   [./seebeck_tensor17]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -10
+     euler_angle_2 = -20
+     euler_angle_3 = -30
+     block  = &#x27;17&#x27;
+   [../]
+   [./seebeck_tensor18]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 30
+     euler_angle_2 = 60
+     euler_angle_3 = 90
+     block  = &#x27;18&#x27;
+   [../]
+   [./seebeck_tensor19]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = -30
+     euler_angle_2 = -60
+     euler_angle_3 = -90
+     block  = &#x27;19&#x27;
+   [../]
+   [./seebeck_tensor20]
+     type = ComputeSeebeckTensor
+     a_ij = &#x27;59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6&#x27;#mp-568390
+     euler_angle_1 = 90
+     euler_angle_2 = 90
+     euler_angle_3 = 0
+     block  = &#x27;20&#x27;
+   [../]
+ []
+
+
+[BCs]
+  [./sideset_1T]
+    type = DirichletBC
+    variable = T
+    boundary = &#x27;left&#x27;
+    value = 273
+  [../]
+  [./sideset_2T]
+    type = DirichletBC
+    variable = T
+    boundary = &#x27;right&#x27;
+    value = 273
+  [../]
+
+  [./sideset_1V]
+    type = DirichletBC
+    variable = potential_E_int
+    boundary = &#x27;right&#x27;
+    value = 0
+  [../]
+  [./sideset_2V]
+    type = DirichletBC
+    variable = potential_E_int
+    boundary = &#x27;left&#x27;
+    value = 0.05
+  [../]
+[]
+
+[Postprocessors]
+  [./potential_x]
+    type = PointValue
+    point = &#x27;0 0 0&#x27;
+    variable = potential_E_int
+  [../]
+
+  [./T]
+    type = PointValue
+    point = &#x27;0 0 0&#x27;
+    variable = T
+  [../]
+[]
+
+[Preconditioning]
+  [./SMP]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_ksp_ew&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided&#x27;
+    petsc_options_value = &#x27;    160               1e-10      1e-8      1e-6          bjacobi       allreduce&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_Bi2Te3_test
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

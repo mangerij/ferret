@@ -1,0 +1,409 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>SDFourierNoise | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="4c1dabe2-0939-4483-8f62-1c5b0fcfaedb" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="dd04ce19-db6b-455c-8307-f12ae93d8cc3" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="7b6d21c4-9707-4695-bb87-4150f9c112e5" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f2fb6b0f-99de-4462-948e-bddaa18a8a6b" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="ee3d0d0a-8243-49b9-a115-340326d708fb" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="d8a0da10-92d4-4576-ba4b-20336f911596"><i class="material-icons">menu</i></a><ul class="sidenav" id="d8a0da10-92d4-4576-ba4b-20336f911596"><li><a href="#!" class="dropdown-trigger" data-target="32167af0-08ce-493f-8444-354f5d6ebdba" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ca63f76c-b631-449e-9790-bade66c52b2a" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a1aa9025-a225-46fc-8e1e-20f4eef98cc0" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="2d4cdc03-9313-4221-8bb8-ae879e258426" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="20046497-6501-4f71-9bda-3d890804fe71" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="4c1dabe2-0939-4483-8f62-1c5b0fcfaedb"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="dd04ce19-db6b-455c-8307-f12ae93d8cc3"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="7b6d21c4-9707-4695-bb87-4150f9c112e5"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f2fb6b0f-99de-4462-948e-bddaa18a8a6b"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="ee3d0d0a-8243-49b9-a115-340326d708fb"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="32167af0-08ce-493f-8444-354f5d6ebdba"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="ca63f76c-b631-449e-9790-bade66c52b2a"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="a1aa9025-a225-46fc-8e1e-20f4eef98cc0"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="2d4cdc03-9313-4221-8bb8-ae879e258426"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="20046497-6501-4f71-9bda-3d890804fe71"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="55ddf5bf-13ec-4806-a669-e822c250881e" data-section-level="1" data-section-text="SDFourierNoise"><h1 id="sdfouriernoise">SDFourierNoise</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The SDFourierNoise has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Generate noise from a fourier series</p><section id="083249c1-5aba-46a5-ba9d-9e405f9cbab1" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="77208ca1-d41b-4858-8d26-dc430847da29" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="a273c366-6bf2-46a6-943b-8e9c0fd8e24f" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="2fee5a72-33ef-4a88-bb35-637ffc09414f" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">lambda</span><span class="moose-parameter-header-description">Wavelength cut off (set to about twice the interfacial width)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Wavelength cut off (set to about twice the interfacial width)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mid</span><span class="moose-parameter-header-description">mid for initial condition</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>mid for initial condition</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">range</span><span class="moose-parameter-header-description">range for initial condition</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>range for initial condition</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="5ebe2cd9-585a-456a-a70f-f0f8b5fdc91e" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">num_terms</span><span class="moose-parameter-header-description">Number of random fourier series terms (this will result in non-periodic noise). Omit this parameter to obtain a periodic noise distribution.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Number of random fourier series terms (this will result in non-periodic noise). Omit this parameter to obtain a periodic noise distribution.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">12455</span><span class="moose-parameter-header-description">Random number generator seed</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>12455</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Random number generator seed</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="6d55d528-a05b-4f3e-84cc-cb7303d95454" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="a4e2edf3-088f-43fc-8bcf-06531dfc75c4" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#a92da654-7799-4aae-abfe-ba9191992e0b">(test/tests/relaxor/coor.i)</a></li></ul></section></section><div class="moose-modal modal" id="a92da654-7799-4aae-abfe-ba9191992e0b"><div class="modal-content"><h4>(test/tests/relaxor/coor.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+
+  ############################################
+  ##
+  ##  Grid definition. Note that it should be
+  ##  nJ = 2*(Jmax-Jmin) for J = x, y
+  ##
+  ############################################
+
+  nx = 60
+  ny = 60
+
+  ############################################
+  ##
+  ## Actual spatial coordinates of mesh. 
+  ## Jmax - Jmin = nJ/2 for J = x, y
+  ##  
+  ############################################
+
+  xmin = -15
+  xmax = 15
+  ymin = -15
+  ymax = 15
+
+[]
+
+[GlobalParams]
+
+  len_scale = 1.0
+
+  ############################################
+  ##
+  ## BST Landau coefficients from
+  ## Y.H. Huang and L.-Q. Chen et al
+  ##    Appl. Phys. Lett. 112, 102901 (2018)
+  ##
+  ############################################
+
+                        #----------------#
+                        #     Units      #
+                        #----------------#
+  T = 210               # Kelvin
+
+
+  #concentration dependent coefficients
+
+  alpha01 = 0.08        # nm^2 nN / aC^2
+  alpha011 = -0.1154    # nm^6 nN / aC^4
+  alpha012 = 0.653      # nm^6 nN / aC^4
+  alpha0111 = -2.106    # nm^10 nN / aC^6
+  alpha0112 = 4.091     # nm^10 nN / aC^6
+  alpha0123 = -6.688    # nm^10 nN / aC^6
+
+  #fixed coefficients 
+
+  alpha1111 = 75.9      # nm^14 nN / aC^8
+  alpha1112 = -21.93    # nm^14 nN / aC^8
+  alpha1122 = -22.21    # nm^14 nN / aC^8
+  alpha1123 = 24.16     # nm^14 nN / aC^8
+
+  # coupling constants 
+  b1 = -1.75
+  b2 = 1.05
+  b3 = 0.483
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+
+
+  ############################################
+  ##
+  ## Fourier Noise implementation from 
+  ## D. Schwen (INL) - see paper
+  ##
+  ############################################
+
+
+  x = conc
+ 
+  lambda = 5.0          # correlation length for random field (nm)
+  range = 0.01          # variation of the Sr concentration (plus or minus)
+  mid = 0.4             # nominal value of the Sr concentration field
+
+  potential_E_int = potential_int
+
+  seed = 1  #NOTE THAT THE SAME MESH GRID MUST BE USED WITH THE SAME PROCESSOR GROUPING ALWAYS TO COMPARE DOMAIN STRUCTURE EVOLUTION
+[]
+
+
+[Variables]
+
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.1e-5
+      max = 0.1e-5
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.1e-5
+      max = 0.1e-5
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.1e-5
+      max = 0.1e-5
+    [../]
+  [../]
+  [./potential_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[Functions]
+  [./fn]  
+    type = SDFourierNoise
+
+    # Note that FourierNoise automatically makes concentration periodic which in turn makes the Landau coefficients periodic.
+    # This then makes the polarization periodic.
+
+  [../]
+
+  ##############################
+  ##
+  ## Define the electric field
+  ## expression to be used below
+  ##
+  ##############################
+
+  #[./bc_func_1]
+  #  type = ParsedFunction
+  #  value = &#x27;amplitude*sin(freq*t)&#x27;
+  #  vars = &#x27;freq amplitude&#x27;
+  #  vals = &#x27;${freq}  ${amplitude}&#x27;
+  #[../]
+[]
+
+[AuxVariables]
+  [./conc]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = fn
+    [../]
+  [../]
+
+  #[./Ey]
+  #  order = CONSTANT
+  #  family = MONOMIAL
+  #[../]
+
+  [./fb]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+[AuxKernels]
+ # [./cEy]
+ #   type = ElecFieldAux
+ #   component = 2
+ #   variable = Ey
+ # [../]
+  [./fbk]
+    type = SDBulkEnergyDensity
+    variable = fb
+  [../]
+[]
+
+[Materials]
+  ############################################
+  ##
+  ## Gradient coefficients (assumed BTO) from
+  ## Marton and Hlinka
+  ##    Phys. Rev. B. 74, 104014, (2006)
+  ##
+  ############################################
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;1.0 0.51 -0.02 0.02 0.0&#x27;
+  [../]
+  [./permitivitty_1]
+     #NOTE: This is a static permittivity contribution from core-electrons.
+     #      This effectively screens the electrostatic interactions.
+     #      For BTO, this value is about 7*e_0, where e_0 is the permitivitty of the vacuum.
+     #      See the brief discussion before sec. IV on pp. 4 of Phys. Rev. B. 74, 104014, (2006)
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.0637501464&#x27;
+  [../]
+[]
+
+
+[Kernels]
+
+  #########################################
+  ##
+  ## Landau&#x27;s problem (no elastic coupling:
+  ##
+  #########################################
+
+  [./bed_x]
+    type = InhomogeneousBulkEnergyDerivP
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = InhomogeneousBulkEnergyDerivP
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = InhomogeneousBulkEnergyDerivP
+    variable = polar_z
+    component = 2
+  [../]
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+ [../]
+ [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+  #########################################
+  ##
+  ## Poisson&#x27;s equation and P*E interaction
+  ##
+  #########################################
+
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_int
+  [../]
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+
+  #########################################
+  ##
+  ## Time dependence
+  ##
+  #########################################
+
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable = polar_x
+     # Time scale estimate for BTO, from Hlinka (2007)
+     # We use seconds here
+     time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable = polar_y
+     time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+     variable = polar_z
+     time_scale = 1.0
+  [../]
+[]
+
+
+[BCs]
+
+  ##############################
+  ##
+  ## Boundary Condition System
+  ##
+  ## This corresponds to a small
+  ## ac field along the direction
+  ## of the spontaneous polarization
+  ## that was ostensibly put there
+  ## by a strong dc bias.
+  ##
+  ##############################
+
+  [./top_pot]
+    type = DirichletBC
+    variable = potential_int
+    boundary = &#x27;top&#x27;
+    value = 0.0
+  [../]
+
+  [./back_pot]
+    type = DirichletBC
+    variable = potential_int
+    boundary = &#x27;bottom&#x27;
+    value = 0.0
+  [../]
+
+
+  [./Periodic]
+    [./xy]
+      auto_direction = &#x27;x y&#x27;
+      variable = &#x27;polar_x polar_y polar_z&#x27;
+    [../]
+  [../]
+
+[]
+
+[Postprocessors]
+  [./Fgrad]
+    type = WallEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+
+  [./Fsdbulk]
+    type = InhomogeneousBulkEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+    block = &#x27;0&#x27;
+  [../]
+  [./Ftot]
+    type = LinearCombinationPostprocessor 
+    pp_names = &#x27;Fgrad Fsdbulk&#x27;
+    pp_coefs = &#x27; 1 1 &#x27; 
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./perc_change]
+    type = PercentChangePostprocessor
+    postprocessor = Ftot
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+[]
+
+[UserObjects]
+  [./kill]
+   type = Terminator
+   expression = &#x27;perc_change &lt;= 5.0e-5&#x27;
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart  -snes_atol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121                1e-10     1e-8     bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  dtmin = 1e-10
+  dt = 3.0
+  dtmax = 10.0
+  num_steps = 2
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_test
+    elemental_as_nodal = true
+  [../]
+  [./outCSV]
+    type = CSV
+    new_row_tolerance = 1e-16
+    file_base = out_test
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

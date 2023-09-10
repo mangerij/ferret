@@ -1,0 +1,2473 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>BulkEnergyDerivativeSixth | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="51d2589f-9cc7-423c-8f74-15314d1b8e55" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ef88d1f0-9ecf-4ad3-98ce-00b2800d794e" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="42842f09-302b-4e2a-8da9-64d3a8789445" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c7085826-b580-422e-ae41-79b4599769d6" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="06b9cca4-1a66-440e-a8f2-940313c45e1c" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="1e17cf5c-6238-40c7-bfa1-3883f430ceb3"><i class="material-icons">menu</i></a><ul class="sidenav" id="1e17cf5c-6238-40c7-bfa1-3883f430ceb3"><li><a href="#!" class="dropdown-trigger" data-target="2d91f349-9383-47c0-becc-a540bac4bb8e" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="02fe8e27-7b43-4bf6-b50f-d96d3790e140" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="754d14e3-e3a8-44ba-b089-45b670deaedd" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="841a7a75-7452-4035-b3d7-d268cbb3dc10" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a28b096e-c6e6-41d1-a093-be322288e4dd" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="51d2589f-9cc7-423c-8f74-15314d1b8e55"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="ef88d1f0-9ecf-4ad3-98ce-00b2800d794e"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="42842f09-302b-4e2a-8da9-64d3a8789445"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="c7085826-b580-422e-ae41-79b4599769d6"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="06b9cca4-1a66-440e-a8f2-940313c45e1c"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="2d91f349-9383-47c0-becc-a540bac4bb8e"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="02fe8e27-7b43-4bf6-b50f-d96d3790e140"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="754d14e3-e3a8-44ba-b089-45b670deaedd"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="841a7a75-7452-4035-b3d7-d268cbb3dc10"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a28b096e-c6e6-41d1-a093-be322288e4dd"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="f957879c-2dd5-4a4e-ad97-2f42fb9a40d3" data-section-level="1" data-section-text="BulkEnergyDerivativeSixth"><h1 id="bulkenergyderivativesixth">BulkEnergyDerivativeSixth</h1><p>Calculates the residual for the local free energy which is an sixth order expansion in the polarization.</p><section id="2f3d3e2e-69c0-436d-a3d2-c64fe14398b1" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Computes the residual and jacobian contributions for each component of the polarization vector <span class="moose-katex-inline-equation" id="moose-equation-509760e7-56a5-4cb6-9718-012664913da2"><script>var element = document.getElementById("moose-equation-509760e7-56a5-4cb6-9718-012664913da2");katex.render("\\mathbf{P}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. Note that if the structure as additional order parameters as is the case for perovskite <span class="moose-katex-inline-equation" id="moose-equation-047bcf21-6fa3-472d-85be-a44f1c9c7eeb"><script>var element = document.getElementById("moose-equation-047bcf21-6fa3-472d-85be-a44f1c9c7eeb");katex.render("\\mathrm{BiFeO}_3", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> with its oxygen octahedral antiphase tilts, then this object can also be used for those components. The bulk free energy density, <span class="moose-katex-inline-equation" id="moose-equation-20537d0b-d111-4737-907e-e6ff6146371a"><script>var element = document.getElementById("moose-equation-20537d0b-d111-4737-907e-e6ff6146371a");katex.render("f_\\mathrm{bulk}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>, up to sixth order is defined as,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-b1193c69-2988-4ed1-8f1f-bb8b0e532193"></span><script>var element = document.getElementById("moose-equation-b1193c69-2988-4ed1-8f1f-bb8b0e532193");katex.render("  \\begin{aligned}     f_\\mathrm{bulk} &= \\alpha_{ij} P_i P_j + \\alpha_{ijkl} P_i P_j P_k P_l + \\alpha_{ijklmn} P_i P_j P_k P_l P_m P_n   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>Repeated indices are summed on for <span class="moose-katex-inline-equation" id="moose-equation-73ecc09c-21f0-41bb-981f-fe0c4197ee6d"><script>var element = document.getElementById("moose-equation-73ecc09c-21f0-41bb-981f-fe0c4197ee6d");katex.render("i,j,k,l,... = x,y,z", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. The relaxation time-evolution of the polarization <span class="moose-katex-inline-equation" id="moose-equation-fe0d827e-897a-4f78-be1e-9445a6f38acd"><script>var element = document.getElementById("moose-equation-fe0d827e-897a-4f78-be1e-9445a6f38acd");katex.render("\\mathbf{P}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is given by,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-5d7cd3fc-df65-4697-9f5d-40d310c5f593"></span><script>var element = document.getElementById("moose-equation-5d7cd3fc-df65-4697-9f5d-40d310c5f593");katex.render("  \\begin{aligned}     \\frac{\\partial \\mathbf{P}}{\\partial t} = - \\Gamma_P \\frac{\\delta f}{\\delta \\mathbf{P}},   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>so we need to compute the variational derivatives of <span class="moose-katex-inline-equation" id="moose-equation-e80eeb34-6c7a-40b5-ab08-4303a7a38af1"><script>var element = document.getElementById("moose-equation-e80eeb34-6c7a-40b5-ab08-4303a7a38af1");katex.render("f", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. Moving the RHS over, multiplying by a test function <span class="moose-katex-inline-equation" id="moose-equation-aa747e92-73ec-4e21-812f-0e53bfbb3bcb"><script>var element = document.getElementById("moose-equation-aa747e92-73ec-4e21-812f-0e53bfbb3bcb");katex.render("\\psi_h", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> and integrating over the computational volume <span class="moose-katex-inline-equation" id="moose-equation-fa53350f-a0a7-4caf-ba93-3aa05bd583c1"><script>var element = document.getElementById("moose-equation-fa53350f-a0a7-4caf-ba93-3aa05bd583c1");katex.render("\\Omega", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>, we are left with the residual vector,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-9aea6b3c-b9fb-464b-a7dc-00dba0b1a986"></span><script>var element = document.getElementById("moose-equation-9aea6b3c-b9fb-464b-a7dc-00dba0b1a986");katex.render("  \\begin{aligned}     \\mathcal{R}_\\mathbf{P} = \\left(\\psi_h,\\frac{\\delta f}{\\delta\\mathbf{P}}\\right).   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>The variational derivatives of <span class="moose-katex-inline-equation" id="moose-equation-1d5ac0f2-95a5-47db-9e40-38127cfdfcd9"><script>var element = document.getElementById("moose-equation-1d5ac0f2-95a5-47db-9e40-38127cfdfcd9");katex.render("f_\\mathbf{bulk}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> only involve derivatives with respect to each component so we can write explicitly the residual contribution as,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-1c546cb2-75b1-4ae7-9676-85509683304c"></span><script>var element = document.getElementById("moose-equation-1c546cb2-75b1-4ae7-9676-85509683304c");katex.render("  \\begin{aligned}     \\mathcal{R}_{P_\\gamma} &= \\left(\\psi_h, 2 \\alpha_{\\gamma i} P_i + 4 \\alpha_{\\gamma ijk} P_i P_j P_k + ... \\right), \\\\   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>and so on. To compute the on-diagonal jacobian contributions, we look for,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-1370dce2-79f0-4f13-8a88-277408efd4b7"></span><script>var element = document.getElementById("moose-equation-1370dce2-79f0-4f13-8a88-277408efd4b7");katex.render("  \\begin{aligned}     \\mathcal{J}_{P_\\gamma, P_\\gamma} = \\frac{\\partial \\mathcal{R}_{P_\\gamma}}{\\partial P_\\gamma} &= \\left(\\psi_h, 2 \\phi \\alpha_{\\gamma \\gamma} + 4 \\phi \\alpha_{\\gamma \\gamma ij} P_i P_j + ... \\right), \\\\   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>with <span class="moose-katex-inline-equation" id="moose-equation-a5b18490-879a-4c7b-8aff-b4d324e9ebdb"><script>var element = document.getElementById("moose-equation-a5b18490-879a-4c7b-8aff-b4d324e9ebdb");katex.render("\\phi", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> a shape function of the finite element method. The off-diagonal jacobian contributions provide the coupling to the other components of <span class="moose-katex-inline-equation" id="moose-equation-a1a94955-d174-467b-904e-6883ffa3593f"><script>var element = document.getElementById("moose-equation-a1a94955-d174-467b-904e-6883ffa3593f");katex.render("\\mathbf{P}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-b9c399b7-c6ce-4341-8b3b-f0b73d55ab95"></span><script>var element = document.getElementById("moose-equation-b9c399b7-c6ce-4341-8b3b-f0b73d55ab95");katex.render("  \\begin{aligned}     \\mathcal{J}_{P_\\gamma, P_\\beta} = \\frac{\\partial \\mathcal{R}_{P_\\gamma}}{\\partial P_\\beta} &= \\left(\\psi_h, 2 \\phi \\alpha_{\\gamma \\beta} + 4 \\phi \\alpha_{\\gamma \\beta ij} P_i P_j + ... \\right). \\\\   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>If the material has a cubic parent phase (in the case of conventional perovskite ferroelectrics such as <span class="moose-katex-inline-equation" id="moose-equation-49f16243-5b9f-4c13-bcec-e4c4454842e2"><script>var element = document.getElementById("moose-equation-49f16243-5b9f-4c13-bcec-e4c4454842e2");katex.render("\\mathrm{PbTiO}_3, \\mathrm{BaTiO}_3", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>, and <span class="moose-katex-inline-equation" id="moose-equation-41050908-d64b-4a8b-b578-e47673214c96"><script>var element = document.getElementById("moose-equation-41050908-d64b-4a8b-b578-e47673214c96");katex.render("\\mathrm{BiFeO}_3", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>), then most of these terms vanish and we are left with (in Voight notation) <span class="moose-katex-inline-equation" id="moose-equation-397e12e8-54ff-4f7f-bfd8-9e626a8abc11"><script>var element = document.getElementById("moose-equation-397e12e8-54ff-4f7f-bfd8-9e626a8abc11");katex.render("\\alpha_{1}, \\alpha_{11}, \\alpha_{12}, ..., \\alpha_{123}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> nonzero. We should also note here in this overview that the sixth order expression for cubic phase materials has been &#x27;hard-coded&#x27;, but following our example other lower symmetry parent phases can be coded into FERRET.</p></section><section id="d91934d3-9569-4700-84f1-3c153b20fb9a" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="2d1f4dbf-aa20-4dcc-9eaf-398d6ad8cbbb" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="d361820d-3946-49b7-9c56-3dfcd831b107" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">alpha1</span><span class="moose-parameter-header-description">The coefficients of the Landau expansion</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The coefficients of the Landau expansion</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">alpha11</span><span class="moose-parameter-header-description">The coefficients of the Landau expansion</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The coefficients of the Landau expansion</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">alpha111</span><span class="moose-parameter-header-description">The coefficients of the Landau expansion</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The coefficients of the Landau expansion</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">alpha112</span><span class="moose-parameter-header-description">The coefficients of the Landau expansion</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The coefficients of the Landau expansion</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">alpha12</span><span class="moose-parameter-header-description">The coefficients of the Landau expansion</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;double&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The coefficients of the Landau expansion</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">alpha123</span><span class="moose-parameter-header-description">The coefficients of the Landau expansion</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The coefficients of the Landau expansion</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_x</span><span class="moose-parameter-header-description">The x component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_y</span><span class="moose-parameter-header-description">The y component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this residual object operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this residual object operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="21c0b353-43ec-494c-98e1-d4e0ae783a02" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The displacements</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The displacements</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">len_scale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the len_scale of the unit</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the len_scale of the unit</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_z</span><span class="moose-parameter-header-description">The z component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="7602b69e-6e85-400d-836c-866034ace2c5" data-section-level="3" data-section-text="Tagging Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">absolute_value_vector_tags</span><span class="moose-parameter-header-description">The tags for the vectors this residual object should fill with the absolute value of the residual contribution</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tags for the vectors this residual object should fill with the absolute value of the residual contribution</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, system</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, time</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Tagging Parameters</h3></summary></details></section><section id="16879596-e7c4-4ad0-8566-5c3b491529db" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="bd0f982c-758f-4474-8365-efe91d12bf88" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#5fd0d29d-135d-4eb4-8904-15bf28a32af1">(examples/other/PZT_nanowire_test.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#c847fa1c-ceae-432c-9e3d-87b5a25aa00f">(test/tests/coupled/PTOtest_3D.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#b3a15e34-b0f5-482c-a656-fc1748593d72">(test/tests/ics/PTOtest_fluc.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#5f886780-9e37-462f-8807-581894589ea0">(test/tests/coupled/PTOtest_2D.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#4f2990f6-7e61-47a8-9eb9-a2a8453f9d99">(test/tests/electrostatics/Ferro_para_superlattice.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#1224edcb-7e49-4066-8424-621bfacffa90">(examples/other/skyrm.i)</a></li></ul></section></section><div class="moose-modal modal" id="5fd0d29d-135d-4eb4-8904-15bf28a32af1"><div class="modal-content"><h4>(examples/other/PZT_nanowire_test.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  file = exodus_nanowire_rad20_h60.e
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+  alpha1 = -0.14937
+  alpha11 = -0.0305
+  alpha111 = 0.2475
+  alpha12 = 0.632 
+  alpha112 = 0.9684
+  alpha123 = -4.901
+  G110 = 0.173
+  G11_G110 = 2.0
+  G12_G110 = 0
+  G44_G110 = 1.0
+  G44P_G110 = 1.0
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_int = potential_int
+  disp_x = disp_x
+  disp_y = disp_y
+  disp_z = disp_z
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+  prefactor = 0.00 #negative = tension, positive = compression
+[]
+
+
+
+[Variables]
+  [./polar_x]
+    block = &#x27;1&#x27;
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+      seed = 1
+    [../]
+  [../]
+  [./polar_y]
+    block = &#x27;1&#x27;
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+      seed = 1
+    [../]
+  [../]
+  [./polar_z]
+    block = &#x27;1&#x27;
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+      seed = 1
+    [../]
+  [../]
+  [./potential_int]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1 2&#x27;
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.5e-5
+      max = 0.5e-5
+      seed = 1
+    [../]
+  [../]
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1 2&#x27;
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1 2&#x27;
+  [../]
+  [./disp_z]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1 2&#x27;
+  [../]
+[]
+
+
+[AuxVariables]
+  [./stress_xx_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = stress_xx
+  [../]
+  [./stress_yy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = stress_yy
+  [../]
+  [./stress_xy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = stress_xy
+  [../]
+  [./stress_xz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = stress_xz
+  [../]
+  [./stress_zz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = stress_zz
+  [../]
+  [./stress_yz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = stress_yz
+  [../]
+  [./strain_xx_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = strain_xx
+  [../]
+  [./strain_yy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = strain_yy
+  [../]
+  [./strain_xy_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = strain_xy
+  [../]
+  [./strain_xz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = strain_xz
+  [../]
+  [./strain_zz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = strain_zz
+  [../]
+  [./strain_yz_elastic]
+    order = CONSTANT
+    family = MONOMIAL
+    #initial_from_file_var = strain_yz
+  [../]
+
+  [./chern]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./chernMag]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+[]
+
+
+[AuxKernels]
+  [./cherndens]
+    type = ChernSimonsDensity
+    variable = chern
+  [../]
+  [./cherndensMag]
+    type = ChernSimonsDensityMag
+    block = &#x27;1&#x27;
+    variable = chernMag
+  [../]
+
+  [./matl_e11]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 0
+    variable = strain_xx_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_e12]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 1
+    variable = strain_xy_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_e13]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    index_i = 0
+    index_j = 2
+    variable = strain_xz_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_e22]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    index_i = 1
+    index_j = 1
+    variable = strain_yy_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_e23]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    index_i = 1
+    index_j = 2
+    variable = strain_yz_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_e33]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    index_i = 2
+    index_j = 2
+    variable = strain_zz_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_s11]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 0
+    variable = stress_xx_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_s12]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 1
+    variable = stress_xy_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_s13]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 0
+    index_j = 2
+    variable = stress_xz_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+ [./matl_s22]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 1
+    variable = stress_yy_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_s23]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 1
+    index_j = 2
+    variable = stress_yz_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+  [./matl_s33]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    index_i = 2
+    index_j = 2
+    variable = stress_zz_elastic
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+[]
+
+[Materials]
+  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+    type = ComputeEigenstrain
+    block = &#x27;1 2&#x27;
+    # eigen_base = &#x27;exx exy exz eyx eyy eyz ezx ezy ezz&#x27;
+    eigen_base = &#x27;1 0 0 0 1 0 0 0 0&#x27;
+    eigenstrain_name = eigenstrain
+  [../]
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    #from MaterialsProject
+    C_ijkl = &#x27;281 115.74 115.74 281 115.74 281 97.18 97.18 97.18&#x27;
+    block = &#x27;1&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    block = &#x27;1&#x27;
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_1]
+    type = ComputeLinearElasticStress
+    block = &#x27;1&#x27;
+  [../]
+
+  [./slab_ferroelectric]
+    block = &#x27;1&#x27;
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = &#x27;0.0842 -0.02446 -0.02446 0.0842 -0.02446 0.0842 0.06417 0.06417 0.06417&#x27;
+    C_ijkl = &#x27;281 115.74 115.74 281 115.74 281 97.18 97.18 97.18&#x27;
+  [../]
+
+  [./elasticity_tensor_2]
+    type = ComputeElasticityTensor
+    #averaged from BulkMod
+    C_ijkl = &#x27;319 99.6 99.6 319 99.6 319 109.53 109.53 109.53&#x27;
+    fill_method = symmetric9
+    block = &#x27;2&#x27;
+  [../]
+  [./strain_2]
+    type = ComputeSmallStrain
+    block = &#x27;2&#x27;
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_2]
+    type = ComputeLinearElasticStress
+    block = &#x27;2&#x27;
+  [../]
+[]
+
+
+[Kernels]
+  #Elastic problem
+  [./TensorMechanics]
+  #This is an action block
+  [../]
+  #Bulk energy density
+  [./bed_x]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_z
+    component = 2
+  [../]
+  ##Wall energy penalty
+[./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+ [../]
+ [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+##Polarization-strain coupling
+
+  [./ferroelectriccouplingp_xx]
+    type = FerroelectricCouplingP
+    variable = polar_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingp_yy]
+    type = FerroelectricCouplingP
+    variable = polar_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingp_zz]
+    type = FerroelectricCouplingP
+    variable = polar_z
+    component = 2
+  [../]
+
+
+  [./ferroelectriccouplingX_xx]
+    type = FerroelectricCouplingX
+    block = &#x27;1&#x27;
+    variable = disp_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingX_yy]
+    type = FerroelectricCouplingX
+    block = &#x27;1&#x27;
+    variable = disp_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingX_zz]
+    type = FerroelectricCouplingX
+    block = &#x27;1&#x27;
+    variable = disp_z
+    component = 2
+  [../]
+  ##Electrostatics
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_int
+     permittivity = 0.08854187
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_int
+     block = &#x27;1&#x27;
+     permittivity = 0.08854187
+  [../]
+
+  [./DIE_E_int]
+     type = Electrostatics
+     variable = potential_int
+     block  = &#x27;2&#x27;
+     permittivity = 2.6562561
+  [../]
+
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+  ##Time dependence
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable=polar_x
+    time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable=polar_y
+    time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+     variable = polar_z
+    time_scale = 1.0
+  [../]
+[]
+
+
+[BCs]
+
+[./potential_int_1]
+  type = DirichletBC
+  variable = potential_int
+  boundary = &#x27;5&#x27;
+  value = -0.00001
+[../]
+
+[./potential_int_2]
+  type = DirichletBC
+  variable = potential_int
+  boundary = &#x27;6&#x27;
+  value = -0.00001
+[../]
+
+  [./disp_x]
+    type = DirichletBC
+    variable = disp_x
+    boundary = &#x27;1 2 5 6&#x27;
+    value = 0
+  [../]
+  [./disp_y]
+    type = DirichletBC
+    variable = disp_y
+    boundary = &#x27;1 2 5 6&#x27;
+    value = 0
+  [../]
+  [./disp_z]
+    type = DirichletBC
+    variable = disp_z
+    boundary = &#x27;1 2 5 6&#x27;
+    value = 0
+  [../]
+[]
+
+
+
+[Postprocessors]
+   [./avgChern]
+     block = &#x27;1&#x27;
+     type = ElementAverageValue
+    variable = chern
+   [../]
+   [./avgchernMag]
+     block = &#x27;1&#x27;
+     type = ElementAverageValue
+    variable = chernMag
+   [../]
+   [./Fbulk]
+      type = BulkEnergy
+      block = &#x27;1&#x27;
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./Fwall]
+      type = WallEnergy
+      block = &#x27;1&#x27;
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./Felastic]
+      type = ElasticEnergy
+      block = &#x27;1 2&#x27;
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./Fcoupled]
+      block = &#x27;1&#x27;
+      type = CoupledEnergy
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./Felec]
+      block = &#x27;1&#x27;
+      type = ElectrostaticEnergy
+      permittivity = 0.08854187
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./Ftotal]
+      type = TotalEnergyFlow
+      Fbulk = Fbulk
+      Fwall = Fwall
+      Fcoupled = Fcoupled
+      Felec = Felec
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./perc_change]
+     type = PercentChangePostprocessor
+     postprocessor = Ftotal
+   [../]
+[]
+
+
+[UserObjects]
+ [./kill]
+  type = Terminator
+  expression = &#x27;perc_change &lt;= 2.0e-3&#x27;
+ [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options = &#x27;-snes_view -snes_linesearch_monitor -snes_converged_reason -ksp_converged_reason&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121               1e-10     1e-6      1e-6    bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+    [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.7
+    #iteration_window = 3
+    optimal_iterations = 6 #should be 5 probably
+    growth_factor = 1.4
+    linear_iteration_ratio = 1000
+    cutback_factor =  0.8
+[../]
+  solve_type = &#x27;NEWTON&#x27;       #&quot;PJFNK, JFNK, NEWTON&quot;
+  scheme = &#x27;implicit-euler&#x27;   #&quot;implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2&quot;
+  dtmin = 1e-13
+  dtmax = 0.7
+[]
+
+[Outputs]
+  print_linear_residuals = true
+  print_perf_log = true
+  [./out]
+    type = Exodus
+    file_base = out_PZT_nanowire_inSTO_test
+    elemental_as_nodal = true
+    interval = 8
+  [../]
+  [./outcsv]
+    type = CSV
+    file_base = out_PZT_nanowire_inSTO_test
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="c847fa1c-ceae-432c-9e3d-87b5a25aa00f"><div class="modal-content"><h4>(test/tests/coupled/PTOtest_3D.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 6
+  ny = 6
+  nz = 4
+  xmin = -1.5
+  xmax = 1.5
+  ymin = -1.5
+  ymax = 1.5
+  zmin = -1
+  zmax = 1
+  elem_type = HEX8
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+  alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 293 K)
+  alpha11 = -0.07253
+  alpha111 = 0.26
+  alpha12 = 0.75
+  alpha112 = 0.61
+  alpha123 = -3.67
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_E_int = potential_E_int
+  disp_x = disp_x
+  disp_y = disp_y
+  disp_z = disp_z
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+  prefactor = 0.01 #negative = tension,positive = compression
+[]
+
+
+
+[Variables]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[Materials]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.173 0.6 0.0 0.3 0.3&#x27;
+  [../]
+
+
+  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+   type = ComputeEigenstrain
+   block = &#x27;0&#x27;
+  # eigen_base = &#x27;exx exy exz eyx eyy eyz ezx ezy ezz&#x27;
+   eigen_base = &#x27;1 0 0 0 1 0 0 0 0&#x27;
+   eigenstrain_name = eigenstrain
+ [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;380. 150. 150. 380. 150. 380. 110. 110. 110.&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./slab_ferroelectric]
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = &#x27;-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375&#x27;
+    C_ijkl = &#x27;380. 150. 150. 380. 150. 380. 110. 110. 110.&#x27;
+  [../]
+
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+
+[]
+
+
+[Kernels]
+  #Elastic problem
+  [./TensorMechanics]
+  [../]
+  [./bed_x]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_z
+    component = 2
+  [../]
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+ [../]
+ [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  [./ferroelectriccouplingp_xx]
+    type = FerroelectricCouplingP
+    variable = polar_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingp_yy]
+    type = FerroelectricCouplingP
+    variable = polar_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingp_zz]
+    type = FerroelectricCouplingP
+    variable = polar_z
+    component = 2
+  [../]
+  [./ferroelectriccouplingX_xx]
+    type = FerroelectricCouplingX
+    variable = disp_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingX_yy]
+    type = FerroelectricCouplingX
+    variable = disp_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingX_zz]
+    type = FerroelectricCouplingX
+    variable = disp_z
+    component = 2
+  [../]
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable=polar_x
+     time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable=polar_y
+     time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+     variable = polar_z
+     time_scale = 1.0
+  [../]
+[]
+
+
+[BCs]
+  [./potential_E_int_front]
+    type = DirichletBC
+    boundary = &#x27;front&#x27;
+    value = 0.0001
+    variable = potential_E_int
+  [../]
+
+  [./potential_E_int_back]
+    type = DirichletBC
+    boundary = &#x27;back&#x27;
+    value = 0.0001
+    variable = potential_E_int
+  [../]
+[]
+
+
+
+[Postprocessors]
+   [./Fbulk]
+      type = BulkEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Fwall]
+      type = WallEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Felastic]
+      type = ElasticEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Fcoupled]
+      type = ElectrostrictiveEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Felec]
+      type = ElectrostaticEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Ftotal]
+      type = LinearCombinationPostprocessor
+      pp_names = &#x27;Fbulk Fwall Fcoupled Felec&#x27;
+      pp_coefs = &#x27; 1 1 1 1&#x27;
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./perc_change]
+     type = PercentChangePostprocessor
+     postprocessor = Ftotal
+     execute_on = &#x27;initial timestep_end&#x27;
+   [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121               1e-10      1e-8      1e-6    bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  dtmin = 1e-13
+  dtmax = 0.35
+  num_steps = 15
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = outPTOchunk_test
+    elemental_as_nodal = true
+    interval = 1
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="b3a15e34-b0f5-482c-a656-fc1748593d72"><div class="modal-content"><h4>(test/tests/ics/PTOtest_fluc.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 10
+  ny = 10
+  nz = 7
+  xmin = -4
+  xmax = 4
+  ymin = -4
+  ymax = 4
+  zmin = -3
+  zmax = 3
+  elem_type = HEX8
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+  alpha1 = -0.1722883
+  alpha11 = -0.07253
+  alpha111 = 0.26
+  alpha12 = 0.75
+  alpha112 = 0.61
+  alpha123 = -3.67
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+  potential_E_int = potential_E_int
+  disp_x = disp_x
+  disp_y = disp_y
+  disp_z = disp_z
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+  prefactor = 0.01 #negative = tension, positive = compression
+[]
+
+[Variables]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FluctuationsIC
+      epsilon = 1.0e-5
+      q1 = &#x27;354 1005 645&#x27;
+      q2 = &#x27;715 1065 1132&#x27;
+      q3 = &#x27;391 305 1106&#x27;
+      q4 = &#x27;1053 1116 627&#x27;
+      h = 0.22
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FluctuationsIC
+      epsilon = 1.0e-5
+      q1 = &#x27;354 850 10&#x27;
+      q2 = &#x27;715 28 5&#x27;
+      q3 = &#x27;391 305 1106&#x27;
+      q4 = &#x27;653 1116 627&#x27;
+      h = 0.15
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FluctuationsIC
+      epsilon = 1.0e-5
+      q1 = &#x27;860 165 645&#x27;
+      q2 = &#x27;715 665 1332&#x27;
+      q3 = &#x27;361 15 706&#x27;
+      q4 = &#x27;253 1116 627&#x27;
+      h = 0.05
+    [../]
+  [../]
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[Materials]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.173 0.6 0.0 0.3 0.3&#x27;
+  [../]
+
+  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+   type = ComputeEigenstrain
+   block = &#x27;0&#x27;
+  # eigen_base = &#x27;exx exy exz eyx eyy eyz ezx ezy ezz&#x27;
+   eigen_base = &#x27;1 0 0 0 1 0 0 0 0&#x27;
+   eigenstrain_name = eigenstrain
+ [../]
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;380. 150. 150. 380. 150. 380. 110. 110. 110.&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./slab_ferroelectric]
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = &#x27;-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375&#x27;
+    C_ijkl = &#x27;380. 150. 150. 380. 150. 380. 110. 110. 110.&#x27;
+  [../]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+
+     
+[]
+
+
+[Kernels]
+  [./TensorMechanics]
+  [../]
+  [./bed_x]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_z
+    component = 2
+  [../]
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+  [./ferroelectriccouplingp_xx]
+    type = FerroelectricCouplingP
+    variable = polar_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingp_yy]
+    type = FerroelectricCouplingP
+    variable = polar_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingp_zz]
+    type = FerroelectricCouplingP
+    variable = polar_z
+    component = 2
+  [../]
+  [./ferroelectriccouplingX_xx]
+    type = FerroelectricCouplingX
+    variable = disp_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingX_yy]
+    type = FerroelectricCouplingX
+    variable = disp_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingX_zz]
+    type = FerroelectricCouplingX
+    variable = disp_z
+    component = 2
+  [../]
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_electric_pz]
+     type = PolarElectricPStrong
+     variable = polar_z
+     component = 2
+  [../]
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable=polar_x
+    time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable=polar_y
+    time_scale = 1.0
+  [../]
+  [./polar_z_time]
+     type = TimeDerivativeScaled
+     variable = polar_z
+    time_scale = 1.0
+  [../]
+[]
+
+
+[BCs]
+  [./disp_x_front]
+    type = DirichletBC
+    boundary = &#x27;front&#x27;
+    value = 0.0
+    variable = disp_x
+  [../]
+  [./disp_y_front]
+    type = DirichletBC
+    boundary = &#x27;front&#x27;
+    value = 0.0
+    variable = disp_y
+  [../]
+  [./disp_z_front]
+    type = DirichletBC
+    boundary = &#x27;front&#x27;
+    value = 0.0
+    variable = disp_z
+  [../]
+  [./potential_E_int_front]
+    type = DirichletBC
+    boundary = &#x27;front&#x27;
+    value = 0.0001
+    variable = potential_E_int
+  [../]
+
+  [./potential_E_int_back]
+    type = DirichletBC
+    boundary = &#x27;back&#x27;
+    value = 0.0001
+    variable = potential_E_int
+  [../]
+  [./disp_x_back]
+    type = DirichletBC
+    boundary = &#x27;back&#x27;
+    value = 0.0
+    variable = disp_x
+  [../]
+  [./disp_y_back]
+    type = DirichletBC
+    boundary = &#x27;back&#x27;
+    value = 0.0
+    variable = disp_y
+  [../]
+  [./disp_z_back]
+    type = DirichletBC
+    boundary = &#x27;back&#x27;
+    value = 0.0
+    variable = disp_z
+  [../]
+[]
+
+
+
+[Postprocessors]
+   [./Fbulk]
+      type = BulkEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Fwall]
+      type = WallEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Felastic]
+      type = ElasticEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Fcoupled]
+      type = ElectrostrictiveEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Felec]
+      type = ElectrostaticEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Ftotal]
+      type = LinearCombinationPostprocessor 
+      pp_names = &#x27;Fbulk Fwall Fcoupled Felec&#x27; 
+      pp_coefs = &#x27; 1 1 1 1&#x27; 
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./perc_change]
+     type = PercentChangePostprocessor
+     postprocessor = Ftotal
+     execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart  -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121                1e-6      1e-8    bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  dtmin = 1e-13
+  dtmax = 0.1
+  num_steps = 5
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = outPTO_test_fluct
+    elemental_as_nodal = true
+    interval = 1
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="5f886780-9e37-462f-8807-581894589ea0"><div class="modal-content"><h4>(test/tests/coupled/PTOtest_2D.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 32
+  ny = 32
+  xmin = -8
+  xmax = 8
+  ymin = -8
+  ymax = 8
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+  alpha1 = -0.1722883 # (3.766(T-765.1)*10^5) C^{-2} nm^2 (T = 293 K)
+  alpha11 = -0.07253
+  alpha111 = 0.26
+  alpha12 = 0.75
+  alpha112 = 0.61
+  alpha123 = -3.67
+
+  polar_x = polar_x
+  polar_y = polar_y
+  potential_E_int = potential_E_int
+  disp_x = disp_x
+  disp_y = disp_y
+  displacements = &#x27;disp_x disp_y&#x27;
+  prefactor = 0.0
+[]
+
+
+
+[Variables]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-4
+      max = 0.01e-4
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./disp_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+
+[Materials]
+
+  [./Landau_G]
+    type = GenericConstantMaterial
+    prop_names = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    prop_values = &#x27;0.173 0.6 0.0 0.3 0.3&#x27;
+  [../]
+
+  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+   type = ComputeEigenstrain
+   block = &#x27;0&#x27;
+  # eigen_base = &#x27;exx exy exz eyx eyy eyz ezx ezy ezz&#x27;
+   eigen_base = &#x27;1 0 0 0 1 0 0 0 0&#x27;
+   eigenstrain_name = eigenstrain
+ [../]
+
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;380. 150. 150. 380. 150. 380. 110. 110. 110.&#x27;
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+    eigenstrain_names = eigenstrain
+  [../]
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+
+  [./slab_ferroelectric]
+    type = ComputeElectrostrictiveTensor
+    Q_mnkl = &#x27;-0.089 0.026 0.026 -0.089 0.026 -0.089 -0.03375 -0.03375 -0.03375&#x27;
+    C_ijkl = &#x27;380. 150. 150. 380. 150. 380. 110. 110. 110.&#x27;
+  [../]
+
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.08854187&#x27;
+  [../]
+
+[]
+
+
+[Kernels]
+  #Elastic problem
+  [./TensorMechanics]
+  [../]
+  [./bed_x]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+ [../]
+ [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingp_xx]
+    type = FerroelectricCouplingP
+    variable = polar_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingp_yy]
+    type = FerroelectricCouplingP
+    variable = polar_y
+    component = 1
+  [../]
+  [./ferroelectriccouplingX_xx]
+    type = FerroelectricCouplingX
+    variable = disp_x
+    component = 0
+  [../]
+  [./ferroelectriccouplingX_yy]
+    type = FerroelectricCouplingX
+    variable = disp_y
+    component = 1
+  [../]
+  [./polar_x_electric_E]
+     type = PolarElectricEStrong
+     variable = potential_E_int
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+  [./polar_electric_px]
+     type = PolarElectricPStrong
+     variable = polar_x
+     component = 0
+  [../]
+  [./polar_electric_py]
+     type = PolarElectricPStrong
+     variable = polar_y
+     component = 1
+  [../]
+  [./polar_x_time]
+     type = TimeDerivativeScaled
+     variable=polar_x
+     time_scale = 1.0
+  [../]
+  [./polar_y_time]
+     type = TimeDerivativeScaled
+     variable=polar_y
+     time_scale = 1.0
+  [../]
+[]
+
+
+[BCs]
+
+  [./potential_E_int_front]
+    type = DirichletBC
+    boundary = &#x27;top&#x27;
+    value = 0.0001
+    variable = potential_E_int
+  [../]
+
+  [./potential_E_int_back]
+    type = DirichletBC
+    boundary = &#x27;bottom&#x27;
+    value = 0.0001
+    variable = potential_E_int
+  [../]
+
+  [./disp_x_back]
+    type = DirichletBC
+    boundary = &#x27;top&#x27;
+    value = 0.0
+    variable = disp_x
+  [../]
+  [./disp_y_back]
+    type = DirichletBC
+    boundary = &#x27;top&#x27;
+    value = 0.0
+    variable = disp_y
+  [../]
+[]
+
+
+
+[Postprocessors]
+   [./Fbulk]
+      type = BulkEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Fwall]
+      type = WallEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Felastic]
+      type = ElasticEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Fcoupled]
+      type = ElectrostrictiveEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Felec]
+      type = ElectrostaticEnergy
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./Ftotal]
+      type = LinearCombinationPostprocessor
+      pp_names = &#x27;Fbulk Fwall Fcoupled Felec&#x27;
+      pp_coefs = &#x27; 1 1 1 1&#x27;
+      execute_on = &#x27;initial timestep_end&#x27;
+    [../]
+    [./perc_change]
+     type = PercentChangePostprocessor
+     postprocessor = Ftotal
+     execute_on = &#x27;initial timestep_end&#x27;
+   [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121               1e-10      1e-8      1e-6    bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+  scheme = &#x27;implicit-euler&#x27;
+  #dt = 0.5
+  dtmin = 1e-13
+  dtmax = 0.1
+  num_steps = 10
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = outPTOchunk_test_2D
+    elemental_as_nodal = true
+    interval = 1
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4f2990f6-7e61-47a8-9eb9-a2a8453f9d99"><div class="modal-content"><h4>(test/tests/electrostatics/Ferro_para_superlattice.i)</h4><pre class="moose-pre"><code class="language-text">
+#############################################################
+# TEMPORARILY DEACTIVATED
+############################################################
+
+
+
+#alpha1 alpha3
+alpha1 = &#x27;-0.0827836 -0.250056&#x27;
+#alpha11 alpha33
+alpha11 = &#x27;0.42229 0.04990909090909092&#x27;
+#alpha12 alpha13
+alpha12 = &#x27;0.734181277056277 0.4521818181818182&#x27;
+alpha111 = 0.0#0.26
+alpha112 = 0.0#0.61
+alpha123 = 0.0#-3.7
+alpha1_para = &#x27;0.1854662 0.1854662&#x27;
+alpha11_para = &#x27;0.0 0.0&#x27;
+alpha12_para = &#x27;0.0 0.0&#x27;
+alpha111_para = 0.0
+alpha112_para = 0.0
+alpha123_para = 0.0
+
+G110 = 0.173
+G11_G110 = 1.6
+G12_G110 = 0
+G44_G110 = 1.6
+G44P_G110 = 1.6
+G110_para = 0.173
+G11_G110_para = 1.6
+G12_G110_para = 0
+G44_G110_para = 1.6
+G44P_G110_para = 1.6
+
+
+permittivity_electrostatic = 0.0885
+permittivity_electrostatic_para = 0.0885
+
+permitivitty_depol = 0.00885
+permitivitty_depol_para = 0.00885
+
+[Mesh]
+  type = FileMesh
+  file = template_mesh.msh
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+[]
+
+[Variables]
+  [./FE_polar_x]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;ferro_volume&#x27;
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./FE_polar_y]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;ferro_volume&#x27;
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./FE_polar_z]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;ferro_volume&#x27;
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./PE_polar_x]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./PE_polar_y]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./PE_polar_z]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = -0.01e-5
+      max = 0.01e-5
+      seed = 5
+      legacy_generator = true
+    [../]
+  [../]
+[]
+
+[Kernels]
+  #FERROELECTRIC BLOCK
+  [./bed_x_ferro]
+    type = BulkEnergyDerivativeSixth
+    block = &#x27;ferro_volume&#x27;
+    variable = FE_polar_x
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+    alpha1 = ${alpha1}
+    alpha11 = ${alpha11}
+    alpha12 = ${alpha12}
+    alpha111 = ${alpha111}
+    alpha112 = ${alpha112}
+    alpha123 = ${alpha123}
+    component = 0
+  [../]
+  [./bed_y_ferro]
+    type = BulkEnergyDerivativeSixth
+    block = &#x27;ferro_volume&#x27;
+    variable = FE_polar_y
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+    alpha1 = ${alpha1}
+    alpha11 = ${alpha11}
+    alpha12 = ${alpha12}
+    alpha111 = ${alpha111}
+    alpha112 = ${alpha112}
+    alpha123 = ${alpha123}
+    component = 1
+  [../]
+  [./bed_z_ferro]
+    type = BulkEnergyDerivativeSixth
+    block = &#x27;ferro_volume&#x27;
+    variable = FE_polar_z
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+    alpha1 = ${alpha1}
+    alpha11 = ${alpha11}
+    alpha12 = ${alpha12}
+    alpha111 = ${alpha111}
+    alpha112 = ${alpha112}
+    alpha123 = ${alpha123}
+    component = 2
+  [../]
+  [./polar_x_electric_E_ferro]
+     type = PolarElectricEStrong
+       block = &#x27;ferro_volume&#x27;
+       polar_x = FE_polar_x
+       polar_y = FE_polar_y
+       polar_z = FE_polar_z
+       variable = potential_E_int
+  [../]
+  [./FE_E_int_ferro]
+       type = Electrostatics
+       block = &#x27;ferro_volume&#x27;
+       variable = potential_E_int
+       permittivity = ${permittivity_electrostatic}
+  [../]
+  [./polar_electric_px_ferro]
+     type = PolarElectricPStrong
+       block = &#x27;ferro_volume&#x27;
+       variable = FE_polar_x
+       potential_E_int = potential_E_int
+       component = 0
+  [../]
+  [./polar_electric_py_ferro]
+     type = PolarElectricPStrong
+       block = &#x27;ferro_volume&#x27;
+       variable = FE_polar_y
+       potential_E_int = potential_E_int
+       component = 1
+  [../]
+  [./polar_electric_pz_ferro]
+     type = PolarElectricPStrong
+       block = &#x27;ferro_volume&#x27;
+       variable = FE_polar_z
+       potential_E_int = potential_E_int
+       component = 2
+  [../]
+
+G110 = 0.173
+G11_G110 = 1.6
+G12_G110 = 0
+G44_G110 = 1.6
+G44P_G110 = 1.6
+G110_para = 0.173
+G11_G110_para = 1.6
+G12_G110_para = 0
+G44_G110_para = 1.6
+G44P_G110_para = 1.6
+
+
+
+
+  [./walled_x_ferro]
+    type = WallEnergyDerivative
+    block = &#x27;ferro_volume&#x27;
+    variable = FE_polar_x
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+
+    component = 0
+  [../]
+  [./walled_y_ferro]
+    type = WallEnergyDerivative
+    block = &#x27;ferro_volume&#x27;
+    variable = FE_polar_y
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+
+    component = 1
+  [../]
+  [./walled_z_ferro]
+    type = WallEnergyDerivative
+    block = &#x27;ferro_volume&#x27;
+    variable = FE_polar_z
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+
+    component = 2
+  [../]
+  [./polar_x_time_ferro]
+     type = TimeDerivativeScaled
+     block = &#x27;ferro_volume&#x27;
+     variable = FE_polar_x
+  [../]
+  [./polar_y_time_ferro]
+     type = TimeDerivativeScaled
+     block = &#x27;ferro_volume&#x27;
+     variable = FE_polar_y
+  [../]
+  [./polar_z_time_ferro]
+     type = TimeDerivativeScaled
+     block = &#x27;ferro_volume&#x27;
+     variable = FE_polar_z
+  [../]
+
+  #PARAELECTRIC BLOCK
+  [./bed_xp_para]
+    alpha1111 = 0
+    alpha1112 = 0
+    alpha1122 = 0
+    alpha1123 = 0
+    type = BulkEnergyDerivativeSixth
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    variable = PE_polar_x
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+    alpha1 = ${alpha1_para}
+    alpha11 = ${alpha11_para}
+    alpha12 = ${alpha12_para}
+    alpha111 = ${alpha111_para}
+    alpha112 = ${alpha112_para}
+    alpha123 = ${alpha123_para}
+    component = 0
+  [../]
+  [./bed_yp_para]
+    alpha1111 = 0
+    alpha1112 = 0
+    alpha1122 = 0
+    alpha1123 = 0
+    type = BulkEnergyDerivativeSixth
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    variable = PE_polar_y
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+    alpha1 = ${alpha1_para}
+    alpha11 = ${alpha11_para}
+    alpha12 = ${alpha12_para}
+    alpha111 = ${alpha111_para}
+    alpha112 = ${alpha112_para}
+    alpha123 = ${alpha123_para}
+    component = 1
+  [../]
+  [./bed_zp_para]
+    alpha1111 = 0
+    alpha1112 = 0
+    alpha1122 = 0
+    alpha1123 = 0
+    type = BulkEnergyDerivativeSixth
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    variable = PE_polar_z
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+    alpha1 = ${alpha1_para}
+    alpha11 = ${alpha11_para}
+    alpha12 = ${alpha12_para}
+    alpha111 = ${alpha111_para}
+    alpha112 = ${alpha112_para}
+    alpha123 = ${alpha123_para}
+    component = 2
+  [../]
+
+  [./polar_x_electric_Ep_para]
+     type = PolarElectricEStrong
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     polar_x = PE_polar_x
+     polar_y = PE_polar_y
+     polar_z = PE_polar_z
+     variable = potential_E_int
+  [../]
+  [./FE_E_intp_para]
+     type = Electrostatics
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     variable = potential_E_int
+     permittivity = ${permittivity_electrostatic_para}
+  [../]
+
+  [./polar_electric_pxp_para]
+     type = PolarElectricPStrong
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     variable = PE_polar_x
+     potential_E_int = potential_E_int
+     component = 0
+  [../]
+  [./polar_electric_pyp_para]
+     type = PolarElectricPStrong
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     variable = PE_polar_y
+     potential_E_int = potential_E_int
+     component = 1
+  [../]
+  [./polar_electric_pzp_para]
+     type = PolarElectricPStrong
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     variable = PE_polar_z
+     potential_E_int = potential_E_int
+     component = 2
+  [../]
+
+  [./walled_xp_para]
+    type = WallEnergyDerivative
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    variable = PE_polar_x
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+
+    component = 0
+  [../]
+  [./walled_yp_para]
+    type = WallEnergyDerivative
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    variable = PE_polar_y
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+
+    component = 1
+  [../]
+  [./walled_zp_para]
+    type = WallEnergyDerivative
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    variable = PE_polar_z
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+
+    component = 2
+  [../]
+
+  [./polar_x_timep_para]
+     type = TimeDerivativeScaled
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     variable = PE_polar_x
+  [../]
+  [./polar_y_timep_para]
+     type = TimeDerivativeScaled
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     variable = PE_polar_y
+  [../]
+  [./polar_z_timep_para]
+     type = TimeDerivativeScaled
+     block = &#x27;para_bottom_volume para_top_volume&#x27;
+     variable = PE_polar_z
+  [../]
+[]
+
+[BCs]
+   [./top_phi]
+      type = DirichletBC
+      variable = potential_E_int
+      value = 0.0001
+      boundary = &#x27;para_top_surface_top&#x27;
+   [../]
+   [./bottom_phi]
+      type = DirichletBC
+      variable = potential_E_int
+      value = 0.0
+      boundary = &#x27;para_bottom_surface_bottom&#x27;
+   [../]
+
+  [./Periodic]
+   [./per1]
+     variable = &#x27;PE_polar_x PE_polar_y PE_polar_z potential_E_int&#x27;
+     primary = &#x27;para_top_side_1&#x27;
+     secondary = &#x27;para_top_side_3&#x27;
+     translation = &#x27;0 1 0&#x27;
+   [../]
+   [./per2]
+     variable = &#x27;PE_polar_x PE_polar_y PE_polar_z potential_E_int&#x27;
+     primary = &#x27;para_bottom_side_1&#x27;
+     secondary = &#x27;para_bottom_side_3&#x27;
+     translation = &#x27;0 1 0&#x27;
+   [../]
+   [./per3]
+     variable = &#x27;PE_polar_x PE_polar_y PE_polar_z potential_E_int&#x27;
+     primary = &#x27;para_top_side_4&#x27;
+     secondary = &#x27;para_top_side_2&#x27;
+     translation = &#x27;1 0 0&#x27;
+   [../]
+   [./per4]
+     variable = &#x27;PE_polar_x PE_polar_y PE_polar_z potential_E_int&#x27;
+     primary = &#x27;para_bottom_side_4&#x27;
+     secondary = &#x27;para_bottom_side_2&#x27;
+     translation = &#x27;1 0 0&#x27;
+   [../]
+   [./per5]
+     variable = &#x27;FE_polar_x FE_polar_y FE_polar_z potential_E_int&#x27;
+     primary = &#x27;ferro_side_4&#x27;
+     secondary = &#x27;ferro_side_2&#x27;
+     translation = &#x27;1 0 0&#x27;
+   [../]
+   [./per6]
+     variable = &#x27;FE_polar_x FE_polar_y FE_polar_z potential_E_int&#x27;
+     primary = &#x27;ferro_side_1&#x27;
+     secondary = &#x27;ferro_side_3&#x27;
+     translation = &#x27;0 1 0&#x27;
+   [../]
+  [../]
+[]
+
+[Postprocessors]
+  [./aveFEPz]
+    type = ElementAverageValue
+    variable = FE_polar_z
+    execute_on = &#x27;initial timestep_end&#x27;
+    block = &#x27;ferro_volume&#x27;
+    #&#x27;initial linear nonlinear timestep_begin timestep_end&#x27;
+  [../]
+  [./avePEPz]
+    type = ElementAverageValue
+    variable = PE_polar_z
+    execute_on = &#x27;initial timestep_end&#x27;
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    #&#x27;initial linear nonlinear timestep_begin timestep_end&#x27;
+  [../]
+  [./Fbulk_ferro]
+    type = BulkEnergy
+    block = &#x27;ferro_volume&#x27;
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+    alpha1 = ${alpha1}
+    alpha11 = ${alpha11}
+    alpha12 = ${alpha12}
+    alpha111 = ${alpha111}
+    alpha112 = ${alpha112}
+    alpha123 = ${alpha123}
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Fwall_ferro]
+    type = WallEnergy
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+    G110 = ${G110}
+    G11_G110 = ${G11_G110}
+    G12_G110 = ${G12_G110}
+    G44_G110 = ${G44_G110}
+    G44P_G110 = ${G44P_G110}
+
+    block = &#x27;ferro_volume&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Felec_ferro]
+    type = ElectrostaticEnergy
+    block = &#x27;ferro_volume&#x27;
+    polar_x = FE_polar_x
+    polar_y = FE_polar_y
+    polar_z = FE_polar_z
+    potential_E_int = potential_E_int
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+
+  [./Fbulk_para]
+    type = BulkEnergy
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+    alpha1 = ${alpha1_para}
+    alpha11 = ${alpha11_para}
+    alpha12 = ${alpha12_para}
+    alpha111 = ${alpha111_para}
+    alpha112 = ${alpha112_para}
+    alpha123 = ${alpha123_para}
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Fwall_para]
+    type = WallEnergy
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+    G110 = ${G110_para}
+    G11_G110 = ${G11_G110_para}
+    G12_G110 = ${G12_G110_para}
+    G44_G110 = ${G44_G110_para}
+    G44P_G110 = ${G44P_G110_para}
+
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./Felec_para]
+    type = ElectrostaticEnergy
+    block = &#x27;para_bottom_volume para_top_volume&#x27;
+    polar_x = PE_polar_x
+    polar_y = PE_polar_y
+    polar_z = PE_polar_z
+    potential_E_int = potential_E_int
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+  [./perc_change_ferro]
+    type = PercentChangePostprocessor
+    postprocessor = Fbulk_ferro
+  [../]
+[]
+
+[UserObjects]
+  [./kill]
+    type = Terminator
+    expression = &#x27;perc_change_ferro &lt;= 2.5e-6&#x27;
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol  -pc_type &#x27;
+    petsc_options_value = &#x27;    120               1e-10      1e-8     1e-5        bjacobi&#x27;
+  [../]
+[]
+
+
+[Executioner]
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.5
+    growth_factor = 1.4
+    cutback_factor =  0.9
+    optimal_iterations = 7
+  [../]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;       #&quot;PJFNK, JFNK, NEWTON&quot;
+  scheme = &#x27;bdf2&#x27;   #&quot;implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2&quot;
+  dtmax = 1.0
+  num_steps = 25
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    execute_on = &#x27;timestep_end&#x27;
+    file_base = out_split_polar
+    elemental_as_nodal = true
+    interval = 1
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="1224edcb-7e49-4066-8424-621bfacffa90"><div class="modal-content"><h4>(examples/other/skyrm.i)</h4><pre class="moose-pre"><code class="language-text">
+[Mesh]
+  file = exodus_disk_r8_h1.e
+[]
+
+[MeshModifiers]
+  [./centernodeset_1]
+    type = AddExtraNodeset
+    new_boundary = &#x27;center_node_1&#x27;
+    coord = &#x27;0.0 0.0 -0.5&#x27;
+  [../]
+  [./centernodeset_2]
+    type = AddExtraNodeset
+    new_boundary = &#x27;center_node_2&#x27;
+    coord = &#x27;0.0 0.0 0.5&#x27;
+  [../]
+  [./centernodeset_3]
+    type = AddExtraNodeset
+    new_boundary = &#x27;center_node_3&#x27;
+    coord = &#x27;0.0 0.0 0.166667&#x27;
+  [../]
+  [./centernodeset_4]
+    type = AddExtraNodeset
+    new_boundary = &#x27;center_node_4&#x27;
+    coord = &#x27;0.0 0.0 -0.166667&#x27;
+  [../]
+[]
+
+[GlobalParams]
+  len_scale = 1.0
+
+  alpha1 = -0.09179 #room temp PTO
+  alpha11 = 0.0706
+  alpha111 = 0.0
+  alpha12 = 0.1412
+  alpha112 = 0.0
+  alpha123 = 0.0
+
+  G110 = 0.141
+  G11_G110 = 0.0 #this is here to somehow prevent P_z &quot;ringing&quot; problems on the side...
+  G12_G110 = 0.0 #perhaps this allows for div P =0?
+  G44_G110 = 1.0
+  G44P_G110 = 1.0
+
+  polar_x = polar_x
+  polar_y = polar_y
+  polar_z = polar_z
+
+  lambda = 0.01
+
+  K = -0.01
+[]
+
+[Functions]
+  #This is a skyrmion.
+  [./parsed_function_x]
+    type = ParsedFunction
+    value = &#x27;-(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*sin(atan(y/x))&#x27;
+  [../]
+  [./parsed_function_y]
+    type = ParsedFunction
+    value = &#x27;(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*sin(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))*cos(atan(y/x))&#x27;
+  [../]
+  [./parsed_function_z]
+    type = ParsedFunction
+    value = &#x27;(0.738217-0.00686984*(x^2+y^2)^(0.5)+0.00644497*(x^2+y^2)-0.0188174*(x^2+y^2)^(1.5)+0.00441745*(x^2+y^2)^2-0.000274842*(x^2+y^2)^(5/2))*cos(-0.028395+0.267482*(x^2+y^2)^(0.5)-0.146762*(x^2+y^2)+0.0632932*(x^2+y^2)^(1.5)-0.00790942*(x^2+y^2)^(2)+0.000294936*(x^2+y^2)^(5/2))&#x27;
+  [../]
+[]
+
+[Variables]
+  [./polar_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = parsed_function_x
+    [../]
+  [../]
+  [./polar_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = parsed_function_y
+    [../]
+  [../]
+  [./polar_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = parsed_function_z
+    [../]
+  [../]
+[]
+
+
+[Kernels]
+  #Bulk energy density
+  [./bed_x]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_x
+    component = 0
+  [../]
+  [./bed_y]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_y
+    component = 1
+  [../]
+  [./bed_z]
+    type = BulkEnergyDerivativeSixth
+    variable = polar_z
+    component = 2
+  [../]
+
+  ##Wall energy penalty
+  [./walled_x]
+    type = WallEnergyDerivative
+    variable = polar_x
+    component = 0
+  [../]
+  [./walled_y]
+    type = WallEnergyDerivative
+    variable = polar_y
+    component = 1
+  [../]
+  [./walled_z]
+     type = WallEnergyDerivative
+     variable = polar_z
+     component = 2
+  [../]
+
+
+  [./anis_x]
+    type = AnisotropyEnergy
+    variable = polar_x
+    component = 0
+  [../]
+  [./anis_y]
+    type = AnisotropyEnergy
+    variable = polar_y
+    component = 1
+  [../]
+
+  ##Electrostatics
+
+  #PdotE
+  #[./polar_electric_px]
+  #   type = PolarElectricPStrong
+  #   variable = polar_x
+  #   component = 0
+  #[../]
+  #[./polar_electric_py]
+  #   type = PolarElectricPStrong
+  #   variable = polar_y
+  #   component = 1
+  #[../]
+  #[./polar_electric_pz] #  when K &gt; 0, turning this block off will get the two band state
+  #   type = PolarElectricPStrong
+  #   variable = polar_z
+  #   component = 2
+  #[../]
+
+  ##Poisson problem:
+  #[./FE_E_int]
+  #   type = Electrostatics
+  #   variable = potential_int
+  #   block = &#x27;1&#x27;
+  #   permittivity = 3.54
+  #[../]
+  #[./polar_x_electric_E]
+  #   type = PolarElectricEStrong
+  #   variable = potential_int
+  #[../]
+
+  [./depol_z]
+    type = DepolEnergy
+    permitivitty = 0.00885
+    variable = polar_z
+    avePz = avePz
+  [../]
+
+
+    ##Time dependence
+    [./polar_x_time]
+       type = TimeDerivativeScaled
+       variable=polar_x
+      time_scale = 1.0
+    [../]
+    [./polar_y_time]
+       type = TimeDerivativeScaled
+       variable=polar_y
+      time_scale = 1.0
+    [../]
+    [./polar_z_time]
+       type = TimeDerivativeScaled
+       variable = polar_z
+      time_scale = 1.0
+    [../]
+[]
+
+
+[BCs]
+  [./center_pol_x]
+    type = DirichletBC
+    variable = &#x27;polar_x&#x27;
+    value = 0.0
+    boundary = &#x27;center_node_1 center_node_2 center_node_3 center_node_4&#x27;
+  [../]
+  [./center_pol_y]
+    type = DirichletBC
+    variable = &#x27;polar_y&#x27;
+    value = 0.0
+    boundary = &#x27;center_node_1 center_node_2 center_node_3 center_node_4&#x27;
+  [../]
+
+ # [./center_pol_z]
+ #   type = DirichletBC
+ #   variable = &#x27;polar_z&#x27;
+ #   value = 0.65
+ #   boundary = &#x27;center_node_1 center_node_2 center_node_3 center_node_4&#x27;
+ # [../]
+
+  [./side_neumann_x]
+    variable = &#x27;polar_x&#x27;
+    type = NeumannBC
+    value = 0.0
+    boundary = &#x27;1&#x27;
+  [../]
+  [./side_neumann_y]
+    variable = &#x27;polar_y&#x27;
+    type = NeumannBC
+    value = 0.0
+    boundary = &#x27;1&#x27;
+  [../]
+  [./side_Neumann_z]
+    variable = &#x27;polar_z&#x27;
+    type = NeumannBC
+    value = 0.0
+    boundary = &#x27;1&#x27;
+  [../]
+[]
+
+
+
+[Postprocessors]
+   [./avePz]
+     type = ElementAverageValue
+     variable = polar_z
+     execute_on = &#x27;initial linear nonlinear timestep_begin timestep_end&#x27;
+   [../]
+   [./Fbulk]
+      type = BulkEnergy
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./Fwall]
+      type = WallEnergy
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+    [./total_energy]
+      type = TotalEnergy
+      Fbulk = Fbulk
+      Fwall = Fbulk
+      execute_on = &#x27;timestep_end&#x27;
+    [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    250              1e-10      1e-8      1e-6      bjacobi   &#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+    [./TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.1
+    #iteration_window = 3
+    optimal_iterations = 6 #should be 5 probably
+    growth_factor = 1.4
+    linear_iteration_ratio = 1000
+    cutback_factor =  0.9
+[../]
+  solve_type = &#x27;NEWTON&#x27;       #&quot;PJFNK, JFNK, NEWTON&quot;
+  scheme = &#x27;implicit-euler&#x27;   #&quot;implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2&quot;
+  dtmin = 1e-13
+  dtmax = 0.7
+  num_steps = 500
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  print_perf_log = true
+  [./out]
+    type = Exodus
+    execute_on = &#x27;timestep_end&#x27;
+    file_base = out_ic_skyrm
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

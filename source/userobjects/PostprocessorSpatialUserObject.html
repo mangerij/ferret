@@ -1,0 +1,311 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>PostprocessorSpatialUserObject | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="c72f6e7a-0855-4737-a409-b221da48547e" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e12d526a-d2e0-4147-9a44-90485c0b150b" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a7b0cff0-c91c-4931-bf05-7fe843aed322" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5efc4d2f-1687-4f51-9c78-d30274baaa82" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="ca7f298d-9cbc-4e34-aa20-3848acea34ae" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="e63af425-c33a-4773-be25-7eab0aa5a7e5"><i class="material-icons">menu</i></a><ul class="sidenav" id="e63af425-c33a-4773-be25-7eab0aa5a7e5"><li><a href="#!" class="dropdown-trigger" data-target="a937bd11-9d38-496b-9b36-4f6704f3d37c" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4a475963-d0d8-41b2-98d4-dcabf8a80d55" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c16cd834-9284-46a7-b9c0-6acafd3dcccc" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="48e49b28-dff4-4253-af06-d14ccec1177f" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="65f61084-4e8f-46fe-acbd-6e7b2a15f3cd" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="c72f6e7a-0855-4737-a409-b221da48547e"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="e12d526a-d2e0-4147-9a44-90485c0b150b"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="a7b0cff0-c91c-4931-bf05-7fe843aed322"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="5efc4d2f-1687-4f51-9c78-d30274baaa82"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="ca7f298d-9cbc-4e34-aa20-3848acea34ae"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="a937bd11-9d38-496b-9b36-4f6704f3d37c"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="4a475963-d0d8-41b2-98d4-dcabf8a80d55"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="c16cd834-9284-46a7-b9c0-6acafd3dcccc"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="48e49b28-dff4-4253-af06-d14ccec1177f"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="65f61084-4e8f-46fe-acbd-6e7b2a15f3cd"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="28c62cc2-9328-49cb-927a-66afa3078a87" data-section-level="1" data-section-text="PostprocessorSpatialUserObject"><h1 id="postprocessorspatialuserobject">PostprocessorSpatialUserObject</h1><p>The <code>PostprocessorSpatialUserObject</code> stores a postprocessor value inside a user object such that it gains a spatial position and can be used via <code>spatialValue()</code> API. This can be useful in a multi-app setup when we need to transfer postprocessor values from sub apps and have them live at a position where the sub-app exists.</p><section id="bdbf37f1-00b4-494f-ab4b-5dee09f13ba6" data-section-level="2" data-section-text="Example of a Multi - App Setup"><h2 id="example-of-a-multi-app-setup">Example of a Multi-App Setup</h2><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 4
+  ny = 4
+[]
+
+[Functions]
+  [./ic_fn]
+    type = ParsedFunction
+    expression = &#x27;x * y&#x27;
+  [../]
+[]
+
+[Variables]
+  [./u]
+    family = LAGRANGE
+    order = FIRST
+  [../]
+[]
+
+[ICs]
+  [./u_ic]
+    type = FunctionIC
+    variable = u
+    function = ic_fn
+  [../]
+
+  [./a_ic]
+    type = ConstantIC
+    variable = a
+    value = 1
+  [../]
+[]
+
+[AuxVariables]
+  [./a]
+  [../]
+[]
+
+[Kernels]
+  [./td]
+    type = TimeDerivative
+    variable = u
+  [../]
+  [./rhs]
+    type = BodyForce
+    variable = u
+    function = 1
+  [../]
+[]
+
+[MultiApps]
+  [./sub]
+    type = TransientMultiApp
+    app_type = MooseTestApp
+    input_files = &#x27;sub.i&#x27;
+    positions = &#x27;
+      0.25 0.25 0
+      0.75 0.75 0&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+[]
+
+[Transfers]
+  [./master_to_sub]
+    type = MultiAppNearestNodeTransfer
+    to_multi_app = sub
+    source_variable = u
+    variable = a
+  [../]
+
+  [./sub_to_master]
+    type = MultiAppUserObjectTransfer
+    from_multi_app = sub
+    user_object = fn_uo
+    variable = a
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+  num_steps = 10
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#eedcadbd-f7ba-4124-b5b6-198e5cb51565">(../moose/test/tests/userobjects/postprocessor_spatial_user_object/parent.i)</a><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  xmin = -0.01
+  xmax = 0.01
+[]
+
+[Functions]
+  [./fn]
+    type = ParsedFunction
+    expression = &#x27;if(a &lt; 0.8625, 1, 0)&#x27;
+    symbol_names = &#x27;a&#x27;
+    symbol_values = &#x27;a_avg&#x27;
+  [../]
+[]
+
+[Variables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxVariables]
+  [./a]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[Kernels]
+  [./td]
+    type = TimeDerivative
+    variable = u
+  [../]
+  [./rhs]
+    type = BodyForce
+    variable = u
+    function = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./fn_pps]
+    type = FunctionValuePostprocessor
+    function = fn
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+
+  [./a_avg]
+    type = ElementAverageValue
+    variable = a
+  [../]
+[]
+
+[UserObjects]
+  [./fn_uo]
+    type = PostprocessorSpatialUserObject
+    postprocessor = fn_pps
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+[]
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#28fa4641-5f66-443f-b892-58249589615a">(../moose/test/tests/userobjects/postprocessor_spatial_user_object/sub.i)</a></section><section id="e44b95ce-9ec0-4664-aec2-e2dd7ace81b5" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="8d2ea2b8-51e5-4864-9a39-caa4db9a45b9" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">postprocessor</span><span class="moose-parameter-header-description">The name of the postprocessor</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>PostprocessorName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the postprocessor</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="6fb05552-671d-43fe-9631-9b08c743a592" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="d0e4a1d1-1285-45ef-bf9c-3c693a9fa802" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execution_order_group</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_postaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in POSTAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in POSTAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preic</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREIC during initial setup</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREIC during initial setup</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="eedcadbd-f7ba-4124-b5b6-198e5cb51565"><div class="modal-content"><h4>(../moose/test/tests/userobjects/postprocessor_spatial_user_object/parent.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 4
+  ny = 4
+[]
+
+[Functions]
+  [./ic_fn]
+    type = ParsedFunction
+    expression = &#x27;x * y&#x27;
+  [../]
+[]
+
+[Variables]
+  [./u]
+    family = LAGRANGE
+    order = FIRST
+  [../]
+[]
+
+[ICs]
+  [./u_ic]
+    type = FunctionIC
+    variable = u
+    function = ic_fn
+  [../]
+
+  [./a_ic]
+    type = ConstantIC
+    variable = a
+    value = 1
+  [../]
+[]
+
+[AuxVariables]
+  [./a]
+  [../]
+[]
+
+[Kernels]
+  [./td]
+    type = TimeDerivative
+    variable = u
+  [../]
+  [./rhs]
+    type = BodyForce
+    variable = u
+    function = 1
+  [../]
+[]
+
+[MultiApps]
+  [./sub]
+    type = TransientMultiApp
+    app_type = MooseTestApp
+    input_files = &#x27;sub.i&#x27;
+    positions = &#x27;
+      0.25 0.25 0
+      0.75 0.75 0&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+[]
+
+[Transfers]
+  [./master_to_sub]
+    type = MultiAppNearestNodeTransfer
+    to_multi_app = sub
+    source_variable = u
+    variable = a
+  [../]
+
+  [./sub_to_master]
+    type = MultiAppUserObjectTransfer
+    from_multi_app = sub
+    user_object = fn_uo
+    variable = a
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+  num_steps = 10
+[]
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="28fa4641-5f66-443f-b892-58249589615a"><div class="modal-content"><h4>(../moose/test/tests/userobjects/postprocessor_spatial_user_object/sub.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  xmin = -0.01
+  xmax = 0.01
+[]
+
+[Functions]
+  [./fn]
+    type = ParsedFunction
+    expression = &#x27;if(a &lt; 0.8625, 1, 0)&#x27;
+    symbol_names = &#x27;a&#x27;
+    symbol_values = &#x27;a_avg&#x27;
+  [../]
+[]
+
+[Variables]
+  [./u]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[AuxVariables]
+  [./a]
+    family = MONOMIAL
+    order = CONSTANT
+  [../]
+[]
+
+[Kernels]
+  [./td]
+    type = TimeDerivative
+    variable = u
+  [../]
+  [./rhs]
+    type = BodyForce
+    variable = u
+    function = 1
+  [../]
+[]
+
+[Postprocessors]
+  [./fn_pps]
+    type = FunctionValuePostprocessor
+    function = fn
+    execute_on = &#x27;initial timestep_end&#x27;
+  [../]
+
+  [./a_avg]
+    type = ElementAverageValue
+    variable = a
+  [../]
+[]
+
+[UserObjects]
+  [./fn_uo]
+    type = PostprocessorSpatialUserObject
+    postprocessor = fn_pps
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  dt = 0.1
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>
