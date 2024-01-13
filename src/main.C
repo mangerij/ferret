@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"  Initializing simulation:                                                "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
-  moose::main<FerretApp>(argc, argv);
+  Moose::main<FerretApp>(argc, argv);
 
   return 0;
 }
