@@ -21,26 +21,13 @@
 
 #include "FerretApp.h"
 
-//Moose Includes
-#include "MooseInit.h"
+// Moose Includes
 #include "Moose.h"
-#include "MooseApp.h"
-#include "AppFactory.h"
-
-// Create a performance log
-PerfLog Moose::perf_log("Ferret");
+#include "MooseMain.h"
 
  // Begin the main program.
 int main(int argc, char *argv[])
 {
-  // Initialize MPI, solvers and MOOSE
-  MooseInit init(argc, argv);
-
-  // Register this application's MooseApp and any it depends on
-  FerretApp::registerApps();
-
-  // This creates dynamic memory that we're responsible for deleting
-  std::shared_ptr<MooseApp> app = AppFactory::createAppShared("FerretApp", argc, argv);
 
   std::cout<<"   .-.                                                          ___       "<<"\n";
   std::cout<<"  /    \\                                                       (   )     "<<"\n";
@@ -83,9 +70,7 @@ int main(int argc, char *argv[])
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"  Initializing simulation:                                                "<<"\n";
   std::cout<<"__________________________________________________________________________"<<"\n";
-
-  // Execute the application
-  app->run();
+  Moose::main<FerretApp>(argc, argv);
 
   return 0;
 }
