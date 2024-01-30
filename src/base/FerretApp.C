@@ -55,6 +55,7 @@ void
 FerretApp::registerApps()
 {
   registerApp(FerretApp);
+  ModulesApp::registerApps();
 }
 
 void
