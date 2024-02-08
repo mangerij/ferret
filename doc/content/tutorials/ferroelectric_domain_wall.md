@@ -24,7 +24,7 @@ where $n_x, n_y,$ and $n_z$ are chosen accordingly such that the mesh spacing $\
          link=False
          language=python
 
-where the `FunctionIC` defines a function called `stripe1` with,  
+where the `FunctionIC` defines a function called `stripe1` with,
 
 \begin{equation}
   \begin{aligned}
@@ -74,7 +74,7 @@ Poisson equation:
 
 Mechanical equilibrium:
 
-- `TensorMechanics` (MOOSE `Action`) for $\partial \sigma_{ij} / \partial x_j = 0$
+- `SolidMechanics` (MOOSE `Action`) for $\partial \sigma_{ij} / \partial x_j = 0$
 - [`ElectrostrictiveCouplingDispDerivative`](source/kernels/ElectrostrictiveCouplingDispDerivative.md)
 
 for the different objects. Note that the `Materials` block via
