@@ -411,7 +411,7 @@ amplitude = 1e-3
 
 
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
   [../]
 

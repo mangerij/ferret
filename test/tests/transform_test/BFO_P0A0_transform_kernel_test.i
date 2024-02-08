@@ -1065,7 +1065,7 @@ zMax = 1.0
 
 [Kernels]
 
-  [./TensorMechanics]
+  [./SolidMechanics]
   [../]
 
 
