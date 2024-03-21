@@ -114,7 +114,7 @@
 
 [Kernels]
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
   [../]
   [./bed_x]
     type = BulkEnergyDerivativeSixth

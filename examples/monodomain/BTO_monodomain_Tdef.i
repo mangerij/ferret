@@ -535,7 +535,7 @@ a111temp = a111def
 
 
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
     eigenstrains_name = eigenstrain
   [../]

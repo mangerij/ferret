@@ -137,7 +137,7 @@
 
 
 [Kernels]
-  [./TensorMechanics]
+  [./SolidMechanics]
   [../]
   [./bed_x]
     type = BulkEnergyDerivativeSixth

@@ -461,7 +461,7 @@ a1temp = -0.172197
 
 
 [Kernels]
-  [./TensorMechanics]
+  [./SolidMechanics]
   [../]
 []
 

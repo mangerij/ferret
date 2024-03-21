@@ -98,7 +98,7 @@
 []
 
 [Kernels]
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
   [../]
 []

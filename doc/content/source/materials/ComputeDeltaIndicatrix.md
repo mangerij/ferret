@@ -26,7 +26,7 @@ where $p_{ijkl}$ is the elastooptic tensor related to the photoelastic tensor vi
   \end{aligned}
 \end{equation}
 
-with $C_{mnkl}$ the elastic stiffness tensor. The variable $\varepsilon_{ij}$ is the linear elastic strain tensor as computed by `TensorMechanics`.
+with $C_{mnkl}$ the elastic stiffness tensor. The variable $\varepsilon_{ij}$ is the linear elastic strain tensor as computed by `SolidMechanics`.
 
 ## Example Input File Syntax
 

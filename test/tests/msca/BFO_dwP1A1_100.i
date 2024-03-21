@@ -351,7 +351,7 @@ h44 = 0.8e-3
 []
 
 [Kernels]
-  [./TensorMechanics]
+  [./SolidMechanics]
   [../]
 
   [./rotostr_ux]
