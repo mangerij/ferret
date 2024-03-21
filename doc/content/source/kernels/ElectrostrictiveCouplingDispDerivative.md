@@ -42,7 +42,7 @@ The surface terms $\langle , \rangle$ vanish due to properties of the test funct
 
 \begin{equation}
   \begin{aligned}
-    \mathcal{R}_{u_i} = -\underbrace{\left(\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl}\right)}_\mathrm{TensorMechanics} \,\,\,- \,\,\,\underbrace{\left(\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl}^\mathrm{eig,P}\right)}_\mathrm{ElectrostrictiveCouplingDispDerivative}m
+    \mathcal{R}_{u_i} = -\underbrace{\left(\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl}\right)}_\mathrm{SolidMechanics} \,\,\,- \,\,\,\underbrace{\left(\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl}^\mathrm{eig,P}\right)}_\mathrm{ElectrostrictiveCouplingDispDerivative}m
   \end{aligned}
 \end{equation}
 

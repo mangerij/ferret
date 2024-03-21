@@ -402,7 +402,7 @@
   # they are related by a Legendre transformation
 
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
   [../]
 

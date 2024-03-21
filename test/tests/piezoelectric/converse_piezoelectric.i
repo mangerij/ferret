@@ -94,7 +94,7 @@
 
 [Kernels]
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
   #This is an action block
   [../]
   [./piezocouple_0]

@@ -484,7 +484,7 @@
 
 
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
     eigenstrain_name = eigenstrain
   [../]

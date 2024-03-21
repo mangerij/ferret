@@ -22,7 +22,7 @@ include $(FRAMEWORK_DIR)/build.mk
 include $(FRAMEWORK_DIR)/moose.mk
 
 ################################## MODULES ####################################
-TENSOR_MECHANICS := yes
+SOLID_MECHANICS  := yes
 PHASE_FIELD := yes
 MISC := yes
 ELECTROMAGNETICS := yes

@@ -50,7 +50,7 @@ EnergyRatePostprocessor::execute(){
 }
 
 Real
-EnergyRatePostprocessor::getValue()
+EnergyRatePostprocessor::getValue() const
 {
   return fabs( ( fabs(_postprocessor)- fabs(_postprocessor_old) )*pow(fabs(_postprocessor),-1)) / _dt;
 }

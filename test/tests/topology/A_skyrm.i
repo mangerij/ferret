@@ -376,7 +376,7 @@
 
 
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
   [../]
 

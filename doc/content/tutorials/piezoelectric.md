@@ -47,7 +47,7 @@ which are given in units of GPa (for $C_{ijkl}$). These are typical order of mag
          link=False
          language=python
 
-which are for the constitutive governing mechanical equations of the piezoelectric (the TensorMechanics Action which sets up $\partial \sigma_{ij} / \partial x_j$ and [`ConversePiezoelectricStrain`](source/kernels/ConversePiezoelectricStrain.md) which handles the coupling). Also in the Kernels block, we have the Poisson equation, [`Electrostatics`](source/kernels/Electrostatics.md) (\nabla^2 \Phi_\mathrm{E}) and [`PiezoelectricStrainCharge`](source/kernels/PiezoelectricStrainCharge.md) which handles the coupling to the bound charge arising from the strain field. By visiting the hyperlink to the Kernels in the Syntax, we can see how each of these Kernels are constructed as weak form residual contributions.
+which are for the constitutive governing mechanical equations of the piezoelectric (the SolidMechanics Physics which sets up $\partial \sigma_{ij} / \partial x_j$ and [`ConversePiezoelectricStrain`](source/kernels/ConversePiezoelectricStrain.md) which handles the coupling). Also in the Kernels block, we have the Poisson equation, [`Electrostatics`](source/kernels/Electrostatics.md) (\nabla^2 \Phi_\mathrm{E}) and [`PiezoelectricStrainCharge`](source/kernels/PiezoelectricStrainCharge.md) which handles the coupling to the bound charge arising from the strain field. By visiting the hyperlink to the Kernels in the Syntax, we can see how each of these Kernels are constructed as weak form residual contributions.
 
 Finally we have some optional `AuxVariables` that are computed in
 

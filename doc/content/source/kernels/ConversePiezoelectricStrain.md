@@ -24,11 +24,11 @@ Using integration by parts and substituting $E_m = - \partial \Phi_\mathrm{E} / 
 
 \begin{equation}
   \begin{aligned}
-    \underbrace{-\left(\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl} \right) + \left\langle\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl} \right\rangle}_{\mathrm{TensorMechanics}} \,\,\,\,\, + \,\,\,\,\, \underbrace{\left( \frac{\partial \psi_h}{\partial x_j}, C_{ijkl} d_{klm} \frac{\partial \Phi_\mathrm{E}}{\partial x_m}\right) - \left\langle \frac{\partial \psi_h}{\partial x_j}, C_{ijkl} d_{klm} \frac{\partial \Phi_\mathrm{E}}{\partial x_m}\right\rangle}_{\mathrm{ConversePiezoelectricStrain}} + s.t. = 0.
+    \underbrace{-\left(\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl} \right) + \left\langle\frac{\partial \psi_h}{\partial x_j}, C_{ijkl} \varepsilon_{kl} \right\rangle}_{\mathrm{SolidMechanics}} \,\,\,\,\, + \,\,\,\,\, \underbrace{\left( \frac{\partial \psi_h}{\partial x_j}, C_{ijkl} d_{klm} \frac{\partial \Phi_\mathrm{E}}{\partial x_m}\right) - \left\langle \frac{\partial \psi_h}{\partial x_j}, C_{ijkl} d_{klm} \frac{\partial \Phi_\mathrm{E}}{\partial x_m}\right\rangle}_{\mathrm{ConversePiezoelectricStrain}} + s.t. = 0.
   \end{aligned}
 \end{equation}
 
-Note that this shows that the `TensorMechanics` `Action` system automatically sets up and handles the first term in the above equation (corresponding to the `StressDivergence` `Kernel`). Therefore, one needs `TensorMechanics` active in the `Kernels` block of their input files. We should also note that we perform the tensor contraction of $C_{ijkl} d_{klm}$ outside of `ConversePiezoelectricStrain` in the `Materials` object `ComputePiezoTensor`. Due to the properties of the test function, the surface terms $\langle . \rangle$ vanish and we are left with the residual contribution to $u_i$ due to the converse piezoelectric strain,
+Note that this shows that the `SolidMechanics` `Physics` system automatically sets up and handles the first term in the above equation (corresponding to the `StressDivergence` `Kernel`). Therefore, one needs `SolidMechanics` active in the `Kernels` block of their input files. We should also note that we perform the tensor contraction of $C_{ijkl} d_{klm}$ outside of `ConversePiezoelectricStrain` in the `Materials` object `ComputePiezoTensor`. Due to the properties of the test function, the surface terms $\langle . \rangle$ vanish and we are left with the residual contribution to $u_i$ due to the converse piezoelectric strain,
 
 \begin{equation}
   \begin{aligned}

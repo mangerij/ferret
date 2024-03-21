@@ -533,7 +533,7 @@ a1temp = a1def
 
 
   #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
     eigenstrains_name = eigenstrain
   [../]

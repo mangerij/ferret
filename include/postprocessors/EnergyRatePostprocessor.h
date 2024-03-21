@@ -37,7 +37,7 @@
 
    virtual void initialize();
    virtual void execute();
-   virtual Real getValue();
+   virtual Real getValue() const;
  protected:
    const PostprocessorValue & _postprocessor, & _postprocessor_old, & _dt, & _dt_old;
  };
