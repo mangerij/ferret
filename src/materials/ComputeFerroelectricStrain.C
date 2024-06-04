@@ -1,0 +1,64 @@
+/*
+   This file is part of FERRET, an add-on module for MOOSE
+
+   FERRET is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+   For help with FERRET please contact J. Mangeri <john.m.mangeri@gmail.com>
+   and be sure to track new changes at github.com/mangerij/ferret
+
+**/
+ 
+#include "ComputeFerroelectricStrain.h"
+#include "RankTwoTensor.h"
+
+registerMooseObject("FerretApp", ComputeFerroelectricStrain);
+
+InputParameters ComputeFerroelectricStrain::validParams()
+{
+  InputParameters params = ComputeEigenstrainBase::validParams();
+  params.addClassDescription("Compute the ferroelectric self-strain.");
+  params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
+  params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
+  params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
+  return params;
+}
+
+ComputeFerroelectricStrain::ComputeFerroelectricStrain(const InputParameters & parameters) :
+    ComputeEigenstrainBase(parameters),
+  _polar_x(coupledValue("polar_x")),
+  _polar_y(coupledValue("polar_y")),
+  _polar_z(coupledValue("polar_z")),
+  _Q11(getMaterialProperty<Real>("Q11")),
+  _Q12(getMaterialProperty<Real>("Q12")),
+  _Q44(getMaterialProperty<Real>("Q44")),
+  _vals(6),
+ _ferroelectric_strain()
+{
+}
+
+void
+ComputeFerroelectricStrain::computeQpEigenstrain()
+{
+  RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
+  
+  _vals[0] = _Q11[_qp]*w(0)*w(0) + _Q12[_qp]*w(1)*w(1); // eps_1
+  _vals[1] = _Q12[_qp]*w(0)*w(0); //eps_2
+  _vals[2] = _Q12[_qp]*w(1)*w(1); //eps_3
+  _vals[3] = _Q44[_qp]*(w(1)*w(2) + w(2)*w(1)); //eps_4
+  _vals[4] = 0; //eps_5
+  _vals[5] = 0; //eps_6
+  _ferroelectric_strain.fillFromInputVector(_vals);
+  _eigenstrain[_qp] = _ferroelectric_strain;
+}
+
