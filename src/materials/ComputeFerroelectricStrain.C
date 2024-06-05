@@ -52,12 +52,12 @@ ComputeFerroelectricStrain::computeQpEigenstrain()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
   
-  _vals[0] = _Q11[_qp]*w(0)*w(0) + _Q12[_qp]*w(1)*w(1); // eps_1
-  _vals[1] = _Q12[_qp]*w(0)*w(0); //eps_2
-  _vals[2] = _Q12[_qp]*w(1)*w(1); //eps_3
-  _vals[3] = _Q44[_qp]*(w(1)*w(2) + w(2)*w(1)); //eps_4
-  _vals[4] = 0; //eps_5
-  _vals[5] = 0; //eps_6
+  _vals[0] = _Q11[_qp]*w(0)*w(0) + _Q12[_qp]*w(1)*w(1) + _Q12[_qp]*w(2)*w(2); // eps_1
+  _vals[1] = _Q11[_qp]*w(1)*w(1) + _Q12[_qp]*w(0)*w(0) + _Q12[_qp]*w(2)*w(2); //eps_2
+  _vals[2] = _Q11[_qp]*w(2)*w(2) + _Q12[_qp]*w(1)*w(1) + _Q12[_qp]*w(0)*w(0); //eps_3
+  _vals[3] = _Q44[_qp]*(w(2)*w(1)); //eps_4
+  _vals[4] = _Q44[_qp]*(w(2)*w(0)); //eps_5
+  _vals[5] = _Q44[_qp]*(w(0)*w(1)); //eps_6
   _ferroelectric_strain.fillFromInputVector(_vals);
   _eigenstrain[_qp] = _ferroelectric_strain;
 }
