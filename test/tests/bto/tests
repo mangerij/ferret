@@ -1,0 +1,9 @@
+[Tests]
+  [./mono_eig]
+    type = 'Exodiff'
+    input = 'monoBTO_eig.i'
+    exodiff = 'out_monoBTO_eig.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]
