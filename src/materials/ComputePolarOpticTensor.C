@@ -18,7 +18,7 @@
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
-
+ 
 #include "ComputePolarOpticTensor.h"
 #include "RankTwoTensor.h"
 

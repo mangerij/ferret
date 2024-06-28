@@ -1,98 +1,8 @@
 [Mesh]
-  [gen]
-    ############################################
-    ##
-    ##  Type and dimension of the mesh 
-    ##
-    ############################################
-
-    type = GeneratedMeshGenerator
-    dim = 3
-
-    #############################################
-    ##
-    ##  Grid definition. Note that it should be
-    ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
-    ##
-    #############################################
-
-    nx = 32
-    ny = 32
-    nz = 30
-
-    #############################################
-    ##
-    ##   Actual spatial coordinates of mesh. 
-    ##   Jmax - Jmin = nJ/2 for J = x, y, z
-    ##   Units are in nanometers
-    ##
-    #############################################
-
-    xmin = -16.0
-    xmax = 16.0
-    ymin = -16.0
-    ymax = 16.0
-    zmin = -10.0
-    zmax = 20.0
-
-    #############################################
-    ##
-    ##  FE type/order (hexahedral, tetrahedral
-    ##
-    #############################################
-
-    elem_type = HEX8
+  [Mesh]
+    file = TestIsland.e
+    # uniform_refine = 1
   []
-  [./cnode]
-    input = gen
-
-    ############################################
-    ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
-
-    type = ExtraNodesetGenerator
-    coord = '-16.0 -16.0 -10.0'
-    new_boundary = 100
-  [../]
-
-  [subdomains]
-    type = SubdomainBoundingBoxGenerator
-    input = cnode
-    bottom_left = '-16.0 -16.0 -10.0'
-    block_id = 1
-    top_right = '16.0 16.0 0'
-    location = INSIDE
-  []
-  [film_interface]
-    type = SideSetsBetweenSubdomainsGenerator
-    input = subdomains
-    primary_block = 0
-    paired_block = 1
-    new_boundary = 52
-  []
-  [film_surface]
-    type = SideSetsFromNormalsGenerator
-    input = film_interface
-    normals = '0  0  1'
-    fixed_normal = true
-    new_boundary = '107'
-  []
-  [substrate_bottom]
-    type = SideSetsFromNormalsGenerator
-    input = film_surface
-    normals = '0  0  -1'
-    fixed_normal = true
-    new_boundary = '108'
-  []
-[]
 
 [GlobalParams]
   len_scale = 1.0
@@ -112,7 +22,7 @@
   ##############################################
 
   vol = vol
-  
+
   u_x = u_x
   u_y = u_y
   u_z = u_z
@@ -123,7 +33,7 @@
   #################################
   ##
   ##  Variable definitions
-  ##    P, u, phi, e^global_ij  
+  ##    P, u, phi, e^global_ij
   ##  and their initial conditions
   ##
   #################################
@@ -140,7 +50,7 @@
       min = -1e-2
       max = 1e-2
     [../]
-    block = '0'
+    block = '1'
   [../]
   [./polar_y]
     order = FIRST
@@ -150,7 +60,7 @@
       min = -1e-2
       max = 1e-2
     [../]
-    block = '0'
+    block = '1'
   [../]
   [./polar_z]
     order = FIRST
@@ -160,29 +70,29 @@
       min = -1e-2
       max = 1e-2
     [../]
-    block = '0'
+    block = '1'
   [../]
 
   [./potential_E_int]
     order = FIRST
     family = LAGRANGE
-    block = '0 1'
+    block = '1 2'
   [../]
 
   [./u_x]
     order = FIRST
     family = LAGRANGE
-    block = '0 1'
+    block = '1 2'
   [../]
   [./u_y]
     order = FIRST
     family = LAGRANGE
-    block = '0 1'
+    block = '1 2'
   [../]
   [./u_z]
     order = FIRST
     family = LAGRANGE
-    block = '0 1'
+    block = '1 2'
   [../]
 []
 
@@ -191,9 +101,9 @@
   ######################################
   ##
   ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate variables
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
 
@@ -204,13 +114,13 @@
   ######################################
 
   [./disp_x]
-    block = '0 1'
+    block = '1 2'
   [../]
   [./disp_y]
-    block = '0 1'
+    block = '1 2'
   [../]
   [./disp_z]
-    block = '0 1'
+    block = '1 2'
   [../]
 
 ######################################
@@ -222,79 +132,79 @@
   [./e00]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./e01]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./e10]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./e11]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./e12]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./e22]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
 
   [./s00]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./s01]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./s10]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./s11]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./s12]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./s22]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
 
   [./E_x]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./E_y]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
   [./E_z]
     order = CONSTANT
     family = MONOMIAL
-    block = '0 1'
+    block = '1 2'
   [../]
 
 []
@@ -304,9 +214,9 @@
   ######################################
   ##
   ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations" 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate "operations"
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
   [./disp_x]
@@ -444,7 +354,7 @@
   ######################################
   ##
   ##  Necessary for PBC system
-  ##  
+  ##
   ######################################
 
   [./global_strain]
@@ -459,7 +369,7 @@
 
   #################################################
   ##
-  ## Landau, electrostrictive, elastic coefficients  
+  ## Landau, electrostrictive, elastic coefficients
   ##  M. Mtebwa, A. K. Tagantsev, and N. Setter
   ##    AIP Adv. 4, 127150 (2014).
   ##
@@ -469,39 +379,39 @@
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
     prop_values = '-0.048889 0.04764 0.1336 0.1735 0.6128 -2.894 0.0 0.0 0.0 0.0'
-    block = '0'
+    block = '1'
   [../]
 
   [./Landau_P_substr]
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
     prop_values = '10.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
-    block = '1'
+    block = '2'
   [../]
 
   [./Landau_G_FE]
     type = GenericConstantMaterial
     prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
     prop_values = '0.173 0.6 0.0 0.3 0.3'
-    block = '0'
+    block = '1'
   [../]
 
   [./mat_C_FE]
     type = GenericConstantMaterial
     prop_names = 'C11 C12 C44'
     prop_values = '179.073 66.71 82.6446'
-    block = '0'
+    block = '1'
   [../]
   [./mat_C_sub]
     type = GenericConstantMaterial
     prop_names = 'C11 C12 C44'
     prop_values = '220.0 34.4 161.1'
-    block = '1'
+    block = '2'
   [../]
 
   ##################################################
   ##=
-  ## NOTE: Sign convention in Ferret for the 
+  ## NOTE: Sign convention in Ferret for the
   ##        electrostrictive coeff. is multiplied by
   ##        an overall factor of (-1)
   ##
@@ -511,7 +421,7 @@
     type = GenericConstantMaterial
     prop_names = 'Q11 Q12 Q44'
     prop_values = '-0.0966 0.046 -0.0819'
-    block = '0 1'
+    block = '1 2'
   [../]
 
   [./mat_q]
@@ -523,7 +433,7 @@
   [./eigen_strain]
     type = ComputeEigenstrain
     # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
-    eigen_base = '1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0'
+    eigen_base = '0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
     eigenstrain_name = eigenstrain
     prefactor = 0.0
   [../]
@@ -535,7 +445,7 @@
    ###############################################
    ##
    ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
    ##
    ###############################################
 
@@ -563,7 +473,7 @@
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##
     ###############################################
@@ -580,7 +490,7 @@
   ###############################################
   ##
   ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
+  ## to enforce TDLGD evolution
   ##
   ###############################################
 
@@ -595,126 +505,126 @@
     type = BulkEnergyDerivativeEighth
     variable = polar_x
     component = 0
-    block = '0'
+    block = '1'
   [../]
   [./bed_y]
     type = BulkEnergyDerivativeEighth
     variable = polar_y
     component = 1
-    block = '0'
+    block = '1'
   [../]
   [./bed_z]
     type = BulkEnergyDerivativeEighth
     variable = polar_z
     component = 2
-    block = '0'
+    block = '1'
   [../]
 
   [./walled_x]
     type = WallEnergyDerivative
     variable = polar_x
     component = 0
-    block = '0'
+    block = '1'
   [../]
   [./walled_y]
     type = WallEnergyDerivative
     variable = polar_y
     component = 1
-    block = '0'
+    block = '1'
   [../]
   [./walled_z]
     type = WallEnergyDerivative
     variable = polar_z
     component = 2
-    block = '0'
+    block = '1'
   [../]
 
   [./electrostr_ux]
     type = ElectrostrictiveCouplingDispDerivative
     variable = u_x
     component = 0
-    block = '0'
+    block = '1'
   [../]
   [./electrostr_uy]
     type = ElectrostrictiveCouplingDispDerivative
     variable = u_y
     component = 1
-    block = '0'
+    block = '1'
   [../]
   [./electrostr_uz]
     type = ElectrostrictiveCouplingDispDerivative
     variable = u_z
     component = 2
-    block = '0'
+    block = '1'
   [../]
 
   [./electrostr_polar_coupled_x]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_x
     component = 0
-    block = '0'
+    block = '1'
   [../]
   [./electrostr_polar_coupled_y]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_y
     component = 1
-    block = '0'
+    block = '1'
   [../]
   [./electrostr_polar_coupled_z]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_z
     component = 2
-    block = '0'
+    block = '1'
   [../]
 
 
   [./polar_x_electric_E]
     type = PolarElectricEStrong
     variable = potential_E_int
-    block = '0'
+    block = '1'
   [../]
   [./FE_E_int]
     type = Electrostatics
     variable = potential_E_int
-    block = '0 1'
+    block = '1 2'
   [../]
 
   [./polar_electric_px]
     type = PolarElectricPStrong
     variable = polar_x
     component = 0
-    block = '0'
+    block = '1'
   [../]
   [./polar_electric_py]
     type = PolarElectricPStrong
     variable = polar_y
     component = 1
-    block = '0'
+    block = '1'
   [../]
   [./polar_electric_pz]
     type = PolarElectricPStrong
     variable = polar_z
     component = 2
-    block = '0'
+    block = '1'
   [../]
 
   [./polar_x_time]
     type = TimeDerivativeScaled
     variable=polar_x
     time_scale = 1.0
-    block = '0'
+    block = '1'
   [../]
   [./polar_y_time]
     type = TimeDerivativeScaled
     variable = polar_y
     time_scale = 1.0
-    block = '0'
+    block = '1'
   [../]
   [./polar_z_time]
     type = TimeDerivativeScaled
     variable = polar_z
     time_scale = 1.0
-    block = '0'
+    block = '1'
   [../]
 
   [./u_x_time]
@@ -737,39 +647,24 @@
 
 
 [BCs]
-  [./Periodic]
-    [./xy]
-      auto_direction = 'x y'
-      variable = 'u_x u_y u_z polar_x polar_y polar_z potential_E_int'
-    [../]
-  [../]
-
-
-
-  [./boundary_interface_grounding]
-    type = DirichletBC
-    boundary = '52'
-    variable = potential_E_int
-    value = 0.0
-  [../]
 
 
   # fix center point location
   [./centerfix_x]
     type = DirichletBC
-    boundary = '108'
+    boundary = 1
     variable = u_x
     value = 0
   [../]
   [./centerfix_y]
     type = DirichletBC
-    boundary = '108'
+    boundary = 1
     variable = u_y
     value = 0
   [../]
   [./centerfix_z]
     type = DirichletBC
-    boundary = '108'
+    boundary = 1
     variable = u_z
     value = 0
   [../]
@@ -779,9 +674,9 @@
 
   ###############################################
   ##=
-  ##  Postprocessors (integrations over the 
-  ##  computational domain) to calculate the total 
-  ##  energy decomposed into linear combinations of 
+  ##  Postprocessors (integrations over the
+  ##  computational domain) to calculate the total
+  ##  energy decomposed into linear combinations of
   ##  the different physics.
   ##
   ###############################################
@@ -789,28 +684,28 @@
   [./Fbulk]
     type = BulkEnergyEighth
     execute_on = 'timestep_end'
-    block = '0'
+    block = '1'
   [../]
   [./Fwall]
     type = WallEnergy
     execute_on = 'timestep_end'
-    block = '0'
+    block = '1'
   [../]
   [./Felastic]
     type = ElasticEnergy
     execute_on = 'timestep_end'
     use_displaced_mesh = false
-    block = '0'
+    block = '1'
   [../]
   [./Fcoupled]
     type = ElectrostrictiveCouplingEnergy
     execute_on = 'timestep_end'
-    block = '0'
+    block = '1'
   [../]
   [./Felec]
     type = ElectrostaticEnergy
     execute_on = 'timestep_end'
-    block = '0'
+    block = '1'
   [../]
   [./Ftotal]
     type = LinearCombinationPostprocessor
@@ -827,19 +722,19 @@
     type = DomainVariantPopulation
     execute_on = 'timestep_end'
     component = 0
-    block = '0'
+    block = '1'
   [../]
   [./py]
     type = DomainVariantPopulation
     execute_on = 'timestep_end'
     component = 1
-    block = '0'
+    block = '1'
   [../]
   [./pz]
     type = DomainVariantPopulation
     execute_on = 'timestep_end'
     component = 2
-    block = '0'
+    block = '1'
   [../]
 
 
@@ -860,8 +755,8 @@
 
   ###############################################
   ##
-  ##  GlobalStrain system to enforce periodicity 
-  ##  in the anisotropic strain field 
+  ##  GlobalStrain system to enforce periodicity
+  ##  in the anisotropic strain field
   ##
   ###############################################
 
@@ -869,13 +764,13 @@
     type = GlobalATiO3MaterialRVEUserObject
     use_displaced_mesh = false
     execute_on = 'Initial Linear Nonlinear'
-    applied_stress_tensor = '2.1 2.1 1.9056 0.0 0.0 0.0'
-    block = '0'
+    applied_stress_tensor = '0 0 0 0.0 0.0 0.0'
+    block = '1'
   [../]
 
   ###############################################
   ##
-  ##  terminator to end energy evolution when the energy difference 
+  ##  terminator to end energy evolution when the energy difference
   ##  between subsequent time steps is lower than 5e-6
   ##
   ##  NOTE: can fail if the time step is small
@@ -946,7 +841,7 @@
 
   [./out]
     type = Exodus
-    file_base = out_PTOfilm_e12_T298K_E0_E0
+    file_base = out_PTO_Island
     elemental_as_nodal = true
     interval = 1
   [../]

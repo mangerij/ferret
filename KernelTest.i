@@ -9,16 +9,16 @@
     type = GeneratedMeshGenerator
     dim = 3
 
-    nx = 3
-    ny = 3
-    nz = 3
+    nx = 6
+    ny = 6
+    nz = 6
 
-    xmin = -0.5
-    xmax = 0.5
-    ymin = -0.5
-    ymax = 0.5
-    zmin = -0.5
-    zmax = 0.5
+    xmin = -1
+    xmax = 1
+    ymin = -1
+    ymax = 1
+    zmin = -1
+    zmax = 1
 
     #############################################
     ##
@@ -44,7 +44,7 @@
     ############################################
 
     type = ExtraNodesetGenerator
-    coord = '-0.5 -0.5 -0.5'
+    coord = '-1 -1 -1'
     new_boundary = 100
   [../]
 []
@@ -77,12 +77,15 @@
         strain = SMALL
         #incremental = true
         add_variables = true
-        eigenstrain_names = 'ferro'
-        generate_output = ' strain_xx elastic_strain_xx elastic_strain_yy elastic_strain_zz elastic_strain_xy elastic_strain_yz'
+        eigenstrain_names = 'spont_polar'
+        global_strain = global_strain
+        generate_output = ' strain_xx  strain_yy strain_zz strain_xy strain_yz'
       [../]
     []
+
     # GlobalStrain action for generating the objects associated with the global
     # strain calculation and associated displacement visualization
+
     [./GlobalStrain]
       [./global_strain]
         scalar_global_strain = global_strain
@@ -113,8 +116,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -1e-4
-      max = 1e-4
+      min = -1e-8
+      max = 1e-8
     [../]
     block = '0'
   [../]
@@ -123,8 +126,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = -1e-4
-      max = 1e-4
+      min = -1e-7
+      max = 1e-7
     [../]
     block = '0'
   [../]
@@ -133,8 +136,8 @@
     family = LAGRANGE
     [./InitialCondition]
       type = RandomIC
-      min = 1e-3
-      max = 1e-2
+      min = 1e-6
+      max = 1e-5
     [../]
   [../]
 
@@ -161,7 +164,6 @@
   ## to enforce TDLGD evolution
   ##
   ###############################################
-
 
   #Elastic Problem
 
@@ -221,44 +223,43 @@
     component = 2
     block = '0'
   [../]
-  #
-  # [./electrostr_ux]
-  #   type = ElectrostrictiveCouplingDispDerivative
-  #   variable = u_x
-  #   component = 0
-  #   block = '0'
-  # [../]
-  # [./electrostr_uy]
-  #   type = ElectrostrictiveCouplingDispDerivative
-  #   variable = u_y
-  #   component = 1
-  #   block = '0'
-  # [../]
-  # [./electrostr_uz]
-  #   type = ElectrostrictiveCouplingDispDerivative
-  #   variable = u_z
-  #   component = 2
-  #   block = '0'
-  # [../]
 
   [./electrostr_polar_coupled_x]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = ElectrostrictiveCouplingPolarDerivativeRefactor
     variable = polar_x
     component = 0
     block = '0'
   [../]
   [./electrostr_polar_coupled_y]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = ElectrostrictiveCouplingPolarDerivativeRefactor
     variable = polar_y
     component = 1
     block = '0'
   [../]
   [./electrostr_polar_coupled_z]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = ElectrostrictiveCouplingPolarDerivativeRefactor
     variable = polar_z
     component = 2
     block = '0'
   [../]
+  # [./electrostr_polar_coupled_x]
+  #   type = ElectrostrictiveCouplingPolarDerivative
+  #   variable = polar_x
+  #   component = 0
+  #   block = '0'
+  # [../]
+  # [./electrostr_polar_coupled_y]
+  #   type = ElectrostrictiveCouplingPolarDerivative
+  #   variable = polar_y
+  #   component = 1
+  #   block = '0'
+  # [../]
+  # [./electrostr_polar_coupled_z]
+  #   type = ElectrostrictiveCouplingPolarDerivative
+  #   variable = polar_z
+  #   component = 2
+  #   block = '0'
+  # [../]
 
 
   [./polar_x_time]
@@ -279,23 +280,6 @@
     time_scale = 1.0
     block = '0'
   [../]
-
-  [./u_x_time]
-    type = TimeDerivativeScaled
-    variable = u_x
-    time_scale = 1.0
-  [../]
-  [./u_y_time]
-    type = TimeDerivativeScaled
-    variable = u_y
-    time_scale = 1.0
-  [../]
-  [./u_z_time]
-    type = TimeDerivativeScaled
-    variable = u_z
-    time_scale = 1.0
-  [../]
-
 []
 
 [Materials]
@@ -329,23 +313,21 @@
 
   ##################################################
   ##
-  ## NOTE: Sign convention in Ferret for the
-  ##        electrostrictive coeff. is multiplied by
-  ##        an overall factor of (-1)
+  ## Electrostrictive coupling
   ##
   ##################################################
 
   [./mat_Q]
     type = GenericConstantMaterial
     prop_names = 'Q11 Q12 Q44'
-    prop_values = '-0.11 0.045 -0.029'
+    prop_values = '0.11 -0.045 0.029'
     block = '0'
   [../]
 
   [./mat_q]
     type = GenericConstantMaterial
     prop_names = 'q11 q12 q44'
-    prop_values = '-14.2 0.74 -1.57'
+    prop_values = '14.2 -0.74 1.57'
   [../]
 
   [./elasticity_tensor_1]
@@ -367,41 +349,42 @@
   [../]
 
   [./ferroelectric_eigenstrain]
-  type = ComputeFerroelectricStrain
-  polar_x = polar_x
-  polar_y = polar_y
-  polar_z = polar_z
-  eigenstrain_name = 'ferro'
+    type = ComputeFerroelectricStrain
+    polar_x = polar_x
+    polar_y = polar_y
+    polar_z = polar_z
+    eigenstrain_name = 'spont_polar'
+    block = '0'
 [../]
 []
 
 
 [BCs]
   [./Periodic]
-    [./xy]
+    [./xyz]
       auto_direction = 'x y z'
       variable = 'polar_x polar_y polar_z u_x u_y u_z'
     [../]
   [../]
 
-  # [./cnode_ux]
-  #   type = DirichletBC
-  #   boundary = '100'
-  #   variable = u_x
-  #   value = 0.0
-  # [../]
-  # [./cnode_uy]
-  #   type = DirichletBC
-  #   boundary = '100'
-  #   variable = u_y
-  #   value = 0.0
-  # [../]
-  # [./cnode_uz]
-  #   type = DirichletBC
-  #   boundary = '100'
-  #   variable = u_z
-  #   value = 0.0
-  # [../]
+   [./cnode_ux]
+     type = DirichletBC
+     boundary = '100'
+     variable = u_x
+     value = 0.0
+   [../]
+   [./cnode_uy]
+     type = DirichletBC
+     boundary = '100'
+     variable = u_y
+     value = 0.0
+   [../]
+   [./cnode_uz]
+     type = DirichletBC
+     boundary = '100'
+     variable = u_z
+     value = 0.0
+   [../]
 []
 
 [Postprocessors]
@@ -411,7 +394,6 @@
     variable = polar_z
     execute_on = 'initial timestep_end'
   [../]
-
 
   ###############################################
   ##
@@ -450,34 +432,8 @@
     execute_on = 'timestep_end'
   [../]
 
-  [./perc_change]
-    type = PercentChangePostprocessor
-    postprocessor = Ftotal
-    execute_on = 'timestep_end'
-  [../]
-  [./elapsed]
-    type = PerfGraphData
-    section_name = "Root"  # for profiling the problem [on]
-    data_type = total
-  [../]
-
 []
 
-[UserObjects]
-  ###############################################
-  ##
-  ##  terminator to end energy evolution when the energy difference
-  ##  between subsequent time steps is lower than 5e-6
-  ##
-  ##  NOTE: can fail if the time step is small
-  ##
-  ###############################################
-
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-8'
-   [../]
-[]
 
 [Preconditioning]
 
@@ -490,9 +446,9 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options = '-snes_ksp_ew'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided'
-    petsc_options_value = '    80             1e-8        1e-6      1e-5       bjacobi      allreduce'
+    #petsc_options = '-snes_ksp_ew'
+    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -pc_factor_mat_solver_type'
+    petsc_options_value = '    120             1e-10        1e-6      1e-6       lu   superlu_dist'
   [../]
 []
 
@@ -500,13 +456,13 @@
 
   ##########################################
   ##
-  ##  Time integ=ration/solver options
+  ##  Time integration/solver options
   ##
   ##########################################
 
   type = Transient
   solve_type = 'PJFNK'
-  scheme = 'bdf2'
+  scheme = 'implicit-euler'
   dtmin = 1e-13
   dtmax = 3.6
 
@@ -522,6 +478,8 @@
   [../]
   verbose = true
   nl_max_its = 20
+
+  num_steps = 100
 []
 
 [Outputs]
@@ -536,13 +494,8 @@
   perf_graph = false
   [./out]
     type = Exodus
-    file_base = out_monoBTO
+    file_base = out_monoBTO_eig
     elemental_as_nodal = true
-    interval = 1
-  [../]
-  [./outCSV]
-    type = CSV
-    file_base = out_monoBTO
-    execute_on = 'timestep_end'
+    interval = 5
   [../]
 []

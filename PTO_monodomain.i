@@ -1,5 +1,3 @@
-a1temp = a1def
-
 [Mesh]
   [gen]
     ############################################
@@ -172,7 +170,9 @@ a1temp = a1def
   [./Landau_P]
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
-    prop_values = '${a1temp} -0.073 0.75 0.26 0.61 -3.67 0.0 0.0 0.0 0.0'
+    prop_values = '-0.1722883 -0.073 0.75 0.26 0.61 -3.67 0.0 0.0 0.0 0.0'
+#    prop_values = '-0.1722883 0.42 0.735 0.26 0.61 -3.67 0.0 0.0 0.0 0.0'
+
   [../]
 
   ############################################
@@ -235,7 +235,7 @@ a1temp = a1def
      ###############################################
 
       C_ijkl = '175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1'
-      block = '0 1'
+      block = '0'
     [../]
     [./film_eigenstrain]
       type = CompositeEigenstrain
@@ -243,18 +243,21 @@ a1temp = a1def
       weights = 'weight1 weight2'
       eigenstrain_name = total_eigenstrain
       block = 0
+      coupled_variables = u_x
     [../]
     [./weight1]
       type = DerivativeParsedMaterial
       block = 0
-      expression = '1'
+      expression = '-1'
       property_name = weight1
+      coupled_variables = u_x
     [../]
     [./weight2]
       type = DerivativeParsedMaterial
       block = 0
       expression = '1'
       property_name = weight2
+      coupled_variables = u_x
     [../]
 
       [./ferroelectric_eigenstrain]
@@ -267,12 +270,6 @@ a1temp = a1def
       [../]
   [./stress_1]
     type = ComputeLinearElasticStress
-  [../]
-
-  [./global_strain]
-    type = ComputeGlobalStrain
-    scalar_global_strain = global_strain
-    global_strain_uo = global_strain_uo
   [../]
 
   [./permitivitty_1]
