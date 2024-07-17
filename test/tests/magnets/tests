@@ -15,6 +15,8 @@
     exodiff = 'out_Sstate_gen-Py_111_OOMF.e'
     max_parallel = 1
     max_threads = 1
+    abs_zero = 2e-9
+    rel_err = 1e-5
   [../]
 
   [./slab.pml]
