@@ -1,0 +1,66 @@
+COORDINATES absolute 1.e-6
+
+TIME STEPS relative 1.e-6 floor 0.0
+
+GLOBAL VARIABLES relative 1.e-6 floor 1e-10
+	FbA
+	FbP
+	FcAu
+	FcPA
+	FcPu
+	Fele
+	Felu
+	FgA
+	FgP
+	Ftot
+	dt
+	perc_change
+	global_strain_0
+	global_strain_1
+	global_strain_2
+	global_strain_3
+	global_strain_4
+	global_strain_5
+
+NODAL VARIABLES relative 1.e-3 floor 1e-10
+	antiphase_A_x
+	antiphase_A_y
+	antiphase_A_z
+	disp_x
+	disp_y
+	disp_z
+	e00
+	e01
+	e02
+	e10
+	e11
+	e12
+	e20
+	e21
+	e22
+	polar_x
+	polar_y
+	polar_z
+	potential_E_int relative 1e-2 floor 1e-10
+	s00
+	s01
+	s10
+	s11
+	u_x
+	u_y
+	u_z
+
+ELEMENT VARIABLES relative 1.e-3 floor 1e-10
+	e00
+	e01
+	e02
+	e10
+	e11
+	e12
+	e20
+	e21
+	e22
+	s00
+	s01
+	s10
+	s11
