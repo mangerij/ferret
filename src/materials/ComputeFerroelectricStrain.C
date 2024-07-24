@@ -19,12 +19,12 @@
 
 **/
 
-#include "ComputeSpontaneousPolarStrain.h"
+#include "ComputeFerroelectricStrain.h"
 #include "RankTwoTensor.h"
 
-registerMooseObject("FerretApp", ComputeSpontaneousPolarStrain);
+registerMooseObject("FerretApp", ComputeFerroelectricStrain);
 
-InputParameters ComputeSpontaneousPolarStrain::validParams()
+InputParameters ComputeFerroelectricStrain::validParams()
 {
   InputParameters params = ComputeEigenstrainBase::validParams();
   params.addClassDescription("Compute the spontaneous polar contribution to the strain.");
@@ -34,7 +34,7 @@ InputParameters ComputeSpontaneousPolarStrain::validParams()
   return params;
 }
 
-ComputeSpontaneousPolarStrain::ComputeSpontaneousPolarStrain(const InputParameters & parameters) :
+ComputeFerroelectricStrain::ComputeFerroelectricStrain(const InputParameters & parameters) :
     ComputeEigenstrainBase(parameters),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
@@ -48,7 +48,7 @@ ComputeSpontaneousPolarStrain::ComputeSpontaneousPolarStrain(const InputParamete
 }
 
 void
-ComputeSpontaneousPolarStrain::computeQpEigenstrain()
+ComputeFerroelectricStrain::computeQpEigenstrain()
 {
   RealVectorValue w(_polar_x[_qp], _polar_y[_qp], _polar_z[_qp]);
 

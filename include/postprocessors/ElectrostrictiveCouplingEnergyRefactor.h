@@ -19,35 +19,34 @@
 
 **/
 
-#ifndef COMPUTESPONTANEOUSPOLARSTRAIN_H
-#define COMPUTESPONTANEOUSPOLARSTRAIN_H
+#ifndef ELECTROSTRICTIVECOUPLINGENERGYREFACTOR_H
+#define ELECTROSTRICTIVECOUPLINGENERGYREFACTOR_H
 
-#include "Material.h"
-#include "RankTwoTensor.h"
-#include "ComputeSpontaneousPolarStrain.h"
-#include "ComputeEigenstrainBase.h"
+#include "ElementIntegralPostprocessor.h"
 
-/**
- * ComputeSpontaneousPolarStrain the base class for computing spontaneous polar strain contributions (cubic)
- */
-class ComputeSpontaneousPolarStrain : public ComputeEigenstrainBase
+class ElectrostrictiveCouplingEnergyRefactor : public ElementIntegralPostprocessor
 {
 public:
-    ComputeSpontaneousPolarStrain(const InputParameters & parameters);
+  ElectrostrictiveCouplingEnergyRefactor(const InputParameters & parameters);
 
   static InputParameters validParams();
-  void computeQpEigenstrain();
+
+protected:
+  virtual Real computeQpIntegral();
+
 private:
   const VariableValue & _polar_x;
   const VariableValue & _polar_y;
   const VariableValue & _polar_z;
-
-
   const MaterialProperty<Real> & _Q11;
   const MaterialProperty<Real> & _Q12;
   const MaterialProperty<Real> & _Q44;
-  std::vector<Real> _vals;
-  RankTwoTensor _polar_strain;
+  const MaterialProperty<Real> & _C11;
+  const MaterialProperty<Real> & _C12;
+  const MaterialProperty<Real> & _C44;
+  const Real _energy_scale;
+  const std::string _base_name;
+  const MaterialProperty<RankTwoTensor> & _strain;
 };
 
-#endif //COMPUTESPONTANEOUSPOLARSTRAIN_H
+#endif
