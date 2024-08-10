@@ -28,7 +28,7 @@
  // Begin the main program.
 int main(int argc, char *argv[])
 {
-
+/**
   std::cout<<"   .-.                                                          ___       "<<"\n";
   std::cout<<"  /    \\                                                       (   )     "<<"\n";
   std::cout<<"  | .`. ;      .--.      ___           ___            .--.      | |_      "<<"\n";
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"                                                                          "<<"\n";
   std::cout<<"  Initializing simulation:                                                "<<"\n";
-  std::cout<<"__________________________________________________________________________"<<"\n";
+  std::cout<<"__________________________________________________________________________"<<"\n";**/
   Moose::main<FerretApp>(argc, argv);
 
   return 0;
