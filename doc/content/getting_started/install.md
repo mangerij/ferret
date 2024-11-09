@@ -38,6 +38,10 @@ These commands should download a copy of FERRET and a copy of MOOSE (as a submod
 > ./moose/scripts/update_and_rebuild_libmesh.sh
 > ```
 
+!alert note title=Important!
+If you are trying to clone Ferret (or MOOSE) in the Windows Sublayer for Linux (WSL), you may find that the handshake fails and the repository isn't initialized properly or outright fails. This is due to known issues with the HNS container networking protocols. See [here](https://stackoverflow.com/questions/38618885/error-rpc-failed-curl-transfer-closed-with-outstanding-read-data-remaining ) for some work-arounds.
+
+
 ### Step 3: Compile FERRET style=line-height:150%;
 
 Next, you can compile FERRET using
