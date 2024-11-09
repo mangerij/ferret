@@ -215,11 +215,11 @@ In the below video, we plot the excess energy as as a function of the arclength 
 
 !media media/sw_ex.mp4 style=display:block;margin:auto;width:67%; caption=Spin wave transport through the 2/1 (100) FE domain boundary. The color map on the Gylphs is set for $m_y = m_z$ which changes sign across the DW. The right image is a plot along the arclength $[100]$ of the components of $\mathbf{m}$. id=fig_sw_ex
 
-To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex5.md). Other spin wave transport calculations can be set up by changing the initial perturbing field or changing the `ICs` for $\{\mathbf{P},\mathbf{A},\mathbf{m}_\eta\}$ corresponding to any of the DWs described above.
+To reproduce these results, we refer the reader to our examples documentation [here](MSCA_EU_Horizon2020_Results/horizon2020_ex5.md). Other spin wave transport calculations can be set up by changing the initial perturbing field or modifying the `ICs` for $\{\mathbf{P},\mathbf{A},\mathbf{m}_\eta\}$ corresponding to any of the DWs described above.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
+This project [SCALES - 897614](https://cordis.europa.eu/project/id/897614) was funded for 2021-2023 at the [Luxembourg Institute of Science and Technology](https://www.list.lu/) under principle investigator [Jorge Íñiguez-González](https://sites.google.com/site/jorgeiniguezresearch/). The research was carried out within the framework of the [Marie Skłodowska-Curie Action (H2020-MSCA-IF-2019)](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) fellowship.
 
 !media media/euflag.png style=display:block;margin-left:auto;margin-right:auto;width:12%;
 

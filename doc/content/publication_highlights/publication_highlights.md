@@ -141,20 +141,25 @@ information technologies.
 !gallery-end!
 
 
-The full chronological list of publications that have used FERRET are provided below:
+The full reverse chronological list of publications (20) that have used FERRET are provided below:
 
-- "Influence of Elastic and Surface Strains on the Optical Properties of Semiconducting Core-Shell Nanoparticles", Phys. Rev. Appl., 4, 014001, (2015)
-- "Stress-induced shift of band gap in ZnO nanowires from finite-element modeling", Phys. Rev. Appl. 8, 034031, (2017)
-- "Topological phase transformations and intrinsic size effects in ferroelectric nanoparticles", Nanoscale, 9, 1616-1624, (2017)
-- "Domain alignment within ferroelectric/dielectric $\mathrm{PbTiO}_3$/$\mathrm{SrTiO}_3$ superlattice nanostructure", Nanoscale, 10, 3262-3271, (2018)
-- "Metastable vortex-like polarization textures in ferroelectric nanoparticles of different shapes and sizes", J. Appl. Phys. 124, 064104, (2018)
-- "Electromechanical control of polarization vortex ordering in an interacting ferroelectric-dielectric composite dimer", Appl. Phys. Lett. 113, 092901, (2018)
-- "Mesoscale modeling of polycrystalline light transmission", Acta Materialia, 175, 82-89, (2019)
-- "Harnessing ferroelectric domains for negative capacitance", Communications Physics 2 (1), 1-6, (2019)
-- "Size, shape and crystallographic orientation dependence of the field-induced behavior in ferroelectric nanoparticles", J. Appl. Phys. 125, 134102, (2019)
-- "Controllable skyrmion chirality in ferroelectrics", Sci. Rep. 10, 8657, (2020)
-- "Mesoscale modeling of light transmission modulation in ceramics", Acta Materialia, 193, 261-269, (2020)
-- "Hopfions emerge in ferroelectrics", Nature Comm. 11, 2433 (2020)
-- "Surface charge mediated polar response in ferroelectric nanoparticles", Appl. Phys. Lett. 119, 26, (2021)
+- "Extrinsic dielectric response due to domain wall motion in ferroelectric BaTiO3", Comp. Mater. Today, 5, 100016, (2024)
+- "Ferroelectric Texture of Individual Barium Titanate Nanocrystals", ACS Nano., 18, 28, (2024)
+- "Manipulating chiral spin transport with ferroelectric polarization", Nature Mater., 23, 898-904, (2024)
+- "Predicting thermoelectric figure of merit in complex materials: What do we need to know?", Acta Materialia, 271, 119889, (2024)
+- "Modeling structure–properties relations in compositionally disordered relaxor dielectrics at the nanoscale", J. Appl. Phys., 134, 10, (2023)
+- "Coupled magnetostructural continuum model for multiferroic BiFeO3", Phys. Rev. B 108, 094101 (2023)
 - "Towards modeling thermoelectric properties of anisotropic polycrystalline materials", Acta Materialia, 228, 117743, (2022)
-
+- "Surface charge mediated polar response in ferroelectric nanoparticles", Appl. Phys. Lett. 119, 26, (2021)
+- "Hopfions emerge in ferroelectrics", Nature Comm. 11, 2433 (2020)
+- "Mesoscale modeling of light transmission modulation in ceramics", Acta Materialia, 193, 261-269, (2020)
+- "Controllable skyrmion chirality in ferroelectrics", Sci. Rep. 10, 8657, (2020)
+- "Size, shape and crystallographic orientation dependence of the field-induced behavior in ferroelectric nanoparticles", J. Appl. Phys. 125, 134102, (2019)
+- "Harnessing ferroelectric domains for negative capacitance", Communications Physics 2 (1), 1-6, (2019)
+- "Mesoscale modeling of polycrystalline light transmission", Acta Materialia, 175, 82-89, (2019)
+- "Electromechanical control of polarization vortex ordering in an interacting ferroelectric-dielectric composite dimer", Appl. Phys. Lett. 113, 092901, (2018)
+- "Metastable vortex-like polarization textures in ferroelectric nanoparticles of different shapes and sizes", J. Appl. Phys. 124, 064104, (2018)
+- "Domain alignment within ferroelectric/dielectric $\mathrm{PbTiO}_3$/$\mathrm{SrTiO}_3$ superlattice nanostructure", Nanoscale, 10, 3262-3271, (2018)
+- "Topological phase transformations and intrinsic size effects in ferroelectric nanoparticles", Nanoscale, 9, 1616-1624, (2017)
+- "Stress-induced shift of band gap in ZnO nanowires from finite-element modeling", Phys. Rev. Appl. 8, 034031, (2017)
+- "Influence of Elastic and Surface Strains on the Optical Properties of Semiconducting Core-Shell Nanoparticles", Phys. Rev. Appl., 4, 014001, (2015)

@@ -2,9 +2,9 @@
 
 The developers of FERRET are
 
-- Dr. [John Mangeri](https://scholar.google.com/citations?user=0RiauUkAAAAJ&hl=en): john.m.mangeri@gmail.com
+- Dr. [John Mangeri](https://scholar.google.com/citations?user=0RiauUkAAAAJ&hl=en): johnma@dtu.dk
 - Dr. [Olle Heinonen](https://scholar.google.com/citations?user=BAbP3q8AAAAJ&hl=en): olle.heinonen@seagate.com
-- Dr. [Lukasz Kuna](https://scholar.google.com/citations?user=j0QV0jYAAAAJ&hl=en): lukasz.kuna.ctr@nrl.navy.mil
+- Dr. [Lukasz Kuna](https://scholar.google.com/citations?user=j0QV0jYAAAAJ&hl=en): lukasz.kuna.@pnnl.gov
 - Dr. [Serge Nakhmanson](https://scholar.google.com/citations?user=xOFS6p4AAAAJ&hl=en): serge.nakhmanson@uconn.edu
 
 We ask that you cite [!cite](Mangeri2017) if you use FERRET for the ferroelectric phase field method. A corresponding BibTeX entry is:
