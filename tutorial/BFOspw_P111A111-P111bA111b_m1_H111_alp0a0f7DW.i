@@ -30,7 +30,7 @@ pulseloc = 15.0
   H_x = H_x
   H_y = H_y
   H_z = H_z
-  
+
 []
 
 [Materials]
@@ -584,7 +584,7 @@ pulseloc = 15.0
   #    Local magnetic exchange            #
   #                                       #
   #---------------------------------------#
-  
+
   [./dllg1_x_exch]
     type = ExchangeCartLL
     variable = mag1_x
@@ -640,7 +640,7 @@ pulseloc = 15.0
   #    Local AFM magnetic exchange        #
   #           (Local-term)                #
   #---------------------------------------#
-  
+
   [./dllg1afm_x_exch]
     type = AFMLocalSublatticeExchangeCartLL
     variable = mag1_x
@@ -686,7 +686,7 @@ pulseloc = 15.0
   #    applied field                      #
   #                                       #
   #---------------------------------------#
-  
+
   [./dllg1_x_int]
     type = AFMInteractionCartLLHConst
     variable = mag1_x
@@ -979,7 +979,7 @@ pulseloc = 15.0
 
   #---------------------------------------#
   #                                       #
-  #     Average Mk = |m_k| and along      # 
+  #     Average Mk = |m_k| and along      #
   #     other directions                  #
   #                                       #
   #---------------------------------------#
@@ -1090,14 +1090,14 @@ pulseloc = 15.0
   #---------------------------------------#
 
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'FafmSLexch FafmSLdmi Fa1 Fa2 Fsia1 Fsia2'
     pp_coefs = ' 1.0 1.0 1.0 1.0 1.0 1.0'
     execute_on = 'initial timestep_end final'
   [../]
 
   [./FtotLLB]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fllb1 Fllb2'
     pp_coefs = ' 1.0 1.0'
     execute_on = 'initial timestep_end final'
@@ -1106,7 +1106,7 @@ pulseloc = 15.0
   [./perc_change]
     type = EnergyRatePostprocessor
     postprocessor = Ftot
-    dt = dt 
+    dt = dt
     execute_on = 'timestep_end final'
   [../]
   [./elapsed]
@@ -1166,7 +1166,7 @@ pulseloc = 15.0
 []
 
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'NEWTON'
 
   [./TimeIntegrator]

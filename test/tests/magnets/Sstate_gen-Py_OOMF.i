@@ -3,19 +3,19 @@
   ##############################
   ##
   ## UNITS:
-  ##    
+  ##
   ##   gamma = (2.2101*10^5 / 2 pi) m/C
   ##
   ##   gamma/(mu*0Ms) = 48291.9 nm*mus/pg
   ##
-  ##   coefficients given in (pg/nm*mus) 
+  ##   coefficients given in (pg/nm*mus)
   ##   which is equivalent to an energy/vol
   ##
   ##   Effective fields are 1/(mu0*Ms)*coeff
   ##   which gives units of aC/(nm*mus)
   ##
-  ##   Energies are natively printed in units 
-  ##    of 0.160218 pg nm^2 / mus^2 
+  ##   Energies are natively printed in units
+  ##    of 0.160218 pg nm^2 / mus^2
   ##    or 1.60218*10^{-22} J
   ##    or 0.001 eV
   ##
@@ -96,13 +96,13 @@ alphadef = 1.0
   ##
   ############################################################################
 
-  [./constants] 
+  [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha           g0mu0Ms           permittivity Ae      Ms   '
     prop_values = '${alphadef}     34989.1        1.0        13.0   1.0  '
   [../]
 
-#NOTE: g0 is g*mu0*Ms/2 as defined by Hertel 
+#NOTE: g0 is g*mu0*Ms/2 as defined by Hertel
 #alpha is chosen to be 1.0 as in the muMag paper
 
   [./a_long]
@@ -278,7 +278,7 @@ alphadef = 1.0
   #    Local magnetic exchange            #
   #                                       #
   #---------------------------------------#
-  
+
   [./dllg_x_exch]
     type = MasterExchangeCartLLG
     variable = mag_x
@@ -444,7 +444,7 @@ alphadef = 1.0
   #---------------------------------------#
 
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fexch Fdemag'
     pp_coefs = ' 1.0 1.0'
     execute_on = 'initial timestep_end final'
@@ -453,7 +453,7 @@ alphadef = 1.0
   [./perc_change]
     type = EnergyRatePostprocessor
     postprocessor = Ftot
-    dt = dt 
+    dt = dt
     execute_on = 'timestep_end final'
   [../]
 []
@@ -475,7 +475,7 @@ alphadef = 1.0
 []
 #
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'NEWTON'
 
   [./TimeIntegrator]

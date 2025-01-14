@@ -37,9 +37,9 @@ h44 = 0.8e-3
 
     ############################################
     ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
+    ##   additional boundary sideset (one node)
+    ##   to zero one of the elastic displacement vectors
+    ##   vectors and eliminates rigid body translations
     ##   from the degrees of freedom
     ##
     ##   NOTE: This must conform with the about
@@ -708,7 +708,7 @@ h44 = 0.8e-3
 
   [./mat_Q]
     type = GenericConstantMaterial
-    prop_names = 'Q11 Q12 Q44'   
+    prop_names = 'Q11 Q12 Q44'
     prop_values = '-0.0603833 0.0111245 -0.0175686'
   [../]
 
@@ -721,7 +721,7 @@ h44 = 0.8e-3
   [./mat_q]
     type = GenericConstantMaterial
     prop_names = 'q11 q12 q44'
-    prop_values = '-30.4162 -5.01496 -10.4105'   
+    prop_values = '-30.4162 -5.01496 -10.4105'
 
 #the point is the following: use a slightly different definition of Q_ij than Hlinka
 
@@ -729,7 +729,7 @@ h44 = 0.8e-3
   [./mat_r]
     type = GenericConstantMaterial
     prop_names = 'r11 r12 r44'
-    prop_values = '-0.0379499 0.00373096 0.0372105' 
+    prop_values = '-0.0379499 0.00373096 0.0372105'
   [../]
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -759,7 +759,7 @@ h44 = 0.8e-3
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##
     ###############################################
@@ -823,7 +823,7 @@ h44 = 0.8e-3
     pp_names = 'FbP FbA FgP FgA FcPA FcPu FcAu Felu Fele'
     pp_coefs = ' 1 1 1 1 1 1 1 1 1'
     execute_on = 'timestep_end'
-  
+
     ##########################################
     #
     # NOTE: Ferret output is in attojoules

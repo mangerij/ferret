@@ -44,7 +44,7 @@ alphadef = 0.1
   ##
   ############################################################################
 
-  [./constants] 
+  [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha           De       D0             g0mu0Ms      g0          K1         K1c      Kt     permittivity '
     prop_values = '${alphadef}   ${Dedef} ${D0def}     48291.9      48291.9      ${K1def}  ${K1cdef} ${Ktdef}     1.0     '
@@ -671,14 +671,14 @@ alphadef = 0.1
   [../]
 
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'FafmSLexch FafmSLdmi Fa1 Fa2 Fsia1 Fsia2'
     pp_coefs = ' 1.0 1.0 1.0 1.0 1.0 1.0'
     execute_on = 'initial timestep_end final'
   [../]
 
   [./FtotLLB]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fllb1 Fllb2'
     pp_coefs = ' 1.0 1.0'
     execute_on = 'initial timestep_end final'
@@ -687,7 +687,7 @@ alphadef = 0.1
   [./perc_change]
     type = EnergyRatePostprocessor
     postprocessor = Ftot
-    dt = dt 
+    dt = dt
     execute_on = 'timestep_end final'
   [../]
 

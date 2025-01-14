@@ -93,7 +93,7 @@ Eadef = -1.8e3
 
   [./mat_Q]
     type = GenericConstantMaterial
-    prop_names = 'Q11 Q12 Q44'   
+    prop_names = 'Q11 Q12 Q44'
     prop_values = '-0.0603833 0.0111245 -0.0175686'
   [../]
 
@@ -106,7 +106,7 @@ Eadef = -1.8e3
   [./mat_q]
     type = GenericConstantMaterial
     prop_names = 'q11 q12 q44'
-    prop_values = '-30.4162e3 -5.01496e3 -10.4105e3'   
+    prop_values = '-30.4162e3 -5.01496e3 -10.4105e3'
 
 #the point is the following: use a slightly different definition of Q_ij than Hlinka
 
@@ -114,7 +114,7 @@ Eadef = -1.8e3
   [./mat_r]
     type = GenericConstantMaterial
     prop_names = 'r11 r12 r44'
-    prop_values = '-0.0379499e3 0.00373096e3 0.0372105e3' 
+    prop_values = '-0.0379499e3 0.00373096e3 0.0372105e3'
   [../]
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
@@ -144,7 +144,7 @@ Eadef = -1.8e3
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##
     ###############################################
@@ -1198,7 +1198,7 @@ Eadef = -1.8e3
 
  #---------------------------------------#
   #                                       #
-  #     Average Mk = |m_k| and along      # 
+  #     Average Mk = |m_k| and along      #
   #     other directions                  #
   #                                       #
   #---------------------------------------#
@@ -1412,14 +1412,14 @@ Eadef = -1.8e3
   #---------------------------------------#
 
   [./FtotMAG]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'FafmSLexch FafmSLdmi Fa1 Fa2 Fsia1 Fsia2'
     pp_coefs = ' 1.0 1.0 1.0 1.0 1.0 1.0'
     execute_on = 'initial timestep_end final'
   [../]
 
   [./FtotLLB]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fllb1 Fllb2'
     pp_coefs = ' 1.0 1.0'
     execute_on = 'initial timestep_end final'
@@ -1583,7 +1583,7 @@ Eadef = -1.8e3
     pp_names = 'FbP FbA FcPA FcPu FcAu Felu'
     pp_coefs = ' 1 1 1 1 1 1 '
     execute_on = 'initial timestep_end final'
-  
+
     ##########################################
     #
     # NOTE: Ferret output is in attojoules
@@ -1620,7 +1620,7 @@ Eadef = -1.8e3
 []
 
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'PJFNK'
 
 

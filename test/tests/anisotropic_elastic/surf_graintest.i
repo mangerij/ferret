@@ -253,7 +253,7 @@
     boundary = '2 13 15 21 27 28'
     value = 0.025
   [../]
- 
+
   [./anchor_dn_X]
     type = DirichletBC
     variable = disp_x

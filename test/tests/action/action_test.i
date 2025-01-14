@@ -4,7 +4,7 @@ a1temp = -0.172197
   [gen]
     ############################################
     ##
-    ##  Type and dimension of the mesh 
+    ##  Type and dimension of the mesh
     ##
     ############################################
 
@@ -24,7 +24,7 @@ a1temp = -0.172197
 
     #############################################
     ##
-    ##   Actual spatial coordinates of mesh. 
+    ##   Actual spatial coordinates of mesh.
     ##   Jmax - Jmin = nJ/2 for J = x, y, z
     ##   Units are in nanometers
     ##
@@ -50,9 +50,9 @@ a1temp = -0.172197
 
     ############################################
     ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
+    ##   additional boundary sideset (one node)
+    ##   to zero one of the elastic displacement vectors
+    ##   vectors and eliminates rigid body translations
     ##   from the degrees of freedom
     ##
     ##   NOTE: This must conform with the about
@@ -93,7 +93,7 @@ a1temp = -0.172197
   #################################
   ##
   ##  Variable definitions
-  ##    P, u, phi, e^global_ij  
+  ##    P, u, phi, e^global_ij
   ##  and their initial conditions
   ##
   #################################
@@ -154,9 +154,9 @@ a1temp = -0.172197
   ######################################
   ##
   ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate variables
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
 
@@ -240,9 +240,9 @@ a1temp = -0.172197
   ######################################
   ##
   ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations" 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate "operations"
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
   [./disp_x]
@@ -368,7 +368,7 @@ a1temp = -0.172197
   ######################################
   ##
   ##  Necessary for PBC system
-  ##  
+  ##
   ######################################
 
   [./global_strain]
@@ -384,7 +384,7 @@ a1temp = -0.172197
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #C11 C12 C13 C22 C23 C33 C44 C55 C66 
+    #C11 C12 C13 C22 C23 C33 C44 C55 C66
     C_ijkl = '175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1'
   [../]
 
@@ -409,7 +409,7 @@ a1temp = -0.172197
   ###############################################
   ##
   ## MOOSE and Ferret Kernel, Materials, and
-  ## Postprocessors for TDLGD evolution 
+  ## Postprocessors for TDLGD evolution
   ##
   ###############################################
 
@@ -452,7 +452,7 @@ a1temp = -0.172197
 
     q_ij = 'q11 q12 q44'
     q_ij_val = '-11.4 -0.01438 -7.5'
-  
+
     C_ij = 'C11 C12 C44'
     C_ij_val = '175.0 79.4 111.1'
    [../]
@@ -526,7 +526,7 @@ a1temp = -0.172197
 
   ###############################################
   ##
-  ##  Postprocessors (integrations over the 
+  ##  Postprocessors (integrations over the
   ##  computational domain) to calculate the total energy
   ##  decomposed into linear combinations of the
   ##  different physics.
@@ -610,8 +610,8 @@ a1temp = -0.172197
 
   ###############################################
   ##
-  ##  GlobalStrain system to enforce periodicity 
-  ##  in the anisotropic strain field 
+  ##  GlobalStrain system to enforce periodicity
+  ##  in the anisotropic strain field
   ##
   ###############################################
 
@@ -623,7 +623,7 @@ a1temp = -0.172197
 
   ###############################################
   ##
-  ##  terminator to end energy evolution when the energy difference 
+  ##  terminator to end energy evolution when the energy difference
   ##  between subsequent time steps is lower than 5e-6
   ##
   ##  NOTE: can fail if the time step is small

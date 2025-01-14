@@ -4,7 +4,7 @@
   ##   Example of pulling material properties
   ##   from a csv file on a simple thermocouple
   ##   block
-  ##   
+  ##
   ############################################
 
 [Mesh]
@@ -54,11 +54,11 @@
 [Functions]
   #########################################################
   ##
-  ##  Function type used to define Seebeck coefficient 
+  ##  Function type used to define Seebeck coefficient
   ##  as a function of temperature CSV needs to be formatted
-  ##  so that the first ROW is the temperature or variable 
+  ##  so that the first ROW is the temperature or variable
   ##  dependence of interest, and second ROW is value of interest
-  ##  The traditional syntex for this has time as the first row.  
+  ##  The traditional syntex for this has time as the first row.
   ##  t to T conversion happens in material block. The block header
   ##  is what is used to call the function in the materials block
   ##
@@ -206,24 +206,24 @@
   ##
   ##  Temperature dependent Seebeck coefficient
   ##  This material block is a knock off of HeatConductionMaterial
-  ##  The block takes a function and converts the time variable 
+  ##  The block takes a function and converts the time variable
   ##  into temperature (or any variable of interest for that matter)
   ##  This material block is flexible and can be easily modified to
   ##  account for other parameters of interest (Will need to add temp
-  ##  dep density and specific heat if we want time dependent heat 
+  ##  dep density and specific heat if we want time dependent heat
   ##  flow analysis)
   ##
   #########
   ##
-  ## If _temperature_function is specified then the block will expect a 
-  ## function (seebeck_coefficient_temperature_function for example). 
-  ## Otherwise a constant value will need to be input (thermal_conductivity 
+  ## If _temperature_function is specified then the block will expect a
+  ## function (seebeck_coefficient_temperature_function for example).
+  ## Otherwise a constant value will need to be input (thermal_conductivity
   ## or electrical_conductivity for example).
   ##
-  ## NOTE: The original HeatConductionMaterial was written for systems in terms of 
+  ## NOTE: The original HeatConductionMaterial was written for systems in terms of
   ## Kelvin, so a warning will be displayed if the temperature value goes negative.
   ## The warning can be ignored if units are in C, or if a randomIC is used with a
-  ## negative range (I changed randomIC range on T for this model to be 0 - 10e-10K 
+  ## negative range (I changed randomIC range on T for this model to be 0 - 10e-10K
   ## to avoid the warning)
   ##
   #########################################################

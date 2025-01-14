@@ -1,4 +1,4 @@
-#This is a polarized (spontaneously) sphere in a dielectric medium. 
+#This is a polarized (spontaneously) sphere in a dielectric medium.
 #A background (optical) dielectric constant of 1 is assigned, while the medium has dielectric constant of 10.
 #The nonzero polarization gives rise to nonzero surface charges which are handled naturally.
 
@@ -99,7 +99,7 @@
     block = '1 2'
     component = 1
     potential_int = potential
-  [../]  
+  [../]
   [./Ez]
     type = QuasistaticFieldAux
     variable = E_z

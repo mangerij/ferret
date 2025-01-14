@@ -290,7 +290,7 @@
     type = ComputeIndicatrix
     block = '2 3'
     #from Handbook of Optics Chp. 17
-    refractive_index_bulk_ordinary = 2.437 
+    refractive_index_bulk_ordinary = 2.437
     refractive_index_bulk_extraordinary = 2.365
   [../]
 
@@ -328,7 +328,7 @@
     type = ComputeIndicatrix
     block = '1 4'
     #from BTO paper
-    refractive_index_bulk_ordinary = 2.412 
+    refractive_index_bulk_ordinary = 2.412
     refractive_index_bulk_extraordinary = 2.360
     euler_angle_1 = 0.0 # 45.0
     euler_angle_2 = 54.74 #37.0
