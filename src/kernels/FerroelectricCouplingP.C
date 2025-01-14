@@ -77,7 +77,7 @@ FerroelectricCouplingP::computeQpResidual()
   RealVectorValue v0(_eigenstrain[_qp](0,0), _eigenstrain[_qp](0,1), _eigenstrain[_qp](0,2));
   RealVectorValue v1(_eigenstrain[_qp](1,0), _eigenstrain[_qp](1,1), _eigenstrain[_qp](1,2));
   RealVectorValue v2(_eigenstrain[_qp](2,0), _eigenstrain[_qp](2,1), _eigenstrain[_qp](2,2));
-  
+
 
   //Moose::out << "\n e"; std::cout << 0; std::cout << 0; Moose::out << " = "; std::cout << _eigenstrain[_qp](0,0);
   //Moose::out << "\n e"; std::cout << 0; std::cout << 1; Moose::out << " = "; std::cout << _eigenstrain[_qp](0,1);

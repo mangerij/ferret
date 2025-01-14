@@ -56,20 +56,20 @@ Wall2EnergyDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    return (_polar_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_G11[_qp] + (_polar_y_grad[_qp](1)*_grad_test[_i][_qp](0) + _polar_z_grad[_qp](2)*_grad_test[_i][_qp](0))*_G12[_qp] + 
-   ((2*(_polar_x_grad[_qp](1) + _polar_y_grad[_qp](0))*_grad_test[_i][_qp](1) + 2*(_polar_x_grad[_qp](2) + _polar_z_grad[_qp](0))*_grad_test[_i][_qp](2))*_G44[_qp])/2. + 
+    return (_polar_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_G11[_qp] + (_polar_y_grad[_qp](1)*_grad_test[_i][_qp](0) + _polar_z_grad[_qp](2)*_grad_test[_i][_qp](0))*_G12[_qp] +
+   ((2*(_polar_x_grad[_qp](1) + _polar_y_grad[_qp](0))*_grad_test[_i][_qp](1) + 2*(_polar_x_grad[_qp](2) + _polar_z_grad[_qp](0))*_grad_test[_i][_qp](2))*_G44[_qp])/2. +
    ((2*(_polar_x_grad[_qp](1) - _polar_y_grad[_qp](0))*_grad_test[_i][_qp](1) + 2*(_polar_x_grad[_qp](2) - _polar_z_grad[_qp](0))*_grad_test[_i][_qp](2))*_G44P[_qp])/2.);
   }
   else if (_component == 1)
   {
-    return (_polar_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_G11[_qp] + (_polar_x_grad[_qp](0)*_grad_test[_i][_qp](1) + _polar_z_grad[_qp](2)*_grad_test[_i][_qp](1))*_G12[_qp] + 
-   ((2*(_polar_x_grad[_qp](1) + _polar_y_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1))*_grad_test[_i][_qp](2))*_G44[_qp])/2. + 
+    return (_polar_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_G11[_qp] + (_polar_x_grad[_qp](0)*_grad_test[_i][_qp](1) + _polar_z_grad[_qp](2)*_grad_test[_i][_qp](1))*_G12[_qp] +
+   ((2*(_polar_x_grad[_qp](1) + _polar_y_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1))*_grad_test[_i][_qp](2))*_G44[_qp])/2. +
    ((-2*(_polar_x_grad[_qp](1) - _polar_y_grad[_qp](0))*_grad_test[_i][_qp](0) - 2*(-_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1))*_grad_test[_i][_qp](2))*_G44P[_qp])/2.);
   }
   else if (_component == 2)
   {
-    return (_polar_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_G11[_qp] + (_polar_x_grad[_qp](0)*_grad_test[_i][_qp](2) + _polar_y_grad[_qp](1)*_grad_test[_i][_qp](2))*_G12[_qp] + 
-   ((2*(_polar_x_grad[_qp](2) + _polar_z_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1))*_grad_test[_i][_qp](1))*_G44[_qp])/2. + 
+    return (_polar_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_G11[_qp] + (_polar_x_grad[_qp](0)*_grad_test[_i][_qp](2) + _polar_y_grad[_qp](1)*_grad_test[_i][_qp](2))*_G12[_qp] +
+   ((2*(_polar_x_grad[_qp](2) + _polar_z_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1))*_grad_test[_i][_qp](1))*_G44[_qp])/2. +
    ((-2*(_polar_x_grad[_qp](2) - _polar_z_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(-_polar_y_grad[_qp](2) + _polar_z_grad[_qp](1))*_grad_test[_i][_qp](1))*_G44P[_qp])/2.);
   }
   else
@@ -81,17 +81,17 @@ Wall2EnergyDerivative::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return (_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0)*_G11[_qp] + ((2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_G44[_qp])/2. + 
+    return (_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0)*_G11[_qp] + ((2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_G44[_qp])/2. +
    ((2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_G44P[_qp])/2.);
   }
   else if (_component == 1)
   {
-    return (_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1)*_G11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_G44[_qp])/2. + 
+    return (_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1)*_G11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_G44[_qp])/2. +
    ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_G44P[_qp])/2.);
   }
   else if (_component == 2)
   {
-    return (_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2)*_G11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1))*_G44[_qp])/2. + 
+    return (_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2)*_G11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1))*_G44[_qp])/2. +
    ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1))*_G44P[_qp])/2.);
   }
   else

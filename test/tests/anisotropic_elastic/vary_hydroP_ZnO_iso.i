@@ -1,8 +1,8 @@
 
-# Core-shell nanoparticle, 25 nm in diameter: 
+# Core-shell nanoparticle, 25 nm in diameter:
 # Single-crystal round ZnO core, 15 nm in diameter.
 # Single-crystal rutile TiO2 shell, 5 nm in thickness.
-# Here, crystalline rTiO2 elastic parameters (both bulk and surface ones) in the shell were 
+# Here, crystalline rTiO2 elastic parameters (both bulk and surface ones) in the shell were
 # averaged out to isotropic symmetry, which effectively makes the rTiO2 shell amorphous.
 # See Influence of Elastic and Surface Strains on the Optical Properties of Semiconducting Core-Shell Nanoparticles
 # J. Mangeri, O. Heinonen, D. Karpeyev, and S. Nakhmanson, Phys. Rev. Applied 4, 014001 (2015)
@@ -204,9 +204,9 @@
   [../]
 
   [./bandgap]
-    ### Here we use the results from Phys Rev B 88, 235210 (2013) Wagner et al 
-    # which computes the strain-induced bandgap change of wurtzite ZnO using 
-    # the HSE approach. Here E0, db, du, Rb and nu are material properties. 
+    ### Here we use the results from Phys Rev B 88, 235210 (2013) Wagner et al
+    # which computes the strain-induced bandgap change of wurtzite ZnO using
+    # the HSE approach. Here E0, db, du, Rb and nu are material properties.
     # Units will be in eV. Note we are justified in the strain_xx = strain_yy(using histo2d)
     # Here we consider Gamma_7c-Gamma-7v as an example
     type = BandGapAuxZnO
@@ -303,7 +303,7 @@
     boundary = '1'
     surface_euler_angle_1 = 0.0
     surface_euler_angle_2 = 0.0
-    surface_euler_angle_3 = 0.0 
+    surface_euler_angle_3 = 0.0
     # Surface elastic tensor C_1111, C_1122
     Cs_ijkl = '42.0e-09 15.0e-09'
     # Intrinsic surface stress
@@ -354,7 +354,7 @@
        euler_angle_3 = 0.0
     [../]
     [./strain2]
-      type = ComputeSmallStrain 
+      type = ComputeSmallStrain
       block = '2'
     [../]
     [./stress2]

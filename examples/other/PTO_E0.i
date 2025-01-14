@@ -96,9 +96,9 @@
   ######################################
   ##
   ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate variables
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
 
@@ -177,9 +177,9 @@
   ######################################
   ##
   ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations" 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate "operations"
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
   [./e00]
@@ -276,7 +276,7 @@
   ##
   ## NOTE: there might be some Legendre transforms
   ##        depending on what approach you use
-  ##        -i.e. inhomogeneous strain vs 
+  ##        -i.e. inhomogeneous strain vs
   ##            homogeneous strain [renormalized]
   ##
   ##################################################
@@ -310,7 +310,7 @@
 
   ##################################################
   ##=
-  ## NOTE: Sign convention in Ferret for the 
+  ## NOTE: Sign convention in Ferret for the
   ##        electrostrictive coeff. is multiplied by
   ##        an overall factor of (-1)
   ##
@@ -345,7 +345,7 @@
    ###############################################
    ##
    ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
    ##
    ###############################################
 
@@ -359,7 +359,7 @@
    ###############################################
    ##
    ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
    ##
    ###############################################
 
@@ -383,7 +383,7 @@
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##
     ###############################################
@@ -400,7 +400,7 @@
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##
     ###############################################
@@ -418,7 +418,7 @@
   ###############################################
   ##
   ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
+  ## to enforce TDLGD evolution
   ##
   ###############################################
 
@@ -601,7 +601,7 @@
 
   ###############################################
   ##=
-  ##  Postprocessors (integrations over the 
+  ##  Postprocessors (integrations over the
   ##  computational domain) to calculate the total energy
   ##  decomposed into linear combinations of the
   ##  different physics.
@@ -652,7 +652,7 @@
 [UserObjects]
   ###############################################
   ##
-  ##  terminator to end energy evolution when the energy difference 
+  ##  terminator to end energy evolution when the energy difference
   ##  between subsequent time steps is lower than 1e-5
   ##
   ##  NOTE: can fail if the time step is small
@@ -723,5 +723,5 @@
     type = CSV
     file_base = out_PTOsphere0_inSTO_2_2
   [../]
-[]      
+[]
 

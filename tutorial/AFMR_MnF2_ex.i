@@ -688,7 +688,7 @@ zMax = 0.01
 []
 
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'NEWTON'
   [./TimeIntegrator]
     type = NewmarkBeta

@@ -68,18 +68,18 @@ MagnetostrictiveCouplingCubicHeff::computeQpResidual()
 {
   if (_component == 0)
   {
-    return (_g0[_qp]*(2*_B11[_qp]*((-_disp_y_grad[_qp](1) + _disp_z_grad[_qp](2))*_mag_y[_qp]*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*((_disp_x_grad[_qp](0) - _disp_y_grad[_qp](1))*Utility::pow<2>(_mag_y[_qp]) + (_disp_x_grad[_qp](0) - _disp_z_grad[_qp](2))*Utility::pow<2>(_mag_z[_qp]))) + 
+    return (_g0[_qp]*(2*_B11[_qp]*((-_disp_y_grad[_qp](1) + _disp_z_grad[_qp](2))*_mag_y[_qp]*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*((_disp_x_grad[_qp](0) - _disp_y_grad[_qp](1))*Utility::pow<2>(_mag_y[_qp]) + (_disp_x_grad[_qp](0) - _disp_z_grad[_qp](2))*Utility::pow<2>(_mag_z[_qp]))) +
        _B22[_qp]*(-(0.5*(_disp_x_grad[_qp](1)+_disp_y_grad[_qp](0))*_mag_x[_qp]*_mag_z[_qp]) + 0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*(_mag_y[_qp] - _mag_z[_qp])*(_mag_y[_qp] + _mag_z[_qp]) + 0.5*(_disp_x_grad[_qp](2)+_disp_z_grad[_qp](0))*(_mag_x[_qp]*_mag_y[_qp] - _alpha[_qp]*_Ms[_qp]*Utility::pow<2>(_mag_x[_qp])*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*_mag_z[_qp]*(Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))) + _alpha[_qp]*_Ms[_qp]*_mag_y[_qp]*(-2*0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*_mag_x[_qp]*_mag_z[_qp] + 0.5*(_disp_x_grad[_qp](1)+_disp_y_grad[_qp](0))*(-Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])))))*
      _test[_i][_qp])/((1 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<2>(_Ms[_qp]));
   }
   else if (_component == 1)
   {
-    return (_g0[_qp]*(_B22[_qp]*(-(0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*_mag_x[_qp]*_mag_y[_qp]) + 0.5*(_disp_x_grad[_qp](1)+_disp_y_grad[_qp](0))*_mag_y[_qp]*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*(0.5*(_disp_x_grad[_qp](1)+_disp_y_grad[_qp](0))*_mag_x[_qp] + 0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*_mag_z[_qp])*(Utility::pow<2>(_mag_x[_qp]) - Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])) + 0.5*(_disp_x_grad[_qp](2)+_disp_z_grad[_qp](0))*(-Utility::pow<2>(_mag_x[_qp]) - 2*_alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*_mag_y[_qp]*_mag_z[_qp] + Utility::pow<2>(_mag_z[_qp]))) + 
+    return (_g0[_qp]*(_B22[_qp]*(-(0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*_mag_x[_qp]*_mag_y[_qp]) + 0.5*(_disp_x_grad[_qp](1)+_disp_y_grad[_qp](0))*_mag_y[_qp]*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*(0.5*(_disp_x_grad[_qp](1)+_disp_y_grad[_qp](0))*_mag_x[_qp] + 0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*_mag_z[_qp])*(Utility::pow<2>(_mag_x[_qp]) - Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])) + 0.5*(_disp_x_grad[_qp](2)+_disp_z_grad[_qp](0))*(-Utility::pow<2>(_mag_x[_qp]) - 2*_alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*_mag_y[_qp]*_mag_z[_qp] + Utility::pow<2>(_mag_z[_qp]))) +
        2*_B11[_qp]*((_disp_x_grad[_qp](0) - _disp_z_grad[_qp](2))*_mag_x[_qp]*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*_mag_y[_qp]*((-_disp_x_grad[_qp](0) + _disp_y_grad[_qp](1))*Utility::pow<2>(_mag_x[_qp]) + (_disp_y_grad[_qp](1) - _disp_z_grad[_qp](2))*Utility::pow<2>(_mag_z[_qp]))))*_test[_i][_qp])/((1 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<2>(_Ms[_qp]));
   }
   else if (_component == 2)
   {
-    return (_g0[_qp]*(2*_B11[_qp]*((-_disp_x_grad[_qp](0) + _disp_y_grad[_qp](1))*_mag_x[_qp]*_mag_y[_qp] + _alpha[_qp]*_Ms[_qp]*((-_disp_x_grad[_qp](0) + _disp_z_grad[_qp](2))*Utility::pow<2>(_mag_x[_qp]) + (-_disp_y_grad[_qp](1) + _disp_z_grad[_qp](2))*Utility::pow<2>(_mag_y[_qp]))*_mag_z[_qp]) + 
+    return (_g0[_qp]*(2*_B11[_qp]*((-_disp_x_grad[_qp](0) + _disp_y_grad[_qp](1))*_mag_x[_qp]*_mag_y[_qp] + _alpha[_qp]*_Ms[_qp]*((-_disp_x_grad[_qp](0) + _disp_z_grad[_qp](2))*Utility::pow<2>(_mag_x[_qp]) + (-_disp_y_grad[_qp](1) + _disp_z_grad[_qp](2))*Utility::pow<2>(_mag_y[_qp]))*_mag_z[_qp]) +
        _B22[_qp]*((0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*_mag_x[_qp] - 0.5*(_disp_x_grad[_qp](2)+_disp_z_grad[_qp](0))*_mag_y[_qp])*_mag_z[_qp] + 0.5*(_disp_x_grad[_qp](1)+_disp_y_grad[_qp](0))*(Utility::pow<2>(_mag_x[_qp]) - Utility::pow<2>(_mag_y[_qp]) - 2*_alpha[_qp]*_Ms[_qp]*_mag_x[_qp]*_mag_y[_qp]*_mag_z[_qp]) + _alpha[_qp]*_Ms[_qp]*(0.5*(_disp_x_grad[_qp](2)+_disp_z_grad[_qp](0))*_mag_x[_qp] + 0.5*(_disp_y_grad[_qp](2)+_disp_z_grad[_qp](1))*_mag_y[_qp])*(Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) - Utility::pow<2>(_mag_z[_qp]))))*_test[_i][_qp])/((1 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<2>(_Ms[_qp]));
   }
   else
@@ -122,7 +122,7 @@ MagnetostrictiveCouplingCubicHeff::computeQpOffDiagJacobian(unsigned int jvar)
     }
     else if (jvar == _disp_x_var)
     {
-      return (_g0[_qp]*(4*_alpha[_qp]*_B11[_qp]*_grad_phi[_j][_qp](0)*_Ms[_qp]*_mag_x[_qp]*(Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])) + _B22[_qp]*(_grad_phi[_j][_qp](2)*(_mag_x[_qp]*_mag_y[_qp] - _alpha[_qp]*_Ms[_qp]*Utility::pow<2>(_mag_x[_qp])*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*_mag_z[_qp]*(Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))) + 
+      return (_g0[_qp]*(4*_alpha[_qp]*_B11[_qp]*_grad_phi[_j][_qp](0)*_Ms[_qp]*_mag_x[_qp]*(Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])) + _B22[_qp]*(_grad_phi[_j][_qp](2)*(_mag_x[_qp]*_mag_y[_qp] - _alpha[_qp]*_Ms[_qp]*Utility::pow<2>(_mag_x[_qp])*_mag_z[_qp] + _alpha[_qp]*_Ms[_qp]*_mag_z[_qp]*(Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp]))) +
           _grad_phi[_j][_qp](1)*(-(_mag_x[_qp]*_mag_z[_qp]) + _alpha[_qp]*_Ms[_qp]*_mag_y[_qp]*(-Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])))))*_test[_i][_qp])/(2.*(1 + Utility::pow<2>(_alpha[_qp]))*Utility::pow<2>(_Ms[_qp]));
     }
     else if (jvar == _disp_y_var)

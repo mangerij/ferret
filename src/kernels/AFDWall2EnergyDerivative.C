@@ -55,20 +55,20 @@ AFDWall2EnergyDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    return (_antiphase_A_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_H11[_qp] + (_antiphase_A_y_grad[_qp](1)*_grad_test[_i][_qp](0) + _antiphase_A_z_grad[_qp](2)*_grad_test[_i][_qp](0))*_H12[_qp] + 
-   ((2*(_antiphase_A_x_grad[_qp](1) + _antiphase_A_y_grad[_qp](0))*_grad_test[_i][_qp](1) + 2*(_antiphase_A_x_grad[_qp](2) + _antiphase_A_z_grad[_qp](0))*_grad_test[_i][_qp](2))*_H44[_qp])/2. + 
+    return (_antiphase_A_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_H11[_qp] + (_antiphase_A_y_grad[_qp](1)*_grad_test[_i][_qp](0) + _antiphase_A_z_grad[_qp](2)*_grad_test[_i][_qp](0))*_H12[_qp] +
+   ((2*(_antiphase_A_x_grad[_qp](1) + _antiphase_A_y_grad[_qp](0))*_grad_test[_i][_qp](1) + 2*(_antiphase_A_x_grad[_qp](2) + _antiphase_A_z_grad[_qp](0))*_grad_test[_i][_qp](2))*_H44[_qp])/2. +
    ((2*(_antiphase_A_x_grad[_qp](1) - _antiphase_A_y_grad[_qp](0))*_grad_test[_i][_qp](1) + 2*(_antiphase_A_x_grad[_qp](2) - _antiphase_A_z_grad[_qp](0))*_grad_test[_i][_qp](2))*_H44P[_qp])/2.);
   }
   else if (_component == 1)
   {
-    return (_antiphase_A_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_H11[_qp] + (_antiphase_A_x_grad[_qp](0)*_grad_test[_i][_qp](1) + _antiphase_A_z_grad[_qp](2)*_grad_test[_i][_qp](1))*_H12[_qp] + 
-   ((2*(_antiphase_A_x_grad[_qp](1) + _antiphase_A_y_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_antiphase_A_y_grad[_qp](2) + _antiphase_A_z_grad[_qp](1))*_grad_test[_i][_qp](2))*_H44[_qp])/2. + 
+    return (_antiphase_A_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_H11[_qp] + (_antiphase_A_x_grad[_qp](0)*_grad_test[_i][_qp](1) + _antiphase_A_z_grad[_qp](2)*_grad_test[_i][_qp](1))*_H12[_qp] +
+   ((2*(_antiphase_A_x_grad[_qp](1) + _antiphase_A_y_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_antiphase_A_y_grad[_qp](2) + _antiphase_A_z_grad[_qp](1))*_grad_test[_i][_qp](2))*_H44[_qp])/2. +
    ((-2*(_antiphase_A_x_grad[_qp](1) - _antiphase_A_y_grad[_qp](0))*_grad_test[_i][_qp](0) - 2*(-_antiphase_A_y_grad[_qp](2) + _antiphase_A_z_grad[_qp](1))*_grad_test[_i][_qp](2))*_H44P[_qp])/2.);
   }
   else if (_component == 2)
   {
-    return (_antiphase_A_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_H11[_qp] + (_antiphase_A_x_grad[_qp](0)*_grad_test[_i][_qp](2) + _antiphase_A_y_grad[_qp](1)*_grad_test[_i][_qp](2))*_H12[_qp] + 
-   ((2*(_antiphase_A_x_grad[_qp](2) + _antiphase_A_z_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_antiphase_A_y_grad[_qp](2) + _antiphase_A_z_grad[_qp](1))*_grad_test[_i][_qp](1))*_H44[_qp])/2. + 
+    return (_antiphase_A_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_H11[_qp] + (_antiphase_A_x_grad[_qp](0)*_grad_test[_i][_qp](2) + _antiphase_A_y_grad[_qp](1)*_grad_test[_i][_qp](2))*_H12[_qp] +
+   ((2*(_antiphase_A_x_grad[_qp](2) + _antiphase_A_z_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(_antiphase_A_y_grad[_qp](2) + _antiphase_A_z_grad[_qp](1))*_grad_test[_i][_qp](1))*_H44[_qp])/2. +
    ((-2*(_antiphase_A_x_grad[_qp](2) - _antiphase_A_z_grad[_qp](0))*_grad_test[_i][_qp](0) + 2*(-_antiphase_A_y_grad[_qp](2) + _antiphase_A_z_grad[_qp](1))*_grad_test[_i][_qp](1))*_H44P[_qp])/2.);
   }
   else
@@ -80,17 +80,17 @@ AFDWall2EnergyDerivative::computeQpJacobian()
 {
   if (_component == 0)
   {
-    return (_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0)*_H11[_qp] + ((2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_H44[_qp])/2. + 
+    return (_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0)*_H11[_qp] + ((2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_H44[_qp])/2. +
    ((2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_H44P[_qp])/2.);
   }
   else if (_component == 1)
   {
-    return (_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1)*_H11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_H44[_qp])/2. + 
+    return (_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1)*_H11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_H44[_qp])/2. +
    ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2))*_H44P[_qp])/2.);
   }
   else if (_component == 2)
   {
-    return (_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2)*_H11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1))*_H44[_qp])/2. + 
+    return (_grad_phi[_j][_qp](2)*_grad_test[_i][_qp](2)*_H11[_qp] + ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1))*_H44[_qp])/2. +
    ((2*_grad_phi[_j][_qp](0)*_grad_test[_i][_qp](0) + 2*_grad_phi[_j][_qp](1)*_grad_test[_i][_qp](1))*_H44P[_qp])/2.);
   }
   else

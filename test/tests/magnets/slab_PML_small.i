@@ -37,7 +37,7 @@ alphadef = 0.02
     bottom_left = '-50 -35 -10'
     top_right = '50 50 10'
     block_id = 3
-    block_name = infinite_domain 
+    block_name = infinite_domain
   [../]
   [./vacuum_box]
     type = SubdomainBoundingBoxGenerator
@@ -45,7 +45,7 @@ alphadef = 0.02
     bottom_left = '-50 -25 -10'
     top_right = '50 50 10'
     block_id = 2
-    block_name = vacuum 
+    block_name = vacuum
   [../]
   [./boundary1]
     type = SideSetsBetweenSubdomainsGenerator
@@ -74,21 +74,21 @@ alphadef = 0.02
   ##
   ############################################################################
 
-  [./constants] 
+  [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha           permittivity  Ae        Ms'
     prop_values = '${alphadef}     1.0           1.3e-05   1.2'
     block = '1'
   [../]
 
-#NOTE: g0 is g*mu0*Ms/2 as defined by Hertel 
+#NOTE: g0 is g*mu0*Ms/2 as defined by Hertel
 #alpha is chosen to be 1.0 as in the muMag paper
 
  [./a_long]
     type = GenericFunctionMaterial
     prop_names = 'alpha_long'
     prop_values = 'bc_func_1'
-    block = '1' 
+    block = '1'
  [../]
  [./constantsv]
     type = GenericConstantMaterial
@@ -268,7 +268,7 @@ alphadef = 0.02
   #    Local magnetic exchange            #
   #                                       #
   #---------------------------------------#
-  
+
   [./dllg_x_exch]
     type = MasterExchangeCartLLG
     variable = mag_x
@@ -369,7 +369,7 @@ alphadef = 0.02
     variable = phi2
     component = 1
     block = '3'
-  [../]    
+  [../]
 
 []
 
@@ -401,7 +401,7 @@ alphadef = 0.02
     variable = phi2
     coupled_var = potential_H_int
     boundary = id_boundary
-  []    
+  []
 []
 
 [Postprocessors]
@@ -494,7 +494,7 @@ alphadef = 0.02
   #---------------------------------------#
 
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fexch Fdemag'
     pp_coefs = ' 1.0 1.0'
     execute_on = 'initial timestep_end final'
@@ -503,7 +503,7 @@ alphadef = 0.02
   [./perc_change]
     type = EnergyRatePostprocessor
     postprocessor = Ftot
-    dt = dt 
+    dt = dt
     execute_on = 'timestep_end final'
   [../]
 []
@@ -515,7 +515,7 @@ alphadef = 0.02
   [../]
 []
 
-    
+
 [Preconditioning]
 
   #---------------------------------------#
@@ -535,7 +535,7 @@ alphadef = 0.02
 []
 
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'NEWTON'
   automatic_scaling = true
 
@@ -566,7 +566,7 @@ alphadef = 0.02
   type = PerfGraphOutput
   execute_on = final
   level = 2
-[] 
+[]
   [./out]
     type = Exodus
     file_base = slab_PML_small_25_002

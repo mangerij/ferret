@@ -43,7 +43,7 @@ ComputeSeebeckTDepTensor::ComputeSeebeckTDepTensor(const InputParameters & param
   _asbij.fillFromInputVector(getParam<std::vector<Real>>("asb_ij"));
   _bsbij.fillFromInputVector(getParam<std::vector<Real>>("bsb_ij"));
   _csbij.fillFromInputVector(getParam<std::vector<Real>>("csb_ij"));
-  RotationTensor R(_Euler_angles); 
+  RotationTensor R(_Euler_angles);
 
   _asbij.rotate(R);
   _bsbij.rotate(R);

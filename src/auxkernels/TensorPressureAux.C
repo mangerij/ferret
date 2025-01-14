@@ -39,7 +39,7 @@ Real
 TensorPressureAux::computeValue()
 {
     return -0.33333333333*_stress[_qp].trace();
-    
+
 }
 
 

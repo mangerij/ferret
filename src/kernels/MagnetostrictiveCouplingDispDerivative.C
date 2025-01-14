@@ -68,23 +68,23 @@ MagnetostrictiveCouplingDispDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    return ((_C11*Utility::pow<2>(_mag_x[_qp])*_L11 + _C12*Utility::pow<2>(_mag_y[_qp])*_L11 + _C12*Utility::pow<2>(_mag_z[_qp])*_L11 + 
-      2*_C12*Utility::pow<2>(_mag_x[_qp])*_L12 + _C11*Utility::pow<2>(_mag_y[_qp])*_L12 + _C12*Utility::pow<2>(_mag_y[_qp])*_L12 + 
-      _C11*Utility::pow<2>(_mag_z[_qp])*_L12 + _C12*Utility::pow<2>(_mag_z[_qp])*_L12)*_grad_test[_i][_qp](0) + 4*_C44*_mag_x[_qp]*_mag_y[_qp]*_L44*_grad_test[_i][_qp](1) + 
+    return ((_C11*Utility::pow<2>(_mag_x[_qp])*_L11 + _C12*Utility::pow<2>(_mag_y[_qp])*_L11 + _C12*Utility::pow<2>(_mag_z[_qp])*_L11 +
+      2*_C12*Utility::pow<2>(_mag_x[_qp])*_L12 + _C11*Utility::pow<2>(_mag_y[_qp])*_L12 + _C12*Utility::pow<2>(_mag_y[_qp])*_L12 +
+      _C11*Utility::pow<2>(_mag_z[_qp])*_L12 + _C12*Utility::pow<2>(_mag_z[_qp])*_L12)*_grad_test[_i][_qp](0) + 4*_C44*_mag_x[_qp]*_mag_y[_qp]*_L44*_grad_test[_i][_qp](1) +
    4*_C44*_mag_x[_qp]*_mag_z[_qp]*_L44*_grad_test[_i][_qp](2));
   }
   else if (_component == 1)
   {
-    return (4*_C44*_mag_x[_qp]*_mag_y[_qp]*_L44*_grad_test[_i][_qp](0) + (_C12*Utility::pow<2>(_mag_x[_qp])*_L11 + _C11*Utility::pow<2>(_mag_y[_qp])*_L11 + 
-      _C12*Utility::pow<2>(_mag_z[_qp])*_L11 + _C11*Utility::pow<2>(_mag_x[_qp])*_L12 + _C12*Utility::pow<2>(_mag_x[_qp])*_L12 + 
-      2*_C12*Utility::pow<2>(_mag_y[_qp])*_L12 + _C11*Utility::pow<2>(_mag_z[_qp])*_L12 + _C12*Utility::pow<2>(_mag_z[_qp])*_L12)*_grad_test[_i][_qp](1) + 
+    return (4*_C44*_mag_x[_qp]*_mag_y[_qp]*_L44*_grad_test[_i][_qp](0) + (_C12*Utility::pow<2>(_mag_x[_qp])*_L11 + _C11*Utility::pow<2>(_mag_y[_qp])*_L11 +
+      _C12*Utility::pow<2>(_mag_z[_qp])*_L11 + _C11*Utility::pow<2>(_mag_x[_qp])*_L12 + _C12*Utility::pow<2>(_mag_x[_qp])*_L12 +
+      2*_C12*Utility::pow<2>(_mag_y[_qp])*_L12 + _C11*Utility::pow<2>(_mag_z[_qp])*_L12 + _C12*Utility::pow<2>(_mag_z[_qp])*_L12)*_grad_test[_i][_qp](1) +
    4*_C44*_mag_y[_qp]*_mag_z[_qp]*_L44*_grad_test[_i][_qp](2));
   }
   else if (_component == 2)
   {
-    return (4*_C44*_mag_x[_qp]*_mag_z[_qp]*_L44*_grad_test[_i][_qp](0) + 4*_C44*_mag_y[_qp]*_mag_z[_qp]*_L44*_grad_test[_i][_qp](1) + 
-   (_C12*Utility::pow<2>(_mag_x[_qp])*_L11 + _C12*Utility::pow<2>(_mag_y[_qp])*_L11 + _C11*Utility::pow<2>(_mag_z[_qp])*_L11 + 
-      _C11*Utility::pow<2>(_mag_x[_qp])*_L12 + _C12*Utility::pow<2>(_mag_x[_qp])*_L12 + _C11*Utility::pow<2>(_mag_y[_qp])*_L12 + 
+    return (4*_C44*_mag_x[_qp]*_mag_z[_qp]*_L44*_grad_test[_i][_qp](0) + 4*_C44*_mag_y[_qp]*_mag_z[_qp]*_L44*_grad_test[_i][_qp](1) +
+   (_C12*Utility::pow<2>(_mag_x[_qp])*_L11 + _C12*Utility::pow<2>(_mag_y[_qp])*_L11 + _C11*Utility::pow<2>(_mag_z[_qp])*_L11 +
+      _C11*Utility::pow<2>(_mag_x[_qp])*_L12 + _C12*Utility::pow<2>(_mag_x[_qp])*_L12 + _C11*Utility::pow<2>(_mag_y[_qp])*_L12 +
       _C12*Utility::pow<2>(_mag_y[_qp])*_L12 + 2*_C12*Utility::pow<2>(_mag_z[_qp])*_L12)*_grad_test[_i][_qp](2));
   }
   else

@@ -49,10 +49,10 @@ Real
 Transformed111Order::computeValue()
 {
 //
-// TODO: Note that there is no reason this needs to be hardcoded, but this will be the first step. 
+// TODO: Note that there is no reason this needs to be hardcoded, but this will be the first step.
 //       in general, this procedure should work for any transformation
 //
-  
+
   if (_inverse == false)
   {
   //

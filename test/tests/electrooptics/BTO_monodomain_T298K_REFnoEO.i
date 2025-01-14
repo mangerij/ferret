@@ -2,7 +2,7 @@
   [gen]
     ############################################
     ##
-    ##  Type and dimension of the mesh 
+    ##  Type and dimension of the mesh
     ##
     ############################################
 
@@ -22,7 +22,7 @@
 
     #############################################
     ##
-    ##   Actual spatial coordinates of mesh. 
+    ##   Actual spatial coordinates of mesh.
     ##   Jmax - Jmin = nJ/2 for J = x, y, z
     ##   Units are in nanometers
     ##
@@ -48,9 +48,9 @@
 
     ############################################
     ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
+    ##   additional boundary sideset (one node)
+    ##   to zero one of the elastic displacement vectors
+    ##   vectors and eliminates rigid body translations
     ##   from the degrees of freedom
     ##
     ##   NOTE: This must conform with the about
@@ -101,7 +101,7 @@
   #################################
   ##
   ##  Variable definitions
-  ##    P, u, phi, e^global_ij  
+  ##    P, u, phi, e^global_ij
   ##  and their initial conditions
   ##
   #################################
@@ -162,9 +162,9 @@
   ######################################
   ##
   ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate variables
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
 
@@ -239,7 +239,7 @@
 
   ######################################
   ##
-  ##  Principle change in refractive and 
+  ##  Principle change in refractive and
   ##  refractive index components
   ##
   ######################################
@@ -296,9 +296,9 @@
   ######################################
   ##
   ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations" 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate "operations"
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
   [./disp_x]
@@ -460,7 +460,7 @@
   ######################################
   ##
   ##  Necessary for PBC system
-  ##  
+  ##
   ######################################
 
   [./global_strain]
@@ -482,7 +482,7 @@
   ##
   ## NOTE: there might be some Legendre transforms
   ##        depending on what approach you use
-  ##        -i.e. inhomogeneous strain vs 
+  ##        -i.e. inhomogeneous strain vs
   ##            homogeneous strain [renormalized]
   ##
   ##################################################
@@ -515,7 +515,7 @@
 
   ##################################################
   ##
-  ## NOTE: Sign convention in Ferret for the 
+  ## NOTE: Sign convention in Ferret for the
   ##        electrostrictive coeff. is multiplied by
   ##        an overall factor of (-1)
   ##
@@ -546,7 +546,7 @@
    ###############################################
    ##
    ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
    ##
    ###############################################
 
@@ -624,7 +624,7 @@
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##
     ###############################################
@@ -642,7 +642,7 @@
   ###############################################
   ##
   ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
+  ## to enforce TDLGD evolution
   ##
   ###############################################
 
@@ -803,7 +803,7 @@
 
   ###############################################
   ##
-  ##  Postprocessors (integrations over the 
+  ##  Postprocessors (integrations over the
   ##  computational domain) to calculate the total energy
   ##  decomposed into linear combinations of the
   ##  different physics.
@@ -848,8 +848,8 @@
 
   ###############################################
   ##
-  ##  GlobalStrain system to enforce periodicity 
-  ##  in the anisotropic strain field 
+  ##  GlobalStrain system to enforce periodicity
+  ##  in the anisotropic strain field
   ##
   ###############################################
 
@@ -861,7 +861,7 @@
 
   ###############################################
   ##
-  ##  terminator to end energy evolution when the energy difference 
+  ##  terminator to end energy evolution when the energy difference
   ##  between subsequent time steps is lower than 5e-6
   ##
   ##  NOTE: can fail if the time step is small

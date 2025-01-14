@@ -107,12 +107,12 @@ BulkEnergyDerivativeSixth::computeQpResidual()
         6.0 * _alpha111 * Utility::pow<5>(_polar_z[_qp]) +
         _alpha112 * (
             4.0 * Utility::pow<3>(_polar_z[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) +
-            2.0 * _polar_z[_qp] * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) ) 
+            2.0 * _polar_z[_qp] * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) )
         ) +
         2.0 * _alpha123 * _polar_z[_qp] * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp])
     )  * _test[_i][_qp];
   }
-  else 
+  else
   {
     return 0.0;
   }
@@ -120,16 +120,16 @@ BulkEnergyDerivativeSixth::computeQpResidual()
 
 Real
 BulkEnergyDerivativeSixth::computeQpJacobian()
-{  
+{
   if (_component == 0)
   {
     return (
         2.0 * _alpha1 + 12.0 * _alpha11 * Utility::pow<2>(_polar_x[_qp]) + 2.0 * _alpha13 * Utility::pow<2>(_polar_z[_qp]) +
         2.0 * _alpha12 * Utility::pow<2>(_polar_y[_qp]) + 30.0 * _alpha111 * Utility::pow<4>(_polar_x[_qp]) +
-        _alpha112 * ( 
-            12.0 * Utility::pow<2>(_polar_x[_qp]) * ( Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) + 
-            2.0 * ( Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_polar_z[_qp]) ) 
-        ) + 
+        _alpha112 * (
+            12.0 * Utility::pow<2>(_polar_x[_qp]) * ( Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) +
+            2.0 * ( Utility::pow<4>(_polar_y[_qp]) + Utility::pow<4>(_polar_z[_qp]) )
+        ) +
         2.0 * _alpha123 * Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp])
     )  * _phi[_j][_qp] * _test[_i][_qp];
   }
@@ -138,27 +138,27 @@ BulkEnergyDerivativeSixth::computeQpJacobian()
     return (
         2.0 * _alpha1 + 12.0 * _alpha11 * Utility::pow<2>(_polar_y[_qp]) + 2.0 * _alpha13 * Utility::pow<2>(_polar_z[_qp]) +
         2.0 * _alpha12 * Utility::pow<2>(_polar_x[_qp]) + 30.0 * _alpha111 * Utility::pow<4>(_polar_y[_qp]) +
-        _alpha112 * ( 
-            12.0 * Utility::pow<2>(_polar_y[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) + 
-            2.0 * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_z[_qp]) ) 
-        ) + 
+        _alpha112 * (
+            12.0 * Utility::pow<2>(_polar_y[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp]) ) +
+            2.0 * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_z[_qp]) )
+        ) +
         2.0 * _alpha123 * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_z[_qp])
     )  * _phi[_j][_qp] * _test[_i][_qp];
   }
   else if (_component == 2)
   {
     return (
-        2.0 * _alpha3 + 12.0 * _alpha33 * Utility::pow<2>(_polar_z[_qp]) + 
-        2.0 * _alpha13 * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) + 
+        2.0 * _alpha3 + 12.0 * _alpha33 * Utility::pow<2>(_polar_z[_qp]) +
+        2.0 * _alpha13 * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) +
         30.0 * _alpha111 * Utility::pow<4>(_polar_z[_qp]) +
-        _alpha112 * ( 
-            12.0 * Utility::pow<2>(_polar_z[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) + 
-            2.0 * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) ) 
-        ) + 
+        _alpha112 * (
+            12.0 * Utility::pow<2>(_polar_z[_qp]) * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) +
+            2.0 * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) )
+        ) +
         2.0 * _alpha123 * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp])
     )  * _phi[_j][_qp] * _test[_i][_qp];
   }
-  else 
+  else
   {
     return 0.0;
   }
@@ -172,11 +172,11 @@ BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
     if (jvar == _polar_y_var)
     {
         return (
-            4.0 * _alpha12 * _polar_x[_qp] * _polar_y[_qp] + 
-            _alpha112 * ( 
-                8.0 * Utility::pow<3>(_polar_x[_qp]) * _polar_y[_qp] + 
-                8.0 * _polar_x[_qp] *  Utility::pow<3>(_polar_y[_qp]) 
-            ) + 
+            4.0 * _alpha12 * _polar_x[_qp] * _polar_y[_qp] +
+            _alpha112 * (
+                8.0 * Utility::pow<3>(_polar_x[_qp]) * _polar_y[_qp] +
+                8.0 * _polar_x[_qp] *  Utility::pow<3>(_polar_y[_qp])
+            ) +
             4.0 * _alpha123 * _polar_x[_qp] * _polar_y[_qp] * Utility::pow<2>(_polar_z[_qp])
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
@@ -184,10 +184,10 @@ BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
     {
         return (
             4.0 * _alpha13 * _polar_x[_qp] * _polar_z[_qp] +
-            _alpha112 * ( 
-                8.0 * Utility::pow<3>(_polar_x[_qp]) * _polar_z[_qp] + 
-                8.0 * _polar_x[_qp] * Utility::pow<3>(_polar_z[_qp]) 
-            ) + 
+            _alpha112 * (
+                8.0 * Utility::pow<3>(_polar_x[_qp]) * _polar_z[_qp] +
+                8.0 * _polar_x[_qp] * Utility::pow<3>(_polar_z[_qp])
+            ) +
             4.0 * _alpha123 * _polar_x[_qp] * Utility::pow<2>(_polar_y[_qp]) * _polar_z[_qp]
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
@@ -200,24 +200,24 @@ BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
     if(jvar == _polar_x_var) {
         return (
             4.0 * _alpha12 * _polar_y[_qp] * _polar_x[_qp] +
-            _alpha112 * ( 
-                8.0 * Utility::pow<3>(_polar_y[_qp]) * _polar_x[_qp] + 
+            _alpha112 * (
+                8.0 * Utility::pow<3>(_polar_y[_qp]) * _polar_x[_qp] +
                 8.0 * _polar_y[_qp] * Utility::pow<3>(_polar_x[_qp])
-            ) + 
+            ) +
             4.0 * _alpha123 * _polar_y[_qp] * _polar_x[_qp] * Utility::pow<2>(_polar_z[_qp])
         ) * _phi[_j][_qp] * _test[_i][_qp];
-    } 
+    }
     else if(jvar == _polar_z_var) {
         return (
             4.0 * _alpha13 * _polar_y[_qp] * _polar_z[_qp] +
-            _alpha112 * ( 
-                8.0 * Utility::pow<3>(_polar_y[_qp]) * _polar_z[_qp] + 
-                8.0 * _polar_y[_qp] * Utility::pow<3>(_polar_z[_qp]) 
-            ) + 
+            _alpha112 * (
+                8.0 * Utility::pow<3>(_polar_y[_qp]) * _polar_z[_qp] +
+                8.0 * _polar_y[_qp] * Utility::pow<3>(_polar_z[_qp])
+            ) +
             4.0 * _alpha123 * _polar_y[_qp] * Utility::pow<2>(_polar_x[_qp]) * _polar_z[_qp]
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
-    else 
+    else
     {
         return 0.0;
     }
@@ -225,21 +225,21 @@ BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
   else if (_component == 2) {
     if(jvar == _polar_x_var) {
         return (
-            4.0 * _alpha13 * _polar_z[_qp] * _polar_x[_qp] + 
-            _alpha112 * ( 
-                8.0 * Utility::pow<3>(_polar_z[_qp]) * _polar_x[_qp] + 
+            4.0 * _alpha13 * _polar_z[_qp] * _polar_x[_qp] +
+            _alpha112 * (
+                8.0 * Utility::pow<3>(_polar_z[_qp]) * _polar_x[_qp] +
                 8.0 * _polar_z[_qp] * Utility::pow<3>(_polar_x[_qp])
-            ) + 
+            ) +
             4.0 * _alpha123 * _polar_z[_qp] * _polar_x[_qp] * Utility::pow<2>(_polar_y[_qp])
         ) * _phi[_j][_qp] * _test[_i][_qp];
-    } 
+    }
     else if(jvar == _polar_y_var) {
         return (
-            4.0 * _alpha13 * _polar_z[_qp] * _polar_y[_qp] + 
-            _alpha112 * ( 
-                8.0 * Utility::pow<3>(_polar_z[_qp]) * _polar_y[_qp] + 
-                8.0 * _polar_z[_qp] * Utility::pow<3>(_polar_y[_qp])  
-            ) + 
+            4.0 * _alpha13 * _polar_z[_qp] * _polar_y[_qp] +
+            _alpha112 * (
+                8.0 * Utility::pow<3>(_polar_z[_qp]) * _polar_y[_qp] +
+                8.0 * _polar_z[_qp] * Utility::pow<3>(_polar_y[_qp])
+            ) +
             4.0 * _alpha123 * _polar_z[_qp] * Utility::pow<2>(_polar_x[_qp]) * _polar_y[_qp]
         ) * _phi[_j][_qp] * _test[_i][_qp];
     }
@@ -248,7 +248,7 @@ BulkEnergyDerivativeSixth::computeQpOffDiagJacobian(unsigned int jvar)
         return 0.0;
     }
   }
-  else 
+  else
   {
     return 0.0;
   }

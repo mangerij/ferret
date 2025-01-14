@@ -200,7 +200,7 @@
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##  This does not influence results much.
     ##
@@ -235,7 +235,7 @@
     pp_names = 'FbP FgP'
     pp_coefs = ' 1 1'
     execute_on = 'timestep_end'
-  
+
     ##########################################
     #
     # NOTE: Ferret output is in attojoules

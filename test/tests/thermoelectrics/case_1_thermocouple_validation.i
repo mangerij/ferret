@@ -3,7 +3,7 @@
   ##
   ##   This model will simulate the Seebeck effect
   ##   of a simple thermocouple circuit.
-  ##   
+  ##
   ############################################
 
 [Mesh]

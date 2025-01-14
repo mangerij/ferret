@@ -76,26 +76,26 @@ AFMLocalSublatticeExchangeCartLL::computeQpResidual()
   {
     if (_component == 0)
     {
-      return (-2.0*_Ae[_qp]*_g0[_qp]*(-(_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp]) - _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp]*_mag1_y[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_y[_qp] + 
-       _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_y[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_y[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_y[_qp]) + 
-       _mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] + _mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] + _mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_z[_qp] + 
-       _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_z[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_z[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_z[_qp]) - 
+      return (-2.0*_Ae[_qp]*_g0[_qp]*(-(_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp]) - _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp]*_mag1_y[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_y[_qp] +
+       _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_y[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_y[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_y[_qp]) +
+       _mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] + _mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] + _mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_z[_qp] +
+       _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_z[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_z[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_z[_qp]) -
        _mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*(_mag1_y[_qp] + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp]) - _mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*(_mag1_y[_qp] + _alpha[_qp]*_mag1_x[_qp]*_mag1_z[_qp])))/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 1)
     {
-      return (2.0*_Ae[_qp]*_g0[_qp]*(-(_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]) - _mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_x[_qp]) - _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_x[_qp]) - 
-       _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_x[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp]*_mag1_y[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] + 
-       _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_y[_qp] + _mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] + _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] + _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp] + _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp]*_mag1_z[_qp] + 
-       _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp]*_mag1_z[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_z[_qp]) - _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_z[_qp]) - 
+      return (2.0*_Ae[_qp]*_g0[_qp]*(-(_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]) - _mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_x[_qp]) - _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_x[_qp]) -
+       _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_x[_qp]) + _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp]*_mag1_y[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]*_mag1_y[_qp] +
+       _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_y[_qp] + _mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] + _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] + _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp] + _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp]*_mag1_z[_qp] +
+       _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp]*_mag1_z[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_z[_qp]) - _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_z[_qp]) -
        _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_z[_qp]) + _mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*(-_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp])))/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 2)
     {
-      return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_x[_qp]) - _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_x[_qp]) - 
-       _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_x[_qp]) - _mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] - _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] - _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp] - 
-       _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_y[_qp]) - _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_y[_qp]) - _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_y[_qp]) + 
-       _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp]*_mag1_z[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]*_mag1_z[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_z[_qp] + _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp]*_mag1_z[_qp] + 
+      return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_x[_qp]) - _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_x[_qp]) -
+       _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_x[_qp]) - _mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] - _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] - _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp] -
+       _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag1_y[_qp]) - _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag1_y[_qp]) - _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag1_y[_qp]) +
+       _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp]*_mag1_z[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp]*_mag1_z[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp]*_mag1_z[_qp] + _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp]*_mag1_z[_qp] +
        _mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*(_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp]) + _mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*(_mag1_x[_qp] + _alpha[_qp]*_mag1_y[_qp]*_mag1_z[_qp])))/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else
@@ -105,24 +105,24 @@ AFMLocalSublatticeExchangeCartLL::computeQpResidual()
   {
     if (_component == 0)
     {
-      return (-2.0*_Ae[_qp]*_g0[_qp]*(-(_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp]) - _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp]*_mag2_y[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_y[_qp] + 
-       _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_y[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_y[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_y[_qp]) + _mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] + 
-       _mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] + _mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_z[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_z[_qp]) + 
+      return (-2.0*_Ae[_qp]*_g0[_qp]*(-(_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp]) - _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp]*_mag2_y[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_y[_qp] +
+       _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_y[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_y[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_y[_qp]) + _mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] +
+       _mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] + _mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_z[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_z[_qp]) +
        _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_z[_qp]) - _mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*(_mag2_y[_qp] + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp]) - _mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*(_mag2_y[_qp] + _alpha[_qp]*_mag2_x[_qp]*_mag2_z[_qp])))/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 1)
     {
-      return (2.0*_Ae[_qp]*_g0[_qp]*(-(_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]) - _mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_x[_qp]) - _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_x[_qp]) - 
-       _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_x[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp]*_mag2_y[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_y[_qp] + 
-       _mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] + _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] + _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp]*_mag2_z[_qp] - 
+      return (2.0*_Ae[_qp]*_g0[_qp]*(-(_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]) - _mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_x[_qp]) - _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_x[_qp]) -
+       _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_x[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp]*_mag2_y[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]*_mag2_y[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_y[_qp] +
+       _mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] + _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] + _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp]*_mag2_z[_qp] -
        _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_z[_qp]) - _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_z[_qp]) - _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_z[_qp]) + _mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*(-_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp])))/
    (1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (_component == 2)
     {
-      return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_x[_qp]) - _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_x[_qp]) - _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_x[_qp]) - 
-       _mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] - _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] - _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_y[_qp]) - _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_y[_qp]) - 
-       _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_y[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_z[_qp] + 
+      return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_x[_qp]) - _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_x[_qp]) - _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_x[_qp]) -
+       _mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] - _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] - _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*Utility::pow<2>(_mag2_y[_qp]) - _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*Utility::pow<2>(_mag2_y[_qp]) -
+       _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*Utility::pow<2>(_mag2_y[_qp]) + _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp]*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp]*_mag2_z[_qp] +
        _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp]*_mag2_z[_qp] + _mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*(_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp]) + _mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*(_mag2_x[_qp] + _alpha[_qp]*_mag2_y[_qp]*_mag2_z[_qp])))/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else
@@ -188,12 +188,12 @@ AFMLocalSublatticeExchangeCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_y_var)
       {
-        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] + _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] + _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] - 
+        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] + _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] + _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] -
        2.0*_alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] - 2*_alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] - 2*_alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_z_var)
       {
-        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2) - _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] + 
+        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2) - _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] - _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] +
        2.0*_alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] + 2*_alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] + 2*_alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_x_var)
@@ -215,12 +215,12 @@ AFMLocalSublatticeExchangeCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_x_var)
       {
-        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] + 2.0*_alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] + 2*_alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] - 
+        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] + 2.0*_alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] + 2*_alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] -
        _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] - _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] - _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_z_var)
       {
-        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] + _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] + _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp] - 
+        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] + _alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] + _alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp] -
        2.0*_alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] - 2.0*_alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] - 2.0*_alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_x_var)
@@ -242,12 +242,12 @@ AFMLocalSublatticeExchangeCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag1_x_var)
       {
-        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2) - 2.0*_alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] + 
+        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2) - 2.0*_alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_x[_qp] - 2.0*_alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_x[_qp] +
        _alpha[_qp]*_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] + _alpha[_qp]*_mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_y_var)
       {
-        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] + 2*_alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] + 2.0*_alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp] - 
+        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag2_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag2_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag2_x_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag2_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_y[_qp] + 2*_alpha[_qp]*_mag2_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_y[_qp] + 2.0*_alpha[_qp]*_mag2_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_y[_qp] -
        _alpha[_qp]*_mag2_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag1_z[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag1_z[_qp] - _alpha[_qp]*_mag2_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag1_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_x_var)
@@ -274,12 +274,12 @@ AFMLocalSublatticeExchangeCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_y_var)
       {
-        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] + _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] + _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] - 
+        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] + _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] + _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] -
        2*_alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] - 2.0*_alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] - 2.0*_alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_z_var)
       {
-        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2) - _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] + 
+        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2) - _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] - _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] +
        2*_alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] + 2.0*_alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] + 2.0*_alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_x_var)
@@ -301,12 +301,12 @@ AFMLocalSublatticeExchangeCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_x_var)
       {
-        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] + 2.0*_alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] + 2*_alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] - 
+        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] + 2.0*_alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] + 2*_alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] -
        _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] - _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] - _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_z_var)
       {
-        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp] - 
+        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2) + _alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] + _alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp] -
        2*_alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] - 2.0*_alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] - 2.0*_alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_x_var)
@@ -328,12 +328,12 @@ AFMLocalSublatticeExchangeCartLL::computeQpOffDiagJacobian(unsigned int jvar)
     {
       if (jvar == _mag2_x_var)
       {
-        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2) - 2.0*_alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] - 2.0*_alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] - 2*_alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] + 
+        return (2.0*_Ae[_qp]*_g0[_qp]*(_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2) - 2.0*_alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_x[_qp] - 2.0*_alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_x[_qp] - 2*_alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_x[_qp] +
        _alpha[_qp]*_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] + _alpha[_qp]*_mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag2_y_var)
       {
-        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] + 2.0*_alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] + 2*_alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp] - 
+        return (-2.0*_Ae[_qp]*_g0[_qp]*(_mag1_x_grad[_qp](0)*_grad_test[_i][_qp](0) + _mag1_x_grad[_qp](1)*_grad_test[_i][_qp](1) + _mag1_x_grad[_qp](2)*_grad_test[_i][_qp](2) + 2.0*_alpha[_qp]*_mag1_z_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_y[_qp] + 2.0*_alpha[_qp]*_mag1_z_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_y[_qp] + 2*_alpha[_qp]*_mag1_z_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_y[_qp] -
        _alpha[_qp]*_mag1_y_grad[_qp](0)*_grad_test[_i][_qp](0)*_mag2_z[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](1)*_grad_test[_i][_qp](1)*_mag2_z[_qp] - _alpha[_qp]*_mag1_y_grad[_qp](2)*_grad_test[_i][_qp](2)*_mag2_z[_qp])*_phi[_j][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
       }
       else if (jvar == _mag1_x_var)

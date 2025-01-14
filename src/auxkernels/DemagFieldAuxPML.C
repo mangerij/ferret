@@ -32,7 +32,7 @@ InputParameters DemagFieldAuxPML::validParams()
   params.addParam<Real>("deltasyminus", 1.e03, "scaled thickness of pml region");
   params.addParam<Real>("deltapyminus",1., "pole distance");
   params.addParam<Real>("deltawyminus",1.,"distance to be scaled (dimensionfull");
-  params.addParam<Real>("y0pmlminus",-1., "position at which scaling will start");	
+  params.addParam<Real>("y0pmlminus",-1., "position at which scaling will start");
   params.addCoupledVar("phi1", "The internal magnetic potential variable");
   params.addCoupledVar("potential_H_ext", "The external magnetic potential variable (disabled for now)");
   return params;

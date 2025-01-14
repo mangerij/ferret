@@ -47,12 +47,12 @@ Real
 Transform111Order::computeValue()
 {
   if (_component == 0)
-    return 0.40824829046386301637*_order_param_x[_qp] + 0.40824829046386301637*_order_param_y[_qp] - 
+    return 0.40824829046386301637*_order_param_x[_qp] + 0.40824829046386301637*_order_param_y[_qp] -
  0.81649658092772603273*_order_param_z[_qp];
   else if (_component == 1)
     return -0.70710678118654752440*_order_param_x[_qp] + 0.70710678118654752440*_order_param_y[_qp];
   else if (_component == 2)
-    return 0.57735026918962576451*_order_param_x[_qp] + 0.57735026918962576451*_order_param_y[_qp] + 
+    return 0.57735026918962576451*_order_param_x[_qp] + 0.57735026918962576451*_order_param_y[_qp] +
  0.57735026918962576451*_order_param_z[_qp];
   else
     return 0.0;

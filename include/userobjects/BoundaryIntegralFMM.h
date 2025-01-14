@@ -21,7 +21,7 @@ public:
 
 protected:
 
-  
+
 private:
   /// FMM parameters
   Real _cx, _cy, _cz, _boxWidth;

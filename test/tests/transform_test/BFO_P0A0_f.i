@@ -27,9 +27,9 @@ zMax = 1.0
 
     ############################################
     ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
+    ##   additional boundary sideset (one node)
+    ##   to zero one of the elastic displacement vectors
+    ##   vectors and eliminates rigid body translations
     ##   from the degrees of freedom
     ##
     ##   NOTE: This must conform with the about
@@ -130,7 +130,7 @@ zMax = 1.0
 []
 
 [AuxVariables]
-  
+
 []
 
 [AuxKernels]
@@ -288,7 +288,7 @@ zMax = 1.0
     pp_names = 'FbP FbA FcPA'
     pp_coefs = ' 1 1 1'
     execute_on = 'timestep_end'
-  
+
     ##########################################
     #
     # NOTE: Ferret output is in attojoules

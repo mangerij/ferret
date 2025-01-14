@@ -108,8 +108,8 @@ Transformed111KernelOp6::Transformed111KernelOp6(const InputParameters & paramet
 Real
 Transformed111KernelOp6::computeQpResidual()
 //
-// TODO: Note that there is no reason this needs to be hardcoded, but this will be the first step. 
-//       in general, this procedure should work for any transformation provided the transformation 
+// TODO: Note that there is no reason this needs to be hardcoded, but this will be the first step.
+//       in general, this procedure should work for any transformation provided the transformation
 //       is done CORRECTLY!!
 //
 
@@ -122,7 +122,7 @@ Transformed111KernelOp6::computeQpResidual()
 
 // this has to be correct.. what probably isnt is the jacobians from the Aux files...
 
-// unless the jacobian shape functions need to transform too... this could be introducing some issues. 
+// unless the jacobian shape functions need to transform too... this could be introducing some issues.
 
 // diff between lagrange and monomial?
 
@@ -184,14 +184,14 @@ Transformed111KernelOp6::computeQpJacobian()
   {
     return _test[_i][_qp] * _phi[_j][_qp] * (0.33333333333333333333*(_J_q3q3[_qp] + 2.*_J_q3q4[_qp] + 2.*_J_q3q5[_qp] + _J_q4q4[_qp] + 2.*_J_q4q5[_qp] + _J_q5q5[_qp]));
   }
-  else 
+  else
     return 0.0;
 }
 
 
 Real
 Transformed111KernelOp6::computeQpOffDiagJacobian(unsigned int jvar)
-{ 
+{
   if (_component == 0)
   {
     if (jvar == _order_param_y_var)

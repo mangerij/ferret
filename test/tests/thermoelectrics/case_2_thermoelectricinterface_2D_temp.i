@@ -2,7 +2,7 @@
   ##
   ##   Example of 2D interface with Peltier
   ##   cooling/heating phenomena
-  ##   
+  ##
   ############################################
 
 [Mesh]
