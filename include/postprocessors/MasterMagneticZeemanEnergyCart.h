@@ -36,7 +36,7 @@ protected:
   const VariableValue & _mag_x;
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
-  
+
   const VariableValue &  _Hext_x;
   const VariableValue &  _Hext_y;
   const VariableValue &  _Hext_z;

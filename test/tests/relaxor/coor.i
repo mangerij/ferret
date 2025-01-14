@@ -15,9 +15,9 @@
 
   ############################################
   ##
-  ## Actual spatial coordinates of mesh. 
+  ## Actual spatial coordinates of mesh.
   ## Jmax - Jmin = nJ/2 for J = x, y
-  ##  
+  ##
   ############################################
 
   xmin = -15
@@ -54,14 +54,14 @@
   alpha0112 = 4.091     # nm^10 nN / aC^6
   alpha0123 = -6.688    # nm^10 nN / aC^6
 
-  #fixed coefficients 
+  #fixed coefficients
 
   alpha1111 = 75.9      # nm^14 nN / aC^8
   alpha1112 = -21.93    # nm^14 nN / aC^8
   alpha1122 = -22.21    # nm^14 nN / aC^8
   alpha1123 = 24.16     # nm^14 nN / aC^8
 
-  # coupling constants 
+  # coupling constants
   b1 = -1.75
   b2 = 1.05
   b3 = 0.483
@@ -74,14 +74,14 @@
 
   ############################################
   ##
-  ## Fourier Noise implementation from 
+  ## Fourier Noise implementation from
   ## D. Schwen (INL) - see paper
   ##
   ############################################
 
 
   x = conc
- 
+
   lambda = 5.0          # correlation length for random field (nm)
   range = 0.01          # variation of the Sr concentration (plus or minus)
   mid = 0.4             # nominal value of the Sr concentration field
@@ -128,7 +128,7 @@
 []
 
 [Functions]
-  [./fn]  
+  [./fn]
     type = SDFourierNoise
 
     # Note that FourierNoise automatically makes concentration periodic which in turn makes the Landau coefficients periodic.
@@ -355,9 +355,9 @@
     block = '0'
   [../]
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fgrad Fsdbulk'
-    pp_coefs = ' 1 1 ' 
+    pp_coefs = ' 1 1 '
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change]

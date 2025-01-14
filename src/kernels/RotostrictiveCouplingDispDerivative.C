@@ -60,23 +60,23 @@ RotostrictiveCouplingDispDerivative::computeQpResidual()
 {
   if (_component == 0)
   {
-    return ((_C11[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R11[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R11[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R11[_qp] + 
-      2*_C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] + 
-      _C11[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp])*_grad_test[_i][_qp](0) + 4*_C44[_qp]*_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_R44[_qp]*_grad_test[_i][_qp](1) + 
+    return ((_C11[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R11[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R11[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R11[_qp] +
+      2*_C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] +
+      _C11[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp])*_grad_test[_i][_qp](0) + 4*_C44[_qp]*_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_R44[_qp]*_grad_test[_i][_qp](1) +
    4*_C44[_qp]*_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*_R44[_qp]*_grad_test[_i][_qp](2));
   }
   else if (_component == 1)
   {
-    return (4*_C44[_qp]*_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_R44[_qp]*_grad_test[_i][_qp](0) + (_C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R11[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R11[_qp] + 
-      _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R11[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + 
-      2*_C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp])*_grad_test[_i][_qp](1) + 
+    return (4*_C44[_qp]*_antiphase_A_x[_qp]*_antiphase_A_y[_qp]*_R44[_qp]*_grad_test[_i][_qp](0) + (_C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R11[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R11[_qp] +
+      _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R11[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] +
+      2*_C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp])*_grad_test[_i][_qp](1) +
    4*_C44[_qp]*_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*_R44[_qp]*_grad_test[_i][_qp](2));
   }
   else if (_component == 2)
   {
-    return (4*_C44[_qp]*_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*_R44[_qp]*_grad_test[_i][_qp](0) + 4*_C44[_qp]*_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*_R44[_qp]*_grad_test[_i][_qp](1) + 
-   (_C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R11[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R11[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R11[_qp] + 
-      _C11[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] + 
+    return (4*_C44[_qp]*_antiphase_A_x[_qp]*_antiphase_A_z[_qp]*_R44[_qp]*_grad_test[_i][_qp](0) + 4*_C44[_qp]*_antiphase_A_y[_qp]*_antiphase_A_z[_qp]*_R44[_qp]*_grad_test[_i][_qp](1) +
+   (_C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R11[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R11[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R11[_qp] +
+      _C11[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C12[_qp]*Utility::pow<2>(_antiphase_A_x[_qp])*_R12[_qp] + _C11[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] +
       _C12[_qp]*Utility::pow<2>(_antiphase_A_y[_qp])*_R12[_qp] + 2*_C12[_qp]*Utility::pow<2>(_antiphase_A_z[_qp])*_R12[_qp])*_grad_test[_i][_qp](2));
   }
   else

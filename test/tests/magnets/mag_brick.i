@@ -530,16 +530,16 @@
   #---------------------------------------#
 
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fexch Fdemag Fa'
-    pp_coefs = ' 1.0 1.0 1.0' 
+    pp_coefs = ' 1.0 1.0 1.0'
     execute_on = 'timestep_end final'
   [../]
 
   [./perc_change]
     type = EnergyRatePostprocessor
     postprocessor = Ftot
-    dt = dt 
+    dt = dt
     execute_on = 'timestep_end final'
   [../]
 
@@ -569,7 +569,7 @@
 []
 
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'NEWTON'
   [./TimeIntegrator]
     type = ImplicitEuler

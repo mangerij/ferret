@@ -31,9 +31,9 @@ zMax = 0.01
 
     ############################################
     ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
+    ##   additional boundary sideset (one node)
+    ##   to zero one of the elastic displacement vectors
+    ##   vectors and eliminates rigid body translations
     ##   from the degrees of freedom
     ##
     ##   NOTE: This must conform with the about
@@ -585,7 +585,7 @@ zMax = 0.01
 []
 
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'NEWTON'
   [./TimeIntegrator]
     type = ImplicitEuler

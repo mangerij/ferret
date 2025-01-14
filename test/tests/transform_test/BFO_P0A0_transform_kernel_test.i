@@ -9,8 +9,8 @@ zMax = 1.0
     ############################################
     ##
     ##   This input file aims to solve the BFO
-    ##   problem where one of the components of 
-    ##   the order parameters is aligned along 
+    ##   problem where one of the components of
+    ##   the order parameters is aligned along
     ##   [111] || global z
     ##
     ##   As such, all of the residuals and
@@ -21,19 +21,19 @@ zMax = 1.0
     ##   as p0,p1,p2,a0,a1,a2,u0,u1,u2 which indicate
     ##   derivatives w.r.t the components of various
     ##   order parameters in the transformed coords.
-    ##   
+    ##
     ##   Indices of microforces and jacobians
     ##   will also have bp, br, rp, els, ros, sels, sros
-    ##   which denote the bulk polar, bulk roto, rotopolar, 
-    ##   electrostrictive, rotostrictive, 
-    ##   stress- electrostrictive, and stress- rotostrictive 
+    ##   which denote the bulk polar, bulk roto, rotopolar,
+    ##   electrostrictive, rotostrictive,
+    ##   stress- electrostrictive, and stress- rotostrictive
     ##   terms.
     ##
     ##   i.e, Jbp_p0p0 corresoponds to the on-diagonal
     ##   jacobian associated with the bulk energy for the
     ##   polarization.
-    ## 
-    ##   any instance of 1_x,1_y,1_z will denote the current 
+    ##
+    ##   any instance of 1_x,1_y,1_z will denote the current
     ##   global cartesian coordinate system which is
     ##   orthonormal and defined by the S matrix.
     ##
@@ -69,9 +69,9 @@ zMax = 1.0
 
     ############################################
     ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
+    ##   additional boundary sideset (one node)
+    ##   to zero one of the elastic displacement vectors
+    ##   vectors and eliminates rigid body translations
     ##   from the degrees of freedom
     ##
     ##   NOTE: This must conform with the about
@@ -176,7 +176,7 @@ zMax = 1.0
     ############################################
     ##
     ## Transformed coordinates
-    ##  
+    ##
     ##   These follow Po = Inv[S] P1
     ##   In the AuxKernels that calculate this
     ##
@@ -213,11 +213,11 @@ zMax = 1.0
     ############################################
     ##
     ## Microforces
-    ##  
-    ##  We have bulk energy P, bulk energy A 
+    ##
+    ##  We have bulk energy P, bulk energy A
     ##  and a RP coupling.
-    ##  This means we should have 3+3+6 forces. 
-    ##  
+    ##  This means we should have 3+3+6 forces.
+    ##
     ############################################
 
   [./fbp_p0]
@@ -1510,19 +1510,19 @@ zMax = 1.0
 
     ########################################################################################
     ##
-    ## The below Euler rotation below should rotate the [001]-oriented elasticity tensor to 
-    ## the [111]-orientation as it is equivalent to our S matrix. 
-    ## Note that the MOOSE convention is slightly different than Mathematica's so we use 
+    ## The below Euler rotation below should rotate the [001]-oriented elasticity tensor to
+    ## the [111]-orientation as it is equivalent to our S matrix.
+    ## Note that the MOOSE convention is slightly different than Mathematica's so we use
     ## three different angles.
-    ## Therefore, all of our strains will be calculated using ComputeSmallStrain in primed 
+    ## Therefore, all of our strains will be calculated using ComputeSmallStrain in primed
     ## coordinates [i.e. e_{||,||}, e_{1,||}, ...]
     ##
-    ##   ...but then, it is important that our strains talk to our primed variables correctly. 
+    ##   ...but then, it is important that our strains talk to our primed variables correctly.
     ##
     ########################################################################################
 
     euler_angle_1 = 135.0
-    euler_angle_2 = -54.735610317245346   
+    euler_angle_2 = -54.735610317245346
     euler_angle_3 = -90.0
 
   [../]
@@ -1609,7 +1609,7 @@ zMax = 1.0
     pp_names = 'FbPo FbAo FcPAo'
     pp_coefs = ' 1 1 1'
     execute_on = 'timestep_end'
-  
+
     ##########################################
     #
     # NOTE: Ferret output is in attojoules
@@ -1621,7 +1621,7 @@ zMax = 1.0
     pp_names = 'FbP1 FbA1 FcPA1'
     pp_coefs = ' 1 1 1'
     execute_on = 'timestep_end'
-  
+
     ##########################################
     #
     # NOTE: Ferret output is in attojoules

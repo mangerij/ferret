@@ -36,20 +36,20 @@ InputParameters MagneticPMLCart::validParams()
    params.addParam<Real>("deltasyminus", 1.e03, "scaled thickness of pml region");
    params.addParam<Real>("deltapyminus",1., "pole distance");
    params.addParam<Real>("deltawyminus",1.,"distance to be scaled (dimensionfull");
-   params.addParam<Real>("y0pmlminus",-1., "position at which scaling will start");			
-   /*   params.addParam<Real>("deltaszminus",1.e03, "sclaed thickness of pml region");			
+   params.addParam<Real>("y0pmlminus",-1., "position at which scaling will start");
+   /*   params.addParam<Real>("deltaszminus",1.e03, "sclaed thickness of pml region");
    params.addParam<Real>("deltapzminus",1., "pole distance");
    params.addParam<Real>("deltawzminus",1.,"distance to be scaled (dimensionfull");
-   params.addParam<Real>("z0pmlminus",-1., "position at which scaling will start");			
-   params.addParam<Real>("deltasxplus",1.e03, "scaled thickness of pml region");			
+   params.addParam<Real>("z0pmlminus",-1., "position at which scaling will start");
+   params.addParam<Real>("deltasxplus",1.e03, "scaled thickness of pml region");
    params.addParam<Real>("deltapxplus",1., "pole distance");
    params.addParam<Real>("deltawxplus",1.,"distance to be scaled (dimensionfull");
    params.addParam<Real>("x0pmlplus",1., "position at which scaling will start");
    params.addParam<Real>("deltasyplus", 1.e03, "distance to be scaled along y");
    params.addParam<Real>("deltapyplus",1., "pole distance");
    params.addParam<Real>("deltawyplus",1.,"distance to be scaled (dimensionfull");
-   params.addParam<Real>("y0pmlplus",1., "position at which scaling will start");			
-   params.addParam<Real>("deltaszplus",1.e03, "scaled thickness of pml region");			
+   params.addParam<Real>("y0pmlplus",1., "position at which scaling will start");
+   params.addParam<Real>("deltaszplus",1.e03, "scaled thickness of pml region");
    params.addParam<Real>("deltapzplus",1., "pole distance");
    params.addParam<Real>("deltawzplus",1.,"distance to be scaled (dimensionfull");
    params.addParam<Real>("z0pmlplus",1., "position at which scaling will start");*/
@@ -90,7 +90,7 @@ MagneticPMLCart::MagneticPMLCart(const InputParameters & parameters)
 Real
 MagneticPMLCart::computeQpResidual()
 {
-  /*  
+  /*
   if (_component == 0)
     {
       if (_q_point[_qp](0) > _x0pmlplus)
@@ -109,13 +109,13 @@ MagneticPMLCart::computeQpResidual()
 	  }
           else
 	    return 0.0;
-	    
+
     }
   else
   */
   if (_component == 1)
   {
-    /*    
+    /*
     if (_q_point[_qp](1) > _y0pmlplus)
          {
 	 const Real gamma = (_deltasyplus + _deltapyplus)/_deltasyplus;
@@ -136,7 +136,7 @@ MagneticPMLCart::computeQpResidual()
 	   else
 	   return 0.0;
     }
- 
+
   /*else
    if (_component == 2)
   {
@@ -157,7 +157,7 @@ MagneticPMLCart::computeQpResidual()
          else
 	   return 0.0;
   }
-  */  
+  */
    else
      return 0.0;
 }
@@ -183,7 +183,7 @@ MagneticPMLCart::computeQpJacobian()
 	  }
           else
 	    return 0.0;
-	    
+
     }
   else
 */
@@ -228,7 +228,7 @@ MagneticPMLCart::computeQpJacobian()
          else
 	   return 0.0;
 	   }*/
- 
+
   else
     return 0.0;
     }

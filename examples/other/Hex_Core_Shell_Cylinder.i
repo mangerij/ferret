@@ -738,7 +738,7 @@
        euler_angle_3 = 0.0
     [../]
     [./strain2]
-      type = ComputeSmallStrain 
+      type = ComputeSmallStrain
       block = '2'
     [../]
     [./stress2]

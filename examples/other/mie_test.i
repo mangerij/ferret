@@ -19,7 +19,7 @@
   nh =  1.458
   omega = 1.0 #These aren't used at the moment.
   c = 1.0
-  epsilonI = 1.0 
+  epsilonI = 1.0
   sigmaI = 0.0
   epsilonII = 1.0
   sigmaII = 0.0

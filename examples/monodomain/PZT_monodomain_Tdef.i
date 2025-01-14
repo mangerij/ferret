@@ -4,7 +4,7 @@ a1temp = a1def
   [gen]
     ############################################
     ##
-    ##  Type and dimension of the mesh 
+    ##  Type and dimension of the mesh
     ##
     ############################################
 
@@ -24,7 +24,7 @@ a1temp = a1def
 
     #############################################
     ##
-    ##   Actual spatial coordinates of mesh. 
+    ##   Actual spatial coordinates of mesh.
     ##   Jmax - Jmin = nJ/2 for J = x, y, z
     ##   Units are in nanometers
     ##
@@ -50,9 +50,9 @@ a1temp = a1def
 
     ############################################
     ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
+    ##   additional boundary sideset (one node)
+    ##   to zero one of the elastic displacement vectors
+    ##   vectors and eliminates rigid body translations
     ##   from the degrees of freedom
     ##
     ##   NOTE: This must conform with the about
@@ -96,7 +96,7 @@ a1temp = a1def
   #################################
   ##
   ##  Variable definitions
-  ##    P, u, phi, e^global_ij  
+  ##    P, u, phi, e^global_ij
   ##  and their initial conditions
   ##
   #################################
@@ -157,9 +157,9 @@ a1temp = a1def
   ######################################
   ##
   ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate variables
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
 
@@ -252,9 +252,9 @@ a1temp = a1def
   ######################################
   ##
   ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations" 
-  ##   or for postprocessed quantities) 
-  ##  
+  ##   (can be intermediate "operations"
+  ##   or for postprocessed quantities)
+  ##
   ######################################
 
   [./disp_x]
@@ -396,7 +396,7 @@ a1temp = a1def
   ######################################
   ##
   ##  Necessary for PBC system
-  ##  
+  ##
   ######################################
 
   [./global_strain]
@@ -411,7 +411,7 @@ a1temp = a1def
 
   #################################################
   ##
-  ## Landau, electrostrictive, elastic coefficients  
+  ## Landau, electrostrictive, elastic coefficients
   ##  M. Mtebwa, A. K. Tagantsev, and N. Setter
   ##    AIP Adv. 4, 127150 (2014).
   ##
@@ -440,7 +440,7 @@ a1temp = a1def
 
   ##################################################
   ##
-  ## NOTE: Sign convention in Ferret for the 
+  ## NOTE: Sign convention in Ferret for the
   ##        electrostrictive coeff. is multiplied by
   ##        an overall factor of (-1)
   ##
@@ -474,7 +474,7 @@ a1temp = a1def
    ###############################################
    ##
    ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
+   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
    ##
    ###############################################
 
@@ -503,7 +503,7 @@ a1temp = a1def
     ##
     ##  so-called background dielectric constant
     ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
+    ##  at high frequency) = e_b*e_0 (here we use
     ##  e_b = 10), see PRB. 74, 104014, (2006)
     ##
     ###############################################
@@ -520,7 +520,7 @@ a1temp = a1def
   ###############################################
   ##
   ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
+  ## to enforce TDLGD evolution
   ##
   ###############################################
 
@@ -682,7 +682,7 @@ a1temp = a1def
 
   ###############################################
   ##
-  ##  Postprocessors (integrations over the 
+  ##  Postprocessors (integrations over the
   ##  computational domain) to calculate the total energy
   ##  decomposed into linear combinations of the
   ##  different physics.
@@ -778,8 +778,8 @@ a1temp = a1def
 
   ###############################################
   ##
-  ##  GlobalStrain system to enforce periodicity 
-  ##  in the anisotropic strain field 
+  ##  GlobalStrain system to enforce periodicity
+  ##  in the anisotropic strain field
   ##
   ###############################################
 
@@ -791,7 +791,7 @@ a1temp = a1def
 
   ###############################################
   ##
-  ##  terminator to end energy evolution when the energy difference 
+  ##  terminator to end energy evolution when the energy difference
   ##  between subsequent time steps is lower than 5e-6
   ##
   ##  NOTE: can fail if the time step is smallhotkey for tilde

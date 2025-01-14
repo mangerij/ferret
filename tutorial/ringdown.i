@@ -25,14 +25,14 @@ alphadef = 0.02
     ymax = 50
     zmin = -10
     zmax = 10
-  [../]  
+  [../]
   [./vacuum_box]
     type = SubdomainBoundingBoxGenerator
     input = mesh
     bottom_left = '-50 -50 -10'
     top_right = '50 50 10'
     block_id = 2
-    block_name = vacuum 
+    block_name = vacuum
   [../]
   [./brick]
     type = SubdomainBoundingBoxGenerator
@@ -53,7 +53,7 @@ alphadef = 0.02
   ##
   ############################################################################
 
-  [./constants] 
+  [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha           permittivity  Ae        Ms'
     prop_values = '${alphadef}     1.0           1.3e-05   1.2'
@@ -64,7 +64,7 @@ alphadef = 0.02
     type = GenericFunctionMaterial
     prop_names = 'alpha_long'
     prop_values = 'bc_func_1'
-    block = '1' 
+    block = '1'
   [../]
   [./constantsv]
     type = GenericConstantMaterial
@@ -196,7 +196,7 @@ alphadef = 0.02
   #    Local magnetic exchange            #
   #                                       #
   #---------------------------------------#
-  
+
   [./dllg_x_exch]
     type = MasterExchangeCartLLG
     variable = mag_x
@@ -393,7 +393,7 @@ alphadef = 0.02
   #---------------------------------------#
 
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fexch Fdemag'
     pp_coefs = ' 1.0 1.0'
     execute_on = 'initial timestep_end final'
@@ -402,7 +402,7 @@ alphadef = 0.02
   [./perc_change]
     type = EnergyRatePostprocessor
     postprocessor = Ftot
-    dt = dt 
+    dt = dt
     execute_on = 'timestep_end final'
   [../]
 
@@ -449,7 +449,7 @@ alphadef = 0.02
 []
 
 [Executioner]
-  type = Transient            
+  type = Transient
   solve_type = 'NEWTON'
 
   [./TimeIntegrator]

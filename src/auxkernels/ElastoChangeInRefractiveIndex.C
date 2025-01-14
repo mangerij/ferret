@@ -60,7 +60,7 @@ Real
 ElastoChangeInRefractiveIndex::computeValue()
 {
   // consort with pp. 247 in Nye, Equation (19) and (28). The expressions for each of the six components of the refractive index change should be:
-  // note that the impermeability tensor and the refractive index should be related by some matrix algebra... 
+  // note that the impermeability tensor and the refractive index should be related by some matrix algebra...
   // Our focus is [001] oriented ferroelectrics _only_.
   //
   if (_component == 0)

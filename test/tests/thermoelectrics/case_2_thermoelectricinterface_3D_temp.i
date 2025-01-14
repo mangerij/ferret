@@ -3,7 +3,7 @@
   ##
   ##   Example of 3D interface with Peltier
   ##   cooling/heating phenomena
-  ##   
+  ##
   ############################################
 
 [Mesh]

@@ -65,18 +65,18 @@ Real
 BulkEnergy::computeQpIntegral()
 {
   return (
-        _alpha1 * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) + 
-        _alpha3 * Utility::pow<2>(_polar_z[_qp]) + 
+        _alpha1 * ( Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_y[_qp]) ) +
+        _alpha3 * Utility::pow<2>(_polar_z[_qp]) +
         _alpha11 * ( Utility::pow<4>(_polar_x[_qp]) + Utility::pow<4>(_polar_y[_qp]) ) +
-        _alpha33 * Utility::pow<4>(_polar_z[_qp]) + 
+        _alpha33 * Utility::pow<4>(_polar_z[_qp]) +
         _alpha13 * ( Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_z[_qp]) + Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp]) ) +
         _alpha12 * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp]) +
         _alpha111 * (Utility::pow<6>(_polar_x[_qp]) + Utility::pow<6>(_polar_y[_qp]) + Utility::pow<6>(_polar_z[_qp])) +
         _alpha112 * (
-            Utility::pow<4>(_polar_x[_qp]) * (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])) + 
-            Utility::pow<4>(_polar_y[_qp]) * (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp])) + 
-            Utility::pow<4>(_polar_z[_qp]) * (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_x[_qp])) 
-        ) + 
+            Utility::pow<4>(_polar_x[_qp]) * (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_z[_qp])) +
+            Utility::pow<4>(_polar_y[_qp]) * (Utility::pow<2>(_polar_x[_qp]) + Utility::pow<2>(_polar_z[_qp])) +
+            Utility::pow<4>(_polar_z[_qp]) * (Utility::pow<2>(_polar_y[_qp]) + Utility::pow<2>(_polar_x[_qp]))
+        ) +
         _alpha123 * Utility::pow<2>(_polar_x[_qp]) * Utility::pow<2>(_polar_y[_qp]) * Utility::pow<2>(_polar_z[_qp])
     );
 }

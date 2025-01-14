@@ -87,12 +87,12 @@ MasterLongitudinalLLB::computeQpJacobian()
   }
   else if (_component == 1)
   {
-  return (_alpha_long[_qp]*_g0*(Utility::pow<4>(_mag_x[_qp]) + 5.0*Utility::pow<4>(_mag_y[_qp]) + 6.0*Utility::pow<2>(_mag_y[_qp])*Utility::pow<2>(_mag_z[_qp]) + Utility::pow<4>(_mag_z[_qp]) + 2*Utility::pow<2>(_mag_x[_qp])*(3.0*Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])) - 
+  return (_alpha_long[_qp]*_g0*(Utility::pow<4>(_mag_x[_qp]) + 5.0*Utility::pow<4>(_mag_y[_qp]) + 6.0*Utility::pow<2>(_mag_y[_qp])*Utility::pow<2>(_mag_z[_qp]) + Utility::pow<4>(_mag_z[_qp]) + 2*Utility::pow<2>(_mag_x[_qp])*(3.0*Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])) -
        _fD*(Utility::pow<2>(_mag_x[_qp]) + 3.0*Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])))*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
   }
   else if (_component == 2)
   {
-  return (_alpha_long[_qp]*_g0*(Utility::pow<4>(_mag_x[_qp]) + Utility::pow<4>(_mag_y[_qp]) + 6.0*Utility::pow<2>(_mag_y[_qp])*Utility::pow<2>(_mag_z[_qp]) + 5.0*Utility::pow<4>(_mag_z[_qp]) + 2*Utility::pow<2>(_mag_x[_qp])*(Utility::pow<2>(_mag_y[_qp]) + 3.0*Utility::pow<2>(_mag_z[_qp])) - 
+  return (_alpha_long[_qp]*_g0*(Utility::pow<4>(_mag_x[_qp]) + Utility::pow<4>(_mag_y[_qp]) + 6.0*Utility::pow<2>(_mag_y[_qp])*Utility::pow<2>(_mag_z[_qp]) + 5.0*Utility::pow<4>(_mag_z[_qp]) + 2*Utility::pow<2>(_mag_x[_qp])*(Utility::pow<2>(_mag_y[_qp]) + 3.0*Utility::pow<2>(_mag_z[_qp])) -
        _fD*(Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + 3.0*Utility::pow<2>(_mag_z[_qp])))*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
   }
   else
@@ -121,7 +121,7 @@ MasterLongitudinalLLB::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _mag_x_var)
     {
-    return (2.0*_alpha_long[_qp]*_g0*_mag_x[_qp]*_mag_y[_qp]*(-_fD + 2*(Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])))*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp])); 
+    return (2.0*_alpha_long[_qp]*_g0*_mag_x[_qp]*_mag_y[_qp]*(-_fD + 2*(Utility::pow<2>(_mag_x[_qp]) + Utility::pow<2>(_mag_y[_qp]) + Utility::pow<2>(_mag_z[_qp])))*_phi[_j][_qp]*_test[_i][_qp])/(1.0 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (jvar == _mag_z_var)
     {

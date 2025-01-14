@@ -3,3 +3,4 @@ Open-source MOOSE application "Ferret" for parallel mesoscale simulations of fer
 
 
 See the website at https://mangerij.github.io/ferret/ for more information.
+

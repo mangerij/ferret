@@ -8,14 +8,14 @@
   ##
   ##   gamma/(mu*0Ms) = 48291.9 nm*mus/pg
   ##
-  ##   coefficients given in (pg/nm*mus) 
+  ##   coefficients given in (pg/nm*mus)
   ##   which is equivalent to an energy/vol
   ##
   ##   Effective fields are 1/(mu0*Ms)*coeff
   ##   which gives units of aC/(nm*mus)
   ##
-  ##   Energies are natively printed in units 
-  ##    of 0.160218 pg nm^2 / mus^2 
+  ##   Energies are natively printed in units
+  ##    of 0.160218 pg nm^2 / mus^2
   ##    or 1.60218*10^{-22} J
   ##    or 0.001 eV
   ##
@@ -80,7 +80,7 @@ sDW = 23.53
   ##
   ############################################################################
 
-  [./constants] 
+  [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha           De       D0             g0mu0Ms      g0          K1         K1c      Kt     permittivity Ae     Ms '
     prop_values = '${alphadef}   ${Dedef} ${D0def}      48291.9      48291.9     ${K1def}  ${K1cdef} ${Ktdef}     1.0      0.75    1.0 '
@@ -635,7 +635,7 @@ sDW = 23.53
   #    Local magnetic exchange            #
   #                                       #
   #---------------------------------------#
-  
+
   [./dllg1_x_exch]
     type = ExchangeCartLL
     variable = mag1_x
@@ -691,7 +691,7 @@ sDW = 23.53
   #    Local AFM magnetic exchange        #
   #           (Local-term)                #
   #---------------------------------------#
-  
+
   [./dllg1afm_x_exch]
     type = AFMLocalSublatticeExchangeCartLL
     variable = mag1_x
@@ -946,7 +946,7 @@ sDW = 23.53
 
   #---------------------------------------#
   #                                       #
-  #     Average Mk = |m_k| and along      # 
+  #     Average Mk = |m_k| and along      #
   #     other directions                  #
   #                                       #
   #---------------------------------------#
@@ -1130,14 +1130,14 @@ sDW = 23.53
   #---------------------------------------#
 
   [./Ftot]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'FafmSLexch FafmSLdmi Fa1 Fa2 Fsia1 Fsia2 FexchS'
     pp_coefs = ' 1.0 1.0 1.0 1.0 1.0 1.0 1.0'
     execute_on = 'initial timestep_end final'
   [../]
 
   [./FtotLLB]
-    type = LinearCombinationPostprocessor 
+    type = LinearCombinationPostprocessor
     pp_names = 'Fllb1 Fllb2'
     pp_coefs = ' 1.0 1.0'
     execute_on = 'initial timestep_end final'
@@ -1146,7 +1146,7 @@ sDW = 23.53
   [./perc_change]
     type = EnergyRatePostprocessor
     postprocessor = Ftot
-    dt = dt 
+    dt = dt
     execute_on = 'timestep_end final'
   [../]
 

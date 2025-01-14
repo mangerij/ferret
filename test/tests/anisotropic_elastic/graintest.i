@@ -256,7 +256,7 @@
     value = 0.025
     preset = false
   [../]
- 
+
   [./anchor_dn_X]
     type = DirichletBC
     variable = disp_x

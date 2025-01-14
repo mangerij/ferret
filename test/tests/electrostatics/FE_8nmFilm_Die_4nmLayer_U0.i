@@ -3,7 +3,7 @@
   [gen]
     #######################################################
     ##
-    ##  Type and dimension of the mesh 
+    ##  Type and dimension of the mesh
     ##
     #######################################################
 
@@ -12,7 +12,7 @@
 
     #######################################################
     ##
-    ##  Finite element grid definition. For ferroelectric 
+    ##  Finite element grid definition. For ferroelectric
     ##  calculations, this should be limited by the
     ##  domain wall width. We suggest ~1.2-2 elements per
     ##  1 nm of spatial resolution)
@@ -24,7 +24,7 @@
 
     #######################################################
     ##
-    ##   Actual spatial coordinates of mesh. 
+    ##   Actual spatial coordinates of mesh.
     ##   Units are in nanometers. Note the above constraint
     ##
     #######################################################
@@ -45,11 +45,11 @@
 
   [subdomains1]
     #######################################################
-    ## 
+    ##
     ##  One of the many mesh modifiers in MOOSE
     ##  This one splits the computational domain into
     ##  two (and then three) different layers
-    ##  These layers are where we change the physics to 
+    ##  These layers are where we change the physics to
     ##  reflect the different materials
     ##
     #######################################################
@@ -165,7 +165,7 @@
 
   ###############################################
   ##
-  ##  Background dielectric constant of the 
+  ##  Background dielectric constant of the
   ##  dielectric layer. It is isotropic e_d = 208
   ##  where e_0 = 0.008854187 in Ferret's units
   ##
@@ -181,9 +181,9 @@
   [./eps1]
     ###############################################
     ##
-    ##  background dielectric constant of the 
+    ##  background dielectric constant of the
     ##  ferroelectric layer is anisotropic with two
-    ##  components. Note that e_0 is 0.008854187 in 
+    ##  components. Note that e_0 is 0.008854187 in
     ##  Ferret's native units
     ##
     ##############################################
@@ -201,7 +201,7 @@
   ###############################################
   ##
   ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
+  ## to enforce TDLGD evolution
   ##
   ###############################################
 
@@ -345,8 +345,8 @@
 
   ####################################################
   ##
-  ##  Postprocessors (integrations over the 
-  ##  computational domain) to calculate the total 
+  ##  Postprocessors (integrations over the
+  ##  computational domain) to calculate the total
   ##  energy decomposed into linear combinations of
   ##  the different physics. Note that we only track
   ##  the energy of the ferroelectric layer
@@ -387,8 +387,8 @@
 
   ####################################################
   ##
-  ##  terminator to end energy evolution when the 
-  ##  energy difference between subsequent time steps 
+  ##  terminator to end energy evolution when the
+  ##  energy difference between subsequent time steps
   ##  is lower than 5e-6
   ##
   ##  NOTE: can fail if the time step is small
@@ -433,7 +433,7 @@
   ###########################################
   ##
   ##  dtmax is material dependent!
-  ##  for PTO is about 0.8 but BTO/HFO more 
+  ##  for PTO is about 0.8 but BTO/HFO more
   ##  like dt = 3-10
   ##
   ###########################################

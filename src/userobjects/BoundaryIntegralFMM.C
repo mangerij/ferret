@@ -17,7 +17,7 @@
    For help with FERRET please contact J. Mangeri <johnma@dtu.dk>
    and be sure to track new changes at github.com/mangerij/ferret
 
-   The FMM boundary condition is contributed by X. Jiang <xikaij@imech.ac.cn> 
+   The FMM boundary condition is contributed by X. Jiang <xikaij@imech.ac.cn>
 **/
 
 
@@ -211,7 +211,7 @@ BoundaryIntegralFMM::execute()
   const   MatrixKernelClass2 MatrixKernel2;
   const   MatrixKernelClass3 MatrixKernel3;
 
-  // Octrees 
+  // Octrees
   OctreeClass tree1(_TreeHeight,SubTreeHeight,_boxWidth,centerOfBox);
   OctreeClass tree2(_TreeHeight,SubTreeHeight,_boxWidth,centerOfBox);
   OctreeClass tree3(_TreeHeight,SubTreeHeight,_boxWidth,centerOfBox);
@@ -224,7 +224,7 @@ BoundaryIntegralFMM::execute()
   const MeshBase::const_node_iterator end_nd = boundary_mesh.nodes_end();
 
   // Loop over all nodes - targets
-  for ( ; nd != end_nd ; ++nd){   
+  for ( ; nd != end_nd ; ++nd){
       const Node* node_bs = *nd;
 
       // Target point coords
@@ -233,7 +233,7 @@ BoundaryIntegralFMM::execute()
       const Real zt = (*node_bs)(2);
       particlePosition.setPosition( xt, yt, zt );
 
-      // Insert into trees             particleType    index     physicalValue  pot forces 
+      // Insert into trees             particleType    index     physicalValue  pot forces
       tree1.insert(particlePosition, FParticleType(1), indexPart,           0., 0., 0., 0., 0.);
       tree2.insert(particlePosition, FParticleType(1), indexPart,           0., 0., 0., 0., 0.);
       tree3.insert(particlePosition, FParticleType(1), indexPart,           0., 0., 0., 0., 0.);
@@ -253,20 +253,20 @@ BoundaryIntegralFMM::execute()
   for ( ; el != end_el ; ++el){
       // Store a pointer to the element
       const Elem* elem_bs = *el;
-  
+
       // The Jacobian * Quadrature Weight at the quadrature points on the face.
       const std::vector<Real>& JxW_face = bs_face->get_JxW();
 
       // The shape function at quadrature points
       const std::vector<std::vector<Real> >& phi = bs_face->get_phi();
-  
+
       // The XYZ locations (in physical space) of the quadrature points on the face.
       const std::vector<Point >& qface_point = bs_face->get_xyz();
-  
+
       // Tangent direction of xi and eta, cross product to get normal
       const std::vector<RealGradient >& qface_dxyzdxi  = bs_face->get_dxyzdxi();
       const std::vector<RealGradient >& qface_dxyzdeta = bs_face->get_dxyzdeta();
- 
+
       // Compute the shape function values on the element face.
       bs_face->reinit(elem_bs);
 
@@ -294,7 +294,7 @@ BoundaryIntegralFMM::execute()
           const Real x_qp = qface_point[qp](0);
           const Real y_qp = qface_point[qp](1);
           const Real z_qp = qface_point[qp](2);
- 
+
           // Value of phi1 at quadrature point
           Real phi1_qp = 0.0;
           for (unsigned int l=0; l < n_phi1_dofs; l++){
@@ -436,7 +436,7 @@ BoundaryIntegralFMM::execute()
 
       // Boundary integral value to solution vector
       boundary_potential.solution->set(node_dof_index_phi2, bi_value);
- 
+
       indexPart += 1;
   }
 

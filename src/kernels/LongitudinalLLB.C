@@ -115,7 +115,7 @@ LongitudinalLLB::computeQpOffDiagJacobian(unsigned int jvar)
   {
     if (jvar == _mag_x_var)
     {
-    return 1.0*_test[_i][_qp]*(2*_alpha_long[_qp]*_g0*_mag_x[_qp]*_mag_y[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha[_qp])); 
+    return 1.0*_test[_i][_qp]*(2*_alpha_long[_qp]*_g0*_mag_x[_qp]*_mag_y[_qp]*(-1 + 2*Utility::pow<2>(_mag_x[_qp]) + 2*Utility::pow<2>(_mag_y[_qp]) + 2*Utility::pow<2>(_mag_z[_qp]))*_phi[_j][_qp])/(1 + Utility::pow<2>(_alpha[_qp]));
     }
     else if (jvar == _mag_z_var)
     {
