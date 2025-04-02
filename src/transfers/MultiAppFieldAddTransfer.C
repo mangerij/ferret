@@ -41,10 +41,10 @@ MultiAppFieldAddTransfer::initialSetup()
 {
   if (_current_direction == TO_MULTIAPP)
     for (auto & to_var : getToVarNames())
-      variableIntegrityCheck(to_var);
+      variableIntegrityCheck(to_var, false);
   else
     for (auto & from_var : getFromVarNames())
-      variableIntegrityCheck(from_var);
+      variableIntegrityCheck(from_var, true);
 }
 
 void
