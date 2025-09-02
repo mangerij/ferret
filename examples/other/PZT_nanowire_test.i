@@ -584,7 +584,7 @@
     type = Exodus
     file_base = out_PZT_nanowire_inSTO_test
     elemental_as_nodal = true
-    interval = 8
+    time_step_interval = 8
   [../]
   [./outcsv]
     type = CSV

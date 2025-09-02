@@ -526,7 +526,7 @@
     type = Exodus
     file_base = out_pbc
     elemental_as_nodal = true
-    interval = 5
+    time_step_interval = 5
   [../]
   [./outCSV]
     type = CSV

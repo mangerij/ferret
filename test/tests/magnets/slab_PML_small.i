@@ -571,12 +571,12 @@ alphadef = 0.02
     type = Exodus
     file_base = slab_PML_small_25_002
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
     execute_on = 'initial timestep_end'
   [../]
   [./outCSV]
     type = CSV
     file_base = slab_PML_small_25_002
-    interval = 1
+    time_step_interval = 1
   [../]
 []

@@ -152,6 +152,6 @@
     type = Exodus
     file_base = out_polar_sph_test
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
 []
