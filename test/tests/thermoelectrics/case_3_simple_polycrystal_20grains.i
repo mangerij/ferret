@@ -16,7 +16,7 @@
                0  0 -1'
     fixed_normal = true
     new_boundary = 'right left front back top bottom'
-    variance = 0.5
+    normal_tol = 0.5
   [../]
 []
 

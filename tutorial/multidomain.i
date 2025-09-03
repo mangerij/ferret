@@ -279,7 +279,7 @@
     execute_on = 'timestep_end'
     file_base = out_multidomain
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
   [./outcsv]
     type = CSV

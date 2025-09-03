@@ -502,7 +502,7 @@ alphadef = 1.0
     type = Exodus
     file_base = out_Sstate_gen-Py_111_OOMF
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
   [./outCSV]
     type = CSV

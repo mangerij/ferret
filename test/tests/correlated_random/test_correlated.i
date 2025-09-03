@@ -75,7 +75,7 @@
   [./out]
     type = Exodus
     file_base = test
-    interval = 1
+    time_step_interval = 1
     elemental_as_nodal = true
   [../]
 []

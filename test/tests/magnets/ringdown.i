@@ -567,7 +567,7 @@ alphadef = 0.02
     type = Exodus
     file_base = ringdown
     elemental_as_nodal = true
-    interval = 10
+    time_step_interval = 10
   [../]
   [./outCSV]
     type = CSV

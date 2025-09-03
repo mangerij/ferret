@@ -717,7 +717,7 @@
     type = Exodus
     file_base = out_PTOsphere0_inSTO_2_2
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
   [./outCSV]
     type = CSV
