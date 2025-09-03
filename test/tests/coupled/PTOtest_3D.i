@@ -315,6 +315,6 @@
     type = Exodus
     file_base = outPTOchunk_test
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
 []

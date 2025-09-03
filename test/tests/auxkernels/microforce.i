@@ -637,7 +637,7 @@
     type = Exodus
     file_base = out_microforce_test
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
   [./outCSV]
     type = CSV

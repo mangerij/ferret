@@ -1208,7 +1208,7 @@ sDW = 23.53
     type = Exodus
     file_base = out_BFO_P111bA111b-P111bA111b_m1
     elemental_as_nodal = true
-    interval = 20
+    time_step_interval = 20
   [../]
   [./outCSV]
     type = CSV

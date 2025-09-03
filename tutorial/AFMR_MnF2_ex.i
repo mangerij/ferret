@@ -714,11 +714,11 @@ zMax = 0.01
     type = Exodus
     file_base = out_AFMR_ex
     elemental_as_nodal = true
-    interval = 500
+    time_step_interval = 500
   [../]
   [./outCSV]
     type = CSV
     file_base = out_AFMR_ex
-    interval = 1
+    time_step_interval = 1
   [../]
 []

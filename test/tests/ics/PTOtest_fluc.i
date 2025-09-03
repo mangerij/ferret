@@ -352,6 +352,6 @@
     type = Exodus
     file_base = outPTO_test_fluct
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
 []

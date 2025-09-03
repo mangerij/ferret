@@ -800,6 +800,6 @@
     file_base = out_ferroelectric_domain_wall
     elemental_as_nodal = true
     execute_on = 'timestep_end'
-    interval = 2
+    time_step_interval = 2
   [../]
 []

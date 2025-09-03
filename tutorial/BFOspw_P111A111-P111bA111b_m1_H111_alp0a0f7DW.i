@@ -1196,7 +1196,7 @@ pulseloc = 15.0
     type = Exodus
     file_base = out_BFOspw_P111A111-P111bA111b_m1_H111_alp0a0f7
     elemental_as_nodal = true
-    interval = 5
+    time_step_interval = 5
   [../]
   [./outCSV]
     type = CSV

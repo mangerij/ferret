@@ -278,6 +278,6 @@
     type = Exodus
     file_base = outPTOchunk_test_2D
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
 []

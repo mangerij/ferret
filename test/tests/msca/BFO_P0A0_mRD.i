@@ -707,7 +707,7 @@ alphadef = 0.01
     type = Exodus
     file_base = out_BFO_P0A0_mRD
     elemental_as_nodal = true
-    interval = 2
+    time_step_interval = 2
   [../]
 []
 

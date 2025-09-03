@@ -610,6 +610,6 @@ G44P_G110_para = 1.6
     execute_on = 'timestep_end'
     file_base = out_split_polar
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
 []

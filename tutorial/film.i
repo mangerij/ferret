@@ -933,6 +933,6 @@
     type = Exodus
     file_base = out_PTOfilm_e12_T298K_E0_E0
     elemental_as_nodal = true
-    interval = 1
+    time_step_interval = 1
   [../]
 []
