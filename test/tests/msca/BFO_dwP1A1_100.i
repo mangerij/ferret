@@ -706,6 +706,16 @@ h44 = 0.8e-3
     prop_values = '295.179 117.567 74.0701'
   [../]
 
+  ##############################################################
+  ##
+  ## NOTE: Sign convention in **this implementation**
+  ##       for the electrostrictive coeff. is multiplied by
+  ##       an overall factor of (-1). Note that other elastic
+  ##       coupling Kernels/Materials in Ferret DO NOT have the 
+  ##       (-1) prefactor. Please be careful here.
+  ##
+  ###############################################################
+
   [./mat_Q]
     type = GenericConstantMaterial
     prop_names = 'Q11 Q12 Q44'

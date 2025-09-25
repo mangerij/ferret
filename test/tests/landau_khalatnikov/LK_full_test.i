@@ -43,6 +43,17 @@
   C12 = 45.5681
   C44 = 28.709
 
+
+  ##############################################################
+  ##
+  ## NOTE: Sign convention in **this implementation**
+  ##       for the electrostrictive coeff. is multiplied by
+  ##       an overall factor of (-1). Note that other elastic
+  ##       coupling Kernels/Materials in Ferret DO NOT have the 
+  ##       (-1) prefactor. Please be careful here.
+  ##
+  ###############################################################
+  
   q11 = -5.89457
   q12 = -0.971881
   q44 = -2.01751

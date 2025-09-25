@@ -19,7 +19,8 @@
 
 **/
 
-//Code by Dharma Raj Basaula 2021
+
+// - Code by Dharma Raj Basaula 2021, see Acta Mater., 228, 117743, 2022
 
 #include "TensorHeatFlowElectricT.h"
 #include "Material.h"

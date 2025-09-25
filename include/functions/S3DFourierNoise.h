@@ -17,9 +17,9 @@
    For help with FERRET please contact J. Mangeri <johnma@dtu.dk>
    and be sure to track new changes at github.com/mangerij/ferret
 
-   //adapted from FourierNoise.C [credit to D. Schwen (INL)]
-
 **/
+
+// adapted from FourierNoise.C [credit to D. Schwen (INL)]
 
 #pragma once
 

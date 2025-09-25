@@ -14,10 +14,11 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.m.mangeri@gmail.com>
+   For help with FERRET please contact J. Mangeri <johnma@dtu.dk>
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
+
 #ifndef TENSORHEATFLOWELECTRICT_H
 #define TENSORHEATFLOWELECTRICT_H
 

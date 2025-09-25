@@ -18,6 +18,7 @@
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
+
 #ifndef BIREFRINGENCE_H
 #define BIREFRINGENCE_H
 

@@ -17,9 +17,9 @@
    For help with FERRET please contact J. Mangeri <johnma@dtu.dk>
    and be sure to track new changes at github.com/mangerij/ferret
 
-   The FMM boundary condition is contributed by X. Jiang <xikaij@imech.ac.cn>
 **/
 
+//   The FMM boundary condition is contributed by X. Jiang <xikaij@imech.ac.cn> see J. Chem. Phys. 145, 6, (2016)
 
 #include "BoundaryIntegralFMM.h"
 #include <iostream>
