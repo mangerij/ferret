@@ -18,6 +18,7 @@
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
+
 #ifndef AFMTOTALENERGYDENSITY_H
 #define AFMTOTALENERGYDENSITY_H
 

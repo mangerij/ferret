@@ -451,13 +451,15 @@ a111temp = a111def
     prop_values = '275.0 179.0 54.3'
   [../]
 
-  ##################################################
+  ##############################################################
   ##
-  ## NOTE: Sign convention in Ferret for the
-  ##        electrostrictive coeff. is multiplied by
-  ##        an overall factor of (-1)
+  ## NOTE: Sign convention in **this implementation**
+  ##       for the electrostrictive coeff. is multiplied by
+  ##       an overall factor of (-1). Note that other elastic
+  ##       coupling Kernels/Materials in Ferret DO NOT have the 
+  ##       (-1) prefactor. Please be careful here.
   ##
-  ##################################################
+  ###############################################################
 
   [./mat_Q]
     type = GenericConstantMaterial

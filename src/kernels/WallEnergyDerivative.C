@@ -14,7 +14,7 @@
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-   For help with FERRET please contact J. Mangeri <john.m.mangeri@gmail.com>
+   For help with FERRET please contact J. Mangeri <johnma@dtu.dk>
    and be sure to track new changes at github.com/mangerij/ferret
 
 **/
@@ -26,7 +26,7 @@ registerMooseObject("FerretApp", WallEnergyDerivative);
 InputParameters WallEnergyDerivative::validParams()
 {
   InputParameters params = Kernel::validParams();
-  params.addClassDescription("Calculates a residual contribution due to the variation w.r.t polarization of the gradient energy. This Kernel needs to be used in conjunction with Wall2EnergyDerivative!");
+  params.addClassDescription("Calculates a residual contribution due to the variation w.r.t polarization of the gradient energy. This Kernel should be used in conjunction with Wall2EnergyDerivative!");
   params.addRequiredParam<unsigned int>("component", "An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addRequiredCoupledVar("polar_y", "The y component of the polarization");

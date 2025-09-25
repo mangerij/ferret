@@ -600,6 +600,16 @@
     global_strain_uo = global_strain_uo
   [../]
 
+  ##############################################################
+  ##
+  ## NOTE: Sign convention in **this implementation**
+  ##       for the electrostrictive coeff. is multiplied by
+  ##       an overall factor of (-1). Note that other elastic
+  ##       coupling Kernels/Materials in Ferret DO NOT have the 
+  ##       (-1) prefactor. Please be careful here.
+  ##
+  ###############################################################
+  
   [./slab_ferroelectric]
     type = ComputeElectrostrictiveTensor
     Q_mnkl = '0.11 -0.045 -0.045 0.11 -0.045 0.11 0.029 0.029 0.029'
