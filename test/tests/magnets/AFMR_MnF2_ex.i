@@ -89,7 +89,7 @@ zMax = 0.01
 
   [./bc_func_1]
     type = ParsedFunction
-    value = 'st'   #*tanh(sl*t)+1.0'
+    expression = 'st'   #*tanh(sl*t)+1.0'
     vars = 'st' #sl'
     vals = '0.5' # 795.775'
   [../]

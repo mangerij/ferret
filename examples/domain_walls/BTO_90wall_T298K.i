@@ -84,11 +84,11 @@
 [Functions]
   [./stripe1]
     type = ParsedFunction
-    value = 0.1*cos(0.10471975511965977*((x+5)+(y+5)))+0.1  # 0.10471975511965977 = pi/(xmax-xmin)
+    expression = 0.1*cos(0.10471975511965977*((x+5)+(y+5)))+0.1  # 0.10471975511965977 = pi/(xmax-xmin)
   [../]
   [./stripe2]
     type = ParsedFunction
-    value = -0.1*cos(0.10471975511965977*((x+5)+(y+5)))+0.1
+    expression = -0.1*cos(0.10471975511965977*((x+5)+(y+5)))+0.1
   [../]
 []
 

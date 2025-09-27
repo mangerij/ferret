@@ -468,7 +468,7 @@ a1temp = -0.172197
 [Functions]
   [./bc_func_1]
     type = ParsedFunction
-    value = -5.0*sin(0.005*t)
+    expression = -5.0*sin(0.005*t)
   [../]
 []
 

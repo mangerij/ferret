@@ -236,7 +236,7 @@
 [Functions]
   [./bc_func_1]
     type = ParsedFunction
-    value = -100.0*sin(0.05*t)
+    expression = -100.0*sin(0.05*t)
   [../]
 []
 
