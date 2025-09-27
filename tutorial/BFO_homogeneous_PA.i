@@ -71,19 +71,19 @@ h44 = 0.8e-3
 [Functions]
   [./constPm]
     type = ParsedFunction
-    value = -0.50
+    expression = -0.50
   [../]
   [./constPp]
     type = ParsedFunction
-    value = 0.50
+    expression = 0.50
   [../]
   [./constAm]
     type = ParsedFunction
-    value = -7.1
+    expression = -7.1
   [../]
   [./constAp]
     type = ParsedFunction
-    value = 7.1
+    expression = 7.1
   [../]
 []
 

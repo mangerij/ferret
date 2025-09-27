@@ -112,7 +112,7 @@
 [Functions]
   [./stripe1]
     type = ParsedFunction
-    value = 0.01*cos(0.08975979010256552*(x))
+    expression = 0.01*cos(0.08975979010256552*(x))
   [../]
 []
 

@@ -84,7 +84,7 @@ alphadef = 0.02
 [Functions]
   [./bc_func_1]
     type = ParsedFunction
-    value = 'st'
+    expression = 'st'
     vars = 'st'
     vals = '1.e1'  #3?
   [../]

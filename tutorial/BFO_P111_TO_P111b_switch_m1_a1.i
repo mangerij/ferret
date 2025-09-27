@@ -47,7 +47,7 @@ Eadef = -1.8e3
 [Functions]
   [./bc_func_1]
     type = ParsedFunction
-    value = 'st'
+    expression = 'st'
     vars = 'st '
     vals = '5e2'
   [../]

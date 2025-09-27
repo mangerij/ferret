@@ -105,7 +105,7 @@ sDW = 23.53
 
   [./bc_func_1]
     type = ParsedFunction
-    value = 'st'
+    expression = 'st'
     vars = 'st'
     vals = '1e8'
   [../]
@@ -113,29 +113,29 @@ sDW = 23.53
 
   [./stripem1x]
     type = ParsedFunction
-    value = 'if(x < 15.707963267948966,(${hamp}+${corr})*tanh(${dwid}*(x-${fDW}))+${hamp},-(${hamp}+${corr})*tanh(${dwid}*(x-${sDW}))+${hamp})'
+    expression = 'if(x < 15.707963267948966,(${hamp}+${corr})*tanh(${dwid}*(x-${fDW}))+${hamp},-(${hamp}+${corr})*tanh(${dwid}*(x-${sDW}))+${hamp})'
   [../]
 
   [./stripem1y]
     type = ParsedFunction
-    value = 'if(x < 15.707963267948966,-(2*${hamp}+${corr})*tanh(${dwid}*(x-${fDW})),(2*${hamp}+${corr})*tanh(${dwid}*(x-${sDW})))'
+    expression = 'if(x < 15.707963267948966,-(2*${hamp}+${corr})*tanh(${dwid}*(x-${fDW})),(2*${hamp}+${corr})*tanh(${dwid}*(x-${sDW})))'
   [../]
   [./stripem1z]
     type = ParsedFunction
-    value = 'if(x < 15.707963267948966,-(${hamp}+${corr})*tanh(${dwid}*(x-${fDW}))+${hamp},(${hamp}+${corr})*tanh(${dwid}*(x-${sDW}))+${hamp})'
+    expression = 'if(x < 15.707963267948966,-(${hamp}+${corr})*tanh(${dwid}*(x-${fDW}))+${hamp},(${hamp}+${corr})*tanh(${dwid}*(x-${sDW}))+${hamp})'
   [../]
 
   [./stripem2x]
     type = ParsedFunction
-    value = 'if(x < 15.707963267948966,-(${hamp}-${corr})*tanh(${dwid}*(x-${fDW}))-${hamp},(${hamp}-${corr})*tanh(${dwid}*(x-${sDW}))-${hamp})'
+    expression = 'if(x < 15.707963267948966,-(${hamp}-${corr})*tanh(${dwid}*(x-${fDW}))-${hamp},(${hamp}-${corr})*tanh(${dwid}*(x-${sDW}))-${hamp})'
   [../]
   [./stripem2y]
     type = ParsedFunction
-    value = 'if(x < 15.707963267948966,(2*${hamp}-${corr})*tanh(${dwid}*(x-${fDW})),-(2*${hamp}-${corr})*tanh(${dwid}*(x-${sDW})))'
+    expression = 'if(x < 15.707963267948966,(2*${hamp}-${corr})*tanh(${dwid}*(x-${fDW})),-(2*${hamp}-${corr})*tanh(${dwid}*(x-${sDW})))'
   [../]
   [./stripem2z]
     type = ParsedFunction
-    value = 'if(x < 15.707963267948966,(${hamp}-${corr})*tanh(${dwid}*(x-${fDW}))-${hamp},-(${hamp}-${corr})*tanh(${dwid}*(x-${sDW}))-${hamp})'
+    expression = 'if(x < 15.707963267948966,(${hamp}-${corr})*tanh(${dwid}*(x-${fDW}))-${hamp},-(${hamp}-${corr})*tanh(${dwid}*(x-${sDW}))-${hamp})'
   [../]
 []
 #==
