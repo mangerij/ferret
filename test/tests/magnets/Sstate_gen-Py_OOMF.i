@@ -124,7 +124,7 @@ alphadef = 1.0
 
   [./bc_func_1]
     type = ParsedFunction
-    value = 'st'
+    expression = 'st'
     vars = 'st'
     vals = '1e1'  #3?
   [../]

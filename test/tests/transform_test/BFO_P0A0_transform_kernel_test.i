@@ -96,11 +96,11 @@ zMax = 1.0
 [Functions]
   [./constPp]
     type = ParsedFunction
-    value = 0.54
+    expression = 0.54
   [../]
   [./constAp]
     type = ParsedFunction
-    value = 7.37
+    expression = 7.37
   [../]
 []
 

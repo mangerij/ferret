@@ -73,36 +73,36 @@ h44 = 0.8e-3
 [Functions]
   [./stripeP1]
     type = ParsedFunction
-    value = 0.54*cos(${freq}*(x))
+    expression = 0.54*cos(${freq}*(x))
   [../]
   [./stripeP2]
     type = ParsedFunction
-    value = -0.54*cos(${freq}*(x))
+    expression = -0.54*cos(${freq}*(x))
   [../]
   [./stripeA1]
     type = ParsedFunction
-    value = 7.37*cos(${freq}*(x))
+    expression = 7.37*cos(${freq}*(x))
   [../]
   [./stripeA2]
     type = ParsedFunction
-    value = -7.37*cos(${freq}*(x))
+    expression = -7.37*cos(${freq}*(x))
   [../]
 
   [./constPm]
     type = ParsedFunction
-    value = -0.54
+    expression = -0.54
   [../]
   [./constPp]
     type = ParsedFunction
-    value = 0.54
+    expression = 0.54
   [../]
   [./constAm]
     type = ParsedFunction
-    value = -7.37
+    expression = -7.37
   [../]
   [./constAp]
     type = ParsedFunction
-    value = 7.37
+    expression = 7.37
   [../]
 []
 

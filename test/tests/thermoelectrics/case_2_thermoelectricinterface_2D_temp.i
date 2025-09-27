@@ -151,19 +151,19 @@
 [Functions]
   [./k_func]
     type = ParsedFunction
-    value = '1.758 - 5.290e-3 * t + 4.134e-5 * t^2'
+    expression = '1.758 - 5.290e-3 * t + 4.134e-5 * t^2'
   [../]
   [./lam_func]
     type = ParsedFunction
-    value = '1.028e5 - 5.369e2 * t + 1.824 * t^2'
+    expression = '1.028e5 - 5.369e2 * t + 1.824 * t^2'
   [../]
   [./eps_func]
     type = ParsedFunction
-    value = '1.802e-4 + 3.861e-7 * t - 9.582e-10 * t^2'
+    expression = '1.802e-4 + 3.861e-7 * t - 9.582e-10 * t^2'
   [../]
   [./negative_eps_func]
     type = ParsedFunction
-    value = '-1.802e-4 - 3.861e-7 * t + 9.582e-10 * t^2'
+    expression = '-1.802e-4 - 3.861e-7 * t + 9.582e-10 * t^2'
   [../]
 []
 
