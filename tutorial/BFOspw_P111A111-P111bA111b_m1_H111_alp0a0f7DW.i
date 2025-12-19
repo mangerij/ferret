@@ -57,28 +57,28 @@ pulseloc = 15.0
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
-    vars = 'st'
-    vals = '1e5'
+    symbol_names = 'st'
+    symbol_values = '1e5'
   [../]
 
   [./pulse1]
     type = ParsedFunction
-    vars = 't0 t1 A'
-    vals = '0.0 100.0 0.707107'
+    symbol_names = 't0 t1 A'
+    symbol_values = '0.0 100.0 0.707107'
     expression = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
   [../]
 
   [./pulse2]
     type = ParsedFunction
-    vars = 't0 t1 A'
-    vals = '0.0 100.0 0.707107'
+    symbol_names = 't0 t1 A'
+    symbol_values = '0.0 100.0 0.707107'
     expression = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
   [../]
 
   [./pulse3]
     type = ParsedFunction
-    vars = 't0 t1 A'
-    vals = '0.0 100.0 0.707107'
+    symbol_names = 't0 t1 A'
+    symbol_values = '0.0 100.0 0.707107'
     expression = 1.0*A*0.2*exp(-0.16*(x-${pulseloc})*(x-${pulseloc}))*(sin(10.0*(x-${pulseloc}))/(10.0*(x-${pulseloc})))*sin(${sfreq}*(t-1e-6))/(${sfreq}*(t-1e-6))
   [../]
 []

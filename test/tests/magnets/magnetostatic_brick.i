@@ -54,8 +54,8 @@
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'   #*tanh(sl*t)+1.0'
-    vars = 'st' #sl'
-    vals = '100.0' # 795.775'
+    symbol_names = 'st' #sl'
+    symbol_values = '100.0' # 795.775'
   [../]
 []
 
