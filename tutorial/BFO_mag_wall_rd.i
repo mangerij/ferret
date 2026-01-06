@@ -106,8 +106,8 @@ sDW = 23.53
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
-    vars = 'st'
-    vals = '1e8'
+    symbol_names = 'st'
+    symbol_values = '1e8'
   [../]
 
 

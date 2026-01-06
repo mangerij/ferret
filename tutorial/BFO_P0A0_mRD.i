@@ -70,8 +70,8 @@ alphadef = 0.1
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
-    vars = 'st'
-    vals = '1e3'
+    symbol_names = 'st'
+    symbol_values = '1e3'
   [../]
 []
 

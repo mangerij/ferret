@@ -60,8 +60,8 @@ zMax = 0.01
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
-    vars = 'st'
-    vals = '0.5'
+    symbol_names = 'st'
+    symbol_values = '0.5'
   [../]
 []
 
