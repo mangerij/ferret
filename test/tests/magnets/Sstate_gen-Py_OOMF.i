@@ -125,8 +125,8 @@ alphadef = 1.0
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
-    vars = 'st'
-    vals = '1e1'  #3?
+    symbol_names = 'st'
+    symbol_values = '1e1'  #3?
   [../]
 
   [./node_mx]

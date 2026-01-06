@@ -41,8 +41,8 @@ amplitude = 1e-3
   [./bc_func_1]
     type = ParsedFunction
     expression = 'amplitude*sin(freq*t)'
-    vars = 'freq amplitude'
-    vals = '${freq}  ${amplitude}'
+    symbol_names = 'freq amplitude'
+    symbol_values = '${freq}  ${amplitude}'
   [../]
 []
 

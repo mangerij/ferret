@@ -124,8 +124,8 @@ alphadef = 0.02
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
-    vars = 'st'
-    vals = '1.e3'  #3?
+    symbol_names = 'st'
+    symbol_values = '1.e3'  #3?
   [../]
 []
 
@@ -509,8 +509,8 @@ alphadef = 0.02
     [../]
     [./mag]
       vars = 'mag_x mag_y mag_z'
-    petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -pc_sub_type '
-    petsc_options_value = '    40               1e-20      1e-6      1e-6     bjacobi  ilu'
+      petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -pc_sub_type '
+      petsc_options_value = '    40               1e-20      1e-6      1e-6     bjacobi  ilu'
     [../]
     [./pot]
       vars = potential_H_int
