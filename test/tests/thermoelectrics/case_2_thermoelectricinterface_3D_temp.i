@@ -1,18 +1,5 @@
-
-  ##########################################
-  ##
-  ##   Example of 3D interface with Peltier
-  ##   cooling/heating phenomena
-  ##
-  ############################################
-
 [Mesh]
  [gen]
-    ############################################
-    ##
-    ##  Type and dimension of the mesh
-    ##
-    ############################################
 
     type = GeneratedMeshGenerator
     dim = 3
@@ -149,7 +136,6 @@
 []
 
 [Kernels]
-  ########BLOCK 1
   [./residualV_00]
     type = DivCurrentV
     variable = potential_E_int
@@ -187,7 +173,6 @@
     block = 0
   [../]
 
-  ########BLOCK 1
   [./residualV_10]
     type = DivCurrentV
     variable = potential_E_int
@@ -226,7 +211,6 @@
   [../]
 []
 
-
 [Materials]
   [./ThermoelectricProperties_block1]
     type = GenericConstantMaterial
@@ -241,7 +225,6 @@
     block = 1
   [../]
 []
-
 
 [BCs]
 

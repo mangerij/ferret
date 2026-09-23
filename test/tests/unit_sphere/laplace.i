@@ -12,7 +12,7 @@
 []
 
 [AuxVariables]
-  [./phi1]   #the transfer system just puts this here :)
+  [./phi1]
     order = FIRST
     family = LAGRANGE
   [../]
@@ -42,7 +42,6 @@
   [../]
 []
 
-
 [UserObjects]
   [./bifmm]
     type = BoundaryIntegralFMM
@@ -55,8 +54,16 @@
   [../]
 []
 
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
 [Executioner]
   type = Steady
+  solve_type = NEWTON
 []
 
 [Outputs]

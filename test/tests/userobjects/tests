@@ -1,0 +1,16 @@
+[Tests]
+  [./terminator_multi]
+    type = 'RunApp'
+    input = 'terminator_multi.i'
+    expect_out = "Terminator 'kill' is causing the execution to terminate."
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./terminator_full]
+    type = 'RunApp'
+    input = 'terminator_full.i'
+    expect_out = "Terminator 'kill' is causing the execution to terminate."
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]

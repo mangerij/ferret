@@ -19,12 +19,10 @@
   [./poisson]
     type = FullSolveMultiApp
     input_files = poisson.i
-    #execute_on = 'initial linear nonlinear timestep_begin'
   [../]
   [./laplace]
     type = FullSolveMultiApp
     input_files = laplace.i
-    #execute_on = 'initial linear nonlinear timestep_begin'
   [../]
 []
 
@@ -52,7 +50,6 @@
 [Executioner]
   type = Steady
 []
-
 
 [Outputs]
   exodus = true

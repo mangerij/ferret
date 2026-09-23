@@ -361,20 +361,20 @@ zMax = 0.01
 
 [AuxKernels]
   [./mag1_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
+    x = mag1_x
+    y = mag1_y
+    z = mag1_z
     execute_on = 'initial timestep_end final'
   [../]
 
   [./mag2_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
+    x = mag2_x
+    y = mag2_y
+    z = mag2_z
     execute_on = 'initial timestep_end final'
   [../]
 
@@ -429,142 +429,6 @@ zMax = 0.01
     execute_on = 'initial timestep_end final'
   [../]
 
-[]
-
-[Kernels]
-  #---------------------------------------#
-  #                                       #
-  #          Time dependence              #
-  #                                       #
-  #---------------------------------------#
-
-  [./mag1_x_time]
-    type = TimeDerivative
-    variable = mag1_x
-  [../]
-  [./mag1_y_time]
-    type = TimeDerivative
-    variable = mag1_y
-  [../]
-  [./mag1_z_time]
-    type = TimeDerivative
-    variable = mag1_z
-  [../]
-
-  [./mag2_x_time]
-    type = TimeDerivative
-    variable = mag2_x
-  [../]
-  [./mag2_y_time]
-    type = TimeDerivative
-    variable = mag2_y
-  [../]
-  [./mag2_z_time]
-    type = TimeDerivative
-    variable = mag2_z
-  [../]
-
-  #---------------------------------------#
-  #                                       #
-  #     AFM resonance kernel terms        #
-  #                                       #
-  #---------------------------------------#
-
-  [./afmr1_x]
-    type = UniaxialAFMSublattice
-    variable = mag1_x
-    mag_sub = 0
-    component = 0
-  [../]
-  [./afmr1_y]
-    type = UniaxialAFMSublattice
-    variable = mag1_y
-    mag_sub = 0
-    component = 1
-  [../]
-  [./afmr1_z]
-    type = UniaxialAFMSublattice
-    variable = mag1_z
-    mag_sub = 0
-    component = 2
-  [../]
-
-  [./afmr2_x]
-    type = UniaxialAFMSublattice
-    variable = mag2_x
-    mag_sub = 1
-    component = 0
-  [../]
-  [./afmr2_y]
-    type = UniaxialAFMSublattice
-    variable = mag2_y
-    mag_sub = 1
-    component = 1
-  [../]
-  [./afmr2_z]
-    type = UniaxialAFMSublattice
-    variable = mag2_z
-    mag_sub = 1
-    component = 2
-  [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          LLB constraint terms         #
-  #                                       #
-  #---------------------------------------#
-
-  [./llb1_x]
-    type = LongitudinalLLB
-    variable = mag1_x
-    mag_x = mag1_x
-    mag_y = mag1_y
-    mag_z = mag1_z
-    component = 0
-  [../]
-  [./llb1_y]
-    type = LongitudinalLLB
-    variable = mag1_y
-    mag_x = mag1_x
-    mag_y = mag1_y
-    mag_z = mag1_z
-    component = 1
-  [../]
-
-  [./llb1_z]
-    type = LongitudinalLLB
-    variable = mag1_z
-    mag_x = mag1_x
-    mag_y = mag1_y
-    mag_z = mag1_z
-    component = 2
-  [../]
-
-  [./llb2_x]
-    type = LongitudinalLLB
-    variable = mag2_x
-    mag_x = mag2_x
-    mag_y = mag2_y
-    mag_z = mag2_z
-    component = 0
-  [../]
-  [./llb2_y]
-    type = LongitudinalLLB
-    variable = mag2_y
-    mag_x = mag2_x
-    mag_y = mag2_y
-    mag_z = mag2_z
-    component = 1
-  [../]
-
-  [./llb2_z]
-    type = LongitudinalLLB
-    variable = mag2_z
-    mag_x = mag2_x
-    mag_y = mag2_y
-    mag_z = mag2_z
-    component = 2
-  [../]
 []
 
 [BCs]

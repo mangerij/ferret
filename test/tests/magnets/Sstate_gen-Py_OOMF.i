@@ -1,32 +1,6 @@
-
-
-  ##############################
-  ##
-  ## UNITS:
-  ##
-  ##   gamma = (2.2101*10^5 / 2 pi) m/C
-  ##
-  ##   gamma/(mu*0Ms) = 48291.9 nm*mus/pg
-  ##
-  ##   coefficients given in (pg/nm*mus)
-  ##   which is equivalent to an energy/vol
-  ##
-  ##   Effective fields are 1/(mu0*Ms)*coeff
-  ##   which gives units of aC/(nm*mus)
-  ##
-  ##   Energies are natively printed in units
-  ##    of 0.160218 pg nm^2 / mus^2
-  ##    or 1.60218*10^{-22} J
-  ##    or 0.001 eV
-  ##
-  ##############################
-
-
 Nx = 100
 Ny = 25
 Nz = 3
-
-#
 
 xMin = 0.0
 yMin = 0.0
@@ -38,7 +12,6 @@ zMax = 3.0
 
 alphadef = 1.0
 
-#
 [Mesh]
   [gen]
     type = GeneratedMeshGenerator
@@ -56,24 +29,16 @@ alphadef = 1.0
   []
 []
 
-#
-
 [UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-8'
-  [../]
   [./reader_nearest]
     type = PropertyReadFile
     prop_file_name = 'fulldata_state.csv'
     read_type = 'voronoi'
-    nprop = 6  # number of columns in CSV
+    nprop = 6
     nblock = 1
     nvoronoi = 7500
-    #use_random_voronoi = true
   [../]
 []
-#
 
 [GlobalParams]
   mag_x = mag_x
@@ -82,28 +47,18 @@ alphadef = 1.0
 
   potential_H_int = potential_H_int
 
-
   mu0 = 1.0
   Hscale = 1.0
   g0 = 17680.8
 []
 
 [Materials]
-  ############################################################################
-  ##
-  ##      material constants used.
-  ##
-  ##
-  ############################################################################
 
   [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha           g0mu0Ms           permittivity Ae      Ms   '
     prop_values = '${alphadef}     34989.1        1.0        13.0   1.0  '
   [../]
-
-#NOTE: g0 is g*mu0*Ms/2 as defined by Hertel
-#alpha is chosen to be 1.0 as in the muMag paper
 
   [./a_long]
     type = GenericFunctionMaterial
@@ -115,18 +70,11 @@ alphadef = 1.0
 
 [Functions]
 
-  ##############################
-  ##
-  ## Define the ramping function
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
     symbol_names = 'st'
-    symbol_values = '1e1'  #3?
+    symbol_values = '1e1'
   [../]
 
   [./node_mx]
@@ -148,7 +96,6 @@ alphadef = 1.0
     column_number = '5'
   [../]
 []
-#
 
 [Variables]
   [./mag_x]
@@ -183,11 +130,6 @@ alphadef = 1.0
 []
 
 [AuxVariables]
-  #--------------------------------------------#
-  #                                            #
-  #  field to seed IC that obeys constraint    #
-  #                                            #
-  #--------------------------------------------#
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
@@ -240,25 +182,18 @@ alphadef = 1.0
   [../]
 []
 
-
 [AuxKernels]
   [./mag_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag_s
-    vector_x = mag_x
-    vector_y = mag_y
-    vector_z = mag_z
+    x = mag_x
+    y = mag_y
+    z = mag_z
     execute_on = 'initial timestep_end final'
   [../]
 []
 
-
 [Kernels]
-  #---------------------------------------#
-  #                                       #
-  #          Time dependence              #
-  #                                       #
-  #---------------------------------------#
 
   [./mag_x_time]
     type = TimeDerivative
@@ -272,12 +207,6 @@ alphadef = 1.0
     type = TimeDerivative
     variable = mag_z
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #    Local magnetic exchange            #
-  #                                       #
-  #---------------------------------------#
 
   [./dllg_x_exch]
     type = MasterExchangeCartLLG
@@ -295,12 +224,6 @@ alphadef = 1.0
     component = 2
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #    demagnetization field              #
-  #                                       #
-  #---------------------------------------#
-
   [./d_HM_x]
     type = MasterInteractionCartLLG
     variable = mag_x
@@ -316,12 +239,6 @@ alphadef = 1.0
     variable = mag_z
     component = 2
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          LLB constraint terms         #
-  #                                       #
-  #---------------------------------------#
 
   [./llb1_x]
     type = LongitudinalLLB
@@ -339,12 +256,6 @@ alphadef = 1.0
     variable = mag_z
     component = 2
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #    Magnetostatic Poisson equation     #
-  #                                       #
-  #---------------------------------------#
 
   [./int_pot_lap]
     type = Electrostatics
@@ -365,12 +276,6 @@ alphadef = 1.0
    [./dt]
      type = TimestepSize
    [../]
-
-  #---------------------------------------#
-  #                                       #
-  #     Average M = |m|                   #
-  #                                       #
-  #---------------------------------------#
 
   [./M1]
     type = ElementAverageValue
@@ -394,39 +299,17 @@ alphadef = 1.0
     execute_on = 'initial timestep_end final'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   Calculate exchange energy of        #
-  #   the magnetic body                   #
-  #                                       #
-  #---------------------------------------#
-
   [./Fexch]
     type = MasterMagneticExchangeEnergy
-    energy_scale = 0.001  #converts results to eV
+    energy_scale = 0.001
     execute_on = 'initial timestep_end final'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #   Calculate demagnetization energy    #
-  #   of the magnetic body                #
-  #                                       #
-  #---------------------------------------#
 
   [./Fdemag]
     type = MagnetostaticEnergyCart
-    energy_scale = 0.001  #converts results to eV
+    energy_scale = 0.001
     execute_on = 'initial timestep_end final'
   [../]
-
-
-  #---------------------------------------#
-  #                                       #
-  #   Calculate excess energy from missed #
-  #   LLB targets                         #
-  #                                       #
-  #---------------------------------------#
 
   [./Fllb1]
     type = MagneticExcessLLBEnergy
@@ -436,13 +319,6 @@ alphadef = 1.0
     execute_on = 'initial timestep_end final'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   add all the energy contributions    #
-  #   and calculate their percent change  #
-  #                                       #
-  #---------------------------------------#
-
   [./Ftot]
     type = LinearCombinationPostprocessor
     pp_names = 'Fexch Fdemag'
@@ -450,21 +326,9 @@ alphadef = 1.0
     execute_on = 'initial timestep_end final'
   [../]
 
-  [./perc_change]
-    type = EnergyRatePostprocessor
-    postprocessor = Ftot
-    dt = dt
-    execute_on = 'timestep_end final'
-  [../]
 []
 
 [Preconditioning]
-
-  #---------------------------------------#
-  #                                       #
-  #            Solver options             #
-  #                                       #
-  #---------------------------------------#
 
   [./smp]
     type = SMP
@@ -473,7 +337,6 @@ alphadef = 1.0
     petsc_options_value = '    526               1e-5      1e-3      1e-6     bjacobi'
   [../]
 []
-#
 [Executioner]
   type = Transient
   solve_type = 'NEWTON'
@@ -487,7 +350,7 @@ alphadef = 1.0
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 38  #usually 10
+    optimal_iterations = 38
     linear_iteration_ratio = 1000
     dt = 1e-8
     growth_factor = 1.1

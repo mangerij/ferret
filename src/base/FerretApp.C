@@ -69,7 +69,7 @@ FerretApp::registerAll(Factory & factory, ActionFactory & action_factory, Syntax
 //  AnotherApp::registerAll(factory, action_factory, syntax);
 //#endif
 
-  syntax.registerActionSyntax("ABO3CoupledPhaseFieldAction", "Ferret/ABO3CoupledPhaseField");
+  syntax.registerActionSyntax("CubicParentFEPhaseFieldAction", "Ferret/CubicParentFEPhaseField");
 
 }
 

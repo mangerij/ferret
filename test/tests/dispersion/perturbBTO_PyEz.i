@@ -15,28 +15,9 @@ amplitude = 1e-3
 
   displacements = 'u_x u_y u_z'
 
-
-  ##############################################
-  ##
-  ##  IMPORTANT(!): Units in Ferret are nm, kg,
-  ##                seconds, and attocoulombs
-  ##
-  ##############################################
-
-  u_x = u_x
-  u_y = u_y
-  u_z = u_z
-
 []
 
-
 [Functions]
-  ##############################
-  ##
-  ## Define the electric field
-  ## expression to be used below
-  ##
-  ##############################
 
   [./bc_func_1]
     type = ParsedFunction
@@ -47,14 +28,6 @@ amplitude = 1e-3
 []
 
 [Variables]
-
-  #################################
-  ##
-  ##  Variable definitions
-  ##    P, u, phi, e^global_ij
-  ##  and their initial conditions
-  ##
-  #################################
 
   [./global_strain]
     order = SIXTH
@@ -97,33 +70,12 @@ amplitude = 1e-3
 
 [AuxVariables]
 
-  ######################################
-  ##
-  ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables
-  ##   or for postprocessed quantities)
-  ##
-  ######################################
-
-
-  ######################################
-  ##
-  ##  Global displacements
-  ##
-  ######################################
-
   [./disp_x]
   [../]
   [./disp_y]
   [../]
   [./disp_z]
   [../]
-
-  ######################################
-  ##
-  ##  Stress/strain tensor components
-  ##
-  ######################################
 
   [./stress_xx_elastic]
     order = CONSTANT
@@ -183,14 +135,6 @@ amplitude = 1e-3
 []
 
 [AuxKernels]
-
-  ######################################
-  ##
-  ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations"
-  ##   or for postprocessed quantities)
-  ##
-  ######################################
 
   [./disp_x]
     type = GlobalDisplacementAux
@@ -270,12 +214,6 @@ amplitude = 1e-3
 
 [ScalarKernels]
 
-  ######################################
-  ##
-  ##  Necessary for PBC system
-  ##
-  ######################################
-
   [./global_strain]
     type = GlobalStrain
     variable = global_strain
@@ -286,33 +224,11 @@ amplitude = 1e-3
 
 [Materials]
 
-  #################################################
-  ##
-  ## Bulk free energy and electrostrictive
-  ## coefficients gleaned from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ## NOTE: there might be some Legendre transforms
-  ##        depending on what approach you use
-  ##        -i.e. inhomogeneous strain vs
-  ##            homogeneous strain [renormalized]
-  ##
-  ##################################################
-
   [./Landau_P]
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
     prop_values = '-0.027721 -0.64755 0.323 8.004 4.47 4.91 0.0 0.0 0.0 0.0'
   [../]
-
-  ############################################
-  ##
-  ## Gradient coefficients from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ############################################
 
   [./Landau_G]
     type = GenericConstantMaterial
@@ -326,51 +242,27 @@ amplitude = 1e-3
     prop_values = '275.0 179.0 54.3'
   [../]
 
-  ##############################################################
-  ##
-  ## NOTE: Sign convention in **this implementation**
-  ##       for the electrostrictive coeff. is multiplied by
-  ##       an overall factor of (-1). Note that other elastic
-  ##       coupling Kernels/Materials in Ferret DO NOT have the 
-  ##       (-1) prefactor. Please be careful here.
-  ##
-  ###############################################################
-
   [./mat_Q]
     type = GenericConstantMaterial
     prop_names = 'Q11 Q12 Q44'
-    prop_values = '-0.11 0.045 -0.029'
-  [../]
-  [./mat_q]
-    type = GenericConstantMaterial
-    prop_names = 'q11 q12 q44'
-    prop_values = '-14.2 0.74 -1.57'
+    prop_values = '0.11 -0.045 0.029'
   [../]
 
-  [./eigen_strain]
-    type = ComputeEigenstrain
-    eigen_base = '0.0 0.0 0 0 0 0 0 0 0'
-    eigenstrain_name = eigenstrain
-    prefactor = 0.0
+  [./ferro]
+    type = ComputeCubicParentElectrostrictiveStrain
+    eigenstrain_name = ferro
   [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
 
-   ###############################################
-   ##
-   ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
-   ##
-   ###############################################
-
     C_ijkl = '275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3'
   [../]
   [./strain_1]
     type = ComputeSmallStrain
     global_strain = global_strain
-    eigenstrain_names = eigenstrain
+    eigenstrain_names = 'ferro'
   [../]
 
   [./stress_1]
@@ -385,15 +277,6 @@ amplitude = 1e-3
 
   [./permitivitty_1]
 
-    ###############################################
-    ##
-    ##  so-called background dielectric constant
-    ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use
-    ##  e_b = 10), see PRB. 74, 104014, (2006)
-    ##
-    ###############################################
-
     type = GenericConstantMaterial
     prop_names = 'permittivity'
     prop_values = '0.08854187'
@@ -401,18 +284,8 @@ amplitude = 1e-3
 
 []
 
-
 [Kernels]
 
-  ###############################################
-  ##
-  ## Physical Kernel operators
-  ## to enforce TDLGD evolution
-  ##
-  ###############################################
-
-
-  #Elastic problem
   [./SolidMechanics]
     use_displaced_mesh = false
   [../]
@@ -450,39 +323,24 @@ amplitude = 1e-3
      component = 2
   [../]
 
-  [./electrostr_ux]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_x
-    component = 0
-
-  [../]
-  [./electrostr_uy]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_y
-    component = 1
-  [../]
-  [./electrostr_uz]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_z
-    component = 2
-  [../]
-
   [./electrostr_polar_coupled_x]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
+    displacements = 'u_x u_y u_z'
     variable = polar_x
     component = 0
   [../]
   [./electrostr_polar_coupled_y]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
+    displacements = 'u_x u_y u_z'
     variable = polar_y
     component = 1
   [../]
   [./electrostr_polar_coupled_z]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
+    displacements = 'u_x u_y u_z'
     variable = polar_z
     component = 2
   [../]
-
 
   [./polar_x_electric_E]
      type = PolarElectricEStrong
@@ -512,8 +370,6 @@ amplitude = 1e-3
   [./polar_x_time]
      type = TimeDerivativeScaled
      variable = polar_x
-     # Time scale estimate for BTO, from Hlinka (2007)
-     # We use seconds here
      time_scale = 1e-12
   [../]
   [./polar_y_time]
@@ -528,7 +384,6 @@ amplitude = 1e-3
   [../]
 []
 
-
 [BCs]
   [./Periodic]
     [./xyz]
@@ -536,7 +391,6 @@ amplitude = 1e-3
       variable = 'u_x u_y u_z polar_x polar_y polar_z'
     [../]
   [../]
-
 
   [./front_pot]
     type = FunctionDirichletBC
@@ -552,8 +406,6 @@ amplitude = 1e-3
     value = 0.0
   [../]
 
-
-  # fix center point location
   [./centerfix_x]
     type = DirichletBC
     boundary = 100
@@ -587,16 +439,6 @@ amplitude = 1e-3
     execute_on = 'initial timestep_end'
   [../]
 
-
-  ###############################################
-  ##
-  ##  Postprocessors (integrations over the
-  ##  computational domain) to calculate the total energy
-  ##  decomposed into linear combinations of the
-  ##  different physics.
-  ##
-  ###############################################
-
   [./Fbulk]
     type = BulkEnergyEighth
     execute_on = 'initial timestep_end'
@@ -606,13 +448,9 @@ amplitude = 1e-3
     execute_on = 'initial timestep_end'
   [../]
   [./Felastic]
-    type = ElasticEnergy
+    type = CubicParentElasticEnergy
     execute_on = 'initial timestep_end'
     use_displaced_mesh = false
-  [../]
-  [./Fcoupled]
-    type = ElectrostrictiveCouplingEnergy
-    execute_on = 'initial timestep_end'
   [../]
   [./Felec]
     type = ElectrostaticEnergy
@@ -620,12 +458,14 @@ amplitude = 1e-3
   [../]
   [./Ftotal]
     type = LinearCombinationPostprocessor
-    pp_names = 'Fbulk Fwall Fcoupled Felec'
+    pp_names = 'Fbulk Fwall Felastic Felec'
     pp_coefs = ' 1 1 1 1'
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change]
-    type = PercentChangePostprocessor
+    type = ChangeOverTimePostprocessor
+    compute_relative_change = true
+    take_absolute_value = true
     postprocessor = Ftotal
     execute_on = 'initial timestep_end'
   [../]
@@ -633,15 +473,8 @@ amplitude = 1e-3
 
 [UserObjects]
 
-  ###############################################
-  ##
-  ##  GlobalStrain system to enforce periodicity
-  ##  in the anisotropic strain field
-  ##
-  ###############################################
-
   [./global_strain_uo]
-    type = GlobalATiO3MaterialRVEUserObject
+    type = GlobalStrainUserObject
     use_displaced_mesh = false
     execute_on = 'Initial Linear Nonlinear'
     applied_stress_tensor = '0.0 0.0 0.0 0.0 0.0 0.0'
@@ -650,12 +483,6 @@ amplitude = 1e-3
 []
 
 [Preconditioning]
-
-  ###############################################
-  ##
-  ##  Numerical preconditioning/solver options
-  ##
-  ###############################################
 
   [./smp]
     type = SMP
@@ -667,12 +494,6 @@ amplitude = 1e-3
 []
 
 [Executioner]
-
-  ##########################################
-  ##
-  ##  Time integration/solver options
-  ##
-  ##########################################
 
   type = Transient
   solve_type = 'PJFNK'
@@ -690,12 +511,6 @@ amplitude = 1e-3
 []
 
 [Outputs]
-
-  ###############################################
-  ##
-  ##  Output options
-  ##
-  ###############################################
 
   print_linear_residuals = false
   perf_graph = false

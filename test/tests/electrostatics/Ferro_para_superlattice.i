@@ -1,19 +1,9 @@
-
-#############################################################
-# TEMPORARILY DEACTIVATED
-############################################################
-
-
-
-#alpha1 alpha3
 alpha1 = '-0.0827836 -0.250056'
-#alpha11 alpha33
 alpha11 = '0.42229 0.04990909090909092'
-#alpha12 alpha13
 alpha12 = '0.734181277056277 0.4521818181818182'
-alpha111 = 0.0#0.26
-alpha112 = 0.0#0.61
-alpha123 = 0.0#-3.7
+alpha111 = 0.0
+alpha112 = 0.0
+alpha123 = 0.0
 alpha1_para = '0.1854662 0.1854662'
 alpha11_para = '0.0 0.0'
 alpha12_para = '0.0 0.0'
@@ -31,7 +21,6 @@ G11_G110_para = 1.6
 G12_G110_para = 0
 G44_G110_para = 1.6
 G44P_G110_para = 1.6
-
 
 permittivity_electrostatic = 0.0885
 permittivity_electrostatic_para = 0.0885
@@ -135,7 +124,6 @@ permitivitty_depol_para = 0.00885
 []
 
 [Kernels]
-  #FERROELECTRIC BLOCK
   [./bed_x_ferro]
     type = BulkEnergyDerivativeSixth
     block = 'ferro_volume'
@@ -228,9 +216,6 @@ G12_G110_para = 0
 G44_G110_para = 1.6
 G44P_G110_para = 1.6
 
-
-
-
   [./walled_x_ferro]
     type = WallEnergyDerivative
     block = 'ferro_volume'
@@ -277,7 +262,6 @@ G44P_G110_para = 1.6
      variable = FE_polar_z
   [../]
 
-  #PARAELECTRIC BLOCK
   [./bed_xp_para]
     alpha1111 = 0
     alpha1112 = 0
@@ -481,14 +465,12 @@ G44P_G110_para = 1.6
     variable = FE_polar_z
     execute_on = 'initial timestep_end'
     block = 'ferro_volume'
-    #'initial linear nonlinear timestep_begin timestep_end'
   [../]
   [./avePEPz]
     type = ElementAverageValue
     variable = PE_polar_z
     execute_on = 'initial timestep_end'
     block = 'para_bottom_volume para_top_volume'
-    #'initial linear nonlinear timestep_begin timestep_end'
   [../]
   [./Fbulk_ferro]
     type = BulkEnergy
@@ -565,17 +547,6 @@ G44P_G110_para = 1.6
     potential_E_int = potential_E_int
     execute_on = 'initial timestep_end'
   [../]
-  [./perc_change_ferro]
-    type = PercentChangePostprocessor
-    postprocessor = Fbulk_ferro
-  [../]
-[]
-
-[UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change_ferro <= 2.5e-6'
-  [../]
 []
 
 [Preconditioning]
@@ -587,7 +558,6 @@ G44P_G110_para = 1.6
   [../]
 []
 
-
 [Executioner]
   [./TimeStepper]
     type = IterationAdaptiveDT
@@ -597,8 +567,8 @@ G44P_G110_para = 1.6
     optimal_iterations = 7
   [../]
   type = Transient
-  solve_type = 'PJFNK'       #"PJFNK, JFNK, NEWTON"
-  scheme = 'bdf2'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  solve_type = 'PJFNK'
+  scheme = 'bdf2'
   dtmax = 1.0
   num_steps = 25
 []

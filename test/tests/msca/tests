@@ -6,13 +6,12 @@
     abs_zero = 4e-10
     rel_err = 8e-6
   [../]
-# regold me
-#  [./PAdw]
-#    type = 'Exodiff'
-#    input = 'BFO_dwP1A1_100.i'
-#    exodiff = 'BFO_dwP1A1_100.e'
-#    custom_cmp = BFO_dwP1A1_100.cmp
-#  [../]
+  [./PAdw]
+    type = 'Exodiff'
+    input = 'BFO_dwP1A1_100.i'
+    exodiff = 'BFO_dwP1A1_100.e'
+    custom_cmp = BFO_dwP1A1_100.cmp
+  [../]
   [./magRing]
     type = 'Exodiff'
     input = 'BFO_P0A0_mRD.i'

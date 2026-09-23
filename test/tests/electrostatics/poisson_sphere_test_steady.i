@@ -1,11 +1,5 @@
-#This is a polarized (spontaneously) sphere in a dielectric medium.
-#A background (optical) dielectric constant of 1 is assigned, while the medium has dielectric constant of 10.
-#The nonzero polarization gives rise to nonzero surface charges which are handled naturally.
-
 [Mesh]
-  file = exodus_sphere3.e
-  #block 2  = sphere
-  #block 1  = medium
+  file = sphere_in_box_nr3.e
 []
 
 [GlobalParams]
@@ -14,14 +8,12 @@
   polar_z = polar_z
 []
 
-
 [Variables]
   [./potential]
     order = FIRST
     family = LAGRANGE
   [../]
 []
-
 
 [AuxVariables]
   [./polar_x]
@@ -137,7 +129,7 @@
 [Preconditioning]
    [./smp]
      type = SMP
-     full = true   #to use every off diagonal block
+     full = true
    [../]
 []
 

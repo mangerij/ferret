@@ -1,0 +1,62 @@
+# Pertsev-type misfit-strain phase diagram tests.
+#
+# One test per PHASE of the (001) single-domain misfit-temperature diagram, for three
+# materials.  Each runs 4 master steps from a seed placed in the relevant well: these are
+# FLOATING-POINT REGRESSION tests of the multiapp machinery, not converged-physics tests.
+# The converged answer for every point, and its agreement with the 0-D reference, is in
+# README.md -- delete `num_steps` from an input to reproduce it.
+#
+# max_parallel = 1: the BaTiO3/PbTiO3 polar children seed with RandomIC, whose values
+# depend on the mesh partitioning.
+
+[Tests]
+  [./bto_c]
+    type = 'CSVDiff'
+    input = 'BTO_pertsev_c.i'
+    csvdiff = 'BTO_pertsev_c_csv.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./bto_ac]
+    type = 'CSVDiff'
+    input = 'BTO_pertsev_ac.i'
+    csvdiff = 'BTO_pertsev_ac_csv.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./bto_aa]
+    type = 'CSVDiff'
+    input = 'BTO_pertsev_aa.i'
+    csvdiff = 'BTO_pertsev_aa_csv.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./pto_c]
+    type = 'CSVDiff'
+    input = 'PTO_pertsev_c.i'
+    csvdiff = 'PTO_pertsev_c_csv.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./pto_r]
+    type = 'CSVDiff'
+    input = 'PTO_pertsev_r.i'
+    csvdiff = 'PTO_pertsev_r_csv.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./sto_c]
+    type = 'CSVDiff'
+    input = 'STO_pertsev_c.i'
+    csvdiff = 'STO_pertsev_c_csv.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./sto_a]
+    type = 'CSVDiff'
+    input = 'STO_pertsev_a.i'
+    csvdiff = 'STO_pertsev_a_csv.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]

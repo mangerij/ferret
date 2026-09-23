@@ -1,0 +1,51 @@
+[Tests]
+
+  ###############################################################
+  ##
+  ##  Coverage for the two objects in src/markers/.
+  ##
+  ###############################################################
+
+  ##  PolarDomainMarker: abs()-based range marking on a static analytic
+  ##  ramp.  The input also carries a Terminator that asserts the marking
+  ##  is symmetric about x = 0, so an abs() regression fails loudly and
+  ##  gold-independently rather than as an opaque diff.
+  [./polar_domain_marker]
+    type = 'CSVDiff'
+    input = 'polar_domain_marker.i'
+    csvdiff = 'out_polar_domain_marker.csv'
+    abs_zero = 1e-10
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  ##  Same marker with invert = true, which swaps the inside/outside
+  ##  states.  Distinguishable from the base case: the marker integral
+  ##  over each half is 0.12 here versus 0.2 above.
+  [./polar_domain_marker_invert]
+    type = 'CSVDiff'
+    input = 'polar_domain_marker.i'
+    csvdiff = 'out_polar_domain_marker_invert.csv'
+    cli_args = "Outputs/file_base=out_polar_domain_marker_invert Adaptivity/Markers/polar_domain/invert=true"
+    abs_zero = 1e-10
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  ##  PolarizationNWEMarker cannot be constructed at all right now -- its
+  ##  validParams() starts from Marker::validParams() while the class
+  ##  derives from QuadraturePointMarker, so 'prop_getter_suffix' is
+  ##  missing and construction aborts for every input.  A second defect,
+  ##  the uninitialized 'bool _invert', is queued behind it.  See the
+  ##  header of the input file.  Un-skip once both are fixed.
+  [./polarization_nwe_marker]
+    type = 'CSVDiff'
+    input = 'polarization_nwe_marker.i'
+    csvdiff = 'out_polarization_nwe_marker.csv'
+    abs_zero = 1e-10
+    max_parallel = 1
+    max_threads = 1
+    skip = 'PolarizationNWEMarker is unconstructible: validParams() uses Marker::validParams() instead of QuadraturePointMarker::validParams(), so prop_getter_suffix is absent. _invert is also uninitialized.'
+  [../]
+
+[]

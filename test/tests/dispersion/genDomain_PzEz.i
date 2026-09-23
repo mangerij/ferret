@@ -1,32 +1,12 @@
 [Mesh]
   [gen]
-    ############################################
-    ##
-    ##  Type and dimension of the mesh
-    ##
-    ############################################
 
     type = GeneratedMeshGenerator
     dim = 3
 
-    #############################################
-    ##
-    ##  Grid definition. Note that it should be
-    ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
-    ##
-    #############################################
-
     nx = 2
     ny = 2
     nz = 2
-
-    #############################################
-    ##
-    ##   Actual spatial coordinates of mesh.
-    ##   Jmax - Jmin = nJ/2 for J = x, y, z
-    ##   Units are in nanometers
-    ##
-    #############################################
 
     xmin = -0.5
     xmax = 0.5
@@ -35,28 +15,10 @@
     zmin = -0.5
     zmax = 0.5
 
-    #############################################
-    ##
-    ##  FE type/order (hexahedral, tetrahedral
-    ##
-    #############################################
-
     elem_type = HEX8
   []
   [./cnode]
     input = gen
-
-    ############################################
-    ##
-    ##   additional boundary sideset (one node)
-    ##   to zero one of the elastic displacement vectors
-    ##   vectors and eliminates rigid body translations
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
 
     type = ExtraNodesetGenerator
     coord = '-0.5 -0.5 -0.5'
@@ -74,14 +36,6 @@
 
   displacements = 'u_x u_y u_z'
 
-
-  ##############################################
-  ##
-  ##  IMPORTANT(!): Units in Ferret are nm, kg,
-  ##                seconds, and attocoulombs
-  ##
-  ##############################################
-
   u_x = u_x
   u_y = u_y
   u_z = u_z
@@ -89,14 +43,6 @@
 []
 
 [Variables]
-
-  #################################
-  ##
-  ##  Variable definitions
-  ##    P, u, phi, e^global_ij
-  ##  and their initial conditions
-  ##
-  #################################
 
   [./global_strain]
     order = SIXTH
@@ -151,33 +97,12 @@
 
 [AuxVariables]
 
-  ######################################
-  ##
-  ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables
-  ##   or for postprocessed quantities)
-  ##
-  ######################################
-
-
-  ######################################
-  ##
-  ##  Global displacements
-  ##
-  ######################################
-
   [./disp_x]
   [../]
   [./disp_y]
   [../]
   [./disp_z]
   [../]
-
-  ######################################
-  ##
-  ##  Stress/strain tensor components
-  ##
-  ######################################
 
   [./stress_xx_elastic]
     order = CONSTANT
@@ -229,7 +154,6 @@
     family = MONOMIAL
   [../]
 
-
   [./eigs00]
     order = CONSTANT
     family = MONOMIAL
@@ -245,14 +169,6 @@
 []
 
 [AuxKernels]
-
-  ######################################
-  ##
-  ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations"
-  ##   or for postprocessed quantities)
-  ##
-  ######################################
 
   [./disp_x]
     type = GlobalDisplacementAux
@@ -343,12 +259,6 @@
 
 [ScalarKernels]
 
-  ######################################
-  ##
-  ##  Necessary for PBC system
-  ##
-  ######################################
-
   [./global_strain]
     type = GlobalStrain
     variable = global_strain
@@ -359,33 +269,11 @@
 
 [Materials]
 
-  #################################################
-  ##
-  ## Bulk free energy and electrostrictive
-  ## coefficients gleaned from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ## NOTE: there might be some Legendre transforms
-  ##        depending on what approach you use
-  ##        -i.e. inhomogeneous strain vs
-  ##            homogeneous strain [renormalized]
-  ##
-  ##################################################
-
   [./Landau_P]
     type = GenericConstantMaterial
     prop_names = 'alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123'
     prop_values = '-0.027721 -0.64755 0.323 8.004 4.47 4.91 0.0 0.0 0.0 0.0'
   [../]
-
-  ############################################
-  ##
-  ## Gradient coefficients from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ############################################
 
   [./Landau_G]
     type = GenericConstantMaterial
@@ -398,16 +286,6 @@
     prop_names = 'C11 C12 C44'
     prop_values = '275.0 179.0 54.3'
   [../]
-
-  ##############################################################
-  ##
-  ## NOTE: Sign convention in **this implementation**
-  ##       for the electrostrictive coeff. is multiplied by
-  ##       an overall factor of (-1). Note that other elastic
-  ##       coupling Kernels/Materials in Ferret DO NOT have the 
-  ##       (-1) prefactor. Please be careful here.
-  ##
-  ###############################################################
 
   [./mat_Q]
     type = GenericConstantMaterial
@@ -431,13 +309,6 @@
     type = ComputeElasticityTensor
     fill_method = symmetric9
 
-   ###############################################
-   ##
-   ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
-   ##
-   ###############################################
-
     C_ijkl = '275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3'
   [../]
   [./strain_1]
@@ -458,15 +329,6 @@
 
   [./permitivitty_1]
 
-    ###############################################
-    ##
-    ##  so-called background dielectric constant
-    ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use
-    ##  e_b = 10), see PRB. 74, 104014, (2006)
-    ##
-    ###############################################
-
     type = GenericConstantMaterial
     prop_names = 'permittivity'
     prop_values = '0.08854187'
@@ -474,18 +336,8 @@
 
 []
 
-
 [Kernels]
 
-  ###############################################
-  ##
-  ## Physical Kernel operators
-  ## to enforce TDLGD evolution
-  ##
-  ###############################################
-
-
-  #Elastic problem
   [./SolidMechanics]
     use_displaced_mesh = false
     eigenstrain_name = eigenstrain
@@ -557,7 +409,6 @@
     component = 2
   [../]
 
-
   [./polar_x_electric_E]
      type = PolarElectricEStrong
      variable = potential_E_int
@@ -600,7 +451,6 @@
   [../]
 []
 
-
 [BCs]
   [./Periodic]
     [./xyz]
@@ -616,8 +466,6 @@
     value = 0.0
   [../]
 
-
-  # fix center point location
   [./centerfix_x]
     type = DirichletBC
     boundary = 100
@@ -639,15 +487,6 @@
 []
 
 [Postprocessors]
-
-  ###############################################
-  ##
-  ##  Postprocessors (integrations over the
-  ##  computational domain) to calculate the total energy
-  ##  decomposed into linear combinations of the
-  ##  different physics.
-  ##
-  ###############################################
 
   [./Fbulk]
     type = BulkEnergyEighth
@@ -677,20 +516,15 @@
     execute_on = 'initial timestep_end'
   [../]
   [./perc_change]
-    type = PercentChangePostprocessor
+    type = ChangeOverTimePostprocessor
+    compute_relative_change = true
+    take_absolute_value = true
     postprocessor = Ftotal
     execute_on = 'initial timestep_end'
   [../]
 []
 
 [UserObjects]
-
-  ###############################################
-  ##
-  ##  GlobalStrain system to enforce periodicity
-  ##  in the anisotropic strain field
-  ##
-  ###############################################
 
   [./global_strain_uo]
     type = GlobalATiO3MaterialRVEUserObject
@@ -699,15 +533,6 @@
     applied_stress_tensor = '0.0 0.0 0.0 0.0 0.0 0.0'
   [../]
 
-  ###############################################
-  ##
-  ##  terminator to end energy evolution when the energy difference
-  ##  between subsequent time steps is lower than 5e-6
-  ##
-  ##  NOTE: can fail if the time step is small
-  ##
-  ###############################################
-
   [./kill]
     type = Terminator
     expression = 'perc_change <= 1.0e-6'
@@ -715,12 +540,6 @@
 []
 
 [Preconditioning]
-
-  ###############################################
-  ##
-  ##  Numerical preconditioning/solver options
-  ##
-  ###############################################
 
   [./smp]
     type = SMP
@@ -733,23 +552,10 @@
 
 [Executioner]
 
-  ##########################################
-  ##
-  ##  Time integration/solver options
-  ##
-  ##########################################
-
   type = Transient
   solve_type = 'PJFNK'
   scheme = 'implicit-euler'
   dtmin = 1e-13
-
-  ###########################################
-  ##
-  ##  dtmax is material dependent!
-  ##  for PTO is about 0.8 but BTO more like 3-10
-  ##
-  ###########################################
 
   dtmax = 3.0
 
@@ -766,12 +572,6 @@
 []
 
 [Outputs]
-
-  ###############################################
-  ##
-  ##  Output options
-  ##
-  ###############################################
 
   print_linear_residuals = false
   perf_graph = false

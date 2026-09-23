@@ -1,4 +1,3 @@
-
 [Mesh]
   type = GeneratedMesh
   dim = 3
@@ -21,7 +20,6 @@
   disp_z = u_z
   displacements = 'u_x u_y u_z'
 []
-
 
 [Variables]
   [./u_x]
@@ -94,9 +92,7 @@
 []
 
 [Kernels]
-  #Elastic problem
   [./SolidMechanics]
-  #This is an action block
   [../]
   [./piezocouple_0]
     type = ConversePiezoelectricStrain
@@ -130,8 +126,6 @@
     prop_values = '0.0721616'
   [../]
 []
-
-
 
 [AuxKernels]
   [./stress_xx]
@@ -245,15 +239,7 @@
   [../]
 []
 
-
 [BCs]
-  # Boundary Condition System
-  #[./back_pot]
-  #  type =DirichletBC
-  #  variable = potential_E_int
-  #  boundary = 2
-  #  value = 0
-  #[../]
 
   [./stablizer_x]
     type = DirichletBC
@@ -299,9 +285,8 @@
 
 [Executioner]
   type = Steady
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'NEWTON'
 []
-
 
 [Outputs]
   print_linear_residuals = false

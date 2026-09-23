@@ -1,15 +1,10 @@
-
-##see J. Appl. Phys. 126, 151101 (2019);
-
-
 Nx = 2
 Ny = 2
 Nz = 2
 
-xMax = 0.01  # = 10 nm
+xMax = 0.01
 yMax = 0.01
 zMax = 0.01
-
 
 [Mesh]
   [gen]
@@ -29,18 +24,6 @@ zMax = 0.01
   [./cnode]
     input = gen
 
-    ############################################
-    ##
-    ##   additional boundary sideset (one node)
-    ##   to zero one of the elastic displacement vectors
-    ##   vectors and eliminates rigid body translations
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
-
     type = ExtraNodesetGenerator
     coord = '0.0 0.0 0.0'
     new_boundary = 100
@@ -58,14 +41,13 @@ zMax = 0.01
 []
 
 [Materials]
-  [./constants_kOe] # Constants used in other material properties
+  [./constants_kOe]
     type = GenericConstantMaterial
     prop_names = ' H0         Ms        g0          He        Ha      '
     prop_values = '8.0e-5    1.0      2.8e9      0.000526     8.2e-6      '
   [../]
 
-
-  [./constants] # Constants used in other material properties
+  [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha     mu0   nx ny nz   long_susc t'
     prop_values = '0.0       1256   0  0  1          1.0     0'
@@ -80,18 +62,11 @@ zMax = 0.01
 
 [Functions]
 
-  ##############################
-  ##
-  ## Define the ramping function
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
-    expression = 'st'   #*tanh(sl*t)+1.0'
-    symbol_names = 'st' #sl'
-    symbol_values = '0.5' # 795.775'
+    expression = 'st'
+    symbol_names = 'st'
+    symbol_values = '0.5'
   [../]
 []
 
@@ -103,7 +78,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi1
       theta = polar_theta1
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 0
     [../]
   [../]
@@ -114,7 +89,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi1
       theta = polar_theta1
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 1
     [../]
   [../]
@@ -125,7 +100,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi1
       theta = polar_theta1
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 2
     [../]
   [../]
@@ -137,7 +112,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi2
       theta = polar_theta2
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 0
     [../]
   [../]
@@ -148,7 +123,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi2
       theta = polar_theta2
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 1
     [../]
   [../]
@@ -159,7 +134,7 @@ zMax = 0.01
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi2
       theta = polar_theta2
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 2
     [../]
   [../]
@@ -167,11 +142,6 @@ zMax = 0.01
 []
 
 [AuxVariables]
-  #--------------------------------------------#
-  #                                            #
-  #  field to seed IC that obeys constraint    #
-  #                                            #
-  #--------------------------------------------#
   [./azimuth_phi1]
     order = FIRST
     family = LAGRANGE
@@ -236,7 +206,6 @@ zMax = 0.01
     family = LAGRANGE
   [../]
 
-
   [./SSMag_x]
     order = FIRST
     family = LAGRANGE
@@ -253,23 +222,22 @@ zMax = 0.01
 
 [AuxKernels]
   [./mag1_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
+    x = mag1_x
+    y = mag1_y
+    z = mag1_z
     execute_on = 'initial timestep_end final'
   [../]
 
   [./mag2_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
+    x = mag2_x
+    y = mag2_y
+    z = mag2_z
     execute_on = 'initial timestep_end final'
   [../]
-
 
   [./Neel_Lx]
     type = VectorDiffOrSum
@@ -324,11 +292,6 @@ zMax = 0.01
 []
 
 [Kernels]
-  #---------------------------------------#
-  #                                       #
-  #          Time dependence              #
-  #                                       #
-  #---------------------------------------#
 
   [./mag1_x_time]
     type = TimeDerivative
@@ -356,13 +319,6 @@ zMax = 0.01
     variable = mag2_z
   [../]
 
-
-  #---------------------------------------#
-  #                                       #
-  #     AFM resonance kernel terms        #
-  #                                       #
-  #---------------------------------------#
-
   [./afmr1_x]
     type = UniaxialAFMSublattice
     variable = mag1_x
@@ -382,7 +338,6 @@ zMax = 0.01
     component = 2
   [../]
 
-
   [./afmr2_x]
     type = UniaxialAFMSublattice
     variable = mag2_x
@@ -401,12 +356,6 @@ zMax = 0.01
     mag_sub = 1
     component = 2
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          LLB constraint terms         #
-  #                                       #
-  #---------------------------------------#
 
   [./llb1_x]
     type = LongitudinalLLB
@@ -462,11 +411,6 @@ zMax = 0.01
 []
 
 [BCs]
-  #---------------------------------------#
-  #                                       #
-  #  periodic magnetization distribution  #
-  #                                       #
-  #---------------------------------------#
 
   [./Periodic]
     [./xyz]
@@ -482,13 +426,6 @@ zMax = 0.01
      type = TimestepSize
    [../]
 
-  #---------------------------------------#
-  #                                       #
-  #       Average |M| and along other     #
-  #       directions                      #
-  #                                       #
-  #---------------------------------------#
-
   [./<M1>]
     type = ElementAverageValue
     variable = mag1_s
@@ -499,7 +436,6 @@ zMax = 0.01
     variable = mag2_s
     execute_on = 'initial timestep_end final'
   [../]
-
 
   [./<m1x>]
     type = ElementAverageValue
@@ -532,7 +468,6 @@ zMax = 0.01
     variable = mag2_z
     execute_on = 'initial timestep_end final'
   [../]
-
 
   [./<Lx>]
     type = ElementAverageValue
@@ -567,13 +502,7 @@ zMax = 0.01
   [../]
 []
 
-
 [Preconditioning]
-  #---------------------------------------#
-  #                                       #
-  #            Solver options             #
-  #                                       #
-  #---------------------------------------#
 
   [./smp]
     type = SMP

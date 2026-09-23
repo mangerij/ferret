@@ -831,7 +831,9 @@
 
 
   [./perc_change]
-    type = PercentChangePostprocessor
+    type = ChangeOverTimePostprocessor
+    compute_relative_change = true
+    take_absolute_value = true
     postprocessor = Ftotal
     execute_on = 'timestep_end'
   [../]

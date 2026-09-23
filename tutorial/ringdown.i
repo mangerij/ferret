@@ -415,11 +415,11 @@ alphadef = 0.02
 
 [AuxKernels]
   [./mag_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag_s
-    vector_x = mag_x
-    vector_y = mag_y
-    vector_z = mag_z
+    x = mag_x
+    y = mag_y
+    z = mag_z
     execute_on = 'initial timestep_end final'
     block = '1'
   [../]
