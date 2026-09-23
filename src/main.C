@@ -28,48 +28,6 @@
  // Begin the main program.
 int main(int argc, char *argv[])
 {
-/**
-  std::cout<<"   .-.                                                          ___       "<<"\n";
-  std::cout<<"  /    \\                                                       (   )     "<<"\n";
-  std::cout<<"  | .`. ;      .--.      ___           ___            .--.      | |_      "<<"\n";
-  std::cout<<"  | |(___)    /    \\    (   )         (   )          /    \\    (   __)  "<<"\n";
-  std::cout<<"  | |_       |  .-. ;    | ' .-. ;     | ' .-. ;    |  .-. ;    | |       "<<"\n";
-  std::cout<<" (   __)     |  | | |    |  / (___)    |  / (___)   |  | | |    | | ___   "<<"\n";
-  std::cout<<"  | |        |  |/  |    | |           | |          |  |/  |    | |(   )  "<<"\n";
-  std::cout<<"  | |        |  ' _.'    | |           | |          |  ' _.'    | | | |   "<<"\n";
-  std::cout<<"  | |        |  .'.-.    | |           | |          |  .'.-.    | ' | |   "<<"\n";
-  std::cout<<"  | |        '  `-' /    | |           | |          '  `-' /    ' `-' ;   "<<"\n";
-  std::cout<<" (___)        `.__.'    (___)         (___)          `.__.'      `.__.    "<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"            ...a MOOSE package for simulating the ferroic nanostructure   "<<"\n";
-
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"__________________________________________________________________________"<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"   FERRET is free software: you can redistribute it and/or modify         "<<"\n";
-  std::cout<<"   it under the terms of the GNU General Public License as published by   "<<"\n";
-  std::cout<<"   the Free Software Foundation, either version 3 of the License, or      "<<"\n";
-  std::cout<<"   (at your option) any later version.                                    "<<"\n";
-
-  std::cout<<"   This program is distributed in the hope that it will be useful,        "<<"\n";
-  std::cout<<"   but WITHOUT ANY WARRANTY; without even the implied warranty of         "<<"\n";
-  std::cout<<"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the           "<<"\n";
-  std::cout<<"   GNU General Public License for more details.                           "<<"\n";
-
-  std::cout<<"   You should have received a copy of the GNU General Public License      "<<"\n";
-  std::cout<<"   along with this program.  If not, see <http://www.gnu.org/licenses/>.  "<<"\n";
-
-  std::cout<<"   For help with FERRET please contact J. Mangeri <johnma@dtu.dk>  "<<"\n";
-  std::cout<<"   and be sure to track new changes at github.com/mangerij/ferret         "<<"\n";
-  std::cout<<"__________________________________________________________________________"<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"                                                                          "<<"\n";
-  std::cout<<"  Initializing simulation:                                                "<<"\n";
-  std::cout<<"__________________________________________________________________________"<<"\n";**/
   Moose::main<FerretApp>(argc, argv);
 
   return 0;

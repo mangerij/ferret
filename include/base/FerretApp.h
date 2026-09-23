@@ -31,6 +31,10 @@ public:
   FerretApp(InputParameters parameters);
   static void registerApps();
   static void registerAll(Factory &, ActionFactory &, Syntax &);
+
+  /// The FERRET startup banner. Printed via _console (rank-aware, so once per
+  /// run rather than once per MPI rank) and suppressed with --suppress-header.
+  virtual std::string header() const override;
 };
 
 #endif /* FERRETAPP_H */
