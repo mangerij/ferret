@@ -1,0 +1,237 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>FVHarmonicAverage | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="8b19ca91-2796-483b-930d-ffc1257b2594" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5f9cb5ff-4732-4958-afb0-505b164a6e26" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="83404f95-f791-4570-a16c-0495e9cdde81" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="46973cdf-136f-420a-acdd-d2e076aedaa9" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="52b3814c-9db4-42f9-a72d-eb00f101ba12" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="7eb8f8b9-0e6f-4820-9c9c-5ccb74ce27c5"><i class="material-icons">menu</i></a><ul class="sidenav" id="7eb8f8b9-0e6f-4820-9c9c-5ccb74ce27c5"><li><a href="#!" class="dropdown-trigger" data-target="e6ac2fe9-35e2-4024-81ab-aa772ca9c64b" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="31c0996c-1c9a-4067-b36a-efc570ee0bab" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="97158596-f993-473d-92de-50083f955149" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ed9ac0ab-93fe-442e-8d2f-7d373794bb8e" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a4b4fd8f-aaeb-4d60-8598-13ab54336271" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="8b19ca91-2796-483b-930d-ffc1257b2594"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="5f9cb5ff-4732-4958-afb0-505b164a6e26"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="83404f95-f791-4570-a16c-0495e9cdde81"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="46973cdf-136f-420a-acdd-d2e076aedaa9"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="52b3814c-9db4-42f9-a72d-eb00f101ba12"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="e6ac2fe9-35e2-4024-81ab-aa772ca9c64b"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="31c0996c-1c9a-4067-b36a-efc570ee0bab"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="97158596-f993-473d-92de-50083f955149"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="ed9ac0ab-93fe-442e-8d2f-7d373794bb8e"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a4b4fd8f-aaeb-4d60-8598-13ab54336271"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="a8190174-f018-4dbb-95f8-3173ff03be2e" data-section-level="1" data-section-text="FVHarmonicAverage"><h1 id="fvharmonicaverage">FVHarmonicAverage</h1><section id="9d9989b8-0def-4b73-a97b-a926c2e24d30" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>This object computes a weighted harmonic mean of two cell-centered values when interpolating to an internal face. Harmonic averaging is commonly used for face diffusion coefficients because it provides the appropriate effective property when two adjacent cells act like resistances in series, improving flux continuity across strong coefficient jumps (<a href="#moukalled2016finite">Moukalled et al. (2016)</a>, <a href="#jasak1996error">Jasak (1996)</a>).</p><p>Let <span class="moose-katex-inline-equation" id="moose-equation-4261d453-b477-45dc-9947-b32af82f59f1"><script>var element = document.getElementById("moose-equation-4261d453-b477-45dc-9947-b32af82f59f1");katex.render("\\phi_C", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-7708d4fa-13b7-44b0-96e0-122d01bb6cab"><script>var element = document.getElementById("moose-equation-7708d4fa-13b7-44b0-96e0-122d01bb6cab");katex.render("\\phi_N", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> be cell-centered values on the element and neighbor sides of a face, and let <span class="moose-katex-inline-equation" id="moose-equation-d7d53700-15f4-4664-b6ef-8ba101bd3fc1"><script>var element = document.getElementById("moose-equation-d7d53700-15f4-4664-b6ef-8ba101bd3fc1");katex.render("g_C\\in[0,1]", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> be the geometric weight associated with the element side. The weighted harmonic mean is</p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-85469ca8-bc7e-490e-8524-e0f84a43746d"></span><script>var element = document.getElementById("moose-equation-85469ca8-bc7e-490e-8524-e0f84a43746d");katex.render("\\phi_f = \\left(\\frac{g_C}{\\phi_C} + \\frac{1-g_C}{\\phi_N}\\right)^{-1}.", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><p>In typical applications <span class="moose-katex-inline-equation" id="moose-equation-3d4741c3-9350-4d3d-875d-c944fc0bee73"><script>var element = document.getElementById("moose-equation-3d4741c3-9350-4d3d-875d-c944fc0bee73");katex.render("\\phi", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is positive (e.g., conductivity or diffusivity). When <span class="moose-katex-inline-equation" id="moose-equation-82f1c044-ff84-4153-8dee-bcd5bff55b90"><script>var element = document.getElementById("moose-equation-82f1c044-ff84-4153-8dee-bcd5bff55b90");katex.render("\\phi", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> can change sign, harmonic averaging is not generally appropriate; a consistent sign is needed for the mean to behave as intended.</p></section><section id="d0a5767f-8467-499b-8bcd-3cf3abaf25e4" data-section-level="2" data-section-text="Example Syntax"><h2 id="example-syntax">Example Syntax</h2><p>Declare the interpolation method in <code>[FVInterpolationMethods]</code>:</p><pre style="max-height:350px;"><code class="language-moose">[FVInterpolationMethods&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/FVInterpolationMethods/index.html&quot;}&gt;&gt;&gt;]
+  [harm]
+    type = FVHarmonicAverage&lt;&lt;&lt;{&quot;description&quot;: &quot;Harmonic mean interpolation for finite-volume quantities using FaceInfo geometry weights.&quot;, &quot;href&quot;: &quot;FVHarmonicAverage.html&quot;}&gt;&gt;&gt;
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#7e8a2743-3e54-497c-a791-3a563c1d526a">(../moose/test/tests/linearfvkernels/diffusion/diffusion-1d.i)</a><p>Use it for a coefficient functor via <a href="#759d68c1-5fe0-42ed-aa85-b7fd2623bfa0" class="moose-modal-link modal-trigger">&quot;coeff_interp_method&quot;</a>:</p><pre style="max-height:350px;"><code class="language-moose">[LinearFVKernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/LinearFVKernels/index.html&quot;}&gt;&gt;&gt;]
+  [diffusion]
+    type = LinearFVDiffusion&lt;&lt;&lt;{&quot;description&quot;: &quot;Represents the matrix and right hand side contributions of a diffusion term in a partial differential equation.&quot;, &quot;href&quot;: &quot;../linearfvkernels/LinearFVDiffusion.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable whose linear system this object contributes to&quot;}&gt;&gt;&gt; = u
+    diffusion_coeff&lt;&lt;&lt;{&quot;description&quot;: &quot;The diffusion coefficient. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = coeff_pos_func
+    coeff_interp_method&lt;&lt;&lt;{&quot;description&quot;: &quot;Optional finite volume interpolation method used to compute a face-centered diffusion coefficient. If omitted, the functor is evaluated directly on the face.&quot;}&gt;&gt;&gt; = harm
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#e283f912-1f59-4df5-9d98-d5e3ff0ceb44">(../moose/test/tests/linearfvkernels/diffusion/diffusion-1d.i)</a></section><section id="03832c21-d7b1-4d8b-b7a2-e797068a538a" data-section-level="2" data-section-text="Useful Links"><h2 id="useful-links">Useful Links</h2><p>See <a href="FVInterpolationMethod.html">FVInterpolationMethod</a> for the base class and <a href="../linearfvkernels/LinearFVDiffusion.html">LinearFVDiffusion</a> for typical usage.</p></section><section id="d292acec-58db-4b64-aa7b-bbaa848750fe" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li></ul></section><section id="69d1f4a4-0b43-48d6-b1df-4310324da231" data-section-level="2" data-section-text="References"><h2 id="references">References</h2><div class="moose-bibliography"><ol><li id="jasak1996error">Hrvoje Jasak.
+<em>Error analysis and estimation for the finite volume method with applications to fluid flows.</em>
+PhD thesis, Imperial College London (University of London), 1996.<a href="#c26596de-09c8-401e-a3a8-2b0253a6239c" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="c26596de-09c8-401e-a3a8-2b0253a6239c"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@phdthesis{jasak1996error,
+    author = "Jasak, Hrvoje",
+    title = "Error analysis and estimation for the finite volume method with applications to fluid flows.",
+    year = "1996",
+    school = "Imperial College London (University of London)"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - THES
+AU  - Jasak, Hrvoje
+TI  - Error analysis and estimation for the finite volume method with applications to fluid flows.
+PY  - 1996
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Hrvoje Jasak. Error analysis and estimation for the finite volume method with applications to fluid flows. PhD thesis, Imperial College London (University of London), 1996.</code></pre></div></div></li><li id="moukalled2016finite">Fadl Moukalled, L&nbsp;Mangani, Marwan Darwish, and others.
+<em>The finite volume method in computational fluid dynamics</em>.
+Volume&nbsp;6.
+Springer, 2016.<a href="#650437b5-57ce-4526-a0ab-b6e882197f88" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="650437b5-57ce-4526-a0ab-b6e882197f88"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@book{moukalled2016finite,
+    author = "Moukalled, Fadl and Mangani, L and Darwish, Marwan and others",
+    title = "The finite volume method in computational fluid dynamics",
+    volume = "6",
+    year = "2016",
+    publisher = "Springer"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - BOOK
+AU  - Moukalled, Fadl
+AU  - Mangani, L
+AU  - Darwish, Marwan
+AU  - others
+TI  - The finite volume method in computational fluid dynamics
+PY  - 2016
+VL  - 6
+PB  - Springer
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Fadl Moukalled, L Mangani, Marwan Darwish, and others. The finite volume method in computational fluid dynamics. Volume 6. Springer, 2016.</code></pre></div></div></li></ol></div></section></section><div class="moose-modal modal" id="7e8a2743-3e54-497c-a791-3a563c1d526a"><div class="modal-content"><h4>(../moose/test/tests/linearfvkernels/diffusion/diffusion-1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 2
+  []
+[]
+
+[Problem]
+  linear_sys_names = &#x27;u_sys&#x27;
+[]
+
+[Variables]
+  [u]
+    type = MooseLinearVariableFVReal
+    solver_sys = &#x27;u_sys&#x27;
+    initial_condition = 1.0
+  []
+[]
+
+[FVInterpolationMethods]
+  [geom]
+    type = FVGeometricAverage
+  []
+  [harm]
+    type = FVHarmonicAverage
+  []
+[]
+
+[LinearFVKernels]
+  [diffusion]
+    type = LinearFVDiffusion
+    variable = u
+    diffusion_coeff = coeff_func
+  []
+  [source]
+    type = LinearFVSource
+    variable = u
+    source_density = source_func
+  []
+[]
+
+[LinearFVBCs]
+  [dir]
+    type = LinearFVAdvectionDiffusionFunctorDirichletBC
+    variable = u
+    boundary = &quot;left right&quot;
+    functor = analytic_solution
+  []
+[]
+
+[Functions]
+  [coeff_func]
+    type = ParsedFunction
+    expression = &#x27;0.5*x&#x27;
+  []
+  [coeff_pos_func]
+    type = ParsedFunction
+    expression = &#x27;1+0.5*x&#x27;
+  []
+  [source_func]
+    type = ParsedFunction
+    expression = &#x27;2*x&#x27;
+  []
+  [analytic_solution]
+    type = ParsedFunction
+    expression = &#x27;1-x*x&#x27;
+  []
+[]
+
+[Postprocessors]
+  [h]
+    type = AverageElementSize
+    execute_on = FINAL
+  []
+  [error]
+    type = ElementL2FunctorError
+    approximate = u
+    exact = analytic_solution
+    execute_on = FINAL
+  []
+[]
+
+[Executioner]
+  type = Steady
+  system_names = u_sys
+  l_tol = 1e-10
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type&#x27;
+  petsc_options_value = &#x27;hypre boomeramg&#x27;
+[]
+
+[Outputs]
+  [csv]
+    type = CSV
+    execute_on = FINAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="759d68c1-5fe0-42ed-aa85-b7fd2623bfa0"><div class="modal-content"><h4>coeff_interp_method</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>InterpolationMethodName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Optional finite volume interpolation method used to compute a face-centered diffusion coefficient. If omitted, the functor is evaluated directly on the face.</p></div></div><div class="moose-modal modal" id="e283f912-1f59-4df5-9d98-d5e3ff0ceb44"><div class="modal-content"><h4>(../moose/test/tests/linearfvkernels/diffusion/diffusion-1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 2
+  []
+[]
+
+[Problem]
+  linear_sys_names = &#x27;u_sys&#x27;
+[]
+
+[Variables]
+  [u]
+    type = MooseLinearVariableFVReal
+    solver_sys = &#x27;u_sys&#x27;
+    initial_condition = 1.0
+  []
+[]
+
+[FVInterpolationMethods]
+  [geom]
+    type = FVGeometricAverage
+  []
+  [harm]
+    type = FVHarmonicAverage
+  []
+[]
+
+[LinearFVKernels]
+  [diffusion]
+    type = LinearFVDiffusion
+    variable = u
+    diffusion_coeff = coeff_func
+  []
+  [source]
+    type = LinearFVSource
+    variable = u
+    source_density = source_func
+  []
+[]
+
+[LinearFVBCs]
+  [dir]
+    type = LinearFVAdvectionDiffusionFunctorDirichletBC
+    variable = u
+    boundary = &quot;left right&quot;
+    functor = analytic_solution
+  []
+[]
+
+[Functions]
+  [coeff_func]
+    type = ParsedFunction
+    expression = &#x27;0.5*x&#x27;
+  []
+  [coeff_pos_func]
+    type = ParsedFunction
+    expression = &#x27;1+0.5*x&#x27;
+  []
+  [source_func]
+    type = ParsedFunction
+    expression = &#x27;2*x&#x27;
+  []
+  [analytic_solution]
+    type = ParsedFunction
+    expression = &#x27;1-x*x&#x27;
+  []
+[]
+
+[Postprocessors]
+  [h]
+    type = AverageElementSize
+    execute_on = FINAL
+  []
+  [error]
+    type = ElementL2FunctorError
+    approximate = u
+    exact = analytic_solution
+    execute_on = FINAL
+  []
+[]
+
+[Executioner]
+  type = Steady
+  system_names = u_sys
+  l_tol = 1e-10
+  petsc_options_iname = &#x27;-pc_type -pc_hypre_type&#x27;
+  petsc_options_value = &#x27;hypre boomeramg&#x27;
+[]
+
+[Outputs]
+  [csv]
+    type = CSV
+    execute_on = FINAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

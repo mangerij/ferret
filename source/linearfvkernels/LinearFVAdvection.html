@@ -1,0 +1,397 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>LinearFVAdvection | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="79b248c8-64f8-477a-b351-07ad6941201c" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1551a46f-b850-4806-bc36-d341492e0c64" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ac14fe0e-7af2-45b0-9514-a235058b286b" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="fb01f625-6fa2-4294-b9a7-87622cabf0b7" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="081a459f-7683-4dd3-b7ed-a919d9142791" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="56fa7ef5-4334-4c6b-9b33-8a92ede5c0da"><i class="material-icons">menu</i></a><ul class="sidenav" id="56fa7ef5-4334-4c6b-9b33-8a92ede5c0da"><li><a href="#!" class="dropdown-trigger" data-target="f26559d8-ef5e-40fd-ac7e-8af63bcb3994" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="82746a49-1e29-461f-88a8-2105a3f39bdb" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="58a52e37-d7db-4b6c-8222-0696bab65c39" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f4dbd162-42f2-49f0-a5fc-43d3fcddef1c" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="cd2967b8-40d4-4866-9ea8-bd7450ba43a0" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="79b248c8-64f8-477a-b351-07ad6941201c"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="1551a46f-b850-4806-bc36-d341492e0c64"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="ac14fe0e-7af2-45b0-9514-a235058b286b"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="fb01f625-6fa2-4294-b9a7-87622cabf0b7"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="081a459f-7683-4dd3-b7ed-a919d9142791"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="f26559d8-ef5e-40fd-ac7e-8af63bcb3994"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="82746a49-1e29-461f-88a8-2105a3f39bdb"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="58a52e37-d7db-4b6c-8222-0696bab65c39"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f4dbd162-42f2-49f0-a5fc-43d3fcddef1c"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="cd2967b8-40d4-4866-9ea8-bd7450ba43a0"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="5e0e5186-873e-4d3d-9891-6015a0c7a5b3" data-section-level="1" data-section-text="LinearFVAdvection"><h1 id="linearfvadvection">LinearFVAdvection</h1><section id="fcbb26a9-9fa9-41c5-97f2-49a9e5dcab48" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p>This kernel contributes to the system matrix and the right hand side of a system which is solved for a linear finite volume variable <a href="../variables/MooseLinearVariableFV.html">MooseVariableLinearFVReal</a>. The contributions can be derived using the discretized term of the advection term:</p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-881956eb-aa52-42a5-b1ff-e440216e8944"></span><script>var element = document.getElementById("moose-equation-881956eb-aa52-42a5-b1ff-e440216e8944");katex.render("\\int_{V_C} \\nabla \\cdot (u \\vec{v}) dV = \\sum_f\\int\\limits_{S_f} u \\vec{v}\\cdot \\vec{n} dS \\approx \\sum_f u_f\\vec{v}\\cdot \\vec{n}_f|S_f|,", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><p>where <span class="moose-katex-inline-equation" id="moose-equation-544d4090-53e8-439d-9b69-fcef997a65c6"><script>var element = document.getElementById("moose-equation-544d4090-53e8-439d-9b69-fcef997a65c6");katex.render("V_C", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is a cell in the mesh, while <span class="moose-katex-inline-equation" id="moose-equation-59dbecb8-d0af-4926-a858-f9729856023c"><script>var element = document.getElementById("moose-equation-59dbecb8-d0af-4926-a858-f9729856023c");katex.render("\\vec{v}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is a pre-defined constant advecting velocity that can be supplied through the <a href="#7daba9a5-7841-40e5-9f2d-8a6318b3daba" class="moose-modal-link modal-trigger">&quot;velocity&quot;</a> parameter. The face value of the variable <span class="moose-katex-inline-equation" id="moose-equation-24b3ea69-e1a1-4606-b244-d1e44264f21c"><script>var element = document.getElementById("moose-equation-24b3ea69-e1a1-4606-b244-d1e44264f21c");katex.render("u_f", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is computed using the user-selected interpolation technique that can be supplied through the <a href="#db64b0e9-4ff5-405a-ac11-952497dcc819" class="moose-modal-link modal-trigger">&quot;advected_interp_method_name&quot;</a> parameter.</p><section id="acf45867-247a-4256-861a-b0a8ee1e7523" data-section-level="3" data-section-text="Selecting the interpolation method"><h3 id="selecting-the-interpolation-method">Selecting the interpolation method</h3><p>The <a href="#098a2118-770c-4a39-a0a1-31114449d794" class="moose-modal-link modal-trigger">&quot;advected_interp_method_name&quot;</a> parameter is the name of an interpolation method in the <code>[FVInterpolationMethods]</code> block. For example, to use upwind interpolation, add an <a href="../fvinterpolationmethods/FVAdvectedUpwind.html">FVAdvectedUpwind</a> method and set <a href="#f6814be8-747c-4d20-8661-3cf328d89e77" class="moose-modal-link modal-trigger">&quot;advected_interp_method_name&quot;</a> to that method name:</p><pre style="max-height:350px;"><code class="language-moose">[FVInterpolationMethods&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/FVInterpolationMethods/index.html&quot;}&gt;&gt;&gt;]
+  [upwind]
+    type = FVAdvectedUpwind&lt;&lt;&lt;{&quot;description&quot;: &quot;Upwind interpolation for advected quantities using the face mass flux sign.&quot;, &quot;href&quot;: &quot;../fvinterpolationmethods/FVAdvectedUpwind.html&quot;}&gt;&gt;&gt;
+  []
+  [average]
+    type = FVGeometricAverage&lt;&lt;&lt;{&quot;description&quot;: &quot;Linear interpolation that uses the geometric weighting on FaceInfo.&quot;, &quot;href&quot;: &quot;../fvinterpolationmethods/FVGeometricAverage.html&quot;}&gt;&gt;&gt;
+  []
+  [muscl]
+    type = FVAdvectedMUSCLDeferredCorrection&lt;&lt;&lt;{&quot;description&quot;: &quot;MUSCL reconstruction with cell gradients from a named gradient method using deferred correction.&quot;, &quot;href&quot;: &quot;../fvinterpolationmethods/FVAdvectedMUSCLDeferredCorrection.html&quot;}&gt;&gt;&gt;
+    deferred_correction_factor&lt;&lt;&lt;{&quot;description&quot;: &quot;Scales the deferred correction strength; 0 gives pure upwind (no deferred correction), 1 gives full deferred correction. Values &lt; 1 can improve fixed point robustness.&quot;}&gt;&gt;&gt; = 1.0
+  []
+  [nvd_vanleer]
+    type = FVAdvectedVanLeerWeightBased&lt;&lt;&lt;{&quot;description&quot;: &quot;Van Leer interpolation for advected quantities implemented as limited blending weights (no MUSCL reconstruction, no deferred correction).&quot;, &quot;href&quot;: &quot;../fvinterpolationmethods/FVAdvectedVanLeerWeightBased.html&quot;}&gt;&gt;&gt;
+    blending_factor&lt;&lt;&lt;{&quot;description&quot;: &quot;Scales the high-order blending strength; 0 gives pure upwind, 1 gives the full limited blending. Values &lt; 1 can improve linear solver robustness for fully implicit assembly.&quot;}&gt;&gt;&gt; = 1.0
+  []
+  [nvd_minmod]
+    type = FVAdvectedMinmodWeightBased&lt;&lt;&lt;{&quot;description&quot;: &quot;Minmod interpolation for advected quantities implemented as limited blending weights (no MUSCL reconstruction, no deferred correction).&quot;, &quot;href&quot;: &quot;../fvinterpolationmethods/FVAdvectedMinmodWeightBased.html&quot;}&gt;&gt;&gt;
+    blending_factor&lt;&lt;&lt;{&quot;description&quot;: &quot;Scales the high-order blending strength; 0 gives pure upwind, 1 gives the full limited blending. Values &lt; 1 can improve linear solver robustness for fully implicit assembly.&quot;}&gt;&gt;&gt; = 1.0
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#63c92bc8-7121-42eb-9bd4-3f56636c7e8b">(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</a><pre style="max-height:350px;"><code class="language-moose">[LinearFVKernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/LinearFVKernels/index.html&quot;}&gt;&gt;&gt;]
+  [advection]
+    type = LinearFVAdvection&lt;&lt;&lt;{&quot;description&quot;: &quot;Represents the matrix and right hand side contributions of an advection term in a partial differential equation.&quot;, &quot;href&quot;: &quot;LinearFVAdvection.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable whose linear system this object contributes to&quot;}&gt;&gt;&gt; = u
+    velocity&lt;&lt;&lt;{&quot;description&quot;: &quot;Constant advection velocity&quot;}&gt;&gt;&gt; = &quot;0.5 0 0&quot;
+    advected_interp_method_name&lt;&lt;&lt;{&quot;description&quot;: &quot;Name of the FVInterpolationMethod to use for the advected quantity.&quot;}&gt;&gt;&gt; = upwind
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#578c22c0-fd8e-48ed-92b0-b28f8c4db877">(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</a><p>In the simplest case, using a linear interpolation method and an internal face for the integration, we get the following matrix contribution to the degree of freedom corresponding to the variable on <span class="moose-katex-inline-equation" id="moose-equation-d21ace9b-d24a-4a54-8b63-3881529ead54"><script>var element = document.getElementById("moose-equation-d21ace9b-d24a-4a54-8b63-3881529ead54");katex.render("V_C", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>:</p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-c34ceacf-0cd1-42c0-8cf8-d61a1a34d52c"></span><script>var element = document.getElementById("moose-equation-c34ceacf-0cd1-42c0-8cf8-d61a1a34d52c");katex.render("\\vec{v} \\cdot \\vec{n}_f |S_f| g_{C,f},", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><p>where <span class="moose-katex-inline-equation" id="moose-equation-73915839-5725-4d81-b23a-77831553c4ad"><script>var element = document.getElementById("moose-equation-73915839-5725-4d81-b23a-77831553c4ad");katex.render("g_C", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the geometric interpolation weight for the interpolation. Similarly, the same term contributes to the degree of freedom on the other side of the face with:</p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-00f78832-0fc1-40bf-ac04-92ca717c31d5"></span><script>var element = document.getElementById("moose-equation-00f78832-0fc1-40bf-ac04-92ca717c31d5");katex.render("\\vec{v} \\cdot \\vec{n}_f |S_f| (1-g_{C,f}).", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><div class="card moose-alert moose-alert-warning"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">warning</i><span class="moose-alert-title-brand">warning</span></div><div class="card-content"><div class="moose-alert-content"><p>When using non-zero flux boundary condition, only a single <code>LinearFVFluxKernel</code> may be used, as otherwise the boundary conditions may be applied multiple times. This warning applies to all <code>LinearFVFluxKernel</code>-derived classes.</p></div></div></div></section></section><section id="32a7dbeb-0637-4448-8c96-601db514b9b2" data-section-level="2" data-section-text="Example input syntax"><h2 id="example-input-syntax">Example input syntax</h2><p>This example describes a pure advection problem with a source term on a 2D mesh.</p><pre style="max-height:350px;"><code class="language-moose">[LinearFVKernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/LinearFVKernels/index.html&quot;}&gt;&gt;&gt;]
+  [advection]
+    type = LinearFVAdvection&lt;&lt;&lt;{&quot;description&quot;: &quot;Represents the matrix and right hand side contributions of an advection term in a partial differential equation.&quot;, &quot;href&quot;: &quot;LinearFVAdvection.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable whose linear system this object contributes to&quot;}&gt;&gt;&gt; = u
+    velocity&lt;&lt;&lt;{&quot;description&quot;: &quot;Constant advection velocity&quot;}&gt;&gt;&gt; = &quot;0.5 0 0&quot;
+    advected_interp_method_name&lt;&lt;&lt;{&quot;description&quot;: &quot;Name of the FVInterpolationMethod to use for the advected quantity.&quot;}&gt;&gt;&gt; = upwind
+  []
+  [source]
+    type = LinearFVSource&lt;&lt;&lt;{&quot;description&quot;: &quot;Represents the matrix and right hand side contributions of a solution-independent source term in a partial differential equation.&quot;, &quot;href&quot;: &quot;LinearFVSource.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable whose linear system this object contributes to&quot;}&gt;&gt;&gt; = u
+    source_density&lt;&lt;&lt;{&quot;description&quot;: &quot;The source density. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = source_func
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#453d07a4-8889-4dbe-87f3-435853ec9dfd">(../moose/test/tests/linearfvkernels/advection/advection-2d.i)</a></section><section id="942bf6b1-8dfb-4b81-915a-aab8b42f7220" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="39d42425-4dba-4c4f-a2b2-c78fd2ed38ec" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">advected_interp_method_name</span><span class="moose-parameter-header-description">Name of the FVInterpolationMethod to use for the advected quantity.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>InterpolationMethodName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the FVInterpolationMethod to use for the advected quantity.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable whose linear system this object contributes to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>LinearVariableName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable whose linear system this object contributes to</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">velocity</span><span class="moose-parameter-header-description">Constant advection velocity</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Constant advection velocity</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="d4073179-297b-402e-9903-abc01d6d6972" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_boundary_execution</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether to force execution of this object on all external boundaries.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to force execution of this object on all external boundaries.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="63565a84-dfe4-4605-819e-06c634d6bcc1" data-section-level="3" data-section-text="Contribution To Tagged Field Data Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">absolute_value_vector_tags</span><span class="moose-parameter-header-description">The tags for the vectors this residual object should fill with the absolute value of the residual contribution</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tags for the vectors this residual object should fill with the absolute value of the residual contribution</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_only</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether this object is only doing assembly to matrices (no vectors)</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether this object is only doing assembly to matrices (no vectors)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, system</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">rhs</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>rhs</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>rhs, time</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Contribution To Tagged Field Data Parameters</h3></summary></details></section><section id="d3cffbe5-7ac3-4a5a-bee4-2575426431e7" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="4c86e7c5-e255-40af-91be-fe9a3fa36ff4" data-section-level="3" data-section-text="Parallel Ghosting Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">ghost_layers</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">The number of layers of elements to ghost.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned short</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The number of layers of elements to ghost.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_point_neighbors</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether to use point neighbors, which introduces additional ghosting to that used for simple face neighbors.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to use point neighbors, which introduces additional ghosting to that used for simple face neighbors.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Parallel Ghosting Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="7daba9a5-7841-40e5-9f2d-8a6318b3daba"><div class="modal-content"><h4>velocity</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>libMesh::VectorValue&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Constant advection velocity</p></div></div><div class="moose-modal modal" id="db64b0e9-4ff5-405a-ac11-952497dcc819"><div class="modal-content"><h4>advected_interp_method_name</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>InterpolationMethodName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the FVInterpolationMethod to use for the advected quantity.</p></div></div><div class="moose-modal modal" id="098a2118-770c-4a39-a0a1-31114449d794"><div class="modal-content"><h4>advected_interp_method_name</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>InterpolationMethodName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the FVInterpolationMethod to use for the advected quantity.</p></div></div><div class="moose-modal modal" id="f6814be8-747c-4d20-8661-3cf328d89e77"><div class="modal-content"><h4>advected_interp_method_name</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>InterpolationMethodName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the FVInterpolationMethod to use for the advected quantity.</p></div></div><div class="moose-modal modal" id="63c92bc8-7121-42eb-9bd4-3f56636c7e8b"><div class="modal-content"><h4>(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 2
+  []
+[]
+
+[Problem]
+  linear_sys_names = &#x27;u_sys&#x27;
+[]
+
+[Variables]
+  [u]
+    type = MooseLinearVariableFVReal
+    solver_sys = &#x27;u_sys&#x27;
+    initial_condition = 1.0
+  []
+[]
+
+[FVInterpolationMethods]
+  [upwind]
+    type = FVAdvectedUpwind
+  []
+  [average]
+    type = FVGeometricAverage
+  []
+  [muscl]
+    type = FVAdvectedMUSCLDeferredCorrection
+    deferred_correction_factor = 1.0
+  []
+  [nvd_vanleer]
+    type = FVAdvectedVanLeerWeightBased
+    blending_factor = 1.0
+  []
+  [nvd_minmod]
+    type = FVAdvectedMinmodWeightBased
+    blending_factor = 1.0
+  []
+[]
+
+[LinearFVKernels]
+  [advection]
+    type = LinearFVAdvection
+    variable = u
+    velocity = &quot;0.5 0 0&quot;
+    advected_interp_method_name = upwind
+  []
+  [source]
+    type = LinearFVSource
+    variable = u
+    source_density = source_func
+  []
+[]
+
+[LinearFVBCs]
+  [inflow]
+    type = LinearFVAdvectionDiffusionFunctorDirichletBC
+    variable = u
+    boundary = &quot;left&quot;
+    functor = analytic_solution
+  []
+  [outflow]
+    type = LinearFVAdvectionDiffusionOutflowBC
+    variable = u
+    boundary = &quot;right&quot;
+    use_two_term_expansion = false
+  []
+[]
+
+[Functions]
+  [source_func]
+    type = ParsedFunction
+    expression = &#x27;0.5*x&#x27;
+  []
+  [analytic_solution]
+    type = ParsedFunction
+    expression = &#x27;0.5+0.5*x*x&#x27;
+  []
+[]
+
+[Postprocessors]
+  [error]
+    type = ElementL2FunctorError
+    approximate = u
+    exact = analytic_solution
+    execute_on = FINAL
+  []
+  [h]
+    type = AverageElementSize
+    execute_on = FINAL
+  []
+[]
+
+[Convergence]
+  [linear]
+    type = IterationCountConvergence
+    max_iterations = 1
+    converge_at_max_iterations = true
+  []
+[]
+
+[Executioner]
+  type = Steady
+  system_names = u_sys
+  l_tol = 1e-10
+  multi_system_fixed_point=true
+  multi_system_fixed_point_convergence=linear
+  multi_system_fixed_point_relaxation_factor = 1.0
+  petsc_options_iname = &#x27;-pc_type -pc_factor_shift_type -pc_factor_shift_amount -pc_factor_mat_solver_type -mat_mumps_icntl_14&#x27;
+  petsc_options_value = &#x27;lu       NONZERO               1e-12                     mumps                    50&#x27;
+[]
+
+[Outputs]
+  [csv]
+    type = CSV
+    execute_on = FINAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="578c22c0-fd8e-48ed-92b0-b28f8c4db877"><div class="modal-content"><h4>(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 2
+  []
+[]
+
+[Problem]
+  linear_sys_names = &#x27;u_sys&#x27;
+[]
+
+[Variables]
+  [u]
+    type = MooseLinearVariableFVReal
+    solver_sys = &#x27;u_sys&#x27;
+    initial_condition = 1.0
+  []
+[]
+
+[FVInterpolationMethods]
+  [upwind]
+    type = FVAdvectedUpwind
+  []
+  [average]
+    type = FVGeometricAverage
+  []
+  [muscl]
+    type = FVAdvectedMUSCLDeferredCorrection
+    deferred_correction_factor = 1.0
+  []
+  [nvd_vanleer]
+    type = FVAdvectedVanLeerWeightBased
+    blending_factor = 1.0
+  []
+  [nvd_minmod]
+    type = FVAdvectedMinmodWeightBased
+    blending_factor = 1.0
+  []
+[]
+
+[LinearFVKernels]
+  [advection]
+    type = LinearFVAdvection
+    variable = u
+    velocity = &quot;0.5 0 0&quot;
+    advected_interp_method_name = upwind
+  []
+  [source]
+    type = LinearFVSource
+    variable = u
+    source_density = source_func
+  []
+[]
+
+[LinearFVBCs]
+  [inflow]
+    type = LinearFVAdvectionDiffusionFunctorDirichletBC
+    variable = u
+    boundary = &quot;left&quot;
+    functor = analytic_solution
+  []
+  [outflow]
+    type = LinearFVAdvectionDiffusionOutflowBC
+    variable = u
+    boundary = &quot;right&quot;
+    use_two_term_expansion = false
+  []
+[]
+
+[Functions]
+  [source_func]
+    type = ParsedFunction
+    expression = &#x27;0.5*x&#x27;
+  []
+  [analytic_solution]
+    type = ParsedFunction
+    expression = &#x27;0.5+0.5*x*x&#x27;
+  []
+[]
+
+[Postprocessors]
+  [error]
+    type = ElementL2FunctorError
+    approximate = u
+    exact = analytic_solution
+    execute_on = FINAL
+  []
+  [h]
+    type = AverageElementSize
+    execute_on = FINAL
+  []
+[]
+
+[Convergence]
+  [linear]
+    type = IterationCountConvergence
+    max_iterations = 1
+    converge_at_max_iterations = true
+  []
+[]
+
+[Executioner]
+  type = Steady
+  system_names = u_sys
+  l_tol = 1e-10
+  multi_system_fixed_point=true
+  multi_system_fixed_point_convergence=linear
+  multi_system_fixed_point_relaxation_factor = 1.0
+  petsc_options_iname = &#x27;-pc_type -pc_factor_shift_type -pc_factor_shift_amount -pc_factor_mat_solver_type -mat_mumps_icntl_14&#x27;
+  petsc_options_value = &#x27;lu       NONZERO               1e-12                     mumps                    50&#x27;
+[]
+
+[Outputs]
+  [csv]
+    type = CSV
+    execute_on = FINAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="453d07a4-8889-4dbe-87f3-435853ec9dfd"><div class="modal-content"><h4>(../moose/test/tests/linearfvkernels/advection/advection-2d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = 2
+    ny= 1
+    ymax = 0.5
+  []
+[]
+
+[Problem]
+  linear_sys_names = &#x27;u_sys&#x27;
+[]
+
+[Variables]
+  [u]
+    type = MooseLinearVariableFVReal
+    solver_sys = &#x27;u_sys&#x27;
+    initial_condition = 1.0
+  []
+[]
+
+[FVInterpolationMethods]
+  [upwind]
+    type = FVAdvectedUpwind
+  []
+  [average]
+    type = FVGeometricAverage
+  []
+  [muscl]
+    type = FVAdvectedMUSCLDeferredCorrection
+    deferred_correction_factor = 1.0
+  []
+  [nvd_vanleer]
+    type = FVAdvectedVanLeerWeightBased
+    blending_factor = 1.0
+  []
+  [nvd_minmod]
+    type = FVAdvectedMinmodWeightBased
+    blending_factor = 1.0
+  []
+[]
+
+[LinearFVKernels]
+  [advection]
+    type = LinearFVAdvection
+    variable = u
+    velocity = &quot;0.5 0 0&quot;
+    advected_interp_method_name = upwind
+  []
+  [source]
+    type = LinearFVSource
+    variable = u
+    source_density = source_func
+  []
+[]
+
+[LinearFVBCs]
+  [inflow]
+    type = LinearFVAdvectionDiffusionFunctorDirichletBC
+    variable = u
+    boundary = &quot;left top bottom&quot;
+    functor = analytic_solution
+  []
+  [outflow]
+    type = LinearFVAdvectionDiffusionOutflowBC
+    variable = u
+    boundary = &quot;right&quot;
+    use_two_term_expansion = false
+  []
+[]
+
+[Functions]
+  [source_func]
+    type = ParsedFunction
+    expression = &#x27;0.5*pi*sin(2*y*pi)*cos(x*pi)&#x27;
+  []
+  [analytic_solution]
+    type = ParsedFunction
+    expression = &#x27;sin(x*pi)*sin(2*y*pi) + 1.5&#x27;
+  []
+[]
+
+[Postprocessors]
+  [error]
+    type = ElementL2FunctorError
+    approximate = u
+    exact = analytic_solution
+    execute_on = FINAL
+  []
+  [h]
+    type = AverageElementSize
+    execute_on = FINAL
+  []
+[]
+
+[Convergence]
+  [linear]
+    type = IterationCountConvergence
+    max_iterations = 1
+    converge_at_max_iterations = true
+  []
+[]
+
+[Executioner]
+  type = Steady
+  system_names = u_sys
+  l_tol = 1e-10
+  multi_system_fixed_point=true
+  multi_system_fixed_point_convergence=linear
+  petsc_options_iname = &#x27;-pc_type -pc_factor_shift_type -pc_factor_shift_amount -pc_factor_mat_solver_type -mat_mumps_icntl_14&#x27;
+  petsc_options_value = &#x27;lu       NONZERO               1e-12                     mumps                    50&#x27;
+[]
+
+[Outputs]
+  [csv]
+    type = CSV
+    execute_on = FINAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

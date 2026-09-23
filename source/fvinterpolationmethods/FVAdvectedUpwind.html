@@ -1,0 +1,291 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>FVAdvectedUpwind | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="e779f4bf-05d3-42ec-92a5-e768f4280004" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="0dc14871-3db7-4c51-b851-f69210366310" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d4f0bda9-f990-402a-bba9-f0f03a1cf148" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="7e793c89-f0c9-478b-af0b-bcf20904e2dc" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="69def8cf-6770-4f30-9ec0-43b96b3b0eba" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="c8786067-0815-4a7d-9f24-b748903a6c2f"><i class="material-icons">menu</i></a><ul class="sidenav" id="c8786067-0815-4a7d-9f24-b748903a6c2f"><li><a href="#!" class="dropdown-trigger" data-target="c1863cfc-375a-4be1-a11f-b372e37454cc" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="33c25005-e529-438c-b4b7-9a6624f40729" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="590e5322-32a4-48a7-83be-845ad345a408" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1a5f2252-a32a-4fed-87b9-03415ad9cc75" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="71208823-bedd-4673-86ce-83fcc62a383a" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="e779f4bf-05d3-42ec-92a5-e768f4280004"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="0dc14871-3db7-4c51-b851-f69210366310"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="d4f0bda9-f990-402a-bba9-f0f03a1cf148"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="7e793c89-f0c9-478b-af0b-bcf20904e2dc"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="69def8cf-6770-4f30-9ec0-43b96b3b0eba"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="c1863cfc-375a-4be1-a11f-b372e37454cc"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="33c25005-e529-438c-b4b7-9a6624f40729"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="590e5322-32a4-48a7-83be-845ad345a408"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="1a5f2252-a32a-4fed-87b9-03415ad9cc75"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="71208823-bedd-4673-86ce-83fcc62a383a"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="d2808a4d-05f3-4f32-a200-8d705ce620c0" data-section-level="1" data-section-text="FVAdvectedUpwind"><h1 id="fvadvectedupwind">FVAdvectedUpwind</h1><section id="698a6b8c-961d-4d91-846c-dce28a36b4de" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>This object provides first-order upwind interpolation for an advected quantity on a finite-volume face. The upwind state is selected using the sign of the face mass flux (<span class="moose-katex-inline-equation" id="moose-equation-5c9c6279-98a7-4b05-9b6a-8dd01a108ed9"><script>var element = document.getElementById("moose-equation-5c9c6279-98a7-4b05-9b6a-8dd01a108ed9");katex.render("m_f", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>), yielding a monotone, Total Variation Diminishing (TVD) discretization that is robust near discontinuities at the cost of increased numerical diffusion (<a href="#moukalled2016finite">Moukalled et al. (2016)</a>, <a href="#harten1997">Harten (1997)</a>).</p><p>Let <span class="moose-katex-inline-equation" id="moose-equation-8bc85d29-9a8d-4a88-ad1a-a668b1b4a12a"><script>var element = document.getElementById("moose-equation-8bc85d29-9a8d-4a88-ad1a-a668b1b4a12a");katex.render("\\phi_C", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-f1280ba4-b9e7-45f9-a722-29d2de7ac5c5"><script>var element = document.getElementById("moose-equation-f1280ba4-b9e7-45f9-a722-29d2de7ac5c5");katex.render("\\phi_N", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> denote the cell-centered values on the element and neighbor sides of a face. Define the upwind value</p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-7712787c-5e68-4c38-bca7-700d869ec65b"></span><script>var element = document.getElementById("moose-equation-7712787c-5e68-4c38-bca7-700d869ec65b");katex.render("\\phi_U = \\begin{cases} \\phi_C & \\text{if } m_f \\ge 0,\\\\ \\phi_N & \\text{if } m_f < 0. \\end{cases}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><p>Then the interpolated face value is simply</p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-6a5bf553-f7d2-42b9-a3a1-ad7860651c2c"></span><script>var element = document.getElementById("moose-equation-6a5bf553-f7d2-42b9-a3a1-ad7860651c2c");katex.render("\\phi_f = \\phi_U.", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><p>In matrix form this corresponds to weights <span class="moose-katex-inline-equation" id="moose-equation-dc9db16e-e66a-4f40-ab5a-0d60e03ef071"><script>var element = document.getElementById("moose-equation-dc9db16e-e66a-4f40-ab5a-0d60e03ef071");katex.render("(w_C, w_N)\\in\\{(1,0),(0,1)\\}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> chosen by the mass flux sign, so no gradients are required. This is a common baseline scheme for advection and is often used as the low-order component in higher-order schemes with limiting or deferred correction (see <a href="../../syntax/Limiters/index.html">Limiters</a>).</p></section><section id="3bfeb00b-ba27-4075-b78e-aac6183853ca" data-section-level="2" data-section-text="Example Syntax"><h2 id="example-syntax">Example Syntax</h2><p>Declare the interpolation method in <code>[FVInterpolationMethods]</code>:</p><pre style="max-height:350px;"><code class="language-moose">[FVInterpolationMethods&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/FVInterpolationMethods/index.html&quot;}&gt;&gt;&gt;]
+  [upwind]
+    type = FVAdvectedUpwind&lt;&lt;&lt;{&quot;description&quot;: &quot;Upwind interpolation for advected quantities using the face mass flux sign.&quot;, &quot;href&quot;: &quot;FVAdvectedUpwind.html&quot;}&gt;&gt;&gt;
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#b000a620-95f8-4485-bf1c-babb25c42453">(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</a><p>Use it in a linear FV advection kernel via <a href="#86b2f189-a2d5-49a6-9e2c-30382e04cace" class="moose-modal-link modal-trigger">&quot;advected_interp_method_name&quot;</a>:</p><pre style="max-height:350px;"><code class="language-moose">[LinearFVKernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/LinearFVKernels/index.html&quot;}&gt;&gt;&gt;]
+  [advection]
+    type = LinearFVAdvection&lt;&lt;&lt;{&quot;description&quot;: &quot;Represents the matrix and right hand side contributions of an advection term in a partial differential equation.&quot;, &quot;href&quot;: &quot;../linearfvkernels/LinearFVAdvection.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable whose linear system this object contributes to&quot;}&gt;&gt;&gt; = u
+    velocity&lt;&lt;&lt;{&quot;description&quot;: &quot;Constant advection velocity&quot;}&gt;&gt;&gt; = &quot;0.5 0 0&quot;
+    advected_interp_method_name&lt;&lt;&lt;{&quot;description&quot;: &quot;Name of the FVInterpolationMethod to use for the advected quantity.&quot;}&gt;&gt;&gt; = upwind
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#05338d09-42bc-4438-af6d-2684f600ae8f">(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</a></section><section id="b3c94810-6844-4818-a4be-df02df097297" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li></ul></section><section id="7975b38a-e437-4438-b930-a4e1ca64489e" data-section-level="2" data-section-text="References"><h2 id="references">References</h2><div class="moose-bibliography"><ol><li id="harten1997">Ami Harten.
+High resolution schemes for hyperbolic conservation laws.
+<em>Journal of computational physics</em>, 135(2):260–278, 1997.<a href="#beca5c62-0417-40e6-bacb-067bbb326bea" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="beca5c62-0417-40e6-bacb-067bbb326bea"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@article{harten1997,
+    author = "Harten, Ami",
+    title = "High resolution schemes for hyperbolic conservation laws",
+    journal = "Journal of computational physics",
+    volume = "135",
+    number = "2",
+    pages = "260--278",
+    year = "1997",
+    publisher = "Elsevier"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - JOUR
+AU  - Harten, Ami
+TI  - High resolution schemes for hyperbolic conservation laws
+JO  - Journal of computational physics
+PY  - 1997
+VL  - 135
+IS  - 2
+PB  - Elsevier
+SP  - 260
+EP  - 278
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Ami Harten. High resolution schemes for hyperbolic conservation laws. Journal of computational physics, 135(2):260–278, 1997.</code></pre></div></div></li><li id="moukalled2016finite">Fadl Moukalled, L&nbsp;Mangani, Marwan Darwish, and others.
+<em>The finite volume method in computational fluid dynamics</em>.
+Volume&nbsp;6.
+Springer, 2016.<a href="#2d37b44f-64e2-47bd-921c-0f2429f75312" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="2d37b44f-64e2-47bd-921c-0f2429f75312"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@book{moukalled2016finite,
+    author = "Moukalled, Fadl and Mangani, L and Darwish, Marwan and others",
+    title = "The finite volume method in computational fluid dynamics",
+    volume = "6",
+    year = "2016",
+    publisher = "Springer"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - BOOK
+AU  - Moukalled, Fadl
+AU  - Mangani, L
+AU  - Darwish, Marwan
+AU  - others
+TI  - The finite volume method in computational fluid dynamics
+PY  - 2016
+VL  - 6
+PB  - Springer
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Fadl Moukalled, L Mangani, Marwan Darwish, and others. The finite volume method in computational fluid dynamics. Volume 6. Springer, 2016.</code></pre></div></div></li></ol></div></section></section><div class="moose-modal modal" id="b000a620-95f8-4485-bf1c-babb25c42453"><div class="modal-content"><h4>(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 2
+  []
+[]
+
+[Problem]
+  linear_sys_names = &#x27;u_sys&#x27;
+[]
+
+[Variables]
+  [u]
+    type = MooseLinearVariableFVReal
+    solver_sys = &#x27;u_sys&#x27;
+    initial_condition = 1.0
+  []
+[]
+
+[FVInterpolationMethods]
+  [upwind]
+    type = FVAdvectedUpwind
+  []
+  [average]
+    type = FVGeometricAverage
+  []
+  [muscl]
+    type = FVAdvectedMUSCLDeferredCorrection
+    deferred_correction_factor = 1.0
+  []
+  [nvd_vanleer]
+    type = FVAdvectedVanLeerWeightBased
+    blending_factor = 1.0
+  []
+  [nvd_minmod]
+    type = FVAdvectedMinmodWeightBased
+    blending_factor = 1.0
+  []
+[]
+
+[LinearFVKernels]
+  [advection]
+    type = LinearFVAdvection
+    variable = u
+    velocity = &quot;0.5 0 0&quot;
+    advected_interp_method_name = upwind
+  []
+  [source]
+    type = LinearFVSource
+    variable = u
+    source_density = source_func
+  []
+[]
+
+[LinearFVBCs]
+  [inflow]
+    type = LinearFVAdvectionDiffusionFunctorDirichletBC
+    variable = u
+    boundary = &quot;left&quot;
+    functor = analytic_solution
+  []
+  [outflow]
+    type = LinearFVAdvectionDiffusionOutflowBC
+    variable = u
+    boundary = &quot;right&quot;
+    use_two_term_expansion = false
+  []
+[]
+
+[Functions]
+  [source_func]
+    type = ParsedFunction
+    expression = &#x27;0.5*x&#x27;
+  []
+  [analytic_solution]
+    type = ParsedFunction
+    expression = &#x27;0.5+0.5*x*x&#x27;
+  []
+[]
+
+[Postprocessors]
+  [error]
+    type = ElementL2FunctorError
+    approximate = u
+    exact = analytic_solution
+    execute_on = FINAL
+  []
+  [h]
+    type = AverageElementSize
+    execute_on = FINAL
+  []
+[]
+
+[Convergence]
+  [linear]
+    type = IterationCountConvergence
+    max_iterations = 1
+    converge_at_max_iterations = true
+  []
+[]
+
+[Executioner]
+  type = Steady
+  system_names = u_sys
+  l_tol = 1e-10
+  multi_system_fixed_point=true
+  multi_system_fixed_point_convergence=linear
+  multi_system_fixed_point_relaxation_factor = 1.0
+  petsc_options_iname = &#x27;-pc_type -pc_factor_shift_type -pc_factor_shift_amount -pc_factor_mat_solver_type -mat_mumps_icntl_14&#x27;
+  petsc_options_value = &#x27;lu       NONZERO               1e-12                     mumps                    50&#x27;
+[]
+
+[Outputs]
+  [csv]
+    type = CSV
+    execute_on = FINAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="86b2f189-a2d5-49a6-9e2c-30382e04cace"><div class="modal-content"><h4>advected_interp_method_name</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>InterpolationMethodName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the FVInterpolationMethod to use for the advected quantity.</p></div></div><div class="moose-modal modal" id="05338d09-42bc-4438-af6d-2684f600ae8f"><div class="modal-content"><h4>(../moose/test/tests/linearfvkernels/advection/advection-1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 2
+  []
+[]
+
+[Problem]
+  linear_sys_names = &#x27;u_sys&#x27;
+[]
+
+[Variables]
+  [u]
+    type = MooseLinearVariableFVReal
+    solver_sys = &#x27;u_sys&#x27;
+    initial_condition = 1.0
+  []
+[]
+
+[FVInterpolationMethods]
+  [upwind]
+    type = FVAdvectedUpwind
+  []
+  [average]
+    type = FVGeometricAverage
+  []
+  [muscl]
+    type = FVAdvectedMUSCLDeferredCorrection
+    deferred_correction_factor = 1.0
+  []
+  [nvd_vanleer]
+    type = FVAdvectedVanLeerWeightBased
+    blending_factor = 1.0
+  []
+  [nvd_minmod]
+    type = FVAdvectedMinmodWeightBased
+    blending_factor = 1.0
+  []
+[]
+
+[LinearFVKernels]
+  [advection]
+    type = LinearFVAdvection
+    variable = u
+    velocity = &quot;0.5 0 0&quot;
+    advected_interp_method_name = upwind
+  []
+  [source]
+    type = LinearFVSource
+    variable = u
+    source_density = source_func
+  []
+[]
+
+[LinearFVBCs]
+  [inflow]
+    type = LinearFVAdvectionDiffusionFunctorDirichletBC
+    variable = u
+    boundary = &quot;left&quot;
+    functor = analytic_solution
+  []
+  [outflow]
+    type = LinearFVAdvectionDiffusionOutflowBC
+    variable = u
+    boundary = &quot;right&quot;
+    use_two_term_expansion = false
+  []
+[]
+
+[Functions]
+  [source_func]
+    type = ParsedFunction
+    expression = &#x27;0.5*x&#x27;
+  []
+  [analytic_solution]
+    type = ParsedFunction
+    expression = &#x27;0.5+0.5*x*x&#x27;
+  []
+[]
+
+[Postprocessors]
+  [error]
+    type = ElementL2FunctorError
+    approximate = u
+    exact = analytic_solution
+    execute_on = FINAL
+  []
+  [h]
+    type = AverageElementSize
+    execute_on = FINAL
+  []
+[]
+
+[Convergence]
+  [linear]
+    type = IterationCountConvergence
+    max_iterations = 1
+    converge_at_max_iterations = true
+  []
+[]
+
+[Executioner]
+  type = Steady
+  system_names = u_sys
+  l_tol = 1e-10
+  multi_system_fixed_point=true
+  multi_system_fixed_point_convergence=linear
+  multi_system_fixed_point_relaxation_factor = 1.0
+  petsc_options_iname = &#x27;-pc_type -pc_factor_shift_type -pc_factor_shift_amount -pc_factor_mat_solver_type -mat_mumps_icntl_14&#x27;
+  petsc_options_value = &#x27;lu       NONZERO               1e-12                     mumps                    50&#x27;
+[]
+
+[Outputs]
+  [csv]
+    type = CSV
+    execute_on = FINAL
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

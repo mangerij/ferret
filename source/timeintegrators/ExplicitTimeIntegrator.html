@@ -1,6 +1,6 @@
-<!DOCTYPE html><head><meta charset="UTF-8"><title>ExplicitTimeIntegrator | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="9a1e67e2-18b5-435e-84a5-8d1da8a7fcd4" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="51a486c1-c0f9-463b-b9ba-52907ce0bdb2" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="0aefc1a0-a62a-4d4e-bab1-e9646abccec5" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f9d08195-61d9-4b3d-a428-bce1ff778726" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="51612b18-55fc-4d2f-b4ea-c6bd573d8298" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="c08cdf77-87db-4347-94af-e9378dd9a215"><i class="material-icons">menu</i></a><ul class="sidenav" id="c08cdf77-87db-4347-94af-e9378dd9a215"><li><a href="#!" class="dropdown-trigger" data-target="54d36314-a1d7-4ba1-a5aa-57ff1bdce6a2" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4fc68ff9-08c3-4498-89b7-a0d332ab5b17" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="755b5570-09f1-41b0-8b95-eeb6016e5022" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a556085d-28ac-41b9-a8f3-40eac01247b4" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="c39aba7a-dabc-40fc-aa28-7a338d57fa14" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="9a1e67e2-18b5-435e-84a5-8d1da8a7fcd4"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="51a486c1-c0f9-463b-b9ba-52907ce0bdb2"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="0aefc1a0-a62a-4d4e-bab1-e9646abccec5"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f9d08195-61d9-4b3d-a428-bce1ff778726"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="51612b18-55fc-4d2f-b4ea-c6bd573d8298"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="54d36314-a1d7-4ba1-a5aa-57ff1bdce6a2"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="4fc68ff9-08c3-4498-89b7-a0d332ab5b17"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="755b5570-09f1-41b0-8b95-eeb6016e5022"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="a556085d-28ac-41b9-a8f3-40eac01247b4"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="c39aba7a-dabc-40fc-aa28-7a338d57fa14"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="8a0795d5-8b9a-438c-bcff-0aa0ff9f7138" data-section-level="1" data-section-text="ExplicitTimeIntegrator"><h1 id="explicittimeintegrator">ExplicitTimeIntegrator</h1><section id="2240a85c-da99-437f-8753-810e593da895" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p><code>ExplicitTimeIntegrator</code> is a base class for explicit time integrators that are implemented without performing any nonlinear solve, which reduces runtime. Unlike explicit time integrators that are not derived from this class, it is not necessary to set <code>implicit</code> to <code>false</code> for all of the non-time residual objects.</p></section><section id="af625a3e-a2a9-4002-9ded-42eec6629926" data-section-level="2" data-section-text="Methods of Solution"><h2 id="methods-of-solution">Methods of Solution</h2><p>Time integrators deriving from this class have three solve options, provided via the <code>solve_type</code> parameter:</p><ul class="browser-default"><li><p><code>consistent</code>: (the default) A full mass matrix is built and used in a linear solve for the update </p></li><li><p><code>lumped</code>: A &quot;lumped&quot; mass matrix is built, inverted, and applied to the RHS, which is faster but can possibly be less accurate. </p></li><li><p><code>lump_preconditioned</code>: The inversion of the &quot;lumped&quot; mass matrix is used to precondition the <code>consistent</code> solve.</p></li></ul><p>All three methods are solved similarly: a linear solve is performed to obtain a solution update <span class="moose-katex-inline-equation" id="moose-equation-b35a2a5f-ce5f-4535-a216-f8766d7b3397"><script>var element = document.getElementById("moose-equation-b35a2a5f-ce5f-4535-a216-f8766d7b3397");katex.render("\\delta u", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> that is added to the existing solution.</p><p>Below is some more explanation of each of these <code>solve_type</code> options:</p><section id="1241a7f1-42f6-44ae-95d5-498837bcf5d7" data-section-level="3" data-section-text="consistent"><h3><code>consistent</code></h3><p>The <code>consistent</code> option builds a full (&quot;consistent&quot;) &quot;mass matrix&quot; and uses it in a linear solve to get the update.  This is done by calling <code>FEProblem::computeJacobianTag()</code> and specifying the <code>TIME</code> tag which includes all of the <code>TimeKernel</code> derived Kernels and <code>NodalBC</code> derived BoundaryConditions to compute <span class="moose-katex-inline-equation" id="moose-equation-c5edaaf1-8bb4-49bb-8ce6-8fc205e6dab7"><script>var element = document.getElementById("moose-equation-c5edaaf1-8bb4-49bb-8ce6-8fc205e6dab7");katex.render("\\mathbf{M}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">    _fe_problem.computeJacobianTag(
-</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#83976924-7886-4380-a07c-ad8591177657">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>A residual computation is also completed to use as the RHS (<span class="moose-katex-inline-equation" id="moose-equation-47c3f5c9-f32f-4b78-975a-84664527e307"><script>var element = document.getElementById("moose-equation-47c3f5c9-f32f-4b78-975a-84664527e307");katex.render("R", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>):</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">  _fe_problem.computeResidual(*_nonlinear_implicit_system-&gt;current_local_solution,
-</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#48213a0f-b995-458c-bf82-eeffadc5b1d6">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>Finally, the following linear system is solved to obtain the solution update <span class="moose-katex-inline-equation" id="moose-equation-d3565457-534b-4ce5-86db-a1d8122ff4b2"><script>var element = document.getElementById("moose-equation-d3565457-534b-4ce5-86db-a1d8122ff4b2");katex.render("\\delta u", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> using the default linear solver from libMesh (usually PETSc, including the application of any command-line parameters specified):</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-1608205a-d858-493f-8d8c-46775e89cbc4"></span><script>var element = document.getElementById("moose-equation-1608205a-d858-493f-8d8c-46775e89cbc4");katex.render("\\mathbf{M} \\delta u = -R", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p></section><section id="ef97a9ea-df57-4fd6-982b-5b35e5b99e1b" data-section-level="3" data-section-text="lumped"><h3><code>lumped</code></h3><p>The <code>lumped</code> option creates a &quot;lumped&quot; mass matrix to use in the solve.  A lumped mass matrix is a diagonal matrix where the diagonal is the sum of all elements on the row from the original matrix. Here, to achieve the lumping, a matrix-vector product is performed between the consistent mass matrix and a vector of all ones.</p><p>The inverse of a diagonal matrix is simply the reciprocal of each diagonal entry. Then the matrix-vector product of the &quot;inverse&quot; lumped diagonal matrix is applied by simply doing a pointwise multiplication with the RHS.</p><p>Thus the <code>lumped</code> option does not actually solve a system of linear equations, allowing it be much faster. However, the lumping of the mass matrix may lead to unacceptable phase errors.</p></section><section id="20327fe1-5df4-454c-9871-8d6d247fca35" data-section-level="3" data-section-text="lump_preconditioned"><h3><code>lump_preconditioned</code></h3><p>This option is the combination of the other two options: the consistent mass matrix is used in the linear system, but the linear solve is preconditioned using the lumped mass matrix. This compromise retains the accuracy of the <code>consistent</code> option while benefiting from some of the speedup offered by the <code>lumped</code> option.</p><p>The lumped mass matrix preconditioner is applied with the class, <code>LumpedPreconditioner</code>:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">
+<!DOCTYPE html><head><meta charset="UTF-8"><title>ExplicitTimeIntegrator | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="b41a0b8e-2101-430b-ba68-dfea6ab41dbf" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="43f8ab2a-cb82-4604-a60b-a7785452ec4b" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1ab2c2da-c874-4b49-93af-c1ab663d8fdc" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6b2a826c-f2c4-4bae-87d3-2defb4bd7ff6" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="08fe1a14-0ef0-4ff7-b0ef-f59874dbf882" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="affee3e4-760f-414a-ba5a-136b31ae3819"><i class="material-icons">menu</i></a><ul class="sidenav" id="affee3e4-760f-414a-ba5a-136b31ae3819"><li><a href="#!" class="dropdown-trigger" data-target="e523ca5d-d2a4-42a6-a0cc-7fb03294319c" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f97bafbb-2890-4deb-a20c-cf2bff3fa548" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="23717d1b-5bf9-4e4e-aa61-b4c0dfc698cf" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3af7d5e1-7533-4273-a087-29c8dda938af" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="72839f31-2a48-49c3-9356-40715b8d20db" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="b41a0b8e-2101-430b-ba68-dfea6ab41dbf"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="43f8ab2a-cb82-4604-a60b-a7785452ec4b"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="1ab2c2da-c874-4b49-93af-c1ab663d8fdc"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="6b2a826c-f2c4-4bae-87d3-2defb4bd7ff6"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="08fe1a14-0ef0-4ff7-b0ef-f59874dbf882"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="e523ca5d-d2a4-42a6-a0cc-7fb03294319c"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="f97bafbb-2890-4deb-a20c-cf2bff3fa548"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="23717d1b-5bf9-4e4e-aa61-b4c0dfc698cf"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="3af7d5e1-7533-4273-a087-29c8dda938af"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="72839f31-2a48-49c3-9356-40715b8d20db"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="e4149cd8-70e4-4611-8b79-87659e075ce1" data-section-level="1" data-section-text="ExplicitTimeIntegrator"><h1 id="explicittimeintegrator">ExplicitTimeIntegrator</h1><section id="7571a900-ea75-4755-b10e-d9847d940b61" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p><code>ExplicitTimeIntegrator</code> is a base class for explicit time integrators that are implemented without performing any nonlinear solve, which reduces runtime. Unlike explicit time integrators that are not derived from this class, it is not necessary to set <code>implicit</code> to <code>false</code> for all of the non-time residual objects.</p></section><section id="b512bb61-e984-4abc-a49c-c744178c7b44" data-section-level="2" data-section-text="Methods of Solution"><h2 id="methods-of-solution">Methods of Solution</h2><p>Time integrators deriving from this class have three solve options, provided via the <code>solve_type</code> parameter:</p><ul class="browser-default"><li><p><code>consistent</code>: (the default) A full mass matrix is built and used in a linear solve for the update </p></li><li><p><code>lumped</code>: A &quot;lumped&quot; mass matrix is built, inverted, and applied to the RHS, which is faster but can possibly be less accurate. </p></li><li><p><code>lump_preconditioned</code>: The inversion of the &quot;lumped&quot; mass matrix is used to precondition the <code>consistent</code> solve.</p></li></ul><p>All three methods are solved similarly: a linear solve is performed to obtain a solution update <span class="moose-katex-inline-equation" id="moose-equation-4eca7776-cd42-4135-95b1-0af3bb861a30"><script>var element = document.getElementById("moose-equation-4eca7776-cd42-4135-95b1-0af3bb861a30");katex.render("\\delta u", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> that is added to the existing solution.</p><p>Below is some more explanation of each of these <code>solve_type</code> options:</p><section id="d1a28590-0f8d-45a1-8d04-86bcaee603fc" data-section-level="3" data-section-text="consistent"><h3><code>consistent</code></h3><p>The <code>consistent</code> option builds a full (&quot;consistent&quot;) &quot;mass matrix&quot; and uses it in a linear solve to get the update.  This is done by calling <code>FEProblem::computeJacobianTag()</code> and specifying the <code>TIME</code> tag which includes all of the <code>TimeKernel</code> derived Kernels and <code>NodalBC</code> derived BoundaryConditions to compute <span class="moose-katex-inline-equation" id="moose-equation-27419d3e-4c4e-4aca-bfae-bb8e278fb26e"><script>var element = document.getElementById("moose-equation-27419d3e-4c4e-4aca-bfae-bb8e278fb26e");katex.render("\\mathbf{M}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>:</p><pre style="max-height:350px;"><code class="language-cpp">    _fe_problem.computeJacobianTag(
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2cc3df9e-dade-4f32-ac73-6f4fd3a70497">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>A residual computation is also completed to use as the RHS (<span class="moose-katex-inline-equation" id="moose-equation-882a24c9-9408-47bd-aefa-cc92537d7085"><script>var element = document.getElementById("moose-equation-882a24c9-9408-47bd-aefa-cc92537d7085");katex.render("R", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>):</p><pre style="max-height:350px;"><code class="language-cpp">  _fe_problem.computeResidual(
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2171cec8-0d3b-4527-a7e8-03c78af367de">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>Finally, the following linear system is solved to obtain the solution update <span class="moose-katex-inline-equation" id="moose-equation-a40f086d-6b6c-4fd8-be28-3e7940f7981f"><script>var element = document.getElementById("moose-equation-a40f086d-6b6c-4fd8-be28-3e7940f7981f");katex.render("\\delta u", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> using the default linear solver from libMesh (usually PETSc, including the application of any command-line parameters specified):</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-d7990364-1917-494b-9945-4125208cc32c"></span><script>var element = document.getElementById("moose-equation-d7990364-1917-494b-9945-4125208cc32c");katex.render("\\mathbf{M} \\delta u = -R", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p></section><section id="c970cdd9-c915-4fcc-87c8-96639ecea21a" data-section-level="3" data-section-text="lumped"><h3><code>lumped</code></h3><p>The <code>lumped</code> option creates a &quot;lumped&quot; mass matrix to use in the solve.  A lumped mass matrix is a diagonal matrix where the diagonal is the sum of all elements on the row from the original matrix. Here, to achieve the lumping, a matrix-vector product is performed between the consistent mass matrix and a vector of all ones.</p><p>The inverse of a diagonal matrix is simply the reciprocal of each diagonal entry. Then the matrix-vector product of the &quot;inverse&quot; lumped diagonal matrix is applied by simply doing a pointwise multiplication with the RHS.</p><p>Thus the <code>lumped</code> option does not actually solve a system of linear equations, allowing it be much faster. However, the lumping of the mass matrix may lead to unacceptable phase errors.</p></section><section id="f1961583-2f5e-4b4d-b789-d729f9c0f627" data-section-level="3" data-section-text="lump_preconditioned"><h3><code>lump_preconditioned</code></h3><p>This option is the combination of the other two options: the consistent mass matrix is used in the linear system, but the linear solve is preconditioned using the lumped mass matrix. This compromise retains the accuracy of the <code>consistent</code> option while benefiting from some of the speedup offered by the <code>lumped</code> option.</p><p>The lumped mass matrix preconditioner is applied with the class, <code>LumpedPreconditioner</code>:</p><pre style="max-height:350px;"><code class="language-cpp">
 #pragma once
 
 // MOOSE includes
@@ -20,7 +20,7 @@ class LumpedPreconditioner;
  * Class to that applies the lumped mass matrix preconditioner
  * in the ExplicitTimeIntegrator
  */
-class LumpedPreconditioner : public Preconditioner&lt;Real&gt;
+class LumpedPreconditioner : public libMesh::Preconditioner&lt;Real&gt;
 {
 public:
   LumpedPreconditioner(const NumericVector&lt;Real&gt; &amp; diag_inverse)
@@ -43,11 +43,11 @@ protected:
   /// The inverse of the diagonal of the lumped matrix
   const NumericVector&lt;Real&gt; &amp; _diag_inverse;
 };
-</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#64ea7c9a-e039-49f0-aebb-a42ec3bd9c19">(../moose/framework/include/timeintegrators/LumpedPreconditioner.h)</a><p>This object simply applies the inverse of the diagonal, lumped mass-matrix as the preconditioner for the linear solve, which is very efficient. Note that when this option is applied you shouldn&#x27;t specify any other preconditioners using command-line syntax or they will override this option.</p></section></section><section id="4eb7afd0-9807-4804-b153-c56bccb47eed" data-section-level="2" data-section-text="Additional Details"><h2 id="additional-details">Additional Details</h2><p>Some notes on some of the implementation details of this class follow.</p><section id="35d5f641-c13c-47f8-8de9-79b12f23656b" data-section-level="3" data-section-text="Update Form"><h3 id="update-form">Update Form</h3><p>Note that even though we&#x27;re doing an explicit solve we are currently doing it in &quot;update form&quot; similar to a single step Newton solve.  This gives us good parity with the rest of MOOSE.  We may want to change this in the future to make better use of the fact that the mass-matrix can be constant for a wider class of problems if we remove <code>dt</code> from it.</p></section><section id="141b3861-b762-49db-beb0-c39a36b1317c" data-section-level="3" data-section-text="_ones"><h3><code>_ones</code></h3><p>To get the sum of each row of the mass matrix for &quot;lumping&quot; purposes a vector consisting of all <code>1</code>s is used in a matrix-vector product:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">      mass_matrix.vector_mult(_mass_matrix_diag, *_ones);
-</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#4b4e9345-6051-45a4-8f6a-a629364459c9">(../moose/framework/src/timeintegrators/ExplicitTimeIntegrator.C)</a><p>This is actually the very same way <code>MatGetRowSum</code> is implemented in PETSc; however, doing it manually cuts down on vector creation/destruction and a few other book-keeping operations.</p><p>In the future this could be changed to use <code>MatGetRowSum</code> if a specialization for <code>MPI_Aij</code> format is created.</p></section><section id="72a9fb00-5dd0-46b9-b911-5904b7f7fb10" data-section-level="3" data-section-text="Time"><h3 id="time">Time</h3><p>Time in an explicit solve must be handled carefully. When evaluating the weak form (the integral parts) of the residual, time needs to be set to be the &quot;old&quot; time (the time we are solving &quot;from&quot;):</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">  _fe_problem.time() = _fe_problem.timeOld();
-</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#8b82d89b-1107-4654-bea2-aed97faee444">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>However, <code>DirichletBC</code> derived boundary conditions need to use the <em></em>final** time, since the strong constraints they represent use the final time and are not affected by the time integrator. To achieve this, time is reset to the <code>_current_time</code> after the weak form residual evaluation and before <code>NodalBC</code> boundary condition application, which makes <code>postResidual()</code> the correct place to reset time for this purpose:</p><pre class="moose-pre" style="max-height:350px;"><code class="language-cpp">  _fe_problem.time() = _current_time;
-</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#569327c3-3ebe-47b7-a72e-4afdea1b7fe2">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>After <code>postResidual()</code> the <code>NodalBC</code> BCs are applied with the time at the final time for the step.</p></section><section id="bd36f05a-ce82-4a49-be49-4022d0dfc191" data-section-level="3" data-section-text="meshChanged()"><h3><code>meshChanged()</code></h3><p>When the mesh changes the linear solver needs to be destroyed and recreated. This is done by simply building a new one and setting it up again.  This happens automatically just by &quot;overwriting&quot; the <code>std::unique_ptr</code> to the LinearSolver.</p></section><section id="4ef0ad92-c9f6-40f8-95dd-47dc8c29e514" data-section-level="3" data-section-text="Relevant Executioner solver options"><h3 id="relevant-executioner-solver-options">Relevant Executioner solver options</h3><p>You can ignore this section if using <code>solve_type = lumped</code>. No <a href="../executioners/Executioner.html">Executioner</a> parameters are relevant to you in that case. However, for <code>consistent</code> or <code>lump_preconditioned</code> solve types, the <code>l_tol</code> and <code>l_max_its</code> parameters are used in the solution process. Nonlinear executioner options are not relevant. When using PETSc as the default solver package, <code>pc</code> and <code>ksp</code> options from the <code>petsc_options*</code> parameters will be used while <code>snes</code> options will be ignored. </p></section></section></section><div class="moose-modal modal" id="83976924-7886-4380-a07c-ad8591177657"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
-// https://www.mooseframework.org
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#8e7ba419-43dc-4525-86f6-b675906885fb">(../moose/framework/include/timeintegrators/LumpedPreconditioner.h)</a><p>This object simply applies the inverse of the diagonal, lumped mass-matrix as the preconditioner for the linear solve, which is very efficient. Note that when this option is applied you shouldn&#x27;t specify any other preconditioners using command-line syntax or they will override this option.</p></section></section><section id="05a16ef3-8204-4097-a5c1-65570a0b9dc7" data-section-level="2" data-section-text="Additional Details"><h2 id="additional-details">Additional Details</h2><p>Some notes on some of the implementation details of this class follow.</p><section id="0e98fae3-946b-4dac-ae08-02f25e815c89" data-section-level="3" data-section-text="Update Form"><h3 id="update-form">Update Form</h3><p>Note that even though we&#x27;re doing an explicit solve we are currently doing it in &quot;update form&quot; similar to a single step Newton solve.  This gives us good parity with the rest of MOOSE.  We may want to change this in the future to make better use of the fact that the mass-matrix can be constant for a wider class of problems if we remove <code>dt</code> from it.</p></section><section id="0b1d396e-d1fd-4b78-a27a-dfc39aae91e9" data-section-level="3" data-section-text="_ones"><h3><code>_ones</code></h3><p>To get the sum of each row of the mass matrix for &quot;lumping&quot; purposes a vector consisting of all <code>1</code>s is used in a matrix-vector product:</p><pre style="max-height:350px;"><code class="language-cpp">      mass_matrix.vector_mult(*_mass_matrix_diag_inverted, *_ones);
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#433cfe06-50e3-473e-a258-9afa035ce210">(../moose/framework/src/timeintegrators/ExplicitTimeIntegrator.C)</a><p>This is actually the very same way <code>MatGetRowSum</code> is implemented in PETSc; however, doing it manually cuts down on vector creation/destruction and a few other book-keeping operations.</p><p>In the future this could be changed to use <code>MatGetRowSum</code> if a specialization for <code>MPI_Aij</code> format is created.</p></section><section id="7b3cf6a5-76e9-4a3b-b8ac-4d288d92547f" data-section-level="3" data-section-text="Time"><h3 id="time">Time</h3><p>Time in an explicit solve must be handled carefully. When evaluating the weak form (the integral parts) of the residual, time needs to be set to be the &quot;old&quot; time (the time we are solving &quot;from&quot;):</p><pre style="max-height:350px;"><code class="language-cpp">  _fe_problem.time() = _fe_problem.timeOld();
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#e16f64c3-095a-40ed-a462-8059e52d9c30">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>However, <code>DirichletBC</code> derived boundary conditions need to use the <strong>final</strong> time, since the strong constraints they represent use the final time and are not affected by the time integrator. To achieve this, time is reset to the <code>_current_time</code> after the weak form residual evaluation and before <code>NodalBC</code> boundary condition application, which makes <code>postResidual()</code> the correct place to reset time for this purpose:</p><pre style="max-height:350px;"><code class="language-cpp">  _fe_problem.time() = _current_time;
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#a4c693b7-b5e0-4b15-b710-598bbff8a50f">(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</a><p>After <code>postResidual()</code> the <code>NodalBC</code> BCs are applied with the time at the final time for the step.</p></section><section id="0728223b-19b6-40d2-ae9f-b6eb98d42195" data-section-level="3" data-section-text="meshChanged()"><h3><code>meshChanged()</code></h3><p>When the mesh changes the linear solver needs to be destroyed and recreated. This is done by simply building a new one and setting it up again.  This happens automatically just by &quot;overwriting&quot; the <code>std::unique_ptr</code> to the LinearSolver.</p></section><section id="7f815121-0442-4a13-b356-6d216a9c7726" data-section-level="3" data-section-text="Relevant Executioner solver options"><h3 id="relevant-executioner-solver-options">Relevant Executioner solver options</h3><p>You can ignore this section if using <code>solve_type = lumped</code>. No <a href="../executioners/Executioner.html">Executioner</a> parameters are relevant to you in that case. However, for <code>consistent</code> or <code>lump_preconditioned</code> solve types, the <code>l_tol</code> and <code>l_max_its</code> parameters are used in the solution process. Nonlinear executioner options are not relevant. When using PETSc as the default solver package, <code>pc</code> and <code>ksp</code> options from the <code>petsc_options*</code> parameters will be used while <code>snes</code> options will be ignored. </p></section></section></section><div class="moose-modal modal" id="2cc3df9e-dade-4f32-ac73-6f4fd3a70497"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre style="max-height:350px;"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://mooseframework.inl.gov
 //
 // All rights reserved, see COPYRIGHT for full restrictions
 // https://github.com/idaholab/moose/blob/master/COPYRIGHT
@@ -97,14 +97,13 @@ ActuallyExplicitEuler::computeTimeDerivatives()
   u_dot = *_solution;
   computeTimeDerivativeHelper(u_dot, _solution_old);
   u_dot.close();
-
-  _du_dot_du = 1.0 / _dt;
+  computeDuDotDu();
 }
 
 void
-ActuallyExplicitEuler::computeADTimeDerivatives(DualReal &amp; ad_u_dot,
+ActuallyExplicitEuler::computeADTimeDerivatives(ADReal &amp; ad_u_dot,
                                                 const dof_id_type &amp; dof,
-                                                DualReal &amp; /*ad_u_dotdot*/) const
+                                                ADReal &amp; /*ad_u_dotdot*/) const
 {
   computeTimeDerivativeHelper(ad_u_dot, _solution_old(dof));
 }
@@ -123,12 +122,12 @@ ActuallyExplicitEuler::solve()
   _nonlinear_implicit_system-&gt;update();
 
   // Compute the residual
-  _explicit_residual.zero();
-  _fe_problem.computeResidual(*_nonlinear_implicit_system-&gt;current_local_solution,
-                              _explicit_residual);
+  _explicit_residual-&gt;zero();
+  _fe_problem.computeResidual(
+      *_nonlinear_implicit_system-&gt;current_local_solution, *_explicit_residual, _nl-&gt;number());
 
   // Move the residual to the RHS
-  _explicit_residual *= -1.0;
+  *_explicit_residual *= -1.0;
 
   // Compute the mass matrix
   auto &amp; mass_matrix = _nonlinear_implicit_system-&gt;get_system_matrix();
@@ -140,8 +139,14 @@ ActuallyExplicitEuler::solve()
   bool converged = performExplicitSolve(mass_matrix);
 
   // Update the solution
-  *_nonlinear_implicit_system-&gt;solution = _nl.solutionOld();
-  *_nonlinear_implicit_system-&gt;solution += _solution_update;
+  *_nonlinear_implicit_system-&gt;solution = _nl-&gt;solutionOld();
+  *_nonlinear_implicit_system-&gt;solution += *_solution_update;
+
+  // Constraints may be solved in an uncoupled way. For example, momentum-balance equations may be
+  // solved node-wise and then the solution (e.g. velocities or positions)can be applied to those
+  // nodes without solving for such constraints on a system level. This strategy is being used for
+  // node-face contact in explicit dynamics.
+  _nl-&gt;overwriteNodeFace(*_nonlinear_implicit_system-&gt;solution);
 
   // Enforce contraints on the solution
   DofMap &amp; dof_map = _nonlinear_implicit_system-&gt;get_dof_map();
@@ -149,7 +154,7 @@ ActuallyExplicitEuler::solve()
                                       _nonlinear_implicit_system-&gt;solution.get());
   _nonlinear_implicit_system-&gt;update();
 
-  _nl.setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
+  _nl-&gt;setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
 
   _nonlinear_implicit_system-&gt;nonlinear_solver-&gt;converged = converged;
 }
@@ -157,15 +162,15 @@ ActuallyExplicitEuler::solve()
 void
 ActuallyExplicitEuler::postResidual(NumericVector&lt;Number&gt; &amp; residual)
 {
-  residual += _Re_time;
-  residual += _Re_non_time;
+  residual += *_Re_time;
+  residual += *_Re_non_time;
   residual.close();
 
   // Reset time to the time at which to evaluate nodal BCs, which comes next
   _fe_problem.time() = _current_time;
 }
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="48213a0f-b995-458c-bf82-eeffadc5b1d6"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
-// https://www.mooseframework.org
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2171cec8-0d3b-4527-a7e8-03c78af367de"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre style="max-height:350px;"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://mooseframework.inl.gov
 //
 // All rights reserved, see COPYRIGHT for full restrictions
 // https://github.com/idaholab/moose/blob/master/COPYRIGHT
@@ -215,14 +220,13 @@ ActuallyExplicitEuler::computeTimeDerivatives()
   u_dot = *_solution;
   computeTimeDerivativeHelper(u_dot, _solution_old);
   u_dot.close();
-
-  _du_dot_du = 1.0 / _dt;
+  computeDuDotDu();
 }
 
 void
-ActuallyExplicitEuler::computeADTimeDerivatives(DualReal &amp; ad_u_dot,
+ActuallyExplicitEuler::computeADTimeDerivatives(ADReal &amp; ad_u_dot,
                                                 const dof_id_type &amp; dof,
-                                                DualReal &amp; /*ad_u_dotdot*/) const
+                                                ADReal &amp; /*ad_u_dotdot*/) const
 {
   computeTimeDerivativeHelper(ad_u_dot, _solution_old(dof));
 }
@@ -241,12 +245,12 @@ ActuallyExplicitEuler::solve()
   _nonlinear_implicit_system-&gt;update();
 
   // Compute the residual
-  _explicit_residual.zero();
-  _fe_problem.computeResidual(*_nonlinear_implicit_system-&gt;current_local_solution,
-                              _explicit_residual);
+  _explicit_residual-&gt;zero();
+  _fe_problem.computeResidual(
+      *_nonlinear_implicit_system-&gt;current_local_solution, *_explicit_residual, _nl-&gt;number());
 
   // Move the residual to the RHS
-  _explicit_residual *= -1.0;
+  *_explicit_residual *= -1.0;
 
   // Compute the mass matrix
   auto &amp; mass_matrix = _nonlinear_implicit_system-&gt;get_system_matrix();
@@ -258,8 +262,14 @@ ActuallyExplicitEuler::solve()
   bool converged = performExplicitSolve(mass_matrix);
 
   // Update the solution
-  *_nonlinear_implicit_system-&gt;solution = _nl.solutionOld();
-  *_nonlinear_implicit_system-&gt;solution += _solution_update;
+  *_nonlinear_implicit_system-&gt;solution = _nl-&gt;solutionOld();
+  *_nonlinear_implicit_system-&gt;solution += *_solution_update;
+
+  // Constraints may be solved in an uncoupled way. For example, momentum-balance equations may be
+  // solved node-wise and then the solution (e.g. velocities or positions)can be applied to those
+  // nodes without solving for such constraints on a system level. This strategy is being used for
+  // node-face contact in explicit dynamics.
+  _nl-&gt;overwriteNodeFace(*_nonlinear_implicit_system-&gt;solution);
 
   // Enforce contraints on the solution
   DofMap &amp; dof_map = _nonlinear_implicit_system-&gt;get_dof_map();
@@ -267,7 +277,7 @@ ActuallyExplicitEuler::solve()
                                       _nonlinear_implicit_system-&gt;solution.get());
   _nonlinear_implicit_system-&gt;update();
 
-  _nl.setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
+  _nl-&gt;setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
 
   _nonlinear_implicit_system-&gt;nonlinear_solver-&gt;converged = converged;
 }
@@ -275,15 +285,15 @@ ActuallyExplicitEuler::solve()
 void
 ActuallyExplicitEuler::postResidual(NumericVector&lt;Number&gt; &amp; residual)
 {
-  residual += _Re_time;
-  residual += _Re_non_time;
+  residual += *_Re_time;
+  residual += *_Re_non_time;
   residual.close();
 
   // Reset time to the time at which to evaluate nodal BCs, which comes next
   _fe_problem.time() = _current_time;
 }
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="64ea7c9a-e039-49f0-aebb-a42ec3bd9c19"><div class="modal-content"><h4>(../moose/framework/include/timeintegrators/LumpedPreconditioner.h)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
-// https://www.mooseframework.org
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="8e7ba419-43dc-4525-86f6-b675906885fb"><div class="modal-content"><h4>(../moose/framework/include/timeintegrators/LumpedPreconditioner.h)</h4><pre style="max-height:350px;"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://mooseframework.inl.gov
 //
 // All rights reserved, see COPYRIGHT for full restrictions
 // https://github.com/idaholab/moose/blob/master/COPYRIGHT
@@ -310,7 +320,7 @@ class LumpedPreconditioner;
  * Class to that applies the lumped mass matrix preconditioner
  * in the ExplicitTimeIntegrator
  */
-class LumpedPreconditioner : public Preconditioner&lt;Real&gt;
+class LumpedPreconditioner : public libMesh::Preconditioner&lt;Real&gt;
 {
 public:
   LumpedPreconditioner(const NumericVector&lt;Real&gt; &amp; diag_inverse)
@@ -333,8 +343,8 @@ protected:
   /// The inverse of the diagonal of the lumped matrix
   const NumericVector&lt;Real&gt; &amp; _diag_inverse;
 };
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4b4e9345-6051-45a4-8f6a-a629364459c9"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ExplicitTimeIntegrator.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
-// https://www.mooseframework.org
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="433cfe06-50e3-473e-a258-9afa035ce210"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ExplicitTimeIntegrator.C)</h4><pre style="max-height:350px;"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://mooseframework.inl.gov
 //
 // All rights reserved, see COPYRIGHT for full restrictions
 // https://github.com/idaholab/moose/blob/master/COPYRIGHT
@@ -347,9 +357,17 @@ protected:
 #include &quot;NonlinearSystem.h&quot;
 #include &quot;FEProblem.h&quot;
 #include &quot;PetscSupport.h&quot;
+#include &quot;KernelBase.h&quot;
+#include &quot;DGKernelBase.h&quot;
+#include &quot;ScalarKernelBase.h&quot;
+#include &quot;FVElementalKernel.h&quot;
+#include &quot;FVFluxKernel.h&quot;
+#include &quot;NodalKernelBase.h&quot;
 
 // libMesh includes
 #include &quot;libmesh/enum_convergence_flags.h&quot;
+
+using namespace libMesh;
 
 InputParameters
 ExplicitTimeIntegrator::validParams()
@@ -372,32 +390,117 @@ ExplicitTimeIntegrator::validParams()
 ExplicitTimeIntegrator::ExplicitTimeIntegrator(const InputParameters &amp; parameters)
   : TimeIntegrator(parameters),
     MeshChangedInterface(parameters),
-
     _solve_type(getParam&lt;MooseEnum&gt;(&quot;solve_type&quot;)),
-    _explicit_residual(_nl.addVector(&quot;explicit_residual&quot;, false, PARALLEL)),
-    _solution_update(_nl.addVector(&quot;solution_update&quot;, true, PARALLEL)),
-    _mass_matrix_diag(_nl.addVector(&quot;mass_matrix_diag&quot;, false, PARALLEL))
+    _explicit_residual(addVector(&quot;explicit_residual&quot;, false, PARALLEL)),
+    _solution_update(addVector(&quot;solution_update&quot;, true, PARALLEL)),
+    _mass_matrix_diag_inverted(addVector(&quot;mass_matrix_diag_inverted&quot;, true, GHOSTED)),
+    _ones(nullptr)
 {
   _Ke_time_tag = _fe_problem.getMatrixTagID(&quot;TIME&quot;);
 
   // This effectively changes the default solve_type to LINEAR instead of PJFNK,
   // so that it is valid to not supply solve_type in the Executioner block:
-  _fe_problem.solverParams()._type = Moose::ST_LINEAR;
+  if (_nl)
+    _fe_problem.solverParams(_nl-&gt;number())._type = Moose::ST_LINEAR;
 
   if (_solve_type == LUMPED || _solve_type == LUMP_PRECONDITIONED)
-    _ones = &amp;_nl.addVector(&quot;ones&quot;, false, PARALLEL);
+    _ones = addVector(&quot;ones&quot;, true, PARALLEL);
+  // don&#x27;t set any of the common SNES and KSP-related petsc options to prevent unused option
+  // warnings
+  Moose::PetscSupport::dontAddCommonSNESOptions(_fe_problem);
+  Moose::PetscSupport::dontAddCommonKSPOptions(_fe_problem);
 }
 
 void
 ExplicitTimeIntegrator::initialSetup()
 {
-  meshChanged();
+  setupSolver();
+
+  if (_nl)
+  {
+    std::unordered_set&lt;unsigned int&gt; vars_to_check;
+    if (!_vars.empty())
+      vars_to_check = _vars;
+    else
+      for (const auto i : make_range(_nl-&gt;nVariables()))
+        vars_to_check.insert(i);
+
+    const auto mass_matrix_tag_id = massMatrixTagID();
+    std::set&lt;TagID&gt; matrix_tags = {mass_matrix_tag_id};
+    auto fv_object_starting_query = _fe_problem.theWarehouse()
+                                        .query()
+                                        .template condition&lt;AttribMatrixTags&gt;(matrix_tags)
+                                        .template condition&lt;AttribSysNum&gt;(_nl-&gt;number());
+
+    for (const auto var_id : vars_to_check)
+    {
+      const auto &amp; var_name = _nl-&gt;system().variable_name(var_id);
+      const bool field_var = _nl-&gt;hasVariable(var_name);
+      if (!field_var)
+        mooseAssert(_nl-&gt;hasScalarVariable(var_name),
+                    var_name &lt;&lt; &quot; should be either a field or scalar variable&quot;);
+      if (field_var)
+      {
+        const auto &amp; field_var = _nl-&gt;getVariable(/*tid=*/0, var_name);
+        if (field_var.isFV())
+        {
+          std::vector&lt;FVElementalKernel *&gt; fv_elemental_kernels;
+          auto var_query = fv_object_starting_query.clone().template condition&lt;AttribVar&gt;(var_id);
+          auto var_query_clone = var_query.clone();
+          var_query.template condition&lt;AttribSystem&gt;(&quot;FVElementalKernel&quot;)
+              .queryInto(fv_elemental_kernels);
+          if (fv_elemental_kernels.size())
+            continue;
+
+          std::vector&lt;FVFluxKernel *&gt; fv_flux_kernels;
+          var_query_clone.template condition&lt;AttribSystem&gt;(&quot;FVFluxKernel&quot;)
+              .queryInto(fv_flux_kernels);
+          if (fv_flux_kernels.size())
+            continue;
+        }
+        else
+        {
+          // We are a finite element variable
+          if (_nl-&gt;getKernelWarehouse()
+                  .getMatrixTagObjectWarehouse(mass_matrix_tag_id, 0)
+                  .hasVariableObjects(var_id))
+            continue;
+          if (_nl-&gt;getDGKernelWarehouse()
+                  .getMatrixTagObjectWarehouse(mass_matrix_tag_id, 0)
+                  .hasVariableObjects(var_id))
+            continue;
+          if (_nl-&gt;getNodalKernelWarehouse()
+                  .getMatrixTagObjectWarehouse(mass_matrix_tag_id, 0)
+                  .hasVariableObjects(var_id))
+            continue;
+#ifdef MOOSE_KOKKOS_ENABLED
+          if (_nl-&gt;getKokkosKernelWarehouse()
+                  .getMatrixTagObjectWarehouse(mass_matrix_tag_id, 0)
+                  .hasVariableObjects(var_id))
+            continue;
+          if (_nl-&gt;getKokkosNodalKernelWarehouse()
+                  .getMatrixTagObjectWarehouse(mass_matrix_tag_id, 0)
+                  .hasVariableObjects(var_id))
+            continue;
+#endif
+        }
+      }
+      else if (_nl-&gt;getScalarKernelWarehouse()
+                   .getMatrixTagObjectWarehouse(mass_matrix_tag_id, 0)
+                   .hasVariableObjects(var_id))
+        continue;
+
+      mooseError(&quot;No objects contributing to the mass matrix were found for variable &#x27;&quot;,
+                 var_name,
+                 &quot;&#x27;. Did you, e.g., forget a time derivative term?&quot;);
+    }
+  }
 }
 
 void
 ExplicitTimeIntegrator::init()
 {
-  if (_fe_problem.solverParams()._type != Moose::ST_LINEAR)
+  if (_nl &amp;&amp; _fe_problem.solverParams(_nl-&gt;number())._type != Moose::ST_LINEAR)
     mooseError(
         &quot;The chosen time integrator requires &#x27;solve_type = LINEAR&#x27; in the Executioner block.&quot;);
 }
@@ -410,16 +513,25 @@ ExplicitTimeIntegrator::preSolve()
 void
 ExplicitTimeIntegrator::meshChanged()
 {
+  setupSolver();
+}
+
+void
+ExplicitTimeIntegrator::setupSolver()
+{
   // Can only be done after the system is initialized
-  if (_solve_type == LUMPED || _solve_type == LUMP_PRECONDITIONED)
-    *_ones = 1.;
+  if (_ones)
+  {
+    if (_solve_type == LUMPED || _solve_type == LUMP_PRECONDITIONED)
+      *_ones = 1.;
+  }
 
   if (_solve_type == CONSISTENT || _solve_type == LUMP_PRECONDITIONED)
     _linear_solver = LinearSolver&lt;Number&gt;::build(comm());
 
   if (_solve_type == LUMP_PRECONDITIONED)
   {
-    _preconditioner = std::make_unique&lt;LumpedPreconditioner&gt;(_mass_matrix_diag);
+    _preconditioner = std::make_unique&lt;LumpedPreconditioner&gt;(*_mass_matrix_diag_inverted);
     _linear_solver-&gt;attach_preconditioner(_preconditioner.get());
     _linear_solver-&gt;init();
   }
@@ -446,16 +558,16 @@ ExplicitTimeIntegrator::performExplicitSolve(SparseMatrix&lt;Number&gt; &amp; ma
       // Computes the sum of each row (lumping)
       // Note: This is actually how PETSc does it
       // It&#x27;s not &quot;perfectly optimal&quot; - but it will be fast (and universal)
-      mass_matrix.vector_mult(_mass_matrix_diag, *_ones);
+      mass_matrix.vector_mult(*_mass_matrix_diag_inverted, *_ones);
 
       // &quot;Invert&quot; the diagonal mass matrix
-      _mass_matrix_diag.reciprocal();
+      _mass_matrix_diag_inverted-&gt;reciprocal();
 
       // Multiply the inversion by the RHS
-      _solution_update.pointwise_mult(_mass_matrix_diag, _explicit_residual);
+      _solution_update-&gt;pointwise_mult(*_mass_matrix_diag_inverted, *_explicit_residual);
 
       // Check for convergence by seeing if there is a nan or inf
-      auto sum = _solution_update.sum();
+      auto sum = _solution_update-&gt;sum();
       converged = std::isfinite(sum);
 
       // The linear iteration count remains zero
@@ -465,8 +577,8 @@ ExplicitTimeIntegrator::performExplicitSolve(SparseMatrix&lt;Number&gt; &amp; ma
     }
     case LUMP_PRECONDITIONED:
     {
-      mass_matrix.vector_mult(_mass_matrix_diag, *_ones);
-      _mass_matrix_diag.reciprocal();
+      mass_matrix.vector_mult(*_mass_matrix_diag_inverted, *_ones);
+      _mass_matrix_diag_inverted-&gt;reciprocal();
 
       converged = solveLinearSystem(mass_matrix);
 
@@ -486,8 +598,8 @@ ExplicitTimeIntegrator::solveLinearSystem(SparseMatrix&lt;Number&gt; &amp; mass_
 
   const auto num_its_and_final_tol =
       _linear_solver-&gt;solve(mass_matrix,
-                            _solution_update,
-                            _explicit_residual,
+                            *_solution_update,
+                            *_explicit_residual,
                             es.parameters.get&lt;Real&gt;(&quot;linear solver tolerance&quot;),
                             es.parameters.get&lt;unsigned int&gt;(&quot;linear solver maximum iterations&quot;));
 
@@ -531,8 +643,8 @@ ExplicitTimeIntegrator::checkLinearConvergence()
       mooseError(&quot;Unknown convergence reason in ExplicitTimeIntegrator.&quot;);
   }
 }
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="8b82d89b-1107-4654-bea2-aed97faee444"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
-// https://www.mooseframework.org
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="e16f64c3-095a-40ed-a462-8059e52d9c30"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre style="max-height:350px;"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://mooseframework.inl.gov
 //
 // All rights reserved, see COPYRIGHT for full restrictions
 // https://github.com/idaholab/moose/blob/master/COPYRIGHT
@@ -582,14 +694,13 @@ ActuallyExplicitEuler::computeTimeDerivatives()
   u_dot = *_solution;
   computeTimeDerivativeHelper(u_dot, _solution_old);
   u_dot.close();
-
-  _du_dot_du = 1.0 / _dt;
+  computeDuDotDu();
 }
 
 void
-ActuallyExplicitEuler::computeADTimeDerivatives(DualReal &amp; ad_u_dot,
+ActuallyExplicitEuler::computeADTimeDerivatives(ADReal &amp; ad_u_dot,
                                                 const dof_id_type &amp; dof,
-                                                DualReal &amp; /*ad_u_dotdot*/) const
+                                                ADReal &amp; /*ad_u_dotdot*/) const
 {
   computeTimeDerivativeHelper(ad_u_dot, _solution_old(dof));
 }
@@ -608,12 +719,12 @@ ActuallyExplicitEuler::solve()
   _nonlinear_implicit_system-&gt;update();
 
   // Compute the residual
-  _explicit_residual.zero();
-  _fe_problem.computeResidual(*_nonlinear_implicit_system-&gt;current_local_solution,
-                              _explicit_residual);
+  _explicit_residual-&gt;zero();
+  _fe_problem.computeResidual(
+      *_nonlinear_implicit_system-&gt;current_local_solution, *_explicit_residual, _nl-&gt;number());
 
   // Move the residual to the RHS
-  _explicit_residual *= -1.0;
+  *_explicit_residual *= -1.0;
 
   // Compute the mass matrix
   auto &amp; mass_matrix = _nonlinear_implicit_system-&gt;get_system_matrix();
@@ -625,8 +736,14 @@ ActuallyExplicitEuler::solve()
   bool converged = performExplicitSolve(mass_matrix);
 
   // Update the solution
-  *_nonlinear_implicit_system-&gt;solution = _nl.solutionOld();
-  *_nonlinear_implicit_system-&gt;solution += _solution_update;
+  *_nonlinear_implicit_system-&gt;solution = _nl-&gt;solutionOld();
+  *_nonlinear_implicit_system-&gt;solution += *_solution_update;
+
+  // Constraints may be solved in an uncoupled way. For example, momentum-balance equations may be
+  // solved node-wise and then the solution (e.g. velocities or positions)can be applied to those
+  // nodes without solving for such constraints on a system level. This strategy is being used for
+  // node-face contact in explicit dynamics.
+  _nl-&gt;overwriteNodeFace(*_nonlinear_implicit_system-&gt;solution);
 
   // Enforce contraints on the solution
   DofMap &amp; dof_map = _nonlinear_implicit_system-&gt;get_dof_map();
@@ -634,7 +751,7 @@ ActuallyExplicitEuler::solve()
                                       _nonlinear_implicit_system-&gt;solution.get());
   _nonlinear_implicit_system-&gt;update();
 
-  _nl.setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
+  _nl-&gt;setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
 
   _nonlinear_implicit_system-&gt;nonlinear_solver-&gt;converged = converged;
 }
@@ -642,15 +759,15 @@ ActuallyExplicitEuler::solve()
 void
 ActuallyExplicitEuler::postResidual(NumericVector&lt;Number&gt; &amp; residual)
 {
-  residual += _Re_time;
-  residual += _Re_non_time;
+  residual += *_Re_time;
+  residual += *_Re_non_time;
   residual.close();
 
   // Reset time to the time at which to evaluate nodal BCs, which comes next
   _fe_problem.time() = _current_time;
 }
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="569327c3-3ebe-47b7-a72e-4afdea1b7fe2"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre class="moose-pre"><code class="language-cpp">// This file is part of the MOOSE framework
-// https://www.mooseframework.org
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="a4c693b7-b5e0-4b15-b710-598bbff8a50f"><div class="modal-content"><h4>(../moose/framework/src/timeintegrators/ActuallyExplicitEuler.C)</h4><pre style="max-height:350px;"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://mooseframework.inl.gov
 //
 // All rights reserved, see COPYRIGHT for full restrictions
 // https://github.com/idaholab/moose/blob/master/COPYRIGHT
@@ -700,14 +817,13 @@ ActuallyExplicitEuler::computeTimeDerivatives()
   u_dot = *_solution;
   computeTimeDerivativeHelper(u_dot, _solution_old);
   u_dot.close();
-
-  _du_dot_du = 1.0 / _dt;
+  computeDuDotDu();
 }
 
 void
-ActuallyExplicitEuler::computeADTimeDerivatives(DualReal &amp; ad_u_dot,
+ActuallyExplicitEuler::computeADTimeDerivatives(ADReal &amp; ad_u_dot,
                                                 const dof_id_type &amp; dof,
-                                                DualReal &amp; /*ad_u_dotdot*/) const
+                                                ADReal &amp; /*ad_u_dotdot*/) const
 {
   computeTimeDerivativeHelper(ad_u_dot, _solution_old(dof));
 }
@@ -726,12 +842,12 @@ ActuallyExplicitEuler::solve()
   _nonlinear_implicit_system-&gt;update();
 
   // Compute the residual
-  _explicit_residual.zero();
-  _fe_problem.computeResidual(*_nonlinear_implicit_system-&gt;current_local_solution,
-                              _explicit_residual);
+  _explicit_residual-&gt;zero();
+  _fe_problem.computeResidual(
+      *_nonlinear_implicit_system-&gt;current_local_solution, *_explicit_residual, _nl-&gt;number());
 
   // Move the residual to the RHS
-  _explicit_residual *= -1.0;
+  *_explicit_residual *= -1.0;
 
   // Compute the mass matrix
   auto &amp; mass_matrix = _nonlinear_implicit_system-&gt;get_system_matrix();
@@ -743,8 +859,14 @@ ActuallyExplicitEuler::solve()
   bool converged = performExplicitSolve(mass_matrix);
 
   // Update the solution
-  *_nonlinear_implicit_system-&gt;solution = _nl.solutionOld();
-  *_nonlinear_implicit_system-&gt;solution += _solution_update;
+  *_nonlinear_implicit_system-&gt;solution = _nl-&gt;solutionOld();
+  *_nonlinear_implicit_system-&gt;solution += *_solution_update;
+
+  // Constraints may be solved in an uncoupled way. For example, momentum-balance equations may be
+  // solved node-wise and then the solution (e.g. velocities or positions)can be applied to those
+  // nodes without solving for such constraints on a system level. This strategy is being used for
+  // node-face contact in explicit dynamics.
+  _nl-&gt;overwriteNodeFace(*_nonlinear_implicit_system-&gt;solution);
 
   // Enforce contraints on the solution
   DofMap &amp; dof_map = _nonlinear_implicit_system-&gt;get_dof_map();
@@ -752,7 +874,7 @@ ActuallyExplicitEuler::solve()
                                       _nonlinear_implicit_system-&gt;solution.get());
   _nonlinear_implicit_system-&gt;update();
 
-  _nl.setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
+  _nl-&gt;setSolution(*_nonlinear_implicit_system-&gt;current_local_solution);
 
   _nonlinear_implicit_system-&gt;nonlinear_solver-&gt;converged = converged;
 }
@@ -760,8 +882,8 @@ ActuallyExplicitEuler::solve()
 void
 ActuallyExplicitEuler::postResidual(NumericVector&lt;Number&gt; &amp; residual)
 {
-  residual += _Re_time;
-  residual += _Re_non_time;
+  residual += *_Re_time;
+  residual += *_Re_non_time;
   residual.close();
 
   // Reset time to the time at which to evaluate nodal BCs, which comes next

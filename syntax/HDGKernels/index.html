@@ -1,0 +1,259 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>HDG Kernels | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="3c923e5d-38d9-46d2-a7e5-abeb649e808b" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="69d1ed2f-738d-438f-83db-25aeea61c209" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a67df44e-7b32-49c7-9d53-af743fa958dd" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="04bfc56a-0c1a-4b4b-979f-f4c905455e2a" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="da3e0274-eb70-4cff-b478-f1bfe6a40273" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="96a81413-ab63-40ce-bae2-088c01a3d07f"><i class="material-icons">menu</i></a><ul class="sidenav" id="96a81413-ab63-40ce-bae2-088c01a3d07f"><li><a href="#!" class="dropdown-trigger" data-target="24aebd62-3983-4a80-ad66-1167545c23d9" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="902dc96a-d9b6-43df-9f51-d4d1625d0198" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="af567946-5d82-4f1b-9901-b53800846f19" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="60e110b5-9236-4b0e-a8b9-30b417a5ebbf" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="2dbb8e1a-c541-4506-a9be-b4023a288088" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="3c923e5d-38d9-46d2-a7e5-abeb649e808b"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="69d1ed2f-738d-438f-83db-25aeea61c209"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="a67df44e-7b32-49c7-9d53-af743fa958dd"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="04bfc56a-0c1a-4b4b-979f-f4c905455e2a"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="da3e0274-eb70-4cff-b478-f1bfe6a40273"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="24aebd62-3983-4a80-ad66-1167545c23d9"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="902dc96a-d9b6-43df-9f51-d4d1625d0198"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="af567946-5d82-4f1b-9901-b53800846f19"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="60e110b5-9236-4b0e-a8b9-30b417a5ebbf"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="2dbb8e1a-c541-4506-a9be-b4023a288088"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="c81e865f-af09-4f54-b339-282f0aaf5824" data-section-level="1" data-section-text="HDG Kernels"><h1 id="hdg-kernels">HDG Kernels</h1><p>HDG kernels are an advanced systems that should only be developed by users with a fair amount of finite element experience. For background on hybridization, we encourage the user to read (<a href="#cockburn2009unified">Cockburn et al., 2009</a>) which presents a unified framework for considering hybridization of discontinuous Galerkin, mixed, and continuous Galerkin methods for elliptic problems. (<a href="#cockburn2008superconvergent">Cockburn et al., 2008</a>) presents a single-face hybridizable discontinuous Galerkin (HDG) method for an elliptic problem, in which a non-zero stabilization term is added to only one face of a given element. (<a href="#nguyen2010hybridizable">Nguyen et al., 2010</a>) presents an HDG method for Stokes flow. (<a href="#nguyen2011implicit">Nguyen et al., 2011</a>) extends HDG to Navier-Stokes. More HDG literature may be found by looking at the research of Bernardo Cockburn, his former postdoc Sander Rhebergen, and Rhebergen&#x27;s former postdoc Tamas Horvath. Work by Tan Bui-Thanh on upwind HDG methods, like in (<a href="#bui2015godunov">Bui-Thanh, 2015</a>) is also worth noting.</p><p>A hybridized finite element formulation starts with some primal finite element discretization. Then some continuity property of the finite element space is broken. For instance Raviart-Thomas finite elements may be used to solve a mixed formulation description of a Poisson problem. The Raviart-Thomas elements ensure continuity of the normal component of the vector field across element faces. We break that continuity in the finite element space used in the hybridized method and instead introduce degrees of freedom, that live only on the mesh skeleton (the faces of the mesh), that are responsible for ensuring the continuity that was lost by breaking the finite element space. In libMesh/MOOSE implementation terms, when hybridizing the Raviart-Thomas description of the Poisson problem, we change from using a <code>RAVIART_THOMAS</code> basis to an <code>L2_RAVIART_THOMAS</code> basis and introduce a <code>SIDE_HIERARCHIC</code> variable whose degrees of freedom live on the mesh skeleton. We will refer to the variables that exist &quot;before&quot; the hybridization as primal variables and the variable(s) that live on the mesh skeleton as Lagrange multipliers (LMs) or dual variable(s).</p><p>We note that some classes of HDG methods, such as the LDG method in (<a href="#cockburn2008superconvergent">Cockburn et al., 2008</a>), have the gradient as an independent primal variable. With these methods, for diffusion or diffusion-dominated problems, the primal gradient and primal scalar variable fields can be used to postprocess a scalar field that converges with order <span class="moose-katex-inline-equation" id="moose-equation-32e61bc3-d2fc-4ff9-b99a-588f7c5a6911"><script>var element = document.getElementById("moose-equation-32e61bc3-d2fc-4ff9-b99a-588f7c5a6911");katex.render("k + 2", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> in the <span class="moose-katex-inline-equation" id="moose-equation-53ad9620-2307-42d3-a504-93e74d486e7d"><script>var element = document.getElementById("moose-equation-53ad9620-2307-42d3-a504-93e74d486e7d");katex.render("L^2", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> norm, where <span class="moose-katex-inline-equation" id="moose-equation-7000e7bf-9626-4bbe-a9a9-e62b84a071f8"><script>var element = document.getElementById("moose-equation-7000e7bf-9626-4bbe-a9a9-e62b84a071f8");katex.render("k", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the polynomial order of the primal scalar variable. However, as advection becomes dominant, the higher order convergence is lost and consequently so is the value of having the gradient as an independent variable. In advection-dominated cases, interior penalty HDG methods, such as that outlined in (<a href="#rhebergen2017analysis">Rhebergen and Wells, 2017</a>), may be a good choice.</p><section id="314a126b-9bcb-46d7-bc2f-3700cb3a9939" data-section-level="2" data-section-text="Implementation in MOOSE"><h2 id="implementation-in-moose">Implementation in MOOSE</h2><p>HDG kernels derive from <a href="../Kernels/index.html">Kernels</a>. However, they add additional interfaces: <code>computeResidualOnSide</code> and <code>computeJacobianOnSide</code> which must be overridden and <code>computeResidualAndJacobianOnSide</code> which may be optionally overridden if the HDG kernel developer wishes to enable the ability to compute the residual and Jacobian together. These interfaces will be called on internal faces on a per-element basis. This means that a given internal face will be visited twice, once from each element side. External boundary condition integration occurs with standard boundary condition classes, see <a href="../BCs/index.html">BCs System</a>.</p><p><code>HDGKernel</code> is method-neutral and does not prescribe an algebraic layout. Physics term discretizations involving only one element-interior scalar and one scalar facet trace may instead derive from <code>ElementAndTraceScalarHDGKernel</code>, which provides common helper-backed automatic-differentiation assembly. There are currently two HDG implementations in MOOSE: L-HDG and IP-HDG. The IP-HDG kernels and L-HDG scalar advection use the common assembly provided by <code>ElementAndTraceScalarHDGKernel</code>. L-HDG diffusion and flow kernels assemble their additional vector and coupled equation blocks directly through <code>HDGKernel</code>. L-HDG currently implements flow physics monolithically, e.g. the L-HDG discretization of the Navier-Stokes equations, both mass and momentum, is contained entirely within a single kernel. However, the MOOSE IP-HDG implementation is modular; like is typically the case in MOOSE, there is a single kernel object per PDE term. So for a 2D setup of the Navier-Stokes equations, there are five kernels. Two advection kernels for the x- and y-momentum component equations, two stress kernels (which contain both viscous stress and pressure) for the x- and y-momentum component equations, and one advection kernel for the mass equation.</p><p>This difference in kernel design naturally has consequences for boundary conditions. The monolithic kernel design for L-HDG leads to monolithic boundary conditions. Modularity for IP-HDG kernels means modular boundary conditions, e.g. a user may end up specifying multiple integrated boundary conditions on a single boundary like is done in</p><pre style="max-height:350px;"><code class="language-moose">[BCs&lt;&lt;&lt;{&quot;href&quot;: &quot;../BCs/index.html&quot;}&gt;&gt;&gt;]
+  [dirichlet_diff]
+    type = DiffusionIPHDGDirichletBC&lt;&lt;&lt;{&quot;description&quot;: &quot;Weakly imposes Dirichlet boundary conditions for a hybridized discretization of a diffusion equation&quot;, &quot;href&quot;: &quot;../../source/bcs/DiffusionIPHDGDirichletBC.html&quot;}&gt;&gt;&gt;
+    functor&lt;&lt;&lt;{&quot;description&quot;: &quot;The Dirichlet value for the primal variable. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = exact
+    boundary&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of boundary IDs from the mesh where this object applies&quot;}&gt;&gt;&gt; = &#x27;left right top bottom&#x27;
+  []
+  [dirichlet_adv]
+    type = AdvectionIPHDGDirichletBC&lt;&lt;&lt;{&quot;description&quot;: &quot;Weakly imposes Dirichlet boundary conditions for a hybridized discretization of an advection equation&quot;, &quot;href&quot;: &quot;../../source/bcs/AdvectionIPHDGDirichletBC.html&quot;}&gt;&gt;&gt;
+    functor&lt;&lt;&lt;{&quot;description&quot;: &quot;The Dirichlet value for the primal variable. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = exact
+    boundary&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of boundary IDs from the mesh where this object applies&quot;}&gt;&gt;&gt; = &#x27;left right top bottom&#x27;
+    coeff&lt;&lt;&lt;{&quot;description&quot;: &quot;Constant coefficient multiplying the advected scalar, such as density&quot;}&gt;&gt;&gt; = 1
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#9856246c-281c-483a-bcd4-4f10ab027804">(../moose/test/tests/hdgkernels/ip-advection-diffusion/mms-advection-diffusion.i)</a><p>In the future we may make L-HDG design more modular, although the monolithic approach does have the advantage of less required user input. However, less user input may also be achieved in the future by leveraging the <a href="/Physics/index.md">Physics</a><a href="../Physics/index.html">Physics system</a>. </p></section><section id="20ee1474-af6e-4fda-81f6-8fabbc70f344" data-section-level="2" data-section-text="References"><h2 id="references">References</h2><div class="moose-bibliography"><ol><li id="bui2015godunov">Tan Bui-Thanh.
+From godunov to a unified hybridized discontinuous galerkin framework for partial differential equations.
+<em>Journal of Computational Physics</em>, 295:114–146, 2015.<a href="#16d6d5d2-6a16-4e37-a27a-f60a49db3ce8" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="16d6d5d2-6a16-4e37-a27a-f60a49db3ce8"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@article{bui2015godunov,
+    author = "Bui-Thanh, Tan",
+    title = "From Godunov to a unified hybridized discontinuous Galerkin framework for partial differential equations",
+    journal = "Journal of Computational Physics",
+    volume = "295",
+    pages = "114--146",
+    year = "2015",
+    publisher = "Elsevier"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - JOUR
+AU  - Bui-Thanh, Tan
+TI  - From Godunov to a unified hybridized discontinuous Galerkin framework for partial differential equations
+JO  - Journal of Computational Physics
+PY  - 2015
+VL  - 295
+PB  - Elsevier
+SP  - 114
+EP  - 146
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Tan Bui-Thanh. From godunov to a unified hybridized discontinuous galerkin framework for partial differential equations. Journal of Computational Physics, 295:114–146, 2015.</code></pre></div></div></li><li id="cockburn2008superconvergent">Bernardo Cockburn, Bo&nbsp;Dong, and Johnny Guzm<span class="bibtex-protected">á</span>n.
+A superconvergent ldg-hybridizable galerkin method for second-order elliptic problems.
+<em>Mathematics of Computation</em>, 77(264):1887–1916, 2008.<a href="#562f2461-f002-4902-91c2-f5fa6e3312be" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="562f2461-f002-4902-91c2-f5fa6e3312be"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@article{cockburn2008superconvergent,
+    author = "Cockburn, Bernardo and Dong, Bo and Guzm{\'a}n, Johnny",
+    title = "A superconvergent LDG-hybridizable Galerkin method for second-order elliptic problems",
+    journal = "Mathematics of Computation",
+    volume = "77",
+    number = "264",
+    pages = "1887--1916",
+    year = "2008"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - JOUR
+AU  - Cockburn, Bernardo
+AU  - Dong, Bo
+AU  - Guzmán, Johnny
+TI  - A superconvergent LDG-hybridizable Galerkin method for second-order elliptic problems
+JO  - Mathematics of Computation
+PY  - 2008
+VL  - 77
+IS  - 264
+SP  - 1887
+EP  - 1916
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Bernardo Cockburn, Bo Dong, and Johnny Guzmán. A superconvergent ldg-hybridizable galerkin method for second-order elliptic problems. Mathematics of Computation, 77(264):1887–1916, 2008.</code></pre></div></div></li><li id="cockburn2009unified">Bernardo Cockburn, Jayadeep Gopalakrishnan, and Raytcho Lazarov.
+Unified hybridization of discontinuous galerkin, mixed, and continuous galerkin methods for second order elliptic problems.
+<em>SIAM Journal on Numerical Analysis</em>, 47(2):1319–1365, 2009.<a href="#d6347701-48f9-46c9-94b4-50c50b198e6a" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="d6347701-48f9-46c9-94b4-50c50b198e6a"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@article{cockburn2009unified,
+    author = "Cockburn, Bernardo and Gopalakrishnan, Jayadeep and Lazarov, Raytcho",
+    title = "Unified hybridization of discontinuous Galerkin, mixed, and continuous Galerkin methods for second order elliptic problems",
+    journal = "SIAM Journal on Numerical Analysis",
+    volume = "47",
+    number = "2",
+    pages = "1319--1365",
+    year = "2009",
+    publisher = "SIAM"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - JOUR
+AU  - Cockburn, Bernardo
+AU  - Gopalakrishnan, Jayadeep
+AU  - Lazarov, Raytcho
+TI  - Unified hybridization of discontinuous Galerkin, mixed, and continuous Galerkin methods for second order elliptic problems
+JO  - SIAM Journal on Numerical Analysis
+PY  - 2009
+VL  - 47
+IS  - 2
+PB  - SIAM
+SP  - 1319
+EP  - 1365
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Bernardo Cockburn, Jayadeep Gopalakrishnan, and Raytcho Lazarov. Unified hybridization of discontinuous galerkin, mixed, and continuous galerkin methods for second order elliptic problems. SIAM Journal on Numerical Analysis, 47(2):1319–1365, 2009.</code></pre></div></div></li><li id="nguyen2010hybridizable">Ngoc&nbsp;Cuong Nguyen, Jaime Peraire, and Bernardo Cockburn.
+A hybridizable discontinuous galerkin method for stokes flow.
+<em>Computer Methods in Applied Mechanics and Engineering</em>, 199(9-12):582–597, 2010.<a href="#668eec0f-e8a7-476f-a853-5e3787bd093b" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="668eec0f-e8a7-476f-a853-5e3787bd093b"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@article{nguyen2010hybridizable,
+    author = "Nguyen, Ngoc Cuong and Peraire, Jaime and Cockburn, Bernardo",
+    title = "A hybridizable discontinuous Galerkin method for Stokes flow",
+    journal = "Computer Methods in Applied Mechanics and Engineering",
+    volume = "199",
+    number = "9-12",
+    pages = "582--597",
+    year = "2010",
+    publisher = "Elsevier"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - JOUR
+AU  - Nguyen, Ngoc Cuong
+AU  - Peraire, Jaime
+AU  - Cockburn, Bernardo
+TI  - A hybridizable discontinuous Galerkin method for Stokes flow
+JO  - Computer Methods in Applied Mechanics and Engineering
+PY  - 2010
+VL  - 199
+IS  - 9-12
+PB  - Elsevier
+SP  - 582
+EP  - 597
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Ngoc Cuong Nguyen, Jaime Peraire, and Bernardo Cockburn. A hybridizable discontinuous galerkin method for stokes flow. Computer Methods in Applied Mechanics and Engineering, 199(9-12):582–597, 2010.</code></pre></div></div></li><li id="nguyen2011implicit">Ngoc&nbsp;Cuong Nguyen, Jaume Peraire, and Bernardo Cockburn.
+An implicit high-order hybridizable discontinuous galerkin method for the incompressible navier–stokes equations.
+<em>Journal of Computational Physics</em>, 230(4):1147–1170, 2011.<a href="#300f46b7-f73a-4b30-9262-950ca678a20d" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="300f46b7-f73a-4b30-9262-950ca678a20d"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@article{nguyen2011implicit,
+    author = "Nguyen, Ngoc Cuong and Peraire, Jaume and Cockburn, Bernardo",
+    title = "An implicit high-order hybridizable discontinuous Galerkin method for the incompressible Navier--Stokes equations",
+    journal = "Journal of Computational Physics",
+    volume = "230",
+    number = "4",
+    pages = "1147--1170",
+    year = "2011",
+    publisher = "Elsevier"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - JOUR
+AU  - Nguyen, Ngoc Cuong
+AU  - Peraire, Jaume
+AU  - Cockburn, Bernardo
+TI  - An implicit high-order hybridizable discontinuous Galerkin method for the incompressible Navier–Stokes equations
+JO  - Journal of Computational Physics
+PY  - 2011
+VL  - 230
+IS  - 4
+PB  - Elsevier
+SP  - 1147
+EP  - 1170
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Ngoc Cuong Nguyen, Jaume Peraire, and Bernardo Cockburn. An implicit high-order hybridizable discontinuous galerkin method for the incompressible navier–stokes equations. Journal of Computational Physics, 230(4):1147–1170, 2011.</code></pre></div></div></li><li id="rhebergen2017analysis">Sander Rhebergen and Garth&nbsp;N Wells.
+Analysis of a hybridized/interface stabilized finite element method for the stokes equations.
+<em>SIAM Journal on Numerical Analysis</em>, 55(4):1982–2003, 2017.<a href="#65a70b23-66ef-46a4-855d-26e100967e65" class="modal-trigger moose-bibtex-modal" style="padding-left:10px;">[Export]</a><div class="modal" id="65a70b23-66ef-46a4-855d-26e100967e65"><div class="modal-content"><h6>BibTeX</h6><pre style="line-height:1.25;"><code class="language-latex">@article{rhebergen2017analysis,
+    author = "Rhebergen, Sander and Wells, Garth N",
+    title = "Analysis of a hybridized/interface stabilized finite element method for the Stokes equations",
+    journal = "SIAM Journal on Numerical Analysis",
+    volume = "55",
+    number = "4",
+    pages = "1982--2003",
+    year = "2017",
+    publisher = "SIAM"
+}
+</code></pre><h6>RIS</h6><pre style="line-height:1.25;"><code class="language-none">TY  - JOUR
+AU  - Rhebergen, Sander
+AU  - Wells, Garth N
+TI  - Analysis of a hybridized/interface stabilized finite element method for the Stokes equations
+JO  - SIAM Journal on Numerical Analysis
+PY  - 2017
+VL  - 55
+IS  - 4
+PB  - SIAM
+SP  - 1982
+EP  - 2003
+ER  - </code></pre><h6>Plain Text</h6><pre style="line-height:1.25;"><code class="language-none">Sander Rhebergen and Garth N Wells. Analysis of a hybridized/interface stabilized finite element method for the stokes equations. SIAM Journal on Numerical Analysis, 55(4):1982–2003, 2017.</code></pre></div></div></li></ol></div></section></section><div class="moose-modal modal" id="9856246c-281c-483a-bcd4-4f10ab027804"><div class="modal-content"><h4>(../moose/test/tests/hdgkernels/ip-advection-diffusion/mms-advection-diffusion.i)</h4><pre style="max-height:350px;"><code class="language-moose">diff = 2
+a = 2
+
+[GlobalParams]
+  variable = u
+  face_variable = side_u
+  diffusivity = ${diff}
+  alpha = 10
+  velocity = vel
+[]
+
+[Mesh]
+  type = GeneratedMesh
+  dim = 2
+  nx = 1
+  ny = 1
+  elem_type = TRI6
+[]
+
+[Variables]
+  [u]
+    order = FIRST
+    family = L2_LAGRANGE
+  []
+  [side_u]
+    order = FIRST
+    family = LAGRANGE
+  []
+[]
+
+[Kernels]
+  [ffn]
+    type = BodyForce
+    variable = u
+    function = forcing
+  []
+[]
+
+[HDGKernels]
+  [diff]
+    type = DiffusionIPHDGKernel
+  []
+  [adv]
+    type = AdvectionIPHDGKernel
+    coeff = 1
+  []
+[]
+
+[BCs]
+  [dirichlet_diff]
+    type = DiffusionIPHDGDirichletBC
+    functor = exact
+    boundary = &#x27;left right top bottom&#x27;
+  []
+  [dirichlet_adv]
+    type = AdvectionIPHDGDirichletBC
+    functor = exact
+    boundary = &#x27;left right top bottom&#x27;
+    coeff = 1
+  []
+[]
+
+[Materials]
+  [vel]
+    type = ADGenericConstantVectorMaterial
+    prop_names = &#x27;vel&#x27;
+    prop_values = &#x27;${a} ${fparse 2*a} 0&#x27;
+  []
+[]
+
+[Functions]
+  [exact]
+    type = ParsedFunction
+    expression = &#x27;sin(x)*cos(y)&#x27;
+  []
+  [forcing]
+    type = ParsedFunction
+    expression = &#x27;-2*a*sin(x)*sin(y) + a*cos(x)*cos(y) + 2*diff*sin(x)*cos(y)&#x27;
+    symbol_names = &#x27;a diff&#x27;
+    symbol_values = &#x27;${a} ${diff}&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  nl_rel_tol = 1e-10
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  solve_type = NEWTON
+[]
+
+[Outputs]
+  csv = true
+[]
+
+[Postprocessors]
+  [h]
+    type = AverageElementSize
+    outputs = &#x27;console csv&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  []
+  [L2u]
+    type = ElementL2Error
+    variable = u
+    function = exact
+    outputs = &#x27;console csv&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

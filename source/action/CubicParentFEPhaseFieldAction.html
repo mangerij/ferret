@@ -1,0 +1,420 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>CubicParentFEPhaseFieldAction | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="b8333042-56e6-4f2e-802e-a55a90d8d128" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="949452be-96a3-4148-86d3-7bfc1eb62ab9" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="03388cda-6a93-44d1-bf10-db890ff13c6e" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="360b701a-9c70-4cd3-9e2d-0d168a517c51" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="37b4adbe-cb99-4e42-9638-5652e8a11783" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="592c5ecf-3d42-4fd7-a702-4d766095bad0"><i class="material-icons">menu</i></a><ul class="sidenav" id="592c5ecf-3d42-4fd7-a702-4d766095bad0"><li><a href="#!" class="dropdown-trigger" data-target="484d7888-744a-44c8-8ee9-25619d82fcd6" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5f4304a9-1e6c-4e1b-b3c8-5974cf3acf0e" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a583e4fb-736e-487f-8332-7c90cc1118f7" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f53b1f52-c4b8-4e3a-a122-91f92241bd0a" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="cdf1d1d8-2e19-4330-ad0f-540f4e79fc86" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="b8333042-56e6-4f2e-802e-a55a90d8d128"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="949452be-96a3-4148-86d3-7bfc1eb62ab9"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="03388cda-6a93-44d1-bf10-db890ff13c6e"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="360b701a-9c70-4cd3-9e2d-0d168a517c51"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="37b4adbe-cb99-4e42-9638-5652e8a11783"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="484d7888-744a-44c8-8ee9-25619d82fcd6"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="5f4304a9-1e6c-4e1b-b3c8-5974cf3acf0e"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="a583e4fb-736e-487f-8332-7c90cc1118f7"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f53b1f52-c4b8-4e3a-a122-91f92241bd0a"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="cdf1d1d8-2e19-4330-ad0f-540f4e79fc86"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="6c926266-3b5e-4ab2-9aa5-a07bb48a003b" data-section-level="1" data-section-text="CubicParentFEPhaseFieldAction"><h1 id="cubicparentfephasefieldaction">CubicParentFEPhaseFieldAction</h1><p>Set up a cubic-parent-phase ferroelectric problem: the polarization variables, the Landau bulk and gradient kernels, the optional electrostatic and electrostrictive couplings, the constant material properties and the free energy postprocessors. The mechanics themselves are left to the SolidMechanics QuasiStatic physics, which this action is designed to be used alongside; couple the two by listing &#x27;eigenstrain_name&#x27; in its &#x27;eigenstrain_names&#x27;.</p><section id="6511bfe1-2c90-41d6-9078-868ee9f42192" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Sets up a cubic-parent-phase ferroelectric problem: the three polarization components and the electrostatic potential, the Landau bulk and gradient kernels, the optional electrostatic and electrostrictive couplings, the constant material properties and the free energy postprocessors.</p><p>The mechanics are deliberately left to the SolidMechanics <code>QuasiStatic</code> physics, which owns the displacement variables, the strain calculator and the stress divergence kernels. The two actions are coupled through the eigenstrain: this action adds a <code>ComputeCubicParentElectrostrictiveStrain</code> named by <code>eigenstrain_name</code>, and that same name must appear in the SolidMechanics action&#x27;s <code>eigenstrain_names</code>.</p><p>A prescribed mean strain (an epitaxial misfit, say) is supplied as a <code>GenericConstantRankTwoTensor</code> and reaches the strain calculator through <code>[GlobalParams] global_strain</code>. It contributes to <code>total_strain</code>, which is the quantity the cubic-parent polarization kernels read.</p><p><code>electrostatics</code> and <code>elastic</code> are independent, so the action covers the purely polar-elastic problem as well as the full polar-elastic-electric one.</p></section><section id="da1afe7d-2017-42f8-983a-9eedb687fac6" data-section-level="2" data-section-text="Elastic energy"><h2 id="elastic-energy">Elastic energy</h2><p>Two routes are provided, and <code>Ftotal</code> uses the second when it is available:</p><ul class="browser-default"><li><p><code>Felastic</code>, from <code>CubicParentElasticEnergy</code>, which evaluates the cubic-parent form directly and subtracts only its <em>own</em> eigenstrain. </p></li><li><p><code>Felastic_true</code>, an <code>ElementIntegralVariablePostprocessor</code> over the <code>f_el</code> aux variable that <code>ElasticEnergyAux</code> fills with 1/2 sigma:elastic_strain. Because the strain calculator has already removed <em>every</em> eigenstrain listed in the SolidMechanics action&#x27;s <code>eigenstrain_names</code>, this is the true elastic energy no matter how many contribute one, with no double counting and no cross term left over.</p></li></ul><p>With a single eigenstrain the two agree to roundoff. They diverge as soon as anything else contributes an eigenstrain, and only <code>Felastic_true</code> stays correct; set <code>add_elastic_energy_aux = false</code> to drop it and fall back to <code>Felastic</code>.</p><div class="card moose-alert moose-alert-note"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">comment</i><span class="moose-alert-title-brand">note</span></div><div class="card-content"><div class="moose-alert-content"><p>At <code>t = 0</code> the <code>f_el</code> aux reads a material state in which the eigenstrain has not yet been applied, so <code>Felastic_true</code> reports 1/2 eps:C:eps of the prescribed mean strain alone. Every subsequent step is correct. This is MOOSE&#x27;s legacy material-output behaviour on <code>INITIAL</code>, not a property of this action.</p></div></div></div></section><section id="d5a3c6a5-76dd-44d1-8ad8-a0b9dcb0eb9e" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><pre style="max-height:350px;"><code class="language-moose">[Ferret&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Ferret/index.html&quot;}&gt;&gt;&gt;]
+  [CubicParentFEPhaseField&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Ferret/CubicParentFEPhaseField/index.html&quot;}&gt;&gt;&gt;]
+    electrostatics&lt;&lt;&lt;{&quot;description&quot;: &quot;Solve Poisson&#x27;s equation for the depolarization field and couple it to the polarization.&quot;}&gt;&gt;&gt; = true
+    elastic&lt;&lt;&lt;{&quot;description&quot;: &quot;Couple the polarization to the strain through the cubic-parent electrostrictive energy.&quot;}&gt;&gt;&gt; = true
+    alpha_ijkl&lt;&lt;&lt;{&quot;description&quot;: &quot;Names of the Landau expansion coefficients.&quot;}&gt;&gt;&gt; = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+    alpha_ijkl_val&lt;&lt;&lt;{&quot;description&quot;: &quot;Values of the Landau expansion coefficients.&quot;}&gt;&gt;&gt; = &#x27;${alpha1} -0.073 0.75 0.26 0.61 -3.7 0.0 0.0 0.0 0.0&#x27;
+    G_ij&lt;&lt;&lt;{&quot;description&quot;: &quot;Names of the gradient coefficients.&quot;}&gt;&gt;&gt; = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+    G_ij_val&lt;&lt;&lt;{&quot;description&quot;: &quot;Values of the gradient coefficients.&quot;}&gt;&gt;&gt; = &#x27;${G110} 0.6 0.0 0.3 0.3&#x27;
+    Q_ij&lt;&lt;&lt;{&quot;description&quot;: &quot;Names of the electrostrictive Q tensor coefficients.&quot;}&gt;&gt;&gt; = &#x27;Q11 Q12 Q44&#x27;
+    Q_ij_val&lt;&lt;&lt;{&quot;description&quot;: &quot;Values of the electrostrictive Q tensor coefficients.&quot;}&gt;&gt;&gt; = &#x27;0.089 -0.026 0.03375&#x27;
+    C_ij&lt;&lt;&lt;{&quot;description&quot;: &quot;Names of the elastic stiffness coefficients. Must be &#x27;C11 C12 C44&#x27; (cubic parent).&quot;}&gt;&gt;&gt; = &#x27;C11 C12 C44&#x27;
+    C_ij_val&lt;&lt;&lt;{&quot;description&quot;: &quot;Values of the elastic stiffness coefficients.&quot;}&gt;&gt;&gt; = &#x27;174.269 79.029 47.62&#x27;
+    permittivity_val&lt;&lt;&lt;{&quot;description&quot;: &quot;Value of the permittivity.&quot;}&gt;&gt;&gt; = &#x27;${fparse eps_r*eps0}&#x27;
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#d3875d26-5315-4ca1-ba8c-f624962d012b">(test/tests/action/PTO_2D_E_action.i)</a><p>Alongside the SolidMechanics physics:</p><pre style="max-height:350px;"><code class="language-moose">[Physics&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/index.html&quot;}&gt;&gt;&gt;]
+  [SolidMechanics&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/SolidMechanics/index.html&quot;}&gt;&gt;&gt;]
+    [QuasiStatic&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/SolidMechanics/QuasiStatic/index.html&quot;}&gt;&gt;&gt;]
+      [all]
+        strain&lt;&lt;&lt;{&quot;description&quot;: &quot;Strain formulation&quot;}&gt;&gt;&gt; = SMALL
+        add_variables&lt;&lt;&lt;{&quot;description&quot;: &quot;Add the displacement variables&quot;}&gt;&gt;&gt; = true
+        eigenstrain_names&lt;&lt;&lt;{&quot;description&quot;: &quot;List of eigenstrains to be applied in this strain calculation&quot;}&gt;&gt;&gt; = &#x27;ferro&#x27;
+        generate_output&lt;&lt;&lt;{&quot;description&quot;: &quot;Add scalar quantity output for stress and/or strain&quot;}&gt;&gt;&gt; = &#x27;strain_xx strain_yy&#x27;
+      []
+    []
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#c9777c01-ebb0-4fd7-bcb7-53a488e6bc70">(test/tests/action/PTO_2D_E_action.i)</a></section><section id="aba5698a-d730-4000-86f6-1d7557054587" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="6a4f2867-7168-4b0d-bf85-d6f37517935a" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">G_ij</span><span class="moose-parameter-header-description">Names of the gradient coefficients.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Names of the gradient coefficients.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">G_ij_val</span><span class="moose-parameter-header-description">Values of the gradient coefficients.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Values of the gradient coefficients.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">alpha_ijkl</span><span class="moose-parameter-header-description">Names of the Landau expansion coefficients.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Names of the Landau expansion coefficients.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">alpha_ijkl_val</span><span class="moose-parameter-header-description">Values of the Landau expansion coefficients.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Values of the Landau expansion coefficients.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="26cdaa2c-4696-4f3e-a66e-ba147f1ee7f8" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">C_ij</span><span class="moose-parameter-header-default">C11 C12 C44 </span><span class="moose-parameter-header-description">Names of the elastic stiffness coefficients. Must be 'C11 C12 C44' (cubic parent).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>C11 C12 C44 </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Names of the elastic stiffness coefficients. Must be 'C11 C12 C44' (cubic parent).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">C_ij_val</span><span class="moose-parameter-header-description">Values of the elastic stiffness coefficients.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Values of the elastic stiffness coefficients.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">Q_ij</span><span class="moose-parameter-header-default">Q11 Q12 Q44 </span><span class="moose-parameter-header-description">Names of the electrostrictive Q tensor coefficients.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>Q11 Q12 Q44 </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Names of the electrostrictive Q tensor coefficients.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">Q_ij_val</span><span class="moose-parameter-header-description">Values of the electrostrictive Q tensor coefficients.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Values of the electrostrictive Q tensor coefficients.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">active</span><span class="moose-parameter-header-default">__all__ </span><span class="moose-parameter-header-description">If specified only the blocks named will be visited and made active</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>__all__ </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified only the blocks named will be visited and made active</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">add_elastic_energy_aux</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Add the ElasticEnergyAux route to the elastic energy: an f_el aux variable holding 1/2 sigma:elastic_strain, integrated into the 'Felastic_true' postprocessor. Because the strain calculator has already removed EVERY eigenstrain in 'eigenstrain_names', this is the true elastic energy whatever else contributes one, whereas CubicParentElasticEnergy subtracts only its own. When on, 'Ftotal' uses it.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Add the ElasticEnergyAux route to the elastic energy: an f_el aux variable holding 1/2 sigma:elastic_strain, integrated into the 'Felastic_true' postprocessor. Because the strain calculator has already removed EVERY eigenstrain in 'eigenstrain_names', this is the true elastic energy whatever else contributes one, whereas CubicParentElasticEnergy subtracts only its own. When on, 'Ftotal' uses it.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">add_elastic_materials</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Also add ComputeElasticityTensor and ComputeLinearElasticStress from 'C_ij_val'. Turn off to supply your own stress model.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Also add ComputeElasticityTensor and ComputeLinearElasticStress from 'C_ij_val'. Turn off to supply your own stress model.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">add_postprocessors</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Add the free energy postprocessors.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Add the free energy postprocessors.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">add_variables</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Add the polarization variables, and the potential when 'electrostatics' is true.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Add the polarization variables, and the potential when 'electrostatics' is true.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">base_name</span><span class="moose-parameter-header-description">Material property base name.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Material property base name.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The blocks this action operates on. Defaults to the whole mesh.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The blocks this action operates on. Defaults to the whole mesh.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The displacement variables, as given to the SolidMechanics action. When supplied the P<-u Jacobian block is assembled.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The displacement variables, as given to the SolidMechanics action. When supplied the P<-u Jacobian block is assembled.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">eigenstrain_name</span><span class="moose-parameter-header-default">ferro</span><span class="moose-parameter-header-description">Name of the spontaneous polar eigenstrain. List this same name in the SolidMechanics action's 'eigenstrain_names'.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>ferro</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the spontaneous polar eigenstrain. List this same name in the SolidMechanics action's 'eigenstrain_names'.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">elastic</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Couple the polarization to the strain through the cubic-parent electrostrictive energy.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Couple the polarization to the strain through the cubic-parent electrostrictive energy.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">electrostatics</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Solve Poisson's equation for the depolarization field and couple it to the polarization.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Solve Poisson's equation for the depolarization field and couple it to the polarization.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">energy_scale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">The energy scale of the postprocessors.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The energy scale of the postprocessors.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">inactive</span><span class="moose-parameter-header-description">If specified blocks matching these identifiers will be skipped.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>If specified blocks matching these identifiers will be skipped.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">len_scale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">The length scale of the unit.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The length scale of the unit.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">permittivity</span><span class="moose-parameter-header-default">permittivity </span><span class="moose-parameter-header-description">Name of the permittivity material property.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>permittivity </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the permittivity material property.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">permittivity_val</span><span class="moose-parameter-header-description">Value of the permittivity.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Value of the permittivity.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_time_dependence</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Add the TimeDerivative kernels that make this a time-dependent (TDLGD) problem.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Add the TimeDerivative kernels that make this a time-dependent (TDLGD) problem.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_vars</span><span class="moose-parameter-header-default">polar_x polar_y polar_z </span><span class="moose-parameter-header-description">The three polarization vector components.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>polar_x polar_y polar_z </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;NonlinearVariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The three polarization vector components.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">potential_var</span><span class="moose-parameter-header-default">potential_E_int</span><span class="moose-parameter-header-description">The internal electrostatic potential variable.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>potential_E_int</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The internal electrostatic potential variable.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="96a896c8-1d90-483c-82a6-7e4ce0bd612b" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="d3875d26-5315-4ca1-ba8c-f624962d012b"><div class="modal-content"><h4>(test/tests/action/PTO_2D_E_action.i)</h4><pre style="max-height:350px;"><code class="language-moose">TC   = 25.0
+um   = -0.01
+l0   = 1.0
+Lx   = 8.0
+tf   = 2.0
+nx   = 40
+ny   = 10
+lam  = 8.0
+P_seed = 0.3
+Px_seed = 0.01
+
+eps_r = 10.0
+eps0  = 0.0088542
+
+alpha1 = ${fparse 3.8e-4*(TC - 479.0)}
+G110   = ${fparse l0*l0*abs(alpha1)}
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = ${nx}
+    ny = ${ny}
+    xmin = 0.0
+    xmax = ${Lx}
+    ymin = 0.0
+    ymax = ${tf}
+    elem_type = QUAD4
+  []
+  [pin]
+    type = ExtraNodesetGenerator
+    input = gen
+    new_boundary = &#x27;pin_node&#x27;
+    coord = &#x27;8.0 0.0 0.0&#x27;
+    use_closest_node = true
+  []
+[]
+
+[GlobalParams]
+  displacements = &#x27;u_x u_y&#x27;
+  global_strain = global_strain
+[]
+
+[Functions]
+  [ic_Py]
+    type = ParsedFunction
+    expression = &#x27;${P_seed}*cos(2*pi*x/${lam})&#x27;
+  []
+  [ic_Px]
+    type = ParsedFunction
+    expression = &#x27;${Px_seed}*sin(2*pi*x/${lam})&#x27;
+  []
+[]
+
+[Physics/SolidMechanics/QuasiStatic]
+  [all]
+    strain = SMALL
+    add_variables = true
+    eigenstrain_names = &#x27;ferro&#x27;
+    generate_output = &#x27;strain_xx strain_yy&#x27;
+  []
+[]
+
+[Ferret/CubicParentFEPhaseField]
+  electrostatics = true
+  elastic = true
+  alpha_ijkl = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+  alpha_ijkl_val = &#x27;${alpha1} -0.073 0.75 0.26 0.61 -3.7 0.0 0.0 0.0 0.0&#x27;
+  G_ij = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+  G_ij_val = &#x27;${G110} 0.6 0.0 0.3 0.3&#x27;
+  Q_ij = &#x27;Q11 Q12 Q44&#x27;
+  Q_ij_val = &#x27;0.089 -0.026 0.03375&#x27;
+  C_ij = &#x27;C11 C12 C44&#x27;
+  C_ij_val = &#x27;174.269 79.029 47.62&#x27;
+  permittivity_val = &#x27;${fparse eps_r*eps0}&#x27;
+[]
+
+[ICs]
+  [Px]
+    type = FunctionIC
+    variable = polar_x
+    function = ic_Px
+  []
+  [Py]
+    type = FunctionIC
+    variable = polar_y
+    function = ic_Py
+  []
+  [Pz]
+    type = ConstantIC
+    variable = polar_z
+    value = 0.0
+  []
+[]
+
+[AuxVariables]
+  [Pmag]
+    order = FIRST
+    family = LAGRANGE
+  []
+  [wE]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+[]
+
+[AuxKernels]
+  [Pmag]
+    type = ParsedAux
+    variable = Pmag
+    coupled_variables = &#x27;polar_x polar_y polar_z&#x27;
+    expression = &#x27;sqrt(polar_x^2 + polar_y^2 + polar_z^2)&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [wE]
+    type = WallEnergyDensity
+    variable = wE
+    polar_x = polar_x
+    polar_y = polar_y
+    polar_z = polar_z
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [misfit]
+    type = GenericConstantRankTwoTensor
+    tensor_name = global_strain
+    tensor_values = &#x27;${um} 0 0   0 0 0   0 0 ${um}&#x27;
+  []
+[]
+
+[BCs]
+  [Periodic]
+    [x]
+      auto_direction = &#x27;x&#x27;
+      variable = &#x27;polar_x polar_y polar_z potential_E_int u_x u_y&#x27;
+    []
+  []
+  [phi_pin]
+    type = DirichletBC
+    variable = potential_E_int
+    boundary = &#x27;pin_node&#x27;
+    value = 0
+  []
+  [clamp_x]
+    type = DirichletBC
+    variable = u_x
+    boundary = &#x27;bottom&#x27;
+    value = 0
+  []
+  [clamp_y]
+    type = DirichletBC
+    variable = u_y
+    boundary = &#x27;bottom&#x27;
+    value = 0
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-pc_type -sub_pc_type -ksp_type -ksp_rtol -ksp_gmres_restart&#x27;
+    petsc_options_value = &#x27;bjacobi  ilu          gmres     1e-6      100&#x27;
+  []
+[]
+
+[Executioner]
+  type = Transient
+  scheme = bdf2
+  solve_type = PJFNK
+
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-10
+
+  l_max_its = 200
+  end_time = 5.0
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.5
+    growth_factor = 1.3
+    cutback_factor = 0.8
+    optimal_iterations = 8
+    linear_iteration_ratio = 1000
+  []
+  dtmax = 5.0
+
+  num_steps = 3
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [exo]
+    type = Exodus
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="c9777c01-ebb0-4fd7-bcb7-53a488e6bc70"><div class="modal-content"><h4>(test/tests/action/PTO_2D_E_action.i)</h4><pre style="max-height:350px;"><code class="language-moose">TC   = 25.0
+um   = -0.01
+l0   = 1.0
+Lx   = 8.0
+tf   = 2.0
+nx   = 40
+ny   = 10
+lam  = 8.0
+P_seed = 0.3
+Px_seed = 0.01
+
+eps_r = 10.0
+eps0  = 0.0088542
+
+alpha1 = ${fparse 3.8e-4*(TC - 479.0)}
+G110   = ${fparse l0*l0*abs(alpha1)}
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 2
+    nx = ${nx}
+    ny = ${ny}
+    xmin = 0.0
+    xmax = ${Lx}
+    ymin = 0.0
+    ymax = ${tf}
+    elem_type = QUAD4
+  []
+  [pin]
+    type = ExtraNodesetGenerator
+    input = gen
+    new_boundary = &#x27;pin_node&#x27;
+    coord = &#x27;8.0 0.0 0.0&#x27;
+    use_closest_node = true
+  []
+[]
+
+[GlobalParams]
+  displacements = &#x27;u_x u_y&#x27;
+  global_strain = global_strain
+[]
+
+[Functions]
+  [ic_Py]
+    type = ParsedFunction
+    expression = &#x27;${P_seed}*cos(2*pi*x/${lam})&#x27;
+  []
+  [ic_Px]
+    type = ParsedFunction
+    expression = &#x27;${Px_seed}*sin(2*pi*x/${lam})&#x27;
+  []
+[]
+
+[Physics/SolidMechanics/QuasiStatic]
+  [all]
+    strain = SMALL
+    add_variables = true
+    eigenstrain_names = &#x27;ferro&#x27;
+    generate_output = &#x27;strain_xx strain_yy&#x27;
+  []
+[]
+
+[Ferret/CubicParentFEPhaseField]
+  electrostatics = true
+  elastic = true
+  alpha_ijkl = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
+  alpha_ijkl_val = &#x27;${alpha1} -0.073 0.75 0.26 0.61 -3.7 0.0 0.0 0.0 0.0&#x27;
+  G_ij = &#x27;G110 G11_G110 G12_G110 G44_G110 G44P_G110&#x27;
+  G_ij_val = &#x27;${G110} 0.6 0.0 0.3 0.3&#x27;
+  Q_ij = &#x27;Q11 Q12 Q44&#x27;
+  Q_ij_val = &#x27;0.089 -0.026 0.03375&#x27;
+  C_ij = &#x27;C11 C12 C44&#x27;
+  C_ij_val = &#x27;174.269 79.029 47.62&#x27;
+  permittivity_val = &#x27;${fparse eps_r*eps0}&#x27;
+[]
+
+[ICs]
+  [Px]
+    type = FunctionIC
+    variable = polar_x
+    function = ic_Px
+  []
+  [Py]
+    type = FunctionIC
+    variable = polar_y
+    function = ic_Py
+  []
+  [Pz]
+    type = ConstantIC
+    variable = polar_z
+    value = 0.0
+  []
+[]
+
+[AuxVariables]
+  [Pmag]
+    order = FIRST
+    family = LAGRANGE
+  []
+  [wE]
+    order = CONSTANT
+    family = MONOMIAL
+  []
+[]
+
+[AuxKernels]
+  [Pmag]
+    type = ParsedAux
+    variable = Pmag
+    coupled_variables = &#x27;polar_x polar_y polar_z&#x27;
+    expression = &#x27;sqrt(polar_x^2 + polar_y^2 + polar_z^2)&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [wE]
+    type = WallEnergyDensity
+    variable = wE
+    polar_x = polar_x
+    polar_y = polar_y
+    polar_z = polar_z
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [misfit]
+    type = GenericConstantRankTwoTensor
+    tensor_name = global_strain
+    tensor_values = &#x27;${um} 0 0   0 0 0   0 0 ${um}&#x27;
+  []
+[]
+
+[BCs]
+  [Periodic]
+    [x]
+      auto_direction = &#x27;x&#x27;
+      variable = &#x27;polar_x polar_y polar_z potential_E_int u_x u_y&#x27;
+    []
+  []
+  [phi_pin]
+    type = DirichletBC
+    variable = potential_E_int
+    boundary = &#x27;pin_node&#x27;
+    value = 0
+  []
+  [clamp_x]
+    type = DirichletBC
+    variable = u_x
+    boundary = &#x27;bottom&#x27;
+    value = 0
+  []
+  [clamp_y]
+    type = DirichletBC
+    variable = u_y
+    boundary = &#x27;bottom&#x27;
+    value = 0
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-pc_type -sub_pc_type -ksp_type -ksp_rtol -ksp_gmres_restart&#x27;
+    petsc_options_value = &#x27;bjacobi  ilu          gmres     1e-6      100&#x27;
+  []
+[]
+
+[Executioner]
+  type = Transient
+  scheme = bdf2
+  solve_type = PJFNK
+
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-10
+
+  l_max_its = 200
+  end_time = 5.0
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 0.5
+    growth_factor = 1.3
+    cutback_factor = 0.8
+    optimal_iterations = 8
+    linear_iteration_ratio = 1000
+  []
+  dtmax = 5.0
+
+  num_steps = 3
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [exo]
+    type = Exodus
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

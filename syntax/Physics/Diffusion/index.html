@@ -1,0 +1,107 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Diffusion Physics syntax | Ferret</title><link href="../../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="7ac0f876-101a-4654-944b-6fddddb486f2" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1aa5ea79-56d1-403e-9ae7-c8fc444c554f" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a7d359ec-bf75-423c-aa9c-cfdc803c3346" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="063371e9-03dd-44fe-a089-14d85e1ea205" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a7592293-ee5d-4f8f-b116-32dd64687b6d" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="8da6f84a-09eb-451a-ad0c-c864f2452346"><i class="material-icons">menu</i></a><ul class="sidenav" id="8da6f84a-09eb-451a-ad0c-c864f2452346"><li><a href="#!" class="dropdown-trigger" data-target="92935675-29a2-44c5-9d62-dfaff4e7e4e5" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6d82dc95-2b7d-4575-b8e1-670b76b2db1f" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="55417d1a-2191-48ee-a350-e2dd184cdb0b" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="390d2e9c-c47f-49e0-996e-87ef9b4210a4" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="ea0e432c-966d-4118-aed8-0ba230c18963" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="7ac0f876-101a-4654-944b-6fddddb486f2"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="1aa5ea79-56d1-403e-9ae7-c8fc444c554f"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="a7d359ec-bf75-423c-aa9c-cfdc803c3346"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="063371e9-03dd-44fe-a089-14d85e1ea205"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a7592293-ee5d-4f8f-b116-32dd64687b6d"><li><a href="../../index.html">Complete syntax</a></li><li><a href="../../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="92935675-29a2-44c5-9d62-dfaff4e7e4e5"><li><a href="../../../getting_started/install.html">Install FERRET</a></li><li><a href="../../../getting_started/update.html">Update FERRET</a></li><li><a href="../../../getting_started/running.html">Running FERRET</a></li><li><a href="../../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="6d82dc95-2b7d-4575-b8e1-670b76b2db1f"><li><a href="../../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="55417d1a-2191-48ee-a350-e2dd184cdb0b"><li><a href="../../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="390d2e9c-c47f-49e0-996e-87ef9b4210a4"><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="ea0e432c-966d-4118-aed8-0ba230c18963"><li><a href="../../index.html">Complete syntax</a></li><li><a href="../../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="c19c903c-708a-4c41-8b54-2e72fc305970" data-section-level="1" data-section-text="Diffusion Physics syntax"><h1 id="diffusion-physics-syntax">Diffusion Physics syntax</h1><p>The <code>[Diffusion]</code> block is a sub-block of the <code>[Physics]</code> block. <code>DiffusionPhysicsBase</code>-derived classes, such as <a href="../../../source/physics/DiffusionCG.html">DiffusionCG</a> can be created, nested under the relevant discretization sub-block.</p><p>For example, a <a href="../../../source/physics/DiffusionCG.html">DiffusionCG</a> can be created inside the <a href="ContinuousGalerkin/index.html">Physics/Diffusion/ContinuousGalerkin</a> block.</p><pre style="max-height:350px;"><code class="language-moose">[Physics&lt;&lt;&lt;{&quot;href&quot;: &quot;../index.html&quot;}&gt;&gt;&gt;]
+  [Diffusion&lt;&lt;&lt;{&quot;href&quot;: &quot;index.html&quot;}&gt;&gt;&gt;]
+    [ContinuousGalerkin&lt;&lt;&lt;{&quot;href&quot;: &quot;ContinuousGalerkin/index.html&quot;}&gt;&gt;&gt;]
+      [diff]
+        source_functor&lt;&lt;&lt;{&quot;description&quot;: &quot;Source term in the diffusion problem. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = 2
+        diffusivity_matprop&lt;&lt;&lt;{&quot;description&quot;: &quot;Material property defining the diffusion coefficient&quot;}&gt;&gt;&gt; = &#x27;1&#x27;
+
+        # Test all the ways of setting the boundary conditions
+        neumann_boundaries&lt;&lt;&lt;{&quot;description&quot;: &quot;Boundaries on which to apply a diffusive flux&quot;}&gt;&gt;&gt; = &#x27;left_to_0 right_to_0 top_to_0 bottom_to_0&#x27;
+        boundary_fluxes&lt;&lt;&lt;{&quot;description&quot;: &quot;Functors to compute the diffusive flux on each Neumann boundary&#x27;. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = &#x27;1 flux_pp flux_function flux_variable&#x27;
+        dirichlet_boundaries&lt;&lt;&lt;{&quot;description&quot;: &quot;Boundaries on which to apply a fixed value&quot;}&gt;&gt;&gt; = &#x27;left_to_1 right_to_1 top_to_1 bottom_to_1&#x27;
+        boundary_values&lt;&lt;&lt;{&quot;description&quot;: &quot;Functors to compute the diffusive flux on each Dirichlet boundary&#x27;. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = &#x27;2 value_pp value_function value_variable&#x27;
+      []
+    []
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#6a5329fb-b79f-4c1b-816a-f10b619fd70b">(../moose/test/tests/physics/diffusion_cg.i)</a></section><div class="moose-modal modal" id="6a5329fb-b79f-4c1b-816a-f10b619fd70b"><div class="modal-content"><h4>(../moose/test/tests/physics/diffusion_cg.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [cmg]
+    type = CartesianMeshGenerator
+    dim = 2
+    dx = &#x27;1 2&#x27;
+    dy = &#x27;2 1&#x27;
+    ix = &#x27;2 3&#x27;
+    iy = &#x27;3 2&#x27;
+    subdomain_id = &#x27;0 1
+                    1 0&#x27;
+  []
+  [split_boundaries]
+    type = BreakBoundaryOnSubdomainGenerator
+    input = cmg
+  []
+  allow_renumbering = false
+[]
+
+[Physics]
+  [Diffusion]
+    [ContinuousGalerkin]
+      [diff]
+        source_functor = 2
+        diffusivity_matprop = &#x27;1&#x27;
+
+        # Test all the ways of setting the boundary conditions
+        neumann_boundaries = &#x27;left_to_0 right_to_0 top_to_0 bottom_to_0&#x27;
+        boundary_fluxes = &#x27;1 flux_pp flux_function flux_variable&#x27;
+        dirichlet_boundaries = &#x27;left_to_1 right_to_1 top_to_1 bottom_to_1&#x27;
+        boundary_values = &#x27;2 value_pp value_function value_variable&#x27;
+      []
+    []
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  num_steps = 10
+  # Output the setup
+  verbose = true
+[]
+
+# To test setting up a boundary condition with a postprocessor
+[Postprocessors]
+  [flux_pp]
+    type = Receiver
+    default = 1
+    outputs = &#x27;none&#x27;
+  []
+  [value_pp]
+    type = Receiver
+    default = 2
+    outputs = &#x27;none&#x27;
+  []
+[]
+
+# To test setting up a boundary condition with a function
+[Functions]
+  [flux_function]
+    type = ConstantFunction
+    value = 1
+  []
+  [value_function]
+    type = ConstantFunction
+    value = 2
+  []
+[]
+
+# To test setting up a boundary condition with a variable
+[AuxVariables]
+  [flux_variable]
+    initial_condition = 1
+  []
+  [value_variable]
+    initial_condition = 2
+  []
+[]
+
+# Form output for testing
+[VectorPostprocessors]
+  [sample]
+    type = NodalValueSampler
+    variable = &#x27;u&#x27;
+    sort_by = &#x27;id&#x27;
+  []
+[]
+
+[Outputs]
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../../js/init.js"></script><script type="text/javascript" src="../../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../../js/sqa_moose.js"></script><script type="text/javascript" src="../../../js/moose_input_parser.js"></script>

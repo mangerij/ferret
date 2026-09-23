@@ -8,6 +8,8 @@
     --darkmode-back: rgba(35, 35, 35, 1.0);
     --darkmode-card: rgba(20, 20, 20, 1.0);
     --darkmode-image-card: rgba(10, 10, 10, 1.0);
+    --darkmode-inl-blue: rgba(0, 143, 245, 1.0);
+    --darkmode-gray: rgba(150, 150, 150, 1.0);
     --darkmode-fore: rgba(200, 200, 200, 1.0);
     --dark-navbar: rgba(39, 63, 99, 1.0);
     --darker-highlight: rgba(100, 100, 100, 1.0);
@@ -174,16 +176,59 @@ pre[class*="language-"]
     line-height: 1.15;
 }
 
-pre.moose-pre{
-    max-height:350px;
-}
-
 code, kbd, pre, samp {
     font-family: monospace, monospace;
     font-size: 1em;
     /*background-color: #9e9e9e24;*/
 }
 
+.token.moose-parsed-syntax,
+.token.moose-syntax {
+  color: #C586C0;
+}
+
+.toke.moose-object {
+  color: #DCDCAA;
+}
+
+.token.moose-parsed-class,
+.token.moose-class {
+  color: #DCDCAA;
+}
+
+.token.moose-type {
+  color: #C586C0;
+}
+
+.language-moose .token.constant,
+.language-moose .token.boolean {
+  color: #358ed7;
+}
+
+.language-moose .token.number {
+  color: #B5CEA8;
+}
+
+.language-moose .token.operator {
+  color: #D4D4D4;
+}
+
+.language-moose .token.punctuation {
+  color: #77A761;
+}
+
+.language-moose .token.property {
+  color: #90d3f6;
+}
+
+.token.constant, .token.deleted, .token.property, .token.symbol, .token.tag
+{
+    color: #FF71A4;
+}
+
+.diff-highlight .token.coord {
+  display: none;
+}
 .moose-disabled{
     color:darkviolet;
 }
@@ -263,59 +308,34 @@ body{
 }
 
 h1 {
-    font-size:200%;
-    font-weight:500;
-    margin-top:24px;
-    margin-bottom: 12px;
+    font-size: 2.5rem;
 }
 
-h1:first-of-type{
-    margin-top:48px;
-}
-
-h2{
-    font-size:180%;
-    font-weight:400;
-    padding-bottom: 0;
-    margin-bottom: 0;
+h2 {
+    font-size: 2rem;
 }
 
 h3 {
-    font-size:160%;
-    font-weight:20000;
-    margin-bottom: 0;
-    padding-bottom: 0;
+    font-size: 1.5rem;
 }
 
 h4 {
-    font-size:140%;
-    font-weight:300;
-    margin-bottom:6px;
+    font-size: 1.25rem;
 }
 
 h5 {
-    font-size:120%;
-    font-weight:100;
-    margin-bottom:6px;
+    font-size: 1.1rem;
 }
 
 h6 {
-    font-size:100%;
-    font-weight:100;
-    margin-bottom:6px;
-}
-
-h1 + p,
-h2 + p,
-h3 + p,
-h4 + p,
-h5 + p,
-h6 + pg{
-    margin-top:0;
+    font-size: 1rem;
 }
 
 ul {
-     margin-left:1.5rem;
+    padding-inline-start: 30px;
+}
+ul ul {
+    padding-inline-start: 25px;
 }
 
 div.moose-pysyntax-class .moose-pysyntax-member-heading,
@@ -496,7 +516,7 @@ ul.moose-list-inputs{
 }
 
 li{
-    padding-left:15px;
+    padding-left:5px;
 }
 
 .collapsible li{
@@ -569,6 +589,8 @@ li{
 .moose-parameter-description span,
 .moose-parameter-description-default span,
 .moose-parameter-description-cpptype span,
+.moose-parameter-description-doc-unit span,
+.moose-parameter-description-doc-range span,
 .moose-parameter-description-options span,
 .moose-parameter-description-controllable span{
     padding-right:10px;
@@ -965,7 +987,7 @@ summary::-webkit-details-marker {
   font-family: Material Icons;
   content: 'keyboard_arrow_right';
   vertical-align: middle;
-  color: #bdbdbd;
+  color: #949494;
 }
 
 details[open] > summary .moose-section-icon::before{
@@ -1153,18 +1175,18 @@ div.moose-mega-menu-content{
    border-bottom: 1px solid rgba(0, 0, 0, 0.82);
  }
  .table-of-contents a {
-   color: var(--darker-highlight);
+   color: var(--darkmode-gray);
  }
  .breadcrumb {
-   color: var(--darker-embossed);
+   color: var(--darkmode-gray);
  }
  .breadcrumb:last-child {
-   color: var(--darker-highlight);
+   color: var(--darkmode-gray);
  }
  nav, .btn, .btn-small, .btn-large, footer.page-footer {
    background-color: var(--dark-navbar);
  }
- pre.moose-pre {
+ pre {
    background-color: var(--pre-textbox);
  }
  h1, h2, h3, h4, h5, h6 {
@@ -1191,7 +1213,30 @@ div.moose-mega-menu-content{
  .tabs .tab a {
      background-color: transparent;
      color: white;
-}
+ }
+
+ .sidenav li > a > i, .sidenav li > a > [class^="mdi-"], .sidenav li > a li > a > [class*="mdi-"], .sidenav li > a > i.material-icons {
+   color: white;
+ }
+
+ @media only screen
+   and (min-device-width: 320px)
+   and (max-device-width: 1000px)
+   and (orientation: landscape)
+   and (-webkit-min-device-pixel-ratio: 2) {
+   .sidenav li > a > i, .sidenav li > a > [class^="mdi-"], .sidenav li > a li > a > [class*="mdi-"], .sidenav li > a > i.material-icons {
+      color: white;
+   }
+ }
+
+ .collapsible-header .moose-parameter-header-default,
+ .collapsible-header .moose-parameter-header-description,
+ .collapsible-header .moose-collection-description {
+     color:var(--darkmode-gray);
+ }
+ .moose-parameter-name{
+     color: var(--darkmode-inl-blue);
+ }
 }
 
 div.moose-algorithm-line {
@@ -1246,7 +1291,7 @@ div.moose-algorithm {
       }
       .sidenav li > a > i, .sidenav li > a > [class^="mdi-"], .sidenav li > a li > a > [class*="mdi-"], .sidenav li > a > i.material-icons {
         /*margin: -57px 824px 0px 0px;*/
-        color: white;
+        color: rgb(33, 33, 33);
       }
       .sidenav > li {
         padding-bottom: 25px;
@@ -1314,7 +1359,7 @@ div.moose-algorithm {
     }
     .sidenav li > a > i, .sidenav li > a > [class^="mdi-"], .sidenav li > a li > a > [class*="mdi-"], .sidenav li > a > i.material-icons {
       /*margin: -57px 824px 0px 0px;*/
-      color: white;
+      color: rgb(33, 33, 33);
     }
     .sidenav > li {
       padding-bottom: 25px;
@@ -1347,4 +1392,10 @@ div.moose-algorithm {
     .drag-target {
       width: 100px;
     }
+}
+
+/* Improve the contrast of the "Copy" button in code blocks. */
+div.code-toolbar > .toolbar > .toolbar-item > button {
+    color: #ddd;
+    background: rgb(80,81,76);
 }

@@ -1,26 +1,81 @@
-<!DOCTYPE html><head><meta charset="UTF-8"><title>Density Scaling | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="45ad1fe7-7042-416e-9019-4739edad75c1" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d774eb1f-6522-4c2e-bf13-b6678f8be901" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8fd2fe4d-49de-4de4-b1e6-865dc17865f3" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d5c21c09-812d-44bb-a3c6-049e5dd196ca" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="29fa6adf-4825-4264-b918-397ec4210c2b" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="16b53460-d34e-4fb7-909e-af217dd8d5f5"><i class="material-icons">menu</i></a><ul class="sidenav" id="16b53460-d34e-4fb7-909e-af217dd8d5f5"><li><a href="#!" class="dropdown-trigger" data-target="f3399beb-a240-45b0-845c-cc3d4ee4067c" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="fd926310-d338-46ff-a643-fae3981a997c" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="99461bff-8fb5-42cd-8d7d-ef052d75fdde" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="aa24d419-6c92-408e-bff9-9bfba77a1b2d" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="933acfb5-075a-4665-be4d-1c9a084597d5" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="45ad1fe7-7042-416e-9019-4739edad75c1"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="d774eb1f-6522-4c2e-bf13-b6678f8be901"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="8fd2fe4d-49de-4de4-b1e6-865dc17865f3"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="d5c21c09-812d-44bb-a3c6-049e5dd196ca"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="29fa6adf-4825-4264-b918-397ec4210c2b"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="f3399beb-a240-45b0-845c-cc3d4ee4067c"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="fd926310-d338-46ff-a643-fae3981a997c"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="99461bff-8fb5-42cd-8d7d-ef052d75fdde"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="aa24d419-6c92-408e-bff9-9bfba77a1b2d"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="933acfb5-075a-4665-be4d-1c9a084597d5"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="63cd8ba6-9ffc-42a9-8b97-20e2320da254" data-section-level="1" data-section-text="Density Scaling"><h1 id="density-scaling">Density Scaling</h1><p></p><section id="a8eabdea-27ac-488a-b5cd-cef242159f60" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p>The material <code>DensityScaling</code> computes the extra element density required in every element to allow explicit dynamics solves to be solved with a time step prescribed by a user (see <a href="../postprocessors/CriticalTimeStep.html">CriticalTimeStep</a>). The addition of mass can alter the dynamics of the system, so usage of mass scaling is particularly recommended when the finite element mesh contains a handful of small finite elements or when system fundamental frequencies do not have a key influence on the simulation output metrics.</p></section><section id="b1134c95-ff53-4c15-abf6-01c5e88eac9f" data-section-level="2" data-section-text="Example Input File"><h2 id="example-input-file">Example Input File</h2><pre class="moose-pre" style="max-height:350px;"><code class="language-text">[density_scaling]
-  type = DensityScaling
-  block = 0
-  density = density
-  desired_time_step = 0.06
-  output_properties = density_scaling
-  outputs = &#x27;exodus&#x27;
-  factor = 0.5
-[]
-</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#c3bbe968-cdd8-4ec6-a7e7-de3596c44aaa">(../moose/modules/tensor_mechanics/test/tests/central_difference/consistent/3D/3d_consistent_explicit_mass_scaling.i)</a></section><section id="f4a4b78f-4155-4ecd-8cba-b4775585e44d" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="dc9dbddd-1e73-4ee3-8bd0-d7827f213e78" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">density</span><span class="moose-parameter-header-description">Name of Material Property or a constant real number defining the density of the material.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of Material Property or a constant real number defining the density of the material.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">desired_time_step</span><span class="moose-parameter-header-description">Time step to achieve.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Time step to achieve.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="e3436048-7d47-407e-8d74-a9f3fcc6c69c" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">factor</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">Factor to multiply to the critical time step. This factor is typically less than one to be on the conservative side due to two types of approximation: Time step lagging and the approximation of the critical time step formula.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>double</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Factor to multiply to the critical time step. This factor is typically less than one to be on the conservative side due to two types of approximation: Time step lagging and the approximation of the critical time step formula.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="f3c69167-9d0f-4dd8-b2a0-1be1043b8ee4" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="6ef32de8-1cf9-4e80-bfff-4c2ae4b8f3eb" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section></section><section id="44bddbe0-76b6-4f06-a92d-0ccc5c9772c5" data-section-level="2" data-section-text="References"><h2 id="references">References</h2>No citations exist within this document.</section></section><div class="moose-modal modal" id="c3bbe968-cdd8-4ec6-a7e7-de3596c44aaa"><div class="modal-content"><h4>(../moose/modules/tensor_mechanics/test/tests/central_difference/consistent/3D/3d_consistent_explicit_mass_scaling.i)</h4><pre class="moose-pre"><code class="language-text"># One element test to test the central difference time integrator in 3D.
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Density Scaling | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="1c7d59d6-64ab-4de6-b584-a296f994ceea" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="031f4d1f-6524-435c-9fea-a08248473352" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="09f4b7ac-5107-4d7d-bbc3-b3c4976792cf" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3170593b-f42e-4f55-9e64-67803e3f9cac" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="c5cb7430-a09e-4ac7-901e-cebd040ef5f8" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="c342842f-105d-43c5-a9b6-51204ff66117"><i class="material-icons">menu</i></a><ul class="sidenav" id="c342842f-105d-43c5-a9b6-51204ff66117"><li><a href="#!" class="dropdown-trigger" data-target="36191081-d79f-4216-b6bf-e2d9fd53157a" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="05c6eb1a-0c42-4666-bf3f-76f257b0b273" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="284b1d5a-c495-4682-b41a-f8748b8ee009" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="95cfd96a-e565-43cb-95f9-e9ea27ee3b73" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="7173a9b0-2f87-4978-9e52-5ed73c993583" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="1c7d59d6-64ab-4de6-b584-a296f994ceea"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="031f4d1f-6524-435c-9fea-a08248473352"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="09f4b7ac-5107-4d7d-bbc3-b3c4976792cf"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="3170593b-f42e-4f55-9e64-67803e3f9cac"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="c5cb7430-a09e-4ac7-901e-cebd040ef5f8"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="36191081-d79f-4216-b6bf-e2d9fd53157a"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="05c6eb1a-0c42-4666-bf3f-76f257b0b273"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="284b1d5a-c495-4682-b41a-f8748b8ee009"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="95cfd96a-e565-43cb-95f9-e9ea27ee3b73"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="7173a9b0-2f87-4978-9e52-5ed73c993583"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="7bb66fa7-d689-47dd-b8a1-29d1c6933c12" data-section-level="1" data-section-text="Density Scaling"><h1 id="density-scaling">Density Scaling</h1><p>Computes the scaled inertial density needed to enable stable explicit time-stepping using the desired_time_step in solid-mechanics problems.  Note that if this inertial density is used in input files (for instance, in the mass matrix) it will impact the dynamics of the system, largely eliminating high-frequency oscillations, and impacting low-frequency dynamics.  Hence, use with caution.</p><section id="f9818dfb-225d-462d-add2-8acc5375e661" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p>This material computes the density required to achieve stable explicit time stepping with a user-defined time step (see <a href="../postprocessors/CriticalTimeStep.html">CriticalTimeStep</a> for the stability condition).  This Material computes:</p><ul class="browser-default"><li><p>the density needed to enable time-stepping with given <code>desired_time_step</code>; </p></li><li><p><code>scaled_density</code> minus the true density.</p></li></ul><p>The names of these are defined by the <code>scaled_density</code> and <code>additional_density</code> input parameters.</p><p>Note that the density computed acts as your model&#x27;s <em>inertial</em> density (see example below) and you should not use it as your <em>gravitational</em> density.</p><p>When used in the <a href="../kernels/MassMatrix.html">MassMatrix</a>, time-steps of size <code>desired_time_step</code> will be stable.  However, note that the addition of mass will alter the dynamics of the system.  In particular, high-frequency oscillations will largely be eliminated in elements that are small and/or stiff and/or light.  Hence, using mass scaling is particularly recommended when the finite element mesh contains a handful of small/stiff/light elements, or when high-frequency dynamics are unimportant.  Mass scaling has a smaller, yet noticeable, impact on low-frequency dynamics.</p></section><section id="74d5e1ad-6a96-45ab-8fc1-80a5327d2797" data-section-level="2" data-section-text="Example"><h2 id="example">Example</h2><p>To use <code>DensityScaling</code> effectively, two steps are needed.  The following is a worked example.</p><section id="ee5852f7-2f3e-40fa-93c5-44b8fcddb9b0" data-section-level="4" data-section-text="Step 1"><h4 id="step-1">Step 1</h4><p>To ensure that a user-defined time step (<span class="moose-katex-inline-equation" id="moose-equation-c82997ed-f9fa-49fd-ab86-19080e34f4ed"><script>var element = document.getElementById("moose-equation-c82997ed-f9fa-49fd-ab86-19080e34f4ed");katex.render("\\Delta t = 4", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> in this case) is stable, use a <code>DensityScaling</code> Material to compute the required density in each element:</p><pre style="max-height:350px;"><code class="language-moose">  [density_true]
+    type = GenericConstantMaterial
+    prop_names = density_true
+    prop_values = ${density_true}
+    implicit = false
+  []
+  [density_scaled]
+    type = DensityScaling
+    true_density = density_true
+    scaled_density = density_scaled
+    desired_time_step = 4
+    safety_factor = 0.8
+    output_properties = &#x27;density_scaled additional_density&#x27;
+    outputs = exodus
+    implicit = false
+  []</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#55eb2859-9367-4091-8fc8-e63f23b471f6">(../moose/modules/solid_mechanics/test/tests/dynamics/time_integration/mass_scaling.i)</a><p>The important features here are:</p><ul class="browser-default"><li><p>A Material Property called <code>density_true</code> is calculated by some Material (in this case, the <code>density_true</code> Material) and fed into the <code>DensityScaling</code> Material </p></li><li><p>The <code>desired_time_step</code> is defined in the <code>DensityScaling</code> Material </p></li><li><p>The <code>DensityScaling</code> Material computes the density required for stable time-stepping, then increases it by multiplying it by 1/<code>safety_factor</code>.  For example, in this case, <span class="moose-katex-inline-equation" id="moose-equation-ef6a787e-da5d-4051-ac35-9a0bc5e3f016"><script>var element = document.getElementById("moose-equation-ef6a787e-da5d-4051-ac35-9a0bc5e3f016");katex.render("\\Delta t = 4 / 0.8 = 5", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is theoretically stable, but for safety, the input file only uses <span class="moose-katex-inline-equation" id="moose-equation-a26e0537-ee12-4368-b624-fcde37b4ae60"><script>var element = document.getElementById("moose-equation-a26e0537-ee12-4368-b624-fcde37b4ae60");katex.render("\\Delta t = 4", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. </p></li><li><p>The <code>DensityScaling</code> Material stores the computed density in <code>density_scaled</code> (or whatever is specified by the <code>scaled_density</code> parameter).</p></li></ul><p>The other specified parameters, such as <code>implicit = false</code>, <code>output_properties</code>, <code>outputs</code>, are unimportant for this example (eg, the outputs are just so the result is stored in the exodus file).</p></section><section id="bfe675fe-5763-44c9-af76-181ba88f5122" data-section-level="4" data-section-text="Step 2"><h4 id="step-2">Step 2</h4><p>Ensure your MassMatrix uses the scaled density.  For instance:</p><pre style="max-height:350px;"><code class="language-moose">  [massmatrix_x]
+    type = MassMatrix
+    density = density_scaled
+    matrix_tags = mass
+    variable = disp_x
+  []</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#8dd55fda-0db9-4b6c-be4b-7fe9f98f92bb">(../moose/modules/solid_mechanics/test/tests/dynamics/time_integration/mass_scaling.i)</a></section></section><section id="d0717d6e-821c-49a0-bb77-2eb79632768c" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="538e99e5-a358-4503-aaf8-ac3b296b0cf5" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">desired_time_step</span><span class="moose-parameter-header-description">The desired time step.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The desired time step.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">scaled_density</span><span class="moose-parameter-header-description">Name of the scaled density property that this Material computes.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the scaled density property that this Material computes.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">true_density</span><span class="moose-parameter-header-description">Name of Material Property defining the true inertial density of the material.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of Material Property defining the true inertial density of the material.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="d41bca96-5528-46e3-a969-ec77f3bdf8f7" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">additional_density</span><span class="moose-parameter-header-default">additional_density</span><span class="moose-parameter-header-description">Name of the additional density property that this Material computes</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>additional_density</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Name of the additional density property that this Material computes</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">safety_factor</span><span class="moose-parameter-header-default">0.7</span><span class="moose-parameter-header-description">The scaled density that this Material produces will potentially allow stable time-step sizes of desired_time_step / safety_factor.  In practice, however, using such a time step might result in instabilities, because of time-step lagging and the approximate critical time-step formula used by this Material.  Hence, safety_factor allows for a safety margin.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0.7</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-doc-range"><span>Range:</span>(safety_factor>0) & (safety_factor<=1)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The scaled density that this Material produces will potentially allow stable time-step sizes of desired_time_step / safety_factor.  In practice, however, using such a time step might result in instabilities, because of time-step lagging and the approximate critical time-step formula used by this Material.  Hence, safety_factor allows for a safety margin.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="e4d83bd1-e15d-48c0-8176-0e47d70147d1" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">search_method</span><span class="moose-parameter-header-default">nearest_node_connected_sides</span><span class="moose-parameter-header-description">Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nearest_node_connected_sides</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nearest_node_connected_sides, all_proximate_sides</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="7d5386b1-a1a1-4112-9334-a9fb7b6e7ed1" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section><section id="35ad821a-6dea-473d-8fd5-43faa665ca33" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="fa28649c-d215-4def-bed5-ba5f4d184afd" data-section-level="2" data-section-text="References"><h2 id="references">References</h2>No citations exist within this document.</section></section><div class="moose-modal modal" id="55eb2859-9367-4091-8fc8-e63f23b471f6"><div class="modal-content"><h4>(../moose/modules/solid_mechanics/test/tests/dynamics/time_integration/mass_scaling.i)</h4><pre style="max-height:350px;"><code class="language-moose"># Illustrating inertial mass scaling to enable a large critical time step in explicit time stepping
+
+young = 3.6
+poisson = 0.2
+density_true = 16 # the true inertial density of the material
+
+# The Courant condition is: critical timestep = l_min * sqrt(density) / sqrt(effective_stiffness)
+# sqrt(effective_stiffness) = sqrt(3.6 * (1 - 0.2) / (1 + 0.2) / (1 - 2 * 0.2)) = 2
+# sqrt(density) = 4
+# Therefore, for the mesh below
+# element1: critical timestep = 2
+# element1: critical timestep = 4
+# element1: critical timestep = 6
+# element1: critical timestep = 8
+# element1: critical timestep = 10
+#
+# Hence, with dt = 4, the explicit dynamics is unstable
+#
+# If we want to run with dt = 4, then mass must be scaled in the left-most elements.
+# A new density, called density_scaled, must be set in the left-most elements.
+# (It is actually set for all elements, and in the right-most elements it equals density_true.)
+# Its numerical value is chosen so that the critical time step in those elements
+# is 5, so using dt = 4 is safe.  Setting dt a little less than the critical
+# time step is best-practice in explicit solid-mechanics simulations, eg, LS-DYNA
+# scales mass so critical time-step is 1/0.7 times the time-step used.
+#
+# For the critical timestep to be 5 or greater in each element,
+# sqrt(density_scaled) = 5 * sqrt(effective_stiffness) / l_min
+# element1: density_scaled = (10 / 1)^2 = 100
+# element2: density_scaled = (10 / 2)^2 = 50
+# element3: density_scaled = (10 / 3)^2 = 11, but this is less than density_true, so set density_scaled = 16
+# element4: density_scaled = 16
+# element5: density_scaled = 16
+#
+# The input file achieves this in 2 small steps:
+# (1) Use a DensityScaling Material with desired_time_step=4 and safety_factor = 0.8
+#     (so a dt = 4 / 0.8 = 5 is theoretically stable)
+# (2) Ensure the MassMatrix uses the scaled density
 
 [Mesh]
-  type = GeneratedMesh
+  [3D]
+  type = CartesianMeshGenerator
   dim = 3
-  nx = 1
-  ny = 1
-  nz = 2
-  xmin = 0.0
-  xmax = 1
-  ymin = 0.0
-  ymax = 1
-  zmin = 0.0
-  zmax = 2
+  dx = &#x27;1 2 3 4 5&#x27;
+  dy = 5
+  dz = 5
+  ix = &#x27;1 1 1 1 1&#x27;
+  iy = 1
+  iz = 1
+  []
+[]
+
+[GlobalParams]
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+[]
+
+[Problem]
+  extra_tag_matrices = mass
 []
 
 [Variables]
@@ -32,197 +87,351 @@
   []
 []
 
-[AuxVariables]
-  [vel_x]
-  []
-  [accel_x]
-  []
-  [vel_y]
-  []
-  [accel_y]
-  []
-  [vel_z]
-  []
-  [accel_z]
-  []
-[]
-
-[AuxKernels]
-  [accel_x]
-    type = TestNewmarkTI
-    variable = accel_x
-    displacement = disp_x
-    first = false
-  []
-  [vel_x]
-    type = TestNewmarkTI
-    variable = vel_x
-    displacement = disp_x
-  []
-  [accel_y]
-    type = TestNewmarkTI
-    variable = accel_y
-    displacement = disp_y
-    first = false
-  []
-  [vel_y]
-    type = TestNewmarkTI
-    variable = vel_y
-    displacement = disp_x
-  []
-  [accel_z]
-    type = TestNewmarkTI
-    variable = accel_z
-    displacement = disp_z
-    first = false
-  []
-  [vel_z]
-    type = TestNewmarkTI
-    variable = vel_z
-    displacement = disp_z
-  []
-[]
-
 [Kernels]
-  [DynamicTensorMechanics]
-    displacements = &#x27;disp_x disp_y disp_z&#x27;
+  [TM_DynamicSolidMechanics0]
+    type = DynamicStressDivergenceTensors
+    component = 0
+    use_displaced_mesh = false
+    variable = disp_x
+    implicit = false
   []
-  [inertia_x]
-    type = InertialForce
+  [TM_DynamicSolidMechanics1]
+    type = DynamicStressDivergenceTensors
+    component = 1
+    use_displaced_mesh = false
+    variable = disp_y
+    implicit = false
+  []
+  [TM_DynamicSolidMechanics2]
+    type = DynamicStressDivergenceTensors
+    component = 2
+    use_displaced_mesh = false
+    variable = disp_z
+    implicit = false
+  []
+  [massmatrix_x]
+    type = MassMatrix
+    density = density_scaled
+    matrix_tags = mass
     variable = disp_x
   []
-  [inertia_y]
-    type = InertialForce
+  [massmatrix_y]
+    type = MassMatrix
+    density = density_scaled
+    matrix_tags = mass
     variable = disp_y
   []
-  [inertia_z]
-    type = InertialForce
+  [massmatrix_z]
+    type = MassMatrix
+    density = density_scaled
+    matrix_tags = mass
     variable = disp_z
   []
 []
 
 [BCs]
-  [x_bot]
-    type = FunctionDirichletBC
+  [Pressure]
+    [left]
+      boundary = left
+      postprocessor = -1
+      displacements = &#x27;disp_x disp_y disp_z&#x27;
+    []
+  []
+  [right_fixed]
+    type = ExplicitDirichletBC
     variable = disp_x
-    boundary = &#x27;back&#x27;
-    function = dispx
-    preset = false
+    boundary = right
+    value = 0.0
+    implicit = false
   []
-  [y_bot]
-    type = FunctionDirichletBC
+  [zero_y]
+    type = ExplicitDirichletBC
     variable = disp_y
-    boundary = &#x27;back&#x27;
-    function = dispy
-    preset = false
+    boundary = &#x27;top bottom&#x27;
+    value = 0.0
+    implicit = false
   []
-  [z_bot]
-    type = FunctionDirichletBC
+  [zero_z]
+    type = ExplicitDirichletBC
     variable = disp_z
-    boundary = &#x27;back&#x27;
-    function = dispz
-    preset = false
-  []
-  [Periodic]
-    [x_dir]
-      variable = &#x27;disp_x disp_y disp_z&#x27;
-      primary = &#x27;left&#x27;
-      secondary = &#x27;right&#x27;
-      translation = &#x27;1.0 0.0 0.0&#x27;
-    []
-    [y_dir]
-      variable = &#x27;disp_x disp_y disp_z&#x27;
-      primary = &#x27;bottom&#x27;
-      secondary = &#x27;top&#x27;
-      translation = &#x27;0.0 1.0 0.0&#x27;
-    []
-  []
-[]
-
-[Functions]
-  [dispx]
-    type = PiecewiseLinear
-    x = &#x27;0.0 1.0 2.0 3.0 4.0&#x27; # time
-    y = &#x27;0.0 1.0 0.0 -1.0 0.0&#x27; # displacement
-  []
-  [dispy]
-    type = ParsedFunction
-    value = 0.1*t*t*sin(10*t)
-  []
-  [dispz]
-    type = ParsedFunction
-    value = 0.1*t*t*sin(20*t)
+    boundary = &#x27;back front&#x27;
+    value = 0.0
+    implicit = false
   []
 []
 
 [Materials]
-  [elasticity_tensor_block]
-    type = ComputeIsotropicElasticityTensor
-    youngs_modulus = 1e6
-    poissons_ratio = 0.25
-    block = 0
-  []
-  [strain_block]
-    type = ComputeIncrementalSmallStrain
-    block = 0
-    displacements = &#x27;disp_x disp_y disp_z&#x27;
+  [density_true]
+    type = GenericConstantMaterial
+    prop_names = density_true
+    prop_values = ${density_true}
     implicit = false
   []
-  [stress_block]
-    type = ComputeFiniteStrainElasticStress
-    block = 0
-  []
-  [density]
-    type = GenericConstantMaterial
-    block = 0
-    prop_names = density
-    prop_values = 1e4
-  []
-  [density_scaling]
+  [density_scaled]
     type = DensityScaling
-    block = 0
-    density = density
-    desired_time_step = 0.06
-    output_properties = density_scaling
-    outputs = &#x27;exodus&#x27;
-    factor = 0.5
+    true_density = density_true
+    scaled_density = density_scaled
+    desired_time_step = 4
+    safety_factor = 0.8
+    output_properties = &#x27;density_scaled additional_density&#x27;
+    outputs = exodus
+    implicit = false
+  []
+  [Elasticity_tensor]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = ${young}
+    poissons_ratio = ${poisson}
+    implicit = false
+  []
+  [strain]
+    type = ComputeSmallStrain
+    implicit = false
+  []
+  [stress]
+    type = ComputeLinearElasticStress
+    implicit = false
+  []
+
+[]
+
+[Postprocessors]
+  [crit_dt_original]
+    type = CriticalTimeStep
+    density = density_true
+    execute_on = INITIAL
+  []
+  [dt_possible]
+    type = CriticalTimeStep
+    density = density_scaled
+    execute_on = INITIAL
   []
 []
 
 [Executioner]
   type = Transient
-  start_time = -0.01
-  end_time = 0.1
-  dt = 0.005
-  timestep_tolerance = 1e-6
+
   [TimeIntegrator]
-    type = CentralDifference
-    use_constant_mass = false
-    solve_type = lumped
+    type = ExplicitMixedOrder
+    mass_matrix_tag = mass
+    second_order_vars = &#x27;disp_x disp_y disp_z&#x27;
+    use_constant_mass = true
   []
-  [TimeStepper]
-    type = PostprocessorDT
-    postprocessor = time_step
-  []
+
+  dt = 4
+  dtmin = 4
+  end_time = 12
 []
 
-[Postprocessors]
-  [accel_6x]
-    type = NodalVariableValue
-    nodeid = 6
-    variable = accel_x
-  []
-  [time_step]
-    type = CriticalTimeStep
-    factor = 0.5
-    density = density
-    density_scaling = density_scaling
-    execute_on = &#x27;INITIAL TIMESTEP_END&#x27;
-  []
-[]
 
 [Outputs]
   exodus = true
-  csv = true
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="8dd55fda-0db9-4b6c-be4b-7fe9f98f92bb"><div class="modal-content"><h4>(../moose/modules/solid_mechanics/test/tests/dynamics/time_integration/mass_scaling.i)</h4><pre style="max-height:350px;"><code class="language-moose"># Illustrating inertial mass scaling to enable a large critical time step in explicit time stepping
+
+young = 3.6
+poisson = 0.2
+density_true = 16 # the true inertial density of the material
+
+# The Courant condition is: critical timestep = l_min * sqrt(density) / sqrt(effective_stiffness)
+# sqrt(effective_stiffness) = sqrt(3.6 * (1 - 0.2) / (1 + 0.2) / (1 - 2 * 0.2)) = 2
+# sqrt(density) = 4
+# Therefore, for the mesh below
+# element1: critical timestep = 2
+# element1: critical timestep = 4
+# element1: critical timestep = 6
+# element1: critical timestep = 8
+# element1: critical timestep = 10
+#
+# Hence, with dt = 4, the explicit dynamics is unstable
+#
+# If we want to run with dt = 4, then mass must be scaled in the left-most elements.
+# A new density, called density_scaled, must be set in the left-most elements.
+# (It is actually set for all elements, and in the right-most elements it equals density_true.)
+# Its numerical value is chosen so that the critical time step in those elements
+# is 5, so using dt = 4 is safe.  Setting dt a little less than the critical
+# time step is best-practice in explicit solid-mechanics simulations, eg, LS-DYNA
+# scales mass so critical time-step is 1/0.7 times the time-step used.
+#
+# For the critical timestep to be 5 or greater in each element,
+# sqrt(density_scaled) = 5 * sqrt(effective_stiffness) / l_min
+# element1: density_scaled = (10 / 1)^2 = 100
+# element2: density_scaled = (10 / 2)^2 = 50
+# element3: density_scaled = (10 / 3)^2 = 11, but this is less than density_true, so set density_scaled = 16
+# element4: density_scaled = 16
+# element5: density_scaled = 16
+#
+# The input file achieves this in 2 small steps:
+# (1) Use a DensityScaling Material with desired_time_step=4 and safety_factor = 0.8
+#     (so a dt = 4 / 0.8 = 5 is theoretically stable)
+# (2) Ensure the MassMatrix uses the scaled density
+
+[Mesh]
+  [3D]
+  type = CartesianMeshGenerator
+  dim = 3
+  dx = &#x27;1 2 3 4 5&#x27;
+  dy = 5
+  dz = 5
+  ix = &#x27;1 1 1 1 1&#x27;
+  iy = 1
+  iz = 1
+  []
+[]
+
+[GlobalParams]
+  displacements = &#x27;disp_x disp_y disp_z&#x27;
+[]
+
+[Problem]
+  extra_tag_matrices = mass
+[]
+
+[Variables]
+  [disp_x]
+  []
+  [disp_y]
+  []
+  [disp_z]
+  []
+[]
+
+[Kernels]
+  [TM_DynamicSolidMechanics0]
+    type = DynamicStressDivergenceTensors
+    component = 0
+    use_displaced_mesh = false
+    variable = disp_x
+    implicit = false
+  []
+  [TM_DynamicSolidMechanics1]
+    type = DynamicStressDivergenceTensors
+    component = 1
+    use_displaced_mesh = false
+    variable = disp_y
+    implicit = false
+  []
+  [TM_DynamicSolidMechanics2]
+    type = DynamicStressDivergenceTensors
+    component = 2
+    use_displaced_mesh = false
+    variable = disp_z
+    implicit = false
+  []
+  [massmatrix_x]
+    type = MassMatrix
+    density = density_scaled
+    matrix_tags = mass
+    variable = disp_x
+  []
+  [massmatrix_y]
+    type = MassMatrix
+    density = density_scaled
+    matrix_tags = mass
+    variable = disp_y
+  []
+  [massmatrix_z]
+    type = MassMatrix
+    density = density_scaled
+    matrix_tags = mass
+    variable = disp_z
+  []
+[]
+
+[BCs]
+  [Pressure]
+    [left]
+      boundary = left
+      postprocessor = -1
+      displacements = &#x27;disp_x disp_y disp_z&#x27;
+    []
+  []
+  [right_fixed]
+    type = ExplicitDirichletBC
+    variable = disp_x
+    boundary = right
+    value = 0.0
+    implicit = false
+  []
+  [zero_y]
+    type = ExplicitDirichletBC
+    variable = disp_y
+    boundary = &#x27;top bottom&#x27;
+    value = 0.0
+    implicit = false
+  []
+  [zero_z]
+    type = ExplicitDirichletBC
+    variable = disp_z
+    boundary = &#x27;back front&#x27;
+    value = 0.0
+    implicit = false
+  []
+[]
+
+[Materials]
+  [density_true]
+    type = GenericConstantMaterial
+    prop_names = density_true
+    prop_values = ${density_true}
+    implicit = false
+  []
+  [density_scaled]
+    type = DensityScaling
+    true_density = density_true
+    scaled_density = density_scaled
+    desired_time_step = 4
+    safety_factor = 0.8
+    output_properties = &#x27;density_scaled additional_density&#x27;
+    outputs = exodus
+    implicit = false
+  []
+  [Elasticity_tensor]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = ${young}
+    poissons_ratio = ${poisson}
+    implicit = false
+  []
+  [strain]
+    type = ComputeSmallStrain
+    implicit = false
+  []
+  [stress]
+    type = ComputeLinearElasticStress
+    implicit = false
+  []
+
+[]
+
+[Postprocessors]
+  [crit_dt_original]
+    type = CriticalTimeStep
+    density = density_true
+    execute_on = INITIAL
+  []
+  [dt_possible]
+    type = CriticalTimeStep
+    density = density_scaled
+    execute_on = INITIAL
+  []
+[]
+
+[Executioner]
+  type = Transient
+
+  [TimeIntegrator]
+    type = ExplicitMixedOrder
+    mass_matrix_tag = mass
+    second_order_vars = &#x27;disp_x disp_y disp_z&#x27;
+    use_constant_mass = true
+  []
+
+  dt = 4
+  dtmin = 4
+  end_time = 12
+[]
+
+
+[Outputs]
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

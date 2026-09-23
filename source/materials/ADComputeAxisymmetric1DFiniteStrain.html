@@ -1,0 +1,508 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>ADComputeAxisymmetric 1 DFiniteStrain | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="29dbf173-a965-44ec-918d-0e82e54a9e89" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4ccf32b9-89f3-4434-aef1-2c29366f9e0c" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1667b7cb-9959-4678-958f-0b64f51836af" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="50a1bc66-d7c4-4b2c-83da-8f5303fe8463" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="82585856-987f-4dbd-bfe3-0f720adc84f1" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="09d45020-014d-4821-a8ce-94c797950557"><i class="material-icons">menu</i></a><ul class="sidenav" id="09d45020-014d-4821-a8ce-94c797950557"><li><a href="#!" class="dropdown-trigger" data-target="5d3caea9-e7f8-4db9-b638-012e24d9c499" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="14c030cd-d396-48e6-acbf-6cbbf3a9d6b9" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3af6d438-7956-4098-ac89-45cbf866b2b4" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d6c581d4-662e-40cb-a247-b891ae2238a7" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="1dfccb32-d356-4bb2-a157-22df341afac6" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="29dbf173-a965-44ec-918d-0e82e54a9e89"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="4ccf32b9-89f3-4434-aef1-2c29366f9e0c"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="1667b7cb-9959-4678-958f-0b64f51836af"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="50a1bc66-d7c4-4b2c-83da-8f5303fe8463"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="82585856-987f-4dbd-bfe3-0f720adc84f1"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="5d3caea9-e7f8-4db9-b638-012e24d9c499"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="14c030cd-d396-48e6-acbf-6cbbf3a9d6b9"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="3af6d438-7956-4098-ac89-45cbf866b2b4"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="d6c581d4-662e-40cb-a247-b891ae2238a7"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="1dfccb32-d356-4bb2-a157-22df341afac6"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="1fb4388c-6870-456e-b7af-f361dfcf86df" data-section-level="1" data-section-text="ADComputeAxisymmetric 1 DFiniteStrain"><h1 id="adcomputeaxisymmetric-1-dfinitestrain">ADComputeAxisymmetric1DFiniteStrain</h1><p>Compute a strain increment and rotation increment for finite strains in an axisymmetric 1D problem</p><section id="13401f9e-d07b-457d-ae62-212a7a0215e1" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p><code>ADComputeAxisymmetric1DFiniteStrain</code> computes the finite strain increment and rotation increment for a 1D axisymmetric generalized plane strain model using <span>automatic differentiation (AD)</span>. It is the <span class="tooltipped" data-tooltip="automatic differentiation" data-position="top" data-delay="50">AD</span> counterpart to <a href="ComputeAxisymmetric1DFiniteStrain.html">ComputeAxisymmetric1DFiniteStrain</a> and supplies strains with all derivatives required to form an exact Jacobian. Current displacement and out-of-plane strain values are <span class="tooltipped" data-tooltip="automatic differentiation" data-position="top" data-delay="50">AD</span> values; the old state values used to form the finite strain increment remain regular values.</p><p class="moose-disabled">
+
+!template load file=modules/solid_mechanics/common/Axisymmetric1DStrainOverview.md.template</p><p>The out-of-plane strain can be supplied by either <a href="#1b49a55c-8afe-4103-8846-769f103b0c41" class="moose-modal-link modal-trigger">&quot;scalar_out_of_plane_strain&quot;</a> or <a href="#e3151473-d71c-4d76-b649-fc84e0898c81" class="moose-modal-link modal-trigger">&quot;out_of_plane_strain&quot;</a>, but not both. Scalar out-of-plane strain values are commonly used by <a href="../../modules/solid_mechanics/generalized_plane_strain.html">Generalized Plane Strain</a> models. If multiple scalar components are coupled, <a href="#40fd597a-fac6-432c-8148-d6de97040058" class="moose-modal-link modal-trigger">&quot;subblock_index_provider&quot;</a> selects which scalar component applies to the current element; without that user object, component 0 is used.</p></section><section id="edea2524-72a7-40ed-82f1-702fad3b4b9b" data-section-level="2" data-section-text="1 D Axisymmetric Strain Formulation"><h2 id="1-d-axisymmetric-strain-formulation">1D Axisymmetric Strain Formulation</h2><p class="moose-disabled">
+
+!template load file=modules/solid_mechanics/common/Axisymmetric1DFiniteStrainFormulation.md.template</p></section><section id="66720b62-b7a8-4204-abca-014b504c4d16" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p>Rather than directly specifying this model in the input file, it is recommended to create it using the solid mechanics <a href="../../syntax/Physics/SolidMechanics/QuasiStatic/index.html">QuasiStatic Physics</a> The usage examples listed below specify options within that block to create this model.</p><section id="bce7559c-4169-4723-bded-189c95e2da09" data-section-level="3" data-section-text="Plane Strain"><h3 id="plane-strain">Plane Strain</h3><p>Under plane-strain assumptions, the strain in the axial direction (typically the y-direction) is zero, which is appropriate for modeling an axisymmetric body restrained against displacement at its ends. This model can be created with plane-strain assumptions by setting  <code>planar_formulation = PLANE_STRAIN</code> and <code>strain = FINITE</code> in the QuasiStatic Physics block.</p><pre style="max-height:350px;"><code class="language-moose">[Physics&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/index.html&quot;}&gt;&gt;&gt;]
+  [SolidMechanics&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/SolidMechanics/index.html&quot;}&gt;&gt;&gt;]
+    [QuasiStatic&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/SolidMechanics/QuasiStatic/index.html&quot;}&gt;&gt;&gt;]
+      [./ps]
+        planar_formulation&lt;&lt;&lt;{&quot;description&quot;: &quot;Out-of-plane stress/strain formulation&quot;}&gt;&gt;&gt; = PLANE_STRAIN
+        strain&lt;&lt;&lt;{&quot;description&quot;: &quot;Strain formulation&quot;}&gt;&gt;&gt; = FINITE
+        generate_output&lt;&lt;&lt;{&quot;description&quot;: &quot;Add scalar quantity output for stress and/or strain&quot;}&gt;&gt;&gt; = &#x27;strain_xx strain_zz stress_xx stress_yy stress_zz&#x27;
+        eigenstrain_names&lt;&lt;&lt;{&quot;description&quot;: &quot;List of eigenstrains to be applied in this strain calculation&quot;}&gt;&gt;&gt; = eigenstrain
+      [../]
+    [../]
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2f2330c7-bee3-42c7-82ed-9aeabe3755cc">(../moose/modules/solid_mechanics/test/tests/1D_axisymmetric/axisymm_plane_strain_finite.i)</a><p>Note that this example does not use <span class="tooltipped" data-tooltip="automatic differentiation" data-position="top" data-delay="50">AD</span> but the relevant syntax is the same for <span class="tooltipped" data-tooltip="automatic differentiation" data-position="top" data-delay="50">AD</span>.</p></section><section id="51ede961-f259-47a0-bf61-d3831c1153c2" data-section-level="3" data-section-text="Generalized Plane Strain"><h3 id="generalized-plane-strain">Generalized Plane Strain</h3><p>Under generalized-plane-strain assumptions, the strain in the axial direction (typically the y-direction) is nonzero, and calculated to satisfy equilibrium in the axial direction. This is appropriate for modeling an axisymmetric body with a long axial dimension, unrestrained at its ends. This model can be created with generalized-plane-strain assumptions by setting  <code>planar_formulation = GENERALIZED_PLANE_STRAIN</code> and <code>strain = FINITE</code> in the QuasiStatic Physics block.</p><pre style="max-height:350px;"><code class="language-moose">[Physics&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/index.html&quot;}&gt;&gt;&gt;]
+  [SolidMechanics&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/SolidMechanics/index.html&quot;}&gt;&gt;&gt;]
+    [QuasiStatic&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Physics/SolidMechanics/QuasiStatic/index.html&quot;}&gt;&gt;&gt;]
+      [./all]
+        add_variables&lt;&lt;&lt;{&quot;description&quot;: &quot;Add the displacement variables&quot;}&gt;&gt;&gt; = true
+        incremental&lt;&lt;&lt;{&quot;description&quot;: &quot;Use incremental or total strain (if not explicitly specified this defaults to incremental for finite strain and total for small strain)&quot;}&gt;&gt;&gt; = true
+        strain&lt;&lt;&lt;{&quot;description&quot;: &quot;Strain formulation&quot;}&gt;&gt;&gt; = finite
+        planar_formulation&lt;&lt;&lt;{&quot;description&quot;: &quot;Out-of-plane stress/strain formulation&quot;}&gt;&gt;&gt; = GENERALIZED_PLANE_STRAIN
+        scalar_out_of_plane_strain&lt;&lt;&lt;{&quot;description&quot;: &quot;Scalar variable for the out-of-plane strain (in y direction for 1D Axisymmetric or in z direction for 2D Cartesian problems)&quot;}&gt;&gt;&gt; = scalar_strain_yy
+        eigenstrain_names&lt;&lt;&lt;{&quot;description&quot;: &quot;List of eigenstrains to be applied in this strain calculation&quot;}&gt;&gt;&gt; = eigenstrain
+      [../]
+    []
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#7a0202a0-f1c6-463c-9092-8b9b1e722ca3">(../moose/modules/solid_mechanics/test/tests/1D_axisymmetric/axisymm_gps_finite.i)</a><p>The coupled scalar variable is defined in the same input file.</p><pre style="max-height:350px;"><code class="language-moose">[./scalar_strain_yy]
+  order = FIRST
+  family = SCALAR
+[../]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#e3a16487-6134-4498-b360-bb845e1f672d">(../moose/modules/solid_mechanics/test/tests/1D_axisymmetric/axisymm_gps_finite.i)</a><p>Note that this example does not use <span class="tooltipped" data-tooltip="automatic differentiation" data-position="top" data-delay="50">AD</span> but the relevant syntax is the same for <span class="tooltipped" data-tooltip="automatic differentiation" data-position="top" data-delay="50">AD</span>.</p></section></section><section id="88756938-f6b3-4d86-aaf7-46960f971e06" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="7d7854cf-5b9a-45b4-8bc8-018eeafa7fcf" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The displacements appropriate for the simulation geometry and coordinate system</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The displacements appropriate for the simulation geometry and coordinate system</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="b0766ac4-1af7-4e83-994e-f509af1ab447" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">base_name</span><span class="moose-parameter-header-description">Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">decomposition_method</span><span class="moose-parameter-header-default">TaylorExpansion</span><span class="moose-parameter-header-description">Methods to calculate the strain and rotation increments</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TaylorExpansion</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>TaylorExpansion, EigenSolution</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Methods to calculate the strain and rotation increments</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">eigenstrain_names</span><span class="moose-parameter-header-description">List of eigenstrains to be applied in this strain calculation</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;MaterialPropertyName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of eigenstrains to be applied in this strain calculation</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">global_strain</span><span class="moose-parameter-header-description">Optional material property holding a global strain tensor applied to the mesh as a whole</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Optional material property holding a global strain tensor applied to the mesh as a whole</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">out_of_plane_strain</span><span class="moose-parameter-header-description">Nonlinear variable for axisymmetric 1D problem</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Nonlinear variable for axisymmetric 1D problem</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">scalar_out_of_plane_strain</span><span class="moose-parameter-header-description">Scalar variable for axisymmetric 1D problem</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Scalar variable for axisymmetric 1D problem</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">subblock_index_provider</span><span class="moose-parameter-header-description">SubblockIndexProvider user object name</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>UserObjectName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>SubblockIndexProvider user object name</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">volumetric_locking_correction</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Flag to correct volumetric locking</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Flag to correct volumetric locking</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="40927daf-3db3-45e9-8339-d7361dc62c41" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">search_method</span><span class="moose-parameter-header-default">nearest_node_connected_sides</span><span class="moose-parameter-header-description">Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nearest_node_connected_sides</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nearest_node_connected_sides, all_proximate_sides</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="d01f5133-5b83-4432-8ad4-e410d9a9a9b1" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section><section id="041a48c4-d7d8-48d2-8a3f-d9e46dfeef02" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="1b49a55c-8afe-4103-8846-769f103b0c41"><div class="modal-content"><h4>scalar_out_of_plane_strain</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Scalar variable for axisymmetric 1D problem</p></div></div><div class="moose-modal modal" id="e3151473-d71c-4d76-b649-fc84e0898c81"><div class="modal-content"><h4>out_of_plane_strain</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Nonlinear variable for axisymmetric 1D problem</p></div></div><div class="moose-modal modal" id="40fd597a-fac6-432c-8148-d6de97040058"><div class="modal-content"><h4>subblock_index_provider</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>UserObjectName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>SubblockIndexProvider user object name</p></div></div><div class="moose-modal modal" id="2f2330c7-bee3-42c7-82ed-9aeabe3755cc"><div class="modal-content"><h4>(../moose/modules/solid_mechanics/test/tests/1D_axisymmetric/axisymm_plane_strain_finite.i)</h4><pre style="max-height:350px;"><code class="language-moose">#
+# This test checks elastic stress calculations with mechanical and thermal
+# strain using finite strain formulation. Young&#x27;s modulus is 3600, and Poisson&#x27;s ratio is 0.2.
+# The axisymmetric, plane strain 1D mesh is pulled with displacement of 2e-3.
+# Thus, the strain is [log(1+1e-3)=9.995e-4, 0, log(1+1e-3)=9.995e-4] (xx, yy, zz). This gives stress of
+# [4.9975, 1.999, 4.9975].  After a temperature increase of 100 with alpha of
+# 1e-6, the stress becomes [4.3975, 1.399, 4.3975].
+#
+
+[GlobalParams]
+  displacements = disp_x
+[]
+
+[Mesh]
+  file = line.e
+  coord_type = RZ
+[]
+
+[Variables]
+  [./disp_x]
+  [../]
+[]
+
+[AuxVariables]
+  [./temp]
+    initial_condition = 580.0
+  [../]
+[]
+
+[Functions]
+  [./temp]
+    type = PiecewiseLinear
+    x = &#x27;0   1   2&#x27;
+    y = &#x27;580 580 680&#x27;
+  [../]
+  [./disp_x]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 2e-3&#x27;
+  [../]
+[]
+
+[Physics]
+  [SolidMechanics]
+    [QuasiStatic]
+      [./ps]
+        planar_formulation = PLANE_STRAIN
+        strain = FINITE
+        generate_output = &#x27;strain_xx strain_zz stress_xx stress_yy stress_zz&#x27;
+        eigenstrain_names = eigenstrain
+      [../]
+    [../]
+  [../]
+[]
+
+[AuxKernels]
+  [./temp]
+    type = FunctionAux
+    variable = temp
+    function = temp
+    execute_on = &#x27;timestep_begin&#x27;
+  [../]
+[]
+
+[BCs]
+  [./no_x]
+    type = DirichletBC
+    boundary = 1
+    value = 0
+    variable = disp_x
+  [../]
+  [./disp_x]
+    type = FunctionDirichletBC
+    boundary = 2
+    function = disp_x
+    variable = disp_x
+  [../]
+[]
+
+[Materials]
+  [./elasticity_tensor]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 3600
+    poissons_ratio = 0.2
+  [../]
+
+  [./thermal_strain]
+    type = ComputeThermalExpansionEigenstrain
+    thermal_expansion_coeff = 1e-6
+    temperature = temp
+    stress_free_temperature = 580
+    eigenstrain_name = eigenstrain
+  [../]
+
+  [./stress]
+    type = ComputeFiniteStrainElasticStress
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  line_search = &#x27;none&#x27;
+
+  l_max_its = 50
+  l_tol = 1e-6
+  nl_max_its = 15
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-10
+  start_time = 0
+  end_time = 2
+  num_steps = 2
+[]
+
+[Outputs]
+  exodus = true
+  console = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="7a0202a0-f1c6-463c-9092-8b9b1e722ca3"><div class="modal-content"><h4>(../moose/modules/solid_mechanics/test/tests/1D_axisymmetric/axisymm_gps_finite.i)</h4><pre style="max-height:350px;"><code class="language-moose"># this test checks the asixymmetric 1D generalized plane strain formulation using finite strains
+
+[GlobalParams]
+  displacements = disp_x
+[]
+
+[Mesh]
+  file = line.e
+  coord_type = RZ
+[]
+
+[Variables]
+  [./scalar_strain_yy]
+    order = FIRST
+    family = SCALAR
+  [../]
+[]
+
+[AuxVariables]
+  [./strain_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./temp]
+    initial_condition = 580.0
+  [../]
+[]
+
+[Functions]
+  [./temp]
+    type = PiecewiseLinear
+    x = &#x27;0   1   2&#x27;
+    y = &#x27;580 580 680&#x27;
+  [../]
+  [./disp_x]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 2e-3&#x27;
+  [../]
+[]
+
+[Physics/SolidMechanics/QuasiStatic]
+  [./all]
+    add_variables = true
+    incremental = true
+    strain = finite
+    planar_formulation = GENERALIZED_PLANE_STRAIN
+    scalar_out_of_plane_strain = scalar_strain_yy
+    eigenstrain_names = eigenstrain
+  [../]
+[]
+
+[AuxKernels]
+  [./strain_xx]
+    type = RankTwoAux
+    rank_two_tensor = total_strain
+    variable = strain_xx
+    index_i = 0
+    index_j = 0
+  [../]
+  [./strain_yy]
+    type = RankTwoAux
+    rank_two_tensor = total_strain
+    variable = strain_yy
+    index_i = 1
+    index_j = 1
+  [../]
+  [./strain_zz]
+    type = RankTwoAux
+    rank_two_tensor = total_strain
+    variable = strain_zz
+    index_i = 2
+    index_j = 2
+  [../]
+  [./stress_xx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_xx
+    index_i = 0
+    index_j = 0
+    execute_on = timestep_end
+  [../]
+  [./stress_yy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_yy
+    index_i = 1
+    index_j = 1
+    execute_on = timestep_end
+  [../]
+  [./stress_zz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_zz
+    index_i = 2
+    index_j = 2
+    execute_on = timestep_end
+  [../]
+  [./temp]
+    type = FunctionAux
+    variable = temp
+    function = temp
+    execute_on = &#x27;timestep_begin&#x27;
+  [../]
+[]
+
+[BCs]
+  [./no_x]
+    type = DirichletBC
+    boundary = 1
+    value = 0
+    variable = disp_x
+  [../]
+  [./disp_x]
+    type = FunctionDirichletBC
+    boundary = 2
+    function = disp_x
+    variable = disp_x
+  [../]
+[]
+
+[Materials]
+  [./elasticity_tensor]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 3600
+    poissons_ratio = 0.2
+  [../]
+  [./thermal_strain]
+    type = ComputeThermalExpansionEigenstrain
+    thermal_expansion_coeff = 1e-6
+    temperature = temp
+    stress_free_temperature = 580
+    eigenstrain_name = eigenstrain
+  [../]
+
+  [./stress]
+    type = ComputeFiniteStrainElasticStress
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  line_search = &#x27;none&#x27;
+
+  l_max_its = 50
+  l_tol = 1e-6
+  nl_max_its = 15
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-10
+  start_time = 0
+  end_time = 2
+  num_steps = 2
+[]
+
+[Outputs]
+  exodus = true
+  console = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="e3a16487-6134-4498-b360-bb845e1f672d"><div class="modal-content"><h4>(../moose/modules/solid_mechanics/test/tests/1D_axisymmetric/axisymm_gps_finite.i)</h4><pre style="max-height:350px;"><code class="language-moose"># this test checks the asixymmetric 1D generalized plane strain formulation using finite strains
+
+[GlobalParams]
+  displacements = disp_x
+[]
+
+[Mesh]
+  file = line.e
+  coord_type = RZ
+[]
+
+[Variables]
+  [./scalar_strain_yy]
+    order = FIRST
+    family = SCALAR
+  [../]
+[]
+
+[AuxVariables]
+  [./strain_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./strain_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_xx]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_yy]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./stress_zz]
+    order = CONSTANT
+    family = MONOMIAL
+  [../]
+  [./temp]
+    initial_condition = 580.0
+  [../]
+[]
+
+[Functions]
+  [./temp]
+    type = PiecewiseLinear
+    x = &#x27;0   1   2&#x27;
+    y = &#x27;580 580 680&#x27;
+  [../]
+  [./disp_x]
+    type = PiecewiseLinear
+    x = &#x27;0 1&#x27;
+    y = &#x27;0 2e-3&#x27;
+  [../]
+[]
+
+[Physics/SolidMechanics/QuasiStatic]
+  [./all]
+    add_variables = true
+    incremental = true
+    strain = finite
+    planar_formulation = GENERALIZED_PLANE_STRAIN
+    scalar_out_of_plane_strain = scalar_strain_yy
+    eigenstrain_names = eigenstrain
+  [../]
+[]
+
+[AuxKernels]
+  [./strain_xx]
+    type = RankTwoAux
+    rank_two_tensor = total_strain
+    variable = strain_xx
+    index_i = 0
+    index_j = 0
+  [../]
+  [./strain_yy]
+    type = RankTwoAux
+    rank_two_tensor = total_strain
+    variable = strain_yy
+    index_i = 1
+    index_j = 1
+  [../]
+  [./strain_zz]
+    type = RankTwoAux
+    rank_two_tensor = total_strain
+    variable = strain_zz
+    index_i = 2
+    index_j = 2
+  [../]
+  [./stress_xx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_xx
+    index_i = 0
+    index_j = 0
+    execute_on = timestep_end
+  [../]
+  [./stress_yy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_yy
+    index_i = 1
+    index_j = 1
+    execute_on = timestep_end
+  [../]
+  [./stress_zz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_zz
+    index_i = 2
+    index_j = 2
+    execute_on = timestep_end
+  [../]
+  [./temp]
+    type = FunctionAux
+    variable = temp
+    function = temp
+    execute_on = &#x27;timestep_begin&#x27;
+  [../]
+[]
+
+[BCs]
+  [./no_x]
+    type = DirichletBC
+    boundary = 1
+    value = 0
+    variable = disp_x
+  [../]
+  [./disp_x]
+    type = FunctionDirichletBC
+    boundary = 2
+    function = disp_x
+    variable = disp_x
+  [../]
+[]
+
+[Materials]
+  [./elasticity_tensor]
+    type = ComputeIsotropicElasticityTensor
+    youngs_modulus = 3600
+    poissons_ratio = 0.2
+  [../]
+  [./thermal_strain]
+    type = ComputeThermalExpansionEigenstrain
+    thermal_expansion_coeff = 1e-6
+    temperature = temp
+    stress_free_temperature = 580
+    eigenstrain_name = eigenstrain
+  [../]
+
+  [./stress]
+    type = ComputeFiniteStrainElasticStress
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+  line_search = &#x27;none&#x27;
+
+  l_max_its = 50
+  l_tol = 1e-6
+  nl_max_its = 15
+  nl_rel_tol = 1e-8
+  nl_abs_tol = 1e-10
+  start_time = 0
+  end_time = 2
+  num_steps = 2
+[]
+
+[Outputs]
+  exodus = true
+  console = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

@@ -1,32 +1,12 @@
-<!DOCTYPE html><head><meta charset="UTF-8"><title>PolarOpticChangeInRefractiveIndex | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="a4621542-b31a-4e5a-af15-02ed728c0714" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="9f9efb9f-9cdd-4652-be33-5522e55e4e12" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="aa875522-a8e3-486c-addd-cb367682e253" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="726f9588-6bd5-4486-b1b1-7b7bc24929dc" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="645dd6de-f648-49e7-a58a-d9b00a9ad62d" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="c9abf99e-fe37-4a70-94e9-9f36cdd1822a"><i class="material-icons">menu</i></a><ul class="sidenav" id="c9abf99e-fe37-4a70-94e9-9f36cdd1822a"><li><a href="#!" class="dropdown-trigger" data-target="b7189ac3-b1d0-48d8-963c-9d0a1f670f41" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="31decb6e-9c1c-4bdf-810e-625f602eee26" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="14ad90ac-4c31-4231-9a24-779fedced0da" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f9dadfa2-720c-432f-8eff-54e602972ff7" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="8549b223-e9c2-4519-9912-def9b1035971" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="a4621542-b31a-4e5a-af15-02ed728c0714"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="9f9efb9f-9cdd-4652-be33-5522e55e4e12"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="aa875522-a8e3-486c-addd-cb367682e253"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="726f9588-6bd5-4486-b1b1-7b7bc24929dc"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="645dd6de-f648-49e7-a58a-d9b00a9ad62d"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="b7189ac3-b1d0-48d8-963c-9d0a1f670f41"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="31decb6e-9c1c-4bdf-810e-625f602eee26"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="14ad90ac-4c31-4231-9a24-779fedced0da"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f9dadfa2-720c-432f-8eff-54e602972ff7"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="8549b223-e9c2-4519-9912-def9b1035971"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="48845b47-1407-4484-be7d-bdc88ddf4d18" data-section-level="1" data-section-text="PolarOpticChangeInRefractiveIndex"><h1 id="polaropticchangeinrefractiveindex">PolarOpticChangeInRefractiveIndex</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The PolarOpticChangeInRefractiveIndex has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Calculates the changes to local refractive index due to the polar-optic effect.</p><section id="c4932cde-fa4b-405d-9577-dd6b12e44b18" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="f9f17fea-62f8-45c2-ad8d-ad6d08824e5c" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="895abd94-7555-493f-8d6e-b5d2abf9e9f7" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="c4f77300-6f83-4a4d-9bef-ddaf9402649a" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding changes in the refractive index's index (0, 1, 2, 3, 4, 5)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding changes in the refractive index's index (0, 1, 2, 3, 4, 5)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_x</span><span class="moose-parameter-header-description">The x component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_y</span><span class="moose-parameter-header-description">The y component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this object applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>AuxVariableName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this object applies to</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="e11f2067-6aa1-4517-ae7a-f7cfad21c82c" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">check_boundary_restricted</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed, the available options include NONE, INITIAL, LINEAR, NONLINEAR, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, FINAL, CUSTOM, ALWAYS, PRE_DISPLACE.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_z</span><span class="moose-parameter-header-description">The z component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="ef86c441-eda5-49e8-ab7b-1589fdf87e39" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section></section><section id="bb7b80b6-e33a-425c-93d9-7eb700d5ad55" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#1f125b51-a93c-48d7-b117-b23afb28a16b">(test/tests/electrooptics/BTO_monodomain_T298K_REF.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#15b47663-9ffc-460e-8ab2-99759b657529">(test/tests/electrooptics/BTO_monodomain_T298K_REFnoEO.i)</a></li></ul></section></section><div class="moose-modal modal" id="1f125b51-a93c-48d7-b117-b23afb28a16b"><div class="modal-content"><h4>(test/tests/electrooptics/BTO_monodomain_T298K_REF.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+<!DOCTYPE html><head><meta charset="UTF-8"><title>PolarOpticChangeInRefractiveIndex | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="c74674c9-232d-46b0-a6ab-588efcb2a451" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b087f64e-1c64-4a0e-9e3c-7b863afbdea6" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="69e6f036-dcb8-40b0-b739-b2b0427e4e75" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3b8c983c-bf05-48e0-b5f0-2f723b3d4b30" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="1b78a1aa-2661-48e7-babc-a001ce762939" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="7e9d8fdf-664f-4727-9a7d-0738080e19f5"><i class="material-icons">menu</i></a><ul class="sidenav" id="7e9d8fdf-664f-4727-9a7d-0738080e19f5"><li><a href="#!" class="dropdown-trigger" data-target="9e95b32a-2e69-4bd6-8436-43d57813a96a" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="15af3599-5200-49e4-8916-b666bb5e0093" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="cf9d1cb7-1b3d-4b30-a7c0-10b646e5c0a8" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f0a9158f-4e52-4836-a830-371b7cf4aa08" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="f66328f3-005e-45e5-b232-0c6820965186" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="c74674c9-232d-46b0-a6ab-588efcb2a451"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="b087f64e-1c64-4a0e-9e3c-7b863afbdea6"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="69e6f036-dcb8-40b0-b739-b2b0427e4e75"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="3b8c983c-bf05-48e0-b5f0-2f723b3d4b30"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="1b78a1aa-2661-48e7-babc-a001ce762939"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="9e95b32a-2e69-4bd6-8436-43d57813a96a"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="15af3599-5200-49e4-8916-b666bb5e0093"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="cf9d1cb7-1b3d-4b30-a7c0-10b646e5c0a8"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f0a9158f-4e52-4836-a830-371b7cf4aa08"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="f66328f3-005e-45e5-b232-0c6820965186"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="df3c204f-3c54-42dc-9a1f-695233ea4c6a" data-section-level="1" data-section-text="PolarOpticChangeInRefractiveIndex"><h1 id="polaropticchangeinrefractiveindex">PolarOpticChangeInRefractiveIndex</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The PolarOpticChangeInRefractiveIndex has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Calculates the changes to local refractive index due to the polar-optic effect.</p><section id="695f370d-5f32-4978-ace6-92b41c698572" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="5e4cb3a4-c473-4a26-ae76-68fd2121c969" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="bdbfdfdf-e71f-4e99-aa7a-cef6c2402f18" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="f37b074b-f676-420a-a72d-c1d4363940f9" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding changes in the refractive index's index (0, 1, 2, 3, 4, 5)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding changes in the refractive index's index (0, 1, 2, 3, 4, 5)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_x</span><span class="moose-parameter-header-description">The x component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_y</span><span class="moose-parameter-header-description">The y component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the polarization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this object applies to</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>AuxVariableName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this object applies to</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="2f65a901-2825-4cb9-89e1-78e18598ef94" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">check_boundary_restricted</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether to check for multiple element sides on the boundary in the case of a boundary restricted, element aux variable. Setting this to false will allow contribution to a single element's elemental value(s) from multiple boundary sides on the same element (example: when the restricted boundary exists on two or more sides of an element, such as at a corner of a mesh</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">LINEAR TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>LINEAR TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>XFEM_MARK, NONE, INITIAL, LINEAR, LINEAR_CONVERGENCE, NONLINEAR, NONLINEAR_CONVERGENCE, POSTCHECK, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, MULTIAPP_FIXED_POINT_CONVERGENCE, MULTISYSTEM_FIXED_POINT_ITERATION_END, FINAL, CUSTOM, PRE_DISPLACE</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">polar_z</span><span class="moose-parameter-header-description">The z component of the polarization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the polarization</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="7d25dc8a-913f-450b-aa0c-73d2ab52289c" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">search_method</span><span class="moose-parameter-header-default">nearest_node_connected_sides</span><span class="moose-parameter-header-description">Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nearest_node_connected_sides</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nearest_node_connected_sides, all_proximate_sides</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="218662a4-1c8b-42b5-b7dc-75724de76410" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="568642ca-58e7-4202-82e1-07e85098dd75" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#70423d3f-c975-47ba-9231-fcc881a69fe5">(test/tests/electrooptics/BTO_monodomain_T298K_REF.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#7a9942b0-bdbc-482c-b94b-40198aa4d3e2">(test/tests/electrooptics/BTO_monodomain_T298K_REFnoEO.i)</a></li></ul></section></section><div class="moose-modal modal" id="70423d3f-c975-47ba-9231-fcc881a69fe5"><div class="modal-content"><h4>(test/tests/electrooptics/BTO_monodomain_T298K_REF.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
   [gen]
-    ############################################
-    ##
-    ##  Type and dimension of the mesh 
-    ##
-    ############################################
 
     type = GeneratedMeshGenerator
     dim = 3
 
-    #############################################
-    ##
-    ##  Grid definition. Note that it should be
-    ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
-    ##
-    #############################################
-
     nx = 2
     ny = 2
     nz = 2
-
-    #############################################
-    ##
-    ##   Actual spatial coordinates of mesh. 
-    ##   Jmax - Jmin = nJ/2 for J = x, y, z
-    ##   Units are in nanometers
-    ##
-    #############################################
 
     xmin = -0.5
     xmax = 0.5
@@ -35,28 +15,10 @@
     zmin = -0.5
     zmax = 0.5
 
-    #############################################
-    ##
-    ##  FE type/order (hexahedral, tetrahedral
-    ##
-    #############################################
-
     elem_type = HEX8
   []
   [./cnode]
     input = gen
-
-    ############################################
-    ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
 
     type = ExtraNodesetGenerator
     coord = &#x27;-0.5 -0.5 -0.5&#x27;
@@ -74,14 +36,6 @@
 
   displacements = &#x27;u_x u_y u_z&#x27;
 
-
-  ##############################################
-  ##
-  ##  IMPORTANT(!): Units in Ferret are nm, kg,
-  ##                seconds, and attocoulombs
-  ##
-  ##############################################
-
   u_x = u_x
   u_y = u_y
   u_z = u_z
@@ -91,20 +45,11 @@
 [Functions]
   [./stripe1]
     type = ParsedFunction
-    value = 0.01*cos(0.08975979010256552*(x))  # 0.08975979010256552 = 2pi/(xmax-xmin)
+    expression = 0.01*cos(0.08975979010256552*(x))
   [../]
 []
 
-
 [Variables]
-
-  #################################
-  ##
-  ##  Variable definitions
-  ##    P, u, phi, e^global_ij  
-  ##  and their initial conditions
-  ##
-  #################################
 
   [./global_strain]
     order = SIXTH
@@ -159,33 +104,12 @@
 
 [AuxVariables]
 
-  ######################################
-  ##
-  ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables 
-  ##   or for postprocessed quantities) 
-  ##  
-  ######################################
-
-
-  ######################################
-  ##
-  ##  Global displacements
-  ##
-  ######################################
-
   [./disp_x]
   [../]
   [./disp_y]
   [../]
   [./disp_z]
   [../]
-
-  ######################################
-  ##
-  ##  Stress/strain tensor components
-  ##
-  ######################################
 
   [./stress_xx_elastic]
     order = CONSTANT
@@ -237,13 +161,6 @@
     family = MONOMIAL
   [../]
 
-  ######################################
-  ##
-  ##  Principle change in refractive and 
-  ##  refractive index components
-  ##
-  ######################################
-
   [./dpn_1]
     order = CONSTANT
     family = MONOMIAL
@@ -258,7 +175,6 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-
 
   [./den_1]
     order = CONSTANT
@@ -292,14 +208,6 @@
 []
 
 [AuxKernels]
-
-  ######################################
-  ##
-  ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate &quot;operations&quot; 
-  ##   or for postprocessed quantities) 
-  ##  
-  ######################################
 
   [./disp_x]
     type = GlobalDisplacementAux
@@ -367,7 +275,6 @@
     index_i = 2
     index_j = 2
   [../]
-
 
  [./dn_p1]
     type = PolarOpticChangeInRefractiveIndex
@@ -460,12 +367,6 @@
 
 [ScalarKernels]
 
-  ######################################
-  ##
-  ##  Necessary for PBC system
-  ##  
-  ######################################
-
   [./global_strain]
     type = GlobalStrain
     variable = global_strain
@@ -476,33 +377,11 @@
 
 [Materials]
 
-  #################################################
-  ##
-  ## Bulk free energy and electrostrictive
-  ## coefficients gleaned from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ## NOTE: there might be some Legendre transforms
-  ##        depending on what approach you use
-  ##        -i.e. inhomogeneous strain vs 
-  ##            homogeneous strain [renormalized]
-  ##
-  ##################################################
-
   [./Landau_P]
     type = GenericConstantMaterial
     prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
     prop_values = &#x27;-0.027721 -0.64755 0.323 8.004 4.47 4.91 0.0 0.0 0.0 0.0&#x27;
   [../]
-
-  ############################################
-  ##
-  ## Gradient coefficients from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ############################################
 
   [./Landau_G]
     type = GenericConstantMaterial
@@ -515,14 +394,6 @@
     prop_names = &#x27;C11 C12 C44&#x27;
     prop_values = &#x27;275.0 179.0 54.3&#x27;
   [../]
-
-  ##################################################
-  ##
-  ## NOTE: Sign convention in Ferret for the 
-  ##        electrostrictive coeff. is multiplied by
-  ##        an overall factor of (-1)
-  ##
-  ##################################################
 
   [./mat_Q]
     type = GenericConstantMaterial
@@ -545,13 +416,6 @@
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-
-   ###############################################
-   ##
-   ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
-   ##
-   ###############################################
 
     C_ijkl = &#x27;275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3&#x27;
   [../]
@@ -579,27 +443,12 @@
 
   [./ref_index]
 
-  ############################################
-  ##
-  ## Cubic refractive index BTO
-  ## (need correct value)
-  ##
-  ############################################
-
     type = GenericConstantMaterial
     prop_names = &#x27;n1 n2 n3 n4 n5 n6&#x27;
     prop_values = &#x27;2.4272 2.4272 2.4272 0.0 0.0 0.0&#x27;
   [../]
 
   [./po_tensor]
-
-  ############################################
-  ##
-  ## PO tensor coefficients from
-  ## Bernasconi and Günter
-  ##    J. Appl. Phys., 78, 2651 (1995)
-  ##
-  ############################################
 
     type = GenericConstantMaterial
     prop_names = &#x27;g1111 g1122 g1212&#x27;
@@ -608,33 +457,15 @@
 
   [./eo_tensor]
 
-  ############################################
-  ##
-  ## Elastoptic tensor coefficients from
-  ## Bernasconi and Günter
-  ##    J. Appl. Phys., 78, 2651 (1995)
-  ##
-  ############################################
-
     type = GenericConstantMaterial
     prop_names = &#x27;p1111 p1122 p1212&#x27;
     prop_values = &#x27;0.37 0.11 -0.30&#x27;
   [../]
 []
 
-
 [Kernels]
 
-  ###############################################
-  ##
-  ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
-  ##
-  ###############################################
-
-
-  #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
   [../]
 
@@ -704,7 +535,6 @@
     component = 2
   [../]
 
-
   [./polar_x_electric_E]
      type = PolarElectricEStrong
      variable = potential_E_int
@@ -712,15 +542,6 @@
   [./FE_E_int]
      type = Electrostatics
      variable = potential_E_int
-
-     ###############################################
-     ##
-     ##  so-called background dielectric constant
-     ##  (it encapsulates the motion of core electrons
-     ##  at high frequency) = e_b*e_0 (here we use 
-     ##  e_b = 10), see PRB. 74, 104014, (2006)
-     ##
-     ###############################################
 
      permittivity = 0.08854187
   [../]
@@ -758,7 +579,6 @@
   [../]
 []
 
-
 [BCs]
   [./Periodic]
     [./xyz]
@@ -774,8 +594,6 @@
     value = 0.0
   [../]
 
-
-  # fix center point location
   [./centerfix_x]
     type = DirichletBC
     boundary = 100
@@ -797,15 +615,6 @@
 []
 
 [Postprocessors]
-
-  ###############################################
-  ##
-  ##  Postprocessors (integrations over the 
-  ##  computational domain) to calculate the total energy
-  ##  decomposed into linear combinations of the
-  ##  different physics.
-  ##
-  ###############################################
 
   [./Fbulk]
     type = BulkEnergyEighth
@@ -834,21 +643,9 @@
     pp_coefs = &#x27; 1 1 1 1&#x27;
     execute_on = &#x27;initial timestep_end&#x27;
   [../]
-  [./perc_change]
-    type = PercentChangePostprocessor
-    postprocessor = Ftotal
-    execute_on = &#x27;initial timestep_end&#x27;
-  [../]
 []
 
 [UserObjects]
-
-  ###############################################
-  ##
-  ##  GlobalStrain system to enforce periodicity 
-  ##  in the anisotropic strain field 
-  ##
-  ###############################################
 
   [./global_strain_uo]
     type = GlobalATiO3MaterialRVEUserObject
@@ -856,28 +653,9 @@
     execute_on = &#x27;Initial Linear Nonlinear&#x27;
   [../]
 
-  ###############################################
-  ##
-  ##  terminator to end energy evolution when the energy difference 
-  ##  between subsequent time steps is lower than 5e-6
-  ##
-  ##  NOTE: can fail if the time step is small
-  ##
-  ###############################################
-
-  [./kill]
-    type = Terminator
-    expression = &#x27;perc_change &lt;= 1.0e-6&#x27;
-   [../]
 []
 
 [Preconditioning]
-
-  ###############################################
-  ##
-  ##  Numerical preconditioning/solver options
-  ##
-  ###############################################
 
   [./smp]
     type = SMP
@@ -890,23 +668,10 @@
 
 [Executioner]
 
-  ##########################################
-  ##
-  ##  Time integration/solver options
-  ##
-  ##########################################
-
   type = Transient
   solve_type = &#x27;PJFNK&#x27;
   scheme = &#x27;implicit-euler&#x27;
   dtmin = 1e-13
-
-  ###########################################
-  ##
-  ##  dtmax is material dependent!
-  ##  for PTO is about 0.8 but BTO more like 3-10
-  ##
-  ###########################################
 
   dtmax = 3.0
 
@@ -925,12 +690,6 @@
 
 [Outputs]
 
-  ###############################################
-  ##
-  ##  Output options
-  ##
-  ###############################################
-
   print_linear_residuals = false
   perf_graph = false
 
@@ -940,35 +699,15 @@
     elemental_as_nodal = true
   [../]
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="15b47663-9ffc-460e-8ab2-99759b657529"><div class="modal-content"><h4>(test/tests/electrooptics/BTO_monodomain_T298K_REFnoEO.i)</h4><pre class="moose-pre"><code class="language-text">[Mesh]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="7a9942b0-bdbc-482c-b94b-40198aa4d3e2"><div class="modal-content"><h4>(test/tests/electrooptics/BTO_monodomain_T298K_REFnoEO.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
   [gen]
-    ############################################
-    ##
-    ##  Type and dimension of the mesh 
-    ##
-    ############################################
 
     type = GeneratedMeshGenerator
     dim = 3
 
-    #############################################
-    ##
-    ##  Grid definition. Note that it should be
-    ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
-    ##
-    #############################################
-
     nx = 2
     ny = 2
     nz = 2
-
-    #############################################
-    ##
-    ##   Actual spatial coordinates of mesh. 
-    ##   Jmax - Jmin = nJ/2 for J = x, y, z
-    ##   Units are in nanometers
-    ##
-    #############################################
 
     xmin = -0.5
     xmax = 0.5
@@ -977,28 +716,10 @@
     zmin = -0.5
     zmax = 0.5
 
-    #############################################
-    ##
-    ##  FE type/order (hexahedral, tetrahedral
-    ##
-    #############################################
-
     elem_type = HEX8
   []
   [./cnode]
     input = gen
-
-    ############################################
-    ##
-    ##   additional boundary sideset (one node) 
-    ##   to zero one of the elastic displacement vectors 
-    ##   vectors and eliminates rigid body translations 
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
 
     type = ExtraNodesetGenerator
     coord = &#x27;-0.5 -0.5 -0.5&#x27;
@@ -1016,37 +737,16 @@
 
   displacements = &#x27;u_x u_y u_z&#x27;
 
-
-  ##############################################
-  ##
-  ##  IMPORTANT(!): Units in Ferret are nm, kg,
-  ##                seconds, and attocoulombs
-  ##
-  ##############################################
-
-  u_x = u_x
-  u_y = u_y
-  u_z = u_z
-
 []
 
 [Functions]
   [./stripe1]
     type = ParsedFunction
-    value = 0.01*cos(0.08975979010256552*(x))  # 0.08975979010256552 = 2pi/(xmax-xmin)
+    expression = 0.01*cos(0.08975979010256552*(x))
   [../]
 []
 
-
 [Variables]
-
-  #################################
-  ##
-  ##  Variable definitions
-  ##    P, u, phi, e^global_ij  
-  ##  and their initial conditions
-  ##
-  #################################
 
   [./global_strain]
     order = SIXTH
@@ -1101,33 +801,12 @@
 
 [AuxVariables]
 
-  ######################################
-  ##
-  ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables 
-  ##   or for postprocessed quantities) 
-  ##  
-  ######################################
-
-
-  ######################################
-  ##
-  ##  Global displacements
-  ##
-  ######################################
-
   [./disp_x]
   [../]
   [./disp_y]
   [../]
   [./disp_z]
   [../]
-
-  ######################################
-  ##
-  ##  Stress/strain tensor components
-  ##
-  ######################################
 
   [./stress_xx_elastic]
     order = CONSTANT
@@ -1179,13 +858,6 @@
     family = MONOMIAL
   [../]
 
-  ######################################
-  ##
-  ##  Principle change in refractive and 
-  ##  refractive index components
-  ##
-  ######################################
-
   [./dpn_1]
     order = CONSTANT
     family = MONOMIAL
@@ -1200,7 +872,6 @@
     order = CONSTANT
     family = MONOMIAL
   [../]
-
 
   [./den_1]
     order = CONSTANT
@@ -1234,14 +905,6 @@
 []
 
 [AuxKernels]
-
-  ######################################
-  ##
-  ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate &quot;operations&quot; 
-  ##   or for postprocessed quantities) 
-  ##  
-  ######################################
 
   [./disp_x]
     type = GlobalDisplacementAux
@@ -1309,7 +972,6 @@
     index_i = 2
     index_j = 2
   [../]
-
 
  [./dn_p1]
     type = PolarOpticChangeInRefractiveIndex
@@ -1399,12 +1061,6 @@
 
 [ScalarKernels]
 
-  ######################################
-  ##
-  ##  Necessary for PBC system
-  ##  
-  ######################################
-
   [./global_strain]
     type = GlobalStrain
     variable = global_strain
@@ -1415,33 +1071,11 @@
 
 [Materials]
 
-  #################################################
-  ##
-  ## Bulk free energy and electrostrictive
-  ## coefficients gleaned from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ## NOTE: there might be some Legendre transforms
-  ##        depending on what approach you use
-  ##        -i.e. inhomogeneous strain vs 
-  ##            homogeneous strain [renormalized]
-  ##
-  ##################################################
-
   [./Landau_P]
     type = GenericConstantMaterial
     prop_names = &#x27;alpha1 alpha11 alpha12 alpha111 alpha112 alpha123 alpha1111 alpha1112 alpha1122 alpha1123&#x27;
     prop_values = &#x27;-0.027721 -0.64755 0.323 8.004 4.47 4.91 0.0 0.0 0.0 0.0&#x27;
   [../]
-
-  ############################################
-  ##
-  ## Gradient coefficients from
-  ## Marton and Hlinka
-  ##    Phys. Rev. B. 74, 104014, (2006)
-  ##
-  ############################################
 
   [./Landau_G]
     type = GenericConstantMaterial
@@ -1455,49 +1089,27 @@
     prop_values = &#x27;275.0 179.0 54.3&#x27;
   [../]
 
-  ##################################################
-  ##
-  ## NOTE: Sign convention in Ferret for the 
-  ##        electrostrictive coeff. is multiplied by
-  ##        an overall factor of (-1)
-  ##
-  ##################################################
-
   [./mat_Q]
     type = GenericConstantMaterial
     prop_names = &#x27;Q11 Q12 Q44&#x27;
-    prop_values = &#x27;-0.11 0.045 -0.029&#x27;
-  [../]
-  [./mat_q]
-    type = GenericConstantMaterial
-    prop_names = &#x27;q11 q12 q44&#x27;
-    prop_values = &#x27;-14.2 0.74 -1.57&#x27;
+    prop_values = &#x27;0.11 -0.045 0.029&#x27;
   [../]
 
-  [./eigen_strain]
-    type = ComputeEigenstrain
-    eigen_base = &#x27;0. 0 0 0 0 0 0 0 0&#x27;
-    eigenstrain_name = eigenstrain
-    prefactor = 0.0
+  [./ferro]
+    type = ComputeCubicParentElectrostrictiveStrain
+    eigenstrain_name = ferro
   [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
 
-   ###############################################
-   ##
-   ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66 
-   ##
-   ###############################################
-
     C_ijkl = &#x27;275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3&#x27;
   [../]
   [./strain_1]
     type = ComputeSmallStrain
     global_strain = global_strain
-    eigenstrain_names = eigenstrain
+    eigenstrain_names = &#x27;ferro&#x27;
   [../]
 
   [./stress_1]
@@ -1510,20 +1122,7 @@
     global_strain_uo = global_strain_uo
   [../]
 
-  [./slab_ferroelectric]
-    type = ComputeElectrostrictiveTensor
-    Q_mnkl = &#x27;-0.11 0.045 0.045 -0.11 0.045 -0.11 -0.029 -0.029 -0.029&#x27;
-    C_ijkl = &#x27;275.0 179.0 179.0 275.0 179.0 275.0 54.3 54.3 54.3&#x27;
-  [../]
-
   [./ref_index]
-
-  ############################################
-  ##
-  ## Cubic refractive index BTO
-  ## (need correct value)
-  ##
-  ############################################
 
     type = GenericConstantMaterial
     prop_names = &#x27;n1 n2 n3 n4 n5 n6&#x27;
@@ -1532,14 +1131,6 @@
 
   [./po_tensor]
 
-  ############################################
-  ##
-  ## PO tensor coefficients from
-  ## Bernasconi and Günter
-  ##    J. Appl. Phys., 78, 2651 (1995)
-  ##
-  ############################################
-
     type = GenericConstantMaterial
     prop_names = &#x27;g1111 g1122 g1212&#x27;
     prop_values = &#x27;0.15 0.038 0.07&#x27;
@@ -1547,29 +1138,12 @@
 
   [./eo_tensor]
 
-  ############################################
-  ##
-  ## Elastoptic tensor coefficients from
-  ## Bernasconi and Günter
-  ##    J. Appl. Phys., 78, 2651 (1995)
-  ##
-  ############################################
-
     type = GenericConstantMaterial
     prop_names = &#x27;p1111 p1122 p1212&#x27;
     prop_values = &#x27;0.37 0.11 -0.30&#x27;
   [../]
 
-
   [./eps]
-    ###############################################
-    ##
-    ##  so-called background dielectric constant
-    ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use 
-    ##  e_b = 10), see PRB. 74, 104014, (2006)
-    ##
-    ###############################################
 
     type = GenericConstantMaterial
     prop_names = &#x27;permittivity&#x27;
@@ -1578,19 +1152,9 @@
 
 []
 
-
 [Kernels]
 
-  ###############################################
-  ##
-  ## Physical Kernel operators
-  ## to enforce TDLGD evolution 
-  ##
-  ###############################################
-
-
-  #Elastic problem
-  [./TensorMechanics]
+  [./SolidMechanics]
     use_displaced_mesh = false
   [../]
 
@@ -1627,39 +1191,24 @@
      component = 2
   [../]
 
-  [./electrostr_ux]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_x
-    component = 0
-
-  [../]
-  [./electrostr_uy]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_y
-    component = 1
-  [../]
-  [./electrostr_uz]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_z
-    component = 2
-  [../]
-
   [./electrostr_polar_coupled_x]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
+    displacements = &#x27;u_x u_y u_z&#x27;
     variable = polar_x
     component = 0
   [../]
   [./electrostr_polar_coupled_y]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
+    displacements = &#x27;u_x u_y u_z&#x27;
     variable = polar_y
     component = 1
   [../]
   [./electrostr_polar_coupled_z]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
+    displacements = &#x27;u_x u_y u_z&#x27;
     variable = polar_z
     component = 2
   [../]
-
 
   [./polar_x_electric_E]
      type = PolarElectricEStrong
@@ -1703,7 +1252,6 @@
   [../]
 []
 
-
 [BCs]
   [./Periodic]
     [./xyz]
@@ -1719,8 +1267,6 @@
     value = 0.0
   [../]
 
-
-  # fix center point location
   [./centerfix_x]
     type = DirichletBC
     boundary = 100
@@ -1743,15 +1289,6 @@
 
 [Postprocessors]
 
-  ###############################################
-  ##
-  ##  Postprocessors (integrations over the 
-  ##  computational domain) to calculate the total energy
-  ##  decomposed into linear combinations of the
-  ##  different physics.
-  ##
-  ###############################################
-
   [./Fbulk]
     type = BulkEnergyEighth
     execute_on = &#x27;initial timestep_end&#x27;
@@ -1761,13 +1298,9 @@
     execute_on = &#x27;initial timestep_end&#x27;
   [../]
   [./Felastic]
-    type = ElasticEnergy
+    type = CubicParentElasticEnergy
     execute_on = &#x27;initial timestep_end&#x27;
     use_displaced_mesh = false
-  [../]
-  [./Fcoupled]
-    type = ElectrostrictiveCouplingEnergy
-    execute_on = &#x27;initial timestep_end&#x27;
   [../]
   [./Felec]
     type = ElectrostaticEnergy
@@ -1775,54 +1308,23 @@
   [../]
   [./Ftotal]
     type = LinearCombinationPostprocessor
-    pp_names = &#x27;Fbulk Fwall Fcoupled Felec&#x27;
+    pp_names = &#x27;Fbulk Fwall Felastic Felec&#x27;
     pp_coefs = &#x27; 1 1 1 1&#x27;
-    execute_on = &#x27;initial timestep_end&#x27;
-  [../]
-  [./perc_change]
-    type = PercentChangePostprocessor
-    postprocessor = Ftotal
     execute_on = &#x27;initial timestep_end&#x27;
   [../]
 []
 
 [UserObjects]
 
-  ###############################################
-  ##
-  ##  GlobalStrain system to enforce periodicity 
-  ##  in the anisotropic strain field 
-  ##
-  ###############################################
-
   [./global_strain_uo]
-    type = GlobalATiO3MaterialRVEUserObject
+    type = GlobalStrainUserObject
     use_displaced_mesh = false
     execute_on = &#x27;Initial Linear Nonlinear&#x27;
   [../]
 
-  ###############################################
-  ##
-  ##  terminator to end energy evolution when the energy difference 
-  ##  between subsequent time steps is lower than 5e-6
-  ##
-  ##  NOTE: can fail if the time step is small
-  ##
-  ###############################################
-
-  [./kill]
-    type = Terminator
-    expression = &#x27;perc_change &lt;= 1.0e-6&#x27;
-   [../]
 []
 
 [Preconditioning]
-
-  ###############################################
-  ##
-  ##  Numerical preconditioning/solver options
-  ##
-  ###############################################
 
   [./smp]
     type = SMP
@@ -1835,23 +1337,10 @@
 
 [Executioner]
 
-  ##########################################
-  ##
-  ##  Time integration/solver options
-  ##
-  ##########################################
-
   type = Transient
   solve_type = &#x27;PJFNK&#x27;
   scheme = &#x27;implicit-euler&#x27;
   dtmin = 1e-13
-
-  ###########################################
-  ##
-  ##  dtmax is material dependent!
-  ##  for PTO is about 0.8 but BTO more like 3-10
-  ##
-  ###########################################
 
   dtmax = 3.0
 
@@ -1869,12 +1358,6 @@
 []
 
 [Outputs]
-
-  ###############################################
-  ##
-  ##  Output options
-  ##
-  ###############################################
 
   print_linear_residuals = false
   perf_graph = false

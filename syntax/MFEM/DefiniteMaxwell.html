@@ -1,0 +1,295 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>Definite Maxwell Problem | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="7f3fc505-adec-4481-a8f9-4033a6dd3697" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4ab8a1b0-1ae9-4f6f-850f-4a0430f32b88" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="73f3b035-e11e-4b51-bddf-5855234e8079" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3725acd0-61da-4d63-bd14-ba6469ebac80" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a2bf89ac-3a39-4eea-84ef-ecc89ad593e7" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="188b6ca3-1e54-4662-bfb5-112a146db7b7"><i class="material-icons">menu</i></a><ul class="sidenav" id="188b6ca3-1e54-4662-bfb5-112a146db7b7"><li><a href="#!" class="dropdown-trigger" data-target="db525890-5dff-4a7e-b3e7-b46cd8050ac9" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="941eb4c1-c3eb-4e3b-8647-e6b81e092cbc" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6ad6913e-1457-4d39-b115-450848de0162" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8700e135-ce16-48bd-a665-211dc6d5c2a3" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="c624b46a-593f-4bb7-b00d-25808c67ee72" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="7f3fc505-adec-4481-a8f9-4033a6dd3697"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="4ab8a1b0-1ae9-4f6f-850f-4a0430f32b88"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="73f3b035-e11e-4b51-bddf-5855234e8079"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="3725acd0-61da-4d63-bd14-ba6469ebac80"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a2bf89ac-3a39-4eea-84ef-ecc89ad593e7"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="db525890-5dff-4a7e-b3e7-b46cd8050ac9"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="941eb4c1-c3eb-4e3b-8647-e6b81e092cbc"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="6ad6913e-1457-4d39-b115-450848de0162"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="8700e135-ce16-48bd-a665-211dc6d5c2a3"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="c624b46a-593f-4bb7-b00d-25808c67ee72"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="fc28540b-abda-46f3-80af-39c11d28b817" data-section-level="1" data-section-text="Definite Maxwell Problem"><h1 id="definite-maxwell-problem">Definite Maxwell Problem</h1><section id="d3c563df-343d-4853-84cc-46662a8e025a" data-section-level="2" data-section-text="Summary"><h2 id="summary">Summary</h2><p>Solves a 3D electromagnetic diffusion problem for   the electric field on a cube missing an octant, discretized using <span class="moose-katex-inline-equation" id="moose-equation-7210ecd7-7df6-4a77-80ad-04d86929104c"><script>var element = document.getElementById("moose-equation-7210ecd7-7df6-4a77-80ad-04d86929104c");katex.render("H(\\mathrm{curl})", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> conforming Nédélec elements. This example   is based on <a href="https://mfem.org/examples/">MFEM Example 3</a>.</p></section><section id="a0b76f59-82e9-481f-8948-fa75455627f0" data-section-level="2" data-section-text="Description"><h2 id="description">Description</h2><p>This problem solves a definite Maxwell equation with strong form:</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-7339c11d-e731-4803-987b-dad45ef7fe03"></span><script>var element = document.getElementById("moose-equation-7339c11d-e731-4803-987b-dad45ef7fe03");katex.render("\\begin{split} \\vec\\nabla \\times \\vec\\nabla \\times \\vec E + \\vec E = \\vec f \\,\\,\\,&\\mathrm{on}\\,\\, \\Omega \\\\ \\vec E \\times \\hat n= \\vec g \\,\\,\\, &\\mathrm{on}\\,\\, \\partial\\Omega \\end{split}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>where</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-1393b14a-2351-4cdf-8f28-6437100f0b2b"></span><script>var element = document.getElementById("moose-equation-1393b14a-2351-4cdf-8f28-6437100f0b2b");katex.render("\\vec f = \\begin{pmatrix}     (1+\\pi^2)\\sin(\\pi y)\\\\     (1+\\pi^2)\\sin(\\pi z)\\\\     (1+\\pi^2)\\sin(\\pi x) \\end{pmatrix},\\,\\,\\, \\vec g = \\begin{pmatrix}     \\sin(\\pi y)\\\\     \\sin(\\pi z)\\\\     \\sin(\\pi x) \\end{pmatrix}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>In this example, we solve this using the weak form</p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-02744234-185f-4bce-ba80-ce945a09cfdb"></span><script>var element = document.getElementById("moose-equation-02744234-185f-4bce-ba80-ce945a09cfdb");katex.render("(\\vec\\nabla \\times \\vec E, \\vec\\nabla \\times \\vec v)_\\Omega + (\\vec E, \\vec v)_\\Omega = (\\vec f, \\vec v)_\\Omega \\,\\,\\, \\forall \\vec v \\in V", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><p>where</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-a921deb9-2850-463c-a18e-0a6f24f8345b"></span><script>var element = document.getElementById("moose-equation-a921deb9-2850-463c-a18e-0a6f24f8345b");katex.render("\\begin{split} \\vec E \\in H(\\mathrm{curl})(\\Omega) &: \\vec E \\times \\hat n= \\vec g \\,\\,\\, \\mathrm{on}\\,\\, \\partial\\Omega \\\\ \\vec v \\in H(\\mathrm{curl})(\\Omega) &: \\vec v \\times \\hat n= \\vec 0 \\,\\,\\, \\mathrm{on}\\,\\, \\partial\\Omega \\end{split}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p></section><section id="b9839bea-5209-410d-9f0a-6b4f103aa0b8" data-section-level="2" data-section-text="Example File"><h2 id="example-file">Example File</h2><pre style="max-height:350px;"><code class="language-moose"># Definite Maxwell problem solved with Nedelec elements of the first kind
+# based on MFEM Example 3.
+
+[Mesh&lt;&lt;&lt;{&quot;href&quot;: &quot;../Mesh/index.html&quot;}&gt;&gt;&gt;]
+  type = MFEMFileMesh
+  file = ../mesh/small_fichera.mesh
+[]
+
+[Problem&lt;&lt;&lt;{&quot;href&quot;: &quot;../Problem/index.html&quot;}&gt;&gt;&gt;]
+  type = MFEMProblem
+[]
+
+[FESpaces]
+  inactive = &quot;L2FESpace&quot;
+  [HCurlFESpace]
+    type = MFEMVectorFESpace
+    fec_type = ND
+    fec_order = FIRST
+  []
+  [HDivFESpace]
+    type = MFEMVectorFESpace
+    fec_type = RT
+    fec_order = CONSTANT
+  []
+  [L2FESpace]
+    type = MFEMScalarFESpace
+    fec_type = L2
+    fec_order = CONSTANT
+  []
+[]
+
+[Variables&lt;&lt;&lt;{&quot;href&quot;: &quot;../Variables/index.html&quot;}&gt;&gt;&gt;]
+  [e_field]
+    type = MFEMVariable
+    fespace = HCurlFESpace
+  []
+[]
+
+[AuxVariables&lt;&lt;&lt;{&quot;href&quot;: &quot;../AuxVariables/index.html&quot;}&gt;&gt;&gt;]
+  inactive&lt;&lt;&lt;{&quot;description&quot;: &quot;If specified blocks matching these identifiers will be skipped.&quot;}&gt;&gt;&gt; = &quot;joule_heating&quot;
+  [db_dt_field]
+    type = MFEMVariable
+    fespace = HDivFESpace
+  []
+  [joule_heating]
+    type = MFEMVariable
+    fespace = L2FESpace
+  []
+[]
+
+[AuxKernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../AuxKernels/index.html&quot;}&gt;&gt;&gt;]
+  inactive&lt;&lt;&lt;{&quot;description&quot;: &quot;If specified blocks matching these identifiers will be skipped.&quot;}&gt;&gt;&gt; = &quot;joule_Q_aux&quot;
+  [curl]
+    type = MFEMCurlAux
+    variable = db_dt_field
+    source = e_field
+    scale_factor = -1.0
+    execute_on = TIMESTEP_END
+  []
+  [joule_Q_aux]
+    type = MFEMInnerProductAux
+    variable = joule_heating
+    first_source_vec = e_field
+    second_source_vec = e_field
+    execute_on = TIMESTEP_END
+  []
+[]
+
+[Functions&lt;&lt;&lt;{&quot;href&quot;: &quot;../Functions/index.html&quot;}&gt;&gt;&gt;]
+  [exact_e_field]
+    type = ParsedVectorFunction&lt;&lt;&lt;{&quot;description&quot;: &quot;Returns a vector function based on string descriptions for each component.&quot;, &quot;href&quot;: &quot;../../source/functions/MooseParsedVectorFunction.html&quot;}&gt;&gt;&gt;
+    expression_x&lt;&lt;&lt;{&quot;description&quot;: &quot;x-component of function.&quot;}&gt;&gt;&gt; = &#x27;sin(kappa * y)&#x27;
+    expression_y&lt;&lt;&lt;{&quot;description&quot;: &quot;y-component of function.&quot;}&gt;&gt;&gt; = &#x27;sin(kappa * z)&#x27;
+    expression_z&lt;&lt;&lt;{&quot;description&quot;: &quot;z-component of function.&quot;}&gt;&gt;&gt; = &#x27;sin(kappa * x)&#x27;
+
+    symbol_names&lt;&lt;&lt;{&quot;description&quot;: &quot;Symbols (excluding t,x,y,z) that are bound to the values provided by the corresponding items in the symbol_values vector.&quot;}&gt;&gt;&gt; = kappa
+    symbol_values&lt;&lt;&lt;{&quot;description&quot;: &quot;Constant numeric values, postprocessor names, function names, and scalar variables corresponding to the symbols in symbol_names.&quot;}&gt;&gt;&gt; = 3.1415926535
+  []
+
+  [forcing_field]
+    type = ParsedVectorFunction&lt;&lt;&lt;{&quot;description&quot;: &quot;Returns a vector function based on string descriptions for each component.&quot;, &quot;href&quot;: &quot;../../source/functions/MooseParsedVectorFunction.html&quot;}&gt;&gt;&gt;
+    expression_x&lt;&lt;&lt;{&quot;description&quot;: &quot;x-component of function.&quot;}&gt;&gt;&gt; = &#x27;(1. + kappa * kappa) * sin(kappa * y)&#x27;
+    expression_y&lt;&lt;&lt;{&quot;description&quot;: &quot;y-component of function.&quot;}&gt;&gt;&gt; = &#x27;(1. + kappa * kappa) * sin(kappa * z)&#x27;
+    expression_z&lt;&lt;&lt;{&quot;description&quot;: &quot;z-component of function.&quot;}&gt;&gt;&gt; = &#x27;(1. + kappa * kappa) * sin(kappa * x)&#x27;
+
+    symbol_names&lt;&lt;&lt;{&quot;description&quot;: &quot;Symbols (excluding t,x,y,z) that are bound to the values provided by the corresponding items in the symbol_values vector.&quot;}&gt;&gt;&gt; = kappa
+    symbol_values&lt;&lt;&lt;{&quot;description&quot;: &quot;Constant numeric values, postprocessor names, function names, and scalar variables corresponding to the symbols in symbol_names.&quot;}&gt;&gt;&gt; = 3.1415926535
+  []
+[]
+
+[BCs&lt;&lt;&lt;{&quot;href&quot;: &quot;../BCs/index.html&quot;}&gt;&gt;&gt;]
+  [tangential_E_bdr]
+    type = MFEMVectorTangentialDirichletBC
+    variable = e_field
+    vector_coefficient = exact_e_field
+  []
+[]
+
+[Kernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../Kernels/index.html&quot;}&gt;&gt;&gt;]
+  [curlcurl]
+    type = MFEMCurlCurlKernel
+    variable = e_field
+  []
+  [mass]
+    type = MFEMVectorFEMassKernel
+    variable = e_field
+  []
+  [source]
+    type = MFEMVectorFEDomainLFKernel
+    variable = e_field
+    vector_coefficient = forcing_field
+  []
+[]
+
+[Solvers]
+  active = &#x27;gmres ams&#x27;
+  [ams]
+    type = MFEMHypreAMS
+    fespace = HCurlFESpace
+  []
+  [matrix_free_ams]
+    type = MFEMMatrixFreeAMS
+  []
+  [gmres]
+    type = MFEMHypreGMRES
+    preconditioner = ams
+    l_tol = 1e-12
+  []
+  [cg]
+    type = MFEMCGSolver
+    preconditioner = matrix_free_ams
+    l_tol = 1e-12
+  []
+[]
+
+[Executioner&lt;&lt;&lt;{&quot;href&quot;: &quot;../Executioner/index.html&quot;}&gt;&gt;&gt;]
+  type = MFEMSteady
+  device = cpu
+[]
+
+[Outputs&lt;&lt;&lt;{&quot;href&quot;: &quot;../Outputs/index.html&quot;}&gt;&gt;&gt;]
+  [ParaViewDataCollection]
+    type = MFEMParaViewDataCollection
+    file_base = OutputData/CurlCurl
+    vtk_format = ASCII
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#1605c047-fb44-46a0-8e5b-c9bea68f03e5">(../moose/test/tests/mfem/kernels/curlcurl.i)</a></section></section><div class="moose-modal modal" id="1605c047-fb44-46a0-8e5b-c9bea68f03e5"><div class="modal-content"><h4>(../moose/test/tests/mfem/kernels/curlcurl.i)</h4><pre style="max-height:350px;"><code class="language-moose"># Definite Maxwell problem solved with Nedelec elements of the first kind
+# based on MFEM Example 3.
+
+[Mesh]
+  type = MFEMFileMesh
+  file = ../mesh/small_fichera.mesh
+[]
+
+[Problem]
+  type = MFEMProblem
+[]
+
+[FESpaces]
+  inactive = &quot;L2FESpace&quot;
+  [HCurlFESpace]
+    type = MFEMVectorFESpace
+    fec_type = ND
+    fec_order = FIRST
+  []
+  [HDivFESpace]
+    type = MFEMVectorFESpace
+    fec_type = RT
+    fec_order = CONSTANT
+  []
+  [L2FESpace]
+    type = MFEMScalarFESpace
+    fec_type = L2
+    fec_order = CONSTANT
+  []
+[]
+
+[Variables]
+  [e_field]
+    type = MFEMVariable
+    fespace = HCurlFESpace
+  []
+[]
+
+[AuxVariables]
+  inactive = &quot;joule_heating&quot;
+  [db_dt_field]
+    type = MFEMVariable
+    fespace = HDivFESpace
+  []
+  [joule_heating]
+    type = MFEMVariable
+    fespace = L2FESpace
+  []
+[]
+
+[AuxKernels]
+  inactive = &quot;joule_Q_aux&quot;
+  [curl]
+    type = MFEMCurlAux
+    variable = db_dt_field
+    source = e_field
+    scale_factor = -1.0
+    execute_on = TIMESTEP_END
+  []
+  [joule_Q_aux]
+    type = MFEMInnerProductAux
+    variable = joule_heating
+    first_source_vec = e_field
+    second_source_vec = e_field
+    execute_on = TIMESTEP_END
+  []
+[]
+
+[Functions]
+  [exact_e_field]
+    type = ParsedVectorFunction
+    expression_x = &#x27;sin(kappa * y)&#x27;
+    expression_y = &#x27;sin(kappa * z)&#x27;
+    expression_z = &#x27;sin(kappa * x)&#x27;
+
+    symbol_names = kappa
+    symbol_values = 3.1415926535
+  []
+
+  [forcing_field]
+    type = ParsedVectorFunction
+    expression_x = &#x27;(1. + kappa * kappa) * sin(kappa * y)&#x27;
+    expression_y = &#x27;(1. + kappa * kappa) * sin(kappa * z)&#x27;
+    expression_z = &#x27;(1. + kappa * kappa) * sin(kappa * x)&#x27;
+
+    symbol_names = kappa
+    symbol_values = 3.1415926535
+  []
+[]
+
+[BCs]
+  [tangential_E_bdr]
+    type = MFEMVectorTangentialDirichletBC
+    variable = e_field
+    vector_coefficient = exact_e_field
+  []
+[]
+
+[Kernels]
+  [curlcurl]
+    type = MFEMCurlCurlKernel
+    variable = e_field
+  []
+  [mass]
+    type = MFEMVectorFEMassKernel
+    variable = e_field
+  []
+  [source]
+    type = MFEMVectorFEDomainLFKernel
+    variable = e_field
+    vector_coefficient = forcing_field
+  []
+[]
+
+
+[Solvers]
+  active = &#x27;gmres ams&#x27;
+  [ams]
+    type = MFEMHypreAMS
+    fespace = HCurlFESpace
+  []
+  [matrix_free_ams]
+    type = MFEMMatrixFreeAMS
+  []
+  [gmres]
+    type = MFEMHypreGMRES
+    preconditioner = ams
+    l_tol = 1e-12
+  []
+  [cg]
+    type = MFEMCGSolver
+    preconditioner = matrix_free_ams
+    l_tol = 1e-12
+  []
+[]
+
+[Executioner]
+  type = MFEMSteady
+  device = cpu
+[]
+
+[Outputs]
+  [ParaViewDataCollection]
+    type = MFEMParaViewDataCollection
+    file_base = OutputData/CurlCurl
+    vtk_format = ASCII
+  []
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

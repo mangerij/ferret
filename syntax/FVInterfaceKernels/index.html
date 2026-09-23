@@ -1,1 +1,270 @@
-<!DOCTYPE html><head><meta charset="UTF-8"><title>FVInterfaceKernels System | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" class="github-mark"></img><img src="../../media/framework/github-mark.png" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="6bf9c075-df66-49e6-8c9e-6c2f2688fc31" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="99000aaf-e422-448b-a063-7adda3cd2a14" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="0e125967-8e8c-475a-9f75-10e35336208b" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="60b663dd-8c14-4352-8faa-11e40c5e3827" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="44453918-2064-411e-987a-70df466503c4" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="f0b9ea3e-0b9b-443c-aa1d-e698c5586ef9"><i class="material-icons">menu</i></a><ul class="sidenav" id="f0b9ea3e-0b9b-443c-aa1d-e698c5586ef9"><li><a href="#!" class="dropdown-trigger" data-target="2805cb10-2cf5-4ce0-8219-e41302c3fc22" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="a5c2865e-eaca-4d3e-b4ae-8cec9077fbc8" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5c88bc19-3b7b-4e83-8c7f-a395e566fd51" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5966a1c4-6742-4ef1-953e-4aece2ad1d88" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a84bbcac-5d0a-4e87-af36-f889009e6dad" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="6bf9c075-df66-49e6-8c9e-6c2f2688fc31"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="99000aaf-e422-448b-a063-7adda3cd2a14"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="0e125967-8e8c-475a-9f75-10e35336208b"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="60b663dd-8c14-4352-8faa-11e40c5e3827"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="44453918-2064-411e-987a-70df466503c4"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="2805cb10-2cf5-4ce0-8219-e41302c3fc22"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="a5c2865e-eaca-4d3e-b4ae-8cec9077fbc8"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="5c88bc19-3b7b-4e83-8c7f-a395e566fd51"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="5966a1c4-6742-4ef1-953e-4aece2ad1d88"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a84bbcac-5d0a-4e87-af36-f889009e6dad"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="dab7a197-aba0-4353-8de9-53688d41b9c4" data-section-level="1" data-section-text="FVInterfaceKernels System"><h1 id="fvinterfacekernels-system">FVInterfaceKernels System</h1><p>For an overview of MOOSE FV please see <a href="../../finite_volumes/fv_design.html">Finite Volume Design Decisions in MOOSE</a>.</p><p><code>FVInterfaceKernels</code> are meant to communicate data at interfaces between subdomains. An <code>FVInterfaceKernel</code> may contribute to the residuals/Jacobians of a single variable, specified with the parameter <code>variable1</code>, or to multiple variables by also using the <code>variable2</code> parameter. There are two additional critical/required parameters: <code>subdomain1</code> and <code>subdomain2</code>. In cases for which an <code>FVInterfaceKernel</code> is operating on two variables, <code>subdomain1</code> should correspond to the subdomain(s) neighboring the <code>boundary</code> parameter that <code>variable1</code> lives on, and similarly for <code>subdomain2</code> and <code>variable2</code>. By checking the <code>subdomain</code> parameters against the subdomain IDs of the <code>FaceInfo::elem</code> and <code>FaceInfo::neighbor</code> members a <code>FVInterfaceKernel</code> developer can be sure that they are fetching and using sensical data. For instance, a developer may want to create an <code>FVInterfaceKernel</code> that uses <code>prop1</code> on the <code>subdomain1</code> side of the <code>boundary</code> and <code>prop2</code> on the <code>subdomain2</code> side of the boundary. However, MOOSE only provides these APIs for fetching material properties: <code>get(AD)MaterialProperty</code> and <code>getNeighbor(AD)MaterialProperty</code>. The return value of <code>get(AD)MaterialProperty</code> will always correspond to a material property evaluation on the <code>FaceInfo::elem</code> side of a (inter)face, while the return value of <code>getNeighbor(AD)MaterialProperty</code> will always correspond to a material property evaluation on the <code>FaceInfo::neighbor</code> side of a (inter)face. However, when moving along an interface, it is possible that the <code>FaceInfo::elem</code> side of the interface is sometimes the <code>subdomain1</code> side and sometimes the <code>subdomain2</code> side. So making use of the <code>subdomain</code> parameters, we provide a protected method called <code>elemIsOne()</code> that returns a boolean indicating whether the <code>FaceInfo::elem</code> side of the interface corresponds to the <code>subdomain1</code> side of the interface. This allows the developer to write code like the following: <code></code>` FVFooInterface::FVFooInterface(const InputParameters &amp; params)   : FVInterfaceKernel(params),     _coeff1_elem(getADMaterialProperty&lt;Real&gt;(&quot;coeff1&quot;)),     _coeff2_elem(getADMaterialProperty&lt;Real&gt;(&quot;coeff2&quot;)),     _coeff1_neighbor(getNeighborADMaterialProperty&lt;Real&gt;(&quot;coeff1&quot;)),     _coeff2_neighbor(getNeighborADMaterialProperty&lt;Real&gt;(&quot;coeff2&quot;)) { }</p><p>ADReal FVFooInterface::computeQpResidual() {   const auto &amp; coef_elem = elemIsOne() ? _coeff1_elem : _coeff2_elem;   const auto &amp; coef_neighbor = elemIsOne() ? _coeff2_neighbor : _coeff1_neighbor;</p><p>  /// Code that uses coef_elem and coef_neighbor } <code></code>` and have confidence that they have good data in <code>coef_elem</code> and <code>coef_neighbor</code> and have clarity about what is happening in their code. </p></section></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>
+<!DOCTYPE html><head><meta charset="UTF-8"><title>FVInterfaceKernels System | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="7c084224-9b46-408e-a8b9-6f510bba68b4" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6f537c91-d26f-42ff-9196-61dc2a000cc7" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="fb1c6566-c18f-4012-970a-a2bcf37b9acb" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="d1ca243f-c27c-4c6d-b197-c709ff1ee66c" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="bb86473d-99bb-470a-b343-7b9d0f8e0b97" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="c9632ed5-64e8-4ecd-921d-205ef2c9d3e3"><i class="material-icons">menu</i></a><ul class="sidenav" id="c9632ed5-64e8-4ecd-921d-205ef2c9d3e3"><li><a href="#!" class="dropdown-trigger" data-target="51298eea-5679-4d08-86cd-53d6c903148a" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8b8ccb63-d137-41ad-b484-c1df23c42330" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5df30797-e683-486c-87c5-998c58464204" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="db2c4450-4339-4a73-acef-38fdfb3a1c1f" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="751d74b6-5f18-4094-ad18-1093ca251591" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="7c084224-9b46-408e-a8b9-6f510bba68b4"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="6f537c91-d26f-42ff-9196-61dc2a000cc7"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="fb1c6566-c18f-4012-970a-a2bcf37b9acb"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="d1ca243f-c27c-4c6d-b197-c709ff1ee66c"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="bb86473d-99bb-470a-b343-7b9d0f8e0b97"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="51298eea-5679-4d08-86cd-53d6c903148a"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="8b8ccb63-d137-41ad-b484-c1df23c42330"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="5df30797-e683-486c-87c5-998c58464204"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="db2c4450-4339-4a73-acef-38fdfb3a1c1f"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="751d74b6-5f18-4094-ad18-1093ca251591"><li><a href="../index.html">Complete syntax</a></li><li><a href="../ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="ef0d90c7-2c55-4a92-9166-056ff736f200" data-section-level="1" data-section-text="FVInterfaceKernels System"><h1 id="fvinterfacekernels-system">FVInterfaceKernels System</h1><p>For an overview of MOOSE FV please see <a href="../../finite_volumes/fv_design.html">Finite Volume Design Decisions in MOOSE</a>.</p><p><code>FVInterfaceKernels</code> communicate data across interfaces between subdomains. The user defines the orientation of an interface with <code>subdomain1</code> and <code>subdomain2</code>. <code>variable1</code> must be defined on <code>subdomain1</code>, and <code>variable2</code> must be defined on <code>subdomain2</code>. If <code>variable2</code> is omitted, <code>variable1</code> is used on both sides.</p><p>During initial setup, MOOSE verifies that every boundary face assigned to an <code>FVInterfaceKernel</code> connects the configured <code>subdomain1</code> and <code>subdomain2</code> sets. This reports malformed or overextended interface sidesets before residual evaluation begins.</p><section id="c1dc2c7d-7016-4b99-8053-dc198dc66d15" data-section-level="2" data-section-text="Developer contract"><h2 id="developer-contract">Developer contract</h2><p>Derived <code>FVInterfaceKernel</code> objects operate entirely in the user-defined side-1/side-2 orientation. <code>computeQpResidual()</code> returns the residual contribution \(r\) for <code>variable1</code> on <code>subdomain1</code>. The base class multiplies \(r\) by the face area and coordinate factor, adds it to <code>variable1</code>, and adds \(-r\) to <code>variable2</code> when both variables belong to the same nonlinear system. A derived object does not need to determine which user-defined side is represented by <code>FaceInfo::elem</code>.</p><p>The protected side-oriented accessors are:</p><ul class="browser-default"><li><p><code>normal()</code>, which points from side 1 toward side 2; </p></li><li><p><code>elem1()</code> and <code>elem2()</code>, which return the elements on sides 1 and 2; </p></li><li><p><code>centroid1()</code> and <code>centroid2()</code>, which return their centroids; </p></li><li><p><code>elemArg1()</code> and <code>elemArg2()</code>, which create element functor arguments; and </p></li><li><p><code>faceArg1()</code> and <code>faceArg2()</code>, which create explicitly one-sided face functor arguments. The checked <code>faceArg1(functor)</code> and <code>faceArg2(functor)</code> overloads also verify that the functor is defined on the requested logical side.</p></li></ul><p><code>interpolateValue(method, value1, value2)</code> interpolates a value from each user-defined side while accounting for the geometric orientation of the current <code>FaceInfo</code>. For example, a diffusion interface can evaluate and interpolate its coefficients without any geometric orientation branch:</p><pre style="max-height:350px;"><code class="language-text">
+ADReal
+FVFooInterface::computeQpResidual()
+{
+  const auto state = determineState();
+  const auto coefficient = interpolateValue(
+      _interp_method, _coefficient1(elemArg1(), state), _coefficient2(elemArg2(), state));
+
+  Point one_over_gradient_support = centroid1() - centroid2();
+  one_over_gradient_support /= one_over_gradient_support.norm_sq();
+  const auto gradient = (var1().getElemValue(&amp;elem1(), state) -
+                         var2().getElemValue(&amp;elem2(), state)) *
+                        one_over_gradient_support;
+
+  return -coefficient * normal() * gradient;
+}
+</code></pre><p>Use the checked <code>faceArg1(functor)</code> or <code>faceArg2(functor)</code> overloads when a functor must be evaluated from one particular side rather than interpolated across the interface. These overloads preserve the requested logical side and report an error if the functor is not defined there. The no-functor overloads remain available when constructing a one-sided argument that is not immediately tied to a particular functor. This distinction is important for discontinuous or block-restricted functors.</p><div class="card moose-alert moose-alert-note"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">comment</i><span class="moose-alert-title-brand">note</span></div><div class="card-content"><div class="moose-alert-content"><p>When using an <code>FVInterfaceKernel</code> to connect variables that belong to different nonlinear systems, create two kernels with flipped variable, subdomain, and material-property parameters. An interface kernel contributes only to the system containing <code>variable1</code>. For an example, see:</p><pre style="max-height:350px;"><code class="language-moose">[Mesh&lt;&lt;&lt;{&quot;href&quot;: &quot;../Mesh/index.html&quot;}&gt;&gt;&gt;]
+  [gmg]
+    type = CartesianMeshGenerator&lt;&lt;&lt;{&quot;description&quot;: &quot;This CartesianMeshGenerator creates a non-uniform Cartesian mesh.&quot;, &quot;href&quot;: &quot;../../source/meshgenerators/CartesianMeshGenerator.html&quot;}&gt;&gt;&gt;
+    dim&lt;&lt;&lt;{&quot;description&quot;: &quot;The dimension of the mesh to be generated&quot;}&gt;&gt;&gt; = 1
+    ix&lt;&lt;&lt;{&quot;description&quot;: &quot;Number of grids in all intervals in the X direction (default to all one)&quot;}&gt;&gt;&gt; = &#x27;50 50&#x27;
+    dx&lt;&lt;&lt;{&quot;description&quot;: &quot;Intervals in the X direction&quot;}&gt;&gt;&gt; = &#x27;1 1&#x27;
+    subdomain_id&lt;&lt;&lt;{&quot;description&quot;: &quot;Block IDs (default to all zero)&quot;}&gt;&gt;&gt; = &#x27;0 1&#x27;
+  []
+  [sds]
+    type = SideSetsBetweenSubdomainsGenerator&lt;&lt;&lt;{&quot;description&quot;: &quot;MeshGenerator that creates a sideset composed of the nodes located between two or more subdomains.&quot;, &quot;href&quot;: &quot;../../source/meshgenerators/SideSetsBetweenSubdomainsGenerator.html&quot;}&gt;&gt;&gt;
+    input&lt;&lt;&lt;{&quot;description&quot;: &quot;The mesh we want to modify&quot;}&gt;&gt;&gt; = gmg
+    new_boundary&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of boundary names to create on the supplied subdomain&quot;}&gt;&gt;&gt; = &#x27;between&#x27;
+    paired_block&lt;&lt;&lt;{&quot;description&quot;: &quot;The paired set of blocks for which to draw a sideset between&quot;}&gt;&gt;&gt; = &#x27;1&#x27;
+    primary_block&lt;&lt;&lt;{&quot;description&quot;: &quot;The primary set of blocks for which to draw a sideset between&quot;}&gt;&gt;&gt; = &#x27;0&#x27;
+  []
+[]
+
+[Problem&lt;&lt;&lt;{&quot;href&quot;: &quot;../Problem/index.html&quot;}&gt;&gt;&gt;]
+  nl_sys_names = &#x27;u v&#x27;
+  error_on_jacobian_nonzero_reallocation = true
+[]
+
+[Variables&lt;&lt;&lt;{&quot;href&quot;: &quot;../Variables/index.html&quot;}&gt;&gt;&gt;]
+  [u]
+    type = MooseVariableFVReal&lt;&lt;&lt;{&quot;description&quot;: &quot;Base class for Moose variables. This should never be the terminal object type&quot;, &quot;href&quot;: &quot;../../source/variables/MooseVariableFV.html&quot;}&gt;&gt;&gt;
+    solver_sys&lt;&lt;&lt;{&quot;description&quot;: &quot;If this variable is a solver variable, this is the solver system to which it should be added.&quot;}&gt;&gt;&gt; = &#x27;u&#x27;
+    block&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of blocks (ids or names) that this object will be applied&quot;}&gt;&gt;&gt; = 0
+  []
+  [v]
+    type = MooseVariableFVReal&lt;&lt;&lt;{&quot;description&quot;: &quot;Base class for Moose variables. This should never be the terminal object type&quot;, &quot;href&quot;: &quot;../../source/variables/MooseVariableFV.html&quot;}&gt;&gt;&gt;
+    solver_sys&lt;&lt;&lt;{&quot;description&quot;: &quot;If this variable is a solver variable, this is the solver system to which it should be added.&quot;}&gt;&gt;&gt; = &#x27;v&#x27;
+    block&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of blocks (ids or names) that this object will be applied&quot;}&gt;&gt;&gt; = 1
+  []
+[]
+
+[FVKernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../FVKernels/index.html&quot;}&gt;&gt;&gt;]
+  [diff_u]
+    type = FVDiffusion&lt;&lt;&lt;{&quot;description&quot;: &quot;Computes residual for diffusion operator for finite volume method.&quot;, &quot;href&quot;: &quot;../../source/fvkernels/FVDiffusion.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this residual object operates on&quot;}&gt;&gt;&gt; = u
+    coeff&lt;&lt;&lt;{&quot;description&quot;: &quot;diffusion coefficient. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = 3.0
+  []
+  [force_u]
+    type = FVBodyForce&lt;&lt;&lt;{&quot;description&quot;: &quot;Demonstrates the multiple ways that scalar values can be introduced into finite volume kernels, e.g. (controllable) constants, functions, and postprocessors.&quot;, &quot;href&quot;: &quot;../../source/fvkernels/FVBodyForce.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this residual object operates on&quot;}&gt;&gt;&gt; = u
+    function&lt;&lt;&lt;{&quot;description&quot;: &quot;A function that describes the body force&quot;}&gt;&gt;&gt; = 5
+  []
+  [diff_v]
+    type = FVDiffusion&lt;&lt;&lt;{&quot;description&quot;: &quot;Computes residual for diffusion operator for finite volume method.&quot;, &quot;href&quot;: &quot;../../source/fvkernels/FVDiffusion.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this residual object operates on&quot;}&gt;&gt;&gt; = v
+    coeff&lt;&lt;&lt;{&quot;description&quot;: &quot;diffusion coefficient. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.&quot;}&gt;&gt;&gt; = 1.0
+  []
+  [force_v]
+    type = FVBodyForce&lt;&lt;&lt;{&quot;description&quot;: &quot;Demonstrates the multiple ways that scalar values can be introduced into finite volume kernels, e.g. (controllable) constants, functions, and postprocessors.&quot;, &quot;href&quot;: &quot;../../source/fvkernels/FVBodyForce.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this residual object operates on&quot;}&gt;&gt;&gt; = v
+    function&lt;&lt;&lt;{&quot;description&quot;: &quot;A function that describes the body force&quot;}&gt;&gt;&gt; = 5
+  []
+[]
+
+[FVInterfaceKernels&lt;&lt;&lt;{&quot;href&quot;: &quot;index.html&quot;}&gt;&gt;&gt;]
+  [diff_ik]
+    type = FVDiffusionInterface&lt;&lt;&lt;{&quot;description&quot;: &quot;Computes the residual for diffusion operator across an interface for the finite volume method.&quot;, &quot;href&quot;: &quot;../../source/fviks/FVDiffusionInterface.html&quot;}&gt;&gt;&gt;
+    variable1&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the first variable that this interface kernel applies to&quot;}&gt;&gt;&gt; = u
+    variable2&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the second variable that this interface kernel applies to. If not supplied, variable1 will be used.&quot;}&gt;&gt;&gt; = v
+    boundary&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of boundary IDs from the mesh where this object applies&quot;}&gt;&gt;&gt; = &#x27;between&#x27;
+    coeff1&lt;&lt;&lt;{&quot;description&quot;: &quot;The diffusion coefficient on the 1st subdomain&quot;}&gt;&gt;&gt; = 3
+    coeff2&lt;&lt;&lt;{&quot;description&quot;: &quot;The diffusion coefficient on the 2nd subdomain&quot;}&gt;&gt;&gt; = 1
+    subdomain1&lt;&lt;&lt;{&quot;description&quot;: &quot;The subdomains on the 1st side of the boundary.&quot;}&gt;&gt;&gt; = 0
+    subdomain2&lt;&lt;&lt;{&quot;description&quot;: &quot;The subdomains on the 2nd side of the boundary.&quot;}&gt;&gt;&gt; = 1
+  []
+  [diff_ik_v]
+    type = FVDiffusionInterface&lt;&lt;&lt;{&quot;description&quot;: &quot;Computes the residual for diffusion operator across an interface for the finite volume method.&quot;, &quot;href&quot;: &quot;../../source/fviks/FVDiffusionInterface.html&quot;}&gt;&gt;&gt;
+    variable1&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the first variable that this interface kernel applies to&quot;}&gt;&gt;&gt; = v
+    variable2&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the second variable that this interface kernel applies to. If not supplied, variable1 will be used.&quot;}&gt;&gt;&gt; = u
+    boundary&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of boundary IDs from the mesh where this object applies&quot;}&gt;&gt;&gt; = &#x27;between&#x27;
+    coeff1&lt;&lt;&lt;{&quot;description&quot;: &quot;The diffusion coefficient on the 1st subdomain&quot;}&gt;&gt;&gt; = 1
+    coeff2&lt;&lt;&lt;{&quot;description&quot;: &quot;The diffusion coefficient on the 2nd subdomain&quot;}&gt;&gt;&gt; = 3
+    subdomain1&lt;&lt;&lt;{&quot;description&quot;: &quot;The subdomains on the 1st side of the boundary.&quot;}&gt;&gt;&gt; = 1
+    subdomain2&lt;&lt;&lt;{&quot;description&quot;: &quot;The subdomains on the 2nd side of the boundary.&quot;}&gt;&gt;&gt; = 0
+  []
+[]
+
+[FVBCs&lt;&lt;&lt;{&quot;href&quot;: &quot;../FVBCs/index.html&quot;}&gt;&gt;&gt;]
+  [left_u]
+    type = FVDirichletBC&lt;&lt;&lt;{&quot;description&quot;: &quot;Defines a Dirichlet boundary condition for finite volume method.&quot;, &quot;href&quot;: &quot;../../source/fvbcs/FVDirichletBC.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this boundary condition applies to&quot;}&gt;&gt;&gt; = u
+    boundary&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of boundary IDs from the mesh where this object applies&quot;}&gt;&gt;&gt; = left
+    value&lt;&lt;&lt;{&quot;description&quot;: &quot;value to enforce at the boundary face&quot;}&gt;&gt;&gt; = 0
+  []
+  [right_v]
+    type = FVDirichletBC&lt;&lt;&lt;{&quot;description&quot;: &quot;Defines a Dirichlet boundary condition for finite volume method.&quot;, &quot;href&quot;: &quot;../../source/fvbcs/FVDirichletBC.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this boundary condition applies to&quot;}&gt;&gt;&gt; = v
+    boundary&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of boundary IDs from the mesh where this object applies&quot;}&gt;&gt;&gt; = right
+    value&lt;&lt;&lt;{&quot;description&quot;: &quot;value to enforce at the boundary face&quot;}&gt;&gt;&gt; = 1
+  []
+[]
+
+[Preconditioning&lt;&lt;&lt;{&quot;href&quot;: &quot;../Preconditioning/index.html&quot;}&gt;&gt;&gt;]
+  [u]
+    type = SMP&lt;&lt;&lt;{&quot;description&quot;: &quot;Single matrix preconditioner (SMP) builds a preconditioner using user defined off-diagonal parts of the Jacobian.&quot;, &quot;href&quot;: &quot;../../source/preconditioners/SingleMatrixPreconditioner.html&quot;}&gt;&gt;&gt;
+    nl_sys&lt;&lt;&lt;{&quot;description&quot;: &quot;The nonlinear system whose linearization this preconditioner should be applied to.&quot;}&gt;&gt;&gt; = u
+    petsc_options&lt;&lt;&lt;{&quot;description&quot;: &quot;Singleton PETSc options&quot;}&gt;&gt;&gt; = &#x27;-snes_monitor&#x27;
+    petsc_options_iname&lt;&lt;&lt;{&quot;description&quot;: &quot;Names of PETSc name/value pairs&quot;}&gt;&gt;&gt; = &#x27;-pc_type -pc_hypre_type&#x27;
+    petsc_options_value&lt;&lt;&lt;{&quot;description&quot;: &quot;Values of PETSc name/value pairs (must correspond with \&quot;petsc_options_iname\&quot;&quot;}&gt;&gt;&gt; = &#x27;hypre boomeramg&#x27;
+  []
+  [v]
+    type = SMP&lt;&lt;&lt;{&quot;description&quot;: &quot;Single matrix preconditioner (SMP) builds a preconditioner using user defined off-diagonal parts of the Jacobian.&quot;, &quot;href&quot;: &quot;../../source/preconditioners/SingleMatrixPreconditioner.html&quot;}&gt;&gt;&gt;
+    nl_sys&lt;&lt;&lt;{&quot;description&quot;: &quot;The nonlinear system whose linearization this preconditioner should be applied to.&quot;}&gt;&gt;&gt; = v
+    petsc_options&lt;&lt;&lt;{&quot;description&quot;: &quot;Singleton PETSc options&quot;}&gt;&gt;&gt; = &#x27;-snes_monitor&#x27;
+    petsc_options_iname&lt;&lt;&lt;{&quot;description&quot;: &quot;Names of PETSc name/value pairs&quot;}&gt;&gt;&gt; = &#x27;-pc_type -pc_hypre_type&#x27;
+    petsc_options_value&lt;&lt;&lt;{&quot;description&quot;: &quot;Values of PETSc name/value pairs (must correspond with \&quot;petsc_options_iname\&quot;&quot;}&gt;&gt;&gt; = &#x27;hypre boomeramg&#x27;
+  []
+[]
+
+[Executioner&lt;&lt;&lt;{&quot;href&quot;: &quot;../Executioner/index.html&quot;}&gt;&gt;&gt;]
+  type = SteadySolve2
+  solve_type = &#x27;NEWTON&#x27;
+  first_nl_sys_to_solve = &#x27;u&#x27;
+  second_nl_sys_to_solve = &#x27;v&#x27;
+  number_of_iterations = 200
+  nl_abs_tol = 1e-10
+[]
+
+[Outputs&lt;&lt;&lt;{&quot;href&quot;: &quot;../Outputs/index.html&quot;}&gt;&gt;&gt;]
+  print_nonlinear_residuals&lt;&lt;&lt;{&quot;description&quot;: &quot;Enable printing of nonlinear residuals to the screen (Console)&quot;}&gt;&gt;&gt; = false
+  print_linear_residuals&lt;&lt;&lt;{&quot;description&quot;: &quot;Enable printing of linear residuals to the screen (Console)&quot;}&gt;&gt;&gt; = false
+  exodus&lt;&lt;&lt;{&quot;description&quot;: &quot;Output the results using the default settings for Exodus output.&quot;}&gt;&gt;&gt; = true
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#47524ad7-eba4-4590-9609-3f3a32e8c601">(../moose/test/tests/fviks/diffusion/multisystem.i)</a><p></p></div></div></div></section></section><div class="moose-modal modal" id="47524ad7-eba4-4590-9609-3f3a32e8c601"><div class="modal-content"><h4>(../moose/test/tests/fviks/diffusion/multisystem.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gmg]
+    type = CartesianMeshGenerator
+    dim = 1
+    ix = &#x27;50 50&#x27;
+    dx = &#x27;1 1&#x27;
+    subdomain_id = &#x27;0 1&#x27;
+  []
+  [sds]
+    type = SideSetsBetweenSubdomainsGenerator
+    input = gmg
+    new_boundary = &#x27;between&#x27;
+    paired_block = &#x27;1&#x27;
+    primary_block = &#x27;0&#x27;
+  []
+[]
+
+[Problem]
+  nl_sys_names = &#x27;u v&#x27;
+  error_on_jacobian_nonzero_reallocation = true
+[]
+
+[Variables]
+  [u]
+    type = MooseVariableFVReal
+    solver_sys = &#x27;u&#x27;
+    block = 0
+  []
+  [v]
+    type = MooseVariableFVReal
+    solver_sys = &#x27;v&#x27;
+    block = 1
+  []
+[]
+
+[FVKernels]
+  [diff_u]
+    type = FVDiffusion
+    variable = u
+    coeff = 3.0
+  []
+  [force_u]
+    type = FVBodyForce
+    variable = u
+    function = 5
+  []
+  [diff_v]
+    type = FVDiffusion
+    variable = v
+    coeff = 1.0
+  []
+  [force_v]
+    type = FVBodyForce
+    variable = v
+    function = 5
+  []
+[]
+
+[FVInterfaceKernels]
+  [diff_ik]
+    type = FVDiffusionInterface
+    variable1 = u
+    variable2 = v
+    boundary = &#x27;between&#x27;
+    coeff1 = 3
+    coeff2 = 1
+    subdomain1 = 0
+    subdomain2 = 1
+  []
+  [diff_ik_v]
+    type = FVDiffusionInterface
+    variable1 = v
+    variable2 = u
+    boundary = &#x27;between&#x27;
+    coeff1 = 1
+    coeff2 = 3
+    subdomain1 = 1
+    subdomain2 = 0
+  []
+[]
+
+[FVBCs]
+  [left_u]
+    type = FVDirichletBC
+    variable = u
+    boundary = left
+    value = 0
+  []
+  [right_v]
+    type = FVDirichletBC
+    variable = v
+    boundary = right
+    value = 1
+  []
+[]
+
+[Preconditioning]
+  [u]
+    type = SMP
+    nl_sys = u
+    petsc_options = &#x27;-snes_monitor&#x27;
+    petsc_options_iname = &#x27;-pc_type -pc_hypre_type&#x27;
+    petsc_options_value = &#x27;hypre boomeramg&#x27;
+  []
+  [v]
+    type = SMP
+    nl_sys = v
+    petsc_options = &#x27;-snes_monitor&#x27;
+    petsc_options_iname = &#x27;-pc_type -pc_hypre_type&#x27;
+    petsc_options_value = &#x27;hypre boomeramg&#x27;
+  []
+[]
+
+[Executioner]
+  type = SteadySolve2
+  solve_type = &#x27;NEWTON&#x27;
+  first_nl_sys_to_solve = &#x27;u&#x27;
+  second_nl_sys_to_solve = &#x27;v&#x27;
+  number_of_iterations = 200
+  nl_abs_tol = 1e-10
+[]
+
+[Outputs]
+  print_nonlinear_residuals = false
+  print_linear_residuals = false
+  exodus = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

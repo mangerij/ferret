@@ -1,0 +1,233 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>EulerAngleUpdateFromReporter | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="d23d04ef-d28c-45af-8323-06f8b0cce781" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="88799b6a-e43a-464d-8b3f-10f39fc565f1" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="013e12c3-ef5b-48eb-8612-3876a5ece413" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="088427a0-15f6-4323-9ca6-ccab46276611" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="b043f9d1-4e3a-4dc6-a834-a14c61486032" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="378f655a-7449-40c9-bea6-c31ede495331"><i class="material-icons">menu</i></a><ul class="sidenav" id="378f655a-7449-40c9-bea6-c31ede495331"><li><a href="#!" class="dropdown-trigger" data-target="f3dc3ff0-638d-44d4-b7de-e702cc26f75d" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6e4b4219-cb3f-4e35-a41e-f5f769a334e7" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6e379f0a-8a40-443f-aea6-294a82cee362" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="73e27739-bed2-4679-a901-1121f5bf8b59" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="7d89cf9d-d790-4985-b5d4-70d335073c08" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="d23d04ef-d28c-45af-8323-06f8b0cce781"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="88799b6a-e43a-464d-8b3f-10f39fc565f1"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="013e12c3-ef5b-48eb-8612-3876a5ece413"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="088427a0-15f6-4323-9ca6-ccab46276611"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="b043f9d1-4e3a-4dc6-a834-a14c61486032"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="f3dc3ff0-638d-44d4-b7de-e702cc26f75d"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="6e4b4219-cb3f-4e35-a41e-f5f769a334e7"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="6e379f0a-8a40-443f-aea6-294a82cee362"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="73e27739-bed2-4679-a901-1121f5bf8b59"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="7d89cf9d-d790-4985-b5d4-70d335073c08"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="e2bcf439-cbdb-40d4-a58d-6088993ad568" data-section-level="1" data-section-text="EulerAngleUpdateFromReporter"><h1 id="eulerangleupdatefromreporter">EulerAngleUpdateFromReporter</h1><p>The <code>EulerAngleUpdateFromReporter</code> user object is a <code>EulerAngleProvider</code> that is derived from <a href="EulerAngleFileReader.html">EulerAngleFileReader</a>, inheriting its ability to read initial grain orientations for each material block from a file. In addition to this functionality, the <code>EulerAngleUpdateFromReporter</code> object also updates the Euler angles for each grain (material block) using values reported from a separate source. The current implementation overwrites grain orientation information from previous steps with values from the reporter. Users should ensure the correctness of the assigned values in the reporter to maintain simulation accuracy.</p><section id="7c379c23-fa69-40fc-b997-7a4d0c5f513c" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p>The <code>EulerAngleUpdateFromReporter</code> object is designed to be used in tandem with a reporter, as its name implies. This reporter should supply the necessary Euler angles information for each grain (or subdomain). The reporter&#x27;s output should consist of four columns:</p><ol class="browser-default" start="1"><li><p>Subdomain ID (Grain ID): This column should contain unique identifiers for each grain. </p></li><li><p>Euler Angle 1: This column should provide the first component of the Euler angles (in degrees) for the corresponding grain. </p></li><li><p>Euler Angle 2: This column should provide the second component of the Euler angles (in degrees) for the corresponding grain, in degrees. </p></li><li><p>Euler Angle 3: This column should provide the third component of the Euler angles (in degrees) for the corresponding grain, in degrees.</p></li></ol><p>Following is an example of such a reporter named <code>updated_ea</code> with column names <code>ea0 ea1 ea2</code> and <code>subdomain_id</code>:</p><pre style="max-height:350px;"><code class="language-moose">[Reporters&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Reporters/index.html&quot;}&gt;&gt;&gt;]
+  [updated_ea]
+    type = ConstantReporter&lt;&lt;&lt;{&quot;description&quot;: &quot;Reporter with constant values to be accessed by other objects, can be modified using transfers.&quot;, &quot;href&quot;: &quot;../reporters/ConstantReporter.html&quot;}&gt;&gt;&gt;
+    real_vector_names&lt;&lt;&lt;{&quot;description&quot;: &quot;Names for each vector of reals value.&quot;}&gt;&gt;&gt; = &#x27;ea0 ea1 ea2 subdomain_id&#x27;
+    real_vector_values&lt;&lt;&lt;{&quot;description&quot;: &quot;Values for vectors of reals.&quot;}&gt;&gt;&gt; = &#x27;10 20 30 40 50 60 70 80; 11 21 31 41 51 61 71 81; 12 22 32 42 52 62 72 82; 0 1 2 3 4 5 6 7&#x27; # Dummy value
+    outputs&lt;&lt;&lt;{&quot;description&quot;: &quot;Vector of output names where you would like to restrict the output of variables(s) associated with this object&quot;}&gt;&gt;&gt; = none
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#df83a283-8dac-4dee-ae7d-9bee915c6fa2">(../moose/modules/solid_mechanics/test/tests/block_orientation/euler_angle_from_reporter.i)</a><p>Then, in the definition of the <code>EulerAngleUpdateFromReporter</code> object, one should fill the input options, <code>grain_id_name</code> and Euler angle components, i.e., <code>euler_angle_0_name</code>, <code>euler_angle_1_name</code>, <code>euler_angle_2_name</code> with the corresponding <code>&lt;reporter name&gt;/&lt;column name&gt;</code> pairs. For example, in this specific case, the <code>reporter name</code> is <code>updated_ea</code>, and the <code>column name</code> are listed  in the <code>real_vector_names</code> in the <code>Reporters</code> section.</p><pre style="max-height:350px;"><code class="language-moose">[UserObjects&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/UserObjects/index.html&quot;}&gt;&gt;&gt;]
+  [euler_angle_file]
+    type = EulerAngleUpdateFromReporter&lt;&lt;&lt;{&quot;description&quot;: &quot;Update Euler angle from reporter value.&quot;, &quot;href&quot;: &quot;EulerAngleUpdateFromReporter.html&quot;}&gt;&gt;&gt;
+    file_name&lt;&lt;&lt;{&quot;description&quot;: &quot;Euler angle data file name&quot;}&gt;&gt;&gt; = grn_8_rand.tex
+    execute_on&lt;&lt;&lt;{&quot;description&quot;: &quot;The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.&quot;}&gt;&gt;&gt; = &#x27;timestep_begin&#x27;
+
+    euler_angle_0_name&lt;&lt;&lt;{&quot;description&quot;: &quot;reporter name for the first component of the Euler angles in degrees.  This parameter uses the reporter syntax &lt;reporter&gt;/&lt;name&gt;.&quot;}&gt;&gt;&gt; = updated_ea/ea0
+    euler_angle_1_name&lt;&lt;&lt;{&quot;description&quot;: &quot;reporter name for the second component of the Euler angles in degrees.  This parameter uses the reporter syntax &lt;reporter&gt;/&lt;name&gt;.&quot;}&gt;&gt;&gt; = updated_ea/ea1
+    euler_angle_2_name&lt;&lt;&lt;{&quot;description&quot;: &quot;reporter name for the third component of the Euler angles in degrees.  This parameter uses the reporter syntax &lt;reporter&gt;/&lt;name&gt;.&quot;}&gt;&gt;&gt; = updated_ea/ea2
+    grain_id_name&lt;&lt;&lt;{&quot;description&quot;: &quot;reporter name for the grain IDs.  This parameter uses the reporter syntax &lt;reporter&gt;/&lt;name&gt;.&quot;}&gt;&gt;&gt; = updated_ea/subdomain_id
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#7cd57930-19a3-4880-823f-058439927d00">(../moose/modules/solid_mechanics/test/tests/block_orientation/euler_angle_from_reporter.i)</a></section><section id="4b5ec20d-2d9e-46cf-9f12-c339046b4018" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="aabe06c5-81af-45d0-9bd7-7125d09a8c14" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_0_name</span><span class="moose-parameter-header-description">reporter name for the first component of the Euler angles in degrees.  This parameter uses the reporter syntax <reporter>/<name>.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ReporterName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>reporter name for the first component of the Euler angles in degrees.  This parameter uses the reporter syntax <reporter>/<name>.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_1_name</span><span class="moose-parameter-header-description">reporter name for the second component of the Euler angles in degrees.  This parameter uses the reporter syntax <reporter>/<name>.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ReporterName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>reporter name for the second component of the Euler angles in degrees.  This parameter uses the reporter syntax <reporter>/<name>.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_2_name</span><span class="moose-parameter-header-description">reporter name for the third component of the Euler angles in degrees.  This parameter uses the reporter syntax <reporter>/<name>.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ReporterName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>reporter name for the third component of the Euler angles in degrees.  This parameter uses the reporter syntax <reporter>/<name>.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">file_name</span><span class="moose-parameter-header-description">Euler angle data file name</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>FileName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle data file name</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">grain_id_name</span><span class="moose-parameter-header-description">reporter name for the grain IDs.  This parameter uses the reporter syntax <reporter>/<name>.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ReporterName</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>reporter name for the grain IDs.  This parameter uses the reporter syntax <reporter>/<name>.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="2bb90214-b6c3-4413-9fcf-dd7a4b6adb35" data-section-level="3" data-section-text="Execution Scheduling Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>XFEM_MARK, NONE, INITIAL, LINEAR, LINEAR_CONVERGENCE, NONLINEAR, NONLINEAR_CONVERGENCE, POSTCHECK, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, MULTIAPP_FIXED_POINT_CONVERGENCE, MULTISYSTEM_FIXED_POINT_ITERATION_END, FINAL, CUSTOM, TRANSFER</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execution_order_group</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_postaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in POSTAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in POSTAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preic</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREIC during initial setup</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREIC during initial setup</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Execution Scheduling Parameters</h3></summary></details></section><section id="8b10af03-0b3f-48e9-954a-b49cb05eacda" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="b866bc30-e12d-45a5-993e-afab11582615" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section></section><div class="moose-modal modal" id="df83a283-8dac-4dee-ae7d-9bee915c6fa2"><div class="modal-content"><h4>(../moose/modules/solid_mechanics/test/tests/block_orientation/euler_angle_from_reporter.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [box]
+    type = GeneratedMeshGenerator
+    dim = 3
+    xmax = 1
+    ymax = 2
+    zmax = 2
+    nx = 2
+    ny = 4
+    nz = 4
+    elem_type = HEX8
+  []
+  [subdomain]
+    input = box
+    type = SubdomainPerElementGenerator
+    element_ids = &#x27;0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31&#x27;
+    subdomain_ids = &#x27;0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6 7 7 7 7&#x27;
+  []
+[]
+
+[Variables]
+  [diffused]
+    order = FIRST
+    family = LAGRANGE
+  []
+[]
+
+# We are testing the UO from vectorpostprocessor values.
+# So the kernel does not matter here.
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = diffused
+  []
+[]
+
+[BCs]
+  [top]
+    type = DirichletBC
+    variable = diffused
+    boundary = &#x27;top&#x27;
+    value = 1
+  []
+  [others] # arbitrary user-chosen name
+    type = DirichletBC
+    variable = diffused
+    boundary = &#x27;bottom left right front back&#x27;
+    value = 0
+  []
+[]
+
+[UserObjects]
+  [euler_angle_file]
+    type = EulerAngleUpdateFromReporter
+    file_name = grn_8_rand.tex
+    execute_on = &#x27;timestep_begin&#x27;
+
+    euler_angle_0_name = updated_ea/ea0
+    euler_angle_1_name = updated_ea/ea1
+    euler_angle_2_name = updated_ea/ea2
+    grain_id_name = updated_ea/subdomain_id
+  []
+[]
+
+[VectorPostprocessors]
+  [block_orient]
+    type = BlockOrientationVectorPostprocessor
+    euler_angle_provider = euler_angle_file
+    sort_by = id # sort output by elem id
+  []
+[]
+
+[Reporters]
+  [updated_ea]
+    type = ConstantReporter
+    real_vector_names = &#x27;ea0 ea1 ea2 subdomain_id&#x27;
+    real_vector_values = &#x27;10 20 30 40 50 60 70 80; 11 21 31 41 51 61 71 81; 12 22 32 42 52 62 72 82; 0 1 2 3 4 5 6 7&#x27; # Dummy value
+    outputs = none
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27; lu &#x27;
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-10
+  nl_abs_step_tol = 1e-10
+
+  dt = 0.05
+  dtmin = 0.01
+  end_time = 0.1
+[]
+
+[Outputs]
+  csv = true
+  execute_on = &#x27;FINAL&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="7cd57930-19a3-4880-823f-058439927d00"><div class="modal-content"><h4>(../moose/modules/solid_mechanics/test/tests/block_orientation/euler_angle_from_reporter.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [box]
+    type = GeneratedMeshGenerator
+    dim = 3
+    xmax = 1
+    ymax = 2
+    zmax = 2
+    nx = 2
+    ny = 4
+    nz = 4
+    elem_type = HEX8
+  []
+  [subdomain]
+    input = box
+    type = SubdomainPerElementGenerator
+    element_ids = &#x27;0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31&#x27;
+    subdomain_ids = &#x27;0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 6 6 6 6 7 7 7 7&#x27;
+  []
+[]
+
+[Variables]
+  [diffused]
+    order = FIRST
+    family = LAGRANGE
+  []
+[]
+
+# We are testing the UO from vectorpostprocessor values.
+# So the kernel does not matter here.
+[Kernels]
+  [diff]
+    type = Diffusion
+    variable = diffused
+  []
+[]
+
+[BCs]
+  [top]
+    type = DirichletBC
+    variable = diffused
+    boundary = &#x27;top&#x27;
+    value = 1
+  []
+  [others] # arbitrary user-chosen name
+    type = DirichletBC
+    variable = diffused
+    boundary = &#x27;bottom left right front back&#x27;
+    value = 0
+  []
+[]
+
+[UserObjects]
+  [euler_angle_file]
+    type = EulerAngleUpdateFromReporter
+    file_name = grn_8_rand.tex
+    execute_on = &#x27;timestep_begin&#x27;
+
+    euler_angle_0_name = updated_ea/ea0
+    euler_angle_1_name = updated_ea/ea1
+    euler_angle_2_name = updated_ea/ea2
+    grain_id_name = updated_ea/subdomain_id
+  []
+[]
+
+[VectorPostprocessors]
+  [block_orient]
+    type = BlockOrientationVectorPostprocessor
+    euler_angle_provider = euler_angle_file
+    sort_by = id # sort output by elem id
+  []
+[]
+
+[Reporters]
+  [updated_ea]
+    type = ConstantReporter
+    real_vector_names = &#x27;ea0 ea1 ea2 subdomain_id&#x27;
+    real_vector_values = &#x27;10 20 30 40 50 60 70 80; 11 21 31 41 51 61 71 81; 12 22 32 42 52 62 72 82; 0 1 2 3 4 5 6 7&#x27; # Dummy value
+    outputs = none
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;PJFNK&#x27;
+
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27; lu &#x27;
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-10
+  nl_abs_step_tol = 1e-10
+
+  dt = 0.05
+  dtmin = 0.01
+  end_time = 0.1
+[]
+
+[Outputs]
+  csv = true
+  execute_on = &#x27;FINAL&#x27;
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>

@@ -1,0 +1,244 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>ComponentBoundaryConditionInterface | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="db0ba76c-013a-4524-b789-49502b20bd8e" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="172e9c95-6b3c-4c94-b4d8-02929e12a577" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6415055e-5cf9-479e-b5d8-e4af5c0aca47" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f8f95ecf-c4c3-4bb0-abc0-7c9ea59cf727" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="57834dc1-1b23-4ad8-a920-89ec2bf8862d" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="09e12ed0-3538-4fe9-8db5-790f913f77e0"><i class="material-icons">menu</i></a><ul class="sidenav" id="09e12ed0-3538-4fe9-8db5-790f913f77e0"><li><a href="#!" class="dropdown-trigger" data-target="1abc685d-3c67-42e0-9df0-db8c1555fc10" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="da34537b-4cea-4750-ab08-1263d55e9cb0" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="656f7467-17d0-4872-b447-a05063c8dcae" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="00fba357-a351-4238-8131-f90f77dbd8f7" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="f5cdb456-a2d3-4289-bbf8-ba3fe0785d3b" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="db0ba76c-013a-4524-b789-49502b20bd8e"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="172e9c95-6b3c-4c94-b4d8-02929e12a577"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="6415055e-5cf9-479e-b5d8-e4af5c0aca47"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="f8f95ecf-c4c3-4bb0-abc0-7c9ea59cf727"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="57834dc1-1b23-4ad8-a920-89ec2bf8862d"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="1abc685d-3c67-42e0-9df0-db8c1555fc10"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="da34537b-4cea-4750-ab08-1263d55e9cb0"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="656f7467-17d0-4872-b447-a05063c8dcae"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="00fba357-a351-4238-8131-f90f77dbd8f7"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="f5cdb456-a2d3-4289-bbf8-ba3fe0785d3b"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="8c27858b-f786-4b67-b3fc-85f02186e32f" data-section-level="1" data-section-text="ComponentBoundaryConditionInterface"><h1 id="componentboundaryconditioninterface">ComponentBoundaryConditionInterface</h1><p>The <code>ComponentBoundaryConditionInterface</code> is a base class designed to facilitate the use of <a href="../../syntax/Physics/index.html">Physics</a> by an <a href="ActionComponent.html">ActionComponent</a>. It offers:</p><ul class="browser-default"><li><p>the <a href="#921db114-686b-456f-867c-f120eef4f854" class="moose-modal-link modal-trigger">&quot;fixed_value_bc_variables&quot;</a>, <a href="#794a00fe-f564-463f-b9b3-e5a44635fd6c" class="moose-modal-link modal-trigger">&quot;fixed_value_bc_boundaries&quot;</a> and <a href="#20282f0c-16b6-46d2-ad1a-3a2a5c3b7a86" class="moose-modal-link modal-trigger">&quot;fixed_value_bc_values&quot;</a> to define fixed value / Dirichlet boundary conditions on the surfaces of the <code>ActionComponent</code> </p></li><li><p>the <a href="#af3c20e6-ea90-4e16-ba6c-3cadf5d84911" class="moose-modal-link modal-trigger">&quot;flux_bc_variables&quot;</a>, <a href="#8653dfa3-b3a0-42d3-b5f8-2377b68688e2" class="moose-modal-link modal-trigger">&quot;flux_bc_boundaries&quot;</a> and <a href="#a9ecc954-f49c-433b-bb9d-6289294c4fd4" class="moose-modal-link modal-trigger">&quot;flux_bc_values&quot;</a> to define flux boundary conditions on the surfaces of the <code>ActionComponent</code></p></li></ul><p>An <a href="ActionComponent.html">ActionComponent</a> inheriting <code>ComponentBoundaryConditionInterface</code> must be registered to the <code>init_component_physics</code> and <code>check_integrity</code> tasks. For example,</p><pre style="max-height:350px;"><code class="language-cpp">registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;add_mesh_generator&quot;);
+// CylinderComponent is an example of ComponentPhysicsInterface
+registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;init_component_physics&quot;);
+// CylinderComponent is an example of ComponentMaterialPropertyInterface
+registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;add_material&quot;);
+// CylinderComponent is an example of ComponentInitialConditionInterface
+registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;check_integrity&quot;);
+registerActionComponent(&quot;MooseApp&quot;, CylinderComponent);
+</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#2baa886a-ab44-4d4e-8986-30029faf2c96">(../moose/framework/src/actioncomponents/CylinderComponent.C)</a><div class="card moose-alert moose-alert-note"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">comment</i><span class="moose-alert-title-brand">note</span></div><div class="card-content"><div class="moose-alert-content"><p>This helper leverages virtual inheritance: it inherits the <a href="ActionComponent.html">ActionComponent</a> class virtually. This offers some simplicity in its definition, but components leveraging this helper must also inherit the <code>ActionComponent</code> class virtually.</p></div></div></div></section><div class="moose-modal modal" id="921db114-686b-456f-867c-f120eef4f854"><div class="modal-content"><h4>fixed_value_bc_variables</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of variables that have fixed value boundary condition(s) defined on this component</p></div></div><div class="moose-modal modal" id="794a00fe-f564-463f-b9b3-e5a44635fd6c"><div class="modal-content"><h4>fixed_value_bc_boundaries</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::vector&lt;BoundaryName&gt;&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundaries on which to apply the fixed value boundary condition(s). Outer ordering is variables, inner order is surfaces</p></div></div><div class="moose-modal modal" id="20282f0c-16b6-46d2-ad1a-3a2a5c3b7a86"><div class="modal-content"><h4>fixed_value_bc_values</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::vector&lt;MooseFunctorName&gt;&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Functors that provide the fixed value boundary condition(s) values. Outer ordering is variables, inner order is surfaces. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.</p></div></div><div class="moose-modal modal" id="af3c20e6-ea90-4e16-ba6c-3cadf5d84911"><div class="modal-content"><h4>flux_bc_variables</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of variables that have flux boundary condition(s) defined on this component</p></div></div><div class="moose-modal modal" id="8653dfa3-b3a0-42d3-b5f8-2377b68688e2"><div class="modal-content"><h4>flux_bc_boundaries</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::vector&lt;BoundaryName&gt;&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Boundaries on which to apply the flux boundary condition(s). Outer ordering is variables, inner order is surfaces</p></div></div><div class="moose-modal modal" id="a9ecc954-f49c-433b-bb9d-6289294c4fd4"><div class="modal-content"><h4>flux_bc_values</h4><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::vector&lt;MooseFunctorName&gt;&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Functors that provide the flux boundary condition(s) values. Outer ordering is variables, inner order is surfaces. A functor is any of the following: a variable, a functor material property, a function, a postprocessor or a number.</p></div></div><div class="moose-modal modal" id="2baa886a-ab44-4d4e-8986-30029faf2c96"><div class="modal-content"><h4>(../moose/framework/src/actioncomponents/CylinderComponent.C)</h4><pre style="max-height:350px;"><code class="language-cpp">// This file is part of the MOOSE framework
+// https://mooseframework.inl.gov
+//
+// All rights reserved, see COPYRIGHT for full restrictions
+// https://github.com/idaholab/moose/blob/master/COPYRIGHT
+//
+// Licensed under LGPL 2.1, please see LICENSE for details
+// https://www.gnu.org/licenses/lgpl-2.1.html
+
+// MOOSE includes
+#include &quot;CylinderComponent.h&quot;
+#include &quot;RotationMatrix.h&quot;
+
+registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;add_mesh_generator&quot;);
+// CylinderComponent is an example of ComponentPhysicsInterface
+registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;init_component_physics&quot;);
+// CylinderComponent is an example of ComponentMaterialPropertyInterface
+registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;add_material&quot;);
+// CylinderComponent is an example of ComponentInitialConditionInterface
+registerMooseAction(&quot;MooseApp&quot;, CylinderComponent, &quot;check_integrity&quot;);
+registerActionComponent(&quot;MooseApp&quot;, CylinderComponent);
+
+InputParameters
+CylinderComponent::validParams()
+{
+  InputParameters params = ActionComponent::validParams();
+  params += ComponentPhysicsInterface::validParams();
+  params += ComponentMaterialPropertyInterface::validParams();
+  params += ComponentInitialConditionInterface::validParams();
+  params += ComponentBoundaryConditionInterface::validParams();
+  params += ComponentMeshTransformHelper::validParams();
+  params.addClassDescription(&quot;Cylindrical component.&quot;);
+  MooseEnum dims(&quot;0 1 2 3&quot;);
+  params.addRequiredParam&lt;MooseEnum&gt;(&quot;dimension&quot;,
+                                     dims,
+                                     &quot;Dimension of the cylinder. 0 for a point (not implemented), &quot;
+                                     &quot;1 for an (axial) 1D line, 2 for a 2D-RZ cylinder, and 3 for &quot;
+                                     &quot;a 3D cylinder&quot;);
+  params.addParam&lt;SubdomainName&gt;(&quot;block&quot;, &quot;Block name for the cylinder&quot;);
+
+  // Geometry
+  params.addRequiredRangeCheckedParam&lt;Real&gt;(&quot;radius&quot;, &quot;radius&gt;0&quot;, &quot;Radius of the cylinder&quot;);
+  params.addRequiredRangeCheckedParam&lt;Real&gt;(&quot;length&quot;, &quot;length&gt;0&quot;, &quot;Length/Height of the cylinder&quot;);
+  params.addParam&lt;bool&gt;(&quot;position_is_bottom_center&quot;,
+                        true,
+                        &quot;Whether the &#x27;position&#x27; parameter gives the position of the bottom-center &quot;
+                        &quot;of the cylinder. Only used in 3D&quot;);
+
+  // Discretization
+  params.addRangeCheckedParam&lt;std::vector&lt;unsigned int&gt;&gt;(
+      &quot;n_radial&quot;,
+      {1},
+      &quot;n_radial &gt; 0&quot;,
+      &quot;Number of radial elements (per ring if multiple values specified). All rings are lumped at &quot;
+      &quot;this time.&quot;);
+  // TODO: Specify the ring radii and subdomains as well
+  params.addRequiredRangeCheckedParam&lt;unsigned int&gt;(
+      &quot;n_axial&quot;, &quot;n_axial&gt;0&quot;, &quot;Number of axial elements of the cylinder&quot;);
+  params.addRangeCheckedParam&lt;unsigned int&gt;(
+      &quot;n_sectors&quot;,
+      &quot;n_sectors&gt;0&quot;,
+      &quot;Number of azimuthal sectors in each quadrant of cylinder face. Only used in 3D&quot;);
+  params.addParamNamesToGroup(&quot;n_radial n_axial n_sectors&quot;, &quot;Discretization&quot;);
+
+  // Boundary layers
+  params.addRangeCheckedParam&lt;Real&gt;(&quot;boundary_layer_width&quot;,
+                                    &quot;boundary_layer_width&gt;=0&quot;,
+                                    &quot;The width of the radial boundary layer (if assigned).&quot;);
+  params.addParam&lt;unsigned int&gt;(
+      &quot;n_boundary_layers&quot;,
+      1,
+      &quot;The number of radial boundary layers. Only active if boundary_layer_width is specified&quot;);
+  params.addParamNamesToGroup(&quot;boundary_layer_width n_boundary_layers&quot;, &quot;Radial boundary layer&quot;);
+
+  return params;
+}
+
+CylinderComponent::CylinderComponent(const InputParameters &amp; params)
+  : ActionComponent(params),
+    ComponentPhysicsInterface(params),
+    ComponentMaterialPropertyInterface(params),
+    ComponentInitialConditionInterface(params),
+    ComponentBoundaryConditionInterface(params),
+    ComponentMeshTransformHelper(params),
+    _radius(getParam&lt;Real&gt;(&quot;radius&quot;)),
+    _height(getParam&lt;Real&gt;(&quot;length&quot;)),
+    _offset_position_to_center(getParam&lt;bool&gt;(&quot;position_is_bottom_center&quot;))
+{
+  _dimension = getParam&lt;MooseEnum&gt;(&quot;dimension&quot;);
+  // The other component interfaces add their required task
+  addRequiredTask(&quot;add_mesh_generator&quot;);
+}
+
+void
+CylinderComponent::addMeshGenerators()
+{
+  // Create the base mesh for the component using a mesh generator
+  if (_dimension == 0)
+    paramError(&quot;dimension&quot;, &quot;0D cylinder not implemented&quot;);
+  else if (_dimension == 1 || _dimension == 2)
+  {
+    InputParameters params = _factory.getValidParams(&quot;GeneratedMeshGenerator&quot;);
+    params.set&lt;MooseEnum&gt;(&quot;dim&quot;) = _dimension;
+    params.set&lt;Real&gt;(&quot;xmax&quot;) = {getParam&lt;Real&gt;(&quot;length&quot;)};
+    params.set&lt;unsigned int&gt;(&quot;nx&quot;) = {getParam&lt;unsigned int&gt;(&quot;n_axial&quot;)};
+    params.set&lt;std::string&gt;(&quot;boundary_name_prefix&quot;) = name();
+    if (_dimension == 2)
+    {
+      params.set&lt;Real&gt;(&quot;ymax&quot;) = {getParam&lt;Real&gt;(&quot;radius&quot;)};
+      params.set&lt;Real&gt;(&quot;ymin&quot;) = 0;
+      if (!isParamValid(&quot;n_radial&quot;))
+        paramError(&quot;n_radial&quot;, &quot;Should be provided for a 2D cylinder&quot;);
+      params.set&lt;unsigned int&gt;(&quot;ny&quot;) = getParam&lt;std::vector&lt;unsigned int&gt;&gt;(&quot;n_radial&quot;)[0];
+    }
+    else if (isParamSetByUser(&quot;n_radial&quot;))
+      paramError(&quot;n_radial&quot;, &quot;Should not be provided for a 1D cylinder&quot;);
+    if (isParamValid(&quot;block&quot;))
+    {
+      const auto block_name = getParam&lt;SubdomainName&gt;(&quot;block&quot;);
+      params.set&lt;SubdomainName&gt;(&quot;subdomain_name&quot;) = block_name;
+      _blocks.push_back(block_name);
+    }
+    _app.getMeshGeneratorSystem().addMeshGenerator(
+        &quot;GeneratedMeshGenerator&quot;, name() + &quot;_base&quot;, params);
+    _mg_names.push_back(name() + &quot;_base&quot;);
+  }
+  else if (_dimension == 3)
+  {
+    if (!isParamValid(&quot;n_axial&quot;))
+      paramError(&quot;n_axial&quot;, &quot;Should be provided for a 3D cylinder&quot;);
+    if (!isParamValid(&quot;n_sectors&quot;))
+      paramError(&quot;n_sectors&quot;, &quot;Should be provided in 3D&quot;);
+
+    // create circular face
+    InputParameters circle_params = _factory.getValidParams(&quot;ConcentricCircleMeshGenerator&quot;);
+    circle_params.set&lt;bool&gt;(&quot;preserve_volumes&quot;) = true;
+    circle_params.set&lt;bool&gt;(&quot;has_outer_square&quot;) = false;
+    auto ring_disc_vec = getParam&lt;std::vector&lt;unsigned int&gt;&gt;(&quot;n_radial&quot;);
+    // TODO: multi-ring support
+    ring_disc_vec = {std::accumulate(ring_disc_vec.begin(), ring_disc_vec.end(), (unsigned int)0)};
+    if (isParamValid(&quot;boundary_layer_width&quot;))
+    {
+      Real inner_radius = getParam&lt;Real&gt;(&quot;radius&quot;) - getParam&lt;Real&gt;(&quot;boundary_layer_width&quot;);
+      circle_params.set&lt;std::vector&lt;Real&gt;&gt;(&quot;radii&quot;) = {inner_radius, getParam&lt;Real&gt;(&quot;radius&quot;)};
+      ring_disc_vec.push_back(getParam&lt;unsigned int&gt;(&quot;n_boundary_layers&quot;));
+    }
+    else
+      circle_params.set&lt;std::vector&lt;Real&gt;&gt;(&quot;radii&quot;) = {getParam&lt;Real&gt;(&quot;radius&quot;)};
+    circle_params.set&lt;std::vector&lt;unsigned int&gt;&gt;(&quot;rings&quot;) = ring_disc_vec;
+
+    circle_params.set&lt;unsigned int&gt;(&quot;num_sectors&quot;) = getParam&lt;unsigned int&gt;(&quot;n_sectors&quot;);
+    if (isParamValid(&quot;block&quot;))
+    {
+      const auto block_name = getParam&lt;SubdomainName&gt;(&quot;block&quot;);
+      circle_params.set&lt;SubdomainName&gt;(&quot;subdomain_name&quot;) = block_name;
+      _blocks.push_back(block_name);
+    }
+    _app.getMeshGeneratorSystem().addMeshGenerator(
+        &quot;ConcentricCircleMeshGenerator&quot;, name() + &quot;_circle_base&quot;, circle_params);
+    _mg_names.push_back(name() + &quot;_circle_base&quot;);
+
+    // rotate to have extrusion axis be along x-axis
+    // NOTE: this is re-rotated by the ComponentMeshTransformHelper
+    InputParameters rotate_params = _factory.getValidParams(&quot;TransformGenerator&quot;);
+    rotate_params.set&lt;MeshGeneratorName&gt;(&quot;input&quot;) = _mg_names.back();
+    rotate_params.set&lt;MooseEnum&gt;(&quot;transform&quot;) = &quot;ROTATE_EXT&quot;;
+    RealVectorValue angles(-90, -90, 90);
+    rotate_params.set&lt;RealVectorValue&gt;(&quot;vector_value&quot;) = angles;
+    _app.getMeshGeneratorSystem().addMeshGenerator(
+        &quot;TransformGenerator&quot;, name() + &quot;_3D_init_rotate&quot;, rotate_params);
+    _mg_names.push_back(name() + &quot;_3D_init_rotate&quot;);
+
+    // extrude the surface
+    InputParameters ext_params = _factory.getValidParams(&quot;AdvancedExtruderGenerator&quot;);
+    ext_params.set&lt;std::vector&lt;unsigned int&gt;&gt;(&quot;num_layers&quot;) = {getParam&lt;unsigned int&gt;(&quot;n_axial&quot;)};
+    ext_params.set&lt;MeshGeneratorName&gt;(&quot;input&quot;) = _mg_names.back();
+    ext_params.set&lt;std::vector&lt;Real&gt;&gt;(&quot;heights&quot;) = {_height};
+    ext_params.set&lt;BoundaryName&gt;(&quot;bottom_boundary&quot;) = name() + &quot;_bottom_boundary&quot;;
+    ext_params.set&lt;BoundaryName&gt;(&quot;top_boundary&quot;) = name() + &quot;_top_boundary&quot;;
+
+    const Point default_direction(1, 0, 0);
+    ext_params.set&lt;Point&gt;(&quot;direction&quot;) = default_direction;
+    _app.getMeshGeneratorSystem().addMeshGenerator(
+        &quot;AdvancedExtruderGenerator&quot;, name() + &quot;_base&quot;, ext_params);
+    _mg_names.push_back(name() + &quot;_base&quot;);
+  }
+  _top_mg_name = _mg_names.back();
+
+  ComponentMeshTransformHelper::addMeshGenerators();
+}
+
+void
+CylinderComponent::setupComponent()
+{
+  if (_dimension == 2)
+  {
+    _awh.getMesh()-&gt;setCoordSystem(_blocks, MultiMooseEnum(&quot;COORD_RZ&quot;));
+    if (_direction)
+      _awh.getMesh()-&gt;setGeneralAxisymmetricCoordAxes(
+          {getParam&lt;SubdomainName&gt;(&quot;block&quot;)},
+          {std::make_pair(translation(), _direction ? *_direction : RealVectorValue(0, 1, 0))});
+    if (_rotation)
+      paramError(&quot;rotation&quot;, &quot;Rotation + 2D RZ cylinder not implemented&quot;);
+  }
+}
+
+void
+CylinderComponent::checkIntegrity()
+{
+  ComponentInitialConditionInterface::checkIntegrity();
+  ComponentBoundaryConditionInterface::checkIntegrity();
+}
+
+Point
+CylinderComponent::translation() const
+{
+  // The 1D or 2D RZ cylinders are naturally centered
+  if (!_offset_position_to_center || _dimension &lt;= 2)
+    return ComponentMeshTransformHelper::translation();
+
+  auto input_translation = ComponentMeshTransformHelper::translation();
+  // The translation will be applied after the rotation, we need to translate by the rotated radius
+  // There are two options for specifying rotations / translations
+  if (_rotation)
+    paramError(&quot;position_is_bottom_center&quot;,
+               &quot;Rotation + offset cylinder to center not implemented. Use &#x27;direction&#x27; instead&quot;);
+
+  const auto rotation_matrix =
+      _direction
+          ? RotationMatrix::rodriguesRotationMatrix&lt;false&gt;(RealVectorValue(1, 0, 0), *_direction)
+          : RealTensorValue(1, 0, 0, 0, 1, 0, 0, 0, 1);
+  input_translation -= rotation_matrix * Point(_radius, 0, 0);
+
+  return input_translation;
+}
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>
