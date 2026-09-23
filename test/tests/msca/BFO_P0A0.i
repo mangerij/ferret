@@ -14,7 +14,6 @@ h11 = 2.0e-4
 h12 = -0.2e-3
 h44 = 0.8e-3
 
-
 [Mesh]
   [gen]
     type = GeneratedMeshGenerator
@@ -32,18 +31,6 @@ h44 = 0.8e-3
   []
   [./cnode]
     input = gen
-
-    ############################################
-    ##
-    ##   additional boundary sideset (one node)
-    ##   to zero one of the elastic displacement vectors
-    ##   vectors and eliminates rigid body translations
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
 
     type = ExtraNodesetGenerator
     coord = '0.0 0.0 0.0'
@@ -67,7 +54,6 @@ h44 = 0.8e-3
   potential_E_int = potential_E_int
 []
 
-
 [Functions]
   [./constPm]
     type = ParsedFunction
@@ -86,7 +72,6 @@ h44 = 0.8e-3
     expression = 7.37
   [../]
 []
-
 
 [Variables]
   [./u_x]
@@ -153,7 +138,6 @@ h44 = 0.8e-3
     family = LAGRANGE
   [../]
 []
-
 
 [AuxVariables]
   [./disp_x]
@@ -367,7 +351,6 @@ h44 = 0.8e-3
     component = 2
   [../]
 
-  ### Operators for the polar field: ###
   [./bed_x]
     type = BulkEnergyDerivativeEighth
     variable = polar_x
@@ -414,7 +397,6 @@ h44 = 0.8e-3
      variable = polar_z
      component = 2
   [../]
-
 
   [./walled_a_x]
     type = AFDWallEnergyDerivative
@@ -479,10 +461,6 @@ h44 = 0.8e-3
     component = 2
   [../]
 
-
-
-
-
   [./electrostr_polar_coupled_x]
     type = ElectrostrictiveCouplingPolarDerivative
     variable = polar_x
@@ -510,9 +488,6 @@ h44 = 0.8e-3
   u_z = disp_z
 
   [../]
-
-
-  #Operators for the AFD field
 
   [./rbed_x]
     type = RotoBulkEnergyDerivativeEighthAlt
@@ -555,7 +530,6 @@ h44 = 0.8e-3
   u_z = disp_z
   [../]
 
-
   [./polar_x_electric_E]
      type = PolarElectricEStrong
      variable = potential_E_int
@@ -579,8 +553,6 @@ h44 = 0.8e-3
      variable = polar_z
      component = 2
   [../]
-
-
 
   [./polar_x_time]
     type = TimeDerivativeScaled
@@ -636,7 +608,6 @@ h44 = 0.8e-3
     time_scale = 1.0
   [../]
 
-
 []
 
 [ScalarKernels]
@@ -666,7 +637,6 @@ h44 = 0.8e-3
     prop_values = '0.012516 0.0180504 -0.036155 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0'
   [../]
 
-
   [./Landau_G]
     type = GenericConstantMaterial
     prop_names = 'G110 G11_G110 G12_G110 G44_G110 G44P_G110'
@@ -679,23 +649,11 @@ h44 = 0.8e-3
     prop_values = '1.0 ${h11} ${h12} ${h44} 0.0'
   [../]
 
-
-
   [./mat_C]
     type = GenericConstantMaterial
     prop_names = 'C11 C12 C44'
     prop_values = '295.179 117.567 74.0701'
   [../]
-
-  ##############################################################
-  ##
-  ## NOTE: Sign convention in **this implementation**
-  ##       for the electrostrictive coeff. is multiplied by
-  ##       an overall factor of (-1). Note that other elastic
-  ##       coupling Kernels/Materials in Ferret DO NOT have the 
-  ##       (-1) prefactor. Please be careful here.
-  ##
-  ###############################################################
 
   [./mat_Q]
     type = GenericConstantMaterial
@@ -714,8 +672,6 @@ h44 = 0.8e-3
     prop_names = 'q11 q12 q44'
     prop_values = '-30.4162 -5.01496 -10.4105'
 
-#the point is the following: use a slightly different definition of Q_ij than Hlinka
-
   [../]
   [./mat_r]
     type = GenericConstantMaterial
@@ -727,7 +683,6 @@ h44 = 0.8e-3
     fill_method = symmetric9
     C_ijkl = '295.179 117.567 117.567 295.179 117.567 295.179 74.0701 74.0701 74.0701'
   [../]
-
 
   [./strain]
     type = ComputeSmallStrain
@@ -745,15 +700,6 @@ h44 = 0.8e-3
   [../]
 
   [./permitivitty_1]
-
-    ###############################################
-    ##
-    ##  so-called background dielectric constant
-    ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use
-    ##  e_b = 10), see PRB. 74, 104014, (2006)
-    ##
-    ###############################################
 
     type = GenericConstantMaterial
     prop_names = 'permittivity'
@@ -815,20 +761,8 @@ h44 = 0.8e-3
     pp_coefs = ' 1 1 1 1 1 1 1 1 1'
     execute_on = 'timestep_end'
 
-    ##########################################
-    #
-    # NOTE: Ferret output is in attojoules
-    #
-    ##########################################
-  [../]
-  [./perc_change]
-    type = EnergyRatePostprocessor
-    postprocessor = Ftot
-    execute_on = 'timestep_end'
-    dt = dt
   [../]
 []
-
 
 [BCs]
   [./Periodic]
@@ -841,7 +775,6 @@ h44 = 0.8e-3
       variable = 'potential_E_int'
     [../]
   [../]
-  # fix center point location
   [./centerfix_x]
     type = DirichletBC
     boundary = 100
@@ -862,19 +795,12 @@ h44 = 0.8e-3
   [../]
 []
 
-
 [UserObjects]
   [./global_strain_uo]
     type = GlobalBFOMaterialRVEUserObject
     execute_on = 'Initial Linear Nonlinear'
   [../]
-  [./kill]
-   type = Terminator
-   expression = 'perc_change <= 5.0e-7'
-  [../]
 []
-
-#=
 
 [Preconditioning]
   [./smp]
@@ -893,10 +819,9 @@ h44 = 0.8e-3
   dtmin = 1e-13
   dtmax = 10.0
 
-
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 25  #usually 10
+    optimal_iterations = 25
     linear_iteration_ratio = 100
     dt = 0.08
     growth_factor = 1.1
@@ -905,7 +830,6 @@ h44 = 0.8e-3
   num_steps = 2
 []
 
-#=
 [Outputs]
   print_linear_residuals = false
   perf_graph_live = false

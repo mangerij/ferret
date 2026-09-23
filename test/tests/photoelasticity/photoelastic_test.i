@@ -1,4 +1,3 @@
-
 [Mesh]
   [file]
     type = FileMeshGenerator
@@ -21,7 +20,6 @@
   n_g = 2.365
 []
 
-
 [Variables]
   [./disp_x]
     order = FIRST
@@ -36,7 +34,6 @@
     family = LAGRANGE
   [../]
 []
-
 
 [AuxVariables]
   [./stress_xx_elastic]
@@ -286,7 +283,6 @@
     execute_on = 'timestep_end'
   [../]
 
-
   [./n_1_c]
     type = RefractiveIndex
     variable = n_1
@@ -319,19 +315,10 @@
 
 []
 
-################################################
-# Block list:                                  #
-#                                              #
-# No 99?                                       #
-#                                              #
-################################################
-
-
 [Materials]
-  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+  [./eigen_strain_zz]
     type = ComputeEigenstrain
     block = '1 2 3 4 5 6'
-    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
     eigenstrain_name = eigenstrain
     prefactor = 0.0
@@ -340,7 +327,6 @@
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 0.0
     euler_angle_2 = 15.0
@@ -358,8 +344,7 @@
   [../]
   [./photoelastic_tensor_1]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
-    # Use BaTiO3, crystal symmetry P4mm.
+    fill_method = symmetric21
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 0.0
     euler_angle_2 = 15.0
@@ -378,11 +363,9 @@
     block = '1'
   [../]
 
-
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 12.0
     euler_angle_2 = -15.0
@@ -400,8 +383,7 @@
   [../]
   [./photoelastic_tensor_2]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
-    # Use BaTiO3, crystal symmetry P4mm.
+    fill_method = symmetric21
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 12.0
     euler_angle_2 = -15.0
@@ -420,12 +402,9 @@
     block = '2'
   [../]
 
-
-
   [./elasticity_tensor_3]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 1.0
     euler_angle_2 = 50.0
@@ -443,8 +422,7 @@
   [../]
   [./photoelastic_tensor_3]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
-    # Use BaTiO3, crystal symmetry P4mm.
+    fill_method = symmetric21
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 1.0
     euler_angle_2 = 50.0
@@ -463,11 +441,9 @@
     block = '3'
   [../]
 
-
   [./elasticity_tensor_4]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 100.0
     euler_angle_2 = 0.0
@@ -485,8 +461,7 @@
   [../]
   [./photoelastic_tensor_4]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
-    # Use BaTiO3, crystal symmetry P4mm.
+    fill_method = symmetric21
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 100.0
     euler_angle_2 = 0.0
@@ -505,11 +480,9 @@
     block = '4'
   [../]
 
-
   [./elasticity_tensor_5]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 200.0
     euler_angle_2 = 33.0
@@ -527,8 +500,7 @@
   [../]
   [./photoelastic_tensor_5]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
-    # Use BaTiO3, crystal symmetry P4mm.
+    fill_method = symmetric21
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 200.0
     euler_angle_2 = 33.0
@@ -547,11 +519,9 @@
     block = '5'
   [../]
 
-
   [./elasticity_tensor_6]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 110.0
     euler_angle_2 = 0.0
@@ -569,8 +539,7 @@
   [../]
   [./photoelastic_tensor_6]
     type = ComputeElastoopticTensor
-    fill_method = symmetric21 #BTO is not symmetric21 FIX!!
-    # Use BaTiO3, crystal symmetry P4mm.
+    fill_method = symmetric21
     P_mnkl = '0.5 0.106 0.2 0.0 0.0 0.0 0.5 0.2 0.0 0.0 0.0 0.77 0.0 0.0 0.0 1.0 0.0 0.0 1.0 0.0 0.1'
     euler_angle_1 = 110.0
     euler_angle_2 = 0.0
@@ -592,12 +561,9 @@
 []
 
 [Kernels]
-  #Elastic problem
   [./SolidMechanics]
-  #This is an action block
   [../]
 []
-
 
 [BCs]
   [./center_disp_z_top]
@@ -640,7 +606,7 @@
 
 [Executioner]
   type = Steady
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'NEWTON'
 []
 
 [Outputs]

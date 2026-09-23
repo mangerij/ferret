@@ -1,9 +1,19 @@
 [Tests]
   [./fluct]
     type = 'Exodiff'
-    input = 'PTOtest_fluc.i'
-    exodiff = 'outPTO_test_fluct.e'
-    use_old_floor = true
-    abs_zero = 1.0 #one should wonder why this is so erratic... is it the time step size? rtol?
+    input = 'PTO_3D_fluct.i'
+    exodiff = 'PTO_3D_fluct_exo.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  ##  Covers RandomConstrainedVectorFieldIC: a two-sublattice AFM after
+  ##  tutorial/AFMR_MnF2_ex.i. Pure IC test, no solve. Reproducible on any
+  ##  decomposition (verified serial vs 2 ranks), so no parallel limits.
+
+  [./random_constrained_vector]
+    type = 'Exodiff'
+    input = 'random_constrained_vector.i'
+    exodiff = 'random_constrained_vector_out.e'
   [../]
 []

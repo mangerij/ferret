@@ -1,35 +1,4 @@
-
-
-  ##############################
-  ##
-  ## UNITS:
-  ##
-  ##   gamma = (2.2101*10^5 ) m/C
-  ##
-  ## NOTE:
-  ##   gamma*Hscale = 1/ns
-  ##
-  ##   coefficients given in (pg/nm*ns)
-  ##   which is equivalent to an energy/vol
-  ##
-  ##   Effective fields are 1/(mu0*Ms)*coeff
-  ##   which gives units of aC/(nm*mus)
-  ##
-  ##   Energies are natively printed in units
-  ##    of 0.160218 pg nm^2 / mus^2
-  ##    or 1.60218*10^{-22} J
-  ##    or 0.001 eV
-  ##
-  ##############################
-
-################
-#
-#  LLG alpha:
-#
-################
-
 alphadef = 0.02
-
 
 [Mesh]
   [./mesh]
@@ -63,7 +32,6 @@ alphadef = 0.02
   [../]
 [../]
 
-
 [GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
@@ -78,11 +46,6 @@ alphadef = 0.02
 []
 
 [Materials]
-  ############################################################################
-  ##
-  ##       material constants used.
-  ##
-  ############################################################################
 
   [./constants]
     type = GenericConstantMaterial
@@ -114,18 +77,11 @@ alphadef = 0.02
 
 [Functions]
 
-  ##############################
-  ##
-  ## Define the ramping function
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
     symbol_names = 'st'
-    symbol_values = '1.e3'  #3?
+    symbol_values = '1.e3'
   [../]
 []
 
@@ -138,7 +94,7 @@ alphadef = 0.02
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 0
     [../]
   [../]
@@ -150,7 +106,7 @@ alphadef = 0.02
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 1
     [../]
   [../]
@@ -162,7 +118,7 @@ alphadef = 0.02
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 2
     [../]
   [../]
@@ -175,11 +131,6 @@ alphadef = 0.02
 []
 
 [AuxVariables]
-  #--------------------------------------------#
-  #                                            #
-  #  field to seed IC that obeys constraint    #
-  #                                            #
-  #--------------------------------------------#
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
@@ -232,26 +183,19 @@ alphadef = 0.02
   [../]
 []
 
-
 [AuxKernels]
   [./mag_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag_s
-    vector_x = mag_x
-    vector_y = mag_y
-    vector_z = mag_z
+    x = mag_x
+    y = mag_y
+    z = mag_z
     execute_on = 'initial timestep_end final'
     block = '1'
   [../]
 []
 
-
 [Kernels]
-  #---------------------------------------#
-  #                                       #
-  #          Time dependence              #
-  #                                       #
-  #---------------------------------------#
 
   [./mag_x_time]
     type = TimeDerivative
@@ -268,12 +212,6 @@ alphadef = 0.02
     variable = mag_z
     block = '1'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #    Local magnetic exchange            #
-  #                                       #
-  #---------------------------------------#
 
   [./dllg_x_exch]
     type = MasterExchangeCartLLG
@@ -294,12 +232,6 @@ alphadef = 0.02
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #    demagnetization field              #
-  #                                       #
-  #---------------------------------------#
-
   [./d_HM_x]
     type = MasterInteractionCartLLG
     variable = mag_x
@@ -318,38 +250,6 @@ alphadef = 0.02
     component = 2
     block = '1'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          LLB constraint terms         #
-  #                                       #
-  #---------------------------------------#
-
-#  [./llb1_x]
-#    type = MasterLongitudinalLLB
-#    variable = mag_x
-#    component = 0
-#    block = '1'
-#  [../]
-#  [./llb1_y]
-#    type = MasterLongitudinalLLB
-#    variable = mag_y
-#    component = 1
-#    block = '1'
-#  [../]
-#
-#  [./llb1_z]
-#    type = MasterLongitudinalLLB
-#    variable = mag_z
-#    component = 2
-#    block = '1'
-#  [../]
-
-  #---------------------------------------#
-  #                                       #
-  #    Magnetostatic Poisson equation     #
-  #                                       #
-  #---------------------------------------#
 
   [./int_pot_lap]
     type = Electrostatics
@@ -378,12 +278,6 @@ alphadef = 0.02
      type = TimestepSize
    [../]
 
-  #---------------------------------------#
-  #                                       #
-  #     Average M = |m|                   #
-  #                                       #
-  #---------------------------------------#
-
   [./M1]
     type = ElementAverageValue
     variable = mag_s
@@ -410,41 +304,19 @@ alphadef = 0.02
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   Calculate exchange energy of        #
-  #   the magnetic body                   #
-  #                                       #
-  #---------------------------------------#
-
   [./Fexch]
     type = MasterMagneticExchangeEnergy
-    energy_scale = 1.  #converts results to eV
+    energy_scale = 1.
     execute_on = 'initial timestep_end final'
     block = '1'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #   Calculate demagnetization energy    #
-  #   of the magnetic body                #
-  #                                       #
-  #---------------------------------------#
 
   [./Fdemag]
     type = MagnetostaticEnergyCart
-    energy_scale = 1.  #converts results to eV
+    energy_scale = 1.
     execute_on = 'initial timestep_end final'
     block = '1'
   [../]
-
-
-  #---------------------------------------#
-  #                                       #
-  #   Calculate excess energy from missed #
-  #   LLB targets                         #
-  #                                       #
-  #---------------------------------------#
 
   [./Fllb1]
     type = MagneticExcessLLBEnergy
@@ -455,13 +327,6 @@ alphadef = 0.02
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   add all the energy contributions    #
-  #   and calculate their percent change  #
-  #                                       #
-  #---------------------------------------#
-
   [./Ftot]
     type = LinearCombinationPostprocessor
     pp_names = 'Fexch Fdemag'
@@ -469,25 +334,14 @@ alphadef = 0.02
     execute_on = 'initial timestep_end final'
   [../]
 
-  [./perc_change]
-    type = EnergyRatePostprocessor
-    postprocessor = Ftot
-    dt = dt
-    execute_on = 'timestep_end final'
-  [../]
 []
 
 [UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-8'
-  [../]
   [mag]
     type = RenormalizeVector
     v = 'mag_x mag_y mag_z'
     norm = 1
     execute_on = 'TIMESTEP_END'
-#    force_praux = true
   []
 []
 
@@ -519,12 +373,6 @@ alphadef = 0.02
     [../]
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #            Solver options             #
-  #                                       #
-  #---------------------------------------#
-
   [./smp]
     type = SMP
     full = true
@@ -536,10 +384,9 @@ alphadef = 0.02
 [Executioner]
   type = Transient
   solve_type = 'NEWTON'
-#  num_grids = 8
 
   [./TimeIntegrator]
-    type = NewmarkBeta #LStableDirk4 #NewmarkBeta
+    type = NewmarkBeta
   [../]
 
   dtmin = 1.e-5
@@ -549,7 +396,7 @@ alphadef = 0.02
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 15  #usually 10
+    optimal_iterations = 15
     iteration_window = 2
     linear_iteration_ratio = 1000
     dt = 1.e-4
@@ -558,8 +405,6 @@ alphadef = 0.02
   [../]
   num_steps = 20
 [../]
-
-
 
 [Outputs]
   print_linear_residuals = false

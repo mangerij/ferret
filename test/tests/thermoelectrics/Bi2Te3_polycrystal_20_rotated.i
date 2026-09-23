@@ -124,11 +124,10 @@
   [../]
 []
 
-
 [Materials]
   [./thermal_conductivity_tensor1]
     type = ComputeThermalConductivityTensor
-    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'#Bi2Te3-mp-568390
+    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'
     euler_angle_1 = 0.0
     euler_angle_2 = 0
     euler_angle_3 = 0
@@ -160,7 +159,7 @@
   [../]
   [./thermal_conductivity_tensor5]
     type = ComputeThermalConductivityTensor
-    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'#Bi2Te3-mp-568390
+    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'
     euler_angle_1 = 0
     euler_angle_2 = -45
     euler_angle_3 = -60
@@ -192,7 +191,7 @@
   [../]
   [./thermal_conductivity_tensor9]
     type = ComputeThermalConductivityTensor
-    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'#Bi2Te3-mp-568390
+    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'
     euler_angle_1 = -20
     euler_angle_2 = -40
     euler_angle_3 = -80
@@ -224,7 +223,7 @@
   [../]
   [./thermal_conductivity_tensor13]
     type = ComputeThermalConductivityTensor
-    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'#Bi2Te3-mp-568390
+    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'
     euler_angle_1 = -45
     euler_angle_2 = -60
     euler_angle_3 = -90
@@ -256,7 +255,7 @@
   [../]
   [./thermal_conductivity_tensor17]
     type = ComputeThermalConductivityTensor
-    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'#Bi2Te3-mp-568390
+    k_ij = '2.58 2.4e-17 0.0077 2.4e-17 2.523 1.8e-17 0.0077 1.8e-17 2.524'
     euler_angle_1 = -10
     euler_angle_2 = -20
     euler_angle_3 = -30
@@ -288,7 +287,7 @@
   [../]
   [./electrical_conductivity_tensor1]
     type = ComputeElectricalConductivityTensor
-    g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+    g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
     euler_angle_1 = 0.0
     euler_angle_2 = 0
     euler_angle_3 = 0
@@ -296,7 +295,7 @@
   [../]
    [./electrical_conductivity_tensor2]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 0.0
      euler_angle_2 = 15
      euler_angle_3 = 30
@@ -304,7 +303,7 @@
    [../]
    [./electrical_conductivity_tensor3]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 0.0
      euler_angle_2 = -15
      euler_angle_3 = -30
@@ -312,7 +311,7 @@
    [../]
    [./electrical_conductivity_tensor4]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 0.0
      euler_angle_2 = 45
      euler_angle_3 = 60
@@ -320,7 +319,7 @@
    [../]
    [./electrical_conductivity_tensor5]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 0.0
      euler_angle_2 = -45
      euler_angle_3 = -60
@@ -328,7 +327,7 @@
    [../]
    [./electrical_conductivity_tensor6]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 15
      euler_angle_2 = 30
      euler_angle_3 = 60
@@ -336,7 +335,7 @@
    [../]
    [./electrical_conductivity_tensor7]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = -15
      euler_angle_2 = -30
      euler_angle_3 = -60
@@ -344,7 +343,7 @@
    [../]
    [./electrical_conductivity_tensor8]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 20
      euler_angle_2 = 40
      euler_angle_3 = 80
@@ -352,7 +351,7 @@
    [../]
    [./electrical_conductivity_tensor9]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = -20
      euler_angle_2 = -40
      euler_angle_3 = -80
@@ -360,7 +359,7 @@
    [../]
    [./electrical_conductivity_tensor10]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 30
      euler_angle_2 = 45
      euler_angle_3 = 60
@@ -368,7 +367,7 @@
    [../]
    [./electrical_conductivity_tensor11]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = -30
      euler_angle_2 = -45
      euler_angle_3 = -60
@@ -376,7 +375,7 @@
    [../]
    [./electrical_conductivity_tensor12]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 45
      euler_angle_2 = 60
      euler_angle_3 = 90
@@ -384,7 +383,7 @@
    [../]
    [./electrical_conductivity_tensor13]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = -45
      euler_angle_2 = -60
      euler_angle_3 = -90
@@ -392,7 +391,7 @@
    [../]
    [./electrical_conductivity_tensor14]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 50
      euler_angle_2 = 75
      euler_angle_3 = 100
@@ -400,7 +399,7 @@
    [../]
    [./electrical_conductivity_tensor15]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = -50
      euler_angle_2 = -75
      euler_angle_3 = -100
@@ -408,7 +407,7 @@
    [../]
    [./electrical_conductivity_tensor16]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 10
      euler_angle_2 = 20
      euler_angle_3 = 30
@@ -416,7 +415,7 @@
    [../]
    [./electrical_conductivity_tensor17]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = -10
      euler_angle_2 = -20
      euler_angle_3 = -30
@@ -424,7 +423,7 @@
    [../]
    [./electrical_conductivity_tensor18]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 30
      euler_angle_2 = 60
      euler_angle_3 = 90
@@ -432,7 +431,7 @@
    [../]
    [./electrical_conductivity_tensor19]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = -30
      euler_angle_2 = -60
      euler_angle_3 = -90
@@ -440,18 +439,16 @@
    [../]
    [./electrical_conductivity_tensor20]
      type = ComputeElectricalConductivityTensor
-     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'#mp-568390
+     g_ij = '2.62e4 123e-15 432 123e-15 2.29e4 61.03e-15 432 61.03e-15 2.3e4'
      euler_angle_1 = 90
      euler_angle_2 = 90
      euler_angle_3 = 0
      block  = '20'
    [../]
 
-
-
    [./seebeck_tensor1]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 0.0
      euler_angle_2 = 0
      euler_angle_3 = 0
@@ -459,7 +456,7 @@
    [../]
    [./seebeck_tensor2]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 0.0
      euler_angle_2 = 15
      euler_angle_3 = 30
@@ -467,7 +464,7 @@
    [../]
    [./seebeck_tensor3]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 0.0
      euler_angle_2 = -15
      euler_angle_3 = -30
@@ -475,7 +472,7 @@
    [../]
    [./seebeck_tensor4]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 0.0
      euler_angle_2 = 45
      euler_angle_3 = 60
@@ -483,7 +480,7 @@
    [../]
    [./seebeck_tensor5]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 0.0
      euler_angle_2 = -45
      euler_angle_3 = -60
@@ -491,7 +488,7 @@
    [../]
    [./seebeck_tensor6]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 15
      euler_angle_2 = 30
      euler_angle_3 = 60
@@ -499,7 +496,7 @@
    [../]
    [./seebeck_tensor7]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = -15
      euler_angle_2 = -30
      euler_angle_3 = -60
@@ -507,7 +504,7 @@
    [../]
    [./seebeck_tensor8]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 20
      euler_angle_2 = 40
      euler_angle_3 = 80
@@ -515,7 +512,7 @@
    [../]
    [./seebeck_tensor9]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = -20
      euler_angle_2 = -40
      euler_angle_3 = -80
@@ -523,7 +520,7 @@
    [../]
    [./seebeck_tensor10]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 30
      euler_angle_2 = 45
      euler_angle_3 = 60
@@ -531,7 +528,7 @@
    [../]
    [./seebeck_tensor11]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = -30
      euler_angle_2 = -45
      euler_angle_3 = -60
@@ -539,7 +536,7 @@
    [../]
    [./seebeck_tensor12]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 45
      euler_angle_2 = 60
      euler_angle_3 = 90
@@ -547,7 +544,7 @@
    [../]
    [./seebeck_tensor13]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = -45
      euler_angle_2 = -60
      euler_angle_3 = -90
@@ -555,7 +552,7 @@
    [../]
    [./seebeck_tensor14]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 50
      euler_angle_2 = 75
      euler_angle_3 = 100
@@ -563,7 +560,7 @@
    [../]
    [./seebeck_tensor15]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = -50
      euler_angle_2 = -75
      euler_angle_3 = -100
@@ -571,7 +568,7 @@
    [../]
    [./seebeck_tensor16]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 10
      euler_angle_2 = 20
      euler_angle_3 = 30
@@ -579,7 +576,7 @@
    [../]
    [./seebeck_tensor17]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = -10
      euler_angle_2 = -20
      euler_angle_3 = -30
@@ -587,7 +584,7 @@
    [../]
    [./seebeck_tensor18]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 30
      euler_angle_2 = 60
      euler_angle_3 = 90
@@ -595,7 +592,7 @@
    [../]
    [./seebeck_tensor19]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = -30
      euler_angle_2 = -60
      euler_angle_3 = -90
@@ -603,14 +600,13 @@
    [../]
    [./seebeck_tensor20]
      type = ComputeSeebeckTensor
-     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'#mp-568390
+     a_ij = '59e-6 1.03e-21 5.8e-6 9.4e-22 14.4e-6 1.17e-21 5.8e-6 1.18e-21 15.18e-6'
      euler_angle_1 = 90
      euler_angle_2 = 90
      euler_angle_3 = 0
      block  = '20'
    [../]
  []
-
 
 [BCs]
   [./sideset_1T]

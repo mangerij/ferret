@@ -1,19 +1,52 @@
 [Tests]
-  #[./film_noP]
-  #  type = 'Exodiff'
-  #  input = 'PTO_film3_T298K_noP.i'
-  #  exodiff = 'out_pto_film_noP_test.e'
-  #  max_parallel = 1
-  #  max_threads = 1
-  #[../]
+  ###############################################################################
+  ##
+  ##  PTO thin film set. Two boundary conditions, each in a monolithic
+  ##  ("full") and a MultiApp ("multi") form:
+  ##
+  ##    clamped    : strain PRESCRIBED as diag(um, um, 0), um = -0.01.
+  ##                 No substrate. Clamped out of plane as well, so
+  ##                 ezz == 0 and the elastic energy stays large (~1.66).
+  ##
+  ##    substrate  : film on a stiff elastic substrate, NOTHING prescribed.
+  ##                 Free top surface, so ezz relaxes to a nonzero value
+  ##                 (~5e-4) and the elastic energy is two orders smaller.
+  ##
+  ##  No electrostatics in any of the four. abs_zero is needed because the
+  ##  clamped inputs hold ezz at zero to round-off (~1e-12).
+  ##
+  ###############################################################################
 
-#disabled film_noP temporarily due to problems with Mac compiled Ferret. 
-
- # [./film_fullP]
- #   type = 'Exodiff'
- #   input = 'PTO_film3_T298K.i'
- #   exodiff = 'out_pto_film_test.e'
- #   max_parallel = 1
- #   max_threads = 1
- # [../]
+  [./pto_film_clamped]
+    type = 'Exodiff'
+    input = 'PTO_film_clamped_full.i'
+    exodiff = 'PTO_film_clamped_full_exo.e'
+    abs_zero = 1.0e-8
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./pto_film_clamped_multi]
+    type = 'Exodiff'
+    input = 'PTO_film_clamped_multi.i'
+    exodiff = 'PTO_film_clamped_multi_exo.e'
+    abs_zero = 1.0e-8
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./pto_film_substrate]
+    type = 'Exodiff'
+    input = 'PTO_film_substrate_full.i'
+    exodiff = 'PTO_film_substrate_full_exo.e'
+    abs_zero = 1.0e-8
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./pto_film_substrate_multi]
+    type = 'Exodiff'
+    input = 'PTO_film_substrate_multi.i'
+    exodiff = 'PTO_film_substrate_multi_exo.e'
+    abs_zero = 1.0e-8
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []

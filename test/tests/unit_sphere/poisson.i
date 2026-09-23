@@ -59,9 +59,16 @@
   [../]
 []
 
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+  [../]
+[]
+
 [Executioner]
   type = Steady
-#  solve_type = 'JFNK'
+  solve_type = NEWTON
   nl_abs_tol = 1e-8
 []
 

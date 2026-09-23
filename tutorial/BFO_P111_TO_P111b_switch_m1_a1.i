@@ -883,20 +883,20 @@ Eadef = -1.8e3
 [AuxKernels]
 
   [./mag1_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
+    x = mag1_x
+    y = mag1_y
+    z = mag1_z
     execute_on = 'initial timestep_end final'
   [../]
 
   [./mag2_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
+    x = mag2_x
+    y = mag2_y
+    z = mag2_z
     execute_on = 'initial timestep_end final'
   [../]
 
@@ -1119,39 +1119,31 @@ Eadef = -1.8e3
 
 
   [./mcsublat1_phi]
-    type = SphericalCoordinateVector
+    type = ParsedAux
     variable = sublat1_phi
-    component = 0
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
+    coupled_variables = 'mag1_x mag1_y'
+    expression = 'atan2(mag1_y, mag1_x)'
     execute_on = 'initial timestep_end final'
   [../]
   [./mcsublat1_th]
-    type = SphericalCoordinateVector
+    type = ParsedAux
     variable = sublat1_th
-    component = 1
-    var1x = mag1_x
-    var1y = mag1_y
-    var1z = mag1_z
+    coupled_variables = 'mag1_x mag1_y mag1_z'
+    expression = 'acos(mag1_z / sqrt(mag1_x^2 + mag1_y^2 + mag1_z^2))'
     execute_on = 'initial timestep_end final'
   [../]
   [./mcsublat2_phi]
-    type = SphericalCoordinateVector
+    type = ParsedAux
     variable = sublat2_phi
-    component = 0
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
+    coupled_variables = 'mag2_x mag2_y'
+    expression = 'atan2(mag2_y, mag2_x)'
     execute_on = 'initial timestep_end final'
   [../]
   [./mcsublat2_th]
-    type = SphericalCoordinateVector
+    type = ParsedAux
     variable = sublat2_th
-    component = 1
-    var1x = mag2_x
-    var1y = mag2_y
-    var1z = mag2_z
+    coupled_variables = 'mag2_x mag2_y mag2_z'
+    expression = 'acos(mag2_z / sqrt(mag2_x^2 + mag2_y^2 + mag2_z^2))'
     execute_on = 'initial timestep_end final'
   [../]
 []

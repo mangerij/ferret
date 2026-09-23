@@ -10,7 +10,6 @@
   elem_type = QUAD4
 []
 
-
 [GlobalParams]
   polar_x = polar_x
   polar_y = polar_y
@@ -43,17 +42,6 @@
   C12 = 45.5681
   C44 = 28.709
 
-
-  ##############################################################
-  ##
-  ## NOTE: Sign convention in **this implementation**
-  ##       for the electrostrictive coeff. is multiplied by
-  ##       an overall factor of (-1). Note that other elastic
-  ##       coupling Kernels/Materials in Ferret DO NOT have the 
-  ##       (-1) prefactor. Please be careful here.
-  ##
-  ###############################################################
-  
   q11 = -5.89457
   q12 = -0.971881
   q44 = -2.01751
@@ -65,15 +53,12 @@
   G = 1.0
 []
 
-
 [Variables]
   [./diffused]
     order = FIRST
     family = LAGRANGE
   [../]
 
-
-  # ODE variables
   [./polar_x]
     family = SCALAR
     order = FIRST
@@ -136,7 +121,6 @@
     order = FIRST
     initial_condition = 0.0001
   [../]
-
 
 []
 
@@ -204,7 +188,6 @@
     variable = e_zx
   [../]
 
-
   [./bulk_px]
     type = ScalarBulkEnergyP
     variable = polar_x
@@ -236,7 +219,6 @@
     variable = antiferrodis_A_z
     component = 2
   [../]
-
 
   [./roto_Px]
     type = ScalarRotopolarEnergy
@@ -315,7 +297,6 @@
     variable = e_zx
     component = 8
   [../]
-
 
   [./rstric_Ax]
     type = ScalarRotostrictiveEnergy
@@ -397,7 +378,6 @@
 
 []
 
-
 [BCs]
   [./right]
     type = DirichletBC
@@ -447,7 +427,6 @@
     execute_on = timestep_end
   [../]
 
-
   [./exx]
     type = ScalarVariable
     variable = e_xx
@@ -490,13 +469,11 @@
   [../]
 []
 
-
 [Executioner]
   type = Transient
   start_time = 0
   dt = 0.1
 
-  #Preconditioned JFNK (default)
   solve_type = 'PJFNK'
   num_steps = 50
 []

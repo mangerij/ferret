@@ -10,7 +10,6 @@
   elem_type = QUAD4
 []
 
-
 [GlobalParams]
   polar_x = polar_x
   polar_y = polar_y
@@ -34,15 +33,12 @@
 
 []
 
-
 [Variables]
   [./diffused]
     order = FIRST
     family = LAGRANGE
   [../]
 
-
-  # ODE variables
   [./polar_x]
     family = SCALAR
     order = FIRST
@@ -73,8 +69,6 @@
     order = FIRST
     initial_condition = 0.1
   [../]
-
-
 
 []
 
@@ -116,7 +110,6 @@
     variable = antiferrodis_A_z
   [../]
 
-
   [./bulk_px]
     type = ScalarBulkEnergyP
     variable = polar_x
@@ -148,7 +141,6 @@
     variable = antiferrodis_A_z
     component = 2
   [../]
-
 
   [./roto_Px]
     type = ScalarRotopolarEnergy
@@ -182,7 +174,6 @@
   [../]
 
 []
-
 
 [BCs]
   [./right]
@@ -248,7 +239,6 @@
   start_time = 0
   dt = 1.0
 
-  #Preconditioned JFNK (default)
   solve_type = 'PJFNK'
   num_steps = 50
 []

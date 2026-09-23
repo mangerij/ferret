@@ -4,7 +4,6 @@
   file = 20g.e
  []
 
-
   [./add_sidesets]
     type = SideSetsFromNormalsGenerator
     input = basic_mesh
@@ -24,7 +23,6 @@
   [./potential_E_int]
     order = FIRST
     family = LAGRANGE
-    # initial_condition = 1
   [../]
   [./T]
     order = FIRST
@@ -124,11 +122,8 @@
   [../]
 []
 
-
   [Materials]
-    # same sbC
 
-   # different sbC
    [./ThermoelectricProperties_1]
     type = GenericConstantMaterial
     prop_names = 'ecC sbC thC'
@@ -250,7 +245,6 @@
     block = '20'
   [../]
 []
-
 
 [BCs]
   [./sideset_1T]

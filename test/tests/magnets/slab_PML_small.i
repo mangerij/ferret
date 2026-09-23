@@ -1,4 +1,3 @@
-
 [GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
@@ -52,11 +51,11 @@ alphadef = 0.02
     input = vacuum_box
     new_boundary = id_boundary
     paired_block = vacuum
-    primary_block = 3 #mesh #infinite_domain
+    primary_block = 3
   [../]
   [./brick]
     type = SubdomainBoundingBoxGenerator
-    input = boundary1 #vacuum_box
+    input = boundary1
     bottom_left = '-10 -10 -1.5'
     top_right = '10 10 1.5'
     block_id = 1
@@ -64,15 +63,7 @@ alphadef = 0.02
   [../]
 [../]
 
-
-
 [Materials]
-  ############################################################################
-  ##
-  ##       material constants used.
-  ##
-  ##
-  ############################################################################
 
   [./constants]
     type = GenericConstantMaterial
@@ -80,9 +71,6 @@ alphadef = 0.02
     prop_values = '${alphadef}     1.0           1.3e-05   1.2'
     block = '1'
   [../]
-
-#NOTE: g0 is g*mu0*Ms/2 as defined by Hertel
-#alpha is chosen to be 1.0 as in the muMag paper
 
  [./a_long]
     type = GenericFunctionMaterial
@@ -100,18 +88,11 @@ alphadef = 0.02
 
 [Functions]
 
-  ##############################
-  ##
-  ## Define the ramping function
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
     expression = 'st'
     symbol_names = 'st'
-    symbol_values = '1.e1'  #3?
+    symbol_values = '1.e1'
   [../]
 
 []
@@ -125,7 +106,7 @@ alphadef = 0.02
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 0
     [../]
   [../]
@@ -167,12 +148,6 @@ alphadef = 0.02
 
 [AuxVariables]
 
-  #--------------------------------------------#
-  #                                            #
-  #  field to seed IC that obeys constraint    #
-  #                                            #
-  #--------------------------------------------#
-
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
@@ -213,14 +188,13 @@ alphadef = 0.02
   [../]
 []
 
-
 [AuxKernels]
   [./mag_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag_s
-    vector_x = mag_x
-    vector_y = mag_y
-    vector_z = mag_z
+    x = mag_x
+    y = mag_y
+    z = mag_z
     execute_on = 'initial timestep_end final'
     block = '1'
   [../]
@@ -239,13 +213,7 @@ alphadef = 0.02
   [../]
 []
 
-
 [Kernels]
-  #---------------------------------------#
-  #                                       #
-  #          Time dependence              #
-  #                                       #
-  #---------------------------------------#
 
   [./mag_x_time]
     type = TimeDerivative
@@ -262,12 +230,6 @@ alphadef = 0.02
     variable = mag_z
     block = '1'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #    Local magnetic exchange            #
-  #                                       #
-  #---------------------------------------#
 
   [./dllg_x_exch]
     type = MasterExchangeCartLLG
@@ -297,12 +259,6 @@ alphadef = 0.02
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #    demagnetization field              #
-  #                                       #
-  #---------------------------------------#
-
   [./d_HM_x]
     type = MasterInteractionCartLLG
     variable = mag_x
@@ -321,12 +277,6 @@ alphadef = 0.02
     component = 2
     block = '1'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          LLB constraint terms         #
-  #                                       #
-  #---------------------------------------#
 
   [./llb1_x]
     type = MasterLongitudinalLLB
@@ -347,12 +297,6 @@ alphadef = 0.02
     component = 2
     block = '1'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #    Magnetostatic Poisson equation     #
-  #                                       #
-  #---------------------------------------#
 
   [./int_pot_lap]
     type = Electrostatics
@@ -409,12 +353,6 @@ alphadef = 0.02
      type = TimestepSize
    [../]
 
-  #---------------------------------------#
-  #                                       #
-  #     Average M = |m|                   #
-  #                                       #
-  #---------------------------------------#
-
   [./M1]
     type = ElementAverageValue
     variable = mag_s
@@ -441,41 +379,19 @@ alphadef = 0.02
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   Calculate exchange energy of        #
-  #   the magnetic body                   #
-  #                                       #
-  #---------------------------------------#
-
   [./Fexch]
     type = MasterMagneticExchangeEnergy
-    energy_scale = 0.001  #converts results to eV
+    energy_scale = 0.001
     execute_on = 'initial timestep_end final'
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   Calculate demagnetization energy    #
-  #   of the magnetic body                #
-  #                                       #
-  #---------------------------------------#
-
   [./Fdemag]
     type = MagnetostaticEnergyCart
-    energy_scale = 0.001  #converts results to eV
+    energy_scale = 0.001
     execute_on = 'initial timestep_begin timestep_end final'
     block = '1'
   [../]
-
-
-  #---------------------------------------#
-  #                                       #
-  #   Calculate excess energy from missed #
-  #   LLB targets                         #
-  #                                       #
-  #---------------------------------------#
 
   [./Fllb1]
     type = MagneticExcessLLBEnergy
@@ -486,13 +402,6 @@ alphadef = 0.02
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   add all the energy contributions    #
-  #   and calculate their percent change  #
-  #                                       #
-  #---------------------------------------#
-
   [./Ftot]
     type = LinearCombinationPostprocessor
     pp_names = 'Fexch Fdemag'
@@ -500,34 +409,12 @@ alphadef = 0.02
     execute_on = 'initial timestep_end final'
   [../]
 
-  [./perc_change]
-    type = EnergyRatePostprocessor
-    postprocessor = Ftot
-    dt = dt
-    execute_on = 'timestep_end final'
-  [../]
 []
-
-[UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-8'
-  [../]
-[]
-
 
 [Preconditioning]
 
-  #---------------------------------------#
-  #                                       #
-  #            Solver options             #
-  #                                       #
-  #---------------------------------------#
-
   [./smp]
-    type = SMP #FDP
-#     petsc_options_iname = ' -pc_type -mat_fd_coloring_err -mat_fd_type'
-#     petsc_options_value = 'lu   1.e-06   ds'
+    type = SMP
     full = true
     petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -sub_pc_type '
     petsc_options_value = '    100               1e-12      1e-9      1e-8     bjacobi   ilu'
@@ -549,7 +436,7 @@ alphadef = 0.02
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 25  #usually 10
+    optimal_iterations = 25
     linear_iteration_ratio = 100
     dt = 1e-4
     growth_factor = 1.1
@@ -557,8 +444,6 @@ alphadef = 0.02
   [../]
   num_steps = 2
 [../]
-
-
 
 [Outputs]
   print_linear_residuals = false

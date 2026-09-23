@@ -1,4 +1,3 @@
-
 [Mesh]
   [./fmg]
     type = FileMeshGenerator
@@ -15,7 +14,6 @@
   []
 []
 
-
 [GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
@@ -24,7 +22,7 @@
 []
 
 [Materials]
-  [./constants] # Constants used in other material properties
+  [./constants]
     type = GenericConstantMaterial
     prop_names = ' alpha    Ae    Ms    g0     mu0   nx ny nz   long_susc t'
     prop_values = '0.01    0.013  1.2  221010.0 1256.64   1  0  0          1.0     0'
@@ -36,7 +34,7 @@
   [../]
   [./permitivitty_1]
     type = GenericConstantMaterial
-    prop_names = 'permittivity'  #dummy variable at the moment since we use the "electrostatics" kernel
+    prop_names = 'permittivity'
     prop_values = '1.0'
     block = '1 2'
   [../]
@@ -44,18 +42,11 @@
 
 [Functions]
 
-  ##############################
-  ##
-  ## Define the ramping function
-  ## expression to be used
-  ##
-  ##############################
-
   [./bc_func_1]
     type = ParsedFunction
-    expression = 'st'   #*tanh(sl*t)+1.0'
-    symbol_names = 'st' #sl'
-    symbol_values = '100.0' # 795.775'
+    expression = 'st'
+    symbol_names = 'st'
+    symbol_values = '100.0'
   [../]
 []
 
@@ -68,7 +59,7 @@
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 0
     [../]
   [../]
@@ -80,7 +71,7 @@
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 1
     [../]
   [../]
@@ -92,7 +83,7 @@
       type = RandomConstrainedVectorFieldIC
       phi = azimuth_phi
       theta = polar_theta
-      M0s = 1.0 #amplitude of the RandomConstrainedVectorFieldIC
+      M0s = 1.0
       component  = 2
     [../]
   [../]
@@ -105,11 +96,6 @@
 []
 
 [AuxVariables]
-  #--------------------------------------------#
-  #                                            #
-  #  field to seed IC that obeys constraint    #
-  #                                            #
-  #--------------------------------------------#
   [./azimuth_phi]
     order = FIRST
     family = LAGRANGE
@@ -158,11 +144,11 @@
 
 [AuxKernels]
   [./mag_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag_s
-    vector_x = mag_x
-    vector_y = mag_y
-    vector_z = mag_z
+    x = mag_x
+    y = mag_y
+    z = mag_z
     block = '1'
     execute_on = 'timestep_end final'
   [../]
@@ -191,11 +177,6 @@
 []
 
 [Kernels]
-  #---------------------------------------#
-  #                                       #
-  #          Time dependence              #
-  #                                       #
-  #---------------------------------------#
 
   [./mag_x_time]
     type = TimeDerivative
@@ -213,12 +194,6 @@
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #          Magnetic exchange            #
-  #                                       #
-  #---------------------------------------#
-
   [./dllg_x_exch]
     type = ExchangeCartLL
     variable = mag_x
@@ -234,12 +209,6 @@
     variable = mag_z
     component = 2
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #         demagnetization field         #
-  #                                       #
-  #---------------------------------------#
 
   [./d_HM_x]
     type = InteractionCartLL
@@ -257,12 +226,6 @@
     component = 2
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #    Magnetostatic Poisson equation     #
-  #                                       #
-  #---------------------------------------#
-
   [./int_pot_lap]
     type = Electrostatics
     variable = potential_H_int
@@ -276,12 +239,6 @@
     mag_y = mag_y
     mag_z = mag_z
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #          LLB constraint terms         #
-  #                                       #
-  #---------------------------------------#
 
   [./llb_x]
     type = LongitudinalLLB
@@ -302,12 +259,6 @@
 []
 
 [BCs]
-  #---------------------------------------#
-  #                                       #
-  #  ground the magnetostatic potential   #
-  #  at two boundaries                    #
-  #                                       #
-  #---------------------------------------#
 
   [./bc_int_pot_boundary]
     type = DirichletBC
@@ -341,13 +292,6 @@
      type = TimestepSize
    [../]
 
-  #---------------------------------------#
-  #                                       #
-  #       Average |M| and along other     #
-  #       directions                      #
-  #                                       #
-  #---------------------------------------#
-
   [./<M>]
     type = ElementAverageValue
     variable = mag_s
@@ -374,25 +318,11 @@
     execute_on = 'timestep_end final'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   Calculate exchange energy of        #
-  #   the magnetic body                   #
-  #                                       #
-  #---------------------------------------#
-
   [./Fexch]
     type = MagneticExchangeEnergy
     execute_on = 'timestep_end final'
     block = '1'
   [../]
-
-  #---------------------------------------#
-  #                                       #
-  #   Calculate demagnetization energy    #
-  #   of the magnetic body                #
-  #                                       #
-  #---------------------------------------#
 
   [./Fdemag]
     type = MagnetostaticEnergyCart
@@ -400,26 +330,11 @@
     block = '1'
   [../]
 
-  #---------------------------------------#
-  #                                       #
-  #   Calculate excess energy from missed #
-  #   LLB targets                         #
-  #                                       #
-  #---------------------------------------#
-
   [./Fllb]
     type = MagneticExcessLLBEnergy
     execute_on = 'timestep_end final'
     block = '1'
   [../]
-
-
-  #---------------------------------------#
-  #                                       #
-  #   add all the energy contributions    #
-  #   and calculate their percent change  #
-  #                                       #
-  #---------------------------------------#
 
   [./Ftot]
     type = LinearCombinationPostprocessor
@@ -428,30 +343,9 @@
     execute_on = 'timestep_end final'
   [../]
 
-  [./perc_change]
-    type = EnergyRatePostprocessor
-    postprocessor = Ftot
-    dt = dt
-    execute_on = 'timestep_end final'
-  [../]
 []
-
-
-[UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-5'
-  [../]
-[]
-
-
 
 [Preconditioning]
-  #---------------------------------------#
-  #                                       #
-  #            Solver options             #
-  #                                       #
-  #---------------------------------------#
 
   [./smp]
     type = SMP
@@ -461,10 +355,6 @@
     petsc_options_value = '    121               1e-10      1e-8      1e-6      bjacobi'
   [../]
 []
-
-#[Debug]
-#   show_var_residual_norms = true
-#[]
 
 [Executioner]
   type = Transient

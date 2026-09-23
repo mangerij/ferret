@@ -1,10 +1,3 @@
-  ##########################################
-  ##
-  ##   Example of 2D interface with Peltier
-  ##   cooling/heating phenomena
-  ##
-  ############################################
-
 [Mesh]
  [gen]
     type = GeneratedMeshGenerator
@@ -39,7 +32,6 @@
     [../]
 []
 
-
 [GlobalParams]
   potential_E_int = potential_E_int
 []
@@ -65,7 +57,6 @@
   [../]
 []
 
-
 [Kernels]
   [./residualV_0]
     type = DivCurrentV
@@ -80,8 +71,6 @@
     block = 0
   [../]
 
-
-  ########BLOCK 1
   [./residualV_1]
     type = DivCurrentV
     variable = potential_E_int
@@ -166,7 +155,6 @@
     expression = '-1.802e-4 - 3.861e-7 * t + 9.582e-10 * t^2'
   [../]
 []
-
 
 [Materials]
   [./ThermoelectricProperties_0]

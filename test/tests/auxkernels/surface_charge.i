@@ -1,32 +1,12 @@
 [Mesh]
   [gen]
-    ############################################
-    ##=
-    ##  Type and dimension of the mesh
-    ##=
-    ############################################
 
     type = GeneratedMeshGenerator
     dim = 3
 
-    #############################################
-    ##
-    ##  Grid definition. Note that it should be
-    ##  nJ = 2*(Jmax-Jmin) for J = x, y, z
-    ##=
-    #############################################
-
     nx = 4
     ny = 4
     nz = 8
-
-    #############################################
-    ##
-    ##   Actual spatial coordinates of mesh.
-    ##   Jmax - Jmin = nJ/2 for J = x, y, z
-    ##   Units are in nanometers
-    ##
-    #############################################
 
     xmin = -1.0
     xmax = 1.0
@@ -35,28 +15,10 @@
     zmin = -2.0
     zmax = 2.0
 
-    #############################################
-    ##
-    ##  FE type/order (hexahedral, tetrahedral
-    ##
-    #############################################
-
     elem_type = HEX8
   []
   [./cnode]
     input = gen
-
-    ############################################
-    ##
-    ##   additional boundary sideset (one node)
-    ##   to zero one of the elastic displacement vectors
-    ##   vectors and eliminates rigid body translations
-    ##   from the degrees of freedom
-    ##
-    ##   NOTE: This must conform with the about
-    ##         [Mesh] block settings
-    ##
-    ############################################
 
     type = ExtraNodesetGenerator
     coord = '-1.0 -1.0 -2.0'
@@ -104,27 +66,9 @@
 
   displacements = 'u_x u_y u_z'
 
-  ##############################################
-  ##=
-  ##  IMPORTANT(!): Units in Ferret are nm, kg,
-  ##                seconds, and attocoulombs
-  ##
-  ##############################################
-
-  u_x = u_x
-  u_y = u_y
-  u_z = u_z
 []
 
 [Variables]
-
-  #################################
-  ##
-  ##  Variable definitions
-  ##    P, u, phi, e^global_ij
-  ##  and their initial conditions
-  ##
-  #################################
 
   [./global_strain]
     order = SIXTH
@@ -186,21 +130,6 @@
 
 [AuxVariables]
 
-  ######################################
-  ##
-  ##  Auxiarilly variable definitions
-  ##   (can be intermediate variables
-  ##   or for postprocessed quantities)
-  ##
-  ######################################
-
-
-  ######################################
-  ##
-  ##  Global displacements
-  ##
-  ######################################
-
   [./disp_x]
     block = '0 1'
   [../]
@@ -210,12 +139,6 @@
   [./disp_z]
     block = '0 1'
   [../]
-
-  ######################################
-  ##
-  ##  Stress/strain tensor components
-  ##
-  ######################################
 
   [./e00]
     order = CONSTANT
@@ -267,12 +190,6 @@
     family = MONOMIAL
   [../]
 
-  ######################################
-  ##
-  ##  divP and surf charge
-  ##
-  ######################################
-
   [./divP]
     order = CONSTANT
     family = MONOMIAL
@@ -284,17 +201,24 @@
     family = MONOMIAL
   [../]
 
+  ##  P.n on the film/substrate interface (52), the remaining piece of
+  ##  the closed surface of block 0.  It needs its OWN variable: a face
+  ##  value is written into the element dof, so two boundaries sharing
+  ##  an element cannot share a CONSTANT MONOMIAL variable.
+  [./surfP_52]
+    order = CONSTANT
+    family = MONOMIAL
+    block = '0'
+
+    ##  This variable exists only to feed the divergence-theorem assertion
+    ##  in [UserObjects], so keep it out of the Exodus file.  That makes the
+    ##  whole check strictly additive and leaves the gold untouched.
+    outputs = none
+  [../]
+
 []
 
 [AuxKernels]
-
-  ######################################
-  ##
-  ##  Auxiarilly Kernel definitions
-  ##   (can be intermediate "operations"
-  ##   or for postprocessed quantities)
-  ##
-  ######################################
 
   [./disp_x]
     type = GlobalDisplacementAux
@@ -416,16 +340,15 @@
     variable = surfP
     boundary = '107'
   [../]
+  [./surfP_52]
+    type = SurfaceChargeP
+    variable = surfP_52
+    boundary = '52'
+  [../]
 
 []
 
 [ScalarKernels]
-
-  ######################################
-  ##
-  ##  Necessary for PBC system
-  ##
-  ######################################
 
   [./global_strain]
     type = GlobalStrain
@@ -436,17 +359,6 @@
 []
 
 [Materials]
-
-  #################################################
-  ##
-  ## add comments
-  ##
-  ## NOTE: there might be some Legendre transforms
-  ##        depending on what approach you use
-  ##        -i.e. inhomogeneous strain vs
-  ##            homogeneous strain [renormalized]
-  ##=
-  ##################################################
 
   [./Landau_P_FE]
     type = GenericConstantMaterial
@@ -481,54 +393,44 @@
     block = '1'
   [../]
 
-  ##############################################################
-  ##
-  ## NOTE: Sign convention in **this implementation**
-  ##       for the electrostrictive coeff. is multiplied by
-  ##       an overall factor of (-1). Note that other elastic
-  ##       coupling Kernels/Materials in Ferret DO NOT have the 
-  ##       (-1) prefactor. Please be careful here.
-  ##
-  ###############################################################
-
   [./mat_Q]
     type = GenericConstantMaterial
     prop_names = 'Q11 Q12 Q44'
-    prop_values = '-0.089 0.026 -0.03375'
+    prop_values = '0.089 -0.026 0.03375'
     block = '0 1'
   [../]
 
-  [./mat_q]
-    type = GenericConstantMaterial
-    prop_names = 'q11 q12 q44'
-    prop_values = '-11.4 -0.01438 -7.5'
+  [./ferro]
+    type = ComputeCubicParentElectrostrictiveStrain
+    eigenstrain_name = ferro
+    block = '0'
   [../]
 
   [./eigen_strain]
     type = ComputeEigenstrain
-    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0'
     eigenstrain_name = eigenstrain
     prefactor = 0.0
+    block = '1'
   [../]
 
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
 
-   ###############################################
-   ##
-   ## symmetric9 fill_method is (default)
-   ##     C11 C12 C13 C22 C23 C33 C44 C55 C66
-   ##
-   ###############################################
-
     C_ijkl = '175.0 79.4 79.4 175.0 79.4 175.0 111.1 111.1 111.1'
   [../]
-  [./strain_1]
+  [./strain_film]
     type = ComputeSmallStrain
     global_strain = global_strain
-    eigenstrain_names = eigenstrain
+    eigenstrain_names = 'ferro'
+    block = '0'
+  [../]
+  [./strain_substrate]
+    type = ComputeSmallStrain
+    global_strain = global_strain
+    eigenstrain_names = 'eigenstrain'
+    block = '1'
   [../]
 
   [./stress_1]
@@ -543,36 +445,31 @@
 
   [./permitivitty_1]
 
-    ###############################################
-    ##
-    ##  so-called background dielectric constant
-    ##  (it encapsulates the motion of core electrons
-    ##  at high frequency) = e_b*e_0 (here we use
-    ##  e_b = 10), see PRB. 74, 104014, (2006)
-    ##
-    ###############################################
-
     type = GenericConstantMaterial
     prop_names = 'permittivity'
     prop_values = '0.08854187'
   [../]
 []
 
-
 [Kernels]
 
-  ###############################################
-  ##
-  ## Physical Kernel operators
-  ## to enforce TDLGD evolution
-  ##
-  ###############################################
-
-
-  #Elastic problem
-  [./SolidMechanics]
+  [./div_x]
+    type = StressDivergenceTensors
+    variable = u_x
+    component = 0
     use_displaced_mesh = false
-    eigenstrain_names = eigenstrain
+  [../]
+  [./div_y]
+    type = StressDivergenceTensors
+    variable = u_y
+    component = 1
+    use_displaced_mesh = false
+  [../]
+  [./div_z]
+    type = StressDivergenceTensors
+    variable = u_z
+    component = 2
+    use_displaced_mesh = false
   [../]
 
   [./bed_x]
@@ -613,44 +510,27 @@
     block = '0'
   [../]
 
-  [./electrostr_ux]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_x
-    component = 0
-    block = '0'
-  [../]
-  [./electrostr_uy]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_y
-    component = 1
-    block = '0'
-  [../]
-  [./electrostr_uz]
-    type = ElectrostrictiveCouplingDispDerivative
-    variable = u_z
-    component = 2
-    block = '0'
-  [../]
-
   [./electrostr_polar_coupled_x]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
     variable = polar_x
     component = 0
+    displacements = 'u_x u_y u_z'
     block = '0'
   [../]
   [./electrostr_polar_coupled_y]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
     variable = polar_y
     component = 1
+    displacements = 'u_x u_y u_z'
     block = '0'
   [../]
   [./electrostr_polar_coupled_z]
-    type = ElectrostrictiveCouplingPolarDerivative
+    type = CubicParentElasticPDerivative
     variable = polar_z
     component = 2
+    displacements = 'u_x u_y u_z'
     block = '0'
   [../]
-
 
   [./polar_x_electric_E]
     type = PolarElectricEStrong
@@ -719,7 +599,6 @@
 
 []
 
-
 [BCs]
   [./Periodic]
     [./xy]
@@ -728,8 +607,6 @@
     [../]
   [../]
 
-
-
   [./boundary_interface_grounding]
     type = DirichletBC
     boundary = '52'
@@ -737,8 +614,6 @@
     value = 0.0
   [../]
 
-
-  # fix center point location
   [./centerfix_x]
     type = DirichletBC
     boundary = '108'
@@ -761,15 +636,6 @@
 
 [Postprocessors]
 
-  ###############################################
-  ##=
-  ##  Postprocessors (integrations over the
-  ##  computational domain) to calculate the total energy
-  ##  decomposed into linear combinations of the
-  ##  different physics.
-  ##
-  ###############################################
-
   [./Fbulk]
     type = BulkEnergyEighth
     execute_on = 'timestep_end'
@@ -781,13 +647,7 @@
     block = '0'
   [../]
   [./Felastic]
-    type = ElasticEnergy
-    execute_on = 'timestep_end'
-    use_displaced_mesh = false
-    block = '0'
-  [../]
-  [./Fcoupled]
-    type = ElectrostrictiveCouplingEnergy
+    type = CubicParentElasticEnergy
     execute_on = 'timestep_end'
     block = '0'
   [../]
@@ -798,27 +658,83 @@
   [../]
   [./Ftotal]
     type = LinearCombinationPostprocessor
-    pp_names = 'Fbulk Fwall Fcoupled Felec'
-    pp_coefs = '0.160218 0.160218 0.160218 0.160218' #convert to eV
+    pp_names = 'Fbulk Fwall Felastic Felec'
+    pp_coefs = '0.160218 0.160218 0.160218 0.160218'
     execute_on = 'timestep_end'
   [../]
 
-  [./perc_change]
-    type = PercentChangePostprocessor
-    postprocessor = Ftotal
+
+  ###############################################
+  ##
+  ##  Gold-independent correctness check on the bound-charge
+  ##  capability: the divergence theorem
+  ##
+  ##      int_V div(P) dV  ==  oint_dV P.n dS
+  ##
+  ##  over the FILM (block 0, z in [0,2]).  The closed boundary of
+  ##  block 0 is the free surface 107 (z=+2), the film/substrate
+  ##  interface 52 (z=0), and the four lateral faces, which cancel
+  ##  pairwise under the x/y periodic BCs.
+  ##
+  ##  NOTE: boundary 108 is the SUBSTRATE bottom (z=-2) and lies on
+  ##        block 1, where P is not defined.  It is NOT part of this
+  ##        surface -- adding it is an error, not a refinement.
+  ##
+  ##  Sign convention: DivP returns div(P) and SurfaceChargeP returns
+  ##  P.n, so the identity carries no minus sign.  (The bound charges
+  ##  themselves are rho_b = -div(P) and sigma_b = +P.n.)
+  ##
+  ##  Verified 2026-09-22 on the full closed surface: residual ~1e-18,
+  ##  i.e. ~1e-17 relative to the sum of the absolute face contributions.
+  ##  The 1e-6 tolerance below is loose because the lateral faces are
+  ##  omitted here; they cancel only to solver tolerance (~1e-8), not to
+  ##  round-off.  Restricting sidesets to block 0 so they could be
+  ##  included would break Periodic/auto_direction, which is not worth it.
+  ##
+  ##  outputs = none on purpose: this check must not perturb the Exodus
+  ##  gold file, so it adds no global variables to the output.
+  ##
+  ###############################################
+
+  [./volDivP]
+    type = ElementIntegralVariablePostprocessor
+    variable = divP
+    block = '0'
     execute_on = 'timestep_end'
+    outputs = none
+  [../]
+  [./surfInt_107]
+    type = SideIntegralVariablePostprocessor
+    variable = surfP
+    boundary = '107'
+    execute_on = 'timestep_end'
+    outputs = none
+  [../]
+  [./surfInt_52]
+    type = SideIntegralVariablePostprocessor
+    variable = surfP_52
+    boundary = '52'
+    execute_on = 'timestep_end'
+    outputs = none
+  [../]
+  [./closedSurfP]
+    type = LinearCombinationPostprocessor
+    pp_names = 'surfInt_107 surfInt_52'
+    pp_coefs = '1 1'
+    execute_on = 'timestep_end'
+    outputs = none
+  [../]
+  [./divThmResidual]
+    type = LinearCombinationPostprocessor
+    pp_names = 'closedSurfP volDivP'
+    pp_coefs = '1 -1'
+    execute_on = 'timestep_end'
+    outputs = none
   [../]
 
 []
 
 [UserObjects]
-
-  ###############################################
-  ##=
-  ##  GlobalStrain system to enforce periodicity
-  ##  in the anisotropic strain field
-  ##
-  ###############################################
 
   [./global_strain_uo]
     type = GlobalATiO3MaterialRVEUserObject
@@ -828,28 +744,28 @@
     block = '0'
   [../]
 
+
   ###############################################
   ##
-  ##  terminator to end energy evolution when the energy difference
-  ##  between subsequent time steps is lower than 5e-6
-  ##
-  ##  NOTE: can fail if the time step is small
+  ##  Assert the divergence theorem every step.  Unlike the Exodiff
+  ##  this does not care what the solution IS, only that DivP and
+  ##  SurfaceChargeP are consistent, so it survives a regold.
+  ##  error_level = ERROR is required: fail_mode = HARD on its own
+  ##  stops the run but still exits 0, which a test would not catch.
   ##
   ###############################################
 
-  [./kill]
+  [./divthm_assert]
     type = Terminator
-    expression = 'perc_change <= 5.0e-4'
-   [../]
+    expression = 'abs(divThmResidual) > 1.0e-6'
+    fail_mode = HARD
+    error_level = ERROR
+    execute_on = 'TIMESTEP_END'
+    message = 'Divergence theorem violated: oint P.n dS != int div(P) dV over block 0. DivP/SurfaceChargeP are inconsistent.'
+  [../]
 []
 
 [Preconditioning]
-
-  ###############################################
-  ##
-  ##  Numerical preconditioning/solver options
-  ##=
-  ###############################################
 
   [./smp]
     type = SMP
@@ -861,12 +777,6 @@
 []
 
 [Executioner]
-
-  ##########################################
-  ##
-  ##  Time integ=ration/solver options
-  ##
-  ##########################################
 
   type = Transient
   solve_type = 'PJFNK'
@@ -890,12 +800,6 @@
 []
 
 [Outputs]
-
-  ###############################################
-  ##
-  ##  Output options
-  ##
-  ###############################################
 
   print_linear_residuals = false
   perf_graph = false

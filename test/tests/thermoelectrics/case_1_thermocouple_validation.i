@@ -1,15 +1,6 @@
-
-  ##########################################
-  ##
-  ##   This model will simulate the Seebeck effect
-  ##   of a simple thermocouple circuit.
-  ##
-  ############################################
-
 [Mesh]
     file = thermocouple_concept_v3.e
 []
-
 
 [GlobalParams]
 []
@@ -71,8 +62,6 @@
     block = 1
   [../]
 
-
-  ########BLOCK 2
   [./Seebeck_2]
     type = SeebeckEffect
     variable = potential_E_int
@@ -137,7 +126,6 @@
     block = 2
   [../]
 []
-
 
 [BCs]
   [./measuring_junction]

@@ -1,4 +1,3 @@
-
 [Mesh]
   [file]
     type = FileMeshGenerator
@@ -21,7 +20,6 @@
   n_g = 3.27
 []
 
-
 [Variables]
   [./disp_x]
     order = FIRST
@@ -41,7 +39,6 @@
     block = '1 2 3 4 5 6'
   [../]
 []
-
 
 [AuxVariables]
   [./stress_xx_elastic]
@@ -291,7 +288,6 @@
     execute_on = 'timestep_end'
   [../]
 
-
   [./n_1_c]
     type = RefractiveIndex
     variable = n_1
@@ -324,19 +320,10 @@
 
 []
 
-################################################
-# Block list:                                  #
-#                                              #
-# No 99?                                       #
-#                                              #
-################################################
-
-
 [Materials]
-  [./eigen_strain_zz] #Use for stress-free strain (ie epitaxial)
+  [./eigen_strain_zz]
     type = ComputeEigenstrain
     block = '1 2 3 4 5 6'
-    # eigen_base = 'exx exy exz eyx eyy eyz ezx ezy ezz'
     eigen_base = '1 0 0 0 1 0 0 0 0'
     eigenstrain_name = eigenstrain
     prefactor = 0.0
@@ -345,7 +332,6 @@
   [./elasticity_tensor_1]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 0.0
     euler_angle_2 = 15.0
@@ -363,11 +349,7 @@
   [../]
   [./photoelastic_tensor_1]
     type = ComputeElectroopticTensor
-    fill_method = general #For HgS (32)
-    # Fill Method (see Nye page 113)
-    # r111, r112, r113, r121, r122, r123, r131, r132, r133,
-    # r211, r212, r213, r221, r222, r223, r231, r232, r233,
-    # r311, r312, r313, r321, r322, r323, r331, r332, r333,
+    fill_method = general
     r_ijk ='0.0031 0 0 0 -0.0031 0 0 -0.0015 0 0 -0.0031 0 -0.0031 0 0 0.0015 0 0 0 -0.0015 0 0.0015 0 0 0 0 0'
     euler_angle_1 = 0.0
     euler_angle_2 = 15.0
@@ -387,11 +369,9 @@
     potential_E_int = potential_E_int
   [../]
 
-
   [./elasticity_tensor_2]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 12.0
     euler_angle_2 = -15.0
@@ -409,11 +389,7 @@
   [../]
   [./photoelastic_tensor_2]
     type = ComputeElectroopticTensor
-    fill_method = general #For HgS (32)
-    # Fill Method (see Nye page 113)
-    # r111, r112, r113, r121, r122, r123, r131, r132, r133,
-    # r211, r212, r213, r221, r222, r223, r231, r232, r233,
-    # r311, r312, r313, r321, r322, r323, r331, r332, r333,
+    fill_method = general
     r_ijk ='0.0031 0 0 0 -0.0031 0 0 -0.0015 0 0 -0.0031 0 -0.0031 0 0 0.0015 0 0 0 -0.0015 0 0.0015 0 0 0 0 0'
     euler_angle_1 = 12.0
     euler_angle_2 = -15.0
@@ -433,12 +409,9 @@
     potential_E_int =  potential_E_int
   [../]
 
-
-
   [./elasticity_tensor_3]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 1.0
     euler_angle_2 = 50.0
@@ -456,11 +429,7 @@
   [../]
   [./photoelastic_tensor_3]
     type = ComputeElectroopticTensor
-    fill_method = general #For HgS (32)
-    # Fill Method (see Nye page 113)
-    # r111, r112, r113, r121, r122, r123, r131, r132, r133,
-    # r211, r212, r213, r221, r222, r223, r231, r232, r233,
-    # r311, r312, r313, r321, r322, r323, r331, r332, r333,
+    fill_method = general
     r_ijk ='0.0031 0 0 0 -0.0031 0 0 -0.0015 0 0 -0.0031 0 -0.0031 0 0 0.0015 0 0 0 -0.0015 0 0.0015 0 0 0 0 0'
     euler_angle_1 = 1.0
     euler_angle_2 = 50.0
@@ -480,11 +449,9 @@
     potential_E_int = potential_E_int
   [../]
 
-
   [./elasticity_tensor_4]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 100.0
     euler_angle_2 = 0.0
@@ -502,11 +469,7 @@
   [../]
   [./photoelastic_tensor_4]
     type = ComputeElectroopticTensor
-    fill_method = general #For HgS (32)
-    # Fill Method (see Nye page 113)
-    # r111, r112, r113, r121, r122, r123, r131, r132, r133,
-    # r211, r212, r213, r221, r222, r223, r231, r232, r233,
-    # r311, r312, r313, r321, r322, r323, r331, r332, r333,
+    fill_method = general
     r_ijk ='0.0031 0 0 0 -0.0031 0 0 -0.0015 0 0 -0.0031 0 -0.0031 0 0 0.0015 0 0 0 -0.0015 0 0.0015 0 0 0 0 0'
     euler_angle_1 = 100.0
     euler_angle_2 = 0.0
@@ -526,11 +489,9 @@
     potential_E_int = potential_E_int
   [../]
 
-
   [./elasticity_tensor_5]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 200.0
     euler_angle_2 = 33.0
@@ -548,11 +509,7 @@
   [../]
   [./photoelastic_tensor_5]
     type = ComputeElectroopticTensor
-    fill_method = general #For HgS (32)
-    # Fill Method (see Nye page 113)
-    # r111, r112, r113, r121, r122, r123, r131, r132, r133,
-    # r211, r212, r213, r221, r222, r223, r231, r232, r233,
-    # r311, r312, r313, r321, r322, r323, r331, r332, r333,
+    fill_method = general
     r_ijk ='0.0031 0 0 0 -0.0031 0 0 -0.0015 0 0 -0.0031 0 -0.0031 0 0 0.0015 0 0 0 -0.0015 0 0.0015 0 0 0 0 0'
     euler_angle_1 = 200.0
     euler_angle_2 = 33.0
@@ -572,11 +529,9 @@
     potential_E_int = potential_E_int
   [../]
 
-
   [./elasticity_tensor_6]
     type = ComputeElasticityTensor
     fill_method = symmetric9
-    #BaTiO3 from MaterialsProject
     C_ijkl = '260.06 105.79 76.90 260.06 105.79 260.06 81.57 81.57 116.28'
     euler_angle_1 = 110.0
     euler_angle_2 = 0.0
@@ -594,11 +549,7 @@
   [../]
   [./photoelastic_tensor_6]
     type = ComputeElectroopticTensor
-    fill_method = general #For HgS (32)
-    # Fill Method (see Nye page 113)
-    # r111, r112, r113, r121, r122, r123, r131, r132, r133,
-    # r211, r212, r213, r221, r222, r223, r231, r232, r233,
-    # r311, r312, r313, r321, r322, r323, r331, r332, r333,
+    fill_method = general
     r_ijk ='0.0031 0 0 0 -0.0031 0 0 -0.0015 0 0 -0.0031 0 -0.0031 0 0 0.0015 0 0 0 -0.0015 0 0.0015 0 0 0 0 0'
     euler_angle_1 = 110.0
     euler_angle_2 = 0.0
@@ -627,9 +578,7 @@
 []
 
 [Kernels]
-  #Elastic problem
   [./SolidMechanics]
-  #This is an action block
   [../]
 
   [./ElectroStats]
@@ -638,7 +587,6 @@
     block = '1 2 3 4 5 6'
   [../]
 []
-
 
 [BCs]
   [./pot_top]
@@ -687,7 +635,7 @@
 
 [Executioner]
   type = Steady
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'NEWTON'
 []
 
 [Outputs]

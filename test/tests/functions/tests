@@ -1,0 +1,13 @@
+[Tests]
+
+  ##  Covers SDFourierNoise (2D) and S3DFourierNoise (3D). Both seed
+  ##  MooseRandom from the `seed` parameter, so the field is identical on
+  ##  every platform and every decomposition -- verified serial vs 2 ranks.
+  ##  No max_parallel/max_threads restriction is needed.
+
+  [./fourier_noise]
+    type = 'Exodiff'
+    input = 'fourier_noise.i'
+    exodiff = 'fourier_noise_out.e'
+  [../]
+[]

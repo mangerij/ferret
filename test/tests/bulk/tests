@@ -1,0 +1,28 @@
+[Tests]
+
+  ###############################################################
+  ##
+  ##  Bulk (free-standing) BaTiO3 with GlobalStrainUserObject
+  ##  relaxation, fully periodic in x, y and z.
+  ##
+  ##  The cell finds its own spontaneous tetragonal shape, so
+  ##  the elastic energy vanishes rather than accumulating.
+  ##  This is the counterpart to the CLAMPED film inputs in
+  ##  test/tests/polar-elastic*/PTO_3D_*.i.
+  ##
+  ##  abs_zero is required: at convergence Felastic (~1e-34),
+  ##  the electrostatic energy and the three shear strains
+  ##  (~1e-20) are all numerically zero, and a relative
+  ##  comparison on them is meaningless noise.
+  ##
+  ###############################################################
+
+  [./BTO_bulk_relax_test]
+    type = 'Exodiff'
+    input = 'BTO_bulk_relax.i'
+    exodiff = 'BTO_bulk_relax_out.e'
+    abs_zero = 1.0e-8
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]

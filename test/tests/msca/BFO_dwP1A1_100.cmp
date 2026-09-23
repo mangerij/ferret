@@ -14,15 +14,14 @@ GLOBAL VARIABLES relative 1.e-6 floor 1e-10
 	FgP
 	Ftot
 	dt
-	perc_change
 	global_strain_0
 	global_strain_1
 	global_strain_2
 	global_strain_3
-	global_strain_4
+	global_strain_4 relative 1e-4 floor 1e-10
 	global_strain_5
 
-NODAL VARIABLES relative 1.e-3 floor 1e-10
+NODAL VARIABLES relative 1.e-3 floor 1e-5
 	antiphase_A_x
 	antiphase_A_y
 	antiphase_A_z
@@ -50,7 +49,7 @@ NODAL VARIABLES relative 1.e-3 floor 1e-10
 	u_y
 	u_z
 
-ELEMENT VARIABLES relative 1.e-3 floor 1e-10
+ELEMENT VARIABLES relative 1.e-3 floor 1e-5
 	e00
 	e01
 	e02

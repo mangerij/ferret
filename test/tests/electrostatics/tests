@@ -18,6 +18,17 @@
     input = 'FE_8nmFilm_Die_4nmLayer_U0.i'
     exodiff = 'out_FE_8nmFilm_Die_4nmLayer_U0.e'
   [../]
+  [./pto_sto_2D_E]
+    type = 'Exodiff'
+    input = 'PTO_STO_2D_E_full.i'
+    exodiff = 'PTO_STO_2D_E_full_exo.e'
+    # phi is pinned at one node, so at any step where the potential happens to be
+    # <= 0 everywhere, phi_max IS that pinned node: ~1e-9, a numerical zero that
+    # exodiff would otherwise compare in RELATIVE terms and always fail on.
+    # 1e-8 sits above the cross-partition noise floor (~3e-9) and a factor 2.5e5
+    # below the smallest physically meaningful quantity in the file (Felec ~ 2.5e-3).
+    abs_zero = 1e-8
+  [../]
   #[./superlattice]
   #  type = 'Exodiff'
   #  input = 'Ferro_para_superlattice.i'

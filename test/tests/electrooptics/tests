@@ -19,7 +19,4 @@
     max_parallel = 1
     max_threads = 1
   [../]
-
-#disabled elastooptic test. The input should probably be strain_tensor calculated by MOOSE and not the local displacement field.
-# unfortunately, this might also be the case for the entire Ferret coupling system...
 []

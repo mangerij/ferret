@@ -229,8 +229,6 @@
   [../]
 []
 
-
-
 [BCs]
    active = 'anchor_up_Z anchor_dn_Z anchor_up_X anchor_dn_X anchor_up_Y anchor_dn_Y'
   [./anchor_up_X]
@@ -283,7 +281,6 @@
 
 []
 
-
 [Postprocessors]
     [./Felastic]
       type = ElasticEnergy
@@ -304,7 +301,7 @@
 
 [Executioner]
   type = Steady
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
+  solve_type = 'NEWTON'
 []
 
 [Outputs]
@@ -315,5 +312,3 @@
     elemental_as_nodal = true
   [../]
 []
-
-

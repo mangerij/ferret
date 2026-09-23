@@ -86,7 +86,6 @@
 []
 
 [Kernels]
-  #Bulk energy density
   [./bed_x]
     type = BulkEnergyDerivativeSixthCoupledT
     variable = polar_x
@@ -103,7 +102,6 @@
     component = 2
   [../]
 
-  ##Wall energy penalty
   [./walled_x]
      type=WallEnergyDerivative
      variable = polar_x
@@ -120,7 +118,6 @@
      component = 2
   [../]
 
-  ##Electrostatics
   [./polar_x_electric_E]
      type=PolarElectricEStrong
      variable = potential_E_int
@@ -147,15 +144,11 @@
      component = 2
   [../]
 
-  #temperature kernel
   [./t_dif]
      type = Diffusion
      variable = temperature
   [../]
 
-
-
-  ##Time dependence
   [./polar_x_time]
      type = TimeDerivativeScaled
      variable=polar_x
@@ -210,7 +203,6 @@
   [../]
 []
 
-
 [Preconditioning]
   [./smp]
     type = SMP
@@ -222,8 +214,8 @@
 
 [Executioner]
   type = Transient
-  solve_type = 'NEWTON'       #"PJFNK, JFNK, NEWTON"
-  scheme = 'implicit-euler'   #"implicit-euler, explicit-euler, crank-nicolson, bdf2, rk-2"
+  solve_type = 'NEWTON'
+  scheme = 'implicit-euler'
   dtmin = 1e-13
   dtmax = 0.5
   num_steps = 10

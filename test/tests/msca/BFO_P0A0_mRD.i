@@ -1,4 +1,3 @@
-
 Dedef = 3.0
 D0def = 0.01
 K1def = -0.2
@@ -13,7 +12,6 @@ alphadef = 0.01
     use_for_exodus_restart = true
   []
 []
-
 
 [GlobalParams]
   mag1_x = mag1_x
@@ -32,15 +30,9 @@ alphadef = 0.01
   polar_y = polar_y
   polar_z = polar_z
 
-
 []
 
 [Materials]
-  ############################################################################
-  ##
-  ##       material constants used.
-  ##
-  ############################################################################
 
   [./constants]
     type = GenericConstantMaterial
@@ -146,7 +138,6 @@ alphadef = 0.01
     family = LAGRANGE
   [../]
 
-
   [./SSMag_x]
     order = FIRST
     family = LAGRANGE
@@ -159,7 +150,6 @@ alphadef = 0.01
     order = FIRST
     family = LAGRANGE
   [../]
-
 
   [./antiphase_A_x]
     order = FIRST
@@ -179,7 +169,6 @@ alphadef = 0.01
     initial_from_file_var = antiphase_A_z
     initial_from_file_timestep = 'LATEST'
   [../]
-
 
   [./polar_x]
     order = FIRST
@@ -215,26 +204,24 @@ alphadef = 0.01
   [../]
 []
 
-
 [AuxKernels]
   [./mag1_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag1_s
-    vector_x = mag1_x
-    vector_y = mag1_y
-    vector_z = mag1_z
+    x = mag1_x
+    y = mag1_y
+    z = mag1_z
     execute_on = 'initial timestep_end final'
   [../]
 
   [./mag2_mag]
-    type = VectorMag
+    type = VectorMagnitudeAux
     variable = mag2_s
-    vector_x = mag2_x
-    vector_y = mag2_y
-    vector_z = mag2_z
+    x = mag2_x
+    y = mag2_y
+    z = mag2_z
     execute_on = 'initial timestep_end final'
   [../]
-
 
   [./Neel_Lx]
     type = VectorDiffOrSum
@@ -326,7 +313,6 @@ alphadef = 0.01
   [../]
 
 []
-
 
 [Kernels]
 
@@ -656,19 +642,6 @@ alphadef = 0.01
     execute_on = 'initial timestep_end final'
   [../]
 
-  [./perc_change]
-    type = EnergyRatePostprocessor
-    postprocessor = Ftot
-    dt = dt
-    execute_on = 'timestep_end final'
-  [../]
-[]
-
-[UserObjects]
-  [./kill]
-    type = Terminator
-    expression = 'perc_change <= 1.0e-8'
-  [../]
 []
 
 [Preconditioning]
@@ -693,7 +666,7 @@ alphadef = 0.01
 
   [./TimeStepper]
     type = IterationAdaptiveDT
-    optimal_iterations = 10  #usually 10
+    optimal_iterations = 10
     linear_iteration_ratio = 100
     dt = 1e-8
   [../]
@@ -710,4 +683,3 @@ alphadef = 0.01
     time_step_interval = 2
   [../]
 []
-
