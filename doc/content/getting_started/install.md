@@ -17,25 +17,34 @@ First, follow [these instructions](getting_started/conda.md) to install environm
 
 ### Step 2: Clone FERRET style=line-height:150%;
 
-Next, clone FERRET to your local projects directory:
+Next, clone both MOOSE and FERRET into your local projects directory:
 
 ```bash
-mkdir ~/projects
+mkdir -p ~/projects
 cd ~/projects
+git clone https://github.com/idaholab/moose.git
 git clone https://github.com/mangerij/ferret.git
-./configure
 cd ferret
 git checkout master
-git submodule update --init --recursive
+./configure
 ```
 
-These commands should download a copy of FERRET and a copy of MOOSE (as a submodule) to your local projects directory.
+!alert! note title=MOOSE is a sibling directory, not a submodule
+FERRET does +not+ vendor MOOSE. The `Makefile` locates it with `MOOSE_DIR ?= $(shell dirname \`pwd\`)/moose`, so MOOSE must sit +next to+ FERRET (for example `~/projects/moose` and `~/projects/ferret`). If you keep MOOSE somewhere else, export `MOOSE_DIR` to point at it before compiling:
 
-> +\[Optional\]+ In Step 1, if you didn't choose to include moose-libmesh in your Conda environment (typically on HPC systems where Conda is not suggested), you need to compile PETSc and libMesh using
+```bash
+export MOOSE_DIR=/path/to/moose
+```
+!alert-end!
+
+FERRET's only git submodule is ScalFMM, which is optional and covered in Step 4. You do not need `git submodule update` for a standard build.
+
+> +\[Optional\]+ In Step 1, if you didn't choose to include moose-libmesh in your Conda environment (typically on HPC systems where Conda is not suggested), you need to compile PETSc and libMesh from within the MOOSE clone:
 >
 > ```bash
-> ./moose/scripts/update_and_rebuild_petsc.sh
-> ./moose/scripts/update_and_rebuild_libmesh.sh
+> cd ~/projects/moose
+> ./scripts/update_and_rebuild_petsc.sh
+> ./scripts/update_and_rebuild_libmesh.sh
 > ```
 
 !alert note title=Important!
@@ -44,13 +53,13 @@ If you are trying to clone Ferret (or MOOSE) in the Windows Sublayer for Linux (
 
 ### Step 3: Compile FERRET style=line-height:150%;
 
-Next, you can compile FERRET using
+Next, from inside the FERRET directory, compile it using
 
 ```bash
 make -j N
 ```
 
-where `N` is the number of processors you want to use to compile FERRET in parallel.
+where `N` is the number of processors you want to use to compile FERRET in parallel. This produces the `ferret-opt` executable in the FERRET root directory.
 
 > +\[Optional\]+ To make sure FERRET is working properly, run the regression tests:
 >

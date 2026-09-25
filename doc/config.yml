@@ -39,3 +39,10 @@ Extensions:
   MooseDocs.extensions.bibtex:
     duplicates: # allows removal of duplicate bibliography warnings when pulling from multiple content sources
       - kim_phase-field_1999
+  MooseDocs.extensions.tagging:
+    active: True
+    js_file: index-6fae072b.js
+    allowed_keys:
+      - example_type
+      - simulation_type
+      - fiscal_year
