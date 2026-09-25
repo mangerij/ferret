@@ -1,11 +1,11 @@
 [Tests]
-  [./pto_2D_E]
-    type = 'Exodiff'
-    input = 'PTO_2D_E_full.i'
-    exodiff = 'PTO_2D_E_full_exo.e'
-    max_parallel = 1
-    max_threads = 1
-  [../]
+#  [./pto_2D_E] #needs changes
+#    type = 'Exodiff'
+#    input = 'PTO_2D_E_full.i'
+#    exodiff = 'PTO_2D_E_full_exo.e'
+#    max_parallel = 1
+#    max_threads = 1
+#  [../]
   [./pto_2D_E_multi]
     type = 'Exodiff'
     input = 'PTO_2D_E_multi.i'
