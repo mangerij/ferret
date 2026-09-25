@@ -2,7 +2,7 @@
 
 # H2020-MSCA-IF-2019
 
-In the framework of the Marie-Curie individual fellowship - [H2020-MSCA-IF-2019](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) - call, this additional page was added to the FERRET website in order to disseminate results of [Project SCALES - 897614](https://cordis.europa.eu/project/id/897614) to the general public and the technical audience. We will discuss background and the modeling effort, summarize our key findings, and provide examples of how to reproduce representative results obtained during the funding period which are described in detail within our article [!cite](Mangeri2023) currently on the arXiv preprint server and under review.
+In the framework of the Marie-Curie individual fellowship - [H2020-MSCA-IF-2019](https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/topic-details/msca-if-2020) - call, this additional page was added to the FERRET website in order to disseminate results of [Project SCALES - 897614](https://cordis.europa.eu/project/id/897614) to the general public and the technical audience. We will discuss background and the modeling effort, summarize our key findings, and provide examples of how to reproduce representative results obtained during the funding period which are described in detail within our article [!cite](Mangeri2023).
 
 # Background
 
@@ -75,7 +75,7 @@ at every time step, where $Q_{klmn}$ and $R_{klmn}$ are the electro- and rotostr
 
 Here, $\Gamma_P, \Gamma_A$ are a relaxation coefficients related to the time scales involved in the structural phase transition. The parameter $\gamma$ is the electron gyromagnetic ratio and $\mathbf{H}_\eta$ is the effective field acting on sublattice $\eta$. The coeffiicent $\alpha$ is a phenomenological damping constant which if made nonzero (and positive) drives the magnetic system to the ground state.
 
-A detailed description of our model is shared in the preprint on arXiv at [!cite](Mangeri2023) and in the following sections we step through our key results and provide representative example files and documentation to reproduce the calculations.
+A detailed description of our model is given in [!cite](Mangeri2023) and in the following sections we step through our key results and provide representative example files and documentation to reproduce the calculations.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

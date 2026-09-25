@@ -143,7 +143,7 @@ information technologies.
 
 The full reverse chronological list of publications (20) that have used FERRET are provided below:
 
-- "Extrinsic dielectric response due to domain wall motion in ferroelectric BaTiO3", Comp. Mater. Today, 5, 100016, (2024)
+- "Extrinsic dielectric response due to domain wall motion in ferroelectric BaTiO3", Comp. Mater. Today, 5, 100016, (2025)
 - "Ferroelectric Texture of Individual Barium Titanate Nanocrystals", ACS Nano., 18, 28, (2024)
 - "Manipulating chiral spin transport with ferroelectric polarization", Nature Mater., 23, 898-904, (2024)
 - "Predicting thermoelectric figure of merit in complex materials: What do we need to know?", Acta Materialia, 271, 119889, (2024)
