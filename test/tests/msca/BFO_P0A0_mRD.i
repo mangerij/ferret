@@ -648,14 +648,16 @@ alphadef = 0.01
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type '
-    petsc_options_value = '    526               1e-8      1e-8      1e-8     bjacobi'
+    petsc_options_iname = ' -ksp_gmres_restart -ksp_rtol -pc_type '
+    petsc_options_value = '    526          1e-8     bjacobi'
   [../]
 []
 
 [Executioner]
   type = Transient
   solve_type = 'NEWTON'
+  nl_abs_tol = 1e-8
+  nl_rel_tol = 1e-8
 
   [./TimeIntegrator]
     type = NewmarkBeta

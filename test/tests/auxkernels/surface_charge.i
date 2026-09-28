@@ -771,8 +771,8 @@
     type = SMP
     full = true
     petsc_options = '-snes_ksp_ew'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided'
-    petsc_options_value = '    80             1e-8        1e-5      1e-5       bjacobi      allreduce'
+    petsc_options_iname = '-ksp_gmres_restart -ksp_rtol -pc_type  -build_twosided'
+    petsc_options_value = '    80             1e-5       bjacobi      allreduce'
   [../]
 []
 
@@ -780,6 +780,8 @@
 
   type = Transient
   solve_type = 'PJFNK'
+  nl_abs_tol = 1e-8
+  nl_rel_tol = 1e-5
   scheme = 'bdf2'
   dtmin = 1e-13
   dtmax = 0.6

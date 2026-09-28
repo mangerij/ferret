@@ -259,14 +259,15 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart  -snes_atol -ksp_rtol -pc_type'
-    petsc_options_value = '    121                1e-10      1e-8     bjacobi'
+    petsc_options_iname = '-ksp_gmres_restart  -ksp_rtol -pc_type'
+    petsc_options_value = '    121                1e-8     bjacobi'
   [../]
 []
 
 [Executioner]
   type = Steady
   solve_type = 'NEWTON'
+  nl_abs_tol = 1e-10
 []
 
 [Outputs]
