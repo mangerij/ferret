@@ -488,8 +488,8 @@ amplitude = 1e-3
     type = SMP
     full = true
     petsc_options = '-snes_ksp_ew'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -build_twosided'
-    petsc_options_value = '    160               1e-10      1e-8      1e-6          bjacobi       allreduce'
+    petsc_options_iname = '-ksp_gmres_restart -ksp_rtol -pc_type  -build_twosided'
+    petsc_options_value = '    160          1e-6          bjacobi       allreduce'
   [../]
 []
 
@@ -497,6 +497,8 @@ amplitude = 1e-3
 
   type = Transient
   solve_type = 'PJFNK'
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-8
   scheme = 'implicit-euler'
 
   dtmin = 1e-16

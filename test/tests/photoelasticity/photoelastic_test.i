@@ -599,14 +599,16 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type  -pc_hypre_type'
-    petsc_options_value = '    250              1e-10      1e-8      1e-6      hypre       boomeramg '
+    petsc_options_iname = '-ksp_gmres_restart -ksp_rtol -pc_type  -pc_hypre_type'
+    petsc_options_value = '    250         1e-6      hypre       boomeramg '
   [../]
 []
 
 [Executioner]
   type = Steady
   solve_type = 'NEWTON'
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-8
 []
 
 [Outputs]

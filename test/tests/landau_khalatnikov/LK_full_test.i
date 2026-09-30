@@ -464,8 +464,8 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type'
-    petsc_options_value = '    121            1e-8          1e-8       1e-6     bjacobi'
+    petsc_options_iname = '-ksp_gmres_restart  -ksp_rtol -pc_type'
+    petsc_options_value = '    121          1e-6     bjacobi'
   [../]
 []
 
@@ -476,6 +476,8 @@
 
   solve_type = 'PJFNK'
   num_steps = 50
+  nl_abs_tol = 1e-8
+  nl_rel_tol = 1e-8
 []
 
 [Outputs]

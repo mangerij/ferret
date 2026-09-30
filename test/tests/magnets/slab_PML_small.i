@@ -416,13 +416,15 @@ alphadef = 0.02
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = ' -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -sub_pc_type '
-    petsc_options_value = '    100               1e-12      1e-9      1e-8     bjacobi   ilu'
+    petsc_options_iname = ' -ksp_gmres_restart -ksp_rtol -pc_type -sub_pc_type '
+    petsc_options_value = '    100          1e-8     bjacobi   ilu'
   [../]
 []
 
 [Executioner]
   type = Transient
+  nl_abs_tol = 1e-12
+  nl_rel_tol = 1e-9
   solve_type = 'NEWTON'
   automatic_scaling = true
 
