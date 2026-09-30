@@ -807,8 +807,8 @@ h44 = 0.8e-3
     type = SMP
     full = true
     petsc_options = '-snes_ksp_ew'
-    petsc_options_iname = '-ksp_gmres_restart -snes_atol  -snes_rtol -ksp_rtol -pc_type -build_twosided'
-    petsc_options_value = '    121            1e-8          1e-7       1e-6     bjacobi    allreduce'
+    petsc_options_iname = '-ksp_gmres_restart -ksp_rtol -pc_type -build_twosided'
+    petsc_options_value = '    121            1e-6     bjacobi    allreduce'
   [../]
 []
 
@@ -818,6 +818,8 @@ h44 = 0.8e-3
   scheme = 'bdf2'
   dtmin = 1e-13
   dtmax = 10.0
+  nl_abs_tol = 1e-8
+  nl_rel_tol = 1e-7
 
   [./TimeStepper]
     type = IterationAdaptiveDT
