@@ -29,6 +29,13 @@
     # below the smallest physically meaningful quantity in the file (Felec ~ 2.5e-3).
     abs_zero = 1e-8
   [../]
+  [./pto_sto_2D_E_multi]
+    type = 'Exodiff'
+    input = 'PTO_STO_2D_E_multi.i'
+    exodiff = 'PTO_STO_2D_E_multi_exo.e'
+    # same pinned-node phi_max numerical zero as pto_sto_2D_E (~1e-10 here)
+    abs_zero = 1e-8
+  [../]
   #[./superlattice]
   #  type = 'Exodiff'
   #  input = 'Ferro_para_superlattice.i'
