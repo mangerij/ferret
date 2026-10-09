@@ -50,4 +50,12 @@
     max_parallel = 1
     max_threads = 1
   [../]
+
+  [./sp3]
+    type = 'Exodiff'
+    input = 'sp3.i'
+    exodiff = 'out_sp3.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
