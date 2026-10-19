@@ -58,4 +58,20 @@
     max_parallel = 1
     max_threads = 1
   [../]
+
+  [./sp4_f1]
+    type = 'Exodiff'
+    input = 'sp4_f1.i'
+    exodiff = 'out_sp4_f1.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./sp4_f2]
+    type = 'Exodiff'
+    input = 'sp4_f2.i'
+    exodiff = 'out_sp4_f2.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
