@@ -40,7 +40,8 @@ protected:
   Real torqueDerivative(unsigned int component, unsigned int variable_component) const;
   int leviCivita(unsigned int i, unsigned int j, unsigned int k) const;
 
-  const unsigned int _component;
+  /// not const: TangentPlaneProjected evaluates all three components through it
+  unsigned int _component;
   const unsigned int _current_direction;
 
   const unsigned int _mag_x_var;

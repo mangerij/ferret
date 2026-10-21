@@ -74,4 +74,48 @@
     max_parallel = 1
     max_threads = 1
   [../]
+
+  [./aniso_k2_cone]
+    type = 'CSVDiff'
+    input = 'aniso_k2_cone.i'
+    csvdiff = 'out_aniso_k2_cone.csv'
+  [../]
+
+  [./sp6_1d]
+    type = 'Exodiff'
+    input = 'sp6_1d.i'
+    exodiff = 'out_sp6_1d.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./sp6_2d]
+    type = 'Exodiff'
+    input = 'sp6_2d.i'
+    exodiff = 'out_sp6_2d.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./sp6_3d]
+    type = 'Exodiff'
+    input = 'sp6_3d.i'
+    exodiff = 'out_sp6_3d.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./sp5]
+    type = 'Exodiff'
+    input = 'sp5.i'
+    exodiff = 'out_sp5.e'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./sp7]
+    type = 'CSVDiff'
+    input = 'sp7.i'
+    csvdiff = 'out_sp7.csv'
+  [../]
 []
