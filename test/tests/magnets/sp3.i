@@ -107,7 +107,7 @@
   [cube_properties]
     type = GenericConstantMaterial
     prop_names = 'alpha Ae Ms permittivity K1 nx ny nz'
-    prop_values = '100.0 1.0 1.261566 1.0 -0.1 1 0 0'
+    prop_values = '100.0 1.0 1.261566 1.0 0.1 1 0 0'
     block = cube
   []
   [vacuum_properties]

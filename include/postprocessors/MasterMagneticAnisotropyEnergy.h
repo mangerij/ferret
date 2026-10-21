@@ -37,6 +37,7 @@ protected:
   const VariableValue & _mag_y;
   const VariableValue & _mag_z;
   const MaterialProperty<Real> & _K1;
+  const OptionalMaterialProperty<Real> & _K2;
   const MaterialProperty<Real> & _nx;
   const MaterialProperty<Real> & _ny;
   const MaterialProperty<Real> & _nz;

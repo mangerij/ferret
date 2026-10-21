@@ -38,7 +38,7 @@
   [./aniso]
     type = GenericConstantMaterial
     prop_names = 'K1 K2'
-    prop_values = '20.0 0'
+    prop_values = '-20.0 0'
   [../]
   [./permitivitty_1]
     type = GenericConstantMaterial

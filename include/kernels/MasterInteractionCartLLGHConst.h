@@ -37,8 +37,10 @@ protected:
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
+  /// not const: TangentPlaneProjected evaluates all three components through it
+  unsigned int _component;
+
 private:
-  const unsigned int _component;
   const unsigned int _potential_H_int_var;
   const unsigned int _potential_H_ext_var;
   const VariableValue & _potential_H_int;

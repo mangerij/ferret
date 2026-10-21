@@ -57,5 +57,6 @@ private:
   const MaterialProperty<Real> & _H0;
   const MaterialProperty<Real> & _He;
   const MaterialProperty<Real> & _Ha;
+  const OptionalMaterialProperty<Real> & _alpha;
 };
 #endif //UNIAXIALAFMSUBLATTICE_H

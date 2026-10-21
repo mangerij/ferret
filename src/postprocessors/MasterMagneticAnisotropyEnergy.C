@@ -28,6 +28,7 @@ InputParameters MasterMagneticAnisotropyEnergy::validParams()
 {
 
   InputParameters params = ElementIntegralPostprocessor::validParams();
+  params.addClassDescription("Calculates an integral over the uniaxial magnetic anisotropy energy density -K1 (m.n)^2 - K2 (m.n)^4. The material property K2 is optional (taken as zero if no material provides it).");
   params.addRequiredCoupledVar("mag_x", "The x component of the constrained magnetization");
   params.addRequiredCoupledVar("mag_y", "The y component of the constrained magnetization");
   params.addCoupledVar("mag_z", 0.0, "The z component of the constrained magnetization");
@@ -41,6 +42,7 @@ MasterMagneticAnisotropyEnergy::MasterMagneticAnisotropyEnergy(const InputParame
    _mag_y(coupledValue("mag_y")),
    _mag_z(coupledValue("mag_z")),
    _K1(getMaterialProperty<Real>("K1")),
+   _K2(getOptionalMaterialProperty<Real>("K2")),
    _nx(getMaterialProperty<Real>("nx")),
    _ny(getMaterialProperty<Real>("ny")),
    _nz(getMaterialProperty<Real>("nz")),
@@ -52,5 +54,8 @@ MasterMagneticAnisotropyEnergy::MasterMagneticAnisotropyEnergy(const InputParame
 Real
 MasterMagneticAnisotropyEnergy::computeQpIntegral()
 {
-  return -_energy_scale*_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp]);
+  if (_K2)
+    return -_energy_scale*(_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp]) + _K2[_qp]*Utility::pow<4>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp]));
+  else
+    return -_energy_scale*_K1[_qp]*Utility::pow<2>(_mag_x[_qp]*_nx[_qp] + _mag_y[_qp]*_ny[_qp] + _mag_z[_qp]*_nz[_qp]);
 }

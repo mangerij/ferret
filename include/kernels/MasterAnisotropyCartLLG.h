@@ -36,7 +36,8 @@ protected:
   virtual Real computeQpJacobian();
   virtual Real computeQpOffDiagJacobian(unsigned int jvar);
 
-  const unsigned int _component;
+  /// not const: TangentPlaneProjected evaluates all three components through it
+  unsigned int _component;
   const unsigned int _mag_x_var;
   const unsigned int _mag_y_var;
   const unsigned int _mag_z_var;
@@ -45,6 +46,7 @@ protected:
   const VariableValue & _mag_z;
   const MaterialProperty<Real> & _alpha;
   const MaterialProperty<Real> & _K1;
+  const OptionalMaterialProperty<Real> & _K2;
   const MaterialProperty<Real> & _nx;
   const MaterialProperty<Real> & _ny;
   const MaterialProperty<Real> & _nz;
