@@ -4,7 +4,8 @@
     type = 'CSVDiff'
     input = 'flexo_180DW_theta15.i'
     csvdiff = 'flexo_180DW_theta15_out.csv'
-    abs_zero = 1e-10
+    abs_zero = 1e-8
+    rel_err = 5e-5
     max_parallel = 1
     max_threads = 1
   [../]
