@@ -10,20 +10,20 @@ documentation clear for users.
 
 ## Overview
 
-The Poisson equation includes contributions from the (converse piezo) strain-charge,
+The Poisson equation includes contributions from the (direct piezoelectric) strain-charge. Gauss's law $\partial D_j / \partial x_j = 0$ with the electric displacement $D_j = -\epsilon_b \, \partial \Phi_\mathrm{E} / \partial x_j + d_{jkl} \sigma_{kl}$ reads
 
 \begin{equation}
   \begin{aligned}
-    \frac{\partial}{\partial x_r} \epsilon_b \frac{\partial \Phi_\mathrm{E} }{\partial x_r} + \frac{\partial (d_{jkl} \sigma_{kl})}{\partial x_j} = 0,
+    -\frac{\partial}{\partial x_r} \epsilon_b \frac{\partial \Phi_\mathrm{E} }{\partial x_r} + \frac{\partial (d_{jkl} \sigma_{kl})}{\partial x_j} = 0,
   \end{aligned}
 \end{equation}
 
- with $\sigma_{kl} = C_{ijkl} \varepsilon_{kl}$ being the components of the elastic stress tensor and $\epsilon_b$ being a relative static permittivity.
+ with $\sigma_{kl} = C_{ijkl} \varepsilon_{kl}$ being the components of the elastic stress tensor and $\epsilon_b$ being a relative static permittivity. Note the relative sign of the two terms, which follows from $E_m = -\partial \Phi_\mathrm{E} / \partial x_m$: it is what makes the coupled electromechanical operator symmetric (variational) together with `ConversePiezoelectricStrain`.
  Multiplying by a test function and integrating by both sides,
 
 \begin{equation}
   \begin{aligned}
-   \left(\psi_h, \frac{\partial}{\partial x_r} \epsilon_b \frac{\partial \Phi_\mathrm{E} }{\partial x_r}\right) + \left(\psi_h,\frac{\partial (d_{jkl} \sigma_{kl})}{\partial x_j}\right) = 0,
+   -\left(\psi_h, \frac{\partial}{\partial x_r} \epsilon_b \frac{\partial \Phi_\mathrm{E} }{\partial x_r}\right) + \left(\psi_h,\frac{\partial (d_{jkl} \sigma_{kl})}{\partial x_j}\right) = 0,
   \end{aligned}
 \end{equation}
 
@@ -31,10 +31,10 @@ If $\epsilon_b$ does not depend on space (as is usually the case), we can rewrit
 
 \begin{equation}
   \begin{aligned}
-    \underbrace{-\left(\epsilon_b \frac{\partial \psi_h }{\partial x_r}, \frac{\partial \Phi_\mathrm{E}}{\partial x_r}\right)
-    + \langle \epsilon_b \frac{\partial \psi_h }{\partial x_r}, \frac{\partial \Phi_\mathrm{E}}{\partial x_r} \rangle}_\mathrm{Electrostatics} \,\,\,\,\, - \,\,\,\,\,
-    \underbrace{ \left(\frac{\partial \psi_h}{\partial x_j}, d_{jkl} \sigma_{kl} \right)
-    + \langle \frac{\partial \psi_h}{\partial x_j}, d_{jkl} \sigma_{kl} \rangle}_\mathrm{PiezoelectricStrainCharge} = 0,
+    \underbrace{\left(\epsilon_b \frac{\partial \psi_h }{\partial x_r}, \frac{\partial \Phi_\mathrm{E}}{\partial x_r}\right)
+    - \langle \psi_h, \epsilon_b \frac{\partial \Phi_\mathrm{E}}{\partial x_r} n_r \rangle}_\mathrm{Electrostatics} \,\,\,\,\, - \,\,\,\,\,
+    \underbrace{ \left[ \left(\frac{\partial \psi_h}{\partial x_j}, d_{jkl} \sigma_{kl} \right)
+    - \langle \psi_h, d_{jkl} \sigma_{kl} n_j \rangle \right]}_\mathrm{PiezoelectricStrainCharge} = 0,
   \end{aligned}
 \end{equation}
 

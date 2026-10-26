@@ -15,4 +15,13 @@
     max_threads = 1
   [../]
 
+  [./open_circuit_sensor]
+    type = 'CSVDiff'
+    input = 'open_circuit_sensor.i'
+    csvdiff = 'open_circuit_sensor_out.csv'
+    rel_err = 1e-7
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
 []
