@@ -1,4 +1,6 @@
 /* include/base/FerretConfig.h.  Generated from FerretConfig.h by configure.  */
+/* include/base/FerretConfig.h.  Generated from FerretConfig.h by configure.  */
+/* include/base/FerretConfig.h.  Generated from FerretConfig.h by configure.  */
 /* include/base/FerretConfig.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Flag indicating that Boost special functions are available */
