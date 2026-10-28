@@ -1,0 +1,28 @@
+[Tests]
+  [./sw_eigen_film]
+    type = 'CSVDiff'
+    input = 'sw_eigen_film.i'
+    csvdiff = 'out_sw_eigen_film.csv'
+    capabilities = 'slepc & mumps'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./sw_ringdown_film]
+    type = 'CSVDiff'
+    input = 'sw_ringdown_film.i'
+    csvdiff = 'out_sw_ringdown_film.csv'
+    capabilities = 'mumps'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./sw_eigen_vs_ringdown]
+    type = 'RunApp'
+    input = 'sw_eigen_vs_ringdown.i'
+    prereq = 'sw_eigen_film'
+    capabilities = 'slepc & mumps'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+[]
