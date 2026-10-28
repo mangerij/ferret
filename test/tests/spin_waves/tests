@@ -25,4 +25,12 @@
     max_parallel = 1
     max_threads = 1
   [../]
+
+  [./afm_skyr_modes]
+    type = 'CSVDiff'
+    input = 'afm_skyr_modes.i'
+    csvdiff = 'out_afm_skyr_modes.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
