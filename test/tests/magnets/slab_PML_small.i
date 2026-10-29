@@ -317,16 +317,6 @@ alphadef = 0.02
 
 []
 
-[InterfaceKernels]
-  [./PML_boundary]
-    type = InterfaceEquality
-    variable = potential_H_int
-    boundary = id_boundary
-    neighbor_var = potential_H_int
-    permittivity_neighbor = 1.
-  [../]
-[]
-
 [BCs]
   [./vacuum_box]
     type = DirichletBC
