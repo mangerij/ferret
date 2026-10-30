@@ -20,6 +20,8 @@ Tutorials:
   Magnetic ringdown: tutorials/magnetic_ringdown.md
   Antiferromagnetic dynamics: tutorials/AFM_dynamics.md
   Piezoelectric actuation: tutorials/piezoelectric.md
+  Spin waves from the eigensolver: tutorials/spin_waves.md
+  Flexoelectricity at a domain wall: tutorials/flexoelectric_domain_wall.md
   Polycrystalline thermoelectric transport: tutorials/thermoelectric.md
 
 EU Horizon2020-IF:
