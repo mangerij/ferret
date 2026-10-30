@@ -48,6 +48,19 @@ with the on- and off-diagonal jacobian contributions calculated via,
 
 with $\phi$ the shape function from the finite element method. Note that the last term of this equation is only nonzero if we are computing the on-diagonal jacobian entry in the case of $\beta = \eta$.
 
+## Landau-Lifshitz-Bloch form
+
+The description above is the default `form = penalty`, a $T = 0$ norm penalty. With `form = llb` the kernel supplies the longitudinal field of the Landau-Lifshitz-Bloch equation ([Finite-temperature micromagnetics](theory/intro_LLB.md)),
+
+\begin{equation}
+  \mathbf{H}_L = \frac{1}{2\chi_\parallel}\left(1 - \frac{|\mathbf{m}|^2}{m_e^2}\right)\mathbf{m} \quad (T < T_c), \qquad
+  \mathbf{H}_L = -\frac{1}{\chi_\parallel}\left(1 + \frac{3 T_c |\mathbf{m}|^2}{5 (T - T_c)}\right)\mathbf{m} \quad (T > T_c),
+\end{equation}
+
+acting through $-\gamma'\alpha_\parallel \mathbf{H}_L$ with $\gamma' = g_0/(1+\lambda^2)$. It needs the material properties `me`, `chi_par` (in m/A) and `alpha_par`, the coupled `temperature` and the parameter `Tc`. Below $T_c$ it relaxes $|\mathbf{m}|$ to $m_e$ with $\tau_\parallel = \chi_\parallel/(\gamma'\alpha_\parallel)$.
+
+!listing test/tests/magnets/llb_tau_par.i block=Kernels/MasterLongitudinalLLB_x
+
 ## Example Input File Syntax
 
 !! Describe and include an example of how to use the MasterLongitudinalLLB object.

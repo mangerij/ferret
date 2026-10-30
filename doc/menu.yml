@@ -8,6 +8,7 @@ Get Started:
 Theory:
   Phase Field Method of Ferroelectricity (FE):   theory/intro_LGD.md
   Micromagnetic Simulations:   theory/intro_LLG.md
+  Finite-Temperature Micromagnetics (LLB):   theory/intro_LLB.md
   Piezoelectricity:   theory/intro_piezo.md
   Thermoelectric Phenomena:   theory/intro_thermo.md
   Optical Properties:   theory/intro_optical.md

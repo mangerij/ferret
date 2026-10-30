@@ -47,8 +47,15 @@ protected:
   const MaterialProperty<Real> &_alpha;
   const Real &  _g0;
   const MaterialProperty<Real> & _Ms;
-  const MaterialProperty<Real> & _alpha_long;
+  const OptionalMaterialProperty<Real> & _alpha_long;
   const Real _fD;
 
+  const bool _llb;
+  const VariableValue & _temperature;
+  const Real _Tc;
+  const Real & _Hscale;
+  const OptionalMaterialProperty<Real> & _me;
+  const OptionalMaterialProperty<Real> & _chi_par;
+  const OptionalMaterialProperty<Real> & _alpha_par;
 };
 #endif //MASTERLONGITUDINALLLB_H

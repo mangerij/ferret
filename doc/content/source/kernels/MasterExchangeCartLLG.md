@@ -96,6 +96,14 @@ The on-diagonal $(\beta = k)$ and off-diagonal $(\beta \neq k)$ jacobian contrib
 
 using $\partial m_j / \partial m_\beta = \delta_{j\beta} \phi$ and $\partial^2 m_j / \partial m_\beta \partial x_\eta = \delta_{j\beta} \partial \phi / \partial x_\eta$ where $\phi$ is the shape function of the finite element method. Note that $A_e$ can be treated as a spatially dependent materials property. This means that the volume integrals will be taken over $A_e(\mathbf{x})$ and this parameter should be moved inside $(,)$ in the above expressions.
 
+## Landau-Lifshitz-Bloch route
+
+With `llb = true` the kernel solves the LLB equation, in which $|\mathbf{m}|$ is free ([Finite-temperature micromagnetics](theory/intro_LLB.md)). The residual is $\gamma'(\mathbf{H}_\mathrm{exch}, \mathbf{q})$ with the test vector $\mathbf{q} = \mathbf{v}\times\mathbf{m} - \alpha_\perp\mathbf{v} + (\alpha_\perp - \alpha_\parallel)(\mathbf{v}\cdot\mathbf{m})\mathbf{m}/|\mathbf{m}|^2$. It needs the material properties `alpha_perp` and `alpha_par`, and `Ae` is $A(T)/m_e^2$. `alpha` keeps its role as $\lambda$ in the prefactor $g_0/(1+\lambda^2)$.
+
+Integration by parts puts the gradient on $\mathbf{q}$. When the damping varies in space, for example $\alpha_\perp(T(\mathbf{x}))$, supply the optional `RealVectorValue` material properties `grad_alpha_perp` and `grad_alpha_par` (both or neither); they add the $\psi\,\nabla\alpha\cdot\nabla\mathbf{m}$ terms of the weak form. Without them the damping is treated as uniform, which drives walls and skyrmions by a spurious torque proportional to $\nabla\alpha$.
+
+!listing test/tests/magnets/llb_alpha_ramp_wall.i block=Kernels/MasterExchangeCartLLG_x
+
 ## Example Input File Syntax
 
 !! Describe and include an example of how to use the MasterExchangeCartLLG object.

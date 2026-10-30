@@ -118,4 +118,72 @@
     input = 'sp7.i'
     csvdiff = 'out_sp7.csv'
   [../]
+
+  [./llb_tau_par]
+    type = 'CSVDiff'
+    input = 'llb_tau_par.i'
+    csvdiff = 'out_llb_tau_par.csv'
+  [../]
+
+  [./llb_tau_par_above]
+    type = 'CSVDiff'
+    input = 'llb_tau_par_above.i'
+    csvdiff = 'out_llb_tau_par_above.csv'
+  [../]
+
+  [./llb_cone]
+    type = 'CSVDiff'
+    input = 'llb_cone.i'
+    csvdiff = 'out_llb_cone.csv'
+  [../]
+
+  [./llb_helix]
+    type = 'CSVDiff'
+    input = 'llb_helix.i'
+    csvdiff = 'out_llb_helix.csv'
+  [../]
+
+  [./llb_demag_film]
+    type = 'CSVDiff'
+    input = 'llb_demag_film.i'
+    csvdiff = 'out_llb_demag_film.csv'
+  [../]
+
+  [./sllb_ensemble]
+    type = 'CSVDiff'
+    input = 'sllb_ensemble.i'
+    csvdiff = 'out_sllb_ensemble.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+
+  [./walker_llg]
+    type = 'CSVDiff'
+    input = 'walker_llg.i'
+    csvdiff = 'out_walker_llg.csv'
+  [../]
+
+  [./walker_llg_above]
+    type = 'CSVDiff'
+    input = 'walker_llg_above.i'
+    csvdiff = 'out_walker_llg_above.csv'
+  [../]
+
+  [./llb_biaxial_chi]
+    type = 'CSVDiff'
+    input = 'llb_biaxial_chi.i'
+    csvdiff = 'out_llb_biaxial_chi.csv'
+  [../]
+
+  [./llb_alpha_ramp_wall]
+    type = 'CSVDiff'
+    input = 'llb_alpha_ramp_wall.i'
+    csvdiff = 'out_llb_alpha_ramp_wall.csv'
+  [../]
+
+  [./llb_alpha_ramp_dmi]
+    type = 'CSVDiff'
+    input = 'llb_alpha_ramp_dmi.i'
+    csvdiff = 'out_llb_alpha_ramp_dmi.csv'
+  [../]
 []

@@ -54,5 +54,9 @@ private:
   const Real & _g0;
   const MaterialProperty<Real> & _Ms;
   const Real & _Hscale;
+  const bool _llb;
+  const OptionalMaterialProperty<Real> & _alpha_perp;
+  const OptionalMaterialProperty<Real> & _alpha_par;
+  const Real _llb_m2_eps;
 };
 #endif //MASTERINTERACTIONCARTLLG_H

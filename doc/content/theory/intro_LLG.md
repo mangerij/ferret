@@ -20,6 +20,8 @@ There are two possible numerical resources within the FERRET/MOOSE ecosystem to 
 
 in which the latter term provides a longitudinal restoring force to $\mathbf{m}$ mapping it back onto the unit sphere. See the references of [!cite](Garanin2004) for an overview of the LLB equation. We have demonstrated that both methods are essentially equivalent (they also can be used together for stricter convergence criteria).
 
+This longitudinal term is a $T = 0$ norm penalty (`form = penalty` of `MasterLongitudinalLLB`). For magnetization at finite temperature, including $T(\mathbf{x})$ and the stochastic form, see [Finite-temperature micromagnetics](intro_LLB.md).
+
 # Micromagnetic theory for antiferromagnets
 
 If the material is an antiferromagnet, then the spin system forms two sublattices $(\mathbf{M}_1, \mathbf{M}_2)$ whose interaction is mediated by a short-range (typically nearest- or next-nearest-neighbor) exchange. To simulate an antiferromagnet at the micromagnetic level of theory, we have the two-sublattice LLG equation,

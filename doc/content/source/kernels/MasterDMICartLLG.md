@@ -39,6 +39,12 @@ without a BC object. The material property `D` carries the length scale in the s
 and $D$ in J/m$^2$, supply $D/10^{-9}$. The sign convention of the interfacial form is that of MuMax3 (`Dind`).
 The matching energy is [MasterMagneticDMIEnergy](MasterMagneticDMIEnergy.md).
 
+## Landau-Lifshitz-Bloch route
+
+With `llb = true` (bulk and interfacial `dmi_type`) the kernel solves the LLB equation ([Finite-temperature micromagnetics](theory/intro_LLB.md)); `D` is $D(T)/m_e^2$ and the material properties `alpha_perp` and `alpha_par` are required. As for [MasterExchangeCartLLG](MasterExchangeCartLLG.md), the optional `grad_alpha_perp` and `grad_alpha_par` properties add the terms that integration by parts produces when the damping varies in space.
+
+!listing test/tests/magnets/llb_alpha_ramp_dmi.i block=Kernels/MasterDMICartLLG_x
+
 ## Example Input File Syntax
 
 The DMI class is set with `dmi_type`, here through `[GlobalParams]`. Interfacial DMI on a 1D wire

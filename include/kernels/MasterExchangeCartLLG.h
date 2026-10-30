@@ -54,5 +54,11 @@ protected:
   const Real & _mu0;
   const Real & _Hscale;
 
+  const bool _llb;
+  const OptionalMaterialProperty<Real> & _alpha_perp;
+  const OptionalMaterialProperty<Real> & _alpha_par;
+  const OptionalMaterialProperty<RealVectorValue> & _grad_alpha_perp;
+  const OptionalMaterialProperty<RealVectorValue> & _grad_alpha_par;
+  const Real _llb_m2_eps;
 };
 #endif //MASTEREXCHANGECARTLLG_H

@@ -52,6 +52,14 @@ where $\epsilon_{ijk}$ is the Levi-Civita symbol and $|\mathbf{m}|^2$ is not rep
 
 with $H_\mathrm{scale}$ the optional field scale (`Hscale`).
 
+## Hard axis and the Landau-Lifshitz-Bloch route
+
+The optional hard-axis term $K_h(\mathbf{m}\cdot\mathbf{n}_h)^2$ (material properties `Kh`, `nhx`, `nhy`, `nhz`; $K_h > 0$ makes $\mathbf{n}_h$ hard) works in both routes and gives biaxial walls with a Walker breakdown.
+
+With `llb = true` the kernel solves the LLB equation ([Finite-temperature micromagnetics](theory/intro_LLB.md)) with the transverse form of the energy, $-K_1[(\mathbf{m}\cdot\mathbf{n})^2 - |\mathbf{m}|^2] - K_2[(\mathbf{m}\cdot\mathbf{n})^4 - |\mathbf{m}|^4]$. It has the same torque as the usual form but does not shift $|\mathbf{m}|$ away from $m_e$ in the domains. `K1` is $K(T)/m_e^2$; the material properties `alpha_perp` and `alpha_par` are required.
+
+!listing test/tests/magnets/llb_biaxial_chi.i block=Kernels/MasterAnisotropyCartLLG_x
+
 ## Example Input File Syntax
 
 !! Describe and include an example of how to use the MasterAnisotropyCartLLG object.

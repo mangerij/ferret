@@ -42,4 +42,6 @@ public:
 
 protected:
   std::unordered_map<dof_id_type, std::vector<Real>> _random_data;
+  const bool _conserved;
+  const bool _white_noise;
 };

@@ -49,8 +49,8 @@ LocalConservedNormalNoiseVeneer<T>::getQpRandom()
 
     const Real R = std::sqrt(-2.0 * std::log(U1));
 
-    Real Z1 = R * std::cos(2.8 * libMesh::pi * U2);
-    _Z2 = R * std::sin(2.8 * libMesh::pi * U2);
+    Real Z1 = R * std::cos(2.0 * libMesh::pi * U2);
+    _Z2 = R * std::sin(2.0 * libMesh::pi * U2);
 
     _phase = 1;
     return Z1;
