@@ -1,0 +1,309 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>MasterZLSpinTransferTorqueCartLLG | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="1549083c-11be-46a6-a02d-5cfc23acb06d" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e60818ef-f32a-4974-971c-7b00cfc6a614" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e0bf7fcc-dbcb-4b2a-87b1-4b551e40b964" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="3edcd700-b449-4bcc-a07b-938d400ed4bc" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="507bb35b-7d1e-4951-adbd-430055b5401f" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="91bc665b-11e5-45b2-9c63-e4f579cd112c"><i class="material-icons">menu</i></a><ul class="sidenav" id="91bc665b-11e5-45b2-9c63-e4f579cd112c"><li><a href="#!" class="dropdown-trigger" data-target="8841b831-2d1f-4d99-818a-657e3b07adbe" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="c3f3debe-a023-4341-ac53-1f748ee06428" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6547bcc3-c074-419a-a323-2e9b88059968" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e46cba11-5bdb-4360-80d8-772d9732a331" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="9c567085-9830-4b9d-a9f8-8eabd1b54d1f" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="1549083c-11be-46a6-a02d-5cfc23acb06d"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="e60818ef-f32a-4974-971c-7b00cfc6a614"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="e0bf7fcc-dbcb-4b2a-87b1-4b551e40b964"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="3edcd700-b449-4bcc-a07b-938d400ed4bc"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="507bb35b-7d1e-4951-adbd-430055b5401f"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="8841b831-2d1f-4d99-818a-657e3b07adbe"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="c3f3debe-a023-4341-ac53-1f748ee06428"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="6547bcc3-c074-419a-a323-2e9b88059968"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="e46cba11-5bdb-4360-80d8-772d9732a331"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="9c567085-9830-4b9d-a9f8-8eabd1b54d1f"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="929d6a9a-cf7b-46f8-83ff-5a613f988bc8" data-section-level="1" data-section-text="MasterZLSpinTransferTorqueCartLLG"><h1 id="masterzlspintransfertorquecartllg">MasterZLSpinTransferTorqueCartLLG</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The MasterZLSpinTransferTorqueCartLLG has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Zhang-Li spin-transfer torque for Cartesian LLG magnetization.</p><section id="c497c2f0-81cb-4300-a4a7-9dcac2821f49" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="d27aef14-312c-46cb-b634-1e2b33b9fa24" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="f32e1d38-f721-4556-bef3-f91ea60a8d34" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="34703931-7994-4a9e-841a-92034adfd56d" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">Magnetization component: 0=x, 1=y, 2=z.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Magnetization component: 0=x, 1=y, 2=z.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_x</span><span class="moose-parameter-header-description">x component of magnetization.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>x component of magnetization.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_y</span><span class="moose-parameter-header-description">y component of magnetization.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>y component of magnetization.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_z</span><span class="moose-parameter-header-description">z component of magnetization.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>z component of magnetization.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this residual object operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this residual object operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="6bd79851-906f-405a-a76b-bdb9345d173b" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">current_direction</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Spatial direction of current: 0=x, 1=y, 2=z.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Spatial direction of current: 0=x, 1=y, 2=z.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The displacements</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The displacements</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">u</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Signed spin-drift velocity in mesh-length units per time unit.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Signed spin-drift velocity in mesh-length units per time unit.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">xi</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Non-adiabaticity parameter.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Non-adiabaticity parameter.</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="ec978ed3-734c-4695-8a8f-cdc770f1b8b3" data-section-level="3" data-section-text="Contribution To Tagged Field Data Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">absolute_value_vector_tags</span><span class="moose-parameter-header-description">The tags for the vectors this residual object should fill with the absolute value of the residual contribution</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tags for the vectors this residual object should fill with the absolute value of the residual contribution</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_only</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether this object is only doing assembly to matrices (no vectors)</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether this object is only doing assembly to matrices (no vectors)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, system</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, time</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Contribution To Tagged Field Data Parameters</h3></summary></details></section><section id="3f56dac2-6744-4ca9-8012-0e11b5baeb84" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">search_method</span><span class="moose-parameter-header-default">nearest_node_connected_sides</span><span class="moose-parameter-header-description">Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nearest_node_connected_sides</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nearest_node_connected_sides, all_proximate_sides</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="6f22b7d7-3911-4a4a-b27e-cb5fd1693aa4" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="c2c0e712-16fc-4444-a92e-9c650653afba" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#1ce55378-e3fe-4a46-af13-355d3f82372b">(test/tests/magnets/sp5.i)</a></li></ul></section></section><div class="moose-modal modal" id="1ce55378-e3fe-4a46-af13-355d3f82372b"><div class="modal-content"><h4>(test/tests/magnets/sp5.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # muMAG SP5 benchmark mesh: 2.5 nm film cells (40 x 40 in-plane, 4 through the 10 nm), 4 film-size vacuum shells then x1.7
+  # grading out to an 800 x 800 x 350 nm box (graded tensor mesh g4a); relax the vortex first (alpha 0.5, u = 0), then
+  # restart with the current for 14 ns (NewmarkBeta, IterationAdaptiveDT, dtmax 0.005).
+  [box]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;5.862556 2.931278 17.587667 2.931278 5.862556&#x27;
+    dy = &#x27;5.862556 2.931278 17.587667 2.931278 5.862556&#x27;
+    dz = &#x27;1.758767 0.879383 1.758767 0.879383 1.758767&#x27;
+    ix = &#x27;1 1 6 1 1&#x27;
+    iy = &#x27;1 1 6 1 1&#x27;
+    iz = &#x27;1 1 2 1 1&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-17.5876675 -17.5876675 -3.517534&#x27;
+  []
+  [film_block]
+    type = SubdomainBoundingBoxGenerator
+    input = center
+    block_id = 1
+    bottom_left = &#x27;-8.795 -8.795 -0.8795&#x27;
+    top_right = &#x27;8.795 8.795 0.8795&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = film_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum film&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+  mu0 = 1.256637
+  g0 = 140.206695
+  Hscale = 1.0
+[]
+
+[Materials]
+  [film_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity&#x27;
+    prop_values = &#x27;0.1 1.0 1.261566 1.0&#x27;
+    block = film
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;1.0&#x27;
+    block = vacuum
+  []
+[]
+
+[Variables]
+  [mag_x]
+    block = film
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;-y/sqrt(x*x + y*y + 1.7587667438*1.7587667438)&#x27;
+    []
+  []
+  [mag_y]
+    block = film
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;x/sqrt(x*x + y*y + 1.7587667438*1.7587667438)&#x27;
+    []
+  []
+  [mag_z]
+    block = film
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;1.7587667438/sqrt(x*x + y*y + 1.7587667438*1.7587667438)&#x27;
+    []
+  []
+  [potential_H_int]
+    block = &#x27;film vacuum&#x27;
+  []
+[]
+
+[AuxVariables]
+  [mag_s]
+    block = film
+  []
+  [Hext_x]
+    block = film
+  []
+  [Hext_y]
+    block = film
+  []
+  [Hext_z]
+    block = film
+  []
+[]
+
+[AuxKernels]
+  [mag_norm]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    execute_on = &#x27;initial timestep_end&#x27;
+    block = film
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+    force_preaux = true
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+    block = film
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [demag_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [stt_x]
+    type = MasterZLSpinTransferTorqueCartLLG
+    variable = mag_x
+    component = 0
+    current_direction = 0
+    u = -12.6930
+    xi = 0.05
+    block = film
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+    block = film
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [demag_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [stt_y]
+    type = MasterZLSpinTransferTorqueCartLLG
+    variable = mag_y
+    component = 1
+    current_direction = 0
+    u = -12.6930
+    xi = 0.05
+    block = film
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+    block = film
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [demag_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [stt_z]
+    type = MasterZLSpinTransferTorqueCartLLG
+    variable = mag_z
+    component = 2
+    current_direction = 0
+    u = -12.6930
+    xi = 0.05
+    block = film
+  []
+  [magnetostatic_laplace]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;film vacuum&#x27;
+  []
+  [magnetostatic_source]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = film
+  []
+[]
+
+[BCs]
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [my]
+    type = ElementAverageValue
+    variable = mag_y
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [mag_norm_max]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = max
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.0
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 1.0
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  [TimeIntegrator]
+    type = NewmarkBeta
+  []
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dtmin = 1e-6
+  dtmax = 5e-3
+  num_steps = 10
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 15
+    iteration_window = 2
+    linear_iteration_ratio = 1000
+    dt = 1e-4
+    growth_factor = 1.1
+    cutback_factor = 0.7
+  []
+[]
+
+[Outputs]
+  file_base = out_sp5
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

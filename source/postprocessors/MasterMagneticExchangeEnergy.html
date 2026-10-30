@@ -1,460 +1,4 @@
-<!DOCTYPE html><head><meta charset="UTF-8"><title>MasterMagneticExchangeEnergy | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="1180a6e5-d8c3-49ae-8c2f-e2cac9a05204" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="f1809b84-bc02-46b4-8cf2-77656d8be3ed" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4d35efd3-6d56-463d-bf85-02e2e4d9efe7" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="2f5563b2-dbce-4656-af3d-cc11bc63c232" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="fe984ab2-f3cc-44b7-b91f-e9d179b00fd3" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="7cd4c34b-3a7e-4e06-944f-9af59929f92d"><i class="material-icons">menu</i></a><ul class="sidenav" id="7cd4c34b-3a7e-4e06-944f-9af59929f92d"><li><a href="#!" class="dropdown-trigger" data-target="ea8024f8-114c-46bd-92dd-ef05767d6c49" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e3612c9a-5349-4fd4-903b-d99482ae019e" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="6ca4410b-8eff-45ac-8d67-b71adfff9be2" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b7ed9270-71b1-4879-b684-e3d5d480546b" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="15c4de51-3ef4-4526-9b8e-ddb886c41ed2" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="1180a6e5-d8c3-49ae-8c2f-e2cac9a05204"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="f1809b84-bc02-46b4-8cf2-77656d8be3ed"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="4d35efd3-6d56-463d-bf85-02e2e4d9efe7"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="2f5563b2-dbce-4656-af3d-cc11bc63c232"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="fe984ab2-f3cc-44b7-b91f-e9d179b00fd3"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="ea8024f8-114c-46bd-92dd-ef05767d6c49"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="e3612c9a-5349-4fd4-903b-d99482ae019e"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="6ca4410b-8eff-45ac-8d67-b71adfff9be2"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="b7ed9270-71b1-4879-b684-e3d5d480546b"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="15c4de51-3ef4-4526-9b8e-ddb886c41ed2"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="9baad24a-6fee-4be2-8b04-c847c189037e" data-section-level="1" data-section-text="MasterMagneticExchangeEnergy"><h1 id="mastermagneticexchangeenergy">MasterMagneticExchangeEnergy</h1><p>Calculates an integral over the magnetic exchange energy density.</p><section id="17929ddb-fd16-4a0b-bbfe-59b1939c93ba" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Computes the free energy of the simulation box (volume <span class="moose-katex-inline-equation" id="moose-equation-a7bf695e-cdd6-4c0c-a13c-f3e5ebf9519f"><script>var element = document.getElementById("moose-equation-a7bf695e-cdd6-4c0c-a13c-f3e5ebf9519f");katex.render("\\Omega", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>) corresponding to magnetic exchange stiffness,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-45765f70-10b0-4934-b76c-9613f6adde2b"></span><script>var element = document.getElementById("moose-equation-45765f70-10b0-4934-b76c-9613f6adde2b");katex.render("  \\begin{aligned}     F_\\mathrm{exch} = \\int\\limits_\\Omega d^3\\mathbf{r} \\, A_e \\,\\left\\{  \\left(\\frac{\\partial m_x}{\\partial x}\\right)^2 + \\left(\\frac{\\partial m_x}{\\partial y}\\right)^2 + \\left(\\frac{\\partial m_x}{\\partial z}\\right)^2 + \\left(\\frac{\\partial m_y}{\\partial x}\\right)^2 + \\left(\\frac{\\partial m_y}{\\partial y}\\right)^2 + \\left(\\frac{\\partial m_y}{\\partial z}\\right)^2 + \\left(\\frac{\\partial m_z}{\\partial x}\\right)^2 + \\left(\\frac{\\partial m_z}{\\partial y}\\right)^2 + \\left(\\frac{\\partial m_z}{\\partial z}\\right)^2\\right\\}   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>where <span class="moose-katex-inline-equation" id="moose-equation-f2c1e28d-2ba7-4d59-bdb7-c751dcd047cb"><script>var element = document.getElementById("moose-equation-f2c1e28d-2ba7-4d59-bdb7-c751dcd047cb");katex.render("\\mathbf{m}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the normalized magnetization. The units of the energy are given by units of <span class="moose-katex-inline-equation" id="moose-equation-4c470fef-fd9e-48af-b1fe-98c39693c4f1"><script>var element = document.getElementById("moose-equation-4c470fef-fd9e-48af-b1fe-98c39693c4f1");katex.render("A_e", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> but an optional input parameter flag <code>energy</code><span class="moose-katex-inline-equation" id="moose-equation-b1ba8233-66c7-4938-b1b5-62dd79ffa7cf"><script>var element = document.getElementById("moose-equation-b1ba8233-66c7-4938-b1b5-62dd79ffa7cf");katex.render("\\_", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><code>scale</code> is provided allowing to quickly convert the postprocessed units.</p></section><section id="a6b6286b-40a7-483a-a9a7-f11240beb468" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="513ae509-679f-44b6-8bff-81d18f0d0da3" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="ae626644-424d-4c0e-bd03-ad724b3b3c86" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">mag_x</span><span class="moose-parameter-header-description">The x component of the magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the magnetization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_y</span><span class="moose-parameter-header-description">The y component of the magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the magnetization</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="fa29fc3f-580b-4591-9ba4-652f8d495cf0" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">energy_scale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the energy scale, useful for transition between eV and aJ</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the energy scale, useful for transition between eV and aJ</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_z</span><span class="moose-parameter-header-description">The z component of the magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the magnetization</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="e1027647-4470-42c0-93e8-7b088d81963f" data-section-level="3" data-section-text="Execution Scheduling Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>XFEM_MARK, NONE, INITIAL, LINEAR, LINEAR_CONVERGENCE, NONLINEAR, NONLINEAR_CONVERGENCE, POSTCHECK, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, MULTIAPP_FIXED_POINT_CONVERGENCE, MULTISYSTEM_FIXED_POINT_ITERATION_END, FINAL, CUSTOM, TRANSFER</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execution_order_group</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_postaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in POSTAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in POSTAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preic</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREIC during initial setup</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREIC during initial setup</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Execution Scheduling Parameters</h3></summary></details></section><section id="bb21f275-c0a7-48f3-9533-c1254e83b7c8" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="728cda00-a671-4098-b860-1cca7626481e" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="c93e3e30-ef2d-4b39-a3c2-76332ecd2391" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#6e11643d-f95d-4a29-a2e2-c136504a18f4">(test/tests/magnets/mag_brick.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#67075ebc-3b41-40fa-a4c6-6590194f1a7c">(test/tests/magnets/ringdown.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#d7469365-d2fe-431d-8b10-4e62d76682da">(test/tests/magnets/slab_PML_small.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#469f2918-64e0-46a6-95b5-126b7e21a0ea">(tutorial/ringdown.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#9a7774f4-f776-4fc5-8a1f-2005ebe5da9d">(test/tests/magnets/Sstate_gen-Py_OOMF.i)</a></li></ul></section></section><div class="moose-modal modal" id="6e11643d-f95d-4a29-a2e2-c136504a18f4"><div class="modal-content"><h4>(test/tests/magnets/mag_brick.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
-  [./fmg]
-    type = FileMeshGenerator
-    file = exodus_dx2_x10_y10_z30_b100.e
-  []
-
-  [central_interface]
-    type = SideSetsBetweenSubdomainsGenerator
-    input = fmg
-    master_block = &#x27;1&#x27;
-    paired_block = &#x27;2&#x27;
-    primary_block = &#x27;1&#x27;
-    new_boundary = &#x27;70&#x27;
-  []
-[]
-
-[GlobalParams]
-  mag_x = mag_x
-  mag_y = mag_y
-  mag_z = mag_z
-
-  potential_H_int = potential_H_int
-[]
-
-[Materials]
-  [./constants]
-    type = GenericConstantMaterial
-    prop_names = &#x27; alpha    Ae    Ms          g0          mu0         nx ny nz &#x27;
-    prop_values = &#x27;0.01    0.013   1.2      221010.0   1256.64        0  1  1  &#x27;
-  [../]
-
-  [./a_long]
-    type = GenericFunctionMaterial
-    prop_names = &#x27;alpha_long&#x27;
-    prop_values = &#x27;bc_func_1&#x27;
-  [../]
-
-  [./aniso]
-    type = GenericConstantMaterial
-    prop_names = &#x27;K1 K2&#x27;
-    prop_values = &#x27;20.0 0&#x27;
-  [../]
-  [./permitivitty_1]
-    type = GenericConstantMaterial
-    prop_names = &#x27;permittivity&#x27;
-    prop_values = &#x27;1.0&#x27;
-    block = &#x27;1 2&#x27;
-  [../]
-[]
-
-[Functions]
-
-  [./bc_func_1]
-    type = ParsedFunction
-    expression = &#x27;st&#x27;
-    symbol_names = &#x27;st&#x27;
-    symbol_values = &#x27;1e3&#x27;
-  [../]
-[]
-
-[Variables]
-  [./mag_x]
-    order = FIRST
-    family = LAGRANGE
-    block = &#x27;1&#x27;
-    [./InitialCondition]
-      type = RandomConstrainedVectorFieldIC
-      phi = azimuth_phi
-      theta = polar_theta
-      M0s = 1.0
-      component  = 0
-    [../]
-  [../]
-  [./mag_y]
-    order = FIRST
-    family = LAGRANGE
-    block = &#x27;1&#x27;
-    [./InitialCondition]
-      type = RandomConstrainedVectorFieldIC
-      phi = azimuth_phi
-      theta = polar_theta
-      M0s = 1.0
-      component  = 1
-    [../]
-  [../]
-  [./mag_z]
-    order = FIRST
-    family = LAGRANGE
-    block = &#x27;1&#x27;
-    [./InitialCondition]
-      type = RandomConstrainedVectorFieldIC
-      phi = azimuth_phi
-      theta = polar_theta
-      M0s = 1.0
-      component  = 2
-    [../]
-  [../]
-
-  [./potential_H_int]
-    order = FIRST
-    family = LAGRANGE
-    block = &#x27;1 2&#x27;
-  [../]
-[]
-
-[AuxVariables]
-  [./azimuth_phi]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.3
-      max = 0.31
-      seed = 2
-    [../]
-  [../]
-  [./polar_theta]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = 1.4
-      max = 1.41
-      seed = 37
-    [../]
-  [../]
-
-  [./mag_s]
-    order = FIRST
-    family = LAGRANGE
-    block = &#x27;1&#x27;
-  [../]
-
-  [./H_x]
-    order = CONSTANT
-    family = MONOMIAL
-    block = &#x27;1 2&#x27;
-  [../]
-  [./H_y]
-    order = CONSTANT
-    family = MONOMIAL
-    block = &#x27;1 2&#x27;
-  [../]
-  [./H_z]
-    order = CONSTANT
-    family = MONOMIAL
-    block = &#x27;1 2&#x27;
-  [../]
-
-  [./azimuth_phi_mag_min1]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.0
-      max = 0.00001
-      seed = 2
-    [../]
-  [../]
-  [./polar_theta_mag_min1]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.0
-      max = 0.00001
-      seed = 37
-    [../]
-  [../]
-[]
-
-[AuxKernels]
-
-  [./mag_mag]
-    type = VectorMagnitudeAux
-    variable = mag_s
-    x = mag_x
-    y = mag_y
-    z = mag_z
-    block = &#x27;1&#x27;
-    execute_on = &#x27;timestep_end final&#x27;
-  [../]
-
-  [./hxo]
-    type = DemagFieldAux
-    component = 0
-    variable = H_x
-    block = &#x27;1 2&#x27;
-    execute_on = &#x27;timestep_end final&#x27;
-  [../]
-  [./hyo]
-    type = DemagFieldAux
-    component = 1
-    variable = H_y
-    block = &#x27;1 2&#x27;
-    execute_on = &#x27;timestep_end final&#x27;
-  [../]
-  [./hzo]
-    type = DemagFieldAux
-    component = 2
-    variable = H_z
-    block = &#x27;1 2&#x27;
-    execute_on = &#x27;timestep_end final&#x27;
-  [../]
-[]
-
-[Kernels]
-
-  [./mag_x_time]
-    type = TimeDerivative
-    variable = mag_x
-    block = &#x27;1&#x27;
-  [../]
-  [./mag_y_time]
-    type = TimeDerivative
-    variable = mag_y
-    block = &#x27;1&#x27;
-  [../]
-  [./mag_z_time]
-    type = TimeDerivative
-    variable = mag_z
-    block = &#x27;1&#x27;
-  [../]
-
-  [./dllg_x_exch]
-    type = MasterExchangeCartLLG
-    variable = mag_x
-    component = 0
-  [../]
-  [./dllg_y_exch]
-    type = MasterExchangeCartLLG
-    variable = mag_y
-    component = 1
-  [../]
-  [./dllg_z_exch]
-    type = MasterExchangeCartLLG
-    variable = mag_z
-    component = 2
-  [../]
-
-  [./d_aM_x]
-    type = MasterAnisotropyCartLLG
-    variable = mag_x
-    component = 0
-  [../]
-  [./d_aM_y]
-    type = MasterAnisotropyCartLLG
-    variable = mag_y
-    component = 1
-  [../]
-  [./d_aM_z]
-    type = MasterAnisotropyCartLLG
-    variable = mag_z
-    component = 2
-  [../]
-
-  [./d_HM_x]
-    type = MasterInteractionCartLLG
-    variable = mag_x
-    component = 0
-  [../]
-  [./d_HM_y]
-    type = MasterInteractionCartLLG
-    variable = mag_y
-    component = 1
-  [../]
-  [./d_HM_z]
-    type = MasterInteractionCartLLG
-    variable = mag_z
-    component = 2
-  [../]
-
-  [./int_pot_lap]
-    type = Electrostatics
-    variable = potential_H_int
-    block = &#x27;1 2&#x27;
-  [../]
-  [./int_bc_pot_lap]
-    type = MagHStrongCart
-    variable = potential_H_int
-    block = &#x27;1&#x27;
-  [../]
-
-  [./llb_x]
-    type = MasterLongitudinalLLB
-    variable = mag_x
-    component = 0
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
-  [../]
-  [./llb_y]
-    type = MasterLongitudinalLLB
-    variable = mag_y
-    component = 1
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
-  [../]
-
-  [./llb_z]
-    type = MasterLongitudinalLLB
-    variable = mag_z
-    component = 2
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
-  [../]
-[]
-
-[BCs]
-
-  [./bc_int_pot_boundary]
-    type = DirichletBC
-    variable = potential_H_int
-    value = 0.0
-    boundary = &#x27;1 2 3 4 5 6&#x27;
-  [../]
-
-  [./bc_surface_mag_x]
-    type = NeumannBC
-    variable = mag_x
-    value = 0.0
-    boundary = &#x27;70&#x27;
-  [../]
-  [./bc_surface_mag_y]
-    type = NeumannBC
-    variable = mag_y
-    value = 0.0
-    boundary = &#x27;70&#x27;
-  [../]
-  [./bc_surface_mag_z]
-    type = NeumannBC
-    variable = mag_z
-    value = 0.0
-    boundary = &#x27;70&#x27;
-  [../]
-[]
-
-[Postprocessors]
-
-   [./dt]
-     type = TimestepSize
-   [../]
-
-  [./&lt;M&gt;]
-    type = ElementAverageValue
-    variable = mag_s
-    block = &#x27;1&#x27;
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-
-  [./&lt;mx&gt;]
-    type = ElementAverageValue
-    variable = mag_x
-    block = &#x27;1&#x27;
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-  [./&lt;my&gt;]
-    type = ElementAverageValue
-    variable = mag_y
-    block = &#x27;1&#x27;
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-  [./&lt;mz&gt;]
-    type = ElementAverageValue
-    variable = mag_z
-    block = &#x27;1&#x27;
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-
-  [./Fa]
-    type = MasterMagneticAnisotropyEnergy
-    execute_on = &#x27;initial timestep_end final&#x27;
-    block = &#x27;1&#x27;
-    energy_scale = 6241.51
-  [../]
-
-  [./Fexch]
-    type = MasterMagneticExchangeEnergy
-    execute_on = &#x27;timestep_end final&#x27;
-    block = &#x27;1&#x27;
-    energy_scale = 6241.51
-  [../]
-
-  [./Fdemag]
-    type = MagnetostaticEnergyCart
-    execute_on = &#x27;timestep_end final&#x27;
-    block = &#x27;1&#x27;
-    energy_scale = 6241.51
-  [../]
-
-  [./Fllb]
-    type = MagneticExcessLLBEnergy
-    execute_on = &#x27;timestep_end final&#x27;
-    block = &#x27;1&#x27;
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
-  [../]
-
-  [./Ftot]
-    type = LinearCombinationPostprocessor
-    pp_names = &#x27;Fexch Fdemag Fa&#x27;
-    pp_coefs = &#x27; 1.0 1.0 1.0&#x27;
-    execute_on = &#x27;timestep_end final&#x27;
-  [../]
-
-
-[]
-
-[Preconditioning]
-
-  [./smp]
-    type = SMP
-    full = true
-    petsc_options_iname = &#x27; -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type&#x27;
-    petsc_options_value = &#x27;    121               1e-8      1e-8      1e-5      bjacobi&#x27;
-  [../]
-[]
-
-[Executioner]
-  type = Transient
-  solve_type = &#x27;NEWTON&#x27;
-  [./TimeIntegrator]
-    type = ImplicitEuler
-  [../]
-  dtmin = 1e-12
-  dtmax = 1.0e-2
-
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    optimal_iterations = 10
-    linear_iteration_ratio = 100
-    dt = 1.0e-8
-
-  [../]
-
-  verbose = true
-
-  num_steps = 2
-[]
-
-[Outputs]
-  print_linear_residuals = false
-  [./out]
-    type = Exodus
-    file_base = out_mag_brick
-    elemental_as_nodal = true
-    time_step_interval = 1
-  [../]
-  [./outCSV]
-    type = CSV
-    file_base = out_mag_brick
-  [../]
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="67075ebc-3b41-40fa-a4c6-6590194f1a7c"><div class="modal-content"><h4>(test/tests/magnets/ringdown.i)</h4><pre style="max-height:350px;"><code class="language-moose">alphadef = 0.02
+<!DOCTYPE html><head><meta charset="UTF-8"><title>MasterMagneticExchangeEnergy | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="182b75b5-cdd7-4b70-b5bf-b7988604dbb6" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="97433b49-dc44-4507-9f10-aefd4a2b6764" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4968963a-1046-486c-9f02-9cae5c5831e9" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b53a1d88-f5a7-48e1-bb81-8b2e92725117" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="5554a143-8227-4e1f-89f4-b00b9c1cb2db" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="6b8fdd5e-c4e3-4668-89f5-c837d7839216"><i class="material-icons">menu</i></a><ul class="sidenav" id="6b8fdd5e-c4e3-4668-89f5-c837d7839216"><li><a href="#!" class="dropdown-trigger" data-target="45bdcfaf-39e4-4214-8780-0d5c0075bf8c" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="4b5b46cb-930c-467b-a49f-0fed740556ee" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="cff79f44-2fa8-4327-974e-86329f2d6873" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8618bba0-e643-41a3-ad65-c40a6df15b37" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="414e3951-6e55-478c-81fb-3f843166906b" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="182b75b5-cdd7-4b70-b5bf-b7988604dbb6"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="97433b49-dc44-4507-9f10-aefd4a2b6764"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="4968963a-1046-486c-9f02-9cae5c5831e9"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="b53a1d88-f5a7-48e1-bb81-8b2e92725117"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="5554a143-8227-4e1f-89f4-b00b9c1cb2db"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="45bdcfaf-39e4-4214-8780-0d5c0075bf8c"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="4b5b46cb-930c-467b-a49f-0fed740556ee"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="cff79f44-2fa8-4327-974e-86329f2d6873"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="8618bba0-e643-41a3-ad65-c40a6df15b37"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="414e3951-6e55-478c-81fb-3f843166906b"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="680d1f52-e889-4e5b-b288-f8e4c2634e6d" data-section-level="1" data-section-text="MasterMagneticExchangeEnergy"><h1 id="mastermagneticexchangeenergy">MasterMagneticExchangeEnergy</h1><p>Calculates an integral over the magnetic exchange energy density.</p><section id="19411a92-3f05-4d5f-a4a0-2392f7ae6193" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Computes the free energy of the simulation box (volume <span class="moose-katex-inline-equation" id="moose-equation-6c884fed-2334-45fe-bdec-b9f678765cb4"><script>var element = document.getElementById("moose-equation-6c884fed-2334-45fe-bdec-b9f678765cb4");katex.render("\\Omega", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>) corresponding to magnetic exchange stiffness,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-d7d6709e-c613-408b-a2c6-9fe9d4cc70d2"></span><script>var element = document.getElementById("moose-equation-d7d6709e-c613-408b-a2c6-9fe9d4cc70d2");katex.render("  \\begin{aligned}     F_\\mathrm{exch} = \\int\\limits_\\Omega d^3\\mathbf{r} \\, A_e \\,\\left\\{  \\left(\\frac{\\partial m_x}{\\partial x}\\right)^2 + \\left(\\frac{\\partial m_x}{\\partial y}\\right)^2 + \\left(\\frac{\\partial m_x}{\\partial z}\\right)^2 + \\left(\\frac{\\partial m_y}{\\partial x}\\right)^2 + \\left(\\frac{\\partial m_y}{\\partial y}\\right)^2 + \\left(\\frac{\\partial m_y}{\\partial z}\\right)^2 + \\left(\\frac{\\partial m_z}{\\partial x}\\right)^2 + \\left(\\frac{\\partial m_z}{\\partial y}\\right)^2 + \\left(\\frac{\\partial m_z}{\\partial z}\\right)^2\\right\\}   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>where <span class="moose-katex-inline-equation" id="moose-equation-00addc05-837c-40cd-a80e-b8d76640eaff"><script>var element = document.getElementById("moose-equation-00addc05-837c-40cd-a80e-b8d76640eaff");katex.render("\\mathbf{m}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the normalized magnetization. The units of the energy are given by units of <span class="moose-katex-inline-equation" id="moose-equation-a1704140-db7a-4cc5-8a50-bfeeb2bb54d9"><script>var element = document.getElementById("moose-equation-a1704140-db7a-4cc5-8a50-bfeeb2bb54d9");katex.render("A_e", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> but an optional input parameter flag <code>energy</code><span class="moose-katex-inline-equation" id="moose-equation-b2366682-ea2a-410d-97b3-3f4b93d067a7"><script>var element = document.getElementById("moose-equation-b2366682-ea2a-410d-97b3-3f4b93d067a7");katex.render("\\_", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span><code>scale</code> is provided allowing to quickly convert the postprocessed units.</p></section><section id="3e565964-c67c-4103-b16a-da8952a46dc6" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="ed38acd3-188f-4669-8d03-6bc330890bf3" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="a742e86d-bf77-43e2-acc4-6c2adc91caac" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">mag_x</span><span class="moose-parameter-header-description">The x component of the magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the magnetization</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_y</span><span class="moose-parameter-header-description">The y component of the magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the magnetization</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="978cb799-aa53-4196-a357-600c0cea633d" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">energy_scale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">the energy scale, useful for transition between eV and aJ</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>the energy scale, useful for transition between eV and aJ</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_z</span><span class="moose-parameter-header-description">The z component of the magnetization</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the magnetization</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="5363b031-aaf7-4b69-b3af-69449f4c1d80" data-section-level="3" data-section-text="Execution Scheduling Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">allow_duplicate_execution_on_initial</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>In the case where this UserObject is depended upon by an initial condition, allow it to be executed twice during the initial setup (once before the IC and again after mesh adaptivity (if applicable).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execute_on</span><span class="moose-parameter-header-default">TIMESTEP_END</span><span class="moose-parameter-header-description">The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>TIMESTEP_END</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>ExecFlagEnum</p><p class="moose-parameter-description-options"><span>Options:</span>XFEM_MARK, NONE, INITIAL, LINEAR, LINEAR_CONVERGENCE, NONLINEAR, NONLINEAR_CONVERGENCE, POSTCHECK, TIMESTEP_END, TIMESTEP_BEGIN, MULTIAPP_FIXED_POINT_END, MULTIAPP_FIXED_POINT_BEGIN, MULTIAPP_FIXED_POINT_CONVERGENCE, MULTISYSTEM_FIXED_POINT_ITERATION_END, FINAL, CUSTOM, TRANSFER</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of flag(s) indicating when this object should be executed. For a description of each flag, see https://mooseframework.inl.gov/source/interfaces/SetupInterface.html.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">execution_order_group</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Execution order groups are executed in increasing order (e.g., the lowest number is executed first). Note that negative group numbers may be used to execute groups before the default (0) group. Please refer to the user object documentation for ordering of user object execution within a group.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_postaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in POSTAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in POSTAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preaux</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREAUX</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREAUX</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">force_preic</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Forces the UserObject to be executed in PREIC during initial setup</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Forces the UserObject to be executed in PREIC during initial setup</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Execution Scheduling Parameters</h3></summary></details></section><section id="78604770-4853-4792-8835-2175d0d5bf4e" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="a23b3e0f-32a9-4a12-b03a-fb18f61d47d2" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="31f055f8-8066-42f3-a648-86265ca9f834" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#b352df59-65cc-4bbf-9f04-dfeab0a4ad78">(test/tests/magnets/ringdown.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#d01d83c5-a500-4933-ab76-10736d3a6894">(test/tests/magnets/sp4_f2.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#abcc167b-6c4d-4f90-a3a2-5a15fdaa2234">(test/tests/magnets/sp3.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#2f0e5219-d013-4cfe-85f0-b945d53e5c67">(test/tests/magnets/sp6_2d.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#b35c0561-d676-4309-a395-1a7b607f43ef">(test/tests/magnets/slab_PML_small.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#8d353260-68f5-4be3-8805-f155e68addc2">(test/tests/magnets/Sstate_gen-Py_OOMF.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#06e09fc6-83b7-422e-be65-1aae1bb73725">(test/tests/magnets/mag_brick.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#ab3808dc-e7a0-4f2e-b500-b9e760b4a58c">(test/tests/magnets/sp4_f1.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#ae7c6b2a-a0a2-4194-80c3-2a5c8fcf34fa">(test/tests/magnets/aniso_k2_cone.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#b28d82df-60fe-4259-aa3d-946caaf8707c">(tutorial/ringdown.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#85633cd5-8ce7-4f00-9ed4-01530d8bdc9f">(test/tests/magnets/sp2_second.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#a0a7bd17-6bcc-468c-b4b9-fdc9a9386988">(test/tests/magnets/llb_helix.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#0303625d-6986-4828-9353-5ea4032b95ce">(test/tests/magnets/sp6_3d.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#307eea4a-a1d5-46dc-bd23-ecf418bbf493">(test/tests/magnets/sp2_first.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#477926de-f668-453f-b2fe-0c8ef5e2ce49">(test/tests/magnets/sp5.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#834dc9f1-63f4-40f4-bdfe-7012e905e804">(test/tests/magnets/sp1.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#2decd50d-bef7-4596-9984-7424b1232e5e">(test/tests/magnets/sp6_1d.i)</a></li></ul></section></section><div class="moose-modal modal" id="b352df59-65cc-4bbf-9f04-dfeab0a4ad78"><div class="modal-content"><h4>(test/tests/magnets/ringdown.i)</h4><pre style="max-height:350px;"><code class="language-moose">alphadef = 0.02
 
 [Mesh]
   [./mesh]
@@ -875,7 +419,734 @@
     file_base = ringdown
   [../]
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="d7469365-d2fe-431d-8b10-4e62d76682da"><div class="modal-content"><h4>(test/tests/magnets/slab_PML_small.i)</h4><pre style="max-height:350px;"><code class="language-moose">[GlobalParams]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="d01d83c5-a500-4933-ab76-10736d3a6894"><div class="modal-content"><h4>(test/tests/magnets/sp4_f2.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # muMAG SP4 field 2, mesh scaled down for the test. Real mesh used: 2.5 nm film cells (200 x 50 in-plane,
+  # 2 through the 3 nm thickness), refined to 1.25 nm (4 through the thickness) in a 5 nm band along the film
+  # edges, and a graded hanging-node vacuum out to a 185 x 152 x 180 l_ex box
+  [box]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;100.0 20.0 87.938337 20.0 100.0&#x27;
+    dy = &#x27;100.0 20.0 21.984584 20.0 100.0&#x27;
+    dz = &#x27;40.0 4.0 0.527630 4.0 40.0&#x27;
+    ix = &#x27;2 1 16 1 2&#x27;
+    iy = &#x27;2 1 4 1 2&#x27;
+    iz = &#x27;2 1 1 1 2&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-163.969169 -130.992292 -44.263815&#x27;
+  []
+  [film_block]
+    type = ParsedSubdomainMeshGenerator
+    input = center
+    block_id = 1
+    combinatorial_geometry = &#x27;x &gt;= -43.969169 &amp; x &lt;= 43.969169 &amp; y &gt;= -10.992292 &amp; y &lt;= 10.992292 &amp; z &gt;= -0.263815 &amp; z &lt;= 0.263815&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = film_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum film&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+  mu0 = 1.256637
+  g0 = 140.206695
+  Hscale = 1.0
+[]
+
+[Variables]
+  [mag_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.991756
+    []
+  []
+  [mag_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.128140
+    []
+  []
+  [mag_z]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.0
+    []
+  []
+  [potential_H_int]
+    block = &#x27;film vacuum&#x27;
+  []
+[]
+
+[AuxVariables]
+  [mag_s]
+    block = film
+  []
+  [Hext_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = -0.0445490532
+    []
+  []
+  [Hext_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = -0.0079058883
+    []
+  []
+  [Hext_z]
+    block = film
+  []
+[]
+
+[AuxKernels]
+  [mag_norm]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [film_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity&#x27;
+    prop_values = &#x27;0.02 1.0 1.261566 1.0&#x27;
+    block = film
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Ms permittivity&#x27;
+    prop_values = &#x27;0.0 1.0&#x27;
+    block = vacuum
+  []
+[]
+
+[Kernels]
+  [mag_x_time]
+    type = TimeDerivative
+    variable = mag_x
+    block = film
+  []
+  [mag_y_time]
+    type = TimeDerivative
+    variable = mag_y
+    block = film
+  []
+  [mag_z_time]
+    type = TimeDerivative
+    variable = mag_z
+    block = film
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [field_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [field_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [field_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [magnetostatic_laplace]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;film vacuum&#x27;
+  []
+  [magnetostatic_source]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = film
+  []
+[]
+
+[BCs]
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+    block = film
+  []
+  [my]
+    type = ElementAverageValue
+    variable = mag_y
+    block = film
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    block = film
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = film
+  []
+  [mag_norm_max]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = max
+    block = film
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.0
+    block = film
+  []
+  [Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+  [Fzeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+[]
+
+[UserObjects]
+  [renormalize]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    execute_on = timestep_end
+    force_preaux = true
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  [TimeIntegrator]
+    type = NewmarkBeta
+  []
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dt = 0.001
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp4_f2
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="abcc167b-6c4d-4f90-a3a2-5a15fdaa2234"><div class="modal-content"><h4>(test/tests/magnets/sp3.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # Scaled-down mesh for a fast regression test. For the actual muMAG SP3 benchmark use at least
+  # N = 10 cells per cube edge (h &lt;= 0.1 L, extrapolate in N), a refined vacuum shell &gt;= 0.3 L
+  # thick, and a graded vacuum out to a box &gt;= 10 L.
+  [box]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;16.8 2.1 8.4 2.1 16.8&#x27;
+    dy = &#x27;16.8 2.1 8.4 2.1 16.8&#x27;
+    dz = &#x27;16.8 2.1 8.4 2.1 16.8&#x27;
+    ix = &#x27;2 1 4 1 2&#x27;
+    iy = &#x27;2 1 4 1 2&#x27;
+    iz = &#x27;2 1 4 1 2&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-23.1 -23.1 -23.1&#x27;
+  []
+  [cube_block]
+    type = SubdomainBoundingBoxGenerator
+    input = center
+    block_id = 1
+    bottom_left = &#x27;-4.2 -4.2 -4.2&#x27;
+    top_right = &#x27;4.2 4.2 4.2&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = cube_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum cube&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  potential_H_int = potential_H_int
+  mu0 = 1.256637
+  g0 = 221.1
+  Hscale = 1.0
+[]
+
+[Functions]
+  [flower_mx]
+    type = ParsedFunction
+    expression = &#x27;1/sqrt(1 + (0.45*x*y/17.64)^2 + (0.45*x*z/17.64)^2)&#x27;
+  []
+  [flower_my]
+    type = ParsedFunction
+    expression = &#x27;(0.45*x*y/17.64)/sqrt(1 + (0.45*x*y/17.64)^2 + (0.45*x*z/17.64)^2)&#x27;
+  []
+  [flower_mz]
+    type = ParsedFunction
+    expression = &#x27;(0.45*x*z/17.64)/sqrt(1 + (0.45*x*y/17.64)^2 + (0.45*x*z/17.64)^2)&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    block = cube
+    [InitialCondition]
+      type = FunctionIC
+      function = flower_mx
+    []
+  []
+  [mag_y]
+    block = cube
+    [InitialCondition]
+      type = FunctionIC
+      function = flower_my
+    []
+  []
+  [mag_z]
+    block = cube
+    [InitialCondition]
+      type = FunctionIC
+      function = flower_mz
+    []
+  []
+  [potential_H_int]
+    block = &#x27;cube vacuum&#x27;
+  []
+[]
+
+[AuxVariables]
+  [mag_s]
+    block = cube
+  []
+[]
+
+[AuxKernels]
+  [mag_norm]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    block = cube
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [cube_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity K1 nx ny nz&#x27;
+    prop_values = &#x27;100.0 1.0 1.261566 1.0 0.1 1 0 0&#x27;
+    block = cube
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Ms permittivity&#x27;
+    prop_values = &#x27;0.0 1.0&#x27;
+    block = vacuum
+  []
+[]
+
+[Kernels]
+  [mag_x_time]
+    type = TimeDerivative
+    variable = mag_x
+    block = cube
+  []
+  [mag_y_time]
+    type = TimeDerivative
+    variable = mag_y
+    block = cube
+  []
+  [mag_z_time]
+    type = TimeDerivative
+    variable = mag_z
+    block = cube
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    block = cube
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    block = cube
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    block = cube
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+    block = cube
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+    block = cube
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+    block = cube
+  []
+  [demag_x]
+    type = MasterInteractionCartLLG
+    variable = mag_x
+    component = 0
+    block = cube
+  []
+  [demag_y]
+    type = MasterInteractionCartLLG
+    variable = mag_y
+    component = 1
+    block = cube
+  []
+  [demag_z]
+    type = MasterInteractionCartLLG
+    variable = mag_z
+    component = 2
+    block = cube
+  []
+  [magnetostatic_laplace]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;cube vacuum&#x27;
+  []
+  [magnetostatic_source]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = cube
+  []
+[]
+
+[BCs]
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+    block = cube
+  []
+  [my]
+    type = ElementAverageValue
+    variable = mag_y
+    block = cube
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    block = cube
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = cube
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.0
+    block = cube
+  []
+  [Faniso]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 1.0
+    block = cube
+  []
+  [Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 1.0
+    block = cube
+  []
+[]
+
+[UserObjects]
+  [renormalize]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    execute_on = timestep_end
+    force_preaux = true
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  scheme = implicit-euler
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dt = 0.25
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp3
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2f0e5219-d013-4cfe-85f0-b945d53e5c67"><div class="modal-content"><h4>(test/tests/magnets/sp6_2d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 2D benchmark: num_sectors = 80, rings = 50 (1 nm rings), relaxed (IterationAdaptiveDT, dtmax 0.01) until rms dm/dt &lt; 1e-6 /ns.
+  [disk]
+    type = ConcentricCircleMeshGenerator
+    num_sectors = 6
+    radii = &#x27;50&#x27;
+    rings = &#x27;10&#x27;
+    has_outer_square = false
+    preserve_volumes = false
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = interfacial
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D K1 nx ny nz&#x27;
+    prop_values = &#x27;1 860000 13000000 -3000000 400000 0 0 1&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(x/sqrt(x*x+y*y+1e-24)*(1-abs(2*exp(-(x*x+y*y)/625)-1)))/sqrt((1-abs(2*exp(-(x*x+y*y)/625)-1))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(2*exp(-(x*x+y*y)/625)-1)^2)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(y/sqrt(x*x+y*y+1e-24)*(1-abs(2*exp(-(x*x+y*y)/625)-1)))/sqrt((1-abs(2*exp(-(x*x+y*y)/625)-1))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(2*exp(-(x*x+y*y)/625)-1)^2)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(2*exp(-(x*x+y*y)/625)-1)/sqrt((1-abs(2*exp(-(x*x+y*y)/625)-1))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(2*exp(-(x*x+y*y)/625)-1)^2)&#x27;
+    []
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 2e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 2e-27
+  []
+  [E_anisotropy]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 2e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_anisotropy&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.005
+  num_steps = 10
+[]
+
+[Outputs]
+  file_base = out_sp6_2d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="b35c0561-d676-4309-a395-1a7b607f43ef"><div class="modal-content"><h4>(test/tests/magnets/slab_PML_small.i)</h4><pre style="max-height:350px;"><code class="language-moose">[GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
   mag_z = mag_z
@@ -1194,16 +1465,6 @@ alphadef = 0.02
 
 []
 
-[InterfaceKernels]
-  [./PML_boundary]
-    type = InterfaceEquality
-    variable = potential_H_int
-    boundary = id_boundary
-    neighbor_var = potential_H_int
-    permittivity_neighbor = 1.
-  [../]
-[]
-
 [BCs]
   [./vacuum_box]
     type = DirichletBC
@@ -1293,13 +1554,15 @@ alphadef = 0.02
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = &#x27; -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type -sub_pc_type &#x27;
-    petsc_options_value = &#x27;    100               1e-12      1e-9      1e-8     bjacobi   ilu&#x27;
+    petsc_options_iname = &#x27; -ksp_gmres_restart -ksp_rtol -pc_type -sub_pc_type &#x27;
+    petsc_options_value = &#x27;    100          1e-8     bjacobi   ilu&#x27;
   [../]
 []
 
 [Executioner]
   type = Transient
+  nl_abs_tol = 1e-12
+  nl_rel_tol = 1e-9
   solve_type = &#x27;NEWTON&#x27;
   automatic_scaling = true
 
@@ -1342,7 +1605,1251 @@ alphadef = 0.02
     time_step_interval = 1
   [../]
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="469f2918-64e0-46a6-95b5-126b7e21a0ea"><div class="modal-content"><h4>(tutorial/ringdown.i)</h4><pre style="max-height:350px;"><code class="language-moose">[GlobalParams]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="8d353260-68f5-4be3-8805-f155e68addc2"><div class="modal-content"><h4>(test/tests/magnets/Sstate_gen-Py_OOMF.i)</h4><pre style="max-height:350px;"><code class="language-moose">Nx = 100
+Ny = 25
+Nz = 3
+
+xMin = 0.0
+yMin = 0.0
+zMin = 1.5
+
+xMax = 500.0
+yMax = 125.0
+zMax = 3.0
+
+alphadef = 1.0
+
+[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = ${Nx}
+    ny = ${Ny}
+    nz = ${Nz}
+    xmin = ${xMin}
+    xmax = ${xMax}
+    ymin = ${yMin}
+    ymax = ${yMax}
+    zmin = ${zMin}
+    zmax = ${zMax}
+    elem_type = HEX8
+  []
+[]
+
+[UserObjects]
+  [./reader_nearest]
+    type = PropertyReadFile
+    prop_file_name = &#x27;fulldata_state.csv&#x27;
+    read_type = &#x27;voronoi&#x27;
+    nprop = 6
+    nblock = 1
+    nvoronoi = 7500
+  [../]
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+
+  potential_H_int = potential_H_int
+
+  mu0 = 1.0
+  Hscale = 1.0
+  g0 = 17680.8
+[]
+
+[Materials]
+
+  [./constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27; alpha           g0mu0Ms           permittivity Ae      Ms   &#x27;
+    prop_values = &#x27;${alphadef}     34989.1        1.0        13.0   1.0  &#x27;
+  [../]
+
+  [./a_long]
+    type = GenericFunctionMaterial
+    prop_names = &#x27;alpha_long&#x27;
+    prop_values = &#x27;bc_func_1&#x27;
+  [../]
+
+[]
+
+[Functions]
+
+  [./bc_func_1]
+    type = ParsedFunction
+    expression = &#x27;st&#x27;
+    symbol_names = &#x27;st&#x27;
+    symbol_values = &#x27;1e1&#x27;
+  [../]
+
+  [./node_mx]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;3&#x27;
+  [../]
+  [./node_my]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;4&#x27;
+  [../]
+  [./node_mz]
+    type = PiecewiseConstantFromCSV
+    read_prop_user_object = &#x27;reader_nearest&#x27;
+    read_type = &#x27;voronoi&#x27;
+    column_number = &#x27;5&#x27;
+  [../]
+[]
+
+[Variables]
+  [./mag_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = node_mx
+    [../]
+  [../]
+  [./mag_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = node_my
+    [../]
+  [../]
+  [./mag_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = FunctionIC
+      function = node_mz
+    [../]
+  [../]
+
+  [./potential_H_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[AuxVariables]
+  [./azimuth_phi]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = 0.234979
+      max = 0.244979
+      seed = 2
+    [../]
+  [../]
+  [./polar_theta]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = 1.46742
+      max = 1.47742
+      seed = 37
+    [../]
+  [../]
+
+  [./mag_s]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+
+  [./H_x]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = ConstantIC
+      value = 1.0
+    [../]
+  [../]
+  [./H_y]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = ConstantIC
+      value = 1.0
+    [../]
+  [../]
+  [./H_z]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = ConstantIC
+      value = 1.0
+    [../]
+  [../]
+[]
+
+[AuxKernels]
+  [./mag_mag]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+[]
+
+[Kernels]
+
+  [./mag_x_time]
+    type = TimeDerivative
+    variable = mag_x
+  [../]
+  [./mag_y_time]
+    type = TimeDerivative
+    variable = mag_y
+  [../]
+  [./mag_z_time]
+    type = TimeDerivative
+    variable = mag_z
+  [../]
+
+  [./dllg_x_exch]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  [../]
+  [./dllg_y_exch]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  [../]
+  [./dllg_z_exch]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  [../]
+
+  [./d_HM_x]
+    type = MasterInteractionCartLLG
+    variable = mag_x
+    component = 0
+  [../]
+  [./d_HM_y]
+    type = MasterInteractionCartLLG
+    variable = mag_y
+    component = 1
+  [../]
+  [./d_HM_z]
+    type = MasterInteractionCartLLG
+    variable = mag_z
+    component = 2
+  [../]
+
+  [./llb1_x]
+    type = LongitudinalLLB
+    variable = mag_x
+    component = 0
+  [../]
+  [./llb1_y]
+    type = LongitudinalLLB
+    variable = mag_y
+    component = 1
+  [../]
+
+  [./llb1_z]
+    type = LongitudinalLLB
+    variable = mag_z
+    component = 2
+  [../]
+
+  [./int_pot_lap]
+    type = Electrostatics
+    variable = potential_H_int
+  [../]
+  [./int_bc_pot_lap]
+    type = MagHStrongCart
+    variable = potential_H_int
+  [../]
+
+[]
+
+[BCs]
+
+[]
+
+[Postprocessors]
+   [./dt]
+     type = TimestepSize
+   [../]
+
+  [./M1]
+    type = ElementAverageValue
+    variable = mag_s
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./&lt;mx&gt;]
+    type = ElementAverageValue
+    variable = mag_x
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;my&gt;]
+    type = ElementAverageValue
+    variable = mag_y
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;mz&gt;]
+    type = ElementAverageValue
+    variable = mag_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 0.001
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 0.001
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./Fllb1]
+    type = MagneticExcessLLBEnergy
+    mag_x = mag_x
+    mag_y = mag_y
+    mag_z = mag_z
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;Fexch Fdemag&#x27;
+    pp_coefs = &#x27; 1.0 1.0&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+[]
+
+[Preconditioning]
+
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27; -ksp_gmres_restart -ksp_rtol -pc_type &#x27;
+    petsc_options_value = &#x27;    526          1e-6     bjacobi&#x27;
+  [../]
+[]
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+  nl_abs_tol = 1e-5
+  nl_rel_tol = 1e-3
+
+  [./TimeIntegrator]
+    type = NewmarkBeta
+  [../]
+
+  dtmin = 1e-18
+  dtmax = 1.0
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 38
+    linear_iteration_ratio = 1000
+    dt = 1e-8
+    growth_factor = 1.1
+  [../]
+
+  num_steps = 2
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_Sstate_gen-Py_111_OOMF
+    elemental_as_nodal = true
+    time_step_interval = 1
+  [../]
+  [./outCSV]
+    type = CSV
+    file_base = out_Sstate_gen-Py_111_OOMF
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="06e09fc6-83b7-422e-be65-1aae1bb73725"><div class="modal-content"><h4>(test/tests/magnets/mag_brick.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [./fmg]
+    type = FileMeshGenerator
+    file = exodus_dx2_x10_y10_z30_b100.e
+  []
+
+  [central_interface]
+    type = SideSetsBetweenSubdomainsGenerator
+    input = fmg
+    master_block = &#x27;1&#x27;
+    paired_block = &#x27;2&#x27;
+    primary_block = &#x27;1&#x27;
+    new_boundary = &#x27;70&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+
+  potential_H_int = potential_H_int
+[]
+
+[Materials]
+  [./constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27; alpha    Ae    Ms          g0          mu0         nx ny nz &#x27;
+    prop_values = &#x27;0.01    0.013   1.2      221010.0   1256.64        0  1  1  &#x27;
+  [../]
+
+  [./a_long]
+    type = GenericFunctionMaterial
+    prop_names = &#x27;alpha_long&#x27;
+    prop_values = &#x27;bc_func_1&#x27;
+  [../]
+
+  [./aniso]
+    type = GenericConstantMaterial
+    prop_names = &#x27;K1 K2&#x27;
+    prop_values = &#x27;-20.0 0&#x27;
+  [../]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;1.0&#x27;
+    block = &#x27;1 2&#x27;
+  [../]
+[]
+
+[Functions]
+
+  [./bc_func_1]
+    type = ParsedFunction
+    expression = &#x27;st&#x27;
+    symbol_names = &#x27;st&#x27;
+    symbol_values = &#x27;1e3&#x27;
+  [../]
+[]
+
+[Variables]
+  [./mag_x]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1&#x27;
+    [./InitialCondition]
+      type = RandomConstrainedVectorFieldIC
+      phi = azimuth_phi
+      theta = polar_theta
+      M0s = 1.0
+      component  = 0
+    [../]
+  [../]
+  [./mag_y]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1&#x27;
+    [./InitialCondition]
+      type = RandomConstrainedVectorFieldIC
+      phi = azimuth_phi
+      theta = polar_theta
+      M0s = 1.0
+      component  = 1
+    [../]
+  [../]
+  [./mag_z]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1&#x27;
+    [./InitialCondition]
+      type = RandomConstrainedVectorFieldIC
+      phi = azimuth_phi
+      theta = polar_theta
+      M0s = 1.0
+      component  = 2
+    [../]
+  [../]
+
+  [./potential_H_int]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1 2&#x27;
+  [../]
+[]
+
+[AuxVariables]
+  [./azimuth_phi]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = 0.3
+      max = 0.31
+      seed = 2
+    [../]
+  [../]
+  [./polar_theta]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = 1.4
+      max = 1.41
+      seed = 37
+    [../]
+  [../]
+
+  [./mag_s]
+    order = FIRST
+    family = LAGRANGE
+    block = &#x27;1&#x27;
+  [../]
+
+  [./H_x]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;1 2&#x27;
+  [../]
+  [./H_y]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;1 2&#x27;
+  [../]
+  [./H_z]
+    order = CONSTANT
+    family = MONOMIAL
+    block = &#x27;1 2&#x27;
+  [../]
+
+  [./azimuth_phi_mag_min1]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = 0.0
+      max = 0.00001
+      seed = 2
+    [../]
+  [../]
+  [./polar_theta_mag_min1]
+    order = FIRST
+    family = LAGRANGE
+    [./InitialCondition]
+      type = RandomIC
+      min = 0.0
+      max = 0.00001
+      seed = 37
+    [../]
+  [../]
+[]
+
+[AuxKernels]
+
+  [./mag_mag]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    block = &#x27;1&#x27;
+    execute_on = &#x27;timestep_end final&#x27;
+  [../]
+
+  [./hxo]
+    type = DemagFieldAux
+    component = 0
+    variable = H_x
+    block = &#x27;1 2&#x27;
+    execute_on = &#x27;timestep_end final&#x27;
+  [../]
+  [./hyo]
+    type = DemagFieldAux
+    component = 1
+    variable = H_y
+    block = &#x27;1 2&#x27;
+    execute_on = &#x27;timestep_end final&#x27;
+  [../]
+  [./hzo]
+    type = DemagFieldAux
+    component = 2
+    variable = H_z
+    block = &#x27;1 2&#x27;
+    execute_on = &#x27;timestep_end final&#x27;
+  [../]
+[]
+
+[Kernels]
+
+  [./mag_x_time]
+    type = TimeDerivative
+    variable = mag_x
+    block = &#x27;1&#x27;
+  [../]
+  [./mag_y_time]
+    type = TimeDerivative
+    variable = mag_y
+    block = &#x27;1&#x27;
+  [../]
+  [./mag_z_time]
+    type = TimeDerivative
+    variable = mag_z
+    block = &#x27;1&#x27;
+  [../]
+
+  [./dllg_x_exch]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  [../]
+  [./dllg_y_exch]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  [../]
+  [./dllg_z_exch]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  [../]
+
+  [./d_aM_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  [../]
+  [./d_aM_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  [../]
+  [./d_aM_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  [../]
+
+  [./d_HM_x]
+    type = MasterInteractionCartLLG
+    variable = mag_x
+    component = 0
+  [../]
+  [./d_HM_y]
+    type = MasterInteractionCartLLG
+    variable = mag_y
+    component = 1
+  [../]
+  [./d_HM_z]
+    type = MasterInteractionCartLLG
+    variable = mag_z
+    component = 2
+  [../]
+
+  [./int_pot_lap]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;1 2&#x27;
+  [../]
+  [./int_bc_pot_lap]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = &#x27;1&#x27;
+  [../]
+
+  [./llb_x]
+    type = MasterLongitudinalLLB
+    variable = mag_x
+    component = 0
+    mag_x = mag_x
+    mag_y = mag_y
+    mag_z = mag_z
+  [../]
+  [./llb_y]
+    type = MasterLongitudinalLLB
+    variable = mag_y
+    component = 1
+    mag_x = mag_x
+    mag_y = mag_y
+    mag_z = mag_z
+  [../]
+
+  [./llb_z]
+    type = MasterLongitudinalLLB
+    variable = mag_z
+    component = 2
+    mag_x = mag_x
+    mag_y = mag_y
+    mag_z = mag_z
+  [../]
+[]
+
+[BCs]
+
+  [./bc_int_pot_boundary]
+    type = DirichletBC
+    variable = potential_H_int
+    value = 0.0
+    boundary = &#x27;1 2 3 4 5 6&#x27;
+  [../]
+
+  [./bc_surface_mag_x]
+    type = NeumannBC
+    variable = mag_x
+    value = 0.0
+    boundary = &#x27;70&#x27;
+  [../]
+  [./bc_surface_mag_y]
+    type = NeumannBC
+    variable = mag_y
+    value = 0.0
+    boundary = &#x27;70&#x27;
+  [../]
+  [./bc_surface_mag_z]
+    type = NeumannBC
+    variable = mag_z
+    value = 0.0
+    boundary = &#x27;70&#x27;
+  [../]
+[]
+
+[Postprocessors]
+
+   [./dt]
+     type = TimestepSize
+   [../]
+
+  [./&lt;M&gt;]
+    type = ElementAverageValue
+    variable = mag_s
+    block = &#x27;1&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./&lt;mx&gt;]
+    type = ElementAverageValue
+    variable = mag_x
+    block = &#x27;1&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;my&gt;]
+    type = ElementAverageValue
+    variable = mag_y
+    block = &#x27;1&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+  [./&lt;mz&gt;]
+    type = ElementAverageValue
+    variable = mag_z
+    block = &#x27;1&#x27;
+    execute_on = &#x27;initial timestep_end final&#x27;
+  [../]
+
+  [./Fa]
+    type = MasterMagneticAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end final&#x27;
+    block = &#x27;1&#x27;
+    energy_scale = 6241.51
+  [../]
+
+  [./Fexch]
+    type = MasterMagneticExchangeEnergy
+    execute_on = &#x27;timestep_end final&#x27;
+    block = &#x27;1&#x27;
+    energy_scale = 6241.51
+  [../]
+
+  [./Fdemag]
+    type = MagnetostaticEnergyCart
+    execute_on = &#x27;timestep_end final&#x27;
+    block = &#x27;1&#x27;
+    energy_scale = 6241.51
+  [../]
+
+  [./Fllb]
+    type = MagneticExcessLLBEnergy
+    execute_on = &#x27;timestep_end final&#x27;
+    block = &#x27;1&#x27;
+    mag_x = mag_x
+    mag_y = mag_y
+    mag_z = mag_z
+  [../]
+
+  [./Ftot]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;Fexch Fdemag Fa&#x27;
+    pp_coefs = &#x27; 1.0 1.0 1.0&#x27;
+    execute_on = &#x27;timestep_end final&#x27;
+  [../]
+
+
+[]
+
+[Preconditioning]
+
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27; -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121               1e-8      1e-8      1e-5      bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = &#x27;NEWTON&#x27;
+  [./TimeIntegrator]
+    type = ImplicitEuler
+  [../]
+  dtmin = 1e-12
+  dtmax = 1.0e-2
+
+  [./TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 10
+    linear_iteration_ratio = 100
+    dt = 1.0e-8
+
+  [../]
+
+  verbose = true
+
+  num_steps = 2
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_mag_brick
+    elemental_as_nodal = true
+    time_step_interval = 1
+  [../]
+  [./outCSV]
+    type = CSV
+    file_base = out_mag_brick
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="ab3808dc-e7a0-4f2e-b500-b9e760b4a58c"><div class="modal-content"><h4>(test/tests/magnets/sp4_f1.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # muMAG SP4 field 1, mesh scaled down for the test. Real mesh used: 2.5 nm film cells (200 x 50 in-plane,
+  # 2 through the 3 nm thickness), refined to 1.25 nm (4 through the thickness) in a 5 nm band along the film
+  # edges, and a graded hanging-node vacuum out to a 185 x 152 x 180 l_ex box.
+  [box]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;100.0 20.0 87.938337 20.0 100.0&#x27;
+    dy = &#x27;100.0 20.0 21.984584 20.0 100.0&#x27;
+    dz = &#x27;40.0 4.0 0.527630 4.0 40.0&#x27;
+    ix = &#x27;2 1 16 1 2&#x27;
+    iy = &#x27;2 1 4 1 2&#x27;
+    iz = &#x27;2 1 1 1 2&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-163.969169 -130.992292 -44.263815&#x27;
+  []
+  [film_block]
+    type = ParsedSubdomainMeshGenerator
+    input = center
+    block_id = 1
+    combinatorial_geometry = &#x27;x &gt;= -43.969169 &amp; x &lt;= 43.969169 &amp; y &gt;= -10.992292 &amp; y &lt;= 10.992292 &amp; z &gt;= -0.263815 &amp; z &lt;= 0.263815&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = film_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum film&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+  mu0 = 1.256637
+  g0 = 140.206695
+  Hscale = 1.0
+[]
+
+[Variables]
+  [mag_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.991756
+    []
+  []
+  [mag_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.128140
+    []
+  []
+  [mag_z]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.0
+    []
+  []
+  [potential_H_int]
+    block = &#x27;film vacuum&#x27;
+  []
+[]
+
+[AuxVariables]
+  [mag_s]
+    block = film
+  []
+  [Hext_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = -0.0308706115
+    []
+  []
+  [Hext_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.0053960825
+    []
+  []
+  [Hext_z]
+    block = film
+  []
+[]
+
+[AuxKernels]
+  [mag_norm]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [film_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity&#x27;
+    prop_values = &#x27;0.02 1.0 1.261566 1.0&#x27;
+    block = film
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Ms permittivity&#x27;
+    prop_values = &#x27;0.0 1.0&#x27;
+    block = vacuum
+  []
+[]
+
+[Kernels]
+  [mag_x_time]
+    type = TimeDerivative
+    variable = mag_x
+    block = film
+  []
+  [mag_y_time]
+    type = TimeDerivative
+    variable = mag_y
+    block = film
+  []
+  [mag_z_time]
+    type = TimeDerivative
+    variable = mag_z
+    block = film
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [field_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [field_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [field_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [magnetostatic_laplace]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;film vacuum&#x27;
+  []
+  [magnetostatic_source]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = film
+  []
+[]
+
+[BCs]
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+    block = film
+  []
+  [my]
+    type = ElementAverageValue
+    variable = mag_y
+    block = film
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    block = film
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = film
+  []
+  [mag_norm_max]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = max
+    block = film
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.0
+    block = film
+  []
+  [Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+  [Fzeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+[]
+
+[UserObjects]
+  [renormalize]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    execute_on = timestep_end
+    force_preaux = true
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  [TimeIntegrator]
+    type = NewmarkBeta
+  []
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dt = 0.001
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp4_f1
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="ae7c6b2a-a0a2-4194-80c3-2a5c8fcf34fa"><div class="modal-content"><h4>(test/tests/magnets/aniso_k2_cone.i)</h4><pre style="max-height:350px;"><code class="language-moose"># Easy cone from K2: K1 = 1, K2 = -1 relaxes m to cos^2(theta) = K1/(2|K2|) = 0.5 (mz = 0.70711); mesh scaled down from 40 x 20 x 10.
+[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 4
+  ny = 2
+  nz = 1
+  xmax = 4
+  ymax = 2
+  zmax = 1
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 1.0
+  mu0 = 1.0
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms K1 K2 nx ny nz&#x27;
+    prop_values = &#x27;1.0 0.1 1.0 1.0 -1.0 0 0 1&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;sin(0.1 + 0.1*x)&#x27;
+    []
+  []
+  [mag_y]
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;cos(0.1 + 0.1*x)&#x27;
+    []
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Postprocessors]
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [Faniso]
+    type = MasterMagneticAnisotropyEnergy
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 1.0
+  end_time = 30
+[]
+
+[Outputs]
+  file_base = out_aniso_k2_cone
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="b28d82df-60fe-4259-aa3d-946caaf8707c"><div class="modal-content"><h4>(tutorial/ringdown.i)</h4><pre style="max-height:350px;"><code class="language-moose">[GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
   mag_z = mag_z
@@ -1830,378 +3337,1701 @@ alphadef = 0.02
     file_base = out_ringdown
   [../]
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="9a7774f4-f776-4fc5-8a1f-2005ebe5da9d"><div class="modal-content"><h4>(test/tests/magnets/Sstate_gen-Py_OOMF.i)</h4><pre style="max-height:350px;"><code class="language-moose">Nx = 100
-Ny = 25
-Nz = 3
-
-xMin = 0.0
-yMin = 0.0
-zMin = 1.5
-
-xMax = 500.0
-yMax = 125.0
-zMax = 3.0
-
-alphadef = 1.0
-
-[Mesh]
-  [gen]
-    type = GeneratedMeshGenerator
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="85633cd5-8ce7-4f00-9ed4-01530d8bdc9f"><div class="modal-content"><h4>(test/tests/magnets/sp2_second.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  second_order = true
+  # muMAG standard problem 2 (5d x d x 0.1d film, no anisotropy, field along [111]), SECOND-order demag
+  # potential (HEX27 elements, magnetization first order): much better demag factors than sp2_first.i
+  # (Hc ~0.4% from the Stoner-Wohlfarth limit at d = 1 vs ~4% low), at several times the cost. Reduced units: l_ex = 1, Km = mu0 Ms^2 / 2 = 1; lengths below are for d = 1 l_ex.
+  # Scaled-down mesh for a fast regression test. For the actual SP2 benchmark multiply every length by
+  # d/l_ex and use 100 x 20 x 3 film cells with a graded vacuum, e.g.
+  # dx = &#x27;2 1 0.5 0.25 0.25 5 0.25 0.25 0.5 1 2&#x27;, ix = &#x27;1 1 1 1 5 100 5 1 1 1 1&#x27;,
+  # dy = &#x27;2 1 0.5 0.25 0.25 1 0.25 0.25 0.5 1 2&#x27;, iy = &#x27;1 1 1 1 5 20 5 1 1 1 1&#x27;,
+  # dz = &#x27;1.2 0.6 0.3 0.133333 0.066667 0.033333 0.1 0.033333 0.066667 0.133333 0.3 0.6 1.2&#x27;,
+  # iz = &#x27;1 1 1 1 1 1 3 1 1 1 1 1 1&#x27; (box half-sizes 6.5d x 4.5d x 2.383333d), then sweep the field.
+  [box]
+    type = CartesianMeshGenerator
     dim = 3
-    nx = ${Nx}
-    ny = ${Ny}
-    nz = ${Nz}
-    xmin = ${xMin}
-    xmax = ${xMax}
-    ymin = ${yMin}
-    ymax = ${yMax}
-    zmin = ${zMin}
-    zmax = ${zMax}
-    elem_type = HEX8
+    dx = &#x27;4.0 1.0 5.0 1.0 4.0&#x27;
+    dy = &#x27;4.0 1.0 1.0 1.0 4.0&#x27;
+    dz = &#x27;2.0 0.2 0.1 0.2 2.0&#x27;
+    ix = &#x27;1 1 10 1 1&#x27;
+    iy = &#x27;1 1 2 1 1&#x27;
+    iz = &#x27;1 1 1 1 1&#x27;
   []
-[]
-
-[UserObjects]
-  [./reader_nearest]
-    type = PropertyReadFile
-    prop_file_name = &#x27;fulldata_state.csv&#x27;
-    read_type = &#x27;voronoi&#x27;
-    nprop = 6
-    nblock = 1
-    nvoronoi = 7500
-  [../]
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-7.5 -5.5 -2.25&#x27;
+  []
+  [film_block]
+    type = ParsedSubdomainMeshGenerator
+    input = center
+    block_id = 1
+    combinatorial_geometry = &#x27;abs(x) &lt;= 2.500001 &amp; abs(y) &lt;= 0.500001 &amp; abs(z) &lt;= 0.050001&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = film_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum film&#x27;
+  []
 []
 
 [GlobalParams]
   mag_x = mag_x
   mag_y = mag_y
   mag_z = mag_z
-
   potential_H_int = potential_H_int
-
-  mu0 = 1.0
+  Hext_x = Hext
+  Hext_y = Hext
+  Hext_z = Hext
+  mu0 = 1.256637
+  g0 = 221.1
   Hscale = 1.0
-  g0 = 17680.8
-[]
-
-[Materials]
-
-  [./constants]
-    type = GenericConstantMaterial
-    prop_names = &#x27; alpha           g0mu0Ms           permittivity Ae      Ms   &#x27;
-    prop_values = &#x27;${alphadef}     34989.1        1.0        13.0   1.0  &#x27;
-  [../]
-
-  [./a_long]
-    type = GenericFunctionMaterial
-    prop_names = &#x27;alpha_long&#x27;
-    prop_values = &#x27;bc_func_1&#x27;
-  [../]
-
-[]
-
-[Functions]
-
-  [./bc_func_1]
-    type = ParsedFunction
-    expression = &#x27;st&#x27;
-    symbol_names = &#x27;st&#x27;
-    symbol_values = &#x27;1e1&#x27;
-  [../]
-
-  [./node_mx]
-    type = PiecewiseConstantFromCSV
-    read_prop_user_object = &#x27;reader_nearest&#x27;
-    read_type = &#x27;voronoi&#x27;
-    column_number = &#x27;3&#x27;
-  [../]
-  [./node_my]
-    type = PiecewiseConstantFromCSV
-    read_prop_user_object = &#x27;reader_nearest&#x27;
-    read_type = &#x27;voronoi&#x27;
-    column_number = &#x27;4&#x27;
-  [../]
-  [./node_mz]
-    type = PiecewiseConstantFromCSV
-    read_prop_user_object = &#x27;reader_nearest&#x27;
-    read_type = &#x27;voronoi&#x27;
-    column_number = &#x27;5&#x27;
-  [../]
 []
 
 [Variables]
-  [./mag_x]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = FunctionIC
-      function = node_mx
-    [../]
-  [../]
-  [./mag_y]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = FunctionIC
-      function = node_my
-    [../]
-  [../]
-  [./mag_z]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = FunctionIC
-      function = node_mz
-    [../]
-  [../]
-
-  [./potential_H_int]
-    order = FIRST
-    family = LAGRANGE
-  [../]
+  # start uniform along [111]
+  [mag_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.5773502691896258
+    []
+  []
+  [mag_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.5773502691896258
+    []
+  []
+  [mag_z]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.5773502691896258
+    []
+  []
+  [potential_H_int]
+    order = SECOND
+    block = &#x27;film vacuum&#x27;
+  []
 []
 
 [AuxVariables]
-  [./azimuth_phi]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = 0.234979
-      max = 0.244979
-      seed = 2
-    [../]
-  [../]
-  [./polar_theta]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = RandomIC
-      min = 1.46742
-      max = 1.47742
-      seed = 37
-    [../]
-  [../]
-
-  [./mag_s]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-
-  [./H_x]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
+  [mag_s]
+    block = film
+  []
+  # applied field H/Ms = 0.08 along [111]: each component = 0.08 * Ms / sqrt(3)
+  [Hext]
+    block = film
+    [InitialCondition]
       type = ConstantIC
-      value = 1.0
-    [../]
-  [../]
-  [./H_y]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = ConstantIC
-      value = 1.0
-    [../]
-  [../]
-  [./H_z]
-    order = FIRST
-    family = LAGRANGE
-    [./InitialCondition]
-      type = ConstantIC
-      value = 1.0
-    [../]
-  [../]
+      value = 0.05827295
+    []
+  []
 []
 
 [AuxKernels]
-  [./mag_mag]
+  [mag_norm]
     type = VectorMagnitudeAux
     variable = mag_s
     x = mag_x
     y = mag_y
     z = mag_z
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [film_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity&#x27;
+    prop_values = &#x27;1.0 1.0 1.261566 1.0&#x27;
+    block = film
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Ms permittivity&#x27;
+    prop_values = &#x27;0.0 1.0&#x27;
+    block = vacuum
+  []
 []
 
 [Kernels]
-
-  [./mag_x_time]
+  [mag_x_time]
     type = TimeDerivative
     variable = mag_x
-  [../]
-  [./mag_y_time]
+    block = film
+  []
+  [mag_y_time]
     type = TimeDerivative
     variable = mag_y
-  [../]
-  [./mag_z_time]
+    block = film
+  []
+  [mag_z_time]
     type = TimeDerivative
     variable = mag_z
-  [../]
-
-  [./dllg_x_exch]
+    block = film
+  []
+  [exchange_x]
     type = MasterExchangeCartLLG
     variable = mag_x
     component = 0
-  [../]
-  [./dllg_y_exch]
+    block = film
+  []
+  [exchange_y]
     type = MasterExchangeCartLLG
     variable = mag_y
     component = 1
-  [../]
-  [./dllg_z_exch]
+    block = film
+  []
+  [exchange_z]
     type = MasterExchangeCartLLG
     variable = mag_z
     component = 2
-  [../]
-
-  [./d_HM_x]
-    type = MasterInteractionCartLLG
+    block = film
+  []
+  [field_x]
+    type = MasterInteractionCartLLGHConst
     variable = mag_x
     component = 0
-  [../]
-  [./d_HM_y]
-    type = MasterInteractionCartLLG
+    block = film
+  []
+  [field_y]
+    type = MasterInteractionCartLLGHConst
     variable = mag_y
     component = 1
-  [../]
-  [./d_HM_z]
-    type = MasterInteractionCartLLG
+    block = film
+  []
+  [field_z]
+    type = MasterInteractionCartLLGHConst
     variable = mag_z
     component = 2
-  [../]
-
-  [./llb1_x]
-    type = LongitudinalLLB
-    variable = mag_x
-    component = 0
-  [../]
-  [./llb1_y]
-    type = LongitudinalLLB
-    variable = mag_y
-    component = 1
-  [../]
-
-  [./llb1_z]
-    type = LongitudinalLLB
-    variable = mag_z
-    component = 2
-  [../]
-
-  [./int_pot_lap]
+    block = film
+  []
+  [magnetostatic_laplace]
     type = Electrostatics
     variable = potential_H_int
-  [../]
-  [./int_bc_pot_lap]
+    block = &#x27;film vacuum&#x27;
+  []
+  [magnetostatic_source]
     type = MagHStrongCart
     variable = potential_H_int
-  [../]
-
+    block = film
+  []
 []
 
 [BCs]
-
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
 []
 
 [Postprocessors]
-   [./dt]
-     type = TimestepSize
-   [../]
-
-  [./M1]
-    type = ElementAverageValue
-    variable = mag_s
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-
-  [./&lt;mx&gt;]
+  [mx]
     type = ElementAverageValue
     variable = mag_x
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-  [./&lt;my&gt;]
+    block = film
+  []
+  [my]
     type = ElementAverageValue
     variable = mag_y
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-  [./&lt;mz&gt;]
+    block = film
+  []
+  [mz]
     type = ElementAverageValue
     variable = mag_z
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-
-  [./Fexch]
+    block = film
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = film
+  []
+  [Fexch]
     type = MasterMagneticExchangeEnergy
-    energy_scale = 0.001
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-
-  [./Fdemag]
+    energy_scale = 1.0
+    block = film
+  []
+  [Fdemag]
     type = MagnetostaticEnergyCart
-    energy_scale = 0.001
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
+    energy_scale = 1.0
+    block = film
+  []
+  [Fzeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+[]
 
-  [./Fllb1]
-    type = MagneticExcessLLBEnergy
-    mag_x = mag_x
-    mag_y = mag_y
-    mag_z = mag_z
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-
-  [./Ftot]
-    type = LinearCombinationPostprocessor
-    pp_names = &#x27;Fexch Fdemag&#x27;
-    pp_coefs = &#x27; 1.0 1.0&#x27;
-    execute_on = &#x27;initial timestep_end final&#x27;
-  [../]
-
+[UserObjects]
+  [renormalize]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    execute_on = timestep_end
+    force_preaux = true
+  []
 []
 
 [Preconditioning]
-
-  [./smp]
+  [smp]
     type = SMP
     full = true
-    petsc_options_iname = &#x27; -ksp_gmres_restart -snes_atol -snes_rtol -ksp_rtol -pc_type &#x27;
-    petsc_options_value = &#x27;    526               1e-5      1e-3      1e-6     bjacobi&#x27;
-  [../]
+  []
 []
+
 [Executioner]
   type = Transient
-  solve_type = &#x27;NEWTON&#x27;
-
-  [./TimeIntegrator]
-    type = NewmarkBeta
-  [../]
-
-  dtmin = 1e-18
-  dtmax = 1.0
-
-  [./TimeStepper]
-    type = IterationAdaptiveDT
-    optimal_iterations = 38
-    linear_iteration_ratio = 1000
-    dt = 1e-8
-    growth_factor = 1.1
-  [../]
-
+  solve_type = NEWTON
+  scheme = implicit-euler
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dt = 0.01
   num_steps = 2
 []
 
 [Outputs]
-  print_linear_residuals = false
-  [./out]
-    type = Exodus
-    file_base = out_Sstate_gen-Py_111_OOMF
-    elemental_as_nodal = true
-    time_step_interval = 1
-  [../]
-  [./outCSV]
-    type = CSV
-    file_base = out_Sstate_gen-Py_111_OOMF
-  [../]
+  file_base = out_sp2_second
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="a0a7bd17-6bcc-468c-b4b9-fdc9a9386988"><div class="modal-content"><h4>(test/tests/magnets/llb_helix.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  nx = 800
+  xmax = 54.45427266
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 2.211e-4
+  mu0 = 1.2566370614e-6
+  dmi_type = bulk
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha alpha_perp alpha_par Ms Ae D me chi_par&#x27;
+    prop_values = &#x27;1.0 0.7142857143 0.5714285714 860000 13000000 3000000 0.4680904102 1.87707808e-09&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    initial_condition = 0.01
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.4680904102*cos(0.1153846154*x)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.4680904102*sin(0.1153846154*x)&#x27;
+    []
+  []
+[]
+
+[BCs]
+  [Periodic]
+    [all]
+      variable = &#x27;mag_x mag_y mag_z&#x27;
+      auto_direction = x
+    []
+  []
+[]
+
+[AuxVariables]
+  [mm]
+  []
+[]
+
+[AuxKernels]
+  [mm]
+    type = ParsedAux
+    variable = mm
+    coupled_variables = &#x27;mag_x mag_y mag_z&#x27;
+    expression = &#x27;sqrt(mag_x^2 + mag_y^2 + mag_z^2)&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [MasterExchangeCartLLG_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    llb = true
+  []
+  [MasterExchangeCartLLG_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    llb = true
+  []
+  [MasterExchangeCartLLG_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    llb = true
+  []
+  [MasterDMICartLLG_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+    llb = true
+  []
+  [MasterDMICartLLG_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+    llb = true
+  []
+  [MasterDMICartLLG_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+    llb = true
+  []
+  [MasterLongitudinalLLB_x]
+    type = MasterLongitudinalLLB
+    variable = mag_x
+    component = 0
+    form = llb
+    temperature = 600
+    Tc = 700
+  []
+  [MasterLongitudinalLLB_y]
+    type = MasterLongitudinalLLB
+    variable = mag_y
+    component = 1
+    form = llb
+    temperature = 600
+    Tc = 700
+  []
+  [MasterLongitudinalLLB_z]
+    type = MasterLongitudinalLLB
+    variable = mag_z
+    component = 2
+    form = llb
+    temperature = 600
+    Tc = 700
+  []
+[]
+
+[Postprocessors]
+  [sim_time]
+    type = TimePostprocessor
+  []
+  [m_avg]
+    type = ElementAverageValue
+    variable = mm
+  []
+  [E_ex]
+    type = MasterMagneticExchangeEnergy
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+  []
+  [shift_rel]
+    type = ParsedPostprocessor
+    expression = &#x27;(m_avg/0.4680904102 - 1)/0.0006010528864&#x27;
+    pp_names = &#x27;m_avg&#x27;
+  []
+  [dens_rel]
+    type = ParsedPostprocessor
+    expression = &#x27;(E_ex + E_dmi)/54.45427266/(-173076.9231*m_avg*m_avg)&#x27;
+    pp_names = &#x27;E_ex E_dmi m_avg&#x27;
+  []
+[]
+
+[UserObjects]
+  [assert]
+    type = Terminator
+    expression = &#x27;sim_time &gt; 1.0 &amp; (abs(shift_rel - 1) &gt; 0.02 | abs(dens_rel - 1) &gt; 1e-4)&#x27;
+    fail_mode = HARD
+    error_level = ERROR
+    message = &#x27;LLB bulk-DMI helix: |m| shift or energy density differs from the analytic LLB result&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  scheme = bdf2
+  end_time = 1.2
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1e-5
+    growth_factor = 1.3
+    optimal_iterations = 8
+  []
+  dtmax = 0.05
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-8
+  nl_rel_step_tol = 1e-12
+  line_search = none
+  nl_forced_its = 1
+[]
+
+[Outputs]
+  file_base = out_llb_helix
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="0303625d-6986-4828-9353-5ea4032b95ce"><div class="modal-content"><h4>(test/tests/magnets/sp6_3d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 3D benchmark: num_sectors = 72, rings = 46, num_layers = 21 (~1-2 nm), relaxed (IterationAdaptiveDT, dtmax 0.003) until rms dm/dt &lt; 1e-6 /ns.
+  [disk]
+    type = ConcentricCircleMeshGenerator
+    num_sectors = 4
+    radii = &#x27;91.5&#x27;
+    rings = &#x27;8&#x27;
+    has_outer_square = false
+    preserve_volumes = false
+  []
+  [cylinder]
+    type = AdvancedExtruderGenerator
+    input = disk
+    heights = &#x27;21&#x27;
+    num_layers = &#x27;3&#x27;
+    direction = &#x27;0 0 1&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = cylinder
+    transform = TRANSLATE
+    vector_value = &#x27;0 0 -10.5&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = bulk
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D&#x27;
+    prop_values = &#x27;1 384000 8780000 1580000&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(-y/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(x/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(1-2*exp(-(x*x+y*y)/1296))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+[]
+
+[AuxVariables]
+  [potential_H_int]
+  []
+  [Hext_x]
+  []
+  [Hext_y]
+  []
+  [Hext_z]
+    initial_condition = 318309.8862
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [zeeman_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+  []
+  [zeeman_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+  []
+  [zeeman_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_zeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_zeeman&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.005
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp6_3d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="307eea4a-a1d5-46dc-bd23-ecf418bbf493"><div class="modal-content"><h4>(test/tests/magnets/sp2_first.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # muMAG standard problem 2 (5d x d x 0.1d film, no anisotropy, field along [111]), FIRST-order demag
+  # potential. Reduced units: l_ex = 1, Km = mu0 Ms^2 / 2 = 1; lengths below are for d = 1 l_ex.
+  # Scaled-down mesh for a fast regression test. For the actual SP2 benchmark multiply every length by
+  # d/l_ex and use 100 x 20 x 3 film cells with a graded vacuum, e.g.
+  # dx = &#x27;2 1 0.5 0.25 0.25 5 0.25 0.25 0.5 1 2&#x27;, ix = &#x27;1 1 1 1 5 100 5 1 1 1 1&#x27;,
+  # dy = &#x27;2 1 0.5 0.25 0.25 1 0.25 0.25 0.5 1 2&#x27;, iy = &#x27;1 1 1 1 5 20 5 1 1 1 1&#x27;,
+  # dz = &#x27;1.2 0.6 0.3 0.133333 0.066667 0.033333 0.1 0.033333 0.066667 0.133333 0.3 0.6 1.2&#x27;,
+  # iz = &#x27;1 1 1 1 1 1 3 1 1 1 1 1 1&#x27; (box half-sizes 6.5d x 4.5d x 2.383333d), then sweep the field.
+  [box]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;4.0 1.0 5.0 1.0 4.0&#x27;
+    dy = &#x27;4.0 1.0 1.0 1.0 4.0&#x27;
+    dz = &#x27;2.0 0.2 0.1 0.2 2.0&#x27;
+    ix = &#x27;1 1 10 1 1&#x27;
+    iy = &#x27;1 1 2 1 1&#x27;
+    iz = &#x27;1 1 1 1 1&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-7.5 -5.5 -2.25&#x27;
+  []
+  [film_block]
+    type = ParsedSubdomainMeshGenerator
+    input = center
+    block_id = 1
+    combinatorial_geometry = &#x27;abs(x) &lt;= 2.500001 &amp; abs(y) &lt;= 0.500001 &amp; abs(z) &lt;= 0.050001&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = film_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum film&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  potential_H_int = potential_H_int
+  Hext_x = Hext
+  Hext_y = Hext
+  Hext_z = Hext
+  mu0 = 1.256637
+  g0 = 221.1
+  Hscale = 1.0
+[]
+
+[Variables]
+  # start uniform along [111]
+  [mag_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.5773502691896258
+    []
+  []
+  [mag_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.5773502691896258
+    []
+  []
+  [mag_z]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.5773502691896258
+    []
+  []
+  [potential_H_int]
+    block = &#x27;film vacuum&#x27;
+  []
+[]
+
+[AuxVariables]
+  [mag_s]
+    block = film
+  []
+  # applied field H/Ms = 0.08 along [111]: each component = 0.08 * Ms / sqrt(3)
+  [Hext]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.05827295
+    []
+  []
+[]
+
+[AuxKernels]
+  [mag_norm]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [film_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity&#x27;
+    prop_values = &#x27;1.0 1.0 1.261566 1.0&#x27;
+    block = film
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Ms permittivity&#x27;
+    prop_values = &#x27;0.0 1.0&#x27;
+    block = vacuum
+  []
+[]
+
+[Kernels]
+  [mag_x_time]
+    type = TimeDerivative
+    variable = mag_x
+    block = film
+  []
+  [mag_y_time]
+    type = TimeDerivative
+    variable = mag_y
+    block = film
+  []
+  [mag_z_time]
+    type = TimeDerivative
+    variable = mag_z
+    block = film
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [field_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [field_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [field_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [magnetostatic_laplace]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;film vacuum&#x27;
+  []
+  [magnetostatic_source]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = film
+  []
+[]
+
+[BCs]
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+    block = film
+  []
+  [my]
+    type = ElementAverageValue
+    variable = mag_y
+    block = film
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    block = film
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = film
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.0
+    block = film
+  []
+  [Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+  [Fzeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+[]
+
+[UserObjects]
+  [renormalize]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    execute_on = timestep_end
+    force_preaux = true
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  scheme = implicit-euler
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dt = 0.01
+  num_steps = 2
+[]
+
+[Outputs]
+  file_base = out_sp2_first
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="477926de-f668-453f-b2fe-0c8ef5e2ce49"><div class="modal-content"><h4>(test/tests/magnets/sp5.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # muMAG SP5 benchmark mesh: 2.5 nm film cells (40 x 40 in-plane, 4 through the 10 nm), 4 film-size vacuum shells then x1.7
+  # grading out to an 800 x 800 x 350 nm box (graded tensor mesh g4a); relax the vortex first (alpha 0.5, u = 0), then
+  # restart with the current for 14 ns (NewmarkBeta, IterationAdaptiveDT, dtmax 0.005).
+  [box]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;5.862556 2.931278 17.587667 2.931278 5.862556&#x27;
+    dy = &#x27;5.862556 2.931278 17.587667 2.931278 5.862556&#x27;
+    dz = &#x27;1.758767 0.879383 1.758767 0.879383 1.758767&#x27;
+    ix = &#x27;1 1 6 1 1&#x27;
+    iy = &#x27;1 1 6 1 1&#x27;
+    iz = &#x27;1 1 2 1 1&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-17.5876675 -17.5876675 -3.517534&#x27;
+  []
+  [film_block]
+    type = SubdomainBoundingBoxGenerator
+    input = center
+    block_id = 1
+    bottom_left = &#x27;-8.795 -8.795 -0.8795&#x27;
+    top_right = &#x27;8.795 8.795 0.8795&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = film_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum film&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+  mu0 = 1.256637
+  g0 = 140.206695
+  Hscale = 1.0
+[]
+
+[Materials]
+  [film_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity&#x27;
+    prop_values = &#x27;0.1 1.0 1.261566 1.0&#x27;
+    block = film
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;1.0&#x27;
+    block = vacuum
+  []
+[]
+
+[Variables]
+  [mag_x]
+    block = film
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;-y/sqrt(x*x + y*y + 1.7587667438*1.7587667438)&#x27;
+    []
+  []
+  [mag_y]
+    block = film
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;x/sqrt(x*x + y*y + 1.7587667438*1.7587667438)&#x27;
+    []
+  []
+  [mag_z]
+    block = film
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;1.7587667438/sqrt(x*x + y*y + 1.7587667438*1.7587667438)&#x27;
+    []
+  []
+  [potential_H_int]
+    block = &#x27;film vacuum&#x27;
+  []
+[]
+
+[AuxVariables]
+  [mag_s]
+    block = film
+  []
+  [Hext_x]
+    block = film
+  []
+  [Hext_y]
+    block = film
+  []
+  [Hext_z]
+    block = film
+  []
+[]
+
+[AuxKernels]
+  [mag_norm]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    execute_on = &#x27;initial timestep_end&#x27;
+    block = film
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;initial timestep_end final&#x27;
+    force_preaux = true
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+    block = film
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [demag_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [stt_x]
+    type = MasterZLSpinTransferTorqueCartLLG
+    variable = mag_x
+    component = 0
+    current_direction = 0
+    u = -12.6930
+    xi = 0.05
+    block = film
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+    block = film
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [demag_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [stt_y]
+    type = MasterZLSpinTransferTorqueCartLLG
+    variable = mag_y
+    component = 1
+    current_direction = 0
+    u = -12.6930
+    xi = 0.05
+    block = film
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+    block = film
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [demag_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [stt_z]
+    type = MasterZLSpinTransferTorqueCartLLG
+    variable = mag_z
+    component = 2
+    current_direction = 0
+    u = -12.6930
+    xi = 0.05
+    block = film
+  []
+  [magnetostatic_laplace]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;film vacuum&#x27;
+  []
+  [magnetostatic_source]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = film
+  []
+[]
+
+[BCs]
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [my]
+    type = ElementAverageValue
+    variable = mag_y
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [mag_norm_max]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = max
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.0
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 1.0
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  [TimeIntegrator]
+    type = NewmarkBeta
+  []
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dtmin = 1e-6
+  dtmax = 5e-3
+  num_steps = 10
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    optimal_iterations = 15
+    iteration_window = 2
+    linear_iteration_ratio = 1000
+    dt = 1e-4
+    growth_factor = 1.1
+    cutback_factor = 0.7
+  []
+[]
+
+[Outputs]
+  file_base = out_sp5
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="834dc9f1-63f4-40f4-bdfe-7012e905e804"><div class="modal-content"><h4>(test/tests/magnets/sp1.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # Scaled-down mesh for a fast regression test. For the actual muMAG SP1 benchmark use 20 nm
+  # in-plane film cells and a graded vacuum, e.g. ix = &#x27;8 6 50 6 8&#x27;, iy = &#x27;8 6 100 6 8&#x27;,
+  # iz = &#x27;8 6 2 6 8&#x27; with dz = &#x27;300.0 7.0 3.517533 7.0 300.0&#x27;.
+  [box]
+    type = CartesianMeshGenerator
+    dim = 3
+    dx = &#x27;500.0 35.2 175.876674 35.2 500.0&#x27;
+    dy = &#x27;500.0 35.2 351.753349 35.2 500.0&#x27;
+    dz = &#x27;300.0 7.0 3.517533 7.0 300.0&#x27;
+    ix = &#x27;2 1 5 1 2&#x27;
+    iy = &#x27;2 1 10 1 2&#x27;
+    iz = &#x27;2 1 1 1 2&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = box
+    transform = TRANSLATE
+    vector_value = &#x27;-623.138337 -711.076675 -308.758767&#x27;
+  []
+  [film_block]
+    type = ParsedSubdomainMeshGenerator
+    input = center
+    block_id = 1
+    combinatorial_geometry = &#x27;x &gt;= -87.938337 &amp; x &lt;= 87.938337 &amp; y &gt;= -175.876675 &amp; y &lt;= 175.876675 &amp; z &gt;= -1.758767 &amp; z &lt;= 1.758767&#x27;
+  []
+  [block_names]
+    type = RenameBlockGenerator
+    input = film_block
+    old_block = &#x27;0 1&#x27;
+    new_block = &#x27;vacuum film&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+  mu0 = 1.256637
+  g0 = 140.206695
+  Hscale = 1.0
+[]
+
+[Variables]
+  [mag_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.0
+    []
+  []
+  [mag_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 1.0
+    []
+  []
+  [mag_z]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.0
+    []
+  []
+  [potential_H_int]
+    block = &#x27;film vacuum&#x27;
+  []
+[]
+
+[AuxVariables]
+  [mag_s]
+    block = film
+  []
+  [Hext_x]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.06273559
+    []
+  []
+  [Hext_y]
+    block = film
+    [InitialCondition]
+      type = ConstantIC
+      value = 0.00109505
+    []
+  []
+  [Hext_z]
+    block = film
+  []
+[]
+
+[AuxKernels]
+  [mag_norm]
+    type = VectorMagnitudeAux
+    variable = mag_s
+    x = mag_x
+    y = mag_y
+    z = mag_z
+    block = film
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Materials]
+  [film_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ae Ms permittivity K1 nx ny nz&#x27;
+    prop_values = &#x27;1.0 1.0 1.261566 1.0 0.001243 0 1 0&#x27;
+    block = film
+  []
+  [vacuum_properties]
+    type = GenericConstantMaterial
+    prop_names = &#x27;Ms permittivity&#x27;
+    prop_values = &#x27;0.0 1.0&#x27;
+    block = vacuum
+  []
+[]
+
+[Kernels]
+  [mag_x_time]
+    type = TimeDerivative
+    variable = mag_x
+    block = film
+  []
+  [mag_y_time]
+    type = TimeDerivative
+    variable = mag_y
+    block = film
+  []
+  [mag_z_time]
+    type = TimeDerivative
+    variable = mag_z
+    block = film
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [field_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+    block = film
+  []
+  [field_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+    block = film
+  []
+  [field_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+    block = film
+  []
+  [magnetostatic_laplace]
+    type = Electrostatics
+    variable = potential_H_int
+    block = &#x27;film vacuum&#x27;
+  []
+  [magnetostatic_source]
+    type = MagHStrongCart
+    variable = potential_H_int
+    block = film
+  []
+[]
+
+[BCs]
+  [outer_vacuum]
+    type = DirichletBC
+    variable = potential_H_int
+    boundary = &#x27;0 1 2 3 4 5&#x27;
+    value = 0.0
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+    block = film
+  []
+  [my]
+    type = ElementAverageValue
+    variable = mag_y
+    block = film
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+    block = film
+  []
+  [mag_norm_min]
+    type = NodalExtremeValue
+    variable = mag_s
+    value_type = min
+    block = film
+  []
+  [Fexch]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1.0
+    block = film
+  []
+  [Faniso]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 1.0
+    block = film
+  []
+  [Fdemag]
+    type = MagnetostaticEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+  [Fzeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1.0
+    block = film
+  []
+[]
+
+[UserObjects]
+  [renormalize]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    execute_on = timestep_end
+    force_preaux = true
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  scheme = implicit-euler
+  petsc_options_iname = &#x27;-pc_type -snes_atol -snes_rtol&#x27;
+  petsc_options_value = &#x27;lu       1e-8       1e-8&#x27;
+  dt = 0.05
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp1
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2decd50d-bef7-4596-9984-7424b1232e5e"><div class="modal-content"><h4>(test/tests/magnets/sp6_1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 1D benchmark: nx = 100 (h = 1 nm), relaxed (IterationAdaptiveDT, dtmax 0.01) until rms dm/dt &lt; 1e-6 /ns.
+  [wire]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 25
+    xmin = -50
+    xmax = 50
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = interfacial
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D K1 nx ny nz&#x27;
+    prop_values = &#x27;1 860000 13000000 -3000000 400000 0 0 1&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    initial_condition = 0
+  []
+  [mag_y]
+    initial_condition = 0
+  []
+  [mag_z]
+    initial_condition = 1
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_anisotropy]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_anisotropy&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.01
+  num_steps = 10
+[]
+
+[Outputs]
+  file_base = out_sp6_1d
+  exodus = true
+  csv = true
 []
 </code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script>

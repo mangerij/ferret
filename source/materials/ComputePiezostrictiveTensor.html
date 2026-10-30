@@ -1,4 +1,178 @@
-<!DOCTYPE html><head><meta charset="UTF-8"><title>ComputePiezostrictiveTensor | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="956bddf3-291e-44f6-a217-08464c81dee6" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e129043c-eec6-48e8-8991-2ef4af99d027" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="30983c24-4c4a-45e7-a0c4-6dba597b454c" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="57b3f560-916a-4d2b-af44-7f1e39b837f3" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="80841567-ed65-48f9-8288-b0d9ace34184" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="e2dbf579-7d1c-444f-a87d-466a8ffab77a"><i class="material-icons">menu</i></a><ul class="sidenav" id="e2dbf579-7d1c-444f-a87d-466a8ffab77a"><li><a href="#!" class="dropdown-trigger" data-target="849f63dd-0192-4511-8ff2-d530cbcc79cc" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="e73eaa80-6e98-4d82-8c08-d6112a57ae00" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="5ce06da1-9cb6-4c75-9cd2-8eee7f93cb73" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="ea9e3ba7-7555-4d46-9ce7-d66bf3c9c78b" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="4e75ca8d-28ad-418e-9f21-191e89f661f5" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="956bddf3-291e-44f6-a217-08464c81dee6"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="e129043c-eec6-48e8-8991-2ef4af99d027"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="30983c24-4c4a-45e7-a0c4-6dba597b454c"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="57b3f560-916a-4d2b-af44-7f1e39b837f3"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="80841567-ed65-48f9-8288-b0d9ace34184"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="849f63dd-0192-4511-8ff2-d530cbcc79cc"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="e73eaa80-6e98-4d82-8c08-d6112a57ae00"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="5ce06da1-9cb6-4c75-9cd2-8eee7f93cb73"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="ea9e3ba7-7555-4d46-9ce7-d66bf3c9c78b"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="4e75ca8d-28ad-418e-9f21-191e89f661f5"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="5041ba15-0d6f-4997-a4de-1d21bd592f1e" data-section-level="1" data-section-text="ComputePiezostrictiveTensor"><h1 id="computepiezostrictivetensor">ComputePiezostrictiveTensor</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The ComputePiezostrictiveTensor has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Compute a piezostrictive tensor.</p><section id="05241cae-33c8-48d5-bf6c-9ed60a4f12ae" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="ccb206bf-9522-4463-8ddd-c9597b9c251a" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="f293afa7-5dcc-4471-8fb9-5e52ecd6f0a9" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="7a033383-db39-4a15-bb35-02c163f030b5" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">e_ijk</span><span class="moose-parameter-header-description">piezostrictive tensor for material</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>piezostrictive tensor for material</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="eb2ec109-0a50-4b21-ae21-33e9847f12ce" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">base_name</span><span class="moose-parameter-header-description">Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_1</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 1</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 1</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_2</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 2</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 2</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_3</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 3</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 3</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">fill_method</span><span class="moose-parameter-header-default">general</span><span class="moose-parameter-header-description">The fill method</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>general</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>general, plane_normal</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The fill method</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="0331671a-6c02-469a-a6c3-a457bbbbe908" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">search_method</span><span class="moose-parameter-header-default">nearest_node_connected_sides</span><span class="moose-parameter-header-description">Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nearest_node_connected_sides</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nearest_node_connected_sides, all_proximate_sides</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="e58314c3-0ba9-4760-91dd-5f0433aa7a4b" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section><section id="4948fd35-7b39-4ba4-83d1-67cfb0ff2d5f" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="4faf3cac-9d44-4449-8139-bc1c0c1dadb3" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#f4610e06-3ed1-46d0-9e7f-f26b339f3c24">(test/tests/piezoelectric/converse_piezoelectric.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#62eb1546-94bc-4460-a56c-27a9a98932b2">(test/tests/piezoelectric/direct_piezoelectric.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#8fff502b-099e-466a-a018-97b20884e56f">(tutorial/piezoelectric.i)</a></li></ul></section></section><div class="moose-modal modal" id="f4610e06-3ed1-46d0-9e7f-f26b339f3c24"><div class="modal-content"><h4>(test/tests/piezoelectric/converse_piezoelectric.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+<!DOCTYPE html><head><meta charset="UTF-8"><title>ComputePiezostrictiveTensor | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="82201cab-e22b-498f-a11c-7a8f6efc072a" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="cdf07e0b-7dc2-495d-858c-ffcb946c792e" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="bdc0f091-1cae-4b3c-aa77-3d356443b0e1" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="75342e69-0811-4096-95fd-2cb6c43895cb" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="8ed9234c-c7ab-454e-b679-1a345965d733" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="a7f9dfce-f6ca-48ab-a17e-e7eba443727a"><i class="material-icons">menu</i></a><ul class="sidenav" id="a7f9dfce-f6ca-48ab-a17e-e7eba443727a"><li><a href="#!" class="dropdown-trigger" data-target="23c93e2b-fc32-49e3-828b-fe3f07722c6e" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="b72ecece-c002-484e-a01a-cb9415925cfa" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="abc7b13b-2d02-4e76-b3cf-d3ec44cc49ee" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="288310ab-9428-4cd2-aaf5-a5c44e26719a" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="c04a69c5-2d62-48f1-81f6-01ffde6adf99" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="82201cab-e22b-498f-a11c-7a8f6efc072a"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="cdf07e0b-7dc2-495d-858c-ffcb946c792e"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="bdc0f091-1cae-4b3c-aa77-3d356443b0e1"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="75342e69-0811-4096-95fd-2cb6c43895cb"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="8ed9234c-c7ab-454e-b679-1a345965d733"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="23c93e2b-fc32-49e3-828b-fe3f07722c6e"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="b72ecece-c002-484e-a01a-cb9415925cfa"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="abc7b13b-2d02-4e76-b3cf-d3ec44cc49ee"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="288310ab-9428-4cd2-aaf5-a5c44e26719a"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="c04a69c5-2d62-48f1-81f6-01ffde6adf99"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="96e4f8ad-894b-4e4c-98de-7fd126b1a823" data-section-level="1" data-section-text="ComputePiezostrictiveTensor"><h1 id="computepiezostrictivetensor">ComputePiezostrictiveTensor</h1><div class="card moose-alert moose-alert-construction"><div class="card-title moose-alert-title"><i class="material-icons moose-inline-icon">build</i><span class="moose-alert-title-brand">construction:</span>Undocumented Class</div><div class="card-content"><div class="moose-alert-content"><p>The ComputePiezostrictiveTensor has not been documented. The content listed below should be used as a starting point for documenting the class, which includes the typical automatic documentation associated with a MooseObject; however, what is contained is ultimately determined by what is necessary to make the documentation clear for users.</p></div></div></div><p>Compute a piezostrictive tensor.</p><section id="bc5efa57-dfc4-4972-8429-bfc259bd4ac9" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p></p></section><section id="3009151a-c852-44dc-98be-617de6410ce3" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p></p></section><section id="a558f3f2-9fd9-463e-b3bc-25ff7342102e" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="cae5ab70-080e-4944-96cc-0f16ab6935a0" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">e_ijk</span><span class="moose-parameter-header-description">piezostrictive tensor for material</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;Real&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>piezostrictive tensor for material</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="cff62cda-f81f-486a-9aa1-18365d213fce" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">base_name</span><span class="moose-parameter-header-description">Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::string</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Optional parameter that allows the user to define multiple mechanics material systems on the same block, i.e. for multiple phases</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">boundary</span><span class="moose-parameter-header-description">The list of boundaries (ids or names) from the mesh where this object applies</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;BoundaryName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of boundaries (ids or names) from the mesh where this object applies</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">compute</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When false, MOOSE will not call compute methods on this material. The user must call computeProperties() after retrieving the MaterialBase via MaterialBasePropertyInterface::getMaterialBase(). Non-computed MaterialBases are not sorted for dependencies.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">constant_on</span><span class="moose-parameter-header-default">NONE</span><span class="moose-parameter-header-description">When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>NONE</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>NONE, ELEMENT, SUBDOMAIN</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>When ELEMENT, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps.When SUBDOMAIN, MOOSE will only call computeQpProperties() for the 0th quadrature point, and then copy that value to the other qps. Evaluations on element qps will be skipped</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">declare_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any declared properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_1</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 1</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 1</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_2</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 2</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 2</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">euler_angle_3</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">Euler angle in direction 3</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Euler angle in direction 3</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">fill_method</span><span class="moose-parameter-header-default">general</span><span class="moose-parameter-header-description">The fill method</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>general</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>general, plane_normal</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The fill method</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="e4bc8e34-f217-4abd-9ee1-e6d6f4fa6ccd" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">search_method</span><span class="moose-parameter-header-default">nearest_node_connected_sides</span><span class="moose-parameter-header-description">Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nearest_node_connected_sides</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nearest_node_connected_sides, all_proximate_sides</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation.  Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="cccfe1b6-4a35-425a-9c78-4cde5145a51c" data-section-level="3" data-section-text="Outputs Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">output_properties</span><span class="moose-parameter-header-description">List of material properties, from this material, to output (outputs must also be defined to an output type)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>List of material properties, from this material, to output (outputs must also be defined to an output type)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">outputs</span><span class="moose-parameter-header-default">none </span><span class="moose-parameter-header-description">Vector of output names where you would like to restrict the output of variables(s) associated with this object</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>none </p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;OutputName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Vector of output names where you would like to restrict the output of variables(s) associated with this object</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Outputs Parameters</h3></summary></details></section><section id="fa9c3125-3510-49e7-a3a5-8112d2f1a45c" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="fadd9325-234a-4127-88f5-402d3bc09a61" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#2816902c-4654-4b1d-8b9c-37a44ff506b1">(test/tests/piezoelectric/open_circuit_sensor.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#497d8205-a0d2-437b-8507-394449a56428">(test/tests/piezoelectric/converse_piezoelectric.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#12efe07c-e153-42ec-a3b0-e0274a7e1ee8">(tutorial/piezoelectric.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#ba49263d-f2bf-4807-86c3-107f8d1cfd0e">(test/tests/piezoelectric/direct_piezoelectric.i)</a></li></ul></section></section><div class="moose-modal modal" id="2816902c-4654-4b1d-8b9c-37a44ff506b1"><div class="modal-content"><h4>(test/tests/piezoelectric/open_circuit_sensor.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  [gen]
+    type = GeneratedMeshGenerator
+    dim = 3
+    nx = 2
+    ny = 2
+    nz = 5
+    xmax = 0.004
+    ymax = 0.004
+    zmax = 0.02
+    elem_type = HEX27
+  []
+  [pin_a]
+    type = ExtraNodesetGenerator
+    input = gen
+    new_boundary = pin_a
+    coord = &#x27;0 0 0&#x27;
+  []
+  [pin_b]
+    type = ExtraNodesetGenerator
+    input = pin_a
+    new_boundary = pin_b
+    coord = &#x27;0.004 0 0&#x27;
+  []
+[]
+
+[GlobalParams]
+  potential_E_int = phi
+  disp_x = u_x
+  disp_y = u_y
+  disp_z = u_z
+  displacements = &#x27;u_x u_y u_z&#x27;
+[]
+
+[Variables]
+  [u_x]
+    order = SECOND
+  []
+  [u_y]
+    order = SECOND
+  []
+  [u_z]
+    order = SECOND
+  []
+  [phi]
+    order = SECOND
+  []
+[]
+
+[Kernels]
+  [SolidMechanics]
+  []
+  [piezocouple_0]
+    type = ConversePiezoelectricStrain
+    variable = u_x
+    component = 0
+  []
+  [piezocouple_1]
+    type = ConversePiezoelectricStrain
+    variable = u_y
+    component = 1
+  []
+  [piezocouple_2]
+    type = ConversePiezoelectricStrain
+    variable = u_z
+    component = 2
+  []
+  [FE_E_int]
+    type = Electrostatics
+    variable = phi
+  []
+  [strain_charge]
+    type = PiezoelectricStrainCharge
+    variable = phi
+  []
+[]
+
+[Materials]
+  [elasticity_tensor]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;127.205e9 80.212e9 84.670e9 127.205e9 84.670e9 117.436e9 22.988e9 22.988e9 23.474e9&#x27;
+  []
+  [piezostrictive_tensor]
+    type = ComputePiezostrictiveTensor
+    fill_method = general
+    e_ijk = &#x27;0 0 17.0345 0 0 0 17.0345 0 0  0 0 0 0 0 17.0345 0 17.0345 0  -6.62281 0 0 0 -6.62281 0 0 0 23.2403&#x27;
+  []
+  [permittivity]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;1.26934e-08&#x27;
+  []
+  [strain]
+    type = ComputeSmallStrain
+  []
+  [stress]
+    type = ComputeLinearElasticStress
+  []
+[]
+
+[BCs]
+  [slide_z]
+    type = DirichletBC
+    variable = u_z
+    boundary = back
+    value = 0
+  []
+  [pin_ax]
+    type = DirichletBC
+    variable = u_x
+    boundary = pin_a
+    value = 0
+  []
+  [pin_ay]
+    type = DirichletBC
+    variable = u_y
+    boundary = pin_a
+    value = 0
+  []
+  [pin_by]
+    type = DirichletBC
+    variable = u_y
+    boundary = pin_b
+    value = 0
+  []
+  [ground]
+    type = DirichletBC
+    variable = phi
+    boundary = back
+    value = 0
+  []
+  [press]
+    type = Pressure
+    variable = u_z
+    boundary = front
+    factor = 625000
+    use_displaced_mesh = false
+  []
+[]
+
+[Postprocessors]
+  [phi_front]
+    type = SideAverageValue
+    variable = phi
+    boundary = front
+  []
+  [stroke]
+    type = SideAverageValue
+    variable = u_z
+    boundary = front
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-pc_type&#x27;
+    petsc_options_value = &#x27;lu&#x27;
+  []
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = NEWTON
+  automatic_scaling = true
+  nl_abs_tol = 1e-12
+[]
+
+[Outputs]
+  csv = true
+  file_base = open_circuit_sensor_out
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="497d8205-a0d2-437b-8507-394449a56428"><div class="modal-content"><h4>(test/tests/piezoelectric/converse_piezoelectric.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
   type = GeneratedMesh
   dim = 3
   nx = 7
@@ -259,14 +433,15 @@
   [./smp]
     type = SMP
     full = true
-    petsc_options_iname = &#x27;-ksp_gmres_restart  -snes_atol -ksp_rtol -pc_type&#x27;
-    petsc_options_value = &#x27;    121                1e-10      1e-8     bjacobi&#x27;
+    petsc_options_iname = &#x27;-ksp_gmres_restart  -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121                1e-8     bjacobi&#x27;
   [../]
 []
 
 [Executioner]
   type = Steady
   solve_type = &#x27;NEWTON&#x27;
+  nl_abs_tol = 1e-10
 []
 
 [Outputs]
@@ -277,305 +452,7 @@
     elemental_as_nodal = true
   [../]
 []
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="62eb1546-94bc-4460-a56c-27a9a98932b2"><div class="modal-content"><h4>(test/tests/piezoelectric/direct_piezoelectric.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
-  type = GeneratedMesh
-  dim = 3
-  nx = 7
-  ny = 7
-  nz = 5
-  xmin = -3
-  xmax = 3
-  ymin = -3
-  ymax = 3
-  zmin = -2
-  zmax = 2
-  elem_type = HEX8
-[]
-
-[GlobalParams]
-  potential_E_int = potential_E_int
-  disp_x = u_x
-  disp_y = u_y
-  disp_z = u_z
-  displacements = &#x27;u_x u_y u_z&#x27;
-[]
-
-[Variables]
-  [./u_x]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./u_y]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./u_z]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-  [./potential_E_int]
-    order = FIRST
-    family = LAGRANGE
-  [../]
-[]
-
-[AuxVariables]
-    [./stress_xx]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./stress_yy]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./stress_zz]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./stress_xy]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./stress_yz]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./stress_zx]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./strain_xx]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./strain_yy]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./strain_zz]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./strain_xy]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./strain_yz]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-    [./strain_zx]
-      order = CONSTANT
-      family = MONOMIAL
-    [../]
-[]
-
-[Kernels]
-  [./SolidMechanics]
-  [../]
-  [./piezocouple_0]
-    type = ConversePiezoelectricStrain
-    variable = u_x
-    component = 0
-  [../]
-  [./piezocouple_1]
-    type = ConversePiezoelectricStrain
-    variable = u_y
-    component = 1
-  [../]
-  [./piezocouple_2]
-    type = ConversePiezoelectricStrain
-    variable = u_z
-    component = 2
-  [../]
-  [./FE_E_int]
-     type = Electrostatics
-     variable = potential_E_int
-  [../]
-  [./strain_charge]
-     type = PiezoelectricStrainCharge
-     variable = potential_E_int
-  [../]
-[]
-
-[Materials]
-  [./permitivitty_1]
-    type = GenericConstantMaterial
-    prop_names = &#x27;permittivity&#x27;
-    prop_values = &#x27;0.0721616&#x27;
-  [../]
-[]
-
-[AuxKernels]
-  [./stress_xx]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress_xx
-    index_i = 0
-    index_j = 0
-  [../]
-  [./stress_yy]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress_yy
-    index_i = 1
-    index_j = 1
-  [../]
-  [./stress_zz]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress_zz
-    index_i = 2
-    index_j = 2
-  [../]
-  [./stress_xy]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress_xy
-    index_i = 0
-    index_j = 1
-  [../]
-  [./stress_yz]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress_yz
-    index_i = 1
-    index_j = 2
-  [../]
-  [./stress_zx]
-    type = RankTwoAux
-    rank_two_tensor = stress
-    variable = stress_zx
-    index_i = 2
-    index_j = 0
-  [../]
-  [./strain_xx]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    variable = strain_xx
-    index_i = 0
-    index_j = 0
-  [../]
-  [./strain_yy]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    variable = strain_yy
-    index_i = 1
-    index_j = 1
-  [../]
-  [./strain_zz]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    variable = strain_zz
-    index_i = 2
-    index_j = 2
-  [../]
-  [./strain_xy]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    variable = strain_xy
-    index_i = 0
-    index_j = 1
-  [../]
-  [./strain_yz]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    variable = strain_yz
-    index_i = 1
-    index_j = 2
-  [../]
-  [./strain_zx]
-    type = RankTwoAux
-    rank_two_tensor = elastic_strain
-    variable = strain_zx
-    index_i = 2
-    index_j = 0
-  [../]
-[]
-
-[Materials]
-  [./elasticity_tensor_1]
-    type = ComputeElasticityTensor
-    fill_method = symmetric9
-    C_ijkl = &#x27;209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29&#x27;
-    euler_angle_1 = 30
-    euler_angle_2 = 30
-    euler_angle_3 = 0
-  [../]
-  [./strain_1]
-    type = ComputeSmallStrain
-  [../]
-  [./stress_1]
-    type = ComputeLinearElasticStress
-  [../]
-  [./d333]
-    type = ComputePiezostrictiveTensor
-    fill_method = general
-    e_ijk = &#x27;0 0 -0.00415 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.00415 0 -0.00415 0 -0.005 0 0 0 -0.005 0 0 0 0.0124&#x27;
-    euler_angle_1 = 30
-    euler_angle_2 = 30
-    euler_angle_3 = 0
-  [../]
-[]
-
-[BCs]
-
-  [./stablizer_x]
-    type = DirichletBC
-    variable = &#x27;u_x&#x27;
-    boundary = &#x27;front back&#x27;
-    value = 0.0
-  [../]
-  [./stablizer_y]
-    type = DirichletBC
-    variable = &#x27;u_y&#x27;
-    boundary = &#x27;front back&#x27;
-    value = 0.0
-  [../]
-  [./front_strain]
-    type = DirichletBC
-    variable = &#x27;u_z&#x27;
-    boundary = &#x27;front&#x27;
-    value = -0.01
-  [../]
-  [./back_strain]
-    type = DirichletBC
-    variable = &#x27;u_z&#x27;
-    boundary = &#x27;back&#x27;
-    value = 0.01
-  [../]
-[]
-
-[Postprocessors]
-  [./Felastic]
-    type = ElasticEnergy
-    execute_on = &#x27;timestep_end&#x27;
-  [../]
-[]
-
-[Preconditioning]
-  [./smp]
-    type = SMP
-    full = true
-    petsc_options_iname = &#x27;-ksp_gmres_restart  -snes_atol -ksp_rtol -pc_type&#x27;
-    petsc_options_value = &#x27;    121                1e-10      1e-8     bjacobi&#x27;
-  [../]
-[]
-
-[Executioner]
-  type = Steady
-  solve_type = &#x27;NEWTON&#x27;
-[]
-
-[Outputs]
-  print_linear_residuals = false
-  [./out]
-    type = Exodus
-    file_base = out_test_piezoelectric
-    elemental_as_nodal = true
-  [../]
-[]
-</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="8fff502b-099e-466a-a018-97b20884e56f"><div class="modal-content"><h4>(tutorial/piezoelectric.i)</h4><pre style="max-height:350px;"><code class="language-moose">
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="12efe07c-e153-42ec-a3b0-e0274a7e1ee8"><div class="modal-content"><h4>(tutorial/piezoelectric.i)</h4><pre style="max-height:350px;"><code class="language-moose">
 [Mesh]
   type = GeneratedMesh
   dim = 3
@@ -913,6 +790,305 @@
   [./out]
     type = Exodus
     file_base = out_piezoelectric
+    elemental_as_nodal = true
+  [../]
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="ba49263d-f2bf-4807-86c3-107f8d1cfd0e"><div class="modal-content"><h4>(test/tests/piezoelectric/direct_piezoelectric.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  type = GeneratedMesh
+  dim = 3
+  nx = 7
+  ny = 7
+  nz = 5
+  xmin = -3
+  xmax = 3
+  ymin = -3
+  ymax = 3
+  zmin = -2
+  zmax = 2
+  elem_type = HEX8
+[]
+
+[GlobalParams]
+  potential_E_int = potential_E_int
+  disp_x = u_x
+  disp_y = u_y
+  disp_z = u_z
+  displacements = &#x27;u_x u_y u_z&#x27;
+[]
+
+[Variables]
+  [./u_x]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_y]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./u_z]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+  [./potential_E_int]
+    order = FIRST
+    family = LAGRANGE
+  [../]
+[]
+
+[AuxVariables]
+    [./stress_xx]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./stress_yy]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./stress_zz]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./stress_xy]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./stress_yz]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./stress_zx]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./strain_xx]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./strain_yy]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./strain_zz]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./strain_xy]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./strain_yz]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+    [./strain_zx]
+      order = CONSTANT
+      family = MONOMIAL
+    [../]
+[]
+
+[Kernels]
+  [./SolidMechanics]
+  [../]
+  [./piezocouple_0]
+    type = ConversePiezoelectricStrain
+    variable = u_x
+    component = 0
+  [../]
+  [./piezocouple_1]
+    type = ConversePiezoelectricStrain
+    variable = u_y
+    component = 1
+  [../]
+  [./piezocouple_2]
+    type = ConversePiezoelectricStrain
+    variable = u_z
+    component = 2
+  [../]
+  [./FE_E_int]
+     type = Electrostatics
+     variable = potential_E_int
+  [../]
+  [./strain_charge]
+     type = PiezoelectricStrainCharge
+     variable = potential_E_int
+  [../]
+[]
+
+[Materials]
+  [./permitivitty_1]
+    type = GenericConstantMaterial
+    prop_names = &#x27;permittivity&#x27;
+    prop_values = &#x27;0.0721616&#x27;
+  [../]
+[]
+
+[AuxKernels]
+  [./stress_xx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_xx
+    index_i = 0
+    index_j = 0
+  [../]
+  [./stress_yy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_yy
+    index_i = 1
+    index_j = 1
+  [../]
+  [./stress_zz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_zz
+    index_i = 2
+    index_j = 2
+  [../]
+  [./stress_xy]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_xy
+    index_i = 0
+    index_j = 1
+  [../]
+  [./stress_yz]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_yz
+    index_i = 1
+    index_j = 2
+  [../]
+  [./stress_zx]
+    type = RankTwoAux
+    rank_two_tensor = stress
+    variable = stress_zx
+    index_i = 2
+    index_j = 0
+  [../]
+  [./strain_xx]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    variable = strain_xx
+    index_i = 0
+    index_j = 0
+  [../]
+  [./strain_yy]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    variable = strain_yy
+    index_i = 1
+    index_j = 1
+  [../]
+  [./strain_zz]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    variable = strain_zz
+    index_i = 2
+    index_j = 2
+  [../]
+  [./strain_xy]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    variable = strain_xy
+    index_i = 0
+    index_j = 1
+  [../]
+  [./strain_yz]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    variable = strain_yz
+    index_i = 1
+    index_j = 2
+  [../]
+  [./strain_zx]
+    type = RankTwoAux
+    rank_two_tensor = elastic_strain
+    variable = strain_zx
+    index_i = 2
+    index_j = 0
+  [../]
+[]
+
+[Materials]
+  [./elasticity_tensor_1]
+    type = ComputeElasticityTensor
+    fill_method = symmetric9
+    C_ijkl = &#x27;209.7 121.1 105.1 209.7 105.1 210.9 42.47 42.47 44.29&#x27;
+    euler_angle_1 = 30
+    euler_angle_2 = 30
+    euler_angle_3 = 0
+  [../]
+  [./strain_1]
+    type = ComputeSmallStrain
+  [../]
+  [./stress_1]
+    type = ComputeLinearElasticStress
+  [../]
+  [./d333]
+    type = ComputePiezostrictiveTensor
+    fill_method = general
+    e_ijk = &#x27;0 0 -0.00415 0 0 0 -0.00415 0 0 0 0 0 0 0 -0.00415 0 -0.00415 0 -0.005 0 0 0 -0.005 0 0 0 0.0124&#x27;
+    euler_angle_1 = 30
+    euler_angle_2 = 30
+    euler_angle_3 = 0
+  [../]
+[]
+
+[BCs]
+
+  [./stablizer_x]
+    type = DirichletBC
+    variable = &#x27;u_x&#x27;
+    boundary = &#x27;front back&#x27;
+    value = 0.0
+  [../]
+  [./stablizer_y]
+    type = DirichletBC
+    variable = &#x27;u_y&#x27;
+    boundary = &#x27;front back&#x27;
+    value = 0.0
+  [../]
+  [./front_strain]
+    type = DirichletBC
+    variable = &#x27;u_z&#x27;
+    boundary = &#x27;front&#x27;
+    value = -0.01
+  [../]
+  [./back_strain]
+    type = DirichletBC
+    variable = &#x27;u_z&#x27;
+    boundary = &#x27;back&#x27;
+    value = 0.01
+  [../]
+[]
+
+[Postprocessors]
+  [./Felastic]
+    type = ElasticEnergy
+    execute_on = &#x27;timestep_end&#x27;
+  [../]
+[]
+
+[Preconditioning]
+  [./smp]
+    type = SMP
+    full = true
+    petsc_options_iname = &#x27;-ksp_gmres_restart  -ksp_rtol -pc_type&#x27;
+    petsc_options_value = &#x27;    121                1e-8     bjacobi&#x27;
+  [../]
+[]
+
+[Executioner]
+  type = Steady
+  solve_type = &#x27;NEWTON&#x27;
+  nl_abs_tol = 1e-10
+[]
+
+[Outputs]
+  print_linear_residuals = false
+  [./out]
+    type = Exodus
+    file_base = out_test_piezoelectric
     elemental_as_nodal = true
   [../]
 []

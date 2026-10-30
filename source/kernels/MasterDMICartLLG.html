@@ -1,0 +1,2312 @@
+<!DOCTYPE html><head><meta charset="UTF-8"><title>MasterDMICartLLG | Ferret</title><link href="../../contrib/materialize/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"></link><link href="../../contrib/prism/prism.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/devel_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/alert_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/content_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/sqa_moose.css" type="text/css" rel="stylesheet"></link><link href="../../css/civet_moose.css" type="text/css" rel="stylesheet"></link><link href="../../contrib/katex/katex.min.css" type="text/css" rel="stylesheet"></link><link href="../../css/katex_moose.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../contrib/jquery/jquery.min.js"></script><script type="text/javascript" src="../../contrib/katex/katex.min.js"></script></head><body><div class="page-wrap"><header><nav><div class="nav-wrapper container"><a href="../../index.html" class="left moose-logo hide-on-med-and-down" id="home-button">Ferret</a><a href="https://github.com/mangerij/ferret" class="right"><img src="../../media/framework/github-logo.png" alt="GitHub wordmark" class="github-mark"></img><img src="../../media/framework/github-mark.png" alt="GitHub logo" class="github-logo"></img></a><ul class="right hide-on-med-and-down"><li><a href="#!" class="dropdown-trigger" data-target="f6fd365c-a560-4965-996c-8c2cc4b7e4b2" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="87aeddd2-bc08-4092-ae13-b546aef7c1d0" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="1cc395d5-07c4-4075-8d71-2dd6891d80c1" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="7ad9208c-4018-43ec-8553-533e40152a71" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="996d3c6e-04ea-4d86-8236-c643a86d3574" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#" class="sidenav-trigger" data-target="85be21a5-e825-4df6-ac5a-e7668ece1738"><i class="material-icons">menu</i></a><ul class="sidenav" id="85be21a5-e825-4df6-ac5a-e7668ece1738"><li><a href="#!" class="dropdown-trigger" data-target="16c02b9c-75fd-4841-9a4d-0c75917f46ac" data-constrainWidth="false">Get Started<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="8bd0f5d8-5e9e-425f-85d7-2fffbdff9223" data-constrainWidth="false">Theory<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="27102087-73da-4230-8dea-0a485e504e6e" data-constrainWidth="false">Tutorials<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="#!" class="dropdown-trigger" data-target="abda9075-e07b-458b-8ee6-662e4a95ecee" data-constrainWidth="false">EU Horizon2020-IF<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../publication_highlights/publication_highlights.html">Highlights</a></li><li><a href="#!" class="dropdown-trigger" data-target="a60cc923-738b-4dee-b1bb-d6626e3e3dad" data-constrainWidth="false">Documentation<i class="material-icons right">arrow_drop_down</i></a></li><li><a href="../../contribute/index.html">Contact</a></li></ul><a href="#moose-search" class="modal-trigger"><i class="material-icons">search</i></a></div><ul class="dropdown-content" id="f6fd365c-a560-4965-996c-8c2cc4b7e4b2"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="87aeddd2-bc08-4092-ae13-b546aef7c1d0"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="1cc395d5-07c4-4075-8d71-2dd6891d80c1"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="7ad9208c-4018-43ec-8553-533e40152a71"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="996d3c6e-04ea-4d86-8236-c643a86d3574"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul><ul class="dropdown-content" id="16c02b9c-75fd-4841-9a4d-0c75917f46ac"><li><a href="../../getting_started/install.html">Install FERRET</a></li><li><a href="../../getting_started/update.html">Update FERRET</a></li><li><a href="../../getting_started/running.html">Running FERRET</a></li><li><a href="../../getting_started/paraview.html">Visualization Tools</a></li><li><a href="../../getting_started/docs.html">Browse the documentation locally</a></li></ul><ul class="dropdown-content" id="8bd0f5d8-5e9e-425f-85d7-2fffbdff9223"><li><a href="../../theory/intro_LGD.html">Phase Field Method of Ferroelectricity (FE)</a></li><li><a href="../../theory/intro_LLG.html">Micromagnetic Simulations</a></li><li><a href="../../theory/intro_LLB.html">Finite-Temperature Micromagnetics (LLB)</a></li><li><a href="../../theory/intro_piezo.html">Piezoelectricity</a></li><li><a href="../../theory/intro_thermo.html">Thermoelectric Phenomena</a></li><li><a href="../../theory/intro_optical.html">Optical Properties</a></li></ul><ul class="dropdown-content" id="27102087-73da-4230-8dea-0a485e504e6e"><li><a href="../../tutorials/FE_phase_field_multi_domain.html">Multidomain ferroelectric</a></li><li><a href="../../tutorials/ferroelectric_domain_wall.html">Ferroelectric domain wall</a></li><li><a href="../../tutorials/FE_phase_field_multi_domain_coupled.html">Ferroelectric thin film</a></li><li><a href="../../tutorials/magnetic_ringdown.html">Magnetic ringdown</a></li><li><a href="../../tutorials/AFM_dynamics.html">Antiferromagnetic dynamics</a></li><li><a href="../../tutorials/piezoelectric.html">Piezoelectric actuation</a></li><li><a href="../../tutorials/spin_waves.html">Spin waves from the eigensolver</a></li><li><a href="../../tutorials/flexoelectric_domain_wall.html">Flexoelectricity at a domain wall</a></li><li><a href="../../tutorials/thermoelectric.html">Polycrystalline thermoelectric transport</a></li></ul><ul class="dropdown-content" id="abda9075-e07b-458b-8ee6-662e4a95ecee"><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results1.html">Background and model</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_results2.html">Summary of key results</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex1.html">Example (ground states)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex2.html">Example (FE DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex3.html">Example (magnetic DWs)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex4.html">Example (ME switching)</a></li><li><a href="../../MSCA_EU_Horizon2020_Results/horizon2020_ex5.html">Example (spin wave transport)</a></li></ul><ul class="dropdown-content" id="a60cc923-738b-4dee-b1bb-d6626e3e3dad"><li><a href="../../syntax/index.html">Complete syntax</a></li><li><a href="../../syntax/ferret_only_syntax.html">FERRET syntax</a></li></ul></nav><div class="modal modal-fixed-footer moose-search-modal" id="moose-search"><div class="modal-content container moose-search-modal-content"><div class="gcse-search"></div></div><div class="modal-footer"><a href="#!" class="modal-close btn-flat">Close</a></div></div></header><main class="main"><div class="container"><div class="row"><div class="moose-content col s12 m12 l12"><section id="819da62b-e7fa-4941-8969-c9431f8242ee" data-section-level="1" data-section-text="MasterDMICartLLG"><h1 id="masterdmicartllg">MasterDMICartLLG</h1><p>Calculates a residual contribution due to the bulk or interfacial (Cnv, normal +z) Dzyaloshinskii-Moriya interaction of a ferromagnet. The weak form is not integrated by parts, so the DMI surface term is retained and the exchange + DMI natural boundary condition holds without a BC object.</p><section id="4e4076f2-624a-4317-b037-9ecb59f8671f" data-section-level="2" data-section-text="Overview"><h2 id="overview">Overview</h2><p>Residual contribution of the Dzyaloshinskii-Moriya interaction (DMI) of a ferromagnet to the LLG equation, in the same weak form and prefactor convention as <a href="MasterExchangeCartLLG.html">MasterExchangeCartLLG</a>. Two energy densities are available through <code>dmi_type</code>,</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-9a34037b-4945-467b-97d2-3bc2f1451e98"></span><script>var element = document.getElementById("moose-equation-9a34037b-4945-467b-97d2-3bc2f1451e98");katex.render("  \\begin{aligned}     f_\\mathrm{DMI}^\\mathrm{bulk} &= D\\, \\mathbf{m} \\cdot \\left(\\nabla \\times \\mathbf{m}\\right), \\\\     f_\\mathrm{DMI}^\\mathrm{interfacial} &= D \\left[ m_z \\left(\\nabla \\cdot \\mathbf{m}\\right) - \\left(\\mathbf{m}\\cdot\\nabla\\right) m_z \\right],   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>where the interfacial (Cnv) form assumes the interface normal along <span class="moose-katex-inline-equation" id="moose-equation-a40de6c8-4116-4d54-9390-89f721831ff8"><script>var element = document.getElementById("moose-equation-a40de6c8-4116-4d54-9390-89f721831ff8");katex.render("+\\hat{z}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. With the torque operator <span class="moose-katex-inline-equation" id="moose-equation-ac86db2a-ea67-4ff3-b481-af3264ff99f6"><script>var element = document.getElementById("moose-equation-ac86db2a-ea67-4ff3-b481-af3264ff99f6");katex.render("T_\\mathbf{m}\\mathbf{H} = \\mathbf{m}\\times\\mathbf{H} + \\alpha\\, \\mathbf{m}\\times(\\mathbf{m}\\times\\mathbf{H})", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> and the test function <span class="moose-katex-inline-equation" id="moose-equation-6c2d9c4b-7206-4364-846e-48b31ad4c9dc"><script>var element = document.getElementById("moose-equation-6c2d9c4b-7206-4364-846e-48b31ad4c9dc");katex.render("\\mathbf{v} = \\psi\\, \\hat{e}_k", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> for component <span class="moose-katex-inline-equation" id="moose-equation-7143e07e-6f2a-4587-ac89-afd25faafd31"><script>var element = document.getElementById("moose-equation-7143e07e-6f2a-4587-ac89-afd25faafd31");katex.render("k", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>, the residual is</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-2f4de5cc-bca5-40c7-9870-449d29d2717d"></span><script>var element = document.getElementById("moose-equation-2f4de5cc-bca5-40c7-9870-449d29d2717d");katex.render("  R_k = -\\frac{\\gamma_0 D}{\\mu_0 (1+\\alpha^2) M_s} \\int\\limits_\\Omega d^3\\mathbf{r}\\, B\\left(\\mathbf{m}, T_\\mathbf{m}^T \\mathbf{v}\\right),", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>where <span class="moose-katex-inline-equation" id="moose-equation-17a0de23-ae52-48cb-b3c4-f0cd4d1f66a2"><script>var element = document.getElementById("moose-equation-17a0de23-ae52-48cb-b3c4-f0cd4d1f66a2");katex.render("B", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is the symmetric bilinear form with <span class="moose-katex-inline-equation" id="moose-equation-df047a1f-4d98-4d5a-9510-375d09cedb76"><script>var element = document.getElementById("moose-equation-df047a1f-4d98-4d5a-9510-375d09cedb76");katex.render("B(\\mathbf{m},\\mathbf{m}) = 2 f_\\mathrm{DMI}/D", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>, i.e. the first variation of <span class="moose-katex-inline-equation" id="moose-equation-68d6f875-cbd8-46da-aba7-4dbf80c1c384"><script>var element = document.getElementById("moose-equation-68d6f875-cbd8-46da-aba7-4dbf80c1c384");katex.render("f_\\mathrm{DMI}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. The gradient of <span class="moose-katex-inline-equation" id="moose-equation-f7a123ac-96b6-447c-a808-f55a5b469062"><script>var element = document.getElementById("moose-equation-f7a123ac-96b6-447c-a808-f55a5b469062");katex.render("T_\\mathbf{m}^T\\mathbf{v}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> carries both <span class="moose-katex-inline-equation" id="moose-equation-67fa9ecc-1209-4325-bb1b-233e2de69a59"><script>var element = document.getElementById("moose-equation-67fa9ecc-1209-4325-bb1b-233e2de69a59");katex.render("\\nabla\\psi", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> and <span class="moose-katex-inline-equation" id="moose-equation-33b3fcd8-a2ff-4980-88b1-a83a3e59e3fa"><script>var element = document.getElementById("moose-equation-33b3fcd8-a2ff-4980-88b1-a83a3e59e3fa");katex.render("\\nabla\\mathbf{m}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>, and <span class="moose-katex-inline-equation" id="moose-equation-ed292300-83d9-4dac-b06c-b93dcc7f3cc2"><script>var element = document.getElementById("moose-equation-ed292300-83d9-4dac-b06c-b93dcc7f3cc2");katex.render("|\\mathbf{m}|^2", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> is not replaced by 1. The form is NOT integrated by parts, so the DMI surface term is retained: assembled with <a href="MasterExchangeCartLLG.html">MasterExchangeCartLLG</a> it imposes the natural boundary condition</p><p><span class="moose-katex-block-equation"><span class="moose-katex-equation table-cell" id="moose-equation-2ae7d969-4616-4ec2-bb35-f65d494d9d04"></span><script>var element = document.getElementById("moose-equation-2ae7d969-4616-4ec2-bb35-f65d494d9d04");katex.render("  \\begin{aligned}     2A_e\\, \\partial_\\mathbf{n}\\mathbf{m} + D\\, \\mathbf{m}\\times\\mathbf{n} &= 0 \\quad \\text{(bulk)}, \\\\     2A_e\\, \\partial_\\mathbf{n}\\mathbf{m} + D \\left[ m_z \\mathbf{n}_\\parallel - (\\mathbf{m}\\cdot\\mathbf{n}_\\parallel)\\hat{z} \\right] &= 0 \\quad \\text{(interfacial)},   \\end{aligned}", element, {displayMode:true,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span></p><p>without a BC object. The material property <code>D</code> carries the length scale in the same way as <code>Ae</code>: for a mesh in nm and <span class="moose-katex-inline-equation" id="moose-equation-1aefab31-6be5-438a-9e98-4ee302b68cef"><script>var element = document.getElementById("moose-equation-1aefab31-6be5-438a-9e98-4ee302b68cef");katex.render("D", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> in J/m<span class="moose-katex-inline-equation" id="moose-equation-eadd98a9-6866-4697-8b20-b80371ecadd4"><script>var element = document.getElementById("moose-equation-eadd98a9-6866-4697-8b20-b80371ecadd4");katex.render("^2", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>, supply <span class="moose-katex-inline-equation" id="moose-equation-d5092ecd-5d27-4709-aac2-9fe2d620c792"><script>var element = document.getElementById("moose-equation-d5092ecd-5d27-4709-aac2-9fe2d620c792");katex.render("D/10^{-9}", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span>. The sign convention of the interfacial form is that of MuMax3 (<code>Dind</code>). The matching energy is <a href="../postprocessors/MasterMagneticDMIEnergy.html">MasterMagneticDMIEnergy</a>.</p></section><section id="8f7ee5da-bdfc-4be6-a544-5a854fa8472c" data-section-level="2" data-section-text="Landau - Lifshitz - Bloch route"><h2 id="landau-lifshitz-bloch-route">Landau-Lifshitz-Bloch route</h2><p>With <code>llb = true</code> (bulk and interfacial <code>dmi_type</code>) the kernel solves the LLB equation (<a href="../../theory/intro_LLB.html">Finite-temperature micromagnetics</a>); <code>D</code> is <span class="moose-katex-inline-equation" id="moose-equation-e3b6a6a9-20a6-435d-b93d-c1bc481a4e71"><script>var element = document.getElementById("moose-equation-e3b6a6a9-20a6-435d-b93d-c1bc481a4e71");katex.render("D(T)/m_e^2", element, {displayMode:false,throwOnError:false,macros:{"\\bs":"\\boldsymbol{#1}","\\normal":"\\bs{n}","\\grad":"\\bs{\\nabla}","\\divergence":"\\grad \\cdot","\\norm":"\\left\\lVert#1\\right\\rVert","\\abs":"\\left\\lvert#1\\right\\rvert","\\tr":"\\text{tr}","\\dev":"\\text{dev}","\\sym":"\\text{sym}","\\diff":"\\text{ d}#1","\\activepart":"{\\left< A \\right>}","\\inactivepart":"{\\left< I \\right>}","\\Gc":"{\\mathcal{G}_c}","\\strain":"\\bs{\\varepsilon}","\\stress":"\\bs{\\sigma}","\\macaulay":"\\left<#1\\right>","\\body":"\\Omega","\\bodyboundary":"{\\partial\\body}","\\ep":"{\\varepsilon^p}","\\ep0":"{\\varepsilon_0^p}","\\epdot":"{\\dot{\\varepsilon}}^p","\\epdot0":"{\\dot{\\varepsilon}}_0^p","\\bfa":"\\boldsymbol{a}","\\bfb":"\\boldsymbol{b}","\\bfc":"\\boldsymbol{c}","\\bfd":"\\boldsymbol{d}","\\bfe":"\\boldsymbol{e}","\\bff":"\\boldsymbol{f}","\\bfg":"\\boldsymbol{g}","\\bfh":"\\boldsymbol{h}","\\bfi":"\\boldsymbol{i}","\\bfj":"\\boldsymbol{j}","\\bfk":"\\boldsymbol{k}","\\bfl":"\\boldsymbol{l}","\\bfm":"\\boldsymbol{m}","\\bfn":"\\boldsymbol{n}","\\bfo":"\\boldsymbol{o}","\\bfp":"\\boldsymbol{p}","\\bfq":"\\boldsymbol{q}","\\bfr":"\\boldsymbol{r}","\\bfs":"\\boldsymbol{s}","\\bft":"\\boldsymbol{t}","\\bfu":"\\boldsymbol{u}","\\bfv":"\\boldsymbol{v}","\\bfw":"\\boldsymbol{w}","\\bfx":"\\boldsymbol{x}","\\bfy":"\\boldsymbol{y}","\\bfz":"\\boldsymbol{z}","\\bfA":"\\boldsymbol{A}","\\bfB":"\\boldsymbol{B}","\\bfC":"\\boldsymbol{C}","\\bfD":"\\boldsymbol{D}","\\bfE":"\\boldsymbol{E}","\\bfF":"\\boldsymbol{F}","\\bfG":"\\boldsymbol{G}","\\bfH":"\\boldsymbol{H}","\\bfI":"\\boldsymbol{I}","\\bfJ":"\\boldsymbol{J}","\\bfK":"\\boldsymbol{K}","\\bfL":"\\boldsymbol{L}","\\bfM":"\\boldsymbol{M}","\\bfN":"\\boldsymbol{N}","\\bfO":"\\boldsymbol{O}","\\bfP":"\\boldsymbol{P}","\\bfQ":"\\boldsymbol{Q}","\\bfR":"\\boldsymbol{R}","\\bfS":"\\boldsymbol{S}","\\bfT":"\\boldsymbol{T}","\\bfU":"\\boldsymbol{U}","\\bfV":"\\boldsymbol{V}","\\bfW":"\\boldsymbol{W}","\\bfX":"\\boldsymbol{X}","\\bfY":"\\boldsymbol{Y}","\\bfZ":"\\boldsymbol{Z}"}});</script></span> and the material properties <code>alpha_perp</code> and <code>alpha_par</code> are required. As for <a href="MasterExchangeCartLLG.html">MasterExchangeCartLLG</a>, the optional <code>grad_alpha_perp</code> and <code>grad_alpha_par</code> properties add the terms that integration by parts produces when the damping varies in space.</p><pre style="max-height:350px;"><code class="language-moose">[Kernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Kernels/index.html&quot;}&gt;&gt;&gt;]
+  [MasterDMICartLLG_x]
+    type = MasterDMICartLLG&lt;&lt;&lt;{&quot;description&quot;: &quot;Calculates a residual contribution due to the bulk or interfacial (Cnv, normal +z) Dzyaloshinskii-Moriya interaction of a ferromagnet. The weak form is not integrated by parts, so the DMI surface term is retained and the exchange + DMI natural boundary condition holds without a BC object.&quot;, &quot;href&quot;: &quot;MasterDMICartLLG.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this residual object operates on&quot;}&gt;&gt;&gt; = mag_x
+    component&lt;&lt;&lt;{&quot;description&quot;: &quot;An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).&quot;}&gt;&gt;&gt; = 0
+    dmi_type&lt;&lt;&lt;{&quot;description&quot;: &quot;bulk: w = D m.(curl m); interfacial: w = D [mz div(m) - (m.grad) mz], interface normal +z&quot;}&gt;&gt;&gt; = interfacial
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#82f3ed2e-b72a-44e4-aeaf-011adf070a89">(test/tests/magnets/llb_alpha_ramp_dmi.i)</a></section><section id="0c0f7207-ff0b-494d-b828-1d984af1ac6c" data-section-level="2" data-section-text="Example Input File Syntax"><h2 id="example-input-file-syntax">Example Input File Syntax</h2><p>The DMI class is set with <code>dmi_type</code>, here through <code>[GlobalParams]</code>. Interfacial DMI on a 1D wire (SP6 of the DMI standard problems, Cortés-Ortuño et al., New J. Phys. 20, 113015 (2018)):</p><pre style="max-height:350px;"><code class="language-moose">[GlobalParams&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/GlobalParams/index.html&quot;}&gt;&gt;&gt;]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = interfacial
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#5da54071-9cef-4fe4-88cc-08a7d455816a">(test/tests/magnets/sp6_1d.i)</a><pre style="max-height:350px;"><code class="language-moose">[Kernels&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Kernels/index.html&quot;}&gt;&gt;&gt;]
+  [dmi_x]
+    type = MasterDMICartLLG&lt;&lt;&lt;{&quot;description&quot;: &quot;Calculates a residual contribution due to the bulk or interfacial (Cnv, normal +z) Dzyaloshinskii-Moriya interaction of a ferromagnet. The weak form is not integrated by parts, so the DMI surface term is retained and the exchange + DMI natural boundary condition holds without a BC object.&quot;, &quot;href&quot;: &quot;MasterDMICartLLG.html&quot;}&gt;&gt;&gt;
+    variable&lt;&lt;&lt;{&quot;description&quot;: &quot;The name of the variable that this residual object operates on&quot;}&gt;&gt;&gt; = mag_x
+    component&lt;&lt;&lt;{&quot;description&quot;: &quot;An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).&quot;}&gt;&gt;&gt; = 0
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#4d1ccc48-b679-49d4-9b26-ecfad9e59612">(test/tests/magnets/sp6_1d.i)</a><p>Bulk DMI with a Zeeman field on a cylinder (the 3D case of the same benchmark):</p><pre style="max-height:350px;"><code class="language-moose">[GlobalParams&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/GlobalParams/index.html&quot;}&gt;&gt;&gt;]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = bulk
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#7a90ac12-ab53-4eb5-b9b7-a2311c76fe18">(test/tests/magnets/sp6_3d.i)</a><p>The material property <code>D</code> is supplied with the other constants:</p><pre style="max-height:350px;"><code class="language-moose">[Materials&lt;&lt;&lt;{&quot;href&quot;: &quot;../../syntax/Materials/index.html&quot;}&gt;&gt;&gt;]
+  [constants]
+    type = GenericConstantMaterial&lt;&lt;&lt;{&quot;description&quot;: &quot;Declares material properties based on names and values prescribed by input parameters.&quot;, &quot;href&quot;: &quot;../materials/GenericConstantMaterial.html&quot;}&gt;&gt;&gt;
+    prop_names&lt;&lt;&lt;{&quot;description&quot;: &quot;The names of the properties this material will have&quot;}&gt;&gt;&gt; = &#x27;alpha Ms Ae D&#x27;
+    prop_values&lt;&lt;&lt;{&quot;description&quot;: &quot;The values associated with the named properties&quot;}&gt;&gt;&gt; = &#x27;1 384000 8780000 1580000&#x27;
+  []
+[]</code></pre><a class="moose-source-filename tooltipped modal-trigger" href="#a76b4640-604f-43f8-8aa5-1af6b96a7672">(test/tests/magnets/sp6_3d.i)</a></section><section id="649da61d-d89b-4ada-862b-b27b63ade753" data-section-level="2" data-section-text="Input Parameters"><h2 id="input-parameters">Input Parameters</h2><section id="5b96ceb0-71a5-44c9-b432-2ea6c9596721" data-section-level="3" data-section-text="Required Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">component</span><span class="moose-parameter-header-description">An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An integer corresponding to the direction in order parameter space this kernel acts in (e.g. for unrotated functionals 0 for q_x, 1 for q_y, 2 for q_z).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_x</span><span class="moose-parameter-header-description">The x component of the constrained magnetic vector</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The x component of the constrained magnetic vector</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_y</span><span class="moose-parameter-header-description">The y component of the constrained magnetic vector</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The y component of the constrained magnetic vector</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mag_z</span><span class="moose-parameter-header-description">The z component of the constrained magnetic vector</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The z component of the constrained magnetic vector</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">variable</span><span class="moose-parameter-header-description">The name of the variable that this residual object operates on</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>NonlinearVariableName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of the variable that this residual object operates on</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Required Parameters</h3></summary></details></section><section id="34fb8cb8-b867-445c-93ae-1ec2f2e5b867" data-section-level="3" data-section-text="Optional Parameters" data-details-open="open"><details class="moose-section-content" open="open"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">Hscale</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">scaling factor for effective fields</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>scaling factor for effective fields</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">block</span><span class="moose-parameter-header-description">The list of blocks (ids or names) that this object will be applied</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;SubdomainName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The list of blocks (ids or names) that this object will be applied</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">displacements</span><span class="moose-parameter-header-description">The displacements</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;VariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The displacements</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">dmi_type</span><span class="moose-parameter-header-default">bulk</span><span class="moose-parameter-header-description">bulk: w = D m.(curl m); interfacial: w = D [mz div(m) - (m.grad) mz], interface normal +z</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>bulk</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>bulk, interfacial</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>bulk: w = D m.(curl m); interfacial: w = D [mz div(m) - (m.grad) mz], interface normal +z</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">g0</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">electron gyromagnetic factor</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>electron gyromagnetic factor</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">llb</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Landau-Lifshitz-Bloch route (m = M/Ms0, |m| free): transverse damping alpha_perp/|m|^2 and longitudinal damping alpha_par (material properties alpha_perp, alpha_par); alpha stays the coupling lambda in the g0/(1 + alpha^2) prefactor. Spatially varying alpha_perp/alpha_par need the optional RealVectorValue material properties grad_alpha_perp and grad_alpha_par (both or neither, e.g. CoupledGradientMaterial with scalar_property_factor = dalpha_perp/dT): they add the product-rule terms of the weak form; without them the damping is treated as uniform</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Landau-Lifshitz-Bloch route (m = M/Ms0, |m| free): transverse damping alpha_perp/|m|^2 and longitudinal damping alpha_par (material properties alpha_perp, alpha_par); alpha stays the coupling lambda in the g0/(1 + alpha^2) prefactor. Spatially varying alpha_perp/alpha_par need the optional RealVectorValue material properties grad_alpha_perp and grad_alpha_par (both or neither, e.g. CoupledGradientMaterial with scalar_property_factor = dalpha_perp/dT): they add the product-rule terms of the weak form; without them the damping is treated as uniform</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">llb_m2_eps</span><span class="moose-parameter-header-default">1e-06</span><span class="moose-parameter-header-description">Regularisation of 1/|m|^2 -> 1/(|m|^2 + llb_m2_eps) in the LLB damping terms; matters only where |m| ~ sqrt(llb_m2_eps), e.g. at the centre of a linear wall</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1e-06</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Regularisation of 1/|m|^2 -> 1/(|m|^2 + llb_m2_eps) in the LLB damping terms; matters only where |m| ~ sqrt(llb_m2_eps), e.g. at the centre of a linear wall</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">mu0</span><span class="moose-parameter-header-default">1</span><span class="moose-parameter-header-description">permeability of the vacuum</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>1</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>Real</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>permeability of the vacuum</p></div></li></ul><summary><h3 data-details-open="open"><span class="moose-section-icon"></span>Optional Parameters</h3></summary></details></section><section id="deb4032c-663a-4d2a-98d3-2b8b7f226a9b" data-section-level="3" data-section-text="Contribution To Tagged Field Data Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">absolute_value_vector_tags</span><span class="moose-parameter-header-description">The tags for the vectors this residual object should fill with the absolute value of the residual contribution</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tags for the vectors this residual object should fill with the absolute value of the residual contribution</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_matrix_tags</span><span class="moose-parameter-header-description">The extra tags for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">extra_vector_tags</span><span class="moose-parameter-header-description">The extra tags for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;TagName&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The extra tags for the vectors this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_only</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether this object is only doing assembly to matrices (no vectors)</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether this object is only doing assembly to matrices (no vectors)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">matrix_tags</span><span class="moose-parameter-header-default">system</span><span class="moose-parameter-header-description">The tag for the matrices this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>system</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, system</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the matrices this Kernel should fill</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">vector_tags</span><span class="moose-parameter-header-default">nontime</span><span class="moose-parameter-header-description">The tag for the vectors this Kernel should fill</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nontime</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MultiMooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nontime, time</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The tag for the vectors this Kernel should fill</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Contribution To Tagged Field Data Parameters</h3></summary></details></section><section id="88653581-764c-47a3-9ee6-9ef59f795110" data-section-level="3" data-section-text="Advanced Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">control_tags</span><span class="moose-parameter-header-description">Adds user-defined labels for accessing object parameters via control logic.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;std::string&gt;</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Adds user-defined labels for accessing object parameters via control logic.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">diag_save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's diagonal Jacobian contributions to. Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">enable</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Set the enabled status of the MooseObject.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>Yes</p><p class="moose-parameter-description"><span>Description:</span>Set the enabled status of the MooseObject.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">implicit</span><span class="moose-parameter-header-default">True</span><span class="moose-parameter-header-description">Determines whether this object is calculated using an implicit or explicit form</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>True</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Determines whether this object is calculated using an implicit or explicit form</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">save_in</span><span class="moose-parameter-header-description">The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>std::vector&lt;AuxVariableName&gt;</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The name of auxiliary variables to save this Kernel's residual contributions to.  Everything about that variable must match everything about this variable (the type, what blocks it's on, etc.)</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">search_method</span><span class="moose-parameter-header-default">nearest_node_connected_sides</span><span class="moose-parameter-header-description">Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>nearest_node_connected_sides</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MooseEnum</p><p class="moose-parameter-description-options"><span>Options:</span>nearest_node_connected_sides, all_proximate_sides</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Choice of search algorithm.  All options begin by finding the nearest node in the primary boundary to a query point in the secondary boundary.  In the default nearest_node_connected_sides algorithm, primary boundary elements are searched iff that nearest node is one of their nodes.  This is fast to determine via a pregenerated node-to-elem map and is robust on conforming meshes.  In the optional all_proximate_sides algorithm, primary boundary elements are searched iff they touch that nearest node, even if they are not topologically connected to it.  This is more CPU-intensive but is necessary for robustness on any boundary surfaces which has disconnections (such as Flex IGA meshes) or non-conformity (such as hanging nodes in adaptively h-refined meshes).</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">seed</span><span class="moose-parameter-header-default">0</span><span class="moose-parameter-header-description">The seed for the master random number generator</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>0</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>unsigned int</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>The seed for the master random number generator</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_displaced_mesh</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>Whether or not this object should use the displaced mesh for computation. Note that in the case this is true but no displacements are provided in the Mesh block the undisplaced mesh will still be used.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Advanced Parameters</h3></summary></details></section><section id="aaafa6a5-30ff-4f3c-983f-b05ba9ce9337" data-section-level="3" data-section-text="Material Property Retrieval Parameters" data-details-open="close"><details class="moose-section-content"><ul class="collapsible" data-collapsible="expandable"><li><div class="collapsible-header"><span class="moose-parameter-name">prop_getter_suffix</span><span class="moose-parameter-header-description">An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</span></div><div class="collapsible-body"><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>MaterialPropertyName</p><p class="moose-parameter-description-doc-unit"><span>Unit:</span>(no unit assumed)</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>An optional suffix parameter that can be appended to any attempt to retrieve/get material properties. The suffix will be prepended with a '_' character.</p></div></li><li><div class="collapsible-header"><span class="moose-parameter-name">use_interpolated_state</span><span class="moose-parameter-header-default">False</span><span class="moose-parameter-header-description">For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</span></div><div class="collapsible-body"><p class="moose-parameter-description-default"><span>Default:</span>False</p><p class="moose-parameter-description-cpptype"><span>C++ Type:</span>bool</p><p class="moose-parameter-description-controllable"><span>Controllable:</span>No</p><p class="moose-parameter-description"><span>Description:</span>For the old and older state use projected material properties interpolated at the quadrature points. To set up projection use the ProjectedStatefulMaterialStorageAction.</p></div></li></ul><summary><h3 data-details-open="close"><span class="moose-section-icon"></span>Material Property Retrieval Parameters</h3></summary></details></section></section><section id="6e01aef5-90ab-4b1f-bdb6-a5c5bb3ed356" data-section-level="2" data-section-text="Input Files"><h2 id="input-files">Input Files</h2><ul class="moose-list-inputs browser-default"><li><a class="moose-source-filename tooltipped modal-trigger" href="#92ab2781-7649-4d26-9ab4-9de4fea053b6">(test/tests/magnets/sp6_2d.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#41fd180c-3793-4e4d-b1df-9e3959b2b2b8">(test/tests/magnets/llb_alpha_ramp_dmi.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#2c7ab588-8987-4657-a1f6-eb5662aaedee">(test/tests/spin_waves/afm_skyr_modes.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#b81852d9-ce3b-4cc1-97cc-79d5d4291e58">(test/tests/magnets/llb_helix.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#9cbedd1b-a980-4c66-ba2b-55f272bcc134">(test/tests/magnets/sp6_3d.i)</a></li><li><a class="moose-source-filename tooltipped modal-trigger" href="#ffb490fa-58b0-46a4-811c-88d8944a72ef">(test/tests/magnets/sp6_1d.i)</a></li></ul></section></section><div class="moose-modal modal" id="82f3ed2e-b72a-44e4-aeaf-011adf070a89"><div class="modal-content"><h4>(test/tests/magnets/llb_alpha_ramp_dmi.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  nx = 600
+  xmin = -30
+  xmax = 30
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 1
+  mu0 = 1
+  Hscale = 1
+  llb = true
+[]
+
+[Functions]
+  [ap]
+    type = ParsedFunction
+    expression = &#x27;0.25 + -0.002*x&#x27;
+  []
+  [al]
+    type = ParsedFunction
+    expression = &#x27;0.15 + 0.002*x&#x27;
+  []
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae K1 nx ny nz me chi_par D&#x27;
+    prop_values = &#x27;0.1 1 1 1 0 0 1 0.8 0.05 0.3&#x27;
+  []
+  [alphas]
+    type = GenericFunctionMaterial
+    prop_names = &#x27;alpha_perp alpha_par&#x27;
+    prop_values = &#x27;ap al&#x27;
+  []
+  [grad_alphas]
+    type = GenericConstantVectorMaterial
+    prop_names = &#x27;grad_alpha_perp grad_alpha_par&#x27;
+    prop_values = &#x27;-0.002 0 0 0.002 0 0&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.8/cosh(x)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.8*tanh(x)&#x27;
+    []
+  []
+[]
+
+[AuxVariables]
+  [uz]
+  []
+[]
+
+[AuxKernels]
+  [uz]
+    type = ParsedAux
+    variable = uz
+    coupled_variables = &#x27;mag_x mag_y mag_z&#x27;
+    expression = &#x27;mag_z/sqrt(mag_x^2 + mag_y^2 + mag_z^2)&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [MasterExchangeCartLLG_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [MasterExchangeCartLLG_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [MasterExchangeCartLLG_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [MasterAnisotropyCartLLG_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [MasterAnisotropyCartLLG_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [MasterAnisotropyCartLLG_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [MasterDMICartLLG_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+    dmi_type = interfacial
+  []
+  [MasterDMICartLLG_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+    dmi_type = interfacial
+  []
+  [MasterDMICartLLG_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+    dmi_type = interfacial
+  []
+  [MasterLongitudinalLLB_x]
+    type = MasterLongitudinalLLB
+    variable = mag_x
+    component = 0
+    form = llb
+    temperature = 0.5
+    Tc = 1
+  []
+  [MasterLongitudinalLLB_y]
+    type = MasterLongitudinalLLB
+    variable = mag_y
+    component = 1
+    form = llb
+    temperature = 0.5
+    Tc = 1
+  []
+  [MasterLongitudinalLLB_z]
+    type = MasterLongitudinalLLB
+    variable = mag_z
+    component = 2
+    form = llb
+    temperature = 0.5
+    Tc = 1
+  []
+[]
+
+[UserObjects]
+  [assert]
+    type = Terminator
+    expression = &#x27;sim_time &gt; 10 &amp; abs(q_rel) &gt; 0.05&#x27;
+    fail_mode = HARD
+    error_level = ERROR
+    message = &#x27;LLB wall in an alpha ramp moves: the grad(alpha) terms are missing or wrong&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Postprocessors]
+  [Iuz]
+    type = ElementIntegralVariablePostprocessor
+    variable = uz
+  []
+  [q]
+    type = ParsedPostprocessor
+    expression = &#x27;-0.5*Iuz&#x27;
+    pp_names = &#x27;Iuz&#x27;
+  []
+  [sim_time]
+    type = TimePostprocessor
+  []
+  [q_rel]
+    type = ParsedPostprocessor
+    expression = &#x27;q/(0.00396039604*sim_time)&#x27;
+    pp_names = &#x27;q sim_time&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  scheme = bdf2
+  dt = 0.05
+  end_time = 20
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-8
+  nl_rel_step_tol = 1e-12
+  line_search = none
+  nl_forced_its = 1
+[]
+
+[Outputs]
+  file_base = out_llb_alpha_ramp_dmi
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="5da54071-9cef-4fe4-88cc-08a7d455816a"><div class="modal-content"><h4>(test/tests/magnets/sp6_1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 1D benchmark: nx = 100 (h = 1 nm), relaxed (IterationAdaptiveDT, dtmax 0.01) until rms dm/dt &lt; 1e-6 /ns.
+  [wire]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 25
+    xmin = -50
+    xmax = 50
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = interfacial
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D K1 nx ny nz&#x27;
+    prop_values = &#x27;1 860000 13000000 -3000000 400000 0 0 1&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    initial_condition = 0
+  []
+  [mag_y]
+    initial_condition = 0
+  []
+  [mag_z]
+    initial_condition = 1
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_anisotropy]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_anisotropy&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.01
+  num_steps = 10
+[]
+
+[Outputs]
+  file_base = out_sp6_1d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="4d1ccc48-b679-49d4-9b26-ecfad9e59612"><div class="modal-content"><h4>(test/tests/magnets/sp6_1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 1D benchmark: nx = 100 (h = 1 nm), relaxed (IterationAdaptiveDT, dtmax 0.01) until rms dm/dt &lt; 1e-6 /ns.
+  [wire]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 25
+    xmin = -50
+    xmax = 50
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = interfacial
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D K1 nx ny nz&#x27;
+    prop_values = &#x27;1 860000 13000000 -3000000 400000 0 0 1&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    initial_condition = 0
+  []
+  [mag_y]
+    initial_condition = 0
+  []
+  [mag_z]
+    initial_condition = 1
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_anisotropy]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_anisotropy&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.01
+  num_steps = 10
+[]
+
+[Outputs]
+  file_base = out_sp6_1d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="7a90ac12-ab53-4eb5-b9b7-a2311c76fe18"><div class="modal-content"><h4>(test/tests/magnets/sp6_3d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 3D benchmark: num_sectors = 72, rings = 46, num_layers = 21 (~1-2 nm), relaxed (IterationAdaptiveDT, dtmax 0.003) until rms dm/dt &lt; 1e-6 /ns.
+  [disk]
+    type = ConcentricCircleMeshGenerator
+    num_sectors = 4
+    radii = &#x27;91.5&#x27;
+    rings = &#x27;8&#x27;
+    has_outer_square = false
+    preserve_volumes = false
+  []
+  [cylinder]
+    type = AdvancedExtruderGenerator
+    input = disk
+    heights = &#x27;21&#x27;
+    num_layers = &#x27;3&#x27;
+    direction = &#x27;0 0 1&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = cylinder
+    transform = TRANSLATE
+    vector_value = &#x27;0 0 -10.5&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = bulk
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D&#x27;
+    prop_values = &#x27;1 384000 8780000 1580000&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(-y/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(x/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(1-2*exp(-(x*x+y*y)/1296))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+[]
+
+[AuxVariables]
+  [potential_H_int]
+  []
+  [Hext_x]
+  []
+  [Hext_y]
+  []
+  [Hext_z]
+    initial_condition = 318309.8862
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [zeeman_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+  []
+  [zeeman_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+  []
+  [zeeman_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_zeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_zeeman&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.005
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp6_3d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="a76b4640-604f-43f8-8aa5-1af6b96a7672"><div class="modal-content"><h4>(test/tests/magnets/sp6_3d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 3D benchmark: num_sectors = 72, rings = 46, num_layers = 21 (~1-2 nm), relaxed (IterationAdaptiveDT, dtmax 0.003) until rms dm/dt &lt; 1e-6 /ns.
+  [disk]
+    type = ConcentricCircleMeshGenerator
+    num_sectors = 4
+    radii = &#x27;91.5&#x27;
+    rings = &#x27;8&#x27;
+    has_outer_square = false
+    preserve_volumes = false
+  []
+  [cylinder]
+    type = AdvancedExtruderGenerator
+    input = disk
+    heights = &#x27;21&#x27;
+    num_layers = &#x27;3&#x27;
+    direction = &#x27;0 0 1&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = cylinder
+    transform = TRANSLATE
+    vector_value = &#x27;0 0 -10.5&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = bulk
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D&#x27;
+    prop_values = &#x27;1 384000 8780000 1580000&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(-y/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(x/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(1-2*exp(-(x*x+y*y)/1296))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+[]
+
+[AuxVariables]
+  [potential_H_int]
+  []
+  [Hext_x]
+  []
+  [Hext_y]
+  []
+  [Hext_z]
+    initial_condition = 318309.8862
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [zeeman_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+  []
+  [zeeman_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+  []
+  [zeeman_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_zeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_zeeman&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.005
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp6_3d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="92ab2781-7649-4d26-9ab4-9de4fea053b6"><div class="modal-content"><h4>(test/tests/magnets/sp6_2d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 2D benchmark: num_sectors = 80, rings = 50 (1 nm rings), relaxed (IterationAdaptiveDT, dtmax 0.01) until rms dm/dt &lt; 1e-6 /ns.
+  [disk]
+    type = ConcentricCircleMeshGenerator
+    num_sectors = 6
+    radii = &#x27;50&#x27;
+    rings = &#x27;10&#x27;
+    has_outer_square = false
+    preserve_volumes = false
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = interfacial
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D K1 nx ny nz&#x27;
+    prop_values = &#x27;1 860000 13000000 -3000000 400000 0 0 1&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(x/sqrt(x*x+y*y+1e-24)*(1-abs(2*exp(-(x*x+y*y)/625)-1)))/sqrt((1-abs(2*exp(-(x*x+y*y)/625)-1))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(2*exp(-(x*x+y*y)/625)-1)^2)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(y/sqrt(x*x+y*y+1e-24)*(1-abs(2*exp(-(x*x+y*y)/625)-1)))/sqrt((1-abs(2*exp(-(x*x+y*y)/625)-1))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(2*exp(-(x*x+y*y)/625)-1)^2)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(2*exp(-(x*x+y*y)/625)-1)/sqrt((1-abs(2*exp(-(x*x+y*y)/625)-1))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(2*exp(-(x*x+y*y)/625)-1)^2)&#x27;
+    []
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 2e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 2e-27
+  []
+  [E_anisotropy]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 2e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_anisotropy&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.005
+  num_steps = 10
+[]
+
+[Outputs]
+  file_base = out_sp6_2d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="41fd180c-3793-4e4d-b1df-9e3959b2b2b8"><div class="modal-content"><h4>(test/tests/magnets/llb_alpha_ramp_dmi.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  nx = 600
+  xmin = -30
+  xmax = 30
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 1
+  mu0 = 1
+  Hscale = 1
+  llb = true
+[]
+
+[Functions]
+  [ap]
+    type = ParsedFunction
+    expression = &#x27;0.25 + -0.002*x&#x27;
+  []
+  [al]
+    type = ParsedFunction
+    expression = &#x27;0.15 + 0.002*x&#x27;
+  []
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae K1 nx ny nz me chi_par D&#x27;
+    prop_values = &#x27;0.1 1 1 1 0 0 1 0.8 0.05 0.3&#x27;
+  []
+  [alphas]
+    type = GenericFunctionMaterial
+    prop_names = &#x27;alpha_perp alpha_par&#x27;
+    prop_values = &#x27;ap al&#x27;
+  []
+  [grad_alphas]
+    type = GenericConstantVectorMaterial
+    prop_names = &#x27;grad_alpha_perp grad_alpha_par&#x27;
+    prop_values = &#x27;-0.002 0 0 0.002 0 0&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.8/cosh(x)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.8*tanh(x)&#x27;
+    []
+  []
+[]
+
+[AuxVariables]
+  [uz]
+  []
+[]
+
+[AuxKernels]
+  [uz]
+    type = ParsedAux
+    variable = uz
+    coupled_variables = &#x27;mag_x mag_y mag_z&#x27;
+    expression = &#x27;mag_z/sqrt(mag_x^2 + mag_y^2 + mag_z^2)&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [MasterExchangeCartLLG_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [MasterExchangeCartLLG_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [MasterExchangeCartLLG_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [MasterAnisotropyCartLLG_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [MasterAnisotropyCartLLG_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [MasterAnisotropyCartLLG_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [MasterDMICartLLG_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+    dmi_type = interfacial
+  []
+  [MasterDMICartLLG_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+    dmi_type = interfacial
+  []
+  [MasterDMICartLLG_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+    dmi_type = interfacial
+  []
+  [MasterLongitudinalLLB_x]
+    type = MasterLongitudinalLLB
+    variable = mag_x
+    component = 0
+    form = llb
+    temperature = 0.5
+    Tc = 1
+  []
+  [MasterLongitudinalLLB_y]
+    type = MasterLongitudinalLLB
+    variable = mag_y
+    component = 1
+    form = llb
+    temperature = 0.5
+    Tc = 1
+  []
+  [MasterLongitudinalLLB_z]
+    type = MasterLongitudinalLLB
+    variable = mag_z
+    component = 2
+    form = llb
+    temperature = 0.5
+    Tc = 1
+  []
+[]
+
+[UserObjects]
+  [assert]
+    type = Terminator
+    expression = &#x27;sim_time &gt; 10 &amp; abs(q_rel) &gt; 0.05&#x27;
+    fail_mode = HARD
+    error_level = ERROR
+    message = &#x27;LLB wall in an alpha ramp moves: the grad(alpha) terms are missing or wrong&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Postprocessors]
+  [Iuz]
+    type = ElementIntegralVariablePostprocessor
+    variable = uz
+  []
+  [q]
+    type = ParsedPostprocessor
+    expression = &#x27;-0.5*Iuz&#x27;
+    pp_names = &#x27;Iuz&#x27;
+  []
+  [sim_time]
+    type = TimePostprocessor
+  []
+  [q_rel]
+    type = ParsedPostprocessor
+    expression = &#x27;q/(0.00396039604*sim_time)&#x27;
+    pp_names = &#x27;q sim_time&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  scheme = bdf2
+  dt = 0.05
+  end_time = 20
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-8
+  nl_rel_step_tol = 1e-12
+  line_search = none
+  nl_forced_its = 1
+[]
+
+[Outputs]
+  file_base = out_llb_alpha_ramp_dmi
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="2c7ab588-8987-4657-a1f6-eb5662aaedee"><div class="modal-content"><h4>(test/tests/spin_waves/afm_skyr_modes.i)</h4><pre style="max-height:350px;"><code class="language-moose"># AFM skyrmion eigenmodes (SP8; Kravchuk et al., PRB 99, 184429 (2019)): two sublattices, interfacial DMI, field along z,
+# undamped NewmarkBeta ring-down of a deformed Neel skyrmion (mu = 0 + mu = 2 kick), reduced units ell = Hsf = gamma = 1,
+# xi = 0.05, delta = 0.9, h = 0.1 (Ae = xi/2, D = 2 delta xi/pi, Ha = xi, He = 1/(2 xi), H0 = h).
+# To scale to the benchmark: radii = &#x27;9 25&#x27;, rings = &#x27;180 80&#x27;, num_sectors = 40; start from the state relaxed by the same
+# kernels (alpha = 0.02, implicit Euler, PointwiseRenormalizeVector) and kick it; run dt = 0.25 to t = 300 and fit the
+# frequencies of int n_z cos(mu phi) dA (LFB mu = 0: 0.1508, mu = +-2: 0.4411 / 0.4301 at h = 0.1).
+[Mesh]
+  [disk]
+    type = ConcentricCircleMeshGenerator
+    num_sectors = 4
+    radii = &#x27;4 8&#x27;
+    rings = &#x27;8 4&#x27;
+    has_outer_square = false
+    preserve_volumes = false
+  []
+[]
+
+[GlobalParams]
+  mag1_x = mag1_x
+  mag1_y = mag1_y
+  mag1_z = mag1_z
+  mag2_x = mag2_x
+  mag2_y = mag2_y
+  mag2_z = mag2_z
+  dmi_type = interfacial
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms g0 Ae D He Ha H0&#x27;
+    prop_values = &#x27;0.0 1.0 1.0 0.025 0.0286478897565 10 0.05 0.1&#x27;
+  []
+[]
+
+[Functions]
+  [nx]
+    type = ParsedFunction
+    expression = &#x27;r := sqrt(x*x + y*y + 1e-24); R := 2.5*(1.01 + 0.02*(x*x - y*y)/(r*r)); x/r/cosh(r - R)&#x27;
+  []
+  [ny]
+    type = ParsedFunction
+    expression = &#x27;r := sqrt(x*x + y*y + 1e-24); R := 2.5*(1.01 + 0.02*(x*x - y*y)/(r*r)); y/r/cosh(r - R)&#x27;
+  []
+  [nz]
+    type = ParsedFunction
+    expression = &#x27;r := sqrt(x*x + y*y + 1e-24); R := 2.5*(1.01 + 0.02*(x*x - y*y)/(r*r)); tanh(r - R)&#x27;
+  []
+  [mnx]
+    type = ParsedFunction
+    symbol_names = &#x27;f&#x27;
+    symbol_values = &#x27;nx&#x27;
+    expression = &#x27;-f&#x27;
+  []
+  [mny]
+    type = ParsedFunction
+    symbol_names = &#x27;f&#x27;
+    symbol_values = &#x27;ny&#x27;
+    expression = &#x27;-f&#x27;
+  []
+  [mnz]
+    type = ParsedFunction
+    symbol_names = &#x27;f&#x27;
+    symbol_values = &#x27;nz&#x27;
+    expression = &#x27;-f&#x27;
+  []
+[]
+
+[Variables]
+  [mag1_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = nx
+    []
+  []
+  [mag1_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = ny
+    []
+  []
+  [mag1_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = nz
+    []
+  []
+  [mag2_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = mnx
+    []
+  []
+  [mag2_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = mny
+    []
+  []
+  [mag2_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = mnz
+    []
+  []
+[]
+
+[Kernels]
+  [t1x]
+    type = TimeDerivative
+    variable = mag1_x
+  []
+  [ex1x]
+    type = MasterExchangeCartLLG
+    variable = mag1_x
+    component = 0
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  []
+  [dmi1x]
+    type = MasterDMICartLLG
+    variable = mag1_x
+    component = 0
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  []
+  [afm1x]
+    type = UniaxialAFMSublattice
+    variable = mag1_x
+    mag_sub = 0
+    component = 0
+  []
+  [t1y]
+    type = TimeDerivative
+    variable = mag1_y
+  []
+  [ex1y]
+    type = MasterExchangeCartLLG
+    variable = mag1_y
+    component = 1
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  []
+  [dmi1y]
+    type = MasterDMICartLLG
+    variable = mag1_y
+    component = 1
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  []
+  [afm1y]
+    type = UniaxialAFMSublattice
+    variable = mag1_y
+    mag_sub = 0
+    component = 1
+  []
+  [t1z]
+    type = TimeDerivative
+    variable = mag1_z
+  []
+  [ex1z]
+    type = MasterExchangeCartLLG
+    variable = mag1_z
+    component = 2
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  []
+  [dmi1z]
+    type = MasterDMICartLLG
+    variable = mag1_z
+    component = 2
+    mag_x = mag1_x
+    mag_y = mag1_y
+    mag_z = mag1_z
+  []
+  [afm1z]
+    type = UniaxialAFMSublattice
+    variable = mag1_z
+    mag_sub = 0
+    component = 2
+  []
+  [t2x]
+    type = TimeDerivative
+    variable = mag2_x
+  []
+  [ex2x]
+    type = MasterExchangeCartLLG
+    variable = mag2_x
+    component = 0
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  []
+  [dmi2x]
+    type = MasterDMICartLLG
+    variable = mag2_x
+    component = 0
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  []
+  [afm2x]
+    type = UniaxialAFMSublattice
+    variable = mag2_x
+    mag_sub = 1
+    component = 0
+  []
+  [t2y]
+    type = TimeDerivative
+    variable = mag2_y
+  []
+  [ex2y]
+    type = MasterExchangeCartLLG
+    variable = mag2_y
+    component = 1
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  []
+  [dmi2y]
+    type = MasterDMICartLLG
+    variable = mag2_y
+    component = 1
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  []
+  [afm2y]
+    type = UniaxialAFMSublattice
+    variable = mag2_y
+    mag_sub = 1
+    component = 1
+  []
+  [t2z]
+    type = TimeDerivative
+    variable = mag2_z
+  []
+  [ex2z]
+    type = MasterExchangeCartLLG
+    variable = mag2_z
+    component = 2
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  []
+  [dmi2z]
+    type = MasterDMICartLLG
+    variable = mag2_z
+    component = 2
+    mag_x = mag2_x
+    mag_y = mag2_y
+    mag_z = mag2_z
+  []
+  [afm2z]
+    type = UniaxialAFMSublattice
+    variable = mag2_z
+    mag_sub = 1
+    component = 2
+  []
+[]
+
+[Correctors]
+  [unit_m1]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag1_x mag1_y mag1_z&#x27;
+    norm = 1
+    execute_on = &#x27;initial timestep_end&#x27;
+    force_preaux = true
+  []
+  [unit_m2]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag2_x mag2_y mag2_z&#x27;
+    norm = 1
+    execute_on = &#x27;initial timestep_end&#x27;
+    force_preaux = true
+  []
+[]
+
+[AuxVariables]
+  [n_z]
+  []
+  [nzc2]
+  []
+  [m_z]
+  []
+[]
+
+[AuxKernels]
+  [n_z]
+    type = ParsedAux
+    enable_jit = false
+    variable = n_z
+    coupled_variables = &#x27;mag1_z mag2_z&#x27;
+    expression = &#x27;(mag1_z - mag2_z)/2&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [nzc2]
+    type = ParsedAux
+    enable_jit = false
+    variable = nzc2
+    coupled_variables = &#x27;mag1_z mag2_z&#x27;
+    use_xyzt = true
+    expression = &#x27;(mag1_z - mag2_z)/2*(x*x - y*y)/(x*x + y*y + 1e-24)&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [m_z]
+    type = ParsedAux
+    enable_jit = false
+    variable = m_z
+    coupled_variables = &#x27;mag1_z mag2_z&#x27;
+    expression = &#x27;(mag1_z + mag2_z)/2&#x27;
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Postprocessors]
+  [nz_int]
+    type = ElementIntegralVariablePostprocessor
+    variable = n_z
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [nzc2_int]
+    type = ElementIntegralVariablePostprocessor
+    variable = nzc2
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+  [mz_int]
+    type = ElementIntegralVariablePostprocessor
+    variable = m_z
+    execute_on = &#x27;initial timestep_end&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  [TimeIntegrator]
+    type = NewmarkBeta
+  []
+  dt = 0.25
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_afm_skyr_modes
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="b81852d9-ce3b-4cc1-97cc-79d5d4291e58"><div class="modal-content"><h4>(test/tests/magnets/llb_helix.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  type = GeneratedMesh
+  dim = 1
+  nx = 800
+  xmax = 54.45427266
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 2.211e-4
+  mu0 = 1.2566370614e-6
+  dmi_type = bulk
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha alpha_perp alpha_par Ms Ae D me chi_par&#x27;
+    prop_values = &#x27;1.0 0.7142857143 0.5714285714 860000 13000000 3000000 0.4680904102 1.87707808e-09&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    initial_condition = 0.01
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.4680904102*cos(0.1153846154*x)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;0.4680904102*sin(0.1153846154*x)&#x27;
+    []
+  []
+[]
+
+[BCs]
+  [Periodic]
+    [all]
+      variable = &#x27;mag_x mag_y mag_z&#x27;
+      auto_direction = x
+    []
+  []
+[]
+
+[AuxVariables]
+  [mm]
+  []
+[]
+
+[AuxKernels]
+  [mm]
+    type = ParsedAux
+    variable = mm
+    coupled_variables = &#x27;mag_x mag_y mag_z&#x27;
+    expression = &#x27;sqrt(mag_x^2 + mag_y^2 + mag_z^2)&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [MasterExchangeCartLLG_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+    llb = true
+  []
+  [MasterExchangeCartLLG_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+    llb = true
+  []
+  [MasterExchangeCartLLG_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+    llb = true
+  []
+  [MasterDMICartLLG_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+    llb = true
+  []
+  [MasterDMICartLLG_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+    llb = true
+  []
+  [MasterDMICartLLG_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+    llb = true
+  []
+  [MasterLongitudinalLLB_x]
+    type = MasterLongitudinalLLB
+    variable = mag_x
+    component = 0
+    form = llb
+    temperature = 600
+    Tc = 700
+  []
+  [MasterLongitudinalLLB_y]
+    type = MasterLongitudinalLLB
+    variable = mag_y
+    component = 1
+    form = llb
+    temperature = 600
+    Tc = 700
+  []
+  [MasterLongitudinalLLB_z]
+    type = MasterLongitudinalLLB
+    variable = mag_z
+    component = 2
+    form = llb
+    temperature = 600
+    Tc = 700
+  []
+[]
+
+[Postprocessors]
+  [sim_time]
+    type = TimePostprocessor
+  []
+  [m_avg]
+    type = ElementAverageValue
+    variable = mm
+  []
+  [E_ex]
+    type = MasterMagneticExchangeEnergy
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+  []
+  [shift_rel]
+    type = ParsedPostprocessor
+    expression = &#x27;(m_avg/0.4680904102 - 1)/0.0006010528864&#x27;
+    pp_names = &#x27;m_avg&#x27;
+  []
+  [dens_rel]
+    type = ParsedPostprocessor
+    expression = &#x27;(E_ex + E_dmi)/54.45427266/(-173076.9231*m_avg*m_avg)&#x27;
+    pp_names = &#x27;E_ex E_dmi m_avg&#x27;
+  []
+[]
+
+[UserObjects]
+  [assert]
+    type = Terminator
+    expression = &#x27;sim_time &gt; 1.0 &amp; (abs(shift_rel - 1) &gt; 0.02 | abs(dens_rel - 1) &gt; 1e-4)&#x27;
+    fail_mode = HARD
+    error_level = ERROR
+    message = &#x27;LLB bulk-DMI helix: |m| shift or energy density differs from the analytic LLB result&#x27;
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  scheme = bdf2
+  end_time = 1.2
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1e-5
+    growth_factor = 1.3
+    optimal_iterations = 8
+  []
+  dtmax = 0.05
+  nl_abs_tol = 1e-10
+  nl_rel_tol = 1e-8
+  nl_rel_step_tol = 1e-12
+  line_search = none
+  nl_forced_its = 1
+[]
+
+[Outputs]
+  file_base = out_llb_helix
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="9cbedd1b-a980-4c66-ba2b-55f272bcc134"><div class="modal-content"><h4>(test/tests/magnets/sp6_3d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 3D benchmark: num_sectors = 72, rings = 46, num_layers = 21 (~1-2 nm), relaxed (IterationAdaptiveDT, dtmax 0.003) until rms dm/dt &lt; 1e-6 /ns.
+  [disk]
+    type = ConcentricCircleMeshGenerator
+    num_sectors = 4
+    radii = &#x27;91.5&#x27;
+    rings = &#x27;8&#x27;
+    has_outer_square = false
+    preserve_volumes = false
+  []
+  [cylinder]
+    type = AdvancedExtruderGenerator
+    input = disk
+    heights = &#x27;21&#x27;
+    num_layers = &#x27;3&#x27;
+    direction = &#x27;0 0 1&#x27;
+  []
+  [center]
+    type = TransformGenerator
+    input = cylinder
+    transform = TRANSLATE
+    vector_value = &#x27;0 0 -10.5&#x27;
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = bulk
+  potential_H_int = potential_H_int
+  Hext_x = Hext_x
+  Hext_y = Hext_y
+  Hext_z = Hext_z
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D&#x27;
+    prop_values = &#x27;1 384000 8780000 1580000&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(-y/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_y]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(x/sqrt(x*x+y*y+1e-24)*(1-abs((1-2*exp(-(x*x+y*y)/1296)))))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+  [mag_z]
+    [InitialCondition]
+      type = FunctionIC
+      function = &#x27;(1-2*exp(-(x*x+y*y)/1296))/sqrt((1-abs((1-2*exp(-(x*x+y*y)/1296))))^2*(x*x+y*y)/(x*x+y*y+1e-24)+(1-2*exp(-(x*x+y*y)/1296))^2)&#x27;
+    []
+  []
+[]
+
+[AuxVariables]
+  [potential_H_int]
+  []
+  [Hext_x]
+  []
+  [Hext_y]
+  []
+  [Hext_z]
+    initial_condition = 318309.8862
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [zeeman_x]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_x
+    component = 0
+  []
+  [zeeman_y]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_y
+    component = 1
+  []
+  [zeeman_z]
+    type = MasterInteractionCartLLGHConst
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_zeeman]
+    type = MasterMagneticZeemanEnergyCart
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_zeeman&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.005
+  num_steps = 5
+[]
+
+[Outputs]
+  file_base = out_sp6_3d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div><div class="moose-modal modal" id="ffb490fa-58b0-46a4-811c-88d8944a72ef"><div class="modal-content"><h4>(test/tests/magnets/sp6_1d.i)</h4><pre style="max-height:350px;"><code class="language-moose">[Mesh]
+  # SP6 1D benchmark: nx = 100 (h = 1 nm), relaxed (IterationAdaptiveDT, dtmax 0.01) until rms dm/dt &lt; 1e-6 /ns.
+  [wire]
+    type = GeneratedMeshGenerator
+    dim = 1
+    nx = 25
+    xmin = -50
+    xmax = 50
+  []
+[]
+
+[GlobalParams]
+  mag_x = mag_x
+  mag_y = mag_y
+  mag_z = mag_z
+  g0 = 0.0002211
+  mu0 = 1.256637061e-06
+  Hscale = 1
+  dmi_type = interfacial
+[]
+
+[Materials]
+  [constants]
+    type = GenericConstantMaterial
+    prop_names = &#x27;alpha Ms Ae D K1 nx ny nz&#x27;
+    prop_values = &#x27;1 860000 13000000 -3000000 400000 0 0 1&#x27;
+  []
+[]
+
+[Variables]
+  [mag_x]
+    initial_condition = 0
+  []
+  [mag_y]
+    initial_condition = 0
+  []
+  [mag_z]
+    initial_condition = 1
+  []
+[]
+
+[Correctors]
+  [unit_magnetization]
+    type = PointwiseRenormalizeVector
+    v = &#x27;mag_x mag_y mag_z&#x27;
+    norm = 1
+    execute_on = &#x27;timestep_end&#x27;
+  []
+[]
+
+[Kernels]
+  [time_x]
+    type = TimeDerivative
+    variable = mag_x
+  []
+  [time_y]
+    type = TimeDerivative
+    variable = mag_y
+  []
+  [time_z]
+    type = TimeDerivative
+    variable = mag_z
+  []
+  [exchange_x]
+    type = MasterExchangeCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [exchange_y]
+    type = MasterExchangeCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [exchange_z]
+    type = MasterExchangeCartLLG
+    variable = mag_z
+    component = 2
+  []
+  [dmi_x]
+    type = MasterDMICartLLG
+    variable = mag_x
+    component = 0
+  []
+  [dmi_y]
+    type = MasterDMICartLLG
+    variable = mag_y
+    component = 1
+  []
+  [dmi_z]
+    type = MasterDMICartLLG
+    variable = mag_z
+    component = 2
+  []
+  [anisotropy_x]
+    type = MasterAnisotropyCartLLG
+    variable = mag_x
+    component = 0
+  []
+  [anisotropy_y]
+    type = MasterAnisotropyCartLLG
+    variable = mag_y
+    component = 1
+  []
+  [anisotropy_z]
+    type = MasterAnisotropyCartLLG
+    variable = mag_z
+    component = 2
+  []
+[]
+
+[Postprocessors]
+  [mx]
+    type = ElementAverageValue
+    variable = mag_x
+  []
+  [mz]
+    type = ElementAverageValue
+    variable = mag_z
+  []
+  [E_exchange]
+    type = MasterMagneticExchangeEnergy
+    energy_scale = 1e-27
+  []
+  [E_dmi]
+    type = MasterMagneticDMIEnergy
+    energy_scale = 1e-27
+  []
+  [E_anisotropy]
+    type = MasterMagneticAnisotropyEnergy
+    energy_scale = 1e-27
+  []
+  [E_total]
+    type = LinearCombinationPostprocessor
+    pp_names = &#x27;E_exchange E_dmi E_anisotropy&#x27;
+    pp_coefs = &#x27;1 1 1&#x27;
+  []
+[]
+
+[Preconditioning]
+  [smp]
+    type = SMP
+    full = true
+  []
+[]
+
+[Executioner]
+  type = Transient
+  solve_type = NEWTON
+  petsc_options_iname = &#x27;-pc_type&#x27;
+  petsc_options_value = &#x27;lu&#x27;
+  nl_rel_tol = 1e-10
+  nl_abs_tol = 1e-12
+  dt = 0.01
+  num_steps = 10
+[]
+
+[Outputs]
+  file_base = out_sp6_1d
+  exodus = true
+  csv = true
+[]
+</code></pre></div><div class="modal-footer"><a class="modal-close btn-flat">Close</a></div></div></div></div></div></main></div></body><script type="text/javascript" src="../../contrib/materialize/materialize.min.js"></script><script type="text/javascript" src="../../contrib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../contrib/prism/prism.min.js"></script><script type="text/javascript" src="../../js/init.js"></script><script type="text/javascript" src="../../js/navigation.js"></script><script type="text/javascript" src="https://cse.google.com/cse.js?cx=008852834041008754713:g3ilnhhbbj9"></script><script type="text/javascript" src="../../js/sqa_moose.js"></script><script type="text/javascript" src="../../js/moose_input_parser.js"></script>
