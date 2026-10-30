@@ -23,6 +23,7 @@
 #define MASTERINTERACTIONCARTLLGHCONST_H
 
 #include "Kernel.h"
+#include "LocalConservedNoiseInterface.h"
 
 class MasterInteractionCartLLGHConst: public Kernel
 {
@@ -59,5 +60,14 @@ private:
   const VariableValue &  _Hext_y;
   const VariableValue &  _Hext_z;
   const Real & _Hscale;
+  const bool _llb;
+  const OptionalMaterialProperty<Real> & _alpha_perp;
+  const OptionalMaterialProperty<Real> & _alpha_par;
+  const Real _llb_m2_eps;
+  const bool _thermal_field;
+  const OptionalMaterialProperty<Real> & _sigma_perp;
+  const LocalConservedNoiseInterface * _noise_x;
+  const LocalConservedNoiseInterface * _noise_y;
+  const LocalConservedNoiseInterface * _noise_z;
 };
 #endif //MASTERINTERACTIONCARTLLGHCONST_H

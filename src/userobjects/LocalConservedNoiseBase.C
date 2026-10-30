@@ -37,11 +37,15 @@ LocalConservedNoiseBase::validParams()
 {
   InputParameters params = ElementUserObject::validParams();
   params.set<ExecFlagEnum>("execute_on") = EXEC_TIMESTEP_BEGIN;
+  params.addParam<bool>("conserved", true, "Subtract the volume average so the noise integrates to zero (concentration-type fields); false keeps the uniform mode (non-conserved order parameters, macrospins)");
+  params.addParam<bool>("white_noise", false, "Divide each value by sqrt(JxW dt): space-time white noise with unit strength, so a source -test*sqrt(2D)*value has the fluctuation-dissipation covariance 2D M/dt (M the consistent mass matrix)");
   return params;
 }
 
 LocalConservedNoiseBase::LocalConservedNoiseBase(const InputParameters & parameters)
-  : LocalConservedNoiseInterface(parameters)
+  : LocalConservedNoiseInterface(parameters),
+    _conserved(getParam<bool>("conserved")),
+    _white_noise(getParam<bool>("white_noise"))
 {
 }
 
@@ -64,6 +68,8 @@ LocalConservedNoiseBase::execute()
   for (_qp = 0; _qp < _qrule->n_points(); _qp++)
   {
     me[_qp] = getQpRandom();
+    if (_white_noise)
+      me[_qp] = _dt > 0.0 ? me[_qp] / std::sqrt(_JxW[_qp] * _coord[_qp] * _dt) : 0.0;
     _integral += _JxW[_qp] * _coord[_qp] * me[_qp];
     _volume += _JxW[_qp] * _coord[_qp];
   }
@@ -85,7 +91,7 @@ LocalConservedNoiseBase::finalize()
   gatherSum(_integral);
   gatherSum(_volume);
 
-  _offset = _integral / _volume;
+  _offset = _conserved ? _integral / _volume : 0.0;
 }
 
 Real

@@ -8,6 +8,7 @@ Get Started:
 Theory:
   Phase Field Method of Ferroelectricity (FE):   theory/intro_LGD.md
   Micromagnetic Simulations:   theory/intro_LLG.md
+  Finite-Temperature Micromagnetics (LLB):   theory/intro_LLB.md
   Piezoelectricity:   theory/intro_piezo.md
   Thermoelectric Phenomena:   theory/intro_thermo.md
   Optical Properties:   theory/intro_optical.md
@@ -19,6 +20,8 @@ Tutorials:
   Magnetic ringdown: tutorials/magnetic_ringdown.md
   Antiferromagnetic dynamics: tutorials/AFM_dynamics.md
   Piezoelectric actuation: tutorials/piezoelectric.md
+  Spin waves from the eigensolver: tutorials/spin_waves.md
+  Flexoelectricity at a domain wall: tutorials/flexoelectric_domain_wall.md
   Polycrystalline thermoelectric transport: tutorials/thermoelectric.md
 
 EU Horizon2020-IF:

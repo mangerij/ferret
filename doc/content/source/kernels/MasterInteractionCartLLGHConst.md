@@ -73,6 +73,14 @@ The on-diagonal and off-diagonal jacobian expression is,
 
 where $\phi$ is the shape function of the finite element method. Note that if $\mathbf{H}_\mathrm{appl}$ depends on any variables, we would need to also compute the derivatives of those variables (i.e. $\partial \mathbf{H}_\mathrm{appl}/\partial m_\beta$). However, using the preconditioned Jacobian-free Newton-Krylov (PFJNK) method in the `Executioner` can help with convergence (exact jacobian components are not needed) The advantage of using this `Kernel` in a simulation is that we do not solve the Poisson equation.
 
+## Landau-Lifshitz-Bloch and thermal-field routes
+
+With `llb = true` the potential and constant fields act through the LLB torque ([Finite-temperature micromagnetics](theory/intro_LLB.md)); the material properties `alpha_perp` and `alpha_par` are required.
+
+With `thermal_field = true` this instance carries only the transverse thermal field of the stochastic LLB equation (sLLB-II of [!cite](Evans2012)): $\mathbf{h} = \sigma_\perp\boldsymbol{\xi}$, acting through the $\alpha_\perp$ damping term only (no precession, no $\alpha_\parallel$ term). $\boldsymbol{\xi}$ comes from the user objects `noise_x`, `noise_y`, `noise_z` ([LocalConservedNormalNoise](LocalConservedNormalNoise.md) with `conserved = false`, `white_noise = true`) and $\sigma_\perp$ from the material property `sigma_perp`. `Hext_*` and the potential are ignored; use a second instance for the deterministic fields.
+
+!listing test/tests/magnets/sllb_ensemble.i block=Kernels/MasterInteractionCartLLGHConst_x
+
 ## Example Input File Syntax
 
 !! Describe and include an example of how to use the MasterInteractionCartLLGHConst object.

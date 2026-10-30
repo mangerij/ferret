@@ -54,5 +54,13 @@ protected:
   const MaterialProperty<Real> & _Ms;
   const Real & _mu0;
   const Real & _Hscale;
+  const bool _llb;
+  const OptionalMaterialProperty<Real> & _alpha_perp;
+  const OptionalMaterialProperty<Real> & _alpha_par;
+  const OptionalMaterialProperty<Real> & _Kh;
+  const OptionalMaterialProperty<Real> & _nhx;
+  const OptionalMaterialProperty<Real> & _nhy;
+  const OptionalMaterialProperty<Real> & _nhz;
+  const Real _llb_m2_eps;
 };
 #endif //MASTERANISOTROPYCARTLLG_H

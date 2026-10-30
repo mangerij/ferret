@@ -83,6 +83,10 @@ and
 where $\phi$ is the shape function of the finite element method.
 
 
+## Landau-Lifshitz-Bloch route
+
+With `llb = true` the field $-\nabla\Phi$ acts through the LLB torque ([Finite-temperature micromagnetics](theory/intro_LLB.md)); the material properties `alpha_perp` and `alpha_par` are required. In the LLB route $\mathbf{m} = \mathbf{M}/M_{s0}$, so the Poisson source $M_{s0}\nabla\cdot\mathbf{m}$ follows $|\mathbf{m}|$ and the demagnetizing field weakens with temperature as it should.
+
 ## Example Input File Syntax
 
 !! Describe and include an example of how to use the MasterInteractionCartLLG object.
