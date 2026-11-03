@@ -33,4 +33,13 @@
     max_parallel = 1
     max_threads = 1
   [../]
+
+  [./sw_eigen_de_damped]
+    type = 'CSVDiff'
+    input = 'sw_eigen_de_damped.i'
+    csvdiff = 'out_sw_eigen_de_damped.csv'
+    capabilities = 'slepc & mumps'
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
