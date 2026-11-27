@@ -23,6 +23,7 @@
 #define COMPUTECUBICPARENTFLEXOELECTRICSTRAIN_H
 
 #include "ComputeEigenstrainBase.h"
+#include "RankFourTensor.h"
 #include "RankTwoTensor.h"
 
 /**
@@ -37,6 +38,8 @@ public:
 
 protected:
   virtual void computeQpEigenstrain() override;
+  /// the (linear) flexoelectric eigenstrain for a given polarization gradient, grad_p(k,l) = dP_k/dx_l
+  RankTwoTensor flexoStrain(const RankTwoTensor & grad_p);
 
 private:
   const VariableGradient & _polar_x_grad;
@@ -50,6 +53,8 @@ private:
   const MaterialProperty<Real> & _mu44;
   std::vector<Real> _vals;
   RankTwoTensor _flexoelectric_strain;
+  /// d eps0_mn / d(dP_k/dx_l), constant in P; read by EigenstrainGradientOffDiag for the u<-P block
+  MaterialProperty<RankFourTensor> & _deigenstrain_dgrad;
 };
 
 #endif //COMPUTECUBICPARENTFLEXOELECTRICSTRAIN_H

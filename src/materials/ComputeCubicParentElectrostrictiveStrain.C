@@ -27,7 +27,7 @@ registerMooseObject("FerretApp", ComputeCubicParentElectrostrictiveStrain);
 InputParameters ComputeCubicParentElectrostrictiveStrain::validParams()
 {
   InputParameters params = ComputeEigenstrainBase::validParams();
-  params.addClassDescription("Compute the spontaneous polar contribution to the strain.");
+  params.addClassDescription("Compute the spontaneous polar contribution to the strain. It also declares its derivatives w.r.t. the coupled polarization components, so StressDivergenceTensors assembles the u<-P Jacobian block when given eigenstrain_names = <this eigenstrain_name> and coupled_variables = <the polarization components>.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
@@ -35,7 +35,7 @@ InputParameters ComputeCubicParentElectrostrictiveStrain::validParams()
 }
 
 ComputeCubicParentElectrostrictiveStrain::ComputeCubicParentElectrostrictiveStrain(const InputParameters & parameters) :
-    ComputeEigenstrainBase(parameters),
+    DerivativeMaterialInterface<ComputeEigenstrainBase>(parameters),
   _polar_x(coupledValue("polar_x")),
   _polar_y(coupledValue("polar_y")),
   _polar_z(coupledValue("polar_z")),
@@ -43,8 +43,13 @@ ComputeCubicParentElectrostrictiveStrain::ComputeCubicParentElectrostrictiveStra
   _Q12(getMaterialProperty<Real>("Q12")),
   _Q44(getMaterialProperty<Real>("Q44")),
   _vals(6),
-  _cubic_parent_electrostrictive_strain()
+  _cubic_parent_electrostrictive_strain(),
+  _deigenstrain(3, nullptr)
 {
+  const std::vector<std::string> comps = {"polar_x", "polar_y", "polar_z"};
+  for (unsigned int k = 0; k < 3; ++k)
+    if (isCoupled(comps[k]))
+      _deigenstrain[k] = &declarePropertyDerivative<RankTwoTensor>(_eigenstrain_name, coupledName(comps[k]));
 }
 
 void
@@ -60,4 +65,20 @@ ComputeCubicParentElectrostrictiveStrain::computeQpEigenstrain()
   _vals[5] = _Q44[_qp]*(w(0)*w(1)); //eps_6   12
   _cubic_parent_electrostrictive_strain.fillFromInputVector(_vals);
   _eigenstrain[_qp] = _cubic_parent_electrostrictive_strain;
+
+  // d eps0_ij / d P_k: the diagonal from Q11/Q12, the (k,j) shear pair from Q44
+  for (unsigned int k = 0; k < 3; ++k)
+    if (_deigenstrain[k])
+    {
+      RankTwoTensor & D = (*_deigenstrain[k])[_qp];
+      D.zero();
+      for (unsigned int j = 0; j < 3; ++j)
+        if (j == k)
+          D(j, j) = 2.0 * _Q11[_qp] * w(k);
+        else
+        {
+          D(j, j) = 2.0 * _Q12[_qp] * w(k);
+          D(k, j) = D(j, k) = _Q44[_qp] * w(j);
+        }
+    }
 }

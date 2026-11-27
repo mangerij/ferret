@@ -26,11 +26,12 @@
 #include "RankTwoTensor.h"
 #include "ComputeSpontaneousRotostrictiveStrain.h"
 #include "ComputeEigenstrainBase.h"
+#include "DerivativeMaterialInterface.h"
 
 /**
  * ComputeSpontaneousRotostrictiveStrain the base class for computing spontaneous rotostrictive strain contributions (cubic)
  */
-class ComputeSpontaneousRotostrictiveStrain : public ComputeEigenstrainBase
+class ComputeSpontaneousRotostrictiveStrain : public DerivativeMaterialInterface<ComputeEigenstrainBase>
 {
 public:
     ComputeSpontaneousRotostrictiveStrain(const InputParameters & parameters);
@@ -47,6 +48,10 @@ private:
   const MaterialProperty<Real> & _R12;
   const MaterialProperty<Real> & _R44;
   std::vector<Real> _vals;
+  /// d eigenstrain / d (order-parameter component), declared only for coupled components;
+  /// StressDivergenceTensors reads them (eigenstrain_names + coupled_variables) for its
+  /// off-diagonal Jacobian block
+  std::vector<MaterialProperty<RankTwoTensor> *> _deigenstrain;
   RankTwoTensor _rotostrictive_strain;
 };
 
