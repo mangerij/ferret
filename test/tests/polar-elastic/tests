@@ -27,4 +27,20 @@
     max_parallel = 1
     max_threads = 1
   [../]
+  [./pto_3D_newton]
+    type = 'CSVDiff'
+    input = 'PTO_3D_newton.i'
+    csvdiff = 'PTO_3D_newton_out.csv'
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./pto_3D_newton_jacobian]
+    type = 'PetscJacobianTester'
+    input = 'PTO_3D_newton.i'
+    cli_args = 'L=2.0 Executioner/num_steps=1 Outputs/csv=false'
+    ratio_tol = 1e-7
+    difference_tol = 1e-4
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []

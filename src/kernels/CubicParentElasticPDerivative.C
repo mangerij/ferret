@@ -20,6 +20,7 @@
 **/
 
 #include "CubicParentElasticPDerivative.h"
+#include "GlobalStrainComponents.h"
 #include "MooseVariableScalar.h"
 #include "SystemBase.h"
 #include "Assembly.h"
@@ -250,7 +251,8 @@ CubicParentElasticPDerivative::computeOffDiagJacobianScalar(unsigned int jvar)
     for (_j = 0; _j < jv.order(); ++_j)
       for (_qp = 0; _qp < _qrule->n_points(); ++_qp)
       {
-        const RankTwoTensor dsigma = (*_elasticity_tensor)[_qp] * unitStrain(_j);
+        const RankTwoTensor dsigma =
+            (*_elasticity_tensor)[_qp] * unitStrain(GlobalStrainComponents::sixIndex(jv.order(), _j));
         _local_ke(_i, _j) += _JxW[_qp] * _coord[_qp] *
                              (-dsigma.doubleContraction(dEigenstrain_dP(_component))) *
                              _test[_i][_qp];
@@ -259,13 +261,14 @@ CubicParentElasticPDerivative::computeOffDiagJacobianScalar(unsigned int jvar)
 
   // Transpose for the eps_bar rows. MOOSE's scalar residual is int sigma_ij dV for the SINGLE
   // tensor component (ij) of each scalar entry, whereas the unit strain E_b used above moves
-  // both eps_ij and eps_ji: the column block is right as it is, the row block for the three
-  // shear components is exactly half of the transpose.
+  // both eps_ij and eps_ji: the column block is right as it is, the row block for the shear
+  // components is exactly half of the transpose.
   _ke_copy = _local_ke;
   prepareMatrixTag(_assembly, jvar, _var.number());
   _ke_copy.get_transpose(_local_ke);
-  for (unsigned int b = 3; b < _local_ke.m(); ++b)
-    for (unsigned int c = 0; c < _local_ke.n(); ++c)
-      _local_ke(b, c) *= 0.5;
+  for (unsigned int b = 0; b < _local_ke.m(); ++b)
+    if (GlobalStrainComponents::isShear(jv.order(), b))
+      for (unsigned int c = 0; c < _local_ke.n(); ++c)
+        _local_ke(b, c) *= 0.5;
   accumulateTaggedLocalMatrix();
 }

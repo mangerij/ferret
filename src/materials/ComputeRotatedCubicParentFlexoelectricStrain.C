@@ -37,7 +37,7 @@ registerMooseObject("FerretApp", ComputeRotatedCubicParentFlexoelectricStrain);
 InputParameters ComputeRotatedCubicParentFlexoelectricStrain::validParams()
 {
   InputParameters params = ComputeEigenstrainBase::validParams();
-  params.addClassDescription("Computes the flexoelectric eigenstrain -(s:f):grad P of a cubic parent phase whose crystal axes are turned by the material property twist about z.");
+  params.addClassDescription("Computes the flexoelectric eigenstrain -(s:f):grad P of a cubic parent phase whose crystal axes are turned by the material property twist about z. It also declares the constant derivative <eigenstrain_name>_dgrad = d eps0/d(grad P), which EigenstrainGradientOffDiag uses for the u<-P Jacobian block.");
   params.addRequiredCoupledVar("polar_x", "The x component of the polarization");
   params.addCoupledVar("polar_y", 0.0, "The y component of the polarization");
   params.addCoupledVar("polar_z", 0.0, "The z component of the polarization");
@@ -57,24 +57,50 @@ ComputeRotatedCubicParentFlexoelectricStrain::ComputeRotatedCubicParentFlexoelec
    _mu44(getMaterialProperty<Real>("mu44")),
    _twist(getMaterialProperty<Real>("twist")),
    _vals(6),
-   _flexoelectric_strain()
+   _flexoelectric_strain(),
+   _deigenstrain_dgrad(declareProperty<RankFourTensor>(_eigenstrain_name + "_dgrad"))
 {
 }
 
 void
 ComputeRotatedCubicParentFlexoelectricStrain::computeQpEigenstrain()
 {
+  RankTwoTensor grad_p;
+  for (unsigned int l = 0; l < 3; ++l)
+  {
+    grad_p(0, l) = _polar_x_grad[_qp](l);
+    grad_p(1, l) = _polar_y_grad[_qp](l);
+    grad_p(2, l) = _polar_z_grad[_qp](l);
+  }
+  _eigenstrain[_qp] = flexoStrain(grad_p);
+
+  // eps0 is linear in grad P, so its derivative is eps0 evaluated on the unit gradients
+  for (unsigned int k = 0; k < 3; ++k)
+    for (unsigned int l = 0; l < 3; ++l)
+    {
+      RankTwoTensor unit;
+      unit(k, l) = 1.0;
+      const RankTwoTensor d = flexoStrain(unit);
+      for (unsigned int m = 0; m < 3; ++m)
+        for (unsigned int n = 0; n < 3; ++n)
+          _deigenstrain_dgrad[_qp](m, n, k, l) = d(m, n);
+    }
+}
+
+RankTwoTensor
+ComputeRotatedCubicParentFlexoelectricStrain::flexoStrain(const RankTwoTensor & grad_p)
+{
   const Real ct = std::cos(_twist[_qp]);
   const Real st = std::sin(_twist[_qp]);
-  const Real g00 = _polar_x_grad[_qp](0)*Utility::pow<2>(ct) + _polar_x_grad[_qp](1)*ct*st + _polar_y_grad[_qp](0)*ct*st + _polar_y_grad[_qp](1)*Utility::pow<2>(st);
-  const Real g01 = -_polar_x_grad[_qp](0)*ct*st + _polar_x_grad[_qp](1)*Utility::pow<2>(ct) - _polar_y_grad[_qp](0)*Utility::pow<2>(st) + _polar_y_grad[_qp](1)*ct*st;
-  const Real g02 = _polar_x_grad[_qp](2)*ct + _polar_y_grad[_qp](2)*st;
-  const Real g10 = -_polar_x_grad[_qp](0)*ct*st - _polar_x_grad[_qp](1)*Utility::pow<2>(st) + _polar_y_grad[_qp](0)*Utility::pow<2>(ct) + _polar_y_grad[_qp](1)*ct*st;
-  const Real g11 = _polar_x_grad[_qp](0)*Utility::pow<2>(st) - _polar_x_grad[_qp](1)*ct*st - _polar_y_grad[_qp](0)*ct*st + _polar_y_grad[_qp](1)*Utility::pow<2>(ct);
-  const Real g12 = -_polar_x_grad[_qp](2)*st + _polar_y_grad[_qp](2)*ct;
-  const Real g20 = _polar_z_grad[_qp](0)*ct + _polar_z_grad[_qp](1)*st;
-  const Real g21 = -_polar_z_grad[_qp](0)*st + _polar_z_grad[_qp](1)*ct;
-  const Real g22 = _polar_z_grad[_qp](2);
+  const Real g00 = grad_p(0, 0)*Utility::pow<2>(ct) + grad_p(0, 1)*ct*st + grad_p(1, 0)*ct*st + grad_p(1, 1)*Utility::pow<2>(st);
+  const Real g01 = -grad_p(0, 0)*ct*st + grad_p(0, 1)*Utility::pow<2>(ct) - grad_p(1, 0)*Utility::pow<2>(st) + grad_p(1, 1)*ct*st;
+  const Real g02 = grad_p(0, 2)*ct + grad_p(1, 2)*st;
+  const Real g10 = -grad_p(0, 0)*ct*st - grad_p(0, 1)*Utility::pow<2>(st) + grad_p(1, 0)*Utility::pow<2>(ct) + grad_p(1, 1)*ct*st;
+  const Real g11 = grad_p(0, 0)*Utility::pow<2>(st) - grad_p(0, 1)*ct*st - grad_p(1, 0)*ct*st + grad_p(1, 1)*Utility::pow<2>(ct);
+  const Real g12 = -grad_p(0, 2)*st + grad_p(1, 2)*ct;
+  const Real g20 = grad_p(2, 0)*ct + grad_p(2, 1)*st;
+  const Real g21 = -grad_p(2, 0)*st + grad_p(2, 1)*ct;
+  const Real g22 = grad_p(2, 2);
   // the eigenstrain in the crystal frame, then turned back: eps^F = R eps^F_c R^T
   const Real f00 = -g00*(_mu11[_qp]*_s11[_qp] + 2*_mu12[_qp]*_s12[_qp]) - (g11 + g22)*(_mu11[_qp]*_s12[_qp] + _mu12[_qp]*_s11[_qp] + _mu12[_qp]*_s12[_qp]);
   const Real f01 = -0.5*_mu44[_qp]*_s44[_qp]*(g01 + g10);
@@ -90,5 +116,5 @@ ComputeRotatedCubicParentFlexoelectricStrain::computeQpEigenstrain()
   _vals[4] = ct*f02 - f12*st;  // eps_5   13
   _vals[5] = Utility::pow<2>(ct)*f01 + ct*f00*st - ct*f11*st - f01*Utility::pow<2>(st);  // eps_6   12
   _flexoelectric_strain.fillFromInputVector(_vals);
-  _eigenstrain[_qp] = _flexoelectric_strain;
+  return _flexoelectric_strain;
 }

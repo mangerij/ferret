@@ -26,11 +26,12 @@
 #include "RankTwoTensor.h"
 #include "ComputeCubicParentElectrostrictiveStrain.h"
 #include "ComputeEigenstrainBase.h"
+#include "DerivativeMaterialInterface.h"
 
 /**
  * ComputeFerroelectricStrain the base class for computing spontaneous polar strain contributions (cubic)
  */
-class ComputeCubicParentElectrostrictiveStrain : public ComputeEigenstrainBase
+class ComputeCubicParentElectrostrictiveStrain : public DerivativeMaterialInterface<ComputeEigenstrainBase>
 {
 public:
     ComputeCubicParentElectrostrictiveStrain(const InputParameters & parameters);
@@ -45,6 +46,10 @@ private:
   const MaterialProperty<Real> & _Q12;
   const MaterialProperty<Real> & _Q44;
   std::vector<Real> _vals;
+  /// d eigenstrain / d (order-parameter component), declared only for coupled components;
+  /// StressDivergenceTensors reads them (eigenstrain_names + coupled_variables) for its
+  /// off-diagonal Jacobian block
+  std::vector<MaterialProperty<RankTwoTensor> *> _deigenstrain;
   RankTwoTensor _cubic_parent_electrostrictive_strain;
 };
 

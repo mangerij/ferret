@@ -9,4 +9,22 @@
     max_parallel = 1
     max_threads = 1
   [../]
+  [./flexo_180DW_newton]
+    type = 'CSVDiff'
+    input = 'flexo_180DW_newton.i'
+    csvdiff = 'flexo_180DW_newton_out.csv'
+    abs_zero = 1e-8
+    rel_err = 5e-5
+    max_parallel = 1
+    max_threads = 1
+  [../]
+  [./flexo_180DW_newton_jacobian]
+    type = 'PetscJacobianTester'
+    input = 'flexo_180DW_newton.i'
+    cli_args = 'n_z=8 Z=1.0 Executioner/num_steps=1 Outputs/csv/enable=false'
+    ratio_tol = 1e-7
+    difference_tol = 1e-4
+    max_parallel = 1
+    max_threads = 1
+  [../]
 []
